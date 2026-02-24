@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENARMlab | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="app-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <svg viewBox="0 0 24 24" width="36" height="36" class="logo-svg">
+                    <path
+                        d="M4 6h16a2 2 0 010 4H4a2 2 0 010-4zm0 6h10a2 2 0 010 4H4a2 2 0 010-4zm0 6h14a2 2 0 010 4H4a2 2 0 010-4z"
+                        fill="#05C07F" />
+                </svg>
+                <span class="logo-text">ENARM<span class="logo-accent">lab</span></span>
+            </div>
+
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <span class="brain-icon">🧠</span>
+                </div>
+                <div class="user-info">
+                    <div class="user-name">Isaac</div>
+                    <div class="user-status">☁ SINCRONIZANDO</div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item active" id="nav-dashboard">
+                    <span class="nav-icon">⊞</span>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" id="nav-new-exam">
+                    <span class="nav-icon">⊕</span>
+                    <span>Nuevo Examen</span>
+                </button>
+                <button class="nav-item" id="nav-mas">
+                    <span class="nav-icon">💡</span>
+                    <span>Más</span>
+                </button>
+                <button class="nav-item" id="nav-estadisticas">
+                    <span class="nav-icon">📊</span>
+                    <span>Estadísticas</span>
+                </button>
+                <button class="nav-item" id="nav-historial">
+                    <span class="nav-icon">🕒</span>
+                    <span>Historial</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <button class="nav-item" id="nav-ajustes">
+                    <span class="nav-icon">⚙</span>
+                    <span>Ajustes</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- ─── VIEW: DASHBOARD ────────────────────────────── -->
+            <div id="view-dashboard" class="view active">
+                <header class="dashboard-header">
+                    <div class="header-left">
+                        <h1 class="header-title">Hola, Isaac</h1>
+                        <p class="header-subtitle">Panel de Control de Alto Rendimiento</p>
+
+                    </div>
+                    <div class="flame-widget">
+                        <div class="flame-icon">🔥</div>
+                        <div class="flame-info">
+                            <span class="flame-lbl">ESTUDIO DIARIO</span>
+                            <span class="flame-val" id="streak-val">1 Día</span>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon green-icon">📖</div>
+                        <div class="stat-label">RESPONDIDAS</div>
+                        <div class="stat-value" id="dash-respondidas">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blue-icon">🎯</div>
+                        <div class="stat-label">ACIERTOS</div>
+                        <div class="stat-value" id="dash-aciertos">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple-icon">🏅</div>
+                        <div class="stat-label">PROMEDIO / RANGO</div>
+                        <div class="stat-value-sub" id="dash-rango">Aspirante Inicial</div>
+                        <div class="stat-progress-val" id="dash-promedio">0.00%</div>
+                        <div class="stat-progress-bar">
+                            <div class="stat-progress-fill" id="dash-promedio-bar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange-icon">📅</div>
+                        <div class="stat-label">SESIONES</div>
+                        <div class="stat-value" id="dash-sesiones">1</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-bottom">
+                    <div class="chart-section panel">
+                        <h2 class="panel-title"><span class="title-icon green-text">📈</span> Rendimiento Especialidad
+                        </h2>
+                        <div class="chart-placeholder">
+                            <div class="chart-line"><span>80%</span></div>
+                            <div class="chart-line"><span>60%</span></div>
+                            <div class="chart-line"><span>40%</span></div>
+                            <div class="chart-line"><span>20%</span></div>
+
+                            <div class="chart-bars">
+                                <div class="c-bar" style="height: 0%;" data-label="MI" id="bar-mi"></div>
+                                <div class="c-bar" style="height: 0%;" data-label="PED" id="bar-ped"></div>
+                                <div class="c-bar" style="height: 0%;" data-label="GYO" id="bar-gyo"></div>
+                                <div class="c-bar" style="height: 0%;" data-label="CIR" id="bar-cir"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fail-points-section panel">
+                        <div class="panel-header">
+                            <h2 class="panel-title"><span class="title-icon orange-text">⚠️</span> Puntos de Falla (IA)
+                            </h2>
+                            <button class="btn-refuerzo" id="btn-refuerzo-ia">⚡ REFUERZO INTELIGENTE</button>
+                        </div>
+                        <div class="fail-actions">
+                            <button class="btn-fail-action" id="btn-refuerzo-extra"
+                                style="background: rgba(143, 166, 202, 0.15); color: var(--accent-purple); border: 1px solid rgba(143, 166, 202, 0.3);">⚡
+                                MINI SIMULACRO (10)</button>
+                            <button class="btn-fail-action green-bg" id="btn-refuerzo-casos">⚡ REFUERZO CASOS</button>
+                            <button class="btn-fail-action blue-bg" id="btn-refuerzo-rapido">⚡ REFUERZO RÁPIDO</button>
+                        </div>
+                        <div class="fail-list">
+                            <div class="fail-item">
+                                <div class="fail-item-info">
+                                    <div class="fail-item-title">Cardiología (MI)</div>
+                                    <div class="fail-item-sub">Prioridad de Refuerzo: Crítica | Tasa de error: 100%
+                                    </div>
+                                </div>
+                                <div class="fail-item-badge">Repasar GPC</div>
+                            </div>
+                            <div class="fail-item">
+                                <div class="fail-item-info">
+                                    <div class="fail-item-title">Pediatría Infecciosa</div>
+                                    <div class="fail-item-sub">Prioridad: Alta | Confusión frecuente en dosis</div>
+                                </div>
+                                <div class="fail-item-badge">Repasar GPC</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── VIEW: SETUP EXAM ───────────────────────────── -->
+            <div id="view-setup" class="view">
+                <div class="setup-container">
+                    <header class="setup-header">
+                        <h1 class="setup-title">Configuración de Simulacro</h1>
+                        <p class="setup-subtitle">Personaliza tu sesión de entrenamiento de élite.</p>
+                    </header>
+
+                    <div class="presets-grid">
+                        <div class="preset-card" id="preset-real" data-qty="280" data-time="450">
+                            <div class="preset-icon trophy">🏆</div>
+                            <div class="preset-info">
+                                <span class="preset-name">Simulacro Real</span>
+                                <span class="preset-meta">280 Preguntas • 7.5h</span>
+                            </div>
+                        </div>
+                        <div class="preset-card active green-p" id="preset-mini" data-qty="50" data-time="75">
+                            <div class="preset-icon bolt">⚡</div>
+                            <div class="preset-info">
+                                <span class="preset-name">Mini Simulacro</span>
+                                <span class="preset-meta">50 Preguntas • 75m</span>
+                            </div>
+                        </div>
+                        <div class="preset-card blue-p" id="preset-flash" data-qty="20" data-time="15">
+                            <div class="preset-icon flame">🔥</div>
+                            <div class="preset-info">
+                                <span class="preset-name">Repaso Flash</span>
+                                <span class="preset-meta">20 Preguntas • 15m</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-panel-main">
+                        <section class="setup-section">
+                            <h3 class="section-label"><span class="label-icon">⚡</span> MODO DE EXAMEN</h3>
+                            <div class="mode-toggle-grid">
+                                <button class="mode-toggle-btn active" data-exam-mode="casos">
+                                    <span class="btn-icon">📖</span>
+                                    <span>CASOS CLÍNICOS</span>
+                                </button>
+                                <button class="mode-toggle-btn" data-exam-mode="rapidas">
+                                    <span class="btn-icon">⚡</span>
+                                    <span>PREGUNTAS RÁPIDAS</span>
+                                </button>
+                            </div>
+                            <p class="section-hint">Formato estándar ENARM con casos clínicos extensos y múltiples
+                                reactivos.</p>
+                        </section>
+
+                        <section class="setup-section">
+                            <h3 class="section-label"><span class="label-icon">≡</span> ESPECIALIDADES A EVALUAR</h3>
+                            <div class="spec-selection-grid">
+                                <div class="spec-item checked" data-spec="mi">
+                                    <span>Medicina Interna</span>
+                                    <span class="check-mark">✓</span>
+                                </div>
+                                <div class="spec-item checked" data-spec="ped">
+                                    <span>Pediatría</span>
+                                    <span class="check-mark">✓</span>
+                                </div>
+                                <div class="spec-item checked" data-spec="gyo">
+                                    <span>Ginecología y Obstetricia</span>
+                                    <span class="check-mark">✓</span>
+                                </div>
+                                <div class="spec-item checked" data-spec="cir">
+                                    <span>Cirugía General</span>
+                                    <span class="check-mark">✓</span>
+                                </div>
+                                <div class="spec-item" data-spec="sp">
+                                    <span>Salud Pública</span>
+                                    <span class="check-mark">✓</span>
+                                </div>
+                                <div class="spec-item" data-spec="urg">
+                                    <span>Urgencias</span>
+                                    <span class="check-mark">✓</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="setup-section">
+                            <h3 class="section-label"><span class="label-icon">📖</span> TEMAS ESPECÍFICOS O GPC
+                                (OPCIONAL)</h3>
+                            <div class="search-box-container">
+                                <span class="search-icon">🔍</span>
+                                <input type="text" id="setup-topic-filter"
+                                    placeholder="Ej: Cetoacidosis Diabética, GPC de Preeclampsia, Tratamiento de IAM...">
+                            </div>
+                            <p class="section-hint">La IA generará casos clínicos enfocados estrictamente en estas
+                                palabras clave.</p>
+                        </section>
+
+                        <section class="setup-section">
+                            <h3 class="section-label"><span class="label-icon">⚙</span> NIVEL DE EXIGENCIA</h3>
+                            <div class="difficulty-grid">
+                                <button class="diff-btn active" data-diff="alta">
+                                    <span class="btn-icon">⚡</span>
+                                    <span>Alta</span>
+                                </button>
+                                <button class="diff-btn" data-diff="muy-alta">
+                                    <span class="btn-icon">�</span>
+                                    <span>Muy Alta</span>
+                                </button>
+                            </div>
+                        </section>
+
+                        <div class="setup-footer-controls">
+                            <div class="control-group">
+                                <h3 class="section-label">PREGUNTAS: <span id="setup-qty-val"
+                                        class="green-text">10</span></h3>
+                                <input type="range" id="setup-qty-slider" min="1" max="280" value="10"
+                                    class="premium-slider">
+                                <div class="slider-labels">
+                                    <span>1</span>
+                                    <span>280</span>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <h3 class="section-label">TIEMPO LÍMITE: <span id="setup-time-label"
+                                        class="green-text">LIBRE</span></h3>
+                                <div class="time-selection-row">
+                                    <button class="time-toggle-btn active" id="time-libre-btn" data-time-mode="libre">
+                                        <span class="btn-icon">∞</span>
+                                        <span>Libre</span>
+                                    </button>
+                                    <div class="time-input-wrapper">
+                                        <input type="number" id="setup-time-minutes" placeholder="Minutos">
+                                        <span class="time-unit">MIN</span>
+                                    </div>
+                                </div>
+                                <p class="section-hint" style="text-align:right">Rango sugerido: 1.5 min por pregunta.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="setup-actions-row">
+                            <button class="btn-panel-back">Atrás</button>
+                            <button class="btn-finish-setup" id="btn-start-final-exam">Iniciar Simulacro <span
+                                    class="arrow-icon">›</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── VIEW: EXAM ACTIVE ──────────────────────────── -->
+            <div id="view-exam" class="view">
+                <div class="exam-header-bar">
+                    <div class="exam-progress-info">
+                        <span id="q-counter">Pregunta 1 de 280</span>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div class="exam-timer" id="timer-display">⏱ <span id="timer-text">04:00:00</span></div>
+                    <button class="btn-danger" id="btn-finish-early">Terminar</button>
+                </div>
+
+                <div class="exam-layout">
+                    <!-- Sidebar for fast travel -->
+                    <div class="exam-navigator" id="question-navigator"></div>
+
+                    <!-- Main Question Area -->
+                    <div class="exam-content-area">
+                        <div class="case-card">
+                            <span class="case-badge" id="case-area-badge">Medicina Interna</span>
+                            <p id="case-text" class="case-text">Cargando caso clínico...</p>
+                        </div>
+
+                        <div class="question-card">
+                            <div class="q-header">
+                                <span id="q-num-display" class="q-num">Pregunta 1</span>
+                                <button class="btn-flag" id="flag-btn">⚑ Marcar</button>
+                            </div>
+                            <p id="question-text" class="question-text">Cargando pregunta...</p>
+
+                            <div class="options-list" id="options-grid"></div>
+
+                            <div class="exam-actions">
+                                <button class="btn-nav" id="btn-prev">← Anterior</button>
+                                <button class="btn-nav primary" id="btn-next">Siguiente →</button>
+                            </div>
+                        </div>
+
+                        <!-- Feedback for Study mode -->
+                        <div id="feedback-card" class="feedback-card" style="display: none;">
+                            <h3 id="feedback-header">Respuesta</h3>
+                            <p id="feedback-explanation"></p>
+                            <div id="feedback-gpc" class="feedback-gpc"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── VIEW: RESULTS ────────────────────────────── -->
+            <div id="view-results" class="view">
+                <div class="panel results-panel">
+                    <h2 class="panel-title">Resultados de la Sesión</h2>
+
+                    <div class="results-score-row">
+                        <div class="score-circle">
+                            <span class="score-pct" id="score-pct">0%</span>
+                            <span class="score-lbl">Aciertos</span>
+                        </div>
+                        <div class="score-stats">
+                            <div class="s-stat"><span class="s-val text-green" id="meta-correct">0</span><span
+                                    class="s-lbl">Correctas</span></div>
+                            <div class="s-stat"><span class="s-val text-red" id="meta-wrong">0</span><span
+                                    class="s-lbl">Incorrectas</span></div>
+                            <div class="s-stat"><span class="s-val text-gray" id="meta-blank">0</span><span
+                                    class="s-lbl">Sin Contestar</span></div>
+                            <div class="s-stat"><span class="s-val" id="meta-time">0:00</span><span
+                                    class="s-lbl">Tiempo</span></div>
+                        </div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button class="btn-primary" id="btn-review">Revisar Respuestas</button>
+                        <button class="btn-secondary" id="btn-back-dash">Volver al Dashboard</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── VIEW: REVIEW ────────────────────────────── -->
+            <div id="view-review" class="view">
+                <div class="panel review-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Revisión de Respuestas</h2>
+                        <button class="btn-secondary" id="btn-exit-review">Salir de Revisión</button>
+                    </div>
+
+                    <div class="review-layout">
+                        <div class="review-main">
+                            <div class="exam-card">
+                                <div class="case-header">
+                                    <span class="badge" id="rev-case-area-badge">ÁREA</span>
+                                    <span class="q-num" id="rev-q-num-display">Pregunta X</span>
+                                </div>
+                                <div class="case-box">
+                                    <p id="rev-case-text" class="case-text"></p>
+                                </div>
+                                <div class="question-box">
+                                    <h3 id="rev-question-text" class="question-text"></h3>
+                                </div>
+                                <div class="options-grid" id="rev-options-grid">
+                                    <!-- Dinámico -->
+                                </div>
+
+                                <div id="rev-feedback-card" class="feedback-card">
+                                    <h3 id="rev-feedback-header">Explicación ENARM</h3>
+                                    <p id="rev-feedback-explanation"></p>
+                                    <div id="rev-feedback-gpc" class="feedback-gpc"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-sidebar">
+                            <h3>Navegación</h3>
+                            <div class="question-navigator" id="rev-question-navigator">
+                                <!-- Puntos de navegación -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-controls" style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button class="btn-ghost" id="btn-rev-prev">Anterior</button>
+                        <button class="btn-ghost" id="btn-rev-next" style="margin-left:auto">Siguiente</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── VIEW: MÁS ───────────────────────────── -->
+            <div id="view-mas" class="view">
+                <div class="panel">
+                    <h2 class="panel-title"><span class="title-icon green-text">💡</span> Más Funciones e Integraciones
+                    </h2>
+                    <p class="panel-subtitle">Este espacio está reservado para futuras actualizaciones y módulos.</p>
+                    <div class="list-grid" id="mas-container">
+                        <div class="list-item">
+                            <div class="list-item-content">
+                                <h3>Próximamente...</h3>
+                                <p>Mantente al tanto para nuevas herramientas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── VIEW: ESTADÍSTICAS ───────────────────────────── -->
+            <div id="view-estadisticas" class="view">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title"><span class="title-icon blue-text">📊</span> Estadísticas Detalladas
+                        </h2>
+                    </div>
+                    <p class="panel-subtitle">Analiza tu rendimiento y evolución histórica. Todas las métricas se
+                        actualizan de acuerdo a tu desempeño en simulacros y repasos.</p>
+
+                    <div class="stats-overview"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; margin-bottom: 25px;">
+                        <div class="stat-card"
+                            style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                            <div class="stat-icon purple-icon" style="font-size: 1.8rem; margin-bottom: 5px;">🎯</div>
+                            <div class="stat-label">Precisión Global</div>
+                            <div class="stat-value" id="stats-global-precision"
+                                style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">0%</div>
+                        </div>
+                        <div class="stat-card"
+                            style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                            <div class="stat-icon orange-icon" style="font-size: 1.8rem; margin-bottom: 5px;">⏱️</div>
+                            <div class="stat-label">Tiempo / Pregunta</div>
+                            <div class="stat-value" id="stats-avg-time"
+                                style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">0s</div>
+                        </div>
+                        <div class="stat-card"
+                            style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                            <div class="stat-icon green-icon" style="font-size: 1.8rem; margin-bottom: 5px;">📚</div>
+                            <div class="stat-label">Preguntas Totales</div>
+                            <div class="stat-value" id="stats-total-questions"
+                                style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">0</div>
+                        </div>
+                    </div>
+
+                    <div class="charts-grid"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;">
+                        <!-- Carta Rendimiento Histórico (Línea) -->
+                        <div class="chart-card"
+                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); grid-column: 1 / -1;">
+                            <h3
+                                style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">
+                                📈 Evolución de Aciertos en el Tiempo</h3>
+                            <div style="position: relative; height: 300px; width: 100%;">
+                                <canvas id="chart-history"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Carta Rendimiento por Especialidad (Radar) -->
+                        <div class="chart-card"
+                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                            <h3
+                                style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">
+                                🕸️ Dominio por Especialidad</h3>
+                            <div
+                                style="position: relative; height: 250px; width: 100%; display: flex; justify-content: center;">
+                                <canvas id="chart-specialties"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Carta Distribución Global (Doughnut) -->
+                        <div class="chart-card"
+                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                            <h3
+                                style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">
+                                🍩 Distribución de Aciertos</h3>
+                            <div
+                                style="position: relative; height: 250px; width: 100%; display: flex; justify-content: center;">
+                                <canvas id="chart-doughnut"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── VIEW: HISTORIAL ───────────────────────────── -->
+            <div id="view-historial" class="view">
+                <div class="panel">
+                    <h2 class="panel-title"><span class="title-icon orange-text">🕒</span> Historial de Sesiones</h2>
+                    <p class="panel-subtitle">Registro de exámenes y sesiones de repaso inteligente.</p>
+
+                    <div class="list-grid" id="history-list">
+                        <!-- Se llena dinámicamente con app.js -->
+                        <div class="list-item empty-history">
+                            <p style="color:var(--text-muted); padding: 20px;">Aún no hay sesiones registradas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── VIEW: AJUSTES ───────────────────────────── -->
+            <div id="view-ajustes" class="view">
+                <div class="settings-container" style="max-width: 900px; margin: 0 auto; width: 100%;">
+                    <div class="dashboard-header" style="margin-bottom: 40px; text-align: center;">
+                        <div style="width: 100%;">
+                            <h1 class="header-title" style="font-size: 34px;">Configuración</h1>
+                            <p class="header-subtitle">Personaliza tu perfil, interfaz y objetivos de estudio para
+                                optimizar tu preparación.</p>
+                        </div>
+                    </div>
+
+                    <div class="settings-grid"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+
+                        <!-- Sección: Perfil -->
+                        <div class="panel settings-panel">
+                            <h3 class="panel-title" style="margin-bottom: 24px; font-size: 1.1rem;">
+                                <span class="title-icon green-text">👤</span> Cuenta y Perfil
+                            </h3>
+                            <div class="settings-form">
+                                <div class="input-group">
+                                    <label>Nombre de Usuario</label>
+                                    <input type="text" class="text-input" value="Isaac" id="setting-name"
+                                        placeholder="Tu nombre">
+                                </div>
+                                <div class="input-group">
+                                    <label>Especialidad a la que aspiras</label>
+                                    <select class="text-input" id="setting-aspiration">
+                                        <option value="Cirugía General">Cirugía General</option>
+                                        <option value="Medicina Interna" selected>Medicina Interna</option>
+                                        <option value="Pediatría">Pediatría</option>
+                                        <option value="Ginecología">Ginecología</option>
+                                        <option value="Otra">Otra</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sección: Preferencias -->
+                        <div class="panel settings-panel" style="border-top-color: var(--accent-blue);">
+                            <h3 class="panel-title" style="margin-bottom: 24px; font-size: 1.1rem;">
+                                <span class="title-icon blue-text">🎨</span> Interfaz y Métricas
+                            </h3>
+                            <div class="settings-form">
+                                <div class="input-group">
+                                    <label>Apariencia del Sistema</label>
+                                    <select class="text-input" id="setting-theme">
+                                        <option value="system" selected>Defecto del Sistema</option>
+                                        <option value="dark">Modo Oscuro</option>
+                                        <option value="light">Modo Claro</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Meta diaria de preguntas</label>
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <input type="number" class="text-input" value="10" min="5" max="100"
+                                            id="setting-goal" style="flex: 1;">
+                                        <span
+                                            style="font-size: 12px; font-weight: 700; color: var(--text-muted);">preg/día</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="settings-footer"
+                        style="margin-top: 40px; padding: 28px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+                        <div style="flex: 1;">
+                            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 4px;">Guardar Cambios</h3>
+                            <p style="font-size: 13px; color: var(--text-muted); max-width: 400px;">La configuración se
+                                guarda localmente en tu navegador y se aplica de inmediato.</p>
+                        </div>
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn-secondary" onclick="alert('Cerrando sesión (Demo)')"
+                                style="border-radius: var(--radius-md); padding: 12px 20px;">Cerrar Sesión</button>
+                            <button class="btn-primary" id="btn-save-settings"
+                                style="border-radius: var(--radius-md); padding: 12px 32px; min-width: 180px;">Actualizar
+                                Todo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- ─── MODAL CONFIRMACIÓN TERMINAR EXAMEN ────────────────── -->
+        <div id="finish-modal" class="modal-overlay"
+            style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
+            <div class="modal-content"
+                style="background: var(--bg-card); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; max-width: 400px;">
+                <h3 style="margin-bottom: 15px; color: var(--text-primary);">¿Terminar Simulacro?</h3>
+                <p style="margin-bottom: 25px; color: var(--text-secondary);">¿Estás seguro de que deseas finalizar el
+                    examen y ver tus resultados?</p>
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <button class="btn-ghost" id="btn-cancel-finish">Cancelar</button>
+                    <button class="btn-primary" id="btn-confirm-finish">Sí, terminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
