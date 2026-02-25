@@ -221,13 +221,53 @@
                     </div>
 
                 </div>
-
                 <div class="dashboard-bottom">
-                    <div class="chart-section panel">
-                        <h2 class="panel-title"><span class="title-icon green-text">📈</span> Rendimiento Especialidad
-                        </h2>
-                        <div style="height: 250px; width: 100%; position: relative; margin-top: 20px;">
-                            <canvas id="chart-specialties-line"></canvas>
+                    <div class="panel overview-panel">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                            <h2 class="panel-title"
+                                style="font-size: 18px; margin: 0; display: flex; align-items: center; gap: 8px;"><span
+                                    class="title-icon blue-text"
+                                    style="background: rgba(59,130,246,0.1); padding: 4px; border-radius: 8px; font-size:14px;">📊</span>
+                                Desglose de Rendimiento</h2>
+                            <div
+                                style="background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 20px; font-size: 11px; color: var(--text-secondary); cursor: pointer; border: 1px solid var(--border);">
+                                Histórico <span style="font-size:8px; margin-left:4px;">▼</span>
+                            </div>
+                        </div>
+
+                        <div style="position: relative; height: 110px;">
+                            <div id="overview-labels-container"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 50px;">
+                                <div id="ov-label-1"
+                                    style="position: absolute; left: 0%; transform: translateX(0%); transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);">
+                                    <div class="ov-title">Aciertos</div>
+                                    <div class="ov-value" id="ov-val-aciertos">0</div>
+                                </div>
+                                <div id="ov-label-2"
+                                    style="position: absolute; left: 33%; transform: translateX(-10px); transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);">
+                                    <div class="ov-title" style="padding-left:10px;">Errores</div>
+                                    <div class="ov-value" id="ov-val-errores" style="padding-left:10px;">0</div>
+                                </div>
+                                <div id="ov-label-3"
+                                    style="position: absolute; left: 66%; transform: translateX(-10px); transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);">
+                                    <div class="ov-title" style="padding-left:10px;">Omitidas</div>
+                                    <div class="ov-value" id="ov-val-omitidas" style="padding-left:10px;">0</div>
+                                </div>
+                            </div>
+
+                            <div class="overview-bar-wrapper"
+                                style="position: absolute; top: 55px; left: 0; width: 100%;">
+                                <div class="ov-segment ov-solid" id="ov-bar-aciertos" style="width: 33%;"></div>
+                                <div class="ov-segment ov-striped" id="ov-bar-errores" style="width: 33%;"></div>
+                                <div class="ov-segment ov-dotted" id="ov-bar-omitidas" style="width: 34%;"></div>
+                            </div>
+
+                            <div
+                                style="position: absolute; top: 100px; left: 0; width: 100%; display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); padding-top: 5px;">
+                                <span style="color: var(--text-secondary);">Precisión Actual</span>
+                                <span style="color: var(--text-muted);">Desde el inicio</span>
+                            </div>
                         </div>
                     </div>
 
@@ -259,6 +299,14 @@
                                 <div class="fail-item-badge">Repasar GPC</div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="chart-section panel" style="margin-top: 24px;">
+                    <h2 class="panel-title"><span class="title-icon green-text">📈</span> Rendimiento Especialidad
+                    </h2>
+                    <div style="height: 250px; width: 100%; position: relative; margin-top: 20px;">
+                        <canvas id="chart-specialties-line"></canvas>
                     </div>
                 </div>
             </div>

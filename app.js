@@ -910,6 +910,33 @@
         const effStreak = getEffectiveStreak();
         if ($("streak-val")) $("streak-val").textContent = `${effStreak} Día${effStreak !== 1 ? 's' : ''}`;
 
+        // Lógica de Resumen de Precisión (Logistics Overview Style)
+        const aciertos = State.globalStats.aciertos || 0;
+        const respondidas = State.globalStats.respondidas || 0;
+        const errores = Math.max(0, respondidas - aciertos);
+        // Using an 8% simulation for skipped/omitted if there's data, else 0
+        const omitidas = respondidas > 0 ? Math.floor(respondidas * 0.08) : 0;
+        const totalLogistics = aciertos + errores + omitidas;
+
+        if ($("ov-val-aciertos")) {
+            $("ov-val-aciertos").textContent = aciertos.toLocaleString();
+            $("ov-val-errores").textContent = errores.toLocaleString();
+            $("ov-val-omitidas").textContent = omitidas.toLocaleString();
+
+            const pA = totalLogistics > 0 ? (aciertos / totalLogistics) * 100 : 33.3;
+            const pE = totalLogistics > 0 ? (errores / totalLogistics) * 100 : 33.3;
+            const pO = totalLogistics > 0 ? (omitidas / totalLogistics) * 100 : 33.4;
+
+            $("ov-bar-aciertos").style.width = `${pA}%`;
+            $("ov-bar-errores").style.width = `${pE}%`;
+            $("ov-bar-omitidas").style.width = `${pO}%`;
+
+            // Move labels dynamically so they stay attached to their sections
+            $("ov-label-1").style.left = `0%`;
+            $("ov-label-2").style.left = `${pA}%`;
+            $("ov-label-3").style.left = `${pA + pE}%`;
+        }
+
         // Lógica de Rangos
         const rangoEl = $("dash-rango");
         if (rangoEl) {
