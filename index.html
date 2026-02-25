@@ -304,21 +304,34 @@
                         <section class="setup-section">
                             <h3 class="section-label"><span class="label-icon">📖</span> TEMAS ESPECÍFICOS O GPC
                                 (OPCIONAL)</h3>
-                            <div class="search-box-container">
-                                <span class="search-icon">🔍</span>
-                                <input type="text" id="setup-topic-filter"
-                                    placeholder="Ej: Cetoacidosis Diabética, GPC de Preeclampsia, Tratamiento de IAM...">
+                            <div class="search-box-wrapper">
+                                <div class="search-box-container">
+                                    <span class="search-icon">🔍</span>
+                                    <input type="text" id="setup-topic-filter"
+                                        placeholder="Ej: Cetoacidosis Diabética, GPC de Preeclampsia, Tratamiento de IAM...">
+                                </div>
+                                <div id="topic-suggestions" class="suggestions-dropdown"></div>
                             </div>
+                            <div id="selected-topics-container" class="selected-tags-container"></div>
                             <p class="section-hint">La IA generará casos clínicos enfocados estrictamente en estas
                                 palabras clave.</p>
                         </section>
 
                         <section class="setup-section">
                             <h3 class="section-label"><span class="label-icon">⚙</span> NIVEL DE EXIGENCIA</h3>
-                            <div class="difficulty-grid">
+                            <div class="difficulty-grid"
+                                style="grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
+                                <button class="diff-btn" data-diff="facil">
+                                    <span class="btn-icon">😊</span>
+                                    <span>Fácil</span>
+                                </button>
+                                <button class="diff-btn" data-diff="media">
+                                    <span class="btn-icon">⚖️</span>
+                                    <span>Media</span>
+                                </button>
                                 <button class="diff-btn active" data-diff="alta">
                                     <span class="btn-icon">⚡</span>
-                                    <span>Alta</span>
+                                    <span>Difícil</span>
                                 </button>
                                 <button class="diff-btn" data-diff="muy-alta">
                                     <span class="btn-icon">⚠️</span>
@@ -504,6 +517,38 @@
                                 <p>Compara tu promedio actual con los puntajes de corte históricos.</p>
                             </div>
                         </div>
+                        <div class="list-item" onclick="showView('view-temario')" style="cursor: pointer;">
+                            <div class="list-item-content">
+                                <h3>📖 Temario Oficial ENARM</h3>
+                                <p>Consulta los temas y subtemas que componen el banco de preguntas actual.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── VIEW: TEMARIO ────────────────────────────── -->
+            <div id="view-temario" class="view">
+                <div class="panel">
+                    <div class="panel-header"
+                        style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h2 class="panel-title"><span class="title-icon green-text">📖</span> Temario Oficial ENARM
+                            </h2>
+                            <p class="panel-subtitle">Todos los temas y subtemas integrados en la aplicación.</p>
+                        </div>
+                        <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
+                    </div>
+
+                    <div class="search-box-container" style="margin: 20px 0;">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="temario-search" placeholder="Buscar un tema específico..."
+                            oninput="filterOfficialTemario()">
+                    </div>
+
+                    <div id="temario-list" class="temario-grid"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 20px;">
+                        <!-- Se llena dinámicamente desde app.js -->
                     </div>
                 </div>
             </div>

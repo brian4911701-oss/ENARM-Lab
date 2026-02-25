@@ -1711,6 +1711,397 @@ const QUESTIONS = [
     answerIndex: 0,
     explanation: "El caso modela la estricta poliartritis inflamatoria, crónica y en 'Espejo' (carácter simétrico confirmadísimo) característico de la Artritis Reumatoide autoinmine (AR) donde se ataca a las MCP e IFP respetando siempre y por regla a las IF distales. Si bien para un rescate rápido inflamatorio momentáneo sintomático sí empleamos puente con AINEs o glucocorticoides transitorios al mes inicial, el tratamiento REAL DE BASE de fondo que modifica a perpetuidad impidiendo deformidad ósea (El Ancla por antonomasia de la especialidad), el metotrexato en dosis bajas vía oral cada semana y asociando el oportuno reabastecimiento de ácido fólico (por su contraprestación de antagonista endémico) o sus alternativos leflunomidas / sulfasalazinas.",
     gpcReference: "GPC Diagnóstico precoz y tratamiento farmacológico de la Artritis Reumatoide del adulto mayor integral en clínicas reumatológicas."
+  },
+  // ── NUEVOS CASOS (PDF BLOQUE 1) ────────────────────────
+  {
+    specialty: "mi",
+    tema: "Síndrome coronario agudo con elevación del ST",
+    case: "Hombre de 58 años, diabético e hipertenso, inicia hace 90 minutos con dolor opresivo retroesternal irradiado a brazo izquierdo, acompañado de diaforesis y náusea. TA 140/90 mmHg, FC 96 lpm. ECG muestra elevación del ST en II, III y aVF. Hospital sin sala de hemodinamia; el centro con angioplastia más cercano está a 3 horas.",
+    question: "¿Cuál es el diagnóstico?",
+    options: ["Angina inestable", "IAM sin elevación del ST", "IAM con elevación del ST inferior", "Pericarditis aguda", "Disección aórtica"],
+    answerIndex: 2,
+    explanation: "El cuadro clínico y el ECG son compatibles con IAMCEST de cara inferior. Ante la imposibilidad de realizar ICP primaria en menos de 120 minutos, la indicación es fibrinólisis inmediata.",
+    difficulty: "media"
+  },
+  {
+    specialty: "mi",
+    tema: "Síndrome coronario agudo con elevación del ST",
+    case: "Hombre de 58 años, diabético e hipertenso, inicia hace 90 minutos con dolor opresivo retroesternal irradiado a brazo izquierdo, acompañado de diaforesis y náusea. TA 140/90 mmHg, FC 96 lpm. ECG muestra elevación del ST en II, III y aVF. Hospital sin sala de hemodinamia; el centro con angioplastia más cercano está a 3 horas.",
+    question: "¿Cuál es la estrategia de reperfusión indicada?",
+    options: ["Traslado inmediato sin tratamiento", "Fibrinólisis inmediata", "Solo antiagregación", "Observación 6 horas", "Anticoagulación oral"],
+    answerIndex: 1,
+    explanation: "El cuadro clínico y el ECG son compatibles con IAMCEST de cara inferior. Ante la imposibilidad de realizar ICP primaria en menos de 120 minutos, la indicación es fibrinólisis inmediata.",
+    difficulty: "media"
+  },
+  {
+    specialty: "ped",
+    tema: "Crisis asmática",
+    case: "Niño de 7 años con antecedente de asma, presenta disnea progresiva tras infección viral. Habla en frases cortas, FR 38/min, tiraje intercostal, sibilancias audibles sin estetoscopio, SatO2 89%.",
+    question: "¿Cómo se clasifica la crisis?",
+    options: ["Leve", "Moderada", "Grave", "Paro respiratorio inminente", "Muy leve"],
+    answerIndex: 2,
+    explanation: "Según la GPC, una crisis grave se define por sibilancias audibles a distancia, uso de músculos accesorios acentuado y SatO2 < 90%. El tratamiento incluye SABA, anticolinérgicos y corticoide sistémico temprano.",
+    difficulty: "media"
+  },
+  {
+    specialty: "ped",
+    tema: "Crisis asmática",
+    case: "Niño de 7 años con antecedente de asma, presenta disnea progresiva tras infección viral. Habla en frases cortas, FR 38/min, tiraje intercostal, sibilancias audibles sin estetoscopio, SatO2 89%.",
+    question: "¿Tratamiento inicial de elección?",
+    options: ["Salbutamol MDI", "Salbutamol nebulizado + Bromuro de ipratropio + Corticoide sistémico", "Teofilina IV", "Antibióticos", "Solo oxigenoterapia"],
+    answerIndex: 1,
+    explanation: "En una crisis grave, la combinación de broncodilatadores y esteroides sistémicos es fundamental para reducir la inflamación y el broncoespasmo.",
+    difficulty: "media"
+  },
+  {
+    specialty: "cir",
+    tema: "Pancreatitis aguda",
+    case: "Hombre de 45 años, etilista crónico, presenta dolor epigástrico intenso irradiado a espalda, vómito persistente. Lipasa 6 veces el límite superior. TA 100/60 mmHg, FC 112 lpm. BUN 32 mg/dL.",
+    question: "¿Cuál es el diagnóstico?",
+    options: ["Colecistitis", "Úlcera perforada", "Pancreatitis aguda", "Isquemia mesentérica", "Hepatitis alcohólica"],
+    answerIndex: 2,
+    explanation: "El diagnóstico se basa en dolor típico y elevación de lipasa >3 veces el valor normal.",
+    difficulty: "media"
+  },
+  {
+    specialty: "cir",
+    tema: "Pancreatitis aguda",
+    case: "Hombre de 45 años, etilista crónico, presenta dolor epigástrico intenso irradiado a espalda, vómito persistente. Lipasa 6 veces el límite superior. TA 100/60 mmHg, FC 112 lpm. BUN 32 mg/dL.",
+    question: "¿Qué dato indica peor pronóstico inicial?",
+    options: ["Dolor irradiado", "Lipasa elevada", "BUN elevado", "Edad", "Sexo masculino"],
+    answerIndex: 2,
+    explanation: "El BUN >20 mg/dL es un marcador de severidad clínica y mal pronóstico según los criterios de BISAP.",
+    difficulty: "media"
+  },
+  {
+    specialty: "gyo",
+    tema: "Cáncer de endometrio",
+    case: "Paciente de 65 años, obesa y diabética, consulta por sangrado transvaginal postmenopáusico de 2 semanas de evolución. El ultrasonido transvaginal reporta un endometrio de 12 mm.",
+    question: "Principal factor de riesgo en esta paciente:",
+    options: ["Multiparidad", "Uso de anticonceptivos", "Hiperestrogenismo sin oposición", "Tabaquismo", "Infección por VPH"],
+    answerIndex: 2,
+    explanation: "La obesidad favorece el hiperestrogenismo periférico (conversión de andrógenos a estrona), principal factor de riesgo para cáncer endometrial tipo I.",
+    difficulty: "media"
+  },
+  {
+    specialty: "gyo",
+    tema: "Cáncer de endometrio",
+    case: "Paciente de 65 años, obesa y diabética, consulta por sangrado transvaginal postmenopáusico de 2 semanas de evolución. El ultrasonido transvaginal reporta un endometrio de 12 mm.",
+    question: "Siguiente paso diagnóstico:",
+    options: ["CA-125", "Papanicolaou", "Biopsia endometrial", "Histerectomía directa", "Observación"],
+    answerIndex: 2,
+    explanation: "Sangrado postmenopáusico con endometrio >4-5 mm por USG obliga a realizar toma de biopsia endometrial.",
+    difficulty: "media"
+  },
+  {
+    specialty: "mi",
+    tema: "Insuficiencia renal crónica (Anemia)",
+    case: "Hombre de 72 años, DM2 y HAS, TFG 25 ml/min. Acude por astenia y palidez. Hb 9.2 g/dL, ferritina 150 ng/ml.",
+    question: "¿Cuál es la causa más probable de la anemia?",
+    options: ["Deficiencia de hierro", "Deficiencia de eritropoyetina", "Deficiencia de B12", "Hemólisis", "Sangrado digestivo"],
+    answerIndex: 1,
+    explanation: "En la ERC, la causa principal de anemia es la falta de producción de eritropoyetina por las células peritubulares renales.",
+    difficulty: "media"
+  },
+  {
+    specialty: "mi",
+    tema: "Insuficiencia renal crónica (Anemia)",
+    case: "Hombre de 72 años, DM2 y HAS, TFG 25 ml/min. Acude por astenia y palidez. Hb 9.2 g/dL, ferritina 150 ng/ml.",
+    question: "¿Cuál es el tratamiento inicial para este paciente?",
+    options: ["Hierro IV", "Transfusión", "Eritropoyetina", "Vitamina B12", "Diálisis"],
+    answerIndex: 2,
+    explanation: "Se inicia tratamiento con agentes estimulantes de la eritropoyesis (eritropoyetina) cuando la Hb < 10 g/dL en pacientes con ERC.",
+    difficulty: "media"
+  },
+  {
+    specialty: "ped",
+    tema: "Intususcepción intestinal",
+    case: "Lactante de 8 meses presenta llanto intenso, vómito y evacuación con moco y sangre ('jalea de grosella'). Masa palpable en cuadrante superior derecho. USG reporta imagen en 'diana'.",
+    question: "¿Cuál es el diagnóstico más probable?",
+    options: ["Apendicitis", "Gastroenteritis", "Invaginación intestinal", "Hernia incarcerada", "Malrotación"],
+    answerIndex: 2,
+    explanation: "La tríada clásica de dolor abdominal paroxístico, masa en morcilla y evacuaciones en jalea de grosella es característica de la invaginación.",
+    difficulty: "media"
+  },
+  {
+    specialty: "ped",
+    tema: "Intususcepción intestinal",
+    case: "Lactante de 8 meses presenta llanto intenso, vómito y evacuación con moco y sangre ('jalea de grosella'). Masa palpable en cuadrante superior derecho. USG reporta imagen en 'diana'.",
+    question: "Conducta inicial más adecuada:",
+    options: ["Laparotomía inmediata", "Enema neumático terapéutico", "Antibióticos IV", "Observación", "Ayuno y soluciones"],
+    answerIndex: 1,
+    explanation: "El tratamiento de elección en casos no complicados es la reducción hidrostática o neumática.",
+    difficulty: "media"
+  },
+  {
+    specialty: "cir",
+    tema: "Isquemia mesentérica aguda",
+    case: "Hombre de 72 años con FA presenta dolor abdominal súbito intenso 'desproporcionado' a la exploración física. Lactato elevado.",
+    question: "Diagnóstico más probable:",
+    options: ["Pancreatitis", "Isquemia mesentérica aguda embólica", "Apendicitis", "Diverticulitis", "Oclusión intestinal"],
+    answerIndex: 1,
+    explanation: "Ante dolor súbito desproporcionado en paciente con factores embólicos (FA), la isquemia mesentérica es la prioridad diagnóstica.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "cir",
+    tema: "Isquemia mesentérica aguda",
+    case: "Hombre de 72 años con FA presenta dolor abdominal súbito intenso 'desproporcionado' a la exploración física. Lactato elevado.",
+    question: "Estudio diagnóstico de elección:",
+    options: ["Radiografía simple", "Angiotomografía computarizada", "Colonoscopia", "Marcadores tumorales", "Ultrasonido Doppler"],
+    answerIndex: 1,
+    explanation: "La Angiotomografía de abdomen (AngioTC) es el estándar de oro inicial por su alta sensibilidad y especificidad.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "urg",
+    tema: "Manejo inicial del trauma (ATLS)",
+    case: "Masculino de 28 años tras accidente, TA 70/40 mmHg, FC 128 lpm, abdomen distendido y doloroso.",
+    question: "¿Cuál es la prioridad inmediata?",
+    options: ["Radiografía de fémur", "Intubación orotraqueal", "Reanimación hídrica y búsqueda de fuente de sangrado", "Lavado peritoneal", "Aplicar férula"],
+    answerIndex: 2,
+    explanation: "Todo choque en trauma se considera hipovolémico. La prioridad es la reposición de volumen y el control de la hemorragia.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "ped",
+    tema: "Estenosis Hipertrófica del Píloro",
+    case: "Lactante de 3 semanas con vómito gástrico en proyectil y masa olivácea en epigastrio.",
+    question: "¿Cuál es el trastorno hidroelectrolítico esperado?",
+    options: ["Acidosis metabólica", "Alcalosis metabólica hipoclorémica e hipopotasémica", "Acidosis láctica", "Alcalosis respiratoria", "Hiperpotasemia"],
+    answerIndex: 1,
+    explanation: "La pérdida de contenido gástrico (HCl) genera una alcalosis metabólica con depleción de cloro y potasio.",
+    difficulty: "media"
+  },
+  {
+    specialty: "mi",
+    tema: "Depresión Mayor",
+    case: "Mujer de 54 años con tristeza, anhedonia, insomnio y pérdida de peso de 3 meses.",
+    question: "Tratamiento farmacológico de primera línea:",
+    options: ["Benzodiacepinas", "Inhibidores selectivos de la recaptura de serotonina (ISRS)", "Antipsicóticos", "Litio", "Estimulación magnética"],
+    answerIndex: 1,
+    explanation: "Los ISRS son el manejo inicial de elección según la GPC por su perfil de seguridad y eficacia.",
+    difficulty: "media"
+  },
+  {
+    specialty: "gyo",
+    tema: "Embarazo ectópico",
+    case: "Mujer de 30 años con amenorrea de 7 semanas, dolor pélvico unilateral y manchado transvaginal. β-hCG positiva. USG transvaginal sin saco gestacional intrauterino y masa anexial derecha.",
+    question: "Diagnóstico más probable:",
+    options: ["Aborto incompleto", "Embarazo molar", "Embarazo ectópico", "Quiste ovárico", "Amenaza de aborto"],
+    answerIndex: 2,
+    explanation: "La ausencia de saco intrauterino con β-hCG positiva sugiere fuertemente un embarazo fuera de la cavidad uterina.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "cir",
+    tema: "Apendicitis aguda complicada",
+    case: "Hombre de 27 años con 36 horas de dolor abdominal que inició periumbilical y migró a fosa iliaca derecha. Presenta fiebre, náusea y vómito. TAC muestra apéndice dilatado con colección periapendicular de 4 cm.",
+    question: "Conducta inicial:",
+    options: ["Apendicectomía abierta urgente", "Antibióticos IV y drenaje percutáneo", "Hemicolectomía derecha", "Observación", "Laparoscopia diagnóstica"],
+    answerIndex: 1,
+    explanation: "Un absceso apendicular >3 cm bien delimitado se maneja inicialmente con drenaje y antibióticos, seguido de cirugía diferida.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "ped",
+    tema: "Síndrome nefrótico",
+    case: "Niño de 5 años con edema generalizado palpebral. Proteinuria >50 mg/kg/día, hipoalbuminemia 2.1 g/dL, hipercolesterolemia 300 mg/dL.",
+    question: "Complicación trombótica más frecuente:",
+    options: ["Trombosis de la vena renal", "TEP", "EVC", "Infarto", "Trombosis mesentérica"],
+    answerIndex: 0,
+    explanation: "La pérdida urinaria de factores de coagulación y antitrombina III predispone a eventos trombóticos, siendo la vena renal el sitio más afectado.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "urg",
+    tema: "Choque séptico",
+    case: "Hombre de 66 años con fiebre, disuria y confusión. TA 82/50, FC 120, Lactato 4.8. EGO con piuria.",
+    question: "Vasopresor de primera línea:",
+    options: ["Adrenalina", "Dobutamina", "Noradrenalina", "Fenilefrina", "Vasopresina"],
+    answerIndex: 2,
+    explanation: "La noradrenalina es el vasopresor de elección tras la reanimación inicial con volumen en choque séptico.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "mi",
+    tema: "Meningitis bacteriana aguda",
+    case: "Hombre de 19 años con fiebre, cefalea y rigidez de nuca. LCR: leucocitos 1,500 (90% PMN), glucosa 20, proteínas 250.",
+    question: "Antibiótico de elección empírica:",
+    options: ["Penicilina G", "Aciclovir", "Ceftriaxona + Vancomicina", "Claritromicina", "Gentamicina"],
+    answerIndex: 2,
+    explanation: "El esquema empírico inicial en adultos jóvenes debe cubrir S. pneumoniae y N. meningitidis.",
+    difficulty: "media"
+  },
+  {
+    specialty: "mi",
+    tema: "Melanoma maligno",
+    case: "Varón de 52 años con lesión pigmentada en espalda, asimetría, bordes irregulares, color heterogéneo y 8 mm.",
+    question: "Marcador histopronóstico más importante:",
+    options: ["Diámetro", "Índice de Breslow (profundidad)", "Vello", "Melanina", "Índice de Clark"],
+    answerIndex: 1,
+    explanation: "La profundidad de invasión medida por el índice de Breslow es el factor de pronóstico de supervivencia más relevante.",
+    difficulty: "media"
+  },
+  {
+    specialty: "mi",
+    tema: "Tormenta tiroidea",
+    case: "Mujer de 35 años con hipertiroidismo mal controlado presenta fiebre 40°C, taquicardia 150 lpm y agitación tras infección.",
+    question: "Manejo inicial correcto:",
+    options: ["Levotiroxina", "Metimazol + propranolol + esteroide", "Solo antibiótico", "Yodo inmediato", "Observación"],
+    answerIndex: 1,
+    explanation: "Se debe bloquear la síntesis de hormonas, la conversión periférica y los efectos adrenérgicos.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "cir",
+    tema: "Obstrucción intestinal mecánica",
+    case: "Mujer de 68 años con antecedente de cirugías abdominales, presenta dolor tipo cólico, distensión y vómito fecaloide.",
+    question: "Diagnóstico más probable:",
+    options: ["Íleo paralítico", "Obstrucción intestinal por adherencias", "Cáncer", "Hernia", "Vólvulo"],
+    answerIndex: 1,
+    explanation: "Las adherencias postquirúrgicas son la causa #1 de obstrucción de intestino delgado.",
+    difficulty: "facil"
+  },
+  {
+    specialty: "cir",
+    tema: "Colecistitis aguda",
+    case: "Mujer de 45 años con dolor en hipocondrio derecho, fiebre y signo de Murphy positivo. USG reporta pared vesicular de 5mm.",
+    question: "¿Cuál es el estudio inicial de elección?",
+    options: ["Radiografía", "Gammagrafía HIDA", "Ultrasonido de hígado y vías biliares", "TAC abdominal", "CPRE"],
+    answerIndex: 2,
+    explanation: "El ultrasonido es el estudio inicial de elección por su rapidez y alta sensibilidad para litiasis y colecistitis.",
+    difficulty: "facil"
+  },
+  {
+    specialty: "gyo",
+    tema: "Embarazo ectópico",
+    case: "Mujer de 30 años con amenorrea de 7 semanas, dolor pélvico unilateral y manchado transvaginal. β-hCG positiva. USG transvaginal sin saco gestacional intrauterino y masa anexial derecha.",
+    question: "Diagnóstico más probable:",
+    options: ["Aborto incompleto", "Embarazo molar", "Embarazo ectópico", "Quiste ovárico", "Amenaza de aborto"],
+    answerIndex: 2,
+    explanation: "Ausencia de saco intrauterino con β-hCG positiva sugiere embarazo ectópico. El manejo médico con metotrexato está indicado en pacientes hemodinámicamente estables y sin ruptura.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "gyo",
+    tema: "Embarazo ectópico",
+    case: "Mujer de 30 años con amenorrea de 7 semanas, dolor pélvico unilateral y manchado transvaginal. β-hCG positiva. USG transvaginal sin saco gestacional intrauterino y masa anexial derecha.",
+    question: "Criterio para manejo con metotrexato:",
+    options: ["Inestabilidad hemodinámica", "Masa >5 cm", "Paciente estable sin ruptura", "Hemoperitoneo", "Hb <8 g/dL"],
+    answerIndex: 2,
+    explanation: "El metotrexato es una alternativa segura a la cirugía en pacientes seleccionadas con embarazo ectópico no roto.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "cir",
+    tema: "Apendicitis aguda complicada",
+    case: "Hombre de 27 años con 36 horas de dolor abdominal que inició periumbilical y migró a fosa iliaca derecha. Presenta fiebre, náusea y vómito. TAC muestra apéndice dilatado con colección periapendicular de 4 cm.",
+    question: "Diagnóstico:",
+    options: ["Apendicitis simple", "Absceso apendicular", "Diverticulitis de Meckel", "Ileo mecánico", "Torsión testicular"],
+    answerIndex: 1,
+    explanation: "La presencia de una colección delimitada en el contexto de apendicitis evolutiva sugiere un absceso apendicular.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "cir",
+    tema: "Apendicitis aguda complicada",
+    case: "Hombre de 27 años con 36 horas de dolor abdominal que inició periumbilical y migró a fosa iliaca derecha. Presenta fiebre, náusea y vómito. TAC muestra apéndice dilatado con colección periapendicular de 4 cm.",
+    question: "Conducta inicial:",
+    options: ["Apendicectomía abierta urgente", "Antibióticos IV y drenaje percutáneo", "Hemicolectomía derecha", "Observación", "Laparoscopia diagnóstica"],
+    answerIndex: 1,
+    explanation: "Absceso apendicular bien delimitado (>3 cm) requiere manejo conservador inicial con antibióticos y drenaje percutáneo guiado por imagen.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "ped",
+    tema: "Síndrome nefrótico",
+    case: "Niño de 5 años con edema generalizado palpebral. Proteinuria >50 mg/kg/día, hipoalbuminemia 2.1 g/dL, hipercolesterolemia 300 mg/dL.",
+    question: "Diagnóstico más probable:",
+    options: ["Síndrome nefrítico", "Síndrome nefrótico", "GNF post-estreptocócica", "IRA", "Artritis"],
+    answerIndex: 1,
+    explanation: "La proteinuria masiva, hipoalbuminemia y edema definen el síndrome nefrótico, cuya causa más común en niños es la enfermedad de cambios mínimos.",
+    difficulty: "media"
+  },
+  {
+    specialty: "ped",
+    tema: "Síndrome nefrótico",
+    case: "Niño de 5 años con edema generalizado palpebral. Proteinuria >50 mg/kg/día, hipoalbuminemia 2.1 g/dL, hipercolesterolemia 300 mg/dL.",
+    question: "Complicación trombótica más frecuente:",
+    options: ["Trombosis de la vena renal", "TEP", "EVC", "Infarto", "Trombosis mesentérica"],
+    answerIndex: 0,
+    explanation: "El síndrome nefrótico presenta pérdida de antitrombina III y hemoconcentración, favoreciendo la trombosis, siendo la vena renal el sitio más afectado.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "urg",
+    tema: "Choque séptico",
+    case: "Hombre de 66 años con fiebre, disuria y confusión. TA 82/50, FC 120, Lactato 4.8. EGO con piuria.",
+    question: "Diagnóstico:",
+    options: ["Sepsis sin choque", "Deshidratación", "Choque séptico", "Cetoacidosis", "Estado hiperosmolar"],
+    answerIndex: 2,
+    explanation: "Hipotensión persistente que requiere vasopresores para mantener PAM >= 65 y lactato > 2 mmol/L a pesar de reanimación adecuada define el choque séptico.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "urg",
+    tema: "Choque séptico",
+    case: "Hombre de 66 años con fiebre, disuria y confusión. TA 82/50, FC 120, Lactato 4.8. EGO con piuria.",
+    question: "Tratamiento inicial:",
+    options: ["Dopamina IV", "Cristaloides IV 30 ml/kg", "Antibióticos orales", "Insulina", "Bicarbonato"],
+    answerIndex: 1,
+    explanation: "La reanimación inicial empírica con cristaloides es el primer paso mandatorio en el manejo de la sepsis con hipoperfusión.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "cir",
+    tema: "Pancreatitis aguda grave",
+    case: "Mujer de 45 años con dolor abdominal en cinturón y vómito. TA 90/60. PCR 160 mg/L a las 48h.",
+    question: "Criterio que define gravedad:",
+    options: ["Lipasa elevada", "Edad", "Falla orgánica persistente (>48h)", "Dolor intenso", "Masculino"],
+    answerIndex: 2,
+    explanation: "La pancreatitis grave se define por la persistencia de falla orgánica (Renal, Respiratoria o CV) por más de 48 horas.",
+    difficulty: "alta"
+  },
+  {
+    specialty: "mi",
+    tema: "Meningitis bacteriana aguda",
+    case: "Hombre de 19 años con fiebre, cefalea y rigidez de nuca. LCR: leucocitos 1,500 (90% PMN), glucosa 20, proteínas 250.",
+    question: "Diagnóstico sugerido por LCR:",
+    options: ["Meningitis bacteriana", "Viral", "TB", "HSA", "Encefalitis herpética"],
+    answerIndex: 0,
+    explanation: "LCR con predominio de polimorfonucleares e hipoglucorraquia marcada es altamente sugerente de etiología bacteriana.",
+    difficulty: "media"
+  },
+  {
+    specialty: "mi",
+    tema: "Melanoma maligno",
+    case: "Varón de 52 años con lesión pigmentada en espalda, asimetría, bordes irregulares, color heterogéneo y 8 mm.",
+    question: "Marcador histopronóstico más importante:",
+    options: ["Diámetro", "Índice de Breslow", "Vello", "Melanina", "Índice de Clark solo"],
+    answerIndex: 1,
+    explanation: "El índice de Breslow mide la profundidad de la lesión en milímetros y es el factor pronóstico más potente para la supervivencia.",
+    difficulty: "media"
+  },
+  {
+    specialty: "mi",
+    tema: "Trastornos ácido-base",
+    case: "Hombre con alcoholismo crónico, vómito y confusión. Gasometría: pH 7.25, HCO3 12, PaCO2 25. Na 140, Cl 100.",
+    question: "Trorno principal:",
+    options: ["Acidosis hiperclorémica", "Acidosis metabólica con anión gap elevado", "Alcalosis respiratoria", "Acidosis respiratoria", "Alcalosis metabólica"],
+    answerIndex: 1,
+    explanation: "El cálculo del anión gap (Na - (Cl + HCO3)) resulta en 28, lo que indica una acidosis metabólica de brecha aniónica elevada.",
+    difficulty: "media"
+  },
+  {
+    specialty: "cir",
+    tema: "Obstrucción intestinal mecánica",
+    case: "Mujer de 68 años con antecedente de cirugías abdominales, presenta dolor tipo cólico, distensión y vómito fecaloide.",
+    question: "Conducta inicial en paciente estable:",
+    options: ["Cirugía inmediata", "Sonda nasogástrica + líquidos IV", "Solo analgésicos", "Colonoscopia", "Antibióticos"],
+    answerIndex: 1,
+    explanation: "El manejo inicial de la obstrucción intestinal no complicada por adherencias es conservador con descompresión gástrica e hidratación.",
+    difficulty: "facil"
   }
 ];
 

@@ -31,7 +31,8 @@
         },
 
         userName: "Isaac",
-        history: []
+        history: [],
+        selectedTopics: []
     };
 
     const $ = (id) => document.getElementById(id);
@@ -61,6 +62,7 @@
         if (viewId === "view-historial") updateHistoryView();
         if (viewId === "view-estadisticas") updateCharts();
         if (viewId === "view-calculadora") initCalculator();
+        if (viewId === "view-temario") renderOfficialTemario();
     };
     window.showView = showView; // Hacerla global para onclick de HTML
 
@@ -145,6 +147,230 @@
     };
 
     // ---------------------------------------------------------------------------
+    // TEMARIO OFICIAL ENARM (Basado en el flujo temático)
+    // ---------------------------------------------------------------------------
+    const OFFICIAL_TEMARIO = [
+        "Introducción: Ciclo genital, Esterilidad y Anticonceptivos",
+        "Amenorreas Primarias y Secundarias (Turner, Morris, Rokitansky)",
+        "Hemorragia Uterina Anormal (SOP, Endometriosis)",
+        "Menopausia y Climaterio (Osteoporosis, Piso Pélvico)",
+        "Oncología Ginecología: Cáncer de Endometrio y Ovario",
+        "Oncología Ginecología: Tamizaje CACU, CaVa, Vagina y Vulva",
+        "Patología Mamaria: Benigna y Cáncer de Mama",
+        "Infecciones de Transmisión Sexual (Vaginitis, Vaginosis, EPI)",
+        "Cambios Fisiológicos en el Embarazo y Control Prenatal",
+        "Hemorragias del Primer Trimestre (Aborto, Ectópico, Mola)",
+        "Hemorragias del Tercer Trimestre (Placenta Previa, Desprendimiento)",
+        "Diabetes Gestacional",
+        "Trastornos Hipertensivos del Embarazo (Preeclampsia / Eclampsia)",
+        "Complicaciones del Embarazo (Isoinmunización, Polihidramnios)",
+        "Trabajo de Parto y Mecanismos del Parto",
+        "Inducción, Conducción y Distocias",
+        "Sepsis Puerperal e Infección de Herida Quirúrgica",
+        "Choque Obstétrico y Hemorragia Obstétrica",
+        "Puerperio Fisiológico y Lactancia Materna",
+        "Introducción a la Pediatría / Reanimación Neonatal",
+        "Patología Neonatal Metabólica (Hijo de madre diabética, Electrolitos)",
+        "Patología Neonatal Infecciosa (Sepsis, Conjuntivitis, Onfalitis)",
+        "Patología Respiratoria Neonatal (Membrana hialina, TTRN, SAM)",
+        "Patología Neonatal Quirúrgica (Onfalocele, Gastrosquisis)",
+        "Infecciones TORCH y VIH Pediátrico",
+        "Estenosis Hipertrófica de Píloro",
+        "Ictericias Neonatales",
+        "Tamiz Metabólico y Auditivo",
+        "Crecimiento y Desarrollo (Hitos del desarrollo)",
+        "Vacunación (Esquema Nacional)",
+        "Patología Gastrointestinal (Reflujo, Intususcepción)",
+        "Enfermedad Diarreica Aguda y Planes de Hidratación",
+        "Diarrea Crónica y Síndromes de Mala Absorción",
+        "Parasitosis en Pediatría",
+        "Patología Respiratoria del Lactante (Bronquiolitis, Laringotraqueítis)",
+        "Neumonías y sus Complicaciones",
+        "Asma Pediátrica",
+        "Infecciones de Vías Respiratorias Superiores (Otitis, Faringitis)",
+        "Enfermedades Exantemáticas",
+        "Urgencias Pediátricas (Maltrato, Intoxicaciones, Quemaduras)",
+        "Nefrología y Urología Pediátrica",
+        "Cardiopatías Congénitas (Cianógenas y Acianógenas)",
+        "Onco-Hematología Pediátrica (Leucemias, Linfomas, Purpuras)",
+        "Genética y Alteraciones Cromosómicas",
+        "Apendicitis Aguda",
+        "Patología de Vesícula y Vías Biliares",
+        "Pancreatitis Aguda",
+        "Patología Quirúrgica de Esófago (Acalasia, ERGE)",
+        "Patología de Estómago y Duodeno (Ulcera péptica)",
+        "Abdomen Agudo y Oclusión Intestinal",
+        "Patología de Intestino Delgado",
+        "Patología de Colon y Recto (Divertículos)",
+        "Patología Perianal (Fisuras, Hemorroides, Abscesos)",
+        "Isquemia Mesentérica",
+        "Hernias de la Pared Abdominal (Inguinales y Crurales)",
+        "Urología: Litiasis Renal, Tumores, Prostata",
+        "ATLS: Evaluación Inicial, Trauma de Tórax y Abdomen",
+        "Toxicología (Antídotos principales)",
+        "Mordeduras y Picaduras (Alacrán, Araña, Serpiente)",
+        "Quemaduras y Reanimación",
+        "Oftalmología: Glaucoma, Catarata, Retinopatías",
+        "Otorrinolaringología: Patología de oído, Nariz y Garganta",
+        "Trauma y Fracturas: Síndrome Compartimental",
+        "Epidemiología (Conceptos básicos ENARM)",
+        "Infectología: Antibióticos, Resistencia y Tuberculosis",
+        "VIH / SIDA",
+        "Enfermedades transmitidas por Vector (Dengue, Zika, Rickettsia)",
+        "Zoonosis (Rabia, Tétanos, Brucella)",
+        "Patología Fúngica (Candidiasis, Histoplasmosis)",
+        "Neumología: Neumonías, Derrame Pleural y Empiema",
+        "Endocrinología: Patología Tiroidea (Hiper/Hipo/Cáncer)",
+        "Síndrome Metabólico y Dislipidemias",
+        "Diabetes Mellitus: Fisiopatología, Diagnóstico y Tratamiento",
+        "Complicaciones Agudas de Diabetes (Cetoacidosis, Estado Hiperosmolar)",
+        "Patología de Glándula Suprarrenal",
+        "Hematología: Anemias, Leucemias y Linfomas",
+        "Gastroenterología: Enfermedad Acidopéptica y H. Pylori",
+        "Gastroenterología: Cirrosis y sus complicaciones",
+        "Reumatología: Artritis Reumatoide, Lupus (LES), Gota",
+        "Nefrología: LRA, ERC y Glomerulopatías",
+        "Cardiología: EKG, Arritmias, Isquemia e Insuficiencia Cardíaca",
+        "Hipertensión Arterial Sistémica",
+        "Neurología: EVC, Parkinson, Alzheimer, Cefaleas y Epilepsia",
+        "Dermatología: Tiñas, Acné y Cáncer de piel",
+        "Psiquiatría: Depresión, Ansiedad y Trastornos de conducta",
+        "Geriatría: Síndromes Geriátricos",
+        "Asfixia Neonatal y Encefalopatía Hipóxico-Isquémica",
+        "Atención del Recién Nacido / Reanimación Neonatal Avanzada",
+        "Sepsis y Schok Séptico Neonatal",
+        "Enterocolitis Necrosante",
+        "Hemorragia Prenatal y Poscparto",
+        "Distocias Dinámicas y Mecánicas",
+        "Oftalmopatía Diabética y Retinopatía Hipertensiva",
+        "Artritis Infecciosa y Osteomielitis",
+        "Enfermedad por Reflujo Gastroesofágico (ERGE) en Pediatría y Adultos"
+    ];
+
+    // ---------------------------------------------------------------------------
+    // Advanced Setup Logic: Topic Search & Tags
+    // ---------------------------------------------------------------------------
+    const setupTopicSearch = () => {
+        const input = $("setup-topic-filter");
+        const suggestionsCont = $("topic-suggestions");
+        const selectedCont = $("selected-topics-container");
+        let activeIndex = -1;
+
+        if (!input || !suggestionsCont || !selectedCont) return;
+
+        const updateSelectedTags = () => {
+            selectedCont.innerHTML = "";
+            State.selectedTopics.forEach((topic, index) => {
+                const tag = document.createElement("div");
+                tag.className = "topic-tag";
+                tag.innerHTML = `
+                    <span>${topic}</span>
+                    <span class="remove-tag">✕</span>
+                `;
+                tag.querySelector(".remove-tag").onclick = () => {
+                    State.selectedTopics.splice(index, 1);
+                    updateSelectedTags();
+                };
+                selectedCont.appendChild(tag);
+            });
+        };
+
+        const showSuggestions = (val) => {
+            const normalizedVal = val.toLowerCase().trim();
+            if (!normalizedVal) {
+                suggestionsCont.classList.remove("active");
+                return;
+            }
+
+            // Combinar temario oficial con temas dinámicos del banco de preguntas
+            const dynTemas = [...new Set(QUESTIONS.map(q => q.tema).filter(t => !!t))];
+            const dynGpcs = [...new Set(QUESTIONS.map(q => q.gpcReference).filter(t => !!t))];
+
+            const combinedTopics = [...new Set([
+                ...OFFICIAL_TEMARIO,
+                ...dynTemas,
+                ...dynGpcs
+            ])].sort();
+
+            const removeAccents = (str) => {
+                return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            };
+
+            const searchVal = removeAccents(normalizedVal);
+
+            const filtered = combinedTopics.filter(t => {
+                const normalizedTopic = removeAccents(t.toLowerCase());
+                return normalizedTopic.includes(searchVal) && !State.selectedTopics.includes(t);
+            }).slice(0, 10);
+
+            if (filtered.length === 0) {
+                suggestionsCont.classList.remove("active");
+                return;
+            }
+
+            suggestionsCont.innerHTML = "";
+            activeIndex = -1;
+
+            filtered.forEach((topic, idx) => {
+                const item = document.createElement("div");
+                item.className = "suggestion-item";
+                item.textContent = topic;
+                item.dataset.index = idx;
+                item.onclick = () => {
+                    addTopic(topic);
+                };
+                suggestionsCont.appendChild(item);
+            });
+            suggestionsCont.classList.add("active");
+        };
+
+        const addTopic = (topic) => {
+            if (!State.selectedTopics.includes(topic)) {
+                State.selectedTopics.push(topic);
+                updateSelectedTags();
+            }
+            input.value = "";
+            suggestionsCont.classList.remove("active");
+            activeIndex = -1;
+        };
+
+        input.addEventListener("input", (e) => showSuggestions(e.target.value));
+
+        input.addEventListener("keydown", (e) => {
+            const items = suggestionsCont.querySelectorAll(".suggestion-item");
+
+            if (e.key === "ArrowDown") {
+                activeIndex = (activeIndex + 1) % items.length;
+                e.preventDefault();
+            } else if (e.key === "ArrowUp") {
+                activeIndex = (activeIndex - 1 + items.length) % items.length;
+                e.preventDefault();
+            } else if (e.key === "Enter") {
+                if (activeIndex >= 0 && items[activeIndex]) {
+                    addTopic(items[activeIndex].textContent);
+                } else if (input.value.trim() !== "") {
+                    addTopic(input.value.trim());
+                }
+                e.preventDefault();
+            } else if (e.key === "Escape") {
+                suggestionsCont.classList.remove("active");
+            }
+
+            items.forEach((item, idx) => {
+                item.classList.toggle("hover", idx === activeIndex);
+                if (idx === activeIndex) item.style.background = "rgba(5, 192, 127, 0.15)";
+                else item.style.background = "";
+            });
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!input.contains(e.target) && !suggestionsCont.contains(e.target)) {
+                suggestionsCont.classList.remove("active");
+            }
+        });
+    };
+
+    // ---------------------------------------------------------------------------
     // Advanced Setup Logic
     // ---------------------------------------------------------------------------
     const initSetupLogic = () => {
@@ -210,6 +436,9 @@
                 }
             });
         }
+
+        // Logic for Dynamic Topic Search
+        setupTopicSearch();
         if (timeInput) {
             timeInput.addEventListener("input", () => {
                 if (timeInput.value) {
@@ -241,23 +470,22 @@
                 const timerVal = parseInt(timeInput ? timeInput.value : 0, 10);
                 const isLibre = libBtn ? libBtn.classList.contains("active") : true;
 
-                const topicVal = ($("setup-topic-filter")?.value || "").toLowerCase().trim();
-
-                if (typeof QUESTIONS === 'undefined') {
-                    alert("Error: El banco de preguntas no se ha cargado correctamente.");
-                    return;
-                }
-
                 let pool = QUESTIONS.filter(q => selectedSpecs.includes(q.specialty));
 
-                if (topicVal) {
-                    pool = pool.filter(q =>
-                        (q.tema && q.tema.toLowerCase().includes(topicVal)) ||
-                        (q.case && q.case.toLowerCase().includes(topicVal)) ||
-                        (q.question && q.question.toLowerCase().includes(topicVal)) ||
-                        (q.explanation && q.explanation.toLowerCase().includes(topicVal)) ||
-                        (q.gpcReference && q.gpcReference.toLowerCase().includes(topicVal))
-                    );
+                // Filtrado por Dificultad
+                if (State.difficulty) {
+                    pool = pool.filter(q => {
+                        const qDiff = q.difficulty || "alta";
+                        return qDiff === State.difficulty;
+                    });
+                }
+
+                // Filtrado por Temas Seleccionados
+                if (State.selectedTopics.length > 0) {
+                    pool = pool.filter(q => {
+                        const qText = `${q.tema || ""} ${q.case || ""} ${q.question || ""} ${q.gpcReference || ""}`.toLowerCase();
+                        return State.selectedTopics.some(topic => qText.includes(topic.toLowerCase()));
+                    });
                 }
 
                 if (pool.length === 0) return alert("No hay preguntas que coincidan con tus criterios de búsqueda o especialidad.");
@@ -444,6 +672,30 @@
     };
 
     let isFinishing = false;
+    const renderOfficialTemario = (filter = "") => {
+        const cont = $("temario-list");
+        if (!cont) return;
+
+        const normalizedFilter = filter.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const filtered = OFFICIAL_TEMARIO.filter(t => {
+            const normalizedTopic = t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            return normalizedTopic.includes(normalizedFilter);
+        });
+
+        cont.innerHTML = filtered.map(tema => `
+            <div class="list-item" style="padding: 15px; background: rgba(255,255,255,0.02); border: 1px solid var(--border);">
+                <div class="list-item-content">
+                    <h3 style="font-size: 14px; margin-bottom: 0;">${tema}</h3>
+                </div>
+            </div>
+        `).join("");
+    };
+
+    window.filterOfficialTemario = () => {
+        const val = $("temario-search").value;
+        renderOfficialTemario(val);
+    };
+
     const finishExam = () => {
         if (isFinishing) return;
         isFinishing = true;
