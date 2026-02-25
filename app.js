@@ -82,7 +82,6 @@
         const theme = localStorage.getItem("enarm_theme");
         if (theme) {
             State.theme = theme;
-            if ($("setting-theme")) $("setting-theme").value = theme;
             applyTheme(theme);
         }
 
@@ -108,6 +107,14 @@
             document.body.classList.add("theme-sunset");
         }
         // "dark" is the default, no class needed
+
+        // Update Theme Circles Active State
+        $$(".theme-circle").forEach(circle => {
+            circle.classList.remove("active");
+            if (circle.dataset.theme === theme || (theme === "system" && circle.dataset.theme === "dark")) {
+                circle.classList.add("active");
+            }
+        });
     };
 
     // ---------------------------------------------------------------------------
@@ -133,6 +140,7 @@
             { id: "nav-estadisticas", view: "view-estadisticas" },
             { id: "nav-historial", view: "view-historial" },
             { id: "nav-ajustes", view: "view-ajustes" },
+            { id: "nav-ajustes-mobile", view: "view-ajustes" },
         ];
         navs.forEach(nav => {
             const el = $(nav.id);
@@ -564,6 +572,41 @@
 
         const btnCasos = $("btn-refuerzo-casos");
         if (btnCasos) btnCasos.addEventListener("click", () => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 3, "Casos Rápidos Aleatorios"));
+
+        const btnCurva = $("btn-curva-olvido");
+        if (btnCurva) btnCurva.addEventListener("click", startSpacedRepetition);
+    };
+
+    const startSpacedRepetition = () => {
+        const now = Date.now();
+        const oneDay = 24 * 60 * 60 * 1000;
+        const sevenDays = 7 * oneDay;
+        const thirtyDays = 30 * oneDay;
+
+        // Buscamos sesiones que ocurrieron hace aprox 24h, 7d o 30d
+        const targets = [oneDay, sevenDays, thirtyDays];
+        const tolerance = 12 * 60 * 60 * 1000; // Ventana de 12 horas
+
+        const themesToReview = new Set();
+
+        State.history.forEach(session => {
+            const age = now - session.timestamp;
+            const matches = targets.some(t => Math.abs(age - t) < tolerance);
+
+            if (matches && session.questionSet) {
+                session.questionSet.forEach(q => {
+                    if (q.tema) themesToReview.add(q.tema);
+                });
+            }
+        });
+
+        if (themesToReview.size === 0) {
+            alert("No hay temas críticos para repaso según la Curva del Olvido hoy. \n\nRecuerda: El sistema programa repasos automáticos a las 24h, 7 días y 30 días de tus sesiones de estudio.");
+            return;
+        }
+
+        const themesArr = Array.from(themesToReview);
+        startTemaSession(themesArr, 15, "Repaso: Curva del Olvido");
     };
 
     const startTemaSession = (temas, qty, label) => {
@@ -767,6 +810,18 @@
                 answers: State.answers.map(a => ({ ...a }))
             });
 
+            // Racha (Streak) Logic 
+            State.globalStats.streakData = State.globalStats.streakData || { lastStudyDate: null, currentStreak: 0 };
+            const effective = getEffectiveStreak();
+
+            const now = new Date();
+            const todayStr = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+
+            if (State.globalStats.streakData.lastStudyDate !== todayStr) {
+                State.globalStats.streakData.currentStreak = effective + 1;
+                State.globalStats.streakData.lastStudyDate = todayStr;
+            }
+
             saveGlobalStats();
             showView("view-results");
         } catch (err) {
@@ -775,6 +830,29 @@
             // Si hay un error, reseteamos el candado para permitir reintentar
             isFinishing = false;
         }
+    };
+
+    const getEffectiveStreak = () => {
+        const sd = State.globalStats.streakData;
+        if (!sd || !sd.lastStudyDate) return 0;
+
+        const parts = sd.lastStudyDate.split("-");
+        const lastD = new Date(parts[0], parts[1] - 1, parts[2]);
+        const now = new Date();
+        const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const diffM = todayMidnight - lastD;
+        const missedDaysTotal = Math.floor(diffM / (1000 * 60 * 60 * 24));
+
+        if (missedDaysTotal <= 1) return sd.currentStreak;
+
+        const missedForPenalty = missedDaysTotal - 1;
+        return Math.max(0, sd.currentStreak - (missedForPenalty * 2));
+    };
+
+    const getProbability = (streak) => {
+        if (streak === 0) return 20;
+        let prob = 20 + 75 * (1 - Math.exp(-streak / 30));
+        return Math.min(prob, 99.9).toFixed(1);
     };
 
     const recordStat = (specialtyKey, isCorrect, tema) => {
@@ -793,7 +871,32 @@
         if (State.mode === "estudio") saveGlobalStats();
     };
 
+    const updateMotivationalQuote = () => {
+        const quotes = [
+            "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+            "La medicina es una vocación de servicio, tu esfuerzo salvará vidas.",
+            "No te rindas. Lo que hoy es un esfuerzo, mañana será tu mayor logro.",
+            "Cada pregunta que fallas hoy es un error menos en el ENARM.",
+            "Haz de tu estudio un hábito y del éxito tu destino.",
+            "Estás un paso más cerca de tu residencia. Sigue así.",
+            "El conocimiento es el único peso que no cansa cargar.",
+            "Confía en tu proceso, el resultado llegará.",
+            "La disciplina de hoy es tu plaza R1 de mañana."
+        ];
+
+        const now = new Date();
+        // Cambiar cada algunas horas/días basándonos en la fecha actual
+        const tick = now.getDate() + Math.floor(now.getHours() / 4);
+        const quoteIndex = tick % quotes.length;
+
+        const quoteEl = $("dynamic-quote");
+        if (quoteEl) {
+            quoteEl.textContent = quotes[quoteIndex];
+        }
+    };
+
     const updateDashboardStats = () => {
+        updateMotivationalQuote();
         const elements = {
             'dash-sesiones': 'sesiones'
         };
@@ -802,6 +905,10 @@
         if ($("dash-promedio-gral")) $("dash-promedio-gral").textContent = `${pct}%`;
         if ($("dash-promedio")) $("dash-promedio").textContent = `${pct}%`;
         if ($("dash-promedio-bar")) $("dash-promedio-bar").style.width = `${pct}%`;
+
+        // Update Flame Widget (Streak)
+        const effStreak = getEffectiveStreak();
+        if ($("streak-val")) $("streak-val").textContent = `${effStreak} Día${effStreak !== 1 ? 's' : ''}`;
 
         // Lógica de Rangos
         const rangoEl = $("dash-rango");
@@ -1387,6 +1494,28 @@
             if (modal) modal.style.display = "none";
         };
 
+        const updateAndShowStreakModal = () => {
+            const modal = $("streak-modal");
+            if (modal) {
+                const streak = getEffectiveStreak();
+                const prob = getProbability(streak);
+
+                if ($("modal-streak-days")) $("modal-streak-days").textContent = streak;
+                if ($("modal-streak-prob")) $("modal-streak-prob").textContent = `${prob}%`;
+                if ($("modal-streak-prob-bar")) $("modal-streak-prob-bar").style.width = `${prob}%`;
+
+                modal.style.display = "flex";
+            }
+        };
+
+        const btnStreak = $("streak-btn");
+        if (btnStreak) btnStreak.addEventListener("click", updateAndShowStreakModal);
+
+        const btnCloseStreak = $("btn-close-streak");
+        if (btnCloseStreak) btnCloseStreak.addEventListener("click", () => {
+            if ($("streak-modal")) $("streak-modal").style.display = "none";
+        });
+
         if (fe) {
             fe.addEventListener("click", () => {
                 showFinishModal();
@@ -1406,21 +1535,16 @@
             });
         }
 
-        const ss = $("btn-save-settings"); if (ss) ss.addEventListener("click", () => {
-            if ($("setting-name")) {
-                State.userName = $("setting-name").value;
-                $$(".user-name").forEach(el => el.textContent = State.userName);
-                $$(".header-title").forEach(el => el.textContent = `Hola, ${State.userName}`);
-            }
-            if ($("setting-theme")) {
-                State.theme = $("setting-theme").value;
-                localStorage.setItem("enarm_theme", State.theme);
-                applyTheme(State.theme);
-                if (typeof updateCharts === 'function' && State.view === 'view-estadisticas') updateCharts();
-            }
 
-            saveGlobalStats();
-            alert("Ajustes guardados."); $("nav-dashboard").click();
+        // Theme Circle Click Event for Instant Apply
+        $$(".theme-circle").forEach(circle => {
+            circle.addEventListener("click", () => {
+                const selectedTheme = circle.dataset.theme;
+                State.theme = selectedTheme;
+                localStorage.setItem("enarm_theme", selectedTheme);
+                applyTheme(selectedTheme);
+                if (typeof updateCharts === 'function' && State.view === 'view-estadisticas') updateCharts();
+            });
         });
 
         // Click en Tarjeta Sesiones -> Historial

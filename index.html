@@ -118,6 +118,31 @@
             <div class="pomo-sessions-mini" id="pomo-sessions">Hoy: 0</div>
         </div>
 
+        <!-- MOBILE TOP BAR -->
+        <header class="mobile-top-bar">
+            <div class="sidebar-logo">
+                <svg viewBox="0 0 24 24" width="28" height="28" class="logo-svg">
+                    <path
+                        d="M4 6h16a2 2 0 010 4H4a2 2 0 010-4zm0 6h10a2 2 0 010 4H4a2 2 0 010-4zm0 6h14a2 2 0 010 4H4a2 2 0 010-4z"
+                        fill="#05C07F" />
+                </svg>
+                <span class="logo-text">ENARM<span class="logo-accent">lab</span></span>
+            </div>
+            <div class="user-actions" style="display: flex; align-items: center; gap: 12px;">
+                <button class="nav-item" id="nav-ajustes-mobile"
+                    style="background:none; border:none; color:var(--text-secondary); cursor:pointer; padding: 4px; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px;">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path
+                            d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+                    </svg>
+                </button>
+                <div class="user-avatar"
+                    style="width: 32px; height: 32px; font-size: 14px; background: rgba(5, 192, 127, 0.1); color: var(--accent-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">
+                    IS
+                </div>
+            </div>
+        </header>
+
         <!-- MAIN CONTENT -->
         <main class="main-content">
 
@@ -126,7 +151,7 @@
                 <header class="dashboard-header">
                     <div class="header-left">
                         <h1 class="header-title">Hola, <span class="user-name">Isaac</span></h1>
-                        <p class="header-subtitle">Panel de Control de Alto Rendimiento</p>
+                        <p class="header-subtitle" id="dynamic-quote">Cargando inspiración...</p>
                     </div>
 
                     <div class="countdown-widget" id="exam-countdown">
@@ -141,7 +166,7 @@
                             <div class="cd-item"><span id="cd-secs">00</span><label>SEG</label></div>
                         </div>
                     </div>
-                    <div class="flame-widget">
+                    <div class="flame-widget" id="streak-btn" style="cursor: pointer; transition: transform 0.2s;">
                         <div class="flame-icon">🔥</div>
                         <div class="flame-info">
                             <span class="flame-lbl">ESTUDIO DIARIO</span>
@@ -152,16 +177,9 @@
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-icon green-icon">�</div>
+                        <div class="stat-icon green-icon">📈</div>
                         <div class="stat-label">PROMEDIO GENERAL</div>
                         <div class="stat-value" id="dash-promedio-gral">0.0%</div>
-                    </div>
-                    <div class="stat-card quiz-card"
-                        style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; background: rgba(5, 192, 127, 0.05); border: 1px dashed var(--accent-green);">
-                        <div class="stat-label" style="margin-bottom: 0;">SESIÓN RÁPIDA</div>
-                        <button class="btn-primary" id="btn-quick-start"
-                            style="width: 100%; font-size: 12px; padding: 10px; border-radius: 8px;">🚀 INICIAR 10
-                            RANDOM</button>
                     </div>
                     <div class="stat-card" id="card-rango" style="cursor: pointer;">
                         <div class="stat-icon purple-icon">🏅</div>
@@ -175,7 +193,31 @@
                     <div class="stat-card" id="card-sesiones" style="cursor: pointer;">
                         <div class="stat-icon orange-icon">📅</div>
                         <div class="stat-label">SESIONES</div>
-                        <div class="stat-value" id="dash-sesiones">1</div>
+                        <div class="stat-value" id="dash-sesiones">0</div>
+                    </div>
+                    <div class="stat-card action-card">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                            <div class="stat-icon blue-icon"
+                                style="margin: 0; width: 32px; height: 32px; font-size: 16px;">⚡</div>
+                            <div class="stat-label" style="margin: 0;">ENTRENAMIENTO RÁPIDO</div>
+                        </div>
+                        <div
+                            style="display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: flex-end;">
+                            <button class="action-btn" id="btn-quick-start">
+                                <div class="action-btn-left">
+                                    <span class="action-btn-icon">🚀</span>
+                                    <span>Simulacro Aleatorio</span>
+                                </div>
+                                <span class="action-btn-arrow">→</span>
+                            </button>
+                            <button class="action-btn" id="btn-curva-olvido">
+                                <div class="action-btn-left">
+                                    <span class="action-btn-icon">🧠</span>
+                                    <span>Curva del Olvido</span>
+                                </div>
+                                <span class="action-btn-arrow">→</span>
+                            </button>
+                        </div>
                     </div>
 
                 </div>
@@ -734,30 +776,6 @@
                     <div class="settings-grid"
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
 
-                        <!-- Sección: Perfil -->
-                        <div class="panel settings-panel">
-                            <h3 class="panel-title" style="margin-bottom: 24px; font-size: 1.1rem;">
-                                <span class="title-icon green-text">👤</span> Cuenta y Perfil
-                            </h3>
-                            <div class="settings-form">
-                                <div class="input-group">
-                                    <label>Nombre de Usuario</label>
-                                    <input type="text" class="text-input" value="Isaac" id="setting-name"
-                                        placeholder="Tu nombre">
-                                </div>
-                                <div class="input-group">
-                                    <label>Especialidad a la que aspiras</label>
-                                    <select class="text-input" id="setting-aspiration">
-                                        <option value="Cirugía General">Cirugía General</option>
-                                        <option value="Medicina Interna" selected>Medicina Interna</option>
-                                        <option value="Pediatría">Pediatría</option>
-                                        <option value="Ginecología">Ginecología</option>
-                                        <option value="Otra">Otra</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Sección: Preferencias -->
                         <div class="panel settings-panel" style="border-top-color: var(--accent-blue);">
                             <h3 class="panel-title" style="margin-bottom: 24px; font-size: 1.1rem;">
@@ -766,24 +784,19 @@
                             <div class="settings-form">
                                 <div class="input-group">
                                     <label>Apariencia del Sistema</label>
-                                    <select class="text-input" id="setting-theme">
-                                        <option value="system" selected>Defecto del Sistema</option>
-                                        <option value="dark">Modo Oscuro (Obsidiana)</option>
-                                        <option value="light">Modo Claro (Nieve)</option>
-                                        <option value="forest">Tema Bosque (Verde Limón)</option>
-                                        <option value="ocean">Tema Océano (Azul Profundo)</option>
-                                        <option value="sunset">Tema Atardecer (Rubí)</option>
-                                    </select>
-                                </div>
-                                <div class="input-group">
-                                    <label>Meta diaria de preguntas</label>
-                                    <div style="display: flex; align-items: center; gap: 12px;">
-                                        <input type="number" class="text-input" value="10" min="5" max="100"
-                                            id="setting-goal" style="flex: 1;">
-                                        <span
-                                            style="font-size: 12px; font-weight: 700; color: var(--text-muted);">preg/día</span>
+                                    <div class="theme-options" id="theme-selector-container">
+                                        <div class="theme-circle active" data-theme="dark"
+                                            title="Modo Oscuro (Obsidiana)"></div>
+                                        <div class="theme-circle" data-theme="light" title="Modo Claro (Nieve)"></div>
+                                        <div class="theme-circle" data-theme="forest" title="Tema Bosque (Verde Limón)">
+                                        </div>
+                                        <div class="theme-circle" data-theme="ocean"
+                                            title="Tema Océano (Azul Profundo)"></div>
+                                        <div class="theme-circle" data-theme="sunset" title="Tema Atardecer (Rubí)">
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 
@@ -808,38 +821,66 @@
                         </div>
                     </div>
 
-                    <div class="settings-footer"
-                        style="margin-top: 40px; padding: 28px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
-                        <div style="flex: 1;">
-                            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 4px;">Guardar Cambios</h3>
-                            <p style="font-size: 13px; color: var(--text-muted); max-width: 400px;">La configuración se
-                                guarda localmente en tu navegador y se aplica de inmediato.</p>
-                        </div>
-                        <div style="display: flex; gap: 12px;">
-                            <button class="btn-secondary" onclick="alert('Cerrando sesión (Demo)')"
-                                style="border-radius: var(--radius-md); padding: 12px 20px;">Cerrar Sesión</button>
-                            <button class="btn-primary" id="btn-save-settings"
-                                style="border-radius: var(--radius-md); padding: 12px 32px; min-width: 180px;">Actualizar
-                                Todo</button>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 
         </main>
 
         <!-- ─── MODAL CONFIRMACIÓN TERMINAR EXAMEN ────────────────── -->
-        <div id="finish-modal" class="modal-overlay"
+        <div class="modal-overlay" id="finish-modal"
             style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
             <div class="modal-content"
                 style="background: var(--bg-card); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; max-width: 400px;">
-                <h3 style="margin-bottom: 15px; color: var(--text-primary);">¿Terminar Simulacro?</h3>
-                <p style="margin-bottom: 25px; color: var(--text-secondary);">¿Estás seguro de que deseas finalizar el
-                    examen y ver tus resultados?</p>
-                <div style="display: flex; gap: 10px; justify-content: center;">
-                    <button class="btn-ghost" id="btn-cancel-finish">Cancelar</button>
-                    <button class="btn-primary" id="btn-confirm-finish">Sí, terminar</button>
+                <div style="font-size: 40px; margin-bottom: 20px;">⚠️</div>
+                <h2 style="font-size: 22px; margin-bottom: 15px;">¿Finalizar Sesión?</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 25px; font-size: 14px;">Aún no respondes todas
+                    las preguntas. Las no respondidas se calificarán como incorrectas.</p>
+                <div style="display: flex; gap: 15px; justify-content: center;">
+                    <button class="btn-ghost" id="btn-cancel-finish" style="flex: 1;">Seguir</button>
+                    <button class="btn-primary" id="btn-confirm-finish"
+                        style="flex: 1; background: var(--accent-red); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);">Finalizar</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Rachas Plus Modal -->
+        <div id="streak-modal" class="modal-overlay"
+            style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
+            <div class="modal-content"
+                style="background: var(--bg-card); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); text-align: left; max-width: 450px;">
+                <h2 style="font-size: 24px; color: var(--accent-orange); margin-bottom: 5px;">🔥 Rachas Plus</h2>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">Mantén tu racha diaria
+                    para aumentar tus probabilidades estadísticas de aprobar.</p>
+
+                <div
+                    style="background: rgba(243, 122, 32, 0.1); border: 1px solid rgba(243, 122, 32, 0.3); padding: 20px; border-radius: var(--radius-lg); text-align: center; margin-bottom: 20px;">
+                    <span id="modal-streak-days" style="font-size: 48px; font-weight: 900; color: #fff;">0</span>
+                    <span
+                        style="font-size: 14px; color: var(--accent-orange); font-weight: 700; display: block; text-transform: uppercase;">Días
+                        de Racha Activa</span>
+                </div>
+
+                <div
+                    style="padding: 15px; border-radius: var(--radius-md); background: rgba(59, 130, 246, 0.05); border: 1px solid var(--border); margin-bottom: 20px;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: 700;">Probabilidad ENARM >75</span>
+                        <span id="modal-streak-prob"
+                            style="font-size: 20px; font-weight: 900; color: var(--accent-blue);">20.0%</span>
+                    </div>
+                    <div class="stat-progress-bar">
+                        <div class="stat-progress-fill" id="modal-streak-prob-bar"
+                            style="width: 20%; background: var(--accent-blue);"></div>
+                    </div>
+                    <p style="font-size: 12px; color: var(--text-secondary); margin-top: 10px; line-height: 1.5;">El
+                        algoritmo calcula esta probabilidad basándose en la constancia y consolidación neural. Faltar 1
+                        día reduce penaliza tu racha perdiendo 2 días progresivos. ¡Sé constante para llegar al %
+                        máximo!</p>
+                </div>
+
+                <button class="btn-primary" id="btn-close-streak" style="width: 100%; border-radius: 8px;">¡A Seguir
+                    Estudiando!</button>
             </div>
         </div>
 
@@ -900,7 +941,7 @@
                 </svg>
                 <span>Inicio</span>
             </button>
-            <button class="mobile-nav-item" data-view="view-new-exam">
+            <button class="mobile-nav-item" data-view="view-setup">
                 <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                     <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
                 </svg>
