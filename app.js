@@ -559,8 +559,8 @@
         const btnRapido = $("btn-refuerzo-rapido");
         if (btnRapido) btnRapido.addEventListener("click", () => startQuickSession(['mi', 'ped', 'gyo', 'cir', 'urg', 'sp'], 5, "Refuerzo Rápido General"));
 
-        const btnExtra = $("btn-refuerzo-extra");
-        if (btnExtra) btnExtra.addEventListener("click", () => startQuickSession(['mi', 'ped', 'gyo', 'cir', 'urg', 'sp'], 10, "Mini Simulacro (10)"));
+        const btnQuick = $("btn-quick-start");
+        if (btnQuick) btnQuick.addEventListener("click", () => startQuickSession(['mi', 'ped', 'gyo', 'cir', 'urg', 'sp'], 10, "Sesión Rápida (10)"));
 
         const btnCasos = $("btn-refuerzo-casos");
         if (btnCasos) btnCasos.addEventListener("click", () => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 3, "Casos Rápidos Aleatorios"));
@@ -795,12 +795,11 @@
 
     const updateDashboardStats = () => {
         const elements = {
-            'dash-respondidas': 'respondidas',
-            'dash-aciertos': 'aciertos',
             'dash-sesiones': 'sesiones'
         };
         for (let id in elements) if ($(id)) $(id).textContent = State.globalStats[elements[id]] || 0;
         const pct = State.globalStats.respondidas > 0 ? ((State.globalStats.aciertos / State.globalStats.respondidas) * 100).toFixed(1) : "0.0";
+        if ($("dash-promedio-gral")) $("dash-promedio-gral").textContent = `${pct}%`;
         if ($("dash-promedio")) $("dash-promedio").textContent = `${pct}%`;
         if ($("dash-promedio-bar")) $("dash-promedio-bar").style.width = `${pct}%`;
 
@@ -1378,6 +1377,16 @@
             if (modal) modal.style.display = "none";
         };
 
+        const showRangeModal = () => {
+            const modal = $("range-modal");
+            if (modal) modal.style.display = "flex";
+        };
+
+        const hideRangeModal = () => {
+            const modal = $("range-modal");
+            if (modal) modal.style.display = "none";
+        };
+
         if (fe) {
             fe.addEventListener("click", () => {
                 showFinishModal();
@@ -1417,6 +1426,13 @@
         // Click en Tarjeta Sesiones -> Historial
         const cardSes = $("card-sesiones");
         if (cardSes) cardSes.addEventListener("click", () => $("nav-historial").click());
+
+        // Click en Tarjeta Rango -> Mostrar Explicación
+        const cardRan = $("card-rango");
+        if (cardRan) cardRan.addEventListener("click", showRangeModal);
+
+        const brc = $("btn-close-range"); if (brc) brc.addEventListener("click", hideRangeModal);
+        const bro = $("btn-ok-range"); if (bro) bro.addEventListener("click", hideRangeModal);
 
         // Reiniciar Estadísticas
         const btnReset = $("btn-reset-stats");

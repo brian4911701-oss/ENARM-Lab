@@ -127,7 +127,6 @@
                     <div class="header-left">
                         <h1 class="header-title">Hola, <span class="user-name">Isaac</span></h1>
                         <p class="header-subtitle">Panel de Control de Alto Rendimiento</p>
-
                     </div>
 
                     <div class="countdown-widget" id="exam-countdown">
@@ -153,16 +152,18 @@
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-icon green-icon">📖</div>
-                        <div class="stat-label">RESPONDIDAS</div>
-                        <div class="stat-value" id="dash-respondidas">0</div>
+                        <div class="stat-icon green-icon">�</div>
+                        <div class="stat-label">PROMEDIO GENERAL</div>
+                        <div class="stat-value" id="dash-promedio-gral">0.0%</div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon blue-icon">🎯</div>
-                        <div class="stat-label">ACIERTOS</div>
-                        <div class="stat-value" id="dash-aciertos">0</div>
+                    <div class="stat-card quiz-card"
+                        style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; background: rgba(5, 192, 127, 0.05); border: 1px dashed var(--accent-green);">
+                        <div class="stat-label" style="margin-bottom: 0;">SESIÓN RÁPIDA</div>
+                        <button class="btn-primary" id="btn-quick-start"
+                            style="width: 100%; font-size: 12px; padding: 10px; border-radius: 8px;">🚀 INICIAR 10
+                            RANDOM</button>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card" id="card-rango" style="cursor: pointer;">
                         <div class="stat-icon purple-icon">🏅</div>
                         <div class="stat-label">PROMEDIO / RANGO</div>
                         <div class="stat-value-sub" id="dash-rango">Aspirante Inicial</div>
@@ -195,9 +196,7 @@
                             <button class="btn-refuerzo" id="btn-refuerzo-ia">⚡ REFUERZO INTELIGENTE</button>
                         </div>
                         <div class="fail-actions">
-                            <button class="btn-fail-action" id="btn-refuerzo-extra"
-                                style="background: rgba(143, 166, 202, 0.15); color: var(--accent-purple); border: 1px solid rgba(143, 166, 202, 0.3);">⚡
-                                MINI SIMULACRO (10)</button>
+
                             <button class="btn-fail-action green-bg" id="btn-refuerzo-casos">⚡ REFUERZO CASOS</button>
                             <button class="btn-fail-action blue-bg" id="btn-refuerzo-rapido">⚡ REFUERZO RÁPIDO</button>
                         </div>
@@ -840,6 +839,56 @@
                 <div style="display: flex; gap: 10px; justify-content: center;">
                     <button class="btn-ghost" id="btn-cancel-finish">Cancelar</button>
                     <button class="btn-primary" id="btn-confirm-finish">Sí, terminar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── MODAL EXPLICACIÓN RANGOS ────────────────────────── -->
+        <div id="range-modal" class="modal-overlay"
+            style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(8px);">
+            <div class="modal-content"
+                style="background: var(--bg-card); padding: 30px; border-radius: 20px; border: 1px solid var(--border); text-align: left; max-width: 500px; width: 90%; position: relative; animation: modalFadeIn 0.3s ease;">
+                <button id="btn-close-range"
+                    style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
+                <h2 class="panel-title" style="margin-bottom: 20px;"><span class="title-icon purple-text">🏅</span>
+                    Niveles de Rendimiento</h2>
+
+                <div class="range-info-list" style="display: flex; flex-direction: column; gap: 15px;">
+                    <div
+                        style="padding: 12px; border-radius: 12px; border-left: 4px solid #05C07F; background: rgba(5, 192, 127, 0.05);">
+                        <strong style="color: #05C07F; font-size: 16px;">Especialista (70% - 100%)</strong>
+                        <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">Dominio excepcional.
+                            Tu puntaje es competitivo para las especialidades con mayor corte (MI, Derma, Oftalmo).</p>
+                    </div>
+                    <div
+                        style="padding: 12px; border-radius: 12px; border-left: 4px solid #3b82f6; background: rgba(59, 130, 246, 0.05);">
+                        <strong style="color: #3b82f6; font-size: 16px;">Residente (60% - 69.9%)</strong>
+                        <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">Nivel sólido. Estás
+                            en el rango de selección para la mayoría de las especialidades troncales.</p>
+                    </div>
+                    <div
+                        style="padding: 12px; border-radius: 12px; border-left: 4px solid #8FA6CA; background: rgba(143, 166, 202, 0.05);">
+                        <strong style="color: #8FA6CA; font-size: 16px;">Médico General (50% - 59.9%)</strong>
+                        <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">Conocimientos base
+                            completos. Requiere mayor enfoque en temas específicos para asegurar selección.</p>
+                    </div>
+                    <div
+                        style="padding: 12px; border-radius: 12px; border-left: 4px solid #F37A20; background: rgba(243, 122, 32, 0.05);">
+                        <strong style="color: #F37A20; font-size: 16px;">MPSS (30% - 49.9%)</strong>
+                        <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">Etapa de aprendizaje
+                            activo. Es momento de reforzar las guías de práctica clínica (GPC).</p>
+                    </div>
+                    <div
+                        style="padding: 12px; border-radius: 12px; border-left: 4px solid #64748B; background: rgba(100, 116, 139, 0.05);">
+                        <strong style="color: #64748B; font-size: 16px;">MIP (0% - 29.9%)</strong>
+                        <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">Nivel inicial.
+                            Recomendamos iniciar con repasos de ciencias básicas y fundamentos clínicos.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px; text-align: center;">
+                    <button class="btn-primary" id="btn-ok-range"
+                        style="width: 100%; border-radius: 12px;">Entendido</button>
                 </div>
             </div>
         </div>
