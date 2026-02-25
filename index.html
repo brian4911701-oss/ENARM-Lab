@@ -18,18 +18,28 @@
 
         <!-- SIDEBAR -->
         <aside class="sidebar">
-            <div class="sidebar-logo">
-                <svg viewBox="0 0 24 24" width="36" height="36" class="logo-svg">
-                    <path
-                        d="M4 6h16a2 2 0 010 4H4a2 2 0 010-4zm0 6h10a2 2 0 010 4H4a2 2 0 010-4zm0 6h14a2 2 0 010 4H4a2 2 0 010-4z"
-                        fill="#05C07F" />
-                </svg>
-                <span class="logo-text">ENARM<span class="logo-accent">lab</span></span>
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <svg viewBox="0 0 24 24" width="36" height="36" class="logo-svg">
+                        <path
+                            d="M4 6h16a2 2 0 010 4H4a2 2 0 010-4zm0 6h10a2 2 0 010 4H4a2 2 0 010-4zm0 6h14a2 2 0 010 4H4a2 2 0 010-4z"
+                            fill="#05C07F" />
+                    </svg>
+                    <span class="logo-text">ENARM<span class="logo-accent">lab</span></span>
+                </div>
+                <button id="btn-sidebar-toggle" class="sidebar-toggle">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+                    </svg>
+                </button>
             </div>
 
             <div class="user-profile">
-                <div class="user-avatar">
-                    <span class="brain-icon">🧠</span>
+                <div class="user-avatar" id="btn-user-profile">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                        <path
+                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
                 </div>
                 <div class="user-info">
                     <div class="user-name">Isaac</div>
@@ -39,34 +49,74 @@
 
             <nav class="sidebar-nav">
                 <button class="nav-item active" id="nav-dashboard">
-                    <span class="nav-icon">🏠</span>
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                        </svg>
+                    </span>
                     <span>Dashboard</span>
                 </button>
                 <button class="nav-item" id="nav-new-exam">
-                    <span class="nav-icon">⊕</span>
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        </svg>
+                    </span>
                     <span>Nuevo Examen</span>
                 </button>
                 <button class="nav-item" id="nav-mas">
-                    <span class="nav-icon">💡</span>
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                        </svg>
+                    </span>
                     <span>Más</span>
                 </button>
                 <button class="nav-item" id="nav-estadisticas">
-                    <span class="nav-icon">📊</span>
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z" />
+                        </svg>
+                    </span>
                     <span>Estadísticas</span>
                 </button>
                 <button class="nav-item" id="nav-historial">
-                    <span class="nav-icon">🕒</span>
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z" />
+                        </svg>
+                    </span>
                     <span>Historial</span>
                 </button>
             </nav>
 
             <div class="sidebar-bottom">
                 <button class="nav-item" id="nav-ajustes">
-                    <span class="nav-icon">⚙</span>
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+                        </svg>
+                    </span>
                     <span>Ajustes</span>
                 </button>
             </div>
         </aside>
+
+        <!-- POMODORO FLOATING WIDGET -->
+        <div class="pomodoro-floating-widget">
+            <div class="pomo-mini-header">
+                <span class="pomo-icon">🍅</span>
+                <span class="pomo-time-mini" id="pomo-time">25:00</span>
+            </div>
+            <div class="pomo-actions">
+                <button class="btn-pomo-mini" id="btn-pomo-toggle">INICIAR</button>
+                <button class="btn-pomo-mini" id="btn-pomo-reset">↺</button>
+            </div>
+            <div class="pomo-sessions-mini" id="pomo-sessions">Hoy: 0</div>
+        </div>
 
         <!-- MAIN CONTENT -->
         <main class="main-content">
@@ -75,7 +125,7 @@
             <div id="view-dashboard" class="view active">
                 <header class="dashboard-header">
                     <div class="header-left">
-                        <h1 class="header-title">Hola, <span class="user-name"></span>Isaac</span></h1>
+                        <h1 class="header-title">Hola, <span class="user-name">Isaac</span></h1>
                         <p class="header-subtitle">Panel de Control de Alto Rendimiento</p>
 
                     </div>
@@ -121,29 +171,20 @@
                             <div class="stat-progress-fill" id="dash-promedio-bar" style="width: 0%;"></div>
                         </div>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card" id="card-sesiones" style="cursor: pointer;">
                         <div class="stat-icon orange-icon">📅</div>
                         <div class="stat-label">SESIONES</div>
                         <div class="stat-value" id="dash-sesiones">1</div>
                     </div>
+
                 </div>
 
                 <div class="dashboard-bottom">
                     <div class="chart-section panel">
                         <h2 class="panel-title"><span class="title-icon green-text">📈</span> Rendimiento Especialidad
                         </h2>
-                        <div class="chart-placeholder">
-                            <div class="chart-line"><span>80%</span></div>
-                            <div class="chart-line"><span>60%</span></div>
-                            <div class="chart-line"><span>40%</span></div>
-                            <div class="chart-line"><span>20%</span></div>
-
-                            <div class="chart-bars">
-                                <div class="c-bar" style="height: 0%;" data-label="MI" id="bar-mi"></div>
-                                <div class="c-bar" style="height: 0%;" data-label="PED" id="bar-ped"></div>
-                                <div class="c-bar" style="height: 0%;" data-label="GYO" id="bar-gyo"></div>
-                                <div class="c-bar" style="height: 0%;" data-label="CIR" id="bar-cir"></div>
-                            </div>
+                        <div style="height: 250px; width: 100%; position: relative; margin-top: 20px;">
+                            <canvas id="chart-specialties-line"></canvas>
                         </div>
                     </div>
 
@@ -280,7 +321,7 @@
                                     <span>Alta</span>
                                 </button>
                                 <button class="diff-btn" data-diff="muy-alta">
-                                    <span class="btn-icon">�</span>
+                                    <span class="btn-icon">⚠️</span>
                                     <span>Muy Alta</span>
                                 </button>
                             </div>
@@ -457,17 +498,95 @@
                     </h2>
                     <p class="panel-subtitle">Este espacio está reservado para futuras actualizaciones y módulos.</p>
                     <div class="list-grid" id="mas-container">
-                        <div class="list-item">
+                        <div class="list-item" onclick="showView('view-calculadora')" style="cursor: pointer;">
                             <div class="list-item-content">
-                                <h3>Próximamente...</h3>
-                                <p>Mantente al tanto para nuevas herramientas.</p>
+                                <h3>🧮 Calculadora de Puntaje</h3>
+                                <p>Compara tu promedio actual con los puntajes de corte históricos.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ─── VIEW: ESTADÍSTICAS ───────────────────────────── -->
+            <!-- ─── VIEW: CALCULADORA ─────────────────────────── -->
+            <div id="view-calculadora" class="view">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title"><span class="title-icon green-text">🧮</span> Calculadora de Puntaje
+                        </h2>
+                    </div>
+                    <p class="panel-subtitle">Calcula tus probabilidades de ingreso basándote en los puntajes de corte
+                        históricos (ENARM 2024).</p>
+
+                    <div class="calc-grid" style="margin-top: 30px;">
+                        <div class="calc-inputs">
+                            <div class="input-group">
+                                <label>Especialidad</label>
+                                <select class="text-input" id="calc-specialty">
+                                    <option value="57.67">Anatomía Patológica (57.67)</option>
+                                    <option value="58.39">Anestesiología (58.39)</option>
+                                    <option value="59.46">Audiología, Otoneurología y Foniatría (59.46)</option>
+                                    <option value="51.07">Calidad de la Atención Clínica (51.07)</option>
+                                    <option value="63.21">Cirugía General (63.21)</option>
+                                    <option value="46.25">Epidemiología (46.25)</option>
+                                    <option value="61.60">Genética Médica (61.60)</option>
+                                    <option value="57.14">Geriatría (57.14)</option>
+                                    <option value="60.35">Ginecología y Obstetricia (60.35)</option>
+                                    <option value="58.03">Imagenología Diagnóstica y Terapéutica (58.03)</option>
+                                    <option value="68.21">Medicina de la Actividad Física y Deportiva (68.21)</option>
+                                    <option value="58.75">Medicina de Rehabilitación (58.75)</option>
+                                    <option value="47.67">Medicina de Urgencias (47.67)</option>
+                                    <option value="55.71">Medicina del Trabajo y Ambiental (55.71)</option>
+                                    <option value="45.17">Medicina Familiar (45.17)</option>
+                                    <option value="59.46">Medicina Interna (59.46)</option>
+                                    <option value="59.64">Medicina Nuclear e Imagenología Molecular (59.64)</option>
+                                    <option value="67.50">Medicina Paliativa (67.50)</option>
+                                    <option value="58.21">Medicina Preventiva (58.21)</option>
+                                    <option value="60.17">Neumología (60.17)</option>
+                                    <option value="68.92">Oftalmología (68.92)</option>
+                                    <option value="70.00">Otorrinolaringología y C. de Cabeza y Cuello (70.00)</option>
+                                    <option value="55.35">Patología Clínica (55.35)</option>
+                                    <option value="58.57">Pediatría (58.57)</option>
+                                    <option value="62.14">Psiquiatría (62.14)</option>
+                                    <option value="57.85">Radio Oncología (57.85)</option>
+                                    <option value="62.14">Traumatología y Ortopedia (62.14)</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Tu Puntaje Actual (Promedio)</label>
+                                <input type="number" class="text-input" id="calc-user-score" value="0.0" step="0.1"
+                                    min="0" max="100">
+                                <p style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">* Este valor se
+                                    toma automáticamente de tu promedio global si no lo modificas.</p>
+                            </div>
+                        </div>
+
+                        <div class="calc-result-card" id="calc-card">
+                            <span class="calc-status" id="calc-status">NIVEL DE RIESGO</span>
+                            <span class="calc-score-val" id="calc-diff">+0.0</span>
+                            <p id="calc-msg">Ingresa tus datos para ver el análisis.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 40px;">
+                        <h3 style="font-size: 16px; margin-bottom: 15px;">Puntajes de Referencia (Promedios Históricos)
+                        </h3>
+                        <table class="calculator-table">
+                            <thead>
+                                <tr>
+                                    <th>Especialidad</th>
+                                    <th>Mínimo (2024)</th>
+                                    <th>Máximo (2024)</th>
+                                    <th>Tu Estatus</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calc-table-body">
+                                <!-- Generado por JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <div id="view-estadisticas" class="view">
                 <div class="panel">
                     <div class="panel-header">
@@ -624,6 +743,25 @@
                             </div>
                         </div>
 
+                    </div>
+
+                    <!-- Sección: Zona de Peligro -->
+                    <div class="panel settings-panel" style="border-top-color: var(--accent-red); margin-top: 24px;">
+                        <h3 class="panel-title"
+                            style="margin-bottom: 16px; font-size: 1.1rem; color: var(--accent-red);">
+                            <span class="title-icon red-text">⚠️</span> Zona de Peligro
+                        </h3>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h4 style="font-size: 14px; margin-bottom: 4px;">Reiniciar Progreso</h4>
+                                <p style="font-size: 12px; color: var(--text-muted);">Elimina permanentemente todo tu
+                                    historial y estadísticas.</p>
+                            </div>
+                            <button class="btn-danger" id="btn-reset-stats"
+                                style="padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; background: rgba(239, 68, 68, 0.1); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.2); cursor: pointer; transition: 0.2s;">
+                                Borrar Todo
+                            </button>
+                        </div>
                     </div>
 
                     <div class="settings-footer"

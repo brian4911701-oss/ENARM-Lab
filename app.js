@@ -19,6 +19,7 @@
             respondidas: 0,
             aciertos: 0,
             sesiones: 0,
+            pomodoros: 0,
             bySpecialty: {
                 mi: { total: 0, correct: 0, name: "Medicina Interna" },
                 ped: { total: 0, correct: 0, name: "Pediatría" },
@@ -53,10 +54,15 @@
             console.log(`Cambiando a vista: ${viewId}`);
         }
         State.view = viewId;
-        if (viewId === "view-dashboard") updateDashboardStats();
+        if (viewId === "view-dashboard") {
+            updateDashboardStats();
+            updateCharts();
+        }
         if (viewId === "view-historial") updateHistoryView();
         if (viewId === "view-estadisticas") updateCharts();
+        if (viewId === "view-calculadora") initCalculator();
     };
+    window.showView = showView; // Hacerla global para onclick de HTML
 
     const saveGlobalStats = () => {
         localStorage.setItem("enarm_stats", JSON.stringify(State.globalStats));
@@ -106,6 +112,18 @@
     // Navigation
     // ---------------------------------------------------------------------------
     const bindSidebar = () => {
+        const toggleBtn = $("btn-sidebar-toggle");
+        const sidebar = document.querySelector(".sidebar");
+        if (toggleBtn && sidebar) {
+            toggleBtn.addEventListener("click", () => {
+                sidebar.classList.toggle("collapsed");
+                // Trigger chart resizing if sidebar changes
+                setTimeout(() => {
+                    if (typeof updateCharts === 'function') updateCharts();
+                }, 300);
+            });
+        }
+
         const navs = [
             { id: "nav-dashboard", view: "view-dashboard" },
             { id: "nav-new-exam", view: "view-setup" },
@@ -496,11 +514,29 @@
     };
 
     const updateDashboardStats = () => {
-        const elements = { 'dash-respondidas': 'respondidas', 'dash-aciertos': 'aciertos', 'dash-sesiones': 'sesiones' };
-        for (let id in elements) if ($(id)) $(id).textContent = State.globalStats[elements[id]];
+        const elements = {
+            'dash-respondidas': 'respondidas',
+            'dash-aciertos': 'aciertos',
+            'dash-sesiones': 'sesiones'
+        };
+        for (let id in elements) if ($(id)) $(id).textContent = State.globalStats[elements[id]] || 0;
         const pct = State.globalStats.respondidas > 0 ? ((State.globalStats.aciertos / State.globalStats.respondidas) * 100).toFixed(1) : "0.0";
         if ($("dash-promedio")) $("dash-promedio").textContent = `${pct}%`;
         if ($("dash-promedio-bar")) $("dash-promedio-bar").style.width = `${pct}%`;
+
+        // Lógica de Rangos
+        const rangoEl = $("dash-rango");
+        if (rangoEl) {
+            const val = parseFloat(pct);
+            let rango = "Aspirante";
+            if (val >= 70) rango = "Especialista";
+            else if (val >= 60) rango = "Residente";
+            else if (val >= 50) rango = "Médico General";
+            else if (val >= 30) rango = "MPSS";
+            else if (val >= 0) rango = "MIP";
+            rangoEl.textContent = rango;
+        }
+
         ['mi', 'ped', 'gyo', 'cir'].forEach(k => {
             const s = State.globalStats.bySpecialty[k];
             const p = s.total > 0 ? (s.correct / s.total) * 100 : 0;
@@ -604,41 +640,77 @@
             });
         }
 
-        // Chart 2: Especialidades (Radar)
-        const ctxSpec = document.getElementById('chart-specialties');
+        // Chart 2: Especialidades como Line Chart (Estilo Bolsa de Valores)
+        const ctxSpec = document.getElementById('chart-specialties-line');
         if (ctxSpec) {
             const labels = [];
             const dataPts = [];
-            Object.keys(State.globalStats.bySpecialty).forEach(k => {
+            const keys = ['mi', 'ped', 'gyo', 'cir', 'sp', 'urg'];
+            keys.forEach(k => {
                 const s = State.globalStats.bySpecialty[k];
-                labels.push(s.name.replace(' y Obstetricia', '')); // Acortar para estética
-                dataPts.push(s.total > 0 ? Math.round((s.correct / s.total) * 100) : 0);
+                if (s) {
+                    labels.push(s.name.replace(' y Obstetricia', ''));
+                    dataPts.push(s.total > 0 ? Math.round((s.correct / s.total) * 100) : 0);
+                }
             });
 
+            // Si todos los puntos son 0, agregamos variabilidad visual para el "look" de bolsa
+            // o simplemente aseguramos que se vea la línea.
+            const hasData = dataPts.some(v => v > 0);
+
             if (chartSpecialties) chartSpecialties.destroy();
+
+            const gradient = ctxSpec.getContext('2d').createLinearGradient(0, 0, 0, 250);
+            gradient.addColorStop(0, accentBlue + '55');
+            gradient.addColorStop(1, accentBlue + '00');
+
             chartSpecialties = new Chart(ctxSpec, {
-                type: 'radar',
+                type: 'line',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: '% Dominio',
+                        label: 'Rendimiento %',
                         data: dataPts,
-                        backgroundColor: accentBlue + '66', // 40% alpha
                         borderColor: accentBlue,
-                        pointBackgroundColor: accentBlue,
-                        borderWidth: 2,
+                        backgroundColor: gradient,
+                        borderWidth: 3,
+                        tension: 0.4,
+                        pointRadius: 0, // Estilo bolsa (sin puntos, solo línea)
+                        pointHoverRadius: 6,
+                        pointHoverBackgroundColor: accentBlue,
+                        pointHoverBorderColor: '#fff',
+                        pointHoverBorderWidth: 2,
+                        fill: true
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            padding: 12,
+                            titleFont: { size: 14, weight: 'bold' },
+                            bodyFont: { size: 13 }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'nearest',
+                    },
                     scales: {
-                        r: {
-                            beginAtZero: true, max: 100,
-                            ticks: { display: false },
-                            grid: { color: 'rgba(160, 174, 192, 0.2)' },
-                            angleLines: { color: 'rgba(160, 174, 192, 0.2)' }
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: 'rgba(160,174,192,0.05)', drawBorder: false },
+                            ticks: { font: { size: 10 } }
+                        },
+                        x: {
+                            grid: { display: false, drawBorder: false },
+                            ticks: { font: { size: 10 } }
                         }
                     }
                 }
@@ -804,6 +876,184 @@
     };
 
     // ---------------------------------------------------------------------------
+    // Pomodoro Logic
+    // ---------------------------------------------------------------------------
+    let pomoTimer = null;
+    let pomoSeconds = 25 * 60;
+    let isPomoRunning = false;
+    let pomoMode = "focus"; // "focus" | "break"
+
+    const initPomodoro = () => {
+        const timeEl = $("pomo-time");
+        const toggleBtn = $("btn-pomo-toggle");
+        const resetBtn = $("btn-pomo-reset");
+        const sessionEl = $("pomo-sessions");
+        const iconEl = document.querySelector(".pomo-icon");
+
+        const updateDisplay = () => {
+            const m = String(Math.floor(pomoSeconds / 60)).padStart(2, "0");
+            const s = String(pomoSeconds % 60).padStart(2, "0");
+            timeEl.textContent = `${m}:${s}`;
+            timeEl.style.color = pomoMode === "focus" ? "var(--accent-green)" : "var(--accent-blue)";
+        };
+
+        const updateStats = () => {
+            if (sessionEl) sessionEl.textContent = `Hoy: ${State.globalStats.pomodoros || 0}`;
+        };
+
+        toggleBtn.addEventListener("click", () => {
+            if (isPomoRunning) {
+                clearInterval(pomoTimer);
+                toggleBtn.textContent = "INICIAR";
+                toggleBtn.classList.remove("active");
+                if (iconEl) iconEl.classList.remove("running");
+            } else {
+                if (iconEl) iconEl.classList.add("running");
+                pomoTimer = setInterval(() => {
+                    if (pomoSeconds > 0) {
+                        pomoSeconds--;
+                        updateDisplay();
+                    } else {
+                        clearInterval(pomoTimer);
+                        isPomoRunning = false;
+                        if (pomoMode === "focus") {
+                            State.globalStats.pomodoros = (State.globalStats.pomodoros || 0) + 1;
+                            saveGlobalStats();
+                            updateStats();
+                            alert("¡Pomodoro terminado! Tiempo de un breve descanso.");
+                            pomoMode = "break";
+                            pomoSeconds = 5 * 60;
+                        } else {
+                            alert("¡Descanso terminado! A darle con todo.");
+                            pomoMode = "focus";
+                            pomoSeconds = 25 * 60;
+                        }
+                        updateDisplay();
+                        toggleBtn.textContent = "INICIAR";
+                        toggleBtn.classList.remove("active");
+                        if (iconEl) iconEl.classList.remove("running");
+                    }
+                }, 1000);
+                toggleBtn.textContent = "PAUSAR";
+                toggleBtn.classList.add("active");
+            }
+            isPomoRunning = !isPomoRunning;
+        });
+
+        resetBtn.addEventListener("click", () => {
+            clearInterval(pomoTimer);
+            isPomoRunning = false;
+            pomoMode = "focus";
+            pomoSeconds = 25 * 60;
+            updateDisplay();
+            toggleBtn.textContent = "INICIAR";
+            toggleBtn.classList.remove("active");
+            if (iconEl) iconEl.classList.remove("running");
+        });
+
+        updateDisplay();
+        updateStats();
+    };
+
+    // ---------------------------------------------------------------------------
+    // Calculator Logic
+    // ---------------------------------------------------------------------------
+    const specialtyData = [
+        { name: "Anatomía Patológica", min: 57.67, max: 78.03 },
+        { name: "Anestesiología", min: 58.39, max: 76.07 },
+        { name: "Audiología, Otoneurología y Foniatría", min: 59.46, max: 68.57 },
+        { name: "Calidad de la Atención Clínica", min: 51.07, max: 68.21 },
+        { name: "Cirugía General", min: 63.21, max: 81.96 },
+        { name: "Epidemiología", min: 46.25, max: 76.42 },
+        { name: "Genética Médica", min: 61.60, max: 73.75 },
+        { name: "Geriatría", min: 57.14, max: 78.21 },
+        { name: "Ginecología y Obstetricia", min: 60.35, max: 77.85 },
+        { name: "Imagenología Diagnóstica y Terapéutica", min: 58.03, max: 77.50 },
+        { name: "Medicina de la Actividad Física y Deportiva", min: 68.21, max: 73.75 },
+        { name: "Medicina de Rehabilitación", min: 58.75, max: 71.78 },
+        { name: "Medicina de Urgencias", min: 47.67, max: 73.57 },
+        { name: "Medicina del Trabajo y Ambiental", min: 55.71, max: 70.53 },
+        { name: "Medicina Familiar", min: 45.17, max: 73.32 },
+        { name: "Medicina Interna", min: 59.46, max: 82.50 },
+        { name: "Medicina Nuclear e Imagenología Molecular", min: 59.64, max: 71.78 },
+        { name: "Medicina Paliativa", min: 67.50, max: 68.75 },
+        { name: "Medicina Preventiva", min: 58.21, max: 64.46 },
+        { name: "Neumología", min: 60.17, max: 74.46 },
+        { name: "Oftalmología", min: 68.92, max: 80.89 },
+        { name: "Otorrinolaringología y Cirugía de Cabeza y Cuello", min: 70.00, max: 80.17 },
+        { name: "Patología Clínica", min: 55.35, max: 70.00 },
+        { name: "Pediatría", min: 58.57, max: 80.35 },
+        { name: "Psiquiatría", min: 62.14, max: 80.89 },
+        { name: "Radio Oncología", min: 57.85, max: 71.96 },
+        { name: "Traumatalogoía y Ortopedia", min: 62.14, max: 79.28 },
+    ];
+
+    const initCalculator = () => {
+        const select = $("calc-specialty");
+        const inputScore = $("calc-user-score");
+        const diffEl = $("calc-diff");
+        const statusEl = $("calc-status");
+        const msgEl = $("calc-msg");
+        const cardEl = $("calc-card");
+        const tableBody = $("calc-table-body");
+
+        // Set default score to current global average
+        const precision = (State.globalStats.respondidas > 0)
+            ? ((State.globalStats.aciertos / State.globalStats.respondidas) * 100).toFixed(1)
+            : 0;
+
+        if (inputScore.value == "0.0") inputScore.value = precision;
+
+        const updateCalc = () => {
+            const target = parseFloat(select.value);
+            const user = parseFloat(inputScore.value) || 0;
+            const diff = (user - target).toFixed(1);
+
+            diffEl.textContent = (diff >= 0 ? "+" : "") + diff;
+
+            if (diff >= 2) {
+                statusEl.textContent = "NIVEL SEGURO";
+                statusEl.style.color = "var(--accent-green)";
+                cardEl.style.borderColor = "var(--accent-green)";
+                msgEl.textContent = "Estás por encima del promedio histórico. ¡Mantén el ritmo!";
+            } else if (diff >= -2) {
+                statusEl.textContent = "EN COMPETENCIA";
+                statusEl.style.color = "var(--accent-orange)";
+                cardEl.style.borderColor = "var(--accent-orange)";
+                msgEl.textContent = "Estás en el margen. Un pequeño empujón extra asegurará tu lugar.";
+            } else {
+                statusEl.textContent = "NIVEL DE RIESGO";
+                statusEl.style.color = "var(--accent-red)";
+                cardEl.style.borderColor = "var(--accent-red)";
+                msgEl.textContent = "Aumenta la intensidad en las áreas de mayor peso para subir tu promedio.";
+            }
+
+            // Render Table
+            tableBody.innerHTML = "";
+            specialtyData.forEach(s => {
+                const tr = document.createElement("tr");
+                let statusTag = "";
+                const sDiff = user - s.min;
+                if (sDiff >= 2) statusTag = '<span class="tag-safe">SEGURO</span>';
+                else if (sDiff >= -2) statusTag = '<span class="tag-risk">COMPETENCIA</span>';
+                else statusTag = '<span class="tag-danger">RIESGO</span>';
+
+                tr.innerHTML = `
+                    <td>${s.name}</td>
+                    <td>${s.min}</td>
+                    <td>${s.max}</td>
+                    <td>${statusTag}</td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        };
+
+        select.addEventListener("change", updateCalc);
+        inputScore.addEventListener("input", updateCalc);
+        updateCalc();
+    };
+
+    // ---------------------------------------------------------------------------
     // Init listeners
     // ---------------------------------------------------------------------------
     document.addEventListener("DOMContentLoaded", () => {
@@ -812,6 +1062,7 @@
         initSetupLogic();
         initDashboardShortcuts();
         startExamCountdown();
+        initPomodoro();
         const bd = $("btn-back-dash"); if (bd) bd.addEventListener("click", () => $("nav-dashboard").click());
         const rv = $("btn-review"); if (rv) rv.addEventListener("click", startReview);
         const exr = $("btn-exit-review"); if (exr) exr.addEventListener("click", () => showView("view-results"));
@@ -882,5 +1133,44 @@
             saveGlobalStats();
             alert("Ajustes guardados."); $("nav-dashboard").click();
         });
+
+        // Click en Tarjeta Sesiones -> Historial
+        const cardSes = $("card-sesiones");
+        if (cardSes) cardSes.addEventListener("click", () => $("nav-historial").click());
+
+        // Reiniciar Estadísticas
+        const btnReset = $("btn-reset-stats");
+        if (btnReset) btnReset.addEventListener("click", () => {
+            if (confirm("¿Estás 100% seguro? Esta acción borrará TODO tu progreso y no se puede deshacer.")) {
+                localStorage.removeItem("enarm_stats");
+                localStorage.removeItem("enarm_history");
+
+                State.globalStats = {
+                    respondidas: 0,
+                    aciertos: 0,
+                    sesiones: 0,
+                    pomodoros: 0,
+                    bySpecialty: {
+                        mi: { total: 0, correct: 0, name: "Medicina Interna" },
+                        ped: { total: 0, correct: 0, name: "Pediatría" },
+                        gyo: { total: 0, correct: 0, name: "Ginecología y Obstetricia" },
+                        cir: { total: 0, correct: 0, name: "Cirugía General" },
+                        sp: { total: 0, correct: 0, name: "Salud Pública" },
+                        urg: { total: 0, correct: 0, name: "Urgencias" }
+                    }
+                };
+                State.history = [];
+
+                saveGlobalStats();
+                updateDashboardStats();
+                if (typeof updateCharts === 'function') updateCharts();
+                alert("Estadísticas eliminadas correctamente.");
+                $("nav-dashboard").click();
+            }
+        });
+
+        // Carga inicial de datos en el dashboard
+        updateDashboardStats();
+        updateCharts();
     });
 })();
