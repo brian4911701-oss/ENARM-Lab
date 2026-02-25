@@ -2041,3 +2041,185 @@ body {
   border-radius: 4px;
   font-size: 10px;
 }
+
+/* ── Mobile Navigation (Bottom Bar) ───────────────────── */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 65px;
+  background: rgba(17, 22, 35, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border);
+  z-index: 1000;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  /* For iOS notch */
+}
+
+body.light-mode .mobile-nav {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: all 0.2s;
+}
+
+.mobile-nav-item svg {
+  transition: transform 0.2s;
+}
+
+.mobile-nav-item.active {
+  color: var(--accent-green);
+}
+
+.mobile-nav-item.active svg {
+  transform: translateY(-2px);
+}
+
+/* ── Mobile Overrides ─────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Layout adjustments */
+  .sidebar {
+    display: none;
+    /* Hide desktop sidebar */
+  }
+
+  .main-content {
+    flex: 1;
+    min-width: 0;
+    width: 100vw;
+    padding: 20px 16px;
+    height: calc(100vh - 65px - env(safe-area-inset-bottom, 0px));
+    /* Account for mobile nav */
+    padding-bottom: 20px;
+    overflow-y: auto;
+  }
+
+  .mobile-nav {
+    display: flex;
+    /* Show bottom bar */
+  }
+
+  /* Grid adjustments */
+  .specs-grid,
+  .stats-grid,
+  .calc-grid,
+  .temario-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Header scaling */
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .header-title {
+    font-size: 24px;
+  }
+
+  .countdown-widget {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .countdown-timer .cd-item span {
+    font-size: 20px;
+  }
+
+  /* Setup/Exam section */
+  .setup-section {
+    padding: 20px;
+  }
+
+  .search-box-container input {
+    font-size: 13px;
+    padding: 14px 14px 14px 40px;
+  }
+
+  .control-group {
+    width: 100%;
+  }
+
+  .setup-footer-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .setup-footer-controls>div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    padding: 14px 20px;
+    justify-content: center;
+  }
+
+  /* Exam interface */
+  .exam-header {
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .exam-meta {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .question-number {
+    font-size: 18px;
+  }
+
+  .question-body {
+    padding: 20px 15px;
+  }
+
+  .question-text {
+    font-size: 18px;
+  }
+
+  .option-btn {
+    padding: 16px;
+  }
+
+  /* Modals */
+  .modal-content {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 400px) {
+  .mobile-nav-item {
+    font-size: 9px;
+    padding: 6px 8px;
+  }
+
+  .mobile-nav-item svg {
+    width: 20px;
+    height: 20px;
+  }
+}

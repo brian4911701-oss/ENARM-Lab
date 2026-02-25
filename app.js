@@ -140,9 +140,37 @@
                 el.addEventListener("click", () => {
                     $$(".nav-item").forEach(n => n.classList.remove("active"));
                     el.classList.add("active");
+
+                    // Sincronizar nav móvil
+                    $$(".mobile-nav-item").forEach(n => {
+                        n.classList.remove("active");
+                        if (n.dataset.view === nav.view) n.classList.add("active");
+                    });
+
                     showView(nav.view);
                 });
             }
+        });
+
+        // Mobile Nav Listeners
+        $$(".mobile-nav-item").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const targetView = btn.dataset.view;
+
+                // Limpiar activos
+                $$(".mobile-nav-item").forEach(n => n.classList.remove("active"));
+                $$(".nav-item").forEach(n => n.classList.remove("active"));
+
+                btn.classList.add("active");
+
+                // Sync escritorio
+                const nav = navs.find(n => n.view === targetView);
+                if (nav && $(nav.id)) {
+                    $(nav.id).classList.add("active");
+                }
+
+                showView(targetView);
+            });
         });
     };
 
