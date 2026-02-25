@@ -83,18 +83,23 @@
     };
 
     const applyTheme = (theme) => {
-        if (theme === "light") {
-            document.body.classList.add("light-mode");
-        } else if (theme === "dark") {
-            document.body.classList.remove("light-mode");
-        } else {
-            // System matching
+        // Remove all current theme classes
+        document.body.classList.remove("light-mode", "theme-forest", "theme-ocean", "theme-sunset");
+
+        if (theme === "system") {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
                 document.body.classList.add("light-mode");
-            } else {
-                document.body.classList.remove("light-mode");
             }
+        } else if (theme === "light") {
+            document.body.classList.add("light-mode");
+        } else if (theme === "forest") {
+            document.body.classList.add("theme-forest");
+        } else if (theme === "ocean") {
+            document.body.classList.add("theme-ocean");
+        } else if (theme === "sunset") {
+            document.body.classList.add("theme-sunset");
         }
+        // "dark" is the default, no class needed
     };
 
     // ---------------------------------------------------------------------------
@@ -559,7 +564,12 @@
     const updateCharts = () => {
         if (typeof Chart === 'undefined') return;
 
-        Chart.defaults.color = '#a0aec0';
+        const style = getComputedStyle(document.body);
+        const textMuted = style.getPropertyValue('--text-muted').trim() || '#a0aec0';
+        const accentGreen = style.getPropertyValue('--accent-green').trim() || '#05C07F';
+        const accentBlue = style.getPropertyValue('--accent-blue').trim() || '#3b82f6';
+
+        Chart.defaults.color = textMuted;
         Chart.defaults.font.family = "'Inter', sans-serif";
 
         // Chart 1: Evolución de Aciertos en el tiempo (Line)
@@ -577,12 +587,12 @@
                     datasets: [{
                         label: '% Aciertos',
                         data: dataPts.length ? dataPts : [0],
-                        borderColor: '#05C07F',
-                        backgroundColor: 'rgba(5, 192, 127, 0.2)',
+                        borderColor: accentGreen,
+                        backgroundColor: accentGreen + '33', // 20% alpha
                         borderWidth: 3,
                         tension: 0.4,
                         fill: true,
-                        pointBackgroundColor: '#05C07F',
+                        pointBackgroundColor: accentGreen,
                     }]
                 },
                 options: {
@@ -613,9 +623,9 @@
                     datasets: [{
                         label: '% Dominio',
                         data: dataPts,
-                        backgroundColor: 'rgba(99, 102, 241, 0.4)',
-                        borderColor: '#6366f1',
-                        pointBackgroundColor: '#6366f1',
+                        backgroundColor: accentBlue + '66', // 40% alpha
+                        borderColor: accentBlue,
+                        pointBackgroundColor: accentBlue,
                         borderWidth: 2,
                     }]
                 },
@@ -641,7 +651,7 @@
             let aciertos = State.globalStats.aciertos;
             let errores = State.globalStats.respondidas - aciertos;
             // Datos dummys grises si no hay historial
-            let bgColors = ['#05C07F', '#f43f5e'];
+            let bgColors = [accentGreen, '#f43f5e'];
             if (State.globalStats.respondidas === 0) {
                 aciertos = 0; errores = 1;
                 bgColors = ['#334155', '#334155'];
@@ -766,6 +776,33 @@
         });
     };
 
+    const startExamCountdown = () => {
+        const targetDate = new Date("September 21, 2026 08:00:00").getTime();
+
+        const update = () => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                if ($("exam-countdown")) $("exam-countdown").innerHTML = "<div class='countdown-label'>EL MOMENTO HA LLEGADO</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if ($("cd-days")) $("cd-days").textContent = String(days).padStart(3, "0");
+            if ($("cd-hours")) $("cd-hours").textContent = String(hours).padStart(2, "0");
+            if ($("cd-mins")) $("cd-mins").textContent = String(minutes).padStart(2, "0");
+            if ($("cd-secs")) $("cd-secs").textContent = String(seconds).padStart(2, "0");
+        };
+
+        update();
+        setInterval(update, 1000);
+    };
+
     // ---------------------------------------------------------------------------
     // Init listeners
     // ---------------------------------------------------------------------------
@@ -774,6 +811,7 @@
         bindSidebar();
         initSetupLogic();
         initDashboardShortcuts();
+        startExamCountdown();
         const bd = $("btn-back-dash"); if (bd) bd.addEventListener("click", () => $("nav-dashboard").click());
         const rv = $("btn-review"); if (rv) rv.addEventListener("click", startReview);
         const exr = $("btn-exit-review"); if (exr) exr.addEventListener("click", () => showView("view-results"));

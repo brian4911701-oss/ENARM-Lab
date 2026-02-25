@@ -39,7 +39,7 @@
 
             <nav class="sidebar-nav">
                 <button class="nav-item active" id="nav-dashboard">
-                    <span class="nav-icon">⊞</span>
+                    <span class="nav-icon">🏠</span>
                     <span>Dashboard</span>
                 </button>
                 <button class="nav-item" id="nav-new-exam">
@@ -75,9 +75,22 @@
             <div id="view-dashboard" class="view active">
                 <header class="dashboard-header">
                     <div class="header-left">
-                        <h1 class="header-title">Hola, Isaac</h1>
+                        <h1 class="header-title">Hola, <span class="user-name"></span>Isaac</span></h1>
                         <p class="header-subtitle">Panel de Control de Alto Rendimiento</p>
 
+                    </div>
+
+                    <div class="countdown-widget" id="exam-countdown">
+                        <div class="countdown-label">FALTAN PARA EL ENARM 2026</div>
+                        <div class="countdown-timer">
+                            <div class="cd-item"><span id="cd-days">000</span><label>DÍAS</label></div>
+                            <div class="cd-sep">:</div>
+                            <div class="cd-item"><span id="cd-hours">00</span><label>HORAS</label></div>
+                            <div class="cd-sep">:</div>
+                            <div class="cd-item"><span id="cd-mins">00</span><label>MIN</label></div>
+                            <div class="cd-sep">:</div>
+                            <div class="cd-item"><span id="cd-secs">00</span><label>SEG</label></div>
+                        </div>
                     </div>
                     <div class="flame-widget">
                         <div class="flame-icon">🔥</div>
@@ -136,7 +149,7 @@
 
                     <div class="fail-points-section panel">
                         <div class="panel-header">
-                            <h2 class="panel-title"><span class="title-icon orange-text">⚠️</span> Puntos de Falla (IA)
+                            <h2 class="panel-title"><span class="title-icon orange-text">🚩</span> Puntos de Falla (IA)
                             </h2>
                             <button class="btn-refuerzo" id="btn-refuerzo-ia">⚡ REFUERZO INTELIGENTE</button>
                         </div>
@@ -592,8 +605,11 @@
                                     <label>Apariencia del Sistema</label>
                                     <select class="text-input" id="setting-theme">
                                         <option value="system" selected>Defecto del Sistema</option>
-                                        <option value="dark">Modo Oscuro</option>
-                                        <option value="light">Modo Claro</option>
+                                        <option value="dark">Modo Oscuro (Obsidiana)</option>
+                                        <option value="light">Modo Claro (Nieve)</option>
+                                        <option value="forest">Tema Bosque (Verde Limón)</option>
+                                        <option value="ocean">Tema Océano (Azul Profundo)</option>
+                                        <option value="sunset">Tema Atardecer (Rubí)</option>
                                     </select>
                                 </div>
                                 <div class="input-group">
