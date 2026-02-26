@@ -1,0 +1,2535 @@
+[
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Síndrome coronario agudo con elevación del ST",
+    "difficulty": "alta",
+    "case": "Hombre de 58 años, diabético e hipertenso, inicia hace 90 minutos con dolor opresivo retroesternal irradiado a brazo izquierdo, acompañado de diaforesis y náusea. TA 140/90 mmHg, FC 96 lpm. ECG muestra elevación del ST en II, III y aVF. Hospital sin sala de hemodinamia; el centro con angioplastia más cercano está a 3 horas.",
+    "question": "¿Cuál es el diagnóstico?",
+    "options": [
+      "Angina inestable",
+      "IAM sin elevación del ST",
+      "IAM con elevación del ST inferior",
+      "Pericarditis aguda",
+      "Disección aórtica"
+    ],
+    "answerIndex": 2,
+    "explanation": "Elevación del ST en cara inferior (II, III, aVF) indica IAM inferior, usualmente por oclusión de coronaria derecha. Si la angioplastia no puede realizarse en menos de 120 minutos, la GPC de SCA con elevación del ST indica fibrinólisis inmediata. La angina inestable y el NSTEMI no presentan elevación persistente del ST. La pericarditis muestra elevación difusa, no regional.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Síndrome coronario agudo con elevación del ST",
+    "difficulty": "alta",
+    "case": "Hombre de 58 años, diabético e hipertenso, inicia hace 90 minutos con dolor opresivo retroesternal irradiado a brazo izquierdo, acompañado de diaforesis y náusea. TA 140/90 mmHg, FC 96 lpm. ECG muestra elevación del ST en II, III y aVF. Hospital sin sala de hemodinamia; el centro con angioplastia más cercano está a 3 horas.",
+    "question": "¿Cuál es la estrategia de reperfusión indicada?",
+    "options": [
+      "Traslado inmediato sin tratamiento",
+      "Fibrinólisis inmediata",
+      "Solo antiagregación",
+      "Observación 6 horas",
+      "Anticoagulación oral"
+    ],
+    "answerIndex": 1,
+    "explanation": "Elevación del ST en cara inferior (II, III, aVF) indica IAM inferior, usualmente por oclusión de coronaria derecha. Si la angioplastia no puede realizarse en menos de 120 minutos, la GPC de SCA con elevación del ST indica fibrinólisis inmediata. La angina inestable y el NSTEMI no presentan elevación persistente del ST. La pericarditis muestra elevación difusa, no regional.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Síndrome coronario agudo con elevación del ST",
+    "difficulty": "alta",
+    "case": "Hombre de 58 años, diabético e hipertenso, inicia hace 90 minutos con dolor opresivo retroesternal irradiado a brazo izquierdo, acompañado de diaforesis y náusea. TA 140/90 mmHg, FC 96 lpm. ECG muestra elevación del ST en II, III y aVF. Hospital sin sala de hemodinamia; el centro con angioplastia más cercano está a 3 horas.",
+    "question": "¿Qué arteria está más probablemente involucrada?",
+    "options": [
+      "Descendente anterior",
+      "Circunfleja",
+      "Coronaria derecha",
+      "Tronco coronario izquierdo",
+      "Septal"
+    ],
+    "answerIndex": 2,
+    "explanation": "Elevación del ST en cara inferior (II, III, aVF) indica IAM inferior, usualmente por oclusión de coronaria derecha. Si la angioplastia no puede realizarse en menos de 120 minutos, la GPC de SCA con elevación del ST indica fibrinólisis inmediata. La angina inestable y el NSTEMI no presentan elevación persistente del ST. La pericarditis muestra elevación difusa, no regional.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "ped",
+    "tema": "Pediatría – Crisis asmática",
+    "difficulty": "alta",
+    "case": "Niño de 7 años con antecedente de asma, presenta disnea progresiva tras infección viral. Habla en frases cortas, FR 38/min, tiraje intercostal, sibilancias audibles sin estetoscopio, SatO₂ 89%.",
+    "question": "¿Cómo se clasifica la crisis?",
+    "options": [
+      "Leve",
+      "Moderada",
+      "Grave",
+      "Paro respiratorio inminente",
+      "Intermitente"
+    ],
+    "answerIndex": 2,
+    "explanation": "SatO₂ <90%, uso de músculos accesorios y dificultad para hablar indican crisis grave según GPC de asma en pediatría. El tratamiento inicial es oxígeno y beta2 agonista de acción corta repetido. Los esteroides sistémicos deben añadirse tempranamente, pero nunca como monoterapia inicial. La teofilina ya no es de primera línea.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "ped",
+    "tema": "Pediatría – Crisis asmática",
+    "difficulty": "alta",
+    "case": "Niño de 7 años con antecedente de asma, presenta disnea progresiva tras infección viral. Habla en frases cortas, FR 38/min, tiraje intercostal, sibilancias audibles sin estetoscopio, SatO₂ 89%.",
+    "question": "Manejo inicial indicado:",
+    "options": [
+      "Corticoide inhalado únicamente",
+      "Salbutamol nebulizado + oxígeno",
+      "Antibiótico IV",
+      "Teofilina oral",
+      "Observación"
+    ],
+    "answerIndex": 1,
+    "explanation": "SatO₂ <90%, uso de músculos accesorios y dificultad para hablar indican crisis grave según GPC de asma en pediatría. El tratamiento inicial es oxígeno y beta2 agonista de acción corta repetido. Los esteroides sistémicos deben añadirse tempranamente, pero nunca como monoterapia inicial. La teofilina ya no es de primera línea.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "ped",
+    "tema": "Pediatría – Crisis asmática",
+    "difficulty": "alta",
+    "case": "Niño de 7 años con antecedente de asma, presenta disnea progresiva tras infección viral. Habla en frases cortas, FR 38/min, tiraje intercostal, sibilancias audibles sin estetoscopio, SatO₂ 89%.",
+    "question": "¿Qué dato indica mayor gravedad?",
+    "options": [
+      "Tos nocturna",
+      "Sibilancias",
+      "Saturación <90%",
+      "Historia familiar",
+      "Fiebre"
+    ],
+    "answerIndex": 2,
+    "explanation": "SatO₂ <90%, uso de músculos accesorios y dificultad para hablar indican crisis grave según GPC de asma en pediatría. El tratamiento inicial es oxígeno y beta2 agonista de acción corta repetido. Los esteroides sistémicos deben añadirse tempranamente, pero nunca como monoterapia inicial. La teofilina ya no es de primera línea.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía – Pancreatitis aguda",
+    "difficulty": "alta",
+    "case": "Hombre de 45 años, etilista crónico, presenta dolor epigástrico intenso irradiado a espalda, vómito persistente. Lipasa 6 veces el límite superior. TA 100/60 mmHg, FC 112 lpm. BUN 32 mg/dL.",
+    "question": "¿Cuál es el diagnóstico?",
+    "options": [
+      "Colecistitis",
+      "Úlcera perforada",
+      "Pancreatitis aguda",
+      "Isquemia mesentérica",
+      "Hepatitis alcohólica"
+    ],
+    "answerIndex": 2,
+    "explanation": "El diagnóstico requiere dolor típico más elevación de lipasa ≥3 veces el límite superior. El aumento de BUN y la hipotensión indican mayor severidad según criterios pronósticos. El tratamiento inicial es hidratación agresiva con solución isotónica. Los antibióticos no están indicados de rutina y la CPRE solo si hay colangitis o coledocolitiasis.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía – Pancreatitis aguda",
+    "difficulty": "alta",
+    "case": "Hombre de 45 años, etilista crónico, presenta dolor epigástrico intenso irradiado a espalda, vómito persistente. Lipasa 6 veces el límite superior. TA 100/60 mmHg, FC 112 lpm. BUN 32 mg/dL.",
+    "question": "¿Qué dato indica peor pronóstico inicial?",
+    "options": [
+      "Dolor irradiado",
+      "Lipasa elevada",
+      "BUN elevado",
+      "Edad <50",
+      "Náusea"
+    ],
+    "answerIndex": 2,
+    "explanation": "El diagnóstico requiere dolor típico más elevación de lipasa ≥3 veces el límite superior. El aumento de BUN y la hipotensión indican mayor severidad según criterios pronósticos. El tratamiento inicial es hidratación agresiva con solución isotónica. Los antibióticos no están indicados de rutina y la CPRE solo si hay colangitis o coledocolitiasis.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía – Pancreatitis aguda",
+    "difficulty": "alta",
+    "case": "Hombre de 45 años, etilista crónico, presenta dolor epigástrico intenso irradiado a espalda, vómito persistente. Lipasa 6 veces el límite superior. TA 100/60 mmHg, FC 112 lpm. BUN 32 mg/dL.",
+    "question": "Manejo inicial:",
+    "options": [
+      "Antibiótico profiláctico",
+      "Reposición vigorosa con cristaloides",
+      "CPRE urgente",
+      "Cirugía inmediata",
+      "Dieta líquida"
+    ],
+    "answerIndex": 1,
+    "explanation": "El diagnóstico requiere dolor típico más elevación de lipasa ≥3 veces el límite superior. El aumento de BUN y la hipotensión indican mayor severidad según criterios pronósticos. El tratamiento inicial es hidratación agresiva con solución isotónica. Los antibióticos no están indicados de rutina y la CPRE solo si hay colangitis o coledocolitiasis.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Ginecología – Cáncer de endometrio",
+    "difficulty": "alta",
+    "case": "Mujer de 62 años, menopausia a los 50, obesa y diabética, consulta por sangrado transvaginal escaso indoloro. USG transvaginal muestra grosor endometrial de 16 mm.",
+    "question": "Principal factor de riesgo en esta paciente:",
+    "options": [
+      "Multiparidad",
+      "Uso de anticonceptivos",
+      "Hiperestrogenismo sin oposición",
+      "Tabaquismo",
+      "Infección por VPH"
+    ],
+    "answerIndex": 2,
+    "explanation": "Sangrado postmenopáusico con endometrio >4 mm obliga a biopsia endometrial según GPC de cáncer de endometrio. La obesidad y diabetes favorecen hiperestrogenismo periférico sin oposición, principal factor de riesgo. El Papanicolaou no diagnostica cáncer endometrial y los marcadores tumorales no son estudio inicial.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Ginecología – Cáncer de endometrio",
+    "difficulty": "alta",
+    "case": "Mujer de 62 años, menopausia a los 50, obesa y diabética, consulta por sangrado transvaginal escaso indoloro. USG transvaginal muestra grosor endometrial de 16 mm.",
+    "question": "Siguiente paso diagnóstico:",
+    "options": [
+      "CA-125",
+      "Papanicolaou",
+      "Biopsia endometrial",
+      "Histerectomía directa",
+      "Observación"
+    ],
+    "answerIndex": 2,
+    "explanation": "Sangrado postmenopáusico con endometrio >4 mm obliga a biopsia endometrial según GPC de cáncer de endometrio. La obesidad y diabetes favorecen hiperestrogenismo periférico sin oposición, principal factor de riesgo. El Papanicolaou no diagnostica cáncer endometrial y los marcadores tumorales no son estudio inicial.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Enfermedad renal crónica y manejo de anemia",
+    "difficulty": "alta",
+    "case": "Hombre de 64 años con antecedente de diabetes mellitus tipo 2 e hipertensión de 20 años de evolución acude a consulta por fatiga progresiva y disminución de la tolerancia al ejercicio. TA 150/95 mmHg. Presenta palidez de tegumentos y edema leve en extremidades inferiores. Laboratorio: Hb 8.9 g/dL, VCM 88 fL, creatinina 3.2 mg/dL, TFG estimada 22 ml/min/1.73 m², ferritina normal, saturación de transferrina normal.",
+    "question": "Pregunta. ¿Cuál es el manejo más adecuado de la anemia en este paciente?",
+    "options": [
+      "Transfusión inmediata",
+      "Hierro intravenoso",
+      "Eritropoyetina recombinante",
+      "Ácido fólico",
+      "Observación"
+    ],
+    "answerIndex": 2,
+    "explanation": "Paciente con ERC estadio 4 (TFG <30) y anemia normocítica normocrómica con depósitos de hierro adecuados sugiere déficit de eritropoyetina. La GPC de Enfermedad Renal Crónica indica uso de agentes estimulantes de eritropoyesis cuando Hb <10 g/dL tras descartar deficiencia de hierro. No requiere transfusión salvo inestabilidad o Hb muy baja.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "ped",
+    "tema": "Pediatría – Intususcepción intestinal",
+    "difficulty": "alta",
+    "case": "Lactante de 8 meses previamente sano presenta episodios súbitos de llanto intenso con flexión de piernas sobre el abdomen, vómito y posteriormente evacuación con moco y sangre. A la exploración se palpa masa en cuadrante superior derecho. USG reporta imagen en “diana”.",
+    "question": "¿Cuál es el diagnóstico más probable?",
+    "options": [
+      "Apendicitis",
+      "Gastroenteritis",
+      "Invaginación intestinal",
+      "Hernia incarcerada",
+      "Malrotación"
+    ],
+    "answerIndex": 2,
+    "explanation": "La triada clásica (dolor cólico intermitente, masa palpable y evacuaciones en jalea de grosella) orienta a invaginación. Según GPC de abdomen agudo en pediatría, el tratamiento inicial en paciente estable es reducción con enema neumático o hidrostático. La cirugía se reserva para fracaso o perforación.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "ped",
+    "tema": "Pediatría – Intususcepción intestinal",
+    "difficulty": "alta",
+    "case": "Lactante de 8 meses previamente sano presenta episodios súbitos de llanto intenso con flexión de piernas sobre el abdomen, vómito y posteriormente evacuación con moco y sangre. A la exploración se palpa masa en cuadrante superior derecho. USG reporta imagen en “diana”.",
+    "question": "Conducta inicial más adecuada:",
+    "options": [
+      "Laparotomía inmediata",
+      "Enema neumático terapéutico",
+      "Antibióticos IV",
+      "Observación",
+      "Colonoscopia"
+    ],
+    "answerIndex": 1,
+    "explanation": "La triada clásica (dolor cólico intermitente, masa palpable y evacuaciones en jalea de grosella) orienta a invaginación. Según GPC de abdomen agudo en pediatría, el tratamiento inicial en paciente estable es reducción con enema neumático o hidrostático. La cirugía se reserva para fracaso o perforación.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Ginecología – Amenorrea secundaria",
+    "difficulty": "alta",
+    "case": "Mujer de 23 años con antecedente de pérdida de peso importante en los últimos 6 meses por dieta restrictiva y ejercicio excesivo. Refiere ausencia de menstruación desde hace 5 meses. β-hCG negativa. TSH y prolactina normales. FSH y LH bajas.",
+    "question": "Pregunta. ¿Cuál es la causa más probable?",
+    "options": [
+      "Síndrome de ovario poliquístico",
+      "Insuficiencia ovárica prematura",
+      "Amenorrea hipotalámica funcional",
+      "Hiperprolactinemia",
+      "Síndrome de Asherman"
+    ],
+    "answerIndex": 2,
+    "explanation": "La pérdida de peso, ejercicio excesivo y gonadotropinas bajas indican supresión hipotalámica funcional. La GPC de amenorrea secundaria señala que FSH/LH bajas con factores de estrés metabólico sugieren origen central. En insuficiencia ovárica la FSH estaría elevada.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía – Isquemia mesentérica aguda",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 72 años con fibrilación auricular sin anticoagulación presenta dolor abdominal súbito intenso “desproporcionado” a la exploración física. Abdomen blando, sin datos claros de irritación peritoneal. Lactato elevado.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Pancreatitis",
+      "Isquemia mesentérica aguda embólica",
+      "Apendicitis",
+      "Diverticulitis",
+      "Oclusión intestinal"
+    ],
+    "answerIndex": 1,
+    "explanation": "Dolor intenso desproporcionado con antecedente de FA sugiere embolia mesentérica. La GPC de abdomen agudo recomienda AngioTAC como estudio diagnóstico inicial en paciente estable. La radiografía simple tiene baja sensibilidad. El retraso diagnóstico aumenta mortalidad.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía – Isquemia mesentérica aguda",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 72 años con fibrilación auricular sin anticoagulación presenta dolor abdominal súbito intenso “desproporcionado” a la exploración física. Abdomen blando, sin datos claros de irritación peritoneal. Lactato elevado.",
+    "question": "Estudio diagnóstico de elección:",
+    "options": [
+      "Radiografía simple",
+      "Ultrasonido abdominal",
+      "AngioTAC abdominal",
+      "Colonoscopia",
+      "Enema contrastado"
+    ],
+    "answerIndex": 2,
+    "explanation": "Dolor intenso desproporcionado con antecedente de FA sugiere embolia mesentérica. La GPC de abdomen agudo recomienda AngioTAC como estudio diagnóstico inicial en paciente estable. La radiografía simple tiene baja sensibilidad. El retraso diagnóstico aumenta mortalidad.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Hipotiroidismo primario",
+    "difficulty": "media",
+    "case": "Mujer de 45 años con aumento de peso, intolerancia al frío, estreñimiento y piel seca. FC 54 lpm. Laboratorio: TSH 18 mUI/L, T4 libre baja.",
+    "question": "Pregunta. Tratamiento inicial indicado:",
+    "options": [
+      "Metimazol",
+      "Propiltiouracilo",
+      "Levotiroxina",
+      "Yodo radioactivo",
+      "Propranolol"
+    ],
+    "answerIndex": 2,
+    "explanation": "TSH elevada con T4 baja confirma hipotiroidismo primario. La GPC de patología tiroidea establece levotiroxina como tratamiento de elección ajustando dosis según edad y comorbilidades. Los antitiroideos se usan en hipertiroidismo, no en hipofunción.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Oncología Ginecológica P2 – Tamizaje y manejo inicial de CaCu",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 41 años, G4P4, inicio de vida sexual a los 16 años, múltiples parejas sexuales. Refiere que su última citología fue hace 6 años. Acude para chequeo. Se realiza prueba de VPH que resulta positiva para genotipo 16. Citología reporta NILM (negativa para lesión intraepitelial). No síntomas.",
+    "question": "¿Cuál es la conducta más adecuada?",
+    "options": [
+      "Repetir citología en 3 años",
+      "Repetir VPH en 5 años",
+      "Colposcopía inmediata",
+      "Conización diagnóstica",
+      "Histerectomía"
+    ],
+    "answerIndex": 2,
+    "explanation": "Según NOM-014 y GPC de cáncer cervicouterino, VPH 16 positivo requiere colposcopía aunque la citología sea negativa. NIC 2 es lesión de alto grado y debe tratarse con método excisional como LEEP. La observación se reserva para NIC 1 en casos seleccionados.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Oncología Ginecológica P2 – Tamizaje y manejo inicial de CaCu",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 41 años, G4P4, inicio de vida sexual a los 16 años, múltiples parejas sexuales. Refiere que su última citología fue hace 6 años. Acude para chequeo. Se realiza prueba de VPH que resulta positiva para genotipo 16. Citología reporta NILM (negativa para lesión intraepitelial). No síntomas.",
+    "question": "Si la colposcopía muestra lesión acetoblanca compatible con NIC 2, el manejo indicado es:",
+    "options": [
+      "Observación",
+      "Crioterapia",
+      "Escisión electroquirúrgica (LEEP)",
+      "Antibiótico",
+      "Radioterapia"
+    ],
+    "answerIndex": 2,
+    "explanation": "Según NOM-014 y GPC de cáncer cervicouterino, VPH 16 positivo requiere colposcopía aunque la citología sea negativa. NIC 2 es lesión de alto grado y debe tratarse con método excisional como LEEP. La observación se reserva para NIC 1 en casos seleccionados.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "ped",
+    "tema": "Pediatría – Infecciones TORCH (Toxoplasmosis congénita)",
+    "difficulty": "muy-alta",
+    "case": "RN de 10 días con ictericia persistente, hepatoesplenomegalia y microcefalia. Presenta convulsiones. USG transfontanelar muestra calcificaciones intracraneales difusas. Madre refiere haber tenido contacto frecuente con gatos durante el embarazo.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Citomegalovirus",
+      "Rubéola congénita",
+      "Toxoplasmosis congénita",
+      "Sífilis congénita",
+      "Herpes neonatal"
+    ],
+    "answerIndex": 2,
+    "explanation": "La triada clásica de toxoplasmosis congénita incluye calcificaciones intracraneales difusas, hidro/microcefalia y coriorretinitis. El tratamiento recomendado por GPC de infecciones congénitas es pirimetamina más sulfadiazina y ácido folínico para prevenir mielosupresión. CMV suele dar calcificaciones periventriculares, no difusas.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "ped",
+    "tema": "Pediatría – Infecciones TORCH (Toxoplasmosis congénita)",
+    "difficulty": "muy-alta",
+    "case": "RN de 10 días con ictericia persistente, hepatoesplenomegalia y microcefalia. Presenta convulsiones. USG transfontanelar muestra calcificaciones intracraneales difusas. Madre refiere haber tenido contacto frecuente con gatos durante el embarazo.",
+    "question": "Tratamiento indicado:",
+    "options": [
+      "Penicilina G",
+      "Aciclovir",
+      "Pirimetamina + sulfadiazina + ácido folínico",
+      "Ganciclovir",
+      "Observación"
+    ],
+    "answerIndex": 2,
+    "explanation": "La triada clásica de toxoplasmosis congénita incluye calcificaciones intracraneales difusas, hidro/microcefalia y coriorretinitis. El tratamiento recomendado por GPC de infecciones congénitas es pirimetamina más sulfadiazina y ácido folínico para prevenir mielosupresión. CMV suele dar calcificaciones periventriculares, no difusas.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Nefrología – Síndrome nefrítico (Glomerulonefritis postestreptocócica)",
+    "difficulty": "alta",
+    "case": "Niño de 8 años con antecedente de faringitis hace 3 semanas, presenta edema palpebral, hematuria macroscópica y oliguria. TA 135/85 mmHg. Laboratorio: creatinina ligeramente elevada, C3 disminuido.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Síndrome nefrótico",
+      "Glomerulonefritis postestreptocócica",
+      "Púrpura de Henoch-Schönlein",
+      "Nefropatía por IgA",
+      "LRA prerrenal"
+    ],
+    "answerIndex": 1,
+    "explanation": "Hematuria, hipertensión y complemento bajo tras infección estreptocócica sugieren glomerulonefritis postestreptocócica. El manejo es de soporte con control de líquidos y presión arterial según GPC de glomerulopatías. Los esteroides no son de primera línea.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Nefrología – Síndrome nefrítico (Glomerulonefritis postestreptocócica)",
+    "difficulty": "alta",
+    "case": "Niño de 8 años con antecedente de faringitis hace 3 semanas, presenta edema palpebral, hematuria macroscópica y oliguria. TA 135/85 mmHg. Laboratorio: creatinina ligeramente elevada, C3 disminuido.",
+    "question": "Manejo inicial:",
+    "options": [
+      "Corticoides",
+      "Antibiótico prolongado",
+      "Restricción hídrica y control de TA",
+      "Diálisis inmediata",
+      "Inmunosupresores"
+    ],
+    "answerIndex": 2,
+    "explanation": "Hematuria, hipertensión y complemento bajo tras infección estreptocócica sugieren glomerulonefritis postestreptocócica. El manejo es de soporte con control de líquidos y presión arterial según GPC de glomerulopatías. Los esteroides no son de primera línea.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "ATLS P1 – Manejo inicial del trauma",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 25 años sufre accidente automovilístico. Llega consciente pero agitado, con estridor audible y hematoma cervical expansivo. TA 100/60 mmHg, FC 120 lpm.",
+    "question": "Pregunta. ¿Cuál es la prioridad inmediata?",
+    "options": [
+      "Tomografía cervical",
+      "Intubación orotraqueal inmediata",
+      "Radiografía de tórax",
+      "Colocación de sonda vesical",
+      "Analgesia IV"
+    ],
+    "answerIndex": 1,
+    "explanation": "En el enfoque ATLS, la vía aérea es la primera prioridad. Estridor y hematoma cervical expansivo indican riesgo inminente de obstrucción. Debe asegurarse la vía aérea antes de estudios de imagen. El retraso puede resultar en paro respiratorio.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Reumatología – Vasculitis (Granulomatosis con poliangitis)",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 48 años con sinusitis crónica, epistaxis recurrente, hemoptisis y hematuria. Creatinina elevada. ANCA positivo tipo c-ANCA.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Lupus eritematoso sistémico",
+      "Poliarteritis nodosa",
+      "Granulomatosis con poliangitis",
+      "Síndrome de Goodpasture",
+      "Artritis reumatoide"
+    ],
+    "answerIndex": 2,
+    "explanation": "Afectación de vía aérea superior, pulmón y riñón con c-ANCA positivo es característico de granulomatosis con poliangitis. El manejo de inducción incluye corticoide sistémico más inmunosupresor potente como ciclofosfamida o rituximab según GPC de vasculitis. Sin tratamiento puede evolucionar rápidamente a falla renal.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Reumatología – Vasculitis (Granulomatosis con poliangitis)",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 48 años con sinusitis crónica, epistaxis recurrente, hemoptisis y hematuria. Creatinina elevada. ANCA positivo tipo c-ANCA.",
+    "question": "Tratamiento inicial indicado:",
+    "options": [
+      "AINE",
+      "Metotrexato solo",
+      "Corticoide sistémico + ciclofosfamida",
+      "Penicilina",
+      "Observación"
+    ],
+    "answerIndex": 2,
+    "explanation": "Afectación de vía aérea superior, pulmón y riñón con c-ANCA positivo es característico de granulomatosis con poliangitis. El manejo de inducción incluye corticoide sistémico más inmunosupresor potente como ciclofosfamida o rituximab según GPC de vasculitis. Sin tratamiento puede evolucionar rápidamente a falla renal.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Diabetes Mellitus – Tratamiento farmacológico (Medicina Interna)",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 52 años con DM2 desde hace 6 años en tratamiento con metformina a dosis máxima tolerada. IMC 34 kg/m². HbA1c 9.2%. TFG 85 ml/min. Refiere antecedente de infarto hace 2 años. No hipoglucemias previas.",
+    "question": "¿Cuál es el siguiente fármaco más indicado?",
+    "options": [
+      "Sulfonilurea",
+      "Insulina NPH",
+      "Inhibidor SGLT2",
+      "Acarbosa",
+      "Pioglitazona"
+    ],
+    "answerIndex": 2,
+    "explanation": "En paciente con DM2 y enfermedad cardiovascular establecida, la GPC de tratamiento de diabetes recomienda añadir un inhibidor SGLT2 o agonista GLP-1 con beneficio cardiovascular demostrado. Los SGLT2 reducen eventos cardiovasculares y progresión de ERC. Las sulfonilureas no aportan beneficio CV y aumentan riesgo de hipoglucemia.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Diabetes Mellitus – Tratamiento farmacológico (Medicina Interna)",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 52 años con DM2 desde hace 6 años en tratamiento con metformina a dosis máxima tolerada. IMC 34 kg/m². HbA1c 9.2%. TFG 85 ml/min. Refiere antecedente de infarto hace 2 años. No hipoglucemias previas.",
+    "question": "¿Cuál es el principal beneficio adicional de este grupo farmacológico en esta paciente?",
+    "options": [
+      "Disminuye riesgo de hipoglucemia grave",
+      "Reduce eventos cardiovasculares mayores",
+      "Aumenta secreción pancreática",
+      "Corrige resistencia periférica",
+      "Estimula liberación de GLP-1"
+    ],
+    "answerIndex": 1,
+    "explanation": "En paciente con DM2 y enfermedad cardiovascular establecida, la GPC de tratamiento de diabetes recomienda añadir un inhibidor SGLT2 o agonista GLP-1 con beneficio cardiovascular demostrado. Los SGLT2 reducen eventos cardiovasculares y progresión de ERC. Las sulfonilureas no aportan beneficio CV y aumentan riesgo de hipoglucemia.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Choque obstétrico y hemorragia obstétrica",
+    "difficulty": "alta",
+    "case": "Mujer de 24 años, G2P2, 30 minutos posterior a parto vaginal eutócico presenta sangrado abundante. TA 85/50 mmHg, FC 130 lpm. Útero aumentado de tamaño y flácido a la palpación. Placenta completa.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Retención placentaria",
+      "Atonía uterina",
+      "Desgarro cervical",
+      "Inversión uterina",
+      "Coagulopatía primaria"
+    ],
+    "answerIndex": 1,
+    "explanation": "La causa más frecuente de hemorragia posparto es atonía uterina. El manejo inicial según GPC de hemorragia obstétrica incluye masaje uterino bimanual y administración de uterotónicos (oxitocina). Solo si no responde se escalan medidas quirúrgicas. La placenta ya fue expulsada, por lo que no es retención.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Choque obstétrico y hemorragia obstétrica",
+    "difficulty": "alta",
+    "case": "Mujer de 24 años, G2P2, 30 minutos posterior a parto vaginal eutócico presenta sangrado abundante. TA 85/50 mmHg, FC 130 lpm. Útero aumentado de tamaño y flácido a la palpación. Placenta completa.",
+    "question": "Primera intervención terapéutica:",
+    "options": [
+      "Legrado uterino",
+      "Masaje uterino + oxitocina IV",
+      "Histerectomía inmediata",
+      "Ácido tranexámico como único manejo",
+      "Observación"
+    ],
+    "answerIndex": 1,
+    "explanation": "La causa más frecuente de hemorragia posparto es atonía uterina. El manejo inicial según GPC de hemorragia obstétrica incluye masaje uterino bimanual y administración de uterotónicos (oxitocina). Solo si no responde se escalan medidas quirúrgicas. La placenta ya fue expulsada, por lo que no es retención.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "ped",
+    "tema": "Cardiopatías congénitas – Comunicación interventricular (Pediatría)",
+    "difficulty": "alta",
+    "case": "Lactante de 3 meses con diaforesis al alimentarse, pobre ganancia ponderal y taquipnea. A la auscultación presenta soplo holosistólico en borde esternal izquierdo inferior. Rx muestra cardiomegalia y aumento de flujo pulmonar.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Tetralogía de Fallot",
+      "Comunicación interauricular",
+      "Comunicación interventricular",
+      "Persistencia del conducto arterioso",
+      "Coartación aórtica"
+    ],
+    "answerIndex": 2,
+    "explanation": "Soplo holosistólico en borde esternal izquierdo con datos de hiperflujo pulmonar es característico de CIV. Las comunicaciones grandes pueden evolucionar a hipertensión pulmonar y síndrome de Eisenmenger si no se corrigen. La tetralogía produce cianosis, lo cual no se describe en este caso.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "ped",
+    "tema": "Cardiopatías congénitas – Comunicación interventricular (Pediatría)",
+    "difficulty": "alta",
+    "case": "Lactante de 3 meses con diaforesis al alimentarse, pobre ganancia ponderal y taquipnea. A la auscultación presenta soplo holosistólico en borde esternal izquierdo inferior. Rx muestra cardiomegalia y aumento de flujo pulmonar.",
+    "question": "Complicación más frecuente si no se trata:",
+    "options": [
+      "Hipertensión pulmonar irreversible",
+      "Endocarditis aislada",
+      "Arritmia supraventricular",
+      "Cianosis neonatal",
+      "Shock cardiogénico temprano"
+    ],
+    "answerIndex": 0,
+    "explanation": "Soplo holosistólico en borde esternal izquierdo con datos de hiperflujo pulmonar es característico de CIV. Las comunicaciones grandes pueden evolucionar a hipertensión pulmonar y síndrome de Eisenmenger si no se corrigen. La tetralogía produce cianosis, lo cual no se describe en este caso.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Urología P2 – Hiperplasia prostática benigna",
+    "difficulty": "alta",
+    "case": "Hombre de 68 años con chorro urinario débil, nicturia y sensación de vaciamiento incompleto. Tacto rectal: próstata aumentada de tamaño, lisa y elástica. PSA 2.5 ng/ml. No hematuria.",
+    "question": "Tratamiento inicial más adecuado:",
+    "options": [
+      "Prostatectomía radical",
+      "Finasteride",
+      "Alfa bloqueador (tamsulosina)",
+      "Radioterapia",
+      "Observación obligatoria"
+    ],
+    "answerIndex": 2,
+    "explanation": "En síntomas moderados sin complicaciones, la GPC de HBP recomienda alfa bloqueadores como primera línea por su efecto rápido al relajar músculo liso prostático. Los inhibidores de 5-alfa reductasa reducen tamaño, pero su efecto es más lento y se indican en próstatas muy grandes. PSA normal y tacto no sospechoso descartan cáncer.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Urología P2 – Hiperplasia prostática benigna",
+    "difficulty": "alta",
+    "case": "Hombre de 68 años con chorro urinario débil, nicturia y sensación de vaciamiento incompleto. Tacto rectal: próstata aumentada de tamaño, lisa y elástica. PSA 2.5 ng/ml. No hematuria.",
+    "question": "Mecanismo de acción principal del tratamiento elegido:",
+    "options": [
+      "Disminuye tamaño prostático directamente",
+      "Relaja músculo liso prostático y vesical",
+      "Inhibe producción de testosterona",
+      "Bloquea receptores muscarínicos",
+      "Disminuye PSA"
+    ],
+    "answerIndex": 1,
+    "explanation": "En síntomas moderados sin complicaciones, la GPC de HBP recomienda alfa bloqueadores como primera línea por su efecto rápido al relajar músculo liso prostático. Los inhibidores de 5-alfa reductasa reducen tamaño, pero su efecto es más lento y se indican en próstatas muy grandes. PSA normal y tacto no sospechoso descartan cáncer.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Neurología – Evento vascular cerebral isquémico",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 70 años con fibrilación auricular sin anticoagulación presenta hemiparesia izquierda súbita y desviación de mirada a la derecha. Inicio hace 2 horas. TA 150/90 mmHg. TAC simple sin hemorragia.",
+    "question": "Conducta inmediata:",
+    "options": [
+      "Aspirina oral",
+      "Trombolisis con alteplasa",
+      "Heparina IV",
+      "Observación 24 h",
+      "Control estricto de TA <120 mmHg"
+    ],
+    "answerIndex": 1,
+    "explanation": "Paciente en ventana terapéutica (<4.5 h) sin hemorragia en TAC es candidata a trombólisis según GPC de EVC isquémico. La fibrilación auricular es causa frecuente de embolia cardiogénica. No se debe bajar la TA agresivamente antes de trombólisis salvo cifras >185/110 mmHg.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Neurología – Evento vascular cerebral isquémico",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 70 años con fibrilación auricular sin anticoagulación presenta hemiparesia izquierda súbita y desviación de mirada a la derecha. Inicio hace 2 horas. TA 150/90 mmHg. TAC simple sin hemorragia.",
+    "question": "Mecanismo fisiopatológico más probable:",
+    "options": [
+      "Trombosis aterosclerótica",
+      "Embolia cardiogénica",
+      "Hemorragia intracerebral",
+      "Vasculitis cerebral",
+      "Migraña complicada"
+    ],
+    "answerIndex": 1,
+    "explanation": "Paciente en ventana terapéutica (<4.5 h) sin hemorragia en TAC es candidata a trombólisis según GPC de EVC isquémico. La fibrilación auricular es causa frecuente de embolia cardiogénica. No se debe bajar la TA agresivamente antes de trombólisis salvo cifras >185/110 mmHg.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Infectología – Tuberculosis pulmonar",
+    "difficulty": "alta",
+    "case": "Hombre de 39 años, pérdida de peso de 6 kg en 2 meses, tos productiva con hemoptisis ocasional y sudoración nocturna. Vive con 3 personas en casa pequeña. Rx de tórax muestra infiltrado apical derecho con cavitación. Baciloscopía seriada positiva.",
+    "question": "¿Cuál es el esquema inicial indicado?",
+    "options": [
+      "Isoniazida y rifampicina por 6 meses",
+      "Isoniazida, rifampicina, pirazinamida y etambutol fase intensiva",
+      "Rifampicina sola",
+      "Levofloxacino",
+      "Observación"
+    ],
+    "answerIndex": 1,
+    "explanation": "La GPC de tuberculosis pulmonar indica esquema acortado estrictamente supervisado con fase intensiva de 2 meses (HRZE) seguida de fase de sostén con HR hasta completar 6 meses en casos sensibles. Monoterapia está contraindicada por riesgo de resistencia.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Infectología – Tuberculosis pulmonar",
+    "difficulty": "alta",
+    "case": "Hombre de 39 años, pérdida de peso de 6 kg en 2 meses, tos productiva con hemoptisis ocasional y sudoración nocturna. Vive con 3 personas en casa pequeña. Rx de tórax muestra infiltrado apical derecho con cavitación. Baciloscopía seriada positiva.",
+    "question": "Duración total estándar del tratamiento en caso sensible:",
+    "options": [
+      "3 meses",
+      "4 meses",
+      "6 meses",
+      "9 meses",
+      "12 meses"
+    ],
+    "answerIndex": 2,
+    "explanation": "La GPC de tuberculosis pulmonar indica esquema acortado estrictamente supervisado con fase intensiva de 2 meses (HRZE) seguida de fase de sostén con HR hasta completar 6 meses en casos sensibles. Monoterapia está contraindicada por riesgo de resistencia.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "VIH/SIDA – Profilaxis en paciente con CD4 bajo",
+    "difficulty": "alta",
+    "case": "Hombre de 32 años recién diagnosticado con VIH. CD4: 120 células/mm³. Carga viral elevada. No síntomas respiratorios. No tratamiento previo.",
+    "question": "Pregunta. ¿Qué profilaxis debe iniciarse además de TAR?",
+    "options": [
+      "Isoniazida",
+      "Trimetoprim-sulfametoxazol",
+      "Azitromicina",
+      "Fluconazol",
+      "Ninguna"
+    ],
+    "answerIndex": 1,
+    "explanation": "Con CD4 <200 células/mm³ debe iniciarse profilaxis para Pneumocystis jirovecii con trimetoprim-sulfametoxazol según GPC de VIH. La profilaxis para Mycobacterium avium se indica cuando CD4 <50. La isoniazida es para infección latente tuberculosa documentada.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Enfermedades transmitidas por vector – Dengue",
+    "difficulty": "alta",
+    "case": "Mujer de 25 años con fiebre de 4 días, mialgias intensas, cefalea retroocular y exantema. Vive en zona endémica. Laboratorio: plaquetas 95,000, hematocrito elevado respecto a basal. Dolor abdominal leve.",
+    "question": "¿Qué dato indica probable progresión a dengue con signos de alarma?",
+    "options": [
+      "Exantema",
+      "Fiebre",
+      "Hemoconcentración",
+      "Cefalea",
+      "Mialgia"
+    ],
+    "answerIndex": 2,
+    "explanation": "La hemoconcentración y trombocitopenia indican extravasación plasmática, signo de alarma según GPC de dengue. Debe vigilarse estrechamente y mantener hidratación adecuada. Los AINE están contraindicados por riesgo hemorrágico.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Enfermedades transmitidas por vector – Dengue",
+    "difficulty": "alta",
+    "case": "Mujer de 25 años con fiebre de 4 días, mialgias intensas, cefalea retroocular y exantema. Vive en zona endémica. Laboratorio: plaquetas 95,000, hematocrito elevado respecto a basal. Dolor abdominal leve.",
+    "question": "Conducta adecuada en este momento:",
+    "options": [
+      "AINE",
+      "Alta con ibuprofeno",
+      "Vigilancia estrecha e hidratación controlada",
+      "Corticoides",
+      "Antibiótico"
+    ],
+    "answerIndex": 2,
+    "explanation": "La hemoconcentración y trombocitopenia indican extravasación plasmática, signo de alarma según GPC de dengue. Debe vigilarse estrechamente y mantener hidratación adecuada. Los AINE están contraindicados por riesgo hemorrágico.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Zoonosis – Tétanos",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 50 años sufre herida punzante con clavo oxidado. No recuerda última vacuna. A los días presenta trismus, rigidez muscular generalizada y espasmos dolorosos.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Botulismo",
+      "Rabia",
+      "Tétanos generalizado",
+      "Meningitis",
+      "Hipocalcemia"
+    ],
+    "answerIndex": 2,
+    "explanation": "Rigidez y trismus tras herida contaminada sugieren tétanos. El manejo incluye inmunoglobulina antitetánica para neutralizar toxina libre, antibiótico (metronidazol) y soporte. La vacuna sola no trata la enfermedad activa.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Zoonosis – Tétanos",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 50 años sufre herida punzante con clavo oxidado. No recuerda última vacuna. A los días presenta trismus, rigidez muscular generalizada y espasmos dolorosos.",
+    "question": "Manejo inicial incluye:",
+    "options": [
+      "Solo antibiótico",
+      "Inmunoglobulina antitetánica + metronidazol",
+      "Penicilina oral",
+      "Observación",
+      "Vacuna únicamente"
+    ],
+    "answerIndex": 1,
+    "explanation": "Rigidez y trismus tras herida contaminada sugieren tétanos. El manejo incluye inmunoglobulina antitetánica para neutralizar toxina libre, antibiótico (metronidazol) y soporte. La vacuna sola no trata la enfermedad activa.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Geriatría – Síndrome confusional agudo (Delirium)",
+    "difficulty": "alta",
+    "case": "Mujer de 82 años hospitalizada por neumonía comienza con desorientación fluctuante, alteración del ciclo sueño-vigilia y pensamiento incoherente. No antecedentes de demencia.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Demencia tipo Alzheimer",
+      "Depresión mayor",
+      "Delirium",
+      "Psicosis primaria",
+      "Trastorno bipolar"
+    ],
+    "answerIndex": 2,
+    "explanation": "Inicio agudo y curso fluctuante en contexto de enfermedad médica sugiere delirium. La GPC de síndromes geriátricos enfatiza identificar y corregir causa desencadenante (infección, fármacos, alteraciones metabólicas). Los antipsicóticos se reservan para agitación severa.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Geriatría – Síndrome confusional agudo (Delirium)",
+    "difficulty": "alta",
+    "case": "Mujer de 82 años hospitalizada por neumonía comienza con desorientación fluctuante, alteración del ciclo sueño-vigilia y pensamiento incoherente. No antecedentes de demencia.",
+    "question": "Medida inicial más importante:",
+    "options": [
+      "Haloperidol como único manejo",
+      "Identificar y tratar causa subyacente",
+      "Sedación profunda",
+      "Antidepresivo",
+      "Alta hospitalaria"
+    ],
+    "answerIndex": 1,
+    "explanation": "Inicio agudo y curso fluctuante en contexto de enfermedad médica sugiere delirium. La GPC de síndromes geriátricos enfatiza identificar y corregir causa desencadenante (infección, fármacos, alteraciones metabólicas). Los antipsicóticos se reservan para agitación severa.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Psiquiatría – Trastorno depresivo mayor",
+    "difficulty": "alta",
+    "case": "Mujer de 29 años acude por 2 meses de ánimo deprimido la mayor parte del día, anhedonia, fatiga, hiporexia, insomnio de conciliación y sentimientos de inutilidad. Refiere dificultad para concentrarse en su trabajo. Niega consumo de sustancias. No antecedentes psiquiátricos. No ideación suicida activa.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Trastorno distímico",
+      "Trastorno depresivo mayor",
+      "Trastorno bipolar II",
+      "Trastorno adaptativo",
+      "Duelo complicado"
+    ],
+    "answerIndex": 1,
+    "explanation": "Cinco o más síntomas por más de 2 semanas con deterioro funcional cumplen criterios de episodio depresivo mayor. Las GPC recomiendan ISRS como tratamiento farmacológico inicial en depresión moderada. Litio y valproato son para trastorno bipolar; benzodiacepinas no deben usarse como monoterapia.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Psiquiatría – Trastorno depresivo mayor",
+    "difficulty": "alta",
+    "case": "Mujer de 29 años acude por 2 meses de ánimo deprimido la mayor parte del día, anhedonia, fatiga, hiporexia, insomnio de conciliación y sentimientos de inutilidad. Refiere dificultad para concentrarse en su trabajo. Niega consumo de sustancias. No antecedentes psiquiátricos. No ideación suicida activa.",
+    "question": "Tratamiento inicial de primera línea:",
+    "options": [
+      "Haloperidol",
+      "Litio",
+      "ISRS",
+      "Benzodiacepina en monoterapia",
+      "Valproato"
+    ],
+    "answerIndex": 2,
+    "explanation": "Cinco o más síntomas por más de 2 semanas con deterioro funcional cumplen criterios de episodio depresivo mayor. Las GPC recomiendan ISRS como tratamiento farmacológico inicial en depresión moderada. Litio y valproato son para trastorno bipolar; benzodiacepinas no deben usarse como monoterapia.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Dermatología – Melanoma cutáneo",
+    "difficulty": "alta",
+    "case": "Hombre de 61 años con lesión pigmentada en espalda que ha cambiado de tamaño y color en los últimos 6 meses. Bordes irregulares, diámetro 8 mm, asimétrica y con variación cromática. No dolor.",
+    "question": "Criterio clínico que aumenta sospecha de malignidad:",
+    "options": [
+      "Simetría",
+      "Diámetro <4 mm",
+      "Evolución reciente",
+      "Color uniforme",
+      "Bordes regulares"
+    ],
+    "answerIndex": 2,
+    "explanation": "Los criterios ABCDE incluyen asimetría, bordes irregulares, color variado, diámetro >6 mm y evolución. La GPC recomienda biopsia excisional completa con márgenes para diagnóstico histopatológico. Procedimientos destructivos impiden evaluación adecuada.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Dermatología – Melanoma cutáneo",
+    "difficulty": "alta",
+    "case": "Hombre de 61 años con lesión pigmentada en espalda que ha cambiado de tamaño y color en los últimos 6 meses. Bordes irregulares, diámetro 8 mm, asimétrica y con variación cromática. No dolor.",
+    "question": "Conducta diagnóstica correcta:",
+    "options": [
+      "Crioterapia",
+      "Biopsia incisional superficial",
+      "Biopsia excisional con márgenes adecuados",
+      "Antibiótico tópico",
+      "Observación 6 meses"
+    ],
+    "answerIndex": 2,
+    "explanation": "Los criterios ABCDE incluyen asimetría, bordes irregulares, color variado, diámetro >6 mm y evolución. La GPC recomienda biopsia excisional completa con márgenes para diagnóstico histopatológico. Procedimientos destructivos impiden evaluación adecuada.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Hematología – Anemia ferropénica",
+    "difficulty": "alta",
+    "case": "Mujer de 34 años con fatiga y palidez. Menstruaciones abundantes. Hb 9 g/dL, VCM 70 fL, ferritina baja, TIBC elevado.",
+    "question": "Tipo de anemia:",
+    "options": [
+      "Normocítica",
+      "Macrocítica",
+      "Microcítica hipocrómica",
+      "Hemolítica",
+      "Aplásica"
+    ],
+    "answerIndex": 2,
+    "explanation": "La anemia ferropénica se caracteriza por microcitosis, hipocromía y ferritina baja, que es el marcador más específico de reservas disminuidas. El tratamiento inicial es hierro oral salvo intolerancia o anemia severa sintomática. Transfusión no es primera línea en paciente estable.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Hematología – Anemia ferropénica",
+    "difficulty": "alta",
+    "case": "Mujer de 34 años con fatiga y palidez. Menstruaciones abundantes. Hb 9 g/dL, VCM 70 fL, ferritina baja, TIBC elevado.",
+    "question": "Tratamiento inicial:",
+    "options": [
+      "Hierro oral",
+      "Transfusión inmediata",
+      "Eritropoyetina",
+      "Ácido fólico",
+      "Vitamina B12"
+    ],
+    "answerIndex": 0,
+    "explanation": "La anemia ferropénica se caracteriza por microcitosis, hipocromía y ferritina baja, que es el marcador más específico de reservas disminuidas. El tratamiento inicial es hierro oral salvo intolerancia o anemia severa sintomática. Transfusión no es primera línea en paciente estable.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Hematología – Anemia ferropénica",
+    "difficulty": "alta",
+    "case": "Mujer de 34 años con fatiga y palidez. Menstruaciones abundantes. Hb 9 g/dL, VCM 70 fL, ferritina baja, TIBC elevado.",
+    "question": "Dato de laboratorio más específico para confirmar deficiencia de hierro:",
+    "options": [
+      "VCM bajo",
+      "Ferritina sérica baja",
+      "RDW elevado",
+      "Hb disminuida",
+      "Reticulocitos bajos"
+    ],
+    "answerIndex": 1,
+    "explanation": "La anemia ferropénica se caracteriza por microcitosis, hipocromía y ferritina baja, que es el marcador más específico de reservas disminuidas. El tratamiento inicial es hierro oral salvo intolerancia o anemia severa sintomática. Transfusión no es primera línea en paciente estable.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "urg",
+    "tema": "Urgencias – Cetoacidosis diabética",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 22 años con DM1 que suspendió insulina. Presenta polidipsia, vómito y respiración profunda. Glucosa 420 mg/dL, pH 7.15, bicarbonato 10 mEq/L, cetonas positivas.",
+    "question": "Diagnóstico:",
+    "options": [
+      "Estado hiperosmolar",
+      "Cetoacidosis diabética",
+      "Hipoglucemia",
+      "Acidosis láctica aislada",
+      "Insuficiencia renal"
+    ],
+    "answerIndex": 1,
+    "explanation": "Hiperglucemia con acidosis metabólica y cetonemia define cetoacidosis diabética. El manejo inicial según GPC es reposición vigorosa de líquidos con solución salina antes de iniciar insulina IV. Bicarbonato solo en acidosis severa (<6.9).",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "urg",
+    "tema": "Urgencias – Cetoacidosis diabética",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 22 años con DM1 que suspendió insulina. Presenta polidipsia, vómito y respiración profunda. Glucosa 420 mg/dL, pH 7.15, bicarbonato 10 mEq/L, cetonas positivas.",
+    "question": "Primera medida terapéutica:",
+    "options": [
+      "Insulina en bolo inmediato",
+      "Bicarbonato IV",
+      "Líquidos IV con solución salina",
+      "Suspender toda insulina",
+      "Glucosa IV"
+    ],
+    "answerIndex": 2,
+    "explanation": "Hiperglucemia con acidosis metabólica y cetonemia define cetoacidosis diabética. El manejo inicial según GPC es reposición vigorosa de líquidos con solución salina antes de iniciar insulina IV. Bicarbonato solo en acidosis severa (<6.9).",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Ginecología – Embarazo ectópico",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 30 años con amenorrea de 7 semanas, dolor pélvico unilateral y manchado transvaginal. β-hCG positiva. USG transvaginal sin saco gestacional intrauterino y masa anexial derecha.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Aborto incompleto",
+      "Embarazo molar",
+      "Embarazo ectópico",
+      "Quiste ovárico",
+      "Amenaza de aborto"
+    ],
+    "answerIndex": 2,
+    "explanation": "Ausencia de saco intrauterino con β-hCG positiva y masa anexial sugiere embarazo ectópico. El manejo médico con metotrexato está indicado en pacientes hemodinámicamente estables, sin ruptura y con criterios específicos de tamaño y niveles hormonales. La inestabilidad requiere manejo quirúrgico.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Ginecología – Embarazo ectópico",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 30 años con amenorrea de 7 semanas, dolor pélvico unilateral y manchado transvaginal. β-hCG positiva. USG transvaginal sin saco gestacional intrauterino y masa anexial derecha.",
+    "question": "Criterio para manejo con metotrexato:",
+    "options": [
+      "Inestabilidad hemodinámica",
+      "Masa >5 cm",
+      "Paciente estable sin ruptura",
+      "Hemoperitoneo",
+      "Hb <8 g/dL"
+    ],
+    "answerIndex": 2,
+    "explanation": "Ausencia de saco intrauterino con β-hCG positiva y masa anexial sugiere embarazo ectópico. El manejo médico con metotrexato está indicado en pacientes hemodinámicamente estables, sin ruptura y con criterios específicos de tamaño y niveles hormonales. La inestabilidad requiere manejo quirúrgico.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía General – Apendicitis aguda complicada",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 27 años con 36 horas de dolor abdominal que inició periumbilical y migró a fosa iliaca derecha. Presenta fiebre de 38.5°C, náusea y vómito. A la exploración: defensa localizada, signo de rebote positivo. Leucocitos 18,000 con neutrofilia. TAC muestra apéndice dilatado con colección periapendicular de 4 cm.",
+    "question": "Diagnóstico:",
+    "options": [
+      "Apendicitis simple",
+      "Apendicitis complicada con absceso",
+      "Diverticulitis",
+      "Adenitis mesentérica",
+      "Íleo paralítico"
+    ],
+    "answerIndex": 1,
+    "explanation": "En apendicitis complicada con absceso bien delimitado, las guías recomiendan manejo inicial conservador con antibióticos y drenaje percutáneo si es accesible. La cirugía inmediata aumenta riesgo de complicaciones. La apendicectomía diferida puede considerarse posteriormente.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía General – Apendicitis aguda complicada",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 27 años con 36 horas de dolor abdominal que inició periumbilical y migró a fosa iliaca derecha. Presenta fiebre de 38.5°C, náusea y vómito. A la exploración: defensa localizada, signo de rebote positivo. Leucocitos 18,000 con neutrofilia. TAC muestra apéndice dilatado con colección periapendicular de 4 cm.",
+    "question": "Conducta más adecuada inicialmente:",
+    "options": [
+      "Apendicectomía inmediata abierta",
+      "Antibióticos IV y drenaje percutáneo",
+      "Alta con antibiótico oral",
+      "Observación 24 h",
+      "Colonoscopia"
+    ],
+    "answerIndex": 1,
+    "explanation": "En apendicitis complicada con absceso bien delimitado, las guías recomiendan manejo inicial conservador con antibióticos y drenaje percutáneo si es accesible. La cirugía inmediata aumenta riesgo de complicaciones. La apendicectomía diferida puede considerarse posteriormente.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "ped",
+    "tema": "Pediatría – Crisis asmática moderada",
+    "difficulty": "alta",
+    "case": "Niño de 8 años con antecedente de asma intermitente presenta disnea progresiva, sibilancias audibles, uso de músculos accesorios y saturación 91%. No cianosis. Puede hablar en frases cortas.",
+    "question": "Clasificación de la crisis:",
+    "options": [
+      "Leve",
+      "Moderada",
+      "Grave",
+      "Paro respiratorio",
+      "Asma intermitente"
+    ],
+    "answerIndex": 1,
+    "explanation": "SatO2 90-94%, uso de músculos accesorios y habla en frases cortas corresponde a crisis moderada. El manejo según GPC incluye beta2 agonista inhalado de acción corta y corticoide sistémico temprano. La aminofilina no es de primera línea.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "ped",
+    "tema": "Pediatría – Crisis asmática moderada",
+    "difficulty": "alta",
+    "case": "Niño de 8 años con antecedente de asma intermitente presenta disnea progresiva, sibilancias audibles, uso de músculos accesorios y saturación 91%. No cianosis. Puede hablar en frases cortas.",
+    "question": "Manejo inicial:",
+    "options": [
+      "Antibiótico",
+      "Salbutamol inhalado + corticoide sistémico",
+      "Solo oxígeno",
+      "Aminofilina",
+      "Intubación inmediata"
+    ],
+    "answerIndex": 1,
+    "explanation": "SatO2 90-94%, uso de músculos accesorios y habla en frases cortas corresponde a crisis moderada. El manejo según GPC incluye beta2 agonista inhalado de acción corta y corticoide sistémico temprano. La aminofilina no es de primera línea.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Síndrome nefrótico",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 45 años con edema en miembros inferiores y párpados. Proteinuria 4.5 g/24h, albúmina 2.3 g/dL, colesterol elevado. Creatinina normal.",
+    "question": "Diagnóstico sindromático:",
+    "options": [
+      "Síndrome nefrítico",
+      "Síndrome nefrótico",
+      "Insuficiencia renal aguda",
+      "Glomerulonefritis rápidamente progresiva",
+      "Pielonefritis"
+    ],
+    "answerIndex": 1,
+    "explanation": "Proteinuria >3.5 g/día, hipoalbuminemia e hiperlipidemia definen síndrome nefrótico. Existe estado de hipercoagulabilidad con riesgo de trombosis venosa profunda. IECA/ARA II reducen proteinuria y protegen función renal. No se indica restricción proteica extrema.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Síndrome nefrótico",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 45 años con edema en miembros inferiores y párpados. Proteinuria 4.5 g/24h, albúmina 2.3 g/dL, colesterol elevado. Creatinina normal.",
+    "question": "Complicación trombótica más frecuente:",
+    "options": [
+      "TVP",
+      "IAM",
+      "TEP séptico",
+      "Hemorragia cerebral",
+      "Endocarditis"
+    ],
+    "answerIndex": 0,
+    "explanation": "Proteinuria >3.5 g/día, hipoalbuminemia e hiperlipidemia definen síndrome nefrótico. Existe estado de hipercoagulabilidad con riesgo de trombosis venosa profunda. IECA/ARA II reducen proteinuria y protegen función renal. No se indica restricción proteica extrema.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Síndrome nefrótico",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 45 años con edema en miembros inferiores y párpados. Proteinuria 4.5 g/24h, albúmina 2.3 g/dL, colesterol elevado. Creatinina normal.",
+    "question": "Medida terapéutica general indicada:",
+    "options": [
+      "Restricción proteica severa",
+      "IECA o ARA II",
+      "Suspender lípidos",
+      "Antibiótico profiláctico",
+      "Hemodiálisis inmediata"
+    ],
+    "answerIndex": 1,
+    "explanation": "Proteinuria >3.5 g/día, hipoalbuminemia e hiperlipidemia definen síndrome nefrótico. Existe estado de hipercoagulabilidad con riesgo de trombosis venosa profunda. IECA/ARA II reducen proteinuria y protegen función renal. No se indica restricción proteica extrema.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Cardiología – Síndrome coronario agudo con elevación del ST",
+    "difficulty": "alta",
+    "case": "Hombre de 58 años con dolor opresivo retroesternal de 1 hora de evolución irradiado a brazo izquierdo. ECG: elevación del ST en DII, DIII y aVF. TA 100/70 mmHg.",
+    "question": "Diagnóstico:",
+    "options": [
+      "Angina inestable",
+      "IAM sin elevación ST",
+      "IAM con elevación ST inferior",
+      "Pericarditis",
+      "Disección aórtica"
+    ],
+    "answerIndex": 2,
+    "explanation": "Elevación del ST en derivaciones inferiores indica IAMCEST inferior. Si existe disponibilidad, la angioplastia primaria es tratamiento de elección según GPC, idealmente dentro de los primeros 90 minutos. La fibrinólisis se reserva cuando no hay acceso oportuno a hemodinamia.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Cardiología – Síndrome coronario agudo con elevación del ST",
+    "difficulty": "alta",
+    "case": "Hombre de 58 años con dolor opresivo retroesternal de 1 hora de evolución irradiado a brazo izquierdo. ECG: elevación del ST en DII, DIII y aVF. TA 100/70 mmHg.",
+    "question": "Conducta prioritaria si hay sala de hemodinamia disponible:",
+    "options": [
+      "Fibrinólisis",
+      "Angioplastia primaria",
+      "Aspirina únicamente",
+      "Observación",
+      "Betabloqueador aislado"
+    ],
+    "answerIndex": 1,
+    "explanation": "Elevación del ST en derivaciones inferiores indica IAMCEST inferior. Si existe disponibilidad, la angioplastia primaria es tratamiento de elección según GPC, idealmente dentro de los primeros 90 minutos. La fibrinólisis se reserva cuando no hay acceso oportuno a hemodinamia.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Preeclampsia con criterios de severidad",
+    "difficulty": "muy-alta",
+    "case": "Primigesta de 34 semanas con cefalea intensa, fosfenos y edema. TA 170/110 mmHg en dos mediciones. Proteinuria 3+. Plaquetas 95,000.",
+    "question": "Diagnóstico:",
+    "options": [
+      "Hipertensión gestacional",
+      "Preeclampsia leve",
+      "Preeclampsia con criterios de severidad",
+      "Eclampsia",
+      "HELLP aislado"
+    ],
+    "answerIndex": 2,
+    "explanation": "TA ≥160/110, trombocitopenia y síntomas neurológicos son criterios de severidad. El manejo incluye sulfato de magnesio para prevención de convulsiones y control de TA, seguido de interrupción del embarazo tras estabilización materna, independientemente de edad gestacional ≥34 semanas.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Preeclampsia con criterios de severidad",
+    "difficulty": "muy-alta",
+    "case": "Primigesta de 34 semanas con cefalea intensa, fosfenos y edema. TA 170/110 mmHg en dos mediciones. Proteinuria 3+. Plaquetas 95,000.",
+    "question": "Manejo inicial prioritario:",
+    "options": [
+      "Observación ambulatoria",
+      "Sulfato de magnesio",
+      "Diurético",
+      "IECA",
+      "Alta"
+    ],
+    "answerIndex": 1,
+    "explanation": "TA ≥160/110, trombocitopenia y síntomas neurológicos son criterios de severidad. El manejo incluye sulfato de magnesio para prevención de convulsiones y control de TA, seguido de interrupción del embarazo tras estabilización materna, independientemente de edad gestacional ≥34 semanas.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Preeclampsia con criterios de severidad",
+    "difficulty": "muy-alta",
+    "case": "Primigesta de 34 semanas con cefalea intensa, fosfenos y edema. TA 170/110 mmHg en dos mediciones. Proteinuria 3+. Plaquetas 95,000.",
+    "question": "Conducta obstétrica definitiva:",
+    "options": [
+      "Prolongar embarazo hasta 40 semanas",
+      "Interrupción del embarazo tras estabilización",
+      "Reposo domiciliario",
+      "Tocolisis",
+      "Indometacina"
+    ],
+    "answerIndex": 1,
+    "explanation": "TA ≥160/110, trombocitopenia y síntomas neurológicos son criterios de severidad. El manejo incluye sulfato de magnesio para prevención de convulsiones y control de TA, seguido de interrupción del embarazo tras estabilización materna, independientemente de edad gestacional ≥34 semanas.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Crítica – Choque séptico",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 66 años con DM2 e hipertensión acude por fiebre, disuria y deterioro del estado de alerta. TA 82/50 mmHg, FC 120 lpm, FR 28 rpm, Temp 39°C. Lactato 4.8 mmol/L. Leucocitosis con neutrofilia. EGO con piuria abundante.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Sepsis",
+      "Choque hipovolémico",
+      "Choque séptico",
+      "Choque cardiogénico",
+      "SIRS sin infección"
+    ],
+    "answerIndex": 2,
+    "explanation": "Hipotensión persistente con lactato elevado en contexto infeccioso define choque séptico. El manejo inicial según guías incluye reposición con cristaloides 30 ml/kg en la primera hora. Si persiste hipotensión, el vasopresor de elección es noradrenalina. Los vasopresores nunca sustituyen la reanimación con líquidos.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Crítica – Choque séptico",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 66 años con DM2 e hipertensión acude por fiebre, disuria y deterioro del estado de alerta. TA 82/50 mmHg, FC 120 lpm, FR 28 rpm, Temp 39°C. Lactato 4.8 mmol/L. Leucocitosis con neutrofilia. EGO con piuria abundante.",
+    "question": "Primera intervención terapéutica:",
+    "options": [
+      "Vasopresor inmediato sin líquidos",
+      "Cristaloides IV 30 ml/kg",
+      "Corticoide en bolo",
+      "Diurético IV",
+      "Transfusión"
+    ],
+    "answerIndex": 1,
+    "explanation": "Hipotensión persistente con lactato elevado en contexto infeccioso define choque séptico. El manejo inicial según guías incluye reposición con cristaloides 30 ml/kg en la primera hora. Si persiste hipotensión, el vasopresor de elección es noradrenalina. Los vasopresores nunca sustituyen la reanimación con líquidos.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Crítica – Choque séptico",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 66 años con DM2 e hipertensión acude por fiebre, disuria y deterioro del estado de alerta. TA 82/50 mmHg, FC 120 lpm, FR 28 rpm, Temp 39°C. Lactato 4.8 mmol/L. Leucocitosis con neutrofilia. EGO con piuria abundante.",
+    "question": "Vasopresor de primera línea si persiste hipotensión:",
+    "options": [
+      "Dopamina",
+      "Adrenalina",
+      "Noradrenalina",
+      "Fenilefrina",
+      "Vasopresina como único fármaco"
+    ],
+    "answerIndex": 2,
+    "explanation": "Hipotensión persistente con lactato elevado en contexto infeccioso define choque séptico. El manejo inicial según guías incluye reposición con cristaloides 30 ml/kg en la primera hora. Si persiste hipotensión, el vasopresor de elección es noradrenalina. Los vasopresores nunca sustituyen la reanimación con líquidos.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Gastroenterología – Pancreatitis aguda grave",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 48 años con dolor epigástrico intenso irradiado a espalda posterior a ingesta alcohólica. Lipasa 5 veces el límite superior. A las 48 horas presenta hipotensión, creatinina elevada y PaO2 55 mmHg.",
+    "question": "Criterio que define gravedad:",
+    "options": [
+      "Dolor intenso",
+      "Lipasa elevada",
+      "Falla orgánica persistente",
+      "Náusea",
+      "Leucocitosis"
+    ],
+    "answerIndex": 2,
+    "explanation": "La pancreatitis grave se define por falla orgánica persistente (>48 h). La TAC contrastada se recomienda tras 72 horas para evaluar necrosis o complicaciones locales. La elevación de lipasa no determina gravedad.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Gastroenterología – Pancreatitis aguda grave",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 48 años con dolor epigástrico intenso irradiado a espalda posterior a ingesta alcohólica. Lipasa 5 veces el límite superior. A las 48 horas presenta hipotensión, creatinina elevada y PaO2 55 mmHg.",
+    "question": "Estudio indicado para valorar complicaciones locales después de 72 h:",
+    "options": [
+      "USG simple",
+      "TAC contrastada",
+      "CPRE inmediata",
+      "Endoscopia",
+      "Colonoscopia"
+    ],
+    "answerIndex": 1,
+    "explanation": "La pancreatitis grave se define por falla orgánica persistente (>48 h). La TAC contrastada se recomienda tras 72 horas para evaluar necrosis o complicaciones locales. La elevación de lipasa no determina gravedad.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Neurología – Meningitis bacteriana aguda",
+    "difficulty": "alta",
+    "case": "Mujer de 19 años con fiebre, cefalea intensa y rigidez de nuca. Presenta fotofobia y vómito. TA estable. No focalización neurológica.",
+    "question": "Conducta inmediata:",
+    "options": [
+      "Esperar TAC",
+      "Punción lumbar inmediata",
+      "Solo antibiótico oral",
+      "Observación",
+      "EEG"
+    ],
+    "answerIndex": 1,
+    "explanation": "En ausencia de datos de hipertensión intracraneal o focalización, se realiza punción lumbar inmediata. El tratamiento empírico en adultos jóvenes incluye ceftriaxona más vancomicina para cubrir neumococo resistente y meningococo, según guías nacionales.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Neurología – Meningitis bacteriana aguda",
+    "difficulty": "alta",
+    "case": "Mujer de 19 años con fiebre, cefalea intensa y rigidez de nuca. Presenta fotofobia y vómito. TA estable. No focalización neurológica.",
+    "question": "Tratamiento empírico inicial en adulto joven:",
+    "options": [
+      "Ceftriaxona + vancomicina",
+      "Amoxicilina",
+      "Ciprofloxacino",
+      "Metronidazol",
+      "Aciclovir únicamente"
+    ],
+    "answerIndex": 0,
+    "explanation": "En ausencia de datos de hipertensión intracraneal o focalización, se realiza punción lumbar inmediata. El tratamiento empírico en adultos jóvenes incluye ceftriaxona más vancomicina para cubrir neumococo resistente y meningococo, según guías nacionales.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Trastornos ácido-base – Acidosis metabólica con anión gap elevado",
+    "difficulty": "muy-alta",
+    "case": "Paciente masculino con antecedente de alcoholismo crónico acude con vómito y confusión. Gasometría: pH 7.25, HCO₃ 12 mEq/L, PaCO₂ 25 mmHg. Na 140, Cl 100.",
+    "question": "Trastorno principal:",
+    "options": [
+      "Alcalosis metabólica",
+      "Acidosis metabólica con anión gap elevado",
+      "Acidosis respiratoria",
+      "Alcalosis respiratoria",
+      "Mixto metabólico-respiratorio alcalino"
+    ],
+    "answerIndex": 1,
+    "explanation": "Anión gap = 140 – (100 + 12) = 28, elevado. Con antecedente de alcoholismo y vómito, la causa probable es cetoacidosis alcohólica. La compensación respiratoria es adecuada según fórmula de Winter. La diarrea produce acidosis hiperclorémica con gap normal.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Trastornos ácido-base – Acidosis metabólica con anión gap elevado",
+    "difficulty": "muy-alta",
+    "case": "Paciente masculino con antecedente de alcoholismo crónico acude con vómito y confusión. Gasometría: pH 7.25, HCO₃ 12 mEq/L, PaCO₂ 25 mmHg. Na 140, Cl 100.",
+    "question": "Causa más probable en este contexto:",
+    "options": [
+      "Diarrea",
+      "Cetoacidosis alcohólica",
+      "Insuficiencia renal crónica",
+      "Hiperaldosteronismo",
+      "Vómito aislado"
+    ],
+    "answerIndex": 1,
+    "explanation": "Anión gap = 140 – (100 + 12) = 28, elevado. Con antecedente de alcoholismo y vómito, la causa probable es cetoacidosis alcohólica. La compensación respiratoria es adecuada según fórmula de Winter. La diarrea produce acidosis hiperclorémica con gap normal.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Endocrinología – Tormenta tiroidea",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 35 años con antecedente de hipertiroidismo mal controlado presenta fiebre 40°C, taquicardia 150 lpm, agitación y vómito posterior a infección respiratoria.",
+    "question": "Diagnóstico:",
+    "options": [
+      "Crisis de ansiedad",
+      "Tormenta tiroidea",
+      "Feocromocitoma",
+      "Sepsis aislada",
+      "Meningitis"
+    ],
+    "answerIndex": 1,
+    "explanation": "Fiebre alta, taquicardia extrema y alteración neurológica en paciente hipertiroidea sugieren tormenta tiroidea. El manejo incluye betabloqueador, antitiroideo (metimazol o PTU), esteroide y posteriormente yodo. El yodo nunca se administra antes del antitiroideo.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Endocrinología – Tormenta tiroidea",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 35 años con antecedente de hipertiroidismo mal controlado presenta fiebre 40°C, taquicardia 150 lpm, agitación y vómito posterior a infección respiratoria.",
+    "question": "Manejo inicial correcto:",
+    "options": [
+      "Levotiroxina",
+      "Metimazol + propranolol + esteroide",
+      "Solo antibiótico",
+      "Yodo radiactivo inmediato",
+      "Observación"
+    ],
+    "answerIndex": 1,
+    "explanation": "Fiebre alta, taquicardia extrema y alteración neurológica en paciente hipertiroidea sugieren tormenta tiroidea. El manejo incluye betabloqueador, antitiroideo (metimazol o PTU), esteroide y posteriormente yodo. El yodo nunca se administra antes del antitiroideo.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía General – Obstrucción intestinal mecánica",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 72 años con antecedente de laparotomía por úlcera perforada hace 10 años. Acude por dolor abdominal tipo cólico, distensión progresiva, vómito fecaloide y ausencia de evacuaciones y gases desde hace 24 horas. TA 110/70 mmHg, FC 105 lpm. Abdomen distendido, timpanismo generalizado, ruidos aumentados en tono metálico. Rx muestra niveles hidroaéreos múltiples y dilatación de asas de intestino delgado.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Íleo paralítico",
+      "Obstrucción intestinal por adherencias",
+      "Vólvulo sigmoideo",
+      "Colitis isquémica",
+      "Pancreatitis aguda"
+    ],
+    "answerIndex": 1,
+    "explanation": "Antecedente quirúrgico sugiere adherencias como causa más frecuente. En ausencia de datos de estrangulación, el manejo inicial es conservador con descompresión y reposición hídrica. Dolor continuo, fiebre o leucocitosis progresiva sugieren isquemia y requieren cirugía urgente.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía General – Obstrucción intestinal mecánica",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 72 años con antecedente de laparotomía por úlcera perforada hace 10 años. Acude por dolor abdominal tipo cólico, distensión progresiva, vómito fecaloide y ausencia de evacuaciones y gases desde hace 24 horas. TA 110/70 mmHg, FC 105 lpm. Abdomen distendido, timpanismo generalizado, ruidos aumentados en tono metálico. Rx muestra niveles hidroaéreos múltiples y dilatación de asas de intestino delgado.",
+    "question": "Dato que sugiere complicación isquémica:",
+    "options": [
+      "Dolor tipo cólico",
+      "Vómito",
+      "Leucocitosis y dolor continuo intenso",
+      "Distensión",
+      "Antecedente quirúrgico"
+    ],
+    "answerIndex": 2,
+    "explanation": "Antecedente quirúrgico sugiere adherencias como causa más frecuente. En ausencia de datos de estrangulación, el manejo inicial es conservador con descompresión y reposición hídrica. Dolor continuo, fiebre o leucocitosis progresiva sugieren isquemia y requieren cirugía urgente.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía General – Obstrucción intestinal mecánica",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 72 años con antecedente de laparotomía por úlcera perforada hace 10 años. Acude por dolor abdominal tipo cólico, distensión progresiva, vómito fecaloide y ausencia de evacuaciones y gases desde hace 24 horas. TA 110/70 mmHg, FC 105 lpm. Abdomen distendido, timpanismo generalizado, ruidos aumentados en tono metálico. Rx muestra niveles hidroaéreos múltiples y dilatación de asas de intestino delgado.",
+    "question": "Conducta inicial en paciente estable sin datos de isquemia:",
+    "options": [
+      "Laparotomía inmediata",
+      "Sonda nasogástrica + líquidos IV",
+      "Colonoscopia",
+      "Antibiótico oral y alta",
+      "Enema evacuante"
+    ],
+    "answerIndex": 1,
+    "explanation": "Antecedente quirúrgico sugiere adherencias como causa más frecuente. En ausencia de datos de estrangulación, el manejo inicial es conservador con descompresión y reposición hídrica. Dolor continuo, fiebre o leucocitosis progresiva sugieren isquemia y requieren cirugía urgente.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Ginecología – Hemorragia uterina anormal en perimenopausia",
+    "difficulty": "alta",
+    "case": "Mujer de 48 años con sangrado uterino abundante e irregular desde hace 6 meses. IMC 33 kg/m², nuligesta. USG transvaginal: endometrio de 16 mm. Hb 10 g/dL.",
+    "question": "Factor de riesgo principal para patología endometrial maligna:",
+    "options": [
+      "Edad <40",
+      "Obesidad",
+      "Multiparidad",
+      "Uso de AINE",
+      "Ejercicio"
+    ],
+    "answerIndex": 1,
+    "explanation": "Obesidad genera hiperestrogenismo por aromatización periférica, aumentando riesgo de hiperplasia y cáncer endometrial. En mujeres >45 años con sangrado anormal está indicada biopsia endometrial para descartar malignidad según guías.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Ginecología – Hemorragia uterina anormal en perimenopausia",
+    "difficulty": "alta",
+    "case": "Mujer de 48 años con sangrado uterino abundante e irregular desde hace 6 meses. IMC 33 kg/m², nuligesta. USG transvaginal: endometrio de 16 mm. Hb 10 g/dL.",
+    "question": "Estudio diagnóstico indicado:",
+    "options": [
+      "CA-125",
+      "Biopsia endometrial",
+      "Histerectomía inmediata",
+      "TAC abdominal",
+      "Solo control en 6 meses"
+    ],
+    "answerIndex": 1,
+    "explanation": "Obesidad genera hiperestrogenismo por aromatización periférica, aumentando riesgo de hiperplasia y cáncer endometrial. En mujeres >45 años con sangrado anormal está indicada biopsia endometrial para descartar malignidad según guías.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Cardiología – Insuficiencia cardiaca con fracción de eyección reducida",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 64 años con antecedente de IAM previo, disnea de pequeños esfuerzos y ortopnea. Ecocardiograma con FEVI 30%. TA 130/80 mmHg, creatinina normal.",
+    "question": "Grupo farmacológico que reduce mortalidad:",
+    "options": [
+      "Diuréticos aislados",
+      "IECA o ARA II",
+      "Digoxina sola",
+      "Nitratos",
+      "Calcioantagonistas no dihidropiridínicos"
+    ],
+    "answerIndex": 1,
+    "explanation": "En IC con FE reducida, IECA/ARA II, betabloqueadores y antagonistas de aldosterona reducen mortalidad. Los calcioantagonistas no dihidropiridínicos como verapamilo pueden deprimir la contractilidad y no están indicados en FE reducida.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Cardiología – Insuficiencia cardiaca con fracción de eyección reducida",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 64 años con antecedente de IAM previo, disnea de pequeños esfuerzos y ortopnea. Ecocardiograma con FEVI 30%. TA 130/80 mmHg, creatinina normal.",
+    "question": "Fármaco que debe evitarse por empeorar función sistólica:",
+    "options": [
+      "Metoprolol",
+      "Espironolactona",
+      "Verapamilo",
+      "Sacubitril/valsartán",
+      "Enalapril"
+    ],
+    "answerIndex": 2,
+    "explanation": "En IC con FE reducida, IECA/ARA II, betabloqueadores y antagonistas de aldosterona reducen mortalidad. Los calcioantagonistas no dihidropiridínicos como verapamilo pueden deprimir la contractilidad y no están indicados en FE reducida.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "ped",
+    "tema": "Pediatría – Sepsis neonatal temprana",
+    "difficulty": "alta",
+    "case": "Recién nacido de 38 semanas, madre con ruptura prolongada de membranas 22 horas y fiebre intraparto. A las 12 horas de vida presenta dificultad respiratoria, letargia y mala perfusión.",
+    "question": "Factor de riesgo más importante en este caso:",
+    "options": [
+      "Cesárea",
+      "Ruptura prolongada de membranas",
+      "Edad materna",
+      "Sexo masculino",
+      "Peso adecuado"
+    ],
+    "answerIndex": 1,
+    "explanation": "Ruptura prolongada de membranas y fiebre materna son factores clave para sepsis neonatal temprana. El esquema empírico recomendado es ampicilina más aminoglucósido para cubrir estreptococo del grupo B y gramnegativos.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "ped",
+    "tema": "Pediatría – Sepsis neonatal temprana",
+    "difficulty": "alta",
+    "case": "Recién nacido de 38 semanas, madre con ruptura prolongada de membranas 22 horas y fiebre intraparto. A las 12 horas de vida presenta dificultad respiratoria, letargia y mala perfusión.",
+    "question": "Manejo empírico inicial:",
+    "options": [
+      "Ceftriaxona sola",
+      "Ampicilina + aminoglucósido",
+      "Observación",
+      "Macrólido",
+      "Antiviral"
+    ],
+    "answerIndex": 1,
+    "explanation": "Ruptura prolongada de membranas y fiebre materna son factores clave para sepsis neonatal temprana. El esquema empírico recomendado es ampicilina más aminoglucósido para cubrir estreptococo del grupo B y gramnegativos.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Nefrología – Hiponatremia sintomática",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 70 años con antecedente de uso reciente de diurético tiazídico presenta somnolencia y náusea. Na sérico 118 mEq/L. Osmolaridad plasmática baja.",
+    "question": "Tipo de hiponatremia:",
+    "options": [
+      "Hipertónica",
+      "Isotónica",
+      "Hipotónica",
+      "Pseudohiponatremia",
+      "Secundaria a hiperglucemia"
+    ],
+    "answerIndex": 2,
+    "explanation": "Sodio <120 con síntomas neurológicos requiere corrección cuidadosa con solución hipertónica al 3% para evitar edema cerebral. La corrección no debe exceder límites seguros para prevenir mielinolisis pontina. Las tiazidas son causa frecuente de hiponatremia en adultos mayores.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Nefrología – Hiponatremia sintomática",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 70 años con antecedente de uso reciente de diurético tiazídico presenta somnolencia y náusea. Na sérico 118 mEq/L. Osmolaridad plasmática baja.",
+    "question": "Manejo en presencia de síntomas neurológicos:",
+    "options": [
+      "Restricción hídrica exclusiva",
+      "Solución salina hipertónica 3% en bolo controlado",
+      "Solución glucosada",
+      "Diurético de asa",
+      "Observación"
+    ],
+    "answerIndex": 1,
+    "explanation": "Sodio <120 con síntomas neurológicos requiere corrección cuidadosa con solución hipertónica al 3% para evitar edema cerebral. La corrección no debe exceder límites seguros para prevenir mielinolisis pontina. Las tiazidas son causa frecuente de hiponatremia en adultos mayores.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Tromboembolia pulmonar",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 42 años, usuaria de anticonceptivos orales, consulta por disnea súbita y dolor torácico pleurítico. FC 118 lpm, TA 110/70 mmHg, SatO₂ 89%. Dímero D elevado. Angiotomografía muestra defecto de llenado en arteria pulmonar segmentaria derecha.",
+    "question": "Diagnóstico:",
+    "options": [
+      "Neumonía",
+      "Infarto agudo de miocardio",
+      "Tromboembolia pulmonar",
+      "Derrame pleural",
+      "Pericarditis"
+    ],
+    "answerIndex": 2,
+    "explanation": "En TEP estable el manejo inicial es anticoagulación. La trombólisis se reserva para TEP de alto riesgo con inestabilidad hemodinámica (hipotensión sostenida o choque). El dímero D no define gravedad.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Tromboembolia pulmonar",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 42 años, usuaria de anticonceptivos orales, consulta por disnea súbita y dolor torácico pleurítico. FC 118 lpm, TA 110/70 mmHg, SatO₂ 89%. Dímero D elevado. Angiotomografía muestra defecto de llenado en arteria pulmonar segmentaria derecha.",
+    "question": "Manejo inicial en paciente hemodinámicamente estable:",
+    "options": [
+      "Trombólisis inmediata",
+      "Anticoagulación con heparina de bajo peso molecular",
+      "Filtro de vena cava",
+      "Aspirina",
+      "Alta con AINE"
+    ],
+    "answerIndex": 1,
+    "explanation": "En TEP estable el manejo inicial es anticoagulación. La trombólisis se reserva para TEP de alto riesgo con inestabilidad hemodinámica (hipotensión sostenida o choque). El dímero D no define gravedad.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Tromboembolia pulmonar",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 42 años, usuaria de anticonceptivos orales, consulta por disnea súbita y dolor torácico pleurítico. FC 118 lpm, TA 110/70 mmHg, SatO₂ 89%. Dímero D elevado. Angiotomografía muestra defecto de llenado en arteria pulmonar segmentaria derecha.",
+    "question": "Indicador de trombólisis sistémica:",
+    "options": [
+      "SatO₂ <90%",
+      "Dolor torácico",
+      "Hipotensión sostenida",
+      "Uso de anticonceptivos",
+      "Dímero D elevado"
+    ],
+    "answerIndex": 2,
+    "explanation": "En TEP estable el manejo inicial es anticoagulación. La trombólisis se reserva para TEP de alto riesgo con inestabilidad hemodinámica (hipotensión sostenida o choque). El dímero D no define gravedad.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Gastroenterología – Hemorragia digestiva alta",
+    "difficulty": "alta",
+    "case": "Hombre de 55 años con antecedente de cirrosis alcohólica presenta hematemesis abundante y melena. TA 90/60 mmHg, FC 120 lpm.",
+    "question": "Causa más probable:",
+    "options": [
+      "Úlcera gástrica",
+      "Varices esofágicas",
+      "Mallory-Weiss",
+      "Gastritis erosiva",
+      "Cáncer gástrico"
+    ],
+    "answerIndex": 1,
+    "explanation": "En paciente cirrótico con hematemesis masiva se debe sospechar sangrado variceal. El manejo incluye reanimación, octreótido IV y antibiótico profiláctico, seguido de endoscopia urgente. Los IBP solos no son suficientes en sospecha variceal.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Gastroenterología – Hemorragia digestiva alta",
+    "difficulty": "alta",
+    "case": "Hombre de 55 años con antecedente de cirrosis alcohólica presenta hematemesis abundante y melena. TA 90/60 mmHg, FC 120 lpm.",
+    "question": "Manejo farmacológico inicial además de reanimación:",
+    "options": [
+      "Omeprazol únicamente",
+      "Octreótido IV",
+      "AINE",
+      "Antiácido oral",
+      "Metoclopramida"
+    ],
+    "answerIndex": 1,
+    "explanation": "En paciente cirrótico con hematemesis masiva se debe sospechar sangrado variceal. El manejo incluye reanimación, octreótido IV y antibiótico profiláctico, seguido de endoscopia urgente. Los IBP solos no son suficientes en sospecha variceal.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Endocrinología – Síndrome de Cushing",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 38 años con obesidad central, cara redondeada, equimosis fácil y debilidad proximal. TA 150/95 mmHg. Cortisol libre urinario elevado.",
+    "question": "Estudio inicial para confirmar hipercortisolismo:",
+    "options": [
+      "Cortisol sérico matutino",
+      "Cortisol libre urinario 24 h",
+      "ACTH basal",
+      "TSH",
+      "TAC abdominal"
+    ],
+    "answerIndex": 1,
+    "explanation": "El diagnóstico inicial de hipercortisolismo se realiza con cortisol libre urinario de 24 horas o prueba de supresión con dexametasona. ACTH baja orienta a origen suprarrenal autónomo; ACTH elevada sugiere causa hipofisaria o ectópica.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Endocrinología – Síndrome de Cushing",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 38 años con obesidad central, cara redondeada, equimosis fácil y debilidad proximal. TA 150/95 mmHg. Cortisol libre urinario elevado.",
+    "question": "Si ACTH está suprimida, la causa más probable es:",
+    "options": [
+      "Adenoma hipofisario",
+      "Tumor suprarrenal",
+      "Producción ectópica de ACTH",
+      "Estrés",
+      "Depresión"
+    ],
+    "answerIndex": 1,
+    "explanation": "El diagnóstico inicial de hipercortisolismo se realiza con cortisol libre urinario de 24 horas o prueba de supresión con dexametasona. ACTH baja orienta a origen suprarrenal autónomo; ACTH elevada sugiere causa hipofisaria o ectópica.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Trabajo de parto pretérmino",
+    "difficulty": "alta",
+    "case": "Gestante de 32 semanas con contracciones regulares cada 5 minutos y dilatación cervical de 3 cm. Membranas íntegras. Sin datos de infección.",
+    "question": "Diagnóstico:",
+    "options": [
+      "Amenaza de aborto",
+      "Trabajo de parto pretérmino",
+      "Ruptura prematura de membranas",
+      "Falso trabajo de parto",
+      "Placenta previa"
+    ],
+    "answerIndex": 1,
+    "explanation": "Contracciones regulares con cambios cervicales antes de 37 semanas definen trabajo de parto pretérmino. El manejo incluye tocolíticos para retrasar parto y permitir administración de corticoides antenatales para maduración pulmonar fetal.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Trabajo de parto pretérmino",
+    "difficulty": "alta",
+    "case": "Gestante de 32 semanas con contracciones regulares cada 5 minutos y dilatación cervical de 3 cm. Membranas íntegras. Sin datos de infección.",
+    "question": "Manejo indicado:",
+    "options": [
+      "Inducir parto inmediato",
+      "Tocolítico + corticoide antenatal",
+      "IECA",
+      "Antibiótico rutinario",
+      "Alta sin manejo"
+    ],
+    "answerIndex": 1,
+    "explanation": "Contracciones regulares con cambios cervicales antes de 37 semanas definen trabajo de parto pretérmino. El manejo incluye tocolíticos para retrasar parto y permitir administración de corticoides antenatales para maduración pulmonar fetal.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Neurología – Hemorragia subaracnoidea",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 50 años con cefalea súbita “en trueno”, la peor de su vida, acompañada de vómito y rigidez de nuca. TAC muestra sangre en espacio subaracnoideo.",
+    "question": "Causa más frecuente:",
+    "options": [
+      "Trauma",
+      "Aneurisma sacular roto",
+      "MAV",
+      "Trombosis venosa",
+      "Tumor cerebral"
+    ],
+    "answerIndex": 1,
+    "explanation": "La causa más frecuente de hemorragia subaracnoidea no traumática es ruptura de aneurisma sacular. El nimodipino reduce riesgo de vasoespasmo cerebral y mejora pronóstico neurológico según guías internacionales y nacionales.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Neurología – Hemorragia subaracnoidea",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 50 años con cefalea súbita “en trueno”, la peor de su vida, acompañada de vómito y rigidez de nuca. TAC muestra sangre en espacio subaracnoideo.",
+    "question": "Medicamento para prevenir vasoespasmo cerebral:",
+    "options": [
+      "Dexametasona",
+      "Nimodipino",
+      "Manitol",
+      "Furosemida",
+      "Aspirina"
+    ],
+    "answerIndex": 1,
+    "explanation": "La causa más frecuente de hemorragia subaracnoidea no traumática es ruptura de aneurisma sacular. El nimodipino reduce riesgo de vasoespasmo cerebral y mejora pronóstico neurológico según guías internacionales y nacionales.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Estado hiperosmolar hiperglucémico",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 68 años con DM2 mal controlada es traído por confusión progresiva. Refiere poliuria y polidipsia desde hace una semana. TA 95/60 mmHg, FC 110 lpm. Glucosa 780 mg/dL, pH 7.38, bicarbonato 22 mEq/L, cetonas negativas, osmolaridad plasmática elevada.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Cetoacidosis diabética",
+      "Estado hiperosmolar hiperglucémico",
+      "Hipoglucemia severa",
+      "Acidosis láctica",
+      "Síndrome urémico"
+    ],
+    "answerIndex": 1,
+    "explanation": "Glucosa >600 mg/dL, osmolaridad elevada y ausencia de acidosis significativa definen estado hiperosmolar. El tratamiento inicial es reposición vigorosa de líquidos antes de iniciar insulina. La acidosis y cetonemia marcan la diferencia con cetoacidosis.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Estado hiperosmolar hiperglucémico",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 68 años con DM2 mal controlada es traído por confusión progresiva. Refiere poliuria y polidipsia desde hace una semana. TA 95/60 mmHg, FC 110 lpm. Glucosa 780 mg/dL, pH 7.38, bicarbonato 22 mEq/L, cetonas negativas, osmolaridad plasmática elevada.",
+    "question": "Diferencia clave respecto a cetoacidosis diabética:",
+    "options": [
+      "Glucosa menor",
+      "Presencia de cetonas",
+      "Ausencia de acidosis metabólica significativa",
+      "Edad joven",
+      "Inicio súbito"
+    ],
+    "answerIndex": 2,
+    "explanation": "Glucosa >600 mg/dL, osmolaridad elevada y ausencia de acidosis significativa definen estado hiperosmolar. El tratamiento inicial es reposición vigorosa de líquidos antes de iniciar insulina. La acidosis y cetonemia marcan la diferencia con cetoacidosis.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Estado hiperosmolar hiperglucémico",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 68 años con DM2 mal controlada es traído por confusión progresiva. Refiere poliuria y polidipsia desde hace una semana. TA 95/60 mmHg, FC 110 lpm. Glucosa 780 mg/dL, pH 7.38, bicarbonato 22 mEq/L, cetonas negativas, osmolaridad plasmática elevada.",
+    "question": "Manejo inicial prioritario:",
+    "options": [
+      "Insulina en bolo alto inmediato",
+      "Líquidos IV con solución salina isotónica",
+      "Bicarbonato IV",
+      "Diurético",
+      "Glucosa IV"
+    ],
+    "answerIndex": 1,
+    "explanation": "Glucosa >600 mg/dL, osmolaridad elevada y ausencia de acidosis significativa definen estado hiperosmolar. El tratamiento inicial es reposición vigorosa de líquidos antes de iniciar insulina. La acidosis y cetonemia marcan la diferencia con cetoacidosis.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía – Colecistitis aguda",
+    "difficulty": "alta",
+    "case": "Mujer de 44 años con dolor en hipocondrio derecho de 24 horas, fiebre y náusea. Signo de Murphy positivo. USG: vesícula con pared engrosada y lito impactado en cuello vesicular.",
+    "question": "Diagnóstico:",
+    "options": [
+      "Colelitiasis asintomática",
+      "Colecistitis aguda calculosa",
+      "Colangitis",
+      "Hepatitis viral",
+      "Pancreatitis"
+    ],
+    "answerIndex": 1,
+    "explanation": "Dolor en hipocondrio derecho, Murphy positivo y hallazgos ecográficos confirman colecistitis aguda. La conducta recomendada es colecistectomía laparoscópica temprana durante el mismo internamiento. El manejo conservador aislado aumenta recurrencias.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía – Colecistitis aguda",
+    "difficulty": "alta",
+    "case": "Mujer de 44 años con dolor en hipocondrio derecho de 24 horas, fiebre y náusea. Signo de Murphy positivo. USG: vesícula con pared engrosada y lito impactado en cuello vesicular.",
+    "question": "Manejo definitivo recomendado:",
+    "options": [
+      "Antibiótico exclusivo",
+      "Colecistectomía laparoscópica temprana",
+      "Litotricia",
+      "CPRE inmediata",
+      "Observación"
+    ],
+    "answerIndex": 1,
+    "explanation": "Dolor en hipocondrio derecho, Murphy positivo y hallazgos ecográficos confirman colecistitis aguda. La conducta recomendada es colecistectomía laparoscópica temprana durante el mismo internamiento. El manejo conservador aislado aumenta recurrencias.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Hematología – Púrpura trombocitopénica inmune",
+    "difficulty": "alta",
+    "case": "Mujer de 26 años con petequias y equimosis espontáneas. Plaquetas 18,000/mm³. Hb y leucocitos normales. No esplenomegalia.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Leucemia aguda",
+      "Púrpura trombocitopénica inmune",
+      "CID",
+      "Aplasia medular",
+      "Dengue"
+    ],
+    "answerIndex": 1,
+    "explanation": "Trombocitopenia aislada con resto de biometría normal sugiere PTI. El tratamiento inicial en casos con plaquetas <30,000 o sangrado es corticoesteroide. La esplenectomía se reserva para casos refractarios.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Hematología – Púrpura trombocitopénica inmune",
+    "difficulty": "alta",
+    "case": "Mujer de 26 años con petequias y equimosis espontáneas. Plaquetas 18,000/mm³. Hb y leucocitos normales. No esplenomegalia.",
+    "question": "Tratamiento inicial en paciente sintomática:",
+    "options": [
+      "Transfusión de eritrocitos",
+      "Corticoesteroide sistémico",
+      "Esplenectomía inmediata",
+      "Antibiótico",
+      "Observación sin manejo"
+    ],
+    "answerIndex": 1,
+    "explanation": "Trombocitopenia aislada con resto de biometría normal sugiere PTI. El tratamiento inicial en casos con plaquetas <30,000 o sangrado es corticoesteroide. La esplenectomía se reserva para casos refractarios.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Desprendimiento prematuro de placenta normoinserta",
+    "difficulty": "muy-alta",
+    "case": "Gestante de 36 semanas con dolor abdominal súbito, útero hipertónico y sangrado vaginal oscuro. FCF con desaceleraciones tardías.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Placenta previa",
+      "Ruptura uterina",
+      "Desprendimiento prematuro de placenta",
+      "Trabajo de parto normal",
+      "Vasa previa"
+    ],
+    "answerIndex": 2,
+    "explanation": "Dolor intenso, sangrado oscuro y útero hipertónico caracterizan DPPNI. A diferencia de placenta previa (sangrado rojo brillante e indoloro). Si existe compromiso fetal, se indica interrupción inmediata del embarazo.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Desprendimiento prematuro de placenta normoinserta",
+    "difficulty": "muy-alta",
+    "case": "Gestante de 36 semanas con dolor abdominal súbito, útero hipertónico y sangrado vaginal oscuro. FCF con desaceleraciones tardías.",
+    "question": "Característica clínica típica:",
+    "options": [
+      "Sangrado indoloro",
+      "Útero blando",
+      "Dolor intenso y útero hipertónico",
+      "Ausencia de sangrado",
+      "Presentación podálica"
+    ],
+    "answerIndex": 2,
+    "explanation": "Dolor intenso, sangrado oscuro y útero hipertónico caracterizan DPPNI. A diferencia de placenta previa (sangrado rojo brillante e indoloro). Si existe compromiso fetal, se indica interrupción inmediata del embarazo.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Desprendimiento prematuro de placenta normoinserta",
+    "difficulty": "muy-alta",
+    "case": "Gestante de 36 semanas con dolor abdominal súbito, útero hipertónico y sangrado vaginal oscuro. FCF con desaceleraciones tardías.",
+    "question": "Conducta en caso de compromiso fetal:",
+    "options": [
+      "Observación",
+      "Cesárea urgente",
+      "Tocolisis",
+      "Alta",
+      "Antibiótico"
+    ],
+    "answerIndex": 1,
+    "explanation": "Dolor intenso, sangrado oscuro y útero hipertónico caracterizan DPPNI. A diferencia de placenta previa (sangrado rojo brillante e indoloro). Si existe compromiso fetal, se indica interrupción inmediata del embarazo.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Infectología – Endocarditis infecciosa",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 60 años con antecedente de valvulopatía presenta fiebre persistente, pérdida de peso y soplo nuevo. Hemocultivos positivos para Streptococcus viridans.",
+    "question": "Criterio mayor de Duke presente:",
+    "options": [
+      "Fiebre",
+      "Soplo",
+      "Hemocultivos positivos típicos",
+      "Anemia",
+      "Petequias"
+    ],
+    "answerIndex": 2,
+    "explanation": "Hemocultivos positivos para microorganismo típico constituyen criterio mayor de Duke. El ecocardiograma transesofágico tiene mayor sensibilidad para detectar vegetaciones, especialmente en válvulas nativas o prótesis.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Infectología – Endocarditis infecciosa",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 60 años con antecedente de valvulopatía presenta fiebre persistente, pérdida de peso y soplo nuevo. Hemocultivos positivos para Streptococcus viridans.",
+    "question": "Estudio de imagen indicado para confirmar vegetaciones:",
+    "options": [
+      "ECG",
+      "Eco transtorácico",
+      "Ecocardiograma transesofágico",
+      "TAC torácico",
+      "Rx de tórax"
+    ],
+    "answerIndex": 2,
+    "explanation": "Hemocultivos positivos para microorganismo típico constituyen criterio mayor de Duke. El ecocardiograma transesofágico tiene mayor sensibilidad para detectar vegetaciones, especialmente en válvulas nativas o prótesis.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Trastornos ácido–base mixtos",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 30 años con antecedente de DM1 acude por vómito intenso y respiración profunda. Gasometría: pH 7.48, HCO₃ 18 mEq/L, PaCO₂ 25 mmHg. Na 138, Cl 100.",
+    "question": "Trastorno primario:",
+    "options": [
+      "Alcalosis metabólica",
+      "Alcalosis respiratoria",
+      "Acidosis metabólica con alcalosis respiratoria concomitante",
+      "Acidosis respiratoria",
+      "Normal"
+    ],
+    "answerIndex": 2,
+    "explanation": "Hay alcalemia (pH 7.48) con HCO₃ bajo y PaCO₂ bajo. El anión gap es 138- (100+18)=20 (elevado), lo que indica acidosis metabólica. El pH alcalino sugiere alcalosis respiratoria concomitante, no simple compensación. Esto es típico en cetoacidosis con hiperventilación marcada.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Trastornos ácido–base mixtos",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 30 años con antecedente de DM1 acude por vómito intenso y respiración profunda. Gasometría: pH 7.48, HCO₃ 18 mEq/L, PaCO₂ 25 mmHg. Na 138, Cl 100.",
+    "question": "¿Existe trastorno mixto?",
+    "options": [
+      "No",
+      "Sí, acidosis metabólica + alcalosis respiratoria",
+      "Sí, alcalosis metabólica + acidosis respiratoria",
+      "Solo compensación normal",
+      "Solo acidosis respiratoria"
+    ],
+    "answerIndex": 1,
+    "explanation": "Hay alcalemia (pH 7.48) con HCO₃ bajo y PaCO₂ bajo. El anión gap es 138- (100+18)=20 (elevado), lo que indica acidosis metabólica. El pH alcalino sugiere alcalosis respiratoria concomitante, no simple compensación. Esto es típico en cetoacidosis con hiperventilación marcada.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Nefrología – Lesión renal aguda prerrenal",
+    "difficulty": "alta",
+    "case": "Mujer de 75 años con diarrea abundante por 4 días. TA 85/55 mmHg. Creatinina aumenta de 0.9 a 2.1 mg/dL. EGO sin cilindros patológicos. FeNa 0.5%.",
+    "question": "Tipo de lesión renal:",
+    "options": [
+      "Intrínseca",
+      "Posrenal",
+      "Prerrenal",
+      "Necrosis tubular establecida",
+      "Glomerulonefritis"
+    ],
+    "answerIndex": 2,
+    "explanation": "Hipovolemia con FeNa <1% indica riñón funcionalmente intacto con retención de sodio, compatible con lesión prerrenal. La necrosis tubular aguda típicamente presenta FeNa >2% y cilindros granulosos.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Nefrología – Lesión renal aguda prerrenal",
+    "difficulty": "alta",
+    "case": "Mujer de 75 años con diarrea abundante por 4 días. TA 85/55 mmHg. Creatinina aumenta de 0.9 a 2.1 mg/dL. EGO sin cilindros patológicos. FeNa 0.5%.",
+    "question": "Dato que apoya origen prerrenal:",
+    "options": [
+      "FeNa >2%",
+      "Cilindros granulosos",
+      "FeNa <1%",
+      "Proteinuria masiva",
+      "Hematuria dismórfica"
+    ],
+    "answerIndex": 2,
+    "explanation": "Hipovolemia con FeNa <1% indica riñón funcionalmente intacto con retención de sodio, compatible con lesión prerrenal. La necrosis tubular aguda típicamente presenta FeNa >2% y cilindros granulosos.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Endocrinología – Hiperpotasemia",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 62 años con ERC estadio 4 acude por debilidad muscular. K sérico 6.8 mEq/L. ECG con ondas T picudas y QRS ligeramente ensanchado.",
+    "question": "Medida inmediata para estabilizar membrana miocárdica:",
+    "options": [
+      "Insulina con glucosa",
+      "Salbutamol",
+      "Gluconato de calcio IV",
+      "Furosemida",
+      "Resina de intercambio"
+    ],
+    "answerIndex": 2,
+    "explanation": "En hiperpotasemia con cambios ECG se administra primero gluconato de calcio para estabilizar membrana. Posteriormente se emplean medidas que desplazan potasio al interior celular como insulina con glucosa. La hemodiálisis elimina potasio pero no es la primera medida inmediata salvo refractariedad.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Endocrinología – Hiperpotasemia",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 62 años con ERC estadio 4 acude por debilidad muscular. K sérico 6.8 mEq/L. ECG con ondas T picudas y QRS ligeramente ensanchado.",
+    "question": "Tratamiento para reducir potasio sérico rápidamente (transitorio):",
+    "options": [
+      "Calcio",
+      "Insulina + glucosa",
+      "Hemodiálisis inmediata",
+      "Dieta baja en potasio",
+      "Restricción hídrica"
+    ],
+    "answerIndex": 1,
+    "explanation": "En hiperpotasemia con cambios ECG se administra primero gluconato de calcio para estabilizar membrana. Posteriormente se emplean medidas que desplazan potasio al interior celular como insulina con glucosa. La hemodiálisis elimina potasio pero no es la primera medida inmediata salvo refractariedad.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Endocrinología – Hipercalcemia primaria",
+    "difficulty": "alta",
+    "case": "Mujer de 55 años con litiasis renal recurrente y estreñimiento. Calcio 11.8 mg/dL, PTH elevada.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Hipercalcemia por malignidad",
+      "Hiperparatiroidismo primario",
+      "Intoxicación por vitamina D",
+      "Sarcoidosis",
+      "Mieloma múltiple"
+    ],
+    "answerIndex": 1,
+    "explanation": "Hipercalcemia con PTH elevada es compatible con hiperparatiroidismo primario. El tratamiento definitivo en pacientes sintomáticos es quirúrgico. En hipercalcemia por malignidad la PTH estaría suprimida.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Endocrinología – Hipercalcemia primaria",
+    "difficulty": "alta",
+    "case": "Mujer de 55 años con litiasis renal recurrente y estreñimiento. Calcio 11.8 mg/dL, PTH elevada.",
+    "question": "Tratamiento definitivo:",
+    "options": [
+      "Hidratación permanente",
+      "Bifosfonato crónico",
+      "Paratiroidectomía",
+      "Diurético tiazídico",
+      "Corticoide"
+    ],
+    "answerIndex": 2,
+    "explanation": "Hipercalcemia con PTH elevada es compatible con hiperparatiroidismo primario. El tratamiento definitivo en pacientes sintomáticos es quirúrgico. En hipercalcemia por malignidad la PTH estaría suprimida.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Síndrome nefrítico agudo",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 18 años con antecedente de faringitis hace 2 semanas presenta edema facial, hematuria y TA 150/95 mmHg. Creatinina ligeramente elevada.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Síndrome nefrótico",
+      "Glomerulonefritis postestreptocócica",
+      "Nefropatía diabética",
+      "Pielonefritis",
+      "Litiasis renal"
+    ],
+    "answerIndex": 1,
+    "explanation": "Hematuria, hipertensión y edema tras infección estreptocócica sugieren glomerulonefritis postestreptocócica, caracterizada por consumo de complemento (C3 bajo). El tratamiento es principalmente de soporte, control de presión y volumen.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Síndrome nefrítico agudo",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 18 años con antecedente de faringitis hace 2 semanas presenta edema facial, hematuria y TA 150/95 mmHg. Creatinina ligeramente elevada.",
+    "question": "Dato inmunológico característico:",
+    "options": [
+      "C3 elevado",
+      "C3 disminuido",
+      "ANA positivo",
+      "ANCA positivo",
+      "Anti-GBM positivo"
+    ],
+    "answerIndex": 1,
+    "explanation": "Hematuria, hipertensión y edema tras infección estreptocócica sugieren glomerulonefritis postestreptocócica, caracterizada por consumo de complemento (C3 bajo). El tratamiento es principalmente de soporte, control de presión y volumen.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Síndrome nefrítico agudo",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 18 años con antecedente de faringitis hace 2 semanas presenta edema facial, hematuria y TA 150/95 mmHg. Creatinina ligeramente elevada.",
+    "question": "Manejo general:",
+    "options": [
+      "Antibiótico prolongado obligatorio",
+      "Inmunosupresor inmediato",
+      "Manejo de soporte y control de TA",
+      "Hemodiálisis en todos",
+      "Cirugía"
+    ],
+    "answerIndex": 2,
+    "explanation": "Hematuria, hipertensión y edema tras infección estreptocócica sugieren glomerulonefritis postestreptocócica, caracterizada por consumo de complemento (C3 bajo). El tratamiento es principalmente de soporte, control de presión y volumen.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Crítica – Síndrome de dificultad respiratoria aguda (SDRA)",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 54 años, antecedente de DM2 e hipertensión, ingresa por neumonía adquirida en la comunidad confirmada por infiltrado lobar derecho y leucocitosis. A las 48 horas presenta deterioro respiratorio progresivo con disnea intensa, taquipnea de 34 rpm y saturación 82% con mascarilla reservorio a 15 L/min. Se decide intubación orotraqueal. Gasometría con FiO₂ 100% muestra PaO₂ 60 mmHg. Rx de tórax con infiltrados bilaterales difusos no explicados por falla cardiaca. Ecocardiograma sin datos de disfunción ventricular significativa.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Edema agudo cardiogénico",
+      "Tromboembolia pulmonar",
+      "Síndrome de dificultad respiratoria aguda",
+      "Crisis asmática",
+      "Neumotórax bilateral"
+    ],
+    "answerIndex": 2,
+    "explanation": "SDRA se define por inicio agudo, infiltrados bilaterales y PaO₂/FiO₂ disminuida sin causa cardiogénica. Con PaO₂ 60 y FiO₂ 1.0, la relación es 60, compatible con SDRA grave. El manejo incluye ventilación protectora con volúmenes bajos (6 ml/kg peso ideal) para reducir lesión pulmonar inducida por ventilador.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Crítica – Síndrome de dificultad respiratoria aguda (SDRA)",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 54 años, antecedente de DM2 e hipertensión, ingresa por neumonía adquirida en la comunidad confirmada por infiltrado lobar derecho y leucocitosis. A las 48 horas presenta deterioro respiratorio progresivo con disnea intensa, taquipnea de 34 rpm y saturación 82% con mascarilla reservorio a 15 L/min. Se decide intubación orotraqueal. Gasometría con FiO₂ 100% muestra PaO₂ 60 mmHg. Rx de tórax con infiltrados bilaterales difusos no explicados por falla cardiaca. Ecocardiograma sin datos de disfunción ventricular significativa.",
+    "question": "Criterio que confirma gravedad según Berlín:",
+    "options": [
+      "PaO₂ <80 mmHg",
+      "Relación PaO₂/FiO₂ <100",
+      "Necesidad de intubación",
+      "Hipercapnia",
+      "Leucocitosis"
+    ],
+    "answerIndex": 1,
+    "explanation": "SDRA se define por inicio agudo, infiltrados bilaterales y PaO₂/FiO₂ disminuida sin causa cardiogénica. Con PaO₂ 60 y FiO₂ 1.0, la relación es 60, compatible con SDRA grave. El manejo incluye ventilación protectora con volúmenes bajos (6 ml/kg peso ideal) para reducir lesión pulmonar inducida por ventilador.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Crítica – Síndrome de dificultad respiratoria aguda (SDRA)",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 54 años, antecedente de DM2 e hipertensión, ingresa por neumonía adquirida en la comunidad confirmada por infiltrado lobar derecho y leucocitosis. A las 48 horas presenta deterioro respiratorio progresivo con disnea intensa, taquipnea de 34 rpm y saturación 82% con mascarilla reservorio a 15 L/min. Se decide intubación orotraqueal. Gasometría con FiO₂ 100% muestra PaO₂ 60 mmHg. Rx de tórax con infiltrados bilaterales difusos no explicados por falla cardiaca. Ecocardiograma sin datos de disfunción ventricular significativa.",
+    "question": "Estrategia ventilatoria recomendada:",
+    "options": [
+      "Volúmenes corrientes altos para mejorar oxigenación",
+      "Volumen corriente bajo 6 ml/kg de peso ideal",
+      "PEEP mínima",
+      "Hiperventilación agresiva",
+      "Suspender sedación"
+    ],
+    "answerIndex": 1,
+    "explanation": "SDRA se define por inicio agudo, infiltrados bilaterales y PaO₂/FiO₂ disminuida sin causa cardiogénica. Con PaO₂ 60 y FiO₂ 1.0, la relación es 60, compatible con SDRA grave. El manejo incluye ventilación protectora con volúmenes bajos (6 ml/kg peso ideal) para reducir lesión pulmonar inducida por ventilador.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Gastroenterología – Pancreatitis aguda biliar con complicación sistémica",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 47 años con antecedente de colelitiasis presenta dolor epigástrico intenso irradiado a espalda, náusea y vómito. Lipasa 6 veces el límite normal. A las 24 horas desarrolla hipotensión leve, oliguria y creatinina en ascenso. Hematocrito elevado y BUN aumentado. USG muestra litos vesiculares sin dilatación de vía biliar.",
+    "question": "Etiología más probable:",
+    "options": [
+      "Alcohol",
+      "Biliar",
+      "Hipertrigliceridemia",
+      "Fármaco",
+      "Idiopática"
+    ],
+    "answerIndex": 1,
+    "explanation": "La etiología biliar es la causa más frecuente. Elevación de BUN y hemoconcentración se asocian a mayor mortalidad. En pancreatitis biliar leve a moderada, la colecistectomía debe realizarse durante el mismo internamiento tras estabilización para evitar recurrencia.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Gastroenterología – Pancreatitis aguda biliar con complicación sistémica",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 47 años con antecedente de colelitiasis presenta dolor epigástrico intenso irradiado a espalda, náusea y vómito. Lipasa 6 veces el límite normal. A las 24 horas desarrolla hipotensión leve, oliguria y creatinina en ascenso. Hematocrito elevado y BUN aumentado. USG muestra litos vesiculares sin dilatación de vía biliar.",
+    "question": "Dato que sugiere mayor gravedad:",
+    "options": [
+      "Dolor intenso",
+      "Elevación de lipasa",
+      "Elevación de BUN y hematocrito",
+      "Náusea",
+      "Fiebre"
+    ],
+    "answerIndex": 2,
+    "explanation": "La etiología biliar es la causa más frecuente. Elevación de BUN y hemoconcentración se asocian a mayor mortalidad. En pancreatitis biliar leve a moderada, la colecistectomía debe realizarse durante el mismo internamiento tras estabilización para evitar recurrencia.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Gastroenterología – Pancreatitis aguda biliar con complicación sistémica",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 47 años con antecedente de colelitiasis presenta dolor epigástrico intenso irradiado a espalda, náusea y vómito. Lipasa 6 veces el límite normal. A las 24 horas desarrolla hipotensión leve, oliguria y creatinina en ascenso. Hematocrito elevado y BUN aumentado. USG muestra litos vesiculares sin dilatación de vía biliar.",
+    "question": "Conducta respecto a la vesícula biliar:",
+    "options": [
+      "Colecistectomía diferida meses después",
+      "CPRE urgente en todos los casos",
+      "Colecistectomía durante mismo internamiento una vez estabilizada",
+      "Ningún tratamiento quirúrgico",
+      "Litotricia"
+    ],
+    "answerIndex": 2,
+    "explanation": "La etiología biliar es la causa más frecuente. Elevación de BUN y hemoconcentración se asocian a mayor mortalidad. En pancreatitis biliar leve a moderada, la colecistectomía debe realizarse durante el mismo internamiento tras estabilización para evitar recurrencia.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Neurología – Evento vascular cerebral isquémico y ventana terapéutica",
+    "difficulty": "muy-alta",
+    "case": "extendida Hombre de 63 años con antecedente de fibrilación auricular sin anticoagulación es encontrado con hemiplejia derecha y afasia. Última vez visto sano hace 7 horas. TAC simple sin hemorragia. Angiotomografía muestra oclusión de arteria cerebral media izquierda proximal con tejido de penumbra viable en estudio de perfusión.",
+    "question": "¿Es candidato a trombólisis IV estándar?",
+    "options": [
+      "Sí",
+      "No",
+      "Solo si presión baja",
+      "Solo si glucosa normal",
+      "Sí sin importar tiempo"
+    ],
+    "answerIndex": 1,
+    "explanation": "La trombólisis IV estándar tiene ventana hasta 4.5 horas. Sin embargo, en presencia de oclusión de gran vaso y penumbra viable, la trombectomía mecánica puede realizarse hasta 24 horas según criterios de imagen. Fibrilación auricular sugiere embolia cardiogénica.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Neurología – Evento vascular cerebral isquémico y ventana terapéutica",
+    "difficulty": "muy-alta",
+    "case": "extendida Hombre de 63 años con antecedente de fibrilación auricular sin anticoagulación es encontrado con hemiplejia derecha y afasia. Última vez visto sano hace 7 horas. TAC simple sin hemorragia. Angiotomografía muestra oclusión de arteria cerebral media izquierda proximal con tejido de penumbra viable en estudio de perfusión.",
+    "question": "Conducta más adecuada:",
+    "options": [
+      "Aspirina únicamente",
+      "Trombectomía mecánica",
+      "Observación",
+      "Anticoagulación inmediata",
+      "Alta"
+    ],
+    "answerIndex": 1,
+    "explanation": "La trombólisis IV estándar tiene ventana hasta 4.5 horas. Sin embargo, en presencia de oclusión de gran vaso y penumbra viable, la trombectomía mecánica puede realizarse hasta 24 horas según criterios de imagen. Fibrilación auricular sugiere embolia cardiogénica.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Neurología – Evento vascular cerebral isquémico y ventana terapéutica",
+    "difficulty": "muy-alta",
+    "case": "extendida Hombre de 63 años con antecedente de fibrilación auricular sin anticoagulación es encontrado con hemiplejia derecha y afasia. Última vez visto sano hace 7 horas. TAC simple sin hemorragia. Angiotomografía muestra oclusión de arteria cerebral media izquierda proximal con tejido de penumbra viable en estudio de perfusión.",
+    "question": "Mecanismo fisiopatológico más probable:",
+    "options": [
+      "Trombosis lacunar",
+      "Embolia cardiogénica",
+      "Vasculitis",
+      "Disección carotídea",
+      "Migraña"
+    ],
+    "answerIndex": 1,
+    "explanation": "La trombólisis IV estándar tiene ventana hasta 4.5 horas. Sin embargo, en presencia de oclusión de gran vaso y penumbra viable, la trombectomía mecánica puede realizarse hasta 24 horas según criterios de imagen. Fibrilación auricular sugiere embolia cardiogénica.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Corioamnionitis",
+    "difficulty": "muy-alta",
+    "case": "Gestante de 30 semanas con ruptura prematura de membranas desde hace 24 horas presenta fiebre 38.8°C, taquicardia materna y fetal, útero doloroso a la palpación y líquido amniótico fétido.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Trabajo de parto pretérmino simple",
+      "Corioamnionitis",
+      "Placenta previa",
+      "DPPNI",
+      "ITU aislada"
+    ],
+    "answerIndex": 1,
+    "explanation": "Fiebre, taquicardia fetal y líquido fétido sugieren infección intraamniótica. El manejo incluye antibiótico IV inmediato y resolución del embarazo, ya que la infección contraindica prolongar gestación incluso en pretérmino.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Corioamnionitis",
+    "difficulty": "muy-alta",
+    "case": "Gestante de 30 semanas con ruptura prematura de membranas desde hace 24 horas presenta fiebre 38.8°C, taquicardia materna y fetal, útero doloroso a la palpación y líquido amniótico fétido.",
+    "question": "Manejo inicial indicado:",
+    "options": [
+      "Tocolítico",
+      "Antibiótico IV de amplio espectro",
+      "Reposo absoluto",
+      "Alta",
+      "Solo paracetamol"
+    ],
+    "answerIndex": 1,
+    "explanation": "Fiebre, taquicardia fetal y líquido fétido sugieren infección intraamniótica. El manejo incluye antibiótico IV inmediato y resolución del embarazo, ya que la infección contraindica prolongar gestación incluso en pretérmino.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Corioamnionitis",
+    "difficulty": "muy-alta",
+    "case": "Gestante de 30 semanas con ruptura prematura de membranas desde hace 24 horas presenta fiebre 38.8°C, taquicardia materna y fetal, útero doloroso a la palpación y líquido amniótico fétido.",
+    "question": "Conducta obstétrica:",
+    "options": [
+      "Prolongar embarazo",
+      "Interrupción del embarazo tras estabilización",
+      "Tocolisis prolongada",
+      "Esperar maduración pulmonar",
+      "Cerclaje"
+    ],
+    "answerIndex": 1,
+    "explanation": "Fiebre, taquicardia fetal y líquido fétido sugieren infección intraamniótica. El manejo incluye antibiótico IV inmediato y resolución del embarazo, ya que la infección contraindica prolongar gestación incluso en pretérmino.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Choque cardiogénico post IAM",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 62 años con antecedente de hipertensión y tabaquismo acude por dolor torácico opresivo de 3 horas de evolución. ECG con elevación del ST en V1–V4. Se realiza angioplastia primaria con reperfusión exitosa. A las 6 horas evoluciona con hipotensión (TA 78/50 mmHg), piel fría, oliguria y estertores bibasales. FC 120 lpm. Lactato elevado. Ecocardiograma muestra FEVI 25% con hipocinesia anterior extensa.",
+    "question": "Diagnóstico actual:",
+    "options": [
+      "Choque séptico",
+      "Choque hipovolémico",
+      "Choque cardiogénico",
+      "Taponamiento cardiaco",
+      "Reinfarto inmediato"
+    ],
+    "answerIndex": 2,
+    "explanation": "Hipotensión con bajo gasto posterior a IAM y FEVI severamente reducida define choque cardiogénico. El manejo incluye vasopresor (noradrenalina) para mantener perfusión e inotrópico como dobutamina para mejorar contractilidad. Si persiste inestabilidad, puede considerarse soporte mecánico como balón intraaórtico.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Choque cardiogénico post IAM",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 62 años con antecedente de hipertensión y tabaquismo acude por dolor torácico opresivo de 3 horas de evolución. ECG con elevación del ST en V1–V4. Se realiza angioplastia primaria con reperfusión exitosa. A las 6 horas evoluciona con hipotensión (TA 78/50 mmHg), piel fría, oliguria y estertores bibasales. FC 120 lpm. Lactato elevado. Ecocardiograma muestra FEVI 25% con hipocinesia anterior extensa.",
+    "question": "Manejo farmacológico inicial indicado:",
+    "options": [
+      "Cristaloides en bolo amplio",
+      "Noradrenalina + inotrópico (dobutamina)",
+      "Diurético exclusivo",
+      "Betabloqueador",
+      "IECA inmediato"
+    ],
+    "answerIndex": 1,
+    "explanation": "Hipotensión con bajo gasto posterior a IAM y FEVI severamente reducida define choque cardiogénico. El manejo incluye vasopresor (noradrenalina) para mantener perfusión e inotrópico como dobutamina para mejorar contractilidad. Si persiste inestabilidad, puede considerarse soporte mecánico como balón intraaórtico.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Medicina Interna – Choque cardiogénico post IAM",
+    "difficulty": "muy-alta",
+    "case": "Hombre de 62 años con antecedente de hipertensión y tabaquismo acude por dolor torácico opresivo de 3 horas de evolución. ECG con elevación del ST en V1–V4. Se realiza angioplastia primaria con reperfusión exitosa. A las 6 horas evoluciona con hipotensión (TA 78/50 mmHg), piel fría, oliguria y estertores bibasales. FC 120 lpm. Lactato elevado. Ecocardiograma muestra FEVI 25% con hipocinesia anterior extensa.",
+    "question": "Medida avanzada si no responde a manejo farmacológico:",
+    "options": [
+      "Fibrinólisis",
+      "Balón de contrapulsación intraaórtico",
+      "Antibiótico",
+      "Pericardiocentesis",
+      "Alta"
+    ],
+    "answerIndex": 1,
+    "explanation": "Hipotensión con bajo gasto posterior a IAM y FEVI severamente reducida define choque cardiogénico. El manejo incluye vasopresor (noradrenalina) para mantener perfusión e inotrópico como dobutamina para mejorar contractilidad. Si persiste inestabilidad, puede considerarse soporte mecánico como balón intraaórtico.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Gastroenterología – Colangitis aguda",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 58 años con antecedente de colelitiasis acude por dolor en hipocondrio derecho, fiebre y ictericia progresiva. TA 95/60 mmHg, FC 115 lpm. Laboratorio con bilirrubina directa elevada y fosfatasa alcalina aumentada. USG con dilatación de vía biliar.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Hepatitis viral",
+      "Colecistitis",
+      "Colangitis aguda",
+      "Pancreatitis",
+      "Absceso hepático"
+    ],
+    "answerIndex": 2,
+    "explanation": "Dolor en hipocondrio derecho, fiebre e ictericia conforman la tríada de Charcot. La colangitis es una urgencia que requiere antibiótico IV y descompresión biliar urgente mediante CPRE. El retraso aumenta mortalidad.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Gastroenterología – Colangitis aguda",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 58 años con antecedente de colelitiasis acude por dolor en hipocondrio derecho, fiebre y ictericia progresiva. TA 95/60 mmHg, FC 115 lpm. Laboratorio con bilirrubina directa elevada y fosfatasa alcalina aumentada. USG con dilatación de vía biliar.",
+    "question": "Tríada clásica presente en este caso:",
+    "options": [
+      "Dolor, vómito y fiebre",
+      "Fiebre, ictericia y dolor en HD",
+      "Ictericia, ascitis y edema",
+      "Fiebre, tos y disnea",
+      "Dolor, diarrea y fiebre"
+    ],
+    "answerIndex": 1,
+    "explanation": "Dolor en hipocondrio derecho, fiebre e ictericia conforman la tríada de Charcot. La colangitis es una urgencia que requiere antibiótico IV y descompresión biliar urgente mediante CPRE. El retraso aumenta mortalidad.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Gastroenterología – Colangitis aguda",
+    "difficulty": "muy-alta",
+    "case": "Mujer de 58 años con antecedente de colelitiasis acude por dolor en hipocondrio derecho, fiebre y ictericia progresiva. TA 95/60 mmHg, FC 115 lpm. Laboratorio con bilirrubina directa elevada y fosfatasa alcalina aumentada. USG con dilatación de vía biliar.",
+    "question": "Conducta terapéutica definitiva urgente:",
+    "options": [
+      "Colecistectomía inmediata",
+      "CPRE con drenaje biliar",
+      "Antibiótico oral",
+      "Observación",
+      "Litotricia"
+    ],
+    "answerIndex": 1,
+    "explanation": "Dolor en hipocondrio derecho, fiebre e ictericia conforman la tríada de Charcot. La colangitis es una urgencia que requiere antibiótico IV y descompresión biliar urgente mediante CPRE. El retraso aumenta mortalidad.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Neurología – Estado epiléptico convulsivo",
+    "difficulty": "media",
+    "case": "Hombre de 28 años sin antecedentes conocidos presenta crisis tónico-clónica generalizada que dura más de 7 minutos sin recuperación de conciencia. En urgencias continúa convulsionando.",
+    "question": "Diagnóstico:",
+    "options": [
+      "Crisis aislada",
+      "Estado epiléptico",
+      "Síncope convulsivo",
+      "Trastorno psicógeno",
+      "Migraña"
+    ],
+    "answerIndex": 1,
+    "explanation": "Crisis mayor a 5 minutos o repetidas sin recuperación define estado epiléptico. El manejo inicial es benzodiacepina IV. Si persiste, se administra antiepiléptico de segunda línea como levetiracetam o fenitoína. El tratamiento debe ser escalonado y rápido para evitar daño neurológico.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Neurología – Estado epiléptico convulsivo",
+    "difficulty": "media",
+    "case": "Hombre de 28 años sin antecedentes conocidos presenta crisis tónico-clónica generalizada que dura más de 7 minutos sin recuperación de conciencia. En urgencias continúa convulsionando.",
+    "question": "Manejo farmacológico inmediato:",
+    "options": [
+      "Fenitoína IV como primera línea",
+      "Benzodiacepina IV (lorazepam)",
+      "Haloperidol",
+      "Carbamazepina oral",
+      "Observación"
+    ],
+    "answerIndex": 1,
+    "explanation": "Crisis mayor a 5 minutos o repetidas sin recuperación define estado epiléptico. El manejo inicial es benzodiacepina IV. Si persiste, se administra antiepiléptico de segunda línea como levetiracetam o fenitoína. El tratamiento debe ser escalonado y rápido para evitar daño neurológico.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "mi",
+    "tema": "Neurología – Estado epiléptico convulsivo",
+    "difficulty": "media",
+    "case": "Hombre de 28 años sin antecedentes conocidos presenta crisis tónico-clónica generalizada que dura más de 7 minutos sin recuperación de conciencia. En urgencias continúa convulsionando.",
+    "question": "Si persiste tras benzodiacepina:",
+    "options": [
+      "Repetir indefinidamente benzodiacepina",
+      "Administrar antiepiléptico IV como levetiracetam o fenitoína",
+      "Suspender tratamiento",
+      "Dar antidepresivo",
+      "Alta"
+    ],
+    "answerIndex": 1,
+    "explanation": "Crisis mayor a 5 minutos o repetidas sin recuperación define estado epiléptico. El manejo inicial es benzodiacepina IV. Si persiste, se administra antiepiléptico de segunda línea como levetiracetam o fenitoína. El tratamiento debe ser escalonado y rápido para evitar daño neurológico.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Síndrome HELLP",
+    "difficulty": "muy-alta",
+    "case": "Gestante de 35 semanas con antecedente de preeclampsia presenta dolor en epigastrio intenso, náusea y malestar general. TA 165/105 mmHg. Laboratorio: AST y ALT elevadas, plaquetas 75,000/mm³, DHL elevada.",
+    "question": "Diagnóstico más probable:",
+    "options": [
+      "Hepatitis viral",
+      "Colestasis intrahepática",
+      "Síndrome HELLP",
+      "Hígado graso agudo",
+      "Gastritis"
+    ],
+    "answerIndex": 2,
+    "explanation": "HELLP es variante grave de preeclampsia caracterizada por hemólisis, enzimas hepáticas elevadas y trombocitopenia. Representa emergencia obstétrica y requiere estabilización materna e interrupción del embarazo.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Síndrome HELLP",
+    "difficulty": "muy-alta",
+    "case": "Gestante de 35 semanas con antecedente de preeclampsia presenta dolor en epigastrio intenso, náusea y malestar general. TA 165/105 mmHg. Laboratorio: AST y ALT elevadas, plaquetas 75,000/mm³, DHL elevada.",
+    "question": "Componente que define el síndrome:",
+    "options": [
+      "Hipoglucemia",
+      "Hemólisis, enzimas hepáticas elevadas y trombocitopenia",
+      "Proteinuria aislada",
+      "Bilirrubina directa elevada",
+      "Anemia ferropénica"
+    ],
+    "answerIndex": 1,
+    "explanation": "HELLP es variante grave de preeclampsia caracterizada por hemólisis, enzimas hepáticas elevadas y trombocitopenia. Representa emergencia obstétrica y requiere estabilización materna e interrupción del embarazo.",
+    "gpcReference": ""
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia – Síndrome HELLP",
+    "difficulty": "muy-alta",
+    "case": "Gestante de 35 semanas con antecedente de preeclampsia presenta dolor en epigastrio intenso, náusea y malestar general. TA 165/105 mmHg. Laboratorio: AST y ALT elevadas, plaquetas 75,000/mm³, DHL elevada.",
+    "question": "Conducta definitiva:",
+    "options": [
+      "Observación ambulatoria",
+      "Interrupción del embarazo tras estabilización",
+      "Solo antihipertensivo",
+      "Antibiótico",
+      "Tocolítico"
+    ],
+    "answerIndex": 1,
+    "explanation": "HELLP es variante grave de preeclampsia caracterizada por hemólisis, enzimas hepáticas elevadas y trombocitopenia. Representa emergencia obstétrica y requiere estabilización materna e interrupción del embarazo.",
+    "gpcReference": ""
+  }
+]

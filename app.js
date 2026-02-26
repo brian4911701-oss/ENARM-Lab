@@ -694,8 +694,8 @@
                 fb.style.display = "block";
                 fb.className = `feedback-card ${ans.isCorrect ? '' : 'wrong'}`;
                 const fh = $("feedback-header"); if (fh) fh.textContent = ans.isCorrect ? "¡Respuesta Correcta!" : "Respuesta Incorrecta";
-                const fe = $("feedback-explanation"); if (fe) fe.textContent = q.explanation;
-                const fg = $("feedback-gpc"); if (fg) fg.textContent = q.gpcReference;
+                const fe = $("feedback-explanation"); if (fe) fe.innerHTML = q.explanation;
+                const fg = $("feedback-gpc"); if (fg) fg.innerHTML = q.gpcReference;
             } else {
                 fb.style.display = "none";
             }
