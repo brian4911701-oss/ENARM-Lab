@@ -1,0 +1,854 @@
+[
+    {
+        "specialty": "mi",
+        "tema": "Introducción: Ciclo genital, Esterilidad y Anticonceptivos",
+        "difficulty": "media",
+        "gpcReference": "GPC IMSS-007-18 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico en el Primero y Segundo Nivel de Atención; GPC IMSS-024-18 Diagnóstico y Tratamiento de la Infertilidad Primaria y Secundaria en la Mujer y el Hombre en Edad Reproductiva",
+        "case": "Pte femenina de 28 años acude a consulta por infertilidad de 2 años de evolución. Refiere menarca a los 13 años con ciclos menstruales irregulares de 45-60 días desde la menarca. Ha notado aumento de acné facial y leve hirsutismo en mentón y labio superior desde hace 3 años. AHf de DM2 en madre y abuela materna. G0P0A0. EF: TA 110/70 mmhg, FC 78 lat/min, T 36.5°C, Peso 72 kg, Talla 1.60 m. IMC 28.1 kg/m2. Se observa acné leve y discreto hirsutismo (Ferriman-Gallwey 9). Genitales externos e internos sin alteraciones.",
+        "questions": [
+            {
+                "question": "¿Cuál es el diagnóstico más probable en esta paciente?",
+                "options": [
+                    "Síndrome de Ovario Poliquístico (SOP)",
+                    "Insuficiencia ovárica prematura",
+                    "Hiperprolactinemia",
+                    "Amenorrea hipotalámica funcional"
+                ],
+                "answerIndex": 0,
+                "explanation": "La paciente presenta la tríada clásica de criterios de Rotterdam para el diagnóstico de SOP: 1) Oligo-anovulación (ciclos menstruales irregulares de 45-60 días desde la menarca, lo que indica anovulación crónica), 2) Hiperandrogenismo clínico (acné, hirsutismo con Ferriman-Gallwey 9), y aunque no se ha realizado ultrasonido aún, estos dos criterios son suficientes para establecer una alta sospecha diagnóstica. La infertilidad es una consecuencia común de la anovulación en SOP. Los antecedentes de DM2 en la familia y el sobrepeso (IMC 28.1) apoyan aún más el diagnóstico por la asociación con resistencia a la insulina.\n- La insuficiencia ovárica prematura se caracteriza por amenorrea secundaria y FSH elevada en mujeres menores de 40 años, lo cual no es el caso de esta paciente que presenta oligomenorrea.\n- La hiperprolactinemia puede causar irregularidades menstruales, pero típicamente se asocia con galactorrea (no mencionada) y no explica el hiperandrogenismo.\n- La amenorrea hipotalámica funcional suele presentarse en pacientes con bajo peso, ejercicio excesivo o estrés severo, lo cual no coincide con el perfil de esta paciente con sobrepeso.",
+                "gpcReference": "GPC IMSS-007-18 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico en el Primero y Segundo Nivel de Atención"
+            },
+            {
+                "question": "Con base en su sospecha diagnóstica, ¿cuál es el siguiente paso diagnóstico más apropiado para confirmar la condición y evaluar su infertilidad?",
+                "options": [
+                    "Laparoscopia diagnóstica para evaluar endometriosis y adherencias.",
+                    "Histerosalpingografía para evaluar permeabilidad tubaria.",
+                    "Perfil hormonal (LH, FSH, testosterona total, SHBG, prolactina, TSH) y ultrasonido pélvico transvaginal.",
+                    "Biopsia endometrial para descartar hiperplasia."
+                ],
+                "answerIndex": 2,
+                "explanation": "Para confirmar el diagnóstico de SOP y realizar un estudio integral de la infertilidad, es esencial un perfil hormonal completo que incluya LH, FSH (para evaluar la relación LH/FSH que puede estar elevada en SOP), testosterona total y SHBG (para evaluar el hiperandrogenismo bioquímico y calcular la testosterona libre), prolactina y TSH (para descartar otras causas de anovulación como hiperprolactinemia o disfunción tiroidea). Adicionalmente, el ultrasonido pélvico transvaginal es fundamental para evaluar la morfología ovárica (presencia de ovarios poliquísticos) y es uno de los criterios diagnósticos de Rotterdam. Este abordaje permite una evaluación completa de la fisiopatología del SOP y los factores de anovulación en la infertilidad.\n- La laparoscopia diagnóstica es un procedimiento invasivo de segunda línea, indicado si hay sospecha de patología pélvica como endometriosis o adherencias tubarias, pero no es el paso inicial para SOP.\n- La histerosalpingografía es crucial para evaluar la permeabilidad tubaria, un factor importante en el estudio de infertilidad, pero no es el primer paso para confirmar el SOP en una paciente con anovulación sugerida por la historia clínica. Generalmente se realiza después de descartar o tratar el factor ovulatorio, o en paralelo una vez confirmada la anovulación.\n- La biopsia endometrial no es parte del estudio diagnóstico de SOP ni de infertilidad por anovulación primaria, y solo se consideraría en casos de sangrado uterino anormal o sospecha de hiperplasia endometrial.",
+                "gpcReference": "GPC IMSS-007-18 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico en el Primero y Segundo Nivel de Atención; GPC IMSS-024-18 Diagnóstico y Tratamiento de la Infertilidad Primaria y Secundaria en la Mujer y el Hombre en Edad Reproductiva"
+            },
+            {
+                "question": "Una vez confirmado el diagnóstico de SOP y establecido que la anovulación es la causa principal de la infertilidad, ¿cuál es el tratamiento de primera línea para inducir la ovulación en esta paciente?",
+                "options": [
+                    "Fertilización in vitro (FIV)",
+                    "Clomifeno o Letrozol, y cambios en el estilo de vida.",
+                    "Agonistas de GnRH",
+                    "Metformina sola"
+                ],
+                "answerIndex": 1,
+                "explanation": "El tratamiento de primera línea para la inducción de la ovulación en pacientes con SOP y deseo de embarazo, especialmente en aquellas con sobrepeso u obesidad como nuestra paciente (IMC 28.1), incluye los cambios en el estilo de vida (dieta y ejercicio) para lograr una reducción de peso, lo cual puede mejorar la ovulación espontánea y la respuesta a los inductores. Farmacológicamente, el citrato de clomifeno o el letrozol son los agentes de primera línea para la inducción de la ovulación. El letrozol ha demostrado ser más efectivo que el clomifeno en pacientes con SOP, especialmente en aquellas con un IMC elevado, y se asocia con menores tasas de embarazos múltiples.\n- La fertilización in vitro (FIV) es una técnica de reproducción asistida de alta complejidad, considerada de tercera o cuarta línea, reservada para pacientes que no responden a la inducción de ovulación con fármacos orales o inyectables, o cuando existen otros factores de infertilidad severos.\n- Los agonistas de GnRH no se utilizan para la inducción de la ovulación en SOP; se emplean en protocolos de FIV o para el tratamiento de otras condiciones como la endometriosis o miomas uterinos.\n- La metformina es un sensibilizador a la insulina que puede mejorar la ovulación y la tasa de embarazo en algunas pacientes con SOP, especialmente aquellas con resistencia a la insulina. Sin embargo, no se considera la primera línea de tratamiento para la inducción de ovulación sola, sino que a menudo se usa como coadyuvante al clomifeno o letrozol, o como una opción inicial en pacientes que no desean un embarazo inmediato para regularizar ciclos, pero para *inducir la ovulación* con el objetivo de embarazo, los inductores directos son la primera elección.",
+                "gpcReference": "GPC IMSS-007-18 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico en el Primero y Segundo Nivel de Atención; GPC IMSS-024-18 Diagnóstico y Tratamiento de la Infertilidad Primaria y Secundaria en la Mujer y el Hombre en Edad Reproductiva"
+            }
+        ]
+    },
+    {
+        "specialty": "mi",
+        "tema": "Amenorreas Primarias y Secundarias",
+        "difficulty": "media",
+        "gpcReference": "GPC IMSS-162-09 Diagnóstico y Tratamiento de la Amenorrea Primaria y Secundaria en el Segundo y Tercer Nivel de Atención; FETS-001-16 Detección y Tratamiento de la Hiperprolactinemia.",
+        "case": "Paciente femenina de 28 años, G0 P0, acude a consulta por amenorrea secundaria de 8 meses de evolución. Refiere ciclos menstruales previamente regulares (cada 28-30 días). Como antecedente, menciona secreción lechosa espontánea de ambas mamas desde hace 3 meses y cefalea ocasional de predominio frontal, negando visión borrosa o cambios en el campo visual. No desea embarazo actualmente. A la EF: TA 110/70 mmHg, FC 78 lpm, FR 16 rpm, Temp 36.6°C. IMC 23 kg/m². Se evidencia galactorrea bilateral al exprimir las mamas. Resto de la EF sin alteraciones.",
+        "questions": [
+            {
+                "question": "¿Cuál es el estudio de laboratorio inicial más apropiado para esta paciente?",
+                "options": [
+                    "Cuantificación de prolactina sérica y subunidad beta de gonadotropina coriónica humana (β-hCG).",
+                    "Dosificación de hormona folículo estimulante (FSH) y hormona luteinizante (LH).",
+                    "Prueba de progesterona con medroxiprogesterona oral.",
+                    "Perfil tiroideo (TSH, T4 libre) y andrógenos (testosterona total, DHEA-S)."
+                ],
+                "answerIndex": 0,
+                "explanation": "Ante un cuadro de amenorrea secundaria (ausencia de menstruación por 3 meses en mujeres con ciclos previos regulares) con galactorrea espontánea y cefalea, la prioridad diagnóstica es descartar embarazo y evaluar la función hipofisaria. La galactorrea es un signo cardinal de hiperprolactinemia. Por lo tanto, la cuantificación de prolactina sérica es esencial. Además, el embarazo es la causa más común de amenorrea secundaria, por lo que una β-hCG es siempre el primer paso en la evaluación de cualquier amenorrea. Las otras opciones son pasos subsiguientes en el algoritmo diagnóstico, pero no los iniciales ante esta presentación específica. La FSH y LH se solicitan después de descartar embarazo, hiperprolactinemia y disfunción tiroidea. La prueba de progesterona es útil para evaluar la presencia de estrógenos endógenos y la integridad del tracto de salida, y el perfil tiroideo es parte del abordaje general, pero la prolactina y hCG tienen prioridad por los síntomas asociados.",
+                "gpcReference": "GPC IMSS-162-09 Diagnóstico y Tratamiento de la Amenorrea Primaria y Secundaria en el Segundo y Tercer Nivel de Atención; FETS-001-16 Detección y Tratamiento de la Hiperprolactinemia."
+            },
+            {
+                "question": "Los resultados de laboratorio de la paciente son los siguientes: Subunidad beta-hCG: < 2 mUI/mL, TSH: 1.8 mUI/L (rango normal 0.4-4.0 mUI/L), Prolactina sérica: 180 ng/mL (valor de referencia < 25 ng/mL). Ante estos nuevos hallazgos, ¿cuál es el siguiente paso diagnóstico esencial?",
+                "options": [
+                    "Prueba de progesterona con medroxiprogesterona.",
+                    "Resonancia magnética (RM) de silla turca.",
+                    "Cariotipo.",
+                    "Ultrasonido pélvico transvaginal."
+                ],
+                "answerIndex": 1,
+                "explanation": "La paciente presenta una hiperprolactinemia significativa (180 ng/mL), muy por encima del límite superior normal y típicamente indicativo de adenoma hipofisario. Una vez descartado el embarazo y la disfunción tiroidea como causas de hiperprolactinemia, el siguiente paso diagnóstico esencial es la imagenología de la silla turca, preferentemente una Resonancia Magnética. Esto se realiza para identificar o descartar la presencia de un prolactinoma (micro o macro). Valores de prolactina > 100 ng/mL tienen una alta sensibilidad y especificidad para prolactinomas. Las otras opciones son incorrectas en este punto: la prueba de progesterona ya no es el siguiente paso porque se identificó una causa endocrina clara; el cariotipo es para amenorrea primaria o falla ovárica prematura; y el ultrasonido pélvico no es la herramienta diagnóstica adecuada para evaluar una hiperprolactinemia de este nivel.",
+                "gpcReference": "GPC IMSS-162-09 Diagnóstico y Tratamiento de la Amenorrea Primaria y Secundaria en el Segundo y Tercer Nivel de Atención; FETS-001-16 Detección y Tratamiento de la Hiperprolactinemia."
+            },
+            {
+                "question": "La resonancia magnética de silla turca de la paciente revela la presencia de un microadenoma hipofisario de 7 mm, sin evidencia de compresión del quiasma óptico. ¿Cuál es el tratamiento de primera línea más adecuado en este momento?",
+                "options": [
+                    "Cirugía transesfenoidal.",
+                    "Radioterapia hipofisaria.",
+                    "Agonistas dopaminérgicos (ej. cabergolina o bromocriptina).",
+                    "Terapia hormonal combinada con estrógenos y progestágenos."
+                ],
+                "answerIndex": 2,
+                "explanation": "Los microadenomas hipofisarios productores de prolactina (prolactinomas) son la causa más común de hiperprolactinemia. El tratamiento de primera línea para los prolactinomas, tanto microadenomas como muchos macroadenomas (especialmente si no hay compresión visual severa), son los agonistas dopaminérgicos como la cabergolina o la bromocriptina. Estos fármacos son altamente efectivos para reducir los niveles de prolactina, disminuir el tamaño del tumor y restaurar la función menstrual y la fertilidad. La cirugía transesfenoidal se reserva para casos de falla al tratamiento médico, intolerancia a los agonistas dopaminérgicos, rápido crecimiento tumoral o compresión de estructuras adyacentes que no responde al tratamiento médico. La radioterapia es una opción de tercera línea. La terapia hormonal combinada no es el tratamiento primario para la causa subyacente de la amenorrea en este caso.",
+                "gpcReference": "FETS-001-16 Detección y Tratamiento de la Hiperprolactinemia; GPC IMSS-162-09 Diagnóstico y Tratamiento de la Amenorrea Primaria y Secundaria en el Segundo y Tercer Nivel de Atención."
+            }
+        ]
+    },
+    {
+        "specialty": "mi",
+        "tema": "Introducción: Ciclo genital, Esterilidad y Anticonceptivos",
+        "difficulty": "media",
+        "gpcReference": "GPC IMSS-102-17 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico; GPC IMSS-718-14 Diagnóstico y Tratamiento de la Infertilidad y Esterilidad",
+        "case": "Paciente femenina de 28 años, casada, acude a consulta por infertilidad primaria. Refiere un año y medio intentando concebir sin éxito, sin uso de método anticonceptivo. Menarca a los 13 años, ciclos irregulares desde la menarca (35-50 días), con periodos de amenorrea secundaria de hasta 3 meses. Refiere antecedentes de acné persistente en la adolescencia, y vello facial y corporal (hirsutismo) que ha notado incrementarse en los últimos 3 años. Tiene antecedente familiar de diabetes mellitus tipo 2 en madre. Su pareja, masculino de 30 años, con espermatobioscopia reportada como normal.\n\nExploración física: Talla 1.62 m, Peso 78 kg. IMC 29.6 kg/m². TA 110/70 mmHg, FC 72 lpm, FR 16 rpm, Temp 36.5°C. Facies con acné leve y discreto hirsutismo en mentón y región periareolar (escala de Ferriman-Gallwey modificada de 9).\n\nLaboratorios iniciales (realizados hace 2 meses en fase folicular temprana):\n- FSH: 6.2 mUI/mL (N: 3.5-12.5)\n- LH: 14.8 mUI/mL (N: 2.4-12.6)\n- Estradiol: 45 pg/mL (N: 15-75)\n- Prolactina: 18 ng/mL (N: <25)\n- TSH: 2.1 mUI/L (N: 0.4-4.0)\n- Glucosa plasmática en ayuno: 98 mg/dL\n- Testosterona total: 95 ng/dL (N: 6-86 ng/dL en mujeres)\n- Índice de andrógenos libres (FAI): 8.5 (N: <5)\n- DHEAS: 280 µg/dL (N: 35-430 µg/dL)",
+        "questions": [
+            {
+                "question": "¿Cuál es el diagnóstico más probable en esta paciente, considerando el cuadro clínico y los hallazgos de laboratorio?",
+                "options": [
+                    "Síndrome de Ovario Poliquístico (SOP)",
+                    "Hiperprolactinemia",
+                    "Insuficiencia ovárica prematura",
+                    "Hiperplasia suprarrenal congénita de aparición tardía"
+                ],
+                "answerIndex": 0,
+                "explanation": "La paciente cumple con los criterios de Rotterdam para el diagnóstico de Síndrome de Ovario Poliquístico (SOP): 1) Oligo-anovulación (ciclos irregulares y amenorrea secundaria); 2) Hiperandrogenismo clínico (hirsutismo y acné) y bioquímico (testosterona total y FAI elevados). Los niveles de LH elevados con una relación LH/FSH >2:1 (14.8/6.2 ≈ 2.39) son sugestivos de SOP, aunque no son un criterio diagnóstico per se. La hiperprolactinemia se descarta por niveles normales de prolactina. La insuficiencia ovárica prematura se descarta por niveles normales de FSH y estradiol. La hiperplasia suprarrenal congénita de aparición tardía se descarta por niveles normales de DHEAS, a pesar de la presencia de hirsutismo.",
+                "gpcReference": "GPC IMSS-102-17 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico; GPC IMSS-718-14 Diagnóstico y Tratamiento de la Infertilidad y Esterilidad"
+            },
+            {
+                "question": "Considerando el diagnóstico más probable en esta paciente, ¿cuál sería el estudio de imagen confirmatorio o de primera línea para completar los criterios diagnósticos del SOP?",
+                "options": [
+                    "Ultrasonido transvaginal",
+                    "Histerosalpingografía",
+                    "Cariotipo",
+                    "Resonancia magnética pélvica"
+                ],
+                "answerIndex": 0,
+                "explanation": "El ultrasonido transvaginal es el estudio de imagen clave para evaluar la morfología ovárica y confirmar la presencia de ovarios poliquísticos, que es el tercer criterio de Rotterdam para el diagnóstico de SOP. Este criterio se define por la presencia de ≥12 folículos de 2-9 mm de diámetro y/o un volumen ovárico >10 ml en al menos un ovario. La histerosalpingografía evalúa la permeabilidad tubárica y la morfología uterina, siendo parte del estudio de infertilidad, pero no para el diagnóstico de SOP. El cariotipo no es un estudio de primera línea para SOP; se considera en amenorrea primaria o falla ovárica prematura. La resonancia magnética pélvica no está indicada como estudio inicial para el diagnóstico de SOP.",
+                "gpcReference": "GPC IMSS-102-17 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico; GPC IMSS-718-14 Diagnóstico y Tratamiento de la Infertilidad y Esterilidad"
+            },
+            {
+                "question": "Tras recomendar modificaciones en el estilo de vida (como pérdida de peso por su IMC elevado), ¿cuál es la opción farmacológica de primera línea para la inducción de la ovulación en esta paciente con SOP y un IMC elevado, que busca embarazo?",
+                "options": [
+                    "Citrato de clomifeno",
+                    "Letrozol",
+                    "Gonadotropinas",
+                    "Metformina como monoterapia"
+                ],
+                "answerIndex": 0,
+                "explanation": "De acuerdo con las Guías de Práctica Clínica mexicanas (GPC IMSS-718-14 sobre Infertilidad y Esterilidad; GPC IMSS-102-17 sobre Diagnóstico y Tratamiento del SOP), el citrato de clomifeno es la primera línea de tratamiento farmacológico para la inducción de la ovulación en pacientes con SOP que desean embarazo. Aunque el Letrozol ha mostrado una mayor tasa de nacidos vivos y un menor riesgo de embarazos múltiples en algunos estudios y se considera una alternativa efectiva, especialmente en pacientes con resistencia a citrato de clomifeno o IMC elevado, las GPC mexicanas vigentes aún lo posicionan como un agente de segunda línea o alternativa, manteniendo el citrato de clomifeno como primera elección. Las gonadotropinas se reservan para casos resistentes a la primera línea oral. La metformina es un sensibilizador a la insulina que puede mejorar la ovulación y la tasa de embarazo en pacientes con SOP y resistencia a la insulina o IMC elevado, pero no es el agente de primera línea para la inducción ovulatoria como monoterapia, sino que se usa en combinación o como coadyuvante.",
+                "gpcReference": "GPC IMSS-718-14 Diagnóstico y Tratamiento de la Infertilidad y Esterilidad; GPC IMSS-102-17 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico"
+            }
+        ]
+    },
+    {
+        "specialty": "mi",
+        "tema": "Origen no anatómico: SOP",
+        "difficulty": "media",
+        "gpcReference": "GPC IMSS-297-10 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico en el Primer Nivel de Atención, 2017.",
+        "case": "Paciente femenina de 26 años, originaria y residente de Monterrey, NL. Acude a consulta por 'períodos irregulares' e infertilidad de 2 años de evolución. Refiere menarca a los 13 años, con ciclos inicialmente regulares de 28-30 días, pero desde hace aproximadamente 5 años ha presentado oligomenorrea (ciclos de 40-60 días) y en ocasiones amenorrea de hasta 3 meses. Niega uso de anticonceptivos. Ha notado ganancia ponderal de 15 kg en los últimos 3 años, con IMC actual de 31 kg/m². También refiere hirsutismo facial, torácico y abdominal, así como acné persistente en cara y espalda. No antecedentes familiares de interés.\n\n**EF:** TA 135/85 mmHg, FC 78 lpm, FR 18 rpm, Temp 36.5 °C. Peso 82 kg, Talla 1.63 m, IMC 31 kg/m². Facies con acné moderado. Hirsutismo grado 7 en escala de Ferriman-Gallwey. Acantosis nigricans en cuello y axilas.\n\n**Resultados de Lab (iniciales):** Glucosa en ayuno: 108 mg/dL. HbA1c: 5.8%. Perfil lipídico: Colesterol total (CT) 220 mg/dL, c-HDL 38 mg/dL, c-LDL 135 mg/dL, Triglicéridos (TG) 180 mg/dL. TSH: 2.1 mUI/L. Prolactina: 18 ng/mL. Testosterona total: 95 ng/dL (elevada, rango normal <50 ng/dL). LH: 12 mUI/mL, FSH: 4 mUI/mL (relación LH/FSH: 3:1).\n\n**USG pélvico (transvaginal):** Ovario derecho: 11 cm³ de volumen, con 15 folículos de 2-9 mm. Ovario izquierdo: 12 cm³ de volumen, con 18 folículos de 2-9 mm.",
+        "questions": [
+            {
+                "question": "Basado en los hallazgos clínicos y de laboratorio, ¿cuál es el diagnóstico más probable para esta paciente?",
+                "options": [
+                    "Síndrome de Ovario Poliquístico (SOP)",
+                    "Hiperplasia suprarrenal congénita de inicio tardío",
+                    "Hipotiroidismo subclínico",
+                    "Insuficiencia ovárica prematura"
+                ],
+                "answerIndex": 0,
+                "explanation": "La paciente cumple con los criterios de Rotterdam para el diagnóstico de SOP, que requieren la presencia de al menos dos de los siguientes tres hallazgos, después de excluir otras causas: 1) Oligoanovulación (presente como oligomenorrea y amenorrea). 2) Hiperandrogenismo clínico (hirsutismo, acné, acantosis nigricans) y/o bioquímico (testosterona total elevada). 3) Morfología ovárica poliquística en el ultrasonido (volumen ovárico >10 cm³ y/o >12 folículos de 2-9 mm en al menos un ovario). La relación LH/FSH >2:1 también es altamente sugestiva. La hiperplasia suprarrenal congénita de inicio tardío se descartaría con niveles normales de 17-hidroxiprogesterona y no presentaría hallazgos de morfología ovárica poliquística. El hipotiroidismo subclínico es improbable con una TSH normal y no explica el hiperandrogenismo. La insuficiencia ovárica prematura se caracteriza por amenorrea y niveles elevados de FSH, lo cual no es el caso.",
+                "gpcReference": "GPC IMSS-297-10 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico en el Primer Nivel de Atención, 2017."
+            },
+            {
+                "question": "Considerando el diagnóstico más probable en esta paciente, ¿qué estudio adicional es esencial para evaluar su riesgo metabólico, de acuerdo con las Guías de Práctica Clínica mexicanas?",
+                "options": [
+                    "Prueba de tolerancia a la glucosa oral (PTGO) con 75g de glucosa",
+                    "Cariotipo para descartar trastornos cromosómicos",
+                    "Niveles de 17-hidroxiprogesterona",
+                    "Resonancia magnética de hipófisis"
+                ],
+                "answerIndex": 0,
+                "explanation": "Las pacientes con SOP, especialmente aquellas con sobrepeso, obesidad e hiperandrogenismo clínico (como hirsutismo y acantosis nigricans, esta última un marcador de resistencia a la insulina), tienen un riesgo significativamente mayor de desarrollar intolerancia a la glucosa y diabetes mellitus tipo 2. Las GPC mexicanas recomiendan encarecidamente la realización de una Prueba de Tolerancia a la Glucosa Oral (PTGO) con 75g de glucosa en estas pacientes para detectar tempranamente alteraciones del metabolismo de los carbohidratos, incluso cuando la glucosa en ayuno y la HbA1c están en rangos de prediabetes o normales, como es el caso de esta paciente (Glucosa en ayuno: 108 mg/dL, HbA1c: 5.8%). Un cariotipo no es indicado para SOP. La 17-hidroxiprogesterona se usa para descartar hiperplasia suprarrenal congénita, no para evaluar riesgo metabólico. Una RM de hipófisis solo se considera en caso de sospecha de adenoma hipofisario, lo cual no aplica aquí con niveles de prolactina normales.",
+                "gpcReference": "GPC IMSS-297-10 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico en el Primer Nivel de Atención, 2017."
+            },
+            {
+                "question": "Una vez establecido el diagnóstico de Síndrome de Ovario Poliquístico, ¿cuál de las siguientes intervenciones representa la estrategia terapéutica inicial fundamental, según las Guías de Práctica Clínica mexicanas?",
+                "options": [
+                    "Prescripción de anticonceptivos orales combinados (AOC)",
+                    "Inicio de metformina 850 mg dos veces al día",
+                    "Asesoramiento sobre cambios en el estilo de vida (dieta y ejercicio)",
+                    "Inducción de la ovulación con citrato de clomifeno"
+                ],
+                "answerIndex": 2,
+                "explanation": "Las Guías de Práctica Clínica mexicanas, al igual que las internacionales, establecen que la modificación del estilo de vida (incluyendo dieta saludable y ejercicio regular) es la piedra angular y la primera línea de tratamiento para todas las mujeres con SOP, especialmente aquellas con sobrepeso u obesidad. La pérdida de peso (incluso del 5-10% del peso corporal) ha demostrado mejorar significativamente la resistencia a la insulina, el hiperandrogenismo, la regularidad menstrual e incluso restaurar la ovulación espontánea. Aunque los anticonceptivos orales combinados (AOC) y la metformina son tratamientos importantes para síntomas específicos (hirsutismo, irregularidades menstruales, resistencia a la insulina), y la inducción de la ovulación para la infertilidad, todos ellos se consideran complementos o segundas líneas de tratamiento si los cambios en el estilo de vida no son suficientes o si existen necesidades específicas de la paciente, pero no reemplazan la base del tratamiento que es la modificación del estilo de vida.",
+                "gpcReference": "GPC IMSS-297-10 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico en el Primer Nivel de Atención, 2017."
+            }
+        ]
+    },
+    {
+        "specialty": "mi",
+        "tema": "Turner, Morris, Rokitansky",
+        "difficulty": "media",
+        "gpcReference": "GPC SSA-318-10 Diagnóstico y tratamiento del síndrome de insensibilidad a los andrógenos (SIA) (Síndrome de Morris); GPC IMSS-718-14 Diagnóstico y tratamiento de la Amenorrea Primaria.",
+        "case": "Paciente femenina de 16 años acude a consulta por amenorrea primaria. Refiere desarrollo mamario desde los 13 años. Niega dismenorrea, galactorrea o síntomas vasomotores. Antecedentes familiares sin relevancia.\n\nExploración física: Talla 165 cm (percentil 75), Peso 55 kg, IMC 20.3 kg/m2. TA 110/70 mmHg, FC 72 lpm, FR 16 rpm, Temp 36.7°C. Fenotipo femenino. Piel lampiña en axilas y región púbica (Tanner II), mamas bien desarrolladas (Tanner V). Exploración genital: Labios mayores y menores normales. Clítoris de tamaño normal. Vagina de 3 cm de longitud, terminando en saco ciego. No se palpa cérvix ni útero.\n\nEstudios iniciales:\nFSH: 12.5 mUI/mL (ref. fase folicular 2.5-10.2)\nLH: 8.1 mUI/mL (ref. fase folicular 1.9-12.5)\nEstradiol: 75 pg/mL (ref. fase folicular 20-200)\nTestosterona total: 480 ng/dL (ref. mujer premenopáusica 15-70; hombre adulto 300-1000)\nUltrasonido pélvico: No se visualiza útero ni ovarios. Se identifican dos estructuras ovoideas de 3x2 cm en el canal inguinal bilateral.",
+        "questions": [
+            {
+                "question": "¿Cuál es el diagnóstico más probable en esta paciente?",
+                "options": [
+                    "Síndrome de Insensibilidad a los Andrógenos (SIA) completo.",
+                    "Síndrome de Mayer-Rokitansky-Küster-Hauser (MRKH).",
+                    "Síndrome de Turner.",
+                    "Amenorrea hipotalámica funcional."
+                ],
+                "answerIndex": 0,
+                "explanation": "El Síndrome de Insensibilidad a los Andrógenos (SIA) completo, o Síndrome de Morris, es la causa más probable. Se caracteriza por amenorrea primaria en una paciente con fenotipo femenino, desarrollo mamario normal (debido a la aromatización de andrógenos a estrógenos), escaso o ausente vello axilar/púbico (por insensibilidad a los andrógenos), vagina en saco ciego y ausencia de útero y cérvix. La presencia de testículos (frecuentemente inguinales o intraabdominales, como las 'estructuras ovoideas' descritas en el ultrasonido) y niveles de testosterona en rango masculino son hallazgos clave que confirman la sospecha diagnóstica. Los niveles de FSH y LH suelen ser normales o ligeramente elevados, y el estradiol es normal. \n\nEl Síndrome de MRKH también presenta amenorrea primaria, vagina en saco ciego y ausencia de útero; sin embargo, en MRKH el desarrollo de vello púbico y axilar es normal (hay receptores de andrógenos funcionales) y los niveles de testosterona son típicamente femeninos, además de que los ovarios son funcionales y suelen estar presentes. \n\nEl Síndrome de Turner (45,X) se caracteriza por baja estatura, dismorfias (cuello alado, tórax en escudo), amenorrea primaria y ausencia de desarrollo mamario (hipogonadismo hipergonadotrópico con niveles muy bajos de estradiol), lo que no coincide con la paciente. \n\nLa amenorrea hipotalámica funcional se asocia con niveles bajos de FSH, LH y estradiol (hipogonadismo hipogonadotrópico), a menudo relacionada con estrés, ejercicio excesivo o bajo peso, lo cual no es el caso."
+            },
+            {
+                "question": "Para establecer el genotipo de la paciente y confirmar el diagnóstico del caso anterior, ¿cuál sería el estudio diagnóstico más apropiado?",
+                "options": [
+                    "Determinación de niveles séricos de 17-hidroxiprogesterona.",
+                    "Cariotipo.",
+                    "Resonancia Magnética (RM) pélvica.",
+                    "Prueba de estimulación con GnRH."
+                ],
+                "answerIndex": 1,
+                "explanation": "Ante la fuerte sospecha de un trastorno de la diferenciación sexual como el Síndrome de Insensibilidad a los Andrógenos (SIA), el estudio confirmatorio para determinar el genotipo (cromosomas sexuales) es el cariotipo. En el SIA completo, el cariotipo revela un patrón 46,XY, lo cual es fundamental para el diagnóstico definitivo y para el asesoramiento genético y manejo subsiguiente de la paciente.\n\nLa determinación de 17-hidroxiprogesterona se utiliza para el diagnóstico de hiperplasia suprarrenal congénita, que se presenta con virilización en pacientes femeninas o genitales ambiguos, un cuadro clínico distinto al SIA. La RM pélvica podría ser útil para una mejor visualización de la anatomía interna y la localización de las gónadas, pero no proporciona información sobre el genotipo ni el defecto genético subyacente que confirma el SIA. La prueba de estimulación con GnRH (Hormona Liberadora de Gonadotropinas) se usa para evaluar la función del eje hipotálamo-hipófisis-gonadal, no para diagnosticar un síndrome genético de diferenciación sexual."
+            },
+            {
+                "question": "Una vez confirmado el diagnóstico mediante cariotipo, ¿cuál es la recomendación más importante en el manejo a largo plazo de esta paciente?",
+                "options": [
+                    "Terapia de reemplazo hormonal con estrógenos y progestágenos.",
+                    "Quirúrgica: gonadectomía.",
+                    "Inducción de la ovulación con gonadotropinas.",
+                    "Reconstrucción vaginal con injertos cutáneos."
+                ],
+                "answerIndex": 1,
+                "explanation": "En pacientes con Síndrome de Insensibilidad a los Andrógenos completo (cariotipo 46,XY), las gónadas son testículos que, al estar intraabdominales o inguinales, tienen un riesgo significativamente aumentado de malignización (principalmente disgerminomas o gonadoblastomas) con el tiempo, especialmente después de la pubertad. Por lo tanto, la gonadectomía profiláctica está fuertemente recomendada y es la recomendación más importante a largo plazo para prevenir el desarrollo de cáncer, generalmente una vez que se ha completado el desarrollo puberal para aprovechar la aromatización periférica de andrógenos a estrógenos, que es esencial para el desarrollo de las características sexuales secundarias femeninas (mamas).\n\nLa terapia de reemplazo hormonal con estrógenos y progestágenos no es necesaria antes de la gonadectomía, ya que los testículos producen andrógenos que se aromatizan a estrógenos manteniendo las características femeninas. Se inicia TRH estrogénica *después* de la gonadectomía para mantener la densidad ósea y las características sexuales secundarias. La inducción de la ovulación no es una opción, ya que la paciente carece de ovarios funcionales. La dilatación vaginal o reconstrucción vaginal es un aspecto importante del manejo para la función sexual, pero la prevención del riesgo oncológico mediante la gonadectomía es la prioridad médica a largo plazo."
+            }
+        ]
+    },
+    {
+        "specialty": "ginecología y obstetricia",
+        "tema": "Endometriosis",
+        "difficulty": "media",
+        "gpcReference": "IMSS-090-21. Guía de Práctica Clínica: Diagnóstico y Tratamiento de Endometriosis. México: IMSS; 2021.",
+        "case": "Paciente Sofía R., de 32 años, acude a consulta por dolor pélvico crónico de 2 años de evolución, intensificado con la menstruación (EVA 8/10), dismenorrea severa, dispareunia profunda (EVA 7/10) y proctalgia cíclica. Refiere infertilidad primaria tras 1.5 años de búsqueda. A la exploración física (EF), se observa dolor a la movilización uterina y nodularidad en el fondo de saco posterior. El ultrasonido pélvico transvaginal (USG TV) reporta una imagen quística de 3 cm en ovario izquierdo con material ecogénico en su interior, sin flujo Doppler. Sus signos vitales son TA 110/70 mmHg, FC 78 lpm, FR 16 rpm, T 36.6°C.",
+        "questions": [
+            {
+                "question": "Con base en la presentación clínica de Sofía, ¿cuál es el diagnóstico clínico más probable?",
+                "options": [
+                    "Endometriosis",
+                    "Enfermedad Inflamatoria Pélvica (EIP) crónica",
+                    "Adenomiosis uterina",
+                    "Síndrome de Intestino Irritable (SII)"
+                ],
+                "answerIndex": 0,
+                "explanation": "La presentación clínica de Sofía (dolor pélvico crónico, dismenorrea severa, dispareunia profunda, infertilidad y proctalgia cíclica) es altamente sugestiva de endometriosis. Los hallazgos a la EF (dolor a la movilización uterina y nodularidad en el fondo de saco posterior) son clásicos. La imagen quística ovárica con material ecogénico en el USG TV es compatible con un endometrioma ('quiste de chocolate'), una manifestación común de la enfermedad. La EIP crónica suele presentarse con antecedentes de infecciones, sin la marcada ciclicidad ni la infertilidad primaria característica en este contexto. La adenomiosis cursa con dolor pélvico y dismenorrea, pero típicamente se asocia a menorragia y un útero globuloso y aumentado de tamaño, lo cual no se describe. El SII podría explicar parte de la sintomatología gastrointestinal, pero no la dismenorrea, dispareunia o los hallazgos pélvicos específicos.",
+                "gpcReference": "IMSS-090-21. Guía de Práctica Clínica: Diagnóstico y Tratamiento de Endometriosis. México: IMSS; 2021. (Enfoque en la tríada clásica de síntomas y hallazgos en la exploración física y ultrasonido)."
+            },
+            {
+                "question": "Con base en la alta sospecha clínica de endometriosis en Sofía, ¿cuál es el estándar de oro para la confirmación diagnóstica definitiva?",
+                "options": [
+                    "Laparoscopia diagnóstica con toma de biopsias",
+                    "Resonancia Magnética (RM) pélvica",
+                    "Medición sérica de CA-125",
+                    "Ultrasonido pélvico transvaginal con preparación intestinal"
+                ],
+                "answerIndex": 0,
+                "explanation": "La laparoscopia diagnóstica con toma de biopsias y su posterior estudio histopatológico es el estándar de oro para la confirmación definitiva de endometriosis. Permite la visualización directa de las lesiones, su mapeo y la confirmación histológica del tejido endometrial ectópico. La RM pélvica es útil para la evaluación de la extensión y severidad, especialmente en la endometriosis profunda, pero no es diagnóstica por sí misma. El CA-125 puede estar elevado, pero es un marcador inespecífico y no confirmatorio. El USG TV, incluso con preparación intestinal para evaluar endometriosis profunda, es una herramienta de primera línea para la sospecha y seguimiento, pero no para la confirmación histopatológica definitiva.",
+                "gpcReference": "IMSS-090-21. Guía de Práctica Clínica: Diagnóstico y Tratamiento de Endometriosis. México: IMSS; 2021. (Define el estándar de oro para el diagnóstico definitivo de la enfermedad)."
+            },
+            {
+                "question": "Una vez confirmado el diagnóstico de endometriosis y considerando el principal síntoma de Sofía (dolor pélvico severo), ¿cuál de las siguientes opciones representa la primera línea de tratamiento médico recomendada por las Guías de Práctica Clínica mexicanas para el manejo del dolor?",
+                "options": [
+                    "Agonistas de GnRH",
+                    "Anticonceptivos Orales Combinados (AOC) continuos",
+                    "Laparotomía exploradora con resección de implantes",
+                    "Danazol"
+                ],
+                "answerIndex": 1,
+                "explanation": "Según las GPC mexicanas (IMSS-090-21), los anticonceptivos hormonales (combinados o progestágenos solos) de forma continua son la primera línea de tratamiento médico para el manejo del dolor asociado a la endometriosis. Su mecanismo de acción se basa en la supresión ovárica, induciendo anovulación y atrofia del tejido endometrial ectópico, lo que reduce la inflamación y el dolor. Los agonistas de GnRH son una opción eficaz, pero generalmente se reservan para casos de dolor severo refractario a otras terapias o como terapia adyuvante postquirúrgica debido a sus efectos secundarios importantes. La laparotomía exploradora es un procedimiento quirúrgico invasivo y la vía preferencial para la cirugía de endometriosis es la laparoscopia, la cual se considera después del fracaso del tratamiento médico o cuando hay indicación clara como infertilidad o quistes grandes. El danazol es un andrógeno sintético que se utiliza en el tratamiento de la endometriosis, pero debido a sus importantes efectos secundarios androgénicos, no es una primera línea de elección en la mayoría de las pacientes.",
+                "gpcReference": "IMSS-090-21. Guía de Práctica Clínica: Diagnóstico y Tratamiento de Endometriosis. México: IMSS; 2021. (Recomendaciones de manejo del dolor, primera línea de tratamiento médico, punto 7.3.1.1)."
+            }
+        ]
+    },
+    {
+        "specialty": "mi",
+        "tema": "Hemorragia Uterina Anormal",
+        "difficulty": "media",
+        "gpcReference": "GPC: Diagnóstico y Tratamiento de la Hemorragia Uterina Anormal en Edad Reproductiva (SSa-347-18)",
+        "case": "Paciente de 48 años, G3 P3, acude a consulta por sangrado transvaginal irregular y abundante de 6 meses de evolución. Refiere episodios de sangrado que duran más de 8 días, con cambios de toalla sanitaria cada 1-2 horas en los días más intensos, y sangrados intermenstruales. Se acompaña de fatiga progresiva. Antecedentes: Obesidad (IMC 32 kg/m²), Diabetes Mellitus tipo 2 (DM2) en tratamiento con metformina, Hipertensión Arterial Sistémica (HAS) en tratamiento con losartán. Último Papanicolaou (PAP) hace 2 años, normal. Niega uso de anticonceptivos. A la exploración física: TA 130/80 mmHg, FC 88 lpm, FR 18 rpm, Temp 36.5°C, SatO2 96%. Palidez de tegumentos ++/+++. Abdomen blando, depresible, no doloroso. Tacto vaginal: Cérvix de aspecto normal, útero en anteversión, tamaño y movilidad normales, no doloroso. Se observa sangre roja fresca. Laboratorios: Hemoglobina (Hb) 8.5 g/dL, Hematocrito (Hcto) 26%, Volumen Corpuscular Medio (VCM) 72 fL, Hemoglobina Corpuscular Media (HCM) 24 pg, Plaquetas 280,000/uL. GCH cualitativa en orina: Negativa.",
+        "questions": [
+            {
+                "question": "De acuerdo con la clasificación PALM-COEIN para hemorragia uterina anormal (HUA), considerando los datos clínicos y de laboratorio de la paciente, ¿cuál es la categoría etiológica que requiere ser descartada prioritariamente?",
+                "options": [
+                    "A) Coagulopatía (Co)",
+                    "B) Pólipo (P)",
+                    "C) Adenomiosis (A)",
+                    "D) Malignidad e Hiperplasia (M)"
+                ],
+                "answerIndex": 3,
+                "explanation": "La paciente presenta múltiples factores de riesgo para patología endometrial maligna o premaligna: edad (48 años, perimenopáusica), obesidad, DM2 y HAS. La Guía de Práctica Clínica (GPC) establece que toda mujer mayor de 45 años con HUA, o menor de 45 con factores de riesgo, debe descartar hiperplasia o malignidad endometrial. Aunque la anemia microcítica-hipocrómica sugiere pérdida crónica de sangre, y otros diagnósticos de PALM (Pólipo, Adenomiosis) son posibles, la prioridad es descartar la categoría 'M' (Malignidad e Hiperplasia) debido a la gravedad y los factores de riesgo presentes. La ausencia de trombocitopenia en la biometría hemática (BH) hace menos probable una coagulopatía primaria severa como la causa principal del sangrado, aunque no la descarta por completo sin pruebas específicas de coagulación. No hay hallazgos específicos en el tacto vaginal que sugieran pólipos o adenomiosis como causa principal, aunque no se pueden descartar sin estudios adicionales. Sin embargo, la prioridad diagnóstica es el descarte de malignidad/hiperplasia.",
+                "gpcReference": "GPC SSa-347-18, 'Hemorragia Uterina Anormal en Edad Reproductiva', apartados de factores de riesgo y clasificación PALM-COEIN."
+            },
+            {
+                "question": "Considerando la sospecha de patología endometrial en la paciente, ¿cuál es el siguiente paso diagnóstico más adecuado y costo-efectivo, de acuerdo con las Guías de Práctica Clínica mexicanas?",
+                "options": [
+                    "A) Ultrasonido transvaginal para evaluar grosor endometrial.",
+                    "B) Histeroscopia diagnóstica con biopsia dirigida.",
+                    "C) Biopsia por aspiración de endometrio (Pipelle) en consultorio.",
+                    "D) Resonancia Magnética de pelvis con contraste."
+                ],
+                "answerIndex": 2,
+                "explanation": "En mujeres con factores de riesgo para patología endometrial y HUA, la GPC recomienda la toma de muestra endometrial. La biopsia por aspiración endometrial (Pipelle) es el método de primera línea, ambulatorio y costo-efectivo para obtener tejido endometrial y descartar hiperplasia o cáncer, especialmente en el contexto de factores de riesgo. Aunque el ultrasonido transvaginal es útil para evaluar el grosor endometrial, no es diagnóstico definitivo de la histología y un grosor normal no descarta patología en presencia de sangrado. La histeroscopia con biopsia dirigida y la resonancia magnética se reservan para casos donde la biopsia por Pipelle es insuficiente, negativa con alta sospecha clínica, o para evaluación de extensión de enfermedad ya confirmada, no como primer estudio de tamizaje histológico.",
+                "gpcReference": "GPC SSa-347-18, 'Hemorragia Uterina Anormal en Edad Reproductiva', apartado de 'Evaluación diagnóstica'."
+            },
+            {
+                "question": "La biopsia endometrial de la paciente se reporta como 'Hiperplasia Endometrial Compleja sin Atipias'. De acuerdo con las Guías de Práctica Clínica mexicanas, ¿cuál es el manejo inicial más adecuado para esta paciente?",
+                "options": [
+                    "A) Histerectomía total abdominal.",
+                    "B) Observación y seguimiento con ultrasonido cada 6 meses.",
+                    "C) Terapia hormonal con progestágenos orales cíclicos.",
+                    "D) Ablación endometrial."
+                ],
+                "answerIndex": 2,
+                "explanation": "La hiperplasia endometrial compleja sin atipias tiene un riesgo moderado (3-8%) de progresión a carcinoma endometrial. La GPC indica que el tratamiento de primera línea para este tipo de hiperplasia, especialmente en pacientes que no desean preservar la fertilidad (como en este caso, 48 años, G3 P3), es la terapia con progestágenos. Se prefieren los progestágenos orales cíclicos o la liberación intrauterina de levonorgestrel (DIU-LNG) por al menos 3 a 6 meses, seguido de una re-biopsia endometrial. La histerectomía es una opción para casos con atipias, hiperplasia con atipias o falla al tratamiento médico. La observación no es adecuada dada la patología con potencial de progresión. La ablación endometrial no es el tratamiento de elección para la hiperplasia, ya que no elimina el riesgo de progresión maligna y dificulta el seguimiento histológico del endometrio.",
+                "gpcReference": "GPC SSa-348-18, 'Diagnóstico y Tratamiento de la Hiperplasia Endometrial en Mujeres con Hemorragia Uterina Anormal', apartado de 'Tratamiento'."
+            }
+        ]
+    },
+    {
+        "specialty": "mi",
+        "tema": "Origen no anatómico: SOP",
+        "difficulty": "media",
+        "gpcReference": "GPC IMSS-850-18 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico en Mujeres en el Segundo y Tercer Nivel de Atención, 2018.",
+        "case": "Sofía, de 28 años, acude a consulta refiriendo “no me baja bien y no he podido embarazarme”. Su menarca fue a los 13 años, y desde entonces sus ciclos menstruales han sido irregulares (cada 45-60 días). Ha intentado concebir por 2 años sin éxito. Refiere aumento de vello facial, en el pecho y abdomen desde los 18 años, así como brotes de acné persistentes. Ha ganado 10 kg en los últimos 2 años a pesar de realizar ejercicio moderado. Su madre padece diabetes tipo 2.\n\nEn la exploración física se encuentra:\nTA: 110/70 mmHg, FC: 78 lpm, FR: 16 rpm, Temperatura: 36.5 °C.\nPeso: 85 kg, Talla: 1.65 m, IMC: 31.2 kg/m² (Obesidad clase I).\nSe observa hirsutismo moderado en mentón, labio superior y línea alba abdominal (Ferriman-Gallwey estimado de 10). Acné comedoniano y pápulo-pustuloso en región malar y mandibular. Placas de acantosis nigricans en cuello y axilas. Resto de la exploración sin alteraciones.",
+        "questions": [
+            {
+                "question": "Basado en el cuadro clínico de Sofía descrito en el caso, ¿cuál es el diagnóstico más probable según los criterios de Rotterdam?",
+                "options": [
+                    "Síndrome de Ovario Poliquístico (SOP).",
+                    "Hiperplasia suprarrenal congénita de inicio tardío.",
+                    "Hipotiroidismo primario.",
+                    "Tumor secretor de andrógenos."
+                ],
+                "answerIndex": 0,
+                "explanation": "Sofía cumple con al menos dos de los tres criterios de Rotterdam para el diagnóstico de SOP: 1) Oligo-ovulación y/o anovulación, manifestada por ciclos menstruales irregulares (cada 45-60 días) e infertilidad de 2 años. 2) Signos clínicos de hiperandrogenismo, incluyendo hirsutismo y acné. La obesidad y la acantosis nigricans son hallazgos frecuentes que sugieren resistencia a la insulina, fuertemente asociada al SOP. Aunque no se cuenta con el ultrasonido ovárico en este momento, la combinación de anovulación crónica e hiperandrogenismo clínico es suficiente para establecer un diagnóstico de alta probabilidad de SOP. Descartando los distractores: la hiperplasia suprarrenal congénita de inicio tardío podría causar hiperandrogenismo, pero el cuadro completo de Sofía (incluyendo acantosis nigricans y obesidad) es más concordante con SOP. El hipotiroidismo primario puede causar irregularidades menstruales y aumento de peso, pero no explica el hirsutismo ni el acné. Un tumor secretor de andrógenos se caracterizaría por un inicio más abrupto y una progresión rápida de los síntomas, con niveles de testosterona marcadamente elevados.",
+                "gpcReference": "GPC IMSS-850-18 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico en Mujeres en el Segundo y Tercer Nivel de Atención, 2018, Sección 5.1 Criterios Diagnósticos."
+            },
+            {
+                "question": "Se ha establecido una alta sospecha de Síndrome de Ovario Poliquístico (SOP) en Sofía. Para confirmar el diagnóstico y descartar otras causas de hiperandrogenismo y anovulación, ¿cuál es el siguiente paso más apropiado en el abordaje diagnóstico, según las GPC mexicanas?",
+                "options": [
+                    "Realizar un perfil hormonal completo que incluya FSH, LH, testosterona total y libre, SHBG, DHEAS, 17-OH progesterona, prolactina y TSH.",
+                    "Solicitar un ultrasonido pélvico transvaginal para evaluar morfología ovárica y conteo folicular.",
+                    "Indicar una prueba de supresión con dexametasona para descartar síndrome de Cushing.",
+                    "Realizar una curva de tolerancia a la glucosa oral de 3 horas."
+                ],
+                "answerIndex": 0,
+                "explanation": "Según las GPC mexicanas, el siguiente paso más apropiado ante la sospecha de SOP es la realización de un perfil hormonal extenso. Este estudio es crucial para: a) establecer el patrón hormonal característico del SOP (elevación de andrógenos, posible relación LH/FSH alterada), y b) descartar otras etiologías con presentaciones similares que son diagnósticos diferenciales importantes. Específicamente, la medición de testosterona total y libre, DHEAS, y 17-OH progesterona es esencial para diferenciar SOP de hiperandrogenismo suprarrenal o tumoral. La prolactina y TSH son necesarias para descartar hiperprolactinemia e hipotiroidismo, respectivamente, que también pueden causar irregularidades menstruales. El ultrasonido pélvico (opción B) es un criterio diagnóstico de Rotterdam y es fundamental, pero la evaluación hormonal permite descartar diferenciales cruciales y se prioriza como paso inicial en el algoritmo diagnóstico para asegurar la exclusión de otras patologías antes de basar el diagnóstico únicamente en imagenología. La prueba de supresión con dexametasona (opción C) no es el estudio inicial más dirigido para SOP. La curva de tolerancia a la glucosa oral (opción D) es importante para evaluar la resistencia a la insulina y el riesgo de diabetes, pero no es un estudio diagnóstico de SOP en sí mismo.",
+                "gpcReference": "GPC IMSS-850-18 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico en Mujeres en el Segundo y Tercer Nivel de Atención, 2018, Sección 5.2 Estudios Complementarios (5.2.1 Estudios de Laboratorio) y Algoritmo 1."
+            },
+            {
+                "question": "Se confirma el diagnóstico de SOP en Sofía y ella manifiesta un fuerte deseo de fertilidad. Se han descartado otras causas de anovulación e hiperandrogenismo. Considerando su IMC elevado (31.2 kg/m²), ¿cuál es el enfoque terapéutico inicial más recomendado según las GPC mexicanas?",
+                "options": [
+                    "Inducción de la ovulación con citrato de clomifeno.",
+                    "Modificaciones en el estilo de vida (dieta hipocalórica y ejercicio) y metformina.",
+                    "Tratamiento con anticonceptivos orales combinados para regular los ciclos.",
+                    "Referencia directa a reproducción asistida (fertilización in vitro)."
+                ],
+                "answerIndex": 1,
+                "explanation": "Para pacientes con SOP que desean fertilidad y presentan sobrepeso u obesidad, la primera línea de tratamiento es la modificación del estilo de vida, incluyendo dieta hipocalórica y ejercicio. La pérdida de peso, incluso moderada (5-10% del peso corporal), puede restaurar la ovulación espontánea en un número significativo de mujeres y mejorar la respuesta a otros tratamientos. La GPC recomienda la metformina en pacientes con SOP y evidencia de resistencia a la insulina (como la acantosis nigricans y el IMC elevado de Sofía) para mejorar la sensibilidad a la insulina, reducir los niveles de andrógenos y, potencialmente, mejorar las tasas de ovulación y embarazo. Es el pilar inicial antes de los inductores de ovulación. El citrato de clomifeno (opción A) es un agente de primera línea para la inducción de la ovulación, pero se recomienda después o en conjunto con las modificaciones del estilo de vida y metformina, especialmente en pacientes con obesidad. Los anticonceptivos orales combinados (opción C) son la terapia de primera línea para el SOP cuando no se desea fertilidad. La fecundación in vitro (opción D) es un tratamiento de alta complejidad reservado para pacientes que no responden a las terapias de primera y segunda línea.",
+                "gpcReference": "GPC IMSS-850-18 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico en Mujeres en el Segundo y Tercer Nivel de Atención, 2018, Sección 6.1.1.1 Manejo no farmacológico y 6.1.2 Manejo farmacológico para la inducción de la ovulación, Algoritmo 2."
+            }
+        ]
+    },
+    {
+        "specialty": "go",
+        "tema": "Introducción: Ciclo genital, Esterilidad y Anticonceptivos",
+        "difficulty": "media",
+        "gpcReference": "GPC IMSS-438-11 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico; GPC IMSS-603-13 Diagnóstico y Tratamiento de la Pareja Infértil",
+        "case": "Femenino de 28 años acude a consulta por esterilidad primaria de 14 meses de evolución. Antecedentes: menarca a los 12 años, ciclos de 45 a 60 días de duración con sangrado abundante de 7 días. Exploración física: TA 120/80 mmHg, FC 72 lpm, FR 16 rpm. IMC 30.2 kg/m² (Obesidad grado I), acantosis nigricans en cuello y presencia de vello terminal en labio superior y mentón (Escala de Ferriman-Gallwey de 9 puntos). Su pareja cuenta con un seminograma dentro de parámetros normales (criterios OMS 2010/2021).",
+        "questions": [
+            {
+                "question": "¿Cuál es su sospecha diagnóstica inicial en esta paciente?",
+                "options": [
+                    "Endometriosis pélvica",
+                    "Insuficiencia ovárica prematura",
+                    "Síndrome de Ovario Poliquístico (SOP)",
+                    "Hiperprolactinemia primaria"
+                ],
+                "answerIndex": 2,
+                "explanation": "La paciente cumple con los Criterios de Rotterdam para el diagnóstico de SOP: 1) Oligoovulación/Anovulación (ciclos de 45-60 días) y 2) Hiperandrogenismo clínico (Ferriman-Gallwey ≥8 y acantosis nigricans). La esterilidad se define como la incapacidad de concebir tras 12 meses de VSA sin protección. El SOP es la causa más frecuente de esterilidad por factor endocrino-ovárico.",
+                "gpcReference": "GPC IMSS-438-11 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico."
+            },
+            {
+                "question": "Se decide realizar medición de progesterona sérica en la fase lútea media. ¿Qué resultado confirma la sospecha de ciclos anovulatorios en el abordaje de su esterilidad?",
+                "options": [
+                    "Progesterona > 10 ng/ml",
+                    "Progesterona < 3 ng/ml",
+                    "LH / FSH ratio 1:1",
+                    "Estradiol > 200 pg/ml"
+                ],
+                "answerIndex": 1,
+                "explanation": "Según la GPC de la Pareja Infértil, el monitoreo de la ovulación puede realizarse mediante la medición de progesterona sérica entre los días 21 y 23 del ciclo. Un valor < 3 ng/ml es diagnóstico de anovulación. Valores > 10 ng/ml son sugestivos de una función lútea adecuada.",
+                "gpcReference": "GPC IMSS-603-13 Diagnóstico y Tratamiento de la Pareja Infértil."
+            },
+            {
+                "question": "De acuerdo con la GPC mexicana, ¿cuál es el tratamiento farmacológico de primera elección para la inducción de la ovulación en esta paciente?",
+                "options": [
+                    "Metformina",
+                    "Gonadotropinas humanas (hMG)",
+                    "Citrato de Clomifeno",
+                    "Acetato de medroxiprogesterona"
+                ],
+                "answerIndex": 2,
+                "explanation": "La GPC IMSS-438-11 establece que, tras cambios en el estilo de vida (dieta y ejercicio), el Citrato de Clomifeno es el fármaco de primera elección para la inducción de ovulación en pacientes con SOP y deseo de fertilidad. Se debe iniciar con 50 mg/día por 5 días. La Metformina se considera coadyuvante en pacientes con resistencia a la insulina documentada que no responden a clomifeno.",
+                "gpcReference": "GPC IMSS-438-11 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico."
+            }
+        ]
+    },
+    {
+        "specialty": "go",
+        "tema": "Introducción: Ciclo genital, Esterilidad y Anticonceptivos",
+        "difficulty": "media",
+        "gpcReference": "GPC-IMSS-603-13 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico; GPC-IMSS-630-13 Diagnóstico y Tratamiento de la Infertilidad",
+        "case": "Femenina de 28 años, acude a consulta por incapacidad para lograr embarazo tras 18 meses de vida sexual activa, regular, sin uso de MAC. Antecedentes: Menarca 11 años, ciclos menstruales de 45 a 60 días, duración 4 días. EF: IMC 30.5 kg/m² (Obesidad grado I), acantosis nigricans en región cervical, vello terminal en mentón, pecho y línea alba (Escala de Ferriman-Gallwey: 11 puntos). SV: TA 120/80 mmHg, FC 76 lpm, FR 18 rpm. Se integra protocolo de estudio de la pareja infértil.",
+        "questions": [
+            {
+                "question": "¿Cuál es el diagnóstico clínico más probable según los criterios de Rotterdam?",
+                "options": [
+                    "Síndrome de Ovario Poliquístico",
+                    "Hiperprolactinemia primaria",
+                    "Insuficiencia ovárica prematura",
+                    "Hiperplasia suprarrenal congénita no clásica"
+                ],
+                "answerIndex": 0,
+                "explanation": "La paciente cumple con los criterios de Rotterdam para SOP al presentar: 1) Disfunción ovulatoria (oligomenorrea con ciclos >35 días) y 2) Hiperandrogenismo clínico (hirsutismo con Ferriman-Gallwey ≥8). La obesidad y la acantosis nigricans refuerzan la sospecha de resistencia a la insulina asociada. Se define como infertilidad primaria debido a que nunca ha logrado un embarazo tras ≥12 meses de búsqueda. Perla ENARM: El SOP es la causa más frecuente de infertilidad anovulatoria.",
+                "gpcReference": "GPC-IMSS-603-13 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico."
+            },
+            {
+                "question": "Se solicita USG transvaginal para complementar el protocolo. Según la GPC mexicana, ¿cuál hallazgo define el criterio ecográfico para esta patología?",
+                "options": [
+                    "Presencia de 12 o más folículos de 2-9 mm o volumen ovárico >10 cm³",
+                    "Presencia de un folículo dominante >18 mm en fase folicular temprana",
+                    "Imagen en 'copo de nieve' con ausencia de ecos embrionarios",
+                    "Presencia de cuerpo lúteo hemorrágico con líquido libre en fondo de saco"
+                ],
+                "answerIndex": 0,
+                "explanation": "De acuerdo con la GPC IMSS-603-13 (basada en Rotterdam), el criterio ecográfico se establece con la presencia de uno o ambos ovarios con 12 o más folículos que midan de 2-9 mm de diámetro y/o un volumen ovárico mayor a 10 cm³. Nota: Si existe un folículo dominante (>10 mm) o cuerpo lúteo, el estudio debe repetirse en el siguiente ciclo. Perla ENARM: El USG debe realizarse preferentemente en fase folicular temprana (días 2-5 del ciclo).",
+                "gpcReference": "GPC-IMSS-603-13 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico."
+            },
+            {
+                "question": "Tras recomendar modificaciones en el estilo de vida, la paciente persiste con anovulación y deseo de concepción. ¿Cuál es el fármaco de primera elección para la inducción de la ovulación en México?",
+                "options": [
+                    "Gonadotropinas (FSH recombinante)",
+                    "Citrato de clomifeno",
+                    "Letrozol",
+                    "Metformina como monoterapia"
+                ],
+                "answerIndex": 1,
+                "explanation": "Según la GPC IMSS-603-13 y la GPC-IMSS-630-13, el Citrato de clomifeno es el tratamiento de primera línea para la inducción de la ovulación en pacientes con SOP e infertilidad. El Letrozol ha demostrado mayor tasa de nacidos vivos en guías internacionales recientes, sin embargo, la normativa nacional vigente para fines del ENARM sigue posicionando al clomifeno como la primera opción farmacológica. La metformina solo se recomienda como coadyuvante en casos de intolerancia a la glucosa o falla al clomifeno.",
+                "gpcReference": "GPC-IMSS-630-13 Diagnóstico y Tratamiento de la Infertilidad y GPC-IMSS-603-13 SOP."
+            }
+        ]
+    },
+    {
+        "specialty": "Ginecología y Obstetricia",
+        "tema": "Turner, Morris, Rokitansky",
+        "difficulty": "media",
+        "gpcReference": "GPC IMSS-589-12 Diagnóstico y Tratamiento de la Amenorrea Primaria",
+        "case": "Paciente femenina de 17 años es enviada a consulta por amenorrea primaria. A la EF se reporta: talla 1.70 m (p90), desarrollo mamario Tanner IV, vello axilar y púbico ausente (Tanner I). A la inspección de genitales externos se observa vagina de fondo de saco ciego (longitud 4 cm) y se palpan masas de consistencia firme, no dolorosas, en ambas regiones inguinales. No se detectan otras alteraciones en la exploración física dirigida.",
+        "questions": [
+            {
+                "question": "¿Cuál es el diagnóstico clínico más probable en esta paciente?",
+                "options": [
+                    "Síndrome de Turner",
+                    "Síndrome de Rokitansky-Küster-Hauser",
+                    "Síndrome de Insensibilidad Completa a los Andrógenos (Morris)",
+                    "Disgenesia Gonadal Pura (Síndrome de Swyer)"
+                ],
+                "answerIndex": 2,
+                "explanation": "La clave diagnóstica del Síndrome de Morris (Insensibilidad Completa a los Andrógenos) es la discordancia entre el fenotipo femenino con adecuado desarrollo mamario (por aromatización periférica de testosterona a estrógenos) y la ausencia de vello púbico/axilar (debido a la nula acción de los andrógenos en el receptor). A diferencia del Síndrome de Rokitansky, donde el vello es normal (46,XX), en Morris el vello es escaso o ausente y el cariotipo es 46,XY. Las masas inguinales corresponden a testículos no descendidos. El Síndrome de Turner se descarta por la talla alta y el desarrollo mamario presente.",
+                "gpcReference": "GPC IMSS-589-12 Diagnóstico y Tratamiento de la Amenorrea Primaria"
+            },
+            {
+                "question": "Para confirmar la sospecha diagnóstica, ¿cuál es el estudio de elección definitivo?",
+                "options": [
+                    "Ultrasonido pélvico-abdominal",
+                    "Cariotipo con bandeo G",
+                    "Niveles séricos de Hormona Folículo Estimulante (FSH)",
+                    "Determinación de niveles de Testosterona total"
+                ],
+                "answerIndex": 1,
+                "explanation": "Ante la sospecha de un trastorno de la diferenciación sexual (DSD) con fenotipo femenino y ausencia de derivados de los conductos de Müller (útero), el estudio definitivo para confirmar la etiología es el cariotipo periférico. En el Síndrome de Morris, el reporte será 46,XY. Si bien el ultrasonido es parte del abordaje inicial para documentar la ausencia de útero, el cariotipo es el estándar de oro para diferenciarlo de anomalías müllerianas como Rokitansky (46,XX).",
+                "gpcReference": "GPC IMSS-589-12 Diagnóstico y Tratamiento de la Amenorrea Primaria"
+            },
+            {
+                "question": "Una vez confirmado el diagnóstico y completada la pubertad, ¿cuál es la conducta terapéutica indicada para prevenir complicaciones a largo plazo?",
+                "options": [
+                    "Orquiectomía bilateral y terapia de reemplazo estrogénico",
+                    "Administración de testosterona para inducir virilización",
+                    "Laparoscopia para orquidopexia bilateral",
+                    "Uso exclusivo de dilatadores vaginales de Frank"
+                ],
+                "answerIndex": 0,
+                "explanation": "En el Síndrome de Morris, las gónadas (testículos) presentan un riesgo incrementado de malignización (disgerminoma o seminoma) que aumenta tras la pubertad (estimado en 5-10%). La GPC y el consenso médico indican realizar la gonadectomía (orquiectomía) después de que la paciente complete su desarrollo puberal de forma espontánea (gracias a la aromatización de sus propios andrógenos). Posteriormente, se inicia terapia de reemplazo hormonal con estrógenos para prevenir síntomas de hipoestrogenismo y proteger la densidad mineral ósea.",
+                "gpcReference": "GPC IMSS-589-12 Diagnóstico y Tratamiento de la Amenorrea Primaria"
+            }
+        ]
+    },
+    {
+        "specialty": "mi",
+        "tema": "Amenorreas Primarias y Secundarias",
+        "difficulty": "media",
+        "gpcReference": "GPC Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico (SS-626-13)",
+        "case": "Femenina de 23 años acude a consulta por ausencia de menstruación de 7 meses de evolución. Antecedentes: menarquia a los 12 años, ciclos irregulares previos (35-50 días). A la EF: TA 120/80 mmHg, FC 76 lpm, FR 18 rpm, IMC 31.2 kg/m². Se identifica acantosis nigricans en nuca y pliegues, además de vello terminal en barbilla, tórax y línea alba (Escala de Ferriman-Gallwey: 10 puntos). Los resultados de laboratorio reportan: Prueba inmunológica de embarazo (PIE) negativa, TSH 2.5 mUI/L y Prolactina 15 ng/mL (normales).",
+        "questions": [
+            {
+                "question": "¿Cuál es el diagnóstico más probable de acuerdo a la presentación clínica?",
+                "options": [
+                    "Síndrome de Ovario Poliquístico (SOP)",
+                    "Insuficiencia Ovárica Prematura",
+                    "Hiperplasia Suprarrenal Congénita No Clásica",
+                    "Amenorrea Hipotalámica Funcional"
+                ],
+                "answerIndex": 0,
+                "explanation": "La paciente cumple con los criterios diagnósticos de Rotterdam para SOP: 1) Oligo/amenorrea (amenorrea de 7 meses) y 2) Hiperandrogenismo clínico (hirsutismo con Ferriman-Gallwey ≥8 y acantosis nigricans como marcador indirecto de resistencia a la insulina). Se han descartado otras causas mediante TSH y Prolactina normales y PIE negativa. El IMC elevado y la acantosis son hallazgos frecuentemente asociados.",
+                "gpcReference": "GPC Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico (SS-626-13)"
+            },
+            {
+                "question": "Para completar la evaluación morfológica siguiendo los criterios de Rotterdam, se solicita un ultrasonido pélvico. ¿Qué hallazgo define la morfología de ovarios poliquísticos según la norma vigente?",
+                "options": [
+                    "Presencia de un folículo dominante >18 mm",
+                    "Volumen ovárico >10 cc o ≥12 folículos de 2-9 mm de diámetro",
+                    "Grosor endometrial >15 mm en fase proliferativa",
+                    "Presencia de estroma ovárico hipoecoico"
+                ],
+                "answerIndex": 1,
+                "explanation": "Según el consenso de Rotterdam y la GPC mexicana, el criterio ecográfico de SOP se establece ante la presencia de 12 o más folículos con diámetros de 2 a 9 mm en cada ovario, o un volumen ovárico aumentado (>10 cm³). Es suficiente que un solo ovario cumpla estos requisitos.",
+                "gpcReference": "GPC Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico (SS-626-13)"
+            },
+            {
+                "question": "La paciente no desea embarazo y solicita manejo para regularizar sus ciclos y disminuir el hirsutismo. ¿Cuál es el tratamiento de primera línea según la GPC?",
+                "options": [
+                    "Metformina como monoterapia",
+                    "Citrato de Clomifeno",
+                    "Anticonceptivos orales combinados (AOC)",
+                    "Espironolactona como monoterapia"
+                ],
+                "answerIndex": 2,
+                "explanation": "En pacientes con SOP que no desean embarazo, los Anticonceptivos Orales Combinados (AOC) a dosis bajas (etilnilestradiol 20-35 mcg) son la primera línea de tratamiento. Estos regulan los ciclos, protegen el endometrio de la exposición estrogénica sin oposición (previniendo hiperplasia/cáncer) y suprimen la producción de andrógenos ováricos mientras aumentan la SHBG, mejorando el hirsutismo.",
+                "gpcReference": "GPC Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico (SS-626-13)"
+            }
+        ]
+    },
+    {
+        "specialty": "go",
+        "tema": "Origen no anatómico: SOP",
+        "difficulty": "media",
+        "gpcReference": "GPC IMSS-165-09 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico",
+        "case": "Femenino de 24 años, soltera, acude a consulta por irregularidades menstruales de 2 años de evolución (ciclos de 45 a 60 días). Antecedentes: menarca a los 12 años, IVSA 19 años, G:0. Exploración física: IMC 31.5 kg/m², acné moderado en rostro, vello terminal en región suprapúbica, mentón y tórax (Escala de Ferriman-Gallwey: 10 puntos). Se observa acantosis nigricans en cuello y axilas. Signos vitales: TA 120/75 mmHg, FC 78 lpm, FR 16 rpm. USG TV reporta ovarios con presencia de 14 folículos de 3-5 mm en la periferia de ambos ovarios y volumen ovárico de 12 cc.",
+        "questions": [
+            {
+                "question": "¿Cuál es el diagnóstico clínico más probable siguiendo los criterios de Rotterdam adoptados por la normativa nacional?",
+                "options": [
+                    "Síndrome de Ovario Poliquístico (SOP)",
+                    "Hiperplasia Suprarrenal Congénita de inicio tardío",
+                    "Insuficiencia Ovárica Prematura",
+                    "Síndrome de Cushing"
+                ],
+                "answerIndex": 0,
+                "explanation": "La paciente cumple con los 3 Criterios de Rotterdam (se requieren 2 de 3): 1) Oligoovulación (ciclos >35 días), 2) Hiperandrogenismo clínico (hirsutismo con Ferriman-Gallwey ≥8 y acné), y 3) Morfología de ovarios poliquísticos por USG. La acantosis nigricans es un marcador clínico de resistencia a la insulina, condición fisiopatológica central del SOP.",
+                "gpcReference": "GPC IMSS-165-09 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico"
+            },
+            {
+                "question": "De acuerdo con la GPC, ¿qué hallazgo ecográfico es necesario para establecer el criterio de morfología de ovario poliquístico?",
+                "options": [
+                    "Presencia de un folículo dominante de 18 mm",
+                    "Presencia de 12 o más folículos con diámetros de 2 a 9 mm en uno o ambos ovarios",
+                    "Volumen ovárico mayor a 8 cc en un solo ovario",
+                    "Presencia de quistes tecaluteínicos bilaterales"
+                ],
+                "answerIndex": 1,
+                "explanation": "Según la GPC mexicana (basada en Rotterdam), el criterio ecográfico se define como la presencia de 12 o más folículos con diámetros de 2 a 9 mm y/o un volumen ovárico mayor a 10 cm³ (o cc). La evaluación debe realizarse preferentemente por vía transvaginal en fase folicular temprana.",
+                "gpcReference": "GPC IMSS-165-09 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico"
+            },
+            {
+                "question": "La paciente no desea embarazo actualmente. ¿Cuál es el tratamiento de primera línea para el control de las irregularidades menstruales y el hirsutismo en esta paciente?",
+                "options": [
+                    "Metformina 850 mg cada 12 horas como monoterapia",
+                    "Citrato de Clomifeno 50 mg/día por 5 días",
+                    "Anticonceptivos orales combinados (AOC) y cambios en el estilo de vida",
+                    "Espironolactona 100 mg/día como primera línea"
+                ],
+                "answerIndex": 2,
+                "explanation": "En pacientes con SOP sin deseo genésico inmediato, la primera línea de tratamiento son los anticonceptivos orales combinados (AOC) a dosis bajas, acompañados de cambios en el estilo de vida (dieta y ejercicio para reducción de peso). Los AOC suprimen la LH, aumentan la SHBG (reduciendo la testosterona libre) y previenen la hiperplasia endometrial al inducir descamación cíclica.",
+                "gpcReference": "GPC IMSS-165-09 Diagnóstico y Tratamiento del Síndrome de Ovario Poliquístico"
+            }
+        ]
+    },
+    {
+        "specialty": "go",
+        "tema": "Endometriosis",
+        "difficulty": "media",
+        "gpcReference": "GPC IMSS-162-09 Diagnóstico y Tratamiento de la Endometriosis",
+        "case": "Femenina de 28 años, nuligesta, acude por dolor pélvico crónico de 14 meses de evolución, caracterizado por dismenorrea severa (EVA 9/10) que ha progresado hasta limitar sus actividades diarias y dispareunia de penetración profunda. Antecedentes: menarca a los 11 años, ciclos 28x6 días. EF: TA 110/70 mmHg, FC 72 lpm, Temp 36.5°C. Al tacto vaginal se observa útero en retroversión, fijo y doloroso a la movilización; se palpan nódulos dolorosos en el fondo de saco posterior y ligamentos uterosacros.",
+        "questions": [
+            {
+                "question": "¿Cuál es el diagnóstico clínico más probable en esta paciente?",
+                "options": [
+                    "Adenomiosis",
+                    "Enfermedad Inflamatoria Pélvica (EIP)",
+                    "Endometriosis",
+                    "Miomatosis uterina de grandes elementos"
+                ],
+                "answerIndex": 2,
+                "explanation": "La respuesta correcta es Endometriosis. El cuadro clínico integra la tríada clásica: dismenorrea, dispareunia y dolor pélvico crónico (a menudo asociado a infertilidad). La exploración física con útero fijo en retroversión y nódulos en ligamentos uterosacros es altamente sugestiva de infiltración profunda y adherencias. Perla ENARM: Ante dismenorrea severa que no responde a analgésicos convencionales en paciente joven, sospeche siempre endometriosis. GPC Referencia: Diagnóstico y Tratamiento de la Endometriosis, México.",
+                "gpcReference": "GPC IMSS-162-09 Diagnóstico y Tratamiento de la Endometriosis"
+            },
+            {
+                "question": "Para confirmar el diagnóstico y realizar la estadificación de la severidad de acuerdo con los hallazgos descritos, ¿cuál es el estudio considerado el estándar de oro?",
+                "options": [
+                    "Resonancia Magnética (RM) de pelvis con contraste",
+                    "Ultrasonido transvaginal Doppler color",
+                    "Laparoscopia con toma de biopsia",
+                    "Determinación sérica de marcador CA-125"
+                ],
+                "answerIndex": 2,
+                "explanation": "La laparoscopia con toma de biopsia es el estándar de oro. Permite la visualización directa de las lesiones (típicamente 'quemadura de pólvora' o 'quistes en chocolate') y la estadificación según la American Society for Reproductive Medicine (ASRM). La biopsia confirma la presencia de glándulas y estroma endometrial fuera del útero. El CA-125 puede elevarse pero carece de especificidad diagnóstica. GPC Referencia: Diagnóstico y Tratamiento de la Endometriosis, México.",
+                "gpcReference": "GPC IMSS-162-09 Diagnóstico y Tratamiento de la Endometriosis"
+            },
+            {
+                "question": "De acuerdo con la GPC, ¿cuál es el esquema farmacológico de primera línea para el manejo del dolor asociado a esta patología?",
+                "options": [
+                    "Análogos de la hormona liberadora de gonadotropina (GnRH)",
+                    "Anticonceptivos orales combinados + AINE",
+                    "Danazol en dosis de 400-800 mg diarios",
+                    "Inhibidores de la aromatasa (Anastrozol)"
+                ],
+                "answerIndex": 1,
+                "explanation": "La GPC establece como tratamiento médico inicial para el dolor pélvico asociado a endometriosis el uso de Anticonceptivos Orales Combinados (AOC) y Antiinflamatorios No Esteroideos (AINE) por un periodo de prueba de 3 a 6 meses. Los análogos de GnRH son de segunda línea debido a su perfil de efectos secundarios y costo. El Danazol ya no es primera línea por sus efectos androgénicos. GPC Referencia: Diagnóstico y Tratamiento de la Endometriosis, México.",
+                "gpcReference": "GPC IMSS-162-09 Diagnóstico y Tratamiento de la Endometriosis"
+            }
+        ]
+    },
+    {
+        "specialty": "go",
+        "tema": "Hemorragia Uterina Anormal",
+        "difficulty": "media",
+        "gpcReference": "GPC SS-336-18 Diagnóstico y Tratamiento de la Hemorragia Uterina Anormal",
+        "case": "Paciente femenina de 43 años, Gesta 3, Para 3, acude a consulta por presentar sangrado menstrual abundante (SMA) de 6 meses de evolución, con duración de 10 días y presencia de coágulos abundantes que limitan sus actividades diarias. Antecedentes: IMC 31.5 kg/m2. A la exploración física (EF): TA 115/75 mmHg, FC 78 lpm, FR 16 rpm; abdomen globoso por panículo adiposo, se palpa útero de aproximadamente 12 cm de tamaño total (equivalente a gestación de 12 SDG), de contorno regular y consistencia firme, no doloroso a la palpación. Laboratorios: BH con Hb 10.1 g/dL, Hto 31%, Plaquetas 245,000/mm3. Prueba de embarazo (hCG-b) negativa.",
+        "questions": [
+            {
+                "question": "¿Cuál es la etiología más probable de la Hemorragia Uterina Anormal (HUA) en esta paciente según la clasificación FIGO (PALM-COEIN)?",
+                "options": [
+                    "Adenomiosis (A)",
+                    "Leiomiomatosis uterina (L)",
+                    "Malignidad e hiperplasia (M)",
+                    "Disfunción ovulatoria (O)"
+                ],
+                "answerIndex": 1,
+                "explanation": "La respuesta correcta es Leiomiomatosis uterina (L). En pacientes en la cuarta década de la vida con SMA y hallazgo clínico de un útero aumentado de tamaño, de consistencia firme y contorno regular, la causa estructural más frecuente es la leiomiomatosis. La adenomiosis (A) típicamente presenta un útero globalmente aumentado, pero de consistencia blanda y a menudo doloroso. Perla ENARM: La 'L' de Leiomiomatosis representa la causa anatómica más común de HUA en México en edad reproductiva tardía. Referencia: GPC-SS-336-18.",
+                "gpcReference": "GPC SS-336-18 Diagnóstico y Tratamiento de la Hemorragia Uterina Anormal."
+            },
+            {
+                "question": "De acuerdo con la GPC, ¿cuál es el estudio de gabinete inicial de elección para el abordaje diagnóstico de esta paciente?",
+                "options": [
+                    "Histeroscopia con toma de biopsia",
+                    "Resonancia Magnética (RM) de pelvis",
+                    "Ultrasonido transvaginal (USTV)",
+                    "Histerosonografía"
+                ],
+                "answerIndex": 2,
+                "explanation": "El ultrasonido transvaginal (USTV) es el estudio de imagen de primera línea para la evaluación de la HUA (evidencia IA). Posee una alta sensibilidad para detectar patología estructural como miomas. La GPC indica que es el primer paso ante la sospecha de miomatosis o alteraciones endometriales. La RM se reserva para casos complejos o planeación quirúrgica específica, no como abordaje inicial. Perla ENARM: El USTV permite diferenciar entre causas del grupo 'PALM'. Referencia: GPC-SS-336-18.",
+                "gpcReference": "GPC SS-336-18 Diagnóstico y Tratamiento de la Hemorragia Uterina Anormal."
+            },
+            {
+                "question": "Considerando la edad de la paciente y el cuadro de HUA crónica, ¿cuál es la conducta diagnóstica obligatoria para descartar malignidad según la normativa mexicana?",
+                "options": [
+                    "Realizar legrado uterino instrumental (LUI)",
+                    "Biopsia de endometrio",
+                    "Determinación de niveles de CA-125",
+                    "Papanicolaou y colposcopia"
+                ],
+                "answerIndex": 1,
+                "explanation": "En toda paciente mayor de 40 años con HUA, es obligatorio realizar una biopsia de endometrio (toma de muestra endometrial) para descartar hiperplasia o cáncer de endometrio (componente 'M'). Otros criterios incluyen: falla al tratamiento médico, sospecha de malignidad por imagen o grosor endometrial >12 mm en premenopáusicas. El LUI ya no se considera de primera línea para diagnóstico si se dispone de métodos de biopsia dirigida o por aspiración. Perla ENARM: El punto de corte de edad para biopsia obligatoria en México es ≥ 40 años. Referencia: GPC-SS-336-18.",
+                "gpcReference": "GPC SS-336-18 Diagnóstico y Tratamiento de la Hemorragia Uterina Anormal."
+            }
+        ]
+    },
+    {
+        "specialty": "go",
+        "tema": "Menopausia y Climaterio",
+        "difficulty": "media",
+        "gpcReference": "GPC-IMSS-019-21 Diagnóstico y Tratamiento de la Perimenopausia y Postmenopausia",
+        "case": "Femenina de 51 años, sin antecedentes crónico-degenerativos, acude a consulta por amenorrea de 14 meses de evolución. Refiere síntomas vasomotores (bochornos de predominio nocturno) que afectan la calidad del sueño, irritabilidad y dispareunia ocasional. Signos vitales: TA 120/80 mmHg, FC 74 lpm, FR 18 rpm, T 36.5°C, IMC 28.5 kg/m2 (Sobrepeso). Exploración física: Mucosa vaginal pálida, con pérdida de pliegues y disminución de la turgencia; resto de la exploración sin hallazgos patológicos.",
+        "questions": [
+            {
+                "question": "De acuerdo con la GPC mexicana y la nomenclatura STRAW + 10, ¿cuál es el diagnóstico clínico de la paciente?",
+                "options": [
+                    "Transición a la menopausia",
+                    "Insuficiencia Ovárica Prematura",
+                    "Postmenopausia",
+                    "Perimenopausia tardía"
+                ],
+                "answerIndex": 2,
+                "explanation": "La GPC define la postmenopausia como el periodo que se establece tras 12 meses consecutivos de amenorrea en una mujer con fisiología ovárica previamente normal. Dado que la paciente tiene 51 años (edad promedio en México 47.6 a 50 años) y 14 meses de amenorrea, el diagnóstico es postmenopausia. La Insuficiencia Ovárica Prematura (antes falla ovárica) se reserva para menores de 40 años.",
+                "gpcReference": "GPC-IMSS-019-21 Diagnóstico y Tratamiento de la Perimenopausia y Postmenopausia"
+            },
+            {
+                "question": "Se decide iniciar Terapia Hormonal (TH) para el control de los síntomas vasomotores moderados-intensos. Debido a que la paciente cuenta con útero íntegro, ¿cuál es el esquema farmacológico de elección inicial?",
+                "options": [
+                    "Estrógenos simples vía oral",
+                    "Esquema combinado (estrógenos más progestágenos)",
+                    "Estrógenos locales únicamente",
+                    "Inhibidores selectivos de la recaptura de serotonina (ISRS)"
+                ],
+                "answerIndex": 1,
+                "explanation": "La normativa nacional y la seguridad oncológica dictan que toda mujer con útero íntegro debe recibir terapia combinada (estrógenos + progestágenos). El progestágeno es mandatorio para la protección endometrial y prevenir la hiperplasia o cáncer de endometrio derivado de la estimulación estrogénica sin oposición. La TH simple (solo estrógenos) se indica exclusivamente en mujeres con antecedente de histerectomía.",
+                "gpcReference": "GPC-IMSS-019-21 Diagnóstico y Tratamiento de la Perimenopausia y Postmenopausia"
+            },
+            {
+                "question": "Previo al inicio del tratamiento, es imperativo descartar contraindicaciones. ¿Cuál de los siguientes hallazgos representa una contraindicación absoluta para la Terapia Hormonal en esta paciente?",
+                "options": [
+                    "Tabaquismo actual",
+                    "Hipertensión Arterial Sistémica controlada",
+                    "Sangrado uterino anormal no diagnosticado",
+                    "Antecedente de miomatosis uterina de pequeños elementos"
+                ],
+                "answerIndex": 2,
+                "explanation": "Según la GPC, las contraindicaciones absolutas para TH incluyen: cáncer de mama (actual o antecedente), tumores dependientes de hormonas (endometrio), sangrado uterino anormal de etiología no determinada, tromboembolismo venoso activo, enfermedad hepática aguda, o antecedente de enfermedad tromboembólica arterial. El sangrado no diagnosticado requiere estudio (USG/Biopsia) antes de considerar cualquier TH.",
+                "gpcReference": "GPC-IMSS-019-21 Diagnóstico y Tratamiento de la Perimenopausia y Postmenopausia"
+            }
+        ]
+    },
+    {
+        "specialty": "go",
+        "tema": "Miomatosis Uterina",
+        "difficulty": "media",
+        "gpcReference": "GPC IMSS-082-08 Diagnóstico y Tratamiento de Miomatosis Uterina",
+        "case": "Paciente femenina de 42 años, G3 P3 (paridad satisfecha), acude por presentar hiperpolimenorrea de 8 meses de evolución, acompañada de dolor pélvico crónico tipo opresivo. A la EF se palpa útero aumentado de tamaño, aproximadamente 14 cm por arriba de la sínfisis del pubis, de contorno irregular y consistencia firme. Laboratorios iniciales con BH: Hb 9.5 g/dL, Hto 29%, VCM 78 fL. Resto de la QS y tiempos de coagulación dentro de parámetros normales.",
+        "questions": [
+            {
+                "question": "¿Cuál es el estudio de gabinete de primera elección para confirmar la sospecha diagnóstica de miomatosis uterina?",
+                "options": [
+                    "TC abdomino-pélvica con contraste",
+                    "RM de pelvis con supresión grasa",
+                    "USG pélvico o transvaginal",
+                    "Histeroscopia diagnóstica con toma de biopsia"
+                ],
+                "answerIndex": 2,
+                "explanation": "Según la GPC mexicana, el USG es el método de gabinete de primera elección ante la sospecha de miomatosis uterina debido a que presenta una sensibilidad del 85% para detectar miomas de 3 cm o más. La TC no tiene un rol relevante en el diagnóstico primario y la RM se reserva para diferenciar miomas de adenomiosis o planificar cirugías complejas.",
+                "gpcReference": "GPC IMSS-082-08 Diagnóstico y Tratamiento de Miomatosis Uterina."
+            },
+            {
+                "question": "El USG reporta útero de 16x10x12 cm con múltiples miomas, el mayor de 6 cm de tipo intramural (FIGO 4). Debido a la paridad satisfecha, el tamaño uterino mayor a 14 cm y la anemia secundaria, ¿cuál es el tratamiento definitivo de elección?",
+                "options": [
+                    "Miomectomía abdominal",
+                    "Histerectomía",
+                    "Embolización de arterias uterinas",
+                    "Ablación endometrial por radiofrecuencia"
+                ],
+                "answerIndex": 1,
+                "explanation": "En México, la GPC establece que la histerectomía es el tratamiento definitivo para la miomatosis uterina sintomática en pacientes con paridad satisfecha. Se indica especialmente cuando el tamaño uterino es mayor a 14 cm (equivalente a 14 SDG), hay falla al tratamiento médico, dolor crónico o anemia moderada-grave.",
+                "gpcReference": "GPC IMSS-082-08 Diagnóstico y Tratamiento de Miomatosis Uterina."
+            },
+            {
+                "question": "Previo al procedimiento quirúrgico programado, se decide administrar un fármaco para reducir el tamaño de los miomas y mejorar las cifras de Hb. ¿Cuál es el tratamiento farmacológico de elección para este fin preoperatorio?",
+                "options": [
+                    "Anticonceptivos orales combinados (AOC)",
+                    "Análogos de la hormona liberadora de gonadotropinas (GnRH)",
+                    "Dispositivo intrauterino de Levonorgestrel (DIU-LNG)",
+                    "Acetato de medroxiprogesterona de depósito"
+                ],
+                "answerIndex": 1,
+                "explanation": "Los análogos de GnRH (como el leuprolide) son el tratamiento de elección preoperatorio por un periodo de 3 a 6 meses. La GPC indica que reducen el tamaño de los miomas en un 35-60%, facilitando la técnica quirúrgica (especialmente en úteros grandes) y permiten corregir la anemia al inducir amenorrea transitoria.",
+                "gpcReference": "GPC IMSS-082-08 Diagnóstico y Tratamiento de Miomatosis Uterina."
+            }
+        ]
+    },
+    {
+        "specialty": "go",
+        "tema": "Tamizaje CACU, CaVa, Vagina y Vulva",
+        "difficulty": "media",
+        "gpcReference": "GPC-SS-146-18 Prevención y Detección del Cáncer del Cuello Uterino; NOM-014-SSA2-1994",
+        "case": "Femenina de 42 años, tabaquismo (IT: 12), acude a su UMF para chequeo preventivo. AGO: G3, P3, IVSA 16 años, 4 parejas sexuales. No se ha realizado tamizaje cervical en los últimos 6 años. A la exploración física no se observan lesiones macroscópicas en vulva, periné ni vagina. Se procede a realizar toma de tamizaje para cáncer de cuello uterino (CACU).",
+        "questions": [
+            {
+                "question": "De acuerdo con la NOM-014 y las GPC vigentes, ¿cuál es el esquema de tamizaje de elección para esta paciente considerando su edad?",
+                "options": [
+                    "Citología cervical convencional (Papanicolaou)",
+                    "Prueba de detección de ADN de VPH de alto riesgo (VPH-AR)",
+                    "Inspección visual con ácido acético (IVAA)",
+                    "Colposcopia diagnóstica"
+                ],
+                "answerIndex": 1,
+                "explanation": "En México, la normativa (NOM-014 y GPC 2018) establece que el tamizaje para CACU se realiza según la edad: de 25-34 años con citología cervical (cada 3 años tras 2 anuales negativas) y de 35-64 años mediante la detección de ADN de VPH-AR. Si la prueba de VPH es negativa, se repite cada 5 años. La IVAA se reserva para entornos de muy bajos recursos. Perla ENARM: El tabaquismo aumenta 2-3 veces el riesgo de progresión de lesiones precursoras.",
+                "gpcReference": "GPC-SS-146-18 Prevención y Detección del Cáncer del Cuello Uterino"
+            },
+            {
+                "question": "Se reporta resultado: 'Positivo para VPH de alto riesgo (genotipo 16)'. La citología de triaje realizada simultáneamente reporta: 'Negativa para lesión intraepitelial (LIE)'. ¿Cuál es la conducta a seguir según el algoritmo vigente?",
+                "options": [
+                    "Repetir prueba de VPH-AR en 12 meses",
+                    "Nueva citología cervical en 6 meses",
+                    "Envío inmediato a Clínica de Colposcopia",
+                    "Vigilancia con citología anual"
+                ],
+                "answerIndex": 2,
+                "explanation": "Según el algoritmo de la GPC mexicana, si una paciente de 35-64 años resulta positiva para VPH genotipos 16 o 18, debe ser referida a colposcopia de forma inmediata, sin importar que la citología de triaje sea negativa. Si fuera positiva para 'otros' VPH-AR (no 16/18) con citología negativa, se repetiría el esquema en 12 meses. Perla ENARM: VPH-16 es el tipo más oncogénico y se asocia principalmente a carcinoma epidermoide.",
+                "gpcReference": "GPC-SS-146-18 Prevención y Detección del Cáncer del Cuello Uterino"
+            },
+            {
+                "question": "En la Clínica de Colposcopia se identifica zona de transformación tipo 1 y epitelio acetoblanco denso con mosaico grueso. La biopsia dirigida reporta: 'Neoplasia Intraepitelial Cervical grado 2 (NIC 2 / LIE de alto grado)'. ¿Cuál es el tratamiento de elección?",
+                "options": [
+                    "Vigilancia citológica cada 6 meses por 2 años",
+                    "Histerectomía total extrafascial",
+                    "Procedimiento de escisión electroquirúrgica con asa (LEEP)",
+                    "Crioterapia cervical"
+                ],
+                "answerIndex": 2,
+                "explanation": "Para lesiones intraepiteliales de alto grado (NIC 2 y NIC 3) en pacientes con paridad satisfecha o mayores de 25 años, el tratamiento de elección es la escisión. El LEEP (o cono con asa diatérmica) es el estándar de oro ya que permite el estudio histopatológico de los bordes y el cono, a diferencia de los métodos ablativos como la crioterapia (que solo se usan si se cumplen criterios estrictos). La histerectomía no es manejo inicial para NIC 2. Perla ENARM: El tratamiento de las LIE de alto grado busca prevenir la progresión a cáncer invasor.",
+                "gpcReference": "GPC-IMSS-162-09 Diagnóstico y Tratamiento de las Lesiones Intraepiteliales Cervicales"
+            }
+        ]
+    },
+    {
+        "specialty": "gyo",
+        "tema": "Patología Mamaria: Benigna y Cáncer de Mama",
+        "difficulty": "media",
+        "gpcReference": "GPC-SS-232-21 Prevención, Tamizaje y Referencia de Cáncer de Mama; GPC-IMSS-232-15 Tratamiento del Cáncer de Mama.",
+        "case": "Mujer de 48 años, acude a consulta por notar una tumoración en la mama derecha de 2 meses de evolución. En la exploración física (EF) se palpa nódulo de 3 cm en el cuadrante superior externo (CSE), de consistencia pétrea, irregular, fijo a planos profundos, sin adenopatías axilares palpables. Signos vitales: TA 120/80 mmHg, FC 72 lpm, FR 16 rpm, Temp 36.6°C. No cuenta con mastografías previas.",
+        "questions": [
+            {
+                "question": "De acuerdo con la normativa mexicana y la edad de la paciente, ¿cuál es el estudio de imagen inicial indicado para el abordaje de esta lesión?",
+                "options": [
+                    "Ultrasonido mamario bilateral",
+                    "Mastografía diagnóstica bilateral y ultrasonido complementario",
+                    "Resonancia magnética con contraste dinámico",
+                    "Tomografía computarizada de tórax"
+                ],
+                "answerIndex": 1,
+                "explanation": "En pacientes de 40 años o más con una masa palpable sospechosa, la GPC-SS-232-21 establece que el estudio de imagen inicial debe ser la mastografía diagnóstica bilateral (para evaluación de ambas mamas y comparación). El ultrasonido mamario se utiliza como complemento para caracterizar el nódulo y guiar la biopsia. Perla ENARM: En <40 años el estudio de elección inicial es el USG; en ≥40 años es la Mastografía.",
+                "reference": "GPC-SS-232-21 Prevención, Tamizaje y Referencia de Cáncer de Mama."
+            },
+            {
+                "question": "El reporte de imagen describe una lesión espiculada con microcalcificaciones pleomórficas, categorizada como BI-RADS 4C. ¿Cuál es el procedimiento de elección para obtener el diagnóstico definitivo?",
+                "options": [
+                    "Biopsia por aspiración con aguja fina (BAAF)",
+                    "Biopsia por aguja de corte (Trucut) guiada por imagen",
+                    "Biopsia excisional mediante técnica de arponamiento",
+                    "Seguimiento clínico y radiológico en 6 meses"
+                ],
+                "answerIndex": 1,
+                "explanation": "Ante un hallazgo BI-RADS 4 o 5, es obligatoria la confirmación histopatológica. La biopsia por aguja de corte (Trucut) es el estándar de oro inicial en México, ya que permite distinguir entre carcinoma in situ e infiltrante y determinar el perfil de inmunohistoquímica. La BAAF es insuficiente para el diagnóstico definitivo de cáncer de mama ya que no evalúa la arquitectura tisular (invasión).",
+                "reference": "GPC-IMSS-232-15 Tratamiento del Cáncer de Mama en Segundo y Tercer Nivel."
+            },
+            {
+                "question": "El reporte histopatológico confirma Carcinoma Ductal Infiltrante. La inmunohistoquímica reporta: Receptores de Estrógeno (RE) negativos, Receptores de Progesterona (RP) negativos y HER2/neu (3+) positivo. ¿Cuál es el tratamiento adyuvante específico que debe integrarse en el manejo de esta paciente?",
+                "options": [
+                    "Tamoxifeno por un periodo de 5 años",
+                    "Inhibidores de la aromatasa (Anastrozol)",
+                    "Trastuzumab por un periodo de 12 meses",
+                    "Ooforectomía bilateral profiláctica"
+                ],
+                "answerIndex": 2,
+                "explanation": "La paciente presenta un fenotipo HER2-enriquecido (HER2 positivo con receptores hormonales negativos). Según la GPC-IMSS-232-15, en pacientes con sobreexpresión de HER2 (inmunohistoquímica 3+ o FISH positivo), el uso de Trastuzumab (anticuerpo monoclonal anti-HER2) es el estándar de tratamiento adyuvante para reducir la recurrencia y mejorar la supervivencia global. Los moduladores de receptores de estrógeno (Tamoxifeno) o inhibidores de aromatasa no tienen indicación en tumores con receptores negativos.",
+                "reference": "GPC-IMSS-232-15 Tratamiento del Cáncer de Mama en Segundo y Tercer Nivel."
+            }
+        ]
+    }
+]

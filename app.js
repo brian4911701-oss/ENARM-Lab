@@ -74,6 +74,31 @@
 
     const shuffleArray = (arr) => arr.slice().sort(() => Math.random() - 0.5);
 
+    const processAndFlattenPool = (rawPool, maxQty) => {
+        const shuffledCases = shuffleArray([...rawPool]);
+        let flat = [];
+        let cId = 1;
+        for (let c of shuffledCases) {
+            if (flat.length >= maxQty) break;
+            // Support both old format (single question) and new format (questions array)
+            let subs = (c.questions && Array.isArray(c.questions)) ? c.questions : [{ question: c.question, options: c.options, answerIndex: c.answerIndex, explanation: c.explanation }];
+            subs.forEach((sq, idx) => {
+                flat.push({
+                    ...c,
+                    question: sq.question,
+                    options: sq.options,
+                    answerIndex: sq.answerIndex,
+                    explanation: sq.explanation,
+                    caseGroupId: cId,
+                    subQuestionIndex: idx + 1,
+                    totalSubQuestions: subs.length
+                });
+            });
+            cId++;
+        }
+        return flat.slice(0, maxQty);
+    };
+
     const showView = (viewId) => {
         if (State.view === "view-exam" && viewId !== "view-exam" && State.examActive) {
             if (typeof pauseTimer === 'function') {
@@ -1191,11 +1216,13 @@
 
             // Combinar temario oficial con temas dinámicos del banco de preguntas
             const dynTemas = [...new Set(QUESTIONS.map(q => q.tema).filter(t => !!t))];
+            const dynSubtemas = [...new Set(QUESTIONS.map(q => q.subtema).filter(t => !!t))];
             const dynGpcs = [...new Set(QUESTIONS.map(q => q.gpcReference).filter(t => !!t))];
 
             const combinedTopics = [...new Set([
                 ...OFFICIAL_TEMARIO,
                 ...dynTemas,
+                ...dynSubtemas,
                 ...dynGpcs
             ])].sort();
 
@@ -1395,7 +1422,7 @@
                     });
 
                     pool = pool.filter(q => {
-                        const qText = `${q.tema || ""} ${q.case || ""} ${q.question || ""} ${q.gpcReference || ""}`.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                        const qText = `${q.tema || ""} ${q.subtema || ""} ${q.case || ""} ${q.question || ""} ${q.gpcReference || ""}`.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                         return expandedTopics.some(topic => {
                             const normTopic = topic.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                             return qText.includes(normTopic);
@@ -1404,22 +1431,46 @@
                 }
 
                 // Filtrado por Dificultad
+                let poolPrimary = [...pool];
+                let poolSecondary = [];
+
                 if (State.difficulty && State.difficulty !== "cualquiera") {
-                    pool = pool.filter(q => {
-                        const qDiff = q.difficulty || "alta";
+                    poolPrimary = pool.filter(q => {
+                        const qDiff = (q.difficulty || "alta").toLowerCase();
                         if (State.difficulty === "alta") {
                             return qDiff === "alta" || qDiff === "muy-alta";
                         }
                         return qDiff === State.difficulty;
                     });
+                    poolSecondary = pool.filter(q => !poolPrimary.includes(q));
                 }
 
-                if (pool.length === 0) {
+                if (poolPrimary.length === 0 && poolSecondary.length === 0) {
                     return showNotification(`No hay preguntas. Revisa tus filtros:\n- Especialidades marcadas: ${selectedSpecs.length}\n- Temas buscados: ${State.selectedTopics.length}\n- Dificultad: ${State.difficulty}\nIntenta poner la dificultad en "Cualquiera".`);
                 }
 
-                console.log(`Pool size: ${pool.length}, Qty requested: ${qty}`);
-                State.questionSet = shuffleArray(pool).slice(0, Math.min(qty, pool.length));
+                let flatPrimary = processAndFlattenPool(poolPrimary, qty);
+                let finalQuestionSet = flatPrimary;
+                let neededOtherDiffs = false;
+
+                if (flatPrimary.length < qty && poolSecondary.length > 0) {
+                    let missing = qty - flatPrimary.length;
+                    let flatSecondary = processAndFlattenPool(poolSecondary, missing);
+                    if (flatSecondary.length > 0) {
+                        finalQuestionSet = flatPrimary.concat(flatSecondary);
+                        neededOtherDiffs = true;
+                    }
+                }
+
+                let finalQty = finalQuestionSet.length;
+                if (neededOtherDiffs) {
+                    showNotification(`Se utilizaron las preguntas disponibles de dificultad "${State.difficulty}". Se completó el resto con otras dificultades.`);
+                } else if (finalQty < qty) {
+                    showNotification(`La base de datos contiene solo ${finalQty} preguntas aplicables a tu filtro actual. Limitando el simulacro a esa cantidad.`);
+                }
+
+                console.log(`Pool size: ${pool.length}, Qty requested: ${qty}, Final Qty: ${finalQty}`);
+                State.questionSet = finalQuestionSet;
 
                 const selectedModeBtn = document.querySelector(".mode-toggle-btn.active");
                 const modeVal = selectedModeBtn ? selectedModeBtn.dataset.examMode : "casos";
@@ -1448,27 +1499,36 @@
     // Dashboard Shortcuts
     // ---------------------------------------------------------------------------
     const initDashboardShortcuts = () => {
-        const btnInt = $("btn-refuerzo-ia");
-        if (btnInt) {
-            btnInt.addEventListener("click", () => {
-                if (State.topFailedTemas && State.topFailedTemas.length > 0) {
-                    startTemaSession(State.topFailedTemas, 5, "Refuerzo IA por Temas");
-                } else {
-                    showNotification("Aún no tienes puntos de falla registrados. Sigue practicando para que la IA detecte tus áreas de oportunidad.");
-                }
+        const btnRefuerzosView = $("btn-refuerzos-view");
+        if (btnRefuerzosView) {
+            btnRefuerzosView.addEventListener("click", () => {
+                renderRefuerzosView();
+                showView("view-refuerzos");
             });
         }
-        const btnRapido = $("btn-refuerzo-rapido");
-        if (btnRapido) btnRapido.addEventListener("click", () => startQuickSession(['mi', 'ped', 'gyo', 'cir', 'urg', 'sp'], 5, "Refuerzo Rápido General"));
 
-        const btnQuick = $("btn-quick-start");
-        if (btnQuick) btnQuick.addEventListener("click", () => startQuickSession(['mi', 'ped', 'gyo', 'cir', 'urg', 'sp'], 10, "Sesión Rápida (10)"));
+        // Dashboard quick action buttons (inside view-refuerzos now, but keep bindings)
+        const bindStartBtn = (id, handler) => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener("click", handler);
+        };
 
-        const btnCasos = $("btn-refuerzo-casos");
-        if (btnCasos) btnCasos.addEventListener("click", () => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 3, "Casos Rápidos Aleatorios"));
+        const handleInteligente = () => {
+            if (State.topFailedTemas && State.topFailedTemas.length > 0) {
+                startTemaSession(State.topFailedTemas, 5, "Refuerzo IA por Temas");
+            } else {
+                showNotification("Aún no tienes puntos de falla registrados. Sigue practicando para que la IA detecte tus áreas de oportunidad.");
+            }
+        };
 
-        const btnCurva = $("btn-curva-olvido");
-        if (btnCurva) btnCurva.addEventListener("click", startSpacedRepetition);
+        bindStartBtn("btn-refuerzo-ia", handleInteligente);
+        bindStartBtn("btn-refuerzo-ia-dash", handleInteligente); // New Dash Button
+        bindStartBtn("btn-refuerzo-rapido", () => startQuickSession(['mi', 'ped', 'gyo', 'cir', 'urg', 'sp'], 5, "Refuerzo Rápido General"));
+        bindStartBtn("btn-quick-start", () => startQuickSession(['mi', 'ped', 'gyo', 'cir', 'urg', 'sp'], 10, "Sesión Rápida (10)"));
+        bindStartBtn("btn-refuerzo-casos", () => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 3, "Casos Rápidos Aleatorios"));
+        bindStartBtn("btn-curva-olvido", startSpacedRepetition);
+        bindStartBtn("btn-curva-olvido-dash", startSpacedRepetition); // New Dash Button
+        bindStartBtn("btn-curva-olvido-ref", startSpacedRepetition);
     };
 
     const startSpacedRepetition = () => {
@@ -1506,8 +1566,15 @@
     const startTemaSession = (temas, qty, label) => {
         let pool = QUESTIONS.filter(q => q.tema && temas.includes(q.tema));
         if (pool.length === 0) pool = QUESTIONS;
-        State.questionSet = shuffleArray(pool).slice(0, Math.min(qty, pool.length));
-        State.mode = "estudio";
+
+        let finalQty = qty;
+        if (qty > pool.length) {
+            finalQty = pool.length;
+            showNotification(`Solo tenemos ${pool.length} preguntas disponibles para este tema.`);
+        }
+
+        State.questionSet = processAndFlattenPool(pool, finalQty);
+        State.mode = "simulacro";
         State.durationSec = 0;
         State.currentIndex = 0;
         State.startTime = Date.now();
@@ -1523,8 +1590,14 @@
     const startQuickSession = (specs, qty, label) => {
         let pool = QUESTIONS.filter(q => specs.includes(q.specialty));
         if (pool.length === 0) pool = QUESTIONS;
-        State.questionSet = shuffleArray(pool).slice(0, qty);
-        State.mode = "estudio";
+
+        let finalQty = qty;
+        if (qty > pool.length) {
+            finalQty = pool.length;
+        }
+
+        State.questionSet = processAndFlattenPool(pool, finalQty);
+        State.mode = "simulacro";
         State.durationSec = 0;
         State.currentIndex = 0;
         State.startTime = Date.now();
@@ -1541,41 +1614,124 @@
     // Exam Engine
     // ---------------------------------------------------------------------------
     const renderExamQuestion = () => {
-        const q = State.questionSet[State.currentIndex];
-        const ans = State.answers[State.currentIndex];
+        if (!State.questionSet || State.questionSet.length === 0) return;
+
+        let qFirst = State.questionSet[State.currentIndex];
+
+        // Normalizar currentIndex al inicio del grupo (caso clínico)
+        const groupId = qFirst.caseGroupId;
+        let firstIdx = State.currentIndex;
+        while (firstIdx > 0 && State.questionSet[firstIdx - 1].caseGroupId === groupId) {
+            firstIdx--;
+        }
+        State.currentIndex = firstIdx;
+        qFirst = State.questionSet[State.currentIndex];
+
         const total = State.questionSet.length;
 
-        const badge = $("case-area-badge"); if (badge) badge.textContent = (State.globalStats.bySpecialty[q.specialty]?.name || q.specialty).toUpperCase();
-        const caseText = $("case-text"); if (caseText) caseText.textContent = q.case;
-        const qNum = $("q-num-display"); if (qNum) qNum.textContent = `Pregunta ${State.currentIndex + 1}`;
-        const qText = $("question-text"); if (qText) qText.textContent = q.question;
+        const indices = [];
+        for (let i = State.currentIndex; i < total; i++) {
+            if (State.questionSet[i].caseGroupId === groupId) indices.push(i);
+            else break;
+        }
 
-        const optGrid = $("options-grid");
-        if (optGrid) {
-            optGrid.innerHTML = "";
-            q.options.forEach((optStr, idx) => {
-                const btn = document.createElement("button");
-                btn.className = "option-btn";
-                const letter = String.fromCharCode(65 + idx);
-                btn.innerHTML = `<strong>${letter}.</strong> ${optStr}`;
-                if (ans.selected === idx) btn.classList.add("selected");
+        const badge = $("case-area-badge"); if (badge) badge.textContent = (State.globalStats.bySpecialty[qFirst.specialty]?.name || qFirst.specialty).toUpperCase();
+        const caseText = $("case-text"); if (caseText) caseText.textContent = qFirst.case;
+
+        const container = $("questions-container");
+        if (container) {
+            container.innerHTML = "";
+            indices.forEach((qIndex) => {
+                const q = State.questionSet[qIndex];
+                const ans = State.answers[qIndex];
+
+                const card = document.createElement("div");
+                card.className = "question-card";
+
+                const qNumStr = q.totalSubQuestions > 1
+                    ? `Pregunta ${qIndex + 1} (Parte ${q.subQuestionIndex} de ${q.totalSubQuestions})`
+                    : `Pregunta ${qIndex + 1}`;
+
+                const header = document.createElement("div");
+                header.className = "q-header";
+
+                const btnFlag = document.createElement("button");
+                btnFlag.className = `btn-flag ${ans.flagged ? 'active' : ''}`;
+                btnFlag.innerHTML = "⚑ Marcar";
+                btnFlag.addEventListener("click", () => {
+                    State.answers[qIndex].flagged = !State.answers[qIndex].flagged;
+                    renderExamQuestion();
+                });
+
+                const spanNum = document.createElement("span");
+                spanNum.className = "q-num";
+                spanNum.textContent = qNumStr;
+
+                header.appendChild(spanNum);
+                header.appendChild(btnFlag);
+
+                const qTextEl = document.createElement("p");
+                qTextEl.className = "question-text";
+                qTextEl.textContent = q.question;
+
+                const optGrid = document.createElement("div");
+                optGrid.className = "options-list";
+                q.options.forEach((optStr, idx) => {
+                    const btn = document.createElement("button");
+                    btn.className = "option-btn";
+                    const letter = String.fromCharCode(65 + idx);
+                    btn.innerHTML = `<strong>${letter}.</strong> ${optStr}`;
+                    if (ans.selected === idx) btn.classList.add("selected");
+                    if (State.mode === "estudio" && ans.selected !== null) {
+                        if (idx === q.answerIndex) btn.classList.add("correct-ans");
+                        else if (ans.selected === idx) btn.classList.add("wrong-ans");
+                    }
+                    btn.addEventListener("click", () => handleAnswer(idx, qIndex));
+                    optGrid.appendChild(btn);
+                });
+
+                card.appendChild(header);
+                card.appendChild(qTextEl);
+                card.appendChild(optGrid);
+
                 if (State.mode === "estudio" && ans.selected !== null) {
-                    if (idx === q.answerIndex) btn.classList.add("correct-ans");
-                    else if (ans.selected === idx) btn.classList.add("wrong-ans");
+                    const fb = document.createElement("div");
+                    fb.className = `feedback-card ${ans.isCorrect ? '' : 'wrong'}`;
+                    fb.style.display = "block";
+                    fb.style.marginTop = "15px";
+
+                    const reportBtnId = `btn-report-${qIndex}`;
+
+                    fb.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h3 style="margin: 0;">${ans.isCorrect ? "¡Respuesta Correcta!" : "Respuesta Incorrecta"}</h3>
+                            <button class="btn-ghost" id="${reportBtnId}" style="font-size: 12px; padding: 4px 8px; border-radius: 6px; color: var(--accent-red); border-color: rgba(239, 68, 68, 0.2);">🚩 Reportar Error</button>
+                        </div>
+                        <p>${q.explanation || ""}</p>
+                        <div class="feedback-gpc">${q.gpcReference || ""}</div>
+                    `;
+                    card.appendChild(fb);
+
+                    setTimeout(() => {
+                        const rBtn = document.getElementById(reportBtnId);
+                        if (rBtn) rBtn.addEventListener("click", () => {
+                            triggerReportModal(qIndex);
+                        });
+                    }, 0);
                 }
-                btn.addEventListener("click", () => handleAnswer(idx));
-                optGrid.appendChild(btn);
+
+                container.appendChild(card);
             });
         }
 
-        const pct = ((State.currentIndex + 1) / total) * 100;
-        const qCounter = $("q-counter"); if (qCounter) qCounter.textContent = `Pregunta ${State.currentIndex + 1} de ${total}`;
+        const lastIdxOfCase = indices.length > 0 ? indices[indices.length - 1] : State.currentIndex;
+        const pct = ((lastIdxOfCase + 1) / total) * 100;
+        const qCounter = $("q-counter"); if (qCounter) qCounter.textContent = `Pregunta ${lastIdxOfCase + 1} de ${total}`;
         const progFill = $("progress-fill"); if (progFill) progFill.style.width = `${pct}%`;
-        const flagBtn = $("flag-btn"); if (flagBtn) flagBtn.className = `btn-flag ${ans.flagged ? 'active' : ''}`;
 
         const bn = $("btn-next");
         if (bn) {
-            if (State.currentIndex === total - 1) {
+            if (lastIdxOfCase >= total - 1) {
                 bn.textContent = "✔ Terminar";
                 bn.classList.add("btn-danger");
                 bn.classList.remove("primary");
@@ -1586,27 +1742,29 @@
             }
         }
 
-        const fb = $("feedback-card");
-        if (fb) {
-            if (State.mode === "estudio" && ans.selected !== null) {
-                fb.style.display = "block";
-                fb.className = `feedback-card ${ans.isCorrect ? '' : 'wrong'}`;
-                const fh = $("feedback-header"); if (fh) fh.textContent = ans.isCorrect ? "¡Respuesta Correcta!" : "Respuesta Incorrecta";
-                const fe = $("feedback-explanation"); if (fe) fe.innerHTML = q.explanation;
-                const fg = $("feedback-gpc"); if (fg) fg.innerHTML = q.gpcReference;
-            } else {
-                fb.style.display = "none";
-            }
-        }
         renderExamSidebar();
     };
 
-    const handleAnswer = (idx) => {
-        const q = State.questionSet[State.currentIndex];
-        const ans = State.answers[State.currentIndex];
+    const triggerReportModal = (globalQIndex) => {
+        const modal = $("report-modal");
+        const reasonInput = $("report-reason");
+        const preview = $("report-q-preview");
+        if (!modal) return;
+
+        State._reportingIndex = globalQIndex;
+        const q = State.questionSet[globalQIndex];
+
+        preview.textContent = `Pregunta: ${q.question}`;
+        reasonInput.value = "";
+        modal.style.display = "flex";
+    };
+
+    const handleAnswer = (selectedIdx, qIndex) => {
+        const q = State.questionSet[qIndex];
+        const ans = State.answers[qIndex];
         if (State.mode === "estudio" && ans.selected !== null) return;
-        ans.selected = idx;
-        ans.isCorrect = (idx === q.answerIndex);
+        ans.selected = selectedIdx;
+        ans.isCorrect = (selectedIdx === q.answerIndex);
         if (State.mode === "estudio") recordStat(q.specialty, ans.isCorrect, q.tema);
         renderExamQuestion();
     };
@@ -1614,15 +1772,24 @@
     const renderExamSidebar = () => {
         const nav = $("question-navigator"); if (!nav) return;
         nav.innerHTML = "";
+        const currentGroupId = State.questionSet[State.currentIndex]?.caseGroupId;
+
         State.questionSet.forEach((_, i) => {
             const a = State.answers[i];
+            const q = State.questionSet[i];
             const dot = document.createElement("button");
             dot.className = "nav-dot";
             dot.textContent = i + 1;
-            if (i === State.currentIndex) dot.classList.add("current");
+
+            if (q.caseGroupId === currentGroupId) dot.classList.add("current");
             else if (a.selected !== null) dot.classList.add("answered");
+
             if (a.flagged) dot.classList.add("flagged");
-            dot.addEventListener("click", () => { State.currentIndex = i; renderExamQuestion(); });
+
+            dot.addEventListener("click", () => {
+                State.currentIndex = i;
+                renderExamQuestion();
+            });
             nav.appendChild(dot);
         });
     };
@@ -1655,25 +1822,13 @@
         }
     };
 
-    // ---------------------------------------------------------------------------
-    // Question Reporting Logic
-    // ---------------------------------------------------------------------------
     const initReportLogic = () => {
-        const btnReport = $("btn-report-question");
         const modal = $("report-modal");
         const btnSubmit = $("btn-submit-report");
         const btnCancel = $("btn-cancel-report");
         const reasonInput = $("report-reason");
-        const preview = $("report-q-preview");
 
-        if (!btnReport || !modal || !btnSubmit || !btnCancel) return;
-
-        btnReport.addEventListener("click", () => {
-            const q = State.questionSet[State.currentIndex];
-            preview.textContent = `Pregunta: ${q.question}`;
-            reasonInput.value = "";
-            modal.style.display = "flex";
-        });
+        if (!modal || !btnSubmit || !btnCancel) return;
 
         btnCancel.addEventListener("click", () => {
             modal.style.display = "none";
@@ -1683,7 +1838,8 @@
             const reason = reasonInput.value.trim();
             if (!reason) return showNotification("Por favor indica el motivo del reporte.", "warning");
 
-            const q = State.questionSet[State.currentIndex];
+            const qIndexToReport = State._reportingIndex !== undefined ? State._reportingIndex : State.currentIndex;
+            const q = State.questionSet[qIndexToReport];
             const report = {
                 id: Date.now(),
                 timestamp: Date.now(),
@@ -1900,6 +2056,132 @@
         }
     };
 
+    const renderRefuerzosView = () => {
+        const failList = $("refuerzos-fail-list");
+        if (!failList) return;
+
+        failList.innerHTML = "";
+
+        // Collect all themes and their stats
+        let allTemas = [];
+        if (State.globalStats.byTema) {
+            for (let tema in State.globalStats.byTema) {
+                allTemas.push({ tema, ...State.globalStats.byTema[tema] });
+            }
+        }
+
+        // If no data, show empty state
+        if (allTemas.length === 0) {
+            failList.innerHTML = `
+                <div style="text-align: center; padding: 40px 20px; color: var(--text-muted);">
+                    <div style="font-size: 40px; margin-bottom: 15px; opacity: 0.5;">✨</div>
+                    <h3 style="color: var(--text-secondary); margin-bottom: 10px;">¡Aún no hay puntos de falla!</h3>
+                    <p style="font-size: 13px;">Realiza simulacros y la IA comenzará a analizar tus áreas de oportunidad aquí.</p>
+                </div>
+            `;
+            return;
+        }
+
+        // Calculate precision mapping and sort strictly by precision ascending, then total descending
+        const temaRates = allTemas.map(t => {
+            const precision = (t.correct / t.total) * 100;
+            return {
+                tema: t.tema,
+                specialty: t.specialty,
+                total: t.total,
+                correct: t.correct,
+                wrong: t.total - t.correct,
+                precision: precision
+            };
+        });
+
+        // Solo mostrar temas donde haya margen de mejora (precision < 100 y mínimo 2 preguntas respondidas para evitar ruido estadístico, o si es la única información disponible)
+        const filteredTemas = temaRates.filter(t => t.precision < 100 || t.total >= 1);
+
+        filteredTemas.sort((a, b) => {
+            if (a.precision === b.precision) return b.total - a.total; // Tiebreaker: if precision is same, more attempts means higher priority to fix
+            return a.precision - b.precision;
+        });
+
+        // Store top failed themes globally for Quick Action Buttons
+        State.topFailedTemas = filteredTemas.slice(0, 10).map(t => t.tema);
+
+        filteredTemas.forEach(t => {
+            const el = document.createElement("div");
+            el.className = "fail-item";
+
+            // Priority logic based on math
+            let priorityBadge = "";
+            let priorityLabel = "";
+            if (t.precision <= 40) { priorityBadge = "background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.3);"; priorityLabel = "Prioridad Crítica"; }
+            else if (t.precision <= 65) { priorityBadge = "background: rgba(245, 158, 11, 0.15); color: var(--accent-orange); border: 1px solid rgba(245, 158, 11, 0.3);"; priorityLabel = "Prioridad Alta"; }
+            else { priorityBadge = "background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); border: 1px solid rgba(59, 130, 246, 0.3);"; priorityLabel = "Para Repaso"; }
+
+            // Specialty friendly names mapping
+            const specNames = { 'mi': 'Medicina Interna', 'ped': 'Pediatría', 'gyo': 'Ginecología y Obstetricia', 'cir': 'Cirugía General', 'sp': 'Salud Pública', 'urg': 'Urgencias' };
+            const specName = specNames[t.specialty] || t.specialty;
+
+            el.innerHTML = `
+                <div class="fail-item-info" style="width: 100%;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+                        <div class="fail-item-title">${t.tema}</div>
+                        <div style="font-size: 10px; padding: 3px 8px; border-radius: 12px; font-weight: 700; ${priorityBadge}">${priorityLabel}</div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div class="fail-item-sub" style="color: var(--text-muted); font-size: 11px;">${specName.toUpperCase()}</div>
+                        <div style="font-size: 12px; font-weight: 700; color: ${t.precision <= 60 ? 'var(--accent-red)' : 'var(--text-secondary)'};">
+                            Precisión: ${t.precision.toFixed(1)}%
+                        </div>
+                    </div>
+                    
+                    <div style="width: 100%; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.05); margin-top: 10px; overflow: hidden; display: flex;">
+                        <div style="height: 100%; width: ${t.precision}%; background: var(--accent-green);"></div>
+                        <div style="height: 100%; width: ${100 - t.precision}%; background: var(--accent-red);"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 10px; margin-top: 4px; color: var(--text-muted);">
+                        <span>${t.correct} bien</span>
+                        <span>${t.wrong} mal</span>
+                    </div>
+                </div>
+            `;
+            failList.appendChild(el);
+        });
+
+        // ============================================
+        // ALSO RENDER TOP 3 PREVIEW FOR DASHBOARD
+        // ============================================
+        const dashFailList = $("dash-fail-list");
+        if (dashFailList) {
+            dashFailList.innerHTML = "";
+            filteredTemas.slice(0, 3).forEach(t => {
+                const elDash = document.createElement("div");
+                elDash.className = "fail-item";
+                elDash.style.padding = "10px 14px";
+
+                let priorityLabel = "";
+                let badgeClass = "";
+                if (t.precision <= 40) { priorityLabel = "Crítica"; badgeClass = "orange-bg"; }
+                else if (t.precision <= 65) { priorityLabel = "Alta"; badgeClass = "blue-bg"; }
+                else { priorityLabel = "Media"; badgeClass = "green-bg"; }
+
+                elDash.innerHTML = `
+                    <div class="fail-item-info" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <div class="fail-item-title" style="font-size: 13px;">${t.tema}</div>
+                            <div class="fail-item-sub" style="font-size: 10px;">Prioridad: ${priorityLabel} | Precisión: ${t.precision.toFixed(1)}%</div>
+                        </div>
+                        <div class="fail-item-badge ${badgeClass}" style="padding: 3px 6px; font-size: 9px; border:none; color:white; border-radius:4px;">Repasar</div>
+                    </div>
+                `;
+                dashFailList.appendChild(elDash);
+            });
+            if (filteredTemas.length === 0) {
+                dashFailList.innerHTML = `<div style="text-align: center; color: var(--text-muted); font-size: 12px; padding: 10px;">Aún no hay puntos de falla.</div>`;
+            }
+        }
+    };
+
     const updateDashboardStats = () => {
         if ($("active-exam-banner")) {
             $("active-exam-banner").style.display = State.examActive ? "flex" : "none";
@@ -1975,43 +2257,8 @@
         });
         if ($("stats-avg-time")) $("stats-avg-time").textContent = totalPreg > 0 ? `${Math.round(totalSec / totalPreg)}s` : "0s";
 
-        // Update Fail Points (Puntos de Falla)
-        const failList = document.querySelector(".fail-list");
-        if (failList) {
-            State.globalStats.byTema = State.globalStats.byTema || {};
-            const temasArr = Object.keys(State.globalStats.byTema).map(t => {
-                const stat = State.globalStats.byTema[t];
-                return { tema: t, ...stat, errorRate: 1 - (stat.correct / stat.total) };
-            }).filter(t => t.total >= 1 && t.errorRate > 0);
-
-            temasArr.sort((a, b) => b.errorRate - a.errorRate || b.total - a.total);
-
-            if (temasArr.length === 0) {
-                failList.innerHTML = `<div class="list-item"><p style="color:var(--text-muted); padding:20px;">No se han detectado puntos de falla aún.</p></div>`;
-                State.topFailedTemas = null;
-            } else {
-                failList.innerHTML = "";
-                temasArr.slice(0, 3).forEach((t) => {
-                    const errorPct = Math.round(t.errorRate * 100);
-                    const isCritical = errorPct >= 70;
-                    const isHigh = errorPct >= 40;
-                    const priorityText = isCritical ? "Crítica" : (isHigh ? "Alta" : "Media");
-                    const badgeClass = isCritical ? "orange-bg" : (isHigh ? "blue-bg" : "green-bg");
-                    const specName = State.globalStats.bySpecialty[t.specialty]?.name || 'Tema General';
-
-                    const div = document.createElement("div"); div.className = "fail-item";
-                    div.innerHTML = `
-                        <div class="fail-item-info">
-                            <div class="fail-item-title">${t.tema} <span style="font-size: 0.8em; color: var(--text-muted); font-weight: normal;">(${specName})</span></div>
-                            <div class="fail-item-sub">Prioridad de Refuerzo: ${priorityText} | Tasa de error: ${errorPct}% (${t.total - t.correct} de ${t.total})</div>
-                        </div>
-                        <div class="fail-item-badge ${badgeClass}" style="color:white; padding:4px 8px; border-radius:4px; font-size:0.8rem; font-weight:600;">Repasar</div>
-                    `;
-                    failList.appendChild(div);
-                });
-                State.topFailedTemas = temasArr.slice(0, 5).map(t => t.tema);
-            }
-        }
+        // Update Fail Points (Puntos de Falla) is now handled by the new Refuerzos View
+        renderRefuerzosView();
     };
 
     let chartHistory = null;
@@ -2265,34 +2512,85 @@
     };
 
     const renderReviewQuestion = () => {
-        const q = State.questionSet[reviewIndex];
-        const ans = State.answers[reviewIndex];
+        if (!State.questionSet || State.questionSet.length === 0) return;
+
+        let qFirst = State.questionSet[reviewIndex];
+
+        // Normalizar reviewIndex al inicio del grupo (caso clínico)
+        const groupId = qFirst.caseGroupId;
+        let firstIdx = reviewIndex;
+        while (firstIdx > 0 && State.questionSet[firstIdx - 1].caseGroupId === groupId) {
+            firstIdx--;
+        }
+        reviewIndex = firstIdx;
+        qFirst = State.questionSet[reviewIndex];
+
         const total = State.questionSet.length;
 
-        const badge = $("rev-case-area-badge"); if (badge) badge.textContent = (State.globalStats.bySpecialty[q.specialty]?.name || q.specialty).toUpperCase();
-        const caseText = $("rev-case-text"); if (caseText) caseText.textContent = q.case;
-        const qNum = $("rev-q-num-display"); if (qNum) qNum.textContent = `Pregunta ${reviewIndex + 1}`;
-        const qText = $("rev-question-text"); if (qText) qText.textContent = q.question;
-
-        const optGrid = $("rev-options-grid");
-        if (optGrid) {
-            optGrid.innerHTML = "";
-            q.options.forEach((optStr, idx) => {
-                const btn = document.createElement("button");
-                btn.className = "option-btn";
-                const letter = String.fromCharCode(65 + idx);
-                btn.innerHTML = `<strong>${letter}.</strong> ${optStr}`;
-
-                if (idx === q.answerIndex) btn.classList.add("correct-ans");
-                if (ans.selected === idx && idx !== q.answerIndex) btn.classList.add("wrong-ans");
-                if (ans.selected === idx) btn.classList.add("selected");
-
-                optGrid.appendChild(btn);
-            });
+        const indices = [];
+        for (let i = reviewIndex; i < total; i++) {
+            if (State.questionSet[i].caseGroupId === groupId) indices.push(i);
+            else break;
         }
 
-        const fe = $("rev-feedback-explanation"); if (fe) fe.textContent = q.explanation;
-        const fg = $("rev-feedback-gpc"); if (fg) fg.textContent = q.gpcReference;
+        const badge = $("rev-case-area-badge"); if (badge) badge.textContent = (State.globalStats.bySpecialty[qFirst.specialty]?.name || qFirst.specialty).toUpperCase();
+        const caseText = $("rev-case-text"); if (caseText) caseText.textContent = qFirst.case;
+        const qNum = $("rev-q-num-display"); if (qNum) qNum.textContent = `Revise Caso (Preguntas ${indices[0] + 1}${indices.length > 1 ? ` a ${indices[indices.length - 1] + 1}` : ''})`;
+
+        const container = $("rev-questions-container");
+        if (container) {
+            container.innerHTML = "";
+            indices.forEach((qIndex) => {
+                const q = State.questionSet[qIndex];
+                const ans = State.answers[qIndex];
+
+                const qBox = document.createElement("div");
+                qBox.className = "question-box";
+                qBox.style.marginTop = "20px";
+                qBox.style.paddingTop = "20px";
+                if (qIndex !== indices[0]) qBox.style.borderTop = "1px solid var(--border)";
+
+                const qNumStr = q.totalSubQuestions > 1
+                    ? `Pregunta ${qIndex + 1} (Parte ${q.subQuestionIndex} de ${q.totalSubQuestions})`
+                    : `Pregunta ${qIndex + 1}`;
+
+                const qTitle = document.createElement("h3");
+                qTitle.className = "question-text";
+                qTitle.style.marginBottom = "10px";
+                qTitle.innerHTML = `<span style="font-size:12px; color:var(--text-muted); display:block; margin-bottom:4px;">${qNumStr}</span>${q.question}`;
+                qBox.appendChild(qTitle);
+
+                const optGrid = document.createElement("div");
+                optGrid.className = "options-grid";
+                q.options.forEach((optStr, idx) => {
+                    const btn = document.createElement("button");
+                    btn.className = "option-btn";
+                    btn.style.cursor = "default"; // read-only
+                    const letter = String.fromCharCode(65 + idx);
+                    btn.innerHTML = `<strong>${letter}.</strong> ${optStr}`;
+
+                    if (idx === q.answerIndex) btn.classList.add("correct-ans");
+                    if (ans.selected === idx && idx !== q.answerIndex) btn.classList.add("wrong-ans");
+                    if (ans.selected === idx) btn.classList.add("selected");
+
+                    optGrid.appendChild(btn);
+                });
+                qBox.appendChild(optGrid);
+
+                const fb = document.createElement("div");
+                fb.className = `feedback-card ${ans.isCorrect ? '' : 'wrong'}`;
+                fb.style.display = "block";
+                fb.style.marginTop = "15px";
+                fb.innerHTML = `
+                    <h3 id="rev-feedback-header" style="margin:0 0 10px 0;">Explicación ENARM</h3>
+                    <p>${q.explanation || ""}</p>
+                    <div class="feedback-gpc">${q.gpcReference || ""}</div>
+                `;
+                qBox.appendChild(fb);
+
+                container.appendChild(qBox);
+            });
+        }
 
         renderReviewSidebar();
     };
@@ -2300,12 +2598,16 @@
     const renderReviewSidebar = () => {
         const nav = $("rev-question-navigator"); if (!nav) return;
         nav.innerHTML = "";
+        const currentGroupId = State.questionSet[reviewIndex]?.caseGroupId;
+
         State.questionSet.forEach((_, i) => {
             const a = State.answers[i];
+            const q = State.questionSet[i];
             const dot = document.createElement("button");
             dot.className = "nav-dot";
             dot.textContent = i + 1;
-            if (i === reviewIndex) dot.classList.add("current");
+
+            if (q.caseGroupId === currentGroupId) dot.classList.add("current");
             if (a.isCorrect) dot.classList.add("answered");
             else if (a.selected !== null) dot.classList.add("wrong");
 
@@ -2534,12 +2836,30 @@
         const rv = $("btn-review"); if (rv) rv.addEventListener("click", startReview);
         const exr = $("btn-exit-review"); if (exr) exr.addEventListener("click", () => showView("view-results"));
 
-        const bp = $("btn-prev"); if (bp) bp.addEventListener("click", () => { if (State.currentIndex > 0) { State.currentIndex--; renderExamQuestion(); } });
+        const bp = $("btn-prev");
+        if (bp) bp.addEventListener("click", () => {
+            if (State.currentIndex > 0) {
+                const currentGroupId = State.questionSet[State.currentIndex].caseGroupId;
+                let prevIdx = State.currentIndex;
+                while (prevIdx >= 0 && State.questionSet[prevIdx].caseGroupId === currentGroupId) {
+                    prevIdx--;
+                }
+                if (prevIdx >= 0) {
+                    State.currentIndex = prevIdx;
+                    renderExamQuestion();
+                }
+            }
+        });
         const bn = $("btn-next");
         if (bn) {
             bn.addEventListener("click", () => {
-                if (State.currentIndex < State.questionSet.length - 1) {
-                    State.currentIndex++;
+                const currentGroupId = State.questionSet[State.currentIndex].caseGroupId;
+                let nextIdx = State.currentIndex;
+                while (nextIdx < State.questionSet.length && State.questionSet[nextIdx].caseGroupId === currentGroupId) {
+                    nextIdx++;
+                }
+                if (nextIdx < State.questionSet.length) {
+                    State.currentIndex = nextIdx;
                     renderExamQuestion();
                 } else {
                     const modal = $("finish-modal");
@@ -2548,10 +2868,32 @@
             });
         }
 
-        const rbp = $("btn-rev-prev"); if (rbp) rbp.addEventListener("click", () => { if (reviewIndex > 0) { reviewIndex--; renderReviewQuestion(); } });
-        const rbn = $("btn-rev-next"); if (rbn) rbn.addEventListener("click", () => { if (reviewIndex < State.questionSet.length - 1) { reviewIndex++; renderReviewQuestion(); } });
-
-        const fl = $("flag-btn"); if (fl) fl.addEventListener("click", () => { State.answers[State.currentIndex].flagged = !State.answers[State.currentIndex].flagged; renderExamQuestion(); });
+        const rbp = $("btn-rev-prev");
+        if (rbp) rbp.addEventListener("click", () => {
+            if (reviewIndex > 0) {
+                const currentGroupId = State.questionSet[reviewIndex].caseGroupId;
+                let prevIdx = reviewIndex;
+                while (prevIdx >= 0 && State.questionSet[prevIdx].caseGroupId === currentGroupId) {
+                    prevIdx--;
+                }
+                if (prevIdx >= 0) {
+                    reviewIndex = prevIdx;
+                    renderReviewQuestion();
+                }
+            }
+        });
+        const rbn = $("btn-rev-next");
+        if (rbn) rbn.addEventListener("click", () => {
+            const currentGroupId = State.questionSet[reviewIndex].caseGroupId;
+            let nextIdx = reviewIndex;
+            while (nextIdx < State.questionSet.length && State.questionSet[nextIdx].caseGroupId === currentGroupId) {
+                nextIdx++;
+            }
+            if (nextIdx < State.questionSet.length) {
+                reviewIndex = nextIdx;
+                renderReviewQuestion();
+            }
+        });
 
         const fe = $("btn-finish-early");
 

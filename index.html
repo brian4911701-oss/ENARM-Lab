@@ -300,32 +300,28 @@
                     </div>
 
                     <div class="fail-points-section panel">
-                        <div class="panel-header">
-                            <h2 class="panel-title"><span class="title-icon orange-text">🚩</span> Puntos de Falla (IA)
-                            </h2>
-                            <button class="btn-refuerzo" id="btn-refuerzo-ia">⚡ REFUERZO INTELIGENTE</button>
+                        <div class="panel-header" style="margin-bottom: 5px;">
+                            <h2 class="panel-title"><span class="title-icon orange-text">🚩</span> Refuerzos y Curva del
+                                Olvido</h2>
                         </div>
-                        <div class="fail-actions">
+                        <p style="color:var(--text-secondary); font-size: 13px; margin: 0 0 15px 0;">Entrena tus áreas
+                            débiles y asegura tu conocimiento a largo plazo.</p>
 
-                            <button class="btn-fail-action green-bg" id="btn-refuerzo-casos">⚡ REFUERZO CASOS</button>
-                            <button class="btn-fail-action blue-bg" id="btn-refuerzo-rapido">⚡ REFUERZO RÁPIDO</button>
+                        <!-- Mini acciones de refuerzo directas en el Dashboard -->
+                        <div class="fail-actions">
+                            <button class="btn-fail-action blue-bg" id="btn-refuerzo-ia-dash">⚡ INTELIGENTE</button>
                         </div>
-                        <div class="fail-list">
-                            <div class="fail-item">
-                                <div class="fail-item-info">
-                                    <div class="fail-item-title">Cardiología (MI)</div>
-                                    <div class="fail-item-sub">Prioridad de Refuerzo: Crítica | Tasa de error: 100%
-                                    </div>
-                                </div>
-                                <div class="fail-item-badge">Repasar GPC</div>
-                            </div>
-                            <div class="fail-item">
-                                <div class="fail-item-info">
-                                    <div class="fail-item-title">Pediatría Infecciosa</div>
-                                    <div class="fail-item-sub">Prioridad: Alta | Confusión frecuente en dosis</div>
-                                </div>
-                                <div class="fail-item-badge">Repasar GPC</div>
-                            </div>
+
+                        <!-- Lista corta de los peores 3 temas -->
+                        <div class="fail-list" id="dash-fail-list" style="margin-bottom: 20px;">
+                            <!-- Inyectado dinámicamente -->
+                        </div>
+
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button class="action-btn" id="btn-refuerzos-view"
+                                style="width: 100%; border-color: rgba(255,255,255,0.1); color: var(--text-primary); background: rgba(255,255,255,0.05); justify-content: center; font-weight: 700;">
+                                <span style="margin-right:8px;">🎯</span> VER MIS ZONAS COMPLETAS
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -490,6 +486,11 @@
                             <button class="btn-finish-setup" id="btn-start-final-exam">Iniciar Simulacro <span
                                     class="arrow-icon">›</span></button>
                         </div>
+                        <p class="section-hint" style="text-align:center; margin-top: 10px;">
+                            *Nota: Si seleccionas más preguntas de las que hay disponibles para ese tema, el examen se
+                            adaptará al máximo posible. De igual forma, si no hay suficientes preguntas de la dificultad
+                            elegida, se completará con otras dificultades.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -522,33 +523,13 @@
                             <p id="case-text" class="case-text">Cargando caso clínico...</p>
                         </div>
 
-                        <div class="question-card">
-                            <div class="q-header">
-                                <span id="q-num-display" class="q-num">Pregunta 1</span>
-                                <button class="btn-flag" id="flag-btn">⚑ Marcar</button>
-                            </div>
-                            <p id="question-text" class="question-text">Cargando pregunta...</p>
-
-                            <div class="options-list" id="options-grid"></div>
-
-                            <div class="exam-actions">
-                                <button class="btn-nav" id="btn-prev">← Anterior</button>
-                                <button class="btn-nav primary" id="btn-next">Siguiente →</button>
-                            </div>
+                        <div id="questions-container">
+                            <!-- Questions and feedback dynamically inserted by app.js -->
                         </div>
 
-                        <!-- Feedback for Study mode -->
-                        <div id="feedback-card" class="feedback-card" style="display: none;">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                                <h3 id="feedback-header" style="margin: 0;">Respuesta</h3>
-                                <button class="btn-ghost" id="btn-report-question"
-                                    style="font-size: 12px; padding: 4px 8px; border-radius: 6px; color: var(--accent-red); border-color: rgba(239, 68, 68, 0.2);">
-                                    🚩 Reportar Error
-                                </button>
-                            </div>
-                            <p id="feedback-explanation"></p>
-                            <div id="feedback-gpc" class="feedback-gpc"></div>
+                        <div class="exam-actions" style="margin-top: 20px; padding-bottom: 80px;">
+                            <button class="btn-nav" id="btn-prev">← Anterior</button>
+                            <button class="btn-nav primary" id="btn-next">Siguiente →</button>
                         </div>
                     </div>
                 </div>
@@ -601,17 +582,8 @@
                                 <div class="case-box">
                                     <p id="rev-case-text" class="case-text"></p>
                                 </div>
-                                <div class="question-box">
-                                    <h3 id="rev-question-text" class="question-text"></h3>
-                                </div>
-                                <div class="options-grid" id="rev-options-grid">
-                                    <!-- Dinámico -->
-                                </div>
-
-                                <div id="rev-feedback-card" class="feedback-card">
-                                    <h3 id="rev-feedback-header">Explicación ENARM</h3>
-                                    <p id="rev-feedback-explanation"></p>
-                                    <div id="rev-feedback-gpc" class="feedback-gpc"></div>
+                                <div id="rev-questions-container">
+                                    <!-- Dynamic review questions will be injected here -->
                                 </div>
                             </div>
                         </div>
@@ -624,7 +596,8 @@
                         </div>
                     </div>
 
-                    <div class="review-controls" style="display: flex; gap: 10px; margin-top: 20px;">
+                    <div class="review-controls"
+                        style="display: flex; gap: 10px; margin-top: 20px; padding-bottom: 80px;">
                         <button class="btn-ghost" id="btn-rev-prev">Anterior</button>
                         <button class="btn-ghost" id="btn-rev-next" style="margin-left:auto">Siguiente</button>
                     </div>
@@ -633,6 +606,105 @@
 
             <!-- ─── VIEW: MÁS ───────────────────────────── -->
             <!-- ... (se mantiene igual, solo agrego la vista nueva abajo) -->
+
+            <!-- ─── VIEW: REFUERZOS Y REPASOS ─────────────────────── -->
+            <div id="view-refuerzos" class="view">
+                <div class="panel" style="background: transparent; border: none; padding: 0;">
+                    <header class="dashboard-header"
+                        style="flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                        <div class="header-left">
+                            <h1 class="header-title" style="font-size: 28px;">Zonas de <span class="user-name"
+                                    style="color: var(--accent-orange);">Refuerzo</span></h1>
+                            <p class="header-subtitle" style="font-size: 14px; max-width: 600px;">Basado en tu precisión
+                                histórica, la IA ha detectado los siguientes temas como tus puntos de falla principales.
+                                Entrénalos para dominar el ENARM.</p>
+                        </div>
+                        <button class="btn-secondary" onclick="document.getElementById('nav-dashboard').click()"
+                            style="padding: 12px 24px;">Escapar al Dashboard</button>
+                    </header>
+
+                    <div style="display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start;">
+                        <!-- Columna Izquierda: Temas débiles -->
+                        <div class="panel" style="padding: 24px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <h2 class="panel-title"><span class="title-icon red-text">🎯</span> Temas Críticos a
+                                    Reforzar</h2>
+                            </div>
+                            <!-- Fail List Dinámica inyectada por app.js -->
+                            <div class="fail-list" id="refuerzos-fail-list"
+                                style="display: flex; flex-direction: column; gap: 12px;"></div>
+                        </div>
+
+                        <!-- Columna Derecha: Acciones Rápidas -->
+                        <div class="panel" style="padding: 24px; position: sticky; top: 100px;">
+                            <h2 class="panel-title" style="margin-bottom: 20px;"><span
+                                    class="title-icon blue-text">⚡</span> Acceso Rápido</h2>
+                            <div style="display: flex; flex-direction: column; gap: 15px;">
+                                <button class="action-btn" id="btn-refuerzo-ia"
+                                    style="width: 100%; border-color: rgba(239, 68, 68, 0.4); color: var(--accent-red); background: rgba(239, 68, 68, 0.05);">
+                                    <div class="action-btn-left">
+                                        <span class="action-btn-icon">🎯</span>
+                                        <div
+                                            style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+                                            <span style="font-size:14px; font-weight:800;">Refuerzo Inteligente</span>
+                                            <span style="font-size:11px; color:var(--text-muted); font-weight:600;">Test
+                                                solo de tus peores temas</span>
+                                        </div>
+                                    </div>
+                                    <span class="action-btn-arrow">→</span>
+                                </button>
+
+                                <button class="action-btn" id="btn-refuerzo-rapido"
+                                    style="width: 100%; border-color: rgba(59, 130, 246, 0.4); color: var(--accent-blue); background: rgba(59, 130, 246, 0.05);">
+                                    <div class="action-btn-left">
+                                        <span class="action-btn-icon">⚡</span>
+                                        <div
+                                            style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+                                            <span style="font-size:14px; font-weight:800;">Refuerzo General
+                                                Rápido</span>
+                                            <span
+                                                style="font-size:11px; color:var(--text-muted); font-weight:600;">Sesión
+                                                rápida 5 preguntas</span>
+                                        </div>
+                                    </div>
+                                    <span class="action-btn-arrow">→</span>
+                                </button>
+
+                                <button class="action-btn" id="btn-refuerzo-casos"
+                                    style="width: 100%; border-color: rgba(168, 85, 247, 0.4); color: var(--accent-purple); background: rgba(168, 85, 247, 0.05);">
+                                    <div class="action-btn-left">
+                                        <span class="action-btn-icon">🩻</span>
+                                        <div
+                                            style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+                                            <span style="font-size:14px; font-weight:800;">Refuerzo de Casos</span>
+                                            <span
+                                                style="font-size:11px; color:var(--text-muted); font-weight:600;">Casos
+                                                clínicos aleatorios</span>
+                                        </div>
+                                    </div>
+                                    <span class="action-btn-arrow">→</span>
+                                </button>
+
+                                <button class="action-btn" id="btn-curva-olvido-ref"
+                                    style="width: 100%; border-color: rgba(5, 192, 127, 0.4); color: var(--accent-green); background: rgba(5, 192, 127, 0.05);">
+                                    <div class="action-btn-left">
+                                        <span class="action-btn-icon">🧠</span>
+                                        <div
+                                            style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+                                            <span style="font-size:14px; font-weight:800;">Curva del Olvido</span>
+                                            <span
+                                                style="font-size:11px; color:var(--text-muted); font-weight:600;">Repaso
+                                                espaciado</span>
+                                        </div>
+                                    </div>
+                                    <span class="action-btn-arrow">→</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- ─── VIEW: REPORTES ───────────────────────────── -->
             <div id="view-reportes" class="view">

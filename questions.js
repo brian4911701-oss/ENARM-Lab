@@ -3105,6 +3105,8991 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "HELLP es variante grave de preeclampsia caracterizada por hemólisis, enzimas hepáticas elevadas y trombocitopenia. Representa emergencia obstétrica y requiere estabilización materna e interrupción del embarazo.",
     "gpcReference": ""
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía abdominal",
+    "subtema": "Apendicitis aguda",
+    "difficulty": "Media",
+    "case": "Paciente masculino de 25 años acude por dolor abdominal de 12 horas de evolución que inició en región periumbilical y posteriormente migró a fosa ilíaca derecha. Presenta náusea y anorexia. A la exploración física: T 37.8°C, FC 98 lpm. Abdomen con resistencia muscular voluntaria, signo de McBurney positivo, signo de Rovsing positivo y dolor a la descompresión (signo de Blumberg). Exámenes de laboratorio revelan leucocitosis de 14,000/mm³ con neutrofilia del 85%.",
+    "questions": [
+      {
+        "question": "Según la GPC, ¿cuál es la escala clínica recomendada para apoyar el diagnóstico en este paciente?",
+        "options": [
+          "Criterios de Ranson",
+          "Escala de Alvarado",
+          "Escala de RIPASA",
+          "Criterios de Tokio"
+        ],
+        "answerIndex": 1,
+        "explanation": "La GPC mexicana recomienda ampliamente el uso de la escala de Alvarado en pacientes con sospecha de apendicitis aguda para normar el criterio de manejo. El paciente presenta un puntaje alto (migración del dolor, anorexia, náusea, dolor en fosa ilíaca derecha, rebote, fiebre y leucocitosis).",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento de elección definitivo para este paciente según las guías actuales?",
+        "options": [
+          "Apendicectomía abierta",
+          "Manejo conservador con antibióticos",
+          "Drenaje percutáneo",
+          "Apendicectomía laparoscópica"
+        ],
+        "answerIndex": 3,
+        "explanation": "La apendicectomía laparoscópica es el abordaje quirúrgico de elección por su menor dolor postoperatorio, menor tasa de infección de sitio quirúrgico y recuperación más rápida.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología biliar",
+    "subtema": "Colecistitis aguda",
+    "difficulty": "Alta",
+    "case": "Paciente femenina de 42 años, multípara, con IMC de 32 kg/m². Acude a urgencias por dolor intenso en hipocondrio derecho de 14 horas de evolución, irradiado a escápula derecha, acompañado de náusea y vómito de contenido biliar. Refiere fiebre no cuantificada en casa. A la exploración: T 38.5°C, FC 105 lpm, TA 110/70 mmHg. Ictericia leve en escleras. Abdomen doloroso a la palpación profunda en hipocondrio derecho con cese de la inspiración (signo de Murphy positivo) y masa palpable. Laboratorios: Leucocitos 16,000/mm³, PCR 50 mg/L, Bilirrubina total 2.1 mg/dL.",
+    "questions": [
+      {
+        "question": "De acuerdo con los criterios de Tokio, ¿qué grado de severidad presenta la colecistitis de la paciente?",
+        "options": [
+          "Grado I (Leve)",
+          "Grado II (Moderada)",
+          "Grado III (Grave)",
+          "Grado IV (Complicada)"
+        ],
+        "answerIndex": 1,
+        "explanation": "Es una colecistitis Grado II (Moderada) debido a la presencia de masa palpable en hipocondrio derecho y la leucocitosis >14,000/mm³ (otros criterios incluyen evolución >72h o marcada inflamación local). No es grave (Grado III) porque no presenta datos de disfunción orgánica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el estudio de imagen de primera elección para confirmar el diagnóstico según la GPC?",
+        "options": [
+          "Tomografía axial computarizada de abdomen",
+          "Ultrasonido hepático y de vías biliares",
+          "Resonancia magnética",
+          "Gammagrafía biliar (HIDA)"
+        ],
+        "answerIndex": 1,
+        "explanation": "El ultrasonido es el estudio de primera elección por su alta sensibilidad, bajo costo y disponibilidad. Los hallazgos principales incluyen engrosamiento de pared (>4mm), líquido perivesicular, lito encarcelado y signo de Murphy ultrasonográfico positivo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P1",
+    "subtema": "Trauma torácico (Neumotórax a tensión)",
+    "difficulty": "Media",
+    "case": "Masculino de 28 años ingresa a urgencias tras sufrir volcadura en vehículo automotor. Se encuentra agitado, con cianosis peribucal y franca dificultad respiratoria. Exploración física: TA 80/50 mmHg, FC 130 lpm, FR 34 rpm, SatO2 82%. Presenta ingurgitación yugular y la tráquea se encuentra desviada a la izquierda. En el hemitórax derecho se observan movimientos asimétricos, ausencia de ruidos respiratorios e hiperresonancia a la percusión.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico clínico más probable?",
+        "options": [
+          "Taponamiento cardíaco",
+          "Hemotórax masivo",
+          "Neumotórax abierto",
+          "Neumotórax a tensión derecho"
+        ],
+        "answerIndex": 3,
+        "explanation": "La clínica clásica de neumotórax a tensión incluye dificultad respiratoria severa, hipotensión, desviación traqueal contralateral, ausencia de ruidos respiratorios e hiperresonancia ipsilateral, sumado a la ingurgitación yugular secundaria a la compresión del retorno venoso.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la intervención terapéutica inmediata requerida?",
+        "options": [
+          "Intubación orotraqueal",
+          "Radiografía de tórax portátil",
+          "Descompresión torácica con aguja",
+          "Toracotomía de reanimación"
+        ],
+        "answerIndex": 2,
+        "explanation": "El neumotórax a tensión es una emergencia clínica y el tratamiento no debe retrasarse esperando estudios de imagen. Se requiere descompresión inmediata con aguja/catéter grueso o toracostomía con dedo, seguida de la colocación definitiva de una sonda endopleural.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Hernias",
+    "subtema": "Hernia inguinal",
+    "difficulty": "Baja",
+    "case": "Masculino de 65 años, trabajador de la construcción, acude a consulta por un abultamiento en la región inguinal derecha que aumenta de tamaño al toser o levantar objetos pesados y disminuye en decúbito supino. Ocasionalmente presenta dolor leve tipo pesantez. A la exploración física: en bipedestación se observa asimetría inguinal derecha; a la maniobra de Valsalva protruye una masa irreductible espontáneamente pero reductible a la manipulación suave. Al tacto del anillo inguinal superficial, el impulso se siente en la punta del dedo explorador.",
+    "questions": [
+      {
+        "question": "Anatómicamente, ¿cuál es la característica que define a una hernia inguinal indirecta?",
+        "options": [
+          "Protruye a través del triángulo de Hesselbach",
+          "Emerge por debajo del ligamento inguinal",
+          "Protruye a través del anillo inguinal profundo y desciende por el conducto inguinal",
+          "Se debe a debilidad exclusiva de la fascia transversalis"
+        ],
+        "answerIndex": 2,
+        "explanation": "Las hernias inguinales indirectas protruyen por el anillo inguinal profundo, lateral a los vasos epigástricos inferiores, y descienden acompañando al cordón espermático. Las que protruyen por el triángulo de Hesselbach son las directas.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la técnica quirúrgica abierta de elección con colocación de malla (técnica libre de tensión) recomendada en la GPC?",
+        "options": [
+          "Técnica de Shouldice",
+          "Técnica de Lichtenstein",
+          "Técnica de Bassini",
+          "Técnica de McVay"
+        ],
+        "answerIndex": 1,
+        "explanation": "La GPC establece que la plastía inguinal tipo Lichtenstein (colocación de malla libre de tensión) es el estándar de oro en el abordaje abierto por su menor tasa de recurrencia en comparación con las técnicas anatómicas (Bassini, Shouldice).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Quemaduras / Golpe de calor / Hipotermia",
+    "subtema": "Reanimación hídrica en paciente quemado",
+    "difficulty": "Alta",
+    "case": "Masculino de 35 años, peso de 70 kg, es rescatado de un incendio estructural. Presenta quemaduras de segundo y tercer grado que abarcan toda la cara anterior del tronco, toda la extremidad superior derecha y la cara anterior de la extremidad inferior izquierda. Es ingresado a sala de choque para manejo avanzado.",
+    "questions": [
+      {
+        "question": "Según la regla de los nueves, ¿cuál es el porcentaje de superficie corporal quemada (SCQ) estimado?",
+        "options": [
+          "27%",
+          "36%",
+          "45%",
+          "54%"
+        ],
+        "answerIndex": 1,
+        "explanation": "Sumando las áreas según la regla de los nueves para adultos: cara anterior del tronco (18%) + extremidad superior derecha completa (9%) + cara anterior de la extremidad inferior izquierda (9%) nos da un total de 36% de SCQ.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según las guías del ATLS actualizadas para quemaduras térmicas en adultos, ¿cuál es la fórmula recomendada para calcular los líquidos a infundir en las primeras 24 horas?",
+        "options": [
+          "4 ml Ringer Lactato x kg x % SCQ",
+          "3 ml Ringer Lactato x kg x % SCQ",
+          "2 ml Ringer Lactato x kg x % SCQ",
+          "1 ml Ringer Lactato x kg x % SCQ"
+        ],
+        "answerIndex": 2,
+        "explanation": "La décima edición del ATLS actualizó la recomendación de reanimación inicial para adultos con quemaduras térmicas a 2 ml de Ringer Lactato x peso (kg) x % SCQ, administrando la mitad del volumen calculado en las primeras 8 horas post-quemadura",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Urología P2 Subtema: Litiasis renal",
+    "subtema": "",
+    "difficulty": "Media",
+    "case": "Masculino de 42 años acude a urgencias por presentar dolor de inicio súbito, muy intenso, tipo cólico en la región lumbar derecha que se irradia hacia el flanco y el testículo ipsilateral. El paciente se encuentra inquieto, diaforético y no encuentra una posición que alivie el dolor. Refiere náuseas y ha presentado un episodio de emesis. A la exploración física: signos vitales dentro de parámetros normales, abdomen blando, depresible, sin datos de irritación peritoneal, puñopercusión derecha francamente positiva. Examen general de orina con microhematuria.",
+    "questions": [
+      {
+        "question": "De acuerdo con la GPC, ¿cuál es el estudio de imagen de elección y estándar de oro para confirmar el diagnóstico en este paciente en el servicio de urgencias?",
+        "options": [
+          "Radiografía simple de abdomen (KUB)",
+          "Ultrasonido renal y de vías urinarias",
+          "Tomografía computarizada helicoidal sin contraste (UroTAC)",
+          "Urografía excretora"
+        ],
+        "answerIndex": 2,
+        "explanation": "La GPC establece que la Tomografía Computarizada helicoidal no contrastada (UroTAC) es el estudio de imagen de elección (estándar de oro) en pacientes con sospecha de cólico nefrítico debido a su alta sensibilidad y especificidad, permitiendo identificar el tamaño, localización y densidad del lito, así como descartar otros diagnósticos diferenciales.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el fármaco de primera línea recomendado para el control del dolor en la fase aguda del cólico renoureteral?",
+        "options": [
+          "Paracetamol intravenoso",
+          "Diclofenaco o Ketorolaco intravenoso",
+          "Tramadol intravenoso",
+          "Butilhioscina intravenosa"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los AINEs (como el diclofenaco, ketorolaco o indometacina) son el tratamiento de primera línea para la analgesia en el cólico nefrítico agudo. Son preferibles a los opioides ya que, además de proporcionar una excelente analgesia, disminuyen el tono del músculo liso ureteral y reducen la filtración glomerular, aliviando la distensión de la cápsula renal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología cámara posterior Subtema: Glaucoma de ángulo cerrado agudo",
+    "subtema": "",
+    "difficulty": "Alta",
+    "case": "Femenina de 65 años acude a urgencias por dolor ocular severo en el ojo derecho de 3 horas de evolución, de inicio súbito tras salir de una sala de cine. Refiere visión borrosa, percepción de \"halos de colores\" alrededor de las luces, cefalea hemicraneal ipsilateral, náuseas y vómito. A la exploración oftalmológica básica: ojo derecho con hiperemia conjuntival importante (ojo rojo), córnea de aspecto opaco (edematosa) y pupila en semimidriasis arreactiva a la luz. A la palpación bidigital, el globo ocular derecho se percibe francamente pétreo en comparación con el izquierdo.",
+    "questions": [
+      {
+        "question": "Ante la sospecha diagnóstica, ¿cuál es el tratamiento médico de primera línea que debe iniciarse de inmediato para preservar la visión?",
+        "options": [
+          "Pilocarpina tópica exclusivamente",
+          "Timolol tópico y revaloración en 24 horas",
+          "Acetazolamida sistémica (IV o VO) y betabloqueadores tópicos",
+          "Atropina tópica para relajar el esfínter del iris"
+        ],
+        "answerIndex": 2,
+        "explanation": "El glaucoma agudo de ángulo cerrado es una urgencia oftalmológica. El manejo inicial busca reducir rápidamente la presión intraocular (PIO) disminuyendo la producción del humor acuoso. La GPC recomienda el uso de inhibidores de la anhidrasa carbónica sistémicos (Acetazolamida) combinados con betabloqueadores tópicos. La atropina está absolutamente contraindicada porque causa midriasis y empeora el bloqueo angular.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Una vez yugulado el cuadro agudo y normalizada la presión intraocular, ¿cuál es el tratamiento definitivo de elección para evitar recurrencias en esta paciente?",
+        "options": [
+          "Uso de análogos de prostaglandinas de por vida",
+          "Iridotomía periférica con láser Nd:YAG",
+          "Trabeculectomía quirúrgica",
+          "Extracción del cristalino"
+        ],
+        "answerIndex": 1,
+        "explanation": "La iridotomía periférica con láser es el tratamiento definitivo. Crea una vía alterna para que el humor acuoso pase de la cámara posterior a la anterior, aliviando el bloqueo pupilar. Se debe realizar en el ojo afectado y, de manera profiláctica, en el ojo contralateral, ya que la predisposición anatómica suele ser bilateral.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología de extremidad inferior Subtema: Fractura de cadera",
+    "subtema": "",
+    "difficulty": "Baja",
+    "case": "Femenina de 82 años, con antecedente de osteoporosis, es traída por familiares tras sufrir una caída desde su propia altura al tropezar con una alfombra en su domicilio. Refiere dolor intenso en la ingle izquierda e incapacidad absoluta para levantarse y caminar. A la exploración física: se observa la extremidad inferior izquierda acortada y en marcada rotación externa. Hay dolor intenso a la palpación del trocánter mayor y a los intentos de movilización pasiva de la cadera. Pediolociones y sensibilidad distal conservadas.",
+    "questions": [
+      {
+        "question": "Por la cinemática de trauma y la posición clásica de la extremidad, ¿cuál es el diagnóstico clínico más probable?",
+        "options": [
+          "Luxación posterior de cadera",
+          "Fractura de fémur distal",
+          "Fractura de cadera (fémur proximal)",
+          "Fractura de pelvis (rama isquiopúbica)"
+        ],
+        "answerIndex": 2,
+        "explanation": "La presentación clínica clásica de una fractura de cadera en el adulto mayor incluye acortamiento y rotación externa de la extremidad afectada, sumado a la impotencia funcional tras un traumatismo de baja energía. En contraste, la luxación posterior de cadera (típica de trauma de alta energía como accidentes de auto) se presenta con la pierna acortada, pero en rotación interna y aducción.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Se realiza radiografía de pelvis evidenciando una fractura del cuello femoral (intracapsular) desplazada (Garden III). Debido al alto riesgo de necrosis avascular de la cabeza femoral, ¿cuál es el tratamiento quirúrgico de elección indicado en esta paciente?",
+        "options": [
+          "Reducción cerrada y fijación con tornillos canulados",
+          "Fijación con clavo centromedular cefalomedular",
+          "Colocación de placa DHS (Dynamic Hip Screw)",
+          "Hemiartroplastia o Artroplastia total de cadera"
+        ],
+        "answerIndex": 3,
+        "explanation": "Las fracturas intracapsulares del cuello femoral desplazadas en pacientes adultos mayores tienen una tasa altísima de no unión y necrosis avascular debido a la interrupción del riego sanguíneo (arterias circunflejas). Por ello, la GPC recomienda el reemplazo articular (hemiartroplastia o artroplastia total) como tratamiento de elección para permitir una movilización temprana y evitar complicaciones por encamamiento.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología prostática Subtema: Hiperplasia Prostática Benigna (HPB)",
+    "subtema": "Pancreatitis aguda",
+    "difficulty": "Alta",
+    "case": "Masculino de 68 años acude a consulta de primer nivel por presentar síntomas del tracto urinario inferior (STUI) de 2 años de evolución. Refiere nicturia (se levanta 4 veces por la noche), disminución en la fuerza y calibre del chorro urinario, pujo miccional, intermitencia y sensación de vaciamiento incompleto. Niega hematuria, pérdida de peso o dolor óseo. Al tacto rectal: esfínter normotónico, próstata de aproximadamente 50 gramos, simétrica, de consistencia ahulada (adenomatosa), bordes bien delimitados, sin nódulos palpables, indolora. Antígeno Prostático Específico (APE) en 2.1 ng/mL, EGO sin alteraciones. Femenina de 52 años, con antecedente de colelitiasis no tratada. Acude a urgencias por dolor abdominal de inicio súbito, transfictivo, localizado en epigastrio con irradiación en hemicinturón hacia la espalda, de 12 horas de evolución. Presenta náuseas y múltiples episodios de vómito gastroalimentario que no alivian el dolor. A la exploración física: FC 115 lpm, FR 22 rpm, TA 100/65 mmHg, temperatura 37.9°C. Abdomen globoso por panículo adiposo, doloroso a la palpación en epigastrio y mesogastrio, peristalsis ausente. Signo de Cullen y Grey-Turner negativos. Laboratorios: Leucocitos 15,500/mm³, Glucosa 180 mg/dL, AST 350 U/L, ALT 410 U/L, Lipasa 1,200 U/L (Valor de referencia hasta 60 U/L).",
+    "questions": [
+      {
+        "question": "¿Cuál es el grupo farmacológico de primera línea para lograr una mejoría rápida de los síntomas obstructivos en este paciente?",
+        "options": [
+          "Inhibidores de la 5-alfa-reductasa (Finasterida)",
+          "Bloqueadores alfa-1 adrenérgicos (Tamsulosina)",
+          "Antimuscarínicos (Oxibutinina)",
+          "Inhibidores de la fosfodiesterasa-5 (Tadalafilo)"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los alfa-bloqueadores relajan el músculo liso del cuello vesical y la cápsula prostática, proporcionando un alivio rápido (en días o semanas) de los síntomas obstructivos. Los inhibidores de la 5-alfa-reductasa (que disminuyen el tamaño de la próstata) tardan de 3 a 6 meses en hacer efecto máximo, aunque la GPC recomienda la terapia combinada en próstatas >40 gramos.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál de las siguientes opciones representa una indicación absoluta para el tratamiento quirúrgico (Resección Transuretral de Próstata - RTUP) de la HPB?",
+        "options": [
+          "Volumen prostático mayor a 60 gramos",
+          "Nicturia de más de 3 veces por noche",
+          "Retención aguda de orina refractaria al retiro de sonda, litiasis vesical o falla renal secundaria",
+          "APE > 4 ng/mL"
+        ],
+        "answerIndex": 2,
+        "explanation": "Las indicaciones absolutas de cirugía en HPB incluyen: retención urinaria refractaria, infecciones del tracto urinario recurrentes, hematuria macroscópica recurrente, litiasis vesical y dilatación del tracto urinario superior con insuficiencia renal secundaria. El volumen prostático por sí solo o un síntoma aislado no son indicaciones absolutas. ema: Patología pancreática",
+        "gpcReference": ""
+      },
+      {
+        "question": "De acuerdo con las Guías de Práctica Clínica, ¿cuál es el diagnóstico y su etiología más probable?",
+        "options": [
+          "Úlcera péptica perforada",
+          "Colecistitis aguda complicada",
+          "Pancreatitis aguda de origen biliar",
+          "Pancreatitis aguda por hipertrigliceridemia"
+        ],
+        "answerIndex": 2,
+        "explanation": "El diagnóstico de pancreatitis aguda requiere 2 de 3 criterios (clínico, bioquímico, imagenológico). La paciente tiene clínica clásica y Lipasa elevada más de 3 veces el límite superior normal. La elevación marcada de ALT (>150 U/L) tiene un valor predictivo positivo altísimo para etiología biliar, sumado a su antecedente de colelitiasis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según las guías actuales, ¿cuál es el momento ideal para solicitar una Tomografía Computarizada (TAC) de abdomen contrastada en esta paciente para evaluar la severidad local (escala de Balthazar)?",
+        "options": [
+          "Inmediatamente a su ingreso a urgencias",
+          "Entre las 24 y 48 horas del inicio de los síntomas",
+          "Entre las 72 y 96 horas del inicio de los síntomas",
+          "Solo si la paciente requiere intervención quirúrgica"
+        ],
+        "answerIndex": 2,
+        "explanation": "La GPC y los consensos internacionales (como Atlanta) establecen que la TAC contrastada no debe realizarse de forma temprana (antes de las 72 horas) a menos que haya duda diagnóstica, ya que la necrosis pancreática y las complicaciones locales tardan entre 72 y 96 horas en delimitarse adecuadamente. Hacerla antes puede subestimar la gravedad del cuadro.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología gástrica",
+    "subtema": "Úlcera péptica perforada",
+    "difficulty": "Media",
+    "case": "Masculino de 68 años con antecedente de osteoartritis severa en rodillas, en tratamiento crónico con naproxeno y piroxicam. Es traído a urgencias por presentar dolor abdominal de inicio súbito, extremadamente intenso y generalizado, de 4 horas de evolución. A la exploración física: paciente inmóvil en la camilla (posición antiálgica), diaforético y taquicárdico (110 lpm). Abdomen plano, con rigidez muscular involuntaria (\"abdomen en madera\"), ausencia de ruidos peristálticos y pérdida de la matidez hepática a la percusión (Signo de Jobert positivo).",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio de imagen inicial más útil, rápido y económico para confirmar la principal sospecha diagnóstica en urgencias?",
+        "options": [
+          "Tomografía de abdomen simple",
+          "Radiografía simple de tórax en bipedestación",
+          "Ultrasonido abdominal FAST",
+          "Endoscopia superior de urgencia"
+        ],
+        "answerIndex": 1,
+        "explanation": "Ante la sospecha de víscera hueca perforada (clásicamente por úlcera péptica por AINEs crónicos con \"abdomen en madera\" y pérdida de matidez hepática), el estudio inicial es la radiografía de tórax de pie, la cual evidenciará neumoperitoneo (aire libre subdiafragmático). La endoscopia está absolutamente contraindicada en perforación aguda.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Co nfirmado el neumoperitoneo, ¿cuál es el manejo terapéutico de elección definitivo?",
+        "options": [
+          "Manejo conservador con inhibidores de bomba de protones IV y antibióticos",
+          "Cierre primario de la perforación con parche de Graham (omento)",
+          "Gastrectomía total",
+          "Vagotomía troncular más piloroplastia"
+        ],
+        "answerIndex": 1,
+        "explanation": "La GPC indica que la perforación de una úlcera péptica es una urgencia quirúrgica. El tratamiento de elección y estándar actual es el cierre simple de la úlcera reforzado con un parche de epiplón (Parche de Graham), frecuentemente realizado por vía laparoscópica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología diverticular",
+    "subtema": "Diverticulitis aguda complicada",
+    "difficulty": "Alta",
+    "case": "Masculino de 60 años acude por dolor abdominal continuo en fosa ilíaca izquierda de 3 días de evolución, acompañado de fiebre no cuantificada y estreñimiento. A la exploración: T 38.5°C, FC 100 lpm. Abdomen con dolor a la palpación profunda en cuadrante inferior izquierdo, con resistencia muscular y masa palpable dolorosa en fosa ilíaca izquierda. Rebote negativo en el resto del abdomen. Laboratorios con leucocitosis de 16,000/mm³. Se le realiza una Tomografía Computarizada (TAC) de abdomen con contraste intravenoso que reporta: engrosamiento de la pared del colon sigmoides con inflamación de la grasa perocólica y presencia de un absceso pélvico tabicado de 6 cm de diámetro, sin aire libre ni líquido libre generalizado.",
+    "questions": [
+      {
+        "question": "De acuerdo con la clasificación tomográfica, ¿qué estadio de Hinchey presenta este paciente?",
+        "options": [
+          "Hinchey I",
+          "Hinchey II",
+          "Hinchey III",
+          "Hinchey IV"
+        ],
+        "answerIndex": 1,
+        "explanation": "La clasificación de Hinchey modificada estratifica la diverticulitis. Hinchey I es absceso pericólico o mesentérico localizado. Hinchey II es absceso pélvico, retroperitoneal o a distancia (como en este caso, un absceso de 6 cm en pelvis). Hinchey III es peritonitis purulenta generalizada y Hinchey IV es peritonitis fecaloidea.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Con base en el tamaño y localización del absceso (Hinchey II), ¿cuál es el tratamiento de primera línea recomendado por la GPC?",
+        "options": [
+          "Resección intestinal urgente (Procedimiento de Hartmann)",
+          "Antibioticoterapia intravenosa exclusiva",
+          "Drenaje percutáneo guiado por imagen (TAC o USG) más antibióticos IV",
+          "Colectomía derecha"
+        ],
+        "answerIndex": 2,
+        "explanation": "En la enfermedad diverticular aguda complicada con un absceso mayor de 4-5 cm (como este de 6 cm) confinado (Hinchey II), la GPC recomienda el drenaje percutáneo guiado por imagen apoyado de antibióticos intravenosos. La cirugía de urgencia (Hartmann) se reserva para falla al drenaje, inestabilidad hemodinámica o estadios Hinchey III/IV.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Mordeduras y picaduras",
+    "subtema": "Alacranismo (Intoxicación por veneno de escorpión)",
+    "difficulty": "Alta",
+    "case": "Niño de 4 años, originario del estado de Nayarit, es llevado a la clínica rural por su madre tras presentar llanto súbito mientras jugaba en el patio hace 40 minutos. La madre trae el espécimen (un alacrán coloración pálida) en un frasco. A la exploración física: paciente muy inquieto, con sialorrea abundante, lagrimeo, nistagmo rotatorio, espasmos musculares y fasciculaciones linguales. Signos vitales: T 38.0°C, FC 140 lpm, FR 30 rpm.",
+    "questions": [
+      {
+        "question": "De acuerdo con la NOM-033-SSA2 -2011 y la GPC, ¿qué grado de intoxicación presenta el paciente?",
+        "options": [
+          "Grado I (Leve)",
+          "Grado II (Moderada)",
+          "Grado III (Grave)",
+          "Intoxicación asintomática"
+        ],
+        "answerIndex": 2,
+        "explanation": "El nistagmo, las fasciculaciones linguales, la sialorrea abundante y las alteraciones neurológicas/motoras generalizadas son signos inequívocos de una intoxicación Grado III (Grave). Los grados leves (I) solo presentan síntomas locales (dolor, parestesias en el sitio) y los moderados (II) síntomas sistémicos leves sin compromiso neurológico severo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la dosis terapéutica inicial de faboterápico polivalente antialacrán recomendada para este grupo de edad y severidad?",
+        "options": [
+          "1 frasco vía intravenosa",
+          "2 frascos vía intravenosa",
+          "3 frascos vía intravenosa",
+          "Paracetamol y observación estrecha por 4 horas"
+        ],
+        "answerIndex": 2,
+        "explanation": "La NOM -033 establece que en niños menores de 5 años con cuadro grave (Grado III), se deben administrar de manera inmediata 3 frascos de faboterápico polivalente antialacrán vía intravenosa directa. Observar sin administrar antiveneno en un niño con clínica neurológica es una mala práctica que pone en riesgo la vida.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Hipoacusia y Vértigo",
+    "subtema": "Vértigo Postural Paroxístico Benigno (VPPB)",
+    "difficulty": "Baja",
+    "case": "Femenina de 55 años acude a consulta externa refiriendo episodios de mareo muy intenso (\"siente que todo le da vueltas\") que duran menos de un minuto. Refiere que estos episodios se desencadenan exclusivamente cuando se acuesta en la cama, se gira hacia el lado derecho o al extender el cuello para alcanzar objetos altos. Niega pérdida de la audición (hipoacusia), acúfenos o alteraciones en la marcha.",
+    "questions": [
+      {
+        "question": "¿Cuál es la maniobra clínica diagnóstica de elección para confirmar la patología de esta paciente según la GPC?",
+        "options": [
+          "Maniobra de Epley",
+          "Maniobra de Dix-Hallpike",
+          "Prueba de Romberg",
+          "Prueba de Fukuda"
+        ],
+        "answerIndex": 1,
+        "explanation": "La maniobra de Dix-Hallpike es el estándar clínico para diagnosticar el VPPB del canal semicircular posterior (el más frecuente). Al acostar rápidamente a la paciente con la cabeza girada 45° y extendida, se reproduce el vértigo y se observa un nistagmo característico (rotatorio y hacia arriba).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Una vez confirmado el diagnóstico, ¿cuál es la maniobra terapéutica de reposición canalicular de primera línea recomendada?",
+        "options": [
+          "Maniobra de Semont",
+          "Maniobra de Lempert",
+          "Maniobra de Epley",
+          "Ejercicios de habituación de Brandt-Daroff"
+        ],
+        "answerIndex": 2,
+        "explanation": "La maniobra de Epley tiene una alta tasa de éxito (hasta 90% en una sola sesión) para tratar el VPPB del canal semicircular posterior, ya que moviliza las otoconias desplazadas de vuelta al utrículo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología intestinal QX",
+    "subtema": "Obstrucción intestinal",
+    "difficulty": "Alta",
+    "case": "Masculino de 55 años, con antecedente de laparotomía exploradora hace 3 años secundaria a trauma abdominal cerrado. Acude al servicio de urgencias refiriendo dolor abdominal tipo cólico de 24 horas de evolución, acompañado de náuseas, múltiples episodios de vómito de características fecaloides y distensión abdominal progresiva. Refiere incapacidad para canalizar gases y ausencia de evacuaciones desde el inicio del cuadro. A la exploración física: T 37.5°C, FC 105 lpm. Abdomen francamente distendido, timpánico a la percusión, peristalsis con ruidos metálicos de lucha en periodos de acentuación del dolor. Tacto rectal con ámpula vacía. Se solicita radiografía simple de abdomen en bipedestación.",
+    "questions": [
+      {
+        "question": "De acuerdo con la epidemiología reportada en la GPC, ¿cuál es la causa más frecuente de este cuadro en pacientes adultos con el antecedente de este paciente?",
+        "options": [
+          "Hernia de pared abdominal encarcelada",
+          "Vólvulo de colon sigmoides",
+          "Adherencias (bridas) postquirúrgicas",
+          "Íleo biliar"
+        ],
+        "answerIndex": 2,
+        "explanation": "Las adherencias o bridas postquirúrgicas son la causa número uno de oclusión del intestino delgado en pacientes adultos con antecedente de cirugías abdominales previas (responsables de hasta el 70% de los casos). Las hernias son la segunda causa y la primera en pacientes sin cirugías previas.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Qué hallazgo radiológico es clásico y esperado en la radiografía de abdomen en bipedestación para confirmar la obstrucción de intestino delgado?",
+        "options": [
+          "Imagen de \"grano de café\" en fosa ilíaca izquierda",
+          "Niveles hidroaéreos e imagen en \"pila de monedas\" (válvulas conniventes)",
+          "Pérdida de la matidez hepática (aire subdiafragmático)",
+          "Imagen en \"corazón de manzana\""
+        ],
+        "answerIndex": 1,
+        "explanation": "La presencia de niveles hidroaéreos escalonados, dilatación de asas de intestino delgado (>3 cm) y la visualización de las válvulas conniventes que cruzan toda la luz del asa (imagen en \"pila de monedas\") son los signos radiológicos clásicos de oclusión intestinal baja del intestino delgado. El grano de café corresponde a vólvulo de sigmoides.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología arterial y venosa",
+    "subtema": "Insuficiencia Venosa Crónica",
+    "difficulty": "Media",
+    "case": "Femenina de 48 años, de ocupación cajera (bipedestación prolongada), con obesidad grado I. Acude a consulta externa por presentar pesadez, dolor tipo ardoroso, prurito y edema en extremidades inferiores que empeora por las tardes y mejora con el reposo y la elevación de las piernas. A la exploración física se observan trayectos venosos dilatados y tortuosos mayores a 3 mm en territorio de la vena safena magna bilateral. No se observan cambios de coloración en la piel (lipodermatoesclerosis) ni úlceras activas o cicatrizadas.",
+    "questions": [
+      {
+        "question": "De acuerdo con la clasificación internacional CEAP para la enfermedad venosa crónica, ¿en qué estadio clínico se encuentra la paciente?",
+        "options": [
+          "CEAP C1",
+          "CEAP C2",
+          "CEAP C3",
+          "CEAP C4"
+        ],
+        "answerIndex": 1,
+        "explanation": "La clasificación CEAP clínica se divide en: C0 (sin signos visibles), C1 (telangiectasias o venas reticulares <3 mm), C2 (venas varicosas >3 mm, como en esta paciente), C3 (edema sin cambios cutáneos), C4 (cambios tróficos cutáneos como pigmentación o eccema), C5 (úlcera cicatrizada) y C6 (úlcera activa).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC mexicana, ¿cuál es el tratamiento farmacológico de primera línea (flebotónico) con mayor nivel de evidencia para el alivio de los síntomas, aunado a la terapia compresiva?",
+        "options": [
+          "Ácido acetilsalicílico",
+          "Pentoxifilina",
+          "Diosmina / Hesperidina (Fracción flavonoica purificada)",
+          "Cilostazol"
+        ],
+        "answerIndex": 2,
+        "explanation": "La GPC recomienda el uso de la fracción flavonoica purificada micronizada (Diosmina/Hesperidina) o castaño de indias como tratamiento médico de primera línea para el alivio del dolor, pesadez y edema en la insuficiencia venosa crónica. El cilostazol y la pentoxifilina se utilizan en la enfermedad arterial periférica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía Oncología Subtema: Cáncer de colon y recto",
+    "subtema": "",
+    "difficulty": "Media",
+    "case": "Masculino de 68 años de edad, con antecedente de tabaquismo intenso. Acude a consulta por cuadro de 4 meses de evolución caracterizado por astenia, adinamia, pérdida de peso no intencionada de 8 kg y cambios en el hábito intestinal, refiriendo heces adelgazadas (\"acintadas\") y dolor abdominal tipo cólico intermitente. Exámenes de laboratorio revelan hemoglobina de 9.5 g/dL (anemia microcítica hipocrómica) y prueba de sangre oculta en heces positiva.",
+    "questions": [
+      {
+        "question": "Se solicita un colon por enema con doble contraste como parte del abordaje inicial, en el cual se observa una lesión estenosante circunferencial de bordes irregulares en el colon descendente. ¿Cuál es el nombre del signo radiológico clásico descrito en esta patología?",
+        "options": [
+          "Signo del grano de café",
+          "Signo del remolino",
+          "Signo de la \"manzana mordida\" o \"corazón de manzana\"",
+          "Signo del pico de pájaro"
+        ],
+        "answerIndex": 2,
+        "explanation": "El signo de la \"manzana mordida\" o \"corazón de manzana\" (apple core sign) es la imagen radiológica clásica en estudios de contraste del cáncer colorrectal, producida por el estrechamiento concéntrico de la luz intestinal debido al crecimiento anular del tumor, típicamente visto en tumores del colon izquierdo (descendente y sigmoides).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tras confirmar el diagnóstico de adenocarcinoma de colon por colonoscopia y biopsia, ¿cuál es el marcador tumoral que la GPC recomienda solicitar para establecer el pronóstico basal y monitorizar la respuesta al tratamiento o recurrencia?",
+        "options": [
+          "CA-125",
+          "Alfa-fetoproteína (AFP)",
+          "Antígeno Carcinoembrionario (ACE)",
+          "CA 19-9"
+        ],
+        "answerIndex": 2,
+        "explanation": "El Antígeno Carcinoembrionario (ACE) es el marcador tumoral de elección para el seguimiento, pronóstico y detección de recurrencias en el cáncer colorrectal. No debe utilizarse como prueba de tamizaje o diagnóstico inicial por su baja sensibilidad y especificidad, pero es invaluable una vez establecido el diagnóstico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Tumores testiculares y cáncer de próstata",
+    "subtema": "Cáncer de próstata",
+    "difficulty": "Alta",
+    "case": "Masculino de 72 años acude a chequeo médico de rutina. Refiere síntomas del tracto urinario inferior (STUI) leves a moderados. Como parte de su tamizaje, se realiza un tacto rectal encontrando una próstata asimétrica, con aumento de consistencia en el lóbulo derecho donde se palpa un nódulo pétreo e indoloro. Se solicita Antígeno Prostático Específico (APE) total, el cual reporta 14 ng/mL.",
+    "questions": [
+      {
+        "question": "Con base en la anatomía glandular, ¿en qué zona de la próstata se origina con mayor frecuencia esta patología neoplásica?",
+        "options": [
+          "Zona transicional",
+          "Zona central",
+          "Zona periférica",
+          "Estroma fibromuscular anterior"
+        ],
+        "answerIndex": 2,
+        "explanation": "El adenocarcinoma de próstata se origina en la zona periférica en aproximadamente el 70-75% de los casos (lo que permite su palpación mediante tacto rectal). Por el contrario, la Hiperplasia Prostática Benigna (HPB) se origina predominantemente en la zona transicional (rodeando la uretra, causando síntomas obstructivos tempranos).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Se realiza biopsia transrectal guiada por ultrasonido confirmando adenocarcinoma de próstata. ¿Cómo se llama el sistema de gradación histológica utilizado mundialmente para evaluar la agresividad de este tumor?",
+        "options": [
+          "Escala de Fuhrman",
+          "Escala de Gleason",
+          "Clasificación de Bosniak",
+          "Clasificación de TNM"
+        ],
+        "answerIndex": 1,
+        "explanation": "La escala de Gleason es el sistema de gradación patológica exclusivo para el cáncer de próstata. Evalúa el patrón arquitectónico de las glándulas neoplásicas sumando el patrón primario (más abundante) y el secundario para dar un puntaje total de 6 a 10, donde los puntajes más altos indican tumores más indiferenciados y agresivos. (Fuhrman es para cáncer renal, Bosniak para quistes renales).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología intestinal inflamatoria",
+    "subtema": "Colitis Ulcerosa Crónica Idiopática (CUCI)",
+    "difficulty": "Media",
+    "case": "Femenina de 32 años de edad acude a consulta por cuadro de 3 meses de evolución caracterizado por diarrea sanguinolenta de 6 a 8 evacuaciones por día, acompañada de pujo, tenesmo rectal, dolor abdominal tipo cólico en cuadrante inferior izquierdo y pérdida de peso no intencionada de 4 kg. Refiere episodios febriles intermitentes. A la exploración física: palidez de tegumentos, taquicardia leve (100 lpm), abdomen doloroso a la palpación en marco colónico izquierdo, sin datos de irritación peritoneal. Tacto rectal evidencia restos hemáticos frescos.",
+    "questions": [
+      {
+        "question": "Se le realiza una colonoscopia con toma de biopsia. ¿Cuál es el hallazgo histopatológico característico y patognomónico esperado en esta paciente según la GPC?",
+        "options": [
+          "Granulomas no caseificantes transmurales",
+          "Microabscesos crípticos y distorsión de la arquitectura de las criptas",
+          "Infiltrado linfocítico intraepitelial sin distorsión de criptas",
+          "Presencia de células en anillo de sello"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los microabscesos de las criptas y la inflamación limitada a la mucosa y submucosa son el sello histopatológico de la Colitis Ulcerosa (CUCI). Los granulomas no caseificantes transmurales son característicos de la Enfermedad de Crohn.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para inducir la remisión en esta paciente con un brote de intensidad leve a moderada, ¿cuál es el tratamiento farmacológico de primera línea recomendado?",
+        "options": [
+          "Glucocorticoides sistémicos a dosis altas",
+          "Infliximab (Terapia biológica)",
+          "Derivados del 5-aminosalicilato (Mesalazina/Sulfasalazina)",
+          "Azatioprina"
+        ],
+        "answerIndex": 2,
+        "explanation": "La GPC mexicana establece que los aminosalicilatos (5-ASA como la mesalazina) tópicos u orales son el tratamiento de inducción y mantenimiento de primera línea para pacientes con CUCI leve a moderada. Los esteroides se reservan para brotes graves o refractarios a 5-ASA, y la terapia biológica para enfermedad severa o corticodependiente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirrosis y sus complicaciones",
+    "subtema": "Sangrado de tubo digestivo alto (STDA) por várices esofágicas",
+    "difficulty": "Alta",
+    "case": "Masculino de 55 años con antecedente de alcoholismo crónico severo durante 20 años. Es traído a urgencias tras presentar dos episodios de hematemesis abundante en su domicilio, acompañados de mareo y síncope. A su ingreso: TA 85/50 mmHg, FC 120 lpm, FR 24 rpm. A la exploración se observan telangiectasias (arañas vasculares) en tórax, red venosa colateral en abdomen y red capilar palmar. Se inician maniobras de reanimación hídrica con cristaloides y transfusión de hemoderivados.",
+    "questions": [
+      {
+        "question": "Previo a la realización de la endoscopia de urgencia, ¿qué grupo de fármacos debe administrarse de forma temprana para disminuir la presión portal y controlar el sangrado activo según las guías actuales?",
+        "options": [
+          "Inhibidores de la bomba de protones a dosis altas IV",
+          "Betabloqueadores no selectivos (Propranolol) VO",
+          "Fármacos vasoactivos esplácnicos (Terlipresina, Octreótida o Somatostatina) IV",
+          "Ácido tranexámico IV"
+        ],
+        "answerIndex": 2,
+        "explanation": "En el STDA por hipertensión portal (várices esofágicas), la administración precoz de fármacos vasoactivos como la terlipresina o la octreótida reduce el flujo sanguíneo esplácnico y la presión portal, facilitando la hemostasia. Se deben iniciar incluso antes de la endoscopia. Los IBP son para sangrado no variceal (úlcera).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Una vez estabilizado el paciente y controlada la hemorragia mediante ligadura endoscópica con bandas, ¿cuál es la terapia farmacológica de elección para la profilaxis secundaria (evitar el resangrado)?",
+        "options": [
+          "Betabloqueadores no selectivos (Propranolol o Nadolol)",
+          "Inhibidores de la bomba de protones (Omeprazol) de por vida",
+          "Nitratos de acción prolongada exclusivamente",
+          "Espironolactona a dosis altas"
+        ],
+        "answerIndex": 0,
+        "explanation": "La GPC recomienda el uso de betabloqueadores no selectivos (propranolol, nadolol, carvedilol) solos o en combinación con ligadura endoscópica para la profilaxis secundaria del sangrado por várices esofágicas, ya que reducen el gasto cardíaco y producen vasoconstricción esplácnica (bloqueo beta- 2), disminuyendo así la presión venosa portal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Trauma generalidades y complicaciones",
+    "subtema": "Síndrome Compartimental",
+    "difficulty": "Media",
+    "case": "Masculino de 28 años, sufre accidente deportivo resultando en fractura cerrada de la diáfisis tibial derecha. Es tratado inicialmente en un hospital periférico con inmovilización mediante un aparato de yeso circular cruropodálico. Ocho horas después, el paciente acude a urgencias quejándose de un dolor insoportable en la pierna afectada que no cede con la administración de analgésicos opioides intravenosos. A la exploración: el paciente se muestra ansioso, la extremidad inmovilizada se siente a tensión, hay dolor extremo a la extensión pasiva de los dedos del pie derecho. Los pulsos distales (pedio y tibial posterior) son palpables y el llenado capilar es de 2 segundos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el signo clínico más temprano y sensible para sospechar esta complicación ortopédica?",
+        "options": [
+          "Ausencia de pulsos distales",
+          "Palidez y frialdad de la extremidad",
+          "Dolor desproporcionado a la lesión y dolor al estiramiento pasivo de los músculos",
+          "Parálisis motora y parestesias totales"
+        ],
+        "answerIndex": 2,
+        "explanation": "El dolor desproporcionado a la lesión original, que no cede con analgésicos potentes, y el dolor exquisito a la elongación pasiva del compartimento afectado son los signos más tempranos y confiables del síndrome compartimental. La ausencia de pulsos (pulselessness) y la parálisis son signos muy tardíos que indican necrosis tisular irreversible.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Ante la alta sospecha clínica de síndrome compartimental, ¿cuál es el estándar de oro diagnóstico y la indicación terapéutica definitiva?",
+        "options": [
+          "Doppler arterial seguido de embolectomía",
+          "Retiro del yeso y elevación de la extremidad por encima del nivel del corazón",
+          "Medición de la presión intracompartimental y fasciotomía urgente",
+          "Resonancia magnética de la extremidad"
+        ],
+        "answerIndex": 2,
+        "explanation": "El diagnóstico de certeza se realiza midiendo la presión intracompartimental (una presión absoluta >30 mmHg o un Delta P <30 mmHg es indicativo de isquemia). El único tratamiento efectivo para salvar la extremidad es la fasciotomía descompresiva de urgencia de los compartimentos afectados.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología de extremidad superior",
+    "subtema": "Fracturas de antebrazo y mano (Fractura de Colles)",
+    "difficulty": "Baja",
+    "case": "Femenina de 65 años con diagnóstico previo de osteoporosis. Acude al servicio de urgencias tras sufrir una caída desde su propia altura, refiriendo haber apoyado la palma de la mano derecha en extensión (dorsiflexión) contra el suelo para detener el impacto. Presenta dolor intenso, incapacidad funcional y aumento de volumen en la muñeca derecha. A la inspección, se observa una deformidad evidente de la muñeca en \"dorso de tenedor\".",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico clínico más probable según el mecanismo de lesión y la deformidad descrita?",
+        "options": [
+          "Fractura de Smith",
+          "Fractura de Colles",
+          "Fractura de Barton",
+          "Fractura de escafoides"
+        ],
+        "answerIndex": 1,
+        "explanation": "La fractura de Colles es la fractura distal del radio más común. El mecanismo clásico es la caída sobre la mano en dorsiflexión. Su rasgo clínico distintivo es la deformidad en \"dorso de tenedor\", producto del desplazamiento dorsal del fragmento óseo distal. La fractura de Smith (o Colles invertida) ocurre por caída con la muñeca en flexión palmar y genera deformidad en \"pala de jardinero\".",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC para fracturas distales de radio no articulares, con desplazamiento aceptable e integridad del cúbito en adultos mayores, ¿cuál es el tratamiento conservador inicial de elección?",
+        "options": [
+          "Reducción abierta y fijación interna con placa volar",
+          "Reducción cerrada y colocación de yeso braquipalmar por 12 semanas",
+          "Reducción cerrada y colocación de yeso o férula antebraquipalmar (o pinza de azúcar) por 4 a 6 semanas",
+          "Fijación con clavillos percutáneos de Kirschner exclusivamente"
+        ],
+        "answerIndex": 2,
+        "explanation": "En pacientes adultos mayores con fracturas extraarticulares (como la clásica de Colles) que logran una buena reducción cerrada, la GPC recomienda el tratamiento conservador mediante inmovilización con yeso o férula antebraquipalmar durante aproximadamente 4 a 6 semanas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología infecciosa / Rinología y faringe",
+    "subtema": "Otitis media maligna (Otitis externa maligna)",
+    "difficulty": "Alta",
+    "case": "Masculino de 72 años de edad con antecedente de diabetes mellitus tipo 2 de larga evolución, mal controlada (HbA1c 10.5%). Acude a consulta externa de otorrinolaringología por presentar otalgia derecha severa y de predominio nocturno de 3 semanas de evolución, que no responde a analgésicos comunes, acompañada de otorrea purulenta fétida. A la exploración física se observa asimetría facial con imposibilidad para cerrar el ojo derecho y desviación de la comisura labial hacia la izquierda. A la otoscopia se aprecia conducto auditivo externo edematizado y presencia de tejido de granulación en la unión osteocartilaginosa.",
+    "questions": [
+      {
+        "question": "De acuerdo con la epidemiología y el cuadro clínico, ¿cuál es el agente etiológico más frecuentemente aislado en esta entidad?",
+        "options": [
+          "Staphylococcus aureus",
+          "Streptococcus pneumoniae",
+          "Pseudomonas aeruginosa",
+          "Haemophilus influenzae"
+        ],
+        "answerIndex": 2,
+        "explanation": "La otitis externa maligna (o necrotizante) es una infección invasiva grave del conducto auditivo externo y la base del cráneo que afecta predominantemente a pacientes diabéticos de edad avanzada o inmunocomprometidos. El agente causal en más del 90% de los casos es la Pseudomonas aeruginosa.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Ante la confirmación diagnóstica, ¿cuál es el tratamiento antimicrobiano sistémico de primera línea recomendado por las guías?",
+        "options": [
+          "Amoxicilina con ácido clavulánico vía oral",
+          "Ciprofloxacino o Ceftazidima vía intravenosa prolongada",
+          "Vancomicina vía intravenosa",
+          "Macrólidos (Azitromicina) vía oral"
+        ],
+        "answerIndex": 1,
+        "explanation": "Debido a la etiología por Pseudomonas, el tratamiento exige cobertura antipseudomónica sistémica agresiva y prolongada (frecuentemente de 6 a 8 semanas). El ciprofloxacino (fluorquinolona con excelente penetración ósea) o cefalosporinas antipseudomónicas (Ceftazidima, Cefepime) son la terapia de elección. La parálisis facial indica osteomielitis de la base del cráneo e involucro del VII par craneal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ETS",
+    "subtema": "Sífilis primaria",
+    "difficulty": "Baja",
+    "case": "Masculino de 25 años, con múltiples parejas sexuales y uso inconsistente de preservativo, acude a consulta por la aparición de una úlcera en el glande de 1 semana de evolución. A la exploración física se observa una lesión ulcerada única de 1 cm de diámetro, de bordes limpios, sobreelevados, base indurada y que no duele a la palpación. Se palpan adenopatías inguinales bilaterales, firmes y no dolorosas.",
+    "questions": [
+      {
+        "question": "Por las características clínicas de la lesión, ¿cuál es el diagnóstico más probable?",
+        "options": [
+          "Chancroide (Haemophilus ducreyi)",
+          "Herpes genital (VHS-2)",
+          "Sífilis primaria (Treponema pallidum)",
+          "Linfogranuloma venéreo (Chlamydia trachomatis)"
+        ],
+        "answerIndex": 2,
+        "explanation": "La úlcera limpia, indurada, de bordes bien definidos y, sobre todo, indolora (chancro duro), acompañada de linfadenopatía regional indolora, es la presentación patognomónica de la sífilis primaria. El chancroide, por el contrario, produce úlceras sucias, purulentas y muy dolorosas (chancro blando).",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento farmacológico de primera elección según las guías clínicas para este paciente?",
+        "options": [
+          "Azitromicina 1 g VO dosis única",
+          "Penicilina G benzatínica 2.4 millones UI IM dosis única",
+          "Doxiciclina 100 mg VO cada 12 horas por 7 días",
+          "Ceftriaxona 500 mg IM dosis única"
+        ],
+        "answerIndex": 1,
+        "explanation": "La Penicilina G benzatínica en dosis única intramuscular es el estándar de oro y tratamiento de primera elección para la sífilis temprana (primaria, secundaria y latente temprana). La doxiciclina es la alternativa principal en pacientes con alergia confirmada a la penicilina (no embarazadas).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Introducción Oftalmología",
+    "subtema": "Patología de anexos (Chalazión)",
+    "difficulty": "Media",
+    "case": "Femenina de 30 años acude a consulta externa por la presencia de una \"bolita\" en el párpado superior del ojo derecho de 4 semanas de evolución. Refiere que en los primeros días presentó ligero enrojecimiento y molestia, pero actualmente es completamente asintomática, a excepción de la preocupación estética. A la exploración oftalmológica se palpa un nódulo subcutáneo de 5 mm en la cara tarsal del párpado superior, firme, bien delimitado, indoloro, sin hiperemia ni calor local. Se abrirá en una ventana nueva Shutterstock",
+    "questions": [
+      {
+        "question": "De acuerdo con la presentación clínica, ¿cuál es el diagnóstico correcto?",
+        "options": [
+          "Orzuelo externo",
+          "Orzuelo interno",
+          "Chalazión",
+          "Dacriocistitis aguda"
+        ],
+        "answerIndex": 2,
+        "explanation": "El chalazión es una lesión nodular crónica, firme e indolora del párpado. A diferencia del orzuelo (que es una infección aguda, hiperémica y muy dolorosa), el chalazión es el resultado de una inflamación granulomatosa estéril secundaria a la retención de secreciones.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la glándula palpebral cuya obstrucción e inflamación granulomatosa da origen a esta patología?",
+        "options": [
+          "Glándulas de Zeis",
+          "Glándulas de Moll",
+          "Glándula lagrimal principal",
+          "Glándulas de Meibomio"
+        ],
+        "answerIndex": 3,
+        "explanation": "El chalazión se produce por la obstrucción y posterior inflamación lipogranulomatosa estéril de las glándulas sebáceas de Meibomio, ubicadas en el tarso palpebral. Los orzuelos externos, por su parte, afectan típicamente las glándulas de Zeis o Moll asociadas a los folículos de las pestañas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Hipoacusia y vértigo",
+    "subtema": "Enfermedad de Ménière",
+    "difficulty": "Alta",
+    "case": "Masculino de 45 años es referido a otorrinolaringología por presentar episodios recurrentes de vértigo incapacitante (\"las cosas le dan vueltas\") que duran entre 2 y 4 horas. Durante las crisis, el paciente experimenta náuseas severas. Además, refiere que antes y durante el mareo siente el oído derecho \"tapado\" (plenitud ótica), escucha un zumbido intenso (acúfeno) y nota que no escucha bien por ese mismo oído. Entre las crisis, el paciente se encuentra asintomático. La audiometría evidencia hipoacusia neurosensorial de tonos bajos en el oído derecho.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico clínico más probable según la tríada sintomática que presenta el paciente?",
+        "options": [
+          "Vértigo Postural Paroxístico Benigno (VPPB)",
+          "Neuronitis vestibular",
+          "Enfermedad de Ménière",
+          "Schwannoma vestibular (Neurinoma del acústico)"
+        ],
+        "answerIndex": 2,
+        "explanation": "La enfermedad de Ménière se caracteriza clínicamente por la tríada/tétrada clásica de episodios recurrentes de vértigo (que duran minutos a horas, no segundos como en el VPPB), acúfeno, hipoacusia neurosensorial fluctuante y sensación de plenitud ótica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC, ¿cuál es el tratamiento profiláctico de primera línea recomendado para reducir la frecuencia y severidad de las crisis en la terapia de mantenimiento?",
+        "options": [
+          "Maniobras de reposición canalicular (Epley)",
+          "Corticoides intratimpánicos exclusivamente",
+          "Restricción de sodio en la dieta y uso de diuréticos (ej. hidroclorotiazida) o betahistina",
+          "Laberintectomía química con gentamicina"
+        ],
+        "answerIndex": 2,
+        "explanation": "El manejo conservador y profiláctico inicial se basa en modificaciones del estilo de vida (restricción estricta de sal, cafeína y alcohol) sumado al uso de diuréticos (para disminuir el hidrops endolinfático) o neuromoduladores como la betahistina. Los procedimientos destructivos o inyecciones se reservan para casos refractarios y severos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía Oncología",
+    "subtema": "Cáncer gástrico",
+    "difficulty": "Media",
+    "case": "Masculino de 65 años, fumador crónico, acude por pérdida de peso de 12 kg en los últimos 4 meses, acompañada de dolor epigástrico sordo, saciedad temprana y aversión reciente por la carne. A la exploración física destaca palidez de tegumentos y la palpación de un ganglio linfático supraclavicular izquierdo aumentado de tamaño, de consistencia pétrea e indoloro.",
+    "questions": [
+      {
+        "question": "¿Qué nombre recibe el hallazgo exploratorio del ganglio supraclavicular izquierdo y qué indica en el contexto de este paciente?",
+        "options": [
+          "Ganglio de Irish; indica metástasis pulmonar",
+          "Ganglio de la Hermana María José; indica carcinomatosis peritoneal",
+          "Ganglio de Virchow; indica metástasis linfática de una neoplasia intraabdominal (típicamente gástrica)",
+          "Tumor de Krukenberg; indica metástasis ovárica"
+        ],
+        "answerIndex": 2,
+        "explanation": "El ganglio de Virchow es una adenopatía supraclavicular izquierda. Es un signo clásico de diseminación linfática de una neoplasia maligna intraabdominal, siendo el cáncer gástrico una de las causas más emblemáticas. El nódulo de la Hermana María José se encuentra en la región periumbilical.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el estudio estándar de oro de primera elección para confirmar el diagnóstico sospechado según las guías actuales?",
+        "options": [
+          "Tomografía Computarizada de abdomen contrastada",
+          "Tránsito esofagogastroduodenal con bario",
+          "Endoscopia superior (Panendoscopia) con toma de biopsias",
+          "Resonancia magnética abdominal"
+        ],
+        "answerIndex": 2,
+        "explanation": "La endoscopia superior con toma de múltiples biopsias de las lesiones sospechosas es el estándar de oro para el diagnóstico definitivo del cáncer gástrico, permitiendo la visualización directa y la confirmación histopatológica. La tomografía se utiliza posteriormente para la estadificación (búsqueda de metástasis y extensión tumoral).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología arterial y venosa",
+    "subtema": "Insuficiencia arterial aguda",
+    "difficulty": "Alta",
+    "case": "Femenina de 70 años con antecedente de fibrilación auricular crónica en tratamiento irregular con anticoagulantes. Acude a urgencias por dolor súbito, lancinante e insoportable en la extremidad inferior derecha de 2 horas de evolución. A la exploración física, la extremidad derecha se observa marcadamente pálida, fría al tacto en comparación con la contralateral, con ausencia total de pulsos poplíteo y pedio. La paciente refiere parestesias (\"hormigueo\") y tiene dificultad para mover los dedos del pie.",
+    "questions": [
+      {
+        "question": "Por las características clínicas y los antecedentes, ¿cuál es la etiología más probable de este cuadro?",
+        "options": [
+          "Trombosis venosa profunda",
+          "Embolismo arterial de origen cardiogénico",
+          "Ruptura de aneurisma aórtico abdominal",
+          "Tromboangeítis obliterante (Enfermedad de Buerger)"
+        ],
+        "answerIndex": 1,
+        "explanation": "La presentación clínica de las \"6 P\" (Pain, Pallor, Pulselessness, Paresthesia, Paralysis, Poikilothermia) de inicio súbito en una paciente con el antecedente clave de fibrilación auricular (FA) es clásica de un embolismo arterial agudo (el coágulo se forma en la orejuela izquierda y viaja hasta ocluir una arteria periférica).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Una vez establecido el diagnóstico clínico de isquemia arterial aguda que amenaza la extremidad, ¿cuál es la medida farmacológica inmediata que debe instaurarse en urgencias previo a la revascularización?",
+        "options": [
+          "Administración de clopidogrel y aspirina a dosis de impregnación",
+          "Anticoagulación sistémica inmediata con Heparina no fraccionada intravenosa",
+          "Administración de cilostazol o pentoxifilina vía oral",
+          "Analgesia exclusiva y espera del cirujano vascular"
+        ],
+        "answerIndex": 1,
+        "explanation": "La GPC establece que ante la sospecha clínica firme de isquemia arterial aguda, se debe iniciar de forma inmediata la anticoagulación sistémica con heparina no fraccionada IV (si no hay contraindicaciones) para evitar la propagación del trombo en el lecho vascular isquémico, mientras se prepara al paciente para la intervención definitiva de revascularización (embolectomía o trombólisis).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P2",
+    "subtema": "Traumatismo Craneoencefálico (TCE) - Hematoma Epidural",
+    "difficulty": "Alta",
+    "case": "Masculino de 22 años sufre accidente al caer de su patineta sin portar casco, golpeándose fuertemente la región temporal derecha. Testigos refieren pérdida de la conciencia de aproximadamente 2 minutos, tras los cuales el paciente se levantó, refirió sentirse bien y caminó a su casa (intervalo lúcido). Dos horas después, sus familiares lo encuentran en el piso, con deterioro neurológico rápido, vómito en proyectil y respiración irregular. A su llegada a urgencias, presenta Glasgow de 7 (Apertura ocular 1, Respuesta verbal 2, Respuesta motora 4), anisocoria con midriasis derecha arreactiva y hemiparesia izquierda.",
+    "questions": [
+      {
+        "question": "Se realiza una Tomografía Computarizada (TAC) de cráneo simple de urgencia. ¿Cuál es la imagen característica esperada en este paciente?",
+        "options": [
+          "Imagen hiperdensa en forma de semiluna que cruza las suturas craneales",
+          "Imagen hiperdensa biconvexa (forma de lente) que no cruza las suturas craneales",
+          "Borramiento de surcos y ventrículos con pérdida de la diferenciación sustancia gris-blanca",
+          "Sangre hiperdensa ocupando las cisternas basales y el espacio aracnoideo"
+        ],
+        "answerIndex": 1,
+        "explanation": "El cuadro clínico de trauma temporal, intervalo lúcido y deterioro rápido es el clásico del hematoma epidural. En la TAC simple de cráneo, la sangre arterial a alta presión despega la duramadre del cráneo formando una colección hiperdensa biconvexa (lente lenticular) que está limitada por las suturas craneales (donde la duramadre está firmemente adherida al hueso). La imagen en \"semiluna\" corresponde al hematoma subdural.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Anatómicamente, ¿cuál es el vaso sanguíneo cuya ruptura causa con mayor frecuencia esta patología traumática?",
+        "options": [
+          "Venas puente subdurales",
+          "Arteria cerebral media",
+          "Seno sagital superior",
+          "Arteria meníngea media"
+        ],
+        "answerIndex": 3,
+        "explanation": "La arteria meníngea media, que transcurre por debajo del hueso temporal (específicamente en la región del pterion, que es una zona ósea muy delgada), es el vaso típicamente desgarrado en las fracturas temporoparietales causantes del hematoma epidural. Las venas puente causan el hematoma subdural.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología esofágica",
+    "subtema": "Acalasia",
+    "difficulty": "Media",
+    "case": "Femenina de 45 años de edad acude a consulta por historia de 8 meses de evolución con disfagia progresiva, primero a sólidos y actualmente a líquidos. Refiere además regurgitación frecuente de alimentos no digeridos (especialmente al acostarse), pirosis ocasional y pérdida de peso de 5 kg en los últimos meses. Se le realiza un esofagograma con bario que muestra dilatación del cuerpo esofágico con un afilamiento regular y simétrico en la unión esofagogástrica.",
+    "questions": [
+      {
+        "question": "¿Cuál es el nombre del signo radiológico clásico descrito en el esofagograma de esta paciente?",
+        "options": [
+          "Signo del sacacorchos",
+          "Signo del pico de pájaro",
+          "Signo de la manzana mordida",
+          "Signo del doble riel"
+        ],
+        "answerIndex": 1,
+        "explanation": "El signo de \"pico de pájaro\" o \"cola de ratón\" es la imagen radiológica patognomónica de la acalasia en el esofagograma con bario, y representa la falta de relajación del esfínter esofágico inferior (EEI) junto con la dilatación del esófago proximal. El signo del sacacorchos es característico del espasmo esofágico difuso.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC, ¿cuál es el estudio considerado el estándar de oro para confirmar el diagnóstico fisiopatológico de este trastorno de la motilidad?",
+        "options": [
+          "Endoscopia superior con toma de biopsia",
+          "pH-metría de 24 horas",
+          "Manometría esofágica de alta resolución",
+          "Tomografía axial computarizada de tórax"
+        ],
+        "answerIndex": 2,
+        "explanation": "La manometría esofágica es el estándar de oro para el diagnóstico de la acalasia. Demuestra los dos defectos fisiopatológicos cardinales: aperistalsis del cuerpo esofágico y la falta de relajación (o relajación incompleta) del esfínter esofágico inferior durante la deglución.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología isquémica intestinal",
+    "subtema": "Isquemia mesentérica aguda",
+    "difficulty": "Alta",
+    "case": "Masculino de 75 años, hipertenso y con antecedente de fibrilación auricular no anticoagulada. Acude a urgencias quejándose de dolor abdominal de inicio súbito, periumbilical, severo (\"el peor dolor de su vida\") y constante, acompañado de un episodio de diarrea sanguinolenta y vómito. A la exploración física llama la atención que, a pesar de las quejas de dolor insoportable del paciente, el abdomen se encuentra blando, depresible y sin datos francos de irritación peritoneal (dolor desproporcionado a los hallazgos físicos). Signos vitales: TA 150/90 mmHg, FC 120 lpm (arrítmica), T 37.8°C.",
+    "questions": [
+      {
+        "question": "Con base en la sospecha diagnóstica principal, ¿cuál es el vaso sanguíneo más frecuentemente ocluido en esta patología?",
+        "options": [
+          "Tronco celíaco",
+          "Arteria mesentérica inferior",
+          "Arteria mesentérica superior",
+          "Vena esplénica"
+        ],
+        "answerIndex": 2,
+        "explanation": "La embolia arterial secundaria a una fibrilación auricular es la causa más común de isquemia mesentérica aguda. El émbolo se aloja con mayor frecuencia en la arteria mesentérica superior debido a su ángulo de origen oblicuo desde la aorta y a su gran calibre, comprometiendo la irrigación de todo el intestino delgado y el colon derecho.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el estudio de imagen de elección inicial (estándar de oro) en urgencias para confirmar el diagnóstico y planear el abordaje quirúrgico?",
+        "options": [
+          "Radiografía simple de abdomen",
+          "Angiotomografía computarizada (AngioTAC) de abdomen",
+          "Ultrasonido abdominal Doppler",
+          "Resonancia magnética abdominal"
+        ],
+        "answerIndex": 1,
+        "explanation": "La AngioTAC de abdomen (fase arterial y venosa) es el estudio de imagen inicial de elección en la actualidad por su alta sensibilidad y especificidad, su rapidez en urgencias y su capacidad para identificar el sitio exacto de la oclusión vascular y evaluar el estado de la pared intestinal (neumatosis).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología perianal",
+    "subtema": "Fisura anal crónica",
+    "difficulty": "Media",
+    "case": "Femenina de 32 años, oficinista, con historia de estreñimiento crónico. Acude a consulta por dolor intenso, punzante, \"como si la cortaran con vidrio\", que se presenta exclusivamente durante la defecación y persiste por un par de horas después. Nota manchado de sangre roja fresca en el papel higiénico. A la inspección anal suave, se separa el margen anal y se observa un desgarro longitudinal en la línea media posterior, acompañado de un pliegue cutáneo engrosado en el borde externo.",
+    "questions": [
+      {
+        "question": "El hallazgo descrito forma parte de la tríada de Brodie, patognomónica de la fisura anal crónica. ¿Cuáles son los tres componentes de esta tríada?",
+        "options": [
+          "Úlcera anal, papila anal hipertrófica y colgajo cutáneo (hemorroide centinela)",
+          "Úlcera anal, absceso isquiorrectal y fístula subcutánea",
+          "Úlcera anal, trombosis hemorroidal y prolapso mucoso",
+          "Úlcera anal, papilitis y criptitis"
+        ],
+        "answerIndex": 0,
+        "explanation": "Una fisura anal se considera crónica cuando no cicatriza en 6 semanas. La cronicidad y la inflamación repetida generan cambios anatómicos característicos conocidos como la Tríada de Brodie: 1) la úlcera o fisura en sí (donde pueden verse las fibras del esfínter anal interno), 2) una papila anal hipertrófica en el extremo interno (proximal) y 3) un colgajo cutáneo o \"hemorroide centinela\" en el extremo externo (distal).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC, ¿cuál es el tratamiento farmacológico tópico de primera línea con mayor nivel de evidencia para buscar la cicatrización de esta lesión?",
+        "options": [
+          "Ungüento de hidrocortisona al 1%",
+          "Pomada de óxido de zinc con lidocaína",
+          "Trinitrato de glicerilo al 0.2% o Diltiazem al 2% tópico",
+          "Supositorios de glicerina"
+        ],
+        "answerIndex": 2,
+        "explanation": "El objetivo del tratamiento médico es relajar el esfínter anal interno hipertónico para mejorar el flujo sanguíneo local y permitir la cicatrización. La GPC recomienda el uso de relajantes musculares tópicos como los nitratos (trinitrato de glicerilo) o los bloqueadores de canales de calcio (diltiazem o nifedipino) como terapia de primera línea, además de la dieta rica en fibra y los baños de asiento calientes.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología de extremidad inferior",
+    "subtema": "Esguince de tobillo",
+    "difficulty": "Baja",
+    "case": "Masculino de 19 años es llevado a urgencias tras sufrir una torcedura del tobillo derecho durante un partido de fútbol. El mecanismo reportado fue una caída con el pie en inversión forzada y flexión plantar. Presenta dolor intenso, edema moderado en la cara anterolateral del tobillo y limitación para el apoyo de la extremidad. A la palpación, hay dolor exquisito justo por delante y debajo del maléolo externo.",
+    "questions": [
+      {
+        "question": "Por el mecanismo de lesión (inversión forzada), ¿cuál es el ligamento que se lesiona con mayor frecuencia en este tipo de traumatismos?",
+        "options": [
+          "Ligamento deltoideo",
+          "Ligamento peroneoastragalino anterior",
+          "Ligamento calcaneocuboideo",
+          "Ligamento tibiofibular anteroinferior"
+        ],
+        "answerIndex": 1,
+        "explanation": "El complejo ligamentario lateral del tobillo es el más débil y el que se lesiona en el 85% de los esguinces (mecanismo de inversión). El ligamento peroneoastragalino anterior (LPAA) es el primero en tensarse y el que se desgarra con mayor frecuencia, seguido del ligamento calcaneofibular.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC, ¿cuál es la herramienta de decisión clínica validada para determinar si este paciente requiere la toma de una radiografía de tobillo para descartar fractura?",
+        "options": [
+          "Reglas de Wells",
+          "Criterios de Centor",
+          "Reglas del tobillo de Ottawa",
+          "Criterios de Framingham"
+        ],
+        "answerIndex": 2,
+        "explanation": "Las Reglas de Ottawa para el tobillo son la herramienta clínica estandarizada para decidir la necesidad de radiografías. Establecen que la radiografía está indicada solo si hay dolor en la zona maleolar y se cumple uno de estos: sensibilidad ósea en el borde posterior o punta del maléolo lateral/medial (últimos 6 cm), o incapacidad para soportar peso (dar 4 pasos) inmediatamente después del trauma y en urgencias. Ayudan a reducir radiografías innecesarias.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología gástrica y esofágica",
+    "subtema": "Enfermedad por Reflujo Gastroesofágico (ERGE)",
+    "difficulty": "Media",
+    "case": "Masculino de 45 años, con IMC de 31 kg/m², acude a consulta por referir pirosis de predominio nocturno, regurgitación ácida y tos crónica de 1 año de evolución. Ha recibido tratamiento empírico con omeprazol a doble dosis durante 8 semanas sin mejoría significativa de los síntomas. Se le realiza una endoscopia superior que reporta esofagitis grado C de Los Ángeles y hernia hiatal por deslizamiento de 3 cm.",
+    "questions": [
+      {
+        "question": "De acuerdo con la GPC mexicana para ERGE, ¿cuál es el estudio considerado el estándar de oro para confirmar el diagnóstico, especialmente ante la falta de respuesta al tratamiento médico?",
+        "options": [
+          "Esofagograma con bario",
+          "Manometría esofágica de alta resolución",
+          "pH-metría esofágica de 24 horas con impedancia",
+          "Prueba terapéutica con inhibidores de bomba de protones a dosis cuádruple"
+        ],
+        "answerIndex": 2,
+        "explanation": "La pH-metría esofágica de 24 horas (idealmente con impedanciometría) es el estándar de oro para el diagnóstico de ERGE, ya que permite cuantificar el tiempo de exposición ácida y correlacionar los episodios de reflujo (ácido y no ácido) con los síntomas del paciente. La manometría se utiliza para descartar trastornos motores antes de una cirugía, pero no diagnostica ERGE per se.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tras completar el protocolo de estudio y confirmar el diagnóstico, se decide manejo quirúrgico. ¿Cuál es la técnica quirúrgica de elección para este paciente?",
+        "options": [
+          "Funduplicatura parcial anterior de Dor",
+          "Funduplicatura parcial posterior de Toupet",
+          "Funduplicatura total de Nissen laparoscópica",
+          "Derivación gástrica en Y de Roux"
+        ],
+        "answerIndex": 2,
+        "explanation": "La funduplicatura de Nissen (total de 360 grados) por vía laparoscópica es el estándar de oro quirúrgico para el tratamiento de la ERGE con motilidad esofágica normal, ya que restituye la barrera antirreflujo con altas tasas de éxito a largo plazo. Las funduplicaturas parciales se reservan generalmente para pacientes con trastornos graves de la motilidad esofágica para evitar la disfagia postoperatoria severa.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Trauma generalidades y complicaciones",
+    "subtema": "Síndrome de embolia grasa",
+    "difficulty": "Alta",
+    "case": "Masculino de 24 años ingresa a urgencias tras sufrir un accidente en motocicleta. Presenta fractura cerrada de la diáfisis del fémur derecho. Se le inmoviliza con tracción cutánea a la espera de material de osteosíntesis. A las 48 horas de su ingreso, el paciente desarrolla agitación psicomotriz progresiva, desorientación, taquipnea (FR 28 rpm) y disnea. A la exploración física destaca la presencia de múltiples lesiones puntiformes eritematosas que no palidecen a la presión, localizadas en el tórax anterior, axilas y conjuntivas. La oximetría de pulso reporta SatO2 del 85% al aire ambiente.",
+    "questions": [
+      {
+        "question": "Con base en la clínica descrita (Criterios de Gurd y Wilson), ¿cuál es el diagnóstico más probable?",
+        "options": [
+          "Tromboembolia pulmonar aguda",
+          "Síndrome de embolia grasa",
+          "Síndrome de distrés respiratorio agudo por contusión pulmonar",
+          "Choque séptico temprano"
+        ],
+        "answerIndex": 1,
+        "explanation": "El síndrome de embolia grasa clásicamente se presenta entre 24 y 72 horas después de una fractura de huesos largos (como el fémur). La presentación incluye la tríada clínica clásica de los Criterios Mayores de Gurd: 1) Hipoxemia/insuficiencia respiratoria, 2) Alteraciones neurológicas (confusión, agitación) y 3) Rash petequial patognomónico en tórax, axilas y conjuntivas.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según los principios del ATLS y ortopedia, ¿cuál es la medida profiláctica más importante y efectiva para prevenir el desarrollo de esta complicación en pacientes con fracturas de huesos largos?",
+        "options": [
+          "Administración profiláctica de heparina de bajo peso molecular",
+          "Uso de corticosteroides a dosis altas al momento del ingreso",
+          "Fijación e inmovilización quirúrgica temprana de la fractura",
+          "Colocación de filtro de vena cava inferior"
+        ],
+        "answerIndex": 2,
+        "explanation": "La estabilización y fijación quirúrgica temprana de las fracturas de huesos largos (idealmente en las primeras 24 horas) es la medida profiláctica primaria con mayor evidencia para reducir la incidencia del síndrome de embolia grasa y el síndrome de distrés respiratorio asociado al trauma.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología cámara posterior",
+    "subtema": "Desprendimiento de retina",
+    "difficulty": "Media",
+    "case": "Masculino de 62 años, con antecedente de miopía magna (alta), acude a urgencias oftalmológicas refiriendo que desde hace 2 días comenzó a ver \"telarañas y moscas volantes\" (miodesopsias) en el ojo derecho, acompañadas de destellos de luz intermitentes (fotopsias). El día de hoy, nota la aparición súbita de una \"cortina negra\" que le tapa la visión desde la parte inferior hacia el centro. Niega dolor ocular o traumatismo reciente.",
+    "questions": [
+      {
+        "question": "Por la presentación clínica y los factores de riesgo, ¿cuál es la etiología principal de este tipo de desprendimiento de retina (regmatógeno)?",
+        "options": [
+          "Tracción fibrovascular secundaria a retinopatía diabética proliferativa",
+          "Acumulación de líquido exudativo por un tumor coroideo",
+          "Ruptura o desgarro retiniano que permite el paso de líquido subretiniano",
+          "Oclusión de la arteria central de la retina"
+        ],
+        "answerIndex": 2,
+        "explanation": "El desprendimiento de retina regmatógeno (el más común) se produce por una solución de continuidad (ruptura o desgarro) en la retina, frecuentemente traccionada por el vítreo, que permite que el líquido pase y separe la retina neurosensorial del epitelio pigmentario. Es típico de miopes altos. Los pródromos de fotopsias (destellos) y miodesopsias (\"moscas volantes\") indican tracción y desgarro agudo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Durante la evaluación inicial en el servicio de urgencias, ¿qué indicación inmediata de posicionamiento se le debe dar al paciente mientras es valorado por el cirujano retinólogo?",
+        "options": [
+          "Deambulación libre para favorecer el drenaje linfático",
+          "Reposo absoluto en decúbito supino (cama) para evitar la progresión del desprendimiento",
+          "Posición sedente a 90 grados",
+          "Realizar maniobras de Valsalva"
+        ],
+        "answerIndex": 1,
+        "explanation": "Ante la sospecha o confirmación de un desprendimiento de retina regmatógeno agudo, se indica reposo absoluto con posicionamiento de la cabeza buscando que, por gravedad, la retina desprendida tienda a acercarse a su base (generalmente en decúbito supino), minimizando los movimientos oculares y corporales para evitar que la bolsa de líquido siga disecando y afecte la mácula (lo que empeora drásticamente el pronóstico visual).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología infecciosa / Rinología y faringe",
+    "subtema": "Absceso periamigdalino",
+    "difficulty": "Baja",
+    "case": "Adolescente masculino de 17 años acude a urgencias por fiebre de 39°C, odinofagia de predominio izquierdo severa e incapacidad para tragar saliva (sialorrea) de 3 días de evolución. Refiere haber tenido un cuadro de faringoamigdalitis hace una semana que fue tratado irregularmente con remedios caseros. A la exploración física destaca halitosis marcada, voz apagada (en \"papa caliente\") y dificultad para abrir la boca completamente (trismo). A la orofaringoscopia se observa abombamiento del pilar amigdalino anterior izquierdo, con la amígdala desplazada medialmente y la úvula desviada hacia el lado derecho (sano).",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico clínico de este paciente?",
+        "options": [
+          "Angina de Ludwig",
+          "Epiglotitis aguda",
+          "Faringoamigdalitis estreptocócica no complicada",
+          "Absceso periamigdalino (Quinsy)"
+        ],
+        "answerIndex": 3,
+        "explanation": "La presentación clínica es el cuadro de texto clásico del absceso periamigdalino: complicación de una amigdalitis aguda que se manifiesta con fiebre alta, trismo (por espasmo del músculo pterigoideo medial), voz de \"papa caliente\" y la exploración patognomónica de abombamiento del pilar y desviación contralateral de la úvula.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC, ¿cuál es el manejo terapéutico inicial de elección en el servicio de urgencias para este padecimiento?",
+        "options": [
+          "Amigdalectomía bilateral de urgencia en quirófano",
+          "Tratamiento exclusivo con Penicilina benzatínica intramuscular y antiinflamatorios",
+          "Punción aspirativa o incisión y drenaje del absceso, asociado a antibioticoterapia sistémica",
+          "Intubación endotraqueal profiláctica"
+        ],
+        "answerIndex": 2,
+        "explanation": "El absceso periamigdalino es una colección purulenta que requiere evacuación. La GPC recomienda la punción con aguja (aspiración) o la incisión y drenaje bajo anestesia local en urgencias como tratamiento de primera línea, acompañado de antibióticos sistémicos (como penicilina + metronidazol o clindamicina). La amigdalectomía se reserva para casos recurrentes, realizándose \"en frío\" semanas después de resuelto el cuadro agudo. Se abrirá en una ventana nueva Shutterstock Explorar",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología arterial y venosa",
+    "subtema": "Trombosis Venosa Profunda (TVP)",
+    "difficulty": "Media",
+    "case": "Femenina de 38 años, usuaria de anticonceptivos orales combinados, se encuentra en su 5° día de postoperatorio de una histerectomía abdominal por miomatosis uterina. Comienza con dolor sordo e hinchazón progresiva en la extremidad inferior izquierda. A la exploración física, la pierna izquierda presenta aumento de volumen asimétrico (3 cm mayor que la derecha medido en la pantorrilla), eritema leve y aumento de la temperatura local. Se elicita dolor en la pantorrilla a la dorsiflexión pasiva del pie (Signo de Homans positivo) y a la compresión muscular contra el plano óseo (Signo de Olow positivo).",
+    "questions": [
+      {
+        "question": "¿Cuál es la regla de predicción clínica validada que recomienda la GPC para estratificar el riesgo pretest y guiar el abordaje diagnóstico en esta paciente?",
+        "options": [
+          "Escala de Ginebra",
+          "Escala de Wells para TVP",
+          "Escala de PESI",
+          "Criterios de Padua"
+        ],
+        "answerIndex": 1,
+        "explanation": "La Escala de Wells para TVP es la herramienta clínica recomendada para calcular la probabilidad pretest de presentar una trombosis venosa profunda. Evalúa factores como el cáncer activo, inmovilización, cirugías recientes, dolor en el trayecto venoso profundo, edema asimétrico de pantorrilla y diagnóstico alternativo menos probable, clasificando a la paciente en probabilidad baja, moderada o alta.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Con una probabilidad pretest \"alta\" según la escala aplicada, ¿cuál es el estudio de imagen no invasivo de primera elección para confirmar el diagnóstico anatómico?",
+        "options": [
+          "Dímero D cuantitativo",
+          "Tomografía computarizada con contraste intravenoso",
+          "Venografía por resonancia magnética",
+          "Ultrasonido Doppler venoso compresivo de extremidades inferiores"
+        ],
+        "answerIndex": 3,
+        "explanation": "El ultrasonido Doppler compresivo es el estándar de oro no invasivo inicial para el diagnóstico de la TVP. La falta de compresibilidad de la vena con el transductor es el criterio diagnóstico más sensible y específico. El Dímero D es útil para excluir TVP en pacientes con probabilidad pretest baja, pero ante una probabilidad alta, se debe proceder directamente al ultrasonido.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P3",
+    "subtema": "Trauma Abdominal Cerrado",
+    "difficulty": "Media",
+    "case": "Masculino de 28 años es traído a urgencias tras sufrir accidente automovilístico con impacto frontal a alta velocidad. Se encontraba como conductor y portaba cinturón de seguridad. A su ingreso, se encuentra somnoliento, diaforético y pálido. Signos vitales: TA 85/50 mmHg, FC 125 lpm, FR 26 rpm. A la exploración física, presenta equimosis en \"cinturón de seguridad\" en la pared abdominal. El abdomen se encuentra distendido, con resistencia muscular y dolor a la palpación generalizada, acentuado en el cuadrante superior izquierdo, con irradiación hacia el hombro izquierdo (Signo de Kehr positivo).",
+    "questions": [
+      {
+        "question": "Ante un paciente con trauma abdominal cerrado e inestabilidad hemodinámica, ¿cuál es el estudio de imagen inicial de elección en la sala de choque según las guías del ATLS?",
+        "options": [
+          "Radiografía simple de abdomen en decúbito",
+          "Lavado peritoneal diagnóstico (LPD)",
+          "Ultrasonido FAST (Evaluación Sonográfica Enfocada en Trauma)",
+          "Tomografía computarizada de abdomen con contraste intravenoso"
+        ],
+        "answerIndex": 2,
+        "explanation": "El ultrasonido FAST es la herramienta de primera línea en pacientes inestables con trauma abdominal cerrado para detectar rápidamente la presencia de líquido libre (sangre) en la cavidad peritoneal, saco pericárdico o espacio pleural. La TAC está contraindicada en pacientes hemodinámicamente inestables, ya que el traslado a la sala de radiología puede ser fatal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el órgano intraabdominal que se lesiona con mayor frecuencia en el traumatismo cerrado de abdomen?",
+        "options": [
+          "Hígado",
+          "Intestino delgado",
+          "Bazo",
+          "Riñón"
+        ],
+        "answerIndex": 2,
+        "explanation": "El bazo es el órgano intraabdominal más frecuentemente lesionado en el trauma contuso (cerrado), especialmente asociado a fracturas de las costillas inferiores izquierdas. El signo de Kehr (dolor referido al hombro izquierdo) es clásico por la irritación del nervio frénico secundario a la sangre periesplénica. En el trauma penetrante (por arma blanca o de fuego), el intestino delgado y el hígado son los más afectados.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología de extremidad superior",
+    "subtema": "Patología de hombro doloroso (Síndrome del Manguito Rotador)",
+    "difficulty": "Baja",
+    "case": "Masculino de 55 años, de ocupación pintor de brocha gorda, acude a consulta por presentar dolor crónico en el hombro derecho de 6 meses de evolución. El dolor empeora por las noches, impidiéndole dormir sobre ese lado, y se exacerba al intentar pintar techos o levantar objetos por encima del nivel de la cabeza. A la exploración física, presenta dolor localizado en la cara anterolateral del hombro, con arco doloroso entre los 60° y 120° de abducción activa. Las maniobras de Neer y Hawkins-Kennedy son francamente positivas. La fuerza de abducción inicial se encuentra disminuida (Maniobra de Jobe positiva).",
+    "questions": [
+      {
+        "question": "De acuerdo con la biomecánica y la incidencia, ¿cuál es el tendón del manguito rotador que se afecta y desgarra con mayor frecuencia en esta patología?",
+        "options": [
+          "Subescapular",
+          "Infraespinoso",
+          "Supraespinoso",
+          "Redondo menor"
+        ],
+        "answerIndex": 2,
+        "explanation": "El tendón del músculo supraespinoso es el más frecuentemente afectado en el síndrome de pinzamiento y en los desgarros del manguito rotador, debido a su paso estrecho por el espacio subacromial, lo que lo predispone a fricción, isquemia y degeneración, especialmente en actividades laborales o deportivas repetitivas por encima de la cabeza (overhead activities).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC, ¿cuál es el estudio de imagen inicial de elección, por su alta sensibilidad, accesibilidad y dinamismo, para evaluar el tendón afectado?",
+        "options": [
+          "Radiografía simple de hombro en proyecciones AP y axial",
+          "Ultrasonido articular del hombro",
+          "Resonancia magnética simple",
+          "Tomografía computarizada"
+        ],
+        "answerIndex": 1,
+        "explanation": "El ultrasonido musculoesquelético es el estudio de imagen inicial de elección para confirmar la sospecha clínica de tendinopatía o ruptura del manguito rotador (especialmente del supraespinoso). Es económico, no invasivo y permite una evaluación dinámica. La resonancia magnética se reserva como estándar de oro para planear el abordaje quirúrgico o cuando el ultrasonido no es concluyente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía Oncología",
+    "subtema": "Cáncer de Páncreas",
+    "difficulty": "Alta",
+    "case": "Masculino de 68 años con antecedente de tabaquismo (índice tabáquico de 25 paquetes/año). Acude por un cuadro de 2 meses de evolución caracterizado por ictericia progresiva, coluria, acolia, prurito generalizado y pérdida de peso de 10 kg. Niega dolor abdominal agudo o fiebre. A la exploración física destaca tinte ictérico franco en piel y escleras. El abdomen es blando, sin dolor, y se palpa una masa piriforme de bordes lisos y renitentes en el cuadrante superior derecho que corresponde a la vesícula biliar (Signo de Courvoisier-Terrier positivo). Exámenes de laboratorio revelan patrón colestásico (Fosfatasa alcalina 450 U/L, GGT 320 U/L, Bilirrubina directa 12 mg/dL).",
+    "questions": [
+      {
+        "question": "¿Cuál es el marcador tumoral sérico de mayor utilidad para el apoyo diagnóstico y el seguimiento pronóstico en este paciente?",
+        "options": [
+          "Antígeno Carcinoembrionario (ACE)",
+          "CA-125",
+          "CA 19-9",
+          "Alfa-fetoproteína (AFP)"
+        ],
+        "answerIndex": 2,
+        "explanation": "El CA 19-9 es el marcador tumoral más sensible y específico para el adenocarcinoma ductal de páncreas. Aunque no es diagnóstico por sí solo (puede elevarse en patología biliar benigna severa), niveles muy elevados (>100 U/mL) en el contexto de una masa pancreática sugieren fuertemente malignidad y son excelentes para monitorear la respuesta al tratamiento.",
+        "gpcReference": ""
+      },
+      {
+        "question": "La Tomografía Computarizada abdominal corrobora un tumor de 3 cm confinado a la cabeza del páncreas, sin evidencia de metástasis a distancia ni invasión a la arteria mesentérica superior o tronco celíaco (tumor resecable). ¿Cuál es el procedimiento quirúrgico curativo de elección?",
+        "options": [
+          "Pancreatectomía distal con preservación esplénica",
+          "Pancreatoduodenectomía (Procedimiento de Whipple)",
+          "Derivación biliodigestiva en Y de Roux",
+          "Colecistectomía laparoscópica con exploración de vías biliares"
+        ],
+        "answerIndex": 1,
+        "explanation": "El procedimiento de Whipple (pancreatoduodenectomía cefálica) es la única opción con potencial curativo para los tumores localizados en la cabeza del páncreas, ampolla de Vater o duodeno distal. Consiste en la resección de la cabeza del páncreas, el duodeno, la vía biliar distal, la vesícula biliar y, en ocasiones, parte del estómago, seguida de la reconstrucción del tránsito digestivo, biliar y pancreático.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología cámara anterior",
+    "subtema": "Pterigión",
+    "difficulty": "Baja",
+    "case": "Masculino de 45 años, de ocupación agricultor, acude a consulta oftalmológica refiriendo sensación de cuerpo extraño, ardor, ojo rojo ocasional y lagrimeo en el ojo derecho de varios años de evolución. Refiere que últimamente nota que una \"telita carnosa\" le está cubriendo la parte de color del ojo. A la exploración en la lámpara de hendidura, se observa un pliegue fibrovascular de forma triangular que se origina en la conjuntiva bulbar nasal, rebasa el limbo esclerocorneal y avanza aproximadamente 3 mm sobre la córnea, dirigiéndose hacia la pupila. Se abrirá en una ventana nueva Shutterstock Explorar",
+    "questions": [
+      {
+        "question": "De acuerdo con la clínica y los antecedentes de exposición solar crónica (rayos UV), ¿cuál es el diagnóstico correcto?",
+        "options": [
+          "Pingüécula",
+          "Pterigión",
+          "Queratocono",
+          "Pannus corneal"
+        ],
+        "answerIndex": 1,
+        "explanation": "El pterigión se distingue clásicamente por ser un crecimiento fibrovascular carnoso y triangular que invade la córnea cruzando el limbo esclerocorneal, altamente asociado a la exposición crónica a luz ultravioleta, viento y polvo (común en trabajadores del campo). La pingüécula es un depósito amarillento benigno en la conjuntiva que nunca invade la córnea.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC, ¿cuál es la técnica quirúrgica de elección que ofrece la menor tasa de recidiva cuando este padecimiento amenaza el eje visual o causa astigmatismo significativo?",
+        "options": [
+          "Escisión simple dejando la esclera desnuda",
+          "Radioterapia con estroncio-90",
+          "Resección del pterigión con autoinjerto conjuntival",
+          "Aplicación de mitomicina C tópica exclusiva"
+        ],
+        "answerIndex": 2,
+        "explanation": "La GPC y los consensos oftalmológicos indican que la resección del pterigión combinada con la colocación de un autoinjerto conjuntival (tomado del mismo ojo, generalmente de la región bulbar superior) es el estándar de oro quirúrgico, ya que reduce la tasa de recurrencia a menos del 5%, en comparación con tasas de hasta el 80% con la técnica de escisión simple (esclera desnuda).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Intoxicaciones",
+    "subtema": "Toxíndromes (Colinérgico / Organofosforados)",
+    "difficulty": "Media",
+    "case": "Masculino de 35 años es traído a urgencias en estado de confusión mental. Sus compañeros de trabajo refieren que se encontraba fumigando cultivos con un plaguicida sin utilizar equipo de protección personal. A su ingreso: TA 90/50 mmHg, FC 45 lpm (bradicardia), FR 28 rpm. A la exploración física destaca sialorrea profusa, lagrimeo, diaforesis, broncorrea y fasciculaciones musculares en extremidades. A la exploración pupilar se observan pupilas puntiformes (miosis bilateral) arreactivas. El aliento del paciente despide un olor a ajo.",
+    "questions": [
+      {
+        "question": "El cuadro clínico florido corresponde a un síndrome colinérgico por inhibición irreversible de la acetilcolinesterasa. ¿Qué tipo de sustancias químicas producen clásicamente este toxíndrome con olor a ajo?",
+        "options": [
+          "Carbamatos",
+          "Organofosforados",
+          "Antidepresivos tricíclicos",
+          "Opiáceos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los plaguicidas organofosforados se unen de manera irreversible a la enzima acetilcolinesterasa, provocando una sobreestimulación continua de los receptores muscarínicos (bradicardia, miosis, lagrimeo, salivación, broncorrea) y nicotínicos (fasciculaciones musculares, debilidad). El olor a ajo es un signo clínico clásico en la intoxicación aguda por estos compuestos.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el antídoto de primera línea que debe administrarse de inmediato para revertir los síntomas muscarínicos (principalmente la broncorrea y la bradicardia) que amenazan la vida?",
+        "options": [
+          "Flumazenilo",
+          "Naloxona",
+          "Sulfato de Atropina",
+          "Bicarbonato de sodio"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Atropina (un antagonista competitivo de los receptores muscarínicos) es el fármaco salvavidas y de primera elección para revertir los efectos muscarínicos peligrosos (bradicardia severa, broncoespasmo y broncorrea excesiva) en la intoxicación por organofosforados. La dosis se titula hasta lograr la \"atropinización\" (secreciones bronquiales secas, frecuencia cardíaca normal y resolución de la miosis). Para los síntomas nicotínicos (fasciculaciones) se utilizan las oximas (Pralidoxima).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología Biliar",
+    "subtema": "Colangitis aguda",
+    "difficulty": "Alta",
+    "case": "Femenina de 60 años con antecedente de colelitiasis asintomática. Es traída a urgencias por sus familiares debido a deterioro neurológico (tendencia a la somnolencia y confusión) de 12 horas de evolución. Refieren que un día previo inició con dolor abdominal intenso en hipocondrio derecho y picos febriles. A la exploración física: TA 85/50 mmHg, FC 120 lpm, FR 24 rpm, Temperatura 39.1°C. Destaca ictericia generalizada en piel y escleras. Abdomen doloroso en cuadrante superior derecho, sin franco rebote. Laboratorios: Leucocitosis de 22,000/mm³, Bilirrubina Total 8.5 mg/dL (a expensas de la directa), Fosfatasa Alcalina 650 U/L.",
+    "questions": [
+      {
+        "question": "La paciente presenta ictericia, dolor abdominal, fiebre, hipotensión y alteración del estado mental. ¿Qué nombre recibe este conjunto de signos clínicos?",
+        "options": [
+          "Tríada de Charcot",
+          "Tríada de Murphy",
+          "Péntada de Reynolds",
+          "Criterios de Ranson"
+        ],
+        "answerIndex": 2,
+        "explanation": "La péntada de Reynolds indica una colangitis aguda severa supurativa o tóxica con inminente choque séptico. Consiste en la suma de la Tríada de Charcot (ictericia, dolor en cuadrante superior derecho y fiebre/escalofríos) más hipotensión (choque) y alteración del estado mental.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC y los Criterios de Tokio, ante una colangitis aguda severa (Grado III) con inestabilidad hemodinámica, ¿cuál es el estándar de oro diagnóstico y terapéutico que debe realizarse de urgencia una vez iniciada la reanimación hídrica y antibiótica?",
+        "options": [
+          "Colecistectomía laparoscópica de urgencia",
+          "Colangiopancreatografía Retrógrada Endoscópica (CPRE) con esfinterotomía y drenaje",
+          "Exploración abierta de vías biliares con colocación de sonda en T",
+          "Drenaje percutáneo transhepático exclusivamente"
+        ],
+        "answerIndex": 1,
+        "explanation": "La descompresión urgente de la vía biliar es el tratamiento definitivo para salvar la vida del paciente. La CPRE es el procedimiento de elección porque es menos invasivo que la cirugía abierta y permite tanto confirmar el diagnóstico anatómico (colangiografía) como realizar el tratamiento definitivo en el mismo tiempo (extracción de litos, esfinterotomía o colocación de stents).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología arterial y venosa",
+    "subtema": "Enfermedad Arterial Periférica (EAP)",
+    "difficulty": "Media",
+    "case": "Masculino de 65 años, tabaquismo positivo a razón de 1 cajetilla diaria desde hace 30 años, hipertenso y dislipidémico. Acude a consulta por referir dolor tipo calambre en la pantorrilla derecha que aparece invariablemente al caminar aproximadamente 200 metros (claudicación intermitente) y que cede tras 5 minutos de reposo. A la exploración física, las extremidades inferiores presentan piel delgada, brillante, con pérdida de vello distal. Los pulsos pedio y tibial posterior de la extremidad derecha se palpan francamente disminuidos en comparación con la izquierda. Se observa palidez de la extremidad al elevarla a 60 grados.",
+    "questions": [
+      {
+        "question": "De acuerdo con la GPC, ¿cuál es el método diagnóstico inicial de elección en el consultorio para confirmar la presencia de isquemia en las extremidades inferiores?",
+        "options": [
+          "Angiotomografía computarizada",
+          "Arteriografía con sustracción digital",
+          "Índice Tobillo-Brazo (ITB) con doppler lineal",
+          "Pletismografía"
+        ],
+        "answerIndex": 2,
+        "explanation": "El Índice Tobillo-Brazo (ITB) es el estudio inicial no invasivo de elección para el diagnóstico de EAP. Un ITB normal es de 0.91 a 1.30. Un valor ≤ 0.90 es diagnóstico de Enfermedad Arterial Periférica y se asocia fuertemente con un mayor riesgo de morbimortalidad cardiovascular.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Aunado a la modificación de factores de riesgo (suspensión del tabaquismo) y a un programa de ejercicio supervisado, ¿cuál es el fármaco de primera línea recomendado por la GPC para mejorar los síntomas de claudicación intermitente y aumentar la distancia de caminata?",
+        "options": [
+          "Cilostazol",
+          "Pentoxifilina",
+          "Diosmina",
+          "Ácido acetilsalicílico a dosis altas"
+        ],
+        "answerIndex": 0,
+        "explanation": "El Cilostazol (inhibidor de la fosfodiesterasa III con propiedades vasodilatadoras y antiagregantes) es el tratamiento farmacológico de primera línea y el que cuenta con mayor evidencia en la GPC para mejorar los síntomas y la distancia de claudicación en pacientes con EAP. La aspirina se da como prevención cardiovascular, pero no mejora los síntomas de claudicación, y la pentoxifilina ha demostrado menor eficacia que el cilostazol.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Urología P1",
+    "subtema": "Pielonefritis aguda",
+    "difficulty": "Baja",
+    "case": "Femenina de 28 años, sin antecedentes de importancia, acude a urgencias por presentar fiebre de 38.8°C, escalofríos intensos y dolor constante en la región lumbar derecha de 2 días de evolución. Refiere que hace 5 días presentó ardor al orinar (disuria) y aumento en la frecuencia miccional, síntomas a los que no dio importancia. A la exploración física se encuentra taquicárdica (110 lpm), con abdomen blando pero doloroso a la palpación profunda en flanco derecho. La maniobra de Giordano (puñopercusión) es francamente positiva del lado derecho. Examen general de orina: leucocitos >50 por campo, nitritos positivos, bacterias abundantes.",
+    "questions": [
+      {
+        "question": "Con base en la epidemiología en pacientes sin anormalidades estructurales del tracto urinario, ¿cuál es el agente etiológico responsable de la gran mayoría de estos cuadros?",
+        "options": [
+          "Klebsiella pneumoniae",
+          "Proteus mirabilis",
+          "Pseudomonas aeruginosa",
+          "Escherichia coli"
+        ],
+        "answerIndex": 3,
+        "explanation": "Escherichia coli uropatógena es el agente causal responsable de más del 80% de las infecciones de vías urinarias altas (pielonefritis) y bajas (cistitis) no complicadas adquiridas en la comunidad.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC mexicana, considerando a la paciente estable, tolerando la vía oral y sin criterios de hospitalización (pielonefritis no complicada), ¿cuál es el tratamiento antimicrobiano empírico ambulatorio de primera línea vía oral?",
+        "options": [
+          "Amoxicilina sola por 7 días",
+          "Nitrofurantoína por 5 días",
+          "Fluoroquinolonas (Ciprofloxacino o Levofloxacino) por 7 días",
+          "Fosfomicina trometamol dosis única"
+        ],
+        "answerIndex": 2,
+        "explanation": "Las fluoroquinolonas (como ciprofloxacino) son recomendadas por la GPC como tratamiento empírico de primera línea por vía oral para la pielonefritis aguda no complicada en el manejo ambulatorio, debido a su excelente penetración en el parénquima renal. La nitrofurantoína y la fosfomicina alcanzan excelentes niveles en vejiga, por lo que son útiles en cistitis, pero no logran concentraciones tisulares adecuadas en el riñón para tratar una pielonefritis.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología cámara anterior",
+    "subtema": "Conjuntivitis alérgica",
+    "difficulty": "Media",
+    "case": "Masculino de 12 años, con antecedente personal de asma y rinitis alérgica. Es llevado a la consulta oftalmológica por su madre debido a que el niño se frota los ojos constantemente. Presenta hiperemia conjuntival bilateral, lagrimeo y secreción ocular hialina (acuosa y transparente) de 1 semana de evolución, la cual empeora al jugar en el parque. A la exploración en lámpara de hendidura, se observa hiperemia conjuntival moderada y en la eversión del párpado superior se aprecian múltiples formaciones sobreelevadas con aspecto de \"empedrado\" (reacción papilar).",
+    "questions": [
+      {
+        "question": "Dentro del cuadro clínico descrito, ¿cuál es el síntoma cardinal y patognomónico que orienta fuertemente hacia la etiología alérgica de esta conjuntivitis por encima de una etiología viral o bacteriana?",
+        "options": [
+          "Ojo rojo (hiperemia)",
+          "Prurito ocular intenso",
+          "Sensación de cuerpo extraño",
+          "Fotofobia"
+        ],
+        "answerIndex": 1,
+        "explanation": "El prurito ocular (comezón) intenso y constante es el síntoma cardinal y más distintivo de la conjuntivitis alérgica, mediado por la degranulación de histamina de los mastocitos. En las etiologías bacterianas predomina la secreción purulenta y en las virales la sensación de arenilla y ganglios preauriculares, pero rara vez se quejan de un prurito tan intenso.",
+        "gpcReference": ""
+      },
+      {
+        "question": "De acuerdo con las recomendaciones oftalmológicas de la GPC, ¿cuál es el tratamiento farmacológico tópico de elección (doble acción) para el manejo a largo plazo y control de crisis de este padecimiento?",
+        "options": [
+          "Antibióticos tópicos (Tobramicina)",
+          "Corticoides tópicos (Dexametasona) de uso libre",
+          "Antihistamínicos tópicos con efecto estabilizador de mastocitos (Olopatadina)",
+          "Lágrimas artificiales exclusivamente"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Olopatadina (y otros fármacos de doble acción como el ketotifeno) son el tratamiento de primera línea, ya que actúan bloqueando los receptores H1 (alivio rápido del prurito) y estabilizando la membrana del mastocito (prevención a largo plazo). Los corticoides tópicos son altamente eficaces, pero deben usarse por periodos muy cortos y bajo estricta vigilancia oftalmológica debido al riesgo de inducir glaucoma y cataratas. Se abrirá en una ventana nueva Shutterstock This Is Use For Explain And Compare When The Head Of The Humerus Is Out Of The Shoulder Joint Includ",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología de extremidad superior",
+    "subtema": "Luxación glenohumeral anterior",
+    "difficulty": "Baja",
+    "case": "Masculino de 20 años acude a urgencias tras sufrir una caída apoyando la mano derecha con el brazo en extensión, abducción y rotación externa durante un partido de baloncesto. Presenta dolor incapacitante en el hombro derecho. A la inspección, el paciente sostiene el brazo afectado con la mano contralateral (posición de Dessault), se observa el hombro derecho con pérdida de la redondez normal, prominencia del acromion (deformidad en \"charretera\") y el brazo se encuentra fijo en ligera abducción y rotación externa, con imposibilidad para tocar su hombro contralateral con la mano afectada.",
+    "questions": [
+      {
+        "question": "Por el mecanismo de lesión y la posición clínica clásica descrita, ¿cuál es el tipo de luxación de hombro más frecuente que presenta este paciente?",
+        "options": [
+          "Luxación glenohumeral posterior",
+          "Luxación acromioclavicular",
+          "Luxación glenohumeral anterior",
+          "Luxación esternoclavicular"
+        ],
+        "answerIndex": 2,
+        "explanation": "La luxación anterior representa el 95% de todas las luxaciones del hombro. El mecanismo clásico es el trauma con el brazo en abducción y rotación externa. La deformidad en \"charretera\" (hombro cuadrado por vacío de la cavidad glenoidea y prominencia del acromion) es el signo clínico patognomónico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la complicación neurológica más comúnmente asociada a este tipo de luxación, que debe evaluarse sistemáticamente revisando la sensibilidad de la cara lateral del hombro (zona del deltoides) antes y después de la reducción?",
+        "options": [
+          "Lesión del nervio mediano",
+          "Lesión del nervio radial",
+          "Lesión del nervio axilar (circunflejo)",
+          "Lesión del nervio musculocutáneo"
+        ],
+        "answerIndex": 2,
+        "explanation": "El nervio axilar (circunflejo) discurre justo por debajo de la cápsula inferior de la articulación glenohumeral y rodea el cuello quirúrgico del húmero, haciéndolo extremadamente vulnerable al estiramiento cuando la cabeza humeral se desplaza anterior e inferiormente. Su lesión produce anestesia en el área del deltoides (signo de la \"charretera sensitiva\") y debilidad para la abducción posterior a la curación.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía Oncológica",
+    "subtema": "Cáncer Renal",
+    "difficulty": "Alta",
+    "case": "Masculino de 62 años, con antecedente de tabaquismo intenso (índice tabáquico de 30 paquetes/año). Acude a consulta externa refiriendo la presencia de orina con sangre (hematuria macroscópica) de forma intermitente desde hace 3 semanas, indolora. Además, refiere dolor sordo y constante en la fosa lumbar derecha y pérdida de peso no intencionada de 5 kg. A la exploración física, sus signos vitales son normales, pero a la palpación profunda del abdomen se detecta una masa firme en el flanco derecho. Se observa la presencia de un varicocele derecho que no se vacía al colocar al paciente en decúbito supino.",
+    "questions": [
+      {
+        "question": "La presentación clínica de este paciente incluye la tríada clásica de esta neoplasia, aunque se presenta en una minoría de los casos. ¿Cuáles son los componentes de esta tríada?",
+        "options": [
+          "Hematuria, dolor en flanco y masa palpable",
+          "Hematuria, fiebre y pérdida de peso",
+          "Dolor lumbar, masa palpable e hipertensión arterial",
+          "Hematuria, varicocele de reciente inicio y anemia"
+        ],
+        "answerIndex": 0,
+        "explanation": "La tríada clásica del carcinoma de células renales (cáncer renal) consiste en hematuria macroscópica, dolor en el flanco y masa abdominal palpable. Sin embargo, esta tríada completa se presenta en menos del 10% de los pacientes y suele indicar enfermedad avanzada. El varicocele derecho de reciente inicio que no colapsa sugiere invasión u oclusión de la vena cava inferior o la vena renal por un trombo tumoral.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el estudio de imagen de elección para el diagnóstico, estadificación y planeación quirúrgica de este tumor?",
+        "options": [
+          "Ultrasonido renal doppler",
+          "Urografía excretora",
+          "Tomografía computarizada (UroTAC) de abdomen y pelvis con contraste intravenoso",
+          "Resonancia magnética de columna lumbar"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Tomografía Computarizada (UroTAC) contrastada en fases simple, corticomedular, nefrográfica y excretora es el estándar de oro diagnóstico. Permite evaluar la extensión local del tumor, la afectación de ganglios linfáticos, la invasión a la vena renal o cava inferior (trombo tumoral) y el estado del riñón contralateral.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología cámara posterior",
+    "subtema": "Catarata",
+    "difficulty": "Baja",
+    "case": "Femenina de 72 años, con antecedente de diabetes mellitus tipo 2 de 15 años de evolución. Acude a oftalmología quejándose de disminución progresiva, indolora y bilateral de la agudeza visual de 2 años de evolución, la cual describe como \"ver a través de un vidrio empañado\". Refiere que últimamente las luces de los autos le deslumbran mucho por la noche (halos). A la exploración oftalmológica, la agudeza visual es de 20/100 en el ojo derecho y 20/80 en el izquierdo. A la iluminación oblicua se observa una opacidad blanquecina en el área pupilar y a la oftalmoscopia directa hay ausencia del reflejo rojo de fondo.",
+    "questions": [
+      {
+        "question": "De acuerdo con la clínica y la exploración física, ¿cuál es el diagnóstico más probable?",
+        "options": [
+          "Glaucoma crónico de ángulo abierto",
+          "Degeneración macular asociada a la edad",
+          "Catarata senil",
+          "Retinopatía diabética proliferativa"
+        ],
+        "answerIndex": 2,
+        "explanation": "La disminución progresiva e indolora de la agudeza visual, acompañada de deslumbramiento (glare) nocturno, opacidad cristaliniana visible (leucocoria) y disminución o ausencia del reflejo rojo, conforman el cuadro clínico clásico de la catarata senil. La retinopatía diabética no causa opacidad de los medios transparentes a menos que haya una hemorragia vítrea (que sería súbita).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC, ¿cuál es la técnica quirúrgica de elección para el tratamiento definitivo de esta patología y la rehabilitación visual de la paciente?",
+        "options": [
+          "Extracción extracapsular del cristalino con incisión amplia",
+          "Facoemulsificación con colocación de lente intraocular",
+          "Vitrectomía vía pars plana",
+          "Trabeculectomía"
+        ],
+        "answerIndex": 1,
+        "explanation": "La facoemulsificación (fragmentación del cristalino opaco mediante ultrasonido a través de una microincisión) seguida de la implantación de un lente intraocular (LIO) plegable es el estándar de oro quirúrgico actual. Ofrece una recuperación visual mucho más rápida y menor astigmatismo postoperatorio en comparación con la técnica extracapsular manual tradicional.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Urología P1",
+    "subtema": "Infección de vías urinarias bajas (Cistitis aguda)",
+    "difficulty": "Baja",
+    "case": "Femenina de 24 años, con vida sexual activa, acude a la consulta de medicina familiar refiriendo un cuadro de 24 horas de evolución caracterizado por ardor intenso al orinar (disuria), necesidad urgente de ir al baño (urgencia miccional) y aumento en la frecuencia (polaquiuria), orinando en escasa cantidad. Refiere dolor leve en hipogastrio. Niega fiebre, escalofríos, flujo vaginal o dolor lumbar. A la exploración física, signos vitales normales, puñopercusión lumbar bilateral negativa, dolor leve a la palpación en región suprapúbica. Examen general de orina con tira reactiva: leucocitos esterasa +, nitritos +, eritrocitos +.",
+    "questions": [
+      {
+        "question": "Tomando en cuenta la presentación clínica de cistitis aguda no complicada en una mujer joven, ¿cuál es el agente bacteriano responsable en la gran mayoría (75-90%) de estos episodios?",
+        "options": [
+          "Proteus mirabilis",
+          "Klebsiella pneumoniae",
+          "Staphylococcus saprophyticus",
+          "Escherichia coli"
+        ],
+        "answerIndex": 3,
+        "explanation": "Escherichia coli uropatógena es, por mucho, el agente etiológico más frecuente de la cistitis aguda no complicada en mujeres jóvenes. Staphylococcus saprophyticus es la segunda causa en mujeres jóvenes con vida sexual activa, pero su frecuencia es mucho menor (5-15%).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC mexicana, debido a las crecientes tasas de resistencia a fármacos clásicos, ¿cuál de los siguientes es el tratamiento antibiótico empírico de primera línea recomendado por vía oral para esta paciente?",
+        "options": [
+          "Fosfomicina trometamol (dosis única) o Nitrofurantoína (por 5-7 días)",
+          "Ciprofloxacino por 3 días",
+          "Amoxicilina por 7 días",
+          "Ceftriaxona intramuscular dosis única"
+        ],
+        "answerIndex": 0,
+        "explanation": "La GPC recomienda el uso de Fosfomicina trometamol (3g en dosis única) o Nitrofurantoína (100 mg c/12h por 5-7 días) como primera línea para la cistitis aguda no complicada en mujeres. El uso de fluoroquinolonas (ciprofloxacino) ya no se recomienda como primera línea empírica para cistitis debido al aumento de la resistencia bacteriana y sus efectos adversos, reservándose para pielonefritis o infecciones complicadas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología Infecciosa / Rinología y faringe",
+    "subtema": "Síndrome de Apnea Obstructiva del Sueño (SAOS)",
+    "difficulty": "Media",
+    "case": "Masculino de 50 años, con obesidad grado II (IMC 36 kg/m²) e hipertensión arterial de difícil control. Acude a consulta llevado por su esposa, quien refiere que el paciente ronca muy fuerte todas las noches y presenta pausas en la respiración de hasta 20 segundos, seguidas de un resoplido violento. El paciente refiere sentirse exhausto durante el día, quedándose dormido con facilidad en la sala de espera, viendo la televisión e incluso ha tenido episodios de somnolencia al conducir. Su puntuación en la escala de Epworth es de 16 (somnolencia diurna severa).",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio considerado el estándar de oro por la GPC para confirmar el diagnóstico y clasificar la severidad de esta enfermedad?",
+        "options": [
+          "Oximetría de pulso nocturna",
+          "Polisomnografía nocturna en laboratorio de sueño",
+          "Nasofibrolaringoscopia",
+          "Tomografía de cuello y vía aérea"
+        ],
+        "answerIndex": 1,
+        "explanation": "La polisomnografía nocturna de canal completo es el estándar de oro. Permite documentar el Índice de Apnea-Hipopnea (IAH), confirmando el diagnóstico (IAH > 5 eventos/hora con síntomas, o > 15 eventos/hora sin síntomas) y estratificando la severidad (leve 5-14, moderado 15-30, severo >30).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Además de las medidas higiénico-dietéticas (pérdida de peso significativa e higiene del sueño), ¿cuál es el tratamiento de elección inicial con mayor eficacia para un paciente con SAOS moderado a severo?",
+        "options": [
+          "Uvulopalatofaringoplastia (UPPP) quirúrgica",
+          "Dispositivos de avance mandibular",
+          "Presión Positiva Continua en la Vía Aérea (CPAP) nocturna",
+          "Oxígeno suplementario a 2 litros por minuto"
+        ],
+        "answerIndex": 2,
+        "explanation": "El uso de CPAP (Continuous Positive Airway Pressure) es el tratamiento de primera línea y el estándar de oro para el SAOS moderado y severo. Actúa como una férula neumática que mantiene abierta la vía aérea colapsable durante el sueño, eliminando las apneas, mejorando la arquitectura del sueño y controlando el riesgo cardiovascular asociado (como su hipertensión de difícil control).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología Biliar",
+    "subtema": "Colelitiasis sintomática",
+    "difficulty": "Media",
+    "case": "Femenina de 42 años, multípara, con sobrepeso. Acude a consulta externa refiriendo episodios recurrentes de dolor en el cuadrante superior derecho del abdomen. Relata que los episodios de dolor suelen iniciar de 30 a 60 minutos después de ingerir comidas ricas en grasas (tacos, lácteos enteros), son de tipo cólico, se irradian hacia el omóplato derecho y están acompañados de náuseas. El dolor alcanza una intensidad máxima sostenida y luego desaparece por completo tras 3 a 4 horas. Entre episodios, la paciente se encuentra totalmente asintomática. Niega haber presentado fiebre o coloración amarilla en los ojos (ictericia). Sus estudios de laboratorio en el momento de la consulta son completamente normales, sin leucocitosis ni alteración en las pruebas de función hepática.",
+    "questions": [
+      {
+        "question": "Con base en la clínica descrita, que corresponde a un cólico biliar típico sin datos de complicación, ¿cuál es el estudio de imagen de primera elección para documentar la presencia de la patología subyacente?",
+        "options": [
+          "Tomografía computarizada de abdomen simple",
+          "Resonancia magnética de vías biliares (ColangioRM)",
+          "Ultrasonido hepatobiliar de cuadrante superior derecho",
+          "Radiografía simple de abdomen en bipedestación"
+        ],
+        "answerIndex": 2,
+        "explanation": "El ultrasonido es el estudio de primera elección por su excelente sensibilidad (>95%) y especificidad para la detección de litos vesiculares. Los hallazgos patognomónicos de colelitiasis son la presencia de imágenes hiperecogénicas móviles dentro de la vesícula biliar que proyectan una sombra acústica posterior. La TAC y la radiografía son malas opciones porque la mayoría de los litos biliares son de colesterol y, por lo tanto, radiolúcidos.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Dado que la paciente presenta enfermedad litiásica sintomática recurrente (cólico biliar), ¿cuál es la recomendación terapéutica definitiva según la GPC para prevenir futuras complicaciones (como colecistitis aguda, coledocolitiasis o pancreatitis)?",
+        "options": [
+          "Terapia de disolución oral con ácido ursodesoxicólico de por vida",
+          "Litotricia extracorpórea por ondas de choque",
+          "Manejo expectante y dieta baja en grasas exclusivamente",
+          "Colecistectomía laparoscópica electiva"
+        ],
+        "answerIndex": 3,
+        "explanation": "La GPC establece que la presencia de colelitiasis sintomática (cólico biliar recurrente) es la principal indicación para programar una colecistectomía laparoscópica de forma electiva. Esto previene eficazmente la progresión hacia complicaciones mayores agudas, las cuales aumentan significativamente la morbimortalidad de los pacientes. Las terapias de disolución oral o litotricia están obsoletas en la práctica general debido a su altísima tasa de recurrencia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Mordeduras y picaduras",
+    "subtema": "Loxoscelismo (Araña violinista)",
+    "difficulty": "Alta",
+    "case": "Femenina de 34 años acude a urgencias por presentar una lesión dolorosa en el muslo derecho de 48 horas de evolución. Refiere haber sentido un \"piquete\" leve e indoloro inicial mientras se ponía un pantalón que llevaba meses guardado en el clóset. A la exploración física, signos vitales: T 38.5°C, FC 110 lpm. En la cara anterior del muslo se observa una lesión caracterizada por una úlcera necrótica central de bordes irregulares, rodeada por un halo isquémico pálido y un eritema periférico (placa livedoide o \"signo de la bandera francesa\"). La paciente refiere orina oscura (coluria). Laboratorios revelan anemia, elevación de bilirrubina indirecta y creatinina en 2.1 mg/dL.",
+    "questions": [
+      {
+        "question": "De acuerdo con la presentación clínica de la lesión cutánea (placa livedoide) y el mecanismo, ¿cuál es el agente causal más probable?",
+        "options": [
+          "Latrodectus mactans (Viuda negra)",
+          "Centruroides spp. (Alacrán)",
+          "Loxosceles reclusa / laeta (Araña violinista o del rincón)",
+          "Micrurus spp. (Serpiente coralillo)"
+        ],
+        "answerIndex": 2,
+        "explanation": "La mordedura por Loxosceles (loxoscelismo) típicamente ocurre en interiores oscuros (clósets, ropa guardada). Inicialmente es indolora, pero progresa a una lesión dermo-necrótica clásica con la \"placa livedoide\" (centro necrótico, halo isquémico pálido y halo eritematoso). Latrodectus (viuda negra) causa neurotoxicidad severa con dolor muscular intenso (abdomen en tabla), no necrosis cutánea.",
+        "gpcReference": ""
+      },
+      {
+        "question": "El cuadro de la paciente (fiebre, ictericia, coluria y falla renal aguda) corresponde a un loxoscelismo sistémico (visceral). ¿Cuál es el mecanismo fisiopatológico principal de esta complicación potencialmente letal?",
+        "options": [
+          "Bloqueo de la liberación de acetilcolina en la placa neuromuscular",
+          "Hemólisis intravascular masiva mediada por la enzima esfingomielinasa D",
+          "Depleción de factores de coagulación por coagulopatía de consumo",
+          "Choque anafiláctico severo"
+        ],
+        "answerIndex": 1,
+        "explanation": "La esfingomielinasa D es la principal enzima del veneno de la araña violinista. Además de causar la necrosis tisular local, al entrar a la circulación sistémica destruye las membranas de los eritrocitos, provocando hemólisis intravascular masiva, hemoglobinuria, y secundariamente, necrosis tubular aguda e insuficiencia renal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Tumores testiculares",
+    "subtema": "",
+    "difficulty": "Media",
+    "case": "Masculino de 28 años, sin antecedentes crónicos, acude a la consulta externa refiriendo haber notado un aumento de volumen en su testículo derecho desde hace aproximadamente un mes. Refiere sensación de \"pesantez\" en el escroto, pero niega dolor, disuria o fiebre. A la exploración física se palpa el testículo derecho aumentado de tamaño, con una masa indurada, firme e indolora que no transilumina. El testículo izquierdo es de características normales. No se palpan adenopatías inguinales.",
+    "questions": [
+      {
+        "question": "De acuerdo con la sospecha clínica de patología oncológica, ¿cuál es el estudio de imagen inicial de primera elección para confirmar la presencia y características de la masa?",
+        "options": [
+          "Tomografía computarizada pélvica",
+          "Resonancia magnética de escroto",
+          "Ultrasonido escrotal / testicular",
+          "Gammagrafía testicular"
+        ],
+        "answerIndex": 2,
+        "explanation": "El ultrasonido escrotal es el estudio de primera elección (estándar de oro inicial) para evaluar cualquier masa escrotal. Permite distinguir de forma rápida y con casi 100% de sensibilidad si la masa es intra o extratesticular, y si es quística o sólida. Toda masa intratesticular sólida y vascularizada en un adulto joven se considera cáncer testicular hasta demostrar lo contrario.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tras confirmar una masa intratesticular sospechosa, se programa al paciente para orquiectomía radical inguinal. ¿Cuál es la estirpe histológica más frecuente de los tumores germinales de testículo en este grupo de edad?",
+        "options": [
+          "Teratoma",
+          "Seminoma",
+          "Coriocarcinoma",
+          "Tumor de saco vitelino"
+        ],
+        "answerIndex": 1,
+        "explanation": "Aproximadamente el 95% de los tumores malignos de testículo son de células germinales. De estos, los tumores seminomatosos (Seminomas clásicos) son el subtipo histológico más frecuente en general (particularmente en la tercera y cuarta década de la vida). Responden de manera excelente a la radioterapia y quimioterapia, teniendo un alto índice de curación.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología cámara posterior",
+    "subtema": "Retinopatía Diabética",
+    "difficulty": "Alta",
+    "case": "Masculino de 55 años, con diabetes mellitus tipo 2 de 15 años de evolución y mal control glucémico (HbA1c 9.5%). Acude a su revisión oftalmológica anual. Refiere ligera disminución de la agudeza visual central. A la exploración de fondo de ojo con pupila dilatada, se observan múltiples microaneurismas, hemorragias intrarretinianas en \"punto y mancha\" en los cuatro cuadrantes, exudados duros amarillentos y alteraciones venosas (arrosariamiento). No se observan vasos sanguíneos de neoformación en la papila ni en ninguna otra parte de la retina. Se abrirá en una ventana nueva Shutterstock",
+    "questions": [
+      {
+        "question": "De acuerdo con la clasificación clínica internacional, ¿cuál es el diagnóstico oftalmológico correcto de este paciente?",
+        "options": [
+          "Retinopatía diabética no proliferativa leve",
+          "Retinopatía diabética proliferativa",
+          "Retinopatía diabética no proliferativa severa",
+          "Obstrucción de la vena central de la retina"
+        ],
+        "answerIndex": 2,
+        "explanation": "La ausencia de neovascularización (vasos de neoformación) descarta la etapa proliferativa. La presencia de hemorragias intrarretinianas severas en los 4 cuadrantes (regla del 4-2-1 de la clasificación) la sitúa en una retinopatía diabética no proliferativa SEVERA, la cual tiene un riesgo muy alto de progresar a la fase proliferativa en el corto plazo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la causa más frecuente de pérdida de la visión central en pacientes con retinopatía diabética de cualquier estadio clínico?",
+        "options": [
+          "Hemorragia vítrea",
+          "Desprendimiento de retina traccional",
+          "Edema macular diabético",
+          "Glaucoma neovascular"
+        ],
+        "answerIndex": 2,
+        "explanation": "El edema macular diabético (acumulación de líquido y proteínas en la mácula debido al aumento de la permeabilidad vascular) es la principal causa de disminución de la agudeza visual en los pacientes diabéticos. Puede presentarse en cualquier fase de la enfermedad, tanto en la retinopatía no proliferativa como en la proliferativa.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología infecciosa / Rinología y faringe",
+    "subtema": "OMA (Otitis Media Aguda)",
+    "difficulty": "Baja",
+    "case": "Preescolar masculino de 4 años, llevado a consulta por su madre debido a que presenta llanto constante, irritabilidad y se lleva la mano a la oreja derecha repetidamente. La madre refiere que el cuadro inició anoche, acompañado de fiebre de 39°C. Hace 5 días inició con un cuadro de escurrimiento nasal hialino y tos seca. A la otoscopia del oído derecho se observa la membrana timpánica intensamente eritematosa, abombada (pérdida del triángulo luminoso y relieves óseos) y con inmovilidad a la insuflación neumática.",
+    "questions": [
+      {
+        "question": "Tomando en cuenta la edad del paciente y el antecedente de infección de vías respiratorias superiores, ¿cuáles son los dos agentes etiológicos bacterianos más frecuentemente implicados en esta patología?",
+        "options": [
+          "Pseudomonas aeruginosa y Staphylococcus aureus",
+          "Streptococcus pneumoniae y Haemophilus influenzae no tipificable",
+          "Moraxella catarrhalis y Escherichia coli",
+          "Mycoplasma pneumoniae y Chlamydia trachomatis"
+        ],
+        "answerIndex": 1,
+        "explanation": "Streptococcus pneumoniae y Haemophilus influenzae no tipificable son los patógenos responsables de la gran mayoría de las otitis medias agudas bacterianas en la población pediátrica. Moraxella catarrhalis ocupa el tercer lugar.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC mexicana, ¿cuál es el tratamiento antimicrobiano de primera elección para este paciente sin antecedentes de alergias o uso de antibióticos en el último mes?",
+        "options": [
+          "Azitromicina",
+          "Cefixima",
+          "Amoxicilina a dosis altas (80-90 mg/kg/día)",
+          "Trimetoprima/Sulfametoxazol"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Amoxicilina a dosis altas sigue siendo el tratamiento empírico de primera línea recomendado para la Otitis Media Aguda no complicada, ya que cubre adecuadamente a las cepas de neumococo de susceptibilidad intermedia. El ácido clavulánico se añade si hay falla terapéutica a las 72 horas, conjuntivitis purulenta concomitante o uso de antibióticos recientes.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirrosis y sus complicaciones",
+    "subtema": "Peritonitis Bacteriana Espontánea (PBE)",
+    "difficulty": "Alta",
+    "case": "Masculino de 62 años, conocido con cirrosis hepática de etiología alcohólica (Child-Pugh C) y ascitis crónica. Es traído a urgencias por sus familiares debido a que notan alteraciones del ciclo sueño- vigilia, confusión y desorientación desde ayer. A su ingreso, presenta T 38.2°C, FC 105 lpm. Exploración física: paciente ictérico, con asterixis (flapping tremor) presente, abdomen globoso a expensas de líquido ascítico a tensión, con red venosa colateral, doloroso a la palpación generalizada, pero sin resistencia muscular franca. Se realiza paracentesis diagnóstica de urgencia en el cuadrante inferior izquierdo.",
+    "questions": [
+      {
+        "question": "Tras el análisis citoquímico y citológico del líquido ascítico, ¿cuál es el criterio diagnóstico absoluto que confirma la Peritonitis Bacteriana Espontánea (PBE)?",
+        "options": [
+          "Proteínas totales < 1 g/dL",
+          "Cultivo positivo para flora polimicrobiana",
+          "Conteo de Leucocitos Polimorfonucleares (PMN) > 250 células/mm³",
+          "Gradiente de albúmina suero-ascitis (GASA) > 1.1"
+        ],
+        "answerIndex": 2,
+        "explanation": "El diagnóstico de certeza de la Peritonitis Bacteriana Espontánea (infección del líquido ascítico sin una fuente intraabdominal evidente) se establece con un recuento de polimorfonucleares (neutrófilos) igual o mayor a 250 células/mm³ en la muestra de líquido ascítico. Un GASA > 1.1 indica hipertensión portal (transudado), pero no es diagnóstico de infección.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Una vez confirmado el diagnóstico y tomada la muestra para cultivo bacteriológico, ¿cuál es el tratamiento antibiótico empírico de primera línea que debe iniciarse inmediatamente según la GPC?",
+        "options": [
+          "Metronidazol IV",
+          "Cefalosporinas de tercera generación (Cefotaxima o Ceftriaxona) IV",
+          "Vancomicina IV",
+          "Ciprofloxacino VO"
+        ],
+        "answerIndex": 1,
+        "explanation": "Las cefalosporinas de tercera generación por vía intravenosa (Cefotaxima es la más estudiada y recomendada) son el tratamiento empírico de elección, ya que cubren excelentemente a las enterobacterias (E. coli, Klebsiella) que translocan desde el intestino y son responsables del >70% de las PBE. Se debe coadministrar albúmina humana intravenosa para reducir el riesgo de síndrome hepatorrenal secundario a la infección.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología Hepática",
+    "subtema": "Absceso Hepático Amebiano",
+    "difficulty": "Media",
+    "case": "Masculino de 32 años, residente de zona rural, acude a urgencias por presentar cuadro de 2 semanas de evolución caracterizado por fiebre de predominio vespertino (38.5°C), diaforesis, pérdida de peso y dolor continuo en el hipocondrio derecho que se irradia hacia el hombro homolateral. Refiere haber presentado un episodio de diarrea disentérica hace un mes que remitió sin tratamiento. A la exploración física, el paciente luce agudamente enfermo, con palidez de tegumentos. El abdomen presenta hepatomegalia de 3 cm por debajo del reborde costal, extremadamente dolorosa a la palpación, y puñopercusión hepática positiva. Se realiza un ultrasonido abdominal que reporta una lesión quística única de 8 cm de diámetro en el lóbulo hepático derecho, de bordes bien definidos y contenido hipoecoico.",
+    "questions": [
+      {
+        "question": "De acuerdo con la clínica y los hallazgos epidemiológicos de nuestro país, ¿cuál es el agente etiológico responsable de esta patología?",
+        "options": [
+          "Escherichia coli",
+          "Echinococcus granulosus",
+          "Entamoeba histolytica",
+          "Klebsiella pneumoniae"
+        ],
+        "answerIndex": 2,
+        "explanation": "El absceso hepático amebiano es la manifestación extraintestinal más común de la infección por Entamoeba histolytica. Típicamente se presenta en hombres jóvenes como una lesión única en el lóbulo hepático derecho (por el flujo portal preferencial). Los abscesos piógenos (E. coli, Klebsiella) suelen ser múltiples y se presentan en pacientes mayores o con patología biliar de base.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC, ¿cuál es el tratamiento farmacológico de primera elección para este paciente?",
+        "options": [
+          "Drenaje percutáneo inmediato",
+          "Metronidazol oral o intravenoso",
+          "Albendazol",
+          "Ciprofloxacino más Ceftriaxona"
+        ],
+        "answerIndex": 1,
+        "explanation": "La GPC establece que el tratamiento de primera línea y pilar fundamental para el absceso hepático amebiano no complicado es el uso de imidazoles (Metronidazol por 7 a 10 días), con una tasa de éxito médico superior al 90%. El drenaje percutáneo se reserva para abscesos con alto riesgo de ruptura (mayores a 5-10 cm en lóbulo izquierdo o cerca de la cápsula hepática) o falta de respuesta al tratamiento médico en 72 horas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P3",
+    "subtema": "Trauma Genitourinario (Trauma uretral)",
+    "difficulty": "Alta",
+    "case": "Masculino de 35 años, trabajador de la construcción, sufre caída de un andamio a horcajadas (\"a caballo\") sobre un tubo de metal. Es llevado a urgencias refiriendo dolor perineal intenso e incapacidad para miccionar. A la exploración física, sus signos vitales se encuentran estables. Se observa un hematoma perineal extenso en forma de \"alas de mariposa\" que se extiende hacia el escroto. Se evidencia la presencia de una gota de sangre franca en el meato uretral (uretrorragia). A la palpación abdominal, se detecta una masa suprapúbica compatible con globo vesical.",
+    "questions": [
+      {
+        "question": "Por el mecanismo de lesión (caída a horcajadas) y la distribución del hematoma, ¿cuál es el segmento anatómico del tracto urinario más probablemente lesionado?",
+        "options": [
+          "Uretra posterior (membranosa)",
+          "Uretra anterior (bulbar)",
+          "Vejiga (ruptura intraperitoneal)",
+          "Uréter distal"
+        ],
+        "answerIndex": 1,
+        "explanation": "La caída a horcajadas comprime la uretra bulbar (anterior) contra la sínfisis del pubis, causando su ruptura. El sangrado y la orina extravasada se limitan por la fascia de Colles, produciendo el clásico hematoma en \"alas de mariposa\" en el periné. Las lesiones de uretra posterior suelen asociarse a fracturas graves de la pelvis en accidentes de alta energía.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Ante los hallazgos descritos, ¿cuál es la intervención médica que está absolutamente contraindicada en el manejo inicial de este paciente?",
+        "options": [
+          "Realizar una uretrografía retrógrada",
+          "Colocación de una sonda vesical transuretral (Foley) a ciegas",
+          "Colocación de una talla suprapúbica (cistostomía)",
+          "Administración de analgesia intravenosa"
+        ],
+        "answerIndex": 1,
+        "explanation": "La presencia de sangre en el meato uretral, la incapacidad para orinar, y el hematoma perineal son signos clásicos de lesión uretral. La introducción de una sonda transuretral (Foley) \"a ciegas\" está absolutamente contraindicada porque puede convertir un desgarro uretral parcial en una transección uretral completa. El abordaje diagnóstico correcto exige realizar primero una uretrografía retrógrada para evaluar la integridad del conducto.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Quemaduras / Golpe de calor / Hipotermia",
+    "subtema": "Golpe de Calor (Heat Stroke)",
+    "difficulty": "Media",
+    "case": "Masculino de 28 años, sin antecedentes de importancia, participa en una carrera de maratón al mediodía con una temperatura ambiente de 38°C y alta humedad. En el kilómetro 35, el paciente colapsa repentinamente. Es asistido por paramédicos quienes lo encuentran en estado de estupor, desorientado, con lenguaje incoherente. Sus signos vitales muestran una temperatura corporal central (rectal) de 41.2°C, FC 135 lpm, FR 28 rpm, TA 90/60 mmHg. A la exploración física, llama la atención que su piel se encuentra eritematosa, caliente y completamente seca (anhidrosis).",
+    "questions": [
+      {
+        "question": "De acuerdo con la presentación clínica, ¿cuál es el diagnóstico que amenaza la vida del paciente?",
+        "options": [
+          "Agotamiento por calor (Heat exhaustion)",
+          "Síncope por calor",
+          "Golpe de calor clásico (Heat stroke)",
+          "Hipertermia maligna"
+        ],
+        "answerIndex": 2,
+        "explanation": "El golpe de calor es una emergencia médica caracterizada por la elevación extrema de la temperatura corporal central (>40.5°C) acompañada de alteraciones severas del sistema nervioso central (delirio, coma, convulsiones) y frecuentemente, aunque no siempre en el de esfuerzo, piel caliente y seca (fracaso de los mecanismos termorreguladores como la sudoración). El agotamiento por calor cursa con sudoración profusa y no presenta alteración neurológica severa.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la medida terapéutica inicial más importante y urgente que determina la supervivencia y el pronóstico neurológico de este paciente?",
+        "options": [
+          "Administración rápida de antipiréticos (Paracetamol IV a altas dosis)",
+          "Enfriamiento rápido por medios físicos (inmersión en agua helada o evaporación)",
+          "Intubación orotraqueal profiláctica",
+          "Reanimación masiva con expansores plasmáticos (coloides)"
+        ],
+        "answerIndex": 1,
+        "explanation": "La prioridad absoluta en el golpe de calor es disminuir la temperatura central por debajo de los 39°C lo más rápido posible, utilizando métodos físicos (inmersión en agua con hielo, rociar agua tibia y usar ventiladores potentes para favorecer la evaporación). Los antipiréticos convencionales (como el paracetamol o AINEs) son ineficaces porque el problema radica en el centro termorregulador que ha sido superado, no en pirógenos endógenos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Cirugía Oncología",
+    "subtema": "Cáncer de Esófago",
+    "difficulty": "Alta",
+    "case": "Masculino de 62 años, de nivel socioeconómico bajo, con antecedente de consumo de alcohol intenso (1 litro de aguardiente al día) y tabaquismo (2 cajetillas/día) por más de 30 años. Acude refiriendo dificultad progresiva para la deglución (disfagia) de 6 meses de evolución, que inició con sólidos (carnes, pan) y actualmente es incluso para líquidos. Refiere dolor retroesternal al tragar (odinofagia), sialorrea, episodios de regurgitación, cambios en el tono de la voz (ronquera) y una pérdida de peso no intencionada de 15 kg.",
+    "questions": [
+      {
+        "question": "Por los factores de riesgo descritos (alcohol y tabaco crónicos) y la edad del paciente, ¿cuál es la estirpe histopatológica más probable de esta neoplasia que suele localizarse en el tercio medio o superior del esófago?",
+        "options": [
+          "Adenocarcinoma",
+          "Carcinoma de células pequeñas",
+          "Carcinoma epidermoide (células escamosas)",
+          "Linfoma no Hodgkin"
+        ],
+        "answerIndex": 2,
+        "explanation": "El carcinoma epidermoide o de células escamosas es el cáncer esofágico más frecuente en el mundo en vías de desarrollo, y está fuertemente vinculado al tabaquismo intenso, alcoholismo y consumo de bebidas muy calientes. Típicamente afecta los tercios superior y medio del esófago. El adenocarcinoma esofágico, por otro lado, se asocia estrechamente al reflujo gastroesofágico crónico (Esófago de Barrett) y a la obesidad, ubicándose casi siempre en el tercio inferior.",
+        "gpcReference": ""
+      },
+      {
+        "question": "La presencia de ronquera en este paciente es un signo de enfermedad localmente avanzada que indica mal pronóstico. ¿A qué estructura anatómica se debe la invasión tumoral causante de este síntoma?",
+        "options": [
+          "Tráquea membranosa",
+          "Nervio laríngeo recurrente",
+          "Músculo constrictor inferior de la faringe",
+          "Arteria carótida común"
+        ],
+        "answerIndex": 1,
+        "explanation": "La ronquera o disfonía en un paciente con cáncer de esófago tercio medio/superior es un signo clínico clásico de invasión directa del tumor al nervio laríngeo recurrente izquierdo (que transcurre en el surco traqueoesofágico). Esta invasión produce parálisis de las cuerdas vocales, y es un criterio de irresecabilidad en muchos casos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología de Extremidad Inferior",
+    "subtema": "Lesión de Ligamento Cruzado Anterior",
+    "difficulty": "Baja",
+    "case": "Femenina de 22 años, jugadora profesional de fútbol soccer. Durante un partido, al intentar cambiar de dirección rápidamente mientras corría, planta el pie derecho firmemente en el césped y realiza un giro brusco de la rodilla con una fuerza en valgo. Refiere haber escuchado y sentido un \"chasquido\" (pop) doloroso en la rodilla, con incapacidad inmediata para continuar jugando. Acude a urgencias 2 horas después con aumento de volumen severo de la rodilla derecha secundario a un derrame articular a tensión (hemartrosis aguda).",
+    "questions": [
+      {
+        "question": "Durante la exploración física en el servicio de urgencias o en el consultorio, ¿cuál es la maniobra clínica más sensible (con mayor valor predictivo) para diagnosticar la lesión de esta estructura específica?",
+        "options": [
+          "Prueba de Lachman",
+          "Prueba de McMurray",
+          "Prueba de Apley",
+          "Prueba del cajón posterior"
+        ],
+        "answerIndex": 0,
+        "explanation": "La prueba de Lachman (evaluada con la rodilla en 20-30° de flexión estabilizando el fémur y traccionando la tibia anteriormente) es la maniobra exploratoria más sensible y específica para detectar la ruptura del ligamento cruzado anterior (LCA). Las pruebas de McMurray y Apley evalúan los meniscos, y el cajón posterior evalúa el ligamento cruzado posterior.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Aunque el diagnóstico es eminentemente clínico, ¿cuál es el estudio de imagen considerado el estándar de oro no invasivo para confirmar la ruptura ligamentaria y evaluar lesiones meniscales o de cartílago asociadas?",
+        "options": [
+          "Radiografía simple de rodilla en cuatro proyecciones",
+          "Ultrasonido musculoesquelético",
+          "Tomografía axial computarizada de rodilla",
+          "Resonancia magnética de rodilla"
+        ],
+        "answerIndex": 3,
+        "explanation": "La Resonancia Magnética (RM) es el estudio de imagen de elección (estándar de oro no invasivo) para el abordaje de las lesiones de partes blandas de la rodilla (ligamentos cruzados, colaterales, meniscos y cartílago articular). Las radiografías simples son el primer estudio indicado solo para descartar avulsiones óseas (como la fractura de Segond) o fracturas de la meseta tibial.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Hernias",
+    "subtema": "Hernia Femoral (Crural)",
+    "difficulty": "Alta",
+    "case": "Femenina de 75 años, multípara, acude a urgencias por presentar un cuadro de 12 horas de evolución caracterizado por dolor intenso en la región inguinal derecha, náuseas y vómito de contenido biliar. A la exploración física, se observa el abdomen distendido, timpánico y con peristalsis metálica. En la región inguinocrural derecha se palpa una tumoración de 3 cm, tensa, eritematosa, exquisitamente dolorosa a la palpación e irreductible. Se abrirá en una ventana nueva Shutterstock",
+    "questions": [
+      {
+        "question": "Tomando en cuenta la anatomía de la región, ¿cuál es el límite superior (o anterior) del anillo por donde protruye este tipo de hernia que la diferencia clínicamente de una hernia inguinal?",
+        "options": [
+          "Ligamento de Cooper",
+          "Ligamento lacunar (Gimbernat)",
+          "Ligamento inguinal (Poupart)",
+          "Vena femoral"
+        ],
+        "answerIndex": 2,
+        "explanation": "Las hernias femorales o crurales protruyen a través del anillo femoral, el cual se ubica por debajo del ligamento inguinal (su límite anterior/superior). El límite medial es el ligamento lacunar, el posterior es el ligamento de Cooper y el lateral es la vena femoral. Clásicamente se presentan en mujeres mayores y tienen la tasa más alta de estrangulación (urgencia quirúrgica) debido a la rigidez de los bordes del anillo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la técnica quirúrgica abierta clásica recomendada para la reparación tisular (sin malla) de este defecto, que aproxima el tendón conjunto al ligamento de Cooper?",
+        "options": [
+          "Técnica de Lichtenstein",
+          "Técnica de McVay",
+          "Técnica de Shouldice",
+          "Técnica de Bassini"
+        ],
+        "answerIndex": 1,
+        "explanation": "La técnica de McVay es la reparación tisular de elección para las hernias femorales (y una opción para hernias inguinales complejas), ya que cierra el anillo femoral al suturar el tendón conjunto (hoz inguinal) al ligamento pectíneo de Cooper. Lichtenstein, Shouldice y Bassini reparan defectos por encima del ligamento inguinal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología diverticular",
+    "subtema": "Hemorragia diverticular",
+    "difficulty": "Media",
+    "case": "Masculino de 72 años, hipertenso, acude al servicio de urgencias refiriendo la evacuación súbita e indolora de abundante cantidad de sangre roja fresca con coágulos (hematoquecia) en dos ocasiones durante las últimas 3 horas. Niega dolor abdominal, fiebre, pérdida de peso o cambios previos en el hábito intestinal. A su ingreso: TA 110/70 mmHg, FC 95 lpm, FR 18 rpm. El abdomen es blando, depresible, sin dolor a la palpación y sin masas. Tacto rectal evidencia restos de sangre fresca, sin palparse tumoraciones.",
+    "questions": [
+      {
+        "question": "De acuerdo con la epidemiología reportada en la GPC, ¿cuál es la causa más frecuente de sangrado de tubo digestivo bajo (STDB) masivo e indoloro en pacientes mayores de 60 años?",
+        "options": [
+          "Angiodisplasia colónica",
+          "Cáncer colorrectal",
+          "Enfermedad hemorroidal interna",
+          "Enfermedad diverticular del colon"
+        ],
+        "answerIndex": 3,
+        "explanation": "La diverticulosis colónica es la principal causa de sangrado de tubo digestivo bajo masivo en adultos mayores. Clásicamente se presenta como una rectorragia o hematoquecia súbita, abundante y completamente indolora. Las angiodisplasias son la segunda causa y suelen producir un sangrado más insidioso. El cáncer colorrectal produce sangrado microscópico (oculto) crónico, rara vez masivo de forma aguda.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Estando el paciente hemodinámicamente estable tras la reanimación inicial, ¿cuál es el estudio de elección, tanto diagnóstico como terapéutico, a realizar en las primeras 24 horas?",
+        "options": [
+          "Angiografía mesentérica",
+          "Gammagrafía con eritrocitos marcados",
+          "Colonoscopia",
+          "Colectomía subtotal de urgencia"
+        ],
+        "answerIndex": 2,
+        "explanation": "La colonoscopia es el estudio de primera línea para evaluar el STDB en pacientes hemodinámicamente estables. Permite localizar el sitio de sangrado (hasta en un 70% de los casos) y realizar maniobras hemostáticas directas (inyección de epinefrina, clips o coagulación térmica). La angiografía se reserva para sangrados masivos con inestabilidad hemodinámica que no permiten la preparación colónica o cuando la colonoscopia falla.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P3",
+    "subtema": "Trauma Pélvico",
+    "difficulty": "Alta",
+    "case": "Masculino de 45 años es ingresado a la sala de choque tras ser atropellado por un camión de carga. A su ingreso se encuentra estuporoso, pálido y diaforético. Signos vitales: TA 70/40 mmHg, FC 140 lpm, FR 28 rpm. A la exploración física, presenta excoriaciones dermoepidérmicas severas en el hipogastrio y la región inguinal bilateral. Al realizar compresión suave sobre ambas crestas ilíacas hacia afuera y hacia adentro, se detecta inestabilidad y crepitación ósea franca. Se observa asimetría en la longitud de las extremidades inferiores. El FAST abdominal es negativo para líquido libre. Se abrirá en una ventana nueva Getty Images X-ray image pelvis and hips view.",
+    "questions": [
+      {
+        "question": "Dada la alta sospecha clínica de una fractura pélvica inestable (\"en libro abierto\") con choque hemorrágico, ¿cuál es el origen anatómico más frecuente del sangrado masivo en esta entidad?",
+        "options": [
+          "Arteria ilíaca interna",
+          "Plexo venoso presacro y venas pélvicas",
+          "Arteria glútea superior",
+          "Vasos pudendos internos"
+        ],
+        "answerIndex": 1,
+        "explanation": "A diferencia de lo que comúnmente se piensa, más del 80% del sangrado retroperitoneal asociado a fracturas pélvicas mayores proviene del sangrado venoso (del plexo presacro y venas pélvicas desgarradas) y de las superficies óseas fracturadas (hueso esponjoso). El sangrado arterial (arteria glútea superior, pudenda) ocurre en el 15-20% de los casos.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según los protocolos del ATLS, ¿cuál es la medida ortopédica de \"control de daños\" inicial más inmediata, no invasiva y vital que debe aplicarse en la sala de reanimación para reducir el volumen pélvico y controlar la hemorragia venosa?",
+        "options": [
+          "Colocación de fijadores externos por el cirujano traumatólogo",
+          "Angioembolización pélvica en sala de hemodinamia",
+          "Aplicación de una faja pélvica o sábana a nivel de los trocánteres mayores",
+          "Tracción cutánea bilateral con pesas de 10 kg"
+        ],
+        "answerIndex": 2,
+        "explanation": "La aplicación de una faja pélvica comercial (pelvic binder) o una sábana firmemente atada centrada sobre los trocánteres mayores del fémur (no sobre las crestas ilíacas) es la intervención inicial crítica. Esto cierra el anillo pélvico (\"cierra el libro\"), reduce el volumen intrapélvico, promueve el taponamiento del sangrado venoso y estabiliza los fragmentos óseos mientras se define el tratamiento definitivo (fijación o angioembolización).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Introducción Oftalmología",
+    "subtema": "Úlcera Corneal (Queratitis microbiana)",
+    "difficulty": "Media",
+    "case": "Femenina de 22 años, usuaria frecuente de lentes de contacto blandos (refiere dormir ocasionalmente con ellos). Acude a urgencias oftalmológicas por dolor ocular intenso en el ojo izquierdo, fotofobia incapacitante, lagrimeo y disminución de la agudeza visual de 48 horas de evolución. A la exploración en la lámpara de hendidura, se observa hiperemia ciliar (inyección periquerática) muy marcada y una lesión blanquecina, opaca y excavada de 3 mm de diámetro en el centro de la córnea, acompañada de hipopión (nivel de pus en la cámara anterior).",
+    "questions": [
+      {
+        "question": "De acuerdo con el principal factor de riesgo (uso de lentes de contacto y malos hábitos de higiene ocular), ¿cuál es el agente bacteriano más agresivo y frecuentemente aislado en estos casos, capaz de perforar la córnea en 24-48 horas?",
+        "options": [
+          "Staphylococcus epidermidis",
+          "Streptococcus pneumoniae",
+          "Pseudomonas aeruginosa",
+          "Neisseria gonorrhoeae"
+        ],
+        "answerIndex": 2,
+        "explanation": "Las úlceras corneales en usuarios de lentes de contacto están fuertemente asociadas a la infección por Pseudomonas aeruginosa. Esta bacteria produce enzimas proteolíticas muy potentes que pueden causar necrosis licuefactiva rápida del estroma corneal y perforación ocular si no se instaura tratamiento agresivo inmediatamente.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para delimitar y confirmar el defecto epitelial de la córnea durante la exploración, ¿qué colorante tópico es el más utilizado, el cual se ilumina de color verde brillante bajo la luz azul de cobalto?",
+        "options": [
+          "Rosa de Bengala",
+          "Verde de indocianina",
+          "Fluoresceína sódica",
+          "Azul de tripano"
+        ],
+        "answerIndex": 2,
+        "explanation": "La fluoresceína sódica es el colorante oftálmico estándar. Es hidrofílico y no penetra el epitelio corneal intacto (lipofílico), pero cuando hay una desepitelización (úlcera o abrasión), el estroma subyacente capta el colorante, tiñéndose de un verde brillante altamente contrastante bajo el filtro azul de cobalto de la lámpara de hendidura.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Quemaduras / Golpe de calor / Hipotermia",
+    "subtema": "Quemaduras eléctricas",
+    "difficulty": "Alta",
+    "case": "Masculino de 35 años, trabajador de la CFE, sufre un accidente laboral al tocar un cable de alta tensión (10,000 voltios). Es proyectado a 3 metros de distancia. A su ingreso, el paciente está obnubilado. Presenta una quemadura profunda (de tercer grado, carbonizada) de 4x4 cm en la palma de la mano derecha (sitio de entrada) y una lesión similar \"en estallido\" en el pie izquierdo (sitio de salida). A la colocación de la sonda Foley, se obtiene orina de color rojo oscuro, similar al vino de Oporto.",
+    "questions": [
+      {
+        "question": "Las quemaduras de alto voltaje producen un daño tisular profundo extenso a lo largo del trayecto de la corriente, independientemente del tamaño de las heridas cutáneas. ¿Cuál es la complicación aguda más temida y principal causa de muerte inmediata en la escena del accidente por este tipo de quemadura?",
+        "options": [
+          "Falla renal aguda anúrica",
+          "Fibrilación ventricular y arritmias cardíacas",
+          "Síndrome compartimental masivo",
+          "Perforación intestinal"
+        ],
+        "answerIndex": 1,
+        "explanation": "El paso de la corriente eléctrica de alto voltaje interrumpe el sistema de conducción eléctrica del corazón, siendo la fibrilación ventricular o la asístole la causa más frecuente de muerte inmediata en el lugar del accidente. Todo paciente con quemadura eléctrica debe contar con monitorización electrocardiográfica continua a su ingreso (buscando arritmias o datos de isquemia).",
+        "gpcReference": ""
+      },
+      {
+        "question": "La presencia de orina oscura (como refresco de cola o vino) en este paciente es indicativa de rabdomiólisis severa por destrucción muscular (mioglobinuria). Según las guías del ATLS, ¿cuál es el objetivo de diuresis horaria (gasto urinario) que debe mantenerse mediante reanimación hídrica agresiva para prevenir la lesión renal aguda por nefrotoxicidad de la mioglobina?",
+        "options": [
+          "0.5 ml/kg/hora",
+          "1.0 ml/kg/hora",
+          "30 a 50 ml/hora",
+          "100 ml/hora"
+        ],
+        "answerIndex": 3,
+        "explanation": "El objetivo de reanimación con líquidos (Ringer Lactato) en un adulto con una quemadura térmica convencional es mantener una diuresis de 0.5 ml/kg/hr (aprox. 30-50 ml/h). Sin embargo, en quemaduras eléctricas con evidencia de rabdomiólisis/mioglobinuria (orina oscura), el ATLS exige incrementar el flujo de líquidos para \"lavar\" los riñones hasta alcanzar una diuresis objetivo de 100 ml/hora en el adulto (o de 1 a 1.5 ml/kg/hr en niños menores de 30 kg) hasta que la orina se aclare.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "Patología intestinal QX",
+    "subtema": "Fractura de escafoides",
+    "difficulty": "Media",
+    "case": "Masculino de 78 años, residente de un asilo de ancianos, con historia de estreñimiento crónico severo y postración. Es traído a urgencias por presentar dolor abdominal tipo cólico de inicio insidioso, que ha progresado en las últimas 48 horas, acompañado de incapacidad absoluta para canalizar gases o evacuar. A la exploración física, destaca un abdomen asimétricamente distendido, timpánico a la percusión, sin datos de irritación peritoneal (rebote negativo). Se solicita una radiografía simple de abdomen en bipedestación y decúbito.Pregunta 1¿Cuál es el hallazgo radiológico patognomónico esperado en este paciente que confirma el diagnóstico de oclusión intestinal baja por esta etiología?A) Niveles hidroaéreos en escalera e imagen en \"pila de monedas\"B) Imagen en \"corazón de manzana\" en la fosa ilíaca izquierdaC) Asa intestinal masivamente dilatada en forma de \"U\" invertida o \"grano de café\" *D) Neumatosis intestinal y gas en el sistema portalRetroalimentación:El vólvulo de sigmoides se produce por la torsión del colon sobre su propio eje mesentérico. Clásicamente ocurre en ancianos con estreñimiento crónico. En la radiografía simple de abdomen se observa el signo del \"grano de café\" o del \"neumático\", que representa el asa sigmoidea masivamente dilatada que asciende desde la pelvis hacia el cuadrante superior derecho. La pila de monedas es de intestino delgado y el corazón de manzana es cáncer colorrectal.Pregunta 2Siendo el paciente un adulto mayor estable, sin datos de peritonitis, isquemia o perforación, ¿cuál es el tratamiento inicial de elección según la GPC?A) Laparotomía exploradora con resección y anastomosis primariaB) Procedimiento de Hartmann de urgenciaC) Destorsión y descompresión endoscópica mediante colonoscopia o rectosigmoidoscopia rígida *D) Colocación de tubo de fístula mucosaRetroalimentación:En ausencia de signos de estrangulación (fiebre, leucocitosis, peritonitis, choque), el tratamiento inicial de primera línea es la devolvulación (destorsión) y descompresión endoscópica, frecuentemente con la colocación de una sonda rectal. Esto permite aliviar la urgencia, preparar el colon y programar una resección sigmoidea electiva días después, ya que la tasa de recurrencia si solo se destuerce sin cirugía definitiva supera el 50%.Tema: Patología cámara posterior Femenina de 65 años con hipertensión arterial sistémica de 20 años de evolución, con pobre apego farmacológico. Acude a valoración oftalmológica por disminución leve de la agudeza visual. Su presión arterial en el consultorio es de 170/100 mmHg. A la oftalmoscopia directa se observan arteriolas con reflejo luminoso dorsal ensanchado (hilos de cobre), cruces arteriovenosos patológicos con indentación de la vena (Signo de Gunn), y la presencia de manchas blanquecinas de bordes difusos (exudados algodonosos) y algunas hemorragias en forma de flama. No se observa edema de la papila del nervio óptico.Pregunta 1De acuerdo con la clasificación clásica de Keith-Wagener-Barker, ¿en qué grado se encuentra la retinopatía de esta paciente?A) Grado IB) Grado IIC) Grado III *D) Grado IVRetroalimentación:La clasificación de Keith-Wagener-Barker evalúa el daño vascular retiniano crónico. Grado I: estrechamiento arterial leve. Grado II: cruces arteriovenosos patológicos (Signo de Gunn, Salus). Grado III: se agregan exudados algodonosos, exudados duros o hemorragias retinianas (como en este caso). Grado IV: se agrega papiledema (edema del disco óptico), lo cual es signo de hipertensión maligna.Pregunta 2Desde el punto de vista fisiopatológico, ¿qué representan los exudados algodonosos observados en la retina de esta paciente?A) Extravasación de lípidos y lipoproteínas de vasos incompetentesB) Zonas de isquemia focal e infartos de la capa de fibras nerviosas de la retina *C) Ruptura de microaneurismas arteriolaresD) Acumulación de macrófagos cargados de hemosiderinaRetroalimentación:Los exudados algodonosos (blancos, de bordes difusos) no son verdaderos exudados, sino que representan áreas de isquemia focal e infartos en la capa de las fibras nerviosas de la retina secundaria a la oclusión de las arteriolas precapilares por el vasoespasmo severo. Los exudados duros (amarillentos, de bordes netos) sí son acúmulos de lípidos y proteínas (fuga vascular).Tema: Patología prostática Masculino de 45 años, sin antecedentes de importancia, acude a urgencias por presentar fiebre de 39°C, escalofríos, dolor perineal punzante y síntomas urinarios obstructivos severos (disuria intensa, pujo, tenesmo y chorro urinario muy débil) de 3 días de evolución. A la exploración física, el paciente luce con facies álgica. El abdomen es doloroso a la palpación profunda en hipogastrio, con globo vesical palpable. Se procede a realizar un tacto rectal. Masculino de 48 años es referido a gastroenterología quirúrgica por un cuadro crónico de dolor epigástrico tipo ardoroso y diarrea acuosa. Se le ha realizado endoscopia superior en múltiples ocasiones, documentándose la presencia de múltiples úlceras pépticas gigantes (>2 cm), algunas localizadas en sitios atípicos como la segunda y tercera porción del duodeno e incluso en yeyuno proximal. Refiere que las úlceras son refractarias al tratamiento continuo con inhibidores de la bomba de protones a dosis estándar. Su historia familiar es positiva para hipercalcemia y litiasis renal. Masculino de 22 años, sufre caída mientras patinaba, apoyando todo el peso de su cuerpo sobre la mano derecha en hiperextensión (dorsiflexión forzada). Acude a urgencias quejándose de dolor en la muñeca derecha. A la exploración física, no presenta deformidad evidente, pero tiene dolor exquisito a la palpación en el fondo de la \"tabaquera anatómica\" y dolor a la compresión axial del primer metacarpiano (pulgar). Se le toman radiografías simples de muñeca (AP, lateral y oblicua) las cuales son reportadas como sin evidencia de fractura aguda. Se abrirá en una ventana nuevaShutterstockExplorar",
+    "questions": [
+      {
+        "question": "Durante la exploración física digital (tacto rectal) de este paciente, ¿qué hallazgo clínico y precaución son característicos y mandatarios, respectivamente?",
+        "options": [
+          "Próstata pétrea e irregular; se debe dar masaje prostático enérgico para obtener secreción para cultivo",
+          "Próstata de consistencia ahulada y simétrica; se debe medir el volumen con ecografía transrectal inmediata",
+          "Próstata caliente, edematosa (\"pantanosa\") y exquisitamente dolorosa; está absolutamente contraindicado el masaje prostático",
+          "Próstata atrófica e indolora; se requiere biopsia transrectal inmediata"
+        ],
+        "answerIndex": 2,
+        "explanation": "En la prostatitis aguda bacteriana, el tacto rectal (que debe hacerse con suma suavidad) revela una glándula típicamente caliente, tensa, muy edematosa y extremadamente dolorosa. El masaje prostático está formalmente contraindicado porque es intensamente doloroso y conlleva un alto riesgo de inducir bacteriemia y choque séptico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Teniendo en cuenta que los uropatógenos típicos (como E. coli) son los causantes principales, ¿cuál es el tratamiento antibiótico empírico de elección y su duración recomendada según las guías urológicas?",
+        "options": [
+          "Fosfomicina trometamol dosis única",
+          "Fluoroquinolonas (ej. Ciprofloxacino o Levofloxacino) o TMP/SMX por un mínimo de 2 a 4 semanas",
+          "Penicilina G benzatínica intramuscular dosis única",
+          "Macrólidos (Azitromicina) por 3 días"
+        ],
+        "answerIndex": 1,
+        "explanation": "Las fluoroquinolonas o el trimetoprima/sulfametoxazol (TMP/SMX) son los agentes de elección debido a su excelente penetración en el tejido prostático. Sin embargo, a diferencia de una cistitis aguda, el tratamiento debe ser prolongado (generalmente de 2 a 4 semanas para prostatitis aguda, y hasta 4-6 semanas en crónica) para erradicar la infección y prevenir recaídas o la formación de abscesos prostáticos.Tema: Patología Gástrica",
+        "gpcReference": ""
+      },
+      {
+        "question": "Ante la fuerte sospecha clínica, ¿cuál es el estudio bioquímico inicial de elección para confirmar el diagnóstico de este síndrome?",
+        "options": [
+          "Medición de la secreción de ácido gástrico basal",
+          "Determinación de los niveles séricos de gastrina en ayuno",
+          "Prueba de aliento con urea marcada",
+          "Determinación de niveles de somatostatina sérica"
+        ],
+        "answerIndex": 1,
+        "explanation": "El diagnóstico del Síndrome de Zollinger-Ellison (SZE) se basa en demostrar una hipersecreción patológica de ácido impulsada por un tumor neuroendocrino productor de gastrina (gastrinoma). El primer paso diagnóstico es la medición de gastrina sérica en ayuno; niveles acentuadamente elevados (generalmente >1000 pg/mL) en presencia de un pH gástrico ácido (<2) confirman el diagnóstico. Si los niveles están en un área gris, se usa la prueba de estimulación con secretina.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Una vez confirmado bioquímicamente el SZE, se requiere localizar el tumor primario. ¿En qué región anatómica (conocida como el \"triángulo del gastrinoma\" o de Passaro) se localizan más del 80% de estos tumores?",
+        "options": [
+          "Curvatura mayor del estómago, bazo y cola del páncreas",
+          "Antro gástrico, fondo gástrico y cardias",
+          "Confluencia de los conductos biliares, segunda/tercera porción del duodeno y cabeza/cuello del páncreas",
+          "Íleon terminal, ciego y apéndice cecal"
+        ],
+        "answerIndex": 2,
+        "explanation": "El triángulo de Passaro (o triángulo del gastrinoma) es un área anatómica imaginaria donde se localizan entre el 80% y 90% de los gastrinomas. Sus vértices son la confluencia del conducto cístico con el colédoco, la unión de la segunda y tercera porción del duodeno, y la unión del cuello y cuerpo del páncreas. Es vital para la planeación de la exploración quirúrgica.Tema: Patología de extremidad superior",
+        "gpcReference": ""
+      },
+      {
+        "question": "A pesar de la radiografía inicial negativa, dada la alta sospecha clínica, ¿cuál es el abordaje ortopédico correcto y seguro para este paciente en el servicio de urgencias según la GPC?",
+        "options": [
+          "Alta médica con AINEs orales y reanudación de actividad normal",
+          "Inmovilización con férula o yeso tipo espica de pulgar y repetir radiografías en 10-14 días o solicitar Resonancia Magnética",
+          "Infiltración local con corticosteroides para alivio del dolor tendinoso",
+          "Programar para reducción abierta y fijación interna profiláctica"
+        ],
+        "answerIndex": 1,
+        "explanation": "Hasta un 20% de las fracturas de escafoides carpiano no son visibles en las radiografías iniciales. Ante un mecanismo compatible y dolor en la tabaquera anatómica, la indicación absoluta es tratarla clínicamente como fractura: inmovilizar con yeso/férula en espica del pulgar y citar en 10-14 días para repetir la radiografía (donde la reabsorción ósea hará visible el trazo de fractura) o, de estar disponible, solicitar una Resonancia Magnética o TAC para el diagnóstico temprano.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la complicación a largo plazo más temida y frecuente de esta fractura (especialmente las del polo proximal o cintura) debido a su particular anatomía vascular?",
+        "options": [
+          "Compresión aguda del nervio mediano (Síndrome del túnel carpiano agudo)",
+          "Pseudoartrosis y necrosis avascular del polo proximal",
+          "Síndrome de dolor regional complejo tipo II",
+          "Osificación heterotópica del ligamento escafolunar"
+        ],
+        "answerIndex": 1,
+        "explanation": "El escafoides tiene una irrigación sanguínea precaria y retrógrada (los vasos entran por el polo distal y nutren hacia el polo proximal). Las fracturas a través de la cintura o el polo proximal interrumpen el suministro de sangre, lo que lleva a un alto riesgo de consolidación viciosa, pseudoartrosis (no unión) y necrosis avascular del segmento proximal, conduciendo finalmente a una osteoartritis severa de la muñeca.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Preeclampsia con criterios de severidad",
+    "subtema": "",
+    "difficulty": "alta",
+    "case": "Mujer de 27 años, G1P0, 33 semanas de gestación por FUM confiable. Acude por cefalea intensa persistente, fosfenos y dolor en epigastrio desde hace 8 horas. TA 168/112 mmHg en dos tomas separadas por 15 minutos. FC 96 lpm. Edema en extremidades inferiores ++. Proteinuria en tira reactiva +++. Laboratorio: plaquetas 130,000/mm³, TGO 78 U/L, creatinina 1.3 mg/dL.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Hipertensión gestacional",
+          "Preeclampsia sin criterios de severidad",
+          "Síndrome HELLP",
+          "Preeclampsia con criterios de severidad"
+        ],
+        "answerIndex": 3,
+        "explanation": "La paciente cumple criterios de severidad: TA ≥160/110, datos neurológicos y epigastralgia. Según GPC mexicana de trastornos hipertensivos del embarazo y NOM-007, el manejo inicial es hospitalización, sulfato de magnesio para prevención de eclampsia y antihipertensivos IV (labetalol/hidralazina). La resolución del embarazo depende de estabilidad materno-fetal y edad gestacional.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta inmediata según GPC mexicana?",
+        "options": [
+          "Observación y control ambulatorio",
+          "Inducción inmediata sin estabilización",
+          "Hospitalización, sulfato de magnesio y control antihipertensivo",
+          "Solo antihipertensivo oral"
+        ],
+        "answerIndex": 2,
+        "explanation": "La paciente cumple criterios de severidad: TA ≥160/110, datos neurológicos y epigastralgia. Según GPC mexicana de trastornos hipertensivos del embarazo y NOM-007, el manejo inicial es hospitalización, sulfato de magnesio para prevención de eclampsia y antihipertensivos IV (labetalol/hidralazina). La resolución del embarazo depende de estabilidad materno-fetal y edad gestacional.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragia del primer trimestre – Embarazo ectópico",
+    "subtema": "",
+    "difficulty": "alta",
+    "case": "Mujer de 30 años, G2P1, 7 semanas de amenorrea. Dolor abdominal tipo cólico en fosa iliaca derecha y sangrado transvaginal escaso. TA 100/60 mmHg, FC 108 lpm. USG transvaginal: útero vacío, masa anexial derecha de 3 cm, BHCG 2,500 mUI/mL.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo más adecuado según GPC mexicana?",
+        "options": [
+          "Legrado uterino",
+          "Metotrexato si cumple criterios",
+          "Observación expectante",
+          "Histerectomía"
+        ],
+        "answerIndex": 1,
+        "explanation": "Criterios para manejo médico: estabilidad hemodinámica, masa <3.5–4 cm, sin actividad cardiaca embrionaria y BHCG <5,000. La paciente cumple criterios. Según GPC mexicana de embarazo ectópico, el manejo de elección es metotrexato.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragia obstétrica – Atonía uterina",
+    "subtema": "",
+    "difficulty": "alta",
+    "case": "Paciente de 24 años, G1P1, parto eutócico hace 30 minutos. Presenta sangrado abundante. TA 90/50 mmHg, FC 120 lpm. Útero flácido a la palpación.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa más probable?",
+        "options": [
+          "Retención placentaria",
+          "Laceración cervical",
+          "Atonía uterina",
+          "Coagulopatía"
+        ],
+        "answerIndex": 2,
+        "explanation": "La causa más frecuente de hemorragia obstétrica es atonía uterina. El manejo inicial es masaje uterino + uterotónicos (oxitocina primera línea).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Primer paso en manejo según NOM-007:",
+        "options": [
+          "Histerectomía inmediata",
+          "Masaje uterino bimanual y oxitocina IV",
+          "Legrado uterino",
+          "Plasma fresco"
+        ],
+        "answerIndex": 1,
+        "explanation": "La causa más frecuente de hemorragia obstétrica es atonía uterina. El manejo inicial es masaje uterino + uterotónicos (oxitocina primera línea).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Diabetes gestacional",
+    "subtema": "",
+    "difficulty": "alta",
+    "case": "Paciente de 32 años, 26 semanas de gestación. Glucosa en ayuno 98 mg/dL. Curva de tolerancia oral 75 g: 1h 185 mg/dL, 2h 160 mg/dL.",
+    "questions": [
+      {
+        "question": "¿Cuál es el siguiente paso según NOM-015 y GPC mexicana?",
+        "options": [
+          "Repetir estudio",
+          "Iniciar metformina",
+          "Iniciar manejo nutricional y ejercicio, control glucémico",
+          "Iniciar insulina inmediata"
+        ],
+        "answerIndex": 2,
+        "explanation": "Con un valor alterado ya se diagnostica diabetes gestacional. El manejo inicial es dieta + ejercicio y monitoreo. Insulina si no hay control.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Placenta previa",
+    "subtema": "",
+    "difficulty": "alta",
+    "case": "Paciente de 35 años, G3P2, 34 semanas. Sangrado rojo brillante indoloro. Útero relajado, FCF normal.",
+    "questions": [
+      {
+        "question": "Conducta correcta según GPC mexicana:",
+        "options": [
+          "Tacto vaginal inmediato",
+          "Inducción del trabajo de parto",
+          "Ultrasonido transvaginal y evitar tacto",
+          "Alta domiciliaria"
+        ],
+        "answerIndex": 2,
+        "explanation": "Sangrado rojo brillante indoloro sugiere placenta previa. Está contraindicado el tacto vaginal. Confirmación con USG.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Cáncer cervicouterino – Tamizaje",
+    "subtema": "",
+    "difficulty": "alta",
+    "case": "Mujer de 32 años, vida sexual activa desde los 18 años. Último Papanicolaou hace 4 años.",
+    "questions": [
+      {
+        "question": "Según NOM-014, ¿cuál es la recomendación?",
+        "options": [
+          "No requiere tamizaje",
+          "Solo VPH",
+          "Citología cervical cada 3 años (25–34 años)",
+          "Colposcopía directa"
+        ],
+        "answerIndex": 2,
+        "explanation": "En mujeres de 25–34 años se realiza citología cada 3 años. VPH primario se recomienda ≥35 años.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Ruptura prematura de membranas (RPM)",
+    "subtema": "",
+    "difficulty": "alta",
+    "case": "Paciente 29 años, 35 semanas, salida de líquido claro transvaginal. Sin fiebre. FCF normal.",
+    "questions": [
+      {
+        "question": "Conducta según GPC mexicana:",
+        "options": [
+          "Alta domiciliaria",
+          "Inducir trabajo de parto",
+          "Manejo expectante hasta 37 semanas",
+          "Cesárea inmediata"
+        ],
+        "answerIndex": 1,
+        "explanation": "RPM ≥34 semanas: se recomienda interrupción del embarazo por riesgo infeccioso.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Síndrome HELLP",
+    "subtema": "",
+    "difficulty": "Alta",
+    "case": "Mujer de 29 años, G2P1, 35 semanas de gestación. Antecedente de preeclampsia en embarazo previo. Acude por cefalea intensa, náusea, vómito y dolor en hipocondrio derecho de 24 horas de evolución. Refiere disminución de movimientos fetales. TA 162/108 mmHg, FC 102 lpm. Edema ++ en extremidades inferiores. Laboratorio: Hb 11 g/dL, plaquetas 82,000/mm³, TGO 145 U/L, TGP 132 U/L, DHL elevada, bilirrubina indirecta elevada, creatinina 1.4 mg/dL. EGO con proteinuria ++.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Preeclampsia sin datos de severidad",
+          "Hepatitis aguda viral",
+          "Síndrome HELLP",
+          "Colestasis intrahepática del embarazo"
+        ],
+        "answerIndex": 2,
+        "explanation": "El síndrome HELLP se caracteriza por hemólisis, elevación de enzimas hepáticas y trombocitopenia. Es una variante grave de preeclampsia. Según GPC mexicana de trastornos hipertensivos, el manejo es estabilizar y resolver el embarazo independientemente de la edad gestacional si ≥34 semanas o si hay deterioro materno.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta indicada según GPC mexicana?",
+        "options": [
+          "Manejo ambulatorio y control en 48 horas",
+          "Corticoesteroides y continuar embarazo hasta 37 semanas",
+          "Estabilización materna con sulfato de magnesio y resolución del embarazo",
+          "Plasmaféresis inmediata"
+        ],
+        "answerIndex": 2,
+        "explanation": "El síndrome HELLP se caracteriza por hemólisis, elevación de enzimas hepáticas y trombocitopenia. Es una variante grave de preeclampsia. Según GPC mexicana de trastornos hipertensivos, el manejo es estabilizar y resolver el embarazo independientemente de la edad gestacional si ≥34 semanas o si hay deterioro materno.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Desprendimiento prematuro de placenta normoinserta (DPPNI)",
+    "subtema": "",
+    "difficulty": "Alta",
+    "case": "Paciente de 38 años, G4P3, 36 semanas de gestación, antecedente de hipertensión crónica. Acude por dolor abdominal súbito, intenso, continuo, acompañado de sangrado transvaginal oscuro en cantidad moderada. Refiere disminución de movimientos fetales. TA 150/95 mmHg. Útero hipertónico, doloroso a la palpación. FCF 90 lpm con desaceleraciones tardías persistentes.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Placenta previa",
+          "Ruptura uterina",
+          "DPPNI",
+          "Trabajo de parto pretérmino"
+        ],
+        "answerIndex": 2,
+        "explanation": "El DPPNI cursa con dolor abdominal + sangrado oscuro + hipertonía uterina. Con compromiso fetal se indica resolución inmediata por cesárea. Está basado en GPC mexicana de hemorragia obstétrica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta inmediata:",
+        "options": [
+          "Tacto vaginal para valorar dilatación",
+          "Manejo expectante",
+          "Cesárea urgente",
+          "Inducción con oxitocina"
+        ],
+        "answerIndex": 2,
+        "explanation": "El DPPNI cursa con dolor abdominal + sangrado oscuro + hipertonía uterina. Con compromiso fetal se indica resolución inmediata por cesárea. Está basado en GPC mexicana de hemorragia obstétrica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Corioamnionitis",
+    "subtema": "",
+    "difficulty": "Media–Alta",
+    "case": "Mujer de 24 años, G1P0, 32 semanas de gestación. Antecedente de ruptura prematura de membranas hace 36 horas. Presenta fiebre de 38.7°C, taquicardia materna (110 lpm) y fetal (170 lpm), dolor uterino a la palpación y líquido amniótico fétido.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo indicado según GPC mexicana?",
+        "options": [
+          "Manejo expectante hasta completar esquema de esteroides",
+          "Antibiótico ambulatorio",
+          "Antibióticos IV de amplio espectro y resolución del embarazo",
+          "Solo inducción sin antibiótico"
+        ],
+        "answerIndex": 2,
+        "explanation": "La corioamnionitis es indicación de interrupción del embarazo más antibióticos IV (ampicilina + gentamicina según lineamientos). No debe prolongarse el embarazo por riesgo de sepsis materno-fetal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Eclampsia",
+    "subtema": "",
+    "difficulty": "Alta",
+    "case": "Paciente de 19 años, G1, 30 semanas de gestación. Sin control prenatal. Presenta crisis convulsiva tónico-clónica generalizada en domicilio. Al ingreso: TA 170/115 mmHg, confusa, edema generalizado. Proteinuria +++.",
+    "questions": [
+      {
+        "question": "¿Cuál es el fármaco de elección inicial?",
+        "options": [
+          "Diazepam",
+          "Fenitoína",
+          "Sulfato de magnesio",
+          "Levetiracetam"
+        ],
+        "answerIndex": 2,
+        "explanation": "El tratamiento de elección para prevenir recurrencia de convulsiones es sulfato de magnesio. Toda eclampsia es indicación de resolución del embarazo tras estabilización materna.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Después de estabilizar a la paciente, ¿cuál es la conducta?",
+        "options": [
+          "Continuar embarazo hasta 37 semanas",
+          "Alta domiciliaria",
+          "Interrumpir el embarazo una vez estabilizada",
+          "Solo control antihipertensivo"
+        ],
+        "answerIndex": 2,
+        "explanation": "El tratamiento de elección para prevenir recurrencia de convulsiones es sulfato de magnesio. Toda eclampsia es indicación de resolución del embarazo tras estabilización materna.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Sepsis puerperal",
+    "subtema": "",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 31 años, G2P2, 5 días post cesárea por sufrimiento fetal. Refiere fiebre de 39°C, malestar general y dolor hipogástrico. TA 95/60 mmHg, FC 120 lpm. Útero subinvolucionado y doloroso, loquios fétidos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo inicial más adecuado?",
+        "options": [
+          "Antipiréticos y observación",
+          "Antibióticos IV de amplio espectro y reanimación hídrica",
+          "Legrado uterino inmediato",
+          "Alta con antibiótico oral"
+        ],
+        "answerIndex": 1,
+        "explanation": "Cuadro compatible con endometritis puerperal complicada. Manejo hospitalario con antibióticos IV de amplio espectro según GPC mexicana y criterios de sepsis.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Distocia de hombros",
+    "subtema": "",
+    "difficulty": "Alta",
+    "case": "Mujer de 34 años, G2P1, antecedente de diabetes gestacional. Producto macrosómico estimado en 4,200 g. Durante el parto vaginal, tras la salida de la cabeza fetal, esta retrae contra el periné (signo de la tortuga). No progresa el descenso.",
+    "questions": [
+      {
+        "question": "¿Cuál es la primera maniobra indicada?",
+        "options": [
+          "Fórceps",
+          "Cesárea inmediata",
+          "Maniobra de McRoberts",
+          "Maniobra de Kristeller"
+        ],
+        "answerIndex": 2,
+        "explanation": "La maniobra inicial en distocia de hombros es McRoberts (flexión de muslos sobre abdomen). Está contraindicada la presión fundica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Aborto incompleto",
+    "difficulty": "Media–Alta",
+    "case": "Mujer de 26 años, G2P0A1, 10 semanas por FUM confiable. Acude por sangrado transvaginal abundante de 12 horas de evolución, acompañado de cólico hipogástrico intenso y expulsión de coágulos. Refiere que hace 3 días inició con manchado escaso. TA 100/65 mmHg, FC 105 lpm. A la exploración ginecológica: cérvix dilatado 2 cm, restos ovulares visibles en canal cervical. USG transvaginal: cavidad uterina con material ecogénico heterogéneo, sin saco gestacional íntegro.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Amenaza de aborto",
+          "Aborto diferido",
+          "Aborto incompleto",
+          "Embarazo ectópico"
+        ],
+        "answerIndex": 2,
+        "explanation": "El aborto incompleto se caracteriza por sangrado, dolor, cérvix dilatado y restos intrauterinos. Según GPC mexicana, el manejo puede ser médico o quirúrgico; sin embargo, ante sangrado abundante o compromiso hemodinámico, la evacuación uterina es el tratamiento indicado.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según GPC mexicana de aborto espontáneo, ¿cuál es el manejo más adecuado?",
+        "options": [
+          "Manejo expectante obligatorio",
+          "Antibiótico oral y alta",
+          "Evacuación uterina (AMEU o legrado) según condiciones clínicas",
+          "Histerectomía"
+        ],
+        "answerIndex": 2,
+        "explanation": "El aborto incompleto se caracteriza por sangrado, dolor, cérvix dilatado y restos intrauterinos. Según GPC mexicana, el manejo puede ser médico o quirúrgico; sin embargo, ante sangrado abundante o compromiso hemodinámico, la evacuación uterina es el tratamiento indicado.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Enfermedad trofoblástica gestacional",
+    "difficulty": "Alta",
+    "case": "Paciente de 19 años, G1, 12 semanas de amenorrea. Presenta sangrado transvaginal intermitente, náusea y vómito incoercible. Refiere expulsión de vesículas. TA 140/90 mmHg. Útero aumentado de tamaño mayor al esperado para edad gestacional. BHCG 250,000 mUI/mL. USG: patrón en “tormenta de nieve” sin embrión visible.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Aborto retenido",
+          "Embarazo múltiple",
+          "Mola hidatiforme completa",
+          "Embarazo ectópico"
+        ],
+        "answerIndex": 2,
+        "explanation": "La mola completa cursa con BHCG muy elevada, ausencia de embrión y patrón ecográfico típico. El manejo es evacuación uterina por aspiración y seguimiento estrecho con BHCG para detectar enfermedad persistente.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta inicial según GPC mexicana:",
+        "options": [
+          "Metotrexato inmediato",
+          "Aspiración uterina y seguimiento con BHCG seriada",
+          "Histerectomía en todas las pacientes",
+          "Observación"
+        ],
+        "answerIndex": 1,
+        "explanation": "La mola completa cursa con BHCG muy elevada, ausencia de embrión y patrón ecográfico típico. El manejo es evacuación uterina por aspiración y seguimiento estrecho con BHCG para detectar enfermedad persistente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del segundo y tercer trimestre",
+    "subtema": "Acretismo placentario",
+    "difficulty": "Alta",
+    "case": "Mujer de 37 años, G4P3, antecedente de 3 cesáreas previas. 35 semanas de gestación. USG reporta placenta previa oclusiva total con múltiples lagunas vasculares y pérdida del espacio retroplacentario. No presenta sangrado activo.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta recomendada según GPC mexicana?",
+        "options": [
+          "Inducción del trabajo de parto",
+          "Cesárea convencional con intento de desprendimiento placentario",
+          "Cesárea programada con equipo multidisciplinario y probable histerectomía obstétrica",
+          "Manejo ambulatorio hasta inicio de trabajo de parto"
+        ],
+        "answerIndex": 2,
+        "explanation": "Placenta previa + cesáreas previas aumenta riesgo de acretismo. El manejo es cesárea programada en hospital de tercer nivel, evitando intentar desprender la placenta por riesgo de hemorragia masiva.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología del embarazo",
+    "subtema": "Colestasis intrahepática del embarazo",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 30 años, G2P1, 33 semanas. Refiere prurito intenso predominante en palmas y plantas, sin lesiones cutáneas visibles. No dolor abdominal ni fiebre. TA normal. Laboratorio: bilirrubina normal, elevación leve de TGO/TGP, ácidos biliares elevados.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo indicado?",
+        "options": [
+          "Antihistamínicos y vigilancia",
+          "Corticoesteroides sistémicos",
+          "Ácido ursodesoxicólico y programar interrupción a las 37 semanas",
+          "Cesárea inmediata"
+        ],
+        "answerIndex": 2,
+        "explanation": "La colestasis intrahepática aumenta riesgo de muerte fetal intrauterina. El manejo es ácido ursodesoxicólico y programación de interrupción alrededor de las 37 semanas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología del trabajo de parto",
+    "subtema": "Inducción del trabajo de parto",
+    "difficulty": "Alta",
+    "case": "Paciente de 28 años, G1, 41 semanas de gestación. Sin trabajo de parto. Perfil biofísico 6/10 por disminución de líquido amniótico. Cérvix posterior, cerrado, 30% borramiento, Bishop 3.",
+    "questions": [
+      {
+        "question": "¿Cuál es el método inicial recomendado?",
+        "options": [
+          "Oxitocina directa",
+          "Cesárea inmediata",
+          "Maduración cervical con prostaglandinas",
+          "Maniobra de Hamilton"
+        ],
+        "answerIndex": 2,
+        "explanation": "Con Bishop <6 se recomienda maduración cervical previa con prostaglandinas antes de iniciar oxitocina, según GPC mexicana de inducción.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Por qué no se inicia oxitocina directamente?",
+        "options": [
+          "Está contraindicada en embarazo postérmino",
+          "Produce sufrimiento fetal inmediato",
+          "Bishop desfavorable requiere maduración previa",
+          "Solo se usa en multíparas"
+        ],
+        "answerIndex": 2,
+        "explanation": "Con Bishop <6 se recomienda maduración cervical previa con prostaglandinas antes de iniciar oxitocina, según GPC mexicana de inducción.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología puerperal",
+    "subtema": "Hemorragia obstétrica secundaria",
+    "difficulty": "Media–Alta",
+    "case": "Mujer de 22 años, 10 días post parto eutócico. Acude por sangrado transvaginal abundante súbito, acompañado de mareo. TA 95/60 mmHg. USG muestra restos retenidos intrauterinos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo indicado?",
+        "options": [
+          "Observación",
+          "Uterotónicos exclusivamente",
+          "Evacuación uterina y antibióticos si se sospecha infección",
+          "Histerectomía inmediata"
+        ],
+        "answerIndex": 2,
+        "explanation": "La hemorragia puerperal secundaria suele asociarse a restos placentarios retenidos. El manejo es evacuación uterina bajo cobertura antibiótica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Estados hipertensivos del embarazo",
+    "subtema": "Preeclampsia sin criterios de severidad",
+    "difficulty": "Media–Alta",
+    "case": "Mujer de 31 años, G2P1, 34 semanas de gestación por FUM confiable y corroborada por ultrasonido del primer trimestre. Antecedente de obesidad grado I (IMC 32 kg/m²) y madre con antecedente de preeclampsia. Acude a consulta por cefalea leve intermitente y edema progresivo en extremidades inferiores desde hace 1 semana. Niega fosfenos, acúfenos o dolor epigástrico. Signos vitales: TA 148/94 mmHg en primera toma y 150/96 mmHg 20 minutos después. FC 88 lpm. FR 18 rpm. Temperatura 36.7°C. Altura uterina acorde a edad gestacional. FCF 145 lpm, reactiva. Laboratorio: Hb 12 g/dL, plaquetas 190,000/mm³, TGO/TGP normales, creatinina 0.8 mg/dL. EGO con proteinuria ++. Relación proteína/creatinina 0.5.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Hipertensión crónica",
+          "Hipertensión gestacional",
+          "Preeclampsia sin criterios de severidad",
+          "Preeclampsia con criterios de severidad"
+        ],
+        "answerIndex": 2,
+        "explanation": "La paciente cumple criterios de preeclampsia (TA ≥140/90 + proteinuria) pero no tiene datos de severidad (no plaquetopenia, no elevación de enzimas hepáticas, no síntomas neurológicos graves). Según la GPC mexicana y NOM-007, el manejo es expectante con vigilancia estrecha hasta las 37 semanas, momento en que se recomienda la interrupción.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC mexicana de trastornos hipertensivos del embarazo, ¿cuál es la conducta adecuada?",
+        "options": [
+          "Interrupción inmediata del embarazo",
+          "Manejo expectante con vigilancia materno-fetal estrecha hasta las 37 semanas",
+          "Alta domiciliaria sin seguimiento",
+          "Iniciar sulfato de magnesio de forma rutinaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "La paciente cumple criterios de preeclampsia (TA ≥140/90 + proteinuria) pero no tiene datos de severidad (no plaquetopenia, no elevación de enzimas hepáticas, no síntomas neurológicos graves). Según la GPC mexicana y NOM-007, el manejo es expectante con vigilancia estrecha hasta las 37 semanas, momento en que se recomienda la interrupción.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del segundo y tercer trimestre",
+    "subtema": "Vasa previa",
+    "difficulty": "Alta",
+    "case": "Paciente de 33 años, G3P2, 36 semanas de gestación. Embarazo con diagnóstico previo de placenta bilobulada identificado en ultrasonido estructural. Acude a urgencias por sangrado transvaginal rojo brillante posterior a ruptura espontánea de membranas. Niega dolor abdominal. A la exploración: útero relajado, no doloroso. TA 110/70 mmHg. FC 92 lpm. En monitor fetal se documenta bradicardia fetal sostenida de 80 lpm. El sangrado continúa en pequeña cantidad. No hay datos de choque materno.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Placenta previa",
+          "DPPNI",
+          "Vasa previa",
+          "Ruptura uterina"
+        ],
+        "answerIndex": 2,
+        "explanation": "La vasa previa se sospecha ante sangrado rojo brillante tras ruptura de membranas con bradicardia fetal y estabilidad materna. La hemorragia es fetal. Es una urgencia obstétrica que requiere cesárea inmediata.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta inmediata indicada?",
+        "options": [
+          "Manejo expectante",
+          "Inducción del trabajo de parto",
+          "Cesárea urgente inmediata",
+          "Tacto vaginal para valorar dilatación"
+        ],
+        "answerIndex": 2,
+        "explanation": "La vasa previa se sospecha ante sangrado rojo brillante tras ruptura de membranas con bradicardia fetal y estabilidad materna. La hemorragia es fetal. Es una urgencia obstétrica que requiere cesárea inmediata.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Parto pretérmino",
+    "subtema": "Amenaza de parto pretérmino (<34 semanas)",
+    "difficulty": "Alta",
+    "case": "Mujer de 24 años, G1, 31 semanas de gestación. Refiere contracciones uterinas regulares cada 8 minutos desde hace 4 horas, acompañadas de sensación de presión pélvica. Niega salida de líquido o sangrado. Control prenatal adecuado. Signos vitales normales. A la exploración obstétrica: dinámica uterina regular, 3 contracciones en 10 minutos. Tacto vaginal: cérvix 2 cm de dilatación, 50% borramiento, membranas íntegras. USG transvaginal con longitud cervical de 20 mm. FCF 150 lpm reactiva.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Trabajo de parto activo",
+          "Amenaza de parto pretérmino",
+          "Falso trabajo de parto",
+          "RPM pretérmino"
+        ],
+        "answerIndex": 1,
+        "explanation": "Entre 24 y 33.6 semanas, con cambios cervicales y dinámica uterina, se indica tocolisis (si no hay contraindicación) y corticoesteroides para maduración pulmonar fetal. Esto reduce morbimortalidad neonatal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según GPC mexicana, ¿cuál es el manejo indicado?",
+        "options": [
+          "Alta domiciliaria",
+          "Inducción inmediata",
+          "Tocolisis + esquema de maduración pulmonar con corticoesteroides",
+          "Cesárea inmediata"
+        ],
+        "answerIndex": 2,
+        "explanation": "Entre 24 y 33.6 semanas, con cambios cervicales y dinámica uterina, se indica tocolisis (si no hay contraindicación) y corticoesteroides para maduración pulmonar fetal. Esto reduce morbimortalidad neonatal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología del trabajo de parto",
+    "subtema": "Ruptura uterina",
+    "difficulty": "Alta",
+    "case": "Paciente de 35 años, G4P3, antecedente de cesárea segmentaria hace 2 años. Cursa embarazo de 39 semanas. Se encuentra en trabajo de parto inducido con oxitocina por embarazo postérmino. Después de 6 horas presenta dolor abdominal súbito, intenso, persistente, diferente a las contracciones. Se documenta pérdida de la estación fetal previamente descendida y alteración súbita en FCF con desaceleraciones prolongadas. TA 90/60 mmHg, FC 120 lpm. Abdomen doloroso, palpación fácil de partes fetales.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "DPPNI",
+          "Distocia dinámica",
+          "Ruptura uterina",
+          "Placenta previa"
+        ],
+        "answerIndex": 2,
+        "explanation": "Ante antecedente de cesárea y datos de choque + sufrimiento fetal + pérdida de estación, se debe sospechar ruptura uterina. Es una emergencia quirúrgica inmediata.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta inmediata:",
+        "options": [
+          "Suspender oxitocina y observar",
+          "Inducción con prostaglandinas",
+          "Laparotomía urgente y resolución quirúrgica",
+          "Manejo expectante"
+        ],
+        "answerIndex": 2,
+        "explanation": "Ante antecedente de cesárea y datos de choque + sufrimiento fetal + pérdida de estación, se debe sospechar ruptura uterina. Es una emergencia quirúrgica inmediata.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología del embarazo",
+    "subtema": "Diabetes gestacional con falla a manejo nutricional",
+    "difficulty": "Alta",
+    "case": "Mujer de 36 años, G3P1A1, 29 semanas de gestación. Antecedente de macrosomía fetal en embarazo previo (4,250 g). IMC pregestacional 31 kg/m². En tamizaje con CTGO de 75 g a las 24 semanas presentó: ayuno 97 mg/dL, 1h 189 mg/dL, 2h 162 mg/dL, por lo que se diagnosticó diabetes gestacional. Se inició plan nutricional individualizado y recomendación de ejercicio aeróbico moderado 30 minutos diarios. La paciente refiere apego adecuado. En controles domiciliarios reporta las siguientes cifras en la última semana: •     Ayuno: 102–108 mg/dL •     1 hora postprandial: 165–185 mg/dL USG obstétrico: feto único vivo, biometría en percentil 90, líquido amniótico normal. No datos de restricción ni polihidramnios.",
+    "questions": [
+      {
+        "question": "¿Cuál es la meta glucémica según lineamientos mexicanos?",
+        "options": [
+          "Ayuno <110 mg/dL y postprandial <200 mg/dL",
+          "Ayuno <100 mg/dL y postprandial <180 mg/dL",
+          "Ayuno <95 mg/dL y postprandial <140 mg/dL",
+          "Ayuno <120 mg/dL y postprandial <160 mg/dL"
+        ],
+        "answerIndex": 2,
+        "explanation": "Según NOM-015 y GPC mexicana de diabetes en el embarazo, si no se alcanzan metas con manejo nutricional tras 1–2 semanas, se debe iniciar insulina. Las metas son ayuno <95 mg/dL y 1h postprandial <140 mg/dL.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el siguiente paso en el manejo?",
+        "options": [
+          "Continuar solo dieta 2 semanas más",
+          "Iniciar metformina como primera línea obligatoria",
+          "Programar interrupción inmediata",
+          "Iniciar insulinoterapia"
+        ],
+        "answerIndex": 3,
+        "explanation": "Según NOM-015 y GPC mexicana de diabetes en el embarazo, si no se alcanzan metas con manejo nutricional tras 1–2 semanas, se debe iniciar insulina. Las metas son ayuno <95 mg/dL y 1h postprandial <140 mg/dL.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del segundo y tercer trimestre",
+    "subtema": "Placenta previa oclusiva total",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 34 años, G2P1, 32 semanas de gestación. Antecedente de cesárea hace 3 años. Consulta por sangrado transvaginal rojo brillante en moderada cantidad, sin dolor abdominal. Refiere episodio similar hace 2 semanas que cedió espontáneamente. Signos vitales: TA 110/70 mmHg, FC 90 lpm. Útero relajado, no doloroso. FCF 145 lpm reactiva. USG transvaginal confirma placenta previa oclusiva total. Hemoglobina 10.8 g/dL.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta inmediata?",
+        "options": [
+          "Realizar tacto vaginal para valorar dilatación",
+          "Inducir trabajo de parto",
+          "Hospitalización y vigilancia expectante",
+          "Cesárea urgente inmediata"
+        ],
+        "answerIndex": 2,
+        "explanation": "En placenta previa estable y <36–37 semanas se recomienda manejo expectante hospitalario. La interrupción programada se realiza alrededor de 36–37 semanas si no hay sangrado masivo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿En qué momento debe programarse la interrupción si no hay nuevo sangrado?",
+        "options": [
+          "34 semanas",
+          "35 semanas",
+          "36–37 semanas",
+          "40 semanas"
+        ],
+        "answerIndex": 2,
+        "explanation": "En placenta previa estable y <36–37 semanas se recomienda manejo expectante hospitalario. La interrupción programada se realiza alrededor de 36–37 semanas si no hay sangrado masivo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Trabajo de parto prolongado por distocia dinámica (hipodinamia)",
+    "difficulty": "Alta",
+    "case": "Mujer de 22 años, G1, 39 semanas. Inició trabajo de parto hace 14 horas. Membranas rotas hace 8 horas. Dinámica uterina irregular, 1–2 contracciones en 10 minutos, de baja intensidad. Tacto vaginal actual: 4 cm de dilatación, 70% borramiento, presentación cefálica en -2 estación. No fiebre. FCF 140 lpm reactiva. Pelvis clínica adecuada.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Trabajo de parto normal",
+          "Distocia por desproporción cefalopélvica",
+          "Distocia dinámica por hiperdinamia",
+          "Distocia dinámica por hipodinamia"
+        ],
+        "answerIndex": 3,
+        "explanation": "La hipodinamia uterina se caracteriza por contracciones insuficientes que no permiten progresión cervical. El manejo es estimulación con oxitocina bajo monitoreo fetal continuo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta indicada:",
+        "options": [
+          "Cesárea inmediata",
+          "Manejo expectante indefinido",
+          "Administración de prostaglandinas",
+          "Inicio o ajuste de oxitocina IV con vigilancia estrecha"
+        ],
+        "answerIndex": 3,
+        "explanation": "La hipodinamia uterina se caracteriza por contracciones insuficientes que no permiten progresión cervical. El manejo es estimulación con oxitocina bajo monitoreo fetal continuo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología puerperal",
+    "subtema": "Choque hipovolémico secundario a hemorragia obstétrica primaria",
+    "difficulty": "Alta",
+    "case": "Paciente de 28 años, G2P2, parto eutócico hace 20 minutos. Presenta sangrado abundante continuo estimado en 1,200 mL. Se encuentra pálida, diaforética, con TA 80/50 mmHg, FC 130 lpm, FR 24 rpm. Útero flácido a la palpación. No desgarros evidentes. Hb previa al parto 12 g/dL.",
+    "questions": [
+      {
+        "question": "¿Cuál es el grado de choque más probable?",
+        "options": [
+          "Grado I",
+          "Grado II",
+          "Grado III",
+          "Grado IV"
+        ],
+        "answerIndex": 2,
+        "explanation": "Pérdida >1,000 mL con hipotensión y taquicardia corresponde a choque grado III. Se debe iniciar reanimación hídrica inmediata y protocolo de hemorragia obstétrica, además de masaje uterino y uterotónicos.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la prioridad inicial en el manejo?",
+        "options": [
+          "Legrado uterino inmediato",
+          "Histerectomía inmediata",
+          "Reposición hídrica agresiva con cristaloides y activación de protocolo de hemorragia masiva",
+          "Antibióticos profilácticos"
+        ],
+        "answerIndex": 2,
+        "explanation": "Pérdida >1,000 mL con hipotensión y taquicardia corresponde a choque grado III. Se debe iniciar reanimación hídrica inmediata y protocolo de hemorragia obstétrica, además de masaje uterino y uterotónicos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Estados hipertensivos del embarazo",
+    "subtema": "Hipertensión crónica con preeclampsia sobreagregada",
+    "difficulty": "Alta",
+    "case": "Mujer de 38 años, G3P2, 32 semanas de gestación. Antecedente de hipertensión arterial diagnosticada hace 4 años, en tratamiento con metildopa desde el inicio del embarazo. En controles previos mantenía cifras promedio de 135/85 mmHg sin proteinuria. Acude por cefalea progresiva de 48 horas, edema facial marcado y disminución de movimientos fetales. TA 168/110 mmHg en dos tomas separadas por 20 minutos. FC 96 lpm. Reflejos osteotendinosos ++ con clonus leve. Laboratorio: •     Plaquetas 145,000/mm³ •     Creatinina 1.2 mg/dL (previa 0.7 mg/dL) •     TGO 85 U/L •     Relación proteína/creatinina 0.8 USG obstétrico: feto con peso estimado en percentil 8 para edad gestacional, líquido amniótico disminuido.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Hipertensión crónica descontrolada",
+          "Preeclampsia sin datos de severidad",
+          "Hipertensión gestacional",
+          "Hipertensión crónica con preeclampsia sobreagregada"
+        ],
+        "answerIndex": 3,
+        "explanation": "En paciente con hipertensión crónica que desarrolla proteinuria nueva y datos de severidad se diagnostica preeclampsia sobreagregada. El manejo requiere hospitalización, prevención de eclampsia y valoración para interrupción según evolución.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta adecuada según GPC mexicana?",
+        "options": [
+          "Ajustar antihipertensivo y continuar embarazo hasta 37 semanas",
+          "Alta domiciliaria con vigilancia semanal",
+          "Hospitalización, sulfato de magnesio y valorar interrupción según estabilidad materno- fetal",
+          "Solo vigilancia fetal ambulatoria"
+        ],
+        "answerIndex": 2,
+        "explanation": "En paciente con hipertensión crónica que desarrolla proteinuria nueva y datos de severidad se diagnostica preeclampsia sobreagregada. El manejo requiere hospitalización, prevención de eclampsia y valoración para interrupción según evolución.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Parto pretérmino",
+    "subtema": "Ruptura prematura de membranas pretérmino (<34 semanas)",
+    "difficulty": "Alta",
+    "case": "Paciente de 27 años, G2P1, 30 semanas de gestación. Refiere salida súbita de líquido claro transvaginal hace 3 horas. Niega contracciones. Sin fiebre ni dolor abdominal. Exploración con espéculo: salida de líquido a través de OCE, prueba de cristalización positiva. TA 110/70 mmHg. FC 88 lpm. Temperatura 36.8°C. Biometría hemática normal. FCF 148 lpm reactiva. USG con líquido amniótico disminuido, feto acorde a edad gestacional.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta adecuada?",
+        "options": [
+          "Inducir trabajo de parto de inmediato",
+          "Alta domiciliaria",
+          "Cesárea urgente",
+          "Manejo expectante hospitalario con antibióticos y esquema de maduración pulmonar"
+        ],
+        "answerIndex": 3,
+        "explanation": "En RPM pretérmino <34 semanas sin datos de infección, se recomienda manejo expectante hospitalario, antibióticos para prolongar latencia y corticoesteroides para maduración pulmonar. La ampicilina forma parte del esquema inicial.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Qué antibiótico forma parte del esquema recomendado para prolongar latencia?",
+        "options": [
+          "Ciprofloxacino",
+          "Ceftriaxona",
+          "Ampicilina",
+          "Metronidazol"
+        ],
+        "answerIndex": 2,
+        "explanation": "En RPM pretérmino <34 semanas sin datos de infección, se recomienda manejo expectante hospitalario, antibióticos para prolongar latencia y corticoesteroides para maduración pulmonar. La ampicilina forma parte del esquema inicial.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Embarazo múltiple",
+    "subtema": "Síndrome de transfusión feto-fetal",
+    "difficulty": "Alta",
+    "case": "Paciente de 29 años, G1, 26 semanas de gestación gemelar monocoriónica biamniótica. En ultrasonido de control se observa un feto con polihidramnios severo y vejiga distendida, y el otro con oligohidramnios severo y vejiga colapsada. Diferencia significativa en peso estimado fetal. Doppler umbilical con alteraciones en el feto donador. La paciente refiere aumento rápido del perímetro abdominal y disnea leve.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Restricción selectiva del crecimiento",
+          "Embarazo gemelar bicorial",
+          "Síndrome de transfusión feto-fetal",
+          "Corioamnionitis"
+        ],
+        "answerIndex": 2,
+        "explanation": "En embarazo monocoriónico con discordancia de líquido amniótico y compromiso hemodinámico, el tratamiento definitivo es la ablación láser de las anastomosis placentarias.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento de elección?",
+        "options": [
+          "Inducción inmediata",
+          "Amniocentesis evacuadora aislada",
+          "Manejo expectante",
+          "Fotocoagulación láser de anastomosis placentarias"
+        ],
+        "answerIndex": 3,
+        "explanation": "En embarazo monocoriónico con discordancia de líquido amniótico y compromiso hemodinámico, el tratamiento definitivo es la ablación láser de las anastomosis placentarias.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología del trabajo de parto",
+    "subtema": "Sufrimiento fetal agudo intraparto",
+    "difficulty": "Alta",
+    "case": "Mujer de 25 años, G1, 40 semanas. Trabajo de parto activo con 7 cm de dilatación. Monitoreo electrónico fetal muestra desaceleraciones tardías recurrentes en más del 50% de las contracciones durante 30 minutos, variabilidad mínima y ausencia de aceleraciones. TA materna normal. No fiebre. Líquido amniótico con meconio espeso.",
+    "questions": [
+      {
+        "question": "¿Qué categoría del monitoreo fetal corresponde?",
+        "options": [
+          "Categoría I",
+          "Categoría II",
+          "Categoría III",
+          "Normal"
+        ],
+        "answerIndex": 2,
+        "explanation": "Patrón categoría III implica hipoxia fetal. Si no hay parto vaginal inminente, se debe proceder a resolución inmediata.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta inmediata:",
+        "options": [
+          "Continuar vigilancia",
+          "Cambiar posición materna y esperar",
+          "Oxigenoterapia únicamente",
+          "Resolución inmediata del embarazo (cesárea si no es inminente parto vaginal)"
+        ],
+        "answerIndex": 3,
+        "explanation": "Patrón categoría III implica hipoxia fetal. Si no hay parto vaginal inminente, se debe proceder a resolución inmediata.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología del embarazo",
+    "subtema": "Oligohidramnios con restricción del crecimiento intrauterino",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 34 años, G2P1, 35 semanas. Control prenatal irregular. Refiere disminución de movimientos fetales en los últimos 2 días. USG: índice de líquido amniótico 3 cm, peso estimado fetal en percentil 5, Doppler umbilical con aumento de resistencia. TA 150/95 mmHg. Proteinuria +.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta más adecuada?",
+        "options": [
+          "Manejo expectante hasta 37 semanas",
+          "Hidratación oral y alta",
+          "Inducción inmediata del trabajo de parto o cesárea según condiciones obstétricas",
+          "Solo vigilancia semanal"
+        ],
+        "answerIndex": 2,
+        "explanation": "Oligohidramnios severo con restricción y alteración Doppler sugiere compromiso fetal. Se recomienda interrupción del embarazo tras valoración integral.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Trabajo de parto fisiológico y análisis con partograma",
+    "difficulty": "Alta",
+    "case": "Paciente de 23 años, G1, 39 semanas de gestación, sin comorbilidades. Inicia trabajo de parto espontáneo hace 10 horas. Membranas íntegras. A su ingreso presentaba 3 cm de dilatación, 70% de borramiento, presentación cefálica en -2 estación. Se inicia vigilancia con partograma. Después de 6 horas en fase activa, se documenta progresión de 4 cm a 5 cm únicamente. Contracciones 3 en 10 minutos, intensidad moderada. FCF 145 lpm reactiva. Pelvis clínica adecuada. No fiebre.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Trabajo de parto normal",
+          "Fase latente prolongada",
+          "Arresto secundario de dilatación",
+          "Progreso inadecuado en fase activa"
+        ],
+        "answerIndex": 3,
+        "explanation": "En fase activa debe haber progresión cervical adecuada. Si no la hay y no existe desproporción cefalopélvica, se recomienda conducción con oxitocina y/o amniotomía bajo monitoreo continuo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta recomendada según GPC mexicana?",
+        "options": [
+          "Cesárea inmediata",
+          "Manejo expectante indefinido",
+          "Amniotomía y conducción con oxitocina bajo vigilancia",
+          "Alta domiciliaria"
+        ],
+        "answerIndex": 2,
+        "explanation": "En fase activa debe haber progresión cervical adecuada. Si no la hay y no existe desproporción cefalopélvica, se recomienda conducción con oxitocina y/o amniotomía bajo monitoreo continuo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Complicaciones obstétricas graves",
+    "subtema": "Embolia de líquido amniótico",
+    "difficulty": "Alta",
+    "case": "Paciente de 35 años, G2P1, 40 semanas, en trabajo de parto activo con 8 cm de dilatación. Súbitamente presenta disnea intensa, cianosis, hipotensión (TA 70/40 mmHg), taquicardia 130 lpm y pérdida del estado de alerta. Se documenta bradicardia fetal severa. Posteriormente desarrolla sangrado incoercible por sitio de venopunción y datos de coagulopatía. No antecedente de cardiopatía ni alergias.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Tromboembolia pulmonar",
+          "Ruptura uterina",
+          "Anafilaxia",
+          "Embolia de líquido amniótico"
+        ],
+        "answerIndex": 3,
+        "explanation": "La embolia de líquido amniótico se presenta con colapso cardiovascular súbito, hipoxia y coagulopatía. El manejo es soporte vital avanzado inmediato y resolución obstétrica si la paciente no ha parido.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la prioridad en el manejo?",
+        "options": [
+          "Heparina inmediata",
+          "Antihistamínicos",
+          "Soporte vital avanzado, manejo en UCI y resolución obstétrica urgente",
+          "Manejo expectante"
+        ],
+        "answerIndex": 2,
+        "explanation": "La embolia de líquido amniótico se presenta con colapso cardiovascular súbito, hipoxia y coagulopatía. El manejo es soporte vital avanzado inmediato y resolución obstétrica si la paciente no ha parido.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología puerperal",
+    "subtema": "Inversión uterina",
+    "difficulty": "Alta",
+    "case": "Paciente de 20 años, G1P1, parto eutócico hace 10 minutos. Durante el alumbramiento se realiza tracción excesiva del cordón umbilical sin signos claros de desprendimiento placentario. Inmediatamente presenta dolor intenso, hemorragia masiva y choque hipovolémico. A la exploración no se palpa fondo uterino en abdomen y se observa masa roja protruyendo por vagina. TA 80/40 mmHg, FC 140 lpm.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo inicial más adecuado?",
+        "options": [
+          "Histerectomía inmediata",
+          "Legrado uterino",
+          "Administración exclusiva de uterotónicos",
+          "Reposición manual inmediata del útero y reanimación hemodinámica"
+        ],
+        "answerIndex": 3,
+        "explanation": "La inversión uterina es una emergencia obstétrica. La prioridad es reposicionar manualmente el útero de inmediato y estabilizar hemodinámicamente a la paciente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología del embarazo",
+    "subtema": "Polihidramnios asociado a diabetes",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 33 años, G2P1, 34 semanas, con diagnóstico de diabetes gestacional en tratamiento irregular. Refiere disnea progresiva y sensación de distensión abdominal excesiva. USG: índice de líquido amniótico 28 cm, feto macrosómico estimado en percentil 95. Doppler normal. No contracciones. TA normal.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa más probable del polihidramnios?",
+        "options": [
+          "Atresia esofágica",
+          "Infección intrauterina",
+          "Diabetes gestacional mal controlada",
+          "Insuficiencia placentaria"
+        ],
+        "answerIndex": 2,
+        "explanation": "La hiperglucemia fetal genera poliuria osmótica, produciendo polihidramnios. Se asocia a riesgo aumentado de parto pretérmino y distocia por macrosomía.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la principal complicación obstétrica asociada?",
+        "options": [
+          "Oligohidramnios",
+          "Restricción del crecimiento",
+          "Desprendimiento prematuro de placenta",
+          "Parto pretérmino"
+        ],
+        "answerIndex": 3,
+        "explanation": "La hiperglucemia fetal genera poliuria osmótica, produciendo polihidramnios. Se asocia a riesgo aumentado de parto pretérmino y distocia por macrosomía.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Cardiopatías en el embarazo",
+    "subtema": "Miocardiopatía periparto",
+    "difficulty": "Alta",
+    "case": "Paciente de 30 años, G3P3, 2 semanas postparto. Acude por disnea progresiva, ortopnea y edema en extremidades inferiores. Niega fiebre. TA 100/60 mmHg, FC 115 lpm. Estertores crepitantes bibasales. Ingurgitación yugular. Ecocardiograma: fracción de eyección 35%, dilatación ventricular izquierda. No antecedentes cardiacos previos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Tromboembolia pulmonar",
+          "Neumonía",
+          "Miocardiopatía periparto",
+          "Crisis hipertensiva"
+        ],
+        "answerIndex": 2,
+        "explanation": "La miocardiopatía periparto ocurre en el último mes de embarazo o primeros meses postparto con disfunción sistólica. El manejo es similar al de insuficiencia cardiaca, considerando seguridad en lactancia.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es parte fundamental del tratamiento?",
+        "options": [
+          "Betabloqueador contraindicado",
+          "Suspender lactancia obligatoriamente",
+          "Diuréticos y tratamiento estándar de insuficiencia cardiaca ajustado al puerperio",
+          "Solo reposo"
+        ],
+        "answerIndex": 2,
+        "explanation": "La miocardiopatía periparto ocurre en el último mes de embarazo o primeros meses postparto con disfunción sistólica. El manejo es similar al de insuficiencia cardiaca, considerando seguridad en lactancia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Control prenatal",
+    "subtema": "Isoinmunización Rh y profilaxis anti-D",
+    "difficulty": "Alta",
+    "case": "Mujer de 27 años, G2P1, 28 semanas de gestación. Grupo sanguíneo O Rh negativo. Su primer embarazo terminó en parto eutócico hace 3 años; el recién nacido fue Rh positivo. La paciente refiere que no recuerda haber recibido alguna inyección posterior al parto. En el embarazo actual, el Coombs indirecto al inicio fue negativo. En la consulta actual se repite Coombs indirecto y continúa negativo. No presenta sangrado ni procedimientos invasivos recientes. Ultrasonido obstétrico normal, sin datos de hidrops fetal.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta indicada en este momento?",
+        "options": [
+          "No hacer nada hasta el parto",
+          "Aplicar gammaglobulina anti-D solo si el recién nacido es Rh positivo",
+          "Aplicar gammaglobulina anti-D dentro de las primeras 72 horas posparto únicamente",
+          "Administrar inmunoglobulina anti-D profiláctica a las 28 semanas"
+        ],
+        "answerIndex": 3,
+        "explanation": "Según NOM-007 y GPC mexicana, toda paciente Rh negativa no sensibilizada debe recibir profilaxis con inmunoglobulina anti-D a las 28 semanas y dentro de las 72 horas posparto si el recién nacido es Rh positivo. También está indicada ante eventos que puedan generar hemorragia feto-materna (amniocentesis, sangrado, trauma abdominal).",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿En cuál de las siguientes situaciones también está indicada la aplicación de anti-D durante el embarazo?",
+        "options": [
+          "Hipertensión gestacional",
+          "Diabetes gestacional",
+          "Procedimiento invasivo como amniocentesis",
+          "Trabajo de parto fisiológico sin complicaciones"
+        ],
+        "answerIndex": 2,
+        "explanation": "Según NOM-007 y GPC mexicana, toda paciente Rh negativa no sensibilizada debe recibir profilaxis con inmunoglobulina anti-D a las 28 semanas y dentro de las 72 horas posparto si el recién nacido es Rh positivo. También está indicada ante eventos que puedan generar hemorragia feto-materna (amniocentesis, sangrado, trauma abdominal).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología del embarazo",
+    "subtema": "Restricción del crecimiento intrauterino con Doppler severamente alterado",
+    "difficulty": "Alta",
+    "case": "Paciente de 35 años, G2P1, 33 semanas de gestación. Antecedente de preeclampsia en embarazo previo. Acude por disminución de movimientos fetales. TA 150/100 mmHg. Proteinuria +++. Ultrasonido obstétrico: peso fetal estimado en percentil 3, índice de líquido amniótico 4 cm. Doppler de arteria umbilical con flujo diastólico ausente persistente. Perfil biofísico 6/10.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta más adecuada?",
+        "options": [
+          "Manejo expectante hasta 37 semanas",
+          "Hidratación materna y control en una semana",
+          "Administración de tocolíticos",
+          "Interrupción del embarazo tras estabilización materna"
+        ],
+        "answerIndex": 3,
+        "explanation": "La ausencia persistente de flujo diastólico en arteria umbilical es un dato de compromiso fetal severo. Según GPC mexicana, está indicada la interrupción del embarazo tras valorar estabilidad materno-fetal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología tromboembólica en el embarazo",
+    "subtema": "Trombosis venosa profunda",
+    "difficulty": "Media–Alta",
+    "case": "Mujer de 30 años, G2P1, 29 semanas de gestación. Obesidad grado II. Refiere dolor y aumento de volumen en pierna izquierda desde hace 48 horas. Niega fiebre. A la exploración: edema asimétrico, aumento de temperatura local, dolor a la palpación en trayecto venoso profundo. Signos vitales estables. Ultrasonido Doppler confirma trombosis venosa profunda femoropoplítea izquierda.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento de elección?",
+        "options": [
+          "Warfarina",
+          "Rivaroxabán",
+          "Heparina de bajo peso molecular",
+          "Aspirina"
+        ],
+        "answerIndex": 2,
+        "explanation": "La heparina de bajo peso molecular es el tratamiento de elección en embarazo. Los anticoagulantes antagonistas de vitamina K son teratogénicos y atraviesan la placenta.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Por qué está contraindicada la warfarina en el embarazo?",
+        "options": [
+          "No es efectiva",
+          "Aumenta riesgo de hemorragia materna exclusivamente",
+          "Produce hipertensión",
+          "Es teratogénica y atraviesa la placenta"
+        ],
+        "answerIndex": 3,
+        "explanation": "La heparina de bajo peso molecular es el tratamiento de elección en embarazo. Los anticoagulantes antagonistas de vitamina K son teratogénicos y atraviesan la placenta.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Macrosomía fetal",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 38 años, G4P3, 39 semanas. Diabetes gestacional con control irregular. Ultrasonido con peso fetal estimado de 4,450 g. Pelvis clínica aparentemente adecuada. No antecedente de cesárea previa.",
+    "questions": [
+      {
+        "question": "¿Cuál es la recomendación según lineamientos mexicanos en sospecha de macrosomía ≥4,500 g en madre diabética?",
+        "options": [
+          "Intentar parto vaginal sin precauciones",
+          "Inducir trabajo de parto inmediatamente",
+          "Cesárea electiva programada",
+          "Manejo expectante hasta 41 semanas"
+        ],
+        "answerIndex": 2,
+        "explanation": "En madres diabéticas con peso estimado ≥4,500 g se recomienda considerar cesárea electiva para disminuir riesgo de distocia de hombros.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Marco normativo en atención obstétrica",
+    "subtema": "Violencia obstétrica (NOM-007)",
+    "difficulty": "Media",
+    "case": "Paciente de 19 años, G1, en trabajo de parto activo. Refiere que durante la atención médica se le realizaron múltiples tactos vaginales por diferentes personas sin explicación ni consentimiento. Además, se le practicó episiotomía sin indicación clínica clara y sin informarle previamente. No hubo complicaciones médicas, pero la paciente presenta angustia significativa posterior al evento.",
+    "questions": [
+      {
+        "question": "Según la NOM-007 y lineamientos nacionales, lo ocurrido se clasifica como:",
+        "options": [
+          "Procedimiento estándar sin relevancia legal",
+          "Complicación obstétrica inevitable",
+          "Violencia obstétrica por prácticas invasivas sin consentimiento informado",
+          "Mala praxis exclusivamente penal"
+        ],
+        "answerIndex": 2,
+        "explanation": "La NOM -007 establece la obligación de brindar atención digna, respetuosa y con consentimiento informado. Procedimientos innecesarios o sin información adecuada constituyen violencia obstétrica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trastornos hipertensivos del embarazo",
+    "subtema": "Eclampsia y manejo de toxicidad por sulfato de magnesio",
+    "difficulty": "Alta",
+    "case": "Paciente de 24 años, G1, 36 semanas de gestación. Acude por cefalea intensa occipital, fosfenos y dolor en epigastrio. TA 170/110 mmHg. Proteinuria +++. Durante la valoración presenta crisis convulsiva tónico-clónica generalizada de 1 minuto de duración. Se inicia manejo con sulfato de magnesio esquema de Pritchard. Dos horas después, la paciente se encuentra somnolienta, con frecuencia respiratoria de 8 rpm, reflejos osteotendinosos abolidos y diuresis de 15 mL/h en las últimas 2 horas.",
+    "questions": [
+      {
+        "question": "¿Cuál es la complicación más probable?",
+        "options": [
+          "Evento vascular cerebral",
+          "Toxicidad por sulfato de magnesio",
+          "Síndrome HELLP",
+          "Hipoglucemia severa"
+        ],
+        "answerIndex": 1,
+        "explanation": "La depresión respiratoria y abolición de reflejos son datos clásicos de toxicidad por magnesio. El antídoto es gluconato de calcio IV. Debe suspenderse inmediatamente la infusión.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta inmediata?",
+        "options": [
+          "Administrar diazepam",
+          "Suspender magnesio y administrar gluconato de calcio IV",
+          "Iniciar ventilación no invasiva sin suspender magnesio",
+          "Administrar más sulfato de magnesio"
+        ],
+        "answerIndex": 1,
+        "explanation": "La depresión respiratoria y abolición de reflejos son datos clásicos de toxicidad por magnesio. El antídoto es gluconato de calcio IV. Debe suspenderse inmediatamente la infusión.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Complicaciones hepáticas del embarazo",
+    "subtema": "Hígado graso agudo del embarazo",
+    "difficulty": "Alta",
+    "case": "Paciente de 29 años, G2P1, 35 semanas. Refiere náusea persistente, vómitos, malestar general y dolor en hipocondrio derecho desde hace 4 días. TA 140/90 mmHg. No proteinuria significativa. Laboratorios: AST 350 U/L, ALT 280 U/L, bilirrubina total 4.2 mg/dL, glucosa 52 mg/dL, plaquetas 140,000, creatinina 1.8 mg/dL, INR prolongado. USG hepático sin datos de obstrucción biliar. No antecedente de hepatitis viral.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Colestasis intrahepática del embarazo",
+          "Hepatitis viral aguda",
+          "Síndrome HELLP",
+          "Hígado graso agudo del embarazo"
+        ],
+        "answerIndex": 3,
+        "explanation": "La hipoglucemia, alteración de coagulación y falla hepatorrenal sugieren hígado graso agudo. Es una emergencia obstétrica que requiere interrupción inmediata.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta indicada?",
+        "options": [
+          "Manejo expectante hasta 37 semanas",
+          "Administración de ácido ursodesoxicólico",
+          "Interrupción inmediata del embarazo tras estabilización materna",
+          "Solo vigilancia en consulta externa"
+        ],
+        "answerIndex": 2,
+        "explanation": "La hipoglucemia, alteración de coagulación y falla hepatorrenal sugieren hígado graso agudo. Es una emergencia obstétrica que requiere interrupción inmediata.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias obstétricas",
+    "subtema": "Atonía uterina refractaria",
+    "difficulty": "Alta",
+    "case": "Paciente de 32 años, G3P3, parto vaginal hace 30 minutos. Producto macrosómico de 4,200 g. Presenta sangrado abundante estimado en 1,200 mL. Útero blando a la palpación. Se administra masaje uterino y oxitocina IV sin respuesta adecuada. Posteriormente se administran metilergonovina y misoprostol rectal sin mejoría significativa. Persiste hipotensión 85/50 mmHg.",
+    "questions": [
+      {
+        "question": "¿Cuál es el siguiente paso en el manejo escalonado?",
+        "options": [
+          "Legrado uterino inmediato",
+          "Colocación de balón de taponamiento uterino (Bakri)",
+          "Alta hospitalaria",
+          "Esperar respuesta a uterotónicos"
+        ],
+        "answerIndex": 1,
+        "explanation": "En atonía refractaria a uterotónicos, el siguiente paso es taponamiento uterino con balón. Si falla, se considera manejo quirúrgico (B-Lynch o histerectomía).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hepática",
+    "subtema": "Colestasis intrahepática del embarazo",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 31 años, G2P1, 33 semanas. Refiere prurito intenso predominante en palmas y plantas, peor por la noche, sin lesiones cutáneas primarias. Niega fiebre. Laboratorios: bilirrubinas normales, AST y ALT ligeramente elevadas, ácidos biliares séricos elevados. Perfil biofísico normal.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento farmacológico indicado?",
+        "options": [
+          "Prednisona",
+          "Ácido ursodesoxicólico",
+          "Vitamina K exclusivamente",
+          "Antihistamínicos como tratamiento definitivo"
+        ],
+        "answerIndex": 1,
+        "explanation": "La colestasis se asocia a aumento de riesgo de muerte fetal súbita. Se recomienda considerar interrupción alrededor de las 37 semanas según evolución.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la principal complicación fetal asociada?",
+        "options": [
+          "Macrosomía",
+          "Restricción del crecimiento",
+          "Muerte fetal intrauterina",
+          "Cardiopatía congénita"
+        ],
+        "answerIndex": 2,
+        "explanation": "La colestasis se asocia a aumento de riesgo de muerte fetal súbita. Se recomienda considerar interrupción alrededor de las 37 semanas según evolución.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Inducción fallida",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 40 años, G2P1, 41 semanas. Bishop inicial 3 puntos. Se realiza maduración cervical con misoprostol y posteriormente oxitocina durante 18 horas con adecuada dinámica uterina documentada (4–5 contracciones en 10 minutos). Sin embargo, la dilatación permanece en 4 cm sin cambios durante 6 horas consecutivas. FCF reactiva. Membranas rotas hace 10 horas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Trabajo de parto normal",
+          "Fase latente prolongada",
+          "Inducción fallida",
+          "Distocia de hombros"
+        ],
+        "answerIndex": 2,
+        "explanation": "Se considera inducción fallida cuando no se logra progresión adecuada tras manejo correcto con dinámica efectiva. La conducta es cesárea.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta indicada?",
+        "options": [
+          "Continuar oxitocina indefinidamente",
+          "Cesárea",
+          "Alta domiciliaria",
+          "Repetir misoprostol"
+        ],
+        "answerIndex": 1,
+        "explanation": "Se considera inducción fallida cuando no se logra progresión adecuada tras manejo correcto con dinámica efectiva. La conducta es cesárea.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del tercer trimestre",
+    "subtema": "Desprendimiento prematuro de placenta normoinserta (DPPNI) severo",
+    "difficulty": "Alta",
+    "case": "Paciente de 34 años, G3P2, 35 semanas de gestación. Antecedente de hipertensión crónica mal controlada. Acude a urgencias por dolor abdominal súbito, intenso, continuo, acompañado de sangrado transvaginal oscuro en cantidad moderada desde hace 1 hora. Refiere disminución marcada de movimientos fetales. A la exploración: TA 90/60 mmHg, FC 120 lpm. Abdomen con hipertonía uterina, útero doloroso a la palpación, sin relajación entre contracciones. FCF 90 lpm sostenida. Laboratorios: Hb 8.5 g/dL, fibrinógeno bajo, TP y TTP prolongados.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta inmediata?",
+        "options": [
+          "Inducción del trabajo de parto",
+          "Manejo expectante con vigilancia estrecha",
+          "Cesárea urgente tras estabilización materna",
+          "Tocolisis"
+        ],
+        "answerIndex": 2,
+        "explanation": "El DPPNI severo con compromiso materno-fetal requiere resolución inmediata del embarazo tras estabilización hemodinámica. Existe alto riesgo de CID.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones en el embarazo",
+    "subtema": "Corioamnionitis clínica",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 22 años, G1, 39 semanas. Ruptura de membranas desde hace 20 horas. Refiere fiebre y malestar general. Exploración: TA 110/70 mmHg, FC 115 lpm, temperatura 38.7°C. Útero doloroso a la palpación. FCF 170 lpm. Líquido amniótico fétido. Leucocitosis 18,000.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo indicado?",
+        "options": [
+          "Solo antipiréticos",
+          "Antibióticos IV de amplio espectro e interrupción del embarazo",
+          "Manejo expectante",
+          "Cesárea inmediata sin antibióticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "La corioamnionitis requiere antibióticos IV y finalización del embarazo. La vía depende de condiciones obstétricas, no es cesárea obligatoria.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Emergencias obstétricas",
+    "subtema": "Ruptura uterina",
+    "difficulty": "Alta",
+    "case": "Paciente de 30 años, G2P1, antecedente de cesárea segmentaria hace 2 años. 40 semanas, en trabajo de parto con oxitocina. Tras varias horas, presenta dolor abdominal súbito intenso, cese de contracciones y pérdida de la estación fetal. Exploración: TA 85/50 mmHg, FC 130 lpm. FCF no detectable. Abdomen doloroso, palpación fácil de partes fetales.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta inmediata?",
+        "options": [
+          "Continuar oxitocina",
+          "Laparotomía exploradora urgente",
+          "Tocolíticos",
+          "Vigilancia"
+        ],
+        "answerIndex": 1,
+        "explanation": "La ruptura uterina es una emergencia vital. Se requiere laparotomía inmediata y resolución quirúrgica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Anomalías placentarias",
+    "subtema": "Espectro de acretismo placentario",
+    "difficulty": "Alta",
+    "case": "Paciente de 38 años, G4P3, dos cesáreas previas. USG a las 32 semanas muestra placenta anterior baja con múltiples lagunas vasculares y pérdida de la zona hipoecoica retroplacentaria. Doppler con hipervascularidad anormal. Asintomática actualmente.",
+    "questions": [
+      {
+        "question": "¿Cuál es el plan más adecuado?",
+        "options": [
+          "Intentar parto vaginal",
+          "Cesárea programada con equipo multidisciplinario y probable histerectomía obstétrica",
+          "Manejo expectante hasta inicio espontáneo",
+          "Inducción a las 37 semanas"
+        ],
+        "answerIndex": 1,
+        "explanation": "El espectro de acretismo requiere cesárea programada en centro de tercer nivel, con alta probabilidad de histerectomía.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del tercer trimestre",
+    "subtema": "Vasa previa",
+    "difficulty": "Alta",
+    "case": "Paciente de 29 años, G2P1, 36 semanas. Diagnóstico prenatal de inserción velamentosa del cordón con vasos fetales atravesando el orificio cervical interno. Acude por ruptura espontánea de membranas con sangrado rojo brillante inmediato. FCF 70 lpm. Madre hemodinámicamente estable.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta inmediata?",
+        "options": [
+          "Vigilancia",
+          "Cesárea urgente",
+          "Inducción del trabajo de parto",
+          "Reposición de líquidos únicamente"
+        ],
+        "answerIndex": 1,
+        "explanation": "En vasa previa rota, el sangrado es fetal. La bradicardia fetal indica hipovolemia aguda fetal. Se requiere cesárea inmediata.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del tercer trimestre",
+    "subtema": "Placenta previa oclusiva total",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 33 años, G3P2, 34 semanas de gestación. Antecedente de una cesárea previa. Acude por sangrado transvaginal rojo brillante, abundante, de inicio súbito, indoloro, sin actividad uterina. Niega traumatismo. Refiere movimientos fetales normales. A la exploración: TA 110/70 mmHg, FC 95 lpm. Abdomen sin dolor a la palpación, útero relajado. FCF 140 lpm reactiva. Ultrasonido transvaginal reporta placenta que cubre completamente el orificio cervical interno.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta indicada?",
+        "options": [
+          "Tacto vaginal para valorar dilatación",
+          "Inducción del trabajo de parto",
+          "Cesárea programada a las 36–37 semanas si estabilidad materno-fetal",
+          "Manejo expectante hasta inicio espontáneo de trabajo de parto"
+        ],
+        "answerIndex": 2,
+        "explanation": "La placenta previa oclusiva total contraindica el parto vaginal. El tacto vaginal está contraindicado por riesgo de hemorragia masiva.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones perinatales",
+    "subtema": "Ruptura prematura de membranas pretérmino (RPMPT)",
+    "difficulty": "Alta",
+    "case": "Paciente de 26 años, G1, 32 semanas. Refiere salida de líquido claro abundante desde hace 4 horas. Sin fiebre ni dolor abdominal. Exploración: TA 100/65 mmHg, T 36.8°C. Especuloscopía con salida de líquido claro por OCI. Prueba de cristalización positiva. FCF 145 lpm. BH normal. Sin datos clínicos de infección.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo adecuado?",
+        "options": [
+          "Inducción inmediata del parto",
+          "Manejo expectante con antibióticos, maduración pulmonar y vigilancia",
+          "Cesárea urgente",
+          "Tocolíticos como única medida"
+        ],
+        "answerIndex": 1,
+        "explanation": "En RPM pretérmino sin infección ni compromiso fetal, se recomienda manejo expectante con corticoesteroides y antibióticos para prolongar gestación.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endocrinología obstétrica",
+    "subtema": "Diabetes gestacional mal controlada intraparto",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 29 años, G2P1, 39 semanas, diabetes gestacional en tratamiento con insulina. Durante trabajo de parto presenta glucosa capilar de 210 mg/dL. Dinámica uterina adecuada. FCF normal.",
+    "questions": [
+      {
+        "question": "¿Cuál es la meta de glucosa intraparto?",
+        "options": [
+          "<200 mg/dL",
+          "150–180 mg/dL",
+          "70–110 mg/dL",
+          "<250 mg/dL"
+        ],
+        "answerIndex": 2,
+        "explanation": "Durante el trabajo de parto se recomienda mantener glucosa entre 70–110 mg/dL para reducir riesgo de hipoglucemia neonatal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Complicaciones del puerperio",
+    "subtema": "Endometritis puerperal",
+    "difficulty": "Media",
+    "case": "Paciente de 24 años, 4 días postcesárea. Presenta fiebre 38.5°C, dolor hipogástrico y loquios fétidos. Exploración: útero doloroso a la palpación, subinvolucionado. Leucocitosis 17,000.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento indicado?",
+        "options": [
+          "Antibiótico oral ambulatorio",
+          "Antibióticos IV de amplio espectro (clindamicina + gentamicina)",
+          "Legrado inmediato",
+          "Solo antipiréticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "La endometritis puerperal requiere antibióticos IV de amplio espectro. La cesárea es factor de riesgo importante.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hipertensiva",
+    "subtema": "Hipertensión gestacional vs preeclampsia",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 30 años, G1, 38 semanas. TA 150/95 mmHg en dos tomas separadas por 6 horas. No cefalea, no fosfenos. EGO sin proteinuria. Plaquetas normales, enzimas hepáticas normales.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Preeclampsia sin datos de severidad",
+          "Hipertensión crónica",
+          "Hipertensión gestacional",
+          "Síndrome HELLP"
+        ],
+        "answerIndex": 2,
+        "explanation": "Hipertensión después de 20 semanas sin proteinuria ni datos de daño orgánico corresponde a hipertensión gestacional.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Prolapso de cordón umbilical",
+    "difficulty": "Alta",
+    "case": "Paciente de 27 años, G2P1, 38 semanas, en trabajo de parto activo con 6 cm de dilatación. Membranas se rompen espontáneamente durante la exploración. Inmediatamente se observa bradicardia fetal sostenida de 70 lpm. Al tacto vaginal se palpa estructura pulsátil por delante de la presentación cefálica. La paciente se encuentra hemodinámicamente estable. El quirófano está disponible.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta inmediata?",
+        "options": [
+          "Iniciar oxitocina",
+          "Colocar a la paciente en posición genupectoral o Trendelenburg y elevar manualmente la presentación mientras se prepara cesárea",
+          "Esperar recuperación espontánea",
+          "Aplicar fórceps"
+        ],
+        "answerIndex": 1,
+        "explanation": "El prolapso de cordón es emergencia obstétrica. Se debe disminuir la compresión del cordón mientras se realiza cesárea urgente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trastornos hipertensivos",
+    "subtema": "Preeclampsia con datos de severidad",
+    "difficulty": "Alta",
+    "case": "Paciente de 31 años, G1, 35 semanas. TA 165/110 mmHg, cefalea intensa persistente y fosfenos. Proteinuria ++. Plaquetas 110,000, AST 180 U/L. FCF reactiva. Sin trabajo de parto.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta más adecuada?",
+        "options": [
+          "Manejo ambulatorio",
+          "Antihipertensivos y diferir resolución hasta 37 semanas",
+          "Hospitalización, sulfato de magnesio y resolución del embarazo tras estabilización",
+          "Solo reposo"
+        ],
+        "answerIndex": 2,
+        "explanation": "Preeclampsia con datos de severidad requiere estabilización con antihipertensivos, profilaxis anticonvulsiva y resolución independientemente de edad gestacional >34 semanas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragia obstétrica",
+    "subtema": "Retención placentaria",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 22 años, G1P1, parto eutócico hace 40 minutos. Persistencia de placenta intrauterina sin signos claros de desprendimiento. Sangrado moderado continuo. Útero contraído parcialmente. Signos vitales estables.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta indicada?",
+        "options": [
+          "Esperar hasta 2 horas",
+          "Tracción vigorosa del cordón",
+          "Revisión manual de cavidad uterina bajo analgesia/anestesia adecuada",
+          "Alta hospitalaria"
+        ],
+        "answerIndex": 2,
+        "explanation": "Si la placenta no se expulsa en 30 minutos y hay sangrado, se indica extracción manual bajo condiciones controladas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones en el embarazo",
+    "subtema": "Pielonefritis aguda",
+    "difficulty": "Alta",
+    "case": "Paciente de 24 años, G1, 26 semanas. Refiere fiebre 39°C, dolor lumbar derecho y náusea. TA 100/60 mmHg, FC 115 lpm. Dolor a la puñopercusión lumbar derecha. EGO con leucocituria y bacteriuria. Leucocitos 19,000.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo adecuado?",
+        "options": [
+          "Antibiótico oral ambulatorio",
+          "Hospitalización y antibióticos IV",
+          "Solo hidratación",
+          "Inducción del parto"
+        ],
+        "answerIndex": 1,
+        "explanation": "La pielonefritis en embarazo requiere hospitalización por riesgo de sepsis y parto pretérmino.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología fetal",
+    "subtema": "Oligohidramnios severo a término",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 36 años, G2P1, 39 semanas. Refiere disminución de movimientos fetales. USG reporta índice de líquido amniótico de 3 cm. Perfil biofísico 6/10. Doppler normal.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta indicada?",
+        "options": [
+          "Manejo expectante 2 semanas",
+          "Hidratación materna y reevaluar en 1 semana",
+          "Interrupción del embarazo",
+          "Tocolíticos"
+        ],
+        "answerIndex": 2,
+        "explanation": "Oligohidramnios severo a término es indicación de interrupción por riesgo de sufrimiento fetal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trastornos hipertensivos del embarazo",
+    "subtema": "Eclampsia intraparto",
+    "difficulty": "Alta",
+    "case": "Paciente de 19 años, G1, 38 semanas, sin control prenatal adecuado. Ingresa en trabajo de parto con TA 170/115 mmHg, cefalea intensa y visión borrosa. Proteinuria +++. Durante la valoración presenta crisis convulsiva tónico-clónica generalizada de 90 segundos. Posterior a la crisis: FCF 100 lpm con desaceleraciones tardías recurrentes. Dilatación 5 cm.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo inicial inmediato?",
+        "options": [
+          "Diazepam IV",
+          "Sulfato de magnesio esquema de carga",
+          "Fenitoína",
+          "Cesárea inmediata sin estabilización"
+        ],
+        "answerIndex": 1,
+        "explanation": "El tratamiento de primera línea para prevenir recurrencia convulsiva es sulfato de magnesio. Benzodiacepinas no son de elección inicial.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tras estabilización materna, ¿cuál es la conducta obstétrica?",
+        "options": [
+          "Manejo expectante hasta 40 semanas",
+          "Alta domiciliaria",
+          "Resolución del embarazo independientemente de la vía",
+          "Suspender trabajo de parto"
+        ],
+        "answerIndex": 2,
+        "explanation": "La eclampsia es indicación de interrupción tras estabilización. La vía depende de condiciones obstétricas y estado fetal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias obstétricas",
+    "subtema": "Atonía uterina con choque hipovolémico",
+    "difficulty": "Alta",
+    "case": "Paciente de 35 años, G4P4, parto vaginal hace 20 minutos. Producto de 4,300 g. Presenta sangrado masivo estimado en 1,800 mL. Útero flácido. TA 80/40 mmHg, FC 135 lpm, piel fría. Se inicia masaje uterino y oxitocina sin respuesta inmediata.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Laceración cervical",
+          "Atonía uterina",
+          "Inversión uterina",
+          "Retención placentaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "Útero blando y sangrado abundante posparto sugieren atonía uterina como causa principal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Además de uterotónicos, ¿cuál es parte fundamental del manejo inmediato?",
+        "options": [
+          "Observación",
+          "Reposición agresiva de volumen y protocolo de transfusión masiva",
+          "Alta hospitalaria",
+          "Solo ácido tranexámico"
+        ],
+        "answerIndex": 1,
+        "explanation": "Debe iniciarse reanimación hemodinámica inmediata con cristaloides y hemoderivados según protocolo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones obstétricas",
+    "subtema": "Sepsis puerperal",
+    "difficulty": "Alta",
+    "case": "Paciente de 28 años, 5 días postcesárea. Presenta fiebre 39°C, hipotensión 85/50 mmHg, taquicardia 125 lpm, loquios fétidos y dolor abdominal intenso. Lactato elevado. Se sospecha foco uterino.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico sindromático?",
+        "options": [
+          "Fiebre puerperal simple",
+          "Sepsis puerperal",
+          "Mastitis",
+          "Endometritis leve"
+        ],
+        "answerIndex": 1,
+        "explanation": "Hipotensión + taquicardia + foco infeccioso indican sepsis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta inicial?",
+        "options": [
+          "Antibiótico oral",
+          "Antibióticos IV de amplio espectro y protocolo de sepsis",
+          "Solo líquidos",
+          "Legrado inmediato sin antibióticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Se debe iniciar antibiótico IV de amplio espectro y manejo integral de sepsis (ABC, líquidos, monitoreo).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Sufrimiento fetal agudo intraparto",
+    "difficulty": "Alta",
+    "case": "Paciente de 30 años, G2P1, 40 semanas, en fase activa con 8 cm de dilatación. Monitor muestra desaceleraciones tardías repetitivas, variabilidad mínima y taquicardia fetal 170 lpm. Contracciones adecuadas. No fiebre materna.",
+    "questions": [
+      {
+        "question": "¿Qué patrón cardiotocográfico presenta?",
+        "options": [
+          "Categoría I",
+          "Categoría II",
+          "Categoría III",
+          "Reactivo normal"
+        ],
+        "answerIndex": 2,
+        "explanation": "Desaceleraciones tardías + variabilidad mínima indican patrón categoría III.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta?",
+        "options": [
+          "Continuar trabajo de parto",
+          "Cesárea urgente si no hay mejoría inmediata tras medidas intrauterinas",
+          "Alta",
+          "Solo oxígeno"
+        ],
+        "answerIndex": 1,
+        "explanation": "Si no mejora tras suspensión de oxitocina, cambio de posición y oxígeno, debe resolverse de manera urgente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endocrinología obstétrica",
+    "subtema": "Cetoacidosis diabética en embarazo",
+    "difficulty": "Alta",
+    "case": "Paciente de 26 años, G1, 30 semanas, DM1. Refiere vómito, poliuria y malestar. TA 100/60 mmHg, FC 120 lpm. Glucosa 380 mg/dL, pH 7.18, bicarbonato bajo, cetonas positivas. FCF 165 lpm.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Estado hiperglucémico hiperosmolar",
+          "Cetoacidosis diabética",
+          "Hipoglucemia",
+          "Trabajo de parto pretérmino"
+        ],
+        "answerIndex": 1,
+        "explanation": "Hiperglucemia + acidosis metabólica + cetonas confirman CAD.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo prioritario?",
+        "options": [
+          "Interrupción inmediata del embarazo",
+          "Insulina IV e hidratación intensiva",
+          "Solo antibióticos",
+          "Tocolíticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Primero se estabiliza metabólicamente a la madre. La resolución obstétrica depende de respuesta materno-fetal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Aborto diferido (retenido)",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 30 años, G2P1, 11 semanas por FUM. Acude por manchado escaso oscuro desde hace 3 días, sin dolor tipo cólico intenso. Refiere disminución de síntomas gestacionales (náusea y mastalgia). Exploración: TA 110/70 mmHg. Cérvix cerrado. Útero acorde a 9 semanas. USG transvaginal: saco gestacional con embrión de 8 semanas sin actividad cardiaca. No líquido libre.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Amenaza de aborto",
+          "Aborto incompleto",
+          "Aborto diferido",
+          "Embarazo anembrionado"
+        ],
+        "answerIndex": 2,
+        "explanation": "Embrión sin actividad cardiaca con cérvix cerrado corresponde a aborto diferido (retenido).",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es una opción de manejo adecuada en paciente hemodinámicamente estable?",
+        "options": [
+          "Solo vigilancia obligatoria",
+          "Misoprostol para evacuación uterina",
+          "Histerectomía",
+          "Antibióticos IV obligatorios"
+        ],
+        "answerIndex": 1,
+        "explanation": "En paciente estable puede optarse por manejo médico con misoprostol o manejo quirúrgico según preferencia y condiciones clínicas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Fase activa prolongada",
+    "difficulty": "Alta",
+    "case": "Paciente de 25 años, G1, 40 semanas, en trabajo de parto. Dilatación progresa de 6 a 7 cm en 5 horas, con dinámica uterina adecuada (4–5 contracciones/10 min). Pelvis clínica adecuada. Membranas rotas hace 6 horas. FCF normal.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Trabajo de parto normal",
+          "Fase latente prolongada",
+          "Prolongación de fase activa",
+          "Arresto secundario"
+        ],
+        "answerIndex": 2,
+        "explanation": "En fase activa se espera progresión mayor; progreso lento con dinámica adecuada sugiere prolongación de fase activa.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta inicial?",
+        "options": [
+          "Cesárea inmediata",
+          "Revalorar proporción cefalopélvica y considerar conducción con oxitocina",
+          "Alta domiciliaria",
+          "Tocolíticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Debe evaluarse causa (potencia, pasajero, pelvis) y optimizar dinámica antes de decidir cesárea.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del tercer trimestre",
+    "subtema": "Desprendimiento prematuro de placenta leve",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 29 años, G2P1, 36 semanas. Dolor abdominal leve continuo y sangrado oscuro escaso. TA 130/85 mmHg. Útero discretamente doloroso. FCF 140 lpm reactiva. USG sin placenta previa.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Placenta previa",
+          "Desprendimiento prematuro de placenta leve",
+          "Ruptura uterina",
+          "Trabajo de parto normal"
+        ],
+        "answerIndex": 1,
+        "explanation": "Dolor + sangrado oscuro y útero sensible orientan a DPPNI.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si madre y feto están estables, ¿cuál es la conducta?",
+        "options": [
+          "Cesárea inmediata obligatoria",
+          "Manejo expectante con vigilancia estrecha",
+          "Alta inmediata",
+          "Tocolíticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "En casos leves sin compromiso puede optarse por vigilancia hospitalaria.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones del embarazo",
+    "subtema": "VIH en embarazo",
+    "difficulty": "Alta",
+    "case": "Paciente de 27 años, G1, 32 semanas. Diagnóstico reciente de VIH. Carga viral 15,000 copias/mL. No tratamiento previo. Sin complicaciones obstétricas.",
+    "questions": [
+      {
+        "question": "¿Cuál es la medida más importante para reducir transmisión vertical?",
+        "options": [
+          "Cesárea obligatoria en todos los casos",
+          "Terapia antirretroviral combinada",
+          "Antibióticos",
+          "Interrupción del embarazo"
+        ],
+        "answerIndex": 1,
+        "explanation": "El control de carga viral con TAR reduce significativamente transmisión vertical.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si al final del embarazo la carga viral es >1,000 copias/mL, ¿qué se recomienda?",
+        "options": [
+          "Parto vaginal",
+          "Cesárea electiva",
+          "Inducción obligatoria",
+          "Nada adicional"
+        ],
+        "answerIndex": 1,
+        "explanation": "Carga viral elevada al final del embarazo es indicación de cesárea programada para reducir transmisión.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Complicaciones tromboembólicas",
+    "subtema": "Tromboembolia pulmonar en embarazo",
+    "difficulty": "Alta",
+    "case": "Paciente de 34 años, G2P1, 30 semanas. Inicio súbito de disnea, dolor torácico pleurítico y taquicardia 120 lpm. Saturación 88%. Sin fiebre. Pierna derecha con edema leve.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Neumonía",
+          "Tromboembolia pulmonar",
+          "Crisis asmática",
+          "Edema agudo pulmonar"
+        ],
+        "answerIndex": 1,
+        "explanation": "Disnea súbita, hipoxemia y factores de riesgo sugieren TEP.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento de elección?",
+        "options": [
+          "Warfarina",
+          "Heparina de bajo peso molecular",
+          "Aspirina",
+          "Trombólisis inmediata en todos los casos"
+        ],
+        "answerIndex": 1,
+        "explanation": "HBPM es tratamiento de elección en embarazo salvo inestabilidad grave.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología fetal",
+    "subtema": "Restricción del crecimiento intrauterino (RCIU) temprana con Doppler",
+    "difficulty": "Alta",
+    "case": "Paciente de 32 años, G1, 30 semanas. Antecedente de hipertensión crónica. Refiere disminución de movimientos fetales. USG: peso fetal estimado en percentil 5, líquido amniótico en límite inferior normal. Doppler de arteria umbilical con índice de pulsatilidad elevado y flujo diastólico ausente intermitente. Doppler de arteria cerebral media con redistribución (“brain sparing”). Perfil biofísico 8/10.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Feto pequeño constitucional",
+          "RCIU tardía",
+          "RCIU temprana con insuficiencia placentaria",
+          "Macrosomía fetal"
+        ],
+        "answerIndex": 2,
+        "explanation": "RCIU antes de 32 semanas con Doppler alterado y redistribución cerebral sugiere insuficiencia placentaria significativa.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta inicial más adecuada?",
+        "options": [
+          "Interrupción inmediata sin maduración pulmonar",
+          "Maduración pulmonar y vigilancia Doppler seriada",
+          "Alta domiciliaria",
+          "Inducción inmediata del parto"
+        ],
+        "answerIndex": 1,
+        "explanation": "En ausencia de deterioro severo, se administra corticoesteroide y se vigila estrechamente con Doppler seriado.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Desproporción cefalopélvica",
+    "difficulty": "Alta",
+    "case": "Paciente de 24 años, G1, 40 semanas. Trabajo de parto con dinámica adecuada durante 6 horas en fase activa. Dilatación permanece en 6 cm sin cambios. Cabeza fetal en -2 estación persistente. Pelvis clínica estrecha en conjugado diagonal. FCF normal.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Fase activa normal",
+          "Arresto secundario de dilatación por desproporción cefalopélvica",
+          "Hipodinamia uterina",
+          "Fase latente prolongada"
+        ],
+        "answerIndex": 1,
+        "explanation": "Falta de progresión con dinámica adecuada y estación alta sugiere desproporción.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta indicada?",
+        "options": [
+          "Aumentar oxitocina indefinidamente",
+          "Cesárea",
+          "Tocolíticos",
+          "Esperar 12 horas más"
+        ],
+        "answerIndex": 1,
+        "explanation": "En sospecha de desproporción cefalopélvica, la vía de resolución es cesárea.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endocrinología obstétrica",
+    "subtema": "Hipotiroidismo subclínico en embarazo",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 29 años, G1, 10 semanas. Asintomática. Tamiz prenatal muestra TSH 6.5 mUI/L (elevada para primer trimestre), T4 libre normal. Anticuerpos anti-TPO positivos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Hipertiroidismo",
+          "Hipotiroidismo clínico",
+          "Hipotiroidismo subclínico",
+          "Función tiroidea normal"
+        ],
+        "answerIndex": 2,
+        "explanation": "TSH elevada con T4 normal corresponde a hipotiroidismo subclínico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta adecuada?",
+        "options": [
+          "No tratar",
+          "Iniciar levotiroxina",
+          "Solo repetir estudio en tercer trimestre",
+          "Propiltiouracilo"
+        ],
+        "answerIndex": 1,
+        "explanation": "En embarazo, especialmente con anti-TPO positivos, debe iniciarse levotiroxina para reducir riesgo obstétrico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones del embarazo",
+    "subtema": "Sífilis gestacional",
+    "difficulty": "Alta",
+    "case": "Paciente de 23 años, G1, 24 semanas. VDRL 1:32, prueba treponémica confirmatoria positiva. Asintomática. Feto con biometría acorde a edad gestacional.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento indicado?",
+        "options": [
+          "Azitromicina",
+          "Penicilina G benzatínica",
+          "Ceftriaxona oral",
+          "No tratar si asintomática"
+        ],
+        "answerIndex": 1,
+        "explanation": "La penicilina es el único tratamiento eficaz para prevenir sífilis congénita.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si la paciente fuera alérgica a penicilina, ¿qué se recomienda?",
+        "options": [
+          "Doxiciclina",
+          "Eritromicina",
+          "Desensibilización y administrar penicilina",
+          "No tratar"
+        ],
+        "answerIndex": 2,
+        "explanation": "En embarazo debe realizarse desensibilización, ya que no hay alternativa equivalente para prevención fetal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragia obstétrica",
+    "subtema": "Laceración cervical posparto",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 26 años, G2P2, parto vaginal instrumentado con fórceps. Posterior al alumbramiento presenta sangrado abundante. Útero firme y contraído. TA 95/60 mmHg. Al revisar canal del parto se identifica desgarro cervical sangrante.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa más probable de la hemorragia?",
+        "options": [
+          "Atonía uterina",
+          "Retención placentaria",
+          "Laceración cervical",
+          "Inversión uterina"
+        ],
+        "answerIndex": 2,
+        "explanation": "Útero firme descarta atonía; debe sospecharse lesión del canal del parto.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo indicado?",
+        "options": [
+          "Más oxitocina",
+          "Sutura quirúrgica del desgarro",
+          "Masaje uterino",
+          "Esperar resolución espontánea"
+        ],
+        "answerIndex": 1,
+        "explanation": "Las lesiones del canal del parto requieren reparación quirúrgica inmediata.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hepática del embarazo",
+    "subtema": "Colestasis intrahepática con criterios de interrupción",
+    "difficulty": "Alta",
+    "case": "Paciente de 34 años, G2P1, 35 semanas. Refiere prurito intenso generalizado predominante en palmas y plantas, peor por la noche. Sin lesiones primarias. Laboratorios: ácidos biliares 65 μmol/L (elevados), AST y ALT discretamente elevadas, bilirrubina normal. Perfil biofísico 8/10. Doppler normal.",
+    "questions": [
+      {
+        "question": "¿Cuál es el principal riesgo fetal asociado?",
+        "options": [
+          "Macrosomía",
+          "Restricción del crecimiento",
+          "Muerte fetal intrauterina súbita",
+          "Cardiopatía congénita"
+        ],
+        "answerIndex": 2,
+        "explanation": "La elevación de ácidos biliares se asocia a muerte fetal súbita, especialmente >40 μmol/L.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta recomendada a esta edad gestacional con esos niveles?",
+        "options": [
+          "Manejo expectante hasta 40 semanas",
+          "Interrupción del embarazo alrededor de las 36–37 semanas",
+          "Solo antihistamínicos",
+          "Cesárea urgente inmediata sin indicación"
+        ],
+        "answerIndex": 1,
+        "explanation": "En colestasis con ácidos biliares elevados, se recomienda interrupción alrededor de 36–37 semanas para reducir riesgo de muerte fetal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Emergencias obstétricas",
+    "subtema": "Embolia pulmonar masiva en puerperio",
+    "difficulty": "Alta",
+    "case": "Paciente de 38 años, 3 días postcesárea. Obesidad grado II. Inicio súbito de disnea intensa, dolor torácico, síncope. TA 75/45 mmHg, FC 130 lpm, saturación 82%. Se sospecha tromboembolia pulmonar masiva.",
+    "questions": [
+      {
+        "question": "¿Cuál es el siguiente paso inmediato?",
+        "options": [
+          "Radiografía simple",
+          "Iniciar anticoagulación empírica mientras se confirma diagnóstico si alta sospecha",
+          "Esperar angiotomografía antes de actuar",
+          "Solo oxígeno"
+        ],
+        "answerIndex": 1,
+        "explanation": "En alta sospecha y compromiso hemodinámico, debe iniciarse anticoagulación inmediata.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si persiste inestabilidad hemodinámica, ¿qué tratamiento puede considerarse?",
+        "options": [
+          "Warfarina",
+          "Trombólisis sistémica",
+          "Aspirina",
+          "Alta domiciliaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "En TEP masiva con choque, está indicada trombólisis salvo contraindicación.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Líquido meconial espeso y manejo intraparto",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 29 años, G1, 41 semanas. Durante trabajo de parto se documenta salida de líquido amniótico espeso, verde oscuro. FCF 150 lpm con variabilidad moderada, sin desaceleraciones.",
+    "questions": [
+      {
+        "question": "¿Qué significa la presencia de meconio espeso?",
+        "options": [
+          "Infección materna",
+          "Madurez pulmonar",
+          "Posible hipoxia fetal previa",
+          "Indicación automática de cesárea"
+        ],
+        "answerIndex": 2,
+        "explanation": "El meconio puede indicar estrés o hipoxia fetal previa, pero no implica cesárea automática.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta si el monitoreo es tranquilizador?",
+        "options": [
+          "Cesárea obligatoria",
+          "Continuar vigilancia intraparto estrecha",
+          "Suspender trabajo de parto",
+          "Tocolíticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Con FCF categoría I o II sin datos severos, se puede continuar con vigilancia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endocrinología obstétrica",
+    "subtema": "Diabetes pregestacional y malformaciones",
+    "difficulty": "Alta",
+    "case": "Paciente de 25 años con DM1 desde la adolescencia. Embarazo no planeado. HbA1c al inicio 10%. USG estructural a las 20 semanas muestra defecto del tubo neural.",
+    "questions": [
+      {
+        "question": "¿Cuál es el principal factor de riesgo para malformaciones en esta paciente?",
+        "options": [
+          "Edad materna",
+          "Hiperglucemia en organogénesis",
+          "Insulina",
+          "Hipotensión"
+        ],
+        "answerIndex": 1,
+        "explanation": "La hiperglucemia en el primer trimestre aumenta riesgo de malformaciones congénitas.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Qué medida preventiva reduce este riesgo en futuros embarazos?",
+        "options": [
+          "Suspender insulina",
+          "Control glucémico estricto preconcepcional",
+          "Cesárea programada",
+          "Solo ácido fólico sin control metabólico"
+        ],
+        "answerIndex": 1,
+        "explanation": "El control metabólico previo a la concepción reduce riesgo de anomalías congénitas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias obstétricas",
+    "subtema": "Coagulación intravascular diseminada secundaria a DPPNI",
+    "difficulty": "Alta",
+    "case": "Paciente de 36 años, G3P2, 34 semanas, con DPPNI severo. Sangrado abundante, útero hipertónico. Laboratorios: plaquetas 60,000, fibrinógeno bajo, TP prolongado, sangrado por sitios de venopunción.",
+    "questions": [
+      {
+        "question": "¿Cuál es la complicación presente?",
+        "options": [
+          "Atonía uterina",
+          "Coagulación intravascular diseminada",
+          "Sepsis",
+          "Trombocitosis"
+        ],
+        "answerIndex": 1,
+        "explanation": "Trombocitopenia + alteración de tiempos + sangrado difuso indican CID.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es parte fundamental del manejo?",
+        "options": [
+          "Solo cristaloides",
+          "Reposición con hemoderivados según alteración (plasma, plaquetas, crioprecipitado)",
+          "Aspirina",
+          "Alta"
+        ],
+        "answerIndex": 1,
+        "explanation": "La CID requiere reposición dirigida de factores y resolución de causa desencadenante.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Embarazo molar completo",
+    "difficulty": "Alta",
+    "case": "Paciente de 19 años, G1, 12 semanas por FUM. Refiere náusea y vómito severos, sangrado transvaginal oscuro intermitente y crecimiento uterino mayor al esperado. Exploración: TA 150/95 mmHg. Útero correspondiente a 16 semanas. No se auscultan latidos fetales. β-hCG marcadamente elevada (>200,000 mUI/mL). USG: imagen en “tormenta de nieve”, sin embrión visible.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Embarazo anembrionado",
+          "Embarazo molar completo",
+          "Aborto diferido",
+          "Miomatosis uterina"
+        ],
+        "answerIndex": 1,
+        "explanation": "La imagen ecográfica en “tormenta de nieve”, ausencia de embrión y β-hCG muy elevada sugieren mola completa.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo inicial indicado?",
+        "options": [
+          "Histerectomía inmediata en toda paciente",
+          "Legrado uterino por aspiración",
+          "Misoprostol",
+          "Manejo expectante"
+        ],
+        "answerIndex": 1,
+        "explanation": "El tratamiento inicial es evacuación uterina por aspiración. Histerectomía se reserva para casos seleccionados.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el seguimiento obligatorio posterior?",
+        "options": [
+          "Ultrasonido mensual únicamente",
+          "β-hCG seriada hasta negativización y seguimiento por 6–12 meses",
+          "No requiere seguimiento",
+          "Anticoncepción opcional"
+        ],
+        "answerIndex": 1,
+        "explanation": "Debe vigilarse β-hCG seriada para detectar enfermedad trofoblástica persistente. Se recomienda anticoncepción durante seguimiento.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Presentación pélvica a término",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 28 años, G1, 39 semanas. USG confirma presentación pélvica franca. Peso fetal estimado 3,200 g. Pelvis clínica adecuada. Sin comorbilidades.",
+    "questions": [
+      {
+        "question": "¿Cuál es la opción que puede ofrecerse antes del trabajo de parto?",
+        "options": [
+          "Inducción inmediata",
+          "Versión cefálica externa",
+          "Cesárea obligatoria inmediata",
+          "Tocolíticos indefinidos"
+        ],
+        "answerIndex": 1,
+        "explanation": "La versión cefálica externa puede intentarse alrededor de las 36–37 semanas si no hay contraindicaciones.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la vía más frecuentemente recomendada en primigesta con presentación pélvica persistente?",
+        "options": [
+          "Parto vaginal obligatorio",
+          "Cesárea programada",
+          "Manejo expectante hasta 42 semanas",
+          "Fórceps"
+        ],
+        "answerIndex": 1,
+        "explanation": "En primigestas con presentación pélvica persistente suele recomendarse cesárea programada por menor riesgo neonatal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trastornos hipertensivos",
+    "subtema": "Hipertensión crónica con sobreagregación de preeclampsia",
+    "difficulty": "Alta",
+    "case": "Paciente de 36 años con hipertensión crónica conocida desde antes del embarazo. Actualmente 32 semanas. TA habitual 140/90 mmHg. En consulta presenta TA 165/105 mmHg, proteinuria +++, plaquetas 130,000.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Hipertensión gestacional",
+          "Preeclampsia sobreagregada a hipertensión crónica",
+          "Crisis hipertensiva aislada",
+          "HELLP"
+        ],
+        "answerIndex": 1,
+        "explanation": "Paciente con HTA previa que desarrolla proteinuria y datos de severidad cumple criterios de sobreagregación.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta?",
+        "options": [
+          "Solo ajustar antihipertensivos",
+          "Hospitalización, sulfato de magnesio y valorar interrupción según estabilidad",
+          "Alta domiciliaria",
+          "No requiere vigilancia"
+        ],
+        "answerIndex": 1,
+        "explanation": "Se maneja como preeclampsia con datos de severidad.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones perinatales",
+    "subtema": "Profilaxis para Streptococcus del grupo B (EGB)",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 25 años, G1, 39 semanas, en trabajo de parto. Cultivo rectovaginal a las 36 semanas positivo para Streptococcus grupo B. Sin alergias medicamentosas.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta intraparto?",
+        "options": [
+          "No hacer nada",
+          "Penicilina G IV intraparto",
+          "Cesárea obligatoria",
+          "Antibiótico oral"
+        ],
+        "answerIndex": 1,
+        "explanation": "La profilaxis intraparto reduce transmisión neonatal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si fuera alérgica a penicilina con reacción anafiláctica, ¿qué opción es adecuada?",
+        "options": [
+          "Amoxicilina",
+          "Clindamicina si sensibilidad documentada",
+          "Aspirina",
+          "No tratar"
+        ],
+        "answerIndex": 1,
+        "explanation": "En alergia grave se usa clindamicina si el germen es sensible.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología del puerperio",
+    "subtema": "Mastitis puerperal",
+    "difficulty": "Media",
+    "case": "Paciente de 22 años, 3 semanas postparto. Refiere dolor en mama derecha, eritema localizado y fiebre 38.2°C. Lactancia activa. Sin fluctuación.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Absceso mamario",
+          "Mastitis puerperal",
+          "Galactocele",
+          "Cáncer inflamatorio"
+        ],
+        "answerIndex": 1,
+        "explanation": "Dolor, eritema y fiebre en lactante sugieren mastitis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta adecuada?",
+        "options": [
+          "Suspender lactancia",
+          "Antibiótico y continuar lactancia",
+          "Drenaje quirúrgico inmediato",
+          "No tratar"
+        ],
+        "answerIndex": 1,
+        "explanation": "Debe continuarse lactancia y administrar antibióticos dirigidos a S. aureus.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología trofoblástica gestacional",
+    "subtema": "Neoplasia trofoblástica gestacional postmolar",
+    "difficulty": "Alta",
+    "case": "Paciente de 22 años con antecedente de embarazo molar completo evacuado hace 8 semanas. Seguimiento con β-hCG semanal mostró descenso inicial, pero en las últimas 3 determinaciones presenta meseta (5,200 → 5,400 → 5,350 mUI/mL). Asintomática. USG sin restos evidentes.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Embarazo nuevo",
+          "Restos placentarios",
+          "Neoplasia trofoblástica gestacional",
+          "Error de laboratorio"
+        ],
+        "answerIndex": 2,
+        "explanation": "Meseta o elevación de β-hCG tras evacuación molar sugiere enfermedad trofoblástica persistente.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo inicial en enfermedad de bajo riesgo?",
+        "options": [
+          "Histerectomía inmediata",
+          "Quimioterapia con metotrexato",
+          "Nuevo legrado obligatorio",
+          "Observación sin tratamiento"
+        ],
+        "answerIndex": 1,
+        "explanation": "En enfermedad de bajo riesgo (según puntaje FIGO), el tratamiento es quimioterapia con agente único como metotrexato.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Distocia por hipodinamia uterina",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 26 años, G1, 39 semanas, en fase activa con 5 cm de dilatación. Tras 4 horas solo progresa a 6 cm. Dinámica uterina: 2 contracciones en 10 minutos, de intensidad leve. FCF normal.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa más probable del retraso?",
+        "options": [
+          "Desproporción cefalopélvica",
+          "Hipodinamia uterina",
+          "Presentación anómala",
+          "Ruptura uterina"
+        ],
+        "answerIndex": 1,
+        "explanation": "Dinámica insuficiente con progreso lento sugiere alteración de la potencia uterina.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta adecuada?",
+        "options": [
+          "Cesárea inmediata",
+          "Conducción con oxitocina bajo monitoreo",
+          "Alta domiciliaria",
+          "Tocolíticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Debe optimizarse la dinámica uterina antes de decidir cesárea.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del segundo trimestre",
+    "subtema": "Placenta previa diagnosticada antes de 28 semanas",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 30 años, G2P1, 24 semanas. USG muestra placenta parcialmente cubriendo OCI. Asintomática.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta inmediata?",
+        "options": [
+          "Cesárea inmediata",
+          "Inducción del parto",
+          "Vigilancia y reevaluación ecográfica posterior",
+          "Reposo absoluto hospitalario obligatorio"
+        ],
+        "answerIndex": 2,
+        "explanation": "Muchas placentas migran conforme avanza el embarazo; debe reevaluarse en tercer trimestre.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Qué está contraindicado en estas pacientes si presentan sangrado?",
+        "options": [
+          "Ultrasonido transvaginal",
+          "Tacto vaginal digital",
+          "Hospitalización",
+          "Monitoreo fetal"
+        ],
+        "answerIndex": 1,
+        "explanation": "El tacto vaginal puede desencadenar hemorragia masiva.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endocrinología obstétrica",
+    "subtema": "Hipertiroidismo en el primer trimestre",
+    "difficulty": "Alta",
+    "case": "Paciente de 27 años, G1, 9 semanas. Palpitaciones, pérdida de peso y temblor. TSH suprimida, T4 libre elevada. Anticuerpos TRAb positivos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Tirotoxicosis gestacional transitoria",
+          "Enfermedad de Graves",
+          "Hipotiroidismo",
+          "Preeclampsia"
+        ],
+        "answerIndex": 1,
+        "explanation": "Anticuerpos TRAb positivos orientan a enfermedad de Graves.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento de elección en el primer trimestre?",
+        "options": [
+          "Metimazol",
+          "Propiltiouracilo",
+          "Yodo radiactivo",
+          "No tratar"
+        ],
+        "answerIndex": 1,
+        "explanation": "En primer trimestre se prefiere propiltiouracilo por menor riesgo teratogénico comparado con metimazol.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Complicaciones del puerperio",
+    "subtema": "Absceso mamario",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 24 años, 4 semanas postparto. Dolor intenso en mama izquierda, fiebre 38.8°C. Área eritematosa con fluctuación palpable. No mejoró tras 72 horas de antibiótico por mastitis.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Mastitis simple",
+          "Galactocele",
+          "Absceso mamario",
+          "Ingurgitación"
+        ],
+        "answerIndex": 2,
+        "explanation": "La presencia de fluctuación sugiere colección purulenta.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo adecuado?",
+        "options": [
+          "Solo cambiar antibiótico",
+          "Drenaje del absceso + antibiótico",
+          "Suspender lactancia definitiva",
+          "No tratar"
+        ],
+        "answerIndex": 1,
+        "explanation": "El absceso requiere drenaje además de antibiótico dirigido.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hipertensiva del embarazo",
+    "subtema": "Preeclampsia antes de las 34 semanas sin datos de severidad",
+    "difficulty": "Alta",
+    "case": "Paciente de 29 años, G1, 31 semanas. TA 150/95 mmHg en dos ocasiones separadas por 6 horas. Proteinuria 400 mg en 24 horas. Sin cefalea, sin fosfenos. Plaquetas 180,000, AST y ALT normales. FCF reactiva, Doppler normal.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Hipertensión gestacional",
+          "Preeclampsia sin datos de severidad",
+          "Preeclampsia con datos de severidad",
+          "Hipertensión crónica"
+        ],
+        "answerIndex": 1,
+        "explanation": "HTA + proteinuria después de 20 semanas sin daño orgánico corresponde a preeclampsia sin datos de severidad.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta más adecuada?",
+        "options": [
+          "Interrupción inmediata",
+          "Manejo expectante hospitalario con vigilancia materno-fetal",
+          "Alta sin seguimiento",
+          "Solo antihipertensivos ambulatorios"
+        ],
+        "answerIndex": 1,
+        "explanation": "Antes de 34 semanas sin datos de severidad puede optarse por manejo expectante bajo vigilancia estrecha.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Parto pretérmino espontáneo",
+    "difficulty": "Alta",
+    "case": "Paciente de 23 años, G2P1, 32 semanas. Contracciones regulares cada 5 minutos desde hace 2 horas. Dilatación 3 cm, borramiento 70%. Membranas íntegras. FCF reactiva.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Amenaza de parto pretérmino",
+          "Trabajo de parto pretérmino establecido",
+          "Fase latente normal",
+          "RPM"
+        ],
+        "answerIndex": 1,
+        "explanation": "Cambios cervicales + dinámica regular antes de 37 semanas indican trabajo de parto pretérmino.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es parte fundamental del manejo?",
+        "options": [
+          "Interrupción inmediata",
+          "Corticoesteroides para maduración pulmonar",
+          "Cesárea obligatoria",
+          "Alta domiciliaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "Entre 24–34 semanas deben administrarse corticoesteroides para maduración pulmonar fetal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿En qué caso están indicados tocolíticos?",
+        "options": [
+          "Siempre",
+          "Si no hay infección ni compromiso fetal para permitir efecto de corticoesteroides",
+          "Nunca",
+          "Solo después de 37 semanas"
+        ],
+        "answerIndex": 1,
+        "explanation": "Tocolíticos pueden utilizarse para ganar 48 horas para maduración pulmonar si no hay contraindicaciones.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias obstétricas",
+    "subtema": "Acretismo placentario diagnosticado intraparto",
+    "difficulty": "Alta",
+    "case": "Paciente de 39 años, G5P4, antecedente de 3 cesáreas. Durante cesárea programada se intenta desprender placenta y se observa invasión profunda sin plano de clivaje, con hemorragia activa masiva.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Placenta previa",
+          "Placenta acreta",
+          "DPPNI",
+          "Atonía uterina"
+        ],
+        "answerIndex": 1,
+        "explanation": "Ausencia de plano de separación sugiere acretismo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta más adecuada?",
+        "options": [
+          "Insistir en desprendimiento manual",
+          "Histerectomía obstétrica",
+          "Solo suturar",
+          "Cerrar y observar"
+        ],
+        "answerIndex": 1,
+        "explanation": "El manejo definitivo suele ser histerectomía para controlar hemorragia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones perinatales",
+    "subtema": "Toxoplasmosis en embarazo",
+    "difficulty": "Alta",
+    "case": "Paciente de 26 años, G1, 18 semanas. Serología: IgM positiva, IgG negativa. Refiere contacto frecuente con gatos. Asintomática.",
+    "questions": [
+      {
+        "question": "¿Qué indica este resultado?",
+        "options": [
+          "Infección pasada",
+          "Infección aguda probable",
+          "Inmunidad protectora",
+          "Resultado irrelevante"
+        ],
+        "answerIndex": 1,
+        "explanation": "IgM positiva con IgG negativa sugiere infección reciente; debe confirmarse con pruebas adicionales.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento inicial si se confirma infección materna sin evidencia fetal?",
+        "options": [
+          "Pirimetamina-sulfadiazina inmediata",
+          "Espiramicina",
+          "No tratar",
+          "Interrupción obligatoria"
+        ],
+        "answerIndex": 1,
+        "explanation": "Espiramicina reduce transmisión vertical cuando no hay evidencia de infección fetal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Puerperio",
+    "subtema": "Depresión posparto",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 30 años, 6 semanas postparto. Refiere tristeza persistente, insomnio, anhedonia y sentimientos de culpa. Niega ideación suicida. Funcionalidad disminuida.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Tristeza posparto transitoria",
+          "Psicosis puerperal",
+          "Depresión posparto",
+          "Trastorno bipolar"
+        ],
+        "answerIndex": 2,
+        "explanation": "Síntomas >2 semanas con afectación funcional sugieren depresión posparto.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es una opción terapéutica segura en lactancia?",
+        "options": [
+          "Suspender lactancia obligatoriamente",
+          "ISRS como sertralina",
+          "No tratar",
+          "Benzodiacepinas como monoterapia prolongada"
+        ],
+        "answerIndex": 1,
+        "explanation": "Algunos ISRS como sertralina son compatibles con lactancia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hipertensiva del embarazo",
+    "subtema": "Preeclampsia con datos de severidad y manejo intrahospitalario",
+    "difficulty": "Alta",
+    "case": "Paciente de 32 años, G2P1, 35 semanas de gestación, acude por cefalea intensa holocraneana de 12 horas de evolución, fosfenos y dolor en epigastrio irradiado a hipocondrio derecho. Refiere edema progresivo en extremidades inferiores desde hace una semana. A la exploración: TA 170/110 mmHg en dos tomas separadas por 15 minutos, FC 96 lpm, FR 20 rpm. Reflejos osteotendinosos ++ con discreta hiperreflexia. No hay datos de trabajo de parto. FCF 150 lpm reactiva. Laboratorios: Plaquetas 95,000/mm³ AST 110 U/L ALT 95 U/L Creatinina 1.3 mg/dL Proteinuria 3+ en tira reactiva",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Hipertensión gestacional",
+          "Preeclampsia sin datos de severidad",
+          "Preeclampsia con datos de severidad",
+          "Síndrome HELLP completo"
+        ],
+        "answerIndex": 2,
+        "explanation": "HTA ≥160/110 + plaquetopenia + elevación de enzimas hepáticas + síntomas neurológicos = preeclampsia con datos de severidad. No cumple criterios completos de HELLP (falta evidencia clara de hemólisis).",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la primera intervención farmacológica prioritaria?",
+        "options": [
+          "Inducción inmediata sin tratamiento previo",
+          "Administración de sulfato de magnesio",
+          "Tocolíticos",
+          "Corticoesteroides para maduración pulmonar exclusivamente"
+        ],
+        "answerIndex": 1,
+        "explanation": "El sulfato de magnesio es fundamental para prevención de eclampsia en pacientes con datos de severidad.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta obstétrica definitiva?",
+        "options": [
+          "Manejo expectante hasta 37 semanas",
+          "Interrupción del embarazo tras estabilización materna",
+          "Alta domiciliaria",
+          "Solo antihipertensivos ambulatorios"
+        ],
+        "answerIndex": 1,
+        "explanation": "Después de 34 semanas con datos de severidad, la conducta es interrupción tras estabilizar a la paciente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias obstétricas",
+    "subtema": "Desprendimiento prematuro de placenta normoinserta (DPPNI)",
+    "difficulty": "Alta",
+    "case": "Paciente de 28 años, G3P2, 37 semanas, con antecedente de hipertensión gestacional en embarazo previo. Acude por dolor abdominal súbito, intenso y constante, acompañado de sangrado vaginal oscuro en moderada cantidad. Refiere disminución de movimientos fetales. A la exploración: TA 150/95 mmHg, abdomen con hipertonía uterina y dolor difuso a la palpación. FCF 90 lpm con desaceleraciones tardías repetitivas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Placenta previa",
+          "Ruptura uterina",
+          "Desprendimiento prematuro de placenta normoinserta",
+          "Trabajo de parto normal"
+        ],
+        "answerIndex": 2,
+        "explanation": "Dolor intenso + útero hipertónico + sangrado oscuro + sufrimiento fetal son característicos de DPPNI.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta inmediata?",
+        "options": [
+          "Observación",
+          "Cesárea urgente",
+          "Inducción con oxitocina",
+          "Alta"
+        ],
+        "answerIndex": 1,
+        "explanation": "Hay sufrimiento fetal agudo; la vía de resolución debe ser inmediata.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál complicación materna es frecuente en casos graves?",
+        "options": [
+          "Diabetes gestacional",
+          "Coagulación intravascular diseminada",
+          "Hipertiroidismo",
+          "Sepsis urinaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "El DPPNI severo puede desencadenar CID por liberación masiva de tromboplastina.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endocrinología ginecológica",
+    "subtema": "Síndrome de ovario poliquístico (SOP) y criterios diagnósticos",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 24 años con ciclos menstruales irregulares desde la adolescencia. Presenta aumento progresivo de vello facial y acné. IMC 31 kg/m². Refiere dificultad para embarazarse tras 1 año de relaciones sin protección. Laboratorios: Testosterona total ligeramente elevada. TSH normal. Prolactina normal. USG transvaginal: ovarios aumentados de volumen con múltiples folículos periféricos pequeños.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Hiperprolactinemia",
+          "Síndrome de ovario poliquístico",
+          "Insuficiencia ovárica prematura",
+          "Hipotiroidismo"
+        ],
+        "answerIndex": 1,
+        "explanation": "Cumple criterios de Rotterdam: oligo/anovulación + hiperandrogenismo clínico/biológico + ovarios poliquísticos.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento inicial si no desea embarazo?",
+        "options": [
+          "Clomifeno",
+          "Anticonceptivos hormonales combinados",
+          "Histerectomía",
+          "Solo metformina obligatoria"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los ACO regulan ciclos y disminuyen hiperandrogenismo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si desea embarazo, ¿cuál es primera línea para inducir ovulación?",
+        "options": [
+          "Letrozol",
+          "Anticonceptivos",
+          "GnRH continuo",
+          "Danazol"
+        ],
+        "answerIndex": 0,
+        "explanation": "Letrozol es actualmente primera línea para inducción de ovulación en SOP.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones ginecológicas",
+    "subtema": "Enfermedad pélvica inflamatoria complicada",
+    "difficulty": "Alta",
+    "case": "Paciente de 27 años con antecedente de múltiples parejas sexuales y uso irregular de preservativo. Consulta por dolor pélvico de 5 días de evolución, fiebre 38.5°C y flujo vaginal purulento. A la exploración: dolor intenso a movilización cervical y dolor anexial bilateral. USG muestra masa anexial compleja de 6 cm compatible con absceso tubo-ovárico.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Apendicitis",
+          "Embarazo ectópico",
+          "Enfermedad pélvica inflamatoria complicada con absceso tubo-ovárico",
+          "Quiste simple"
+        ],
+        "answerIndex": 2,
+        "explanation": "Dolor pélvico + fiebre + masa anexial compleja sugiere absceso tubo-ovárico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo inicial?",
+        "options": [
+          "Tratamiento ambulatorio oral",
+          "Hospitalización y antibióticos IV de amplio espectro",
+          "Solo analgésicos",
+          "Histerectomía inmediata"
+        ],
+        "answerIndex": 1,
+        "explanation": "Absceso tubo-ovárico requiere manejo intrahospitalario.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuándo está indicado drenaje quirúrgico?",
+        "options": [
+          "Siempre de entrada",
+          "Si no hay respuesta a antibiótico o hay ruptura",
+          "Nunca",
+          "Solo si mide menos de 3 cm"
+        ],
+        "answerIndex": 1,
+        "explanation": "La falta de mejoría clínica o complicación obliga a intervención.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Embarazo ectópico",
+    "subtema": "Manejo médico vs quirúrgico",
+    "difficulty": "Alta",
+    "case": "Paciente de 30 años, G2P0A1, acude por dolor pélvico unilateral izquierdo de 48 horas de evolución, tipo punzante, intensidad progresiva. Refiere amenorrea de 7 semanas y manchado vaginal escaso oscuro desde hace 3 días. Niega síncope. Exploración: TA 110/70 mmHg, FC 88 lpm. Abdomen con dolor en fosa iliaca izquierda sin datos de irritación peritoneal. A la exploración ginecológica: cérvix cerrado, dolor a movilización cervical, masa anexial izquierda dolorosa. β-hCG: 2,300 mUI/mL USG transvaginal: no se observa saco intrauterino, masa anexial izquierda de 2.5 cm, sin líquido libre significativo.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Amenaza de aborto",
+          "Embarazo ectópico tubárico no complicado",
+          "Quiste hemorrágico",
+          "Aborto incompleto"
+        ],
+        "answerIndex": 1,
+        "explanation": "Amenorrea + β-hCG mayor al umbral discriminatorio sin saco intrauterino + masa anexial = embarazo ectópico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo más adecuado en este caso?",
+        "options": [
+          "Laparotomía urgente",
+          "Metotrexato sistémico",
+          "Legrado uterino",
+          "Observación sin tratamiento"
+        ],
+        "answerIndex": 1,
+        "explanation": "Paciente estable, masa <3.5 cm, sin latido embrionario y β-hCG baja → candidata a tratamiento médico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es un criterio absoluto para tratamiento quirúrgico inmediato?",
+        "options": [
+          "Deseo reproductivo futuro",
+          "Hemodinámicamente inestable",
+          "Edad menor de 35 años",
+          "β-hCG menor de 5,000"
+        ],
+        "answerIndex": 1,
+        "explanation": "Inestabilidad hemodinámica implica ruptura y requiere intervención urgente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragia obstétrica",
+    "subtema": "Atonía uterina en el puerperio inmediato",
+    "difficulty": "Alta",
+    "case": "Paciente de 34 años, G4P4, parto vaginal eutócico hace 20 minutos. Producto de 3,900 g. Placenta completa. Presenta sangrado abundante transvaginal que empapa compresas rápidamente. TA 95/60 mmHg, FC 115 lpm. A la palpación abdominal: útero aumentado de tamaño, blando y mal contraído.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa más probable de la hemorragia?",
+        "options": [
+          "Retención placentaria",
+          "Atonía uterina",
+          "Laceración cervical",
+          "Inversión uterina"
+        ],
+        "answerIndex": 1,
+        "explanation": "Útero blando y aumentado de tamaño tras parto sugiere atonía, principal causa de hemorragia posparto.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la primera intervención?",
+        "options": [
+          "Histerectomía inmediata",
+          "Masaje uterino bimanual + oxitocina IV",
+          "Alta domiciliaria",
+          "Antibióticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "El manejo inicial incluye masaje uterino y uterotónicos.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si no responde a oxitocina, ¿cuál es el siguiente fármaco útil?",
+        "options": [
+          "Misoprostol o metilergonovina (según contraindicación)",
+          "Tocolíticos",
+          "Corticoesteroides",
+          "Insulina"
+        ],
+        "answerIndex": 0,
+        "explanation": "Se deben escalar uterotónicos antes de medidas quirúrgicas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Oncología ginecológica",
+    "subtema": "Cáncer cervicouterino etapa temprana",
+    "difficulty": "Alta",
+    "case": "Paciente de 41 años, sin tamizaje en los últimos 10 años. Consulta por sangrado poscoital intermitente. Especuloscopía: lesión exofítica friable de 2 cm en cérvix. Biopsia: carcinoma epidermoide invasor. RM pélvica: tumor limitado al cuello uterino, 2.2 cm, sin invasión parametrial.",
+    "questions": [
+      {
+        "question": "Según FIGO, ¿en qué etapa se encuentra?",
+        "options": [
+          "IA",
+          "IB1",
+          "IIB",
+          "IIIA"
+        ],
+        "answerIndex": 1,
+        "explanation": "Tumor visible clínicamente ≤4 cm limitado al cérvix corresponde a IB1.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento de elección en paciente candidata quirúrgica?",
+        "options": [
+          "Quimioterapia exclusiva",
+          "Histerectomía radical + linfadenectomía",
+          "Observación",
+          "Crioterapia"
+        ],
+        "answerIndex": 1,
+        "explanation": "En etapas tempranas operables, la cirugía radical es tratamiento estándar.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Principal factor etiológico asociado:",
+        "options": [
+          "Virus Epstein-Barr",
+          "Virus del papiloma humano de alto riesgo",
+          "VIH",
+          "Herpes simple"
+        ],
+        "answerIndex": 1,
+        "explanation": "VPH 16 y 18 son los principales subtipos oncogénicos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia",
+    "subtema": "Ruptura prematura de membranas pretérmino (RPM pretérmino)",
+    "difficulty": "Alta",
+    "case": "Paciente de 25 años, G1, 30 semanas. Refiere salida súbita de líquido claro abundante hace 6 horas. No contracciones. TA normal. Temperatura 37.8°C. FCF reactiva. Especuloscopía: líquido claro en fondo de saco. Prueba de nitrazina positiva.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Incontinencia urinaria",
+          "RPM pretérmino",
+          "Trabajo de parto activo",
+          "Placenta previa"
+        ],
+        "answerIndex": 1,
+        "explanation": "Salida de líquido antes de 37 semanas sin trabajo de parto = RPM pretérmino.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es parte fundamental del manejo antes de 34 semanas si no hay infección?",
+        "options": [
+          "Inducción inmediata",
+          "Manejo expectante + antibióticos + corticoesteroides",
+          "Alta domiciliaria",
+          "Cesárea obligatoria"
+        ],
+        "answerIndex": 1,
+        "explanation": "Se busca prolongar embarazo y reducir complicaciones neonatales.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Qué dato obligaría a terminar el embarazo inmediatamente?",
+        "options": [
+          "FCF reactiva",
+          "Corioamnionitis clínica",
+          "Edad materna joven",
+          "Producto femenino"
+        ],
+        "answerIndex": 1,
+        "explanation": "Fiebre, taquicardia materno-fetal y dolor uterino sugieren infección intraamniótica → interrupción.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Diabetes en el embarazo",
+    "subtema": "Cetoacidosis diabética en embarazo",
+    "difficulty": "Muy Alta",
+    "case": "Paciente de 27 años, G2P1, 28 semanas de gestación, antecedente de diabetes tipo 1 desde los 14 años. Acude por 24 horas de náuseas intensas, vómito y dolor abdominal difuso. Refiere haber suspendido parcialmente su insulina por inapetencia. Exploración: TA 100/60 mmHg, FC 120 lpm, FR 28 rpm con respiración profunda. Mucosas secas. FCF 170 lpm. Laboratorios: Glucosa 280 mg/dL pH 7.18 Bicarbonato 12 mEq/L Cetonas positivas en sangre Anión gap elevado",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Gastroenteritis",
+          "Hiperglucemia simple",
+          "Cetoacidosis diabética",
+          "Preeclampsia"
+        ],
+        "answerIndex": 2,
+        "explanation": "En embarazo la CAD puede presentarse con glucemias no tan elevadas. Acidosis metabólica con anión gap elevado y cetonemia confirman diagnóstico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la prioridad inicial del manejo?",
+        "options": [
+          "Cesárea inmediata",
+          "Rehidratación con solución cristaloide IV",
+          "Sulfato de magnesio",
+          "Tocolíticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "La reposición de volumen es el primer paso antes de insulina IV.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿La presencia de taquicardia fetal obliga a interrupción inmediata?",
+        "options": [
+          "Sí siempre",
+          "No, primero se corrige estado metabólico materno",
+          "Solo si es femenino",
+          "Siempre antes de 30 semanas"
+        ],
+        "answerIndex": 1,
+        "explanation": "La mayoría de alteraciones fetales mejoran al corregir la acidosis materna.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Aborto séptico",
+    "difficulty": "Alta",
+    "case": "Paciente de 22 años, 10 semanas por FUM, acude por fiebre de 39°C, dolor abdominal bajo intenso y sangrado vaginal fétido. Refiere intento de interrupción del embarazo con instrumento no médico hace 3 días. Exploración: TA 90/55 mmHg, FC 118 lpm. Abdomen doloroso con datos de irritación peritoneal leve. Cérvix abierto con restos ovulares visibles. Laboratorios: leucocitosis marcada con neutrofilia.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Aborto incompleto",
+          "Aborto inevitable",
+          "Aborto séptico",
+          "Embarazo ectópico"
+        ],
+        "answerIndex": 2,
+        "explanation": "Fiebre alta + restos retenidos + manipulación uterina previa orientan a aborto séptico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo inicial?",
+        "options": [
+          "Legrado inmediato sin antibióticos",
+          "Antibióticos IV de amplio espectro + estabilización hemodinámica",
+          "Alta con tratamiento oral",
+          "Observación"
+        ],
+        "answerIndex": 1,
+        "explanation": "Primero estabilización y antibióticos; evacuación uterina posterior cuando esté hemodinámicamente estable.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Complicación más temida:",
+        "options": [
+          "Hipotiroidismo",
+          "Choque séptico",
+          "Diabetes",
+          "Insuficiencia ovárica"
+        ],
+        "answerIndex": 1,
+        "explanation": "La progresión a sepsis y choque es frecuente si no se trata oportunamente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Climaterio",
+    "subtema": "Terapia hormonal de reemplazo (THR)",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 52 años, menopausia desde hace 1 año. Presenta bochornos intensos, sudoración nocturna y trastorno del sueño que afecta su calidad de vida. IMC 24. No antecedentes de cáncer de mama ni enfermedad tromboembólica. Útero íntegro.",
+    "questions": [
+      {
+        "question": "¿Es candidata a terapia hormonal?",
+        "options": [
+          "No, está contraindicada siempre",
+          "Sí, si no hay contraindicaciones mayores",
+          "Solo si tiene osteoporosis",
+          "Solo si tiene hipertensión"
+        ],
+        "answerIndex": 1,
+        "explanation": "En mujeres sintomáticas menores de 60 años o <10 años de menopausia sin contraindicaciones, puede indicarse THR.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Qué esquema es adecuado si conserva útero?",
+        "options": [
+          "Estrógeno solo",
+          "Estrógeno + progestágeno",
+          "Progesterona sola obligatoria",
+          "Andrógenos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Se requiere progestágeno para proteger endometrio del riesgo de hiperplasia/cáncer.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Principal riesgo a largo plazo asociado:",
+        "options": [
+          "Cáncer de mama (según tipo y duración)",
+          "Cáncer gástrico",
+          "Cáncer renal",
+          "Hipertiroidismo"
+        ],
+        "answerIndex": 0,
+        "explanation": "El riesgo aumenta con uso prolongado de combinaciones hormonales.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia",
+    "subtema": "Restricción del crecimiento intrauterino (RCIU)",
+    "difficulty": "Alta",
+    "case": "Paciente de 33 años, G1, 34 semanas. Antecedente de hipertensión crónica. Refiere disminución de movimientos fetales. Altura uterina menor a la esperada para edad gestacional. USG: peso fetal estimado < percentil 5, líquido amniótico disminuido. Doppler de arteria umbilical con aumento de resistencia.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Feto grande para edad gestacional",
+          "Restricción del crecimiento intrauterino",
+          "Embarazo gemelar",
+          "Placenta previa"
+        ],
+        "answerIndex": 1,
+        "explanation": "Peso estimado <P10 con alteración Doppler confirma RCIU.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Principal etiología en este caso:",
+        "options": [
+          "Diabetes materna",
+          "Hipertensión materna crónica",
+          "Infección urinaria",
+          "Hipertiroidismo"
+        ],
+        "answerIndex": 1,
+        "explanation": "La insuficiencia placentaria secundaria a HTA es causa frecuente.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Qué hallazgo Doppler es de mayor gravedad?",
+        "options": [
+          "Flujo normal",
+          "Ausencia o reversa de flujo diastólico en arteria umbilical",
+          "Índice de pulsatilidad bajo",
+          "Doppler normal"
+        ],
+        "answerIndex": 1,
+        "explanation": "La ausencia o reversión del flujo diastólico se asocia a alto riesgo de muerte fetal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hipertensiva del embarazo",
+    "subtema": "Síndrome HELLP",
+    "difficulty": "Muy Alta",
+    "case": "Paciente de 34 años, G3P2, 33 semanas de gestación. Acude por dolor intenso en epigastrio irradiado a hipocondrio derecho desde hace 8 horas, náusea y malestar general. Refiere cefalea leve. Sin antecedentes patológicos relevantes. Exploración: TA 155/100 mmHg, FC 102 lpm. Edema en extremidades inferiores ++. Reflejos osteotendinosos aumentados. Útero acorde a edad gestacional. FCF 150 lpm reactiva. Laboratorios: Plaquetas 68,000/mm³ AST 210 U/L ALT 190 U/L Bilirrubina indirecta elevada LDH elevada Esquistocitos en frotis",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Preeclampsia sin severidad",
+          "Hepatitis aguda viral",
+          "Síndrome HELLP",
+          "Colestasis intrahepática"
+        ],
+        "answerIndex": 2,
+        "explanation": "Hemólisis (LDH y bilirrubina elevada + esquistocitos), enzimas hepáticas elevadas y plaquetopenia = HELLP.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta inmediata?",
+        "options": [
+          "Manejo expectante hasta 37 semanas",
+          "Sulfato de magnesio + estabilización e interrupción del embarazo",
+          "Solo antihipertensivos",
+          "Alta domiciliaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "HELLP es indicación de interrupción independientemente de edad gestacional tras estabilizar.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Complicación materna grave asociada:",
+        "options": [
+          "Rotura hepática",
+          "Hipotiroidismo",
+          "Diabetes",
+          "Placenta previa"
+        ],
+        "answerIndex": 0,
+        "explanation": "Puede progresar a hematoma subcapsular y ruptura hepática.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del tercer trimestre",
+    "subtema": "Placenta previa total sintomática",
+    "difficulty": "Alta",
+    "case": "Paciente de 37 años, G4P3, 36 semanas, antecedente de dos cesáreas previas. Consulta por sangrado vaginal rojo brillante abundante, indoloro, de inicio súbito. Niega dolor abdominal. Exploración: TA 105/70 mmHg, FC 100 lpm. Útero relajado, no doloroso. FCF 140 lpm reactiva. USG muestra placenta cubriendo completamente el orificio cervical interno.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "DPPNI",
+          "Placenta previa total",
+          "Ruptura uterina",
+          "Trabajo de parto"
+        ],
+        "answerIndex": 1,
+        "explanation": "Sangrado rojo brillante, indoloro, con útero relajado es característico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta obstétrica:",
+        "options": [
+          "Inducción con oxitocina",
+          "Cesárea programada o urgente según estabilidad",
+          "Tacto vaginal para valorar dilatación",
+          "Alta"
+        ],
+        "answerIndex": 1,
+        "explanation": "Placenta cubriendo OCI contraindica parto vaginal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Principal factor de riesgo en esta paciente:",
+        "options": [
+          "Primigesta",
+          "Cesáreas previas",
+          "Edad <20 años",
+          "Hipertiroidismo"
+        ],
+        "answerIndex": 1,
+        "explanation": "Cicatrices uterinas aumentan riesgo de placenta previa.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endocrinología ginecológica",
+    "subtema": "Hiperprolactinemia y galactorrea",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 28 años consulta por amenorrea de 6 meses y salida espontánea de secreción láctea bilateral. Niega embarazo. No usa anticonceptivos. Refiere cefalea leve ocasional. Laboratorios: β-hCG negativa TSH normal Prolactina 120 ng/mL",
+    "questions": [
+      {
+        "question": "¿Cuál es el siguiente estudio?",
+        "options": [
+          "USG pélvico",
+          "Resonancia magnética de hipófisis",
+          "TAC abdominal",
+          "Biopsia mamaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "Prolactina >100 ng/mL sugiere prolactinoma; se debe estudiar hipófisis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento de primera línea:",
+        "options": [
+          "Cirugía inmediata",
+          "Agonista dopaminérgico (cabergolina o bromocriptina)",
+          "Radioterapia",
+          "Estrógenos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Agonistas dopaminérgicos reducen prolactina y tamaño tumoral.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Complicación si el macroadenoma progresa:",
+        "options": [
+          "Hemorragia uterina",
+          "Hemianopsia bitemporal",
+          "Diabetes",
+          "Osteoporosis inmediata"
+        ],
+        "answerIndex": 1,
+        "explanation": "Compresión del quiasma óptico produce defecto campimétrico típico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia",
+    "subtema": "Isoinmunización Rh",
+    "difficulty": "Alta",
+    "case": "Paciente de 26 años, G2P1, 28 semanas. Grupo O Rh negativo. Primer embarazo terminó en parto vaginal sin aplicación documentada de inmunoglobulina anti-D. En control actual se detecta Coombs indirecto positivo con títulos elevados. USG muestra signos iniciales de hidropesía fetal leve.",
+    "questions": [
+      {
+        "question": "¿Cuál es el mecanismo fisiopatológico?",
+        "options": [
+          "Infección viral",
+          "Producción materna de anticuerpos anti-D que atraviesan placenta",
+          "Diabetes",
+          "Insuficiencia tiroidea"
+        ],
+        "answerIndex": 1,
+        "explanation": "La sensibilización previa genera anticuerpos IgG que destruyen eritrocitos fetales.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Qué estudio evalúa anemia fetal de forma no invasiva?",
+        "options": [
+          "Amniocentesis sistemática",
+          "Doppler de arteria cerebral media",
+          "Tacto vaginal",
+          "Perfil hepático"
+        ],
+        "answerIndex": 1,
+        "explanation": "Aumento de velocidad sistólica en ACM se correlaciona con anemia fetal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento si anemia fetal severa:",
+        "options": [
+          "Alta",
+          "Transfusión intrauterina",
+          "Solo hierro oral",
+          "Reposo"
+        ],
+        "answerIndex": 1,
+        "explanation": "La transfusión intrauterina puede salvar al feto antes de la viabilidad para parto.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Aborto retenido",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 29 años, G1, 9 semanas por FUM. Refiere desaparición de náuseas y mastalgia desde hace una semana. Niega sangrado abundante. Solo manchado marrón escaso. Sin dolor significativo. Exploración: cérvix cerrado, útero menor al esperado. USG transvaginal: saco gestacional con embrión de 8 semanas sin actividad cardiaca.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Aborto incompleto",
+          "Amenaza de aborto",
+          "Aborto retenido",
+          "Embarazo anembrionado"
+        ],
+        "answerIndex": 2,
+        "explanation": "Embrión sin actividad cardiaca con cérvix cerrado y sin expulsión corresponde a aborto retenido.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Embarazo ectópico",
+    "subtema": "Ectópico roto",
+    "difficulty": "Alta",
+    "case": "Paciente de 26 años, amenorrea de 6 semanas. Dolor abdominal súbito intenso, síncope en domicilio. TA 85/50 mmHg, FC 130 lpm. Abdomen con rebote positivo. USG FAST: líquido libre abundante en cavidad. β-hCG 4,500 mUI/mL.",
+    "questions": [
+      {
+        "question": "Conducta inmediata:",
+        "options": [
+          "Metotrexato",
+          "Observación",
+          "Laparotomía urgente",
+          "Legrado"
+        ],
+        "answerIndex": 2,
+        "explanation": "Inestabilidad hemodinámica = ruptura tubárica → cirugía inmediata.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hipertensiva",
+    "subtema": "Eclampsia",
+    "difficulty": "Muy Alta",
+    "case": "Paciente de 19 años, 36 semanas, presenta convulsión tónico-clónica generalizada en sala de espera. TA 180/115 mmHg. Posterior al evento se encuentra somnolienta.",
+    "questions": [
+      {
+        "question": "Tratamiento inmediato:",
+        "options": [
+          "Diazepam como único manejo",
+          "Sulfato de magnesio",
+          "Fenitoína",
+          "Cesárea inmediata sin estabilizar"
+        ],
+        "answerIndex": 1,
+        "explanation": "Sulfato de magnesio es el tratamiento de elección para prevenir recurrencias.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragia obstétrica",
+    "subtema": "Laceración cervical",
+    "difficulty": "Media–Alta",
+    "case": "Paciente con parto vaginal instrumentado. Presenta sangrado abundante, pero útero firme y bien contraído.",
+    "questions": [
+      {
+        "question": "Causa más probable:",
+        "options": [
+          "Atonía uterina",
+          "Retención placentaria",
+          "Laceración cervical",
+          "CID"
+        ],
+        "answerIndex": 2,
+        "explanation": "Útero contraído con sangrado activo sugiere lesión del canal del parto.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Oncología ginecológica",
+    "subtema": "NIC II–III",
+    "difficulty": "Media–Alta",
+    "case": "Paciente de 32 años con citología que reporta HSIL. Colposcopía con lesión acetoblanca extensa. Biopsia: NIC III.",
+    "questions": [
+      {
+        "question": "Conducta:",
+        "options": [
+          "Observación",
+          "Antibióticos",
+          "Escisión con asa (LEEP)",
+          "Histerectomía radical"
+        ],
+        "answerIndex": 2,
+        "explanation": "Lesiones de alto grado requieren tratamiento escisional.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endocrinología reproductiva",
+    "subtema": "Amenorrea secundaria – insuficiencia ovárica prematura",
+    "difficulty": "Alta",
+    "case": "Paciente de 35 años con amenorrea de 8 meses, bochornos y sequedad vaginal. FSH elevada en dos determinaciones separadas.",
+    "questions": [
+      {
+        "question": "Diagnóstico:",
+        "options": [
+          "SOP",
+          "Embarazo",
+          "Insuficiencia ovárica prematura",
+          "Hiperprolactinemia"
+        ],
+        "answerIndex": 2,
+        "explanation": "FSH elevada persistentemente antes de los 40 años indica falla ovárica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia",
+    "subtema": "Macrosomía fetal",
+    "difficulty": "Media–Alta",
+    "case": "Paciente con diabetes gestacional mal controlada. USG estima peso fetal 4,400 g a las 39 semanas.",
+    "questions": [
+      {
+        "question": "Principal riesgo intraparto:",
+        "options": [
+          "Prolapso de cordón",
+          "Distocia de hombros",
+          "Placenta previa",
+          "Corioamnionitis"
+        ],
+        "answerIndex": 1,
+        "explanation": "Macrosomía se asocia a distocia de hombros.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones en embarazo",
+    "subtema": "Corioamnionitis",
+    "difficulty": "Alta",
+    "case": "Paciente 32 semanas con RPM hace 48 horas. Presenta fiebre 38.5°C, taquicardia materna y fetal, dolor uterino.",
+    "questions": [
+      {
+        "question": "Conducta:",
+        "options": [
+          "Continuar manejo expectante",
+          "Antibióticos IV + interrupción del embarazo",
+          "Tocolíticos",
+          "Alta"
+        ],
+        "answerIndex": 1,
+        "explanation": "Corioamnionitis es indicación de terminación del embarazo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del segundo trimestre",
+    "subtema": "Vasa previa",
+    "difficulty": "Alta",
+    "case": "Paciente de 31 años, G2P1, 35 semanas, acude por ruptura espontánea de membranas en domicilio seguida de sangrado vaginal rojo brillante moderado. Refiere disminución brusca de movimientos fetales. No presenta dolor abdominal. Exploración: TA 110/70 mmHg, FC 92 lpm. Útero no doloroso. FCF 80 lpm persistente. USG previo reportaba inserción velamentosa del cordón.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Placenta previa",
+          "DPPNI",
+          "Vasa previa",
+          "Ruptura uterina"
+        ],
+        "answerIndex": 2,
+        "explanation": "Sangrado posterior a RPM con bradicardia fetal y madre estable sugiere ruptura de vasos fetales.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hipertensiva",
+    "subtema": "Hipertensión gestacional",
+    "difficulty": "Media",
+    "case": "Paciente de 24 años, G1, 37 semanas. TA 145/92 mmHg en dos mediciones separadas por 4 horas. Sin proteinuria. Laboratorios normales. Asintomática.",
+    "questions": [
+      {
+        "question": "Diagnóstico:",
+        "options": [
+          "Preeclampsia",
+          "Hipertensión crónica",
+          "Hipertensión gestacional",
+          "Síndrome HELLP"
+        ],
+        "answerIndex": 2,
+        "explanation": "HTA después de 20 semanas sin proteinuria ni daño orgánico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Desproporción cefalopélvica",
+    "difficulty": "Alta",
+    "case": "Paciente primigesta, 40 semanas, en trabajo de parto activo con 6 cm de dilatación desde hace 5 horas pese a adecuada dinámica uterina (4 contracciones en 10 min, intensidad adecuada). Cabeza en estación -2 persistente. Feto estimado 4,100 g.",
+    "questions": [
+      {
+        "question": "Causa más probable del arresto:",
+        "options": [
+          "Hipodinamia",
+          "Desproporción cefalopélvica",
+          "Presentación pélvica",
+          "Ruptura uterina"
+        ],
+        "answerIndex": 1,
+        "explanation": "Buena dinámica + falta de descenso sugiere problema mecánico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endocrinología obstétrica",
+    "subtema": "Diabetes gestacional diagnóstico",
+    "difficulty": "Media",
+    "case": "Paciente de 29 años, 26 semanas. Curva de tolerancia oral a la glucosa con 75 g: Ayuno 98 mg/dL 1 hora 190 mg/dL 2 horas 160 mg/dL",
+    "questions": [
+      {
+        "question": "Interpretación:",
+        "options": [
+          "Normal",
+          "Intolerancia leve",
+          "Diabetes gestacional",
+          "Diabetes tipo 2"
+        ],
+        "answerIndex": 2,
+        "explanation": "Uno o más valores alterados según criterios diagnósticos confirman diabetes gestacional.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Oncología ginecológica",
+    "subtema": "Cáncer de ovario epitelial",
+    "difficulty": "Alta",
+    "case": "Paciente de 58 años, distensión abdominal progresiva, pérdida de peso y sensación de saciedad temprana. USG muestra masa anexial compleja bilateral con ascitis. CA-125 elevado.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Quiste funcional",
+          "Endometrioma",
+          "Cáncer epitelial de ovario",
+          "Embarazo ectópico"
+        ],
+        "answerIndex": 2,
+        "explanation": "Masa compleja bilateral + ascitis + CA-125 elevado en posmenopáusica es altamente sugestivo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Puerperio",
+    "subtema": "Trombosis venosa profunda",
+    "difficulty": "Alta",
+    "case": "Paciente de 30 años, 10 días postcesárea. Dolor y aumento de volumen en pierna izquierda. Signo de Homans positivo. Doppler venoso confirma trombosis femoral.",
+    "questions": [
+      {
+        "question": "Tratamiento:",
+        "options": [
+          "Warfarina inmediata",
+          "Heparina de bajo peso molecular",
+          "Aspirina",
+          "No tratar"
+        ],
+        "answerIndex": 1,
+        "explanation": "HBPM es tratamiento inicial seguro en puerperio.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones ginecológicas",
+    "subtema": "Vaginosis bacteriana",
+    "difficulty": "Media",
+    "case": "Paciente de 25 años con flujo vaginal grisáceo, olor a “pescado” que aumenta tras coito. pH vaginal 5.5. Prueba de aminas positiva.",
+    "questions": [
+      {
+        "question": "Agente más asociado:",
+        "options": [
+          "Candida albicans",
+          "Gardnerella vaginalis",
+          "Trichomonas vaginalis",
+          "Neisseria gonorrhoeae"
+        ],
+        "answerIndex": 1,
+        "explanation": "Clínica clásica de vaginosis bacteriana.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia",
+    "subtema": "Polihidramnios",
+    "difficulty": "Media",
+    "case": "Paciente de 34 semanas con aumento excesivo de altura uterina. USG reporta índice de líquido amniótico de 28 cm. Feto con sospecha de atresia esofágica.",
+    "questions": [
+      {
+        "question": "Mecanismo fisiopatológico:",
+        "options": [
+          "Disminución producción renal fetal",
+          "Aumento de deglución fetal",
+          "Disminución deglución fetal",
+          "Hipertensión materna"
+        ],
+        "answerIndex": 2,
+        "explanation": "Malformaciones gastrointestinales impiden deglución adecuada de líquido amniótico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del tercer trimestre",
+    "subtema": "Ruptura uterina",
+    "difficulty": "Alta",
+    "case": "Paciente de 38 años, G5P4, con antecedente de dos cesáreas previas. Cursa 39 semanas y se encuentra en trabajo de parto con prueba de trabajo después de cesárea. Presenta súbitamente dolor abdominal intenso, diferente al de las contracciones, seguido de cese de la dinámica uterina. Refiere sensación de “desgarro”. Se observa sangrado vaginal moderado. Exploración: TA 90/60 mmHg, FC 120 lpm. Abdomen doloroso, partes fetales fácilmente palpables. FCF 70 lpm sostenida.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta inmediata?",
+        "options": [
+          "Oxitocina para reiniciar dinámica",
+          "Cesárea urgente con probable reparación o histerectomía",
+          "Observación",
+          "Analgesia y vigilancia"
+        ],
+        "answerIndex": 1,
+        "explanation": "Ante antecedente de cesárea + dolor súbito + bradicardia fetal + inestabilidad materna, el diagnóstico es ruptura uterina y requiere intervención quirúrgica inmediata.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hipertensiva",
+    "subtema": "Preeclampsia con datos neurológicos",
+    "difficulty": "Alta",
+    "case": "Paciente de 25 años, 34 semanas, acude por cefalea intensa, fosfenos y visión borrosa de 24 horas de evolución. TA 165/105 mmHg. Proteinuria 2+. Plaquetas 140,000. Creatinina normal. Reflejos osteotendinosos aumentados. No convulsiones.",
+    "questions": [
+      {
+        "question": "¿Cuál es el siguiente paso en el manejo?",
+        "options": [
+          "Alta con antihipertensivos orales",
+          "Sulfato de magnesio y preparación para interrupción",
+          "Tocolíticos",
+          "Solo reposo"
+        ],
+        "answerIndex": 1,
+        "explanation": "Síntomas neurológicos son datos de severidad aunque las plaquetas sean normales. Requiere profilaxis anticonvulsiva y resolución.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Distocia de hombros",
+    "difficulty": "Alta",
+    "case": "Paciente con diabetes gestacional. Parto vaginal en curso a las 39 semanas. Tras salida de la cabeza fetal se observa retracción contra el periné (“signo de la tortuga”). No progresa el resto del cuerpo.",
+    "questions": [
+      {
+        "question": "Primera maniobra indicada:",
+        "options": [
+          "Tracción fuerte de la cabeza",
+          "Maniobra de McRoberts",
+          "Cesárea inmediata",
+          "Fórceps"
+        ],
+        "answerIndex": 1,
+        "explanation": "La maniobra de McRoberts es el primer paso para liberar hombro anterior impactado.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endocrinología ginecológica",
+    "subtema": "Síndrome de Asherman",
+    "difficulty": "Media",
+    "case": "Paciente de 33 años con antecedente de legrado uterino posterior a aborto complicado hace un año. Desde entonces presenta hipomenorrea progresiva hasta amenorrea. Desea embarazo. Prueba de progesterona negativa (no sangrado).",
+    "questions": [
+      {
+        "question": "Estudio diagnóstico de elección:",
+        "options": [
+          "USG simple",
+          "Histeroscopía diagnóstica",
+          "Resonancia cerebral",
+          "TAC abdominal"
+        ],
+        "answerIndex": 1,
+        "explanation": "Ante sospecha de sinequias intrauterinas, la histeroscopía es el estándar diagnóstico y terapéutico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Oncología ginecológica",
+    "subtema": "Cáncer de endometrio",
+    "difficulty": "Alta",
+    "case": "Paciente de 62 años, obesa, diabética, con menopausia desde hace 12 años. Consulta por sangrado transvaginal escaso intermitente de 2 meses de evolución. USG transvaginal reporta endometrio de 14 mm.",
+    "questions": [
+      {
+        "question": "Siguiente paso:",
+        "options": [
+          "Observación",
+          "Biopsia endometrial",
+          "Antibióticos",
+          "Terapia hormonal inmediata"
+        ],
+        "answerIndex": 1,
+        "explanation": "Sangrado postmenopáusico + endometrio engrosado obliga a descartar carcinoma con biopsia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia",
+    "subtema": "Oligohidramnios",
+    "difficulty": "Media",
+    "case": "Paciente de 36 semanas con antecedente de hipertensión crónica. Refiere disminución de movimientos fetales. USG muestra índice de líquido amniótico de 4 cm. Doppler con aumento de resistencia en arteria umbilical.",
+    "questions": [
+      {
+        "question": "Principal mecanismo en este contexto:",
+        "options": [
+          "Aumento de producción fetal",
+          "Insuficiencia placentaria",
+          "Malformación renal bilateral",
+          "Diabetes materna"
+        ],
+        "answerIndex": 1,
+        "explanation": "En hipertensión crónica, la disminución del flujo uteroplacentario reduce perfusión renal fetal y producción de orina.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Embarazo anembrionado",
+    "difficulty": "Media",
+    "case": "Paciente de 27 años, G1, 8 semanas por FUM, acude para ultrasonido de control. Refiere náuseas leves y mastalgia. Niega dolor o sangrado abundante, solo manchado escaso marrón en días previos. Exploración: cérvix cerrado, útero acorde a 8 semanas. USG transvaginal: saco gestacional de 30 mm sin embrión visible ni saco vitelino.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Aborto incompleto",
+          "Embarazo anembrionado",
+          "Embarazo ectópico",
+          "Amenaza de aborto"
+        ],
+        "answerIndex": 1,
+        "explanation": "Saco ≥25 mm sin embrión visible confirma embarazo anembrionado.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Opciones de manejo incluyen:",
+        "options": [
+          "Solo observación obligatoria",
+          "Manejo expectante, médico o quirúrgico según caso",
+          "Antibióticos",
+          "Tocolíticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Puede manejarse de forma expectante, con misoprostol o legrado según preferencia y condiciones clínicas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hipertensiva",
+    "subtema": "Hipertensión crónica con sobreagregación de preeclampsia",
+    "difficulty": "Alta",
+    "case": "Paciente de 36 años con antecedente de hipertensión arterial crónica desde hace 5 años. Cursa 32 semanas. Habitualmente TA 135/85 mmHg con tratamiento. Consulta por edema súbito, cefalea y elevación de TA a 160/100 mmHg. Proteinuria 1.2 g en 24 horas.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Hipertensión gestacional",
+          "Preeclampsia sobreagregada a hipertensión crónica",
+          "Crisis hipertensiva aislada",
+          "Eclampsia"
+        ],
+        "answerIndex": 1,
+        "explanation": "Nueva proteinuria y empeoramiento tensional en paciente previamente hipertensa sugieren sobreagregación.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Principal riesgo fetal asociado:",
+        "options": [
+          "Macrosomía",
+          "Restricción del crecimiento intrauterino",
+          "Polihidramnios",
+          "Hidropesía"
+        ],
+        "answerIndex": 1,
+        "explanation": "La insuficiencia placentaria es más frecuente en este contexto.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Presentación pélvica",
+    "difficulty": "Alta",
+    "case": "Paciente primigesta, 38 semanas, producto único en presentación pélvica franca diagnosticada por USG. Peso estimado 3,200 g. Pelvis clínicamente adecuada. Sin comorbilidades.",
+    "questions": [
+      {
+        "question": "Conducta recomendada en la mayoría de los casos:",
+        "options": [
+          "Inducción del parto vaginal sistemática",
+          "Cesárea electiva",
+          "Tocolíticos",
+          "Observación hasta 42 semanas"
+        ],
+        "answerIndex": 1,
+        "explanation": "La presentación pélvica en primigesta generalmente se maneja por cesárea programada.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Complicación fetal más temida en parto vaginal pélvico:",
+        "options": [
+          "Prolapso de cordón",
+          "Macrosomía",
+          "Placenta previa",
+          "Oligohidramnios"
+        ],
+        "answerIndex": 0,
+        "explanation": "El prolapso de cordón es más frecuente en presentaciones no cefálicas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endocrinología reproductiva",
+    "subtema": "Hiperplasia endometrial",
+    "difficulty": "Media",
+    "case": "Paciente de 48 años con sangrado uterino anormal crónico. IMC 34 kg/m². USG: endometrio 16 mm. Biopsia: hiperplasia endometrial sin atipia.",
+    "questions": [
+      {
+        "question": "Principal mecanismo fisiopatológico:",
+        "options": [
+          "Exceso de progesterona",
+          "Exposición prolongada a estrógenos sin oposición",
+          "Infección viral",
+          "Deficiencia androgénica"
+        ],
+        "answerIndex": 1,
+        "explanation": "La obesidad favorece aromatización periférica y exceso estrogénico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento inicial:",
+        "options": [
+          "Histerectomía inmediata",
+          "Progestágenos",
+          "Quimioterapia",
+          "Antibióticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "En ausencia de atipia, se manejan con terapia progestacional.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Oncología ginecológica",
+    "subtema": "Tumor germinal de ovario (Disgerminoma)",
+    "difficulty": "Alta",
+    "case": "Paciente de 19 años con dolor abdominal progresivo y masa anexial sólida unilateral de 10 cm. Marcadores: LDH elevada, AFP normal.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Cistadenoma seroso",
+          "Disgerminoma",
+          "Endometrioma",
+          "Quiste funcional"
+        ],
+        "answerIndex": 1,
+        "explanation": "Tumor sólido en mujer joven con LDH elevada orienta a disgerminoma.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento inicial en paciente joven con deseo reproductivo:",
+        "options": [
+          "Ooforectomía unilateral con estadificación",
+          "Histerectomía total",
+          "Solo quimioterapia",
+          "Observación"
+        ],
+        "answerIndex": 0,
+        "explanation": "Se preserva fertilidad si es unilateral y en etapa temprana.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia",
+    "subtema": "Prolapso de cordón umbilical",
+    "difficulty": "Alta",
+    "case": "Paciente de 35 semanas en trabajo de parto, presentación transversa. Tras ruptura artificial de membranas se observa cordón umbilical protruyendo por vagina. FCF 90 lpm.",
+    "questions": [
+      {
+        "question": "Diagnóstico:",
+        "options": [
+          "Placenta previa",
+          "Prolapso de cordón",
+          "DPPNI",
+          "Vasa previa"
+        ],
+        "answerIndex": 1,
+        "explanation": "Visualización del cordón tras ruptura de membranas confirma diagnóstico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta inmediata:",
+        "options": [
+          "Intentar reintroducir cordón y continuar trabajo",
+          "Elevar presentación fetal manualmente y cesárea urgente",
+          "Oxitocina",
+          "Observación"
+        ],
+        "answerIndex": 1,
+        "explanation": "Debe aliviarse compresión mientras se prepara resolución quirúrgica urgente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hipertensiva del embarazo",
+    "subtema": "Eclampsia intraparto",
+    "difficulty": "Alta",
+    "case": "Paciente de 21 años, primigesta, 38 semanas, sin control prenatal adecuado. Ingresa en trabajo de parto activo con 6 cm de dilatación. TA al ingreso 155/100 mmHg. Refiere cefalea leve desde la mañana. Durante su estancia presenta crisis convulsiva tónico-clónica generalizada de aproximadamente 1 minuto. Posteriormente queda somnolienta, con respiración espontánea conservada. FCF 140 lpm reactiva. No hay datos de desprendimiento placentario. Laboratorios posteriores: plaquetas 130,000; AST ligeramente elevada; creatinina normal.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Epilepsia",
+          "Crisis hipertensiva aislada",
+          "Eclampsia",
+          "Síndrome HELLP"
+        ],
+        "answerIndex": 2,
+        "explanation": "Convulsión en paciente embarazada con datos hipertensivos sin otra causa aparente es eclampsia hasta demostrar lo contrario.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la primera medida terapéutica específica?",
+        "options": [
+          "Diazepam como manejo único",
+          "Sulfato de magnesio en dosis de impregnación y mantenimiento",
+          "Fenitoína",
+          "Inducción inmediata sin estabilizar"
+        ],
+        "answerIndex": 1,
+        "explanation": "El sulfato de magnesio es el fármaco de elección para prevenir recurrencia convulsiva.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tras estabilización materna, la conducta obstétrica es:",
+        "options": [
+          "Manejo expectante hasta 40 semanas",
+          "Interrupción del embarazo independientemente de edad gestacional",
+          "Alta domiciliaria",
+          "Solo antihipertensivos"
+        ],
+        "answerIndex": 1,
+        "explanation": "La eclampsia es indicación de terminación del embarazo una vez estabilizada la madre.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragia obstétrica",
+    "subtema": "Inversión uterina",
+    "difficulty": "Alta",
+    "case": "Paciente de 29 años, parto vaginal eutócico hace 15 minutos. Tras tracción excesiva del cordón durante el alumbramiento presenta dolor súbito intenso y hemorragia profusa. Se observa masa rojiza protruyendo por vagina. TA 85/55 mmHg, FC 125 lpm. A la palpación abdominal no se identifica fondo uterino en su posición habitual.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Atonía uterina",
+          "Laceración vaginal",
+          "Inversión uterina",
+          "Retención placentaria"
+        ],
+        "answerIndex": 2,
+        "explanation": "Ausencia del fondo uterino abdominal y masa vaginal son característicos.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Primer paso en el manejo:",
+        "options": [
+          "Histerectomía inmediata",
+          "Reposición manual urgente del útero + manejo del choque",
+          "Antibióticos",
+          "Alta"
+        ],
+        "answerIndex": 1,
+        "explanation": "Debe intentarse reposición manual inmediata antes de que se instaure edema severo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endocrinología obstétrica",
+    "subtema": "Hipotiroidismo en embarazo",
+    "difficulty": "Media",
+    "case": "Paciente de 30 años, 10 semanas de gestación, antecedente de tiroiditis autoinmune. Consulta por fatiga marcada y aumento leve de peso. TSH 6.5 mUI/L, T4 libre baja. No presenta bocio significativo.",
+    "questions": [
+      {
+        "question": "Diagnóstico:",
+        "options": [
+          "Hipertiroidismo",
+          "Hipotiroidismo clínico",
+          "Tirotoxicosis gestacional",
+          "Función tiroidea normal"
+        ],
+        "answerIndex": 1,
+        "explanation": "TSH elevada con T4 baja confirma hipotiroidismo clínico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento indicado:",
+        "options": [
+          "Suspender todo manejo",
+          "Levotiroxina ajustada a peso",
+          "Metimazol",
+          "Yodo radiactivo"
+        ],
+        "answerIndex": 1,
+        "explanation": "El hipotiroidismo no tratado aumenta riesgo de aborto y alteraciones neurocognitivas fetales.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Oncología ginecológica",
+    "subtema": "Cáncer cervicouterino localmente avanzado",
+    "difficulty": "Alta",
+    "case": "Paciente de 48 años con sangrado poscoital y flujo fétido desde hace 6 meses. Nunca se ha realizado Papanicolaou. Especuloscopía muestra lesión infiltrante que compromete cuello uterino y parametrios. RM confirma extensión parametrial sin invasión a pared pélvica.",
+    "questions": [
+      {
+        "question": "Estadio probable:",
+        "options": [
+          "IB",
+          "IIA",
+          "IIB",
+          "IV"
+        ],
+        "answerIndex": 2,
+        "explanation": "Compromiso parametrial sin llegar a pared pélvica corresponde a estadio IIB.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento de elección:",
+        "options": [
+          "Histerectomía simple",
+          "Radioterapia externa + quimioterapia concomitante",
+          "Observación",
+          "Crioterapia"
+        ],
+        "answerIndex": 1,
+        "explanation": "En enfermedad localmente avanzada no resecable, el estándar es radioquimioterapia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia",
+    "subtema": "Restricción del crecimiento intrauterino severa con Doppler crítico",
+    "difficulty": "Alta",
+    "case": "Paciente de 32 años, 32 semanas, antecedente de preeclampsia leve. USG muestra peso fetal < percentil 3, oligohidramnios y Doppler con ausencia de flujo diastólico en arteria umbilical. Perfil biofísico 6/10.",
+    "questions": [
+      {
+        "question": "Significado del Doppler:",
+        "options": [
+          "Hallazgo normal",
+          "Insuficiencia placentaria severa",
+          "Error técnico",
+          "Polihidramnios"
+        ],
+        "answerIndex": 1,
+        "explanation": "La ausencia de flujo diastólico indica alto riesgo de hipoxia fetal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta más adecuada:",
+        "options": [
+          "Alta domiciliaria",
+          "Vigilancia estrecha y considerar interrupción según edad gestacional y condición fetal",
+          "Solo vitaminas",
+          "Inducción inmediata sin valorar viabilidad"
+        ],
+        "answerIndex": 1,
+        "explanation": "La decisión depende del balance entre prematuridad y riesgo de muerte fetal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Ginecología",
+    "subtema": "Miomatosis uterina sintomática",
+    "difficulty": "Media",
+    "case": "Paciente de 40 años con sangrado uterino abundante y dolor pélvico crónico. USG muestra múltiples miomas intramurales y submucosos, el mayor de 6 cm deformando cavidad endometrial. Desea preservar fertilidad.",
+    "questions": [
+      {
+        "question": "Principal causa del sangrado:",
+        "options": [
+          "Deficiencia estrogénica",
+          "Alteración estructural de la cavidad uterina",
+          "Infección",
+          "Hiperprolactinemia"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los miomas submucosos distorsionan endometrio y favorecen sangrado abundante.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Opción terapéutica conservadora:",
+        "options": [
+          "Histerectomía total",
+          "Miomectomía",
+          "Radioterapia",
+          "Quimioterapia"
+        ],
+        "answerIndex": 1,
+        "explanation": "En pacientes con deseo reproductivo, la miomectomía es alternativa conservadora.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Aborto incompleto",
+    "difficulty": "Media",
+    "case": "Paciente de 32 años, G3P1A1, con amenorrea de 11 semanas, acude por sangrado vaginal abundante desde hace 8 horas acompañado de cólico hipogástrico intenso tipo contracción. Refiere expulsión parcial de tejido en domicilio. Exploración: TA 105/65 mmHg, FC 98 lpm. Abdomen con dolor leve a la palpación profunda. Especuloscopía: sangrado activo moderado. Tacto vaginal: cérvix dilatado 2 cm, restos tisulares palpables en canal cervical. USG transvaginal: cavidad uterina con material ecogénico heterogéneo compatible con restos ovulares retenidos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Aborto retenido",
+          "Aborto incompleto",
+          "Amenaza de aborto",
+          "Embarazo ectópico"
+        ],
+        "answerIndex": 1,
+        "explanation": "Sangrado abundante + cérvix dilatado + restos intrauterinos = aborto incompleto.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta más adecuada en este momento:",
+        "options": [
+          "Observación domiciliaria",
+          "Evacuación uterina (AMEU o legrado)",
+          "Tocolíticos",
+          "Solo analgésicos"
+        ],
+        "answerIndex": 1,
+        "explanation": "El sangrado activo y restos retenidos indican evacuación uterina para prevenir hemorragia o infección.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hipertensiva del embarazo",
+    "subtema": "Preeclampsia sin proteinuria (criterios actuales)",
+    "difficulty": "Alta",
+    "case": "Paciente de 29 años, 35 semanas, con TA 160/105 mmHg en dos ocasiones separadas por 30 minutos. Niega proteinuria en tira reactiva. Refiere cefalea persistente y dolor en hipocondrio derecho. Laboratorios: plaquetas 110,000, AST 95 U/L, creatinina 1.4 mg/dL.",
+    "questions": [
+      {
+        "question": "¿Puede diagnosticarse preeclampsia aunque no haya proteinuria?",
+        "options": [
+          "No, es requisito obligatorio",
+          "Sí, si hay datos de daño orgánico",
+          "Solo si hay edema",
+          "Solo con convulsiones"
+        ],
+        "answerIndex": 1,
+        "explanation": "Actualmente, el diagnóstico puede hacerse con HTA + datos de severidad aunque no exista proteinuria.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Clasificación en este caso:",
+        "options": [
+          "Hipertensión gestacional",
+          "Preeclampsia sin severidad",
+          "Preeclampsia con datos de severidad",
+          "HELLP"
+        ],
+        "answerIndex": 2,
+        "explanation": "Plaquetopenia, alteración hepática y elevación de creatinina son criterios de severidad.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Arresto de dilatación en fase activa",
+    "difficulty": "Alta",
+    "case": "Primigesta de 39 semanas en trabajo de parto. Dilatación 7 cm durante 6 horas pese a adecuada dinámica uterina documentada con monitorización interna (4–5 contracciones en 10 minutos, intensidad adecuada). Cabeza fetal en estación 0. Pelvis clínicamente adecuada. FCF normal.",
+    "questions": [
+      {
+        "question": "Diagnóstico obstétrico:",
+        "options": [
+          "Trabajo de parto normal",
+          "Arresto de dilatación en fase activa",
+          "Desproporción cefalopélvica obligatoria",
+          "Hipodinamia"
+        ],
+        "answerIndex": 1,
+        "explanation": "Falta de progresión ≥4 horas con dinámica adecuada define arresto en fase activa.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta:",
+        "options": [
+          "Continuar indefinidamente",
+          "Cesárea",
+          "Tocolíticos",
+          "Alta"
+        ],
+        "answerIndex": 1,
+        "explanation": "Arresto documentado con dinámica adecuada indica resolución quirúrgica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endocrinología ginecológica",
+    "subtema": "Síndrome de ovario poliquístico – complicaciones metabólicas",
+    "difficulty": "Media",
+    "case": "Paciente de 26 años con diagnóstico previo de SOP. IMC 33 kg/m². Acantosis nigricans en cuello. Ciclos irregulares persistentes. Glucosa en ayuno 112 mg/dL.",
+    "questions": [
+      {
+        "question": "Principal alteración metabólica asociada:",
+        "options": [
+          "Hipertiroidismo",
+          "Resistencia a la insulina",
+          "Hipocalcemia",
+          "Deficiencia de cortisol"
+        ],
+        "answerIndex": 1,
+        "explanation": "El SOP se asocia frecuentemente a resistencia a la insulina y síndrome metabólico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Intervención no farmacológica fundamental:",
+        "options": [
+          "Reposo absoluto",
+          "Pérdida de peso mediante dieta y ejercicio",
+          "Antibióticos",
+          "Terapia hormonal obligatoria"
+        ],
+        "answerIndex": 1,
+        "explanation": "La reducción de peso mejora ovulación y perfil metabólico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Oncología ginecológica",
+    "subtema": "Cáncer de endometrio – factores de riesgo",
+    "difficulty": "Media",
+    "case": "Paciente de 59 años, nulípara, obesa, con antecedente de terapia estrogénica sin oposición por 5 años. Presenta sangrado postmenopáusico. Biopsia confirma adenocarcinoma endometrioide.",
+    "questions": [
+      {
+        "question": "Principal factor fisiopatológico implicado:",
+        "options": [
+          "Déficit estrogénico",
+          "Estimulación estrogénica sin oposición progestacional",
+          "Infección viral",
+          "Trauma uterino"
+        ],
+        "answerIndex": 1,
+        "explanation": "El exceso estrogénico crónico favorece hiperplasia y progresión a carcinoma.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento estándar en etapa temprana:",
+        "options": [
+          "Radioterapia exclusiva",
+          "Histerectomía total con salpingooforectomía bilateral",
+          "Observación",
+          "Anticonceptivos"
+        ],
+        "answerIndex": 1,
+        "explanation": "La cirugía es el tratamiento de elección en enfermedad localizada.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Obstetricia",
+    "subtema": "Embolia de líquido amniótico",
+    "difficulty": "Alta",
+    "case": "Paciente de 35 años durante trabajo de parto presenta súbitamente disnea intensa, cianosis, hipotensión severa y pérdida de la conciencia. Posteriormente desarrolla sangrado incoercible por sitios de punción. Se documenta hipoxemia severa y alteraciones compatibles con coagulación intravascular diseminada.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Trombosis venosa profunda",
+          "Embolia pulmonar clásica",
+          "Embolia de líquido amniótico",
+          "Crisis asmática"
+        ],
+        "answerIndex": 2,
+        "explanation": "Colapso cardiovascular súbito intraparto + CID es altamente sugestivo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Manejo inicial:",
+        "options": [
+          "Anticoagulación inmediata",
+          "Soporte vital avanzado y manejo en UCI",
+          "Alta",
+          "Solo antibióticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Es una emergencia obstétrica con manejo principalmente de soporte intensivo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del tercer trimestre",
+    "subtema": "Placenta previa",
+    "difficulty": "Alta",
+    "case": "Paciente de 34 años, G4P2A1, 35 semanas de gestación, antecedente de 2 cesáreas previas, acude por sangrado vaginal rojo brillante de inicio súbito, indoloro, en cantidad moderada. Niega actividad uterina dolorosa. Refiere movimientos fetales presentes. Exploración: TA 110/70 mmHg, FC 92 lpm. Abdomen sin hipertonía uterina, no dolor a la palpación. FCF 140 lpm reactiva. No se realiza tacto vaginal digital. USG obstétrico: placenta cubriendo completamente el orificio cervical interno.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Desprendimiento prematuro de placenta",
+          "Placenta previa oclusiva total",
+          "Vasa previa",
+          "Ruptura uterina"
+        ],
+        "answerIndex": 1,
+        "explanation": "Sangrado rojo brillante, indoloro y placenta cubriendo OCI es característico de placenta previa.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta obstétrica más adecuada si el sangrado persiste:",
+        "options": [
+          "Inducción con oxitocina",
+          "Cesárea programada urgente",
+          "Tacto vaginal para valorar dilatación",
+          "Manejo ambulatorio"
+        ],
+        "answerIndex": 1,
+        "explanation": "Placenta previa oclusiva total es indicación absoluta de cesárea.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del tercer trimestre",
+    "subtema": "Desprendimiento prematuro de placenta normoinserta (DPPNI)",
+    "difficulty": "Alta",
+    "case": "Paciente de 29 años, 37 semanas, con antecedente de hipertensión gestacional, consulta por dolor abdominal intenso súbito acompañado de sangrado oscuro escaso. Refiere disminución de movimientos fetales. Exploración: TA 150/95 mmHg, útero hipertónico, doloroso a la palpación, FCF 100 lpm con desaceleraciones tardías.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Placenta previa",
+          "DPPNI",
+          "Trabajo de parto normal",
+          "Apendicitis"
+        ],
+        "answerIndex": 1,
+        "explanation": "Dolor + hipertonía uterina + sangrado oscuro sugieren desprendimiento placentario.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta inmediata:",
+        "options": [
+          "Observación 24 horas",
+          "Cesárea urgente",
+          "Reposo domiciliario",
+          "Solo antihipertensivos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Compromiso fetal + sospecha de DPPNI requiere resolución inmediata.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones en el embarazo",
+    "subtema": "Corioamnionitis",
+    "difficulty": "Media",
+    "case": "Primigesta de 22 años, 38 semanas, con ruptura de membranas desde hace 20 horas. Presenta fiebre de 38.6°C, taquicardia materna y fetal (170 lpm). Líquido amniótico fétido.",
+    "questions": [
+      {
+        "question": "Diagnóstico:",
+        "options": [
+          "Sepsis urinaria",
+          "Corioamnionitis",
+          "Endometritis postparto",
+          "Infección vaginal simple"
+        ],
+        "answerIndex": 1,
+        "explanation": "Fiebre + RPM prolongada + taquicardia fetal es diagnóstico clínico de corioamnionitis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Manejo:",
+        "options": [
+          "Solo antipiréticos",
+          "Antibióticos IV de amplio espectro y resolución del embarazo",
+          "Esperar cultivo",
+          "Alta"
+        ],
+        "answerIndex": 1,
+        "explanation": "El tratamiento incluye antibióticos IV y culminación del embarazo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Anticoncepción",
+    "subtema": "DIU en nulíparas",
+    "difficulty": "Media",
+    "case": "Paciente de 19 años, nuligesta, solicita anticoncepción de larga duración. Niega antecedentes de EPI. Ciclos regulares. Exploración normal.",
+    "questions": [
+      {
+        "question": "¿Es el DIU una opción válida?",
+        "options": [
+          "No, está contraindicado en nulíparas",
+          "Sí, es método seguro y eficaz",
+          "Solo después del primer parto",
+          "Solo si es mayor de 25 años"
+        ],
+        "answerIndex": 1,
+        "explanation": "Las guías actuales permiten DIU en nulíparas sin contraindicación.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Principal mecanismo del DIU de cobre:",
+        "options": [
+          "Inhibición ovulatoria",
+          "Reacción inflamatoria local espermicida",
+          "Bloqueo cervical hormonal",
+          "Supresión hipofisaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "El cobre genera reacción inflamatoria tóxica para espermatozoides.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Oncología ginecológica",
+    "subtema": "Cáncer cervicouterino – tamizaje",
+    "difficulty": "Media",
+    "case": "Paciente de 31 años, sin antecedentes patológicos, inicia vida sexual a los 17 años. Nunca se ha realizado citología cervical.",
+    "questions": [
+      {
+        "question": "Método de tamizaje recomendado a su edad:",
+        "options": [
+          "Colposcopía inicial",
+          "Papanicolaou cada 3 años",
+          "Biopsia cervical",
+          "Solo prueba de embarazo"
+        ],
+        "answerIndex": 1,
+        "explanation": "En mujeres de 25–34 años se recomienda citología cervical periódica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Principal factor etiológico del cáncer cervicouterino:",
+        "options": [
+          "VPH oncogénico",
+          "Cándida",
+          "Herpes simple",
+          "Trauma cervical"
+        ],
+        "answerIndex": 0,
+        "explanation": "VPH 16 y 18 son los principales responsables.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Distocia de hombros",
+    "difficulty": "Alta",
+    "case": "Paciente de 28 años, G2P1, embarazo de 40 semanas con producto estimado de 4,200 g. Durante expulsivo, tras salida de la cabeza fetal, se observa retracción del mentón contra el periné (“signo de la tortuga”). No progresa el parto.",
+    "questions": [
+      {
+        "question": "Diagnóstico:",
+        "options": [
+          "Prolapso de cordón",
+          "Distocia de hombros",
+          "Ruptura uterina",
+          "Presentación anómala"
+        ],
+        "answerIndex": 1,
+        "explanation": "El signo de la tortuga es clásico de distocia de hombros.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Primera maniobra indicada:",
+        "options": [
+          "Maniobra de Kristeller",
+          "Maniobra de McRoberts",
+          "Cesárea inmediata",
+          "Tracción forzada de cabeza"
+        ],
+        "answerIndex": 1,
+        "explanation": "McRoberts es la primera intervención recomendada.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Control prenatal",
+    "subtema": "Suplementación en embarazo",
+    "difficulty": "Fácil",
+    "case": "Paciente de 24 años, primigesta, acude a su primera consulta prenatal con 9 semanas de gestación confirmadas por ultrasonido. No antecedentes patológicos. IMC 23 kg/m². No consumo de medicamentos previo. Refiere náuseas leves. Pregunta específicamente qué suplementos debe iniciar para disminuir riesgos en su embarazo. Exploración física normal. Laboratorios iniciales sin alteraciones.",
+    "questions": [
+      {
+        "question": "¿Qué suplemento debe indicarse de rutina en el primer trimestre para prevenir defectos del tubo neural?",
+        "options": [
+          "Hierro",
+          "Calcio",
+          "Ácido fólico",
+          "Vitamina D"
+        ],
+        "answerIndex": 2,
+        "explanation": "El ácido fólico preconcepcional y durante el primer trimestre reduce el riesgo de defectos del tubo neural.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Dosis habitual recomendada en paciente sin factores de alto riesgo:",
+        "options": [
+          "0.4 mg al día",
+          "5 mg al día",
+          "10 mg al día",
+          "50 mg al día"
+        ],
+        "answerIndex": 0,
+        "explanation": "La dosis estándar es 0.4 mg diarios en embarazos de bajo riesgo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Lactancia",
+    "subtema": "Beneficios de la lactancia materna exclusiva",
+    "difficulty": "Fácil",
+    "case": "Puérpera de 26 años, 24 horas postparto eutócico, pregunta si puede complementar con fórmula porque “siente que no produce suficiente leche”. El recién nacido pesa 3,200 g, succión adecuada, signos vitales normales.",
+    "questions": [
+      {
+        "question": "Recomendación actual sobre alimentación del recién nacido sano:",
+        "options": [
+          "Fórmula desde el nacimiento",
+          "Lactancia materna exclusiva hasta los 6 meses",
+          "Agua con glucosa adicional",
+          "Leche evaporada"
+        ],
+        "answerIndex": 1,
+        "explanation": "La recomendación es lactancia exclusiva los primeros 6 meses.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Principal beneficio inmunológico de la leche materna:",
+        "options": [
+          "Contiene antibióticos sintéticos",
+          "Aporta IgA secretora",
+          "Genera inmunidad artificial",
+          "Disminuye vacunación"
+        ],
+        "answerIndex": 1,
+        "explanation": "La IgA secretora protege contra infecciones gastrointestinales y respiratorias.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones ginecológicas",
+    "subtema": "Candidiasis vaginal",
+    "difficulty": "Fácil",
+    "case": "Paciente de 28 años, sexualmente activa, consulta por prurito vulvar intenso, leucorrea blanca grumosa, sin olor fétido. pH vaginal 4.5. No dolor pélvico.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Vaginosis bacteriana",
+          "Candidiasis vulvovaginal",
+          "Tricomoniasis",
+          "EPI"
+        ],
+        "answerIndex": 1,
+        "explanation": "Flujo blanco grumoso + prurito intenso y pH normal sugieren candidiasis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento de primera línea:",
+        "options": [
+          "Metronidazol",
+          "Fluconazol dosis única",
+          "Ceftriaxona",
+          "Doxiciclina"
+        ],
+        "answerIndex": 1,
+        "explanation": "Azoles son el tratamiento estándar en candidiasis no complicada.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Anticoncepción",
+    "subtema": "Anticoncepción hormonal combinada",
+    "difficulty": "Fácil",
+    "case": "Mujer de 23 años sin antecedentes médicos, no fumadora, solicita método anticonceptivo reversible. No factores de riesgo trombótico.",
+    "questions": [
+      {
+        "question": "Mecanismo principal de los anticonceptivos combinados:",
+        "options": [
+          "Alteración endometrial exclusiva",
+          "Inhibición de la ovulación",
+          "Destrucción espermática directa",
+          "Bloqueo tubárico"
+        ],
+        "answerIndex": 1,
+        "explanation": "Su principal mecanismo es inhibir el pico de LH y evitar la ovulación.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Principal contraindicación absoluta:",
+        "options": [
+          "Edad menor de 30",
+          "Migraña con aura",
+          "Nuliparidad",
+          "Dismenorrea"
+        ],
+        "answerIndex": 1,
+        "explanation": "Migraña con aura aumenta riesgo trombótico y es contraindicación.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Fases del trabajo de parto",
+    "difficulty": "Fácil",
+    "case": "Primigesta de 39 semanas con contracciones regulares cada 4 minutos. Dilatación cervical 5 cm, borramiento 80%, membranas íntegras.",
+    "questions": [
+      {
+        "question": "¿En qué fase del trabajo de parto se encuentra?",
+        "options": [
+          "Fase latente",
+          "Fase activa",
+          "Periodo expulsivo",
+          "Alumbramiento"
+        ],
+        "answerIndex": 1,
+        "explanation": "Dilatación ≥4–6 cm con contracciones regulares corresponde a fase activa.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Meta de progresión esperada en primigesta en fase activa:",
+        "options": [
+          "0.2 cm/h",
+          "1 cm/h aproximadamente",
+          "5 cm/h",
+          "No hay referencia"
+        ],
+        "answerIndex": 1,
+        "explanation": "Se espera progresión aproximada de 1 cm por hora en primigestas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Climaterio",
+    "subtema": "Diagnóstico de menopausia",
+    "difficulty": "Fácil",
+    "case": "Paciente de 50 años refiere 13 meses sin menstruación. Presenta bochornos y sudoración nocturna. No usa anticonceptivos.",
+    "questions": [
+      {
+        "question": "Criterio diagnóstico de menopausia:",
+        "options": [
+          "3 meses sin menstruación",
+          "6 meses sin menstruación",
+          "12 meses consecutivos sin menstruación",
+          "FSH obligatoria"
+        ],
+        "answerIndex": 2,
+        "explanation": "La menopausia es diagnóstico clínico tras 12 meses de amenorrea.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Hormona que se encuentra elevada fisiológicamente:",
+        "options": [
+          "Estradiol",
+          "FSH",
+          "Progesterona",
+          "Prolactina"
+        ],
+        "answerIndex": 1,
+        "explanation": "La falla ovárica provoca elevación de FSH.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hipertensiva del embarazo",
+    "subtema": "Eclampsia",
+    "difficulty": "Alta",
+    "case": "Paciente de 21 años, primigesta, 33 semanas de gestación, sin control prenatal adecuado, es llevada a urgencias tras presentar episodio convulsivo tónico-clónico generalizado de aproximadamente 1 minuto de duración, con recuperación parcial del estado de alerta. Familiares refieren cefalea intensa progresiva desde hace 48 horas, fosfenos y edema facial. Exploración: TA 170/115 mmHg, FC 105 lpm, FR 22 rpm. Edema en extremidades inferiores ++. Reflejos osteotendinosos exaltados. Altura uterina acorde a edad gestacional. FCF 150 lpm. Laboratorios: plaquetas 135,000; AST 70 U/L; creatinina 1.2 mg/dL. Tira reactiva con proteinuria ++.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Epilepsia primaria",
+          "Preeclampsia sin severidad",
+          "Eclampsia",
+          "Crisis hipertensiva aislada"
+        ],
+        "answerIndex": 2,
+        "explanation": "La presencia de convulsión en paciente con datos de preeclampsia confirma eclampsia, independientemente del nivel de proteinuria.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento anticonvulsivante de primera línea:",
+        "options": [
+          "Diazepam",
+          "Fenitoína",
+          "Sulfato de magnesio",
+          "Ácido valproico"
+        ],
+        "answerIndex": 2,
+        "explanation": "El sulfato de magnesio es el fármaco de elección para prevenir recurrencia convulsiva en eclampsia.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta obstétrica definitiva:",
+        "options": [
+          "Prolongar embarazo hasta término",
+          "Interrumpir embarazo una vez estabilizada",
+          "Solo antihipertensivos",
+          "Alta domiciliaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "La resolución del embarazo es el tratamiento definitivo tras estabilización materna.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragia obstétrica",
+    "subtema": "Atonía uterina",
+    "difficulty": "Alta",
+    "case": "Paciente de 30 años, G3P3, inmediatamente posterior a parto eutócico de producto de 4,100 g. Placenta íntegra expulsada. A los pocos minutos presenta sangrado vaginal abundante que empapa compresas rápidamente. Se observa útero aumentado de tamaño, blando, por arriba del ombligo. TA 90/60 mmHg, FC 120 lpm. Paciente pálida, diaforética.",
+    "questions": [
+      {
+        "question": "Causa más probable de la hemorragia:",
+        "options": [
+          "Retención placentaria",
+          "Atonía uterina",
+          "Laceración cervical",
+          "Coagulopatía primaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "Útero blando y aumentado de tamaño en contexto inmediato postparto sugiere atonía uterina, causa más frecuente de hemorragia obstétrica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Primera intervención:",
+        "options": [
+          "Histerectomía inmediata",
+          "Masaje uterino bimanual",
+          "Esperar evolución",
+          "Antibióticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "El masaje uterino es la primera medida para estimular contracción.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Uterotónico de primera línea:",
+        "options": [
+          "Metilergonovina",
+          "Oxitocina",
+          "Misoprostol como primera opción obligatoria",
+          "Ácido tranexámico exclusivo"
+        ],
+        "answerIndex": 1,
+        "explanation": "La oxitocina IV es el uterotónico inicial recomendado.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Embarazo ectópico",
+    "subtema": "Manejo médico con metotrexato",
+    "difficulty": "Media",
+    "case": "Paciente de 27 años, G2P0A1, 7 semanas por FUM, acude por dolor pélvico leve y manchado escaso. Hemodinámicamente estable. BHCG 1,800 mUI/mL. USG transvaginal: no saco intrauterino visible, masa anexial derecha de 2.5 cm sin actividad cardiaca embrionaria, sin líquido libre significativo.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Aborto completo",
+          "Embarazo ectópico no complicado",
+          "Quiste ovárico simple",
+          "Amenaza de aborto"
+        ],
+        "answerIndex": 1,
+        "explanation": "BHCG positiva sin saco intrauterino y masa anexial compatible sugiere ectópico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Criterio que permite manejo médico:",
+        "options": [
+          "Inestabilidad hemodinámica",
+          "Masa menor de 4 cm y sin latido embrionario",
+          "Hemoperitoneo abundante",
+          "Dolor intenso con choque"
+        ],
+        "answerIndex": 1,
+        "explanation": "El manejo con metotrexato está indicado en pacientes estables con criterios específicos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones de transmisión sexual",
+    "subtema": "Enfermedad pélvica inflamatoria",
+    "difficulty": "Media",
+    "case": "Paciente de 23 años consulta por dolor pélvico bilateral de 4 días de evolución, fiebre 38.3°C y leucorrea mucopurulenta. Refiere múltiples parejas sexuales y uso irregular de preservativo. Exploración: dolor a la movilización cervical, dolor anexial bilateral. BH con leucocitosis leve.",
+    "questions": [
+      {
+        "question": "Diagnóstico clínico más probable:",
+        "options": [
+          "Apendicitis",
+          "Embarazo ectópico roto",
+          "Enfermedad pélvica inflamatoria",
+          "Endometriosis"
+        ],
+        "answerIndex": 2,
+        "explanation": "Dolor a la movilización cervical + fiebre + flujo mucopurulento es criterio clínico de EPI.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Esquema antibiótico ambulatorio recomendado:",
+        "options": [
+          "Ceftriaxona + doxiciclina + metronidazol",
+          "Penicilina sola",
+          "Fluconazol",
+          "Azitromicina sola"
+        ],
+        "answerIndex": 0,
+        "explanation": "Se requiere cobertura para gonococo, clamidia y anaerobios.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Diabetes gestacional",
+    "subtema": "Tamizaje y diagnóstico",
+    "difficulty": "Media",
+    "case": "Paciente de 31 años, 26 semanas, IMC 31 kg/m², antecedente familiar de diabetes. Se realiza prueba de tamiz con 50 g de glucosa, resultado 165 mg/dL a la hora.",
+    "questions": [
+      {
+        "question": "Conducta siguiente:",
+        "options": [
+          "Diagnosticar diabetes gestacional",
+          "Realizar curva de tolerancia con 100 g",
+          "Repetir tamiz",
+          "Iniciar insulina"
+        ],
+        "answerIndex": 1,
+        "explanation": "Tamiz alterado requiere prueba confirmatoria con carga de 100 g.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Complicación fetal asociada más frecuente:",
+        "options": [
+          "Restricción del crecimiento",
+          "Macrosomía fetal",
+          "Microcefalia",
+          "Atresia intestinal"
+        ],
+        "answerIndex": 1,
+        "explanation": "La hiperglucemia materna favorece hiperinsulinismo fetal y macrosomía.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Oncología ginecológica",
+    "subtema": "Lesión intraepitelial escamosa de alto grado",
+    "difficulty": "Alta",
+    "case": "Paciente de 35 años con citología que reporta LIEAG (HSIL). Colposcopía muestra zona acetoblanca extensa con mosaico grueso. Biopsia confirma NIC III.",
+    "questions": [
+      {
+        "question": "Conducta terapéutica recomendada:",
+        "options": [
+          "Observación anual",
+          "Tratamiento escisional (LEEP o conización)",
+          "Antibióticos",
+          "Histerectomía inmediata en todos los casos"
+        ],
+        "answerIndex": 1,
+        "explanation": "NIC III requiere tratamiento escisional para prevenir progresión a carcinoma invasor.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Ruptura prematura de membranas a término",
+    "difficulty": "Media",
+    "case": "Paciente de 25 años, primigesta, 39 semanas de gestación, acude por salida súbita de líquido claro abundante hace 3 horas. Niega fiebre, niega sangrado. Percibe movimientos fetales normales. Exploración: TA 110/70 mmHg, FC 88 lpm, T 36.8°C. Abdomen con producto único, longitudinal, cefálico. FCF 145 lpm reactiva. Especuloscopía: salida de líquido claro por orificio cervical. Prueba de cristalización positiva. Cérvix posterior, 1 cm de dilatación, 30% borrado. Sin actividad uterina regular.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico?",
+        "options": [
+          "Trabajo de parto activo",
+          "Ruptura prematura de membranas a término",
+          "Amenaza de parto pretérmino",
+          "Incompetencia cervical"
+        ],
+        "answerIndex": 1,
+        "explanation": "Salida de líquido amniótico antes del inicio del trabajo de parto en embarazo ≥37 semanas corresponde a RPM a término.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta inicial más adecuada:",
+        "options": [
+          "Manejo expectante indefinido",
+          "Inducción del trabajo de parto",
+          "Tocolíticos",
+          "Alta domiciliaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "En RPM a término se recomienda inducir el trabajo de parto para disminuir riesgo de infección.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Parto pretérmino",
+    "subtema": "Amenaza de parto pretérmino",
+    "difficulty": "Alta",
+    "case": "Paciente de 29 años, G2P1, 32 semanas de gestación, acude por contracciones dolorosas cada 8 minutos desde hace 4 horas. Refiere sensación de presión pélvica. No salida de líquido. Exploración: TA 115/75 mmHg. FCF 150 lpm. Tacto vaginal: dilatación 2 cm, borramiento 50%, membranas íntegras. USG: longitud cervical 20 mm.",
+    "questions": [
+      {
+        "question": "Diagnóstico:",
+        "options": [
+          "Trabajo de parto pretérmino establecido",
+          "Amenaza de parto pretérmino",
+          "Incompetencia cervical",
+          "Falso trabajo de parto"
+        ],
+        "answerIndex": 1,
+        "explanation": "Hay actividad uterina y cambios cervicales leves antes de 37 semanas sin progresión franca.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Intervención farmacológica para maduración pulmonar fetal:",
+        "options": [
+          "Sulfato de magnesio",
+          "Betametasona",
+          "Oxitocina",
+          "Misoprostol"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los corticosteroides antenatales reducen síndrome de dificultad respiratoria neonatal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Objetivo principal del uso de tocolíticos en este contexto:",
+        "options": [
+          "Evitar parto definitivamente",
+          "Ganar 48 horas para efecto de corticoides",
+          "Suspender embarazo hasta término",
+          "Disminuir dolor materno"
+        ],
+        "answerIndex": 1,
+        "explanation": "El objetivo es retrasar el parto para permitir acción de esteroides.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragia obstétrica",
+    "subtema": "Retención de restos placentarios",
+    "difficulty": "Media",
+    "case": "Paciente de 34 años, 2 horas postparto eutócico, presenta sangrado persistente moderado pese a útero contraído y firme. Placenta aparentemente completa al momento de la expulsión. TA 100/65 mmHg, FC 105 lpm. USG transabdominal: imagen ecogénica intrauterina compatible con restos placentarios.",
+    "questions": [
+      {
+        "question": "Causa más probable de la hemorragia:",
+        "options": [
+          "Atonía uterina",
+          "Laceración vaginal",
+          "Retención de restos placentarios",
+          "Coagulopatía primaria"
+        ],
+        "answerIndex": 2,
+        "explanation": "Útero firme con sangrado persistente sugiere restos retenidos.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Manejo indicado:",
+        "options": [
+          "Observación",
+          "Revisión uterina y evacuación instrumental",
+          "Antibiótico exclusivo",
+          "Anticonceptivos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Debe evacuarse el contenido retenido para controlar hemorragia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Endometriosis",
+    "subtema": "Presentación clínica clásica",
+    "difficulty": "Media",
+    "case": "Paciente de 30 años, nulípara, refiere dismenorrea progresiva desde hace 3 años, dolor pélvico crónico y dispareunia profunda. Desea embarazo desde hace 2 años sin éxito. Exploración: dolor a la movilización uterina, nodularidad en fondo de saco posterior. USG transvaginal: quiste ovárico izquierdo de 4 cm con contenido homogéneo en “vidrio esmerilado”.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Quiste funcional",
+          "Endometrioma ovárico",
+          "Absceso tubo-ovárico",
+          "Mioma subseroso"
+        ],
+        "answerIndex": 1,
+        "explanation": "Imagen en vidrio esmerilado + dolor pélvico crónico es típica de endometriosis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Estudio confirmatorio definitivo:",
+        "options": [
+          "CA-125",
+          "Resonancia",
+          "Laparoscopía diagnóstica",
+          "Biometría hemática"
+        ],
+        "answerIndex": 2,
+        "explanation": "La laparoscopía con visualización directa es estándar diagnóstico definitivo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Climaterio",
+    "subtema": "Terapia hormonal de reemplazo",
+    "difficulty": "Alta",
+    "case": "Paciente de 52 años, 2 años postmenopausia, presenta bochornos intensos, insomnio y deterioro importante en calidad de vida. No antecedentes personales de cáncer, trombosis o enfermedad hepática. IMC 26 kg/m². Pregunta por tratamiento hormonal.",
+    "questions": [
+      {
+        "question": "¿Es candidata potencial a terapia hormonal?",
+        "options": [
+          "No, está contraindicada en todas",
+          "Sí, si no tiene contraindicaciones",
+          "Solo si tiene osteoporosis",
+          "Solo si tiene menos de 45 años"
+        ],
+        "answerIndex": 1,
+        "explanation": "Puede indicarse en mujeres sintomáticas sin contraindicaciones y dentro de ventana terapéutica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "En paciente con útero intacto, el esquema debe incluir:",
+        "options": [
+          "Solo estrógeno",
+          "Estrógeno + progestágeno",
+          "Solo progesterona",
+          "Andrógenos"
+        ],
+        "answerIndex": 1,
+        "explanation": "El progestágeno previene hiperplasia endometrial inducida por estrógeno.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Oncología ginecológica",
+    "subtema": "Cáncer de ovario – presentación clínica",
+    "difficulty": "Alta",
+    "case": "Paciente de 60 años, multipara, refiere distensión abdominal progresiva, saciedad temprana y pérdida de peso no intencionada desde hace 4 meses. Exploración: ascitis moderada, masa anexial derecha irregular de 8 cm. CA-125 elevado.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Miomatosis uterina",
+          "Cáncer epitelial de ovario",
+          "Embarazo ectópico",
+          "Quiste funcional"
+        ],
+        "answerIndex": 1,
+        "explanation": "Masa anexial compleja + ascitis + CA-125 elevado en postmenopáusica es altamente sugestivo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Estudio inicial para estadificación:",
+        "options": [
+          "Radiografía simple",
+          "TAC abdominopélvica",
+          "Histeroscopía",
+          "Colposcopía"
+        ],
+        "answerIndex": 1,
+        "explanation": "La tomografía permite evaluar extensión intraabdominal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Embarazo molar (Mola hidatidiforme completa)",
+    "difficulty": "Alta",
+    "case": "Paciente de 19 años, G1P0, 11 semanas por FUM, acude por sangrado vaginal intermitente oscuro desde hace 5 días, acompañado de náusea y vómito intensos incapacitantes. Refiere sensación de crecimiento abdominal mayor al esperado para la edad gestacional. Exploración: TA 140/90 mmHg, FC 96 lpm. Útero palpable a nivel de 16 semanas aproximadamente. No se auscultan latidos fetales con Doppler. Tacto vaginal: cérvix cerrado, sangrado escaso. Laboratorios: BHCG 280,000 mUI/mL. USG transvaginal: imagen en “copos de nieve”, sin embrión visible.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Aborto retenido",
+          "Embarazo molar completo",
+          "Embarazo ectópico",
+          "Gestación múltiple"
+        ],
+        "answerIndex": 1,
+        "explanation": "BHCG muy elevada + útero mayor al esperado + imagen en copos de nieve sin embrión sugieren mola completa.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento inicial indicado:",
+        "options": [
+          "Legrado uterino evacuador por aspiración",
+          "Oxitocina",
+          "Histerectomía obligatoria",
+          "Metotrexato inicial"
+        ],
+        "answerIndex": 0,
+        "explanation": "El manejo inicial es evacuación uterina mediante aspiración.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Seguimiento posterior imprescindible:",
+        "options": [
+          "USG semanal",
+          "BHCG seriada hasta negativización",
+          "Radiografía anual",
+          "Anticonceptivos de barrera exclusivamente"
+        ],
+        "answerIndex": 1,
+        "explanation": "El seguimiento con BHCG seriada detecta enfermedad trofoblástica persistente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hipertensiva del embarazo",
+    "subtema": "Síndrome HELLP",
+    "difficulty": "Alta",
+    "case": "Paciente de 30 años, 34 semanas, con antecedente de preeclampsia diagnosticada hace 1 semana, acude por dolor intenso en epigastrio irradiado a hipocondrio derecho, náusea y malestar general. Exploración: TA 165/110 mmHg. Edema ++. Reflejos aumentados. Laboratorios: plaquetas 75,000; AST 220 U/L; LDH elevada; bilirrubina indirecta elevada; esquistocitos en frotis.",
+    "questions": [
+      {
+        "question": "Diagnóstico:",
+        "options": [
+          "Hepatitis aguda",
+          "Síndrome HELLP",
+          "Gastritis",
+          "Colecistitis"
+        ],
+        "answerIndex": 1,
+        "explanation": "Hemólisis + enzimas hepáticas elevadas + trombocitopenia definen HELLP.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta obstétrica:",
+        "options": [
+          "Manejo expectante hasta término",
+          "Interrupción del embarazo tras estabilización",
+          "Solo antihipertensivos",
+          "Alta"
+        ],
+        "answerIndex": 1,
+        "explanation": "HELLP es indicación de resolución una vez estabilizada la paciente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Prolapso de cordón umbilical",
+    "difficulty": "Alta",
+    "case": "Paciente de 27 años, 38 semanas, en trabajo de parto con 4 cm de dilatación. Durante exploración tras ruptura artificial de membranas se documenta descenso brusco de FCF a 80 lpm sostenidos. Al tacto se palpa estructura pulsátil en vagina por delante de la presentación cefálica.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Bradicardia fetal transitoria",
+          "Prolapso de cordón umbilical",
+          "DPPNI",
+          "Ruptura uterina"
+        ],
+        "answerIndex": 1,
+        "explanation": "Palpación de cordón + bradicardia fetal sostenida es diagnóstico clínico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta inmediata:",
+        "options": [
+          "Esperar recuperación espontánea",
+          "Cesárea urgente",
+          "Tocolíticos",
+          "Antibióticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Es una emergencia obstétrica que requiere resolución inmediata.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones en el embarazo",
+    "subtema": "Bacteriuria asintomática",
+    "difficulty": "Media",
+    "case": "Paciente de 24 años, 18 semanas de gestación, sin síntomas urinarios. Urocultivo de control prenatal reporta 120,000 UFC/mL de E. coli. Sin fiebre, sin dolor lumbar.",
+    "questions": [
+      {
+        "question": "Conducta correcta:",
+        "options": [
+          "No tratar por ausencia de síntomas",
+          "Iniciar antibiótico seguro en embarazo",
+          "Solo vigilancia",
+          "Repetir estudio en 1 mes sin tratamiento"
+        ],
+        "answerIndex": 1,
+        "explanation": "La bacteriuria asintomática en embarazo debe tratarse para prevenir pielonefritis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Complicación si no se trata:",
+        "options": [
+          "Diabetes gestacional",
+          "Pielonefritis",
+          "Eclampsia",
+          "Placenta previa"
+        ],
+        "answerIndex": 1,
+        "explanation": "La progresión a pielonefritis es la complicación más relevante.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Miomatosis uterina",
+    "subtema": "Mioma submucoso y sangrado uterino anormal",
+    "difficulty": "Media",
+    "case": "Paciente de 38 años, G2P2, refiere menstruaciones abundantes y prolongadas desde hace 8 meses, con coágulos y anemia progresiva. Niega dolor pélvico importante. Exploración: útero ligeramente aumentado de tamaño. USG: mioma submucoso de 3.5 cm protruyendo hacia cavidad endometrial.",
+    "questions": [
+      {
+        "question": "Causa más probable del sangrado:",
+        "options": [
+          "Adenomiosis",
+          "Mioma submucoso",
+          "Embarazo ectópico",
+          "Endometriosis"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los miomas submucosos se asocian con sangrado uterino anormal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento quirúrgico de elección si desea conservar fertilidad:",
+        "options": [
+          "Histerectomía",
+          "Miomectomía histeroscópica",
+          "Oclusión tubaria",
+          "Radioterapia"
+        ],
+        "answerIndex": 1,
+        "explanation": "La resección histeroscópica es ideal para miomas submucosos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Cáncer cervicouterino",
+    "subtema": "Cáncer invasor estadio temprano",
+    "difficulty": "Alta",
+    "case": "Paciente de 42 años con biopsia cervical que reporta carcinoma epidermoide invasor. Resonancia muestra lesión confinada al cuello uterino sin extensión parametrial.",
+    "questions": [
+      {
+        "question": "Estadio clínico probable:",
+        "options": [
+          "I",
+          "II",
+          "III",
+          "IV"
+        ],
+        "answerIndex": 0,
+        "explanation": "Enfermedad limitada al cuello corresponde a estadio I.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento estándar en estadio temprano:",
+        "options": [
+          "Radioterapia exclusiva",
+          "Histerectomía radical con linfadenectomía",
+          "Observación",
+          "Anticonceptivos"
+        ],
+        "answerIndex": 1,
+        "explanation": "El manejo quirúrgico es opción en estadios tempranos sin diseminación.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Control prenatal",
+    "subtema": "Cálculo de edad gestacional",
+    "difficulty": "Fácil",
+    "case": "Paciente de 22 años, primigesta, acude a consulta de primera vez. Refiere FUM el 3 de marzo, con ciclos regulares de 28 días. No antecedentes relevantes. Niega sangrado o dolor. Exploración física normal. Solicita saber su fecha probable de parto. La consulta se realiza el 10 de mayo del mismo año.",
+    "questions": [
+      {
+        "question": "¿Qué método clínico se utiliza para calcular la fecha probable de parto?",
+        "options": [
+          "Fórmula de Parkland",
+          "Fórmula de Naegele",
+          "Índice de Bishop",
+          "Regla de Apgar"
+        ],
+        "answerIndex": 1,
+        "explanation": "La fórmula de Naegele es el método clásico para estimar FPP en ciclos regulares.",
+        "gpcReference": ""
+      },
+      {
+        "question": "La fecha probable de parto aproximada sería:",
+        "options": [
+          "10 de diciembre",
+          "10 de enero",
+          "10 de diciembre del mismo año",
+          "3 de noviembre"
+        ],
+        "answerIndex": 2,
+        "explanation": "Se suman 7 días y se restan 3 meses a la FUM.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Puerperio",
+    "subtema": "Endometritis puerperal",
+    "difficulty": "Media",
+    "case": "Paciente de 30 años, 5 días postcesárea por sufrimiento fetal. Consulta por fiebre de 38.5°C, malestar general y dolor hipogástrico progresivo. Refiere loquios fétidos. Exploración: TA 110/70 mmHg, FC 102 lpm. Útero doloroso a la palpación. Herida quirúrgica sin datos de infección superficial. Laboratorios: leucocitosis con neutrofilia.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Infección urinaria",
+          "Endometritis puerperal",
+          "Mastitis",
+          "Trombosis venosa profunda"
+        ],
+        "answerIndex": 1,
+        "explanation": "Fiebre + dolor uterino + loquios fétidos postcesárea es típico de endometritis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento inicial:",
+        "options": [
+          "Amoxicilina oral",
+          "Esquema antibiótico IV de amplio espectro",
+          "Antiinflamatorios",
+          "Alta domiciliaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "Se requiere cobertura IV amplia por flora polimicrobiana.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Anticoncepción",
+    "subtema": "Anticoncepción de emergencia",
+    "difficulty": "Fácil",
+    "case": "Paciente de 19 años acude 24 horas después de relación sexual sin protección. Ciclos regulares. No antecedentes trombóticos.",
+    "questions": [
+      {
+        "question": "Método farmacológico más eficaz dentro de las primeras 72 horas:",
+        "options": [
+          "Misoprostol",
+          "Levonorgestrel",
+          "Metotrexato",
+          "Oxitocina"
+        ],
+        "answerIndex": 1,
+        "explanation": "Levonorgestrel es método hormonal de emergencia eficaz si se administra oportunamente.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Mecanismo principal:",
+        "options": [
+          "Interrupción de embarazo implantado",
+          "Inhibición o retraso de la ovulación",
+          "Destrucción del embrión",
+          "Contracción uterina"
+        ],
+        "answerIndex": 1,
+        "explanation": "Actúa principalmente inhibiendo o retrasando la ovulación.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragia obstétrica",
+    "subtema": "Inversión uterina",
+    "difficulty": "Alta",
+    "case": "Paciente de 27 años, inmediatamente posterior al alumbramiento, presenta dolor intenso súbito, hemorragia abundante y colapso hemodinámico. Se observa masa rojiza protruyendo por vagina. Útero no palpable en abdomen. TA 80/50 mmHg, FC 130 lpm.",
+    "questions": [
+      {
+        "question": "Diagnóstico:",
+        "options": [
+          "Atonía uterina",
+          "Inversión uterina",
+          "Retención placentaria",
+          "Ruptura uterina"
+        ],
+        "answerIndex": 1,
+        "explanation": "Masa vaginal + ausencia de fondo uterino abdominal es clásica de inversión.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Manejo inmediato prioritario:",
+        "options": [
+          "Histerectomía directa",
+          "Reposición manual inmediata del útero",
+          "Antibióticos",
+          "Alta"
+        ],
+        "answerIndex": 1,
+        "explanation": "La reposición manual urgente es esencial antes de que se establezca edema severo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trastornos menstruales",
+    "subtema": "Amenorrea secundaria",
+    "difficulty": "Media",
+    "case": "Paciente de 25 años con ausencia de menstruación desde hace 4 meses. Ciclos previos regulares. Vida sexual activa sin anticoncepción. Niega galactorrea o síntomas tiroideos. Exploración normal.",
+    "questions": [
+      {
+        "question": "Primer estudio a solicitar:",
+        "options": [
+          "Perfil tiroideo",
+          "Prolactina",
+          "Prueba de embarazo",
+          "Ultrasonido transvaginal"
+        ],
+        "answerIndex": 2,
+        "explanation": "Siempre debe descartarse embarazo como primera causa de amenorrea secundaria.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Causa más frecuente de amenorrea secundaria:",
+        "options": [
+          "Síndrome de Asherman",
+          "Embarazo",
+          "Tumor hipofisario",
+          "Insuficiencia ovárica primaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "El embarazo es la causa más común.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones ginecológicas",
+    "subtema": "Vaginosis bacteriana",
+    "difficulty": "Fácil",
+    "case": "Paciente de 28 años consulta por flujo vaginal grisáceo con olor fétido tipo “pescado” que se intensifica después de relaciones sexuales. No prurito intenso. pH vaginal 5.5. Prueba de aminas positiva.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Candidiasis",
+          "Vaginosis bacteriana",
+          "Tricomoniasis",
+          "EPI"
+        ],
+        "answerIndex": 1,
+        "explanation": "Flujo grisáceo + pH elevado + prueba de aminas positiva es diagnóstico clínico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento de elección:",
+        "options": [
+          "Fluconazol",
+          "Metronidazol",
+          "Ceftriaxona",
+          "Clindamicina tópica exclusivamente obligatoria"
+        ],
+        "answerIndex": 1,
+        "explanation": "Metronidazol es tratamiento estándar.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Embarazo ectópico",
+    "subtema": "Embarazo ectópico roto",
+    "difficulty": "Alta",
+    "case": "Paciente de 31 años, G2P1A0, 8 semanas por FUM, acude a urgencias por dolor abdominal súbito, intenso, localizado en fosa iliaca derecha, acompañado de lipotimia. Refiere manchado vaginal escaso desde hace 2 días. No control prenatal. Exploración: TA 85/55 mmHg, FC 122 lpm, palidez generalizada, diaforesis. Abdomen con dolor intenso a la palpación y datos de irritación peritoneal. Tacto vaginal: cérvix cerrado, dolor a la movilización cervical, fondo de saco posterior doloroso. BHCG positiva. USG FAST con líquido libre abundante en cavidad abdominal.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Apendicitis perforada",
+          "Aborto incompleto",
+          "Embarazo ectópico roto",
+          "Quiste ovárico complicado"
+        ],
+        "answerIndex": 2,
+        "explanation": "Dolor súbito + inestabilidad hemodinámica + líquido libre + embarazo temprano es clásico de ectópico roto.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta inmediata:",
+        "options": [
+          "Metotrexato",
+          "Observación",
+          "Laparotomía/laparoscopía urgente",
+          "Repetir BHCG"
+        ],
+        "answerIndex": 2,
+        "explanation": "La inestabilidad hemodinámica contraindica manejo médico; requiere cirugía urgente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragia obstétrica",
+    "subtema": "Ruptura uterina",
+    "difficulty": "Alta",
+    "case": "Paciente de 36 años, G4P3, antecedente de cesárea segmentaria previa, en trabajo de parto con inducción mediante oxitocina. Presenta dolor abdominal súbito, intenso y persistente, seguido de pérdida de la dinámica uterina. FCF cae a 70 lpm. Se palpan fácilmente partes fetales a través del abdomen. TA 90/60 mmHg, FC 118 lpm.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "DPPNI",
+          "Ruptura uterina",
+          "Prolapso de cordón",
+          "Atonía uterina"
+        ],
+        "answerIndex": 1,
+        "explanation": "Antecedente de cesárea + dolor súbito + pérdida de dinámica + bradicardia fetal sugieren ruptura uterina.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Manejo inmediato:",
+        "options": [
+          "Incrementar oxitocina",
+          "Cesárea/laparotomía urgente",
+          "Tocolíticos",
+          "Observación"
+        ],
+        "answerIndex": 1,
+        "explanation": "Es emergencia quirúrgica materno-fetal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Control prenatal",
+    "subtema": "Pruebas de laboratorio iniciales",
+    "difficulty": "Fácil",
+    "case": "Paciente de 20 años, 10 semanas de gestación, acude a su primera consulta prenatal. Sin antecedentes patológicos. No síntomas actuales.",
+    "questions": [
+      {
+        "question": "¿Cuál de los siguientes estudios forma parte del tamizaje inicial obligatorio?",
+        "options": [
+          "TAC abdominopélvica",
+          "Grupo sanguíneo y Rh",
+          "Resonancia magnética",
+          "CA-125"
+        ],
+        "answerIndex": 1,
+        "explanation": "Determinación de grupo y Rh es fundamental para prevención de isoinmunización.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si la paciente es Rh negativo y la pareja Rh positivo, debe:",
+        "options": [
+          "No hacer nada",
+          "Aplicar inmunoglobulina anti-D según protocolo",
+          "Inducir parto temprano",
+          "Suspender embarazo"
+        ],
+        "answerIndex": 1,
+        "explanation": "La profilaxis anti-D previene enfermedad hemolítica perinatal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trastornos hipertensivos",
+    "subtema": "Hipertensión gestacional",
+    "difficulty": "Media",
+    "case": "Paciente de 28 años, 37 semanas, sin antecedentes, presenta TA 145/95 mmHg en dos ocasiones separadas por 4 horas. Niega cefalea, fosfenos o dolor epigástrico. Proteinuria negativa. Laboratorios normales.",
+    "questions": [
+      {
+        "question": "Diagnóstico:",
+        "options": [
+          "Preeclampsia",
+          "Hipertensión gestacional",
+          "Eclampsia",
+          "HELLP"
+        ],
+        "answerIndex": 1,
+        "explanation": "HTA posterior a 20 semanas sin proteinuria ni datos de severidad corresponde a hipertensión gestacional.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta a las 37 semanas:",
+        "options": [
+          "Continuar embarazo hasta 41 semanas",
+          "Interrumpir embarazo",
+          "Tocolíticos",
+          "Solo dieta"
+        ],
+        "answerIndex": 1,
+        "explanation": "A término se recomienda resolución obstétrica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología mamaria",
+    "subtema": "Mastitis puerperal",
+    "difficulty": "Media",
+    "case": "Puérpera de 3 semanas, lactando, consulta por dolor en mama izquierda, eritema localizado, fiebre de 38.2°C y malestar general. Refiere grietas en pezón. Exploración: zona eritematosa caliente y dolorosa, sin fluctuación evidente.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Absceso mamario",
+          "Mastitis puerperal",
+          "Cáncer inflamatorio",
+          "Galactocele"
+        ],
+        "answerIndex": 1,
+        "explanation": "Cuadro infeccioso localizado sin colección definida sugiere mastitis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta adecuada:",
+        "options": [
+          "Suspender lactancia",
+          "Antibiótico y continuar lactancia",
+          "Drenaje quirúrgico inmediato",
+          "Observación"
+        ],
+        "answerIndex": 1,
+        "explanation": "Debe continuarse lactancia y administrar antibiótico adecuado.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trastornos menstruales",
+    "subtema": "Dismenorrea primaria",
+    "difficulty": "Fácil",
+    "case": "Adolescente de 16 años, ciclos regulares desde los 13 años, presenta dolor tipo cólico intenso durante los primeros 2 días de menstruación, sin síntomas intermenstruales. Exploración normal.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Endometriosis",
+          "Dismenorrea primaria",
+          "EPI",
+          "Miomatosis"
+        ],
+        "answerIndex": 1,
+        "explanation": "Dolor menstrual en adolescente sin patología estructural sugiere dismenorrea primaria.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento inicial de elección:",
+        "options": [
+          "Antibióticos",
+          "AINEs",
+          "Cirugía",
+          "Anticonvulsivos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los AINEs inhiben prostaglandinas, mecanismo fisiopatológico principal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del tercer trimestre",
+    "subtema": "Vasa previa",
+    "difficulty": "Alta",
+    "case": "Paciente de 33 años, G2P1, 38 semanas, en trabajo de parto inicial con 3 cm de dilatación. Durante la ruptura artificial de membranas se observa salida de líquido amniótico claro seguida de sangrado vaginal rojo brillante en pequeña cantidad. Inmediatamente se documenta bradicardia fetal sostenida de 70 lpm. La paciente permanece hemodinámicamente estable, sin dolor uterino ni hipertonía. USG previo reportaba inserción velamentosa del cordón.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Placenta previa",
+          "DPPNI",
+          "Vasa previa",
+          "Ruptura uterina"
+        ],
+        "answerIndex": 2,
+        "explanation": "Sangrado tras ruptura de membranas + bradicardia fetal súbita + madre estable sugieren ruptura de vasos fetales.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta inmediata:",
+        "options": [
+          "Observación",
+          "Cesárea urgente",
+          "Oxitocina",
+          "Tocolíticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Es emergencia fetal; requiere resolución inmediata.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología hipertensiva del embarazo",
+    "subtema": "Profilaxis con ácido acetilsalicílico",
+    "difficulty": "Fácil",
+    "case": "Paciente de 36 años, G2P1, 12 semanas de gestación. Antecedente de preeclampsia en embarazo previo con parto a las 35 semanas. IMC 30 kg/m². TA actual 110/70 mmHg.",
+    "questions": [
+      {
+        "question": "¿Es candidata a profilaxis para preeclampsia?",
+        "options": [
+          "No, porque está normotensa",
+          "Sí, por antecedente de alto riesgo",
+          "Solo después de 20 semanas",
+          "Solo si tiene proteinuria"
+        ],
+        "answerIndex": 1,
+        "explanation": "Antecedente de preeclampsia es factor de alto riesgo; debe indicarse profilaxis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Fármaco recomendado:",
+        "options": [
+          "Heparina",
+          "Ácido acetilsalicílico en dosis baja",
+          "Metildopa",
+          "Nifedipino"
+        ],
+        "answerIndex": 1,
+        "explanation": "AAS en baja dosis reduce riesgo de recurrencia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Índice de Bishop",
+    "difficulty": "Media",
+    "case": "Paciente de 29 años, 41 semanas, candidata a inducción por embarazo prolongado. Tacto vaginal: dilatación 1 cm, borramiento 40%, consistencia cervical firme, posición posterior, presentación cefálica en estación -2.",
+    "questions": [
+      {
+        "question": "¿Qué evalúa el índice de Bishop?",
+        "options": [
+          "Bienestar fetal",
+          "Madurez cervical para inducción",
+          "Tamaño fetal",
+          "Riesgo hemorrágico"
+        ],
+        "answerIndex": 1,
+        "explanation": "El Bishop valora condiciones cervicales para éxito de inducción.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Con estas características, el Bishop es probablemente:",
+        "options": [
+          "Favorable",
+          "Desfavorable",
+          "Óptimo",
+          "Innecesario calcular"
+        ],
+        "answerIndex": 1,
+        "explanation": "Cérvix poco dilatado, firme y posterior indica bajo puntaje.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Diabetes gestacional",
+    "subtema": "Tratamiento inicial",
+    "difficulty": "Media",
+    "case": "Paciente de 30 años, 28 semanas, diagnosticada con diabetes gestacional mediante curva confirmatoria. Glucosas en ayuno repetidas entre 92–95 mg/dL y posprandiales ligeramente elevadas.",
+    "questions": [
+      {
+        "question": "Primera medida terapéutica:",
+        "options": [
+          "Insulina inmediata",
+          "Plan nutricional y ejercicio",
+          "Metformina obligatoria",
+          "Hospitalización"
+        ],
+        "answerIndex": 1,
+        "explanation": "El manejo inicial es dieta y ejercicio, con monitoreo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si no se alcanzan metas glucémicas con dieta:",
+        "options": [
+          "Suspender seguimiento",
+          "Iniciar insulina",
+          "Antibióticos",
+          "Sulfonilureas como primera línea obligatoria"
+        ],
+        "answerIndex": 1,
+        "explanation": "La insulina es tratamiento farmacológico de elección si falla manejo dietético.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Oncología ginecológica",
+    "subtema": "Cáncer de mama  – factores de riesgo",
+    "difficulty": "Fácil",
+    "case": "Paciente de 48 años, nulípara, menarquia a los 11 años, sin embarazos. Madre con cáncer de mama diagnosticado a los 50 años. Consulta por mastografía de rutina.",
+    "questions": [
+      {
+        "question": "Factor de riesgo presente en esta paciente:",
+        "options": [
+          "Multiparidad",
+          "Nuliparidad",
+          "Lactancia prolongada",
+          "Menopausia temprana"
+        ],
+        "answerIndex": 1,
+        "explanation": "Nuliparidad y menarquia temprana aumentan riesgo por mayor exposición estrogénica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Edad recomendada para mastografía de tamizaje en población general:",
+        "options": [
+          "Desde los 20 años",
+          "Desde los 30 años",
+          "Desde los 40 años",
+          "Solo si hay síntomas"
+        ],
+        "answerIndex": 2,
+        "explanation": "El tamizaje inicia a los 40 años en población general.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Puerperio",
+    "subtema": "Trombosis venosa profunda",
+    "difficulty": "Alta",
+    "case": "Paciente de 35 años, 7 días postcesárea, obesidad IMC 34 kg/m², refiere dolor y aumento de volumen en pantorrilla izquierda. No fiebre. Exploración: edema unilateral, dolor a la palpación profunda, aumento de temperatura local.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Celulitis",
+          "Trombosis venosa profunda",
+          "Contractura muscular",
+          "Linfedema crónico"
+        ],
+        "answerIndex": 1,
+        "explanation": "Puerperio + cirugía + obesidad son factores de riesgo claros.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Estudio diagnóstico inicial:",
+        "options": [
+          "Radiografía",
+          "Ultrasonido Doppler venoso",
+          "Resonancia",
+          "D-dímero exclusivamente"
+        ],
+        "answerIndex": 1,
+        "explanation": "El Doppler es estudio de elección.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento indicado:",
+        "options": [
+          "AINEs",
+          "Anticoagulación con heparina de bajo peso molecular",
+          "Antibióticos",
+          "Reposo sin fármacos"
+        ],
+        "answerIndex": 1,
+        "explanation": "HBPM es tratamiento estándar en embarazo y puerperio.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragia obstétrica",
+    "subtema": "Coagulación intravascular diseminada (CID) secundaria a DPPNI",
+    "difficulty": "Alta",
+    "case": "Paciente de 32 años, 36 semanas, antecedente de hipertensión gestacional, acude por dolor abdominal súbito intenso y sangrado transvaginal oscuro moderado. Se documenta DPPNI clínico. Se realiza cesárea urgente por sufrimiento fetal. Durante el transoperatorio presenta sangrado difuso incoercible por sitios de incisión y punción venosa. TA 90/60 mmHg, FC 120 lpm. Laboratorios: plaquetas 45,000; TP y TTPa prolongados; fibrinógeno disminuido; dímero D elevado.",
+    "questions": [
+      {
+        "question": "Complicación hematológica más probable:",
+        "options": [
+          "Púrpura trombocitopénica",
+          "CID",
+          "Hemofilia adquirida",
+          "Trombocitopenia gestacional"
+        ],
+        "answerIndex": 1,
+        "explanation": "El DPPNI es causa clásica de CID obstétrica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Manejo inicial prioritario:",
+        "options": [
+          "Solo oxitocina",
+          "Reposición con hemoderivados según déficit",
+          "Anticoagulación inmediata",
+          "Alta"
+        ],
+        "answerIndex": 1,
+        "explanation": "Se requiere reposición dirigida (plasma, plaquetas, crioprecipitado) además de control de la causa.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Embarazo múltiple",
+    "subtema": "Síndrome de transfusión feto-fetal",
+    "difficulty": "Alta",
+    "case": "Paciente de 27 años, embarazo gemelar monocorial biamniótico de 24 semanas. USG reporta discrepancia significativa en líquido amniótico: un feto con oligohidramnios severo y otro con polihidramnios marcado. Diferencia de peso estimado >25%.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Restricción selectiva de crecimiento",
+          "Síndrome de transfusión feto-fetal",
+          "Diabetes gestacional",
+          "Placenta previa"
+        ],
+        "answerIndex": 1,
+        "explanation": "En embarazos monocoriales, discordancia de líquido es característica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento de elección en casos severos:",
+        "options": [
+          "Reposo",
+          "Fotocoagulación láser de anastomosis placentarias",
+          "Cesárea inmediata",
+          "Tocolíticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "La corrección láser de las anastomosis es tratamiento definitivo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trastornos menstruales",
+    "subtema": "Sangrado uterino anormal anovulatorio",
+    "difficulty": "Media",
+    "case": "Paciente de 17 años, menarquia a los 12, ciclos irregulares desde entonces. Presenta episodios de sangrado abundante prolongado, sin dolor pélvico. USG normal. Hb 10 g/dL.",
+    "questions": [
+      {
+        "question": "Causa más probable en esta etapa de la vida:",
+        "options": [
+          "Mioma",
+          "Anovulación por inmadurez eje HHO",
+          "Cáncer endometrial",
+          "Endometriosis"
+        ],
+        "answerIndex": 1,
+        "explanation": "En adolescentes, la causa más frecuente es anovulación por inmadurez endocrina.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento médico inicial:",
+        "options": [
+          "Antibióticos",
+          "Anticonceptivos hormonales combinados",
+          "Cirugía",
+          "Radioterapia"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los ACO regulan ciclo y controlan sangrado.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Climaterio",
+    "subtema": "Osteoporosis postmenopáusica",
+    "difficulty": "Media",
+    "case": "Paciente de 58 años, 6 años postmenopausia, sin terapia hormonal, IMC 21 kg/m². Antecedente materno de fractura de cadera. Se realiza densitometría ósea con T-score de - 2.7 en cuello femoral.",
+    "questions": [
+      {
+        "question": "Diagnóstico densitométrico:",
+        "options": [
+          "Osteopenia",
+          "Osteoporosis",
+          "Normal",
+          "Osteomalacia"
+        ],
+        "answerIndex": 1,
+        "explanation": "T-score ≤ -2.5 define osteoporosis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento farmacológico de primera línea:",
+        "options": [
+          "Calcio exclusivamente",
+          "Bifosfonatos",
+          "Antibióticos",
+          "Progesterona sola"
+        ],
+        "answerIndex": 1,
+        "explanation": "Bifosfonatos reducen riesgo de fractura.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones ginecológicas",
+    "subtema": "Tricomoniasis",
+    "difficulty": "Fácil",
+    "case": "Paciente de 24 años con flujo vaginal abundante amarillo-verdoso espumoso, prurito y dispareunia. pH vaginal 6.0. Cérvix con aspecto en “fresa”.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Candidiasis",
+          "Vaginosis bacteriana",
+          "Tricomoniasis",
+          "EPI"
+        ],
+        "answerIndex": 2,
+        "explanation": "Flujo espumoso + cérvix en fresa es clásico de Trichomonas.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento indicado:",
+        "options": [
+          "Fluconazol",
+          "Metronidazol",
+          "Ceftriaxona",
+          "Doxiciclina"
+        ],
+        "answerIndex": 1,
+        "explanation": "Metronidazol es tratamiento de elección y debe tratarse la pareja.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Oncología ginecológica",
+    "subtema": "Hiperplasia endometrial sin atipia",
+    "difficulty": "Media",
+    "case": "Paciente de 45 años, obesa, con ciclos irregulares y sangrado uterino abundante. Biopsia endometrial reporta hiperplasia simple sin atipia.",
+    "questions": [
+      {
+        "question": "Factor fisiopatológico principal:",
+        "options": [
+          "Déficit estrogénico",
+          "Exposición estrogénica sin oposición",
+          "Infección crónica",
+          "Trauma uterino"
+        ],
+        "answerIndex": 1,
+        "explanation": "Anovulación crónica produce estimulación estrogénica persistente.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tratamiento médico indicado:",
+        "options": [
+          "Estrógenos",
+          "Progestágenos",
+          "Radioterapia",
+          "Histerectomía obligatoria"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los progestágenos revierten hiperplasia sin atipia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Trabajo de parto",
+    "subtema": "Desproporción cefalopélvica",
+    "difficulty": "Alta",
+    "case": "Paciente de 24 años, primigesta, 40 semanas, en trabajo de parto desde hace 10 horas. Membranas rotas hace 6 horas. Dinámica uterina adecuada (4–5 contracciones en 10 minutos, intensidad adecuada). Dilatación estacionada en 8 cm durante 4 horas. Presentación cefálica en estación -1. Pelvis clínica aparentemente límite. FCF 140 lpm, reactiva. No hay datos de sufrimiento fetal, pero no existe progresión del descenso a pesar de adecuada actividad uterina documentada.",
+    "questions": [
+      {
+        "question": "Diagnóstico obstétrico más probable:",
+        "options": [
+          "Hipodinamia uterina",
+          "Desproporción cefalopélvica",
+          "Fase latente prolongada",
+          "Prolapso de cordón"
+        ],
+        "answerIndex": 1,
+        "explanation": "Ausencia de progresión con dinámica adecuada sugiere desproporción.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Conducta más adecuada:",
+        "options": [
+          "Aumentar oxitocina indefinidamente",
+          "Cesárea",
+          "Tocolíticos",
+          "Observación 12 horas más"
+        ],
+        "answerIndex": 1,
+        "explanation": "Arresto de dilatación con dinámica adecuada indica resolución quirúrgica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Aborto diferido (retenido)",
+    "difficulty": "Media",
+    "case": "Paciente de 29 años, 10 semanas por FUM, refiere desaparición de síntomas de embarazo y leve manchado marrón intermitente. Niega dolor. Exploración: cérvix cerrado. USG transvaginal muestra embrión sin actividad cardiaca acorde a 8 semanas. BHCG menor a la esperada para edad gestacional.",
+    "questions": [
+      {
+        "question": "Diagnóstico:",
+        "options": [
+          "Amenaza de aborto",
+          "Aborto incompleto",
+          "Aborto diferido",
+          "Embarazo ectópico"
+        ],
+        "answerIndex": 2,
+        "explanation": "Muerte embrionaria sin expulsión del producto con cérvix cerrado corresponde a aborto diferido.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Opciones de manejo válidas:",
+        "options": [
+          "Solo observación obligatoria",
+          "Manejo médico o evacuación uterina según caso",
+          "Antibióticos",
+          "Histerectomía"
+        ],
+        "answerIndex": 1,
+        "explanation": "Puede optarse por manejo expectante, médico o quirúrgico según condiciones clínicas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Infecciones en el embarazo",
+    "subtema": "Pielonefritis aguda gestacional",
+    "difficulty": "Alta",
+    "case": "Paciente de 26 años, 24 semanas, acude por fiebre de 39°C, dolor lumbar derecho intenso y náusea. Refiere disuria previa no tratada. Exploración: dolor a puño-percusión lumbar derecha. TA 100/65 mmHg, FC 110 lpm. EGO: bacteriuria, leucocituria. Leucocitosis en BH.",
+    "questions": [
+      {
+        "question": "Diagnóstico más probable:",
+        "options": [
+          "Lumbalgia mecánica",
+          "Pielonefritis aguda",
+          "Cistitis simple",
+          "Apendicitis"
+        ],
+        "answerIndex": 1,
+        "explanation": "Fiebre alta + dolor lumbar + datos urinarios es diagnóstico clínico de pielonefritis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Manejo inicial:",
+        "options": [
+          "Tratamiento ambulatorio",
+          "Hospitalización y antibiótico IV",
+          "Solo analgésicos",
+          "Alta"
+        ],
+        "answerIndex": 1,
+        "explanation": "En embarazo requiere manejo intrahospitalario por riesgo de complicaciones.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Complicación obstétrica asociada:",
+        "options": [
+          "Placenta previa",
+          "Parto pretérmino",
+          "Miomatosis",
+          "Mola"
+        ],
+        "answerIndex": 1,
+        "explanation": "Infección sistémica aumenta riesgo de parto pretérmino.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Anticoncepción",
+    "subtema": "DIU hormonal (levonorgestrel)",
+    "difficulty": "Media",
+    "case": "Paciente de 34 años, G2P2, con sangrado menstrual abundante y deseo anticonceptivo a largo plazo. No factores de riesgo trombótico. Hb 11 g/dL.",
+    "questions": [
+      {
+        "question": "Ventaja adicional del DIU hormonal frente al de cobre:",
+        "options": [
+          "Aumenta sangrado",
+          "Disminuye sangrado menstrual",
+          "Inhibe ovulación en todas",
+          "Produce menopausia"
+        ],
+        "answerIndex": 1,
+        "explanation": "El levonorgestrel produce atrofia endometrial y reduce sangrado.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Duración aproximada de eficacia:",
+        "options": [
+          "6 meses",
+          "1 año",
+          "5 años aproximadamente",
+          "10 años obligatorios"
+        ],
+        "answerIndex": 2,
+        "explanation": "La mayoría de sistemas liberadores duran alrededor de 5 años.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Patología mamaria",
+    "subtema": "Absceso mamario",
+    "difficulty": "Media",
+    "case": "Puérpera de 4 semanas con antecedente reciente de mastitis tratada parcialmente. Consulta por dolor intenso localizado en mama derecha, fiebre persistente y ahora presencia de zona fluctuante de 3 cm.",
+    "questions": [
+      {
+        "question": "Diagnóstico:",
+        "options": [
+          "Mastitis simple",
+          "Absceso mamario",
+          "Galactocele",
+          "Cáncer inflamatorio"
+        ],
+        "answerIndex": 1,
+        "explanation": "La presencia de fluctuación indica colección purulenta.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Manejo indicado:",
+        "options": [
+          "Solo antibióticos",
+          "Drenaje + antibióticos",
+          "Suspender lactancia obligatoriamente",
+          "Observación"
+        ],
+        "answerIndex": 1,
+        "explanation": "El absceso requiere drenaje además de antibiótico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gyo",
+    "tema": "Oncología ginecológica",
+    "subtema": "Cáncer de endometrio – síntoma de alarma",
+    "difficulty": "Fácil",
+    "case": "Paciente de 62 años, 12 años postmenopausia, consulta por sangrado vaginal escaso intermitente desde hace 2 semanas. IMC 32 kg/m². No terapia hormonal.",
+    "questions": [
+      {
+        "question": "Síntoma de alarma principal:",
+        "options": [
+          "Dolor pélvico",
+          "Sangrado postmenopáusico",
+          "Leucorrea",
+          "Disuria"
+        ],
+        "answerIndex": 1,
+        "explanation": "Todo sangrado postmenopáusico debe estudiarse por posible cáncer endometrial.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Estudio inicial recomendado:",
+        "options": [
+          "Colposcopía",
+          "Ultrasonido transvaginal para medir grosor endometrial",
+          "TAC",
+          "CA-125"
+        ],
+        "answerIndex": 1,
+        "explanation": "El USG transvaginal es primer paso para valorar endometrio.",
+        "gpcReference": ""
+      }
+    ]
   }
 ];
 

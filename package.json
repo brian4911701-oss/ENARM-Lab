@@ -1,7 +1,21 @@
 {
   "dependencies": {
+    "@google/genai": "^1.43.0",
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^17.3.1",
     "pdf-parse": "^2.4.5",
     "pdf2json": "^4.0.2",
     "puppeteer": "^24.37.5"
-  }
+  },
+  "name": "enarm-lab",
+  "version": "1.0.0",
+  "description": "Este proyecto es un simulador web del **Examen Nacional de Aspirantes a Residencias Médicas (ENARM)** basado en las Guías de Práctica Clínica (GPC) más recientes de México.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
 }
