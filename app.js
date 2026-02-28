@@ -6,14 +6,16 @@
     const State = {
         view: "view-dashboard",
         mode: "simulacro", // "estudio" | "simulacro"
-        difficulty: "alta",
+        difficulty: "cualquiera",
         questionSet: [],
         currentIndex: 0,
         answers: [],
         timer: null,
         durationSec: 4 * 60 * 60,
         startTime: null,
+        pausedElapsedTime: 0,
         currentExamType: "Simulacro",
+        examActive: false,
 
         globalStats: {
             respondidas: 0,
@@ -32,11 +34,36 @@
 
         userName: "Isaac",
         history: [],
-        selectedTopics: []
+        selectedTopics: [],
+        reportedQuestions: []
     };
 
     const $ = (id) => document.getElementById(id);
     const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+    const showNotification = (msg, type = 'info') => {
+        let container = $('notification-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'notification-container';
+            document.body.appendChild(container);
+        }
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+
+        let icon = 'ℹ️';
+        if (type === 'success') icon = '✅';
+        if (type === 'error') icon = '🚨';
+        if (type === 'warning') icon = '⚠️';
+
+        toast.innerHTML = `<span style="font-size: 18px;">${icon}</span><span style="flex:1;">${msg}</span>`;
+        container.appendChild(toast);
+
+        setTimeout(() => {
+            toast.classList.add('hiding');
+            toast.addEventListener('animationend', () => toast.remove());
+        }, 3500);
+    };
 
     const formatTime = (secs) => {
         const h = String(Math.floor(secs / 3600)).padStart(2, "0");
@@ -48,6 +75,12 @@
     const shuffleArray = (arr) => arr.slice().sort(() => Math.random() - 0.5);
 
     const showView = (viewId) => {
+        if (State.view === "view-exam" && viewId !== "view-exam" && State.examActive) {
+            if (typeof pauseTimer === 'function') {
+                pauseTimer();
+                showNotification("Examen pausado automáticamente.", "info");
+            }
+        }
         $$(".view").forEach(v => v.classList.remove("active"));
         const viewEl = $(viewId);
         if (viewEl) {
@@ -63,6 +96,7 @@
         if (viewId === "view-estadisticas") updateCharts();
         if (viewId === "view-calculadora") initCalculator();
         if (viewId === "view-temario") renderOfficialTemario();
+        if (viewId === "view-reportes") renderReportedQuestions();
     };
     window.showView = showView; // Hacerla global para onclick de HTML
 
@@ -70,6 +104,7 @@
         localStorage.setItem("enarm_stats", JSON.stringify(State.globalStats));
         localStorage.setItem("enarm_history", JSON.stringify(State.history));
         localStorage.setItem("enarm_user", State.userName);
+        localStorage.setItem("enarm_reports", JSON.stringify(State.reportedQuestions));
     };
 
     const loadGlobalStats = () => {
@@ -84,6 +119,8 @@
             State.theme = theme;
             applyTheme(theme);
         }
+        const reports = localStorage.getItem("enarm_reports");
+        if (reports) State.reportedQuestions = JSON.parse(reports);
 
         $$(".user-name").forEach(el => el.textContent = State.userName);
         $$(".header-title").forEach(el => el.textContent = `Hola, ${State.userName}`);
@@ -187,101 +224,935 @@
     // ---------------------------------------------------------------------------
     const OFFICIAL_TEMARIO = [
         "Introducción: Ciclo genital, Esterilidad y Anticonceptivos",
-        "Amenorreas Primarias y Secundarias (Turner, Morris, Rokitansky)",
-        "Hemorragia Uterina Anormal (SOP, Endometriosis)",
-        "Menopausia y Climaterio (Osteoporosis, Piso Pélvico)",
-        "Oncología Ginecología: Cáncer de Endometrio y Ovario",
-        "Oncología Ginecología: Tamizaje CACU, CaVa, Vagina y Vulva",
+        "Turner",
+        "Morris",
+        "Rokitansky",
+        "Amenorreas Primarias y Secundarias",
+        "Origen no anatómico: SOP",
+        "Endometriosis",
+        "Hemorragia Uterina Anormal",
+        "Osteoporosis",
+        "Piso Pélvico",
+        "Menopausia y Climaterio",
+        "Origen anatómico: Miomatosis",
+        "Pólipos",
+        "Hemorragia Uterina Anormal",
+        "Oncología Ginecología P1: Cáncer de Endometrio y Ovario",
+        "Oncología Ginecología P2: Tamizaje CACU, CaVa, Vagina y Vulva",
         "Patología Mamaria: Benigna y Cáncer de Mama",
-        "Infecciones de Transmisión Sexual (Vaginitis, Vaginosis, EPI)",
+        "Vaginitis",
+        "Vaginosis",
+        "EPI",
+        "Infecciones de Transmisión Sexual",
         "Cambios Fisiológicos en el Embarazo y Control Prenatal",
-        "Hemorragias del Primer Trimestre (Aborto, Ectópico, Mola)",
-        "Hemorragias del Tercer Trimestre (Placenta Previa, Desprendimiento)",
+        "Aborto",
+        "Ectópico",
+        "Mola",
+        "Hemorragias del Primer Trimestre",
+        "Placenta Previa",
+        "Desprendimiento",
+        "Hemorragias del Tercer Trimestre",
         "Diabetes Gestacional",
-        "Trastornos Hipertensivos del Embarazo (Preeclampsia / Eclampsia)",
-        "Complicaciones del Embarazo (Isoinmunización, Polihidramnios)",
+        "Preeclampsia / Eclampsia",
+        "Trastornos Hipertensivos del Embarazo",
+        "Isoinmunización",
+        "Polihidramnios",
+        "Complicaciones del Embarazo",
         "Trabajo de Parto y Mecanismos del Parto",
         "Inducción, Conducción y Distocias",
         "Sepsis Puerperal e Infección de Herida Quirúrgica",
         "Choque Obstétrico y Hemorragia Obstétrica",
         "Puerperio Fisiológico y Lactancia Materna",
         "Introducción a la Pediatría / Reanimación Neonatal",
-        "Patología Neonatal Metabólica (Hijo de madre diabética, Electrolitos)",
-        "Patología Neonatal Infecciosa (Sepsis, Conjuntivitis, Onfalitis)",
-        "Patología Respiratoria Neonatal (Membrana hialina, TTRN, SAM)",
-        "Patología Neonatal Quirúrgica (Onfalocele, Gastrosquisis)",
+        "Hijo de madre diabética",
+        "Electrolitos",
+        "Patología Neonatal Metabólica",
+        "Sepsis",
+        "Conjuntivitis",
+        "Onfalitis",
+        "Patología Neonatal Infecciosa",
+        "Membrana hialina",
+        "TTRN",
+        "SAM",
+        "Patología Respiratoria Neonatal",
+        "Malformaciones",
+        "Onfalocele",
+        "Gastrosquisis",
+        "Patología Neonatal Quirúrgica",
         "Infecciones TORCH y VIH Pediátrico",
         "Estenosis Hipertrófica de Píloro",
         "Ictericias Neonatales",
         "Tamiz Metabólico y Auditivo",
-        "Crecimiento y Desarrollo (Hitos del desarrollo)",
-        "Vacunación (Esquema Nacional)",
-        "Patología Gastrointestinal (Reflujo, Intususcepción)",
+        "Crecimiento y Desarrollo P1",
+        "Hitos del desarrollo",
+        "Crecimiento y Desarrollo P2",
+        "Esquema Nacional",
+        "Vacunación",
+        "Reflujo",
+        "Intususcepción",
+        "Patología Gastrointestinal",
         "Enfermedad Diarreica Aguda y Planes de Hidratación",
         "Diarrea Crónica y Síndromes de Mala Absorción",
         "Parasitosis en Pediatría",
-        "Patología Respiratoria del Lactante (Bronquiolitis, Laringotraqueítis)",
+        "Bronquiolitis",
+        "Laringotraqueítis",
+        "Patología Respiratoria del Lactante",
         "Neumonías y sus Complicaciones",
         "Asma Pediátrica",
-        "Infecciones de Vías Respiratorias Superiores (Otitis, Faringitis)",
+        "Otitis",
+        "Faringitis",
+        "Infecciones de Vías Respiratorias Superiores",
         "Enfermedades Exantemáticas",
-        "Urgencias Pediátricas (Maltrato, Intoxicaciones, Quemaduras)",
+        "Maltrato",
+        "Intoxicaciones",
+        "Quemaduras",
+        "Urgencias Pediátricas",
         "Nefrología y Urología Pediátrica",
-        "Cardiopatías Congénitas (Cianógenas y Acianógenas)",
-        "Onco-Hematología Pediátrica (Leucemias, Linfomas, Purpuras)",
+        "Cianógenas y Acianógenas",
+        "Cardiopatías Congénitas",
+        "Leucemias",
+        "Linfomas",
+        "Purpuras",
+        "Onco-Hematología Pediátrica",
+        "Neuropediatría",
+        "Ortopedia Pediátrica",
+        "Especialidades",
         "Genética y Alteraciones Cromosómicas",
         "Apendicitis Aguda",
         "Patología de Vesícula y Vías Biliares",
         "Pancreatitis Aguda",
-        "Patología Quirúrgica de Esófago (Acalasia, ERGE)",
-        "Patología de Estómago y Duodeno (Ulcera péptica)",
+        "Acalasia",
+        "ERGE",
+        "Patología Quirúrgica de Esófago",
+        "Ulcera péptica",
+        "Patología de Estómago y Duodeno",
         "Abdomen Agudo y Oclusión Intestinal",
         "Patología de Intestino Delgado",
-        "Patología de Colon y Recto (Divertículos)",
-        "Patología Perianal (Fisuras, Hemorroides, Abscesos)",
+        "Divertículos",
+        "Patología de Colon y Recto",
+        "Fisuras",
+        "Hemorroides",
+        "Abscesos",
+        "Patología Perianal",
         "Isquemia Mesentérica",
-        "Hernias de la Pared Abdominal (Inguinales y Crurales)",
-        "Urología: Litiasis Renal, Tumores, Prostata",
-        "ATLS: Evaluación Inicial, Trauma de Tórax y Abdomen",
-        "Toxicología (Antídotos principales)",
-        "Mordeduras y Picaduras (Alacrán, Araña, Serpiente)",
+        "Hernias de la Pared Abdominal",
+        "Hernias Inguinales y Crurales",
+        "Urología P1: Litiasis Renal y Tumores",
+        "Urología P2: Hiperplasia Prostática y Cáncer de Próstata",
+        "Enfoque Quirúrgico/Urológico",
+        "Infecciones de Transmisión Sexual",
+        "ATLS P1: Evaluación Inicial y Manejo de Vía Aérea",
+        "ATLS P2: Trauma de Tórax y Abdomen",
+        "Antídotos principales",
+        "Toxicología",
+        "Alacrán",
+        "Araña",
+        "Serpiente",
+        "Mordeduras y Picaduras",
         "Quemaduras y Reanimación",
-        "Oftalmología: Glaucoma, Catarata, Retinopatías",
-        "Otorrinolaringología: Patología de oído, Nariz y Garganta",
-        "Trauma y Fracturas: Síndrome Compartimental",
-        "Epidemiología (Conceptos básicos ENARM)",
-        "Infectología: Antibióticos, Resistencia y Tuberculosis",
+        "Generalidades",
+        "Oncocirugía P1",
+        "Oncocirugía P2",
+        "Glaucoma",
+        "Catarata",
+        "Retinopatías",
+        "Oftalmología P1",
+        "Ojo rojo",
+        "Trauma ocular",
+        "Oftalmología P2",
+        "Patología de oído",
+        "Otorrinolaringología P1",
+        "Nariz y Garganta",
+        "Otorrinolaringología P2",
+        "Síndrome Compartimental",
+        "Trauma: Generalidades y Complicaciones",
+        "Fracturas",
+        "Patología de Extremidad Superior",
+        "Cadera",
+        "Tobillo",
+        "Patología de Extremidad Inferior",
+        "Conceptos básicos ENARM",
+        "Epidemiología",
+        "Extra: Clase de Inglés Médico",
+        "Infectología: Principios, Antibióticos y Resistencia",
+        "Tuberculosis",
         "VIH / SIDA",
-        "Enfermedades transmitidas por Vector (Dengue, Zika, Rickettsia)",
-        "Zoonosis (Rabia, Tétanos, Brucella)",
-        "Patología Fúngica (Candidiasis, Histoplasmosis)",
-        "Neumología: Neumonías, Derrame Pleural y Empiema",
-        "Endocrinología: Patología Tiroidea (Hiper/Hipo/Cáncer)",
+        "Dengue",
+        "Zika",
+        "Rickettsia",
+        "Enfermedades transmitidas por Vector",
+        "Rabia",
+        "Tétanos",
+        "Brucella",
+        "Zoonosis",
+        "Candidiasis",
+        "Histoplasmosis",
+        "Patología Fúngica",
+        "Neumología: Neumonías Ocupacionales",
+        "Derrame Pleural y Empiema",
+        "Hiper/Hipo/Cáncer",
+        "Endocrinología: Patología Tiroidea",
         "Síndrome Metabólico y Dislipidemias",
-        "Diabetes Mellitus: Fisiopatología, Diagnóstico y Tratamiento",
-        "Complicaciones Agudas de Diabetes (Cetoacidosis, Estado Hiperosmolar)",
+        "Diabetes Mellitus: Fisiopatología y Diagnóstico",
+        "Insulinas y Orales",
+        "Diabetes Mellitus: Tratamiento",
+        "Cetoacidosis / Estado Hiperosmolar",
+        "Complicaciones Agudas de Diabetes",
         "Patología de Glándula Suprarrenal",
-        "Hematología: Anemias, Leucemias y Linfomas",
+        "Ferropénica",
+        "Hematología: Anemias Microcíticas",
+        "Hematología: Anemias Macrocíticas y Hemolíticas",
+        "Hematología: Leucemias y Linfomas",
         "Gastroenterología: Enfermedad Acidopéptica y H. Pylori",
         "Gastroenterología: Cirrosis y sus complicaciones",
-        "Reumatología: Artritis Reumatoide, Lupus (LES), Gota",
-        "Nefrología: LRA, ERC y Glomerulopatías",
-        "Cardiología: EKG, Arritmias, Isquemia e Insuficiencia Cardíaca",
+        "Reumatología: Artritis Reumatoide",
+        "LES",
+        "Reumatología: Lupus Eritematoso Sistémico",
+        "Reumatología: Vasculitis y Gota",
+        "LRA",
+        "Nefrología: Lesión Renal Aguda",
+        "ERC",
+        "Nefrología: Enfermedad Renal Crónica",
+        "Nefrología: Glomerulopatías y Síndromes Nefrótico/Nefrítico",
+        "Cardiología: Electrocardiograma básico y Arritmias",
+        "Angina e Infarto",
+        "Cardiología: Cardiopatía Isquémica",
+        "Cardiología: Insuficiencia Cardíaca",
         "Hipertensión Arterial Sistémica",
-        "Neurología: EVC, Parkinson, Alzheimer, Cefaleas y Epilepsia",
-        "Dermatología: Tiñas, Acné y Cáncer de piel",
-        "Psiquiatría: Depresión, Ansiedad y Trastornos de conducta",
-        "Geriatría: Síndromes Geriátricos",
-        "Asfixia Neonatal y Encefalopatía Hipóxico-Isquémica",
-        "Atención del Recién Nacido / Reanimación Neonatal Avanzada",
-        "Sepsis y Schok Séptico Neonatal",
-        "Enterocolitis Necrosante",
-        "Hemorragia Prenatal y Poscparto",
-        "Distocias Dinámicas y Mecánicas",
-        "Oftalmopatía Diabética y Retinopatía Hipertensiva",
-        "Artritis Infecciosa y Osteomielitis",
-        "Enfermedad por Reflujo Gastroesofágico (ERGE) en Pediatría y Adultos"
+        "Infecto-Cardio: Endocarditis y Pericarditis",
+        "EVC",
+        "Neurología: Enfermedad Vascular Cerebral",
+        "Parkinson/Alzheimer",
+        "Neurología: Enfermedades Neurodegenerativas",
+        "Migraña",
+        "Tensional",
+        "Neurología: Cefaleas",
+        "Neurología: Crisis Convulsivas y Epilepsia",
+        "Dermatología: Tiñas y Acné",
+        "Dermatología: Lepra y Pitiriasis",
+        "Onco-Dermatología: Cáncer Basocelular, Espinocelular y Melanoma",
+        "Psiquiatría: Depresión y Ansiedad",
+        "Psiquiatría: Trastornos de la conducta alimentaria / Esquizofrenia",
+        "Geriatría: Síndromes Geriátricos"
     ];
+
+    const TEMARIO_MAPPING = {
+        "Introducción: Ciclo genital, Esterilidad y Anticonceptivos": [
+            "Introducción: Ciclo genital, Esterilidad y Anticonceptivos"
+        ],
+        "Turner": [
+            "Turner"
+        ],
+        "Morris": [
+            "Morris"
+        ],
+        "Rokitansky": [
+            "Rokitansky"
+        ],
+        "Amenorreas Primarias y Secundarias": [
+            "Amenorreas Primarias y Secundarias",
+            "Turner",
+            "Morris",
+            "Rokitansky"
+        ],
+        "Origen no anatómico: SOP": [
+            "Origen no anatómico: SOP"
+        ],
+        "Endometriosis": [
+            "Endometriosis"
+        ],
+        "Hemorragia Uterina Anormal": [
+            "Hemorragia Uterina Anormal",
+            "Origen anatómico: Miomatosis",
+            "Pólipos"
+        ],
+        "Osteoporosis": [
+            "Osteoporosis"
+        ],
+        "Piso Pélvico": [
+            "Piso Pélvico"
+        ],
+        "Menopausia y Climaterio": [
+            "Menopausia y Climaterio",
+            "Osteoporosis",
+            "Piso Pélvico"
+        ],
+        "Origen anatómico: Miomatosis": [
+            "Origen anatómico: Miomatosis"
+        ],
+        "Pólipos": [
+            "Pólipos"
+        ],
+        "Oncología Ginecología P1: Cáncer de Endometrio y Ovario": [
+            "Oncología Ginecología P1: Cáncer de Endometrio y Ovario"
+        ],
+        "Oncología Ginecología P2: Tamizaje CACU, CaVa, Vagina y Vulva": [
+            "Oncología Ginecología P2: Tamizaje CACU, CaVa, Vagina y Vulva"
+        ],
+        "Patología Mamaria: Benigna y Cáncer de Mama": [
+            "Patología Mamaria: Benigna y Cáncer de Mama"
+        ],
+        "Vaginitis": [
+            "Vaginitis"
+        ],
+        "Vaginosis": [
+            "Vaginosis"
+        ],
+        "EPI": [
+            "EPI"
+        ],
+        "Infecciones de Transmisión Sexual": [
+            "Infecciones de Transmisión Sexual",
+            "Enfoque Quirúrgico/Urológico"
+        ],
+        "Cambios Fisiológicos en el Embarazo y Control Prenatal": [
+            "Cambios Fisiológicos en el Embarazo y Control Prenatal"
+        ],
+        "Aborto": [
+            "Aborto"
+        ],
+        "Ectópico": [
+            "Ectópico"
+        ],
+        "Mola": [
+            "Mola"
+        ],
+        "Hemorragias del Primer Trimestre": [
+            "Hemorragias del Primer Trimestre",
+            "Aborto",
+            "Ectópico",
+            "Mola"
+        ],
+        "Placenta Previa": [
+            "Placenta Previa"
+        ],
+        "Desprendimiento": [
+            "Desprendimiento"
+        ],
+        "Hemorragias del Tercer Trimestre": [
+            "Hemorragias del Tercer Trimestre",
+            "Placenta Previa",
+            "Desprendimiento"
+        ],
+        "Diabetes Gestacional": [
+            "Diabetes Gestacional"
+        ],
+        "Preeclampsia / Eclampsia": [
+            "Preeclampsia / Eclampsia"
+        ],
+        "Trastornos Hipertensivos del Embarazo": [
+            "Trastornos Hipertensivos del Embarazo",
+            "Preeclampsia / Eclampsia"
+        ],
+        "Isoinmunización": [
+            "Isoinmunización"
+        ],
+        "Polihidramnios": [
+            "Polihidramnios"
+        ],
+        "Complicaciones del Embarazo": [
+            "Complicaciones del Embarazo",
+            "Isoinmunización",
+            "Polihidramnios"
+        ],
+        "Trabajo de Parto y Mecanismos del Parto": [
+            "Trabajo de Parto y Mecanismos del Parto"
+        ],
+        "Inducción, Conducción y Distocias": [
+            "Inducción, Conducción y Distocias"
+        ],
+        "Sepsis Puerperal e Infección de Herida Quirúrgica": [
+            "Sepsis Puerperal e Infección de Herida Quirúrgica"
+        ],
+        "Choque Obstétrico y Hemorragia Obstétrica": [
+            "Choque Obstétrico y Hemorragia Obstétrica"
+        ],
+        "Puerperio Fisiológico y Lactancia Materna": [
+            "Puerperio Fisiológico y Lactancia Materna"
+        ],
+        "Introducción a la Pediatría / Reanimación Neonatal": [
+            "Introducción a la Pediatría / Reanimación Neonatal"
+        ],
+        "Hijo de madre diabética": [
+            "Hijo de madre diabética"
+        ],
+        "Electrolitos": [
+            "Electrolitos"
+        ],
+        "Patología Neonatal Metabólica": [
+            "Patología Neonatal Metabólica",
+            "Hijo de madre diabética",
+            "Electrolitos"
+        ],
+        "Sepsis": [
+            "Sepsis"
+        ],
+        "Conjuntivitis": [
+            "Conjuntivitis"
+        ],
+        "Onfalitis": [
+            "Onfalitis"
+        ],
+        "Patología Neonatal Infecciosa": [
+            "Patología Neonatal Infecciosa",
+            "Sepsis",
+            "Conjuntivitis",
+            "Onfalitis"
+        ],
+        "Membrana hialina": [
+            "Membrana hialina"
+        ],
+        "TTRN": [
+            "TTRN"
+        ],
+        "SAM": [
+            "SAM"
+        ],
+        "Patología Respiratoria Neonatal": [
+            "Patología Respiratoria Neonatal",
+            "Membrana hialina",
+            "TTRN",
+            "SAM"
+        ],
+        "Malformaciones": [
+            "Malformaciones"
+        ],
+        "Onfalocele": [
+            "Onfalocele"
+        ],
+        "Gastrosquisis": [
+            "Gastrosquisis"
+        ],
+        "Patología Neonatal Quirúrgica": [
+            "Patología Neonatal Quirúrgica",
+            "Malformaciones",
+            "Onfalocele",
+            "Gastrosquisis"
+        ],
+        "Infecciones TORCH y VIH Pediátrico": [
+            "Infecciones TORCH y VIH Pediátrico"
+        ],
+        "Estenosis Hipertrófica de Píloro": [
+            "Estenosis Hipertrófica de Píloro"
+        ],
+        "Ictericias Neonatales": [
+            "Ictericias Neonatales"
+        ],
+        "Tamiz Metabólico y Auditivo": [
+            "Tamiz Metabólico y Auditivo"
+        ],
+        "Crecimiento y Desarrollo P1": [
+            "Crecimiento y Desarrollo P1"
+        ],
+        "Hitos del desarrollo": [
+            "Hitos del desarrollo"
+        ],
+        "Crecimiento y Desarrollo P2": [
+            "Crecimiento y Desarrollo P2",
+            "Hitos del desarrollo"
+        ],
+        "Esquema Nacional": [
+            "Esquema Nacional"
+        ],
+        "Vacunación": [
+            "Vacunación",
+            "Esquema Nacional"
+        ],
+        "Reflujo": [
+            "Reflujo"
+        ],
+        "Intususcepción": [
+            "Intususcepción"
+        ],
+        "Patología Gastrointestinal": [
+            "Patología Gastrointestinal",
+            "Reflujo",
+            "Intususcepción"
+        ],
+        "Enfermedad Diarreica Aguda y Planes de Hidratación": [
+            "Enfermedad Diarreica Aguda y Planes de Hidratación"
+        ],
+        "Diarrea Crónica y Síndromes de Mala Absorción": [
+            "Diarrea Crónica y Síndromes de Mala Absorción"
+        ],
+        "Parasitosis en Pediatría": [
+            "Parasitosis en Pediatría"
+        ],
+        "Bronquiolitis": [
+            "Bronquiolitis"
+        ],
+        "Laringotraqueítis": [
+            "Laringotraqueítis"
+        ],
+        "Patología Respiratoria del Lactante": [
+            "Patología Respiratoria del Lactante",
+            "Bronquiolitis",
+            "Laringotraqueítis"
+        ],
+        "Neumonías y sus Complicaciones": [
+            "Neumonías y sus Complicaciones"
+        ],
+        "Asma Pediátrica": [
+            "Asma Pediátrica"
+        ],
+        "Otitis": [
+            "Otitis"
+        ],
+        "Faringitis": [
+            "Faringitis"
+        ],
+        "Infecciones de Vías Respiratorias Superiores": [
+            "Infecciones de Vías Respiratorias Superiores",
+            "Otitis",
+            "Faringitis"
+        ],
+        "Enfermedades Exantemáticas": [
+            "Enfermedades Exantemáticas"
+        ],
+        "Maltrato": [
+            "Maltrato"
+        ],
+        "Intoxicaciones": [
+            "Intoxicaciones"
+        ],
+        "Quemaduras": [
+            "Quemaduras"
+        ],
+        "Urgencias Pediátricas": [
+            "Urgencias Pediátricas",
+            "Maltrato",
+            "Intoxicaciones",
+            "Quemaduras"
+        ],
+        "Nefrología y Urología Pediátrica": [
+            "Nefrología y Urología Pediátrica"
+        ],
+        "Cianógenas y Acianógenas": [
+            "Cianógenas y Acianógenas"
+        ],
+        "Cardiopatías Congénitas": [
+            "Cardiopatías Congénitas",
+            "Cianógenas y Acianógenas"
+        ],
+        "Leucemias": [
+            "Leucemias"
+        ],
+        "Linfomas": [
+            "Linfomas"
+        ],
+        "Purpuras": [
+            "Purpuras"
+        ],
+        "Onco-Hematología Pediátrica": [
+            "Onco-Hematología Pediátrica",
+            "Leucemias",
+            "Linfomas",
+            "Purpuras"
+        ],
+        "Neuropediatría": [
+            "Neuropediatría"
+        ],
+        "Ortopedia Pediátrica": [
+            "Ortopedia Pediátrica"
+        ],
+        "Especialidades": [
+            "Especialidades",
+            "Neuropediatría",
+            "Ortopedia Pediátrica"
+        ],
+        "Genética y Alteraciones Cromosómicas": [
+            "Genética y Alteraciones Cromosómicas"
+        ],
+        "Apendicitis Aguda": [
+            "Apendicitis Aguda"
+        ],
+        "Patología de Vesícula y Vías Biliares": [
+            "Patología de Vesícula y Vías Biliares"
+        ],
+        "Pancreatitis Aguda": [
+            "Pancreatitis Aguda"
+        ],
+        "Acalasia": [
+            "Acalasia"
+        ],
+        "ERGE": [
+            "ERGE"
+        ],
+        "Patología Quirúrgica de Esófago": [
+            "Patología Quirúrgica de Esófago",
+            "Acalasia",
+            "ERGE"
+        ],
+        "Ulcera péptica": [
+            "Ulcera péptica"
+        ],
+        "Patología de Estómago y Duodeno": [
+            "Patología de Estómago y Duodeno",
+            "Ulcera péptica"
+        ],
+        "Abdomen Agudo y Oclusión Intestinal": [
+            "Abdomen Agudo y Oclusión Intestinal"
+        ],
+        "Patología de Intestino Delgado": [
+            "Patología de Intestino Delgado"
+        ],
+        "Divertículos": [
+            "Divertículos"
+        ],
+        "Patología de Colon y Recto": [
+            "Patología de Colon y Recto",
+            "Divertículos"
+        ],
+        "Fisuras": [
+            "Fisuras"
+        ],
+        "Hemorroides": [
+            "Hemorroides"
+        ],
+        "Abscesos": [
+            "Abscesos"
+        ],
+        "Patología Perianal": [
+            "Patología Perianal",
+            "Fisuras",
+            "Hemorroides",
+            "Abscesos"
+        ],
+        "Isquemia Mesentérica": [
+            "Isquemia Mesentérica"
+        ],
+        "Hernias de la Pared Abdominal": [
+            "Hernias de la Pared Abdominal"
+        ],
+        "Hernias Inguinales y Crurales": [
+            "Hernias Inguinales y Crurales"
+        ],
+        "Urología P1: Litiasis Renal y Tumores": [
+            "Urología P1: Litiasis Renal y Tumores"
+        ],
+        "Urología P2: Hiperplasia Prostática y Cáncer de Próstata": [
+            "Urología P2: Hiperplasia Prostática y Cáncer de Próstata"
+        ],
+        "Enfoque Quirúrgico/Urológico": [
+            "Enfoque Quirúrgico/Urológico"
+        ],
+        "ATLS P1: Evaluación Inicial y Manejo de Vía Aérea": [
+            "ATLS P1: Evaluación Inicial y Manejo de Vía Aérea"
+        ],
+        "ATLS P2: Trauma de Tórax y Abdomen": [
+            "ATLS P2: Trauma de Tórax y Abdomen"
+        ],
+        "Antídotos principales": [
+            "Antídotos principales"
+        ],
+        "Toxicología": [
+            "Toxicología",
+            "Antídotos principales"
+        ],
+        "Alacrán": [
+            "Alacrán"
+        ],
+        "Araña": [
+            "Araña"
+        ],
+        "Serpiente": [
+            "Serpiente"
+        ],
+        "Mordeduras y Picaduras": [
+            "Mordeduras y Picaduras",
+            "Alacrán",
+            "Araña",
+            "Serpiente"
+        ],
+        "Quemaduras y Reanimación": [
+            "Quemaduras y Reanimación"
+        ],
+        "Generalidades": [
+            "Generalidades"
+        ],
+        "Oncocirugía P1": [
+            "Oncocirugía P1",
+            "Generalidades"
+        ],
+        "Oncocirugía P2": [
+            "Oncocirugía P2"
+        ],
+        "Glaucoma": [
+            "Glaucoma"
+        ],
+        "Catarata": [
+            "Catarata"
+        ],
+        "Retinopatías": [
+            "Retinopatías"
+        ],
+        "Oftalmología P1": [
+            "Oftalmología P1",
+            "Glaucoma",
+            "Catarata",
+            "Retinopatías"
+        ],
+        "Ojo rojo": [
+            "Ojo rojo"
+        ],
+        "Trauma ocular": [
+            "Trauma ocular"
+        ],
+        "Oftalmología P2": [
+            "Oftalmología P2",
+            "Ojo rojo",
+            "Trauma ocular"
+        ],
+        "Patología de oído": [
+            "Patología de oído"
+        ],
+        "Otorrinolaringología P1": [
+            "Otorrinolaringología P1",
+            "Patología de oído"
+        ],
+        "Nariz y Garganta": [
+            "Nariz y Garganta"
+        ],
+        "Otorrinolaringología P2": [
+            "Otorrinolaringología P2",
+            "Nariz y Garganta"
+        ],
+        "Síndrome Compartimental": [
+            "Síndrome Compartimental"
+        ],
+        "Trauma: Generalidades y Complicaciones": [
+            "Trauma: Generalidades y Complicaciones",
+            "Síndrome Compartimental"
+        ],
+        "Fracturas": [
+            "Fracturas"
+        ],
+        "Patología de Extremidad Superior": [
+            "Patología de Extremidad Superior",
+            "Fracturas"
+        ],
+        "Cadera": [
+            "Cadera"
+        ],
+        "Tobillo": [
+            "Tobillo"
+        ],
+        "Patología de Extremidad Inferior": [
+            "Patología de Extremidad Inferior",
+            "Cadera",
+            "Tobillo"
+        ],
+        "Conceptos básicos ENARM": [
+            "Conceptos básicos ENARM"
+        ],
+        "Epidemiología": [
+            "Epidemiología",
+            "Conceptos básicos ENARM"
+        ],
+        "Extra: Clase de Inglés Médico": [
+            "Extra: Clase de Inglés Médico"
+        ],
+        "Infectología: Principios, Antibióticos y Resistencia": [
+            "Infectología: Principios, Antibióticos y Resistencia"
+        ],
+        "Tuberculosis": [
+            "Tuberculosis"
+        ],
+        "VIH / SIDA": [
+            "VIH / SIDA"
+        ],
+        "Dengue": [
+            "Dengue"
+        ],
+        "Zika": [
+            "Zika"
+        ],
+        "Rickettsia": [
+            "Rickettsia"
+        ],
+        "Enfermedades transmitidas por Vector": [
+            "Enfermedades transmitidas por Vector",
+            "Dengue",
+            "Zika",
+            "Rickettsia"
+        ],
+        "Rabia": [
+            "Rabia"
+        ],
+        "Tétanos": [
+            "Tétanos"
+        ],
+        "Brucella": [
+            "Brucella"
+        ],
+        "Zoonosis": [
+            "Zoonosis",
+            "Rabia",
+            "Tétanos",
+            "Brucella"
+        ],
+        "Candidiasis": [
+            "Candidiasis"
+        ],
+        "Histoplasmosis": [
+            "Histoplasmosis"
+        ],
+        "Patología Fúngica": [
+            "Patología Fúngica",
+            "Candidiasis",
+            "Histoplasmosis"
+        ],
+        "Neumología: Neumonías Ocupacionales": [
+            "Neumología: Neumonías Ocupacionales"
+        ],
+        "Derrame Pleural y Empiema": [
+            "Derrame Pleural y Empiema"
+        ],
+        "Hiper/Hipo/Cáncer": [
+            "Hiper/Hipo/Cáncer"
+        ],
+        "Endocrinología: Patología Tiroidea": [
+            "Endocrinología: Patología Tiroidea",
+            "Hiper/Hipo/Cáncer"
+        ],
+        "Síndrome Metabólico y Dislipidemias": [
+            "Síndrome Metabólico y Dislipidemias"
+        ],
+        "Diabetes Mellitus: Fisiopatología y Diagnóstico": [
+            "Diabetes Mellitus: Fisiopatología y Diagnóstico"
+        ],
+        "Insulinas y Orales": [
+            "Insulinas y Orales"
+        ],
+        "Diabetes Mellitus: Tratamiento": [
+            "Diabetes Mellitus: Tratamiento",
+            "Insulinas y Orales"
+        ],
+        "Cetoacidosis / Estado Hiperosmolar": [
+            "Cetoacidosis / Estado Hiperosmolar"
+        ],
+        "Complicaciones Agudas de Diabetes": [
+            "Complicaciones Agudas de Diabetes",
+            "Cetoacidosis / Estado Hiperosmolar"
+        ],
+        "Patología de Glándula Suprarrenal": [
+            "Patología de Glándula Suprarrenal"
+        ],
+        "Ferropénica": [
+            "Ferropénica"
+        ],
+        "Hematología: Anemias Microcíticas": [
+            "Hematología: Anemias Microcíticas",
+            "Ferropénica"
+        ],
+        "Hematología: Anemias Macrocíticas y Hemolíticas": [
+            "Hematología: Anemias Macrocíticas y Hemolíticas"
+        ],
+        "Hematología: Leucemias y Linfomas": [
+            "Hematología: Leucemias y Linfomas"
+        ],
+        "Gastroenterología: Enfermedad Acidopéptica y H. Pylori": [
+            "Gastroenterología: Enfermedad Acidopéptica y H. Pylori"
+        ],
+        "Gastroenterología: Cirrosis y sus complicaciones": [
+            "Gastroenterología: Cirrosis y sus complicaciones"
+        ],
+        "Reumatología: Artritis Reumatoide": [
+            "Reumatología: Artritis Reumatoide"
+        ],
+        "LES": [
+            "LES"
+        ],
+        "Reumatología: Lupus Eritematoso Sistémico": [
+            "Reumatología: Lupus Eritematoso Sistémico",
+            "LES"
+        ],
+        "Reumatología: Vasculitis y Gota": [
+            "Reumatología: Vasculitis y Gota"
+        ],
+        "LRA": [
+            "LRA"
+        ],
+        "Nefrología: Lesión Renal Aguda": [
+            "Nefrología: Lesión Renal Aguda",
+            "LRA"
+        ],
+        "ERC": [
+            "ERC"
+        ],
+        "Nefrología: Enfermedad Renal Crónica": [
+            "Nefrología: Enfermedad Renal Crónica",
+            "ERC"
+        ],
+        "Nefrología: Glomerulopatías y Síndromes Nefrótico/Nefrítico": [
+            "Nefrología: Glomerulopatías y Síndromes Nefrótico/Nefrítico"
+        ],
+        "Cardiología: Electrocardiograma básico y Arritmias": [
+            "Cardiología: Electrocardiograma básico y Arritmias"
+        ],
+        "Angina e Infarto": [
+            "Angina e Infarto"
+        ],
+        "Cardiología: Cardiopatía Isquémica": [
+            "Cardiología: Cardiopatía Isquémica",
+            "Angina e Infarto"
+        ],
+        "Cardiología: Insuficiencia Cardíaca": [
+            "Cardiología: Insuficiencia Cardíaca"
+        ],
+        "Hipertensión Arterial Sistémica": [
+            "Hipertensión Arterial Sistémica"
+        ],
+        "Infecto-Cardio: Endocarditis y Pericarditis": [
+            "Infecto-Cardio: Endocarditis y Pericarditis"
+        ],
+        "EVC": [
+            "EVC"
+        ],
+        "Neurología: Enfermedad Vascular Cerebral": [
+            "Neurología: Enfermedad Vascular Cerebral",
+            "EVC"
+        ],
+        "Parkinson/Alzheimer": [
+            "Parkinson/Alzheimer"
+        ],
+        "Neurología: Enfermedades Neurodegenerativas": [
+            "Neurología: Enfermedades Neurodegenerativas",
+            "Parkinson/Alzheimer"
+        ],
+        "Migraña": [
+            "Migraña"
+        ],
+        "Tensional": [
+            "Tensional"
+        ],
+        "Neurología: Cefaleas": [
+            "Neurología: Cefaleas",
+            "Migraña",
+            "Tensional"
+        ],
+        "Neurología: Crisis Convulsivas y Epilepsia": [
+            "Neurología: Crisis Convulsivas y Epilepsia"
+        ],
+        "Dermatología: Tiñas y Acné": [
+            "Dermatología: Tiñas y Acné"
+        ],
+        "Dermatología: Lepra y Pitiriasis": [
+            "Dermatología: Lepra y Pitiriasis"
+        ],
+        "Onco-Dermatología: Cáncer Basocelular, Espinocelular y Melanoma": [
+            "Onco-Dermatología: Cáncer Basocelular, Espinocelular y Melanoma"
+        ],
+        "Psiquiatría: Depresión y Ansiedad": [
+            "Psiquiatría: Depresión y Ansiedad"
+        ],
+        "Psiquiatría: Trastornos de la conducta alimentaria / Esquizofrenia": [
+            "Psiquiatría: Trastornos de la conducta alimentaria / Esquizofrenia"
+        ],
+        "Geriatría: Síndromes Geriátricos": [
+            "Geriatría: Síndromes Geriátricos"
+        ]
+    };
 
     // ---------------------------------------------------------------------------
     // Advanced Setup Logic: Topic Search & Tags
@@ -495,7 +1366,9 @@
                 console.log("Iniciando simulacro...");
 
                 const selectedSpecs = $$(".spec-item.checked").map(i => i.dataset.spec);
-                if (selectedSpecs.length === 0) return alert("Selecciona al menos una especialidad.");
+                if (selectedSpecs.length === 0 && State.selectedTopics.length === 0) {
+                    return showNotification("Selecciona al menos una especialidad o un tema personalizado.");
+                }
 
                 if (!qtySlider) {
                     console.error("No se encontró el slider de cantidad.");
@@ -506,25 +1379,44 @@
                 const timerVal = parseInt(timeInput ? timeInput.value : 0, 10);
                 const isLibre = libBtn ? libBtn.classList.contains("active") : true;
 
-                let pool = QUESTIONS.filter(q => selectedSpecs.includes(q.specialty));
-
-                // Filtrado por Dificultad
-                if (State.difficulty) {
-                    pool = pool.filter(q => {
-                        const qDiff = q.difficulty || "alta";
-                        return qDiff === State.difficulty;
-                    });
+                let pool = [];
+                if (selectedSpecs.length > 0) {
+                    pool = QUESTIONS.filter(q => selectedSpecs.includes(q.specialty));
+                } else {
+                    pool = [...QUESTIONS];
                 }
 
                 // Filtrado por Temas Seleccionados
                 if (State.selectedTopics.length > 0) {
+                    let expandedTopics = [];
+                    State.selectedTopics.forEach(t => {
+                        if (TEMARIO_MAPPING && TEMARIO_MAPPING[t]) expandedTopics.push(...TEMARIO_MAPPING[t]);
+                        else expandedTopics.push(t);
+                    });
+
                     pool = pool.filter(q => {
-                        const qText = `${q.tema || ""} ${q.case || ""} ${q.question || ""} ${q.gpcReference || ""}`.toLowerCase();
-                        return State.selectedTopics.some(topic => qText.includes(topic.toLowerCase()));
+                        const qText = `${q.tema || ""} ${q.case || ""} ${q.question || ""} ${q.gpcReference || ""}`.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                        return expandedTopics.some(topic => {
+                            const normTopic = topic.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                            return qText.includes(normTopic);
+                        });
                     });
                 }
 
-                if (pool.length === 0) return alert("No hay preguntas que coincidan con tus criterios de búsqueda o especialidad.");
+                // Filtrado por Dificultad
+                if (State.difficulty && State.difficulty !== "cualquiera") {
+                    pool = pool.filter(q => {
+                        const qDiff = q.difficulty || "alta";
+                        if (State.difficulty === "alta") {
+                            return qDiff === "alta" || qDiff === "muy-alta";
+                        }
+                        return qDiff === State.difficulty;
+                    });
+                }
+
+                if (pool.length === 0) {
+                    return showNotification(`No hay preguntas. Revisa tus filtros:\n- Especialidades marcadas: ${selectedSpecs.length}\n- Temas buscados: ${State.selectedTopics.length}\n- Dificultad: ${State.difficulty}\nIntenta poner la dificultad en "Cualquiera".`);
+                }
 
                 console.log(`Pool size: ${pool.length}, Qty requested: ${qty}`);
                 State.questionSet = shuffleArray(pool).slice(0, Math.min(qty, pool.length));
@@ -538,6 +1430,8 @@
                 State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
                 State.currentExamType = isLibre ? "Estudio Libre" : "Examen Cronometrado";
                 State.startTime = Date.now();
+                State.pausedElapsedTime = 0;
+                State.examActive = true;
                 isFinishing = false;
 
                 console.log("Configuración de State completa. Renderizando...");
@@ -560,7 +1454,7 @@
                 if (State.topFailedTemas && State.topFailedTemas.length > 0) {
                     startTemaSession(State.topFailedTemas, 5, "Refuerzo IA por Temas");
                 } else {
-                    alert("Aún no tienes puntos de falla registrados. Sigue practicando para que la IA detecte tus áreas de oportunidad.");
+                    showNotification("Aún no tienes puntos de falla registrados. Sigue practicando para que la IA detecte tus áreas de oportunidad.");
                 }
             });
         }
@@ -601,7 +1495,7 @@
         });
 
         if (themesToReview.size === 0) {
-            alert("No hay temas críticos para repaso según la Curva del Olvido hoy. \n\nRecuerda: El sistema programa repasos automáticos a las 24h, 7 días y 30 días de tus sesiones de estudio.");
+            showNotification("No hay temas críticos para repaso según la Curva del Olvido hoy. \n\nRecuerda: El sistema programa repasos automáticos a las 24h, 7 días y 30 días de tus sesiones de estudio.");
             return;
         }
 
@@ -617,6 +1511,8 @@
         State.durationSec = 0;
         State.currentIndex = 0;
         State.startTime = Date.now();
+        State.pausedElapsedTime = 0;
+        State.examActive = true;
         State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
         State.currentExamType = label;
         isFinishing = false;
@@ -632,6 +1528,8 @@
         State.durationSec = 0;
         State.currentIndex = 0;
         State.startTime = Date.now();
+        State.pausedElapsedTime = 0;
+        State.examActive = true;
         State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
         State.currentExamType = label;
         isFinishing = false;
@@ -729,9 +1627,14 @@
         });
     };
 
-    const startTimer = () => {
+    const startTimer = (isResume = false) => {
         const timerDisp = $("timer-display"); if (timerDisp) timerDisp.style.display = "block";
-        State.startTime = Date.now();
+        if (!isResume) {
+            State.startTime = Date.now();
+            State.pausedElapsedTime = 0;
+        } else {
+            State.startTime = Date.now() - (State.pausedElapsedTime * 1000);
+        }
         const timerText = $("timer-text");
         if (State.timer) clearInterval(State.timer);
         State.timer = setInterval(() => {
@@ -740,6 +1643,107 @@
             if (timerText) timerText.textContent = formatTime(remaining);
             if (remaining <= 0) finishExam();
         }, 1000);
+    };
+
+    const pauseTimer = () => {
+        if (State.timer) {
+            clearInterval(State.timer);
+            State.timer = null;
+        }
+        if (State.startTime) {
+            State.pausedElapsedTime = Math.floor((Date.now() - State.startTime) / 1000);
+        }
+    };
+
+    // ---------------------------------------------------------------------------
+    // Question Reporting Logic
+    // ---------------------------------------------------------------------------
+    const initReportLogic = () => {
+        const btnReport = $("btn-report-question");
+        const modal = $("report-modal");
+        const btnSubmit = $("btn-submit-report");
+        const btnCancel = $("btn-cancel-report");
+        const reasonInput = $("report-reason");
+        const preview = $("report-q-preview");
+
+        if (!btnReport || !modal || !btnSubmit || !btnCancel) return;
+
+        btnReport.addEventListener("click", () => {
+            const q = State.questionSet[State.currentIndex];
+            preview.textContent = `Pregunta: ${q.question}`;
+            reasonInput.value = "";
+            modal.style.display = "flex";
+        });
+
+        btnCancel.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        btnSubmit.addEventListener("click", () => {
+            const reason = reasonInput.value.trim();
+            if (!reason) return showNotification("Por favor indica el motivo del reporte.", "warning");
+
+            const q = State.questionSet[State.currentIndex];
+            const report = {
+                id: Date.now(),
+                timestamp: Date.now(),
+                questionText: q.question,
+                caseText: q.case,
+                specialty: q.specialty,
+                tema: q.tema,
+                reason: reason,
+                originalQuestion: q
+            };
+
+            State.reportedQuestions.push(report);
+            saveGlobalStats();
+            modal.style.display = "none";
+            showNotification("Gracias por tu reporte. Lo revisaremos pronto para mejorar el banco de preguntas.", "success");
+        });
+    };
+
+    const renderReportedQuestions = () => {
+        const cont = $("reports-list");
+        if (!cont) return;
+
+        if (State.reportedQuestions.length === 0) {
+            cont.innerHTML = `<div class="list-item empty-history"><p style="color:var(--text-muted); padding: 20px;">No hay preguntas reportadas aún.</p></div>`;
+            return;
+        }
+
+        cont.innerHTML = "";
+        [...State.reportedQuestions].reverse().forEach((r) => {
+            const div = document.createElement("div");
+            div.className = "list-item";
+            div.style.flexDirection = "column";
+            div.style.alignItems = "flex-start";
+            div.style.gap = "10px";
+            div.innerHTML = `
+                <div style="display:flex; justify-content:space-between; width: 100%; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                    <span class="badge red-bg" style="font-size: 10px;">${(r.specialty || "Gral").toUpperCase()}</span>
+                    <span style="font-size: 11px; color: var(--text-muted);">${new Date(r.timestamp).toLocaleDateString()}</span>
+                </div>
+                <div style="width: 100%;">
+                    <h3 style="font-size: 14px; margin-bottom: 6px; color: var(--text-primary);">Pregunta:</h3>
+                    <p style="font-size: 13px; line-height: 1.4; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; margin-bottom: 10px;">${r.questionText}</p>
+                    <h3 style="font-size: 14px; margin-bottom: 6px; color: var(--accent-red);">Motivo del Reporte:</h3>
+                    <p style="font-size: 13px; line-height: 1.4; color: var(--text-secondary); border-left: 2px solid var(--accent-red); padding-left: 10px;">${r.reason}</p>
+                </div>
+                <button class="btn-ghost btn-del-report" data-id="${r.id}" style="align-self: flex-end; font-size: 11px; padding: 4px 8px; color: var(--text-muted);">Eliminar Reporte</button>
+            `;
+            cont.appendChild(div);
+        });
+
+        cont.querySelectorAll(".btn-del-report").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const id = parseInt(e.target.dataset.id);
+                if (confirm("¿Eliminar este reporte?")) {
+                    State.reportedQuestions = State.reportedQuestions.filter(r => r.id !== id);
+                    saveGlobalStats();
+                    renderReportedQuestions();
+                }
+            });
+        });
     };
 
     let isFinishing = false;
@@ -811,6 +1815,7 @@
             });
 
             // Racha (Streak) Logic 
+            State.examActive = false;
             State.globalStats.streakData = State.globalStats.streakData || { lastStudyDate: null, currentStreak: 0 };
             const effective = getEffectiveStreak();
 
@@ -826,7 +1831,7 @@
             showView("view-results");
         } catch (err) {
             console.error("Error crítico en finishExam:", err);
-            alert("Error al finalizar el examen. Revisa la consola.");
+            showNotification("Error al finalizar el examen. Revisa la consola.");
             // Si hay un error, reseteamos el candado para permitir reintentar
             isFinishing = false;
         }
@@ -896,6 +1901,9 @@
     };
 
     const updateDashboardStats = () => {
+        if ($("active-exam-banner")) {
+            $("active-exam-banner").style.display = State.examActive ? "flex" : "none";
+        }
         updateMotivationalQuote();
         const elements = {
             'dash-sesiones': 'sesiones'
@@ -1009,6 +2017,7 @@
     let chartHistory = null;
     let chartSpecialties = null;
     let chartDoughnut = null;
+    let chartSpecLineInstance = null;
 
     const updateCharts = () => {
         if (typeof Chart === 'undefined') return;
@@ -1053,9 +2062,10 @@
             });
         }
 
-        // Chart 2: Especialidades como Line Chart (Estilo Bolsa de Valores)
-        const ctxSpec = document.getElementById('chart-specialties-line');
-        if (ctxSpec) {
+        // Chart 2a: Especialidades como Line Chart (Estilo Bolsa de Valores del Dashboard)
+        const ctxSpecLine = document.getElementById('chart-specialties-line');
+
+        if (ctxSpecLine) {
             const labels = [];
             const dataPts = [];
             const keys = ['mi', 'ped', 'gyo', 'cir', 'sp', 'urg'];
@@ -1067,17 +2077,13 @@
                 }
             });
 
-            // Si todos los puntos son 0, agregamos variabilidad visual para el "look" de bolsa
-            // o simplemente aseguramos que se vea la línea.
-            const hasData = dataPts.some(v => v > 0);
+            if (chartSpecLineInstance) chartSpecLineInstance.destroy();
 
-            if (chartSpecialties) chartSpecialties.destroy();
-
-            const gradient = ctxSpec.getContext('2d').createLinearGradient(0, 0, 0, 250);
+            const gradient = ctxSpecLine.getContext('2d').createLinearGradient(0, 0, 0, 250);
             gradient.addColorStop(0, accentBlue + '55');
             gradient.addColorStop(1, accentBlue + '00');
 
-            chartSpecialties = new Chart(ctxSpec, {
+            chartSpecLineInstance = new Chart(ctxSpecLine, {
                 type: 'line',
                 data: {
                     labels: labels,
@@ -1088,7 +2094,7 @@
                         backgroundColor: gradient,
                         borderWidth: 3,
                         tension: 0.4,
-                        pointRadius: 0, // Estilo bolsa (sin puntos, solo línea)
+                        pointRadius: 0,
                         pointHoverRadius: 6,
                         pointHoverBackgroundColor: accentBlue,
                         pointHoverBorderColor: '#fff',
@@ -1101,29 +2107,69 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: { display: false },
-                        tooltip: {
-                            mode: 'index',
-                            intersect: false,
-                            backgroundColor: 'rgba(0,0,0,0.8)',
-                            padding: 12,
-                            titleFont: { size: 14, weight: 'bold' },
-                            bodyFont: { size: 13 }
-                        }
-                    },
-                    interaction: {
-                        intersect: false,
-                        mode: 'nearest',
+                        tooltip: { mode: 'index', intersect: false }
                     },
                     scales: {
-                        y: {
+                        y: { beginAtZero: true, max: 100, grid: { color: 'rgba(160,174,192,0.05)' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // Chart 2b: Especialidades Radar (Hexagonal) para la pestaña Estadísticas
+        const ctxSpec = document.getElementById('chart-specialties');
+        if (ctxSpec) {
+            const labels = [];
+            const dataPts = [];
+            const keys = ['mi', 'ped', 'gyo', 'cir', 'sp', 'urg'];
+            keys.forEach(k => {
+                const s = State.globalStats.bySpecialty[k];
+                if (s) {
+                    labels.push(s.name.replace(' y Obstetricia', ''));
+                    dataPts.push(s.total > 0 ? Math.round((s.correct / s.total) * 100) : 0);
+                }
+            });
+
+            if (chartSpecialties) chartSpecialties.destroy();
+
+            chartSpecialties = new Chart(ctxSpec, {
+                type: 'radar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Dominio %',
+                        data: dataPts,
+                        backgroundColor: 'rgba(5, 192, 127, 0.2)', // Verde transparente
+                        borderColor: '#05C07F', // Verde
+                        pointBackgroundColor: '#05C07F',
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        r: {
                             beginAtZero: true,
                             max: 100,
-                            grid: { color: 'rgba(160,174,192,0.05)', drawBorder: false },
-                            ticks: { font: { size: 10 } }
-                        },
-                        x: {
-                            grid: { display: false, drawBorder: false },
-                            ticks: { font: { size: 10 } }
+                            ticks: {
+                                stepSize: 20,
+                                display: false
+                            },
+                            grid: {
+                                color: 'rgba(160,174,192,0.1)'
+                            },
+                            angleLines: {
+                                color: 'rgba(160,174,192,0.1)'
+                            },
+                            pointLabels: {
+                                font: { size: 10 },
+                                color: textMuted
+                            }
                         }
                     }
                 }
@@ -1135,8 +2181,8 @@
         if (ctxDbl) {
             let aciertos = State.globalStats.aciertos;
             let errores = State.globalStats.respondidas - aciertos;
-            // Datos dummys grises si no hay historial
-            let bgColors = [accentGreen, '#f43f5e'];
+            // Verde y Rojo fijos
+            let bgColors = ['#10B981', '#EF4444'];
             if (State.globalStats.respondidas === 0) {
                 aciertos = 0; errores = 1;
                 bgColors = ['#334155', '#334155'];
@@ -1159,10 +2205,17 @@
                     maintainAspectRatio: false,
                     cutout: '75%',
                     plugins: {
-                        legend: { position: 'bottom', labels: { padding: 20 } }
+                        legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true } }
                     }
                 }
             });
+
+            // Actualizar porcentaje central
+            const centerPct = $("doughnut-center-pct");
+            if (centerPct) {
+                const pctValue = State.globalStats.respondidas > 0 ? Math.round((State.globalStats.aciertos / State.globalStats.respondidas) * 100) : 0;
+                centerPct.textContent = `${pctValue}%`;
+            }
         }
     };
 
@@ -1194,7 +2247,7 @@
                     showView("view-review");
                     startReview();
                 } else {
-                    alert("No hay detalles guardados para este examen antiguo.");
+                    showNotification("No hay detalles guardados para este examen antiguo.");
                 }
             });
         });
@@ -1333,11 +2386,11 @@
                             State.globalStats.pomodoros = (State.globalStats.pomodoros || 0) + 1;
                             saveGlobalStats();
                             updateStats();
-                            alert("¡Pomodoro terminado! Tiempo de un breve descanso.");
+                            showNotification("¡Pomodoro terminado! Tiempo de un breve descanso.");
                             pomoMode = "break";
                             pomoSeconds = 5 * 60;
                         } else {
-                            alert("¡Descanso terminado! A darle con todo.");
+                            showNotification("¡Descanso terminado! A darle con todo.");
                             pomoMode = "focus";
                             pomoSeconds = 25 * 60;
                         }
@@ -1475,6 +2528,7 @@
         initSetupLogic();
         initDashboardShortcuts();
         startExamCountdown();
+        initReportLogic();
         initPomodoro();
         const bd = $("btn-back-dash"); if (bd) bd.addEventListener("click", () => $("nav-dashboard").click());
         const rv = $("btn-review"); if (rv) rv.addEventListener("click", startReview);
@@ -1562,6 +2616,37 @@
             });
         }
 
+        // Logic for pausing / resuming
+        const btnPause = $("btn-pause-exam");
+        if (btnPause) {
+            btnPause.addEventListener("click", () => {
+                pauseTimer();
+                $("nav-dashboard").click();
+                showNotification("Examen pausado. Puedes retomarlo desde el Dashboard.", "info");
+            });
+        }
+
+        const btnResume = $("btn-resume-exam");
+        if (btnResume) {
+            btnResume.addEventListener("click", () => {
+                if (State.durationSec > 0) {
+                    startTimer(true);
+                } else {
+                    State.startTime = Date.now() - (State.pausedElapsedTime * 1000);
+                }
+                $$(".nav-item").forEach(b => b.classList.remove("active"));
+                showView("view-exam");
+                showNotification("Examen reanudado. ¡Éxito!", "success");
+            });
+        }
+
+        const btnFinishBanner = $("btn-finish-exam-banner");
+        if (btnFinishBanner) {
+            btnFinishBanner.addEventListener("click", () => {
+                showFinishModal();
+            });
+        }
+
 
         // Theme Circle Click Event for Instant Apply
         $$(".theme-circle").forEach(circle => {
@@ -1611,7 +2696,7 @@
                 saveGlobalStats();
                 updateDashboardStats();
                 if (typeof updateCharts === 'function') updateCharts();
-                alert("Estadísticas eliminadas correctamente.");
+                showNotification("Estadísticas eliminadas correctamente.");
                 $("nav-dashboard").click();
             }
         });

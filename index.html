@@ -20,18 +20,17 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">
-                    <svg viewBox="0 0 24 24" width="36" height="36" class="logo-svg">
-                        <path
-                            d="M4 6h16a2 2 0 010 4H4a2 2 0 010-4zm0 6h10a2 2 0 010 4H4a2 2 0 010-4zm0 6h14a2 2 0 010 4H4a2 2 0 010-4z"
-                            fill="#05C07F" />
+                    <svg viewBox="0 0 32 32" width="34" height="34" class="logo-svg" fill="none"
+                        stroke="var(--accent-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Vara principal y punto superior -->
+                        <path d="M16 5 v23" />
+                        <circle cx="16" cy="4" r="1.5" fill="var(--accent-green)" />
+                        <!-- Doble hélice cruzada, elegante -->
+                        <path d="M10 10 C8 13 8 16 12 18 L20 22 C24 24 24 27 22 29" opacity="0.8" />
+                        <path d="M22 10 C24 13 24 16 20 18 L12 22 C8 24 8 27 10 29" opacity="0.3" />
                     </svg>
                     <span class="logo-text">ENARM<span class="logo-accent">lab</span></span>
                 </div>
-                <button id="btn-sidebar-toggle" class="sidebar-toggle">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-                    </svg>
-                </button>
             </div>
 
             <div class="user-profile">
@@ -143,6 +142,13 @@
             </div>
         </header>
 
+        <!-- FLOATING TOGGLE -->
+        <button id="btn-sidebar-toggle" class="sidebar-toggle-floating">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+            </svg>
+        </button>
+
         <!-- MAIN CONTENT -->
         <main class="main-content">
 
@@ -174,6 +180,28 @@
                         </div>
                     </div>
                 </header>
+
+                <!-- Active Exam Banner (Hidden by default) -->
+                <div id="active-exam-banner"
+                    style="display: none; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(5, 192, 127, 0.1) 100%); border: 1px solid var(--accent-blue); border-radius: var(--radius-lg); padding: 20px 24px; margin-bottom: 28px; align-items: center; justify-content: space-between; animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; background: rgba(59, 130, 246, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            ⏱️</div>
+                        <div>
+                            <h3 style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">Examen en Progreso
+                            </h3>
+                            <p style="margin: 4px 0 0 0; color: var(--text-secondary); font-size: 0.9rem;">Tienes un
+                                simulacro o estudio activo. Retómalo para no perder tu progreso.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px; margin-top: 0;">
+                        <button class="btn-primary" id="btn-resume-exam" style="padding: 10px 20px;">Reanudar
+                            Examen</button>
+                        <button class="btn-danger" id="btn-finish-exam-banner"
+                            style="padding: 10px 20px; background: transparent; border: 1px solid var(--accent-red); color: var(--accent-red);">Terminar</button>
+                    </div>
+                </div>
 
                 <div class="stats-grid">
                     <div class="stat-card">
@@ -363,19 +391,19 @@
                         <section class="setup-section">
                             <h3 class="section-label"><span class="label-icon">≡</span> ESPECIALIDADES A EVALUAR</h3>
                             <div class="spec-selection-grid">
-                                <div class="spec-item checked" data-spec="mi">
+                                <div class="spec-item" data-spec="mi">
                                     <span>Medicina Interna</span>
                                     <span class="check-mark">✓</span>
                                 </div>
-                                <div class="spec-item checked" data-spec="ped">
+                                <div class="spec-item" data-spec="ped">
                                     <span>Pediatría</span>
                                     <span class="check-mark">✓</span>
                                 </div>
-                                <div class="spec-item checked" data-spec="gyo">
+                                <div class="spec-item" data-spec="gyo">
                                     <span>Ginecología y Obstetricia</span>
                                     <span class="check-mark">✓</span>
                                 </div>
-                                <div class="spec-item checked" data-spec="cir">
+                                <div class="spec-item" data-spec="cir">
                                     <span>Cirugía General</span>
                                     <span class="check-mark">✓</span>
                                 </div>
@@ -405,7 +433,6 @@
                             <p class="section-hint">La IA generará casos clínicos enfocados estrictamente en estas
                                 palabras clave.</p>
                         </section>
-
                         <section class="setup-section">
                             <h3 class="section-label"><span class="label-icon">⚙</span> NIVEL DE EXIGENCIA</h3>
                             <div class="difficulty-grid"
@@ -418,13 +445,13 @@
                                     <span class="btn-icon">⚖️</span>
                                     <span>Media</span>
                                 </button>
-                                <button class="diff-btn active" data-diff="alta">
+                                <button class="diff-btn" data-diff="alta">
                                     <span class="btn-icon">⚡</span>
                                     <span>Difícil</span>
                                 </button>
-                                <button class="diff-btn" data-diff="muy-alta">
-                                    <span class="btn-icon">⚠️</span>
-                                    <span>Muy Alta</span>
+                                <button class="diff-btn active" data-diff="cualquiera">
+                                    <span class="btn-icon">🎲</span>
+                                    <span>Cualquiera</span>
                                 </button>
                             </div>
                         </section>
@@ -477,7 +504,11 @@
                         </div>
                     </div>
                     <div class="exam-timer" id="timer-display">⏱ <span id="timer-text">04:00:00</span></div>
-                    <button class="btn-danger" id="btn-finish-early">Terminar</button>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn-secondary" id="btn-pause-exam"
+                            style="background: rgba(255,255,255,0.05); border-color: var(--border);">Pausar</button>
+                        <button class="btn-danger" id="btn-finish-early">Terminar</button>
+                    </div>
                 </div>
 
                 <div class="exam-layout">
@@ -508,7 +539,14 @@
 
                         <!-- Feedback for Study mode -->
                         <div id="feedback-card" class="feedback-card" style="display: none;">
-                            <h3 id="feedback-header">Respuesta</h3>
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <h3 id="feedback-header" style="margin: 0;">Respuesta</h3>
+                                <button class="btn-ghost" id="btn-report-question"
+                                    style="font-size: 12px; padding: 4px 8px; border-radius: 6px; color: var(--accent-red); border-color: rgba(239, 68, 68, 0.2);">
+                                    🚩 Reportar Error
+                                </button>
+                            </div>
                             <p id="feedback-explanation"></p>
                             <div id="feedback-gpc" class="feedback-gpc"></div>
                         </div>
@@ -594,6 +632,26 @@
             </div>
 
             <!-- ─── VIEW: MÁS ───────────────────────────── -->
+            <!-- ... (se mantiene igual, solo agrego la vista nueva abajo) -->
+
+            <!-- ─── VIEW: REPORTES ───────────────────────────── -->
+            <div id="view-reportes" class="view">
+                <div class="panel">
+                    <div class="panel-header"
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <div>
+                            <h2 class="panel-title"><span class="title-icon red-text">🚩</span> Preguntas Reportadas
+                            </h2>
+                            <p class="panel-subtitle">Lista de reactivos con observaciones enviadas por los usuarios.
+                            </p>
+                        </div>
+                        <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
+                    </div>
+                    <div id="reports-list" class="list-grid">
+                        <!-- Dinámico -->
+                    </div>
+                </div>
+            </div>
             <div id="view-mas" class="view">
                 <div class="panel">
                     <h2 class="panel-title"><span class="title-icon green-text">💡</span> Más Funciones e Integraciones
@@ -610,6 +668,12 @@
                             <div class="list-item-content">
                                 <h3>📖 Temario Oficial ENARM</h3>
                                 <p>Consulta los temas y subtemas que componen el banco de preguntas actual.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" onclick="showView('view-reportes')" style="cursor: pointer;">
+                            <div class="list-item-content">
+                                <h3>🚩 Preguntas Reportadas</h3>
+                                <p>Revisa las preguntas que los usuarios han marcado con posibles errores.</p>
                             </div>
                         </div>
                     </div>
@@ -756,39 +820,49 @@
                     </div>
 
                     <div class="charts-grid"
-                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;">
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; align-items: start;">
                         <!-- Carta Rendimiento Histórico (Línea) -->
                         <div class="chart-card"
-                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); grid-column: 1 / -1;">
-                            <h3
-                                style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">
-                                📈 Evolución de Aciertos en el Tiempo</h3>
-                            <div style="position: relative; height: 300px; width: 100%;">
+                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); grid-column: 1 / -1;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <h3 style="margin: 0; color: var(--text-primary); font-size: 1.2rem;">📈 Curva de
+                                    Aprendizaje</h3>
+                                <span
+                                    style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Últimas
+                                    10 sesiones</span>
+                            </div>
+                            <div style="position: relative; height: 320px; width: 100%;">
                                 <canvas id="chart-history"></canvas>
                             </div>
                         </div>
 
-                        <!-- Carta Rendimiento por Especialidad (Radar) -->
+                        <!-- Carta Rendimiento por Especialidad (Radar / Hexagonal) -->
                         <div class="chart-card"
-                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
                             <h3
                                 style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">
                                 🕸️ Dominio por Especialidad</h3>
                             <div
-                                style="position: relative; height: 250px; width: 100%; display: flex; justify-content: center;">
+                                style="position: relative; height: 300px; width: 100%; display: flex; justify-content: center;">
                                 <canvas id="chart-specialties"></canvas>
                             </div>
                         </div>
 
                         <!-- Carta Distribución Global (Doughnut) -->
                         <div class="chart-card"
-                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
                             <h3
                                 style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">
-                                🍩 Distribución de Aciertos</h3>
+                                🍩 Balance de Respuestas</h3>
                             <div
-                                style="position: relative; height: 250px; width: 100%; display: flex; justify-content: center;">
+                                style="position: relative; height: 300px; width: 100%; display: flex; justify-content: center; align-items: center;">
                                 <canvas id="chart-doughnut"></canvas>
+                                <div style="position: absolute; text-align: center;">
+                                    <div style="font-size: 11px; color: var(--text-muted);">EFECTIVIDAD</div>
+                                    <div id="doughnut-center-pct"
+                                        style="font-size: 24px; font-weight: 800; color: var(--text-primary);">0%</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -874,6 +948,35 @@
             </div>
 
         </main>
+
+        <!-- ─── MODAL REPORTAR PREGUNTA ───────────────────── -->
+        <div class="modal-overlay" id="report-modal"
+            style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+            <div class="modal-content"
+                style="background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--border); max-width: 500px; width: 90%;">
+                <h2 style="font-size: 20px; margin-bottom: 10px; color: var(--accent-red);">🚩 Reportar Pregunta</h2>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">Indica por qué consideras
+                    que esta pregunta o su respuesta es incorrecta.</p>
+
+                <div
+                    style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--border);">
+                    <p id="report-q-preview"
+                        style="font-size: 13px; font-style: italic; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                    </p>
+                </div>
+
+                <textarea id="report-reason" placeholder="Escribe aquí el motivo del error..."
+                    style="width: 100%; min-height: 120px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); padding: 12px; font-size: 14px; margin-bottom: 20px; outline: none; transition: border-color 0.2s;"
+                    onfocus="this.style.borderColor='var(--accent-red)'"
+                    onblur="this.style.borderColor='var(--border)'"></textarea>
+
+                <div style="display: flex; gap: 12px;">
+                    <button class="btn-ghost" id="btn-cancel-report" style="flex: 1;">Cancelar</button>
+                    <button class="btn-primary" id="btn-submit-report"
+                        style="flex: 2; background: var(--accent-red); border: none;">Enviar Reporte</button>
+                </div>
+            </div>
+        </div>
 
         <!-- ─── MODAL CONFIRMACIÓN TERMINAR EXAMEN ────────────────── -->
         <div class="modal-overlay" id="finish-modal"

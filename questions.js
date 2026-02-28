@@ -1,7 +1,4 @@
 // questions.js – Banco de reactivos para ENARMlab
-// Basado en GPCs y NOMs actualizadas (2023-2024)
-// Temario oficial: Ginecología, Pediatría, Medicina Interna, Cirugía
-
 const QUESTIONS = [
   {
     "specialty": "mi",
@@ -29,7 +26,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "En CAD, el primer paso es la restauración del volumen extracelular para mejorar la perfusión renal y disminuir los niveles de hormonas contrarreguladoras.",
-    "gpcReference": "NOM-015-SSA2-2010, Para la prevención, tratamiento y control de la diabetes mellitus."
+    "gpcReference": "NOM-015-SSA2-2010, Para la prevención, tratamiento y control de la diabetes mellitus.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "mi",
@@ -71,7 +69,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "Aunque las pruebas de 4ta generación son altamente sensibles, el Western Blot o LIA siguen siendo las pruebas confirmatorias clásicas ante un tamizaje positivo.",
-    "gpcReference": "NOM-010-SSA2-2010, Para la prevención y el control de la infección por Virus de la Inmunodeficiencia Humana."
+    "gpcReference": "NOM-010-SSA2-2010, Para la prevención y el control de la infección por Virus de la Inmunodeficiencia Humana.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "gyo",
@@ -113,7 +112,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "Según los criterios de la IADPSG adoptados en México, un solo valor alterado en la curva de 75g (en este caso a la hora >180) hace el diagnóstico de DG.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Diabetes en el Embarazo."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Diabetes en el Embarazo.",
+    "tema": "Diabetes Gestacional"
   },
   {
     "specialty": "ped",
@@ -127,7 +127,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "El primer episodio de sibilancias en un menor de 2 años precedido por síntomas de vía aérea superior es diagnóstico de bronquiolitis, siendo el VSR el agente causal en >80% de los casos.",
-    "gpcReference": "GPC Diagnóstico y Manejo de la Bronquiolitis Aguda en Niños."
+    "gpcReference": "GPC Diagnóstico y Manejo de la Bronquiolitis Aguda en Niños.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "ped",
@@ -141,7 +142,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "A los 6 meses el esquema marca la 3ra dosis de Pentavalente y Hepatitis B, además del inicio de Influenza.",
-    "gpcReference": "NOM-036-SSA2-2012, Prevención y control de enfermedades. Aplicación de vacunas."
+    "gpcReference": "NOM-036-SSA2-2012, Prevención y control de enfermedades. Aplicación de vacunas.",
+    "tema": "Vacunación"
   },
   {
     "specialty": "ped",
@@ -169,7 +171,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "En adultos masculinos, la TC tiene la mayor sensibilidad y especificidad (>95%) para el diagnóstico de apendicitis aguda.",
-    "gpcReference": "GPC Diagnóstico de Apendicitis Aguda."
+    "gpcReference": "GPC Diagnóstico de Apendicitis Aguda.",
+    "tema": "Apendicitis Aguda"
   },
   {
     "specialty": "cir",
@@ -183,7 +186,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "El cuadro de choque obstructivo con ausencia de ruidos y timpanismo sugiere neumotórax a tensión. Es una emergencia clínica.",
-    "gpcReference": "Manual ATLS (Advanced Trauma Life Support), 10ma Edición."
+    "gpcReference": "Manual ATLS (Advanced Trauma Life Support), 10ma Edición.",
+    "tema": "Nefrología: Enfermedad Renal Crónica"
   },
   {
     "specialty": "cir",
@@ -239,7 +243,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La ausencia de ondas P y el ritmo 'irregularmente irregular' es patognomónico de fibrilación auricular. El control de la frecuencia es el primer paso en pacientes estables.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Fibrilación Auricular."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Fibrilación Auricular.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "mi",
@@ -309,7 +314,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La tríada de amenorrea, dolor y masa anexial sugiere embarazo ectópico. Si hay líquido libre y dolor intenso, probablemente está roto, requiriendo cirugía urgente.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento del Embarazo Ectópico."
+    "gpcReference": "GPC Diagnóstico y Tratamiento del Embarazo Ectópico.",
+    "tema": "Hemorragias del Primer Trimestre"
   },
   {
     "specialty": "gyo",
@@ -323,7 +329,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "Ante un reporte de LEIBG (o LIEBG) en la citología, el paso siguiente es la evaluación mediante colposcopia para dirigir biopsia si es necesario.",
-    "gpcReference": "NOM-014-SSA2-1994, Para la prevención, detección, diagnóstico, tratamiento, control y vigilancia epidemiológica del cáncer cérvico uterino."
+    "gpcReference": "NOM-014-SSA2-1994, Para la prevención, detección, diagnóstico, tratamiento, control y vigilancia epidemiológica del cáncer cérvico uterino.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "gyo",
@@ -337,7 +344,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La hiperémesis gravídica se define por vómitos incoercibles, pérdida de peso >5% y alteraciones metabólicas (cetonuria/desequilibrio hidroelectrolítico).",
-    "gpcReference": "GPC Control Prenatal con Enfoque de Riesgo."
+    "gpcReference": "GPC Control Prenatal con Enfoque de Riesgo.",
+    "tema": "Nefrología: Enfermedad Renal Crónica"
   },
   {
     "specialty": "gyo",
@@ -379,7 +387,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La epiglotitis es una emergencia médica. La posición de trípode y el babeo indican una obstrucción inminente de la vía aérea superior por Haemophilus influenzae b.",
-    "gpcReference": "GPC Diagnóstico y Manejo de la Epiglotitis Aguda."
+    "gpcReference": "GPC Diagnóstico y Manejo de la Epiglotitis Aguda.",
+    "tema": "Vacunación"
   },
   {
     "specialty": "ped",
@@ -421,7 +430,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "El abdomen excavado (escafoide) y la disnea con desplazamiento de ruidos cardiacos sugieren que las vísceras abdominales están en el tórax.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Hernia Diafragmática Congénita."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Hernia Diafragmática Congénita.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "cir",
@@ -435,7 +445,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La lipasa es más específica y permanece elevada por más tiempo que la amilasa en cuadros de pancreatitis aguda.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Pancreatitis Aguda."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Pancreatitis Aguda.",
+    "tema": "Pancreatitis Aguda"
   },
   {
     "specialty": "cir",
@@ -449,7 +460,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 0,
     "explanation": "Un pequeño absceso pericólico o flemón se clasifica como Hinchey I y suele responder a manejo médico conservador.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Enfermedad Diverticular del Colon."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Enfermedad Diverticular del Colon.",
+    "tema": "Nefrología: Enfermedad Renal Crónica"
   },
   {
     "specialty": "cir",
@@ -463,7 +475,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "El dolor lumbar irradiado a genitales sin posición de alivio y hematuria es característico de litiasis urinaria. La TC es el estudio más sensible.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Litiasis Renal."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Litiasis Renal.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "cir",
@@ -477,7 +490,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "En pacientes con cirugías abdominales previas, las adherencias son los causantes de más del 60-70% de las obstrucciones intestinales.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Obstrucción Intestinal."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Obstrucción Intestinal.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "mi",
@@ -505,7 +519,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "El patrón S1Q3T3, aunque poco sensible, es clásico en TEP. El antecedente quirúrgico reciente es un factor de riesgo mayor.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Tromboembolia Pulmonar Aguda."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Tromboembolia Pulmonar Aguda.",
+    "tema": "Patología de Extremidad Inferior"
   },
   {
     "specialty": "mi",
@@ -547,7 +562,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "Los estudios que parten de la exposición (fumadores) y siguen a los sujetos hacia el futuro para ver el desenlace (cáncer) son estudios de cohorte.",
-    "gpcReference": "Fundamentos de Epidemiología Clínica."
+    "gpcReference": "Fundamentos de Epidemiología Clínica.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "sp",
@@ -561,7 +577,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La incidencia mide los casos nuevos que aparecen en una población en un periodo determinado.",
-    "gpcReference": "Guía de Vigilancia Epidemiológica Integral de Dengue."
+    "gpcReference": "Guía de Vigilancia Epidemiológica Integral de Dengue.",
+    "tema": "Enfermedades transmitidas por Vector"
   },
   {
     "specialty": "ped",
@@ -575,7 +592,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "El síndrome de mano-pie-boca es causado principalmente por Coxsackie virus, especialmente el serotipo A16.",
-    "gpcReference": "GPC Diagnóstico y Manejo de Infecciones de Vías Respiratorias Superiores."
+    "gpcReference": "GPC Diagnóstico y Manejo de Infecciones de Vías Respiratorias Superiores.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "ped",
@@ -659,7 +677,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "Las quemaduras circunferenciales en tórax actúan como una coraza que impide la ventilación; la escarotomía libera esa tensión.",
-    "gpcReference": "GPC Tratamiento del Paciente con Quemaduras Graves."
+    "gpcReference": "GPC Tratamiento del Paciente con Quemaduras Graves.",
+    "tema": "Nefrología: Enfermedad Renal Crónica"
   },
   {
     "specialty": "urg",
@@ -701,7 +720,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "Las ondas T picudas y el ensanchamiento del QRS son signos electrocardiográficos graves de hiperpotasemia, común en falla renal terminal.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Insuficiencia Renal Crónica."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Insuficiencia Renal Crónica.",
+    "tema": "Nefrología: Enfermedad Renal Crónica"
   },
   {
     "specialty": "mi",
@@ -715,7 +735,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "Aunque los ANA son muy sensibles, el Anti-Smith es el más específico para LES según los criterios actuales.",
-    "gpcReference": "GPC Diagnóstico y Manejo de Lupus Eritematoso Sistémico."
+    "gpcReference": "GPC Diagnóstico y Manejo de Lupus Eritematoso Sistémico.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "mi",
@@ -771,7 +792,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "El glaucoma agudo es una emergencia oftalmológica caracterizada por dolor intenso, ojo rojo, midriasis y elevación súbita de la PIO.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento del Glaucoma de Ángulo Abierto y Cerrado."
+    "gpcReference": "GPC Diagnóstico y Tratamiento del Glaucoma de Ángulo Abierto y Cerrado.",
+    "tema": "Oftalmología P2"
   },
   {
     "specialty": "mi",
@@ -785,7 +807,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La amoxicilina sigue siendo el estándar de oro para la otitis media aguda en pediatría debido a su cobertura contra S. pneumoniae.",
-    "gpcReference": "GPC Diagnóstico y Manejo de la Otitis Media Aguda en Niños."
+    "gpcReference": "GPC Diagnóstico y Manejo de la Otitis Media Aguda en Niños.",
+    "tema": "Infecciones de Vías Respiratorias Superiores"
   },
   {
     "specialty": "mi",
@@ -813,7 +836,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La fiebre y el dolor lumbar (Giordano +) diferencian la pielonefritis de una infección de vías urinarias bajas.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Infección de Vías Urinarias en el Adulto."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Infección de Vías Urinarias en el Adulto.",
+    "tema": "Nefrología: Enfermedad Renal Crónica"
   },
   {
     "specialty": "mi",
@@ -827,7 +851,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "El pioderma gangrenoso se asocia frecuentemente a patologías sistémicas como CUCI o Crohn.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de Pioderma Gangrenoso."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de Pioderma Gangrenoso.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "cir",
@@ -869,7 +894,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "A los 12 meses se aplica la primera dosis de SRP y el refuerzo de la vacuna neumocócica.",
-    "gpcReference": "NOM-036-SSA2-2012, Prevención y control de enfermedades. Aplicación de vacunas."
+    "gpcReference": "NOM-036-SSA2-2012, Prevención y control de enfermedades. Aplicación de vacunas.",
+    "tema": "Vacunación"
   },
   {
     "specialty": "ped",
@@ -883,7 +909,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "El 'regurgitador feliz' tiene reflujo gastroesofágico fisiológico que no requiere medicación, solo medidas generales.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento del Reflujo Gastroesofágico en Pediatría."
+    "gpcReference": "GPC Diagnóstico y Tratamiento del Reflujo Gastroesofágico en Pediatría.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "gyo",
@@ -925,7 +952,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "El primer paso tras reconocer el paro es activar el sistema de emergencias antes de iniciar las maniobras.",
-    "gpcReference": "Guías de RCP y ACE de la American Heart Association (AHA)."
+    "gpcReference": "Guías de RCP y ACE de la American Heart Association (AHA).",
+    "tema": "Patología Quirúrgica de Esófago"
   },
   {
     "specialty": "urg",
@@ -939,7 +967,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La asistolia y la actividad eléctrica sin pulso son ritmos no desfibrilables; el manejo es RCP y adrenalina.",
-    "gpcReference": "Soporte Vital Cardiovascular Avanzado (ACLS)."
+    "gpcReference": "Soporte Vital Cardiovascular Avanzado (ACLS).",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "mi",
@@ -981,7 +1010,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "El diagnóstico de certeza de EPOC requiere demostrar una obstrucción no reversible al flujo aéreo mediante espirometría.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Enfermedad Pulmonar Obstructiva Crónica."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Enfermedad Pulmonar Obstructiva Crónica.",
+    "tema": "Nefrología: Enfermedad Renal Crónica"
   },
   {
     "specialty": "mi",
@@ -1023,7 +1053,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "Se trata de laringotraqueítis (Crup) moderada-grave (presencia de estridor en reposo y datos de dificultad respiratoria evidente). Está indicada la administración de esteroide sistémico más l-adrenalina o adrenalina racémica nebulizada para disminuir el edema subglótico de forma rápida.",
-    "gpcReference": "GPC Diagnóstico y Manejo de la Laringotraqueítis Aguda en Pacientes Pediátricos."
+    "gpcReference": "GPC Diagnóstico y Manejo de la Laringotraqueítis Aguda en Pacientes Pediátricos.",
+    "tema": "Nefrología: Enfermedad Renal Crónica"
   },
   {
     "specialty": "cir",
@@ -1037,7 +1068,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "En la clasificación topográfica de Balthazar para pancreatitis aguda: A (Normal), B (Aumento de tamaño), C (Inflamación peripancreática), D (Una acumulación única de líquido), E (Dos o más acumulaciones o gas retroperitoneal). Por lo tanto, el grado D es una sola colección líquida peri-pancreática.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Pancreatitis Aguda."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Pancreatitis Aguda.",
+    "tema": "Pancreatitis Aguda"
   },
   {
     "specialty": "urg",
@@ -1051,7 +1083,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "El cuadro es un clásico neumotórax a tensión (desviación traqueal, abolición de ruidos respiratorios, ingurgitación yugular y choque obstructivo). La descompresión pleural con aguja es el tratamiento de emergencia imprescindible antes de colocar el tubo de tórax definitivo.",
-    "gpcReference": "ATLS (Advanced Trauma Life Support) - Principios de manejo de trauma torácico."
+    "gpcReference": "ATLS (Advanced Trauma Life Support) - Principios de manejo de trauma torácico.",
+    "tema": "Patología Quirúrgica de Esófago"
   },
   {
     "specialty": "mi",
@@ -1065,7 +1098,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "Puntos CHA2DS2-VASc: Edad 65-74 años (1 punto), HAS (1 punto), DM (1 punto). Total: 3 puntos. En hombres, una puntuación ≥2 establece indicación formal de anticoagulación oral definitiva.",
-    "gpcReference": "GPC Diagnóstico y tratamiento de la Fibrilación Auricular."
+    "gpcReference": "GPC Diagnóstico y tratamiento de la Fibrilación Auricular.",
+    "tema": "Neurología: Enfermedad Vascular Cerebral"
   },
   {
     "specialty": "sp",
@@ -1079,7 +1113,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "El control epidémico en sistemas cerrados como asilos o cárceles frente a brotes de gran contagiosidad (como norovirus) implica cerrar la instalación (cuarentena/restricción de visitas) y aislar a los infectados como medida primordial de contención de daños comunitarios.",
-    "gpcReference": "NOM-017-SSA2-2012, Para la vigilancia epidemiológica."
+    "gpcReference": "NOM-017-SSA2-2012, Para la vigilancia epidemiológica.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "ped",
@@ -1093,7 +1128,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "En la meningitis neonatal (<1 mes de vida), los principales agentes etiológicos son Streptococcus agalactiae (estreptococo del grupo B), enterobacterias (principalmente E. coli) y Listeria monocytogenes por transmisión vertical.",
-    "gpcReference": "GPC Prevención, diagnóstico y tratamiento de la Meningitis Bacteriana Aguda en edad Pediátrica."
+    "gpcReference": "GPC Prevención, diagnóstico y tratamiento de la Meningitis Bacteriana Aguda en edad Pediátrica.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "cir",
@@ -1121,7 +1157,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "Tanto el implante subdérmico como el SIU-LNG reducen significativamente el sangrado y la dismenorrea, siendo considerados métodos LARCs (Long Acting Reversible Contraceptives) de primera línea (categoría 1) excelentes en adolescentes y adultas jóvenes por su alta tasa de continuidad y eficacia sin depender del cumplimiento diario.",
-    "gpcReference": "GPC Criterios médicos de elegibilidad para el uso de anticonceptivos WHO, adaptados al ENARM."
+    "gpcReference": "GPC Criterios médicos de elegibilidad para el uso de anticonceptivos WHO, adaptados al ENARM.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "urg",
@@ -1163,7 +1200,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "Es el cuadro típico del Glomerulonefritis Postestreptocócica (GNPE) tras una infección cutánea (impétigo, por las lesiones mielicéricas). Como es una glomerulonefritis mediada por inmunocomplejos, hay consumo de la vía alterna del complemento (C3 disminuido y C4 normal), además de evidencia serológica de infección previa.",
-    "gpcReference": "GPC Diagnóstico y tratamiento de la Glomerulonefritis Aguda en Pediatría."
+    "gpcReference": "GPC Diagnóstico y tratamiento de la Glomerulonefritis Aguda en Pediatría.",
+    "tema": "Nefrología: Enfermedad Renal Crónica"
   },
   {
     "specialty": "gyo",
@@ -1177,7 +1215,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "Ante un trabajo de parto pretérmino inminente entre las 24 y 34 semanas, el esquema de corticoesteroides prenatales tiene el mayor impacto en reducir la morbimortalidad neonatal, específicamente la enfermedad de membrana hialina, hemorragia intraventricular y enterocolitis necrotizante.",
-    "gpcReference": "GPC Diagnóstico y Manejo del Parto Pretérmino."
+    "gpcReference": "GPC Diagnóstico y Manejo del Parto Pretérmino.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "cir",
@@ -1191,7 +1230,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "Triada de Beck (hipotensión, ruidos cardiacos apagados e ingurgitación yugular) sugestiva de taponamiento cardiaco tras trauma penetrante en el tórax. Fisiopatológicamente, la presión intrapericárdica supera las presiones de llenado del corazón derecho y produce choque obstructivo.",
-    "gpcReference": "ATLS (Advanced Trauma Life Support) - Principios de manejo de trauma torácico."
+    "gpcReference": "ATLS (Advanced Trauma Life Support) - Principios de manejo de trauma torácico.",
+    "tema": "Nefrología: Enfermedad Renal Crónica"
   },
   {
     "specialty": "urg",
@@ -1219,7 +1259,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "El control por rociamiento residual ataca directamente al vector dentro del medio ambiente doméstico, previniendo el contacto infectante. Es una clásica medida de prevención primaria (en específico, como medida de saneamiento y bloqueo vectorial).",
-    "gpcReference": "Bases de Epidemiología y Salud Pública (Modelos Preventivos de Leavell y Clark)."
+    "gpcReference": "Bases de Epidemiología y Salud Pública (Modelos Preventivos de Leavell y Clark).",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "mi",
@@ -1233,7 +1274,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "Una hipercalcemia con concentración elevada de hormona paratiroidea (PTH) indica invariablemente Hiperparatiroidismo primario (cuyo origen principal es un adenoma benigno paratiroideo). Al ya tener osteoporosis secundaria y de acuerdo a criterios internacionales, requiere curación por medio de paratiroidectomía.",
-    "gpcReference": "GPC Diagnóstico y tratamiento del Hiperparatiroidismo Primario."
+    "gpcReference": "GPC Diagnóstico y tratamiento del Hiperparatiroidismo Primario.",
+    "tema": "Nefrología: Enfermedad Renal Crónica"
   },
   {
     "specialty": "ped",
@@ -1261,7 +1303,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "En toda mujer posmenopáusica (especialmente con hiperestrogenismo periférico como la obesidad) que presente sangrado (Stryker transvaginal postmenopáusico), el síntoma cardinal es sospecha absoluta de cáncer de endometrio. El estudio inicial es ultrasonido pélvico endovaginal para evaluar engrosamiento endometrial superior a >4-5 mm (lo cual obliga a biopsia).",
-    "gpcReference": "GPC Diagnóstico y tratamiento del Cáncer de Endometrio."
+    "gpcReference": "GPC Diagnóstico y tratamiento del Cáncer de Endometrio.",
+    "tema": "Patología Respiratoria Neonatal"
   },
   {
     "specialty": "cir",
@@ -1275,7 +1318,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "Las fracturas pélvicas inestables en 'libro abierto' conllevan hemorragia retroperitoneal venosa grave que es la principal causa de muerte precoz. La maniobra inmediata más efectiva y salva vidas es la colocación de faja (binder) o cierre con una sábana rodeando los trocánteres mayores, lo que reduce el volumen anatómico y promueve un inicio taponamiento hemostático.",
-    "gpcReference": "ATLS - Manual de reanimación y Trauma en Pelvis."
+    "gpcReference": "ATLS - Manual de reanimación y Trauma en Pelvis.",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "gyo",
@@ -1309,7 +1353,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia Uterina Anormal (SOP, Endometriosis)",
+    "tema": "Hemorragia Uterina Anormal",
     "case": "Paciente femenina de 24 años con IMC de 31 kg/m2, acude a revisión por oligomenorreas (3 a 4 menstruaciones al año) e incremento en la densidad del vello facial y acné noduloquístico de difícil control dermoestético. USG revela ambos ovarios con más de 12 folículos subcapsulares. Tras haber intentado dieta, ejercicio y uso de anticonceptivos combinados que fueron suspendidos por intolerancia gástrica, la paciente desea mejorar el sangrado uterino debido a episodios de metrorragias intermitentes disfuncionales que reducen severamente su calidad de vida y nivel de hemoglobina (Hb actual: 11 g/dL).",
     "question": "¿Cuál de los siguientes abordajes terapéuticos hormonales sería el más adecuado dada la intolerancia reportada y el perfil de la paciente (no desea fertilidad ahora)?",
     "options": [
@@ -1339,7 +1383,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia Uterina Anormal (Miomatosis, Pólipos)",
+    "tema": "Hemorragia Uterina Anormal",
     "case": "Mujer de 44 años con sangrado menstrual abundante desde hace 1 año, usando 6-7 toallas nocturnas al día e impactando su rutina. Hb: 8.8 g/dL. USG: mioma submucoso de 3.5 cm tipo 1 (clasificación FIGO), deforma cavidad endometrial significativamente. Ha recibido AINE, ácido tranexámico y anticonceptivos combinados pero el volumen sólo ha disminuido en un 15% sin lograr evitar la anemia. No desea fertilidad futura pero si expone el deseo conservador de evitar histerectomía de no ser sumamente forzoso.",
     "question": "¿Cuál es el tratamiento quirúrgico más adecuado conociendo que posee un claro deseo conservador el cual fue externado con su médico general?",
     "options": [
@@ -1354,7 +1398,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Oncología Ginecología P1: Cáncer de Ovario",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "case": "Una paciente de 67 años acude refiriendo sentirse constipada, con indigestión y aumento rápido en de la envergadura del vientre (distensión) en los últimos 2 meses. Hay pérdida ponderal inexplicable de 8 kg. El estudio ultrasonográfico de emergencia sumado a la TAC abdominal corroboran abundante ascitis pélvica, sumado a un tumor ovárico predominantemente de morfología sólida heterogénea, multiseptado y con excrecencias gruesas en el anexo izquierdo (7 cm) que arroja siembras milimétricas serosas sobre el peritoneo de la cúpula diafragmática de hemidiafragma derecho.",
     "question": "¿A qué estadio clínico avanzado de la estadificación tradicional FIGO pertenece el cáncer epitelial de ovario cuando presenta afectación comprobada extrapélvica, es decir, implantes macróscopicos peritoneales fuera de la pelvis por encima del borde, comprobados en cápsula diafragmática o nivel de epiplón mayor?",
     "options": [
@@ -1369,7 +1413,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Oncología Ginecología P2: Tamizaje CACU",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "case": "Mujer de 33 años nativa de comunidad rural acude asintomática para revisión cervical tras jornada de salud. Inicio de relaciones sexuales múltiples a los 16 años y 3 partos previos vía vaginal. El frotis cervical reporta una citología vaginal convencional donde el patólogo diagnostica fidedignamente un LIE-AG (Lesión Intraepitelial Escamosa de Alto Grado). No tiene papanicolaou en los últimos 5 años documentado. A la exploración física y posterior colposcopia en unidad de colposcopia central, se muestra una zona de transformación extensa (T-1) con patrón de mosaico áspero, punteado grueso y borde de epitelio acetoblanco muy bien delimitado en el exocérvix.",
     "question": "¿Qué acción terapéutica o diagnóstica inmediata recomienda el consenso normativo en México una vez diagnosticado el antecedente citológico de Alto Grado con una colposcopia exocervical altamente satisfactoria (T-1) concurrente?",
     "options": [
@@ -1414,7 +1458,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Patología Neonatal Infecciosa (Sepsis, Conjuntivitis, Onfalitis)",
+    "tema": "Patología Neonatal Infecciosa",
     "case": "Neonato primigesto de 5 días de vida, nacido a las 38 semanas de gestación por parto vaginal. Madre con antecedente de ruptura prematura de membranas de 22 horas y fiebre intraparto de 38.5°C. El paciente no recibió profilaxis antibiótica intraparto. Acude al servicio de urgencias porque la madre lo nota 'apagado', rechaza el seno materno, y ha presentado un episodio de hipotermia (35.8°C en casa). A la exploración: letárgico, taquicardia de 170 lpm, polipnea de 65 rpm y llenado capilar de 4 segundos. La biometría hemática reporta leucopenia de 4,000/mm3, neutrófilos inmaduros/totales (índice I/T) de 0.25 y PCR de 45 mg/L.",
     "question": "¿Cuál es el esquema antibiótico empírico de primera elección más apropiado mientras se esperan los resultados de los hemocultivos y cultivos de LCR en este paciente?",
     "options": [
@@ -1429,7 +1473,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Patología Respiratoria Neonatal (Membrana hialina, TTRN, SAM)",
+    "tema": "Patología Respiratoria Neonatal",
     "case": "Recién nacido postérmino de 41.5 semanas de gestación. Parto complicado por distocia de hombros y líquido amniótico teñido de meconio espeso (puré de chícharos). Al nacer se encuentra deprimido, sin tono muscular y con esfuerzo respiratorio ausente, requiriendo reanimación avanzada. A las 2 horas de vida, ingresa a UCIN por insuficiencia respiratoria severa, requiriendo FiO2 del 80% para mantener saturación >90%. La radiografía de tórax muestra hiperinsuflación bilateral severa, infiltrados algodonosos gruesos asimétricos parcheados y aplanamiento de los hemidiafragmas.",
     "question": "¿Cuál de los siguientes mecanismos fisiopatológicos explica PRINCIPALMENTE el patrón radiológico de hiperinsuflación en este paciente?",
     "options": [
@@ -1474,7 +1518,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Crecimiento y Desarrollo P2 (Hitos del desarrollo)",
+    "tema": "Crecimiento y Desarrollo P2",
     "case": "Durante control institucional pediátrico ambulatorio (Niño Sano), valora a una bebé femenina de 9 meses. Apetito voraz y duerme bien. En su evaluación psicomotora nota que la bebé logra mantenerse sentada sola, rola del prono al supino sin ningún problema, mas no hace intentos de gatear. Tampoco intenta ponerse de pie sujetada a las cosas. En motricidad fina, cuando le entrega una ficha, la atrapa utilizando ambas manos a modo de palas completas ('toda la mano') y falla dramáticamente en utilizar sus pulgares ni logra traspasar la ficha de la mano izquierda a la derecha sin soltarla sobre la mesa.",
     "question": "¿Qué hito de motricidad fina DEBE estar presente obligadamente a los 9 meses de edad, cuya ausencia franca representaría en este caso una evidente señal de alarma ('bandera roja') para remisión a neuropediatría?",
     "options": [
@@ -1489,7 +1533,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Vacunación (Esquema Nacional)",
+    "tema": "Vacunación",
     "case": "Lactante varón de 4 meses de edad es llevado dócilmente a su Centro de Salud para vacunas intramusculares. Sus padres presentan su esquema oficial al corriente; tiene antecedentes de nacimientos sin complicaciones, no cursa con inmunodeficiencia primaria o adquirida ni sufre dermatitis en este momento. Sin embargo, el antecedente de suma relevancia es que a los 3 meses de edad este recién nacido padeció invaginación intestinal idiopática a nivel ileocólico, solucionada por neumática exitosa y de la cual fue dado de alta, hallándose en estado asintomático gastrointestinal hoy.",
     "question": "¿Qué biológico correspondiente a su actual Visita Pediátrica Mensual está ABSOLUTAMENTE CONTRAINDICADO y deberá cancelarse de inmediato para evitar recaídas sistémicas en su aparato digestivo?",
     "options": [
@@ -1519,7 +1563,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Infecciones de Vías Respiratorias Superiores (Otitis, Faringitis)",
+    "tema": "Infecciones de Vías Respiratorias Superiores",
     "case": "Preescolar masculino de 3 años, asiste a consulta en enero, porque tiene escurrimiento y coriza desde hace 4 días y repentinamente desde anoche se queja de un inmenso dolor tirante sobre su oído derecho. Lloró toda la madrugada, y está febril cursando con 39.4 °C de temperatura. En la otoscopia revelas un conducto normal y una membrana timpánica del oído diestro muy roja, opaca, sumamente abombada expulsando el reflejo luminoso de su sitio, que ni siquiera se moviliza a la insuflación neumática. Nunca ha sido medicado contra estafilococos o neumococos recientemente.",
     "question": "¿Frente a una OMA aguda y severa por presentar fiebre mayor de 39 y dolor exacerbado documentado en un prescolar sin amoxicilinas de base o alergias pasadas, qué esquema farmacológico curativo inicial recomienda estipular la Guía de Práctica Clínica mexicana?",
     "options": [
@@ -1534,7 +1578,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Urgencias Pediátricas (Quemaduras)",
+    "tema": "Urgencias Pediátricas",
     "case": "Niño de 4 años de edad que sufre quemadura térmica accidental (por olla de frijoles hirvientes en cocineta de piso). El evento empapó brutalmente todo el miembro superior dominante derecho (brazo, antebrazo y mano por ambos bordes) y todo el volumen anatómico del tórax y abdomen por su cara anterior. El paramédico inspecciona la epidermis y dicta piel despellejada, húmeda, muy 'llorosa', intensamente hiperémica roja pero que inmediatamente se decolora/palidece si se presiona el lecho capilar; el paciente está gritando de exacerbado dolor.",
     "question": "¿De acuerdo con la valoración clínica por inspección general, cómo tipificamos la quemadura en cuanto a su superficie total y grado de progresión en hondura o estrato dérmico?",
     "options": [
@@ -1549,7 +1593,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Enfermedades transmitidas por Vector (Dengue, Zika, Rickettsia)",
+    "tema": "Enfermedades transmitidas por Vector",
     "case": "Paciente masculino de 28 años, originario y residente de Veracruz. Acude a urgencias con historia de 4 días de fiebre continua de 39.5°C, cefalea intensa de predominio retroocular, mialgias y artralgias incapacitantes ('fiebre quebrantahuesos'). El día de hoy refiere que la fiebre desapareció (defervescencia), pero súbitamente comenzó con dolor abdominal intenso y continuo, vómitos persistentes (más de 4 en 6 horas) y astenia profunda. A la exploración física se encuentra con palidez, frialdad distal, y se palpa hepatomegalia de 3 cm por debajo del reborde costal. Laboratorios: Hematocrito de 52% (elevación súbita respecto a uno basal previo de 44%), plaquetas de 35,000/mm3.",
     "question": "¿En qué etapa y clasificación clínica de la enfermedad se encuentra este paciente y cuál es la manifestación fisiopatológica principal que rige su gravedad actual?",
     "options": [
@@ -1564,7 +1608,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Cardiología: Cardiopatía Isquémica (Angina e Infarto)",
+    "tema": "Cardiología: Cardiopatía Isquémica",
     "case": "Hombre de 62 años, diabético con mal apego (HbA1c 9.5%) e hipertenso. Es traído por paramédicos tras 40 minutos de opresión toráxica retroesternal intensa, irradiada al brazo izquierdo y mandíbula, acompañada de diaforesis profusa y náusea clínica. A su llegada, sus signos son: TA 100/60 mmHg, FC 95 lpm, SatO2 93%. El electrocardiograma (ECG) inicial de 12 derivaciones en los primeros 10 minutos de la puerta revela una clara elevación del segmento ST de 3 mm en las derivaciones V1, V2, V3 y V4.",
     "question": "¿Qué arteria coronaria es casi con toda certeza el vaso causal (culpable) de este evento isquémico agudo detectado y qué cara anatómica del miocardio está sufriendo necrosis?",
     "options": [
@@ -1594,7 +1638,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Endocrinología: Complicaciones Agudas de Diabetes (Cetoacidosis / Estado Hiperosmolar)",
+    "tema": "Complicaciones Agudas de Diabetes",
     "case": "Mujer joven de 22 años, recientemente diagnosticada con Diabetes Mellitus tipo 1, es llevada a urgencias en estado de estupor. Ha estado cursando con una infección urinaria descuidada. Presenta respiración profunda, laboriosa y suspirante (Respiración de Kussmaul), severa deshidratación, y aliento característico a 'manzana ácida'. La analítica sanguínea revela: Glucosa 480 mg/dL, pH arterial 7.15, HCO3 de 10 mEq/L, pCO2 de 25 mmHg. Cetonas séricas altamente positivas, potasio de 4.8 mEq/L y sodio de 136 mEq/L.",
     "question": "¿Dentro del protocolo estricto de manejo secuencial en la Unidad de Choque, cuál es la PRIMERA y más primordial indicación médica a iniciar simultáneamente con la evaluación de los laboratorios en este caso?",
     "options": [
@@ -1609,7 +1653,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Neurología: Enfermedad Vascular Cerebral (EVC)",
+    "tema": "Neurología: Enfermedad Vascular Cerebral",
     "case": "A las 14:00 horas, un varón de 68 años con fibrilación auricular tabaquística ingresa por la aparición de una hemiparesia braquiocrural derecha densa de instauración ultra-súbita que le colapsó, seguida de desviación ocular hacia la izquierda y afasia sensitivomotora global confirmada por el neurólogo. Sus familiares, altamente atentos, señalan que él estaba perfectamente sano sentándose a comer exactamente a las 12:50 del mediodía. Su nivel de TA de llegada es 170/95. La tomografía axial computarizada de cráneo sin contrate inicial (14:15 hrs) se reporta absolutamente libre de hemorragias en todos los cortes, sin mostrar tejido negro isquémico masivo agudo al momento.",
     "question": "¿De acuerdo con los consensos del tratamiento del stroke isquémico, qué criterio permite catalogar a este paciente como candidato de altísima prioridad indiscutible al uso de activador tisular del plasminógeno (Alteplasa IV / rt-PA)?",
     "options": [
@@ -1624,7 +1668,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Nefrología: Lesión Renal Aguda (LRA)",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "case": "Campesino de 55 años, varón que laboró 12 horas seguidas en extremo calor estival sin hidratación bebible, y padeció una grave intoxicación alimentaria simultánea en la jornada presentando copiosas 15 evacuaciones líquidas abundantes y vómitos seguidos anoche. Ingresa letárgico, taquicárdico, turgencia cutánea de 'carpa' pobre e hipotensión de 80/50. En el balance registra únicamente anuria (< 50 ml) durante todo el día moderno. En los paraclínicos urgentes se arroja: Urea en la sangre multiplicada al triple, creatinina 3.0 mg/dL, Fracción Excretada de Sodio (FeNa) calculada del sedimento urinario en 0.4% (< 1%), relación NUS/Creatinina en sangre >20:1, su sedimento microscópico está en blanco careciendo de cilindros marrones u otros.",
     "question": "¿A qué cuadro fisiopatológico nefrítico encaja perfectamente esta clasificación funcional según características biomédicas, el FeNa aportado, sedimento transparente y la relación descrita?",
     "options": [
@@ -1669,7 +1713,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Medicina Interna – Síndrome coronario agudo con elevación del ST",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "difficulty": "alta",
     "case": "Hombre de 58 años, diabético e hipertenso, inicia hace 90 minutos con dolor opresivo retroesternal irradiado a brazo izquierdo, acompañado de diaforesis y náusea. TA 140/90 mmHg, FC 96 lpm. ECG muestra elevación del ST en II, III y aVF. Hospital sin sala de hemodinamia; el centro con angioplastia más cercano está a 3 horas.",
     "question": "¿Cuál es el diagnóstico?",
@@ -1686,7 +1730,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Pediatría – Crisis asmática",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "difficulty": "alta",
     "case": "Niño de 7 años con antecedente de asma, presenta disnea progresiva tras infección viral. Habla en frases cortas, FR 38/min, tiraje intercostal, sibilancias audibles sin estetoscopio, SatO₂ 89%.",
     "question": "¿Cómo se clasifica la crisis?",
@@ -1703,7 +1747,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Cirugía – Pancreatitis aguda",
+    "tema": "Pancreatitis Aguda",
     "difficulty": "alta",
     "case": "Hombre de 45 años, etilista crónico, presenta dolor epigástrico intenso irradiado a espalda, vómito persistente. Lipasa 6 veces el límite superior. TA 100/60 mmHg, FC 112 lpm. BUN 32 mg/dL.",
     "question": "¿Cuál es el diagnóstico?",
@@ -1736,7 +1780,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Insuficiencia renal crónica (Anemia)",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "case": "Hombre de 72 años, DM2 y HAS, TFG 25 ml/min. Acude por astenia y palidez. Hb 9.2 g/dL, ferritina 150 ng/ml.",
     "question": "¿Cuál es el tratamiento inicial para este paciente?",
     "options": [
@@ -1752,7 +1796,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Intususcepción intestinal",
+    "tema": "Patología Gastrointestinal",
     "case": "Lactante de 8 meses presenta llanto intenso, vómito y evacuación con moco y sangre ('jalea de grosella'). Masa palpable en cuadrante superior derecho. USG reporta imagen en 'diana'.",
     "question": "¿Cuál es el diagnóstico más probable?",
     "options": [
@@ -1768,7 +1812,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Isquemia mesentérica aguda",
+    "tema": "Isquemia Mesentérica",
     "case": "Hombre de 72 años con FA presenta dolor abdominal súbito intenso 'desproporcionado' a la exploración física. Lactato elevado.",
     "question": "Diagnóstico más probable:",
     "options": [
@@ -1832,7 +1876,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Ginecología – Embarazo ectópico",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Mujer de 30 años con amenorrea de 7 semanas, dolor pélvico unilateral y manchado transvaginal. β-hCG positiva. USG transvaginal sin saco gestacional intrauterino y masa anexial derecha.",
     "question": "Diagnóstico más probable:",
@@ -1849,7 +1893,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Cirugía General – Apendicitis aguda complicada",
+    "tema": "Apendicitis Aguda",
     "difficulty": "muy-alta",
     "case": "Hombre de 27 años con 36 horas de dolor abdominal que inició periumbilical y migró a fosa iliaca derecha. Presenta fiebre de 38.5°C, náusea y vómito. A la exploración: defensa localizada, signo de rebote positivo. Leucocitos 18,000 con neutrofilia. TAC muestra apéndice dilatado con colección periapendicular de 4 cm.",
     "question": "Diagnóstico:",
@@ -1866,7 +1910,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Síndrome nefrótico",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "case": "Niño de 5 años con edema generalizado palpebral. Proteinuria >50 mg/kg/día, hipoalbuminemia 2.1 g/dL, hipercolesterolemia 300 mg/dL.",
     "question": "Complicación trombótica más frecuente:",
     "options": [
@@ -1914,7 +1958,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Melanoma maligno",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "case": "Varón de 52 años con lesión pigmentada en espalda, asimetría, bordes irregulares, color heterogéneo y 8 mm.",
     "question": "Marcador histopronóstico más importante:",
     "options": [
@@ -1946,7 +1990,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Obstrucción intestinal mecánica",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "case": "Mujer de 68 años con antecedente de cirugías abdominales, presenta dolor tipo cólico, distensión y vómito fecaloide.",
     "question": "Conducta inicial en paciente estable:",
     "options": [
@@ -1978,7 +2022,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Pancreatitis aguda grave",
+    "tema": "Pancreatitis Aguda",
     "case": "Mujer de 45 años con dolor abdominal en cinturón y vómito. TA 90/60. PCR 160 mg/L a las 48h.",
     "question": "Criterio que define gravedad:",
     "options": [
@@ -2010,7 +2054,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Ginecología – Cáncer de endometrio",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Mujer de 62 años, menopausia a los 50, obesa y diabética, consulta por sangrado transvaginal escaso indoloro. USG transvaginal muestra grosor endometrial de 16 mm.",
     "question": "Principal factor de riesgo en esta paciente:",
@@ -2027,7 +2071,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Medicina Interna – Enfermedad renal crónica y manejo de anemia",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "difficulty": "alta",
     "case": "Hombre de 64 años con antecedente de diabetes mellitus tipo 2 e hipertensión de 20 años de evolución acude a consulta por fatiga progresiva y disminución de la tolerancia al ejercicio. TA 150/95 mmHg. Presenta palidez de tegumentos y edema leve en extremidades inferiores. Laboratorio: Hb 8.9 g/dL, VCM 88 fL, creatinina 3.2 mg/dL, TFG estimada 22 ml/min/1.73 m², ferritina normal, saturación de transferrina normal.",
     "question": "Pregunta. ¿Cuál es el manejo más adecuado de la anemia en este paciente?",
@@ -2044,7 +2088,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Pediatría – Intususcepción intestinal",
+    "tema": "Patología Gastrointestinal",
     "difficulty": "alta",
     "case": "Lactante de 8 meses previamente sano presenta episodios súbitos de llanto intenso con flexión de piernas sobre el abdomen, vómito y posteriormente evacuación con moco y sangre. A la exploración se palpa masa en cuadrante superior derecho. USG reporta imagen en “diana”.",
     "question": "¿Cuál es el diagnóstico más probable?",
@@ -2061,7 +2105,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Ginecología – Amenorrea secundaria",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "difficulty": "alta",
     "case": "Mujer de 23 años con antecedente de pérdida de peso importante en los últimos 6 meses por dieta restrictiva y ejercicio excesivo. Refiere ausencia de menstruación desde hace 5 meses. β-hCG negativa. TSH y prolactina normales. FSH y LH bajas.",
     "question": "Pregunta. ¿Cuál es la causa más probable?",
@@ -2078,7 +2122,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Cirugía – Isquemia mesentérica aguda",
+    "tema": "Isquemia Mesentérica",
     "difficulty": "muy-alta",
     "case": "Hombre de 72 años con fibrilación auricular sin anticoagulación presenta dolor abdominal súbito intenso “desproporcionado” a la exploración física. Abdomen blando, sin datos claros de irritación peritoneal. Lactato elevado.",
     "question": "Diagnóstico más probable:",
@@ -2112,7 +2156,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Oncología Ginecológica P2 – Tamizaje y manejo inicial de CaCu",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Mujer de 41 años, G4P4, inicio de vida sexual a los 16 años, múltiples parejas sexuales. Refiere que su última citología fue hace 6 años. Acude para chequeo. Se realiza prueba de VPH que resulta positiva para genotipo 16. Citología reporta NILM (negativa para lesión intraepitelial). No síntomas.",
     "question": "¿Cuál es la conducta más adecuada?",
@@ -2129,7 +2173,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Pediatría – Infecciones TORCH (Toxoplasmosis congénita)",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "RN de 10 días con ictericia persistente, hepatoesplenomegalia y microcefalia. Presenta convulsiones. USG transfontanelar muestra calcificaciones intracraneales difusas. Madre refiere haber tenido contacto frecuente con gatos durante el embarazo.",
     "question": "Diagnóstico más probable:",
@@ -2146,7 +2190,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Nefrología – Síndrome nefrítico (Glomerulonefritis postestreptocócica)",
+    "tema": "Infecciones de Vías Respiratorias Superiores",
     "difficulty": "alta",
     "case": "Niño de 8 años con antecedente de faringitis hace 3 semanas, presenta edema palpebral, hematuria macroscópica y oliguria. TA 135/85 mmHg. Laboratorio: creatinina ligeramente elevada, C3 disminuido.",
     "question": "Diagnóstico más probable:",
@@ -2197,7 +2241,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Diabetes Mellitus – Tratamiento farmacológico (Medicina Interna)",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "difficulty": "muy-alta",
     "case": "Mujer de 52 años con DM2 desde hace 6 años en tratamiento con metformina a dosis máxima tolerada. IMC 34 kg/m². HbA1c 9.2%. TFG 85 ml/min. Refiere antecedente de infarto hace 2 años. No hipoglucemias previas.",
     "question": "¿Cuál es el siguiente fármaco más indicado?",
@@ -2214,7 +2258,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Choque obstétrico y hemorragia obstétrica",
+    "tema": "Choque Obstétrico y Hemorragia Obstétrica",
     "difficulty": "alta",
     "case": "Mujer de 24 años, G2P2, 30 minutos posterior a parto vaginal eutócico presenta sangrado abundante. TA 85/50 mmHg, FC 130 lpm. Útero aumentado de tamaño y flácido a la palpación. Placenta completa.",
     "question": "Diagnóstico más probable:",
@@ -2231,7 +2275,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Cardiopatías congénitas – Comunicación interventricular (Pediatría)",
+    "tema": "Cardiopatías Congénitas",
     "difficulty": "alta",
     "case": "Lactante de 3 meses con diaforesis al alimentarse, pobre ganancia ponderal y taquipnea. A la auscultación presenta soplo holosistólico en borde esternal izquierdo inferior. Rx muestra cardiomegalia y aumento de flujo pulmonar.",
     "question": "Diagnóstico más probable:",
@@ -2265,7 +2309,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Neurología – Evento vascular cerebral isquémico",
+    "tema": "Neurología: Enfermedad Vascular Cerebral",
     "difficulty": "muy-alta",
     "case": "Mujer de 70 años con fibrilación auricular sin anticoagulación presenta hemiparesia izquierda súbita y desviación de mirada a la derecha. Inicio hace 2 horas. TA 150/90 mmHg. TAC simple sin hemorragia.",
     "question": "Conducta inmediata:",
@@ -2282,7 +2326,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Infectología – Tuberculosis pulmonar",
+    "tema": "Tuberculosis",
     "difficulty": "alta",
     "case": "Hombre de 39 años, pérdida de peso de 6 kg en 2 meses, tos productiva con hemoptisis ocasional y sudoración nocturna. Vive con 3 personas en casa pequeña. Rx de tórax muestra infiltrado apical derecho con cavitación. Baciloscopía seriada positiva.",
     "question": "¿Cuál es el esquema inicial indicado?",
@@ -2299,7 +2343,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "VIH/SIDA – Profilaxis en paciente con CD4 bajo",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "difficulty": "alta",
     "case": "Hombre de 32 años recién diagnosticado con VIH. CD4: 120 células/mm³. Carga viral elevada. No síntomas respiratorios. No tratamiento previo.",
     "question": "Pregunta. ¿Qué profilaxis debe iniciarse además de TAR?",
@@ -2316,7 +2360,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Enfermedades transmitidas por vector – Dengue",
+    "tema": "Enfermedades transmitidas por Vector",
     "difficulty": "alta",
     "case": "Mujer de 25 años con fiebre de 4 días, mialgias intensas, cefalea retroocular y exantema. Vive en zona endémica. Laboratorio: plaquetas 95,000, hematocrito elevado respecto a basal. Dolor abdominal leve.",
     "question": "¿Qué dato indica probable progresión a dengue con signos de alarma?",
@@ -2333,7 +2377,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Zoonosis – Tétanos",
+    "tema": "Zoonosis",
     "difficulty": "muy-alta",
     "case": "Hombre de 50 años sufre herida punzante con clavo oxidado. No recuerda última vacuna. A los días presenta trismus, rigidez muscular generalizada y espasmos dolorosos.",
     "question": "Diagnóstico más probable:",
@@ -2350,7 +2394,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Geriatría – Síndrome confusional agudo (Delirium)",
+    "tema": "Patología Respiratoria Neonatal",
     "difficulty": "alta",
     "case": "Mujer de 82 años hospitalizada por neumonía comienza con desorientación fluctuante, alteración del ciclo sueño-vigilia y pensamiento incoherente. No antecedentes de demencia.",
     "question": "Diagnóstico más probable:",
@@ -2384,7 +2428,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Dermatología – Melanoma cutáneo",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Hombre de 61 años con lesión pigmentada en espalda que ha cambiado de tamaño y color en los últimos 6 meses. Bordes irregulares, diámetro 8 mm, asimétrica y con variación cromática. No dolor.",
     "question": "Criterio clínico que aumenta sospecha de malignidad:",
@@ -2401,7 +2445,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Hematología – Anemia ferropénica",
+    "tema": "Hematología: Anemias Microcíticas",
     "difficulty": "alta",
     "case": "Mujer de 34 años con fatiga y palidez. Menstruaciones abundantes. Hb 9 g/dL, VCM 70 fL, ferritina baja, TIBC elevado.",
     "question": "Tipo de anemia:",
@@ -2435,7 +2479,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Pediatría – Crisis asmática moderada",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Niño de 8 años con antecedente de asma intermitente presenta disnea progresiva, sibilancias audibles, uso de músculos accesorios y saturación 91%. No cianosis. Puede hablar en frases cortas.",
     "question": "Clasificación de la crisis:",
@@ -2452,7 +2496,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Medicina Interna – Síndrome nefrótico",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "difficulty": "muy-alta",
     "case": "Hombre de 45 años con edema en miembros inferiores y párpados. Proteinuria 4.5 g/24h, albúmina 2.3 g/dL, colesterol elevado. Creatinina normal.",
     "question": "Diagnóstico sindromático:",
@@ -2520,7 +2564,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Gastroenterología – Pancreatitis aguda grave",
+    "tema": "Pancreatitis Aguda",
     "difficulty": "muy-alta",
     "case": "Hombre de 48 años con dolor epigástrico intenso irradiado a espalda posterior a ingesta alcohólica. Lipasa 5 veces el límite superior. A las 48 horas presenta hipotensión, creatinina elevada y PaO2 55 mmHg.",
     "question": "Criterio que define gravedad:",
@@ -2537,7 +2581,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Neurología – Meningitis bacteriana aguda",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Mujer de 19 años con fiebre, cefalea intensa y rigidez de nuca. Presenta fotofobia y vómito. TA estable. No focalización neurológica.",
     "question": "Conducta inmediata:",
@@ -2554,7 +2598,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Trastornos ácido-base – Acidosis metabólica con anión gap elevado",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "difficulty": "muy-alta",
     "case": "Paciente masculino con antecedente de alcoholismo crónico acude con vómito y confusión. Gasometría: pH 7.25, HCO₃ 12 mEq/L, PaCO₂ 25 mmHg. Na 140, Cl 100.",
     "question": "Trastorno principal:",
@@ -2588,7 +2632,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Cirugía General – Obstrucción intestinal mecánica",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Hombre de 72 años con antecedente de laparotomía por úlcera perforada hace 10 años. Acude por dolor abdominal tipo cólico, distensión progresiva, vómito fecaloide y ausencia de evacuaciones y gases desde hace 24 horas. TA 110/70 mmHg, FC 105 lpm. Abdomen distendido, timpanismo generalizado, ruidos aumentados en tono metálico. Rx muestra niveles hidroaéreos múltiples y dilatación de asas de intestino delgado.",
     "question": "Diagnóstico más probable:",
@@ -2605,7 +2649,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Ginecología – Hemorragia uterina anormal en perimenopausia",
+    "tema": "Hemorragia Uterina Anormal",
     "difficulty": "alta",
     "case": "Mujer de 48 años con sangrado uterino abundante e irregular desde hace 6 meses. IMC 33 kg/m², nuligesta. USG transvaginal: endometrio de 16 mm. Hb 10 g/dL.",
     "question": "Factor de riesgo principal para patología endometrial maligna:",
@@ -2639,7 +2683,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Pediatría – Sepsis neonatal temprana",
+    "tema": "Patología Neonatal Infecciosa",
     "difficulty": "alta",
     "case": "Recién nacido de 38 semanas, madre con ruptura prolongada de membranas 22 horas y fiebre intraparto. A las 12 horas de vida presenta dificultad respiratoria, letargia y mala perfusión.",
     "question": "Factor de riesgo más importante en este caso:",
@@ -2656,7 +2700,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Nefrología – Hiponatremia sintomática",
+    "tema": "Hemorragias del Primer Trimestre",
     "difficulty": "muy-alta",
     "case": "Mujer de 70 años con antecedente de uso reciente de diurético tiazídico presenta somnolencia y náusea. Na sérico 118 mEq/L. Osmolaridad plasmática baja.",
     "question": "Tipo de hiponatremia:",
@@ -2673,7 +2717,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Medicina Interna – Tromboembolia pulmonar",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Mujer de 42 años, usuaria de anticonceptivos orales, consulta por disnea súbita y dolor torácico pleurítico. FC 118 lpm, TA 110/70 mmHg, SatO₂ 89%. Dímero D elevado. Angiotomografía muestra defecto de llenado en arteria pulmonar segmentaria derecha.",
     "question": "Diagnóstico:",
@@ -2707,7 +2751,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Endocrinología – Síndrome de Cushing",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "difficulty": "muy-alta",
     "case": "Mujer de 38 años con obesidad central, cara redondeada, equimosis fácil y debilidad proximal. TA 150/95 mmHg. Cortisol libre urinario elevado.",
     "question": "Estudio inicial para confirmar hipercortisolismo:",
@@ -2724,7 +2768,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Obstetricia – Trabajo de parto pretérmino",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Gestante de 32 semanas con contracciones regulares cada 5 minutos y dilatación cervical de 3 cm. Membranas íntegras. Sin datos de infección.",
     "question": "Diagnóstico:",
@@ -2741,7 +2785,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Neurología – Hemorragia subaracnoidea",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Mujer de 50 años con cefalea súbita “en trueno”, la peor de su vida, acompañada de vómito y rigidez de nuca. TAC muestra sangre en espacio subaracnoideo.",
     "question": "Causa más frecuente:",
@@ -2758,7 +2802,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Medicina Interna – Estado hiperosmolar hiperglucémico",
+    "tema": "Hemorragias del Primer Trimestre",
     "difficulty": "muy-alta",
     "case": "Hombre de 68 años con DM2 mal controlada es traído por confusión progresiva. Refiere poliuria y polidipsia desde hace una semana. TA 95/60 mmHg, FC 110 lpm. Glucosa 780 mg/dL, pH 7.38, bicarbonato 22 mEq/L, cetonas negativas, osmolaridad plasmática elevada.",
     "question": "Diagnóstico más probable:",
@@ -2792,7 +2836,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Hematología – Púrpura trombocitopénica inmune",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Mujer de 26 años con petequias y equimosis espontáneas. Plaquetas 18,000/mm³. Hb y leucocitos normales. No esplenomegalia.",
     "question": "Diagnóstico más probable:",
@@ -2809,7 +2853,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Obstetricia – Desprendimiento prematuro de placenta normoinserta",
+    "tema": "Hemorragias del Tercer Trimestre",
     "difficulty": "muy-alta",
     "case": "Gestante de 36 semanas con dolor abdominal súbito, útero hipertónico y sangrado vaginal oscuro. FCF con desaceleraciones tardías.",
     "question": "Diagnóstico más probable:",
@@ -2860,7 +2904,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Nefrología – Lesión renal aguda prerrenal",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Mujer de 75 años con diarrea abundante por 4 días. TA 85/55 mmHg. Creatinina aumenta de 0.9 a 2.1 mg/dL. EGO sin cilindros patológicos. FeNa 0.5%.",
     "question": "Tipo de lesión renal:",
@@ -2877,7 +2921,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Endocrinología – Hiperpotasemia",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "difficulty": "muy-alta",
     "case": "Hombre de 62 años con ERC estadio 4 acude por debilidad muscular. K sérico 6.8 mEq/L. ECG con ondas T picudas y QRS ligeramente ensanchado.",
     "question": "Medida inmediata para estabilizar membrana miocárdica:",
@@ -2894,7 +2938,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Endocrinología – Hipercalcemia primaria",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "difficulty": "alta",
     "case": "Mujer de 55 años con litiasis renal recurrente y estreñimiento. Calcio 11.8 mg/dL, PTH elevada.",
     "question": "Diagnóstico más probable:",
@@ -2911,7 +2955,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Medicina Interna – Síndrome nefrítico agudo",
+    "tema": "Infecciones de Vías Respiratorias Superiores",
     "difficulty": "muy-alta",
     "case": "Hombre de 18 años con antecedente de faringitis hace 2 semanas presenta edema facial, hematuria y TA 150/95 mmHg. Creatinina ligeramente elevada.",
     "question": "Diagnóstico más probable:",
@@ -2928,7 +2972,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Medicina Crítica – Síndrome de dificultad respiratoria aguda (SDRA)",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Hombre de 54 años, antecedente de DM2 e hipertensión, ingresa por neumonía adquirida en la comunidad confirmada por infiltrado lobar derecho y leucocitosis. A las 48 horas presenta deterioro respiratorio progresivo con disnea intensa, taquipnea de 34 rpm y saturación 82% con mascarilla reservorio a 15 L/min. Se decide intubación orotraqueal. Gasometría con FiO₂ 100% muestra PaO₂ 60 mmHg. Rx de tórax con infiltrados bilaterales difusos no explicados por falla cardiaca. Ecocardiograma sin datos de disfunción ventricular significativa.",
     "question": "Diagnóstico más probable:",
@@ -2945,7 +2989,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Gastroenterología – Pancreatitis aguda biliar con complicación sistémica",
+    "tema": "Pancreatitis Aguda",
     "difficulty": "muy-alta",
     "case": "Mujer de 47 años con antecedente de colelitiasis presenta dolor epigástrico intenso irradiado a espalda, náusea y vómito. Lipasa 6 veces el límite normal. A las 24 horas desarrolla hipotensión leve, oliguria y creatinina en ascenso. Hematocrito elevado y BUN aumentado. USG muestra litos vesiculares sin dilatación de vía biliar.",
     "question": "Etiología más probable:",
@@ -2996,7 +3040,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Medicina Interna – Choque cardiogénico post IAM",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Hombre de 62 años con antecedente de hipertensión y tabaquismo acude por dolor torácico opresivo de 3 horas de evolución. ECG con elevación del ST en V1–V4. Se realiza angioplastia primaria con reperfusión exitosa. A las 6 horas evoluciona con hipotensión (TA 78/50 mmHg), piel fría, oliguria y estertores bibasales. FC 120 lpm. Lactato elevado. Ecocardiograma muestra FEVI 25% con hipocinesia anterior extensa.",
     "question": "Diagnóstico actual:",
@@ -3047,7 +3091,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Obstetricia – Síndrome HELLP",
+    "tema": "Reumatología: Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Gestante de 35 semanas con antecedente de preeclampsia presenta dolor en epigastrio intenso, náusea y malestar general. TA 165/105 mmHg. Laboratorio: AST y ALT elevadas, plaquetas 75,000/mm³, DHL elevada.",
     "question": "Diagnóstico más probable:",
@@ -3064,7 +3108,6 @@ const QUESTIONS = [
   }
 ];
 
-// Exportación para uso en app.js o scripts node
 if (typeof module !== 'undefined') {
   module.exports = QUESTIONS;
 }
