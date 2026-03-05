@@ -33,6 +33,8 @@
         },
 
         userName: "Isaac",
+        userSpecialty: "",
+        userUniversity: "",
         history: [],
         selectedTopics: [],
         reportedQuestions: []
@@ -129,6 +131,8 @@
         localStorage.setItem("enarm_stats", JSON.stringify(State.globalStats));
         localStorage.setItem("enarm_history", JSON.stringify(State.history));
         localStorage.setItem("enarm_user", State.userName);
+        localStorage.setItem("enarm_specialty", State.userSpecialty || "");
+        localStorage.setItem("enarm_university", State.userUniversity || "");
         localStorage.setItem("enarm_reports", JSON.stringify(State.reportedQuestions));
 
         // Sync to cloud -> Leaderboard
@@ -138,6 +142,8 @@
 
             const pData = {
                 username: State.userName,
+                specialty: State.userSpecialty || "",
+                university: State.userUniversity || "",
                 score: avg,
                 answered: totalq,
                 flame: State.history.length || 0,
@@ -163,6 +169,11 @@
         if (h) State.history = JSON.parse(h);
         const u = localStorage.getItem("enarm_user");
         if (u) State.userName = u;
+        const sp = localStorage.getItem("enarm_specialty");
+        if (sp) State.userSpecialty = sp;
+        const uni = localStorage.getItem("enarm_university");
+        if (uni) State.userUniversity = uni;
+
         const theme = localStorage.getItem("enarm_theme");
         if (theme) {
             State.theme = theme;
@@ -171,8 +182,35 @@
         const reports = localStorage.getItem("enarm_reports");
         if (reports) State.reportedQuestions = JSON.parse(reports);
 
+        if ($("profile-name")) $("profile-name").value = State.userName;
+        if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty || "";
+        if ($("profile-university")) $("profile-university").value = State.userUniversity || "";
+
         $$(".user-name").forEach(el => el.textContent = State.userName);
-        $$(".header-title").forEach(el => el.textContent = `Hola, ${State.userName}`);
+        $$(".header-title").forEach(el => {
+            if (el.textContent.includes("Hola,")) {
+                el.innerHTML = `Hola, <span class="user-name" style="color:var(--accent-green);">${State.userName}</span>`;
+            } else {
+                el.textContent = `Hola, ${State.userName}`;
+            }
+        });
+
+        // Update avatar initials
+        const nameParts = State.userName.trim().split(/\s+/);
+        const initials = nameParts.length > 1
+            ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
+            : nameParts[0].substring(0, 2).toUpperCase();
+
+        $$(".user-avatar").forEach(el => {
+            el.innerHTML = `<span style="font-size: 14px; font-weight: 700;">${initials}</span>`;
+            el.style.background = "rgba(5, 192, 127, 0.1)";
+            el.style.color = "var(--accent-green)";
+            el.style.display = "flex";
+            el.style.alignItems = "center";
+            el.style.justifyContent = "center";
+        });
+        const statusEl = document.querySelector(".user-status");
+        if (statusEl) statusEl.textContent = "EN LÍNEA";
     };
 
     const applyTheme = (theme) => {
@@ -2859,6 +2897,41 @@
         startExamCountdown();
         initReportLogic();
         initPomodoro();
+
+        const btnSaveProfile = $("btn-save-profile");
+        if (btnSaveProfile) {
+            btnSaveProfile.addEventListener("click", () => {
+                const nameInput = $("profile-name").value.trim().substring(0, 20);
+                if (!nameInput) {
+                    showNotification("El nombre no puede estar vacío.", "error");
+                    return;
+                }
+                State.userName = nameInput;
+                State.userSpecialty = $("profile-specialty").value;
+                State.userUniversity = $("profile-university").value.trim().substring(0, 50);
+
+                // Update visuals locally
+                const nameParts = State.userName.trim().split(/\s+/);
+                const initials = nameParts.length > 1
+                    ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
+                    : nameParts[0].substring(0, 2).toUpperCase();
+
+                $$(".user-name").forEach(el => el.textContent = State.userName);
+                $$(".header-title").forEach(el => {
+                    if (el.textContent.includes("Hola,")) {
+                        el.innerHTML = `Hola, <span class="user-name" style="color:var(--accent-green);">${State.userName}</span>`;
+                    }
+                });
+                $$(".user-avatar").forEach(el => {
+                    el.innerHTML = `<span style="font-size: 14px; font-weight: 700;">${initials}</span>`;
+                    el.style.background = "rgba(5, 192, 127, 0.1)";
+                    el.style.color = "var(--accent-green)";
+                });
+
+                saveGlobalStats();
+                showNotification("Perfil actualizado y sincronizado.", "success");
+            });
+        }
         const bd = $("btn-back-dash"); if (bd) bd.addEventListener("click", () => $("nav-dashboard").click());
         const rv = $("btn-review"); if (rv) rv.addEventListener("click", startReview);
         const exr = $("btn-exit-review"); if (exr) exr.addEventListener("click", () => showView("view-results"));
@@ -3157,13 +3230,23 @@
                                     else if (rank === 2) rankStr = `<span style="color: silver; text-shadow: 0 0 10px rgba(192,192,192,0.5);">#2</span>`;
                                     else if (rank === 3) rankStr = `<span style="color: #cd7f32; text-shadow: 0 0 10px rgba(205,127,50,0.5);">#3</span>`;
 
+                                    const initNameParts = data.username.trim().split(/\s+/);
+                                    const lbInitials = initNameParts.length > 1
+                                        ? (initNameParts[0][0] + initNameParts[initNameParts.length - 1][0]).toUpperCase()
+                                        : initNameParts[0].substring(0, 2).toUpperCase();
+
+                                    let badgeSpec = "";
+                                    if (data.specialty) badgeSpec += `<span style="font-size: 10px; opacity: 0.9; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 1px 5px; background: rgba(255,255,255,0.05); margin-right: 5px;">${data.specialty.substring(0, 20)}</span>`;
+                                    if (data.university) badgeSpec += `<span style="font-size: 10px; opacity: 0.6;">${data.university.substring(0, 20)}</span>`;
+
                                     lbHTML += `
                                      <div class="lb-item" style="${bgStyle}">
                                         <div class="lb-rank">${rankStr}</div>
-                                        <div class="lb-avatar">${data.username.substring(0, 2).toUpperCase()}</div>
+                                        <div class="lb-avatar">${lbInitials}</div>
                                         <div class="lb-info">
                                             <div class="lb-name">${data.username} ${isMe ? '<span class="lb-badge">Tú</span>' : ''}</div>
-                                            <div class="lb-score">Promedio: <span style="color:var(--accent-green); font-weight:700">${data.score}%</span></div>
+                                            ${badgeSpec ? `<div style="margin-top: 4px; margin-bottom: 2px;">${badgeSpec}</div>` : ''}
+                                            <div class="lb-score" style="margin-top:2px;">Promedio: <span style="color:var(--accent-green); font-weight:700">${data.score}%</span></div>
                                         </div>
                                         <div class="lb-flame">🔥 ${data.flame || 0}</div>
                                      </div>
@@ -3367,13 +3450,49 @@
                     if (appLayout) appLayout.style.display = "none";
                 } else {
                     authOverlay.classList.remove("active");
+                }
 
-                    // Already has name locally, just sign in anonymously in background to attach to leaderboards
-                    if (window.FB) {
-                        window.FB.signInAnonymously(window.FB.auth).then(() => {
+                // Listen for Auth State to restore stats correctly dynamically
+                if (window.FB && window.FB.onAuthStateChanged) {
+                    window.FB.onAuthStateChanged(window.FB.auth, async (user) => {
+                        if (user) {
                             initCloudFeatures();
-                        });
-                    }
+                            try {
+                                const userRef = window.FB.doc(window.FB.db, "leaderboard", user.uid);
+                                const snap = await window.FB.getDoc(userRef);
+                                if (snap.exists()) {
+                                    const data = snap.data();
+                                    let needsUpdate = false;
+
+                                    if (data.theme) { State.theme = data.theme; localStorage.setItem("enarm_theme", State.theme); applyTheme(State.theme); }
+                                    if (data.specialty !== undefined) { State.userSpecialty = data.specialty; localStorage.setItem("enarm_specialty", State.userSpecialty); if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty; }
+                                    if (data.university !== undefined) { State.userUniversity = data.university; localStorage.setItem("enarm_university", State.userUniversity); if ($("profile-university")) $("profile-university").value = State.userUniversity; }
+
+                                    if (data.globalStatsStr && data.globalStatsStr !== "{}") {
+                                        State.globalStats = JSON.parse(data.globalStatsStr);
+                                        localStorage.setItem("enarm_stats", data.globalStatsStr);
+                                        needsUpdate = true;
+                                    }
+                                    if (data.historyStr) {
+                                        State.history = JSON.parse(data.historyStr);
+                                        localStorage.setItem("enarm_history", data.historyStr);
+                                        needsUpdate = true;
+                                    }
+                                    if (data.reportsStr) {
+                                        State.reportedQuestions = JSON.parse(data.reportsStr);
+                                        localStorage.setItem("enarm_reports", data.reportsStr);
+                                    }
+
+                                    if (needsUpdate) {
+                                        updateDashboardStats();
+                                        if (typeof updateCharts === 'function') updateCharts();
+                                    }
+                                }
+                            } catch (e) {
+                                console.error("Error fetching cloud data on Auth Change:", e);
+                            }
+                        }
+                    });
                 }
 
                 const authEmail = $("auth-email");
@@ -3461,7 +3580,7 @@
                 });
 
                 async function handleSuccessLogin(displayName) {
-                    const cleanName = displayName.replace(/\s+/g, '').substring(0, 15);
+                    const cleanName = displayName.trim().substring(0, 20);
                     State.userName = cleanName;
                     localStorage.setItem("enarm_user", cleanName);
 
@@ -3478,6 +3597,20 @@
 
                     showNotification(`¡Bienvenido, ${cleanName}!`, "success");
 
+                    // Update initials and status
+                    const nameParts = cleanName.trim().split(/\s+/);
+                    const initials = nameParts.length > 1
+                        ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
+                        : nameParts[0].substring(0, 2).toUpperCase();
+
+                    $$(".user-avatar").forEach(el => {
+                        el.innerHTML = `<span style="font-size: 14px; font-weight: 700;">${initials}</span>`;
+                        el.style.background = "rgba(5, 192, 127, 0.1)";
+                        el.style.color = "var(--accent-green)";
+                    });
+                    const statusEl = document.querySelector(".user-status");
+                    if (statusEl) statusEl.textContent = "EN LÍNEA";
+
                     if (window.FB && window.FB.auth.currentUser) {
                         try {
                             const userRef = window.FB.doc(window.FB.db, "leaderboard", window.FB.auth.currentUser.uid);
@@ -3488,6 +3621,16 @@
                                     State.theme = data.theme;
                                     localStorage.setItem("enarm_theme", State.theme);
                                     applyTheme(State.theme);
+                                }
+                                if (data.specialty !== undefined) {
+                                    State.userSpecialty = data.specialty;
+                                    localStorage.setItem("enarm_specialty", State.userSpecialty);
+                                    if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty;
+                                }
+                                if (data.university !== undefined) {
+                                    State.userUniversity = data.university;
+                                    localStorage.setItem("enarm_university", State.userUniversity);
+                                    if ($("profile-university")) $("profile-university").value = State.userUniversity;
                                 }
                                 if (data.globalStatsStr) {
                                     State.globalStats = JSON.parse(data.globalStatsStr);
