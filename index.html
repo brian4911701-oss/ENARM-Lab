@@ -14,6 +14,82 @@
 </head>
 
 <body>
+    <!-- ── AUTH OVERLAY ── -->
+    <div id="auth-overlay" class="auth-overlay active">
+        <div class="auth-container">
+            <div class="auth-logo">
+                <svg viewBox="0 0 32 32" width="48" height="48" class="logo-svg" fill="none"
+                    stroke="var(--accent-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 5 v23" />
+                    <circle cx="16" cy="4" r="1.5" fill="var(--accent-green)" />
+                    <path d="M10 10 C8 13 8 16 12 18 L20 22 C24 24 24 27 22 29" opacity="0.8" />
+                    <path d="M22 10 C24 13 24 16 20 18 L12 22 C8 24 8 27 10 29" opacity="0.3" />
+                </svg>
+            </div>
+            <h1 class="auth-title">Bienvenido a ENARM<span class="logo-accent">lab</span></h1>
+            <p class="auth-subtitle">Ingresa para sincronizar tu progreso y competir con miles de médicos.</p>
+
+            <div class="auth-tabs"
+                style="display: flex; width: 100%; margin-bottom: 24px; border-bottom: 1px solid var(--border);">
+                <button id="tab-login" class="auth-tab active"
+                    style="flex: 1; padding: 12px; background: none; border: none; color: var(--accent-green); border-bottom: 2px solid var(--accent-green); font-weight: 600; cursor: pointer; font-size: 15px; transition: all 0.3s;">Iniciar
+                    Sesión</button>
+                <button id="tab-register" class="auth-tab"
+                    style="flex: 1; padding: 12px; background: none; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); font-weight: 500; cursor: pointer; font-size: 15px; transition: all 0.3s;">Crear
+                    Cuenta Nueva</button>
+            </div>
+
+            <form id="login-form" class="auth-form">
+                <div class="input-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="auth-email" required placeholder="medico@hospital.com" class="text-input"
+                        style="width: 100%;">
+                </div>
+
+                <div class="input-group" style="margin-top: 15px;">
+                    <label>Contraseña</label>
+                    <input type="password" id="auth-password" required placeholder="Mínimo 6 caracteres"
+                        class="text-input" style="width: 100%;">
+                </div>
+
+                <div class="input-group" id="group-username" style="margin-top: 15px; display: none;">
+                    <label>Nombre de Usuario (Apodo visible en el Ranking)</label>
+                    <input type="text" id="auth-username" placeholder="DrHouse_99" class="text-input"
+                        style="width: 100%;">
+                </div>
+
+                <button type="submit" class="btn-primary auth-submit" id="btn-auth-submit"
+                    style="width: 100%; margin-top: 25px;">Iniciar Sesión</button>
+            </form>
+
+
+            <div class="auth-divider">
+                <span>o</span>
+            </div>
+
+            <button type="button" class="btn-secondary auth-provider-btn" style="width: 100%;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                        fill="#4285F4" />
+                    <path
+                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                        fill="#34A853" />
+                    <path
+                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                        fill="#FBBC05" />
+                    <path
+                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                        fill="#EA4335" />
+                </svg>
+                Continuar con Google
+            </button>
+
+            <p class="auth-footer">¿No tienes cuenta? <a href="#"
+                    style="color: var(--accent-green); text-decoration: none;">Regístrate gratis</a></p>
+        </div>
+    </div>
+
     <div class="app-layout">
 
         <!-- SIDEBAR -->
@@ -63,6 +139,16 @@
                             </svg>
                         </span>
                         <span>Nuevo Examen</span>
+                    </button>
+                    <!-- NEW COMMUNITY BUTTON -->
+                    <button class="nav-item" id="nav-comunidad">
+                        <span class="nav-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+                            </svg>
+                        </span>
+                        <span>Comunidad</span>
                     </button>
                     <button class="nav-item" id="nav-mas">
                         <span class="nav-icon">
@@ -726,6 +812,74 @@
                     </div>
                 </div>
             </div>
+
+            <!-- ─── VIEW: COMUNIDAD ───────────────────────────── -->
+            <div id="view-comunidad" class="view">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px;">
+                    <div>
+                        <h1 class="header-title"
+                            style="font-size: 32px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 36px;">🌍</span> Ranking de Amigos
+                        </h1>
+                        <p class="header-subtitle">Compite con tus colegas agregados y sube de rango.</p>
+                    </div>
+
+                    <button class="btn-primary" id="btn-open-friends-modal"
+                        style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue)); border:none; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="margin-right: 8px;">
+                            <path
+                                d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                        Añadir Amigo
+                    </button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+                    <!-- Leaderboard -->
+                    <div class="panel" style="padding: 0; overflow: hidden;">
+                        <div class="panel-header"
+                            style="padding: 24px; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.1);">
+                            <h2 class="panel-title" style="margin: 0; font-size: 18px;">Ranking de Amigos</h2>
+                        </div>
+
+                        <div class="leaderboard-list">
+                            <!-- Dinámico -->
+                        </div>
+                    </div>
+
+                    <!-- Right sidebar (Challenges) -->
+                    <div style="display: flex; flex-direction: column; gap: 24px;">
+                        <div class="panel"
+                            style="background: linear-gradient(180deg, rgba(243, 122, 32, 0.1) 0%, rgba(0,0,0,0) 100%); border-color: rgba(243, 122, 32, 0.2);">
+                            <h2 class="panel-title"><span class="title-icon orange-text">⚔️</span> Retos Pendientes</h2>
+                            <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">Acepta un duelo
+                                contra tus amigos y demuestra quién sabe más.</p>
+
+                            <div style="margin-top: 20px; text-align: center; padding: 20px 0;">
+                                <div style="font-size: 40px; margin-bottom: 10px; opacity: 0.5;">😴</div>
+                                <div style="color: var(--text-muted); font-size: 14px;">No tienes retos activos</div>
+                            </div>
+
+                            <button class="action-btn"
+                                style="width: 100%; justify-content: center; background: rgba(243, 122, 32, 0.1); color: var(--accent-orange); border-color: rgba(243,122,32,0.3); margin-top: 10px;">
+                                Desafiar a un Colaborador →
+                            </button>
+                        </div>
+
+                        <div class="panel">
+                            <h2 class="panel-title"><span class="title-icon blue-text">👥</span> Mis Amigos</h2>
+
+                            <div id="friends-list"
+                                style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+                                <div
+                                    style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">
+                                    Aún no tienes amigos añadidos.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div id="view-mas" class="view">
                 <div class="panel">
                     <h2 class="panel-title"><span class="title-icon green-text">💡</span> Más Funciones e Integraciones
@@ -1018,6 +1172,19 @@
                                 Borrar Todo
                             </button>
                         </div>
+
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
+                            <div>
+                                <h4 style="font-size: 14px; margin-bottom: 4px;">Cerrar Sesión</h4>
+                                <p style="font-size: 12px; color: var(--text-muted);">Desvincula tu cuenta de este
+                                    dispositivo y pausa tu sesión activa.</p>
+                            </div>
+                            <button class="btn-secondary" id="btn-logout"
+                                style="padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s;">
+                                Salir
+                            </button>
+                        </div>
                     </div>
 
 
@@ -1199,6 +1366,88 @@
 
     </div>
 
+    </div>
+
+    <!-- ─── MODAL AÑADIR AMIGO / SOLICITUDES ──────────────── -->
+    <div class="modal-overlay" id="friends-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+        <div class="modal-content"
+            style="background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--border); max-width: 450px; width: 90%; position: relative;">
+            <button id="btn-close-friends"
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
+            <h2 style="font-size: 20px; margin-bottom: 10px; color: var(--text-primary);">👥 Gestionar Amigos</h2>
+            <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">Busca a un colega por su
+                nombre exacto de usuario para enviarle una solicitud de amistad.</p>
+
+            <div class="input-group" style="display: flex; gap: 10px; margin-bottom: 25px;">
+                <input type="text" id="friend-search-input" placeholder="Ej. DraSofia99" class="text-input"
+                    style="flex: 1;">
+                <button class="btn-primary" id="btn-search-friend"
+                    style="padding: 10px 15px; white-space: nowrap;">Buscar</button>
+            </div>
+
+            <div id="friend-search-results"
+                style="margin-bottom: 25px; padding: 15px; background: var(--bg-main); border-radius: 8px; border: 1px solid var(--border); display: none;">
+                <!-- Dinámico: Resultados de búsqueda -->
+            </div>
+
+            <h3
+                style="font-size: 14px; color: var(--text-primary); margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                🔔 Solicitudes Recibidas</h3>
+            <div id="pending-requests-list" style="display: flex; flex-direction: column; gap: 10px; min-height: 50px;">
+                <!-- Dinámico: Solicitudes pendientes -->
+                <div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">No tienes
+                    solicitudes nuevas.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── FIREBASE ── -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, query, orderBy, limit, where, addDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA-ALVpht1Za682OUGvH6QWaudCJZYihFU",
+            authDomain: "enarm-lab-social.firebaseapp.com",
+            projectId: "enarm-lab-social",
+            storageBucket: "enarm-lab-social.firebasestorage.app",
+            messagingSenderId: "1046465986024",
+            appId: "1:1046465986024:web:f76360b91613c12032b85d"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        // Exponer Firebase al scope global de `app.js`
+        window.FB = {
+            auth,
+            db,
+            doc,
+            setDoc,
+            getDoc,
+            addDoc,
+            updateDoc,
+            where,
+            onSnapshot,
+            collection,
+            query,
+            orderBy,
+            limit,
+            signInWithEmailAndPassword,
+            createUserWithEmailAndPassword,
+            updateProfile,
+            onAuthStateChanged,
+            googleProvider,
+            signInWithPopup,
+            signOut
+        };
+
+        window.dispatchEvent(new Event("firebaseLoaded"));
+    </script>
     <script src="questions.js"></script>
     <script src="app.js"></script>
 </body>

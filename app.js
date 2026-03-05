@@ -130,6 +130,30 @@
         localStorage.setItem("enarm_history", JSON.stringify(State.history));
         localStorage.setItem("enarm_user", State.userName);
         localStorage.setItem("enarm_reports", JSON.stringify(State.reportedQuestions));
+
+        // Sync to cloud -> Leaderboard
+        if (window.FB && window.FB.auth.currentUser) {
+            const totalq = State.globalStats?.respondidas || 0;
+            const avg = totalq > 0 ? parseFloat(((State.globalStats.aciertos / totalq) * 100).toFixed(1)) : 0;
+
+            const pData = {
+                username: State.userName,
+                score: avg,
+                answered: totalq,
+                flame: State.history.length || 0,
+                lastUpdate: new Date(),
+                theme: State.theme || "dark",
+                globalStatsStr: JSON.stringify(State.globalStats),
+                historyStr: JSON.stringify(State.history),
+                reportsStr: JSON.stringify(State.reportedQuestions)
+            };
+
+            window.FB.setDoc(
+                window.FB.doc(window.FB.db, "leaderboard", window.FB.auth.currentUser.uid),
+                pData,
+                { merge: true }
+            ).catch(err => console.error("Error cloud sync:", err));
+        }
     };
 
     const loadGlobalStats = () => {
@@ -200,6 +224,7 @@
         const navs = [
             { id: "nav-dashboard", view: "view-dashboard" },
             { id: "nav-new-exam", view: "view-setup" },
+            { id: "nav-comunidad", view: "view-comunidad" },
             { id: "nav-mas", view: "view-mas" },
             { id: "nav-estadisticas", view: "view-estadisticas" },
             { id: "nav-historial", view: "view-historial" },
@@ -2999,6 +3024,7 @@
                 State.theme = selectedTheme;
                 localStorage.setItem("enarm_theme", selectedTheme);
                 applyTheme(selectedTheme);
+                saveGlobalStats();
                 if (typeof updateCharts === 'function' && State.view === 'view-estadisticas') updateCharts();
             });
         });
@@ -3045,7 +3071,483 @@
             }
         });
 
-        // Carga inicial de datos en el dashboard
+        const btnLogout = $("btn-logout");
+        if (btnLogout) {
+            btnLogout.addEventListener("click", () => {
+                const proceed = confirm("¿Estás seguro que deseas cerrar sesión en este dispositivo?");
+                if (proceed) {
+                    if (window.FB) {
+                        window.FB.signOut(window.FB.auth).then(() => {
+                            clearAccountLocalData();
+                        }).catch(err => {
+                            showNotification("Error: " + err.message, "error");
+                        });
+                    } else {
+                        clearAccountLocalData();
+                    }
+                }
+            });
+        }
+
+        function clearAccountLocalData() {
+            localStorage.removeItem("enarm_user");
+            localStorage.removeItem("enarm_stats");
+            localStorage.removeItem("enarm_history");
+            localStorage.removeItem("enarm_theme");
+            window.location.reload();
+        }
+
+        // --- LOGIC AUTH & FIREBASE INTEGRATION ---
+        const authOverlay = $("auth-overlay");
+        const loginForm = $("login-form");
+        const authUsername = $("auth-username");
+
+        const initCloudFeatures = () => {
+            if (window.isCloudInit) return;
+            window.isCloudInit = true;
+            // Listener on Friendships (Accepted Requests) to populate Leaderboard / Friends List
+            const fetchFriendsAndLeaderboard = () => {
+                const reqsRef1 = window.FB.query(
+                    window.FB.collection(window.FB.db, "friendRequests"),
+                    window.FB.where("toId", "==", window.FB.auth.currentUser.uid),
+                    window.FB.where("status", "==", "accepted")
+                );
+
+                const reqsRef2 = window.FB.query(
+                    window.FB.collection(window.FB.db, "friendRequests"),
+                    window.FB.where("fromId", "==", window.FB.auth.currentUser.uid),
+                    window.FB.where("status", "==", "accepted")
+                );
+
+                // Función helper para procesar amigos
+                const processFriends = async () => {
+                    try {
+                        let friendIds = new Set();
+                        friendIds.add(window.FB.auth.currentUser.uid); // Siempre incluirme a mi
+
+                        // Para simular getDocs, utilizamos onSnapshot de una sola vez
+                        const getSnap = (q) => new Promise((resolve) => {
+                            const un = window.FB.onSnapshot(q, snap => { un(); resolve(snap); }, err => { un(); resolve({ forEach: () => { } }); });
+                        });
+
+                        const snap1 = await getSnap(reqsRef1);
+                        const snap2 = await getSnap(reqsRef2);
+
+                        snap1.forEach(doc => { if (doc.data()) friendIds.add(doc.data().fromId) });
+                        snap2.forEach(doc => { if (doc.data()) friendIds.add(doc.data().toId) });
+
+                        // Ahora que tenemos los IDs, busquemos su información en Leaderboard
+                        const lbRef = window.FB.collection(window.FB.db, "leaderboard");
+                        const fullQ = window.FB.query(lbRef, window.FB.orderBy("score", "desc"));
+
+                        window.FB.onSnapshot(fullQ, (snapshot) => {
+                            let lbHTML = "";
+                            let friendListHTML = "";
+                            let rank = 1;
+                            let hasFriends = false;
+
+                            snapshot.forEach(docSnap => {
+                                if (friendIds.has(docSnap.id)) {
+                                    const data = docSnap.data();
+                                    const isMe = docSnap.id === window.FB.auth.currentUser.uid;
+                                    const bgStyle = isMe ? 'background: rgba(5, 192, 127, 0.1); border-bottom: 1px solid rgba(5, 192, 127, 0.2);' : '';
+
+                                    let rankStr = `#${rank}`;
+                                    if (rank === 1) rankStr = `<span style="color: gold; text-shadow: 0 0 10px rgba(255,215,0,0.5);">#1</span>`;
+                                    else if (rank === 2) rankStr = `<span style="color: silver; text-shadow: 0 0 10px rgba(192,192,192,0.5);">#2</span>`;
+                                    else if (rank === 3) rankStr = `<span style="color: #cd7f32; text-shadow: 0 0 10px rgba(205,127,50,0.5);">#3</span>`;
+
+                                    lbHTML += `
+                                     <div class="lb-item" style="${bgStyle}">
+                                        <div class="lb-rank">${rankStr}</div>
+                                        <div class="lb-avatar">${data.username.substring(0, 2).toUpperCase()}</div>
+                                        <div class="lb-info">
+                                            <div class="lb-name">${data.username} ${isMe ? '<span class="lb-badge">Tú</span>' : ''}</div>
+                                            <div class="lb-score">Promedio: <span style="color:var(--accent-green); font-weight:700">${data.score}%</span></div>
+                                        </div>
+                                        <div class="lb-flame">🔥 ${data.flame || 0}</div>
+                                     </div>
+                                     `;
+
+                                    if (!isMe) {
+                                        hasFriends = true;
+                                        friendListHTML += `
+                                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--accent-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">
+                                                    ${data.username.substring(0, 2).toUpperCase()}</div>
+                                                <div>
+                                                    <div style="font-size: 13px; font-weight: 600;">${data.username}</div>
+                                                    <div style="font-size: 11px; color: var(--accent-green);">En línea</div>
+                                                </div>
+                                            </div>
+                                        </div>`;
+                                    }
+                                    rank++;
+                                }
+                            });
+
+                            const lbList = document.querySelector(".leaderboard-list");
+                            if (lbList) lbList.innerHTML = lbHTML || '<div style="padding: 20px;">Sin datos</h4>';
+
+                            const flList = document.getElementById("friends-list");
+                            if (flList) {
+                                if (hasFriends) {
+                                    flList.innerHTML = friendListHTML;
+                                } else {
+                                    flList.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">Aún no tienes amigos añadidos.</div>';
+                                }
+                            }
+
+                            // Cambiar el título "Top 100 Aspirantes" a "Ranking de Amigos"
+                            const titleEls = document.querySelectorAll(".panel-title");
+                            titleEls.forEach(t => {
+                                if (t.textContent.includes("Top 100")) {
+                                    t.textContent = "Ranking de Amigos";
+                                }
+                            });
+                        });
+                    } catch (err) { console.error("Error cargando amigos: ", err); }
+                };
+
+                processFriends();
+            };
+
+            fetchFriendsAndLeaderboard();
+
+            // Lógica de Modal Amigos
+            const btnOpenFriends = $("btn-open-friends-modal");
+            const btnCloseFriends = $("btn-close-friends");
+            const friendsModal = $("friends-modal");
+
+            if (btnOpenFriends && friendsModal) {
+                btnOpenFriends.addEventListener("click", () => {
+                    friendsModal.style.display = "flex";
+                    loadPendingRequests();
+                });
+            }
+            if (btnCloseFriends && friendsModal) {
+                btnCloseFriends.addEventListener("click", () => {
+                    friendsModal.style.display = "none";
+                });
+            }
+
+            // Buscar Amigo
+            const btnSearchFriend = $("btn-search-friend");
+            const searchInput = $("friend-search-input");
+            const searchResults = $("friend-search-results");
+
+            if (btnSearchFriend) {
+                btnSearchFriend.addEventListener("click", async () => {
+                    const term = searchInput.value.trim();
+                    if (!term) return;
+
+                    btnSearchFriend.textContent = "...";
+                    searchResults.style.display = "block";
+                    searchResults.innerHTML = '<span style="color:var(--text-muted)">Buscando...</span>';
+
+                    try {
+                        // Buscamos al usuario por su "username" exacto en la leaderboard
+                        const usersRef = window.FB.collection(window.FB.db, "leaderboard");
+                        const qSearch = window.FB.query(usersRef, window.FB.where("username", "==", term), window.FB.limit(1));
+
+                        const unsubscribe = window.FB.onSnapshot(qSearch, (snap) => {
+                            unsubscribe(); // run once
+
+                            if (snap.empty) {
+                                searchResults.innerHTML = '<span style="color:var(--accent-red)">Usuario no encontrado. Asegúrate de escribir exactamente su nombre de usuario.</span>';
+                            } else {
+                                let foundUser = null;
+                                let foundId = null;
+                                snap.forEach(doc => { foundUser = doc.data(); foundId = doc.id; });
+
+                                if (foundId === window.FB.auth.currentUser.uid) {
+                                    searchResults.innerHTML = '<span style="color:var(--accent-orange)">Ese eres tú mismo.</span>';
+                                    return;
+                                }
+
+                                searchResults.innerHTML = `
+                                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                                        <div>
+                                            <div style="font-weight:bold">${foundUser.username}</div>
+                                            <div style="font-size:12px; color:var(--text-muted)">Promedio: ${foundUser.score}%</div>
+                                        </div>
+                                        <button class="btn-primary" id="btn-send-req" data-id="${foundId}" data-name="${foundUser.username}" style="padding: 8px 12px; font-size: 13px;">Añadir</button>
+                                    </div>
+                                `;
+
+                                $("btn-send-req").addEventListener("click", async (e) => {
+                                    const targetId = e.target.getAttribute("data-id");
+                                    const targetName = e.target.getAttribute("data-name");
+                                    e.target.textContent = "Enviando...";
+
+                                    try {
+                                        await window.FB.addDoc(window.FB.collection(window.FB.db, "friendRequests"), {
+                                            fromId: window.FB.auth.currentUser.uid,
+                                            fromName: State.userName,
+                                            toId: targetId,
+                                            toName: targetName,
+                                            status: "pending",
+                                            timestamp: new Date()
+                                        });
+                                        searchResults.innerHTML = '<span style="color:var(--accent-green)">Solicitud enviada exitosamente.</span>';
+                                    } catch (err) {
+                                        searchResults.innerHTML = '<span style="color:var(--accent-red)">Error al enviar: ' + err.message + '</span>';
+                                    }
+                                });
+                            }
+                            btnSearchFriend.textContent = "Buscar";
+                        }, (err) => {
+                            searchResults.innerHTML = '<span style="color:var(--accent-red)">Error de BD. Revisa las reglas.</span>';
+                            btnSearchFriend.textContent = "Buscar";
+                        });
+                    } catch (err) {
+                        searchResults.innerHTML = '<span style="color:var(--accent-red)">Error: ' + err.message + '</span>';
+                        btnSearchFriend.textContent = "Buscar";
+                    }
+                });
+            }
+
+            // Escuchar Solicitudes Recibidas (en tiempo real)
+            const loadPendingRequests = () => {
+                const reqsRef = window.FB.collection(window.FB.db, "friendRequests");
+                const qReqs = window.FB.query(reqsRef, window.FB.where("toId", "==", window.FB.auth.currentUser.uid), window.FB.where("status", "==", "pending"));
+
+                window.FB.onSnapshot(qReqs, (snap) => {
+                    const listEl = $("pending-requests-list");
+                    if (!listEl) return;
+
+                    if (snap.empty) {
+                        listEl.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">No tienes solicitudes nuevas.</div>';
+                        return;
+                    }
+
+                    let html = "";
+                    snap.forEach(doc => {
+                        const data = doc.data();
+                        html += `
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:10px; border-radius:8px;">
+                            <div style="font-weight:bold; font-size:14px;">${data.fromName}</div>
+                            <div style="display:flex; gap:8px;">
+                                <button class="btn-primary btn-accept" data-id="${doc.id}" style="padding:5px 10px; font-size:12px; background:var(--accent-green)">Aceptar</button>
+                                <button class="btn-primary btn-reject" data-id="${doc.id}" style="padding:5px 10px; font-size:12px; background:var(--accent-red)">Rechazar</button>
+                            </div>
+                        </div>`;
+                    });
+                    listEl.innerHTML = html;
+
+                    $$(".btn-accept").forEach(btn => {
+                        btn.addEventListener("click", async (e) => {
+                            const reqId = e.target.getAttribute("data-id");
+                            await window.FB.updateDoc(window.FB.doc(window.FB.db, "friendRequests", reqId), { status: "accepted" });
+                            showNotification("¡Solicitud aceptada!", "success");
+                            fetchFriendsAndLeaderboard(); // Refrescar listas
+                        });
+                    });
+
+                    $$(".btn-reject").forEach(btn => {
+                        btn.addEventListener("click", async (e) => {
+                            const reqId = e.target.getAttribute("data-id");
+                            await window.FB.updateDoc(window.FB.doc(window.FB.db, "friendRequests", reqId), { status: "rejected" });
+                            fetchFriendsAndLeaderboard(); // Refrescar listas
+                        });
+                    });
+                });
+            };
+
+            saveGlobalStats(); // trigger First Saving to cloud.
+        };
+
+        const setupFirebaseAuthAndUI = () => {
+            if (authOverlay && loginForm) {
+                // If user doesn't exist locally, show overlay
+                if (!localStorage.getItem("enarm_user") || localStorage.getItem("enarm_user") === "Isaac") {
+                    authOverlay.classList.add("active");
+                    const appLayout = document.querySelector(".app-layout");
+                    if (appLayout) appLayout.style.display = "none";
+                } else {
+                    authOverlay.classList.remove("active");
+
+                    // Already has name locally, just sign in anonymously in background to attach to leaderboards
+                    if (window.FB) {
+                        window.FB.signInAnonymously(window.FB.auth).then(() => {
+                            initCloudFeatures();
+                        });
+                    }
+                }
+
+                const authEmail = $("auth-email");
+                const authPassword = $("auth-password");
+                const groupUsername = $("group-username");
+                const tabLogin = $("tab-login");
+                const tabRegister = $("tab-register");
+                const authSubmitBtn = $("btn-auth-submit");
+
+                let isRegisterMode = false;
+
+                const setAuthMode = (mode) => {
+                    isRegisterMode = mode;
+                    if (isRegisterMode) {
+                        if (groupUsername) groupUsername.style.display = "block";
+                        if (authUsername) authUsername.setAttribute("required", "true");
+                        if (authSubmitBtn) authSubmitBtn.textContent = "Crear mi cuenta";
+
+                        if (tabRegister) {
+                            tabRegister.classList.add("active");
+                            tabRegister.style.borderBottomColor = "var(--accent-green)";
+                            tabRegister.style.color = "var(--accent-green)";
+                        }
+                        if (tabLogin) {
+                            tabLogin.classList.remove("active");
+                            tabLogin.style.borderBottomColor = "transparent";
+                            tabLogin.style.color = "var(--text-muted)";
+                        }
+                    } else {
+                        if (groupUsername) groupUsername.style.display = "none";
+                        if (authUsername) authUsername.removeAttribute("required");
+                        if (authSubmitBtn) authSubmitBtn.textContent = "Iniciar Sesión";
+
+                        if (tabLogin) {
+                            tabLogin.classList.add("active");
+                            tabLogin.style.borderBottomColor = "var(--accent-green)";
+                            tabLogin.style.color = "var(--accent-green)";
+                        }
+                        if (tabRegister) {
+                            tabRegister.classList.remove("active");
+                            tabRegister.style.borderBottomColor = "transparent";
+                            tabRegister.style.color = "var(--text-muted)";
+                        }
+                    }
+                };
+
+                if (tabLogin) tabLogin.addEventListener("click", () => setAuthMode(false));
+                if (tabRegister) tabRegister.addEventListener("click", () => setAuthMode(true));
+
+                loginForm.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    if (!authEmail || !authPassword) return; // Parche de seguridad
+
+                    const email = authEmail.value.trim();
+                    const password = authPassword.value;
+                    const userName = authUsername ? authUsername.value.trim() : email.split("@")[0];
+
+                    if (email && password && window.FB) {
+                        const submitBtn = document.querySelector(".auth-submit");
+                        if (submitBtn) submitBtn.textContent = "Conectando...";
+
+                        if (isRegisterMode) {
+                            window.FB.createUserWithEmailAndPassword(window.FB.auth, email, password)
+                                .then(async (userCred) => {
+                                    await window.FB.updateProfile(userCred.user, { displayName: userName });
+                                    handleSuccessLogin(userName);
+                                })
+                                .catch(err => {
+                                    showNotification("Error de registro: " + err.message, "error");
+                                    if (submitBtn) submitBtn.textContent = "Reintentar";
+                                });
+                        } else {
+                            window.FB.signInWithEmailAndPassword(window.FB.auth, email, password)
+                                .then((userCred) => {
+                                    const userObj = userCred.user;
+                                    const dName = userObj.displayName || email.split("@")[0];
+                                    handleSuccessLogin(dName);
+                                })
+                                .catch(err => {
+                                    showNotification("Error de conexión: " + err.message, "error");
+                                    if (submitBtn) submitBtn.textContent = "Reintentar";
+                                });
+                        }
+                    }
+                });
+
+                async function handleSuccessLogin(displayName) {
+                    const cleanName = displayName.replace(/\s+/g, '').substring(0, 15);
+                    State.userName = cleanName;
+                    localStorage.setItem("enarm_user", cleanName);
+
+                    $$(".user-name").forEach(el => el.textContent = cleanName);
+                    $$(".header-title").forEach(el => {
+                        if (el.textContent.includes("Hola,")) {
+                            el.innerHTML = `Hola, <span class="user-name" style="color:var(--accent-green);">${cleanName}</span>`;
+                        }
+                    });
+
+                    authOverlay.classList.remove("active");
+                    const appLayout = document.querySelector(".app-layout");
+                    if (appLayout) appLayout.style.display = "flex";
+
+                    showNotification(`¡Bienvenido, ${cleanName}!`, "success");
+
+                    if (window.FB && window.FB.auth.currentUser) {
+                        try {
+                            const userRef = window.FB.doc(window.FB.db, "leaderboard", window.FB.auth.currentUser.uid);
+                            const snap = await window.FB.getDoc(userRef);
+                            if (snap.exists()) {
+                                const data = snap.data();
+                                if (data.theme) {
+                                    State.theme = data.theme;
+                                    localStorage.setItem("enarm_theme", State.theme);
+                                    applyTheme(State.theme);
+                                }
+                                if (data.globalStatsStr) {
+                                    State.globalStats = JSON.parse(data.globalStatsStr);
+                                    localStorage.setItem("enarm_stats", data.globalStatsStr);
+                                }
+                                if (data.historyStr) {
+                                    State.history = JSON.parse(data.historyStr);
+                                    localStorage.setItem("enarm_history", data.historyStr);
+                                }
+                                if (data.reportsStr) {
+                                    State.reportedQuestions = JSON.parse(data.reportsStr);
+                                    localStorage.setItem("enarm_reports", data.reportsStr);
+                                }
+
+                                // Refrescar las vistas de la app si recuperamos algo
+                                updateDashboardStats();
+                                if (typeof updateCharts === 'function') updateCharts();
+                                if (typeof initCalculator === 'function') initCalculator();
+                            }
+                        } catch (err) {
+                            console.log("No se pudo cargar la nube: ", err);
+                        }
+                    }
+
+                    initCloudFeatures();
+                }
+
+                const providerBtn = document.querySelector(".auth-provider-btn");
+                if (providerBtn) {
+                    providerBtn.addEventListener("click", () => {
+                        if (window.FB) {
+                            window.FB.signInWithPopup(window.FB.auth, window.FB.googleProvider)
+                                .then(async (result) => {
+                                    const userObj = result.user;
+                                    let displayName = userObj.displayName;
+
+                                    if (!displayName) displayName = "Aspirante_" + Math.floor(Math.random() * 9999);
+                                    handleSuccessLogin(displayName);
+
+                                }).catch((error) => {
+                                    showNotification("Error interno al conectar con Google: " + error.message, "error");
+                                    console.error(error);
+                                });
+                        } else {
+                            showNotification("Firebase no terminó de cargar. Reintenta.", "warning");
+                        }
+                    });
+                }
+            }
+        };
+
+        if (window.FB) {
+            // Already loaded via module
+            setupFirebaseAuthAndUI();
+        } else {
+            // Wait for event
+            window.addEventListener("firebaseLoaded", setupFirebaseAuthAndUI);
+        }
+
+        // Carga inicial de datos en el dashboard (ejecutado antes de validación cloud por si falla internet)
         updateDashboardStats();
         updateCharts();
     });
