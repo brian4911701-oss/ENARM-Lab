@@ -1785,6 +1785,7 @@
                 const optGrid = document.createElement("div");
                 optGrid.className = "options-list";
                 q.options.forEach((optStr, idx) => {
+                    if (optStr === undefined || optStr === null) return; // guard against malformed options
                     const btn = document.createElement("button");
                     btn.className = "option-btn";
                     const letter = String.fromCharCode(65 + idx);
@@ -3408,15 +3409,15 @@
 
                                         friendListHTML += `
                                         <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); border: 1px solid var(--border); overflow:hidden;">
-                                            <div style="display: flex; align-items: center; gap: 8px; min-width:0; flex:1;">
-                                                <div style="width: 28px; height: 28px; min-width:28px; border-radius: 50%; background: var(--accent-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 10px;">
+                                            <div style="display: flex; align-items: center; gap: 8px; min-width:0; flex:1; overflow:hidden;">
+                                                <div style="width: 28px; height: 28px; min-width:28px; border-radius: 50%; background: var(--accent-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 10px; flex-shrink:0;">
                                                     ${data.username.substring(0, 2).toUpperCase()}</div>
-                                                <div style="min-width:0;">
+                                                <div style="min-width:0; overflow:hidden;">
                                                     <div style="font-size: 13px; font-weight: 600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${data.username}</div>
                                                     <div style="font-size: 11px; color: var(--text-muted);">Promedio: ${data.score || 0}%</div>
                                                 </div>
                                             </div>
-                                            <button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 6px 12px; font-size: 11px; border-radius: 8px; background: var(--accent-orange); margin-left:8px; white-space:nowrap;">⚔️ Retar</button>
+                                            <button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 5px 10px; font-size: 11px; border-radius: 8px; background: var(--accent-orange); margin-left:8px; white-space:nowrap; flex-shrink:0; min-width:fit-content;">⚔️</button>
                                         </div>`;
                                     }
                                     rank++;
@@ -3880,25 +3881,44 @@
                     const opponentText = others.length === 1 ? others[0].name : (others.length + " participantes");
 
                     let actionBtn = "";
+                    let statusBadge = "";
                     let isFinished = ch.status === "finished";
+                    const iAmChallenger = ch.challengerId === uid;
 
                     if (!isFinished) {
                         if (myEntry && myEntry.status === "pending") {
-                            actionBtn = `<button class="btn-primary" style="width: 100%; border-radius: 8px; background: var(--accent-orange);" onclick="window.acceptChallenge('${ch.id}')">⚔️ ¡Jugar Reto!</button>`;
+                            statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(243,122,32,0.15); color:var(--accent-orange); border:1px solid rgba(243,122,32,0.3); font-weight:bold;">⏳ Tu turno</span>`;
+                            actionBtn = `
+                                <div style="display:flex; gap:8px; margin-top:10px;">
+                                    <button class="btn-primary" style="flex:1; border-radius:8px; background:var(--accent-orange); font-size:13px; padding:10px;" onclick="event.stopPropagation(); window.acceptChallenge('${ch.id}')">⚔️ ¡Jugar Reto!</button>
+                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">📊</button>
+                                </div>`;
                         } else {
-                            actionBtn = `<div style="font-size: 12px; color: var(--text-muted); padding: 8px; background: rgba(255,255,255,0.05); border-radius: 8px; text-align:center;">Esperando a los demás...</div>`;
+                            statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(59,130,246,0.15); color:var(--accent-blue); border:1px solid rgba(59,130,246,0.3); font-weight:bold;">✅ Ya jugaste</span>`;
+                            actionBtn = `
+                                <div style="display:flex; gap:8px; margin-top:10px;">
+                                    <div style="flex:1; font-size:12px; color:var(--text-muted); padding:10px; background:rgba(255,255,255,0.05); border-radius:8px; text-align:center;">Esperando a los demás...</div>
+                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">📊</button>
+                                </div>`;
                         }
                     } else {
-                        actionBtn = `<button class="btn-primary" style="width: 100%; border-radius: 8px; background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.4); color: #60a5fa;" onclick="window.showChallengeRanking('${ch.id}')">📊 Ver Ranking</button>`;
+                        statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(16,185,129,0.15); color:var(--accent-green); border:1px solid rgba(16,185,129,0.3); font-weight:bold;">🏁 Finalizado</span>`;
+                        actionBtn = `
+                            <button class="btn-primary" style="width:100%; border-radius:8px; font-size:13px; padding:10px; margin-top:10px; background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.4); color:#60a5fa;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')">📊 Ver Ranking Final</button>`;
                     }
 
                     return `
-                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; text-align: left; position: relative; cursor: pointer;" onclick="if(event.target.tagName !== 'BUTTON') window.showChallengeRanking('${ch.id}')">
-                        <div style="font-size: 11px; color: var(--accent-orange); font-weight: bold; margin-bottom: 4px; display: flex; justify-content: space-between;">
-                            <span>RETO: ${ch.specialty}</span>
-                            <span>${ch.numQuestions} P.</span>
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 14px; text-align: left; position: relative;">
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+                            <div>
+                                <div style="font-size:11px; color:var(--accent-orange); font-weight:bold; margin-bottom:3px;">RETO · ${ch.specialty}</div>
+                                <div style="font-size:14px; font-weight:600;">Vs. <strong>${opponentText}</strong></div>
+                            </div>
+                            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+                                <span style="font-size:11px; color:var(--text-muted);">${ch.numQuestions} P.</span>
+                                ${statusBadge}
+                            </div>
                         </div>
-                        <div style="font-size: 14px; margin-bottom: 12px;">Vs. <strong>${opponentText}</strong></div>
                         ${actionBtn}
                     </div>
                     `;
@@ -4053,10 +4073,19 @@
 
         window.acceptChallenge = async (id) => {
             if (!window.FB || !window.FB.db) return showNotification("Firebase no inicializado.", "error");
+            if (!window._startChallengeInternal) {
+                return showNotification("El sistema de retos no está listo. Recarga la página.", "warning");
+            }
             try {
+                showNotification("Cargando reto...", "info");
                 const docSnap = await window.FB.getDoc(window.FB.doc(window.FB.db, "challenges", id));
                 if (!docSnap.exists()) return showNotification("Reto no encontrado.", "error");
                 const data = docSnap.data();
+
+                // Validate questionIndices
+                if (!data.questionIndices || !Array.isArray(data.questionIndices) || data.questionIndices.length === 0) {
+                    return showNotification("Este reto no tiene preguntas válidas. Puede estar corrupto.", "error");
+                }
 
                 // Cerrar modales si están abiertos
                 const notifModal = $("notif-modal");
@@ -4064,13 +4093,7 @@
 
                 State.activeChallengeId = id;
                 State.activeChallengeRole = "challenged";
-                // Llamamos a startChallengeExam que está dentro del scope de setupChallengeLogic o lo movemos
-                // Para simplificar, buscaremos la función o la definiremos de forma que sea accesible.
-                if (typeof window._startChallengeInternal === "function") {
-                    window._startChallengeInternal(id, data.questionIndices || []);
-                } else {
-                    showNotification("La lógica del examen aún no está lista. Recarga la página.", "warning");
-                }
+                window._startChallengeInternal(id, data.questionIndices);
             } catch (err) {
                 console.error(err);
                 showNotification("Error al cargar el reto: " + err.message, "error");
@@ -4364,6 +4387,10 @@
                     }
 
                     initCloudFeatures();
+                    // Ensure challenge logic is always initialized after login
+                    if (typeof setupChallengeLogic === 'function') {
+                        setupChallengeLogic();
+                    }
                 }
 
                 const providerBtn = document.querySelector(".auth-provider-btn");
