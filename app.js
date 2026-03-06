@@ -3408,16 +3408,16 @@
                                         });
 
                                         friendListHTML += `
-                                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); border: 1px solid var(--border); overflow:hidden;">
-                                            <div style="display: flex; align-items: center; gap: 8px; min-width:0; flex:1; overflow:hidden;">
-                                                <div style="width: 28px; height: 28px; min-width:28px; border-radius: 50%; background: var(--accent-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 10px; flex-shrink:0;">
+                                        <div style="background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); border: 1px solid var(--border); padding: 10px 12px;">
+                                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                                                <div style="width: 32px; height: 32px; min-width:32px; border-radius: 50%; background: var(--accent-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; flex-shrink:0;">
                                                     ${data.username.substring(0, 2).toUpperCase()}</div>
-                                                <div style="min-width:0; overflow:hidden;">
+                                                <div style="min-width:0; flex:1;">
                                                     <div style="font-size: 13px; font-weight: 600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${data.username}</div>
                                                     <div style="font-size: 11px; color: var(--text-muted);">Promedio: ${data.score || 0}%</div>
                                                 </div>
                                             </div>
-                                            <button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 5px 10px; font-size: 11px; border-radius: 8px; background: var(--accent-orange); margin-left:8px; white-space:nowrap; flex-shrink:0; min-width:fit-content;">⚔️</button>
+                                            <button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="width:100%; padding: 7px; font-size: 12px; border-radius: 8px; background: var(--accent-orange); text-align:center;">⚔️ Retar</button>
                                         </div>`;
                                     }
                                     rank++;
@@ -3548,11 +3548,19 @@
                 });
             }
 
-            // Escuchar Solicitudes Recibidas (en tiempo real) y Retos
-            let firstLoadFriends = true;
-            let firstLoadChallenges = true;
+            // Usar un flag global para evitar crear listeners duplicados
+            // Solo se crean listeners UNA VEZ; la campana actualiza el modal al abrirse
+            let _notifListenersActive = false;
+            let _renderMergedNotifications = null; // referencia para acceso desde el early-return
 
             window.loadPendingRequests = () => {
+                // Si ya hay listeners activos, solo re-renderizar con los datos que ya tenemos
+                if (_notifListenersActive) {
+                    if (_renderMergedNotifications) _renderMergedNotifications();
+                    return;
+                }
+                _notifListenersActive = true;
+
                 const reqsRef = window.FB.collection(window.FB.db, "friendRequests");
                 const qReqs = window.FB.query(reqsRef, window.FB.where("toId", "==", window.FB.auth.currentUser.uid), window.FB.where("status", "==", "pending"));
 
@@ -3562,6 +3570,7 @@
                 let pendingFriends = [];
                 let pendingChallenges = [];
 
+                // Mover renderMergedNotifications al scope exterior para que sea accesible
                 const renderMergedNotifications = () => {
                     const profileListEl = $("pending-requests-list");
                     const modalListEl = $("notif-list-container");
@@ -3577,7 +3586,10 @@
                         return;
                     }
 
-                    if (badgeMain) badgeMain.style.display = "block";
+                    if (badgeMain) {
+                        badgeMain.style.display = "block";
+                        badgeMain.textContent = total; // Mostrar número de notificaciones
+                    }
 
                     let html = "";
 
@@ -3587,7 +3599,7 @@
                         <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:12px; border-radius:12px; border: 1px solid var(--border); margin-bottom: 8px;">
                             <div style="display: flex; flex-direction: column;">
                                 <span style="font-weight:bold; font-size:14px; color: var(--text-primary);">${data.fromName}</span>
-                                <span style="font-size:11px; color: var(--text-muted);">Te envió una solicitud de amistad</span>
+                                <span style="font-size:11px; color: var(--text-muted);">Te envi\u00f3 una solicitud de amistad</span>
                             </div>
                             <div style="display:flex; gap:8px;">
                                 <button class="btn-primary btn-accept-friend" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--accent-green); border-radius: 6px;">Aceptar</button>
@@ -3596,17 +3608,18 @@
                         </div>`;
                     });
 
-                    // Render challenges
+                    // Render challenges - mejor diseño para aceptar
                     pendingChallenges.forEach(data => {
                         html += `
-                        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(243,122,32,0.1); padding:12px; border-radius:12px; border: 1px solid rgba(243,122,32,0.3); margin-bottom: 8px;">
-                            <div style="display: flex; flex-direction: column;">
-                                <span style="font-weight:bold; font-size:14px; color: var(--accent-orange);">⚔️ Reto de ${data.challengerName}</span>
-                                <span style="font-size:11px; color: var(--text-muted);">${data.specialty} (${data.numQuestions} P.)</span>
+                        <div style="background:rgba(243,122,32,0.08); padding:14px; border-radius:14px; border: 1px solid rgba(243,122,32,0.3); margin-bottom: 8px;">
+                            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                                <span style="font-size:24px;">⚔️</span>
+                                <div>
+                                    <div style="font-weight:bold; font-size:14px; color: var(--accent-orange);">Reto de ${data.challengerName}</div>
+                                    <div style="font-size:11px; color: var(--text-muted);">${data.specialty} &bull; ${data.numQuestions} preguntas</div>
+                                </div>
                             </div>
-                            <div style="display:flex; gap:8px;">
-                                <button class="btn-primary btn-play-chal" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--accent-orange); border-radius: 6px;">¡Jugar!</button>
-                            </div>
+                            <button class="btn-primary btn-play-chal" data-id="${data.id}" style="width:100%; padding:10px; font-size:13px; background:var(--accent-orange); border-radius: 10px; font-weight:bold;">⚔️ ¡Aceptar y Jugar Ahora!</button>
                         </div>`;
                     });
 
@@ -3651,12 +3664,19 @@
                     attachEvents(modalListEl);
                 };
 
+                // Exponer la función para que el early-return pueda re-renderizar
+                _renderMergedNotifications = renderMergedNotifications;
+
+                // Primer snapshot: marcar como carga inicial para no disparar banners
+                let firstLoadFriends = true;
+                let firstLoadChallenges = true;
+
                 window.FB.onSnapshot(qReqs, (snap) => {
                     const added = snap.docChanges().filter(c => c.type === 'added');
                     if (!firstLoadFriends && added.length > 0) {
                         added.forEach(c => {
                             const d = c.doc.data();
-                            showBanner("Nueva solicitud", `${d.fromName} quiere ser tu amigo.`, "🤝");
+                            showBanner("Nueva solicitud", `${d.fromName} quiere ser tu amigo.`, "\ud83e\udd1d");
                         });
                     }
                     firstLoadFriends = false;
@@ -3673,10 +3693,13 @@
                             // No mostrar banner si yo soy el retador
                             if (d.challengerId === window.FB.auth.currentUser.uid) return;
 
-                            showBanner("¡Tienes un Reto!", `${d.challengerName} te desafió en ${d.specialty}.`, "⚔️", () => {
-                                const navCom = $("nav-comunidad");
-                                if (navCom) navCom.click();
-                                else showView("view-comunidad");
+                            // Banner con callback que ABRE el modal de notificaciones directamente
+                            showBanner("¡Tienes un Reto!", `${d.challengerName} te desafi\u00f3 en ${d.specialty}.`, "\u2694\ufe0f", () => {
+                                const notifModal = $("notif-modal");
+                                if (notifModal) {
+                                    notifModal.style.display = "flex";
+                                    renderMergedNotifications();
+                                }
                             });
                         });
                     }
