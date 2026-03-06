@@ -3578,8 +3578,68 @@
                     const friendId = selectFriend.value;
                     if (!friendId) return showNotification("Debes seleccionar un amigo válido.", "warning");
 
-                    const specialty = selectSpecialty.value;
-                    const length = parseInt(selectLength.value);
+                    // Steal config from view-setup
+                    const selectedSpecs = document.querySelectorAll(".spec-item.checked");
+                    const qtySlider = document.getElementById("setup-qty-slider");
+                    const qty = parseInt(qtySlider ? qtySlider.value : 10, 10);
+
+                    const specsArray = Array.from(selectedSpecs).map(i => i.dataset.spec);
+                    if (specsArray.length === 0 && State.selectedTopics.length === 0) {
+                        return showNotification("Configura primero una especialidad o tema en la pantalla de crear examen.", "warning");
+                    }
+
+                    // Helper logic to get same questions
+                    let pool = [];
+                    if (specsArray.length > 0) pool = QUESTIONS.filter(q => specsArray.includes(q.specialty));
+                    else pool = [...QUESTIONS];
+
+                    if (State.selectedTopics.length > 0) {
+                        let expandedTopics = [];
+                        State.selectedTopics.forEach(t => {
+                            if (window.TEMARIO_MAPPING && window.TEMARIO_MAPPING[t]) expandedTopics.push(...window.TEMARIO_MAPPING[t]);
+                            else expandedTopics.push(t);
+                        });
+                        pool = pool.filter(q => {
+                            const qText = `${q.tema || ""} ${q.subtema || ""} ${q.case || ""} ${q.question || ""} ${q.gpcReference || ""}`.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                            return expandedTopics.some(topic => {
+                                const normTopic = topic.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                                return qText.includes(normTopic);
+                            });
+                        });
+                    }
+
+                    // Process pool randomly just like start exam
+                    let poolPrimary = pool.filter(q => {
+                        if (State.difficulty === "cualquiera") return true;
+                        const qDiff = (q.difficulty || "alta").toLowerCase();
+                        if (State.difficulty === "alta") return qDiff === "alta" || qDiff === "muy-alta";
+                        return qDiff === State.difficulty;
+                    });
+
+                    const processAndFlattenPool = (p, qty) => {
+                        const rnd = p.sort(() => 0.5 - Math.random());
+                        let res = [];
+                        for (let q of rnd) {
+                            if (res.length >= qty) break;
+                            res.push(q);
+                        }
+                        return res;
+                    };
+
+                    let flatPrimary = processAndFlattenPool(poolPrimary, qty);
+                    if (flatPrimary.length < qty) {
+                        let poolSecondary = pool.filter(q => !poolPrimary.includes(q));
+                        let missing = qty - flatPrimary.length;
+                        let flatSecondary = processAndFlattenPool(poolSecondary, missing);
+                        flatPrimary = flatPrimary.concat(flatSecondary);
+                    }
+
+                    if (flatPrimary.length === 0) {
+                        return showNotification("No hay suficientes preguntas con esta configuración.", "warning");
+                    }
+
+                    const questionIndices = flatPrimary.map(q => QUESTIONS.indexOf(q));
+                    const summarySpec = specsArray.length === 1 ? specsArray[0] : (specsArray.length > 1 ? "Mix Especialidades" : "Tema Específico");
 
                     btnSend.textContent = "...";
                     try {
@@ -3588,10 +3648,11 @@
                             challengerName: State.userName,
                             challengedId: friendId,
                             challengedName: selectFriend.options[selectFriend.selectedIndex].text.split(" (")[0],
-                            specialty: specialty,
-                            numQuestions: length,
+                            specialty: summarySpec,
+                            numQuestions: questionIndices.length,
+                            questionIndices: questionIndices,
                             status: "pending_for_b",
-                            createdAt: window.FB.serverTimestamp()
+                            createdAt: Date.now()
                         });
                         showNotification("Reto enviado con éxito.", "success");
                         modal.style.display = "none";
@@ -3684,29 +3745,55 @@
                 renderChallenges();
             });
 
-            window.acceptChallenge = (id, specialty, length) => {
-                State.activeChallengeId = id;
-                State.activeChallengeRole = "challenged";
-                State.userSpecialty = specialty === "Aleatorio" ? "cualquiera" : specialty;
-                State.difficulty = "cualquiera";
+            const startChallengeExam = (id, indices) => {
+                const finalSet = indices.map(idx => QUESTIONS[idx]).filter(Boolean);
+                if (finalSet.length === 0) return showNotification("Error al cargar preguntas del reto.", "error");
 
-                // Empezar exam similar a simulacro
-                $("topic-select").value = State.userSpecialty;
-                $("num-questions").value = length;
-                $("btn-start-exam").click();
-                showNotification("Reto iniciado. ¡Mucha suerte!");
+                State.questionSet = finalSet;
+
+                const selectedModeBtn = document.querySelector(".mode-toggle-btn.active");
+                const modeVal = selectedModeBtn ? selectedModeBtn.dataset.examMode : "casos";
+                State.mode = modeVal === "casos" ? "simulacro" : "estudio";
+
+                const isLibre = $("time-libre-btn") ? $("time-libre-btn").classList.contains("active") : true;
+                const timerVal = parseInt($("setup-time-minutes") ? $("setup-time-minutes").value : 0, 10);
+
+                State.durationSec = isLibre ? 0 : (timerVal || 60) * 60;
+                State.currentIndex = 0;
+                State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
+                State.currentExamType = "Reto Amistoso";
+                State.startTime = Date.now();
+                State.pausedElapsedTime = 0;
+                State.examActive = true;
+                if (typeof window.isFinishing !== "undefined") window.isFinishing = false;
+
+                if (typeof renderExamQuestion === "function") renderExamQuestion();
+                showView("view-exam");
+
+                if (!isLibre && State.durationSec > 0 && typeof startTimer === "function") startTimer();
+                else if ($("timer-display")) $("timer-display").style.display = "none";
+
+                showNotification("¡Reto iniciado! Buena suerte.", "info");
             };
 
-            window.playChallenge = (id, specialty, length) => {
+            window.acceptChallenge = async (id) => {
+                const docSnap = await window.FB.getDoc(window.FB.doc(window.FB.db, "challenges", id));
+                if (!docSnap.exists()) return showNotification("Reto no encontrado.", "error");
+                const data = docSnap.data();
+
+                State.activeChallengeId = id;
+                State.activeChallengeRole = "challenged";
+                startChallengeExam(id, data.questionIndices || []);
+            };
+
+            window.playChallenge = async (id) => {
+                const docSnap = await window.FB.getDoc(window.FB.doc(window.FB.db, "challenges", id));
+                if (!docSnap.exists()) return showNotification("Reto no encontrado.", "error");
+                const data = docSnap.data();
+
                 State.activeChallengeId = id;
                 State.activeChallengeRole = "challenger";
-                State.userSpecialty = specialty === "Aleatorio" ? "cualquiera" : specialty;
-                State.difficulty = "cualquiera";
-
-                $("topic-select").value = State.userSpecialty;
-                $("num-questions").value = length;
-                $("btn-start-exam").click();
-                showNotification("Tu turno. ¡Supera su puntaje!");
+                startChallengeExam(id, data.questionIndices || []);
             };
         };
 

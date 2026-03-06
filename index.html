@@ -582,8 +582,14 @@
 
                         <div class="setup-actions-row">
                             <button class="btn-panel-back">Atrás</button>
-                            <button class="btn-finish-setup" id="btn-start-final-exam">Iniciar Simulacro <span
-                                    class="arrow-icon">›</span></button>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn-finish-setup" id="btn-create-challenge"
+                                    style="background: var(--accent-orange); border-color: rgba(243,122,32,0.3); color: white;">
+                                    Retar a un Amigo ⚔️
+                                </button>
+                                <button class="btn-finish-setup" id="btn-start-final-exam">Iniciar Simulacro <span
+                                        class="arrow-icon">›</span></button>
+                            </div>
                         </div>
                         <p class="section-hint" style="text-align:center; margin-top: 10px;">
                             *Nota: Si seleccionas más preguntas de las que hay disponibles para ese tema, el examen se
@@ -876,9 +882,10 @@
                                 </div>
                             </div>
 
-                            <button class="action-btn" id="btn-create-challenge"
-                                style="width: 100%; justify-content: center; background: rgba(243, 122, 32, 0.1); color: var(--accent-orange); border-color: rgba(243,122,32,0.3); margin-top: 10px;">
-                                Desafiar a un Amigo →
+                            <button class="action-btn" id="btn-goto-challenge-setup"
+                                style="width: 100%; justify-content: center; background: rgba(243, 122, 32, 0.1); color: var(--accent-orange); border-color: rgba(243,122,32,0.3); margin-top: 10px;"
+                                onclick="showView('view-setup')">
+                                Configurar Nuevo Reto →
                             </button>
                         </div>
 
@@ -1421,24 +1428,9 @@
                 </select>
             </div>
 
-            <div class="input-group" style="margin-bottom: 20px;">
-                <label style="font-size: 13px; color: var(--text-secondary);">Especialidad:</label>
-                <select id="challenge-specialty-select" class="text-input" style="width: 100%; margin-top: 5px;">
-                    <option value="Aleatorio">🎲 Aleatorio (Todas)</option>
-                    <option value="Cirugía General">Cirugía General</option>
-                    <option value="Ginecología y Obstetricia">Ginecología y Obstetricia</option>
-                    <option value="Medicina Interna">Medicina Interna</option>
-                    <option value="Pediatría">Pediatría</option>
-                </select>
-            </div>
-
             <div class="input-group" style="margin-bottom: 24px;">
-                <label style="font-size: 13px; color: var(--text-secondary);">Número de preguntas:</label>
-                <select id="challenge-length-select" class="text-input" style="width: 100%; margin-top: 5px;">
-                    <option value="5">🔥 5 Preguntas (Rápido)</option>
-                    <option value="10" selected>⚡ 10 Preguntas (Batalla Normal)</option>
-                    <option value="20">🤯 20 Preguntas (Épico)</option>
-                </select>
+                <label style="font-size: 13px; color: var(--text-secondary);">El reto se enviará usando la configuración
+                    actual de tu simulacro (especialidad, preguntas y dificultad).</label>
             </div>
 
             <button id="btn-send-challenge" class="btn-primary"
