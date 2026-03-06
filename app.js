@@ -3426,6 +3426,7 @@
                             });
 
                             window.quickChallenge = (uid) => {
+                                if (typeof showView === "function") showView("view-setup");
                                 const btn = $("btn-create-challenge");
                                 if (btn) {
                                     btn.click(); // Abre el modal
@@ -3789,7 +3790,15 @@
 
                     if (flatPrimary.length === 0) return showNotification("No hay suficientes preguntas.", "warning");
 
-                    const questionIndices = flatPrimary.map(q => QUESTIONS.indexOf(q));
+                    const questionIndices = flatPrimary.map(q => {
+                        const idx = QUESTIONS.indexOf(q);
+                        if (idx !== -1) return idx;
+                        // Backup check by content if reference fails for some reason
+                        return QUESTIONS.findIndex(ref => ref.question === q.question);
+                    }).filter(idx => idx !== -1);
+
+                    if (questionIndices.length === 0) return showNotification("Error: No se pudieron mapear las preguntas al banco.", "error");
+
                     const summarySpec = specsArray.length === 1 ? specsArray[0] : (specsArray.length > 1 ? "Mix Especialidades" : "Tema Específico");
 
                     // Map participants
@@ -3846,6 +3855,14 @@
             const q = window.FB.query(chalRef, window.FB.where("participantIds", "array-contains", window.FB.auth.currentUser.uid));
 
             const allChallenges = new Map();
+            let showAllActive = false;
+            let showAllPast = false;
+
+            window.toggleAllChallenges = (type) => {
+                if (type === 'active') showAllActive = !showAllActive;
+                else showAllPast = !showAllPast;
+                renderChallenges();
+            };
 
             const renderChallenges = () => {
                 if (!listContainer) return;
@@ -3854,9 +3871,14 @@
                 let activeHtml = "";
                 let finishedHtml = "";
 
-                const sorted = Array.from(allChallenges.values()).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+                const allSorted = Array.from(allChallenges.values()).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+                const activeOnes = allSorted.filter(ch => ch.status !== 'finished');
+                const pastOnes = allSorted.filter(ch => ch.status === 'finished');
 
-                sorted.forEach(ch => {
+                const displayActive = showAllActive ? activeOnes : activeOnes.slice(0, 3);
+                const displayPast = showAllPast ? pastOnes : pastOnes.slice(0, 2);
+
+                const renderCard = (ch) => {
                     const myEntry = ch.participants ? ch.participants[uid] : null;
                     const others = Object.values(ch.participants || {}).filter(p => p.name !== State.userName);
                     const opponentText = others.length === 1 ? others[0].name : (others.length + " participantes");
@@ -3874,7 +3896,7 @@
                         actionBtn = `<button class="btn-primary" style="width: 100%; border-radius: 8px; background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.4); color: #60a5fa;" onclick="window.showChallengeRanking('${ch.id}')">📊 Ver Ranking</button>`;
                     }
 
-                    const cardHtml = `
+                    return `
                     <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; text-align: left; position: relative; cursor: pointer;" onclick="if(event.target.tagName !== 'BUTTON') window.showChallengeRanking('${ch.id}')">
                         <div style="font-size: 11px; color: var(--accent-orange); font-weight: bold; margin-bottom: 4px; display: flex; justify-content: space-between;">
                             <span>RETO: ${ch.specialty}</span>
@@ -3884,10 +3906,17 @@
                         ${actionBtn}
                     </div>
                     `;
+                };
 
-                    if (isFinished) finishedHtml += cardHtml;
-                    else activeHtml += cardHtml;
-                });
+                let activeHtml = displayActive.map(ch => renderCard(ch)).join("");
+                let pastHtml = displayPast.map(ch => renderCard(ch)).join("");
+
+                if (activeOnes.length > 3) {
+                    activeHtml += `<button class="btn-ghost" style="width:100%; font-size:12px; margin-top:5px; color:var(--accent-orange);" onclick="window.toggleAllChallenges('active')">${showAllActive ? 'Ver menos ↑' : 'Ver todos (' + activeOnes.length + ') ↓'}</button>`;
+                }
+                if (pastOnes.length > 2) {
+                    pastHtml += `<button class="btn-ghost" style="width:100%; font-size:12px; margin-top:5px; color:var(--text-muted);" onclick="window.toggleAllChallenges('past')">${showAllPast ? 'Ver menos ↑' : 'Ver historial (' + pastOnes.length + ') ↓'}</button>`;
+                }
 
                 let finalHtml = `
                     <div style="text-align: left; margin-bottom: 15px;">
@@ -3899,7 +3928,7 @@
                     <div style="text-align: left; margin-top: 25px;">
                         <h3 style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">📅 Retos Pasados</h3>
                         <div style="display: flex; flex-direction: column; gap: 10px;">
-                            ${finishedHtml || '<p style="font-size: 12px; color: var(--text-muted); padding: 10px; text-align: center;">No hay retos terminados.</p>'}
+                            ${pastHtml || '<p style="font-size: 12px; color: var(--text-muted); padding: 10px; text-align: center;">No hay retos terminados.</p>'}
                         </div>
                     </div>
                 `;
@@ -3978,8 +4007,16 @@
                     console.error("Indices is not an array:", indices);
                     return showNotification("Error: Los datos del reto están dañados.", "error");
                 }
-                const finalSet = indices.map(idx => QUESTIONS[idx]).filter(q => q && Array.isArray(q.options));
-                if (finalSet.length === 0) return showNotification("Error al cargar preguntas del reto. Los datos pueden estar desactualizados.", "error");
+                const finalSet = indices.map(idx => {
+                    const q = QUESTIONS[idx];
+                    if (q && Array.isArray(q.options)) return q;
+                    // Fallback: search if index is off (likely due to updates in questions.js)
+                    return QUESTIONS.find(ref => ref.question && QUESTIONS[idx] && ref.question === QUESTIONS[idx].question) || null;
+                }).filter(Boolean);
+
+                if (finalSet.length === 0) {
+                    return showNotification("Error al cargar preguntas. Los datos del reto podrían estar obsoletos.", "error");
+                }
 
                 State.questionSet = finalSet;
 
