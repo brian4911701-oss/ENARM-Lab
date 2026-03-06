@@ -2917,6 +2917,21 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
     grid-template-columns: 1fr 1fr !important;
   }
 
+  .comunidad-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .comunidad-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 15px;
+  }
+
+  .comunidad-header .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
   .stats-grid .stat-card.action-card {
     grid-column: 1 / -1;
     /* Make the action card span full width */
