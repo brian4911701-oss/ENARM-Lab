@@ -3868,9 +3868,6 @@
                 if (!listContainer) return;
                 const uid = window.FB.auth.currentUser.uid;
 
-                let activeHtml = "";
-                let finishedHtml = "";
-
                 const allSorted = Array.from(allChallenges.values()).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
                 const activeOnes = allSorted.filter(ch => ch.status !== 'finished');
                 const pastOnes = allSorted.filter(ch => ch.status === 'finished');
