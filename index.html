@@ -1422,10 +1422,13 @@
                 Reto</h2>
 
             <div class="input-group" style="margin-bottom: 20px;">
-                <label style="font-size: 13px; color: var(--text-secondary);">Selecciona un amigo:</label>
-                <select id="challenge-friend-select" class="text-input" style="width: 100%; margin-top: 5px;">
-                    <option value="">Cargando amigos...</option>
-                </select>
+                <label
+                    style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; display: block;">Invita a
+                    tus amigos (selecciona varios):</label>
+                <div id="challenge-friends-checkboxes"
+                    style="max-height: 180px; overflow-y: auto; background: rgba(0,0,0,0.2); border-radius: 12px; padding: 10px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px;">
+                    <span style="font-size: 12px; color: var(--text-muted);">Cargando amigos...</span>
+                </div>
             </div>
 
             <div class="input-group" style="margin-bottom: 24px;">
@@ -1437,6 +1440,31 @@
                 style="width: 100%; justify-content: center; background: var(--accent-orange); color: #fff; box-shadow: 0 4px 15px rgba(243, 122, 32, 0.4);">
                 ¡Desafiar Ahora!
             </button>
+        </div>
+    </div>
+
+    <!-- ─── MODAL RANKING DE RETO ──────────────── -->
+    <div class="modal-overlay" id="challenge-ranking-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 3500; justify-content: center; align-items: center; backdrop-filter: blur(8px);">
+        <div class="modal-content"
+            style="background: var(--bg-card); padding: 30px; border-radius: 20px; border: 1px solid var(--border); max-width: 500px; width: 95%; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.5);">
+            <button onclick="$('challenge-ranking-modal').style.display='none'"
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
+            <h2 id="ranking-modal-title"
+                style="font-size: 18px; color: var(--accent-orange); text-align: center; margin-bottom: 5px;">📊 Ranking
+                del Reto</h2>
+            <p id="ranking-modal-subtitle"
+                style="text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">Resultados
+                en tiempo real</p>
+
+            <div style="height: 200px; margin-bottom: 25px;">
+                <canvas id="challenge-ranking-chart"></canvas>
+            </div>
+
+            <div id="ranking-list-details"
+                style="display: flex; flex-direction: column; gap: 10px; max-height: 200px; overflow-y: auto;">
+                <!-- Table of scores -->
+            </div>
         </div>
     </div>
 

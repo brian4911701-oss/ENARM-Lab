@@ -69,7 +69,7 @@
         }, 3500);
     };
 
-    const showBanner = (title, msg, icon = '🔔') => {
+    const showBanner = (title, msg, icon = '🔔', onClickCallback = null) => {
         let banner = $('global-notif-banner');
         if (!banner) {
             banner = document.createElement('div');
@@ -87,7 +87,19 @@
             <button class="notif-banner-close" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:16px;">✕</button>
         `;
 
-        banner.querySelector('.notif-banner-close').onclick = () => banner.classList.remove('active');
+        banner.style.cursor = onClickCallback ? 'pointer' : 'default';
+        banner.onclick = (e) => {
+            if (e.target.closest('.notif-banner-close')) return;
+            if (onClickCallback) {
+                onClickCallback();
+                banner.classList.remove('active');
+            }
+        };
+
+        banner.querySelector('.notif-banner-close').onclick = (e) => {
+            e.stopPropagation();
+            banner.classList.remove('active');
+        };
 
         setTimeout(() => banner.classList.add('active'), 100);
 
@@ -2070,23 +2082,27 @@
 
             // Update Cloud Challenge if active
             if (State.activeChallengeId && window.FB && window.FB.auth.currentUser) {
-                const chalRef = window.FB.doc(window.FB.db, "challenges", State.activeChallengeId);
-                const isChallenger = State.activeChallengeRole === "challenger";
-                const updates = {};
-                if (isChallenger) updates.challengerScore = pct;
-                else updates.challengedScore = pct;
+                const chalId = State.activeChallengeId;
+                const uid = window.FB.auth.currentUser.uid;
+                const chalRef = window.FB.doc(window.FB.db, "challenges", chalId);
 
-                // Fire async without blocking UI
                 window.FB.getDoc(chalRef).then(snap => {
                     if (snap.exists()) {
                         const data = snap.data();
-                        const otherScore = isChallenger ? data.challengedScore : data.challengerScore;
-                        if (otherScore !== undefined) {
-                            updates.status = "completed"; // Both played
-                        } else {
-                            updates.status = isChallenger ? "pending_for_b" : "pending_for_a";
+                        const parts = data.participants || {};
+                        if (parts[uid]) {
+                            parts[uid].score = pct;
+                            parts[uid].status = "completed";
+                            parts[uid].timestamp = new Date();
                         }
-                        window.FB.updateDoc(chalRef, updates);
+
+                        // Check if all are finished
+                        const allFinished = Object.values(parts).every(p => p.status === "completed");
+
+                        window.FB.updateDoc(chalRef, {
+                            participants: parts,
+                            status: allFinished ? "finished" : "active"
+                        });
                     }
                 });
 
@@ -3369,12 +3385,15 @@
                                      <div class="lb-item" style="${bgStyle}">
                                         <div class="lb-rank">${rankStr}</div>
                                         <div class="lb-avatar">${lbInitials}</div>
-                                        <div class="lb-info">
+                                        <div class="lb-info" style="flex:1">
                                             <div class="lb-name">${data.username} ${isMe ? '<span class="lb-badge">Tú</span>' : ''}</div>
                                             ${badgeSpec ? `<div style="margin-top: 4px; margin-bottom: 2px;">${badgeSpec}</div>` : ''}
                                             <div class="lb-score" style="margin-top:2px;">Promedio: <span style="color:var(--accent-green); font-weight:700">${data.score}%</span></div>
                                         </div>
-                                        <div class="lb-flame">🔥 ${data.flame || 0}</div>
+                                        <div class="lb-actions" style="display:flex; align-items:center; gap:10px;">
+                                           <div class="lb-flame">🔥 ${data.flame || 0}</div>
+                                           ${!isMe ? `<button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 4px 8px; font-size: 11px; border-radius: 6px; background: var(--accent-orange); border:none;">⚔️ Retar</button>` : ''}
+                                        </div>
                                      </div>
                                      `;
 
@@ -3396,11 +3415,23 @@
                                                     <div style="font-size: 11px; color: var(--accent-green);">En línea</div>
                                                 </div>
                                             </div>
+                                            <button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 6px 10px; font-size: 11px; border-radius: 8px; background: var(--accent-orange);">⚔️ Retar</button>
                                         </div>`;
                                     }
                                     rank++;
                                 }
                             });
+
+                            window.quickChallenge = (uid) => {
+                                const btn = $("btn-create-challenge");
+                                if (btn) {
+                                    btn.click(); // Abre el modal
+                                    setTimeout(() => {
+                                        const cbs = document.querySelectorAll(".challenge-friend-cb");
+                                        cbs.forEach(cb => cb.checked = (cb.value === uid));
+                                    }, 100);
+                                }
+                            };
 
                             const lbList = document.querySelector(".leaderboard-list");
                             if (lbList) lbList.innerHTML = lbHTML || '<div style="padding: 20px;">Sin datos</h4>';
@@ -3470,29 +3501,9 @@
                                             <div style="font-weight:bold">${foundUser.username}</div>
                                             <div style="font-size:12px; color:var(--text-muted)">Promedio: ${foundUser.score}%</div>
                                         </div>
-                                        <button class="btn-primary" id="btn-send-req" data-id="${foundId}" data-name="${foundUser.username}" style="padding: 8px 12px; font-size: 13px;">Añadir</button>
+                                        <button class="btn-primary btn-community-add" data-id="${foundId}" data-name="${foundUser.username}" style="padding: 8px 12px; font-size: 13px;">Añadir</button>
                                     </div>
                                 `;
-
-                                $("btn-send-req").addEventListener("click", async (e) => {
-                                    const targetId = e.target.getAttribute("data-id");
-                                    const targetName = e.target.getAttribute("data-name");
-                                    e.target.textContent = "Enviando...";
-
-                                    try {
-                                        await window.FB.addDoc(window.FB.collection(window.FB.db, "friendRequests"), {
-                                            fromId: window.FB.auth.currentUser.uid,
-                                            fromName: State.userName,
-                                            toId: targetId,
-                                            toName: targetName,
-                                            status: "pending",
-                                            timestamp: new Date()
-                                        });
-                                        searchResults.innerHTML = '<span style="color:var(--accent-green)">Solicitud enviada exitosamente.</span>';
-                                    } catch (err) {
-                                        searchResults.innerHTML = '<span style="color:var(--accent-red)">Error al enviar: ' + err.message + '</span>';
-                                    }
-                                });
                             }
                             btnSearchFriend.textContent = "Buscar";
                         }, (err) => {
@@ -3502,6 +3513,33 @@
                     } catch (err) {
                         searchResults.innerHTML = '<span style="color:var(--accent-red)">Error: ' + err.message + '</span>';
                         btnSearchFriend.textContent = "Buscar";
+                    }
+                });
+
+                // Delegación de eventos para el botón de añadir amigo en resultados de búsqueda
+                searchResults.addEventListener("click", async (e) => {
+                    if (e.target.classList.contains("btn-community-add")) {
+                        const btn = e.target;
+                        const targetId = btn.getAttribute("data-id");
+                        const targetName = btn.getAttribute("data-name");
+                        btn.textContent = "Enviando...";
+                        btn.disabled = true;
+
+                        try {
+                            await window.FB.addDoc(window.FB.collection(window.FB.db, "friendRequests"), {
+                                fromId: window.FB.auth.currentUser.uid,
+                                fromName: State.userName,
+                                toId: targetId,
+                                toName: targetName,
+                                status: "pending",
+                                timestamp: new Date()
+                            });
+                            searchResults.innerHTML = '<span style="color:var(--accent-green)">Solicitud enviada exitosamente.</span>';
+                        } catch (err) {
+                            btn.textContent = "Añadir";
+                            btn.disabled = false;
+                            showNotification("Error al enviar: " + err.message, "error");
+                        }
                     }
                 });
             }
@@ -3515,7 +3553,7 @@
                 const qReqs = window.FB.query(reqsRef, window.FB.where("toId", "==", window.FB.auth.currentUser.uid), window.FB.where("status", "==", "pending"));
 
                 const chalRef = window.FB.collection(window.FB.db, "challenges");
-                const qChal = window.FB.query(chalRef, window.FB.where("challengedId", "==", window.FB.auth.currentUser.uid), window.FB.where("status", "==", "pending_for_b"));
+                const qChal = window.FB.query(chalRef, window.FB.where("participantIds", "array-contains", window.FB.auth.currentUser.uid), window.FB.where("status", "==", "active"));
 
                 let pendingFriends = [];
                 let pendingChallenges = [];
@@ -3596,7 +3634,8 @@
                         container.querySelectorAll(".btn-play-chal").forEach(btn => {
                             btn.addEventListener("click", (e) => {
                                 const chalId = e.currentTarget.getAttribute("data-id");
-                                $("notif-modal").classList.remove("active");
+                                const notifModal = $("notif-modal");
+                                if (notifModal) notifModal.style.display = "none";
                                 if (typeof window.acceptChallenge === 'function') {
                                     window.acceptChallenge(chalId);
                                 }
@@ -3627,12 +3666,26 @@
                     if (!firstLoadChallenges && added.length > 0) {
                         added.forEach(c => {
                             const d = c.doc.data();
-                            showBanner("¡Tienes un Reto!", `${d.challengerName} te desafió en ${d.specialty}.`, "⚔️");
+                            // No mostrar banner si yo soy el retador
+                            if (d.challengerId === window.FB.auth.currentUser.uid) return;
+
+                            showBanner("¡Tienes un Reto!", `${d.challengerName} te desafió en ${d.specialty}.`, "⚔️", () => {
+                                const navCom = $("nav-comunidad");
+                                if (navCom) navCom.click();
+                                else showView("view-comunidad");
+                            });
                         });
                     }
                     firstLoadChallenges = false;
                     pendingChallenges = [];
-                    snap.forEach(doc => pendingChallenges.push({ id: doc.id, ...doc.data() }));
+                    snap.forEach(doc => {
+                        const d = doc.data();
+                        const uid = window.FB.auth.currentUser.uid;
+                        // Solo mostrar si yo no he jugado aún
+                        if (d.participants && d.participants[uid] && d.participants[uid].status === "pending") {
+                            pendingChallenges.push({ id: doc.id, ...d });
+                        }
+                    });
                     renderMergedNotifications();
                 });
             };
@@ -3645,20 +3698,28 @@
             const modal = $("challenge-modal");
             const btnClose = $("btn-close-challenge-modal");
             const btnSend = $("btn-send-challenge");
-            const selectFriend = $("challenge-friend-select");
-            const selectSpecialty = $("challenge-specialty-select");
-            const selectLength = $("challenge-length-select");
+            const checkboxesContainer = $("challenge-friends-checkboxes");
             const listContainer = $("challenges-list-container");
 
             if (btnCreate) {
                 btnCreate.addEventListener("click", () => {
-                    // Populate select
-                    selectFriend.innerHTML = '<option value="">Selecciona un amigo...</option>';
-                    State.myFriends.forEach(f => {
-                        selectFriend.innerHTML += `<option value="${f.uid}">${f.username} (Prom: ${f.score}%)</option>`;
-                    });
+                    if (!checkboxesContainer) return;
+                    checkboxesContainer.innerHTML = "";
                     if (State.myFriends.length === 0) {
-                        selectFriend.innerHTML = '<option value="">Agrega amigos primero para desafiar</option>';
+                        checkboxesContainer.innerHTML = '<span style="font-size: 12px; color: var(--text-muted);">Agrega amigos primero para desafiar.</span>';
+                    } else {
+                        State.myFriends.forEach(f => {
+                            const div = document.createElement("div");
+                            div.style.display = "flex";
+                            div.style.alignItems = "center";
+                            div.style.gap = "10px";
+                            div.style.padding = "5px";
+                            div.innerHTML = `
+                                <input type="checkbox" class="challenge-friend-cb" value="${f.uid}" data-name="${f.username}" id="cb-${f.uid}" style="cursor:pointer;">
+                                <label for="cb-${f.uid}" style="cursor:pointer; font-size:14px; flex:1;">${f.username} (${f.score}%)</label>
+                            `;
+                            checkboxesContainer.appendChild(div);
+                        });
                     }
                     modal.style.display = "flex";
                 });
@@ -3672,20 +3733,19 @@
 
             if (btnSend) {
                 btnSend.addEventListener("click", async () => {
-                    const friendId = selectFriend.value;
-                    if (!friendId) return showNotification("Debes seleccionar un amigo válido.", "warning");
+                    const selectedCbs = document.querySelectorAll(".challenge-friend-cb:checked");
+                    if (selectedCbs.length === 0) return showNotification("Selecciona al menos un amigo.", "warning");
 
-                    // Steal config from view-setup
+                    // Steal config from current setup state
                     const selectedSpecs = document.querySelectorAll(".spec-item.checked");
                     const qtySlider = document.getElementById("setup-qty-slider");
                     const qty = parseInt(qtySlider ? qtySlider.value : 10, 10);
-
                     const specsArray = Array.from(selectedSpecs).map(i => i.dataset.spec);
+
                     if (specsArray.length === 0 && State.selectedTopics.length === 0) {
-                        return showNotification("Configura primero una especialidad o tema en la pantalla de crear examen.", "warning");
+                        return showNotification("Configura especialidad o temas en 'Añadir Materias' primero.", "warning");
                     }
 
-                    // Helper logic to get same questions
                     let pool = [];
                     if (specsArray.length > 0) pool = QUESTIONS.filter(q => specsArray.includes(q.specialty));
                     else pool = [...QUESTIONS];
@@ -3705,7 +3765,6 @@
                         });
                     }
 
-                    // Process pool randomly just like start exam
                     let poolPrimary = pool.filter(q => {
                         if (State.difficulty === "cualquiera") return true;
                         const qDiff = (q.difficulty || "alta").toLowerCase();
@@ -3714,127 +3773,189 @@
                     });
 
                     const processAndFlattenPool = (p, qty) => {
-                        const rnd = p.sort(() => 0.5 - Math.random());
-                        let res = [];
-                        for (let q of rnd) {
-                            if (res.length >= qty) break;
-                            res.push(q);
-                        }
-                        return res;
+                        const rnd = [...p].sort(() => 0.5 - Math.random());
+                        return rnd.slice(0, qty);
                     };
 
                     let flatPrimary = processAndFlattenPool(poolPrimary, qty);
                     if (flatPrimary.length < qty) {
                         let poolSecondary = pool.filter(q => !poolPrimary.includes(q));
                         let missing = qty - flatPrimary.length;
-                        let flatSecondary = processAndFlattenPool(poolSecondary, missing);
-                        flatPrimary = flatPrimary.concat(flatSecondary);
+                        flatPrimary = flatPrimary.concat(processAndFlattenPool(poolSecondary, missing));
                     }
 
-                    if (flatPrimary.length === 0) {
-                        return showNotification("No hay suficientes preguntas con esta configuración.", "warning");
-                    }
+                    if (flatPrimary.length === 0) return showNotification("No hay suficientes preguntas.", "warning");
 
                     const questionIndices = flatPrimary.map(q => QUESTIONS.indexOf(q));
                     const summarySpec = specsArray.length === 1 ? specsArray[0] : (specsArray.length > 1 ? "Mix Especialidades" : "Tema Específico");
+
+                    // Map participants
+                    const participants = {};
+                    // Include the challenger
+                    participants[window.FB.auth.currentUser.uid] = {
+                        name: State.userName,
+                        score: null,
+                        status: "pending",
+                        timestamp: null
+                    };
+                    selectedCbs.forEach(cb => {
+                        participants[cb.value] = {
+                            name: cb.getAttribute("data-name"),
+                            score: null,
+                            status: "pending",
+                            timestamp: null
+                        };
+                    });
+
+                    const participantIds = [window.FB.auth.currentUser.uid, ...Array.from(selectedCbs).map(cb => cb.value)];
 
                     btnSend.textContent = "...";
                     try {
                         await window.FB.addDoc(window.FB.collection(window.FB.db, "challenges"), {
                             challengerId: window.FB.auth.currentUser.uid,
                             challengerName: State.userName,
-                            challengedId: friendId,
-                            challengedName: selectFriend.options[selectFriend.selectedIndex].text.split(" (")[0],
+                            participants: participants,
+                            participantIds: participantIds,
                             specialty: summarySpec,
                             numQuestions: questionIndices.length,
                             questionIndices: questionIndices,
-                            status: "pending_for_b",
+                            status: "active",
                             createdAt: Date.now()
                         });
-                        showNotification("Reto enviado con éxito.", "success");
+                        showNotification("¡Enviado a " + selectedCbs.length + " amigos!", "success");
                         modal.style.display = "none";
                     } catch (err) {
-                        showNotification("Error enviando reto: " + err.message, "error");
+                        showNotification("Error: " + err.message, "error");
                     }
                     btnSend.textContent = "¡Desafiar Ahora!";
                 });
             }
 
-            // Real-time listener for my challenges
+            // Real-time listener using participantIds
             const chalRef = window.FB.collection(window.FB.db, "challenges");
-            // Since we can't easily OR query in older firebase without complex setup, listen to both sides:
-            const q1 = window.FB.query(chalRef, window.FB.where("challengerId", "==", window.FB.auth.currentUser.uid));
-            const q2 = window.FB.query(chalRef, window.FB.where("challengedId", "==", window.FB.auth.currentUser.uid));
+            const q = window.FB.query(chalRef, window.FB.where("participantIds", "array-contains", window.FB.auth.currentUser.uid));
 
             const allChallenges = new Map();
 
             const renderChallenges = () => {
                 if (!listContainer) return;
+                const uid = window.FB.auth.currentUser.uid;
 
-                let html = "";
-                Array.from(allChallenges.values()).sort((a, b) => (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0)).forEach(ch => {
+                let activeHtml = "";
+                let finishedHtml = "";
+
+                const sorted = Array.from(allChallenges.values()).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+                sorted.forEach(ch => {
+                    const myEntry = ch.participants ? ch.participants[uid] : null;
+                    const others = Object.values(ch.participants || {}).filter(p => p.name !== State.userName);
+                    const opponentText = others.length === 1 ? others[0].name : (others.length + " participantes");
+
                     let actionBtn = "";
-                    let isMeChallenger = ch.challengerId === window.FB.auth.currentUser.uid;
-                    let opponentName = isMeChallenger ? ch.challengedName : ch.challengerName;
+                    let isFinished = ch.status === "finished";
 
-                    if (ch.status === "pending_for_b") {
-                        if (isMeChallenger) {
-                            actionBtn = `<div style="font-size: 12px; color: var(--text-muted); padding: 8px;">Esperando a ${opponentName}...</div>`;
+                    if (!isFinished) {
+                        if (myEntry && myEntry.status === "pending") {
+                            actionBtn = `<button class="btn-primary" style="width: 100%; border-radius: 8px; background: var(--accent-orange);" onclick="window.acceptChallenge('${ch.id}')">⚔️ ¡Jugar Reto!</button>`;
                         } else {
-                            actionBtn = `<button class="btn-primary" style="width: 100%; border-radius: 8px;" onclick="acceptChallenge('${ch.id}', '${ch.specialty}', ${ch.numQuestions})">⚔️ ¡Aceptar y Jugar!</button>`;
+                            actionBtn = `<div style="font-size: 12px; color: var(--text-muted); padding: 8px; background: rgba(255,255,255,0.05); border-radius: 8px; text-align:center;">Esperando a los demás...</div>`;
                         }
-                    } else if (ch.status === "pending_for_a") {
-                        if (!isMeChallenger) {
-                            actionBtn = `<div style="font-size: 12px; color: var(--text-muted); padding: 8px;">Esperando que ${opponentName} juegue...</div>`;
-                        } else {
-                            actionBtn = `<button class="btn-primary" style="width: 100%; border-radius: 8px; background: var(--accent-orange);" onclick="playChallenge('${ch.id}', '${ch.specialty}', ${ch.numQuestions})">⚔️ ¡Tu Turno de Jugar!</button>`;
-                        }
-                    } else if (ch.status === "completed") {
-                        let myScore = isMeChallenger ? ch.challengerScore : ch.challengedScore;
-                        let theirScore = isMeChallenger ? ch.challengedScore : ch.challengerScore;
-
-                        let resultText = "Empate";
-                        let resultColor = "var(--text-muted)";
-                        if (myScore > theirScore) {
-                            resultText = "🔥 ¡Ganaste!";
-                            resultColor = "var(--accent-green)";
-                        } else if (myScore < theirScore) {
-                            resultText = "💀 Perdiste";
-                            resultColor = "var(--accent-red)";
-                        }
-
-                        actionBtn = `<div style="font-size: 14px; color: ${resultColor}; font-weight: bold; padding: 8px;">${resultText} (${myScore.toFixed(1)}% vs ${theirScore.toFixed(1)}%)</div>`;
+                    } else {
+                        actionBtn = `<button class="btn-primary" style="width: 100%; border-radius: 8px; background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.4); color: #60a5fa;" onclick="window.showChallengeRanking('${ch.id}')">📊 Ver Ranking</button>`;
                     }
 
-                    html += `
-                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; text-align: left; position: relative;">
-                        <div style="font-size: 12px; color: var(--accent-orange); font-weight: bold; margin-bottom: 4px;">RETO: ${ch.specialty} (${ch.numQuestions} P.)</div>
-                        <div style="font-size: 14px; margin-bottom: 12px;">Vs. <strong>${opponentName}</strong></div>
+                    const cardHtml = `
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; text-align: left; position: relative; cursor: pointer;" onclick="if(event.target.tagName !== 'BUTTON') window.showChallengeRanking('${ch.id}')">
+                        <div style="font-size: 11px; color: var(--accent-orange); font-weight: bold; margin-bottom: 4px; display: flex; justify-content: space-between;">
+                            <span>RETO: ${ch.specialty}</span>
+                            <span>${ch.numQuestions} P.</span>
+                        </div>
+                        <div style="font-size: 14px; margin-bottom: 12px;">Vs. <strong>${opponentText}</strong></div>
                         ${actionBtn}
                     </div>
                     `;
+
+                    if (isFinished) finishedHtml += cardHtml;
+                    else activeHtml += cardHtml;
                 });
 
-                if (html === "") {
-                    html = `
-                    <div id="no-challenges-msg">
-                        <div style="font-size: 40px; margin-bottom: 10px; opacity: 0.5;">😴</div>
-                        <div style="color: var(--text-muted); font-size: 14px;">No tienes retos activos</div>
-                    </div>`;
-                }
+                let finalHtml = `
+                    <div style="text-align: left; margin-bottom: 15px;">
+                        <h3 style="font-size: 14px; color: var(--text-primary); margin-bottom: 10px;">🔥 Retos Activos</h3>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            ${activeHtml || '<p style="font-size: 12px; color: var(--text-muted); padding: 10px; text-align: center;">No hay retos activos.</p>'}
+                        </div>
+                    </div>
+                    <div style="text-align: left; margin-top: 25px;">
+                        <h3 style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">📅 Retos Pasados</h3>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            ${finishedHtml || '<p style="font-size: 12px; color: var(--text-muted); padding: 10px; text-align: center;">No hay retos terminados.</p>'}
+                        </div>
+                    </div>
+                `;
 
-                listContainer.innerHTML = html;
+                listContainer.innerHTML = finalHtml;
             };
 
-            window.FB.onSnapshot(q1, snap => {
-                snap.docChanges().forEach(change => {
-                    if (change.type === "removed") allChallenges.delete(change.doc.id);
-                    else allChallenges.set(change.doc.id, { id: change.doc.id, ...change.doc.data() });
-                });
-                renderChallenges();
-            });
+            window.showChallengeRanking = async (id) => {
+                const ch = allChallenges.get(id);
+                if (!ch) return;
 
-            window.FB.onSnapshot(q2, snap => {
+                const modal = $("challenge-ranking-modal");
+                const title = $("ranking-modal-title");
+                const list = $("ranking-list-details");
+                if (!modal || !list) return;
+
+                title.textContent = `📊 Ranking: ${ch.specialty}`;
+                modal.style.display = "flex";
+
+                const pts = Object.values(ch.participants || {}).sort((a, b) => (b.score || 0) - (a.score || 0));
+
+                list.innerHTML = pts.map((p, idx) => `
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <span style="font-weight:bold; color: var(--accent-purple); width: 20px;">${idx + 1}.</span>
+                            <span style="font-size: 14px;">${p.name}</span>
+                        </div>
+                        <span style="font-weight:bold; color: ${p.score === null ? 'var(--text-muted)' : 'var(--accent-green)'}">
+                            ${p.score === null ? "Pendiente" : p.score.toFixed(1) + "%"}
+                        </span>
+                    </div>
+                `).join("");
+
+                // Update Chart
+                const ctx = document.getElementById('challenge-ranking-chart').getContext('2d');
+                if (window.rankingChart) window.rankingChart.destroy();
+
+                const labels = pts.map(p => p.name);
+                const data = pts.map(p => p.score || 0);
+                const colors = pts.map((p, i) => i === 0 ? '#10b981' : '#3b82f6');
+
+                window.rankingChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Puntaje %',
+                            data: data,
+                            backgroundColor: colors,
+                            borderRadius: 6
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { min: 0, max: 100, grid: { color: 'rgba(255,255,255,0.05)' } },
+                            y: { grid: { display: false } }
+                        }
+                    }
+                });
+            };
+
+            window.FB.onSnapshot(q, snap => {
                 snap.docChanges().forEach(change => {
                     if (change.type === "removed") allChallenges.delete(change.doc.id);
                     else allChallenges.set(change.doc.id, { id: change.doc.id, ...change.doc.data() });
@@ -3883,6 +4004,10 @@
                 const docSnap = await window.FB.getDoc(window.FB.doc(window.FB.db, "challenges", id));
                 if (!docSnap.exists()) return showNotification("Reto no encontrado.", "error");
                 const data = docSnap.data();
+
+                // Cerrar modales si están abiertos
+                const notifModal = $("notif-modal");
+                if (notifModal) notifModal.style.display = "none";
 
                 State.activeChallengeId = id;
                 State.activeChallengeRole = "challenged";
@@ -3940,11 +4065,19 @@
                 // 2. Limpiar retos pendientes para ti
                 const qChal = window.FB.query(
                     window.FB.collection(window.FB.db, "challenges"),
-                    window.FB.where("challengedId", "==", uid),
-                    window.FB.where("status", "==", "pending_for_b")
+                    window.FB.where("participantIds", "array-contains", uid),
+                    window.FB.where("status", "==", "active")
                 );
                 const snapChal = await window.FB.getDocs(qChal);
-                const p2 = snapChal.docs.map(d => window.FB.deleteDoc(d.ref));
+                const p2 = snapChal.docs.map(d => {
+                    // Si soy el retador o el reto es antiguo, lo borro. 
+                    // Nota: Borrar un reto grupal afecta a todos. Como medida simple, lo borramos.
+                    const data = d.data();
+                    if (data.challengerId === uid || data.status === 'active') {
+                        return window.FB.deleteDoc(d.ref);
+                    }
+                    return null;
+                }).filter(Boolean);
 
                 await Promise.all([...p1, ...p2]);
                 showNotification("Notificaciones limpiadas.", "success");
