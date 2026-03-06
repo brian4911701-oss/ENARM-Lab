@@ -3164,9 +3164,12 @@
 
         function clearAccountLocalData() {
             localStorage.removeItem("enarm_user");
+            localStorage.removeItem("enarm_specialty");
+            localStorage.removeItem("enarm_university");
             localStorage.removeItem("enarm_stats");
             localStorage.removeItem("enarm_history");
-            localStorage.removeItem("enarm_theme");
+            localStorage.removeItem("enarm_reports");
+            // No removemos enarm_theme para que se guarde la personalización
             window.location.reload();
         }
 
@@ -3487,6 +3490,8 @@
                                         updateDashboardStats();
                                         if (typeof updateCharts === 'function') updateCharts();
                                     }
+                                } else {
+                                    saveGlobalStats();
                                 }
                             } catch (e) {
                                 console.error("Error fetching cloud data on Auth Change:", e);
@@ -3644,12 +3649,15 @@
                                     State.reportedQuestions = JSON.parse(data.reportsStr);
                                     localStorage.setItem("enarm_reports", data.reportsStr);
                                 }
-
-                                // Refrescar las vistas de la app si recuperamos algo
-                                updateDashboardStats();
-                                if (typeof updateCharts === 'function') updateCharts();
-                                if (typeof initCalculator === 'function') initCalculator();
+                            } else {
+                                // Usuario nuevo: Guardar estado inicial en la nube
+                                saveGlobalStats();
                             }
+
+                            // Refrescar las vistas de la app si recuperamos algo o si es un usuario nuevo
+                            updateDashboardStats();
+                            if (typeof updateCharts === 'function') updateCharts();
+                            if (typeof initCalculator === 'function') initCalculator();
                         } catch (err) {
                             console.log("No se pudo cargar la nube: ", err);
                         }
