@@ -2985,6 +2985,41 @@ body.theme-premium .mobile-nav {
   }
 
   /* Exam interface */
+  .exam-layout {
+    flex-direction: column;
+  }
+
+  .exam-navigator {
+    width: 100%;
+    order: 2;
+    /* Put navigator below the question on mobile */
+  }
+
+  .exam-content-area {
+    order: 1;
+  }
+
+  .exam-header-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .exam-header-bar>div:last-child {
+    display: flex;
+    justify-content: stretch;
+    width: 100%;
+  }
+
+  .exam-header-bar .btn-secondary,
+  .exam-header-bar .btn-danger {
+    flex: 1;
+  }
+
+  .exam-timer {
+    text-align: center;
+  }
+
   .exam-header {
     flex-direction: column;
     flex-wrap: nowrap;
