@@ -2939,6 +2939,8 @@
         // Lógica de Modal Perfil y Amigos fuera de CloudFeatures (funciona sin conexión)
         const btnOpenProfile = $("btn-user-profile");
         const btnOpenProfileMobile = $("btn-user-profile-mobile");
+        const btnOpenNotifSidebar = $("nav-notif-sidebar");
+        const btnOpenNotifMobile = $("nav-notif-mobile");
         const btnCloseProfile = $("btn-close-profile");
         const profileModal = $("profile-modal");
 
@@ -2954,6 +2956,12 @@
         }
         if (btnOpenProfileMobile && profileModal) {
             btnOpenProfileMobile.addEventListener("click", openProfileModal);
+        }
+        if (btnOpenNotifSidebar && profileModal) {
+            btnOpenNotifSidebar.addEventListener("click", openProfileModal);
+        }
+        if (btnOpenNotifMobile && profileModal) {
+            btnOpenNotifMobile.addEventListener("click", openProfileModal);
         }
         if (btnCloseProfile && profileModal) {
             btnCloseProfile.addEventListener("click", () => {
@@ -3427,12 +3435,21 @@
 
                 window.FB.onSnapshot(qReqs, (snap) => {
                     const listEl = $("pending-requests-list");
-                    if (!listEl) return;
+                    const badgeSidebar = $("notif-badge-sidebar");
+                    const badgeMobile = $("notif-badge-mobile");
 
                     if (snap.empty) {
-                        listEl.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">No tienes solicitudes nuevas.</div>';
+                        if (listEl) listEl.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">No tienes solicitudes nuevas.</div>';
+                        if (badgeSidebar) badgeSidebar.style.display = "none";
+                        if (badgeMobile) badgeMobile.style.display = "none";
                         return;
                     }
+
+                    // Hay solicitudes pendientes -> Mostrar badges
+                    if (badgeSidebar) badgeSidebar.style.display = "block";
+                    if (badgeMobile) badgeMobile.style.display = "block";
+
+                    if (!listEl) return;
 
                     let html = "";
                     snap.forEach(doc => {
@@ -3453,7 +3470,7 @@
                             const reqId = e.target.getAttribute("data-id");
                             await window.FB.updateDoc(window.FB.doc(window.FB.db, "friendRequests", reqId), { status: "accepted" });
                             showNotification("¡Solicitud aceptada!", "success");
-                            fetchFriendsAndLeaderboard(); // Refrescar listas
+                            if (typeof fetchFriendsAndLeaderboard === 'function') fetchFriendsAndLeaderboard();
                         });
                     });
 
@@ -3461,7 +3478,7 @@
                         btn.addEventListener("click", async (e) => {
                             const reqId = e.target.getAttribute("data-id");
                             await window.FB.updateDoc(window.FB.doc(window.FB.db, "friendRequests", reqId), { status: "rejected" });
-                            fetchFriendsAndLeaderboard(); // Refrescar listas
+                            if (typeof fetchFriendsAndLeaderboard === 'function') fetchFriendsAndLeaderboard();
                         });
                     });
                 });
