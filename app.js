@@ -3792,7 +3792,26 @@
                         });
                     }
 
-                    let poolPrimary = pool.filter(q => {
+                    // Pre-expand pool: for clinical case questions (top-level entry with nested questions[]),
+                    // expand into individual sub-questions so that indexOf() works reliably
+                    // and challenge exams always get proper simple question objects.
+                    const expandPool = (rawPool) => {
+                        const expanded = [];
+                        rawPool.forEach(entry => {
+                            if (Array.isArray(entry.options) && entry.options.length > 0) {
+                                expanded.push(entry);
+                            } else if (entry.questions && Array.isArray(entry.questions)) {
+                                entry.questions.forEach(sq => {
+                                    if (sq && Array.isArray(sq.options) && sq.options.length > 0) {
+                                        expanded.push({ ...entry, question: sq.question, options: sq.options, answerIndex: sq.answerIndex, explanation: sq.explanation });
+                                    }
+                                });
+                            }
+                        });
+                        return expanded;
+                    };
+
+                    let poolPrimary = expandPool(pool).filter(q => {
                         if (State.difficulty === "cualquiera") return true;
                         const qDiff = (q.difficulty || "alta").toLowerCase();
                         if (State.difficulty === "alta") return qDiff === "alta" || qDiff === "muy-alta";
@@ -3806,21 +3825,41 @@
 
                     let flatPrimary = processAndFlattenPool(poolPrimary, qty);
                     if (flatPrimary.length < qty) {
-                        let poolSecondary = pool.filter(q => !poolPrimary.includes(q));
+                        // Secondary pool: expand the full pool and exclude what's already selected
+                        const selectedTexts = new Set(flatPrimary.map(q => q.question));
+                        const poolSecondary = expandPool(pool).filter(q =>
+                            !selectedTexts.has(q.question) &&
+                            (State.difficulty === "cualquiera" || (q.difficulty || "alta").toLowerCase() !== poolPrimary[0]?.difficulty)
+                        );
                         let missing = qty - flatPrimary.length;
                         flatPrimary = flatPrimary.concat(processAndFlattenPool(poolSecondary, missing));
                     }
 
                     if (flatPrimary.length === 0) return showNotification("No hay suficientes preguntas.", "warning");
 
+                    // Map each expanded question to its index in QUESTIONS
+                    // Since flatPrimary may be copies (expanded from cases), we match by question text + first option
                     const questionIndices = flatPrimary.map(q => {
-                        const idx = QUESTIONS.indexOf(q);
-                        if (idx !== -1) return idx;
-                        // Backup check by content if reference fails for some reason
-                        return QUESTIONS.findIndex(ref => ref.question === q.question);
+                        // Try exact reference first (works for simple questions that weren't cloned)
+                        const directIdx = QUESTIONS.indexOf(q);
+                        if (directIdx !== -1) return directIdx;
+                        // For expanded case sub-questions: find the parent case entry by matching
+                        // against the original top-level question OR sub-question text
+                        const byText = QUESTIONS.findIndex(ref => {
+                            if (!ref) return false;
+                            // Match direct question
+                            if (ref.question === q.question && Array.isArray(ref.options)) return true;
+                            // Match as sub-question inside a case
+                            if (ref.questions && Array.isArray(ref.questions)) {
+                                return ref.questions.some(sq => sq && sq.question === q.question);
+                            }
+                            return false;
+                        });
+                        return byText;
                     }).filter(idx => idx !== -1);
 
                     if (questionIndices.length === 0) return showNotification("Error: No se pudieron mapear las preguntas al banco.", "error");
+
 
                     const summarySpec = specsArray.length === 1 ? specsArray[0] : (specsArray.length > 1 ? "Mix Especialidades" : "Tema Específico");
 
@@ -4046,21 +4085,47 @@
                     return showNotification("Error: Los datos del reto están dañados o vacíos.", "error");
                 }
 
-                // Map indices to questions, assigning a unique caseGroupId per question
-                // so the exam engine treats each as independent (not grouped as a single clinical case)
+                // Build finalSet from indices, properly handling clinical case questions
+                // Some QUESTIONS entries are clinical cases with a nested questions[] array
+                // (no top-level options). We must expand them here just like processAndFlattenPool does.
                 const finalSet = [];
-                indices.forEach((idx, i) => {
+                let groupCounter = 1;
+
+                indices.forEach((idx) => {
                     const q = QUESTIONS[idx];
-                    if (q && Array.isArray(q.options)) {
-                        // Assign unique caseGroupId so questions render individually
-                        finalSet.push({ ...q, caseGroupId: i + 1, subQuestionIndex: 1, totalSubQuestions: 1 });
+                    if (!q) return; // invalid/obsolete index
+
+                    if (Array.isArray(q.options) && q.options.length > 0) {
+                        // Simple question
+                        finalSet.push({ ...q, caseGroupId: groupCounter, subQuestionIndex: 1, totalSubQuestions: 1 });
+                        groupCounter++;
+                    } else if (q.questions && Array.isArray(q.questions) && q.questions.length > 0) {
+                        // Clinical case with nested sub-questions
+                        q.questions.forEach((sq, sqIdx) => {
+                            if (sq && Array.isArray(sq.options) && sq.options.length > 0) {
+                                finalSet.push({
+                                    ...q,              // inherits case, tema, specialty, etc.
+                                    question: sq.question,
+                                    options: sq.options,
+                                    answerIndex: sq.answerIndex,
+                                    explanation: sq.explanation,
+                                    caseGroupId: groupCounter,
+                                    subQuestionIndex: sqIdx + 1,
+                                    totalSubQuestions: q.questions.length
+                                });
+                            }
+                        });
+                        groupCounter++;
                     } else {
-                        // Fallback: search by question text if index has shifted (bank update)
-                        const found = QUESTIONS.findIndex(ref => ref.question === (q ? q.question : undefined));
+                        // Fallback: try finding by question text (bank shift)
+                        const found = QUESTIONS.findIndex(
+                            ref => ref.question && ref.question === q.question && Array.isArray(ref.options)
+                        );
                         if (found !== -1) {
-                            finalSet.push({ ...QUESTIONS[found], caseGroupId: i + 1, subQuestionIndex: 1, totalSubQuestions: 1 });
+                            finalSet.push({ ...QUESTIONS[found], caseGroupId: groupCounter, subQuestionIndex: 1, totalSubQuestions: 1 });
+                            groupCounter++;
                         }
-                        // If not found at all, silently skip (obsolete question)
+                        // Otherwise silently skip (truly obsolete)
                     }
                 });
 
