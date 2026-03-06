@@ -2771,6 +2771,61 @@ body.theme-premium .mobile-nav {
   transform: translateX(-50%) scale(1);
 }
 
+/* ── Mobile Nav Center FAB ── */
+.mobile-nav-fab-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  position: relative;
+  z-index: 2;
+  margin-top: -30px;
+  /* Lift it out of the bar */
+}
+
+.mobile-nav-item.mobile-nav-fab {
+  background: var(--accent-green);
+  color: #fff;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(5, 192, 127, 0.4);
+  position: absolute;
+  top: 0;
+  padding: 0;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.light-mode .mobile-nav-item.mobile-nav-fab {
+  background: var(--accent-green);
+  /* Ensure it's distinctive in light mode too */
+}
+
+.mobile-nav-item.mobile-nav-fab:active {
+  transform: scale(0.95);
+}
+
+.mobile-nav-item.mobile-nav-fab.active {
+  color: #fff;
+}
+
+.mobile-nav-item.mobile-nav-fab::after {
+  display: none;
+}
+
+.mobile-nav-item.mobile-nav-fab svg {
+  width: 28px;
+  height: 28px;
+}
+
+.mobile-nav-item.mobile-nav-fab.active svg {
+  transform: translateY(0);
+}
+
 /* ── Mobile Top Header ────────────────────────────────── */
 .mobile-top-bar {
   display: none;
