@@ -2935,6 +2935,46 @@
                 if (profileModal) profileModal.style.display = "none";
             });
         }
+
+        // Lógica de Modal Perfil y Amigos fuera de CloudFeatures (funciona sin conexión)
+        const btnOpenProfile = $("btn-user-profile");
+        const btnOpenProfileMobile = $("btn-user-profile-mobile");
+        const btnCloseProfile = $("btn-close-profile");
+        const profileModal = $("profile-modal");
+
+        const openProfileModal = () => {
+            profileModal.style.display = "flex";
+            if (typeof window.loadPendingRequests === 'function') {
+                try { window.loadPendingRequests(); } catch (e) { console.error(e); }
+            }
+        };
+
+        if (btnOpenProfile && profileModal) {
+            btnOpenProfile.addEventListener("click", openProfileModal);
+        }
+        if (btnOpenProfileMobile && profileModal) {
+            btnOpenProfileMobile.addEventListener("click", openProfileModal);
+        }
+        if (btnCloseProfile && profileModal) {
+            btnCloseProfile.addEventListener("click", () => {
+                profileModal.style.display = "none";
+            });
+        }
+
+        const btnCopyUsername = $("btn-copy-username");
+        if (btnCopyUsername) {
+            btnCopyUsername.addEventListener("click", () => {
+                const nameInput = $("profile-name");
+                if (nameInput && nameInput.value) {
+                    navigator.clipboard.writeText(nameInput.value).then(() => {
+                        showNotification("¡Usuario copiado al portapapeles!", "success");
+                    }).catch(err => {
+                        showNotification("No se pudo copiar el usuario", "error");
+                    });
+                }
+            });
+        }
+
         const bd = $("btn-back-dash"); if (bd) bd.addEventListener("click", () => $("nav-dashboard").click());
         const rv = $("btn-review"); if (rv) rv.addEventListener("click", startReview);
         const exr = $("btn-exit-review"); if (exr) exr.addEventListener("click", () => showView("view-results"));
@@ -3304,43 +3344,6 @@
 
             fetchFriendsAndLeaderboard();
 
-            // Lógica de Modal Perfil y Amigos
-            const btnOpenProfile = $("btn-user-profile");
-            const btnOpenProfileMobile = $("btn-user-profile-mobile");
-            const btnCloseProfile = $("btn-close-profile");
-            const profileModal = $("profile-modal");
-
-            const openProfileModal = () => {
-                profileModal.style.display = "flex";
-                loadPendingRequests();
-            };
-
-            if (btnOpenProfile && profileModal) {
-                btnOpenProfile.addEventListener("click", openProfileModal);
-            }
-            if (btnOpenProfileMobile && profileModal) {
-                btnOpenProfileMobile.addEventListener("click", openProfileModal);
-            }
-            if (btnCloseProfile && profileModal) {
-                btnCloseProfile.addEventListener("click", () => {
-                    profileModal.style.display = "none";
-                });
-            }
-
-            const btnCopyUsername = $("btn-copy-username");
-            if (btnCopyUsername) {
-                btnCopyUsername.addEventListener("click", () => {
-                    const nameInput = $("profile-name");
-                    if (nameInput && nameInput.value) {
-                        navigator.clipboard.writeText(nameInput.value).then(() => {
-                            showNotification("¡Usuario copiado al portapapeles!", "success");
-                        }).catch(err => {
-                            showNotification("No se pudo copiar el usuario", "error");
-                        });
-                    }
-                });
-            }
-
             // Buscar Amigo
             const btnSearchFriend = $("btn-search-friend");
             const searchInput = $("friend-search-input");
@@ -3418,7 +3421,7 @@
             }
 
             // Escuchar Solicitudes Recibidas (en tiempo real)
-            const loadPendingRequests = () => {
+            window.loadPendingRequests = () => {
                 const reqsRef = window.FB.collection(window.FB.db, "friendRequests");
                 const qReqs = window.FB.query(reqsRef, window.FB.where("toId", "==", window.FB.auth.currentUser.uid), window.FB.where("status", "==", "pending"));
 
