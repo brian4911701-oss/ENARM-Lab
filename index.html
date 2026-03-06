@@ -174,18 +174,7 @@
                         </span>
                         <span>Historial</span>
                     </button>
-                    <!-- NOTIFICATION BELL SIDEBAR -->
-                    <button class="nav-item" id="nav-notif-sidebar" style="position: relative;">
-                        <span class="nav-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
-                            </svg>
-                        </span>
-                        <span>Notificaciones</span>
-                        <span id="notif-badge-sidebar"
-                            style="display: none; position: absolute; top: 10px; right: 12px; height: 8px; width: 8px; background: var(--accent-red); border-radius: 50%; border: 1.5px solid var(--bg-card);"></span>
-                    </button>
+
                 </nav>
 
                 <div class="sidebar-bottom">
@@ -233,15 +222,7 @@
                             d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
                     </svg>
                 </button>
-                <button class="nav-item" id="nav-notif-mobile"
-                    style="background:none; border:none; color:var(--text-secondary); cursor:pointer; padding: 4px; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; position: relative;">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-                        <path
-                            d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
-                    </svg>
-                    <span id="notif-badge-mobile"
-                        style="display: none; position: absolute; top: 4px; right: 4px; height: 8px; width: 8px; background: var(--accent-red); border-radius: 50%; border: 1.5px solid var(--bg-main);"></span>
-                </button>
+
                 <div class="user-avatar" id="btn-user-profile-mobile"
                     style="width: 32px; height: 32px; font-size: 14px; background: rgba(5, 192, 127, 0.1); color: var(--accent-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer;">
                     IS
@@ -262,9 +243,20 @@
             <!-- ─── VIEW: DASHBOARD ────────────────────────────── -->
             <div id="view-dashboard" class="view active">
                 <header class="dashboard-header">
-                    <div class="header-left">
-                        <h1 class="header-title">Hola, <span class="user-name">Isaac</span></h1>
-                        <p class="header-subtitle" id="dynamic-quote">Cargando inspiración...</p>
+                    <div class="header-left" style="position: relative; display: flex; align-items: center; gap: 20px;">
+                        <div>
+                            <h1 class="header-title">Hola, <span class="user-name">Isaac</span></h1>
+                            <p class="header-subtitle" id="dynamic-quote">Cargando inspiración...</p>
+                        </div>
+                        <button id="btn-open-notif"
+                            style="background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); cursor: pointer; position: relative; transition: all 0.2s;">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                <path
+                                    d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
+                            </svg>
+                            <span id="notif-badge-main"
+                                style="display: none; position: absolute; top: 8px; right: 8px; height: 10px; width: 10px; background: var(--accent-red); border-radius: 50%; border: 2px solid var(--bg-card);"></span>
+                        </button>
                     </div>
 
                     <div class="countdown-widget" id="exam-countdown">
@@ -1468,6 +1460,27 @@
                     <!-- Dinámico: Solicitudes pendientes -->
                     <div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">No
                         tienes solicitudes nuevas.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── MODAL NOTIFICACIONES ──────────────── -->
+    <div class="modal-overlay" id="notif-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+        <div class="modal-content"
+            style="background: var(--bg-card); padding: 25px; border-radius: 16px; border: 1px solid var(--border); max-width: 400px; width: 90%; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+            <button id="btn-close-notif"
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
+            <h2
+                style="font-size: 18px; margin-bottom: 20px; color: var(--text-primary); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                🔔 Notificaciones
+            </h2>
+            <div id="notif-list-container"
+                style="display: flex; flex-direction: column; gap: 12px; max-height: 400px; overflow-y: auto; padding-right: 5px;">
+                <!-- Dinámico: Solicitudes de amistad -->
+                <div style="text-align: center; color: var(--text-muted); padding: 30px;">
+                    Cargando notificaciones...
                 </div>
             </div>
         </div>

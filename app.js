@@ -2939,15 +2939,23 @@
         // Lógica de Modal Perfil y Amigos fuera de CloudFeatures (funciona sin conexión)
         const btnOpenProfile = $("btn-user-profile");
         const btnOpenProfileMobile = $("btn-user-profile-mobile");
-        const btnOpenNotifSidebar = $("nav-notif-sidebar");
-        const btnOpenNotifMobile = $("nav-notif-mobile");
         const btnCloseProfile = $("btn-close-profile");
         const profileModal = $("profile-modal");
 
+        const btnOpenNotif = $("btn-open-notif");
+        const btnCloseNotif = $("btn-close-notif");
+        const notifModal = $("notif-modal");
+
         const openProfileModal = () => {
             profileModal.style.display = "flex";
-            if (typeof window.loadPendingRequests === 'function') {
-                try { window.loadPendingRequests(); } catch (e) { console.error(e); }
+        };
+
+        const openNotifModal = () => {
+            if (notifModal) {
+                notifModal.style.display = "flex";
+                if (typeof window.loadPendingRequests === 'function') {
+                    try { window.loadPendingRequests(); } catch (e) { console.error(e); }
+                }
             }
         };
 
@@ -2957,15 +2965,18 @@
         if (btnOpenProfileMobile && profileModal) {
             btnOpenProfileMobile.addEventListener("click", openProfileModal);
         }
-        if (btnOpenNotifSidebar && profileModal) {
-            btnOpenNotifSidebar.addEventListener("click", openProfileModal);
-        }
-        if (btnOpenNotifMobile && profileModal) {
-            btnOpenNotifMobile.addEventListener("click", openProfileModal);
-        }
         if (btnCloseProfile && profileModal) {
             btnCloseProfile.addEventListener("click", () => {
                 profileModal.style.display = "none";
+            });
+        }
+
+        if (btnOpenNotif) {
+            btnOpenNotif.addEventListener("click", openNotifModal);
+        }
+        if (btnCloseNotif && notifModal) {
+            btnCloseNotif.addEventListener("click", () => {
+                notifModal.style.display = "none";
             });
         }
 
@@ -3434,53 +3445,62 @@
                 const qReqs = window.FB.query(reqsRef, window.FB.where("toId", "==", window.FB.auth.currentUser.uid), window.FB.where("status", "==", "pending"));
 
                 window.FB.onSnapshot(qReqs, (snap) => {
-                    const listEl = $("pending-requests-list");
-                    const badgeSidebar = $("notif-badge-sidebar");
-                    const badgeMobile = $("notif-badge-mobile");
+                    const profileListEl = $("pending-requests-list");
+                    const modalListEl = $("notif-list-container");
+                    const badgeMain = $("notif-badge-main");
 
                     if (snap.empty) {
-                        if (listEl) listEl.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">No tienes solicitudes nuevas.</div>';
-                        if (badgeSidebar) badgeSidebar.style.display = "none";
-                        if (badgeMobile) badgeMobile.style.display = "none";
+                        const emptyMsg = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; padding: 20px;">No tienes notificaciones nuevas.</div>';
+                        if (profileListEl) profileListEl.innerHTML = emptyMsg;
+                        if (modalListEl) modalListEl.innerHTML = emptyMsg;
+                        if (badgeMain) badgeMain.style.display = "none";
                         return;
                     }
 
-                    // Hay solicitudes pendientes -> Mostrar badges
-                    if (badgeSidebar) badgeSidebar.style.display = "block";
-                    if (badgeMobile) badgeMobile.style.display = "block";
-
-                    if (!listEl) return;
+                    // Hay solicitudes pendientes -> Mostrar badge
+                    if (badgeMain) badgeMain.style.display = "block";
 
                     let html = "";
                     snap.forEach(doc => {
                         const data = doc.data();
                         html += `
-                        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:10px; border-radius:8px;">
-                            <div style="font-weight:bold; font-size:14px;">${data.fromName}</div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:12px; border-radius:12px; border: 1px solid var(--border);">
+                            <div style="display: flex; flex-direction: column;">
+                                <span style="font-weight:bold; font-size:14px; color: var(--text-primary);">${data.fromName}</span>
+                                <span style="font-size:11px; color: var(--text-muted);">Te envió una solicitud</span>
+                            </div>
                             <div style="display:flex; gap:8px;">
-                                <button class="btn-primary btn-accept" data-id="${doc.id}" style="padding:5px 10px; font-size:12px; background:var(--accent-green)">Aceptar</button>
-                                <button class="btn-primary btn-reject" data-id="${doc.id}" style="padding:5px 10px; font-size:12px; background:var(--accent-red)">Rechazar</button>
+                                <button class="btn-primary btn-accept" data-id="${doc.id}" style="padding:6px 10px; font-size:11px; background:var(--accent-green); border-radius: 6px;">Aceptar</button>
+                                <button class="btn-primary btn-reject" data-id="${doc.id}" style="padding:6px 10px; font-size:11px; background:var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); border-radius: 6px;">✕</button>
                             </div>
                         </div>`;
                     });
-                    listEl.innerHTML = html;
 
-                    $$(".btn-accept").forEach(btn => {
-                        btn.addEventListener("click", async (e) => {
-                            const reqId = e.target.getAttribute("data-id");
-                            await window.FB.updateDoc(window.FB.doc(window.FB.db, "friendRequests", reqId), { status: "accepted" });
-                            showNotification("¡Solicitud aceptada!", "success");
-                            if (typeof fetchFriendsAndLeaderboard === 'function') fetchFriendsAndLeaderboard();
-                        });
-                    });
+                    if (profileListEl) profileListEl.innerHTML = html;
+                    if (modalListEl) modalListEl.innerHTML = html;
 
-                    $$(".btn-reject").forEach(btn => {
-                        btn.addEventListener("click", async (e) => {
-                            const reqId = e.target.getAttribute("data-id");
-                            await window.FB.updateDoc(window.FB.doc(window.FB.db, "friendRequests", reqId), { status: "rejected" });
-                            if (typeof fetchFriendsAndLeaderboard === 'function') fetchFriendsAndLeaderboard();
+                    const attachEvents = (container) => {
+                        if (!container) return;
+                        container.querySelectorAll(".btn-accept").forEach(btn => {
+                            btn.addEventListener("click", async (e) => {
+                                const reqId = e.currentTarget.getAttribute("data-id");
+                                e.currentTarget.textContent = "...";
+                                await window.FB.updateDoc(window.FB.doc(window.FB.db, "friendRequests", reqId), { status: "accepted" });
+                                showNotification("¡Solicitud aceptada!", "success");
+                                if (typeof fetchFriendsAndLeaderboard === 'function') fetchFriendsAndLeaderboard();
+                            });
                         });
-                    });
+                        container.querySelectorAll(".btn-reject").forEach(btn => {
+                            btn.addEventListener("click", async (e) => {
+                                const reqId = e.currentTarget.getAttribute("data-id");
+                                await window.FB.updateDoc(window.FB.doc(window.FB.db, "friendRequests", reqId), { status: "rejected" });
+                                if (typeof fetchFriendsAndLeaderboard === 'function') fetchFriendsAndLeaderboard();
+                            });
+                        });
+                    };
+
+                    attachEvents(profileListEl);
+                    attachEvents(modalListEl);
                 });
             };
 
