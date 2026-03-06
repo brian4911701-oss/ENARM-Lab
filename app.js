@@ -3441,7 +3441,7 @@
                 });
             };
 
-            saveGlobalStats(); // trigger First Saving to cloud.
+            // Eliminado saveGlobalStats() aquí para evitar sobreescribir datos en la nube al iniciar sesión.
         };
 
         const setupFirebaseAuthAndUI = () => {
