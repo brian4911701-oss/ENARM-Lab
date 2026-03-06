@@ -1413,7 +1413,8 @@
 
     <!-- ─── MODAL CREAR RETO ────────────────────── -->
     <div class="modal-overlay" id="challenge-modal"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px);"
+        onclick="if(event.target===this) this.style.display='none'">
         <div class="modal-content"
             style="background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--border); max-width: 400px; width: 90%; position: relative;">
             <button id="btn-close-challenge-modal"
@@ -1488,7 +1489,7 @@
                     <label>Usuario (Compártelo para que te agreguen)</label>
                     <div style="display:flex; gap:10px;">
                         <input type="text" id="profile-name" class="text-input" style="flex:1;"
-                            placeholder="Tu nombre de usuario">
+                            placeholder="Tu nombre de usuario" maxlength="20">
                         <button class="btn-secondary" id="btn-copy-username" title="Copiar tu nombre de usuario"
                             style="padding: 10px;">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">

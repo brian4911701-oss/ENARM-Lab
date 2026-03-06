@@ -152,7 +152,7 @@
         const viewEl = $(viewId);
         if (viewEl) {
             viewEl.classList.add("active");
-            console.log(`Cambiando a vista: ${viewId}`);
+
 
             // Scroll al inicio al cambiar de vista para que la barra no tape el inicio
             const content = document.querySelector(".main-content");
@@ -1500,7 +1500,7 @@
         const btnStart = $("btn-start-final-exam");
         if (btnStart) {
             btnStart.addEventListener("click", () => {
-                console.log("Iniciando simulacro...");
+
 
                 const selectedSpecs = $$(".spec-item.checked").map(i => i.dataset.spec);
                 if (selectedSpecs.length === 0 && State.selectedTopics.length === 0) {
@@ -1579,7 +1579,7 @@
                     showNotification(`La base de datos contiene solo ${finalQty} preguntas aplicables a tu filtro actual. Limitando el simulacro a esa cantidad.`);
                 }
 
-                console.log(`Pool size: ${pool.length}, Qty requested: ${qty}, Final Qty: ${finalQty}`);
+
                 State.questionSet = finalQuestionSet;
 
                 const selectedModeBtn = document.querySelector(".mode-toggle-btn.active");
@@ -1594,8 +1594,6 @@
                 State.pausedElapsedTime = 0;
                 State.examActive = true;
                 isFinishing = false;
-
-                console.log("Configuración de State completa. Renderizando...");
                 renderExamQuestion();
                 showView("view-exam");
 
@@ -2040,8 +2038,6 @@
     const finishExam = () => {
         if (isFinishing) return;
         isFinishing = true;
-        console.log("Iniciando finalización del examen...");
-
         try {
             if (State.timer) {
                 clearInterval(State.timer);
@@ -2061,8 +2057,6 @@
             const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
             const elapsed = State.startTime ? Math.floor((Date.now() - State.startTime) / 1000) : 0;
 
-            console.log(`Examen Terminado: ${correct} correctas, ${wrong} incorrectas, ${blank} en blanco. Pct: ${pct}%`);
-
             const sp = $("score-pct"); if (sp) sp.textContent = `${pct}%`;
             const mc = $("meta-correct"); if (mc) mc.textContent = correct;
             const mw = $("meta-wrong"); if (mw) mw.textContent = wrong;
@@ -2070,11 +2064,14 @@
             const mt = $("meta-time"); if (mt) mt.textContent = formatTime(elapsed);
 
             State.globalStats.sesiones++;
+            // Track actual blank count for accurate dashboard stats
+            State.globalStats.totalBlank = (State.globalStats.totalBlank || 0) + blank;
             State.history.push({
                 timestamp: Date.now(),
                 tipo: State.currentExamType,
                 preguntas: total,
                 pct: pct,
+                blank: blank,
                 elapsedSec: elapsed,
                 questionSet: [...State.questionSet],
                 answers: State.answers.map(a => ({ ...a }))
@@ -2345,8 +2342,8 @@
         const aciertos = State.globalStats.aciertos || 0;
         const respondidas = State.globalStats.respondidas || 0;
         const errores = Math.max(0, respondidas - aciertos);
-        // Using an 8% simulation for skipped/omitted if there's data, else 0
-        const omitidas = respondidas > 0 ? Math.floor(respondidas * 0.08) : 0;
+        // Use accumulated real blank count, fallback to 0
+        const omitidas = State.globalStats.totalBlank || 0;
         const totalLogistics = aciertos + errores + omitidas;
 
         if ($("ov-val-aciertos")) {
@@ -3126,7 +3123,8 @@
         });
         const rbn = $("btn-rev-next");
         if (rbn) rbn.addEventListener("click", () => {
-            const currentGroupId = State.questionSet[reviewIndex].caseGroupId;
+            if (!State.questionSet || State.questionSet.length === 0) return;
+            const currentGroupId = State.questionSet[reviewIndex]?.caseGroupId;
             let nextIdx = reviewIndex;
             while (nextIdx < State.questionSet.length && State.questionSet[nextIdx].caseGroupId === currentGroupId) {
                 nextIdx++;
@@ -3356,7 +3354,7 @@
 
                         // Ahora que tenemos los IDs, busquemos su información en Leaderboard
                         const lbRef = window.FB.collection(window.FB.db, "leaderboard");
-                        const fullQ = window.FB.query(lbRef, window.FB.orderBy("score", "desc"));
+                        const fullQ = window.FB.query(lbRef, window.FB.orderBy("score", "desc"), window.FB.limit(200));
 
                         window.FB.onSnapshot(fullQ, (snapshot) => {
                             let lbHTML = "";
@@ -3415,7 +3413,7 @@
                                                     ${data.username.substring(0, 2).toUpperCase()}</div>
                                                 <div style="min-width:0;">
                                                     <div style="font-size: 13px; font-weight: 600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${data.username}</div>
-                                                    <div style="font-size: 11px; color: var(--accent-green);">En línea</div>
+                                                    <div style="font-size: 11px; color: var(--text-muted);">Promedio: ${data.score || 0}%</div>
                                                 </div>
                                             </div>
                                             <button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 6px 12px; font-size: 11px; border-radius: 8px; background: var(--accent-orange); margin-left:8px; white-space:nowrap;">⚔️ Retar</button>
@@ -3429,16 +3427,17 @@
                                 if (typeof showView === "function") showView("view-setup");
                                 const btn = $("btn-create-challenge");
                                 if (btn) {
-                                    btn.click(); // Abre el modal
+                                    btn.click(); // Abre el modal y repuebla checkboxes
+                                    // Dar tiempo suficiente para que el modal repueble los checkboxes
                                     setTimeout(() => {
                                         const cbs = document.querySelectorAll(".challenge-friend-cb");
                                         cbs.forEach(cb => cb.checked = (cb.value === uid));
-                                    }, 100);
+                                    }, 300);
                                 }
                             };
 
                             const lbList = document.querySelector(".leaderboard-list");
-                            if (lbList) lbList.innerHTML = lbHTML || '<div style="padding: 20px;">Sin datos</h4>';
+                            if (lbList) lbList.innerHTML = lbHTML || '<div style="padding: 20px; color: var(--text-muted); font-size: 13px;">Agrega amigos para ver el ranking.</div>';
 
                             const flList = document.getElementById("friends-list");
                             if (flList) {
@@ -4000,46 +3999,52 @@
             });
 
             const startChallengeExam = (id, indices) => {
-                if (!Array.isArray(indices)) {
-                    console.error("Indices is not an array:", indices);
-                    return showNotification("Error: Los datos del reto están dañados.", "error");
+                if (!Array.isArray(indices) || indices.length === 0) {
+                    return showNotification("Error: Los datos del reto están dañados o vacíos.", "error");
                 }
-                const finalSet = indices.map(idx => {
+
+                // Map indices to questions, assigning a unique caseGroupId per question
+                // so the exam engine treats each as independent (not grouped as a single clinical case)
+                const finalSet = [];
+                indices.forEach((idx, i) => {
                     const q = QUESTIONS[idx];
-                    if (q && Array.isArray(q.options)) return q;
-                    // Fallback: search if index is off (likely due to updates in questions.js)
-                    return QUESTIONS.find(ref => ref.question && QUESTIONS[idx] && ref.question === QUESTIONS[idx].question) || null;
-                }).filter(Boolean);
+                    if (q && Array.isArray(q.options)) {
+                        // Assign unique caseGroupId so questions render individually
+                        finalSet.push({ ...q, caseGroupId: i + 1, subQuestionIndex: 1, totalSubQuestions: 1 });
+                    } else {
+                        // Fallback: search by question text if index has shifted (bank update)
+                        const found = QUESTIONS.findIndex(ref => ref.question === (q ? q.question : undefined));
+                        if (found !== -1) {
+                            finalSet.push({ ...QUESTIONS[found], caseGroupId: i + 1, subQuestionIndex: 1, totalSubQuestions: 1 });
+                        }
+                        // If not found at all, silently skip (obsolete question)
+                    }
+                });
 
                 if (finalSet.length === 0) {
-                    return showNotification("Error al cargar preguntas. Los datos del reto podrían estar obsoletos.", "error");
+                    return showNotification("Error al cargar preguntas. El banco de preguntas puede haber sido actualizado. Crea un nuevo reto.", "error");
+                }
+
+                if (finalSet.length < indices.length) {
+                    showNotification(`Se cargaron ${finalSet.length} de ${indices.length} preguntas (algunas pueden estar desactualizadas).`, "warning");
                 }
 
                 State.questionSet = finalSet;
-
-                const selectedModeBtn = document.querySelector(".mode-toggle-btn.active");
-                const modeVal = selectedModeBtn ? selectedModeBtn.dataset.examMode : "casos";
-                State.mode = modeVal === "casos" ? "simulacro" : "estudio";
-
-                const isLibre = $("time-libre-btn") ? $("time-libre-btn").classList.contains("active") : true;
-                const timerVal = parseInt($("setup-time-minutes") ? $("setup-time-minutes").value : 0, 10);
-
-                State.durationSec = isLibre ? 0 : (timerVal || 60) * 60;
+                State.mode = "simulacro"; // challenges always in simulacro mode
+                State.durationSec = 0; // sin límite de tiempo en retos
                 State.currentIndex = 0;
                 State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
                 State.currentExamType = "Reto Amistoso";
                 State.startTime = Date.now();
                 State.pausedElapsedTime = 0;
                 State.examActive = true;
-                if (typeof window.isFinishing !== "undefined") window.isFinishing = false;
+                isFinishing = false; // Usar variable del scope del IIFE, no window
 
                 if (typeof renderExamQuestion === "function") renderExamQuestion();
                 showView("view-exam");
+                if ($("timer-display")) $("timer-display").style.display = "none";
 
-                if (!isLibre && State.durationSec > 0 && typeof startTimer === "function") startTimer();
-                else if ($("timer-display")) $("timer-display").style.display = "none";
-
-                showNotification("¡Reto iniciado! Buena suerte.", "info");
+                showNotification("¡Reto iniciado! Buena suerte. ⚔️", "info");
             };
 
             // Exponer internamente para que acceptChallenge pueda llamarlo
