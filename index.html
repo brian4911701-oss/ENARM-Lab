@@ -1535,6 +1535,10 @@
                 style="font-size: 18px; margin-bottom: 20px; color: var(--text-primary); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
                 🔔 Notificaciones
             </h2>
+            <button onclick="clearAllNotifications()"
+                style="width: 100%; margin-bottom: 15px; padding: 10px; border-radius: 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: var(--accent-red); font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s;">
+                🗑️ Limpiar Todo
+            </button>
             <div id="notif-list-container"
                 style="display: flex; flex-direction: column; gap: 12px; max-height: 400px; overflow-y: auto; padding-right: 5px;">
                 <!-- Dinámico: Solicitudes de amistad -->
@@ -1549,7 +1553,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, query, orderBy, limit, where, addDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, getDoc, getDocs, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, addDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyA-ALVpht1Za682OUGvH6QWaudCJZYihFU",
@@ -1580,6 +1584,8 @@
             query,
             orderBy,
             limit,
+            getDocs,
+            deleteDoc,
             signInWithEmailAndPassword,
             createUserWithEmailAndPassword,
             updateProfile,

@@ -3873,25 +3873,81 @@
                 showNotification("¡Reto iniciado! Buena suerte.", "info");
             };
 
-            window.acceptChallenge = async (id) => {
+            // Exponer internamente para que acceptChallenge pueda llamarlo
+            window._startChallengeInternal = startChallengeExam;
+        };
+
+        window.acceptChallenge = async (id) => {
+            if (!window.FB || !window.FB.db) return showNotification("Firebase no inicializado.", "error");
+            try {
                 const docSnap = await window.FB.getDoc(window.FB.doc(window.FB.db, "challenges", id));
                 if (!docSnap.exists()) return showNotification("Reto no encontrado.", "error");
                 const data = docSnap.data();
 
                 State.activeChallengeId = id;
                 State.activeChallengeRole = "challenged";
-                startChallengeExam(id, data.questionIndices || []);
-            };
+                // Llamamos a startChallengeExam que está dentro del scope de setupChallengeLogic o lo movemos
+                // Para simplificar, buscaremos la función o la definiremos de forma que sea accesible.
+                if (typeof window._startChallengeInternal === "function") {
+                    window._startChallengeInternal(id, data.questionIndices || []);
+                }
+            } catch (err) {
+                console.error(err);
+                showNotification("Error al cargar el reto.", "error");
+            }
+        };
 
-            window.playChallenge = async (id) => {
+        window.playChallenge = async (id) => {
+            if (!window.FB || !window.FB.db) return showNotification("Firebase no inicializado.", "error");
+            try {
                 const docSnap = await window.FB.getDoc(window.FB.doc(window.FB.db, "challenges", id));
                 if (!docSnap.exists()) return showNotification("Reto no encontrado.", "error");
                 const data = docSnap.data();
 
                 State.activeChallengeId = id;
                 State.activeChallengeRole = "challenger";
-                startChallengeExam(id, data.questionIndices || []);
-            };
+                if (typeof window._startChallengeInternal === "function") {
+                    window._startChallengeInternal(id, data.questionIndices || []);
+                }
+            } catch (err) {
+                console.error(err);
+                showNotification("Error al cargar el reto.", "error");
+            }
+        };
+
+        window.clearAllNotifications = async () => {
+            if (!window.FB || !window.FB.db || !window.FB.auth.currentUser) return;
+            const uid = window.FB.auth.currentUser.uid;
+
+            if (!confirm("¿Seguro que quieres eliminar todas las notificaciones?")) return;
+
+            try {
+                showNotification("Limpiando notificaciones...", "info");
+
+                // 1. Limpiar solicitudes de amistad (pasarlas a rechazadas o eliminarlas)
+                const qReqs = window.FB.query(
+                    window.FB.collection(window.FB.db, "friendRequests"),
+                    window.FB.where("toId", "==", uid),
+                    window.FB.where("status", "==", "pending")
+                );
+                const snapReqs = await window.FB.getDocs(qReqs);
+                const p1 = snapReqs.docs.map(d => window.FB.deleteDoc(d.ref));
+
+                // 2. Limpiar retos pendientes para ti
+                const qChal = window.FB.query(
+                    window.FB.collection(window.FB.db, "challenges"),
+                    window.FB.where("challengedId", "==", uid),
+                    window.FB.where("status", "==", "pending_for_b")
+                );
+                const snapChal = await window.FB.getDocs(qChal);
+                const p2 = snapChal.docs.map(d => window.FB.deleteDoc(d.ref));
+
+                await Promise.all([...p1, ...p2]);
+                showNotification("Notificaciones limpiadas.", "success");
+            } catch (e) {
+                console.error(e);
+                showNotification("Error al limpiar notificaciones.", "error");
+            }
         };
 
         const setupFirebaseAuthAndUI = () => {
