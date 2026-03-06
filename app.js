@@ -37,7 +37,9 @@
         userUniversity: "",
         history: [],
         selectedTopics: [],
-        reportedQuestions: []
+        reportedQuestions: [],
+        myFriends: [],
+        activeChallenges: []
     };
 
     const $ = (id) => document.getElementById(id);
@@ -2035,6 +2037,33 @@
                 answers: State.answers.map(a => ({ ...a }))
             });
 
+            // Update Cloud Challenge if active
+            if (State.activeChallengeId && window.FB && window.FB.auth.currentUser) {
+                const chalRef = window.FB.doc(window.FB.db, "challenges", State.activeChallengeId);
+                const isChallenger = State.activeChallengeRole === "challenger";
+                const updates = {};
+                if (isChallenger) updates.challengerScore = pct;
+                else updates.challengedScore = pct;
+
+                // Fire async without blocking UI
+                window.FB.getDoc(chalRef).then(snap => {
+                    if (snap.exists()) {
+                        const data = snap.data();
+                        const otherScore = isChallenger ? data.challengedScore : data.challengerScore;
+                        if (otherScore !== undefined) {
+                            updates.status = "completed"; // Both played
+                        } else {
+                            updates.status = isChallenger ? "pending_for_b" : "pending_for_a";
+                        }
+                        window.FB.updateDoc(chalRef, updates);
+                    }
+                });
+
+                // Clear state
+                State.activeChallengeId = null;
+                State.activeChallengeRole = null;
+            }
+
             // Racha (Streak) Logic 
             State.examActive = false;
             State.globalStats.streakData = State.globalStats.streakData || { lastStudyDate: null, currentStreak: 0 };
@@ -3283,6 +3312,7 @@
                             let friendListHTML = "";
                             let rank = 1;
                             let hasFriends = false;
+                            State.myFriends = [];
 
                             snapshot.forEach(docSnap => {
                                 if (friendIds.has(docSnap.id)) {
@@ -3319,6 +3349,12 @@
 
                                     if (!isMe) {
                                         hasFriends = true;
+                                        State.myFriends.push({
+                                            uid: docSnap.id,
+                                            username: data.username,
+                                            score: data.score
+                                        });
+
                                         friendListHTML += `
                                         <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); border: 1px solid var(--border);">
                                             <div style="display: flex; align-items: center; gap: 10px;">
@@ -3507,6 +3543,173 @@
             // Eliminado saveGlobalStats() aquí para evitar sobreescribir datos en la nube al iniciar sesión.
         };
 
+        const setupChallengeLogic = () => {
+            const btnCreate = $("btn-create-challenge");
+            const modal = $("challenge-modal");
+            const btnClose = $("btn-close-challenge-modal");
+            const btnSend = $("btn-send-challenge");
+            const selectFriend = $("challenge-friend-select");
+            const selectSpecialty = $("challenge-specialty-select");
+            const selectLength = $("challenge-length-select");
+            const listContainer = $("challenges-list-container");
+
+            if (btnCreate) {
+                btnCreate.addEventListener("click", () => {
+                    // Populate select
+                    selectFriend.innerHTML = '<option value="">Selecciona un amigo...</option>';
+                    State.myFriends.forEach(f => {
+                        selectFriend.innerHTML += `<option value="${f.uid}">${f.username} (Prom: ${f.score}%)</option>`;
+                    });
+                    if (State.myFriends.length === 0) {
+                        selectFriend.innerHTML = '<option value="">Agrega amigos primero para desafiar</option>';
+                    }
+                    modal.style.display = "flex";
+                });
+            }
+
+            if (btnClose) {
+                btnClose.addEventListener("click", () => {
+                    modal.style.display = "none";
+                });
+            }
+
+            if (btnSend) {
+                btnSend.addEventListener("click", async () => {
+                    const friendId = selectFriend.value;
+                    if (!friendId) return showNotification("Debes seleccionar un amigo válido.", "warning");
+
+                    const specialty = selectSpecialty.value;
+                    const length = parseInt(selectLength.value);
+
+                    btnSend.textContent = "...";
+                    try {
+                        await window.FB.addDoc(window.FB.collection(window.FB.db, "challenges"), {
+                            challengerId: window.FB.auth.currentUser.uid,
+                            challengerName: State.userName,
+                            challengedId: friendId,
+                            challengedName: selectFriend.options[selectFriend.selectedIndex].text.split(" (")[0],
+                            specialty: specialty,
+                            numQuestions: length,
+                            status: "pending_for_b",
+                            createdAt: window.FB.serverTimestamp()
+                        });
+                        showNotification("Reto enviado con éxito.", "success");
+                        modal.style.display = "none";
+                    } catch (err) {
+                        showNotification("Error enviando reto: " + err.message, "error");
+                    }
+                    btnSend.textContent = "¡Desafiar Ahora!";
+                });
+            }
+
+            // Real-time listener for my challenges
+            const chalRef = window.FB.collection(window.FB.db, "challenges");
+            // Since we can't easily OR query in older firebase without complex setup, listen to both sides:
+            const q1 = window.FB.query(chalRef, window.FB.where("challengerId", "==", window.FB.auth.currentUser.uid));
+            const q2 = window.FB.query(chalRef, window.FB.where("challengedId", "==", window.FB.auth.currentUser.uid));
+
+            const allChallenges = new Map();
+
+            const renderChallenges = () => {
+                if (!listContainer) return;
+
+                let html = "";
+                Array.from(allChallenges.values()).sort((a, b) => (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0)).forEach(ch => {
+                    let actionBtn = "";
+                    let isMeChallenger = ch.challengerId === window.FB.auth.currentUser.uid;
+                    let opponentName = isMeChallenger ? ch.challengedName : ch.challengerName;
+
+                    if (ch.status === "pending_for_b") {
+                        if (isMeChallenger) {
+                            actionBtn = `<div style="font-size: 12px; color: var(--text-muted); padding: 8px;">Esperando a ${opponentName}...</div>`;
+                        } else {
+                            actionBtn = `<button class="btn-primary" style="width: 100%; border-radius: 8px;" onclick="acceptChallenge('${ch.id}', '${ch.specialty}', ${ch.numQuestions})">⚔️ ¡Aceptar y Jugar!</button>`;
+                        }
+                    } else if (ch.status === "pending_for_a") {
+                        if (!isMeChallenger) {
+                            actionBtn = `<div style="font-size: 12px; color: var(--text-muted); padding: 8px;">Esperando que ${opponentName} juegue...</div>`;
+                        } else {
+                            actionBtn = `<button class="btn-primary" style="width: 100%; border-radius: 8px; background: var(--accent-orange);" onclick="playChallenge('${ch.id}', '${ch.specialty}', ${ch.numQuestions})">⚔️ ¡Tu Turno de Jugar!</button>`;
+                        }
+                    } else if (ch.status === "completed") {
+                        let myScore = isMeChallenger ? ch.challengerScore : ch.challengedScore;
+                        let theirScore = isMeChallenger ? ch.challengedScore : ch.challengerScore;
+
+                        let resultText = "Empate";
+                        let resultColor = "var(--text-muted)";
+                        if (myScore > theirScore) {
+                            resultText = "🔥 ¡Ganaste!";
+                            resultColor = "var(--accent-green)";
+                        } else if (myScore < theirScore) {
+                            resultText = "💀 Perdiste";
+                            resultColor = "var(--accent-red)";
+                        }
+
+                        actionBtn = `<div style="font-size: 14px; color: ${resultColor}; font-weight: bold; padding: 8px;">${resultText} (${myScore.toFixed(1)}% vs ${theirScore.toFixed(1)}%)</div>`;
+                    }
+
+                    html += `
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; text-align: left; position: relative;">
+                        <div style="font-size: 12px; color: var(--accent-orange); font-weight: bold; margin-bottom: 4px;">RETO: ${ch.specialty} (${ch.numQuestions} P.)</div>
+                        <div style="font-size: 14px; margin-bottom: 12px;">Vs. <strong>${opponentName}</strong></div>
+                        ${actionBtn}
+                    </div>
+                    `;
+                });
+
+                if (html === "") {
+                    html = `
+                    <div id="no-challenges-msg">
+                        <div style="font-size: 40px; margin-bottom: 10px; opacity: 0.5;">😴</div>
+                        <div style="color: var(--text-muted); font-size: 14px;">No tienes retos activos</div>
+                    </div>`;
+                }
+
+                listContainer.innerHTML = html;
+            };
+
+            window.FB.onSnapshot(q1, snap => {
+                snap.docChanges().forEach(change => {
+                    if (change.type === "removed") allChallenges.delete(change.doc.id);
+                    else allChallenges.set(change.doc.id, { id: change.doc.id, ...change.doc.data() });
+                });
+                renderChallenges();
+            });
+
+            window.FB.onSnapshot(q2, snap => {
+                snap.docChanges().forEach(change => {
+                    if (change.type === "removed") allChallenges.delete(change.doc.id);
+                    else allChallenges.set(change.doc.id, { id: change.doc.id, ...change.doc.data() });
+                });
+                renderChallenges();
+            });
+
+            window.acceptChallenge = (id, specialty, length) => {
+                State.activeChallengeId = id;
+                State.activeChallengeRole = "challenged";
+                State.userSpecialty = specialty === "Aleatorio" ? "cualquiera" : specialty;
+                State.difficulty = "cualquiera";
+
+                // Empezar exam similar a simulacro
+                $("topic-select").value = State.userSpecialty;
+                $("num-questions").value = length;
+                $("btn-start-exam").click();
+                showNotification("Reto iniciado. ¡Mucha suerte!");
+            };
+
+            window.playChallenge = (id, specialty, length) => {
+                State.activeChallengeId = id;
+                State.activeChallengeRole = "challenger";
+                State.userSpecialty = specialty === "Aleatorio" ? "cualquiera" : specialty;
+                State.difficulty = "cualquiera";
+
+                $("topic-select").value = State.userSpecialty;
+                $("num-questions").value = length;
+                $("btn-start-exam").click();
+                showNotification("Tu turno. ¡Supera su puntaje!");
+            };
+        };
+
         const setupFirebaseAuthAndUI = () => {
             if (authOverlay && loginForm) {
                 // If user doesn't exist locally, show overlay
@@ -3523,6 +3726,7 @@
                     window.FB.onAuthStateChanged(window.FB.auth, async (user) => {
                         if (user) {
                             initCloudFeatures();
+                            setupChallengeLogic();
                             try {
                                 const userRef = window.FB.doc(window.FB.db, "leaderboard", user.uid);
                                 const snap = await window.FB.getDoc(userRef);
