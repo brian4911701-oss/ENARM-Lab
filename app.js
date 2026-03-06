@@ -3890,10 +3890,12 @@
                 // Para simplificar, buscaremos la función o la definiremos de forma que sea accesible.
                 if (typeof window._startChallengeInternal === "function") {
                     window._startChallengeInternal(id, data.questionIndices || []);
+                } else {
+                    showNotification("La lógica del examen aún no está lista. Recarga la página.", "warning");
                 }
             } catch (err) {
                 console.error(err);
-                showNotification("Error al cargar el reto.", "error");
+                showNotification("Error al cargar el reto: " + err.message, "error");
             }
         };
 
@@ -3908,10 +3910,12 @@
                 State.activeChallengeRole = "challenger";
                 if (typeof window._startChallengeInternal === "function") {
                     window._startChallengeInternal(id, data.questionIndices || []);
+                } else {
+                    showNotification("La lógica del examen aún no está lista. Recarga la página.", "warning");
                 }
             } catch (err) {
                 console.error(err);
-                showNotification("Error al cargar el reto.", "error");
+                showNotification("Error al cargar el reto: " + err.message, "error");
             }
         };
 
@@ -3967,6 +3971,9 @@
                         if (user) {
                             initCloudFeatures();
                             setupChallengeLogic();
+                            if (typeof window.loadPendingRequests === "function") {
+                                window.loadPendingRequests(); // Iniciar notificaciones push automáticas
+                            }
                             try {
                                 const userRef = window.FB.doc(window.FB.db, "leaderboard", user.uid);
                                 const snap = await window.FB.getDoc(userRef);
