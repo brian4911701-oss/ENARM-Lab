@@ -3475,17 +3475,25 @@
                 });
             }
 
-            // Escuchar Solicitudes Recibidas (en tiempo real)
+            // Escuchar Solicitudes Recibidas (en tiempo real) y Retos
             window.loadPendingRequests = () => {
                 const reqsRef = window.FB.collection(window.FB.db, "friendRequests");
                 const qReqs = window.FB.query(reqsRef, window.FB.where("toId", "==", window.FB.auth.currentUser.uid), window.FB.where("status", "==", "pending"));
 
-                window.FB.onSnapshot(qReqs, (snap) => {
+                const chalRef = window.FB.collection(window.FB.db, "challenges");
+                const qChal = window.FB.query(chalRef, window.FB.where("challengedId", "==", window.FB.auth.currentUser.uid), window.FB.where("status", "==", "pending_for_b"));
+
+                let pendingFriends = [];
+                let pendingChallenges = [];
+
+                const renderMergedNotifications = () => {
                     const profileListEl = $("pending-requests-list");
                     const modalListEl = $("notif-list-container");
                     const badgeMain = $("notif-badge-main");
 
-                    if (snap.empty) {
+                    const total = pendingFriends.length + pendingChallenges.length;
+
+                    if (total === 0) {
                         const emptyMsg = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; padding: 20px;">No tienes notificaciones nuevas.</div>';
                         if (profileListEl) profileListEl.innerHTML = emptyMsg;
                         if (modalListEl) modalListEl.innerHTML = emptyMsg;
@@ -3493,21 +3501,35 @@
                         return;
                     }
 
-                    // Hay solicitudes pendientes -> Mostrar badge
                     if (badgeMain) badgeMain.style.display = "block";
 
                     let html = "";
-                    snap.forEach(doc => {
-                        const data = doc.data();
+
+                    // Render friends
+                    pendingFriends.forEach(data => {
                         html += `
-                        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:12px; border-radius:12px; border: 1px solid var(--border);">
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:12px; border-radius:12px; border: 1px solid var(--border); margin-bottom: 8px;">
                             <div style="display: flex; flex-direction: column;">
                                 <span style="font-weight:bold; font-size:14px; color: var(--text-primary);">${data.fromName}</span>
-                                <span style="font-size:11px; color: var(--text-muted);">Te envió una solicitud</span>
+                                <span style="font-size:11px; color: var(--text-muted);">Te envió una solicitud de amistad</span>
                             </div>
                             <div style="display:flex; gap:8px;">
-                                <button class="btn-primary btn-accept" data-id="${doc.id}" style="padding:6px 10px; font-size:11px; background:var(--accent-green); border-radius: 6px;">Aceptar</button>
-                                <button class="btn-primary btn-reject" data-id="${doc.id}" style="padding:6px 10px; font-size:11px; background:var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); border-radius: 6px;">✕</button>
+                                <button class="btn-primary btn-accept-friend" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--accent-green); border-radius: 6px;">Aceptar</button>
+                                <button class="btn-primary btn-reject-friend" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); border-radius: 6px;">✕</button>
+                            </div>
+                        </div>`;
+                    });
+
+                    // Render challenges
+                    pendingChallenges.forEach(data => {
+                        html += `
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(243,122,32,0.1); padding:12px; border-radius:12px; border: 1px solid rgba(243,122,32,0.3); margin-bottom: 8px;">
+                            <div style="display: flex; flex-direction: column;">
+                                <span style="font-weight:bold; font-size:14px; color: var(--accent-orange);">⚔️ Reto de ${data.challengerName}</span>
+                                <span style="font-size:11px; color: var(--text-muted);">${data.specialty} (${data.numQuestions} P.)</span>
+                            </div>
+                            <div style="display:flex; gap:8px;">
+                                <button class="btn-primary btn-play-chal" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--accent-orange); border-radius: 6px;">¡Jugar!</button>
                             </div>
                         </div>`;
                     });
@@ -3517,7 +3539,9 @@
 
                     const attachEvents = (container) => {
                         if (!container) return;
-                        container.querySelectorAll(".btn-accept").forEach(btn => {
+
+                        // Friends events
+                        container.querySelectorAll(".btn-accept-friend").forEach(btn => {
                             btn.addEventListener("click", async (e) => {
                                 const reqId = e.currentTarget.getAttribute("data-id");
                                 e.currentTarget.textContent = "...";
@@ -3526,17 +3550,40 @@
                                 if (typeof fetchFriendsAndLeaderboard === 'function') fetchFriendsAndLeaderboard();
                             });
                         });
-                        container.querySelectorAll(".btn-reject").forEach(btn => {
+                        container.querySelectorAll(".btn-reject-friend").forEach(btn => {
                             btn.addEventListener("click", async (e) => {
                                 const reqId = e.currentTarget.getAttribute("data-id");
                                 await window.FB.updateDoc(window.FB.doc(window.FB.db, "friendRequests", reqId), { status: "rejected" });
                                 if (typeof fetchFriendsAndLeaderboard === 'function') fetchFriendsAndLeaderboard();
                             });
                         });
+
+                        // Challenges events
+                        container.querySelectorAll(".btn-play-chal").forEach(btn => {
+                            btn.addEventListener("click", (e) => {
+                                const chalId = e.currentTarget.getAttribute("data-id");
+                                $("notif-modal").classList.remove("active");
+                                if (typeof window.acceptChallenge === 'function') {
+                                    window.acceptChallenge(chalId);
+                                }
+                            });
+                        });
                     };
 
                     attachEvents(profileListEl);
                     attachEvents(modalListEl);
+                };
+
+                window.FB.onSnapshot(qReqs, (snap) => {
+                    pendingFriends = [];
+                    snap.forEach(doc => pendingFriends.push({ id: doc.id, ...doc.data() }));
+                    renderMergedNotifications();
+                });
+
+                window.FB.onSnapshot(qChal, (snap) => {
+                    pendingChallenges = [];
+                    snap.forEach(doc => pendingChallenges.push({ id: doc.id, ...doc.data() }));
+                    renderMergedNotifications();
                 });
             };
 
