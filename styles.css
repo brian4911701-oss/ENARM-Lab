@@ -278,6 +278,12 @@ body {
 }
 
 /* Responsive */
+@media (min-width: 769px) {
+  .mobile-only-mas {
+    display: none !important;
+  }
+}
+
 @media (max-width: 1200px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
