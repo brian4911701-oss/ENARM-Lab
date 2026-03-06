@@ -2930,6 +2930,9 @@
 
                 saveGlobalStats();
                 showNotification("Perfil actualizado y sincronizado.", "success");
+
+                const profileModal = $("profile-modal");
+                if (profileModal) profileModal.style.display = "none";
             });
         }
         const bd = $("btn-back-dash"); if (bd) bd.addEventListener("click", () => $("nav-dashboard").click());
@@ -3301,20 +3304,40 @@
 
             fetchFriendsAndLeaderboard();
 
-            // Lógica de Modal Amigos
-            const btnOpenFriends = $("btn-open-friends-modal");
-            const btnCloseFriends = $("btn-close-friends");
-            const friendsModal = $("friends-modal");
+            // Lógica de Modal Perfil y Amigos
+            const btnOpenProfile = $("btn-user-profile");
+            const btnOpenProfileMobile = $("btn-user-profile-mobile");
+            const btnCloseProfile = $("btn-close-profile");
+            const profileModal = $("profile-modal");
 
-            if (btnOpenFriends && friendsModal) {
-                btnOpenFriends.addEventListener("click", () => {
-                    friendsModal.style.display = "flex";
-                    loadPendingRequests();
+            const openProfileModal = () => {
+                profileModal.style.display = "flex";
+                loadPendingRequests();
+            };
+
+            if (btnOpenProfile && profileModal) {
+                btnOpenProfile.addEventListener("click", openProfileModal);
+            }
+            if (btnOpenProfileMobile && profileModal) {
+                btnOpenProfileMobile.addEventListener("click", openProfileModal);
+            }
+            if (btnCloseProfile && profileModal) {
+                btnCloseProfile.addEventListener("click", () => {
+                    profileModal.style.display = "none";
                 });
             }
-            if (btnCloseFriends && friendsModal) {
-                btnCloseFriends.addEventListener("click", () => {
-                    friendsModal.style.display = "none";
+
+            const btnCopyUsername = $("btn-copy-username");
+            if (btnCopyUsername) {
+                btnCopyUsername.addEventListener("click", () => {
+                    const nameInput = $("profile-name");
+                    if (nameInput && nameInput.value) {
+                        navigator.clipboard.writeText(nameInput.value).then(() => {
+                            showNotification("¡Usuario copiado al portapapeles!", "success");
+                        }).catch(err => {
+                            showNotification("No se pudo copiar el usuario", "error");
+                        });
+                    }
                 });
             }
 

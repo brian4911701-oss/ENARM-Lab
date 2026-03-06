@@ -112,7 +112,7 @@
             <div class="sidebar-capsule">
                 <div class="user-profile">
                     <div class="user-avatar" id="btn-user-profile"
-                        style="background: rgba(5, 192, 127, 0.1); color: var(--accent-green); display: flex; align-items: center; justify-content: center; font-weight: 700;">
+                        style="background: rgba(5, 192, 127, 0.1); color: var(--accent-green); display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer;">
                         IS
                     </div>
                     <div class="user-info">
@@ -221,8 +221,8 @@
                             d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
                     </svg>
                 </button>
-                <div class="user-avatar"
-                    style="width: 32px; height: 32px; font-size: 14px; background: rgba(5, 192, 127, 0.1); color: var(--accent-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">
+                <div class="user-avatar" id="btn-user-profile-mobile"
+                    style="width: 32px; height: 32px; font-size: 14px; background: rgba(5, 192, 127, 0.1); color: var(--accent-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer;">
                     IS
                 </div>
             </div>
@@ -1124,43 +1124,7 @@
                     <div class="settings-grid"
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
 
-                        <!-- Sección: Perfil -->
-                        <div class="panel settings-panel" style="border-top-color: var(--accent-green);">
-                            <h3 class="panel-title" style="margin-bottom: 24px; font-size: 1.1rem;">
-                                <span class="title-icon green-text">👤</span> Perfil de Aspirante
-                            </h3>
-                            <div class="settings-form">
-                                <div class="input-group" style="margin-bottom: 15px;">
-                                    <label>Nombre a mostrar (Apodo para Ranking)</label>
-                                    <input type="text" id="profile-name" class="text-input" style="width: 100%;"
-                                        placeholder="Tu nombre o apodo">
-                                </div>
-                                <div class="input-group" style="margin-bottom: 15px;">
-                                    <label>Especialidad Objetivo</label>
-                                    <select id="profile-specialty" class="text-input"
-                                        style="width: 100%; background: var(--bg-card); cursor: pointer;">
-                                        <option value="">Aún sin decidir</option>
-                                        <option value="Medicina Interna">Medicina Interna</option>
-                                        <option value="Cirugía General">Cirugía General</option>
-                                        <option value="Ginecología y Obstetricia">Ginecología y Obstetricia</option>
-                                        <option value="Pediatría">Pediatría</option>
-                                        <option value="Traumatología y Ortopedia">Traumatología y Ortopedia</option>
-                                        <option value="Anestesiología">Anestesiología</option>
-                                        <option value="Oftalmología">Oftalmología</option>
-                                        <option value="Otorrinolaringología">Otorrinolaringología</option>
-                                    </select>
-                                </div>
-                                <div class="input-group" style="margin-bottom: 20px;">
-                                    <label>Universidad de Egreso (Opcional)</label>
-                                    <input type="text" id="profile-university" class="text-input" style="width: 100%;"
-                                        placeholder="Ej. UNAM, IPN, UDG...">
-                                </div>
-
-                                <button class="btn-primary" id="btn-save-profile" style="width: 100%;">
-                                    Guardar Cambios
-                                </button>
-                            </div>
-                        </div>
+                        <!-- Sección: Preferencias movida al primer lugar -->
 
                         <!-- Sección: Preferencias -->
                         <div class="panel settings-panel" style="border-top-color: var(--accent-blue);">
@@ -1404,36 +1368,86 @@
 
     </div>
 
-    <!-- ─── MODAL AÑADIR AMIGO / SOLICITUDES ──────────────── -->
-    <div class="modal-overlay" id="friends-modal"
+    <!-- ─── MODAL PERFIL Y AMIGOS ──────────────── -->
+    <div class="modal-overlay" id="profile-modal"
         style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
         <div class="modal-content"
-            style="background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--border); max-width: 450px; width: 90%; position: relative;">
-            <button id="btn-close-friends"
+            style="background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--border); max-width: 450px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative; scrollbar-width: none;">
+            <button id="btn-close-profile"
                 style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
-            <h2 style="font-size: 20px; margin-bottom: 10px; color: var(--text-primary);">👥 Gestionar Amigos</h2>
-            <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">Busca a un colega por su
-                nombre exacto de usuario para enviarle una solicitud de amistad.</p>
+            <h2 style="font-size: 20px; margin-bottom: 20px; color: var(--text-primary); text-align: center;">👤 Mi
+                Perfil y Red</h2>
 
-            <div class="input-group" style="display: flex; gap: 10px; margin-bottom: 25px;">
-                <input type="text" id="friend-search-input" placeholder="Ej. DraSofia99" class="text-input"
-                    style="flex: 1;">
-                <button class="btn-primary" id="btn-search-friend"
-                    style="padding: 10px 15px; white-space: nowrap;">Buscar</button>
+            <!-- MI PERFIL -->
+            <div
+                style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 10px; margin-bottom: 25px; border: 1px solid var(--border);">
+                <h3
+                    style="font-size: 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 15px; color: var(--text-primary);">
+                    Tus Datos</h3>
+                <div class="input-group" style="margin-bottom: 15px;">
+                    <label>Usuario (Compártelo para que te agreguen)</label>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="profile-name" class="text-input" style="flex:1;"
+                            placeholder="Tu nombre de usuario">
+                        <button class="btn-secondary" id="btn-copy-username" title="Copiar tu nombre de usuario"
+                            style="padding: 10px;">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                <path
+                                    d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="input-group" style="margin-bottom: 15px;">
+                    <label>Especialidad Objetivo</label>
+                    <select id="profile-specialty" class="text-input" style="width: 100%; cursor: pointer;">
+                        <option value="">Aún sin decidir</option>
+                        <option value="Medicina Interna">Medicina Interna</option>
+                        <option value="Cirugía General">Cirugía General</option>
+                        <option value="Ginecología y Obstetricia">Ginecología y Obstetricia</option>
+                        <option value="Pediatría">Pediatría</option>
+                        <option value="Traumatología y Ortopedia">Traumatología y Ortopedia</option>
+                        <option value="Anestesiología">Anestesiología</option>
+                        <option value="Oftalmología">Oftalmología</option>
+                        <option value="Otorrinolaringología">Otorrinolaringología</option>
+                    </select>
+                </div>
+                <div class="input-group" style="margin-bottom: 15px;">
+                    <label>Universidad de Egreso (Opcional)</label>
+                    <input type="text" id="profile-university" class="text-input" style="width: 100%;"
+                        placeholder="Ej. UNAM, IPN, UDG...">
+                </div>
+                <button class="btn-primary" id="btn-save-profile" style="width: 100%;">Actualizar Perfil</button>
             </div>
 
-            <div id="friend-search-results"
-                style="margin-bottom: 25px; padding: 15px; background: var(--bg-main); border-radius: 8px; border: 1px solid var(--border); display: none;">
-                <!-- Dinámico: Resultados de búsqueda -->
-            </div>
+            <!-- RED SOCIAL -->
+            <div
+                style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 10px; border: 1px solid var(--border);">
+                <h3
+                    style="font-size: 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 15px; color: var(--text-primary);">
+                    👥 Agregar a un Colega</h3>
 
-            <h3
-                style="font-size: 14px; color: var(--text-primary); margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
-                🔔 Solicitudes Recibidas</h3>
-            <div id="pending-requests-list" style="display: flex; flex-direction: column; gap: 10px; min-height: 50px;">
-                <!-- Dinámico: Solicitudes pendientes -->
-                <div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">No tienes
-                    solicitudes nuevas.</div>
+                <div class="input-group" style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <input type="text" id="friend-search-input" placeholder="Ej. DraSofia99" class="text-input"
+                        style="flex: 1;">
+                    <button class="btn-primary" id="btn-search-friend"
+                        style="padding: 10px 15px; white-space: nowrap;">Buscar</button>
+                </div>
+
+                <div id="friend-search-results"
+                    style="margin-bottom: 20px; padding: 15px; background: var(--bg-main); border-radius: 8px; border: 1px solid var(--border); display: none;">
+                    <!-- Dinámico: Resultados de búsqueda -->
+                </div>
+
+                <h3
+                    style="font-size: 14px; color: var(--text-primary); margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                    🔔 Solicitudes Recibidas</h3>
+                <div id="pending-requests-list"
+                    style="display: flex; flex-direction: column; gap: 10px; min-height: 50px;">
+                    <!-- Dinámico: Solicitudes pendientes -->
+                    <div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">No
+                        tienes solicitudes nuevas.</div>
+                </div>
             </div>
         </div>
     </div>
