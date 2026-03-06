@@ -3041,6 +3041,10 @@
         if (btnOpenProfileMobile && profileModal) {
             btnOpenProfileMobile.addEventListener("click", openProfileModal);
         }
+        const btnOpenFriendsModal = $("btn-open-friends-modal");
+        if (btnOpenFriendsModal && profileModal) {
+            btnOpenFriendsModal.addEventListener("click", openProfileModal);
+        }
         if (btnCloseProfile && profileModal) {
             btnCloseProfile.addEventListener("click", () => {
                 profileModal.style.display = "none";
@@ -3383,16 +3387,15 @@
 
                                     lbHTML += `
                                      <div class="lb-item" style="${bgStyle}">
-                                        <div class="lb-rank">${rankStr}</div>
-                                        <div class="lb-avatar">${lbInitials}</div>
-                                        <div class="lb-info" style="flex:1">
-                                            <div class="lb-name">${data.username} ${isMe ? '<span class="lb-badge">Tú</span>' : ''}</div>
-                                            ${badgeSpec ? `<div style="margin-top: 4px; margin-bottom: 2px;">${badgeSpec}</div>` : ''}
-                                            <div class="lb-score" style="margin-top:2px;">Promedio: <span style="color:var(--accent-green); font-weight:700">${data.score}%</span></div>
+                                        <div class="lb-rank" style="min-width:30px; font-size:16px;">${rankStr}</div>
+                                        <div class="lb-avatar" style="width:36px; height:36px; min-width:36px; flex-shrink:0; font-size:12px;">${lbInitials}</div>
+                                        <div class="lb-info" style="flex:1; min-width:0; padding: 0 8px;">
+                                            <div class="lb-name" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:13px; font-weight:700;">${data.username} ${isMe ? '<span class="lb-badge" style="font-size:9px; vertical-align:middle;">Tú</span>' : ''}</div>
+                                            ${badgeSpec ? `<div style="margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:flex;">${badgeSpec}</div>` : ''}
                                         </div>
-                                        <div class="lb-actions" style="display:flex; align-items:center; gap:10px;">
-                                           <div class="lb-flame">🔥 ${data.flame || 0}</div>
-                                           ${!isMe ? `<button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 4px 8px; font-size: 11px; border-radius: 6px; background: var(--accent-orange); border:none;">⚔️ Retar</button>` : ''}
+                                        <div class="lb-actions" style="display:flex; align-items:center; gap:6px;">
+                                           <div class="lb-flame" style="font-size:10px;">🔥 ${data.flame || 0}</div>
+                                           ${!isMe ? `<button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 4px 8px; font-size: 10px; border-radius: 6px; background: var(--accent-orange); border:none; white-space:nowrap;">⚔️ Retar</button>` : ''}
                                         </div>
                                      </div>
                                      `;
@@ -3406,16 +3409,16 @@
                                         });
 
                                         friendListHTML += `
-                                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); border: 1px solid var(--border);">
-                                            <div style="display: flex; align-items: center; gap: 10px;">
-                                                <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--accent-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">
+                                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); border: 1px solid var(--border); overflow:hidden;">
+                                            <div style="display: flex; align-items: center; gap: 8px; min-width:0; flex:1;">
+                                                <div style="width: 28px; height: 28px; min-width:28px; border-radius: 50%; background: var(--accent-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 10px;">
                                                     ${data.username.substring(0, 2).toUpperCase()}</div>
-                                                <div>
-                                                    <div style="font-size: 13px; font-weight: 600;">${data.username}</div>
+                                                <div style="min-width:0;">
+                                                    <div style="font-size: 13px; font-weight: 600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${data.username}</div>
                                                     <div style="font-size: 11px; color: var(--accent-green);">En línea</div>
                                                 </div>
                                             </div>
-                                            <button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 6px 10px; font-size: 11px; border-radius: 8px; background: var(--accent-orange);">⚔️ Retar</button>
+                                            <button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 6px 12px; font-size: 11px; border-radius: 8px; background: var(--accent-orange); margin-left:8px; white-space:nowrap;">⚔️ Retar</button>
                                         </div>`;
                                     }
                                     rank++;
@@ -3811,7 +3814,7 @@
 
                     btnSend.textContent = "...";
                     try {
-                        await window.FB.addDoc(window.FB.collection(window.FB.db, "challenges"), {
+                        const newDoc = await window.FB.addDoc(window.FB.collection(window.FB.db, "challenges"), {
                             challengerId: window.FB.auth.currentUser.uid,
                             challengerName: State.userName,
                             participants: participants,
@@ -3824,6 +3827,13 @@
                         });
                         showNotification("¡Enviado a " + selectedCbs.length + " amigos!", "success");
                         modal.style.display = "none";
+
+                        // Automatically start for the challenger
+                        State.activeChallengeId = newDoc.id;
+                        State.activeChallengeRole = "challenger";
+                        if (typeof window._startChallengeInternal === "function") {
+                            window._startChallengeInternal(newDoc.id, questionIndices);
+                        }
                     } catch (err) {
                         showNotification("Error: " + err.message, "error");
                     }
@@ -3964,8 +3974,12 @@
             });
 
             const startChallengeExam = (id, indices) => {
-                const finalSet = indices.map(idx => QUESTIONS[idx]).filter(Boolean);
-                if (finalSet.length === 0) return showNotification("Error al cargar preguntas del reto.", "error");
+                if (!Array.isArray(indices)) {
+                    console.error("Indices is not an array:", indices);
+                    return showNotification("Error: Los datos del reto están dañados.", "error");
+                }
+                const finalSet = indices.map(idx => QUESTIONS[idx]).filter(q => q && Array.isArray(q.options));
+                if (finalSet.length === 0) return showNotification("Error al cargar preguntas del reto. Los datos pueden estar desactualizados.", "error");
 
                 State.questionSet = finalSet;
 

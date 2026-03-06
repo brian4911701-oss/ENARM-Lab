@@ -3197,6 +3197,23 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
     font-size: 18px;
   }
 
+  /* Active Exam Banner Mobile */
+  #active-exam-banner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 16px !important;
+    gap: 16px !important;
+  }
+
+  #active-exam-banner>div:last-child {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  #active-exam-banner button {
+    flex: 1;
+  }
+
   .question-body {
     padding: 20px 15px;
   }
@@ -3424,6 +3441,10 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
 .lb-avatar {
   width: 48px;
   height: 48px;
+  min-width: 48px;
+  /* Force minimum width to prevent deformation */
+  flex-shrink: 0;
+  /* Prevent squeezing in flex containers */
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
   display: flex;
