@@ -69,6 +69,32 @@
         }, 3500);
     };
 
+    const showBanner = (title, msg, icon = '🔔') => {
+        let banner = $('global-notif-banner');
+        if (!banner) {
+            banner = document.createElement('div');
+            banner.id = 'global-notif-banner';
+            banner.className = 'notif-banner';
+            document.body.appendChild(banner);
+        }
+
+        banner.innerHTML = `
+            <div class="notif-banner-icon">${icon}</div>
+            <div class="notif-banner-content">
+                <span class="notif-banner-title">${title}</span>
+                <span class="notif-banner-desc">${msg}</span>
+            </div>
+            <button class="notif-banner-close" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:16px;">✕</button>
+        `;
+
+        banner.querySelector('.notif-banner-close').onclick = () => banner.classList.remove('active');
+
+        setTimeout(() => banner.classList.add('active'), 100);
+
+        if (window._bannerTimer) clearTimeout(window._bannerTimer);
+        window._bannerTimer = setTimeout(() => banner.classList.remove('active'), 8000);
+    };
+
     const formatTime = (secs) => {
         const h = String(Math.floor(secs / 3600)).padStart(2, "0");
         const m = String(Math.floor((secs % 3600) / 60)).padStart(2, "0");
@@ -115,6 +141,11 @@
         if (viewEl) {
             viewEl.classList.add("active");
             console.log(`Cambiando a vista: ${viewId}`);
+
+            // Scroll al inicio al cambiar de vista para que la barra no tape el inicio
+            const content = document.querySelector(".main-content");
+            if (content) content.scrollTop = 0;
+            window.scrollTo(0, 0);
         }
         State.view = viewId;
         if (viewId === "view-dashboard") {
@@ -3476,6 +3507,9 @@
             }
 
             // Escuchar Solicitudes Recibidas (en tiempo real) y Retos
+            let firstLoadFriends = true;
+            let firstLoadChallenges = true;
+
             window.loadPendingRequests = () => {
                 const reqsRef = window.FB.collection(window.FB.db, "friendRequests");
                 const qReqs = window.FB.query(reqsRef, window.FB.where("toId", "==", window.FB.auth.currentUser.uid), window.FB.where("status", "==", "pending"));
@@ -3575,12 +3609,28 @@
                 };
 
                 window.FB.onSnapshot(qReqs, (snap) => {
+                    const added = snap.docChanges().filter(c => c.type === 'added');
+                    if (!firstLoadFriends && added.length > 0) {
+                        added.forEach(c => {
+                            const d = c.doc.data();
+                            showBanner("Nueva solicitud", `${d.fromName} quiere ser tu amigo.`, "🤝");
+                        });
+                    }
+                    firstLoadFriends = false;
                     pendingFriends = [];
                     snap.forEach(doc => pendingFriends.push({ id: doc.id, ...doc.data() }));
                     renderMergedNotifications();
                 });
 
                 window.FB.onSnapshot(qChal, (snap) => {
+                    const added = snap.docChanges().filter(c => c.type === 'added');
+                    if (!firstLoadChallenges && added.length > 0) {
+                        added.forEach(c => {
+                            const d = c.doc.data();
+                            showBanner("¡Tienes un Reto!", `${d.challengerName} te desafió en ${d.specialty}.`, "⚔️");
+                        });
+                    }
+                    firstLoadChallenges = false;
                     pendingChallenges = [];
                     snap.forEach(doc => pendingChallenges.push({ id: doc.id, ...doc.data() }));
                     renderMergedNotifications();
