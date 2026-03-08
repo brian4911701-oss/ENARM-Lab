@@ -2999,6 +2999,34 @@
         initReportLogic();
         initPomodoro();
 
+        // ── PWA Install Logic ──
+        const pwaBanner = $("mobile-pwa-banner");
+        const pwaModal = $("pwa-modal");
+        if (pwaBanner && pwaModal) {
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+            if (!isStandalone) {
+                pwaBanner.style.display = "flex";
+            }
+            pwaBanner.addEventListener("click", () => {
+                pwaModal.style.display = "flex";
+                $("pwa-step-1").style.display = "block";
+                $("pwa-step-android").style.display = "none";
+                $("pwa-step-ios").style.display = "none";
+            });
+            const btnClosePwa = $("btn-close-pwa");
+            if (btnClosePwa) btnClosePwa.addEventListener("click", () => pwaModal.style.display = "none");
+            const btnPwaAndroid = $("btn-pwa-android");
+            if (btnPwaAndroid) btnPwaAndroid.addEventListener("click", () => {
+                $("pwa-step-1").style.display = "none";
+                $("pwa-step-android").style.display = "block";
+            });
+            const btnPwaIos = $("btn-pwa-ios");
+            if (btnPwaIos) btnPwaIos.addEventListener("click", () => {
+                $("pwa-step-1").style.display = "none";
+                $("pwa-step-ios").style.display = "block";
+            });
+        }
+
         const btnSaveProfile = $("btn-save-profile");
         if (btnSaveProfile) {
             btnSaveProfile.addEventListener("click", () => {

@@ -254,6 +254,26 @@
 
             <!-- ─── VIEW: DASHBOARD ────────────────────────────── -->
             <div id="view-dashboard" class="view active">
+
+                <!-- MOBILE PWA INSTALL BANNER -->
+                <div id="mobile-pwa-banner" class="mobile-only"
+                    style="display: none; background: linear-gradient(135deg, rgba(5, 192, 127, 0.1), rgba(5, 192, 127, 0.05)); border: 1px solid var(--accent-green); border-radius: 12px; padding: 15px; margin-bottom: 20px; align-items: center; justify-content: space-between; cursor: pointer; margin-top: 10px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div
+                            style="background: rgba(5, 192, 127, 0.2); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent-green);">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--text-primary); font-size: 14px; margin: 0 0 4px 0;">Instalar
+                                ENARMlab</h4>
+                            <p style="color: var(--text-muted); font-size: 11px; margin: 0;">Descarga la App en tu
+                                inicio</p>
+                        </div>
+                    </div>
+                </div>
+
                 <header class="dashboard-header">
                     <div class="header-left" style="position: relative; display: flex; align-items: center; gap: 20px;">
                         <div>
@@ -1585,6 +1605,65 @@
                 <div style="text-align: center; color: var(--text-muted); padding: 30px;">
                     Cargando notificaciones...
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── MODAL INSTALACIÓN PWA ──────────────── -->
+    <div class="modal-overlay" id="pwa-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+        <div class="modal-content"
+            style="background: var(--bg-card); padding: 25px; border-radius: 16px; border: 1px solid var(--border); max-width: 400px; width: 90%; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.4); text-align: center;">
+            <button id="btn-close-pwa"
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
+
+            <div id="pwa-step-1">
+                <h2 style="font-size: 18px; margin-bottom: 20px; color: var(--text-primary);">Selecciona tu celular</h2>
+                <div style="display: flex; gap: 15px; margin-bottom: 10px;">
+                    <button id="btn-pwa-android"
+                        style="flex: 1; padding: 20px 10px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; color: var(--text-primary); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: all 0.2s;">
+                        <span style="font-size: 32px;">🤖</span>
+                        <span style="font-size: 14px; font-weight: 600;">Android</span>
+                    </button>
+                    <button id="btn-pwa-ios"
+                        style="flex: 1; padding: 20px 10px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; color: var(--text-primary); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: all 0.2s;">
+                        <span style="font-size: 32px;">🍎</span>
+                        <span style="font-size: 14px; font-weight: 600;">iPhone</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="pwa-step-android" style="display: none; text-align: left;">
+                <h2 style="font-size: 18px; margin-bottom: 15px; color: var(--text-primary); text-align: center;">
+                    Instalar en Android</h2>
+                <ol
+                    style="color: var(--text-secondary); font-size: 14px; padding-left: 20px; line-height: 1.6; margin-bottom: 20px;">
+                    <li>Toca el menú <strong>(⋮)</strong> arriba a la derecha en Chrome.</li>
+                    <li>Busca y toca <strong>"Añadir a la pantalla de inicio"</strong> o <strong>"Instalar
+                            aplicación"</strong>.</li>
+                    <li>Confirma y listo. ✨</li>
+                </ol>
+                <div
+                    style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 12px; color: var(--text-muted); text-align: center;">
+                    <em>Si viste un banner de instalación abajo, también puedes tocarlo directamente.</em>
+                </div>
+                <button class="btn-primary" onclick="document.getElementById('pwa-modal').style.display='none'"
+                    style="width: 100%;">¡Entendido!</button>
+            </div>
+
+            <div id="pwa-step-ios" style="display: none; text-align: left;">
+                <h2 style="font-size: 18px; margin-bottom: 15px; color: var(--text-primary); text-align: center;">
+                    Instalar en iPhone</h2>
+                <ol
+                    style="color: var(--text-secondary); font-size: 14px; padding-left: 20px; line-height: 1.6; margin-bottom: 20px;">
+                    <li>Abre el menú de compartir <strong>(cuadro con flecha hacia arriba)</strong> en la barra inferior
+                        de Safari.</li>
+                    <li>Desliza hacia abajo o al lado y toca <strong>"Agregar a inicio"</strong> (con un ícono gris de
+                        +).</li>
+                    <li>Toca "Agregar" arriba a la derecha. ✨</li>
+                </ol>
+                <button class="btn-primary" onclick="document.getElementById('pwa-modal').style.display='none'"
+                    style="width: 100%;">¡Entendido!</button>
             </div>
         </div>
     </div>

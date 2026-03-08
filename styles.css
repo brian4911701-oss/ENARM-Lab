@@ -279,7 +279,8 @@ body {
 
 /* Responsive */
 @media (min-width: 769px) {
-  .mobile-only-mas {
+  .mobile-only-mas,
+  .mobile-only {
     display: none !important;
   }
 }
