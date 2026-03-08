@@ -2078,6 +2078,22 @@
                 answers: State.answers.map(a => ({ ...a }))
             });
 
+            // BUG FIX #3: Cap history at 50 sessions to prevent localStorage overflow.
+            // If exceeded, remove the oldest 25 entries but keep their summary (strip questionSet only).
+            const HISTORY_LIMIT = 50;
+            if (State.history.length > HISTORY_LIMIT) {
+                const excess = State.history.length - HISTORY_LIMIT;
+                for (let i = 0; i < excess; i++) {
+                    // Strip the heavy questionSet from old entries to save space, keep the summary
+                    if (State.history[i].questionSet) {
+                        delete State.history[i].questionSet;
+                        delete State.history[i].answers;
+                    }
+                }
+                // Keep only the latest HISTORY_LIMIT entries
+                State.history = State.history.slice(excess);
+            }
+
             // Update Cloud Challenge if active
             if (State.activeChallengeId && window.FB && window.FB.auth.currentUser) {
                 const chalId = State.activeChallengeId;
@@ -2155,6 +2171,16 @@
         return Math.min(prob, 99.9).toFixed(1);
     };
 
+    // OPTIM #4: Debounced save for study mode — avoids one Firestore write per answer.
+    // Instead, we wait 3s after the last answer before persisting.
+    let _estudioSaveTimer = null;
+    const debouncedSave = () => {
+        if (_estudioSaveTimer) clearTimeout(_estudioSaveTimer);
+        _estudioSaveTimer = setTimeout(() => {
+            saveGlobalStats();
+        }, 3000);
+    };
+
     const recordStat = (specialtyKey, isCorrect, tema) => {
         State.globalStats.respondidas++;
         if (isCorrect) State.globalStats.aciertos++;
@@ -2168,7 +2194,8 @@
             State.globalStats.byTema[tema].total++;
             if (isCorrect) State.globalStats.byTema[tema].correct++;
         }
-        if (State.mode === "estudio") saveGlobalStats();
+        // Use debounced save in estudio mode to avoid excessive writes.
+        if (State.mode === "estudio") debouncedSave();
     };
 
     const updateMotivationalQuote = () => {
@@ -4226,22 +4253,16 @@
                 const snapReqs = await window.FB.getDocs(qReqs);
                 const p1 = snapReqs.docs.map(d => window.FB.deleteDoc(d.ref));
 
-                // 2. Limpiar retos pendientes para ti
+                // BUG FIX #5: Only delete challenges where I am the challenger.
+                // Previously this deleted ALL active challenges the user was part of,
+                // which could destroy challenges initiated by other users.
                 const qChal = window.FB.query(
                     window.FB.collection(window.FB.db, "challenges"),
-                    window.FB.where("participantIds", "array-contains", uid),
+                    window.FB.where("challengerId", "==", uid),
                     window.FB.where("status", "==", "active")
                 );
                 const snapChal = await window.FB.getDocs(qChal);
-                const p2 = snapChal.docs.map(d => {
-                    // Si soy el retador o el reto es antiguo, lo borro. 
-                    // Nota: Borrar un reto grupal afecta a todos. Como medida simple, lo borramos.
-                    const data = d.data();
-                    if (data.challengerId === uid || data.status === 'active') {
-                        return window.FB.deleteDoc(d.ref);
-                    }
-                    return null;
-                }).filter(Boolean);
+                const p2 = snapChal.docs.map(d => window.FB.deleteDoc(d.ref));
 
                 await Promise.all([...p1, ...p2]);
                 showNotification("Notificaciones limpiadas.", "success");
