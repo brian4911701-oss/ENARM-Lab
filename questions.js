@@ -18287,7 +18287,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del primer trimestre",
     "subtema": "Aborto inevitable",
     "difficulty": "baja",
@@ -18320,7 +18320,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del primer trimestre",
     "subtema": "Amenaza de aborto",
     "difficulty": "baja",
@@ -18353,7 +18353,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Enfermedad trofoblástica gestacional",
     "subtema": "Mola hidatidiforme completa",
     "difficulty": "media",
@@ -18386,7 +18386,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del primer trimestre",
     "subtema": "Aborto incompleto",
     "difficulty": "media",
@@ -18419,7 +18419,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del primer trimestre",
     "subtema": "Aborto retenido (aborto diferido)",
     "difficulty": "media",
@@ -18452,7 +18452,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del primer trimestre",
     "subtema": "Embarazo ectópico tubárico",
     "difficulty": "alta",
@@ -18485,7 +18485,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del primer trimestre",
     "subtema": "Embarazo ectópico no roto",
     "difficulty": "media",
@@ -18518,7 +18518,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del primer trimestre",
     "subtema": "Embarazo anembrionado (huevo anembrionado)",
     "difficulty": "baja",
@@ -18551,7 +18551,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del primer trimestre",
     "subtema": "Aborto séptico",
     "difficulty": "alta",
@@ -18584,7 +18584,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del primer trimestre",
     "subtema": "Aborto completo",
     "difficulty": "baja",
@@ -18617,7 +18617,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Enfermedad trofoblástica gestacional",
     "subtema": "Mola hidatidiforme parcial",
     "difficulty": "media",
@@ -18650,7 +18650,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del primer trimestre",
     "subtema": "Diagnóstico diferencial de sangrado en el primer trimestre",
     "difficulty": "media",
@@ -18683,7 +18683,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del primer trimestre",
     "subtema": "Hematoma subcoriónico",
     "difficulty": "media",
@@ -18716,7 +18716,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Embarazo ectópico",
     "subtema": "Factores de riesgo para embarazo ectópico",
     "difficulty": "baja",
@@ -18749,7 +18749,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Embarazo ectópico",
     "subtema": "Embarazo ectópico roto",
     "difficulty": "alta",
@@ -18782,7 +18782,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del segundo trimestre",
     "subtema": "Placenta previa",
     "difficulty": "media",
@@ -18815,7 +18815,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del segundo y tercer trimestre",
     "subtema": "Desprendimiento prematuro de placenta normoinserta (DPPNI)",
     "difficulty": "alta",
@@ -18848,7 +18848,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Hemorragias del tercer trimestre",
     "subtema": "Vasa previa",
     "difficulty": "alta",
@@ -18881,7 +18881,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Trastornos hipertensivos del embarazo",
     "subtema": "Preeclampsia",
     "difficulty": "baja",
@@ -18914,7 +18914,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Trastornos hipertensivos del embarazo",
     "subtema": "Eclampsia",
     "difficulty": "media",
@@ -18947,7 +18947,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Trastornos hipertensivos del embarazo",
     "subtema": "Síndrome HELLP",
     "difficulty": "alta",
@@ -18980,7 +18980,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Diabetes en el embarazo",
     "subtema": "Diabetes gestacional",
     "difficulty": "baja",
@@ -19013,7 +19013,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Diabetes en el embarazo",
     "subtema": "Complicaciones fetales de diabetes gestacional",
     "difficulty": "media",
@@ -19046,7 +19046,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Diabetes en el embarazo",
     "subtema": "Hipoglucemia neonatal en hijos de madre diabética",
     "difficulty": "alta",
@@ -19079,7 +19079,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Ruptura prematura de membranas",
     "subtema": "Ruptura prematura de membranas a término",
     "difficulty": "baja",
@@ -19112,7 +19112,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Ruptura prematura de membranas",
     "subtema": "Ruptura prematura de membranas pretérmino (RPM pretérmino)",
     "difficulty": "media",
@@ -19145,7 +19145,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Ruptura prematura de membranas",
     "subtema": "Corioamnionitis",
     "difficulty": "alta",
@@ -19178,7 +19178,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Patología del embarazo",
     "subtema": "Hiperemesis gravídica",
     "difficulty": "media",
@@ -19211,7 +19211,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Ginecología",
     "subtema": "Síndrome de ovario poliquístico (SOP)",
     "difficulty": "media",
@@ -19256,7 +19256,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Ginecología",
     "subtema": "Endometriosis",
     "difficulty": "media",
@@ -19301,7 +19301,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Ginecología",
     "subtema": "Enfermedad pélvica inflamatoria (EPI)",
     "difficulty": "media",
@@ -19346,7 +19346,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gine",
+    "specialty": "gyo",
     "tema": "Ginecología",
     "subtema": "Miomatosis uterina",
     "difficulty": "media",
