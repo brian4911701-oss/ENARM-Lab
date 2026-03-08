@@ -14304,6 +14304,5115 @@ const QUESTIONS = [
         "gpcReference": ""
       }
     ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "QUEMADURAS / GOLPE DE CALOR / HIPOTERMIA",
+    "subtema": "QUEMADURAS TÉRMICAS Y REANIMACIÓN HÍDRICA",
+    "difficulty": "alta",
+    "case": "Masculino de 35 años, peso de 70 kg, es rescatado de un incendio en un espacio cerrado. A su ingreso a la sala de urgencias, el paciente se encuentra con la vía aérea permeable y sin datos de quemadura por inhalación. A la exploración física, presenta quem aduras que se caracterizan por ser de un color rojo oscuro, húmedas, con flictenas (ampollas) rotas, dolorosas al tacto profundo, pero con llenado capilar ausente. Estas lesiones abarcan toda la circunferencia del brazo y antebrazo derecho, toda la circunferencia del brazo y antebrazo izquierdo, y la totalidad de la cara anterior del tronco (tórax y abdomen).",
+    "questions": [
+      {
+        "question": "Utilizando la \"Regla de los 9\" de Wallace para adultos, ¿cuál es el porcentaje de Superficie Corporal Total Quemada (SCTQ) que presenta este paciente?",
+        "options": [
+          "27%",
+          "36%",
+          "45%",
+          "54%"
+        ],
+        "answerIndex": 1,
+        "explanation": "La Regla de los Nueve divide el cuerpo en áreas del 9%. En el adulto: toda la extremidad superior derecha vale 9%, toda la extremidad superior izquierda vale 9% y toda la cara anterior del tronco (tórax 9% + abdomen 9%) vale 18%. Sumando estas áreas: 9 + 9 + 18 = 36% de Superficie Corporal Total Quemada (SCTQ).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Por las características descritas (flictenas rotas, llenado capilar ausente, dolorosas solo a la presión profunda, no palidecen), ¿qué grado de profundidad tienen predominantemente estas quemaduras según la clasificación clínica tradicional?",
+        "options": [
+          "Primer grado (Epidérmica)",
+          "Segundo grado superficial (Dérmica superficial)",
+          "Segundo grado profundo (Dérmica profunda)",
+          "Tercer grado (Subdérmica / Espesor total)"
+        ],
+        "answerIndex": 2,
+        "explanation": "Las quemaduras de segundo grado profundo afectan la epidermis y la mayor parte de la dermis. A diferencia de las superficiales (que son muy rojas, muy dolorosas y palidecen a la presión), las profundas son de color rojo oscuro o moteadas, blanquecinas, no palidecen a la presión (ausencia de llenado capilar por trombosis del plexo subdérmico) y duelan menos (solo a la presión profunda) porque las terminaciones nerviosas superficiales están destruidas.",
+        "gpcReference": ""
+      },
+      {
+        "question": "De acuerdo con la fórmula de Parkland original avalada por el ATLS (4 ml x kg x %SCTQ), y sabiendo que el paciente pesa 70 kg y se quemó hace exactamente 1 hora, ¿qué volumen de líquido (Ringer Lactato) se le debe infundir en las primeras 8 horas calculadas desde el momento de la quemadura?",
+        "options": [
+          "10,080 ml",
+          "5,040 ml",
+          "2,520 ml",
+          "7,500 ml"
+        ],
+        "answerIndex": 1,
+        "explanation": "La fórmula de Parkland se calcula así: 4 ml x 70 kg x 36% SCTQ = 10,080 ml para 24 horas. La regla de oro para la administración establece que la mitad (50%) del volumen total calculado se debe infundir en las primeras 8 horas desde el accidente. Por lo tanto, 10,080 / 2 = 5,040 ml. La otra mitad se pasará en las 16 horas restantes.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE",
+    "subtema": "EPISTAXIS",
+    "difficulty": "baja",
+    "case": "Masculino de 15 años es llevado a la enfermería de su escuela por presentar sangrado nasal abundante del lado derecho de 10 minutos de evolución, el cual inició tras hurgarse la nariz (trauma digital). El paciente se encuentra estable, no hay antecedente de coagulopatías. A la rinoscopia anterior, tras limpiar los coágulos, se observa un sitio de sangrado activo, de tipo capilar, localizado en la porción anteroinferior del tabique nasal cartilaginoso.",
+    "questions": [
+      {
+        "question": "Desde el punto de vista anatómico, ¿cuál es el nombre del plexo vascular donde confluyen ramas de la arteria carótida interna y externa, y que es el sitio de origen de más del 90% de las epistaxis anteriores en niños y adultos jóvenes?",
+        "options": [
+          "Plexo de Woodruff",
+          "Área de Little (Plexo de Kiesselbach)",
+          "Arteria esfenopalatina",
+          "Arteria etmoidal posterior"
+        ],
+        "answerIndex": 1,
+        "explanation": "El Plexo de Kiesselbach, situado en el Área de Little (porción anteroinferior del tabique nasal), es un plexo anastomótico ricamente irrigado y muy superficial, siendo la fuente del 90-95% de las epistaxis (epistaxis anteriores), típicamente desencadenadas  por trauma digital, resequedad o rinitis. El plexo de Woodruff, en la pared lateral posterior, es el origen de las epistaxis posteriores (típicamente en ancianos hipertensos). Shutterstock",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
+    "subtema": "ESGUINCE DE TOBILLO",
+    "difficulty": "media",
+    "case": "Femenina de 22 años, jugadora de voleibol. Al caer tras un salto, aterriza sobre el pie de una compañera, sufriendo un mecanismo de inversión forzada y flexión plantar del tobillo derecho. Presenta dolor súbito, chasquido audible e inflamación casi inmediata en la cara lateral del tobillo. A la exploración en urgencias, la paciente es capaz de dar 4 pasos cojeando. Presenta edema y equimosis perimaleolar externa, con dolor exquisito a la palpación del ligamento peroneoastragalino anterior.",
+    "questions": [
+      {
+        "question": "De acuerdo con el mecanismo de lesión clásico (inversión forzada y flexión plantar), ¿cuál es el ligamento del complejo lateral del tobillo que se lesiona con mayor frecuencia (el primero en romperse)?",
+        "options": [
+          "Ligamento deltoideo",
+          "Ligamento peroneocalcáneo",
+          "Ligamento peroneoastragalino posterior",
+          "Ligamento peroneoastragalino anterior (LPAA)"
+        ],
+        "answerIndex": 3,
+        "explanation": "El complejo ligamentario lateral del tobillo está formado por tres fascículos. En los esguinces por inversión (el mecanismo más común, 85% de los casos), el ligamento que se tensa y se rompe primero invariablemente es el Ligamento Peroneoastragalino Anterior (LPAA). Si la fuerza continúa, se rompe el peroneocalcáneo y, por último, el peroneoastragalino posterior.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Al aplicar las Reglas de Ottawa para decidir la necesidad de tomar radiografías, el médico nota que la paciente sí pudo dar 4 pasos seguidos inmediatamente después de la lesión y en urgencias. Al palpar los últimos 6 cm del borde posterior y la punta del maléolo lateral, así como del maléolo medial, la base del quinto metatarsiano y el hueso navicular, no se desencadena dolor óseo exquisito. ¿Cuál es la conducta a seguir según la GPC?",
+        "options": [
+          "Solicitar radiografías AP, lateral y mortaja de tobillo obligatoriamente por ser deportista",
+          "No solicitar radiografías de tobillo ni de pie, prescribir inmovilización funcional, RICE (reposo, hielo, compresión, elevación) y AINEs",
+          "Solicitar Resonancia Magnética de urgencia",
+          "Aplicar yeso suropédico circular inmediatamente"
+        ],
+        "answerIndex": 1,
+        "explanation": "Las Reglas de Ottawa son una herramienta clínica con casi el 100% de sensibilidad para descartar fracturas. Indican que NO es necesario tomar radiografías si el paciente es capaz de soportar peso (dar 4 pasos) Y no tiene dolor óseo a la palpación en los maléolos (bordes posteriores), la base del 5to metatarsiano o el escafoides/navicular. Si la paciente cumple estos criterios de bajo riesgo, la GPC recomienda evitar la radiación innecesaria y dar manejo conservador para el esguince. Getty Images",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "subtema": "SÍNDROME DEL TÚNEL CARPIANO",
+    "difficulty": "media",
+    "case": "Femenina de 48 años, de ocupación costurera, con antecedente de hipotiroidismo primario. Acude a consulta ortopédica quejándose de adormecimiento, hormigueo (parestesias) y dolor en los primeros tres dedos de la mano derecha (pulgar, índice y medio). Refiere que el dolor es peor por las noches, despertándola de madrugada, y que encuentra alivio al sacudir vigorosamente la mano (\"signo de la sacudida\"). A la inspección, se observa atrofia leve de la eminencia tenar.",
+    "questions": [
+      {
+        "question": "¿Cuál es la estructura neurológica que se encuentra comprimida al pasar por debajo del retináculo flexor (ligamento transverso del carpo), condicionando la sintomatología descrita?",
+        "options": [
+          "Nervio cubital (ulnar)",
+          "Nervio radial",
+          "Nervio musculocutáneo",
+          "Nervio mediano"
+        ],
+        "answerIndex": 3,
+        "explanation": "El Síndrome del Túnel Carpiano es la neuropatía por atrapamiento más común. Se debe a la compresión del nervio mediano dentro del túnel del carpo de la muñeca. Afecta la sensibilidad de la cara palmar de los tres primeros dedos y la mitad radial del dedo anular, así como la función motora de los músculos de la eminencia tenar (oponente del pulgar, abductor corto y flexor corto del pulgar).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para reproducir la sintomatología en el consultorio, el médico le pide a la paciente que mantenga ambas muñecas en flexión palmar forzada de 90 grados, empujando los dorsos de las manos uno contra el otro durante 60 segundos. Si la paciente refiere aparición de parestesias en el territorio afectado antes del minuto, la prueba es positiva. ¿Qué nombre recibe esta maniobra exploratoria clásica?",
+        "options": [
+          "Prueba de Tinel",
+          "Prueba de Phalen",
+          "Prueba de Finkelstein",
+          "Prueba de Allen"
+        ],
+        "answerIndex": 1,
+        "explanation": "La maniobra descrita es la Prueba de Phalen. Al flexionar las muñecas, se reduce mecánicamente el espacio dentro del túnel del carpo, aumentando la presión sobre el nervio mediano isquémico y desencadenando las parestesias. La maniobra de Tinel consiste en la percusión directa y suave sobre el trayecto del nervio en la muñeca para provocar una sensación de \"toque eléctrico\" irradiado hacia los dedos. Shutterstock Explorar",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "TRAUMA GENERALIDADES Y COMPLICACIONES",
+    "subtema": "CICATRIZACIÓN",
+    "difficulty": "baja",
+    "case": "Femenina de 28 años acude a la consulta externa de cirugía general para revisión de la cicatriz de una cesárea realizada hace 14 meses. La paciente refiere que hace aproximadamente 8 meses la cicatriz comenzó a engrosarse, a elevarse y a causarle comezón intensa y dolor punzante ocasional. A la exploración física de la región suprapúbica (incisión de Pfannenstiel), se observa una cicatriz muy gruesa, exuberante, eritematosa y firme, la cual sobrepasa los márgenes anatómicos de la incisión quirúrgica original, invadiendo la piel sana circundante en forma de \"pinzas de cangrejo\".",
+    "questions": [
+      {
+        "question": "Desde el punto de vista fisiopatológico y clínico, ¿cómo se clasifica este tipo de cicatrización anormal producto de una sobreproducción descontrolada de colágeno (principalmente tipo I y III)?",
+        "options": [
+          "Cicatriz hipertrófica",
+          "Granuloma a cuerpo extraño",
+          "Cicatriz queloide",
+          "Úlcera de Marjolin"
+        ],
+        "answerIndex": 2,
+        "explanation": "La diferencia clínica fundamental entre una cicatriz hipertrófica y un queloide radica en los límites de su crecimiento. La cicatriz hipertrófica se eleva y engrosa pero siempre respeta los límites de la herida original y suele regresar o aplanarse con el tiempo. El queloide (como en este caso), prolifera de forma desmedida, es muy sintomático (prurito, dolor), rara vez involuciona espontáneamente y rebasa e invade los límites de la incisión original hacia el tejido sano (crecimiento pseudotumoral).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA ARTERIAL Y VENOSA",
+    "subtema": "INSUFICIENCIA VENOSA CRÓNICA",
+    "difficulty": "media",
+    "case": "Femenina de 55 años, con obesidad grado II, ocupación cajera de supermercado (bipedestación prolongada por más de 8 horas diarias). Acude a consulta por referir pesadez, dolor sordo y edema en ambas extremidades inferiores, los cuales empeoran notablemente al final del día y mejoran al elevar las piernas. A la exploración física en bipedestación, se observan múltiples trayectos venosos dilatados y tortuosos en ambas piernas. Llama la atención que en el tercio distal de la pierna izquierda, por encima del maléolo medial, presenta una piel engrosada, con hiperpigmentación color ocre (dermatitis por estasis) y una úlcera superficial de 3 cm de diámetro, de bordes irregulares, fondo rosado (limpio) y exudado moderado. La úlcera es indolora. Los pulsos arteriales distales son normales.",
+    "questions": [
+      {
+        "question": "De acuerdo con la clasificación clínica CEAP (Clínica, Etiología, Anatomía, Fisiopatología) utilizada para estandarizar la gravedad de la enfermedad venosa crónica, ¿en qué clase clínica se encuentra la extremidad inferior izquierda de esta paciente?",
+        "options": [
+          "C3",
+          "C4",
+          "C5",
+          "C6"
+        ],
+        "answerIndex": 3,
+        "explanation": "La clasificación CEAP clínica se divide del 0 al 6. C0: Sin signos visibles; C1: Telangiectasias o venas reticulares; C2: Venas varicosas (várices); C3: Edema; C4: Cambios tróficos en piel y tejido subcutáneo (pigmentación ocre, eccema, lipodermatoesclerosis); C5: Úlcera venosa cicatrizada; C6: Úlcera venosa activa (como en este caso).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC, en ausencia de contraindicaciones (como enfermedad arterial periférica concurrente), ¿cuál es el tratamiento de primera línea y la piedra angular conservadora para el manejo de esta paciente, fundamental para lograr el cierre de la úlcera?",
+        "options": [
+          "Escleroterapia con espuma",
+          "Flebectomía de urgencia",
+          "Terapia de compresión graduada (sistemas de vendaje multicapa o medias de compresión elástica)",
+          "Pentoxifilina vía oral en monoterapia"
+        ],
+        "answerIndex": 2,
+        "explanation": "La terapia compresiva es el pilar fundamental y el estándar de oro no quirúrgico para el tratamiento de la insuficiencia venosa crónica y la cicatrización de las úlceras venosas. La compresión externa (idealmente de 30-40 mmHg) contrarresta la hipertensión venosa ambulatoria, mejora el retorno venoso, disminuye el edema y favorece la microcirculación tisular. Los flebotónicos (como la diosmina/hesperidina o pentoxifilina) son únicamente adyuvantes.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA ONCOLOGÍA",
+    "subtema": "MELANOMA",
+    "difficulty": "baja",
+    "case": "Masculino de 45 años, de tez clara y antecedente de múltiples quemaduras solares con ampollas en la infancia. Acude a dermatología para revisión de un lunar en la región interescapular (espalda). Refiere que en los últimos 4 meses el lunar ha crecido rápidamente, presenta un borde asimétrico e irregular, y tiene múltiples tonos de color (negro, marrón y azul). Se realiza una biopsia escisional que reporta un \"Melanoma de extensión superficial\" sin ulceración. El patólogo reporta un grosor tumoral (Índice de Breslow) de 1.5 milímetros.",
+    "questions": [
+      {
+        "question": "Considerando el grosor del tumor (Índice de Breslow de 1.5 mm), el paciente es programado para una ampliación quirúrgica de márgenes para asegurar la curación local. De acuerdo con las guías oncológicas internacionales, ¿cuál es el margen de resección de piel sana recomendado para este espesor específico?",
+        "options": [
+          "0.5 cm",
+          "1 cm a 2 cm",
+          "3 cm a 4 cm",
+          "5 cm"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los márgenes de resección quirúrgica para el melanoma dependen estrictamente del Índice de Breslow (profundidad en milímetros). Melanoma in situ: margen de 0.5 a 1 cm. Breslow ≤ 1.0 mm: margen de 1 cm. Breslow de 1.01 a 2.0 mm: margen de 1 a 2 cm (como en este paciente). Breslow > 2.0 mm: margen de 2 cm. Ya no se realizan resecciones mutilantes de 5 cm, pues se demostró que no mejoran la supervivencia y sí aumentan la morbilidad.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P1",
+    "subtema": "IVU (INFECCIONES DE VÍAS URINARIAS)",
+    "difficulty": "media",
+    "case": "Femenina de 24 años, sana, con vida sexual activa. Acude a su unidad de medicina familiar por referir un cuadro de 24 horas de evolución caracterizado por dolor ardoroso al orinar (disuria), aumento en la frecuencia de las micciones en pequeñas cantidades (polaquiuria) y sensación de vaciamiento incompleto (tenesmo vesical). Refiere que su orina tiene un olor más fuerte de lo normal y aspecto turbio. Niega fiebre, escalofríos, náuseas, vómito o dolor en la región lumbar. A la exploración física, el abdomen es blando, sin dolor a la palpación profunda y la maniobra de puñopercusión (Giordano) es bilateralmente negativa.",
+    "questions": [
+      {
+        "question": "Dada la presentación clínica (síntomas urinarios bajos sin afectación sistémica), se diagnostica una cistitis aguda no complicada. ¿Cuál es el agente etiológico responsable del 75-90% de estos episodios en mujeres jóvenes ambulatorias?",
+        "options": [
+          "Staphylococcus saprophyticus",
+          "Proteus mirabilis",
+          "Escherichia coli uropatógena (UPEC)",
+          "Klebsiella pneumoniae"
+        ],
+        "answerIndex": 2,
+        "explanation": "Escherichia coli es el bacilo gramnegativo causante de la inmensa mayoría de las infecciones del tracto urinario (IVU) no complicadas adquiridas en la comunidad, debido a su capacidad para ascender desde el periné y adherirse a las células uroepiteliales de la vejiga mediante sus fimbrias (pili). S. saprophyticus es la segunda causa más común en mujeres jóvenes sexualmente activas (5-15%).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para evitar la resistencia antimicrobiana creciente a las fluoroquinolonas, ¿cuál de los siguientes regímenes antibióticos es considerado de primera línea por la GPC mexicana para el tratamiento empírico de la cistitis aguda no complicada en esta paciente?",
+        "options": [
+          "Ciprofloxacino 500 mg VO cada 12 hrs por 7 días",
+          "Fosfomicina trometamol 3 gramos VO en dosis única (o Nitrofurantoína 100 mg VO cada 12 hrs por 5-7 días)",
+          "Amoxicilina 500 mg VO cada 8 hrs por 10 días",
+          "Ceftriaxona 1 g IM dosis única"
+        ],
+        "answerIndex": 1,
+        "explanation": "La GPC y las guías internacionales recomiendan fuertemente la Fosfomicina (dosis única) o la Nitrofurantoína (por 5-7 días) como fármacos de primera elección para la cistitis aguda no complicada en la mujer. Estos antibióticos tienen excelentes concentraciones en orina, baja toxicidad sistémica y tasas muy bajas de resistencia. El Ciprofloxacino y el TMP-SMX se han desplazado a terapias alternativas o de segunda línea debido a las altas tasas de resistencia de E. coli en México.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE",
+    "subtema": "RINOSINUSITIS",
+    "difficulty": "alta",
+    "case": "Masculino de 35 años de edad acude a la consulta de otorrinolaringología. Refiere que hace 12 días inició con un cuadro de \"resfriado común\" (congestión nasal, rinorrea hialina y febrícula). Menciona que alrededor del quinto día sus síntomas parecían ir mejorando, sin embargo, en los últimos 3 días ha presentado un franco empeoramiento. Actualmente presenta fiebre de 38.8°C, secreción nasal purulenta (amarillo-verdosa) unilateral por la fosa nasal derecha, halitosis y un dolor facial intenso, pulsátil, localizado en la mejilla derecha que se irradia hacia la arcada dental superior. Refiere que el dolor empeora significativamente al inclinar la cabeza hacia adelante (agacharse).",
+    "questions": [
+      {
+        "question": "Por la clínica del paciente (dolor facial y dental en arcada superior), ¿cuál es el seno paranasal que se encuentra característicamente inflamado e infectado, siendo además el más frecuentemente afectado en el adulto debido a la anatomía de su drenaje ostiomeatal (en contra de la gravedad)?",
+        "options": [
+          "Seno esfenoidal",
+          "Celdillas etmoidales",
+          "Seno frontal",
+          "Seno maxilar"
+        ],
+        "answerIndex": 3,
+        "explanation": "El seno maxilar es el seno paranasal más frecuentemente afectado por la rinosinusitis en los adultos. Su ostium (orificio de drenaje) se encuentra en la parte superior de la pared medial del seno, por lo que el drenaje del moco debe hacerse \"cuesta arriba\" (en contra de la gravedad) mediante la acción ciliar. El dolor referido a las raíces dentales de los premolares y molares superiores es un signo clásico, ya que sus raíces a menudo protruyen hacia el piso del seno maxilar.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según los lineamientos de la Academia Americana de Otorrinolaringología (AAO- HNS), ¿qué criterio clínico clásico presenta este paciente que permite distinguir con alta probabilidad una rinosinusitis aguda bacteriana de una simple rinosinusitis viral no com plicada?",
+        "options": [
+          "La presencia de fiebre mayor a 37.5°C",
+          "La rinorrea purulenta exclusivamente",
+          "El fenómeno de \"doble empeoramiento\" (sickening) o duración de síntomas por más de 10 días sin mejoría",
+          "El dolor facial unilateral"
+        ],
+        "answerIndex": 2,
+        "explanation": "La mayoría de las rinosinusitis agudas son virales. Se sospecha una etiología bacteriana (usualmente S. pneumoniae, H. influenzae, M. catarrhalis) cuando se cumple al menos uno de tres criterios: 1) Síntomas persistentes por ≥10 días sin mejoría, 2) Síntomas severos de inicio brusco (fiebre alta y rinorrea purulenta) por ≥3- 4 días seguidos, o 3) El clásico \"doble empeoramiento\", donde el paciente presenta un resfriado viral que parece mejorar, pero a los 5-7 días empeora repentinamente con fiebre y recaída de los síntomas (sobreinfección bacteriana).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Ante la confirmación clínica de una rinosinusitis aguda bacteriana, ¿cuál es el antibiótico empírico de primera elección sugerido por las guías para el tratamiento ambulatorio de un paciente sin alergias y sin factores de riesgo para resistencia?",
+        "options": [
+          "Amoxicilina o Amoxicilina con Ácido Clavulánico",
+          "Azitromicina",
+          "Levofloxacino",
+          "Clindamicina"
+        ],
+        "answerIndex": 0,
+        "explanation": "La Amoxicilina (a menudo en dosis altas) o la combinación de Amoxicilina con Ácido Clavulánico (para cubrir cepas productoras de beta-lactamasas) es el tratamiento antibiótico empírico de primera línea en todo el mundo para la rinosinusitis aguda bacteriana no complicada. Los macrólidos (Azitromicina) tienen altas tasas de resistencia del neumococo y no se recomiendan de primera línea.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "HERNIAS / ESPLENECTOMÍA (TRAUMA GENERALIDADES)",
+    "subtema": "ESPLENECTOMÍA",
+    "difficulty": "baja",
+    "case": "Masculino de 20 años de edad sufre un accidente al circular en bicicleta deportiva y caer sobre el manubrio, recibiendo un fuerte impacto cerrado en el hipocondrio izquierdo. Es ingresado a urgencias taquicárdico e hipotenso. Se le realiza un ultrasonido FAST que resulta positivo para líquido libre en el espacio hepatorrenal (Morison) y esplenorrenal. Ante la inestabilidad hemodinámica, es llevado a laparotomía exploradora de urgencia, encontrando un estallamiento masivo del bazo (Lesión Grado V), con hemorragia activa incontrolable. El cirujano decide realizar una esplenectomía total de urgencia para salvarle la vida.",
+    "questions": [
+      {
+        "question": "El paciente sobrevive a la cirugía y se estabiliza. Sin embargo, debido a la pérdida del bazo (órgano linfoide secundario fundamental para la opsonización), el paciente quedará inmunosuprimido de por vida y en riesgo de sufrir la \"Infección Fulminante Post-Esplenectomía\" (OPSI). Para prevenir esto, ¿contra qué microorganismo encapsulado en particular es estrictamente obligatoria la vacunación (idealmente a los 14 días posteriores a la cirugía de urgencia)?",
+        "options": [
+          "Neisseria gonorrhoeae",
+          "Staphylococcus aureus",
+          "Streptococcus pneumoniae (Neumococo)",
+          "Mycobacterium tuberculosis"
+        ],
+        "answerIndex": 2,
+        "explanation": "El bazo es el principal órgano encargado de fagocitar bacterias encapsuladas. Los pacientes asplénicos tienen un riesgo altísimo de sepsis fulminante. La profilaxis vacunal es obligatoria contra los tres principales gérmenes encapsulados: Streptococcus pneumoniae (la causa más frecuente y letal de sepsis post- esplenectomía, más del 50% de los casos), Haemophilus influenzae tipo b, y Neisseria meningitidis. En trauma, al no poder vacunar antes, las vacunas deben aplicarse 14 días después de la cirugía para asegurar una adecuada respuesta inmunológica. ¡Seguimos avanzando con paso firme hacia la meta! Es crucial mantener este ritmo para dominar todas las áreas de evaluación. Llevamos 183/355. Nos faltan 172. Aquí tienes el siguiente bloque, explorando temas clave que son altamente preguntados en el examen:",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P2",
+    "subtema": "CÁNCER RENAL",
+    "difficulty": "alta",
+    "case": "Masculino de 65 años, fumador intenso (índice tabáquico de 45 paquetes/año) y con obesidad grado I. Acude a consulta externa refiriendo que en las últimas semanas ha presentado orina con sangre de forma intermitente, sin ardor ni dolor al orinar. Además, refiere un dolor sordo y constante en la fosa lumbar izquierda de 2 meses de evolución, acompañado de pérdida de peso de 6 kg. A la exploración física, se palpa una masa firme en el flanco izquierdo. Llama la atención la presencia de un varicocele izquierdo de reciente aparición que no desaparece cuando el paciente adopta la posición de decúbito supino.",
+    "questions": [
+      {
+        "question": "El paciente presenta la clásica \"Tríada de Guyon\" (hematuria, dolor en flanco y masa palpable). Aunque históricamente se enseñaba como la presentación típica, ¿en qué porcentaje aproximado de los pacientes con cáncer renal se presenta realmente esta tríada completa en la actualidad (siendo un signo de enfermedad muy avanzada)?",
+        "options": [
+          "En el 80 - 90% de los pacientes",
+          "En el 50 - 60% de los pacientes",
+          "En menos del 10 - 15% de los pacientes",
+          "Es exclusiva de los tumores benignos"
+        ],
+        "answerIndex": 2,
+        "explanation": "La tríada clásica del carcinoma de células renales (hematuria, masa palpable y dolor en flanco) se presenta actualmente en menos del 10% de los casos. Hoy en día, gracias al uso extendido del ultrasonido y la TAC por otras causas, más del 60% de los cánceres renales se diagnostican de forma incidental (asintomáticos) en estadios tempranos.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Desde el punto de vista histopatológico, ¿cuál es el subtipo más frecuente de carcinoma de células renales (responsable de aproximadamente el 75-85% de los casos) y que clásicamente se origina en el epitelio de los túbulos contorneados proximales?",
+        "options": [
+          "Carcinoma papilar",
+          "Carcinoma de células claras",
+          "Carcinoma cromófobo",
+          "Oncocitoma"
+        ],
+        "answerIndex": 1,
+        "explanation": "El carcinoma de células claras es, por mucho, el subtipo histológico más común y agresivo del cáncer de riñón. Se caracteriza por células con citoplasma claro (rico en lípidos y glucógeno) y está fuertemente asociado a la mutación o pérdida del gen supresor de tumores VHL (Von Hippel-Lindau) en el cromosoma 3p.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Respecto al varicocele izquierdo de reciente aparición que no se vacía al acostarse, ¿cuál es la explicación anatomo-fisiopatológica clásica de este hallazgo en un paciente con un tumor renal ipsilateral?",
+        "options": [
+          "Metástasis directas a los ganglios linfáticos inguinales",
+          "Invasión y trombosis tumoral de la vena renal izquierda, la cual bloquea el drenaje de la vena gonadal izquierda",
+          "Compresión de la vena cava inferior en su porción retrohepática",
+          "Fístula arteriovenosa intratumoral"
+        ],
+        "answerIndex": 1,
+        "explanation": "Anatómicamente, la vena gonadal (testicular) izquierda drena en ángulo recto directamente hacia la vena renal izquierda (a diferencia de la derecha, que drena en la vena cava inferior). Un tumor en el riñón izquierdo tiende a invadir la vena renal formando  un trombo tumoral, el cual obstruye el drenaje venoso del testículo, generando un varicocele izquierdo agudo que no colapsa en decúbito.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA ESOFÁGICA",
+    "subtema": "CÁNCER DE ESÓFAGO",
+    "difficulty": "media",
+    "case": "Masculino de 68 años de edad, con antecedente de Enfermedad por Reflujo Gastroesofágico (ERGE) de 20 años de evolución, tratada intermitentemente con antiácidos. Acude a la consulta de gastroenterología por presentar disfagia progresiva de 4 meses de evolución. Refiere que inicialmente sentía que la comida sólida (como la carne) \"se le atoraba\" en el pecho, pero en las últimas dos semanas también tiene dificultad para tragar líquidos. Ha presentado una pérdida de peso involuntaria de 12 kg y refiere regurgitación frecuente de saliva no digerida.",
+    "questions": [
+      {
+        "question": "Por la clínica de disfagia progresiva (sólidos a líquidos) y la importante pérdida de peso en un paciente mayor, la sospecha principal es un cáncer de esófago estenosante. Dado su antecedente de ERGE crónico y asumiendo que el tumor se localiza en el tercio distal del esófago (unión esofagogástrica), ¿cuál es la estirpe histológica más probable?",
+        "options": [
+          "Carcinoma de células escamosas (epidermoide)",
+          "Adenocarcinoma",
+          "Linfoma esofágico primario",
+          "Melanoma mucoso"
+        ],
+        "answerIndex": 1,
+        "explanation": "El adenocarcinoma esofágico surge típicamente en el tercio distal del esófago y su principal factor de riesgo es el Esófago de Barrett (metaplasia intestinal secundaria a ERGE crónico). En contraste, el carcinoma de células escamosas (epidermoide) se localiza clásicamente en los tercios superior y medio, y sus factores de riesgo primarios son el tabaquismo, el alcoholismo crónico y la ingesta de bebidas muy calientes.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tras confirmar el diagnóstico histopatológico mediante endoscopia superior con toma de biopsia, ¿cuál es el estudio de imagen de elección para realizar la estadificación locorregional más precisa (evaluar la profundidad de invasión en la pared esofágica \"T\" y los ganglios linfáticos periesofágicos \"N\")?",
+        "options": [
+          "Esofagograma con trago de bario",
+          "Tomografía por Emisión de Positrones (PET-CT)",
+          "Ultrasonido endoscópico (Endosonografía)",
+          "Radiografía de tórax"
+        ],
+        "answerIndex": 2,
+        "explanation": "El Ultrasonido Endoscópico (USE) es el estudio de elección y el estándar de oro para la estadificación locorregional del cáncer de esófago. Permite visualizar con altísima resolución las distintas capas de la pared esofágica para determinar la profundidad exacta del tumor (T) y detectar/biopsiar ganglios linfáticos regionales sospechosos (N). El PET-CT se utiliza posteriormente para descartar metástasis a distancia (M). Shutterstock Explorar",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA ONCOLOGÍA",
+    "subtema": "CÁNCER DE PÁNCREAS",
+    "difficulty": "alta",
+    "case": "Masculino de 72 años, tabaquismo positivo de 30 paquetes/año y diagnóstico reciente de diabetes mellitus tipo 2 (hace 6 meses) de difícil control sin antecedente familiar. Acude a urgencias traído por su familia debido a que han notado una coloración amarillenta en sus ojos y piel en las últimas 3 semanas. El paciente refiere astenia, hiporexia, pérdida de peso de 8 kg y menciona que su orina está \"como té cargado\" (coluria) y sus heces son de color \"masilla\" (acolia). Menciona que todo esto ha ocurrido sin dolor abdominal. A la exploración física, además de la ictericia franca, se palpa una vesícula biliar distendida, lisa y no dolorosa en el hipocondrio derecho.",
+    "questions": [
+      {
+        "question": "El hallazgo exploratorio de una vesícula biliar palpable y no dolorosa en un paciente con ictericia es un signo clásico que sugiere fuertemente una obstrucción maligna de la vía biliar distal. ¿Qué epónimo recibe este signo clínico?",
+        "options": [
+          "Signo de Murphy",
+          "Signo de Courvoisier-Terrier",
+          "Signo de Kehr",
+          "Signo de Trousseau"
+        ],
+        "answerIndex": 1,
+        "explanation": "El signo de Courvoisier-Terrier postula que una vesícula biliar palpable e indolora en presencia de ictericia es indicativa de una causa de obstrucción que no son cálculos biliares (ya que la litiasis crónica causa una vesícula fibrótica e incapaz de distenderse). Es altamente sugestivo de cáncer de la cabeza del páncreas o colangiocarcinoma distal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿En qué porción anatómica de la glándula pancreática se localizan aproximadamente el 70-75% de los adenocarcinomas ductales pancreáticos, lo que explica por qué debutan tempranamente con ictericia obstructiva?",
+        "options": [
+          "Cabeza del páncreas",
+          "Cuerpo del páncreas",
+          "Cola del páncreas",
+          "Proceso uncinado"
+        ],
+        "answerIndex": 0,
+        "explanation": "Aproximadamente el 75% de los cánceres de páncreas se originan en la cabeza de la glándula. Al crecer, comprimen u obstruyen rápidamente la porción intrapancreática del conducto colédoco, provocando la clásica \"ictericia indolora\" progresiva. Los tumores del cuerpo y la cola crecen silentes y suelen diagnosticarse en etapas metastásicas o irresecables porque no causan ictericia temprana, manifestándose solo con dolor de espalda sordo y pérdida de peso.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tras una tomografía trifásica de páncreas que confirma una masa en la cabeza del páncreas de 3 cm, sin invasión al tronco celíaco ni a la arteria mesentérica superior, y sin metástasis hepáticas, el paciente se considera resecable. ¿Cuál es el nombre del complejo procedimiento quirúrgico curativo de elección para los tumores de la cabeza del páncreas?",
+        "options": [
+          "Pancreatectomía distal con esplenectomía",
+          "Procedimiento de Puestow (Pancreatoyeyunostomía lateral)",
+          "Pancreatoduodenectomía cefálica (Operación de Whipple)",
+          "Colecistectomía radical con resección del colédoco"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Operación de Whipple (Pancreatoduodenectomía cefálica) es el único tratamiento con potencial curativo para el cáncer de la cabeza del páncreas. Debido a que el duodeno, la cabeza del páncreas y el colédoco comparten irrigación, se debe resecar en bloque: la cabeza del páncreas, el duodeno completo, la vía biliar distal, la vesícula biliar y, en la técnica clásica, el antro gástrico, reconstruyendo después el tránsito digestivo, biliar y pancreático (yeyunostomías).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "subtema": "CATARATA",
+    "difficulty": "media",
+    "case": "Femenina de 75 años, diabética e hipertensa de larga evolución. Acude a la consulta oftalmológica por presentar disminución progresiva y bilateral de la agudeza visual a lo largo de los últimos 2 años. Refiere que no presenta dolor, pero nota que los colores se ven \"desteñidos\" o amarillentos, y tiene gran dificultad para conducir de noche debido a que las luces de los autos en sentido contrario le provocan deslumbramiento intenso (halos). A la exploración oftalmológica, las pupilas reaccionan normalmente a la luz. Al utilizar el oftalmoscopio directo, el médico nota que el reflejo rojo retiniano está significativamente disminuido en ambos ojos, observándose una opacidad blanquecina central detrás de la pupila.",
+    "questions": [
+      {
+        "question": "De acuerdo con la epidemiología mundial, la presentación clínica indolora, progresiva, y los hallazgos a la exploración, ¿cuál es la causa número uno de ceguera reversible en el mundo que presenta esta paciente?",
+        "options": [
+          "Glaucoma primario de ángulo abierto",
+          "Degeneración macular asociada a la edad (DMAE)",
+          "Catarata senil",
+          "Retinopatía diabética proliferativa"
+        ],
+        "answerIndex": 2,
+        "explanation": "La catarata (opacificación progresiva del cristalino) es la principal causa de ceguera reversible a nivel mundial. La variedad senil es la más común. Clásicamente causa una pérdida visual lenta, indolora, alteración en la percepción de los colores, \"visión en niebla\", deslumbramiento nocturno y, al examen físico, oscurecimiento o ausencia del reflejo rojo del fondo de ojo. El Glaucoma y la Retinopatía Diabética son causas de ceguera irreversible.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC, para recuperar la función visual de la paciente de forma definitiva, ¿cuál es la técnica quirúrgica de elección actual por ser mínimamente invasiva y tener la recuperación más rápida?",
+        "options": [
+          "Extracción extracapsular manual del cristalino",
+          "Facoemulsificación con implante de lente intraocular plegable",
+          "Extracción intracapsular con crioterapia",
+          "Aplicación de láser Nd:YAG exclusivamente"
+        ],
+        "answerIndex": 1,
+        "explanation": "La facoemulsificación asistida por ultrasonido es el estándar de oro en cirugía de catarata. Permite pulverizar y aspirar el cristalino opaco a través de una incisión corneal milimétrica (< 3 mm), tras lo cual se inserta un lente intraocular (LIO) plegable artificial en el saco capsular intacto. No requiere suturas en la mayoría de los casos y permite una rehabilitación visual casi inmediata. El láser Nd:YAG se usa meses/años después si hay opacificación de la cápsula posterior (catarata secundaria).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P3",
+    "subtema": "TRAUMA PEDIÁTRICO",
+    "difficulty": "baja",
+    "case": "Escolar masculino de 8 años es traído a la sala de urgencias tras caer de un árbol desde aproximadamente 3 metros de altura, golpeándose el abdomen contra una rama gruesa. A su ingreso, el niño se encuentra asustado, pero está consciente (Glasgow 15). Sus signos vitales muestran una FC de 105 lpm y una TA de 100/65 mmHg (hemodinámicamente completamente estable para su edad). Presenta dolor en el hipocondrio izquierdo. La tomografía de abdomen contrastada revela una laceración esplénica Grado III, con un pequeño hematoma subcapsular, sin evidencia de extravasación activa de contraste (blush) ni neumoperitoneo.",
+    "questions": [
+      {
+        "question": "De acuerdo con los principios del ATLS para el manejo del trauma abdominal cerrado en la población pediátrica, ¿cuál es la conducta terapéutica de elección inicial para este paciente con lesión de órgano sólido (bazo) que se encuentra hemodinámicamente estable?",
+        "options": [
+          "Laparotomía exploradora de urgencia para esplenectomía",
+          "Manejo no operatorio (MNO) con ingreso a Unidad de Cuidados Intensivos, monitorización estrecha, reposo absoluto y determinaciones seriadas de hemoglobina",
+          "Angioembolización esplénica preventiva en hemodinamia",
+          "Esplenorrafia abierta inmediata"
+        ],
+        "answerIndex": 1,
+        "explanation": "Una de las diferencias más importantes entre el trauma de adultos y el trauma pediátrico es que en los niños, el Manejo No Operatorio (MNO) es el estándar de oro absoluto para las lesiones cerradas de órganos sólidos (hígado, bazo, riñón), independientemente del grado tomográfico de la lesión, siempre y cuando el niño se mantenga hemodinámicamente estable. La cirugía se reserva estrictamente para niños con choque refractario a la reanimación hídrica o con datos de víscera hueca perforada.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "subtema": "LUXACIÓN DE HOMBRO",
+    "difficulty": "media",
+    "case": "Masculino de 24 años de edad, jugador de rugby, sufre una caída apoyando la mano derecha contra el suelo mientras su brazo se encontraba en extensión, abducción y rotación externa. Es traído a urgencias con dolor intenso en el hombro derecho y limitación funcional absoluta. A la exploración física, el paciente sostiene su brazo derecho en ligera abducción y rotación externa. Se observa una pérdida de la redondez normal del hombro, con prominencia del acromion (signo de la \"charretera\") y se palpa la cabeza humeral en la región anterior, por debajo de la clavícula.",
+    "questions": [
+      {
+        "question": "De acuerdo con la epidemiología y la presentación clínica clásica, ¿cuál es el diagnóstico traumatológico específico de este paciente?",
+        "options": [
+          "Luxación acromioclavicular",
+          "Luxación posterior de hombro (glenohumeral)",
+          "Luxación anterior de hombro (glenohumeral)",
+          "Fractura del cuello quirúrgico del húmero"
+        ],
+        "answerIndex": 2,
+        "explanation": "La articulación glenohumeral es la que se luxa con mayor frecuencia en el cuerpo humano. La luxación anterior representa más del 95% de los casos. Su mecanismo clásico es una caída con el brazo en abducción y rotación externa. Clínicamente se caracteriza por el brazo fijo en rotación externa ligera y el signo de la charretera (hombro \"cuadrado\" por la ausencia de la cabeza humeral en la cavidad glenoidea).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Antes de intentar cualquier maniobra de reducción cerrada, es obligatorio realizar una exploración neurológica minuciosa. ¿Cuál es la estructura nerviosa que se lesiona con mayor frecuencia en esta luxación específica, provocando pérdida de la sensibilidad en la cara lateral del hombro (zona del deltoides)?",
+        "options": [
+          "Nervio mediano",
+          "Nervio radial",
+          "Nervio musculocutáneo",
+          "Nervio axilar (circunflejo)"
+        ],
+        "answerIndex": 3,
+        "explanation": "El nervio axilar (o circunflejo) discurre íntimamente alrededor del cuello quirúrgico del húmero y es la estructura neurológica más frecuentemente estirada o lesionada en una luxación anterior de hombro. Su lesión (neuropraxia) se evalúa clínicamente buscando hipoestesia o anestesia en el \"parche\" de piel sobre el músculo deltoides, y posteriormente con debilidad para la abducción del brazo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P2",
+    "subtema": "CÁNCER UROTELIAL Y TESTICULAR",
+    "difficulty": "baja",
+    "case": "Masculino de 28 años, previamente sano y asintomático. Acude a la consulta externa de urología refiriendo haber palpado una \"bolita\" en su testículo derecho mientras se bañaba hace 3 semanas. Menciona que no le causa ningún dolor, solo una sensación de \"pesadez\" en el escroto. A la exploración física, se palpa una masa sólida, pétrea, indolora y que no transilumina, dependiente directamente del parénquima del testículo derecho. El epidídimo es normal. Se solicita un ultrasonido testicular que confirma una masa hipoecoica sólida intratesticular y muy vascularizada.",
+    "questions": [
+      {
+        "question": "Ante la alta sospecha de una neoplasia testicular en un adulto joven, la GPC indica la toma de marcadores tumorales séricos (Alfa-fetoproteína, Fracción beta de la HGC y Deshidrogenasa Láctica) y un abordaje quirúrgico inmediato. ¿Cuál es la vía de abordaje estrictamente contraindicada para extirpar u obtener tejido de este testículo por el altísimo riesgo de diseminación linfática aberrante hacia los ganglios inguinales?",
+        "options": [
+          "Orquiectomía radical por vía inguinal",
+          "Biopsia incisional por vía transescrotal",
+          "Abordaje retroperitoneal laparoscópico",
+          "Punción con aguja fina guiada por ultrasonido"
+        ],
+        "answerIndex": 1,
+        "explanation": "El abordaje transescrotal (cualquier incisión o punción a través de la piel del escroto) está absolutamente contraindicado en sospecha de cáncer testicular. Al romper las barreras anatómicas, se altera el drenaje linfático natural (que va hacia los ganglios retroperitoneales) y se siembra el tumor en la piel del escroto y los ganglios inguinales, empeorando drásticamente el pronóstico. El abordaje diagnóstico y terapéutico estándar de oro es la orquiectomía radical por vía inguinal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA CÁMARA POSTERIOR",
+    "subtema": "RETINOPATÍA DIABÉTICA",
+    "difficulty": "alta",
+    "case": "Femenina de 60 años, con diagnóstico de diabetes mellitus tipo 2 de 18 años de evolución, tratada con insulina NPH, con mal apego al tratamiento (HbA1c reciente de 10.5%). Acude a la consulta oftalmológica por disminución progresiva de la agudeza visual en ambos ojos. A la exploración del fondo de ojo bajo dilatación pupilar, el oftalmólogo describe múltiples microaneurismas, hemorragias intrarretinianas \"en flama\" y exudados duros amarillentos en el polo posterior. Además, se observa claramente la presencia de una red de vasos sanguíneos delgados y tortuosos creciendo sobre la superficie del disco óptico (papila) y extendiéndose hacia el humor vítreo.",
+    "questions": [
+      {
+        "question": "De acuerdo con los hallazgos descritos, ¿cuál es la clasificación exacta de la enfermedad ocular de la paciente?",
+        "options": [
+          "Retinopatía diabética no proliferativa leve",
+          "Retinopatía diabética no proliferativa severa",
+          "Retinopatía diabética proliferativa",
+          "Edema macular clínicamente significativo aislado"
+        ],
+        "answerIndex": 2,
+        "explanation": "La clave para clasificar la retinopatía diabética como proliferativa es la presencia de neovascularización (vasos de neoformación en la papila o en otras partes de la retina). Estos nuevos vasos crecen como respuesta a la isquemia retiniana crónica severa; son extremadamente frágiles y tienen un altísimo riesgo de sangrar (hemorragia vítrea) y causar desprendimiento de retina traccional.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Debido al inminente riesgo de ceguera por complicaciones fibrovasculares, ¿cuál es el tratamiento estándar de oro, ablativo, que se debe realizar de manera prioritaria para inducir la regresión de estos nuevos vasos anormales?",
+        "options": [
+          "Facoemulsificación con lente intraocular",
+          "Inyección intravítrea exclusiva de corticosteroides (Triamcinolona)",
+          "Panfotocoagulación con láser de argón",
+          "Vitrectomía vía pars plana"
+        ],
+        "answerIndex": 2,
+        "explanation": "La panfotocoagulación retiniana (aplicación de láser térmico) es el tratamiento de elección para la retinopatía diabética proliferativa. El láser destruye controladamente la retina periférica isquémica, lo que disminuye drásticamente la demanda de oxígeno del ojo y detiene la producción de Factor de Crecimiento Endotelial Vascular (VEGF), provocando que los neovasos se atrofien y desaparezcan, salvando así la visión central (mácula).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Independientemente del estadio (proliferativo o no proliferativo), ¿cuál es la complicación específica de esta enfermedad que representa la causa más frecuente de disminución de la agudeza visual central en los pacientes diabéticos?",
+        "options": [
+          "Hemorragia vítrea masiva",
+          "Edema macular diabético",
+          "Catarata subcapsular posterior",
+          "Desprendimiento de retina regmatógeno"
+        ],
+        "answerIndex": 1,
+        "explanation": "Aunque la neovascularización y la hemorragia vítrea son devastadoras, la causa más frecuente de pérdida de la visión útil (central, fina, para leer) en el paciente diabético es el Edema Macular Diabético. Este ocurre por la acumulación de líquido y lípidos (exudados duros) en la mácula debido a la ruptura de la barrera hematorretiniana (aumento de la permeabilidad vascular por la hiperglucemia crónica).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
+    "subtema": "LESIONES MENISCALES / LIGAMENTOS RODILLA",
+    "difficulty": "media",
+    "case": "Masculino de 20 años, jugador aficionado de fútbol rápido. Acude a urgencias dos horas después de sufrir una lesión en la rodilla izquierda. Refiere que, al correr a gran velocidad e intentar hacer un cambio brusco de dirección (pivote) con el pie izquierdo firmemente apoyado en el suelo (mecanismo de valgo y rotación externa), sintió que la rodilla le \"falló\" y escuchó un chasquido fuerte (pop). El paciente fue incapaz de continuar jugando. A su ingreso, la rodilla izquierda presenta un derrame articular (aumento de volumen) masivo y a tensión que se desarrolló en menos de 2 horas.",
+    "questions": [
+      {
+        "question": "Por la cinemática del trauma (pivote con pie fijo), el chasquido audible y el desarrollo rápido de una hemartrosis a tensión (sangrado intraarticular en < 2 horas), ¿cuál es la estructura anatómica intraarticular clásicamente lesionada?",
+        "options": [
+          "Ligamento colateral medial (tibial)",
+          "Menisco medial",
+          "Tendón rotuliano",
+          "Ligamento cruzado anterior (LCA)"
+        ],
+        "answerIndex": 3,
+        "explanation": "La historia de una lesión sin contacto por torsión/pivote, acompañada de un sonido (\"pop\") y seguida de una hemartrosis rápida (inflamación masiva en las primeras 1-2 horas por ruptura de la arteria genicular media que lo irriga), es el cuadro patognomónico clásico de la ruptura del Ligamento Cruzado Anterior (LCA). Las lesiones de menisco, al ser cartílago avascular, causan derrames (líquido sinovial) de manera mucho más lenta (12 a 24 horas).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Durante la exploración física en urgencias (una vez que se ha drenado un poco la hemartrosis para permitir la flexión), el médico busca documentar la inestabilidad anterior de la rodilla. ¿Cuál es la prueba clínica exploratoria que se considera la más sensible (mayor precisión diagnóstica) para evaluar la integridad del ligamento cruzado anterior?",
+        "options": [
+          "Prueba del Cajón Anterior a 90° de flexión",
+          "Prueba de Lachman (Cajón anterior a 20°-30° de flexión)",
+          "Prueba de McMurray",
+          "Prueba del Estrés en Valgo (Bostezo medial)"
+        ],
+        "answerIndex": 1,
+        "explanation": "La Prueba de Lachman (desplazamiento anterior de la tibia con la rodilla flexionada a 20-30 grados) es la maniobra clínica más sensible y específica para detectar la ruptura del LCA, superando ampliamente a la prueba del cajón anterior clásico (a 90°), ya que a 30 grados se elimina el bloqueo secundario que ejercen los meniscos y se relaja la musculatura isquiotibial espástica, aislando mecánicamente la función del ligamento cruzado anterior.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA BILIAR",
+    "subtema": "COLANGITIS AGUDA",
+    "difficulty": "media",
+    "case": "Femenina de 65 años, con antecedente de coledocolitiasis manejada de forma conservadora. Ingresa a la sala de choque en ambulancia por presentar un cuadro de franco deterioro neurológico (estupor). Sus familiares refieren que en los últimos dos días presentó fiebre alta, temblores (escalofríos) y dolor en el cuadrante superior derecho del abdomen, notándola \"amarilla\" desde ayer. A su ingreso, los signos vitales revelan: T 39.5°C, FC 125 lpm, FR 28 rpm y TA 80/50 mmHg. A la exploración, presenta ictericia generalizada marcada. Sus laboratorios de urgencia muestran una leucocitosis de 22,000/mm³ con 90% de neutrófilos, hiperbilirrubinemia directa severa y alteración de las pruebas de función hepática.",
+    "questions": [
+      {
+        "question": "La paciente presenta un cuadro clásico de infección grave y purulenta del tracto biliar (Colangitis aguda ascendente). Por sus manifestaciones clínicas de fiebre, ictericia, dolor, hipotensión (choque) y alteraciones del estado mental, la paciente reúne los 5 criterios de un epónimo clásico que indica colangitis severa supurativa (Grado III según Tokio). ¿Cuál es este epónimo?",
+        "options": [
+          "Tríada de Charcot",
+          "Tríada de Rigler",
+          "Péntada de Reynolds",
+          "Signos de Trousseau y Chvostek"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Péntada de Reynolds indica una colangitis tóxica severa con sepsis de origen biliar, una verdadera urgencia letal. Se compone de la Tríada de Charcot (fiebre/escalofríos, ictericia y dolor en hipocondrio derecho) sumada a dos signos de inestabilidad hemodinámica y neurológica sistémica: Hipotensión arterial (choque distributivo) y Alteración del estado mental (confusión/estupor).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según las guías de Tokio y la GPC, además de la reanimación agresiva con líquidos y el inicio de antibióticos intravenosos de amplio espectro, ¿cuál es el procedimiento de intervención urgente e impostergable (idealmente en las primeras 12 a 24 horas) para salvar la vida de la paciente?",
+        "options": [
+          "Drenaje y descompresión de la vía biliar (mediante CPRE o drenaje percutáneo)",
+          "Colecistectomía laparoscópica temprana",
+          "Exploración abierta de vías biliares (Coledocotomía) exclusiva",
+          "Hemodiálisis de urgencia"
+        ],
+        "answerIndex": 0,
+        "explanation": "En una colangitis aguda severa (Grado III, Péntada de Reynolds), la bilis infectada a presión (\"pus a tensión\" en la vía biliar) entra masivamente al torrente sanguíneo. Los antibióticos solos no pueden curar la infección sin drenaje físico. El tratamiento salvador es el drenaje urgente de la vía biliar. Actualmente, la Colangiopancreatografía Retrógrada Endoscópica (CPRE) es el método de elección por ser menos invasivo y permitir tanto el drenaje (esfinterotomía/stent) como la extracción del lito causal. La cirugía abierta en estos pacientes gravemente sépticos tiene una altísima mortalidad.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA ESOFÁGICA",
+    "subtema": "PERFORACIÓN ESOFÁGICA (SÍNDROME DE BOERHAAVE)",
+    "difficulty": "alta",
+    "case": "Masculino de 45 años, con antecedente de alcoholismo intenso. Es traído a urgencias tras asistir a un banquete donde ingirió grandes cantidades de comida y alcohol. Sus familiares refieren que el paciente comenzó con episodios de vómito violento y repetitivo (arcadas severas). Durante uno de estos episodios, el paciente gritó y se llevó las manos al pecho, quejándose de un dolor torácico retroesternal de inicio súbito, desgarrador, que se irradia hacia la espalda y el cuello. A la exploración física, el paciente se encuentra diaforético, taquicárdico (125 lpm) y con dificultad respiratoria. A la palpación de la base del cuello y la región supraclavicular izquierda, se percibe una franca crepitación (enfisema subcutáneo).",
+    "questions": [
+      {
+        "question": "La presentación de este paciente conforma una tríada clínica clásica de esta urgencia gastrointestinal letal. ¿Qué nombre recibe la tríada compuesta por vómito repetitivo, dolor torácico súbito y enfisema subcutáneo cervical?",
+        "options": [
+          "Tríada de Borchardt",
+          "Tríada de Mackler",
+          "Tríada de Beck",
+          "Tríada de Charcot"
+        ],
+        "answerIndex": 1,
+        "explanation": "La Tríada de Mackler es patognomónica del Síndrome de Boerhaave (ruptura esofágica espontánea o barogénica post-emética). Consiste en vómito, dolor torácico bajo y enfisema subcutáneo. La presión intragástrica aumenta violentamente contra un esfínter esofágico superior cerrado, provocando un desgarro transmural (perforación completa), clásicamente en la pared posterolateral izquierda del tercio inferior del esófago.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Ante la altísima sospecha de perforación esofágica, ¿cuál es el estudio de imagen inicial de elección para confirmar el diagnóstico y localizar el sitio exacto de la fuga hacia el mediastino o la pleura?",
+        "options": [
+          "Endoscopia superior (Panendoscopia) de urgencia",
+          "Radiografía simple de tórax en inspiración",
+          "Esofagograma con medio de contraste hidrosoluble (Gastrografín)",
+          "Esofagograma con bario espeso"
+        ],
+        "answerIndex": 2,
+        "explanation": "El esofagograma con contraste hidrosoluble (como el Gastrografín) es el estudio inicial de elección. Confirma el diagnóstico al demostrar la extravasación del medio de contraste hacia el mediastino o la cavidad pleural. El bario está absolutamente contraindicado si se sospecha perforación, ya que si se fuga al mediastino o pleura causa una mediastinitis/pleuritis granulomatosa severa y letal. La endoscopia es peligrosa porque la insuflación de aire puede agrandar la perforación.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Considerando que la ruptura ocurrió hace apenas 3 horas (diagnóstico temprano) y el paciente presenta datos de sepsis inicial, ¿cuál es el abordaje terapéutico de elección según los estándares quirúrgicos?",
+        "options": [
+          "Observación, antibióticos intravenosos y ayuno prolongado",
+          "Toracotomía de urgencia con cierre primario de la perforación y drenaje mediastínico/pleural",
+          "Colocación endoscópica de un stent autoexpandible exclusivamente",
+          "Esofagectomía total de urgencia"
+        ],
+        "answerIndex": 1,
+        "explanation": "En las perforaciones esofágicas diagnosticadas tempranamente (idealmente en las primeras 24 horas), el tratamiento de elección es la intervención quirúrgica urgente (toracotomía) para realizar un cierre primario del defecto (sutura) reforzado con un colgajo de tejido sano (pleura, músculo intercostal, parche de Thal), acompañado de un lavado y drenaje exhaustivo del mediastino y la cavidad pleural para tratar la mediastinitis química y bacteriana. Getty Images",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
+    "subtema": "FRACTURA DE PELVIS",
+    "difficulty": "media",
+    "case": "Masculino de 30 años, trabajador de la construcción, ingresa a la sala de choque tras haber sido aplastado por una barda de concreto a nivel de la cadera. A su ingreso, el paciente se encuentra pálido, confuso, con TA de 70/40 mmHg, FC de 135 lpm y FR de 28 rpm. A la inspección, se observan escoriaciones severas en el hipogastrio y equimosis en el periné y escroto (Signo de Destot). A la compresión manual suave sobre ambas crestas ilíacas hacia afuera y hacia atrás, el médico percibe inestabilidad mecánica del anillo pélvico (\"pelvis en libro abierto\"). Se solicita una radiografía portátil de pelvis en la sala de choque.",
+    "questions": [
+      {
+        "question": "De acuerdo con los lineamientos del ATLS para el control de la hemorragia exanguinante en la evaluación primaria (Circulación), ¿cuál es la medida inicial, rápida y no invasiva que se debe aplicar inmediatamente en la sala de choque para estabilizar esta fractura pélvica inestable y reducir el volumen del espacio retroperitoneal?",
+        "options": [
+          "Colocación de fijadores externos de urgencia",
+          "Empaquetamiento pélvico preperitoneal (Packing)",
+          "Colocación de una faja o sábana pélvica compresiva a nivel de los trocánteres mayores",
+          "Angioembolización de las arterias ilíacas"
+        ],
+        "answerIndex": 2,
+        "explanation": "La aplicación de un dispositivo de compresión pélvica comercial (faja pélvica) o una simple sábana pélvica anudada fuertemente a nivel de los trocánteres mayores del fémur (no sobre las crestas ilíacas) es la medida salvadora inicial en el ATLS. Esto \"cierra\" el libro abierto, reduciendo el volumen intrapélvico, lo que favorece el taponamiento del sangrado retroperitoneal y estabiliza mecánicamente los fragmentos óseos mientras se prepara el tratamiento definitivo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Desde el punto de vista anatómico y fisiopatológico, ¿cuál es el origen principal (hasta en un 80-90% de los casos) del sangrado masivo retroperitoneal que lleva al choque hipovolémico en las fracturas de pelvis cerradas?",
+        "options": [
+          "Laceración de las arterias ilíacas internas",
+          "Ruptura intraperitoneal de la vejiga urinaria",
+          "Sangrado de los plexos venosos presacros y del hueso esponjoso fracturado",
+          "Desgarro de la arteria femoral común"
+        ],
+        "answerIndex": 2,
+        "explanation": "Aunque el sangrado arterial (ej. arteria pudenda interna o glútea) puede ocurrir y es muy letal, la inmensa mayoría de la sangre perdida en las fracturas de pelvis proviene del sangrado difuso de los ricos plexos venosos presacros y del propio hueso esponjoso fracturado. Este tipo de sangrado de baja presión es el que mejor responde a la reducción del volumen pélvico mediante la faja compresiva o fijación externa.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA INTESTINAL QX",
+    "subtema": "VÓLVULO DE SIGMOIDES",
+    "difficulty": "baja",
+    "case": "Masculino de 75 años, residente de un asilo de ancianos, con antecedente de estreñimiento crónico y uso habitual de laxantes. Es traído a urgencias por distensión abdominal masiva y progresiva de 3 días de evolución, ausencia de canalización de gases y dolor abdominal tipo cólico. A la exploración física, el abdomen está francamente globoso, muy timpánico a la percusión, sin datos de peritonitis (sin rebote ni rigidez). Se toma una radiografía simple de abdomen en bipedestación.",
+    "questions": [
+      {
+        "question": "La radiografía de abdomen revela una enorme asa de intestino grueso dilatada, en forma de \"U\" invertida, que nace de la fosa ilíaca izquierda y se dirige hacia el cuadrante superior derecho, con una línea central radiopaca. ¿Qué nombre recibe este clásico signo radiológico patognomónico del vólvulo de sigmoides?",
+        "options": [
+          "Signo de la \"manzana mordida\"",
+          "Signo del grano de café",
+          "Signo de la triple burbuja",
+          "Signo del collar de perlas"
+        ],
+        "answerIndex": 1,
+        "explanation": "El \"signo del grano de café\" (o signo del neumático inflado / omega de Tillaux) es la imagen radiológica clásica del vólvulo de sigmoides. El asa torcida del colon sigmoides se dilata masivamente llenándose de gas, y las paredes mediales de ambos segmentos del asa (el que sube y el que baja) se juntan en el centro, formando una línea radiopaca central que asemeja la hendidura de un grano de café. El tratamiento inicial de elección (si no hay datos de necrosis/peritonitis) es la descompresión endoscópica mediante rectosigmoidoscopia y colocación de una sonda rectal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA CÁMARA ANTERIOR",
+    "subtema": "ÚLCERA CORNEAL / QUERATITIS INFECCIOSA",
+    "difficulty": "media",
+    "case": "Femenina de 22 años, usuaria habitual de lentes de contacto blandos (refiere que a menudo duerme con ellos puestos y los lava con agua del grifo). Acude a urgencias oftalmológicas por dolor ocular izquierdo muy intenso, fotofobia extrema, lagrimeo y disminución severa de la visión de 24 horas de evolución. A la exploración en la lámpara de hendidura, presenta hiperemia conjuntival severa. En el centro de la córnea se observa un infiltrado estromal denso, blanquecino-grisáceo, que tiñe positivo con la fluoresceína (úlcera). Además, se observa un nivel de material purulento blanquecino sedimentado en el fondo de la cámara anterior (hipopión).",
+    "questions": [
+      {
+        "question": "Considerando el importante factor de riesgo (uso inadecuado de lentes de contacto y exposición a agua no estéril), la evolución fulminante y los hallazgos clínicos de queratitis ulcerativa con hipopión, ¿cuál es el agente bacteriano gramnegativo más temido e incriminado en este tipo particular de pacientes, conocido por causar perforación corneal rápida?",
+        "options": [
+          "Staphylococcus epidermidis",
+          "Acanthamoeba spp.",
+          "Pseudomonas aeruginosa",
+          "Virus del Herpes Simple tipo 1"
+        ],
+        "answerIndex": 2,
+        "explanation": "Aunque el Staphylococcus aureus y los estafilococos coagulasa negativos son causas comunes de queratitis en la población general, la infección por Pseudomonas aeruginosa es clásicamente y fuertemente asociada al uso de lentes de contacto (especialmente si hay mala higiene o contacto con agua). Es una bacteria extremadamente agresiva que produce proteasas capaces de \"derretir\" el estroma corneal y perforar el ojo en cuestión de 24 a 48 horas si no se instilan antibióticos tópicos fortificados (como fluoroquinolonas o aminoglucósidos) de urgencia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "MORDEDURAS Y PICADURAS",
+    "subtema": "MORDEDURAS DE MAMÍFEROS Y RABIA",
+    "difficulty": "alta",
+    "case": "Escolar masculino de 8 años es llevado a urgencias por sus padres tras haber sido atacado sorpresivamente por un perro callejero (desconocido y que huyó del lugar) mientras el niño jugaba en el parque. El paciente presenta una herida lacerante de 4 cm de longitud, profunda y anfractuosa, localizada en el labio superior y la mejilla derecha, con sangrado activo.",
+    "questions": [
+      {
+        "question": "Una vez estabilizado el paciente, de acuerdo con la GPC mexicana y los protocolos de profilaxis, ¿cuál es el manejo inicial obligatorio para el cuidado local de la herida antes de aplicar cualquier inmunización?",
+        "options": [
+          "Cierre primario inmediato de la herida con suturas de seda para minimizar la cicatriz facial",
+          "Aplicación exclusiva de alcohol o yodo sin lavado mecánico",
+          "Lavado mecánico exhaustivo con abundante agua y jabón, cepillado suave y dejar la herida abierta (cierre por segunda intención)",
+          "Infiltración de anestésicos locales con epinefrina alrededor de la herida"
+        ],
+        "answerIndex": 2,
+        "explanation": "La piedra angular en el manejo de cualquier mordedura de mamífero (por riesgo de rabia y otras bacterias como Pasteurella multocida o Capnocytophaga canimorsus) es el lavado profuso e inmediato con agua y jabón. El virus de la rabia es altamente sensible a los detergentes. Por protocolo general, las heridas por mordedura se consideran sucias y no deben suturarse de primera intención (cierre primario), ya que cerrar la herida sella las bacterias en el interior y aumenta drásticamente el riesgo de un absceso o infección severa. Se manejan con cierre por segunda intención o cierre primario retardado.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la Norma Oficial Mexicana, evaluando la exposición al virus de la rabia, este caso se clasifica como una exposición de riesgo grave (debido a que la mordedura es en la cabeza/cara, región altamente inervada y cercana al SNC, por un animal desconocido). ¿Cuál es el esquema de profilaxis antirrábica post-exposición (PEP) estrictamente indicado para este niño?",
+        "options": [
+          "Vacuna antirrábica celular (4 a 5 dosis) EXCLUSIVAMENTE",
+          "Inmunoglobulina antirrábica humana (infiltrada en la herida) MÁS esquema completo de Vacuna antirrábica celular (4 a 5 dosis)",
+          "Observar al niño durante 10 días y vacunar solo si presenta síntomas",
+          "Únicamente profilaxis antitetánica y antibióticos orales (Amoxicilina/Clavulánico)"
+        ],
+        "answerIndex": 1,
+        "explanation": "Cualquier exposición considerada \"grave\" (mordeduras múltiples, profundas, en cabeza, cara, cuello, o genitales, causadas por animales silvestres o perros/gatos sospechosos que no pueden ser observados) amerita profilaxis pasivo-activa simultánea inmediata: Inmunoglobulina antirrábica humana (HRIG) (la mayor cantidad posible infiltrada dentro y alrededor de la herida, y el resto vía IM) MÁS la primera dosis de la vacuna antirrábica. La inmunoglobulina neutraliza el virus localmente de inmediato mientras el cuerpo tarda en formar sus propios anticuerpos gracias a la vacuna.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "INTRODUCCIÓN A CIRUGÍA Y CIRUGÍA ABDOMINAL",
+    "subtema": "RESPUESTA METABÓLICA AL TRAUMA",
+    "difficulty": "media",
+    "case": "Masculino de 45 años, ingresado en la Unidad de Cuidados Intensivos en su tercer día postoperatorio tras una laparotomía exploradora por trauma abdominal cerrado complejo (lesión hepática grado IV). El paciente se encuentra extubado pero febril (38.2°C), taquicárdico (110 lpm) y con una glucemia capilar de 180 mg/dL a pesar de no ser diabético. Sus laboratorios muestran un balance nitrogenado marcadamente negativo.",
+    "questions": [
+      {
+        "question": "De acuerdo con las fases clásicas descritas por Cuthbertson para la respuesta metabólica al trauma, ¿en qué fase fisiopatológica se encuentra este paciente, la cual inicia aproximadamente 3 a 5 días después del trauma, alcanza su pico máximo a la segunda semana y se caracteriza por hipermetabolismo, resistencia a la insulina y catabolismo proteico acelerado?",
+        "options": [
+          "Fase Ebb (Fase de choque o reflujo)",
+          "Fase anabólica de convalecencia",
+          "Fase Flow (Fase de flujo o hiperdinámica)",
+          "Fase de resolución tisular"
+        ],
+        "answerIndex": 2,
+        "explanation": "La respuesta metabólica al trauma de Cuthbertson se divide en dos fases principales: 1) La fase Ebb (reflujo o choque), que ocurre en las primeras horas y se caracteriza por hipoperfusión, disminución del gasto cardíaco y de la temperatura; y 2) La fase Flow (flujo), que inicia días después, mediada por catecolaminas, cortisol y glucagón. La fase Flow tiene una subfase catabólica (en la que está el paciente: hipermetabolismo, proteólisis, resistencia a la insulina para proveer glucosa al cerebro y tejidos heridos) y una subfase anabólica (semanas después, de reconstrucción tisular).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "QUEMADURAS / GOLPE DE CALOR / HIPOTERMIA",
+    "subtema": "GOLPE DE CALOR",
+    "difficulty": "alta",
+    "case": "Masculino de 28 años, atleta aficionado, es traído a urgencias en ambulancia tras colapsar repentinamente mientras corría un maratón al mediodía con una temperatura ambiental de 38°C y alta humedad. Los paramédicos reportan que lo encontraron convulsionando. A su ingreso en la sala de choque, el paciente se encuentra en estado de coma (Glasgow 5), francamente taquicárdico (140 lpm) e hipotenso. A la palpación, su piel está extremadamente caliente y sorprendentemente seca (anhidrosis). Su temperatura central medida con termómetro rectal es de 41.5°C.",
+    "questions": [
+      {
+        "question": "La presentación clínica del paciente, caracterizada por la elevación extrema de la temperatura corporal central (> 40°C) acompañada fundamentalmente de disfunción grave del Sistema Nervioso Central (coma, convulsiones), establece el diagnóstico de golpe de calor (Heat Stroke). Desde el punto de vista fisiopatológico, ¿cuál es el mecanismo principal que ha fracasado en este paciente, llevándolo a la anhidrosis?",
+        "options": [
+          "Vasoconstricción cutánea severa",
+          "Pérdida de la capacidad de termorregulación hipotalámica y agotamiento de las glándulas sudoríparas",
+          "Sobreproducción de pirógenos endógenos (Interleucina-1)",
+          "Liberación masiva de calcio del retículo sarcoplásmico muscular"
+        ],
+        "answerIndex": 1,
+        "explanation": "El golpe de calor clásico o por ejercicio por esfuerzo excesivo (Exertional Heat Stroke) ocurre cuando los mecanismos disipadores de calor del cuerpo se ven superados y el centro termorregulador del hipotálamo fracasa. A diferencia del \"agotamiento por calor\" (donde el paciente suda profusamente y está lúcido), en el golpe de calor severo las glándulas sudoríparas se agotan (piel seca y caliente) y las proteínas celulares comienzan a desnaturalizarse, siendo el SNC el órgano más vulnerable (lo que explica el coma o delirio inmediato).",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la medida terapéutica inicial de elección y más efectiva que debe instituirse inmediatamente en la sala de choque para reducir la morbimortalidad de este paciente?",
+        "options": [
+          "Enfriamiento físico activo rápido (ej. inmersión en agua helada o rociar con agua tibia y usar ventiladores para evaporación)",
+          "Administración intravenosa de Paracetamol a dosis tope",
+          "Hemodiálisis de urgencia",
+          "Administración de Dantroleno sódico intravenoso"
+        ],
+        "answerIndex": 0,
+        "explanation": "El tratamiento salvador del golpe de calor es el enfriamiento activo y rápido de la superficie corporal para bajar la temperatura central por debajo de 39°C en los primeros 30 a 60 minutos. Las técnicas de enfriamiento por evaporación (rociar agua y abanicar) o inmersión son el estándar. Los antipiréticos (Paracetamol, AINEs) están completamente contraindicados y son inútiles, ya que la hipertermia no está mediada por prostaglandinas a nivel hipotalámico como ocurre en la fiebre infecciosa, sino por un fallo físico del termostato, y los AINEs pueden empeorar el daño hepático y renal inducido por el calor.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P1",
+    "subtema": "INCONTINENCIA URINARIA",
+    "difficulty": "baja",
+    "case": "Femenina de 55 años, con antecedente de 4 partos vaginales (multípara) y menopausia a los 50 años. Acude a su clínica de medicina familiar por un problema que le causa gran vergüenza y afecta su calidad de vida. Refiere que desde hace 2 años presenta escapes involuntarios de orina, los cuales ocurren de forma predecible y exclusiva cuando tose, estornuda, se ríe a carcajadas o carga bolsas pesadas del supermercado. Niega sentir un \"deseo imperioso y repentino\" de orinar antes de los escapes, no tiene disuria ni sensación de vaciamiento incompleto. A la exploración ginecológica en posición de litotomía, se le pide a la paciente que tosa con la vejiga llena, observándose la salida evidente de orina a través del meato uretral.",
+    "questions": [
+      {
+        "question": "De acuerdo con la presentación clínica de escapes de orina asociados únicamente al aumento de la presión intraabdominal, ¿cuál es el diagnóstico urodinámico y clínico específico de la paciente?",
+        "options": [
+          "Incontinencia urinaria de urgencia (Vejiga hiperactiva)",
+          "Incontinencia urinaria por rebosamiento",
+          "Incontinencia urinaria de esfuerzo (estrés)",
+          "Incontinencia urinaria mixta"
+        ],
+        "answerIndex": 2,
+        "explanation": "La incontinencia urinaria de esfuerzo se define como la pérdida involuntaria de orina sincronizada con el esfuerzo físico, tos o estornudo. Fisiopatológicamente, ocurre por hipermovilidad uretral o deficiencia del esfínter uretral intrínseco, comúnmente secundaria al debilitamiento del suelo pélvico tras múltiples partos vaginales y la caída de estrógenos en la menopausia. Esto difiere de la incontinencia de urgencia, donde la paciente siente un deseo incontrolable de orinar por contracciones involuntarias del músculo detrusor.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC, en una paciente con incontinencia urinaria de esfuerzo leve a moderada, ¿cuál es el tratamiento conservador de primera línea que debe ofrecerse antes de considerar cualquier intervención farmacológica o quirúrgica?",
+        "options": [
+          "Prescripción de Oxibutinina oral",
+          "Ejercicios de entrenamiento de la musculatura del suelo pélvico (Ejercicios de Kegel) diarios por al menos 3 meses",
+          "Colocación de pesario vaginal permanente",
+          "Electroestimulación del nervio tibial posterior"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los Ejercicios de Kegel (entrenamiento muscular del suelo pélvico) son el tratamiento conservador de elección inicial y la recomendación de mayor grado en las guías para la incontinencia de esfuerzo. Fortalecen el músculo elevador del ano y mejoran el soporte mecánico de la uretra. Los antimuscarínicos (como la Oxibutinina) son el tratamiento de elección para la incontinencia de urgencia, pero son ineficaces en la de esfuerzo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si la paciente no presenta mejoría tras 6 meses de rehabilitación del suelo pélvico rigurosa y la incontinencia afecta severamente su calidad de vida, ¿cuál es el procedimiento quirúrgico considerado actualmente el estándar de oro (por su alta tasa de éxito y ser mínimamente invasivo)?",
+        "options": [
+          "Suspensión retropúbica de Burch abierta",
+          "Colocación de esfínter urinario artificial",
+          "Colocación de cinta o cabestrillo mediouretral libre de tensión (TVT o TOT)",
+          "Inyección periuretral de toxina botulínica"
+        ],
+        "answerIndex": 2,
+        "explanation": "La colocación de cintas o cabestrillos sintéticos mediouretrales libres de tensión (TVT: Transvaginal Tape, o TOT: Transobturator Tape) es el procedimiento quirúrgico de elección (estándar de oro) actual para la incontinencia urinaria de esfuerzo anatómica. La malla proporciona una \"hamaca\" de soporte firme bajo la uretra media, impidiendo que esta descienda y se abra durante los aumentos de presión abdominal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "HIPOACUSIA Y VÉRTIGO",
+    "subtema": "ENFERMEDAD DE MENIERE",
+    "difficulty": "media",
+    "case": "Masculino de 48 años acude a la consulta de otorrinolaringología refiriendo episodios muy incapacitantes de vértigo rotatorio severo, los cuales tienen una duración de entre 2 y 4 horas y se acompañan de náuseas y vómito. El paciente menciona que antes y durante el ataque vertiginoso, experimenta una sensación de presión intensa (\"plenitud ótica\") en el oído izquierdo, seguida de un zumbido grave (\"como un motor\") y una notoria disminución de su capacidad para escuchar por ese mismo oído. Una vez que el episodio de vértigo cede, la audición se recupera parcialmente, pero nota que con el paso de los meses y tras varios ataques, su audición izquierda ha empeorado permanentemente.",
+    "questions": [
+      {
+        "question": "La presentación intermitente de la tríada clásica (vértigo episódico prolongado, acúfeno y plenitud ótica, e hipoacusia fluctuante) es patognomónica de la Enfermedad de Ménière. Desde el punto de vista fisiopatológico y anatomopatológico temporal, ¿cuál es la alteración subyacente en el oído interno que desencadena esta sintomatología?",
+        "options": [
+          "Desprendimiento de los otolitos de la mácula del utrículo",
+          "Infección viral aguda del nervio vestibular",
+          "Hidropesía endolinfática (aumento del volumen y presión de la endolinfa en el laberinto membranoso)",
+          "Isquemia transitoria de la arteria auditiva interna"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Enfermedad de Ménière es un síndrome idiopático causado por la hidropesía endolinfática (endolymphatic hydrops). Existe una falla en la reabsorción del líquido endolinfático en el saco endolinfático, lo que provoca que el laberinto membranoso se hinche a tensión y periódicamente se rompa, mezclando endolinfa (rica en potasio) con perilinfa. Esto paraliza el nervio cocleovestibular provocando el vértigo intenso de horas de duración y la hipoacusia neurosensorial. El vértigo posicional (VPPB) es por otolitos y dura solo segundos.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para confirmar el daño audiológico, se solicita una audiometría tonal pura. En las etapas tempranas de la enfermedad de Ménière, ¿qué patrón de hipoacusia neurosensorial es el hallazgo característico en el oído afectado?",
+        "options": [
+          "Hipoacusia exclusivamente en las frecuencias agudas (4000 a 8000 Hz)",
+          "Hipoacusia de conducción pura con escotoma de Carhart",
+          "Hipoacusia neurosensorial unilateral que afecta predominantemente las frecuencias graves o bajas (250 a 1000 Hz)",
+          "Sordera súbita total plana"
+        ],
+        "answerIndex": 2,
+        "explanation": "Un hallazgo audiométrico clave de la enfermedad de Ménière temprana es la hipoacusia neurosensorial fluctuante en frecuencias bajas/graves (ascendente en la gráfica). A medida que la enfermedad progresa a lo largo de los años sin tratamiento, la pérdida auditiva se vuelve plana (afectando todas las frecuencias) y permanente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA CÁMARA POSTERIOR",
+    "subtema": "DEGENERACIÓN MACULAR RELACIONADA CON LA EDAD (DMAE)",
+    "difficulty": "media",
+    "case": "Masculino de 78 años, fumador activo (1 paquete al día durante 50 años). Acude a la consulta oftalmológica refiriendo que en los últimos dos años ha notado una \"mancha borrosa\" fija en el centro de su campo visual en ambos ojos, la cual le impide leer o reconocer los rostros de sus nietos. Menciona que no tiene problemas para caminar o ver por los lados de las habitaciones (visión periférica conservada).",
+    "questions": [
+      {
+        "question": "En el consultorio, el médico le presenta al paciente una cartilla cuadriculada con un punto negro en el centro y le pide que fije la mirada en el punto tapándose un ojo. El paciente refiere que las líneas rectas de la cuadrícula que rodean al punto negro \"se ven torcidas, onduladas y distorsionadas\". ¿Qué nombre recibe esta prueba clínica y cómo se llama el síntoma visual descrito?",
+        "options": [
+          "Prueba de Ishihara; discromatopsia",
+          "Rejilla de Amsler; metamorfopsia",
+          "Perimetría computarizada; escotoma centocecal",
+          "Prueba del agujero estenopeico; ambliopía"
+        ],
+        "answerIndex": 1,
+        "explanation": "La Rejilla de Amsler es la herramienta clínica de escritorio y de auto-tamizaje más útil para evaluar la función macular. El síntoma clásico de disfunción macular (como en la Degeneración Macular Relacionada con la Edad - DMAE) es la metamorfopsia, que es la percepción distorsionada u ondulada de líneas que en realidad son rectas, provocada por el levantamiento irregular de la retina sobre la mácula.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Al realizar el fondo de ojo, el oftalmólogo observa la presencia de múltiples depósitos extracelulares amarillentos, pequeños y bien definidos, ubicados por debajo del epitelio pigmentario de la retina, exclusivamente en la zona de la mácula. No se observan hemorragias ni edema retiniano. ¿Qué nombre reciben estos depósitos patognomónicos que definen la forma \"seca\" (atrófica) de esta enfermedad?",
+        "options": [
+          "Exudados algodonosos (manchas isquémicas)",
+          "Microaneurismas",
+          "Drusas",
+          "Cuerpos de psamoma"
+        ],
+        "answerIndex": 2,
+        "explanation": "Las drusas son depósitos hialinos amarillentos compuestos de lípidos y proteínas de desecho que se acumulan entre la membrana de Bruch y el epitelio pigmentario de la retina. Son el hallazgo oftalmoscópicico primario y patognomónico de la Degeneración Macular Relacionada con la Edad (DMAE) en su forma seca, que es la presentación más común (85% de los casos). Si la enfermedad evoluciona a la forma \"húmeda\" (exudativa/neovascular), los nuevos vasos sangran y causan pérdida de visión central rápida, requiriendo inyecciones de anti-VEGF urgentes.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA HEPÁTICA",
+    "subtema": "ABSCESO HEPÁTICO (AMEBIANO Y PIÓGENO)",
+    "difficulty": "media",
+    "case": "Masculino de 35 años de edad, residente de una zona rural sin acceso a agua potable, de ocupación agricultor. Acude al servicio de urgencias por un cuadro de 2 semanas de evolución caracterizado por fiebre de predominio vespertino (39°C), diaforesis nocturna, pérdida de peso no cuantificada y dolor constante y sordo en el hipocondrio derecho que se irradia hacia el hombro derecho. Refiere haber presentado un cuadro de diarrea con moco y sangre hace un mes que se autolimitó. A la exploración física: T 38.5°C, FC 110 lpm. Presenta ictericia leve en escleras. A la palpación abdominal, el hígado se encuentra rebasando el reborde costal por 4 cm, siendo exquisitamente doloroso (hepatomegalia dolorosa), y se elicita dolor a la percusión (puñopercusión hepática positiva).",
+    "questions": [
+      {
+        "question": "Dada la epidemiología del paciente (varón joven, zona endémica) y el antecedente de disentería, la principal sospecha es un absceso hepático amebiano. ¿Cuál es el estudio de imagen inicial de elección por su alta sensibilidad, disponibilidad y bajo costo para confirmar la presencia de la lesión?",
+        "options": [
+          "Tomografía computarizada de abdomen con contraste",
+          "Radiografía simple de tórax y abdomen",
+          "Ultrasonido hepático y de vías biliares",
+          "Gammagrafía hepática con galio-67"
+        ],
+        "answerIndex": 2,
+        "explanation": "El ultrasonido abdominal es el estudio inicial de elección para todo paciente con sospecha de absceso hepático. En el caso del absceso amebiano, el hallazgo ecográfico clásico es una lesión única, redonda u ovalada, hipoecoica (oscura), con márgenes bien definidos, localizada preferentemente en el lóbulo derecho del hígado (segmentos VII y VIII) debido al flujo preferencial de la vena porta desde el colon derecho.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para confirmar la etiología (y diferenciarlo de un absceso piógeno bacteriano que requeriría drenaje temprano), se solicita serología (hemaglutinación indirecta para E. histolytica) que resulta fuertemente positiva. Según la GPC, ¿cuál es el tratamiento farmacológico de primera línea para este paciente, asumiendo que el absceso mide 4 cm y no tiene riesgo inminente de ruptura?",
+        "options": [
+          "Drenaje percutáneo guiado por ultrasonido inmediatamente",
+          "Metronidazol oral o intravenoso por 10 a 14 días",
+          "Ciprofloxacino y Ceftriaxona por 21 días",
+          "Paramomicina en monoterapia"
+        ],
+        "answerIndex": 1,
+        "explanation": "El tratamiento de elección para el absceso hepático amebiano no complicado es farmacológico exclusivo con un amebicida tisular, siendo el Metronidazol el fármaco de primera línea con tasas de curación superiores al 90%. El drenaje percutáneo se reserva estrictamente para abscesos grandes (> 5-10 cm), con riesgo inminente de ruptura (cápsula delgada, lóbulo izquierdo), que no responden al tratamiento médico tras 72 horas, o en mujeres embarazadas donde el metronidazol esté contraindicado.",
+        "gpcReference": ""
+      },
+      {
+        "question": "En caso de que este absceso (localizado en la cúpula del lóbulo derecho) no recibiera tratamiento y continuara creciendo hasta romperse espontáneamente, ¿hacia qué cavidad anatómica presentaría su complicación y extensión más frecuente?",
+        "options": [
+          "Hacia la cavidad pericárdica (Taponamiento cardíaco)",
+          "Hacia el peritoneo libre (Peritonitis generalizada)",
+          "Hacia la cavidad pleural derecha y el pulmón (Empiema / Fístula hepatobronquial) ",
+          "Hacia el retroperitoneo"
+        ],
+        "answerIndex": 2,
+        "explanation": "La ruptura es la complicación más temida. La localización más frecuente de los abscesos amebianos es en el segmento superior del lóbulo derecho (cúpula hepática), en íntimo contacto con el diafragma. Por ello, la ruptura más frecuente ocurre hacia el tórax (cavidad pleural derecha o base del pulmón derecho), causando un derrame pleural exudativo, empiema amebiano o expectoración de material \"achocolatado\" (fístula hepatobronquial). La ruptura a pericardio ocurre típicamente en los abscesos del lóbulo izquierdo y es letal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA ESOFÁGICA",
+    "subtema": "DESGARRO DE MALLORY  -WEISS",
+    "difficulty": "baja",
+    "case": "Masculino de 22 años, estudiante universitario, es traído a urgencias por sus compañeros la madrugada del domingo. Refieren que el paciente ingirió grandes cantidades de alcohol (binge drinking) durante una fiesta y posteriormente presentó múltiples episodios de vómito de contenido gastroalimentario. Durante el último episodio de arqueo violento, el paciente comenzó a vomitar sangre fresca abundante (hematemesis). A su ingreso, el paciente está consciente, asustado, con TA 110/70 mmHg y FC 95 lpm (hemodinámicamente estable).",
+    "questions": [
+      {
+        "question": "De acuerdo con la presentación clínica clásica (vómito no hemático seguido de hematemesis tras esfuerzo físico), ¿cuál es la fisiopatología y localización anatómica exacta de esta lesión sangrante?",
+        "options": [
+          "Ruptura transmural completa del tercio inferior del esófago",
+          "Dilatación y ruptura de las venas submucosas del tercio inferior del esófago por hipertensión portal",
+          "Desgarro longitudinal incompleto de la mucosa y submucosa en la unión esofagogástrica",
+          "Úlcera excavada en la curvatura menor del estómago que erosiona la arteria gástrica izquierda"
+        ],
+        "answerIndex": 2,
+        "explanation": "El Síndrome de Mallory-Weiss se caracteriza por un sangrado de tubo digestivo alto originado por desgarros longitudinales limitados a la mucosa y submucosa, localizados clásicamente en la unión esofagogástrica (o justo por debajo, en el cardias). El mecanismo patogénico es un aumento súbito y violento de la presión intragástrica (arcadas, vómito crónico, tos severa). A diferencia del Síndrome de Boerhaave, aquí el desgarro no es transmural (no hay perforación ni neumomediastino). La mayoría de estos sangrados (80-90%) se autolimitan sin intervención. Getty Images",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "HERNIAS / ESPLENECTOMÍA",
+    "subtema": "HERNIA FEMORAL (CRURAL)",
+    "difficulty": "media",
+    "case": "Femenina de 68 años, multípara (5 partos vaginales), delgada. Acude a urgencias quejándose de dolor abdominal tipo cólico, náuseas y vómito de características biliares de 12 horas de evolución. A la exploración física, el abdomen está distendido, con ruidos peristálticos metálicos aumentados. Al examinar la región inguinal derecha, se palpa una masa de 3 cm, tensa, irreductible, intensamente dolorosa a la palpación y con eritema en la piel suprayacente. La masa se localiza anatómicamente por debajo de la línea del ligamento inguinal y por dentro de los latidos de la arteria femoral.",
+    "questions": [
+      {
+        "question": "Por la ubicación anatómica de la masa respecto al ligamento inguinal, ¿cuál es el diagnóstico correcto de este defecto de la pared abdominal?",
+        "options": [
+          "Hernia inguinal directa encarcelada",
+          "Hernia inguinal indirecta estrangulada",
+          "Hernia femoral (crural) estrangulada",
+          "Adenopatía inguinal supurativa (Bubón)"
+        ],
+        "answerIndex": 2,
+        "explanation": "La clave clínica y anatómica para diferenciar una hernia inguinal de una femoral es el ligamento inguinal (de Poupart). Las hernias inguinales protruyen por encima de este ligamento. Las hernias femorales (crurales) protruyen por debajo del ligamento inguinal, a través del anillo femoral (medial a la vena femoral). Son más frecuentes en mujeres (especialmente ancianas y multíparas) debido a la mayor amplitud de su pelvis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Considerando que la hernia femoral protruye a través de un orificio osteoaponeurótico sumamente estrecho y rígido (el anillo femoral, delimitado por el ligamento de Cooper, la vena femoral y el ligamento lacunar), ¿cuál es la conducta terapéutica indicada de urgencia en esta paciente?",
+        "options": [
+          "Intento de reducción manual firme (Taxis) bajo sedación en urgencias",
+          "Cirugía de urgencia inmediata (exploración, resección intestinal si hay necrosis y plastía con puntos de McVay o cono/malla)",
+          "Colocación de faja compresiva y programación para cirugía electiva en 1 mes",
+          "Observación y antibióticos intravenosos"
+        ],
+        "answerIndex": 1,
+        "explanation": "Las hernias femorales tienen la tasa más alta de encarcelamiento y estrangulación (compromiso isquémico del intestino) de todas las hernias de la pared abdominal, debido a la rigidez inextensible de los ligamentos que forman el anillo femoral. En presencia de datos de estrangulación (dolor extremo, eritema, obstrucción intestinal), el intento de reducción manual está absolutamente contraindicado (riesgo de regresar intestino necrótico a la cavidad o perforarlo). La conducta es la cirugía de urgencia inmediata.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "subtema": "FRACTURA DE ESCAFOIDES",
+    "difficulty": "media",
+    "case": "Masculino de 20 años sufre una caída apoyando la palma de la mano derecha en hiperextensión (\"caída sobre mano extendida\" o mecanismo FOOSH) mientras patinaba. Acude a urgencias quejándose de dolor en la muñeca derecha. A la exploración física, no presenta deformidad evidente ni limitación importante de los rangos de movimiento de la muñeca. Sin embargo, el médico elicita un dolor agudo y exquisito al realizar palpación profunda en la depresión anatómica localizada en la base del pulgar, delimitada por los tendones del extensor largo y corto del pulgar y el abductor largo. Se solicitan radiografías iniciales (AP, Lateral y oblicua de muñeca) que se reportan sin evidencia de trazo de fractura.",
+    "questions": [
+      {
+        "question": "El dolor en la \"Tabaquera anatómica\" tras un mecanismo de hiperextensión de la mu ñeca es el signo cardinal de la fractura del hueso del carpo más comúnmente fracturado. ¿De qué hueso estamos hablando?",
+        "options": [
+          "Semilunar (Lunate)",
+          "Piramidal (Triquetrum)",
+          "Hueso Grande (Capitate)",
+          "Escafoides (Scaphoid)"
+        ],
+        "answerIndex": 3,
+        "explanation": "El hueso escafoides es el hueso carpiano que se fractura con mayor frecuencia (hasta un 70% de las fracturas del carpo). El dolor a la palpación en la tabaquera anatómica y al comprimir axialmente el primer metacarpiano son signos clínicos clásicos y altamente sensibles de una fractura de escafoides oculta.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Sabiendo que hasta un 20-30% de las fracturas de este hueso no son visibles en las radiografías simples iniciales (tienen \"falso negativo\"), ¿cuál es el manejo estándar a seguir en urgencias para evitar complicaciones graves como la necrosis avascular del polo proximal?",
+        "options": [
+          "Dar de alta con vendaje elástico blando y AINEs, citando solo si el dolor no cede en un mes",
+          "Inmovilizar con yeso o férula espica del pulgar (que incluya el pulgar y la muñeca) y repetir las radiografías en 10 a 14 días (o solicitar Resonancia Magnética)",
+          "Infiltración local de corticosteroides en la tabaquera anatómica",
+          "Programar para cirugía (fijación con tornillo de compresión) de inmediato, ignorando la radiografía"
+        ],
+        "answerIndex": 1,
+        "explanation": "Ante la alta sospecha clínica (dolor en la tabaquera anatómica) con radiografías iniciales negativas, el protocolo ortopédico exige asumir que la fractura existe. Se debe inmovilizar la extremidad con una férula o yeso espica del pulgar (inmovilizando la articulación trapeciometacarpiana) e inmovilizando la muñeca. El paciente debe ser revaluado a los 10-14 días con nuevas radiografías, momento en el cual el trazo de fractura a menudo se vuelve visible debido a la resorción ósea en el foco de fractura. Alternativamente, la Resonancia Magnética puede diagnosticarla de inmediato.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE",
+    "subtema": "OTITIS MEDIA AGUDA (OMA) / MASTOIDITIS",
+    "difficulty": "alta",
+    "case": "Preescolar masculino de 6 años es traído a urgencias por su madre. Refiere que hace 2 semanas el niño presentó fiebre y dolor intenso en el oído derecho, que la madre trató únicamente con Paracetamol y gotas óticas naturistas. Desde ayer, el niño presenta fiebre de 39.5°C, irritabilidad y un notable aumento de volumen detrás de la oreja derecha. A la inspección, se observa el pabellón auricular derecho francamente desplazado hacia adelante y hacia abajo (proptosis auricular). La región retroauricular está eritematosa, caliente, edematizada, sin fluctuación evidente, pero exquisitamente dolorosa a la palpación. A la otoscopia, se observa la membrana timpánica abombada, eritematosa y opaca, con pérdida del triángulo luminoso.",
+    "questions": [
+      {
+        "question": "La progresión de una otitis media aguda no tratada hacia la inflamación e infección purulenta del hueso temporal que desplaza el pabellón auricular constituye el diagnóstico clínico de la complicación supurativa más frecuente de la OMA. ¿Cuál es este diagnóstico?",
+        "options": [
+          "Otitis externa maligna",
+          "Meningitis bacteriana",
+          "Mastoiditis aguda coalescente",
+          "Colesteatoma"
+        ],
+        "answerIndex": 2,
+        "explanation": "La mastoiditis aguda ocurre cuando la infección de la caja timpánica (OMA) se extiende hacia atrás y destruye las trabéculas óseas de las celdillas mastoideas del hueso temporal (coalescencia). El pus se acumula bajo el periostio retroauricular, causando los signos cardinales: eritema y dolor retroauricular severo, y el desplazamiento característico del pabellón auricular hacia adelante y abajo (oreja \"en soplillo\").",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para confirmar la extensión de la destrucción ósea (coalescencia de las celdillas), identificar la posible formación de abscesos subperiósticos y descartar complicaciones intracraneales (como trombosis del seno sigmoides o absceso epidural), ¿cuál es el estudio de imagen de elección que debe solicitarse de urgencia?",
+        "options": [
+          "Radiografía simple de cráneo (proyección de Schüller)",
+          "Ultrasonido de partes blandas del cuello",
+          "Tomografía Computarizada (TAC) de peñascos (hueso temporal) simple y con contraste",
+          "Resonancia magnética cerebral en secuencias T1"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Tomografía Computarizada de alta resolución de peñascos (huesos temporales), idealmente con contraste intravenoso, es el \"Gold Standard\" imagenológico. Permite visualizar la pérdida de las trabéculas óseas (mastoiditis coalescente), la erosión de la cortical externa y la posible extensión de la infección hacia las meninges o los senos venosos durales.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Considerando que la etiología bacteriana de esta complicación es la misma que la de la Otitis Media Aguda de la cual se originó, ¿cuál es el microorganismo causal más frecuentemente aislado en estos casos?",
+        "options": [
+          "Pseudomonas aeruginosa",
+          "Streptococcus pneumoniae (Neumococo)",
+          "Staphylococcus aureus meticilino resistente (MRSA)",
+          "Moraxella catarrhalis"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los mismos tres agentes patógenos que causan la Otitis Media Aguda (y la rinosinusitis aguda) son los responsables de la mastoiditis: Streptococcus pneumoniae (el más común, virulento y asociado a complicaciones invasivas), seguido por Haemophilus influenzae no tipificable y Moraxella catarrhalis. El tratamiento requiere ingreso hospitalario, miringotomía para drenaje del oído medio y antibióticos intravenosos de amplio espectro (Ceftriaxona o Cefotaxima). (La Pseudomonas es la reina indiscutible de la Otitis Externa \"del nadador\" y la maligna del diabético).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "TRAUMA GENERALIDADES Y COMPLICACIONES",
+    "subtema": "FRACTURAS EN NIÑOS (SALTER-HARRIS)",
+    "difficulty": "baja",
+    "case": "Escolar masculino de 10 años, sufre caída desde un pasamanos cayendo sobre su muñeca derecha en extensión. Acude a urgencias con dolor, edema y deformidad en el tercio distal del antebrazo. Las radiografías muestran un trazo de fractura en el radio distal que atraviesa transversalmente la placa de crecimiento (fisis) y se extiende oblicuamente hacia arriba, rompiendo un fragmento triangular de la metáfisis ósea, pero respetando por completo la epífisis y la articulación.",
+    "questions": [
+      {
+        "question": "De acuerdo con la clasificación pronóstica de Salter-Harris para fracturas fisiarias (cartílago de crecimiento), ¿a qué tipo corresponde esta lesión, siendo además la más frecuente de todas (75% de los casos)?",
+        "options": [
+          "Tipo I",
+          "Tipo II",
+          "Tipo III",
+          "Tipo IV"
+        ],
+        "answerIndex": 1,
+        "explanation": "La clasificación de Salter-Harris es fundamental en ortopedia pediátrica. Tipo I: Separación pura a través de la fisis (S = Straight across). Tipo II: Atraviesa la fisis y sube hacia la metáfisis (A = Above). Es la más común y tiene excelente pronóstico. Tipo III: Atraviesa la fisis y baja hacia la epífisis (L = Lower). Tipo IV: Atraviesa metáfisis, fisis y epífisis (T = Through or Two). Tipo V: Compresión por aplastamiento de la fisis (ER = ERasure of growth plate), de peor pronóstico por el cese del crecimiento.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA CÁMARA POSTERIOR",
+    "subtema": "OCLUSIÓN VASCULAR RETINIANA",
+    "difficulty": "media",
+    "case": "Masculino de 68 años, con antecedente de hipertensión arterial mal controlada y fibrilación auricular paroxística. Acude a urgencias oftalmológicas refiriendo pérdida de la visión del ojo derecho de inicio súbito (\"en un segundo\"), total e indolora, que ocurrió hace 2 horas mientras desayunaba. A la exploración física, el paciente tiene agudeza visual de \"percepción de luz\" en el ojo derecho. Las pupilas presentan un defecto pupilar aferente relativo derecho (pupila de Marcus Gunn). En la oftalmoscopia directa, se observa la retina blanquecina, pálida y edematosa, con una característica mancha roja brillante en el centro de la mácula. Los vasos retinianos se ven muy adelgazados.",
+    "questions": [
+      {
+        "question": "Ante la presentación súbita, indolora y los hallazgos oftalmoscópicos patognomónicos, ¿cuál es el diagnóstico clínico de esta verdadera emergencia oftalmológica?",
+        "options": [
+          "Desprendimiento de retina regmatógeno",
+          "Oclusión de la vena central de la retina",
+          "Neuropatía óptica isquémica anterior",
+          "Oclusión de la arteria central de la retina (OACR)"
+        ],
+        "answerIndex": 3,
+        "explanation": "La oclusión de la arteria central de la retina (OACR) es el equivalente a un \"infarto cerebral\" en el ojo, frecuentemente causado por un émbolo originado en el corazón (fibrilación auricular) o en las placas carotídeas. Produce ceguera súbita, total e indolora. El hallazgo clásico en el fondo de ojo es la retina blanquecina (por el edema isquémico) que resalta el color rojo de la coroides subyacente a nivel de la fóvea (la cual es muy delgada), creando la patognomónica \"mancha rojo cereza\". En la oclusión venosa, el fondo de ojo muestra hemorragias masivas (\"en llama\" o \"pizza de pepperoni\").",
+        "gpcReference": ""
+      },
+      {
+        "question": "Sabiendo que el tejido retiniano sufre daño irreversible si la isquemia se prolonga por más de 90 a 120 minutos, ¿cuál de las siguientes medidas debe intentarse inmediatamente en la sala de urgencias como maniobra de rescate para intentar desplazar el émbolo hacia una rama periférica?",
+        "options": [
+          "Aplicación de láser de argón focalizado",
+          "Masaje ocular digital firme e intermitente, y administración de hipotensores oculares (acetazolamida)",
+          "Inyección intravítrea de anti-VEGF",
+          "Administración de atropina tópica"
+        ],
+        "answerIndex": 1,
+        "explanation": "El tratamiento de la OACR debe ser inmediato, aunque el pronóstico visual suele ser muy pobre. El objetivo es intentar bajar bruscamente la presión intraocular y provocar vasodilatación para que el émbolo se desplace distalmente. Esto se intenta mediante masaje ocular digital (presionar el ojo 10-15 segundos y soltar repentinamente), respiración en bolsa de papel (hipercapnia para vasodilatar) y medicamentos hipotensores (acetazolamida, timolol).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P1",
+    "subtema": "INFECCIONES DE VÍAS URINARIAS (PIELONEFRITIS)",
+    "difficulty": "alta",
+    "case": "Femenina de 55 años, con antecedente de diabetes mellitus tipo 2 de 15 años de evolución, con neuropatía diabética periférica y mal apego al tratamiento (HbA1c 11%). Es traída a urgencias por fiebre de 39.5°C, escalofríos intensos, náuseas, vómito y dolor severo en la fosa lumbar derecha de 3 días de evolución. A su ingreso, la paciente se encuentra obnubilada, taquicárdica (130 lpm), taquipneica (28 rpm) e hipotensa (85/50 mmHg). A la exploración, el dolor a la puñopercusión renal derecha (signo de Giordano) es exquisito. Sus laboratorios muestran leucocitosis de 25,000/mm³, creatinina de 2.1 mg/dL y un examen general de orina con piuria masiva, bacteriuria y cilindros leucocitarios.",
+    "questions": [
+      {
+        "question": "Por la inestabilidad hemodinámica y la rápida progresión del cuadro infeccioso renal en una paciente diabética descontrolada, se sospecha de una complicación grave de la pielonefritis aguda. Se solicita una Tomografía Computarizada (UroTAC) urgente sin contraste, la cual evidencia destrucción del parénquima renal derecho y, de manera característica, la presencia de gas (burbujas radiolúcidas) en el interior del sistema colector, el parénquima renal y el espacio perirrenal. ¿Cuál es el diagnóstico tomográfico y clínico de esta entidad letal?",
+        "options": [
+          "Absceso perinefrítico",
+          "Pielonefritis xantogranulomatosa",
+          "Necrosis papilar renal",
+          "Pielonefritis enfisematosa"
+        ],
+        "answerIndex": 3,
+        "explanation": "La pielonefritis enfisematosa es una infección necrotizante fulminante del riñón caracterizada por la producción de gas en el parénquima renal y/o tejidos perirrenales. Ocurre casi exclusivamente en pacientes diabéticos mal controlados (más del 90% de los casos). El hallazgo de gas en la TAC es el signo patognomónico que sella el diagnóstico y predice una alta mortalidad si no se actúa rápidamente.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el microorganismo patógeno que se aísla con mayor frecuencia en los hemocultivos y urocultivos de los pacientes con esta patología necrotizante formadora de gas?",
+        "options": [
+          "Clostridium perfringens",
+          "Escherichia coli",
+          "Pseudomonas aeruginosa",
+          "Staphylococcus aureus"
+        ],
+        "answerIndex": 1,
+        "explanation": "A pesar de la producción de gas, el germen causal no suele ser un anaerobio estricto (como Clostridium). En la inmensa mayoría de los casos (>70%), el microorganismo responsable es Escherichia coli, seguido de Klebsiella pneumoniae. En un ambiente hiperglucémico (diabético) con mala perfusión tisular, estas bacterias fermentan rápidamente la glucosa tisular, produciendo dióxido de carbono e hidrógeno libre que se acumula como gas.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Debido a la inestabilidad hemodinámica (choque séptico) y el compromiso difuso del parénquima renal con gas perirrenal (Clasificación tomográfica de Huang y Tseng tipo 3 o 4), ¿cuál es el tratamiento quirúrgico salvador de elección que suele requerirse tras el inicio de antibióticos de amplio espectro y reanimación intensiva?",
+        "options": [
+          "Nefrostomía percutánea exclusiva",
+          "Nefrectomía de urgencia (extirpación del riñón afectado)",
+          "Colocación de catéter doble J",
+          "Litotricia extracorpórea"
+        ],
+        "answerIndex": 1,
+        "explanation": "Aunque en casos muy tempranos o localizados se puede intentar el drenaje percutáneo, en la pielonefritis enfisematosa extensa con gas en el espacio perirrenal y choque séptico (que no responde rápidamente a medidas conservadoras), la nefrectomía temprana de urgencia es el tratamiento de elección y la única medida que logra controlar el foco séptico necrotizante y disminuir la altísima tasa de mortalidad de esta condición. Shutterstock Explorar",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA GENERAL PEDIÁTRICA / CUELLO",
+    "subtema": "PATOLOGÍA BENIGNA DE CUELLO (QUISTE TIROGLOSO)",
+    "difficulty": "media",
+    "case": "Preescolar femenino de 5 años es llevada a la consulta de cirugía pediátrica por presentar un \"bulto\" en la parte anterior del cuello que la madre notó hace 3 meses tras un cuadro de infección respiratoria, y que no ha desaparecido. A la exploración física, la niña se encuentra asintomática. Se palpa una tumoración de 2 cm, redondeada, de consistencia renitente, indolora y no eritematosa. La masa se localiza exactamente en la línea media del cuello, a nivel del hueso hioides (justo por debajo del mentón).",
+    "questions": [
+      {
+        "question": "Al momento de la exploración, el cirujano le pide a la niña que saque la lengua lo más que pueda y que pase saliva (trague). El médico observa que la tumoración se eleva de manera sincrónica con el movimiento de deglución y con la protrusión lingual. Dada su ubicación en la línea media y su movilidad característica, ¿cuál es el diagnóstico congénito más probable?",
+        "options": [
+          "Quiste de la hendidura branquial",
+          "Linfangioma (Higroma quístico)",
+          "Quiste del conducto tirogloso",
+          "Nódulo tiroideo solitario"
+        ],
+        "answerIndex": 2,
+        "explanation": "El quiste del conducto tirogloso es la anomalía congénita más frecuente del cuello. Se presenta como una masa en la línea media anterior del cuello (a diferencia de los quistes branquiales que son laterales al esternocleidomastoideo). El signo clínico patognomónico es su movilidad hacia arriba con la protrusión de la lengua y la deglución, ya que el quiste está unido anatómicamente a la base de la lengua (foramen ciego) por el tracto tirogloso persistente.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para evitar la alta tasa de recurrencia que se presenta cuando solo se extirpa el quiste de manera aislada, ¿cuál es el nombre de la técnica quirúrgica de elección que incluye la resección del quiste, de todo el trayecto fistuloso y de la porción central del hueso hioides?",
+        "options": [
+          "Procedimiento de Sistrunk",
+          "Operación de Heller",
+          "Incisión de Kocher",
+          "Disección radical modificada de cuello"
+        ],
+        "answerIndex": 0,
+        "explanation": "La resección quirúrgica es el tratamiento definitivo para prevenir infecciones recurrentes y el bajo, pero existente, riesgo de malignización. El Procedimiento de Sistrunk es el estándar de oro; consiste en la extirpación en bloque del quiste, el conducto tirogloso remanente hasta el foramen ciego, y, fundamentalmente, la resección del tercio medio del hueso hioides. No extirpar la porción del hueso hioides asegura una tasa de recurrencia casi inmediata de la enfermedad.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA ARTERIAL Y VENOSA",
+    "subtema": "TRAUMA URETRAL Y VESICAL",
+    "difficulty": "media",
+    "case": "Masculino de 70 años, con antecedente de infarto agudo de miocardio antiguo y diagnóstico de fibrilación auricular crónica sin tratamiento anticoagulante por abandono médico. Acude al servicio de urgencias refiriendo dolor insoportable (\"el peor de su vida\") en la pierna y pie derechos, de inicio completamente súbito hace 4 horas mientras estaba sentado viendo la televisión. A la exploración física, la extremidad inferior derecha se observa pálida (con aspecto de cera), fría al tacto y el paciente es incapaz de mover los dedos del pie. Refiere adormecimiento (parestesias) en toda la pantorrilla. A la palpación, el pulso femoral derecho es simétrico al izquierdo, pero los pulsos poplíteo, tibial posterior y pedio están completamente ausentes en el lado derecho. Masculino de 35 años, albañil, sufre una caída \"a horcajadas\" sobre una viga de andamio mientras trabajaba a un metro de altura. Es llevado a urgencias quejándose de un dolor intenso en el periné y la incapacidad absoluta para orinar (retención aguda de orina) desde el accidente hace 2 horas. A la exploración física, el paciente se encuentra hemodinámicamente estable. Se observa la presencia de sangre fresca en el meato urinario (uretrorragia) y un gran hematoma equimótico en la región perineal que adopta una forma clásica en \"alas de mariposa\". A la palpación abdominal, se detecta globo vesical. El tacto rectal revela una próstata en posición anatómica normal.",
+    "questions": [
+      {
+        "question": "La presentación aguda y fulminante en un paciente con arritmia embolígena conforma el clásico cuadro de las \"6 P\" de la isquemia arterial aguda. Además del dolor (Pain), palidez (Pallor), ausencia de pulsos (Pulselessness), parestesias y poiquilotermia (frialdad), ¿cuál es la sexta \"P\" que indica una isquemia tisular avanzada con daño nervioso y muscular inminente o establecido (estadio IIb-III de Rutherford)?",
+        "options": [
+          "Petequias",
+          "Pápulas",
+          "Parálisis",
+          "Proptosis"
+        ],
+        "answerIndex": 2,
+        "explanation": "La parálisis o pérdida de la función motora (incapacidad para mover los dedos) es un signo de isquemia nerviosa profunda y un predictor de pérdida inminente de la extremidad si no se revasculariza en cuestión de horas (generalmente el margen de viabilidad del músculo esquelético es de 4 a 6 horas desde el inicio total de la oclusión). Este signo clasifica la extremidad como \"amenazada inmediatamente\".",
+        "gpcReference": ""
+      },
+      {
+        "question": "Teniendo en cuenta que el pulso femoral está presente pero el poplíteo está ausente, el sitio anatómico más probable del impacto del émbolo (la localización más frecuente en las extremidades inferiores) es la bifurcación de la arteria femoral común. ¿Cuál es el tratamiento quirúrgico de revascularización de urgencia de elección para extraer el trombo/émbolo en este paciente?",
+        "options": [
+          "Amputación supracondílea inmediata",
+          "Embolectomía transfemoral con catéter de Fogarty",
+          "Derivación (Bypass) femoro-poplíteo con vena safena",
+          "Endarterectomía carotídea"
+        ],
+        "answerIndex": 1,
+        "explanation": "En el contexto de una isquemia arterial aguda de origen embólico (sospechada fuertemente por la fibrilación auricular y el inicio súbito en un paciente sin claudicación intermitente previa), el tratamiento de rescate estándar es la embolectomía quirúrgica utilizando un catéter balón de Fogarty. Se introduce el catéter desinflado a través de la arteria (usualmente la femoral), se sobrepasa el coágulo, se infla el balón y se tracciona hacia afuera para extraer mecánicamente el émbolo y restaurar el flujo, procedimiento que debe ir acompañado de anticoagulación sistémica con heparina no fraccionada. ema: UROLOGÍA P1 / ATLS P2",
+        "gpcReference": ""
+      },
+      {
+        "question": "Por el mecanismo de lesión clásico (caída a horcajadas) y la presentación clínica (uretrorragia, retención urinaria y hematoma perineal), ¿cuál es la estructura del tracto urinario que se encuentra característicamente lesionada?",
+        "options": [
+          "Uretra posterior (membranosa)",
+          "Uretra anterior (bulbar)",
+          "Cuello vesical",
+          "Uréter distal"
+        ],
+        "answerIndex": 1,
+        "explanation": "El trauma cerrado de periné por una caída \"a horcajadas\" (straddle injury) comprime violentamente la uretra bulbar (anterior) contra el borde inferior de la sínfisis del pubis, provocando su contusión o ruptura. Esto genera el clásico hematoma perineal en \"alas de mariposa\" (delimitado por la fascia de Colles). Por el contrario, la lesión de la uretra posterior (membranosa o prostática) ocurre típicamente por fracturas graves de la pelvis y se asocia a una próstata \"flotante\" al tacto rectal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Ante la imperante necesidad de vaciar la vejiga por el doloroso globo vesical, y teniendo la clásica \"tríada\" de lesión uretral (uretrorragia, retención y hematoma), ¿cuál de las siguientes maniobras está absolutamente contraindicada como abordaje inicial en el servicio de urgencias?",
+        "options": [
+          "Colocación de una sonda Foley transuretral",
+          "Colocación de una talla suprapúbica percutánea (Cistostomía)",
+          "Administración de analgésicos intravenosos",
+          "Realización de un ultrasonido vesical"
+        ],
+        "answerIndex": 0,
+        "explanation": "La regla de oro en urología y trauma es que, ante la sospecha de una lesión uretral (sangre en el meato, hematoma escrotal/perineal o fractura de pelvis), está estrictamente contraindicado el intento de paso de una sonda Foley a ciegas por la uretra. Hacerlo puede convertir un desgarro uretral parcial (incompleto) en una ruptura total, o crear una falsa vía, empeorando dramáticamente el pronóstico. El vaciamiento debe realizarse mediante una talla suprapúbica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el estudio de imagen de elección (Gold Standard) que debe solicitarse para confirmar el diagnóstico, localizar exactamente el nivel de la lesión y evaluar si la ruptura es parcial o completa antes de planear la reparación quirúrgica?",
+        "options": [
+          "Tomografía computarizada de pelvis con contraste intravenoso",
+          "Ultrasonido pélvico y perineal",
+          "Uretrografía retrógrada",
+          "Cistoscopia flexible"
+        ],
+        "answerIndex": 2,
+        "explanation": "La uretrografía retrógrada es el estándar de oro para la evaluación de una sospecha de lesión uretral. Consiste en inyectar de 15 a 20 cc de medio de contraste hidrosoluble con una jeringa a través del meato uretral y tomar una radiografía. Permitirá observar si el contraste dibuja la uretra hasta la vejiga (uretra indemne), si hay fuga de contraste con paso a vejiga (lesión parcial) o si hay fuga masiva sin que el contraste llegue a la vejiga (lesión completa).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA ARTERIAL Y VENOSA",
+    "subtema": "ENFERMEDAD ARTERIAL PERIFÉRICA",
+    "difficulty": "alta",
+    "case": "Masculino de 65 años, fumador activo (20 cigarros al día por 40 años) y diabético mal controlado. Acude a consulta de cirugía vascular refiriendo un dolor tipo calambre muy molesto y opresivo en la pantorrilla de la pierna derecha. Menciona que este dolor aparece invariablemente cuando camina aproximadamente 2 cuadras (200 metros) e incluso le obliga a detenerse. Tras reposar de pie durante 3 a 5 minutos, el dolor desaparece por completo y puede volver a caminar otra distancia similar antes de que el dolor reaparezca. Niega dolor en reposo o por las noches. A la exploración física, la pierna derecha se observa con piel atrófica, brillante, pérdida de vello y las uñas de los pies están engrosadas. A la palpación, el pulso femoral derecho es de buena intensidad, pero el pulso poplíteo y los pulsos pedio y tibial posterior están marcadamente disminuidos en comparación con la pierna contralateral.",
+    "questions": [
+      {
+        "question": "El cuadro clínico del paciente (dolor muscular inducido por el ejercicio que cede rápidamente con el reposo) es el síntoma cardinal y patognomónico de la enfermedad arterial periférica (EAP) isquémica crónica. ¿Qué nombre semiológico recibe este síntoma?",
+        "options": [
+          "Síndrome de Leriche",
+          "Isquemia crítica de la extremidad",
+          "Claudicación intermitente",
+          "Pseudoclaudicación neurogénica"
+        ],
+        "answerIndex": 2,
+        "explanation": "La claudicación intermitente (\"enfermedad de los escaparates\") es el síntoma clásico de la EAP. Se produce por un desequilibrio temporal entre la demanda de oxígeno del músculo durante el ejercicio y el suministro deficiente de flujo sanguíneo a través de arterias estenosadas por ateroesclerosis. El dolor siempre es en los músculos (pantorrillas clásicamente por oclusión fémoro-poplítea), nunca en las articulaciones, y cede invariablemente con unos minutos de reposo total.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para establecer el diagnóstico objetivo de la enfermedad arterial periférica en el consultorio e iniciar el escrutinio, ¿cuál es la prueba diagnóstica no invasiva de primera línea y de elección recomendada por las guías internacionales?",
+        "options": [
+          "Arteriografía de miembros inferiores",
+          "Angiotomografía computarizada",
+          "Medición del Índice Tobillo-Brazo (ITB) con Doppler portátil",
+          "Pletismografía"
+        ],
+        "answerIndex": 2,
+        "explanation": "El Índice Tobillo-Brazo (ITB) es la prueba inicial de elección (estándar de oro no invasivo inicial) para diagnosticar la EAP. Es altamente sensible, específico, económico y reproducible. Se calcula dividiendo la presión arterial sistólica más alta medida en el tobillo (pedio o tibial posterior) entre la presión arterial sistólica más alta medida en los brazos (arteria braquial).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Al realizarle la prueba en el consultorio, el médico obtiene un valor del Índice Tobillo- Brazo (ITB) de 0.65 en la extremidad inferior derecha. De acuerdo con la interpretación universal de esta escala, ¿qué diagnóstico funcional establece este valor?",
+        "options": [
+          "Circulación arterial normal",
+          "Enfermedad arterial periférica leve a moderada",
+          "Vasos no compresibles (calcificación arterial severa)",
+          "Isquemia crítica con riesgo inminente de amputación"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los valores del ITB se interpretan de la siguiente manera: Normal: 0.91 a 1.30 EAP Leve a Moderada (Claudicación): 0.41 a 0.90 (como en este paciente). EAP Severa (Isquemia crítica / dolor en reposo): ≤ 0.40. Vasos calcificados (rígidos/no compresibles, común en diabéticos): > 1.30 (en estos casos se debe medir el índice dedo-brazo).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA CÁMARA POSTERIOR",
+    "subtema": "RETINOPATÍA HIPERTENSIVA",
+    "difficulty": "baja",
+    "case": "Femenina de 60 años, con diagnóstico de hipertensión arterial sistémica primaria de 15 años de evolución, con pobre apego farmacológico. Acude a una revisión oftalmológica de rutina. Se encuentra completamente asintomática visualmente. A la evaluación del fondo de ojo bajo midriasis farmacológica, el médico oftalmólogo identifica arteriolas retinianas estrechadas y esclerosadas con un aumento del reflejo luminoso central (aspecto de \"hilos de cobre\"). Llama la atención que en los puntos donde las arteriolas cruzan por encima de las vénulas, las venas se ven comprimidas, adelgazadas y presentan cambios en su dirección (signo de Gunn y de Salus). No se observan hemorragias, exudados algodonosos ni edema de papila.",
+    "questions": [
+      {
+        "question": "De acuerdo con la clasificación clásica de Keith-Wagener-Barker para la retinopatía hipertensiva, ¿a qué grado corresponden los hallazgos oftalmoscópicos de esclerosis arteriolar marcada con la presencia de cruces arteriovenosos patológicos?",
+        "options": [
+          "Grado I",
+          "Grado II",
+          "Grado III",
+          "Grado IV"
+        ],
+        "answerIndex": 1,
+        "explanation": "La clasificación de Keith-Wagener-Barker estadifica el daño crónico de la hipertensión en los vasos retinianos: Grado I: Atenuación o estrechamiento arterial leve. Grado II: Esclerosis arterial más severa (hilos de cobre) y presencia de muescas o cruces arteriovenosos patológicos. Grado III: Todo lo anterior MÁS hemorragias retinianas, exudados duros y exudados algodonosos (manchas isquémicas). Grado IV: Todo lo anterior MÁS edema de papila (papiledema), indicativo de hipertensión maligna.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "HERNIAS / ESPLENECTOMÍA",
+    "subtema": "HERNIA EPIGÁSTRICA",
+    "difficulty": "baja",
+    "case": "Masculino de 38 años, de ocupación levantador de pesas y entrenador de gimnasio. Acude a consulta general refiriendo haber notado la aparición de una pequeña \"bolita\" en su abdomen hace 2 meses, la cual le duele ocasionalmente al realizar esfuerzos abdominales intensos o flexiones. A la exploración física del abdomen, se palpa un defecto herniario pequeño (aprox 1.5 cm) de consistencia blanda, reductible, localizado exactamente en la línea media del abdomen, equidistante (a medio camino) entre el apéndice xifoides y la cicatriz umbilical.",
+    "questions": [
+      {
+        "question": "De acuerdo con su localización anatómica precisa a través del entrecruzamiento aponeurótico de la línea alba supraumbilical, ¿cuál es el diagnóstico correcto?",
+        "options": [
+          "Hernia de Spiegel",
+          "Hernia incisional (eventración)",
+          "Diástasis de rectos",
+          "Hernia epigástrica"
+        ],
+        "answerIndex": 3,
+        "explanation": "La hernia epigástrica es un defecto en el entrecruzamiento de las fibras aponeuróticas de la línea alba, localizado en cualquier punto entre el apéndice xifoides y el ombligo. Frecuentemente contienen únicamente grasa preperitoneal (lo que explica el dolor tipo \"pellizco\" por isquemia de la grasa) y son muy comunes en hombres jóvenes o adultos que realizan esfuerzos físicos repetitivos. La hernia de Spiegel se localiza en la línea semilunar, lateral a los rectos. Shutterstock",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA INTESTINAL QX",
+    "subtema": "OBSTRUCCIÓN INTESTINAL (ÍLEO PARALÍTICO)",
+    "difficulty": "media",
+    "case": "Femenina de 62 años, cursando su tercer día de postoperatorio de una histerectomía abdominal abierta por miomatosis uterina. La enfermera reporta que la paciente se encuentra muy distendida, no ha canalizado gases ni ha evacuado desde la cirugía. La paciente se queja de distensión molesta y náuseas constantes, pero niega dolor abdominal tipo cólico espasmódico intenso. A la exploración física, el abdomen está marcadamente distendido y timpánico a la percusión. A la auscultación cuidadosa durante 2 minutos completos, los ruidos peristálticos están completamente ausentes (\"silencio abdominal\"). No hay datos de irritación peritoneal y la herida quirúrgica se ve limpia.",
+    "questions": [
+      {
+        "question": "Se le solicita una radiografía simple de abdomen en decúbito y bipedestación. Se observa dilatación generalizada y uniforme tanto de asas de intestino delgado como de colon, con la presencia destacada de aire en la ampolla rectal y escasos o nulos niveles hidroaéreos dinámicos. Por la clínica y la radiología descritas, ¿cuál es el diagnóstico que diferencia este cuadro de una obstrucción mecánica por bridas?",
+        "options": [
+          "Obstrucción intestinal mecánica completa por adherencias (bridas) tempranas",
+          "Peritonitis secundaria generalizada",
+          "Vólvulo de colon transverso",
+          "Íleo adinámico (paralítico) postoperatorio"
+        ],
+        "answerIndex": 3,
+        "explanation": "El íleo adinámico es la detención temporal del peristaltismo intestinal como respuesta simpática fisiológica al trauma quirúrgico, los anestésicos y la inmovilidad. Clínicamente, a diferencia de la obstrucción mecánica (que causa dolor cólico intenso y \"ruidos de lucha\" metálicos aumentados al inicio), el íleo paralítico es silencioso (ausencia de ruidos intestinales) y el dolor es una molestia sorda por la distensión. Radiológicamente, la clave para diferenciarlo es que en el íleo hay gas en todo el tracto (dilatación difusa de delgado, colon y recto), mientras que en la oclusión mecánica no hay gas distal (en el recto) más allá del punto de obstrucción.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según los lineamientos quirúrgicos, ¿cuál de las siguientes medidas conforma el pilar del tratamiento inicial para esta entidad fisiológica y transitoria?",
+        "options": [
+          "Laparotomía exploradora de urgencia para liberación de bridas",
+          "Administración intravenosa de Metoclopramida o Eritromicina obligatoria",
+          "Colocación de enemas de Bario a presión",
+          "Tratamiento conservador y de soporte: deambulación temprana, corrección de desequilibrios electrolíticos (ej. hipopotasemia) y reposo digestivo (ayuno)"
+        ],
+        "answerIndex": 3,
+        "explanation": "El íleo postoperatorio suele ser autolimitado (resolviendo en 3 a 5 días). El manejo es siempre conservador e higiénico-dietético: restricción de la vía oral (ayuno o líquidos claros según tolerancia), corrección rigurosa de alteraciones hidroelectrolíticas (especialmente la hipopotasemia, que agrava la parálisis muscular lisa), deambulación lo más tempranamente posible y minimización del uso de opioides. La descompresión con sonda nasogástrica (SNG) se reserva solo si hay vómitos intratables o distensión masiva.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "MORDEDURAS Y PICADURAS",
+    "subtema": "LOXOSCELISMO",
+    "difficulty": "alta",
+    "case": "Femenina de 34 años de edad, previamente sana. Acude al servicio de urgencias refiriendo que hace aproximadamente 12 horas, mientras sacaba ropa de un clóset oscuro que no abría desde hace meses, sintió un \"piquete\" leve en la cara anterior del muslo izquierdo al cual no le dio importancia. Sin embargo, el dolor fue aumentando progresivamente hasta volverse urente e insoportable. A su ingreso, la paciente luce agudamente enferma, con fiebre de 38.9°C y mialgias generalizadas. A la exploración del muslo, se observa una lesión característica: una zona central necrótica y hundida, rodeada de un halo isquémico pálido, el cual a su vez está rodeado por un halo eritematoso externo (Placa livedoide o \"signo de la bandera francesa\"). Sus laboratorios de urgencia revelan anemia aguda severa, hemoglobinuria (orina oscura) y elevación de azoados (Lesión Renal Aguda).",
+    "questions": [
+      {
+        "question": "Por la anamnesis (sitio oscuro/clóset), las características de la lesión dermo- necrótica (placa livedoide) y la progresión a un cuadro sistémico grave, ¿cuál es el artrópodo responsable de este envenenamiento?",
+        "options": [
+          "Latrodectus mactans (Viuda negra)",
+          "Centruroides noxius (Alacrán)",
+          "Loxosceles reclusa / laeta (Araña violinista o de rincón)",
+          "Phyllobates terribilis (Rana dardo)"
+        ],
+        "answerIndex": 2,
+        "explanation": "La araña violinista (Loxosceles) es de hábitos intradomiciliarios, tímida y de lugares oscuros (clósets, detrás de cuadros). Su mordedura produce loxoscelismo, que puede ser exclusivamente cutáneo (placa livedoide que evoluciona a escara necrótica) o cutáneo-visceral (como en esta paciente), el cual es letal y se caracteriza por hemólisis intravascular masiva, coagulación intravascular diseminada (CID) y falla renal aguda.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Desde el punto de vista toxicológico, ¿cuál es la enzima principal contenida en el veneno de esta araña, responsable directa de la destrucción de las membranas celulares, la agregación plaquetaria, la necrosis tisular y la hemólisis?",
+        "options": [
+          "Alfa-latrotoxina",
+          "Esfingomielinasa D",
+          "Hialuronidasa",
+          "Acetilcolinesterasa"
+        ],
+        "answerIndex": 1,
+        "explanation": "La Esfingomielinasa D es el componente tóxico cardinal y más destructivo del veneno de Loxosceles. Esta enzima hidroliza la esfingomielina de las membranas celulares (especialmente de los eritrocitos y el endotelio vascular), desencadenando necrosis local severa, quimiotaxis masiva de neutrófilos, microtrombosis y, en casos graves, hemólisis sistémica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Ante el desarrollo del cuadro cutáneo-visceral (hemólisis y falla renal) que amenaza la vida de la paciente, además de las medidas de soporte intensivo, ¿cuál es el tratamiento biológico específico de elección que debe administrarse según la GPC?",
+        "options": [
+          "Dapsona oral exclusivamente",
+          "Gluconato de calcio intravenoso",
+          "Faboterápico polivalente anti-Loxosceles (Antiveneno)",
+          "Exéresis quirúrgica inmediata de la lesión en bloque"
+        ],
+        "answerIndex": 2,
+        "explanation": "El tratamiento de elección para el loxoscelismo sistémico (cutáneo-visceral) o cutáneo grave en progresión es la administración temprana del faboterápico polivalente anti-Loxosceles (antiveneno específico). La extirpación quirúrgica temprana está contraindicada ya que el veneno sigue extendiéndose; la cirugía reconstructiva se reserva para semanas después, cuando la necrosis se ha delimitado completamente. La Dapsona se ha utilizado para el loxoscelismo cutáneo puro, pero su utilidad en el sistémico es muy debatida y no reemplaza al antiveneno.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA PANCREÁTICA",
+    "subtema": "PANCREATITIS CRÓNICA",
+    "difficulty": "media",
+    "case": "Masculino de 55 años, con antecedente de alcoholismo intenso y tabaquismo desde hace 30 años. Acude a la consulta de gastroenterología por pérdida de peso progresiva de 12 kg en el último año, a pesar de tener buen apetito. Refiere dolor abdominal sordo y persistente en epigastrio, que empeora después de comer. Menciona que en los últimos meses sus evacuaciones se han vuelto muy voluminosas, pálidas, de olor fétido y flotan en el inodoro (difíciles de bajar al tirar de la cadena). Además, recientemente inició con poliuria y polidipsia, documentándose una glucosa en ayuno de 210 mg/dL.",
+    "questions": [
+      {
+        "question": "El cuadro clínico del paciente conforma la tríada patognomónica clásica de las fases avanzadas de esta enfermedad inflamatoria progresiva del páncreas. ¿Por cuáles signos/síntomas está compuesta esta tríada clásica?",
+        "options": [
+          "Ictericia, fiebre y dolor en hipocondrio derecho",
+          "Calcificaciones pancreáticas, esteatorrea y diabetes mellitus",
+          "Dolor irradiado a la espalda, vómito fecaloide y signo de Cullen",
+          "Hepatomegalia, ascitis y red venosa colateral"
+        ],
+        "answerIndex": 1,
+        "explanation": "La pancreatitis crónica es una enfermedad progresiva y destructiva (usualmente por alcoholismo). Su tríada clínica y radiológica clásica es: 1) Calcificaciones pancreáticas (visibles en TAC o radiografía), 2) Esteatorrea (heces grasosas y flotantes por insuficiencia pancreática exocrina y déficit de lipasa) y 3) Diabetes mellitus (por destrucción de los islotes de Langerhans / insuficiencia endocrina).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para el manejo inicial del síntoma de malabsorción y esteatorrea que está causando la desnutrición del paciente, ¿cuál es el tratamiento farmacológico de reemplazo de elección?",
+        "options": [
+          "Insulina glargina",
+          "Suplementos de hierro y vitamina B12 intramusculares",
+          "Administración oral de enzimas pancreáticas (lipasa, amilasa y proteasas) administradas con las comidas",
+          "Resina secuestradora de ácidos biliares (Colestiramina)"
+        ],
+        "answerIndex": 2,
+        "explanation": "La insuficiencia exocrina del páncreas en la pancreatitis crónica se maneja mediante el reemplazo enzimático pancreático oral. Estas cápsulas (que contienen principalmente altas dosis de lipasa) deben tomarse durante o inmediatamente después de cada comida y merienda para digerir los lípidos y proteínas, corrigiendo así la esteatorrea y mejorando el estado nutricional del paciente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "HIPOACUSIA Y VÉRTIGO",
+    "subtema": "OTOESCLEROSIS",
+    "difficulty": "alta",
+    "case": "Femenina de 32 años, sin antecedentes traumáticos ni infecciosos óticos, acude a consulta por referir disminución de la audición progresiva en ambos oídos, más acentuada en el lado derecho, de 2 años de evolución. Menciona que la pérdida de audición pareció acelerarse significativamente durante su reciente embarazo. Refiere escuchar zumbidos (acúfenos) de tono grave. Curiosamente, la paciente nota que \"escucha y entiende mejor las conversaciones cuando está en ambientes muy ruidosos\" (Paracusia de Willis). A la otoscopia, las membranas timpánicas son de aspecto normal, íntegras y móviles, sin secreciones.",
+    "questions": [
+      {
+        "question": "Se le realiza una acumetría con diapasones. La prueba de Rinne es negativa (vía ósea > vía aérea) en el oído derecho, y la prueba de Weber lateraliza hacia el oído derecho. Con estos datos y el antecedente de empeoramiento durante el embarazo, ¿cuál es la fisiopatología y el diagnóstico correcto de esta entidad hereditaria?",
+        "options": [
+          "Degeneración de las células ciliadas del órgano de Corti (Presbiacusia)",
+          "Fijación ósea anormal de la platina del estribo a la ventana oval (Otoesclerosis)",
+          "Hidropesía endolinfática severa (Ménière)",
+          "Infección crónica y perforación del tímpano (Otitis media crónica)"
+        ],
+        "answerIndex": 1,
+        "explanation": "La otoesclerosis es una osteodistrofia focal del hueso temporal que provoca la anquilosis (fijación) de la platina del estribo en la ventana oval, impidiendo la transmisión del sonido. Es una causa clásica de hipoacusia conductiva pura (Rinne negativo, Weber lateralizado al lado más afectado), típicamente en mujeres jóvenes, bilateral asimétrica, y tiene un factor hormonal conocido, por lo que clásicamente empeora durante el embarazo. La Paracusia de Willis (entender mejor en el ruido) ocurre porque las personas a su alrededor alzan la voz para superar el ruido ambiental, lo cual beneficia a la paciente con pérdida conductiva pura.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para recuperar la audición conductiva de la paciente, ¿cuál es el tratamiento quirúrgico microquirúrgico de elección que proporciona excelentes resultados a largo plazo?",
+        "options": [
+          "Miringotomía con colocación de tubos de ventilación",
+          "Implante coclear ipsilateral",
+          "Estapedectomía o estapedotomía con colocación de una prótesis",
+          "Mastoidectomía radical"
+        ],
+        "answerIndex": 2,
+        "explanation": "El tratamiento de elección y definitivo para la otoesclerosis es la estapedectomía o estapedotomía. Consiste en la remoción total o parcial del estribo fijado por el hueso esclerótico y su sustitución por una pequeña prótesis de teflón o titanio que conecte el yunque directamente con la ventana oval, restaurando así mecánicamente la cadena oscicular y la conducción del sonido.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P1",
+    "subtema": "PRIAPISMO",
+    "difficulty": "media",
+    "case": "Masculino de 28 años, con antecedente de Anemia de Células Falciformes (Drepanocitosis) desde la infancia. Acude al servicio de urgencias refiriendo que hace 6 horas, tras despertar por la mañana, presentó una erección del pene de máxima rigidez que no ha cedido en absoluto, a pesar de no existir ningún estímulo o deseo sexual. El paciente se queja de dolor extremo y constante en el pene. A la exploración física, los cuerpos cavernosos se palpan rígidamente ingurgitados y dolorosos, mientras que el cuerpo esponjoso y el glande se encuentran blandos.",
+    "questions": [
+      {
+        "question": "Dada la presentación dolorosa y el antecedente de hemoglobinopatía, ¿cuál es el tipo fisiopatológico de priapismo que presenta este paciente, el cual constituye una urgencia urológica absoluta (síndrome compartimental del pene)?",
+        "options": [
+          "Priapismo arterial (de alto flujo)",
+          "Priapismo isquémico (veno-oclusivo / de bajo flujo)",
+          "Priapismo intermitente crónico",
+          "Fístula arteriovenosa traumática"
+        ],
+        "answerIndex": 1,
+        "explanation": "El priapismo isquémico (de bajo flujo) es una emergencia médica caracterizada por una falla en el drenaje venoso de los cuerpos cavernosos, lo que provoca estasis de sangre desoxigenada, acidosis, hipoxia severa y dolor extremo. Es común en pacientes con anemia de células falciformes (por los microtrombos falciformes que ocluyen las vénulas) y tras el uso de fármacos erectógenos. El priapismo no isquémico (alto flujo) suele ser secundario a trauma perineal, es indoloro y no es una urgencia isquémica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tras confirmar el diagnóstico mediante una gasometría de la sangre aspirada de los cuerpos cavernosos (la cual muestra sangre negra, con pH < 7.25, pO2 < 30 mmHg y pCO2 > 60 mmHg), ¿cuál es el tratamiento farmacológico de primera línea que se debe instilar intracavernosamente en urgencias tras la aspiración mecánica?",
+        "options": [
+          "Agonistas alfa-adrenérgicos (ej. Fenilefrina diluida)",
+          "Inhibidores de la fosfodiesterasa-5 (Sildenafil)",
+          "Vasodilatadores directos (Nitroprusiato)",
+          "Bloqueadores beta-adrenérgicos (Propranolol)"
+        ],
+        "answerIndex": 0,
+        "explanation": "El tratamiento inicial del priapismo isquémico consiste en anestesia local, aspiración de la sangre espesa y oscura con aguja gruesa para descomprimir, seguida de la inyección o irrigación intracavernosa de un agente simpaticomimético alfa-agonista (como la Fenilefrina). La fenilefrina induce la contracción potente del músculo liso cavernoso, forzando la expulsión de la sangre atrapada y la detumescencia del pene. Shutterstock",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "subtema": "CHALAZIÓN",
+    "difficulty": "baja",
+    "case": "Femenina de 35 años acude a consulta oftalmológica refiriendo la presencia de una \"bolita\" en su párpado superior derecho que apareció de forma muy gradual a lo largo de los últimos dos meses. Refiere que, a diferencia de un \"perrilla\" (orzuelo) que tuvo años atrás, esta lesión no le causa ningún dolor, ni se pone roja o caliente. A la exploración física, se palpa un nódulo solitario, duro, circunscrito, de aproximadamente 6 mm, localizado en el espesor del tarso del párpado superior, completamente indoloro a la palpación y sin signos de inflamación aguda.",
+    "questions": [
+      {
+        "question": "Dadas sus características crónicas, indoloras y de consistencia firme, ¿cuál es la glándula afectada y el proceso patológico subyacente que origina esta lesión ocular benigna (Chalazión)?",
+        "options": [
+          "Infección bacteriana aguda de la glándula de Zeis",
+          "Reacción inflamatoria granulomatosa crónica estéril (lipogranuloma) de una glándula de Meibomio",
+          "Obstrucción del conducto nasolagrimal",
+          "Adenocarcinoma invasivo de las glándulas sudoríparas apocrinas"
+        ],
+        "answerIndex": 1,
+        "explanation": "El chalazión es un nódulo palpebral firme, crónico e indoloro. Se origina por la obstrucción del conducto excretor de una glándula de Meibomio (glándulas sebáceas largas del tarso). Al no poder drenar, el sebo se extravasa al tejido circundante, provocando una reacción inmunológica de cuerpo extraño que forma un lipogranuloma estéril (no infeccioso). Si no resuelve con medidas conservadoras (compresas tibias y masaje), requiere incisión y curetaje quirúrgico o inyección intralesional de triamcinolona.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P1",
+    "subtema": "TRAUMA TORÁCICO (TAPONAMIENTO CARDÍACO)",
+    "difficulty": "media",
+    "case": "Masculino de 28 años es traído a la sala de choque tras sufrir una herida por arma blanca en hemitórax izquierdo, a nivel del 4to espacio intercostal, línea paraesternal. A su ingreso, el paciente se encuentra sumamente agitado, diaforético, con TA de 80/50 mmHg, FC de 130 lpm y FR de 28 rpm. A la inspección del cuello, se observa una franca ingurgitación de las venas yugulares. A la auscultación, los ruidos respiratorios son normales y bilaterales, pero los ruidos cardíacos se perciben muy lejanos y apagados (velados).",
+    "questions": [
+      {
+        "question": "La presentación clínica del paciente conforma una tríada clásica patognomónica de esta urgencia traumática letal. ¿Qué nombre recibe la tríada compuesta por hipotensión arterial, ingurgitación yugular y ruidos cardíacos velados?",
+        "options": [
+          "Tríada de Cushing",
+          "Tríada de Beck",
+          "Tríada de Virchow",
+          "Tríada de Mackler"
+        ],
+        "answerIndex": 1,
+        "explanation": "La Tríada de Beck es el sello clínico del taponamiento cardíaco. La sangre se acumula en el saco pericárdico inextensible (usualmente por herida penetrante del ventrículo derecho), lo que restringe el llenado diastólico del corazón. Esto provoca una caída abrupta del gasto cardíaco (hipotensión), un aumento de la presión venosa retrógrada (ingurgitación yugular) y el líquido aísla el sonido del corazón (ruidos velados). En un neumotórax a tensión (el principal diagnóstico diferencial), los ruidos respiratorios estarían ausentes y habría hiperresonancia torácica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según el protocolo ATLS, ante la sospecha de taponamiento cardíaco en un paciente inestable en la sala de urgencias, ¿cuál es el estudio inicial de elección a pie de cama, no invasivo, para confirmar el diagnóstico rápidamente?",
+        "options": [
+          "Tomografía de tórax contrastada",
+          "Radiografía simple de tórax en decúbito",
+          "Evaluación ecográfica enfocada en trauma (FAST - ventana pericárdica subxifoidea)",
+          "Electrocardiograma de 12 derivaciones"
+        ],
+        "answerIndex": 2,
+        "explanation": "El ultrasonido FAST (Focus Assessment with Sonography for Trauma) ha revolucionado el manejo del trauma. La ventana subxifoidea permite visualizar directa y rápidamente (en segundos) la presencia de líquido (sangre) en el saco pericárdico con una sensibilidad altísima. La toracotomía de reanimación o la pericardiocentesis (si la cirugía se retrasa) son los tratamientos de urgencia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "subtema": "FX DE ANTEBRAZO Y MANO (FRACTURA DE COLLES)",
+    "difficulty": "baja",
+    "case": "Femenina de 65 años, con antecedente de osteoporosis. Acude a urgencias tras sufrir una caída desde su propia altura al tropezar con una alfombra. Relata haber metido las manos para amortiguar el golpe, apoyando la palma de la mano derecha con la muñeca en hiperextensión (mecanismo FOOSH). Presenta dolor intenso, edema y una deformidad muy evidente en el tercio distal del antebrazo derecho. Vista de perfil, la muñeca adopta una forma clásica que recuerda a un tenedor de mesa (\"deformidad en dorso de tenedor\").",
+    "questions": [
+      {
+        "question": "De acuerdo con la cinemática de la caída (mano en extensión) y la deformidad clínica descrita, ¿cuál es el epónimo y el desplazamiento característico del fragmento distal en esta fractura de la metáfisis del radio?",
+        "options": [
+          "Fractura de Smith; desplazamiento hacia palmar (volar)",
+          "Fractura de Barton; luxación de la articulación radiocarpiana",
+          "Fractura de Colles; desplazamiento hacia dorsal y radial",
+          "Fractura de Galeazzi; luxación radiocubital distal"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Fractura de Colles es la fractura más frecuente de la extremidad superior en adultos mayores. Ocurre al caer sobre la mano extendida. El rasgo distintivo es que el fragmento distal del radio se desplaza hacia atrás (dorsal) y hacia el radio (radial), produciendo la clásica deformidad en \"dorso de tenedor\". La fractura de Smith (Colles invertido) ocurre al caer sobre el dorso de la mano flexionada, desplazando el fragmento hacia la palma (volar), produciendo la deformidad en \"pala de jardinero\".",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA ARTERIAL Y VENOSA",
+    "subtema": "ANEURISMA DE AORTA ABDOMINAL (AAA)",
+    "difficulty": "alta",
+    "case": "Masculino de 75 años, hipertenso, dislipidémico y fumador crónico (índice tabáquico de 50 paquetes/año). Es traído a urgencias en ambulancia refiriendo un dolor abdominal periumbilical súbito, transfixiante e insoportable, que se irradia hacia la región lumbar (espalda baja) de forma bilateral. Durante el traslado, el paciente presentó un episodio de síncope. A su ingreso a la sala de choque, luce sumamente pálido, diaforético, con FC de 120 lpm y TA de 70/40 mmHg. A la palpación abdominal, el médico percibe una masa intensamente pulsátil y expansiva por encima de la cicatriz umbilical.",
+    "questions": [
+      {
+        "question": "La presentación aguda de síncope, hipotensión profunda y dolor lumbar/abdominal transfixiante en presencia de una masa abdominal pulsátil constituye el cuadro clínico catastrófico de ¿qué patología vascular?",
+        "options": [
+          "Isquemia mesentérica aguda",
+          "Ruptura de Aneurisma de Aorta Abdominal (AAA)",
+          "Cólico nefrítico bilateral complicado",
+          "Disección aórtica tipo A de Stanford"
+        ],
+        "answerIndex": 1,
+        "explanation": "La tríada clásica de hipotensión, dolor lumbar/abdominal súbito y masa abdominal pulsátil en un varón mayor fumador es el sello inconfundible de la ruptura de un Aneurisma de Aorta Abdominal. Es una urgencia quirúrgica absoluta con una altísima tasa de mortalidad extrahospitalaria (la mayoría mueren antes de llegar al hospital).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Dado que el paciente se encuentra sumamente inestable hemodinámicamente (choque hipovolémico), ¿cuál es el estudio de gabinete inicial de elección para confirmar el diagnóstico en la misma sala de choque sin retrasar el traslado al quirófano?",
+        "options": [
+          "Tomografía computarizada con contraste intravenoso (AngioTAC)",
+          "Resonancia Magnética Abdominal",
+          "Ultrasonido abdominal a pie de cama (FAST / USG Doppler)",
+          "Radiografía simple de abdomen lateral"
+        ],
+        "answerIndex": 2,
+        "explanation": "En un paciente con choque hemorrágico e inestabilidad franca, está contraindicado llevarlo al área de tomografía (que suele estar lejos de la sala de choque). El estudio de elección es el ultrasonido abdominal a pie de cama, el cual confirma rápidamente (sensibilidad >90%) la presencia de la dilatación aneurismática (> 3 cm) y la existencia de líquido libre retroperitoneal/intraperitoneal. Si el paciente estuviera estable, la AngioTAC sería el estudio ideal para planear la cirugía.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si a este paciente se le hubiera detectado el AAA de forma incidental hace dos años (estando asintomático), de acuerdo con la GPC, ¿a partir de qué diámetro transversal máximo (en centímetros) se indica la reparación quirúrgica profiláctica (abierta o endovascular) en pacientes masculinos para evitar el altísimo riesgo de ruptura?",
+        "options": [
+          "> 3.0 cm",
+          "> 4.5 cm",
+          "> 5.5 cm",
+          "> 7.0 cm"
+        ],
+        "answerIndex": 2,
+        "explanation": "La definición anatómica de AAA es una dilatación aórtica > 3 cm. Sin embargo, el riesgo de ruptura aumenta exponencialmente con el diámetro. La GPC y guías internacionales indican la cirugía profiláctica (electiva) cuando el AAA asintomático alcanza los 5.5 cm en hombres (y > 5.0 cm en mujeres), o si tiene un crecimiento rápido (>0.5 cm en 6 meses).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P1",
+    "subtema": "EPIDIDIMITIS",
+    "difficulty": "media",
+    "case": "Masculino de 25 años, con múltiples parejas sexuales y antecedente de uretritis no tratada hace un mes. Acude a la consulta externa de urología refiriendo dolor escrotal derecho de inicio gradual (a lo largo de 3 días), acompañado de aumento de volumen del escroto, fiebre de 38°C, disuria y urgencia miccional. A la exploración física, el hemiescroto derecho está eritematoso, caliente y edematizado. Al palpar cuidadosamente el testículo derecho, se nota un engrosamiento muy doloroso en el polo superior y posterior (zona del epidídimo). Al elevar manualmente el testículo derecho hacia el canal inguinal, el paciente refiere que el dolor disminuye significativamente.",
+    "questions": [
+      {
+        "question": "El cuadro de inicio insidioso, con síntomas urinarios asociados y fiebre sugiere fuertemente un proceso infeccioso escrotal. ¿Qué nombre recibe el signo clínico descrito (alivio del dolor a la elevación testicular) que ayuda a diferenciar clásicamente esta patología de la torsión testicular?",
+        "options": [
+          "Signo de Prehn positivo",
+          "Signo de Prehn negativo",
+          "Reflejo cremastérico abolido",
+          "Signo de Gouverneur"
+        ],
+        "answerIndex": 0,
+        "explanation": "El Signo de Prehn positivo (disminución del dolor al elevar el testículo afecto y aliviar la tracción sobre el cordón espermático) es clásicamente sugestivo de epididimitis aguda. Por el contrario, en la torsión testicular (emergencia quirúrgica de dolor súbito), la elevación del testículo no alivia el dolor o incluso lo empeora (Signo de Prehn negativo), y el reflejo cremastérico suele estar abolido.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Teniendo en cuenta la edad del paciente (menor de 35 años) y su historial de riesgo sexual, ¿cuáles son los agentes bacterianos más probables causantes de esta infección, los cuales determinan el tratamiento antibiótico empírico (Ceftriaxona IM + Doxiciclina VO)?",
+        "options": [
+          "Escherichia coli y Pseudomonas aeruginosa",
+          "Chlamydia trachomatis y Neisseria gonorrhoeae",
+          "Mycobacterium tuberculosis",
+          "Virus de la parotiditis (Paramyxovirus)"
+        ],
+        "answerIndex": 1,
+        "explanation": "La epidemiología de la epididimitis depende de la edad. En hombres menores de 35 años, la causa abrumadoramente más frecuente son las enfermedades de transmisión sexual, específicamente Chlamydia trachomatis y Neisseria gonorrhoeae. En hombres mayores de 35 años (o niños), la causa más frecuente son las enterobacterias (E. coli) secundarias a uropatía obstructiva (ej. Hiperplasia Prostática Benigna) o prácticas sexuales anales sin protección.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "subtema": "TRAUMA OCULAR (QUEMADURAS QUÍMICAS)",
+    "difficulty": "baja",
+    "case": "Masculino de 40 años, trabajador de mantenimiento industrial. Es llevado urgentemente al servicio médico de la empresa y posteriormente a urgencias hospitalarias tras sufrir una salpicadura directa en ambos ojos con hidróxido de sodio (sosa cáustica / álcali), un producto utilizado para destapar cañerías. El paciente grita de dolor, presenta blefaroespasmo intenso (imposibilidad para abrir los ojos), fotofobia severa y lagrimeo. A duras penas, el médico logra abrir los párpados para observar los globos oculares.",
+    "questions": [
+      {
+        "question": "Ante esta verdadera urgencia oftalmológica, que amenaza con destruir la córnea por saponificación de las grasas y penetración intraocular rápida, ¿cuál es la intervención médica inmediata y primordial que debe realizarse incluso antes de derivar al paciente al oftalmólogo o evaluar la agudeza visual?",
+        "options": [
+          "Aplicación de gotas de anestésico tópico y esteroides",
+          "Colocación de un parche compresivo en ambos ojos",
+          "Irrigación profusa, inmediata y continua de los ojos con solución salina estéril, Ringer Lactato o agua de grifo durante al menos 30 minutos",
+          "Aplicación de antibióticos sistémicos de amplio espectro"
+        ],
+        "answerIndex": 2,
+        "explanation": "Las quemaduras oculares por agentes químicos (especialmente por álcalis, que son mucho más destructivos que los ácidos porque saponifican los lípidos de las membranas y penetran profundamente en minutos) son la urgencia oftalmológica más grave. El único tratamiento inicial que salva el ojo es la irrigación copiosa e inmediata con solución salina, agua o Ringer Lactato en el lugar del accidente o urgencias, continuándola hasta que el pH del fondo de saco conjuntival se neutralice (pH de 7.0 - 7.2). Nunca se debe intentar \"neutralizar\" el álcali con un ácido, pues la reacción exotérmica freiría el ojo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE",
+    "subtema": "FARINGOAMIGDALITIS",
+    "difficulty": "media",
+    "case": "Escolar masculino de 8 años es traído a consulta de pediatría por fiebre de 39°C de inicio brusco y dolor de garganta intenso (odinofagia) que le impide comer, de 24 horas de evolución. La madre refiere que el niño no ha tenido tos, ni escurrimiento nasal (rinorrea). A la exploración física, las amígdalas palatinas se observan francamente hipertróficas, eritematosas y recubiertas por un exudado blanquecino pultáceo. Además, a la palpación del cuello, se detectan ganglios linfáticos cervicales anteriores aumentados de tamaño y muy dolorosos (adenopatía cervical anterior dolorosa).",
+    "questions": [
+      {
+        "question": "De acuerdo con los Criterios de Centor modificados (McIsaac), el paciente reúne 4 puntos clínicos clásicos que otorgan una altísima probabilidad de que la etiología de esta infección sea bacteriana (y no viral). ¿Cuál es la bacteria patógena clásica responsable de este cuadro, cuyas complicaciones no supurativas (como fiebre reumática) justifican el uso de antibióticos?",
+        "options": [
+          "Haemophilus influenzae",
+          "Staphylococcus aureus",
+          "Streptococcus pyogenes (Estreptococo beta-hemolítico del Grupo A)",
+          "Virus de Epstein-Barr"
+        ],
+        "answerIndex": 2,
+        "explanation": "La faringoamigdalitis purulenta en niños de 5 a 15 años es clásicamente causada por Streptococcus pyogenes (EBHGA). Los criterios de Centor para predecir infección estreptocócica son: 1) Fiebre > 38°C, 2) Ausencia de tos, 3) Exudado o hipertrofia amigdalina, 4) Adenopatías cervicales anteriores dolorosas y 5) Edad de 3-14 años. La presencia de 4-5 criterios justifica el inicio empírico de antibióticos para prevenir la fiebre reumática. Las etiologías virales (las más comunes en general) suelen cursar con tos, rinorrea, disfonía y conjuntivitis.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC mexicana, ¿cuál es el tratamiento antibiótico empírico de primera elección para la erradicación de esta bacteria en un paciente sin alergias conocidas?",
+        "options": [
+          "Azitromicina oral por 5 días",
+          "Penicilina G Benzatínica intramuscular en dosis única (o Amoxicilina oral por 10 días)",
+          "Ciprofloxacino oral por 7 días",
+          "Clindamicina oral por 10 días"
+        ],
+        "answerIndex": 1,
+        "explanation": "El Streptococcus pyogenes sigue siendo universalmente susceptible a la penicilina. La GPC recomienda como primera línea la Penicilina G Benzatínica inyectable en dosis única (por su asegurado apego terapéutico) o regímenes orales con Penicilina V o Amoxicilina durante 10 días completos. Los macrólidos (Eritromicina/Azitromicina) se reservan exclusivamente para pacientes con alergia confirmada a los betalactámicos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P1",
+    "subtema": "TRAUMA TORÁCICO (NEUMOTÓRAX A TENSIÓN)",
+    "difficulty": "media",
+    "case": "Masculino de 22 años, sufre accidente automovilístico con volcadura, sin portar cinturón de seguridad. Es ingresado a la sala de choque con Glasgow de 13, gran agitación y dificultad respiratoria severa (FR 35 rpm). Sus signos vitales muestran FC 135 lpm, TA 80/40 mmHg y SatO2 de 82% con oxígeno suplementario. A la exploración del tórax, el hemitórax derecho se observa hiperinsuflado y sin movimientos respiratorios. A la auscultación, hay ausencia total de ruidos respiratorios en el lado derecho. A la percusión, se percibe franca hiperresonancia (timpanismo) en ese mismo lado. A la inspección del cuello, la tráquea está visiblemente desviada hacia el lado izquierdo y las venas yugulares están ingurgitadas.",
+    "questions": [
+      {
+        "question": "La presentación clínica del paciente, con choque obstructivo, desviación traqueal e hiperresonancia, es el cuadro clásico y patognomónico de una urgencia letal descrita en el ATLS. ¿Cuál es el diagnóstico puramente clínico que no requiere radiografía para confirmarse?",
+        "options": [
+          "Hemotórax masivo derecho",
+          "Taponamiento cardíaco",
+          "Neumotórax a tensión derecho",
+          "Tórax inestable (Volet costal)"
+        ],
+        "answerIndex": 2,
+        "explanation": "El neumotórax a tensión es un diagnóstico estrictamente clínico. Ocurre cuando el aire entra al espacio pleural y no puede salir (mecanismo de válvula unidireccional), colapsando el pulmón afectado y desplazando el mediastino hacia el lado sano. Esto comprime la vena cava (ingurgitación yugular), disminuye el retorno venoso y causa choque obstructivo (hipotensión). El hemotórax masivo también da choque y ausencia de ruidos, pero a la percusión habría matidez (líquido), no hiperresonancia (aire).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la 10ª edición del ATLS, ante un paciente inestable con este diagnóstico clínico, ¿cuál es la intervención inmediata de rescate que debe realizarse en la sala de choque antes de colocar el tubo de pleurostomía definitivo?",
+        "options": [
+          "Intubación orotraqueal de urgencia con presión positiva",
+          "Descompresión torácica con aguja gruesa (o toracostomía con dedo) en el 5to espacio intercostal, línea axilar media o anterior del lado afectado",
+          "Descompresión con aguja en el 2do espacio intercostal, línea medioclavicular del lado sano",
+          "Toracotomía de reanimación inmediata"
+        ],
+        "answerIndex": 1,
+        "explanation": "El ATLS 10ma edición actualizó la ubicación para la descompresión de urgencia del neumotórax a tensión en adultos. El sitio recomendado es el 5to espacio intercostal (ligeramente por delante de la línea axilar media), ya sea mediante punción con catéter grueso o mediante una toracostomía con dedo (hacer una incisión y meter el dedo para liberar el aire a presión). Históricamente se usaba el 2do espacio intercostal línea medioclavicular, pero se demostró que en adultos (especialmente obesos) la aguja frecuentemente no alcanzaba a penetrar la pleura. Shutterstock",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA PERIANAL",
+    "subtema": "ABSCESO ANORRECTAL Y FÍSTULA",
+    "difficulty": "baja",
+    "case": "Masculino de 45 años, con antecedente de diabetes mellitus tipo 2. Acude a la consulta de cirugía general refiriendo dolor perianal intenso, pulsátil y continuo de 4 días de evolución, el cual se exacerba insoportablemente al sentarse o al intentar defecar, al grado de impedirle conciliar el sueño. Refiere fiebre no cuantificada. A la exploración proctológica (en posición de Sims), se observa una tumoración en el margen anal derecho, intensamente eritematosa, caliente al tacto y francamente fluctuante.",
+    "questions": [
+      {
+        "question": "De acuerdo con la teoría patogénica más aceptada y demostrada para la formación de los abscesos anorrectales, ¿cuál es el origen anatómico primario de esta colección purulenta en más del 90% de los casos?",
+        "options": [
+          "Infección bacteriana de un folículo piloso perianal (forúnculo)",
+          "Infección de las glándulas anales ubicadas a nivel de la línea dentada (criptoglandular)",
+          "Fisura anal crónica sobreinfectada",
+          "Enfermedad de transmisión sexual (Gonorrea rectal)"
+        ],
+        "answerIndex": 1,
+        "explanation": "Más del 90% de los abscesos y fístulas anorrectales tienen un origen criptoglandular. La infección comienza en las glándulas anales, las cuales vacían su contenido en las criptas de Morgagni ubicadas en la línea dentada (línea pectínea). Si el conducto de la glándula se obstruye, se forma un microabsceso que busca salida a través de los espacios perianales, formando la colección purulenta evidente. El absceso perianal es la fase aguda, y la fístula anorrectal es la secuela crónica de este mismo proceso.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Ante el hallazgo de un absceso perianal fluctuante y sumamente doloroso, ¿cuál es el tratamiento de elección definitivo que debe realizarse a la brevedad?",
+        "options": [
+          "Iniciar antibióticos orales (Ciprofloxacino/Metronidazol) y programar revaloración en 1 semana",
+          "Drenaje quirúrgico temprano (incisión y drenaje) de manera urgente",
+          "Aplicación de supositorios de hidrocortisona",
+          "Esfinterotomía lateral interna"
+        ],
+        "answerIndex": 1,
+        "explanation": "El tratamiento de todo absceso anorrectal fluctuante es el drenaje quirúrgico inmediato. Nunca se debe \"enfriar\" o tratar un absceso perianal exclusivamente con antibióticos (especialmente en pacientes diabéticos), ya que el riesgo de progresión hacia una sepsis fulminante o Gangrena de Fournier es altísimo. Tras el drenaje, se debe advertir al paciente que tiene un 50% de probabilidad de desarrollar una fístula anorrectal en los meses siguientes.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "subtema": "FRACTURA SUPRACONDÍLEA DE HÚMERO",
+    "difficulty": "alta",
+    "case": "Escolar masculino de 6 años es llevado a urgencias traumatológicas tras caer de un \"brincolín\", apoyando su brazo izquierdo contra el piso con el codo en hiperextensión. A su ingreso, el niño llora inconsolablemente sosteniendo su codo izquierdo. A la inspección, el codo presenta un edema masivo y una deformidad clásica en forma de \"S\" itálica. A la exploración neurovascular de la mano izquierda, el llenado capilar es mayor a 3 segundos, el pulso radial está ausente y el niño es incapaz de hacer la señal de \"OK\" (pinza fina) con los dedos pulgar e índice, refiriendo hormigueo en esa zona.",
+    "questions": [
+      {
+        "question": "Por la cinemática de la lesión (caída con codo en extensión en un niño) y la epidemiología, se sospecha de la fractura de codo más común en la edad pediátrica. Radiológicamente, esta lesión se clasifica mediante el sistema de Gartland. ¿De qué fractura estamos hablando?",
+        "options": [
+          "Fractura del cóndilo humeral lateral",
+          "Fractura del cuello del radio",
+          "Fractura supracondílea de húmero",
+          "Luxación del codo (Codo de niñera)"
+        ],
+        "answerIndex": 2,
+        "explanation": "La fractura supracondílea de húmero es la fractura del codo más frecuente en los niños (clásico entre los 5 y 7 años). Ocurre casi siempre por caídas sobre la mano con el codo extendido (tipo en extensión, 95%). La clasificación de Gartland guía el tratamiento (I no desplazada, II desplazada con cortical posterior intacta, III completamente desplazada). El gran peligro de estas fracturas es su altísima tasa de complicaciones neurovasculares tempranas y el síndrome compartimental.",
+        "gpcReference": ""
+      },
+      {
+        "question": "El fragmento proximal del húmero fracturado típicamente se desplaza hacia adelante (anterior) y hacia el centro (medial), actuando como un cuchillo contra las estructuras que pasan por la cara anterior del codo. Dada la incapacidad del niño para hacer la pinza fina (\"OK sign\") y la pérdida de sensibilidad en los tres primeros dedos, ¿cuál es el nervio específico que se encuentra primariamente lesionado en esta dirección de desplazamiento?",
+        "options": [
+          "Nervio cubital",
+          "Nervio interóseo anterior (rama motora del nervio mediano)",
+          "Nervio radial",
+          "Nervio musculocutáneo"
+        ],
+        "answerIndex": 1,
+        "explanation": "La estructura neurovascular más frecuentemente lesionada en las fracturas supracondíleas de húmero desplazadas posteromedialmente es el nervio interóseo anterior (una rama del nervio mediano) y la arteria braquial. La lesión del interóseo anterior se evalúa pidiéndole al paciente que forme un círculo (señal de \"OK\") con los dedos pulgar e índice; si no puede flexionar las falanges distales y hace un \"pellizco\" plano, la prueba es positiva. (Si la fractura se desplaza hacia posterolateral, el nervio más en riesgo es el radial).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si el compromiso vascular y el edema masivo no se resuelven rápidamente mediante la reducción urgente de la fractura, el niño puede desarrollar un síndrome compartimental profundo del antebrazo. ¿Qué nombre recibe la devastadora secuela isquémica crónica caracterizada por retracción muscular, necrosis de los flexores y una mano \"en garra\" inútil?",
+        "options": [
+          "Síndrome de dolor regional complejo (Sudeck)",
+          "Contractura isquémica de Volkmann",
+          "Parálisis de Erb-Duchenne",
+          "Deformidad de Madelung"
+        ],
+        "answerIndex": 1,
+        "explanation": "La Contractura isquémica de Volkmann es el resultado final y permanente de un síndrome compartimental agudo no tratado en el antebrazo. La isquemia severa conduce a la necrosis (muerte) de los músculos flexores profundos y de los nervios. El músculo necrótico es reemplazado por tejido fibroso cicatricial retráctil, lo que resulta en una deformidad rígida e irreversible con flexión palmar de la muñeca y extensión de las articulaciones metacarpofalángicas (mano en garra).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "subtema": "",
+    "difficulty": "media",
+    "case": "Masculino de 25 años acude a su clínica periférica por presentar \"ojo rojo\" severo. Refiere que hace 3 días cursó con dolor de garganta y escurrimiento nasal, y ayer comenzó con sensación de arena (cuerpo extraño), lagrimeo intenso, fotofobia leve y enrojecimiento en el ojo derecho, síntomas que hoy por la mañana se extendieron al ojo izquierdo. A la exploración física, el paciente presenta secreción francamente acuosa (no purulenta). En la conjuntiva tarsal inferior se observan múltiples elevaciones avasculares translúcidas, y llama la atención la presencia de un ganglio preauricular palpable y doloroso en el lado derecho.",
+    "questions": [
+      {
+        "question": "Ante el antecedente de infección respiratoria superior reciente, la evolución secuencial (un ojo y luego el otro), la secreción acuosa y la adenopatía preauricular, ¿cuál es el diagnóstico etiológico más probable de esta entidad oftalmológica altamente contagiosa?",
+        "options": [
+          "Conjuntivitis alérgica estacional",
+          "Conjuntivitis bacteriana aguda por S. aureus",
+          "Queratoconjuntivitis viral por Adenovirus",
+          "Conjuntivitis por Chlamydia trachomatis"
+        ],
+        "answerIndex": 2,
+        "explanation": "La conjuntivitis vírica, causada principalmente por el Adenovirus (fiebre faringoconjuntival o queratoconjuntivitis epidérmica), es la causa más común de \"ojo rojo\" infeccioso. Su sello clínico es el antecedente de catarro, el inicio unilateral que se vuelve bilateral, la secreción acuosa o serosa (la bacteriana es purulenta/lagañosa espesa y pega los párpados), la presencia de folículos en la conjuntiva (las bacterianas/alérgicas tienen papilas) y el signo patognomónico: la adenopatía preauricular dolorosa.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA GÁSTRICA",
+    "subtema": "ÚLCERA PÉPTICA PERFORADA",
+    "difficulty": "baja",
+    "case": "Femenina de 65 años, con antecedente de dolor articular por osteoartritis severa automedicada desde hace 3 años con Ibuprofeno y Naproxeno a altas dosis diarias. Es llevada a urgencias por presentar dolor abdominal súbito, descrito como una \"puñalada\", de extrema intensidad, originado en el epigastrio y que rápidamente se generalizó a todo el abdomen. A la exploración física, la paciente luce agudamente enferma, sudorosa, en posición fetal, rehusándose a moverse. El abdomen está rígido, plano (\"abdomen en tabla\" o \"de madera\"), con dolor difuso a la palpación superficial y rebote positivo generalizado. A la percusión hepática, se encuentra pérdida de la matidez normal en el cuadrante superior derecho.",
+    "questions": [
+      {
+        "question": "La presentación clínica del dolor súbito y el abdomen \"en madera\" en una paciente usuaria crónica de AINEs sugiere fuertemente la perforación de una úlcera péptica gástrica o duodenal con peritonitis química secundaria. La pérdida de la matidez hepática a la percusión es un signo clínico de gas libre en la cavidad peritoneal. ¿Cómo se llama este signo exploratorio?",
+        "options": [
+          "Signo de Chilaiditi",
+          "Signo de Jobert",
+          "Signo de Courvoisier",
+          "Signo de Kehr"
+        ],
+        "answerIndex": 1,
+        "explanation": "El Signo de Jobert es la desaparición de la matidez percutoria en la región hepática, reemplazada por timpanismo. Esto ocurre porque el aire liberado por la perforación gastrointestinal asciende y se acumula entre el hígado y el diafragma. Es el correlato clínico del neumoperitoneo, el cual se confirmará al solicitar una radiografía de tórax en bipedestación observando aire subdiafragmático (\"signo de alas de gaviota\").",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA ONCOLOGÍA",
+    "subtema": "PATOLOGÍA BENIGNA DE MAMA",
+    "difficulty": "baja",
+    "case": "Femenina de 22 años, nulípara, sin antecedentes heredofamiliares de importancia. Acude a consulta por notar una \"bolita\" en su seno derecho mientras se bañaba hace un mes. Refiere que la masa no le causa dolor, incluso durante su periodo menstrual. A la exploración física, en el cuadrante superoexterno de la mama derecha, se palpa un nódulo de aproximadamente 2.5 cm de diámetro. Llama la atención que la masa es de consistencia ahulada, bordes lisos y muy bien delimitados, y es extremadamente móvil (se desliza fácilmente bajo los dedos, conocido clínicamente como el signo del \"ratón de las mamas\"). No hay retracción de piel, secreción por el pezón ni adenopatías axilares.",
+    "questions": [
+      {
+        "question": "Por la epidemiología (mujer joven en sus 20s) y las características clínicas a la palpación (masa móvil, ahulada, bien delimitada e indolora), ¿cuál es el diagnóstico clínico más probable, siendo además el tumor benigno de mama más frecuente en este grupo de edad?",
+        "options": [
+          "Quiste mamario simple",
+          "Papiloma intraductal",
+          "Fibroadenoma",
+          "Tumor filodes"
+        ],
+        "answerIndex": 2,
+        "explanation": "El fibroadenoma es el tumor sólido benigno más frecuente de la mama, típico de mujeres jóvenes (15 a 30 años). Está compuesto por tejido glandular y estromal (fibroso). Su sello clínico característico es ser una masa firme, ahulada, indolora y altamente móvil (\"ratón mamario\"). Por el contrario, la mastopatía fibroquística suele causar dolor cíclico bilateral (mastalgia) y masas múltiples/nodulares que varían con la menstruación. Al ser menor de 30 años, el estudio de imagen inicial de elección es el ultrasonido mamario, que confirmará una imagen ovalada, hipoecoica y bien circunscrita.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA INTESTINAL QX / PEDIATRÍA",
+    "subtema": "DIVERTÍCULO DE MECKEL",
+    "difficulty": "media",
+    "case": "Lactante masculino de 2 años de edad es llevado al servicio de urgencias por su madre, sumamente angustiada, al notar que en el último pañal el niño presentó una evacuación con sangre fresca y abundante (hematoquecia color rojo vino), sin presencia de moco ni heces. Al interrogar a la madre, refiere que el niño se encuentra completamente sano, no ha tenido fiebre, no ha llorado por dolor abdominal y no tiene alteraciones en el crecimiento. A la exploración física, el paciente se encuentra pálido, taquicárdico, pero con el abdomen blando, depresible y sin masas palpables ni dolor.",
+    "questions": [
+      {
+        "question": "Ante un cuadro de hemorragia digestiva baja masiva e indolora en un niño menor de 2 años, el principal diagnóstico de sospecha es un Divertículo de Meckel sangrante. Desde el punto de vista embriológico, ¿cuál es la estructura anatómica que falló en obliterarse completamente, dando origen a esta anomalía congénita (la más común del tracto gastrointestinal)?",
+        "options": [
+          "Conducto onfalomesentérico (Conducto vitelino)",
+          "Uraco",
+          "Intestino medio primitivo",
+          "Arco branquial"
+        ],
+        "answerIndex": 0,
+        "explanation": "El Divertículo de Meckel es la persistencia parcial del conducto onfalomesentérico (o vitelino), el cual normalmente conecta el saco vitelino con el intestino medio durante el desarrollo embrionario y debe obliterarse entre la 5ta y 7ma semana. Se rige por la \"Regla de los 2\": afecta al 2% de la población, tiene 2 pulgadas de largo, se ubica a 2 pies (60 cm) de la válvula ileocecal, suele ser sintomático antes de los 2 años de edad y contiene 2 tipos de mucosa ectópica (gástrica y pancreática).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Sabiendo que el sangrado es causado por la ulceración del íleon adyacente debido a la secreción ácida de la mucosa gástrica ectópica contenida dentro del divertículo, ¿cuál es el estudio de gabinete no invasivo de primera elección (estándar de oro pediátrico) para confirmar este diagnóstico específico?",
+        "options": [
+          "Colonoscopia pediátrica",
+          "Tránsito intestinal con bario",
+          "Gammagrafía con Pertecnetato de Tecnecio-99m (Gammagrama de Meckel)",
+          "Tomografía axial computarizada de abdomen"
+        ],
+        "answerIndex": 2,
+        "explanation": "El Gammagrama con Tecnecio-99m (Gammagrama de Meckel) es el estudio de elección en niños. El tecnecio-99m tiene una alta afinidad por las células secretoras de moco de la mucosa gástrica. En un paciente positivo, el isótopo se acumulará en el estómago normal y, patológicamente, en el cuadrante inferior derecho del abdomen (sitio del divertículo de Meckel con mucosa gástrica ectópica). El tratamiento es la resección quirúrgica del divertículo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "subtema": "TENOSINOVITIS DE DE QUERVAIN",
+    "difficulty": "baja",
+    "case": "Femenina de 30 años, madre reciente de un bebé de 3 meses. Acude a consulta externa de ortopedia refiriendo dolor muy intenso en la cara lateral de la muñeca derecha (lado del pulgar) de 3 semanas de evolución. Menciona que el dolor es punzante, se irradia hacia el antebrazo y empeora drásticamente cada vez que intenta levantar a su bebé de la cuna o al exprimir trapos. A la exploración física, se observa leve aumento de volumen en la apófisis estiloides del radio.",
+    "questions": [
+      {
+        "question": "Para confirmar el diagnóstico clínico, el médico le pide a la paciente que flexione su dedo pulgar hacia la palma de la mano, cierre los otros cuatro dedos sobre él (formando un puño) y luego el médico realiza una desviación cubital (ulnar) pasiva y forzada de la muñeca. La paciente refiere un dolor agudo e insoportable en la base del pulgar que la hace gritar. ¿Cómo se llama esta maniobra exploratoria patognomónica?",
+        "options": [
+          "Prueba de Phalen",
+          "Prueba de Tinel",
+          "Maniobra de Finkelstein",
+          "Prueba de Allen"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Prueba o Maniobra de Finkelstein es patognomónica de la Tenosinovitis de De Quervain. Al hacer desviación cubital con el pulgar atrapado, se estiran pasivamente los tendones inflamados dentro de su vaina estenosada, desencadenando un dolor exquisito a nivel de la apófisis estiloides del radio.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Desde el punto de vista anatómico, la Tenosinovitis de De Quervain es la inflamación estenosante del primer compartimento dorsal de la muñeca, ocasionada clásicamente por movimientos repetitivos de la pinza del pulgar y desviación radial de la muñeca (muy común en madres recientes o \"pulgar de la madre\"). ¿Cuáles son los dos tendones musculares que discurren por este primer compartimento y se encuentran afectados?",
+        "options": [
+          "Extensor radial largo del carpo y extensor radial corto del carpo",
+          "Abductor largo del pulgar y extensor corto del pulgar",
+          "Extensor largo del pulgar y abductor corto del pulgar",
+          "Flexor largo del pulgar y palmar mayor"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los tendones que forman el primer compartimento dorsal y se inflaman en la enfermedad de De Quervain son el Abductor Largo del Pulgar (ALP) y el Extensor Corto del Pulgar (ECP). Una mnemotecnia para recordarlo es \"ALPECP\" o \"AbLargo y ExCorto\". El Extensor largo del pulgar viaja solo en el tercer compartimento y es el que delimita la tabaquera anatómica por el lado cubital.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P1",
+    "subtema": "HPB (COMPLICACIONES Y TRATAMIENTO QX)",
+    "difficulty": "alta",
+    "case": "Masculino de 72 años, con antecedente de Hiperplasia Prostática Benigna (HPB) de 6 años de evolución, en tratamiento médico combinado (Tamsulosina + Finasterida) sin adecuada respuesta clínica (IPSS 22, persistencia de chorro débil y nicturia severa). En los últimos 6 meses, ha presentado dos cuadros de Retención Aguda de Orina (RAO) que ameritaron colocación de sonda Foley en urgencias, y dos episodios de Infección de Vías Urinarias comprobada por urocultivo. Un ultrasonido vesical y prostático reciente revela una próstata de 60 gramos (cc), volumen residual postmiccional de 150 ml (anormal) y la presencia de dos litos de 2 cm en el interior de la vejiga.",
+    "questions": [
+      {
+        "question": "Ante la falla al tratamiento médico, la GPC establece indicaciones absolutas (quirúrgicas) para el manejo de la HPB. ¿Cuál de los siguientes hallazgos en este paciente NO es simplemente un síntoma molesto, sino una indicación absoluta y formal para realizar tratamiento quirúrgico desobstructivo de la próstata?",
+        "options": [
+          "El tamaño prostático de 60 gramos",
+          "El puntaje IPSS de 22 (síntomas severos)",
+          "La nicturia severa",
+          "La presencia de litiasis vesical y retención urinaria refractaria"
+        ],
+        "answerIndex": 3,
+        "explanation": "Las indicaciones absolutas para la cirugía prostática en HPB indican que la obstrucción ya causó daño secundario al tracto urinario. Estas incluyen: Retención aguda de orina refractaria al retiro de sonda, Infecciones urinarias recurrentes, Litiasis vesical (formada por el estancamiento crónico), Hematuria macroscópica recurrente o refractaria, e Insuficiencia renal postrenal (hidronefrosis). El tamaño de la próstata o la severidad de los síntomas por sí solos son indicaciones relativas, dependiendo de cómo afecten la calidad de vida.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Dado que el paciente tiene una indicación quirúrgica absoluta y el volumen de su próstata se midió por ultrasonido en 60 gramos (cc), ¿cuál es el procedimiento quirúrgico de elección (\"Gold Standard\") avalado por las guías internacionales para desobstruir a este paciente?",
+        "options": [
+          "Resección Transuretral de Próstata (RTUP) monopolar o bipolar",
+          "Prostatectomía abierta (Adenomectomía retropúbica)",
+          "Incisión Transuretral de la Próstata (ITUP)",
+          "Prostatectomía Radical Robótica"
+        ],
+        "answerIndex": 0,
+        "explanation": "El abordaje quirúrgico de la HPB depende casi exclusivamente del volumen prostático. < 30 gramos: ITUP (Incisión transuretral) es una opción. De 30 a 80 gramos: RTUP (Resección transuretral de próstata) es el estándar de oro (como en este caso de 60 cc). Se introduce un resectoscopio por la uretra y se \"rasura\" el adenoma prostático obstructivo. 80 gramos: Prostatectomía abierta (abdomino-pélvica) o Enucleación con láser Holmium (HoLEP) debido a que la próstata es muy grande para sacarla por el canal uretral en un tiempo seguro. La prostatectomía radical (quitar toda la glándula con su cápsula) es exclusiva del Cáncer de Próstata.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "subtema": "CELULITIS ORBITARIA",
+    "difficulty": "media",
+    "case": "Escolar masculino de 8 años es llevado a urgencias pediátricas. Su madre refiere que el niño tuvo un cuadro de rinosinusitis aguda (congestión y moco verde) hace una semana. Desde ayer, el niño inició con fiebre de 39°C, malestar general y notó que el ojo derecho comenzó a hincharse rápidamente. A la inspección, el ojo derecho presenta edema palpebral severo, eritema, y el globo ocular está francamente desplazado hacia adelante (proptosis/exoftalmos). A la exploración oftalmológica, la agudeza visual del ojo derecho está disminuida. Llama la atención que la conjuntiva está muy inflamada (quemosis) y el paciente refiere un dolor insoportable al intentar mover el ojo, presentando limitación evidente para mirar hacia arriba y hacia la derecha (oftalmoplejía).",
+    "questions": [
+      {
+        "question": "Es imperativo diferenciar clínicamente una celulitis preseptal (leve, anterior al tabique orbitario) de una celulitis orbitaria (grave, posterior al tabique). De los hallazgos descritos, ¿cuáles son los signos clínicos cardinales que confirman que la infección ya invadió la grasa y los músculos detrás del septum orbitario (Celulitis Orbitaria)?",
+        "options": [
+          "El edema y el eritema palpebral",
+          "La fiebre y la quemosis",
+          "La proptosis, el dolor a los movimientos oculares y la oftalmoplejía",
+          "La rinorrea purulenta previa"
+        ],
+        "answerIndex": 2,
+        "explanation": "La celulitis preseptal (peri orbitaria) solo afecta los párpados por delante del septum; el ojo en sí está blanco, se mueve perfecto y ve bien. La celulitis orbitaria (infección profunda) comprime las estructuras intraorbitarias, causando característicamente proptosis (ojo saltón), oftalmoplejía (limitación y dolor intenso a los movimientos extraoculares por inflamación muscular) y compromiso del nervio óptico (baja visual, defecto pupilar).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Dada la epidemiología pediátrica y el antecedente patológico del paciente, ¿cuál es el origen o foco infeccioso primario que causa más del 85% de las celulitis orbitarias en niños, debido a que solo están separados de la órbita por la frágil lámina papirácea del hueso etmoides?",
+        "options": [
+          "Una caries dental en los molares superiores",
+          "Infección bacteriana directa de un chalazión",
+          "Rinosinusitis etmoidal aguda",
+          "Infección del saco lagrimal (Dacriocistitis)"
+        ],
+        "answerIndex": 2,
+        "explanation": "La gran mayoría de las celulitis orbitarias pediátricas son complicaciones directas de una rinosinusitis aguda, particularmente del seno etmoidal. El hueso que separa las celdillas etmoidales de la cavidad orbitaria medial es la lámina papirácea, la cual es tan delgada como un papel y está perforada por múltiples venas emisarias (sin válvulas), permitiendo que las bacterias (S. pneumoniae, H. influenzae, S. aureus) se diseminen fácilmente hacia la grasa orbitaria posterior.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P2",
+    "subtema": "TRAUMA MEDULAR Y CHOQUE NEUROGÉNICO",
+    "difficulty": "alta",
+    "case": "Masculino de 28 años ingresa a la sala de choque tras sufrir una volcadura en su vehículo a alta velocidad. Los paramédicos lo extrajeron con inmovilización cervical y tabla rígida. A su ingreso, el paciente se encuentra alerta, pero refiere incapacidad total para mover los brazos y las piernas (tetraplejía), así como pérdida de la sensibilidad por debajo del nivel de las clavículas. Sus signos vitales al monitor muestran una Presión Arterial de 75/40 mmHg y una Frecuencia Cardíaca de 55 lpm. A la exploración física, llama la atención que, a pesar de la hipotensión profunda, las extremidades del paciente se sienten calientes, rosadas y secas, sin evidencia de diaforesis.",
+    "questions": [
+      {
+        "question": "La presentación de hipotensión severa acompañada de bradicardia (o ausencia de taquicardia) y extremidades calientes en un paciente con trauma raquimedular cervical es el cuadro clínico patognomónico de un tipo específico de choque distributivo. ¿Cuál es este diagnóstico?",
+        "options": [
+          "Choque espinal",
+          "Choque hemorrágico clase III",
+          "Choque neurogénico",
+          "Choque cardiogénico"
+        ],
+        "answerIndex": 2,
+        "explanation": "El choque neurogénico ocurre por la sección o daño severo de las vías simpáticas descendentes en la médula espinal (típicamente en lesiones por arriba de T6). Esto provoca una pérdida súbita del tono vasomotor (vasodilatación periférica masiva = extremidades calientes e hipotensión) y la pérdida de la inervación simpática al corazón (dejando sin oposición al tono vagal parasimpático = bradicardia). El choque hipovolémico, por el contrario, cursa con taquicardia, palidez y extremidades frías/diaforéticas. El \"choque espinal\" se refiere a la pérdida transitoria de los reflejos motores y sensitivos (flacidez y arreflexia), no a un estado hemodinámico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tras descartar otras causas de choque (con un ultrasonido FAST negativo) y asegurar la vía aérea, ¿cuál es el pilar farmacológico del tratamiento para restaurar el tono vascular en el choque neurogénico, una vez que la reanimación inicial moderada con cristaloides no ha logrado elevar la presión arterial?",
+        "options": [
+          "Administración de atropina intravenosa en infusión continua",
+          "Inicio temprano de vasopresores (ej. Norepinefrina o Fenilefrina)",
+          "Transfusión masiva de paquetes globulares",
+          "Bolo de metilprednisolona a altas dosis"
+        ],
+        "answerIndex": 1,
+        "explanation": "El tratamiento del choque neurogénico se basa en la reposición moderada de volumen (para llenar el lecho vascular dilatado) y el uso temprano de vasopresores (la Norepinefrina es de elección por su efecto alfa y beta, o la Fenilefrina si hay mucha taquicardia) para contrarrestar la pérdida del tono simpático y mantener una presión de perfusión medular adecuada. Los esteroides a altas dosis ya NO están recomendados de rutina por el ATLS debido al alto riesgo de complicaciones sin un beneficio funcional claro.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA INTESTINAL QX / CIRUGÍA PEDIÁTRICA",
+    "subtema": "INVAGINACIÓN INTESTINAL (INTUSUSCEPCIÓN)",
+    "difficulty": "media",
+    "case": "Lactante masculino de 8 meses de edad es traído a urgencias por presentar irritabilidad extrema y llanto inconsolable de inicio súbito. La madre refiere que los episodios de llanto duran unos 15 minutos, durante los cuales el niño palidece y flexiona fuertemente las piernas sobre el abdomen; luego el niño se relaja y parece normal (letárgico) hasta el siguiente episodio. Ha vomitado en dos ocasiones. Al interrogar sobre las evacuaciones, la madre muestra un pañal que contiene heces gelatinosas de color rojo oscuro, mezcladas con moco. A la exploración física, en el cuadrante superior derecho del abdomen se palpa una masa alargada (\"en forma de salchicha\").",
+    "questions": [
+      {
+        "question": "El cuadro clínico de dolor cólico intermitente severo, masa palpable en forma de salchicha y evacuaciones con sangre y moco es la tríada clásica de esta urgencia intestinal pediátrica. ¿Qué nombre patognomónico reciben las evacuaciones descritas en este padecimiento?",
+        "options": [
+          "Heces en agua de arroz",
+          "Heces en jalea de grosella",
+          "Evacuaciones en masilla",
+          "Melena"
+        ],
+        "answerIndex": 1,
+        "explanation": "Las heces en \"jalea de grosella\" (currant jelly stools) son el signo clásico y tardío de la intususcepción (invaginación de un segmento intestinal dentro de otro, frecuentemente íleon dentro del ciego). Se producen por la isquemia de la mucosa invaginada, que se descama y se mezcla con sangre y moco. La flexión de las piernas sobre el abdomen por el dolor cólico es otro signo pivote.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Ante la sospecha clínica de invaginación intestinal, ¿cuál es el estudio de imagen inicial de elección por su alta sensibilidad, ser no invasivo y evitar la radiación en el lactante, el cual clásicamente muestra el signo de la \"diana\" o \"pseudo-riñón\"?",
+        "options": [
+          "Radiografía simple de abdomen",
+          "Tomografía computarizada con contraste oral",
+          "Ultrasonido abdominal",
+          "Gammagrafía con eritrocitos marcados"
+        ],
+        "answerIndex": 2,
+        "explanation": "El ultrasonido abdominal es el estándar de oro diagnóstico inicial. Tiene una sensibilidad y especificidad cercanas al 100% en manos expertas. El hallazgo clásico es el \"signo de la diana\" o tiro al blanco (corte transversal del intestino invaginado mostrando múltiples capas concéntricas) o el signo del \"pseudo-riñón\" (corte longitudinal).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si el paciente se encuentra hemodinámicamente estable, no tiene datos de perforación (neumoperitoneo) ni peritonitis, ¿cuál es el tratamiento de primera línea para intentar la desinvaginación antes de recurrir a la cirugía abierta?",
+        "options": [
+          "Reducción hidrostática (enema de bario o solución salina) o neumática (enema de aire) guiada por fluoroscopia o ultrasonido",
+          "Administración de antiespasmódicos intravenosos",
+          "Laparotomía exploradora con resección intestinal inmediata",
+          "Colocación de sonda nasogástrica y observación por 48 horas"
+        ],
+        "answerIndex": 0,
+        "explanation": "El tratamiento inicial de elección (y a menudo curativo) en pacientes estables sin necrosis es la reducción no quirúrgica mediante enemas (hidrostáticos o neumáticos) bajo presión controlada y visión fluoroscópica/ecográfica. La presión del líquido o aire empuja el intestino invaginado de regreso a su posición normal. La cirugía se reserva para cuando el enema falla, hay perforación, peritonitis o choque.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR / ORTOPEDIA PEDIÁTRICA",
+    "subtema": "DISPLASIA DEL DESARROLLO DE LA CADERA (DDC)",
+    "difficulty": "media",
+    "case": "Recién nacida femenina, obtenida por parto vaginal en presentación de nalgas (pélvica). Como antecedente familiar, la madre refiere haber utilizado aparatos ortopédicos en las piernas durante su infancia. En la primera revisión en el cunero (a las 24 horas de vida), el pediatra realiza maniobras dinámicas de exploración en la cadera izquierda de la bebé. Al abducir la cadera izquierda (abrir la pierna hacia afuera) y presionar el trocánter mayor hacia arriba, el médico percibe un \"clack\" (un resalte palpable y audible), que corresponde a la reducción de la cabeza del fémur previamente luxada hacia el interior del acetábulo.",
+    "questions": [
+      {
+        "question": "La presencia de factores de riesgo (sexo femenino, presentación pélvica, antecedente familiar) y el hallazgo exploratorio positivo obligan a establecer el diagnóstico de Displasia del Desarrollo de la Cadera. ¿Qué nombre recibe la maniobra específica descrita que logra reducir una cadera luxada?",
+        "options": [
+          "Maniobra de Barlow",
+          "Maniobra de Ortolani",
+          "Signo de Galeazzi",
+          "Prueba de Trendelenburg"
+        ],
+        "answerIndex": 1,
+        "explanation": "La maniobra de Ortolani (\"Out to In\") reduce una cadera que ya estaba luxada. Se realiza abduciendo la cadera y empujando el trocánter mayor hacia adelante; el \"clack\" significa que la cabeza femoral ha entrado al acetábulo. Por el contrario, la maniobra de Barlow (\"Bad\") es una prueba de provocación: aduce la cadera (hacia adentro) y empuja hacia atrás, intentando luxar una cadera inestable que estaba en su lugar.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC, en un lactante menor de 4 meses con sospecha clínica o factores de riesgo de DDC, ¿cuál es el estudio de imagen de elección para confirmar el diagnóstico y evaluar la morfología del cartílago acetabular?",
+        "options": [
+          "Radiografía simple de pelvis (AP)",
+          "Tomografía computarizada de cadera",
+          "Ultrasonido de cadera",
+          "Resonancia magnética pélvica"
+        ],
+        "answerIndex": 2,
+        "explanation": "En los primeros meses de vida, la cabeza femoral y gran parte del acetábulo son de cartílago (radiolúcidos), por lo que la radiografía simple es inútil. El ultrasonido de cadera (método de Graf) es el estándar de oro para el diagnóstico de DDC en menores de 4 a 6 meses. Las radiografías AP de pelvis (para medir el índice acetabular y las líneas de Shenton/Hilgenreiner) se vuelven el estudio de elección después de los 4 a 6 meses, cuando aparecen los núcleos de osificación.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Confirmado el diagnóstico de DDC en esta paciente de 1 mes de edad, ¿cuál es el tratamiento ortopédico de elección inicial para mantener la cadera en abducción y flexión, favoreciendo el desarrollo y profundización del acetábulo?",
+        "options": [
+          "Yeso pelvipédico tipo espica",
+          "Uso de doble o triple pañal",
+          "Arnés de Pavlik",
+          "Tenotomía de los aductores"
+        ],
+        "answerIndex": 2,
+        "explanation": "El Arnés de Pavlik es el tratamiento de primera elección para la DDC en lactantes menores de 6 meses. Es un dispositivo dinámico que mantiene las caderas flexionadas a 100° y en abducción suave, centrando la cabeza femoral en el acetábulo para estimular su formación normal. El uso de \"doble pañal\" es una práctica obsoleta y totalmente contraindicada según las guías.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "HIPOACUSIA Y VÉRTIGO",
+    "subtema": "NEURITIS VESTIBULAR",
+    "difficulty": "baja",
+    "case": "Masculino de 35 años acude a urgencias quejándose de mareo intenso con sensación de giro (vértigo rotatorio) de inicio súbito que comenzó al despertar hace 2 días. Refiere que el mareo es constante (no cede ni siquiera al estar inmóvil), se acompaña de náuseas severas, múltiples episodios de vómito e inestabilidad para caminar (se va hacia el lado derecho). Como antecedente, refiere haber tenido una infección de vías respiratorias altas (gripa) hace una semana. Al interrogatorio dirigido, el paciente niega rotundamente tener zumbidos de oído (acúfenos), dolor ótico, o disminución de la audición. A la exploración física, presenta un nistagmo espontáneo horizontal-torsional.",
+    "questions": [
+      {
+        "question": "Por la presentación de una crisis de vértigo periférico aguda y sostenida (de días de duración), antecedente de infección viral, y de manera cardinal, la ausencia total de síntomas auditivos, ¿cuál es el diagnóstico más probable?",
+        "options": [
+          "Enfermedad de Ménière",
+          "Vértigo Postural Paroxístico Benigno (VPPB)",
+          "Laberintitis aguda",
+          "Neuritis vestibular"
+        ],
+        "answerIndex": 3,
+        "explanation": "La neuritis vestibular es una inflamación del nervio vestibular (usualmente postviral). Se caracteriza por una crisis única, severa y prolongada (días) de vértigo, náuseas y vómito. La clave para diferenciarla de la laberintitis o de la enfermedad de Ménière es que la audición está completamente normal (no hay hipoacusia ni acúfenos, ya que la cóclea y el nervio coclear no están afectados). Se diferencia del VPPB porque el vértigo es continuo y dura días, no segundos.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento sintomático inicial de elección para suprimir la crisis vestibular severa y aliviar las náuseas y vómitos durante los primeros 3 días?",
+        "options": [
+          "Antibióticos intravenosos (Ceftriaxona)",
+          "Sedantes vestibulares (ej. Dimenhidrinato, Diazepam o Metoclopramida)",
+          "Diuréticos tiazídicos",
+          "Maniobra de reposicionamiento de Epley"
+        ],
+        "answerIndex": 1,
+        "explanation": "El tratamiento de la fase aguda (primeros 3 a 5 días) se basa en el reposo y el uso de sedantes vestibulares (antihistamínicos como dimenhidrinato/meclozina, benzodiacepinas, o antieméticos) para controlar el vértigo intenso y los síntomas vegetativos. Estos fármacos deben suspenderse pronto para permitir la compensación vestibular central. Los esteroides orales (prednisona) a menudo se usan para desinflamar el nervio más rápido.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P2 / ATLS P2",
+    "subtema": "TRAUMA RENAL",
+    "difficulty": "media",
+    "case": "Masculino de 18 años, jugador de fútbol americano, recibe un golpe directo y violento (tacleada) con un casco en la región lumbar (flanco) izquierda. Acude a urgencias por presentar dolor continuo en la zona del golpe. A la exploración física, sus signos vitales son completamente normales (TA 120/80 mmHg, FC 80 lpm) y el abdomen es blando y depresible. En la fosa lumbar izquierda presenta equimosis leve. Al solicitarle que orine en un frasco, la orina tiene un aspecto francamente rojo oscuro (hematuria macroscópica).",
+    "questions": [
+      {
+        "question": "Dado el antecedente de trauma cerrado en el flanco con presencia de hematuria macroscópica y un paciente hemodinámicamente estable, ¿cuál es el estudio de imagen de elección (Gold Standard) para evaluar íntegramente la anatomía del riñón, clasificar el grado de la lesión (Grados I al V de la AAST) y observar la excreción de la vía urinaria?",
+        "options": [
+          "Tomografía Computarizada (TAC) de abdomen y pelvis con contraste intravenoso trifásica (UroTAC)",
+          "Ultrasonido renal",
+          "Pielografía intravenosa (Urografía excretora)",
+          "Resonancia magnética de vías urinarias"
+        ],
+        "answerIndex": 0,
+        "explanation": "La TAC contrastada de abdomen y pelvis es el estándar de oro para el diagnóstico y estadificación del trauma renal en cualquier paciente que se encuentre hemodinámicamente estable. Permite evaluar con exactitud la profundidad de las laceraciones, la presencia de hematomas retroperitoneales, sangrado activo (fuga de contraste) y si el uréter y la pelvis renal están intactos (fase excretora). El ultrasonido no tiene la resolución suficiente para estadificar el trauma de órgano sólido.",
+        "gpcReference": ""
+      },
+      {
+        "question": "La TAC reporta una laceración en el parénquima renal izquierdo de 1.5 cm de profundidad que llega hasta la médula, pero sin involucrar el sistema colector (no hay extravasación de orina), asociada a un hematoma perirrenal confinado, sin sangrado arterial activo. Esto lo clasifica como un trauma renal Grado III. Manteniéndose el paciente estable y sin cambios en sus signos vitales, ¿cuál es el tratamiento de elección?",
+        "options": [
+          "Nefrectomía total izquierda de urgencia",
+          "Nefrectomía parcial izquierda laparoscópica",
+          "Manejo conservador: reposo absoluto en cama, monitorización de signos vitales, hematocrito seriado y antibióticos profilácticos",
+          "Colocación de un catéter doble J exclusivamente"
+        ],
+        "answerIndex": 2,
+        "explanation": "La gran mayoría de los traumatismos renales cerrados (Grados I, II y III, e incluso muchos Grados IV y V) se tratan de forma conservadora (no quirúrgica) si el paciente se mantiene hemodinámicamente estable. El riñón retroperitoneal tiene una excelente capacidad para hacer hemostasia espontánea mediante el taponamiento del hematoma dentro de la cápsula de Gerota. La cirugía de urgencia (exploración renal) se reserva casi exclusivamente para pacientes con inestabilidad hemodinámica persistente por sangrado masivo incontrolable o riñones estallados con pedículo avulsionado (Grado V).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA INTESTINAL QX",
+    "subtema": "ISQUEMIA MESENTÉRICA AGUDA",
+    "difficulty": "alta",
+    "case": "Masculino de 75 años, con antecedente de insuficiencia cardíaca congestiva y fibrilación auricular crónica en tratamiento irregular. Es traído a urgencias refiriendo dolor abdominal de inicio súbito, periumbilical, de intensidad 10/10 (\"el peor de su vida\"), que inició hace 3 horas. El paciente se encuentra diaforético, con náuseas y ha presentado una evacuación diarreica con pintas de sangre. A la exploración física, los signos vitales muestran FC 120 lpm, TA 150/90 mmHg, FR 24 rpm. Llama poderosamente la atención que, a pesar de que el paciente se retuerce de dolor y grita, a la palpación el abdomen se encuentra blando, depresible, sin resistencia muscular, sin signo de rebote y con peristalsis levemente disminuida.",
+    "questions": [
+      {
+        "question": "El cuadro clínico clásico de un dolor abdominal agudo, severo y completamente desproporcionado a los hallazgos a la exploración física (abdomen blando) en un paciente con arritmia embolígena es el sello patognomónico de una catástrofe vascular. ¿Cuál es el diagnóstico clínico de sospecha?",
+        "options": [
+          "Úlcera péptica perforada",
+          "Isquemia mesentérica aguda",
+          "Pancreatitis aguda severa",
+          "Diverticulitis aguda complicada"
+        ],
+        "answerIndex": 1,
+        "explanation": "La isquemia mesentérica aguda (frecuentemente por un émbolo originado en el corazón) causa una necrosis rápida del intestino delgado. El síntoma cardinal inicial es el dolor extremo \"desproporcionado\" a los signos físicos, ya que la isquemia inicia en la mucosa (adentro) antes de llegar a la serosa (afuera); por lo tanto, inicialmente no hay signos de irritación peritoneal (no hay rebote ni rigidez). Cuando aparece el abdomen en tabla, significa que el intestino ya se ha infartado y perforado, siendo un signo tardío y de muy mal pronóstico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Dado que el paciente se encuentra hemodinámicamente estable pero con alta sospecha de oclusión vascular intestinal, ¿cuál es el estudio de imagen de elección (estándar de oro moderno no invasivo) que confirmará el diagnóstico y localizará el sitio exacto de la obstrucción?",
+        "options": [
+          "Radiografía simple de abdomen en bipedestación",
+          "Angio-Resonancia Magnética",
+          "Angio-Tomografía Computarizada (AngioTAC) de abdomen",
+          "Ultrasonido Doppler abdominal"
+        ],
+        "answerIndex": 2,
+        "explanation": "La AngioTAC abdominal (Tomografía trifásica) es el estudio de elección actual para el diagnóstico rápido de la isquemia mesentérica. Permite visualizar directamente el coágulo o trombo dentro de los vasos mesentéricos, evaluar la perfusión de la pared intestinal (falta de realce con el contraste) y detectar complicaciones como neumatosis intestinal (aire en la pared del intestino) o gas en la vena porta.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Considerando la anatomía vascular del tracto gastrointestinal y el mecanismo embólico de este paciente, ¿cuál es el vaso sanguíneo que se ocluye con mayor frecuencia (hasta en el 50% de los casos), causando la isquemia de todo el intestino delgado y la mitad derecha del colon?",
+        "options": [
+          "Tronco celíaco",
+          "Arteria mesentérica inferior",
+          "Arteria mesentérica superior",
+          "Vena porta"
+        ],
+        "answerIndex": 2,
+        "explanation": "La arteria mesentérica superior (AMS) es la arteria más frecuentemente afectada por émbolos debido a su gran calibre y a que su ángulo de origen (salida de la aorta) es muy agudo, facilitando que los trombos provenientes del corazón (aurícula izquierda) se alojen directamente en ella. Irriga todo el yeyuno, el íleon y el colon derecho hasta la flexura esplénica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P3",
+    "subtema": "TRAUMA DE CUELLO",
+    "difficulty": "media",
+    "case": "Masculino de 25 años ingresa a la sala de choque tras sufrir una herida por arma blanca (cuchillo) en la región anterior del cuello durante un asalto. A su ingreso, el paciente se encuentra consciente (Glasgow 15), pero su vía aérea se nota comprometida por la acumulación de sangre. Sus signos vitales: FC 115 lpm, TA 90/60 mmHg. A la exploración, se observa una herida penetrante de 3 cm ubicada exactamente a la altura del cartílago tiroides (manzana de Adán). De la herida brota un sangrado pulsátil de color rojo brillante y se observa un hematoma que está creciendo rápidamente, desplazando la tráquea hacia el lado izquierdo.",
+    "questions": [
+      {
+        "question": "De acuerdo con la división anatómica clásica utilizada en trauma para clasificar las lesiones penetrantes de cuello, ¿en qué zona se encuentra la herida de este paciente, la cual es anatómicamente la más grande, expuesta y fácil de abordar quirúrgicamente?",
+        "options": [
+          "Zona I",
+          "Zona II",
+          "Zona III",
+          "Zona IV"
+        ],
+        "answerIndex": 1,
+        "explanation": "El cuello se divide en tres zonas. Zona I: De las clavículas/esternón hasta el cartílago cricoides (difícil abordaje por los grandes vasos del tórax). Zona II: Del cartílago cricoides hasta el ángulo de la mandíbula (la más grande, frecuente y de abordaje quirúrgico directo, donde se ubica el cartílago tiroides). Zona III: Del ángulo de la mandíbula hasta la base del cráneo (difícil abordaje por estructuras óseas).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según el protocolo ATLS, ante la presencia de sangrado pulsátil, un hematoma expansivo e inestabilidad hemodinámica, ¿cuál es la conducta terapéutica de urgencia indicada de manera inmediata tras asegurar la vía aérea mediante intubación?",
+        "options": [
+          "Exploración quirúrgica (cervicotomía) de urgencia en quirófano",
+          "AngioTAC de cuello para delimitar la lesión",
+          "Endoscopia superior (Panendoscopia) para descartar lesión esofágica",
+          "Observación estrecha en Cuidados Intensivos"
+        ],
+        "answerIndex": 0,
+        "explanation": "El sangrado pulsátil, el hematoma expansivo, el choque hipovolémico, la hemoptisis masiva o el soplo/fremito son \"signos duros\" de lesión vascular o aerodigestiva en trauma de cuello. La presencia de cualquier signo duro (sin importar la zona anatómica) es una indicación absoluta e inmediata para exploración quirúrgica (cervicotomía) de urgencia. Los estudios de imagen (AngioTAC, endoscopia) se reservan exclusivamente para pacientes estables (con \"signos blandos\" o asintomáticos).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
+    "subtema": "FRACTURA DE DIÁFISIS FEMORAL",
+    "difficulty": "baja",
+    "case": "Masculino de 30 años, motociclista, sufre impacto lateral por un automóvil a alta velocidad. Es ingresado con dolor insoportable en el muslo derecho. A la inspección, el muslo presenta un severo aumento de volumen, deformidad en angulación y la extremidad se encuentra acortada y rotada externamente. Las radiografías revelan una fractura transversal desplazada en el tercio medio de la diáfisis del fémur. Sus signos vitales muestran taquicardia (110 lpm) y TA de 100/65 mmHg.",
+    "questions": [
+      {
+        "question": "Dado que la fractura diafisiaria de fémur es una de las lesiones óseas que mayor pérdida sanguínea aguda provoca (hacia el compartimento cerrado del muslo), ¿cuál es el volumen estimado de pérdida de sangre que puede alojarse en un solo muslo por esta fractura y que puede precipitar un choque hemorrágico?",
+        "options": [
+          "100 a 250 ml",
+          "250 a 500 ml",
+          "1000 a 1500 ml",
+          "Más de 3000 ml"
+        ],
+        "answerIndex": 2,
+        "explanation": "El fémur es el hueso largo más grande y ricamente vascularizado. Una fractura cerrada de la diáfisis femoral puede sangrar libremente hacia el tejido muscular adyacente, secuestrando entre 1,000 y 1,500 ml (1 a 1.5 litros) de sangre en un solo muslo, lo cual representa una pérdida del 20-30% de la volemia de un adulto, justificando la taquicardia inicial y requiriendo reanimación hídrica agresiva.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Una vez que el paciente se encuentra hemodinámicamente estable, ¿cuál es el tratamiento quirúrgico de elección (Gold Standard) para la estabilización definitiva de esta fractura en adultos, el cual permite la movilización temprana y carga de peso?",
+        "options": [
+          "Tracción esquelética transcondílea por 8 semanas",
+          "Reducción abierta y colocación de placas con tornillos",
+          "Colocación de un clavo centromedular bloqueado (fresado)",
+          "Colocación de fijadores externos definitivos"
+        ],
+        "answerIndex": 2,
+        "explanation": "El clavo centromedular entrelazado o bloqueado es el estándar de oro absoluto para el tratamiento definitivo de las fracturas de la diáfisis femoral en adultos. Este dispositivo se inserta por dentro del canal medular del hueso, actuando como un tutor interno de carga compartida, lo que preserva el hematoma de fractura (favoreciendo la consolidación biológica) y permite al paciente levantarse y apoyar la extremidad casi inmediatamente, disminuyendo el riesgo de tromboembolia pulmonar y neumonía.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P2",
+    "subtema": "CÁNCER TESTICULAR (SEMINOMA)",
+    "difficulty": "media",
+    "case": "Masculino de 32 años de edad, asintomático. Acude a urología porque notó un endurecimiento progresivo de su testículo derecho a lo largo de 3 meses. Niega dolor, fiebre o trauma. A la exploración física, se palpa el testículo derecho aumentado de tamaño, con una masa sólida, pétrea e indolora que no transilumina. Se realiza una orquiectomía radical inguinal derecha. El reporte histopatológico de la pieza quirúrgica confirma un \"Seminoma puro clásico\", sin invasión linfovascular.",
+    "questions": [
+      {
+        "question": "De acuerdo con la GPC y los protocolos oncológicos, previo a la cirugía se debieron haber solicitado marcadores tumorales séricos para estadificación. En el caso específico de un tumor de células germinales tipo Seminoma puro, ¿cuál es el comportamiento clásico de los marcadores tumorales Alfafetoproteína (AFP) y Fracción beta de la Gonadotropina Coriónica Humana (hCG)?",
+        "options": [
+          "La AFP y la hCG están marcadamente elevadas",
+          "La AFP siempre es NORMAL, y la hCG puede estar levemente elevada (en un 15- 20% de los casos)",
+          "La AFP está muy elevada y la hCG siempre es normal",
+          "Ambos marcadores siempre están normales, solo se eleva el Antígeno Prostático"
+        ],
+        "answerIndex": 1,
+        "explanation": "Es fundamental recordar esta regla de oro en oncología urológica: los Seminomas puros NUNCA producen Alfafetoproteína (AFP). Si un paciente con tumor testicular tiene la AFP elevada, por definición el tumor NO es un seminoma puro (es un tumor no seminomatoso, como el carcinoma embrionario o tumor de saco vitelino). La hCG suele ser normal en el seminoma puro, pero puede estar ligeramente elevada si contiene células sincitiotrofoblásticas. La Deshidrogenasa Láctica (LDH) se eleva como marcador inespecífico de carga tumoral.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Sabiendo que la estadificación tomográfica (TAC abdominopélvica) del paciente resulta negativa para metástasis ganglionares retroperitoneales (Estadio Clínico I), ¿cuál es una característica oncológica terapéutica que distingue excepcionalmente al Seminoma  respecto a los tumores no seminomatosos?",
+        "options": [
+          "Es extremadamente radiorresistente",
+          "Es exquisitamente radiosensible (muy sensible a la radioterapia)",
+          "Solo responde a inmunoterapia con BCG",
+          "Requiere linfadenectomía retroperitoneal bilateral sistemática siempre"
+        ],
+        "answerIndex": 1,
+        "explanation": "El seminoma se caracteriza por ser exquisitamente sensible a la radioterapia (a diferencia de los tumores germinales no seminomatosos, que son radiorresistentes y requieren quimioterapia u operarse). Por esta razón, históricamente la radioterapia profiláctica o adyuvante a los ganglios retroperitoneales era el estándar para el estadio I. Actualmente, la vigilancia activa o una sola dosis de quimioterapia (Carboplatino) suelen ser preferidas para minimizar toxicidad en estadio I, pero su radiosensibilidad sigue siendo su principal sello distintivo en etapas avanzadas (Estadio II).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA CÁMARA ANTERIOR",
+    "subtema": "PTERIGIÓN",
+    "difficulty": "baja",
+    "case": "Masculino de 45 años, de ocupación albañil, sin antecedentes crónicos. Acude a oftalmología por irritación ocular crónica, sensación de cuerpo extraño y enrojecimiento en su ojo izquierdo, el cual empeora tras estar en el sol. A la inspección, se observa una lesión fibrovascular carnosa, de forma triangular, que se origina en la conjuntiva bulbar nasal (cerca del canto interno) y cruza el limbo esclerocorneal, invadiendo el tejido transparente de la córnea en aproximadamente 2 milímetros hacia el eje visual.",
+    "questions": [
+      {
+        "question": "Dada la invasión franca hacia el tejido corneal, ¿cuál es el diagnóstico clínico definitivo de esta degeneración ocular y cuál es su principal factor de riesgo fisiopatológico?",
+        "options": [
+          "Pinguécula; secundaria a infección por Adenovirus",
+          "Chalazión; secundario a obstrucción de glándulas de Meibomio",
+          "Pterigión; secundario a la degeneración elastótica por exposición crónica a los rayos ultravioleta (sol)",
+          "Queratocono; secundario a frotamiento ocular crónico"
+        ],
+        "answerIndex": 2,
+        "explanation": "El pterigión (vulgarmente \"carnosidad\") es un crecimiento fibrovascular de la conjuntiva que, a diferencia de la pinguécula, sí invade la córnea. Está fuertemente asociado a la exposición crónica a los rayos ultravioleta (luz solar), polvo y viento (clásico en campesinos, albañiles, pescadores). Los rayos UV inducen un daño en las células madre del limbo y una degeneración elastótica del colágeno conjuntival que prolifera sobre la córnea. Si amenaza el eje visual o causa astigmatismo irregular severo, el tratamiento es la extirpación quirúrgica con autoinjerto conjuntival.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA GENERAL PEDIÁTRICA",
+    "subtema": "ESTENOSIS HIPERTRÓFICA DEL PÍLORO",
+    "difficulty": "alta",
+    "case": "Lactante masculino de 3 semanas de vida, primogénito. Es llevado a urgencias por su madre debido a que desde hace 5 días presenta vómitos después de cada toma de leche. La madre describe que los vómitos han ido empeorando, volviéndose \"en proyectil\", de contenido exclusivamente lácteo (no biliar) y que, inmediatamente después de vomitar, el bebé llora con mucha hambre y quiere volver a comer (\"vomitador hambriento\"). A la exploración física, el lactante luce deshidratado (mucosas secas, llanto sin lágrimas). Al descubrir el abdomen durante la toma del biberón, se observan ondas peristálticas visibles que van de izquierda a derecha en el epigastrio. A la palpación profunda y suave en el cuadrante superior derecho, se percibe una masa dura, móvil, del tamaño de una aceituna (oliva pilórica).",
+    "questions": [
+      {
+        "question": "Debido a los múltiples episodios de vómito de contenido gástrico puro (pérdida masiva de ácido clorhídrico), este paciente desarrollará un trastorno ácido-base y electrolítico clásico que es una indicación para retrasar la cirugía hasta que sea corregido. ¿Cuál es este trastorno patognomónico?",
+        "options": [
+          "Acidosis metabólica hiperclorémica con hiperpotasemia",
+          "Alcalosis respiratoria compensada",
+          "Alcalosis metabólica hipoclorémica e hipopotasémica",
+          "Acidosis láctica con brecha aniónica (Anion Gap) elevada"
+        ],
+        "answerIndex": 2,
+        "explanation": "La alcalosis metabólica hipoclorémica e hipopotasémica es el trastorno clásico de la estenosis hipertrófica del píloro. El vómito expulsa HCl (perdiendo hidrogeniones y cloro, generando alcalosis e hipocloremia). El riñón, en un intento desesperado por retener volumen (activando la aldosterona) y retener hidrogeniones, excreta potasio en la orina, lo que agrava la hipopotasemia. Es imperativo corregir los electrolitos y el volumen con soluciones IV antes de meter al niño a quirófano, pues la anestesia con alcalosis severa causa paro respiratorio.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para confirmar el diagnóstico clínico, ¿cuál es el estudio de imagen de elección (estándar de oro no invasivo) y cuál es su hallazgo característico?",
+        "options": [
+          "Serie esofagogastroduodenal; signo del \"sacacorchos\"",
+          "Tomografía computarizada; signo de la diana",
+          "Ultrasonido abdominal; grosor del músculo pilórico > 3-4 mm y longitud > 14-16 mm (Signo de la dona)",
+          "Radiografía de abdomen simple; signo de la doble burbuja"
+        ],
+        "answerIndex": 2,
+        "explanation": "El ultrasonido abdominal es el estudio de primera elección. Permite visualizar y medir directamente la hipertrofia del músculo liso circular del píloro. Un grosor muscular mayor a 3 (o 4) mm y una longitud del canal pilórico mayor a 14 (o 16) mm confirman el diagnóstico. En el corte transversal se observa la mucosa ecogénica central rodeada por el anillo muscular hipoecoico grueso, conocido como el \"Signo de la dona\".",
+        "gpcReference": ""
+      },
+      {
+        "question": "Una vez reanimado y estabilizado metabólicamente, ¿cuál es el procedimiento quirúrgico curativo de elección para este lactante?",
+        "options": [
+          "Derivación gastroyeyunal en Y de Roux",
+          "Piloromiotomía extramucosa de Fredet-Ramstedt",
+          "Piloroplastia de Heineke-Mikulicz",
+          "Dilatación endoscópica con balón"
+        ],
+        "answerIndex": 1,
+        "explanation": "La Piloromiotomía de Fredet-Ramstedt (realizada por vía laparoscópica o abierta a través de una incisión umbilical) es el tratamiento curativo definitivo. Consiste en realizar una incisión longitudinal únicamente sobre las fibras musculares hipertrofiadas del píloro, separándolas hasta exponer (pero sin perforar) la mucosa gástrica subyacente intacta, liberando así la estenosis del canal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR / ORTOPEDIA PEDIÁTRICA",
+    "subtema": "EPIFISIOLISTESIS FEMORAL CAPITAL",
+    "difficulty": "media",
+    "case": "Adolescente masculino de 13 años, con obesidad grado I (IMC de 31). Es traído a la consulta externa de ortopedia porque su madre nota que \"cojea\" (claudicación) al caminar desde hace un mes. El paciente refiere un dolor sordo y vago que inicialmente comenzó en la rodilla derecha, pero ahora se localiza en la ingle y el muslo derecho. A la exploración física, el paciente camina con la extremidad derecha en rotación externa. Al acostarlo en la camilla y flexionar pasivamente su cadera derecha a 90 grados, la pierna se desvía de forma automática e involuntaria hacia la rotación externa y abducción (Signo de Drehmann positivo). La rotación interna de la cadera está marcadamente limitada y es dolorosa.",
+    "questions": [
+      {
+        "question": "Por la epidemiología típica (adolescente masculino obeso en etapa de crecimiento rápido) y el cuadro clínico (cojera, dolor referido a rodilla/ingle, rotación externa obligada), se solicita una radiografía AP y axial (posición de rana) de la pelvis. ¿Cuál es el diagnóstico ortopédico que clásicamente se describe en la radiografía como \"un helado que se resbala de su cono\"?",
+        "options": [
+          "Enfermedad de Legg-Calvé-Perthes (Necrosis avascular idiopática)",
+          "Displasia del Desarrollo de la Cadera tardía",
+          "Epifisiolistesis femoral capital (Deslizamiento epifisiario proximal del fémur)",
+          "Artritis séptica de la cadera"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Epifisiolistesis femoral capital (SCFE, por sus siglas en inglés) es el trastorno de cadera más común en la adolescencia. Ocurre por una debilidad mecánica en la placa de crecimiento (fisis) hipertrófica durante el \"estirón\" puberal, exacerbada por el sobrepeso. El cuello del fémur (el cono) se desplaza hacia arriba y hacia adelante, mientras que la cabeza (epífisis, el \"helado\") se queda anclada en el acetábulo, dando el aspecto de que se ha \"resbalado\" hacia abajo y atrás. El dolor referido a la rodilla en un adolescente siempre debe obligar a revisar la cadera.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para evitar que el deslizamiento progrese y cause una deformidad permanente o necrosis avascular de la cabeza femoral, ¿cuál es el tratamiento quirúrgico de elección indicado de forma urgente una vez hecho el diagnóstico?",
+        "options": [
+          "Colocación de yeso pelvipédico por 6 meses",
+          "Tracción esquelética continua exclusivamente",
+          "Fijación \"in situ\" con un tornillo canulado atravesando la fisis",
+          "Artroplastia total de cadera (prótesis)"
+        ],
+        "answerIndex": 2,
+        "explanation": "El tratamiento de la epifisiolistesis es estrictamente quirúrgico. La norma de oro es la fijación in situ con un tornillo (o múltiples tornillos) que atraviesa el cuello femoral, cruza la placa de crecimiento y se ancla en la epífisis, estabilizando el deslizamiento para evitar que progrese y permitiendo que la fisis se cierre prematuramente de forma segura.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE",
+    "subtema": "OTITIS EXTERNA (OÍDO DE NADADOR)",
+    "difficulty": "baja",
+    "case": "Masculino de 14 años, miembro del equipo de natación de su escuela. Acude a la consulta médica por presentar un dolor intenso (otalgia) en el oído izquierdo de 48 horas de evolución, acompañado de intensa comezón (prurito) y sensación de oído tapado. A la exploración física, el médico apenas roza el pabellón auricular y el paciente se retira bruscamente. Al tirar suavemente del lóbulo de la oreja hacia atrás o presionar el cartílago por delante del conducto auditivo (Signo del trago), se desencadena un dolor insoportable. A la otoscopia, el conducto auditivo externo se observa severamente eritematoso, edematizado, con descamación y escasa secreción purulenta, lo que dificulta visualizar la membrana timpánica.",
+    "questions": [
+      {
+        "question": "La presentación clínica clásica en un nadador, destacando el Signo del Trago positivo (dolor a la tracción del pabellón o presión del trago), es el sello de la Otitis Externa Aguda. ¿Cuál es la bacteria patógena gramnegativa que se aísla con mayor frecuencia como agente etiológico de esta infección relacionada con la humedad?",
+        "options": [
+          "Streptococcus pneumoniae",
+          "Staphylococcus aureus",
+          "Haemophilus influenzae",
+          "Pseudomonas aeruginosa"
+        ],
+        "answerIndex": 3,
+        "explanation": "La Pseudomonas aeruginosa es, por mucho, la bacteria responsable de la inmensa mayoría de las otitis externas agudas difusas (\"oído de nadador\"). La exposición prolongada al agua macera el epitelio escamoso del conducto auditivo externo y altera su pH ácido protector (cerumen), creando un ambiente húmedo ideal para la proliferación de la Pseudomonas. A diferencia de la otitis media, en la externa el dolor se exacerba tremendamente al manipular la oreja externa (Signo del trago positivo). El tratamiento de elección son gotas óticas tópicas (Ciprofloxacino o Neomicina/Polimixina B, a menudo combinadas con un esteroide como dexametasona para el edema intenso). Shutterstock",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "subtema": "GLAUCOMA PRIMARIO DE ÁNGULO ABIERTO",
+    "difficulty": "media",
+    "case": "Masculino de 65 años, afrodescendiente, con diagnóstico de diabetes mellitus tipo 2, acude a una campaña de salud visual para hacerse una revisión de lentes, ya que siente que últimamente tropieza con las cosas a su alrededor y ha notado una \"disminución de su visión lateral\". El paciente niega enfáticamente haber tenido dolor ocular, ojo rojo, fotofobia o náuseas. Durante el tamizaje, el optometrista le detecta una Presión Intraocular (PIO) de 26 mmHg en ambos ojos (Valor normal: 10 - 21 mmHg). El paciente es derivado al oftalmólogo, quien al realizar la oftalmoscopia directa observa en ambas papilas ópticas (disco óptico) una excavación profunda, pálida y ensanchada, con una relación copa/disco (C/D) de 0.8, además de rechazo nasal de los vasos centrales.",
+    "questions": [
+      {
+        "question": "Por la cronicidad, la ausencia total de dolor (asintomático hasta etapas tardías), la elevación de la presión intraocular y el daño característico al nervio óptico (excavación papilar > 0.6), se establece el diagnóstico de Glaucoma Primario de Ángulo Abierto. ¿Cuál es el patrón clínico clásico de pérdida del campo visual que presenta esta enfermedad silenciosa en sus etapas iniciales e intermedias?",
+        "options": [
+          "Pérdida rápida de la visión central (escotoma central)",
+          "Pérdida progresiva y bilateral de la visión periférica (escotomas arciformes y escalón nasal)",
+          "Hemianopsia bitemporal",
+          "Ceguera nocturna (nictalopía) severa como síntoma inicial"
+        ],
+        "answerIndex": 1,
+        "explanation": "El glaucoma crónico de ángulo abierto recibe el apodo del \"ladrón silencioso de la vista\". A diferencia del glaucoma agudo (que duele y causa ceguera brusca), este destruye muy lentamente las fibras nerviosas de la retina. Clásicamente, la pérdida de visión comienza en la periferia (formando escotomas arciformes de Bjerrum y el escalón nasal de Rönne), avanzando hacia el centro hasta que, en la etapa final, el paciente queda con \"visión de túnel\" irreversible.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para el manejo médico inicial enfocado en detener la progresión de la enfermedad disminuyendo la PIO, ¿cuál es el grupo farmacológico de uso tópico ocular (gotas) considerado de primera línea por su alta eficacia hipotensora al aumentar el drenaje del humor acuoso por la vía uveoescleral?",
+        "options": [
+          "Inhibidores de la anhidrasa carbónica (Dorzolamida)",
+          "Análogos de las prostaglandinas (Latanoprost, Bimatoprost)",
+          "Betabloqueadores (Timolol)",
+          "Agonistas alfa-adrenérgicos (Brimonidina)"
+        ],
+        "answerIndex": 1,
+        "explanation": "Las guías internacionales (como la de la Academia Americana de Oftalmología y la GPC) establecen a los análogos de prostaglandinas (ej. Latanoprost, Travoprost) como el tratamiento médico tópico de primera elección. Se aplican una sola vez al día (usualmente por la noche), reducen la presión intraocular hasta un 30% aumentando la vía de drenaje alternativa (uveoescleral) y tienen menos efectos secundarios sistémicos peligrosos que los betabloqueadores (como el Timolol, que puede causar broncoespasmo en asmáticos o bradicardia).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P1",
+    "subtema": "TRAUMA TORÁCICO (TÓRAX INESTABLE / VOLET COSTAL)",
+    "difficulty": "alta",
+    "case": "Masculino de 45 años, conductor de un camión de carga, sufre impacto frontal a alta velocidad sin bolsa de aire, golpeando su pecho fuertemente contra el volante. Ingresa a la sala de urgencias muy inquieto, taquipneico (FR 32 rpm), con tiraje intercostal y una SatO2 de 85% con mascarilla de oxígeno. A la inspección del tórax desnudo, el médico observa una equimosis masiva en el hemitórax izquierdo y nota un movimiento asimétrico y anormal de la pared torácica: un segmento amplio de las costillas izquierdas se hunde (se deprime) profundamente durante la inspiración y se abomba hacia afuera durante la espiración.",
+    "questions": [
+      {
+        "question": "El movimiento anormal observado durante la respiración es el signo clínico cardinal de un \"tórax inestable\" (volet costal). De acuerdo con las definiciones del ATLS, ¿cuál es el requisito anatómico estructural para que se produzca este segmento de movimien to paradójico?",
+        "options": [
+          "Fractura aislada de la primera y segunda costilla",
+          "Fractura del esternón asociada a taponamiento cardíaco",
+          "Fractura de dos o más costillas adyacentes, fracturadas cada una en dos o más partes (trazos)",
+          "Ruptura del diafragma izquierdo con herniación gástrica"
+        ],
+        "answerIndex": 2,
+        "explanation": "El tórax inestable (flail chest) se define estrictamente como la pérdida de la continuidad ósea de la caja torácica que ocurre cuando hay fracturas en al menos dos costillas consecutivas (adyacentes), estando cada una de estas fracturada en dos o más sitios. Esto deja un \"segmento de pared\" completamente flotante o libre, desconectado de la mecánica ósea del resto del tórax. Debido a los cambios de presión intratorácica, este segmento flota libremente y se mueve en sentido contrario al resto del tórax (respiración paradójica).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Aunque el movimiento paradójico aumenta notablemente el trabajo respiratorio y el dolor, ¿cuál es la verdadera causa fisiopatológica subyacente primaria de la hipoxia grave y el daño ventilatorio que presentan estos pacientes, y que constituye el objetivo principal del manejo médico en la Unidad de Cuidados Intensivos?",
+        "options": [
+          "El choque cardiogénico secundario",
+          "La hemorragia masiva hacia la cavidad pleural",
+          "La contusión pulmonar subyacente al impacto",
+          "El colapso total del pulmón contralateral por neumotórax"
+        ],
+        "answerIndex": 2,
+        "explanation": "Históricamente se pensaba que la hipoxia del tórax inestable era causada por el \"aire pendular\" debido al movimiento de la caja. Hoy se sabe y enfatiza en el ATLS que la causa principal de la insuficiencia respiratoria y la hipoxia severa es la contusión pulmonar subyacente. La enorme fuerza del impacto necesaria para romper así las costillas invariablemente machaca el tejido pulmonar que está debajo (hemorragia alveolar y edema intersticial). El manejo se centra en el control agresivo del dolor (analgesia epidural), oxigenación y, fundamentalmente, la restricción cuidadosa de líquidos intravenosos para no empeorar el edema pulmonar de la contusión. Solo si esto falla, se procede a intubación y ventilación mecánica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA GÁSTRICA",
+    "subtema": "HEMORRAGIA DE TUBO DIGESTIVO ALTO (ÚLCERA PÉPTICA)",
+    "difficulty": "alta",
+    "case": "Masculino de 68 años de edad, con antecedente de osteoartritis en rodillas tratada crónicamente con Piroxicam. Es traído a urgencias por sus familiares refiriendo que el paciente presentó dos episodios de vómito con sangre oscura (\"en posos de café\") y, posteriormente, una evacuación muy fétida, negra y pastosa (melena). A su ingreso, el paciente luce pálido, sudoroso, con FC de 115 lpm y TA de 90/60 mmHg. Tras estabilizarlo hemodinámicamente con cristaloides y solicitar cruce de sangre, se le realiza una endoscopia superior (panendoscopia) de urgencia.",
+    "questions": [
+      {
+        "question": "El endoscopista localiza una úlcera gástrica de 2 cm en la incisura angular. Al lavar el coágulo superficial, observa un vaso sanguíneo protruyente en el lecho de la úlcera que no está sangrando activamente en ese momento. De acuerdo con la clasificación endoscópica de Forrest para el pronóstico de resangrado, ¿qué grado le corresponde a este hallazgo?",
+        "options": [
+          "Forrest Ia",
+          "Forrest Ib",
+          "Forrest IIa",
+          "Forrest IIc"
+        ],
+        "answerIndex": 2,
+        "explanation": "La clasificación de Forrest es vital para decidir el tratamiento de la úlcera sangrante. Grado I (Sangrado activo): Ia (Sangrado arterial a chorro/pulsátil), Ib (Sangrado venoso en babeo). Grado II (Estigmas de sangrado reciente): IIa (Vaso visible no sangrante), IIb (Coágulo adherido), IIc (Fondo con hematina/mancha oscura). Grado III (Sin estigmas): Fondo limpio de fibrina. El vaso visible (Forrest IIa) tiene un altísimo riesgo de resangrado (50%), por lo que requiere tratamiento endoscópico inmediato.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Previo a la endoscopia, en la sala de urgencias y ante la sospecha clínica de hemorragia por úlcera péptica, ¿cuál es el tratamiento farmacológico intravenoso que debe iniciarse de forma inmediata para estabilizar el coágulo (al elevar el pH gástrico > 6.0) y reducir la necesidad de intervención quirúrgica?",
+        "options": [
+          "Infusión continua de Octreótido (Análogo de Somatostatina)",
+          "Bolo intravenoso de Omeprazol (o Pantoprazol) seguido de infusión continua",
+          "Ácido tranexámico intravenoso",
+          "Sucralfato por sonda nasogástrica"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los Inhibidores de la Bomba de Protones (IBP) en altas dosis intravenosas (ej. bolo de 80 mg seguido de infusión a 8 mg/hr por 72 horas) son el pilar del manejo médico de la HTDA por úlcera péptica. Un pH gástrico ácido destruye el coágulo (lisis por pepsina); al elevar el pH por encima de 6, los IBP permiten que el tapón plaquetario se consolide y el cese del sangrado sea efectivo. El Octreótido se reserva estrictamente para el sangrado por várices esofágicas (hipertensión portal).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Durante la endoscopia, al detectar el vaso visible (Forrest IIa), el endoscopista decide aplicar tratamiento. Según los consensos internacionales, ¿cuál es la estrategia endoscópica de elección para lograr la hemostasia definitiva y evitar el resangrado?",
+        "options": [
+          "Inyección exclusiva de Adrenalina diluida",
+          "Terapia combinada o dual (Inyección de Adrenalina + un método mecánico [hemoclips] o térmico [termocoagulación/argón])",
+          "Aplicación de polvo hemostático exclusivamente",
+          "Ligadura con bandas elásticas"
+        ],
+        "answerIndex": 1,
+        "explanation": "La monoterapia con inyección de adrenalina ya no se recomienda como tratamiento definitivo porque el efecto vasoconstrictor pasa rápido y el vaso vuelve a sangrar. El estándar de oro es la terapia endoscópica dual: se inyecta adrenalina para detener/disminuir el flujo transitoriamente y \"limpiar\" la vista, e inmediatamente después se aplica un método mecánico (clips metálicos) o térmico para sellar o estrangular el vaso definitivamente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA ONCOLOGÍA / DERMATOLOGÍA",
+    "subtema": "CÁNCER DE PIEL NO MELANOMA (CARCINOMA BASOCELULAR)",
+    "difficulty": "baja",
+    "case": "Masculino de 70 años, de ocupación campesino (alta exposición solar crónica), de tez muy clara (fototipo I). Acude a la consulta de primer nivel para mostrarle al médico un \"granito\" que le salió en el ala derecha de la nariz hace aproximadamente 8 meses y que no sana. Refiere que ocasionalmente sangra cuando se lava la cara. A la exploración física, se observa una pápula o nódulo de 8 milímetros, de aspecto translúcido o \"perlado\", con bordes elevados y la presencia de finos vasos sanguíneos ramificados en su superficie (telangiectasias). En el centro de la lesión se aprecia una pequeña costra que, al desprenderse, revela una úlcera superficial.",
+    "questions": [
+      {
+        "question": "Por la epidemiología, la localización (zona fotoexpuesta de la cara) y las características clínicas patognomónicas (nódulo perlado con telangiectasias y ulceración central), ¿cuál es el diagnóstico clínico más probable de esta neoplasia maligna, la cual es la más frecuente en el ser humano?",
+        "options": [
+          "Carcinoma espinocelular (epidermoide)",
+          "Melanoma nodular amelánico",
+          "Queratosis actínica",
+          "Carcinoma basocelular"
+        ],
+        "answerIndex": 3,
+        "explanation": "El carcinoma basocelular representa el 80% de todos los cánceres de piel no melanoma. Su presentación clásica nodular es un \"nódulo perlado o translúcido con telangiectasias arboriformes\" en áreas expuestas al sol (típicamente los dos tercios superiores de la cara, como la nariz). La ulceración central es tan común que recibe el nombre histórico de \"ulcus rodens\" (úlcera roedora). Es localmente destructivo pero su tasa de metástasis a distancia es excepcionalmente baja (casi nula), por lo que la escisión quirúrgica simple con márgenes es altamente curativa.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P2",
+    "subtema": "TRAUMA CRANEOENCEFÁLICO (HEMATOMA SUBDURAL)",
+    "difficulty": "media",
+    "case": "Masculino de 75 años, con antecedente de alcoholismo crónico. Es traído a urgencias por sus hijos, quienes notan que en los últimos días el paciente ha estado muy somnoliento, confuso y ha desarrollado debilidad progresiva en el brazo y la pierna derechas (hemiparesia). Al interrogar sobre caídas, un hijo recuerda que el paciente resbaló en el baño y se golpeó la cabeza hace aproximadamente 2 semanas, pero no perdió el conocimiento ni acudió al médico. A la exploración neurológica actual, el paciente tiene Glasgow de 12 y anisocoria (pupila izquierda dilatada).",
+    "questions": [
+      {
+        "question": "Ante la sospecha de una hemorragia intracraneal de curso subagudo/crónico, se solicita una Tomografía Computarizada (TAC) de cráneo simple. ¿Cuál es el hallazgo tomográfico clásico esperado para este tipo de hematoma y cuál es el vaso sanguíneo responsable del sangrado?",
+        "options": [
+          "Colección biconvexa (forma de limón); arteria meníngea media",
+          "Sangre en el espacio subaracnoideo llenando las cisternas; aneurisma de la arteria comunicante anterior",
+          "Colección en forma de semiluna (cóncavo-convexa) que cruza las suturas craneales; venas puente corticales",
+          "Sangrado intraparenquimatoso profundo; arterias lenticuloestriadas"
+        ],
+        "answerIndex": 2,
+        "explanation": "El hematoma subdural ocurre por la ruptura (desgarro) de las frágiles venas puente que van de la corteza cerebral a los senos durales. Debido a que el sangrado es venoso (baja presión), la sangre se acumula lentamente y se disemina ampliamente por el espacio subdural, adoptando una clásica forma de semiluna o plátano (cóncavo-convexa) en la TAC, la cual cruza las suturas óseas pero no la hoz del cerebro.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Desde el punto de vista de la fisiopatología neurológica, ¿por qué los pacientes de la tercera edad y los alcohólicos crónicos (como en este caso) son la población con mayor riesgo de desarrollar un hematoma subdural incluso tras traumas craneales aparentemente menores o triviales?",
+        "options": [
+          "Porque tienen mayor fragilidad de la arteria meníngea media",
+          "Porque la atrofia cerebral fisiológica o alcohólica tensa y estira las venas puente, haciéndolas muy susceptibles a romperse por fuerzas de cizallamiento",
+          "Por la desnutrición asociada al déficit de vitamina B12",
+          "Porque el cráneo es más delgado y transmite más fuerza al impacto"
+        ],
+        "answerIndex": 1,
+        "explanation": "La edad avanzada y el alcoholismo causan atrofia cerebral (disminución del volumen de la masa encefálica). Esto aumenta el espacio entre la corteza y la duramadre, estirando las venas puente al máximo. Ante un mecanismo de aceleración/desaceleración menor (como un simple resbalón y caída al suelo), el cerebro se sacude bruscamente dentro del cráneo, rasgando fácilmente estas venas estiradas y originando el sangrado crónico que da síntomas días o semanas después.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE GLÁNDULA SALIVAL / CUELLO",
+    "subtema": "SIALOLITIASIS",
+    "difficulty": "media",
+    "case": "Masculino de 45 años, previamente sano, acude a la consulta externa refiriendo episodios repetitivos de dolor agudo y aumento de volumen (hinchazón) en la región por debajo de la mandíbula del lado derecho. Menciona que estos episodios son muy predecibles, ya que ocurren sistemáticamente justo antes y durante las comidas (especialmente si come cosas ácidas, como limón), y la hinchazón desaparece gradualmente en el lapso de un par de horas después de comer. A la exploración física del piso de la boca, el médico logra palpar una masa dura, pequeña y móvil a lo largo del trayecto del conducto salival principal del lado derecho.",
+    "questions": [
+      {
+        "question": "El cuadro de \"cólico salival\" asociado a la ingesta de alimentos es clásico de la sialolitiasis (cálculos en los conductos salivales). Desde el punto de vista anatómico y fisiológico, ¿cuál es la glándula salival mayor que se afecta con más frecuencia (responsable del 80-90% de los cálculos) y cómo se llama su conducto excretor principal?",
+        "options": [
+          "Glándula parótida; Conducto de Stensen",
+          "Glándula sublingual; Conducto de Rivinus",
+          "Glándula submandibular; Conducto de Wharton",
+          "Glándulas salivales menores; Conducto de Bartolino"
+        ],
+        "answerIndex": 2,
+        "explanation": "La glándula submandibular es la más propensa a formar litos. Esto se debe a dos razones principales: 1) Su conducto excretor (Conducto de Wharton) tiene un trayecto largo y ascendente, obligando a la saliva a fluir en contra de la gravedad, y 2) La saliva producida por la submandibular es mucho más mucosa, espesa y rica en calcio que la de la parótida, facilitando la estasis y precipitación de sales cálcicas (fosfato cálcico).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para confirmar la presencia, tamaño y ubicación del lito, ¿cuál de los siguientes estudios de imagen es considerado de primera línea por ser no invasivo, económico y muy sensible para cálculos radiopacos en esta región anatómica?",
+        "options": [
+          "Radiografía simple lateral de cráneo",
+          "Ultrasonido de cuello y glándulas salivales (o radiografía oclusal del piso de la boca)",
+          "Tomografía por Emisión de Positrones (PET)",
+          "Gammagrafía salival"
+        ],
+        "answerIndex": 1,
+        "explanation": "El ultrasonido (ecografía) de alta resolución de tejidos blandos del cuello es el estudio inicial de elección; es excelente para ver cálculos mayores a 2 mm, la dilatación del conducto y el grado de inflamación de la glándula. Como alternativa clásica y rápida en el consultorio dental o de urgencias, una radiografía oclusal simple (colocando la placa dentro de la boca) puede mostrar perfectamente los litos radiopacos del piso de la boca. El tratamiento inicial es conservador (sialagogos como jugo de limón, hidratación, masaje y calor); si falla, extracción quirúrgica o endoscópica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "subtema": "LUXACIÓN ACROMIOCLAVICULAR",
+    "difficulty": "baja",
+    "case": "Masculino de 28 años, ciclista de montaña, sufre caída golpeando el \"vértice del hombro\" directamente contra el suelo con el brazo pegado al cuerpo. Acude a urgencias sosteniendo el brazo afectado. A la inspección del hombro derecho, se observa una prominencia o abultamiento evidente y anormal en la parte superior del hombro, donde la clavícula se articula con el omóplato.",
+    "questions": [
+      {
+        "question": "Al explorar el hombro, el médico presiona fuertemente hacia abajo la prominencia ósea de la clavícula distal. Al presionar, la clavícula desciende y se alinea, pero al soltar el dedo, la clavícula \"salta\" o rebota inmediatamente hacia arriba, volviendo a su posición anormal y dolorosa. ¿Qué nombre recibe este signo clínico patognomónico de una luxación acromioclavicular (Grado III o superior)?",
+        "options": [
+          "Signo de la charretera",
+          "Signo del surco (Sulcus sign)",
+          "Signo de la tecla de piano",
+          "Signo de la pseudoparesia"
+        ],
+        "answerIndex": 2,
+        "explanation": "El Signo de la tecla de piano es clásico de la luxación acromioclavicular completa. Ocurre cuando se rompen tanto los ligamentos acromioclaviculares como los coracoclaviculares (conoide y trapezoide). El peso del brazo tira del acromion (omóplato) hacia abajo, mientras que el músculo trapecio y esternocleidomastoideo tiran de la clavícula distal libre hacia arriba. Al empujarla hacia abajo, se hunde, y al soltarla, resalta inmediatamente, igual que la tecla de un piano. (El signo de la charretera es de la luxación glenohumeral, que hace el hombro \"cuadrado\").",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA BILIAR / PATOLOGÍA INTESTINAL QX",
+    "subtema": "ÍLEO BILIAR",
+    "difficulty": "alta",
+    "case": "Femenina de 75 años, con antecedente de cólicos biliares de repetición durante años que nunca quiso operarse por miedo a la cirugía. Es traída a urgencias por presentar distensión abdominal progresiva, incapacidad para canalizar gases o evacuar desde hace 3 días, y vómitos de contenido fecaloide. A la exploración física, el abdomen se encuentra muy distendido, timpánico a la percusión, con ruidos peristálticos de tono alto (\"ruidos metálicos\"). Se solicita una radiografía simple de abdomen en bipedestación que muestra dilatación importante de asas de intestino delgado con múltiples niveles hidroaéreos. Llama la atención la presencia de gas dibujando la silueta de la vía biliar en el cuadrante superior derecho y una imagen radiopaca ovoide de 3 cm proyectada en la fosa ilíaca derecha.",
+    "questions": [
+      {
+        "question": "La presentación clínica y radiológica de esta paciente conforma una tríada clásica y patognomónica de una complicación mecánica severa de la litiasis vesicular crónica. ¿Qué nombre recibe esta tríada compuesta por neumobilia, oclusión intestinal y lito ectópico?",
+        "options": [
+          "Tríada de Charcot",
+          "Tríada de Rigler",
+          "Tríada de Borchardt",
+          "Tríada de Mackler"
+        ],
+        "answerIndex": 1,
+        "explanation": "La Tríada de Rigler es el sello radiológico del íleo biliar, una causa rara pero grave de obstrucción intestinal mecánica en ancianos. Consiste en: 1) Neumobilia (aire en la vía biliar, debido a la comunicación anormal con el intestino), 2) Signos de oclusión intestinal parcial o completa (asas dilatadas, niveles hidroaéreos), y 3) Un lito biliar ectópico (usualmente visible en el intestino delgado).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Desde el punto de vista fisiopatológico, ¿cuál es el tipo de comunicación anómala (fístula interna) más frecuente que permite el paso de un lito de gran tamaño desde la vesícula biliar hacia el tracto gastrointestinal?",
+        "options": [
+          "Fístula colecistocólica",
+          "Fístula colecistogástrica",
+          "Fístula colecistoduodenal",
+          "Fístula coledocoduodenal"
+        ],
+        "answerIndex": 2,
+        "explanation": "La inflamación crónica y repetitiva de la vesícula biliar hace que se adhiera íntimamente a los órganos vecinos. El duodeno, al ser la estructura más cercana, es el órgano afectado con mayor frecuencia. La erosión progresiva del lito a través de las paredes inflamadas crea una fístula colecistoduodenal (70-80% de los casos), permitiendo que el cálculo gigante caiga directamente al intestino delgado.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Considerando la anatomía del tracto gastrointestinal, ¿en qué porción específica del intestino delgado se impacta y detiene el lito con mayor frecuencia, provocando finalmente el cuadro de oclusión mecánica?",
+        "options": [
+          "Yeyuno proximal",
+          "Tercio medio del íleon",
+          "Íleon terminal (a nivel de la válvula ileocecal)",
+          "Válvula de Houston en el recto"
+        ],
+        "answerIndex": 2,
+        "explanation": "Aunque el lito entra por el duodeno, suele avanzar impulsado por la peristalsis a lo largo de todo el intestino delgado hasta que se topa con el segmento más estrecho anatómicamente: el íleon terminal, justo antes o en la propia válvula ileocecal (60- 70% de los casos). El tratamiento de urgencia es la enterotomía (abrir el intestino) para extraer el cálculo (enterolitotomía) y resolver la oclusión.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
+    "subtema": "FRACTURAS DE TOBILLO (CLASIFICACIÓN DE WEBER)",
+    "difficulty": "media",
+    "case": "Masculino de 30 años, jugador aficionado de fútbol. Acude a urgencias tras sufrir una torcedura de su tobillo derecho durante un partido. Refiere que su pie quedó trabado en el pasto mientras su cuerpo giraba, provocando un mecanismo de supinación y rotación externa forzada. Presenta dolor intenso, incapacidad para apoyar el pie, aumento de volumen y equimosis en la cara lateral del tobillo. Se solicitan radiografías de tobillo (AP, lateral y mortaja) que evidencian una fractura oblicua del peroné distal. El trazo de fractura inicia exactamente a nivel de la articulación tibioperonea (sindesmosis) y se extiende oblicuamente hacia arriba y hacia atrás.",
+    "questions": [
+      {
+        "question": "De acuerdo con la clasificación anatómica y biomecánica de Danis-Weber (utilizada universalmente para normar el tratamiento de las fracturas de tobillo), ¿a qué tipo corresponde la fractura del peroné de este paciente?",
+        "options": [
+          "Weber A",
+          "Weber B",
+          "Weber C",
+          "Tipo Pilon"
+        ],
+        "answerIndex": 1,
+        "explanation": "La clasificación de Weber se basa en el nivel de la fractura del peroné en relación con la sindesmosis tibioperonea: Weber A (Infrasindesmal): Por debajo de la sindesmosis (sindesmosis intacta, suele ser estable). Weber B (Transindesmal): El trazo de fractura inicia a nivel de la sindesmosis y sube. Es la más común (mecanismo de rotación externa). La sindesmosis puede estar íntegra o parcialmente desgarrada, y el tratamiento depende del grado de inestabilidad y desplazamiento. Weber C (Suprasindesmal): Por encima de la sindesmosis. La sindesmosis está completamente rota y requiere cirugía siempre.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Al evaluar detenidamente la radiografía en proyección de mortaja, el médico nota que el espacio claro medial (entre el maléolo medial y el astrágalo) está ensanchado (> 4 mm), lo que indica una lesión asociada del ligamento deltoideo y una inestabilidad franca de la articulación. ¿Cuál es el manejo definitivo de elección en este paciente?",
+        "options": [
+          "Reducción cerrada y colocación de bota de yeso suropédica por 6 semanas",
+          "Reducción Abierta y Fijación Interna (RAFI) con placa y tornillos en el peroné",
+          "Fijación externa temporal",
+          "Vendaje de Robert Jones y movilización temprana"
+        ],
+        "answerIndex": 1,
+        "explanation": "Cualquier fractura de tobillo desplazada o inestable (una Weber B con lesión del ligamento deltoideo [equivalente bimaléolar] es inestable por definición) requiere tratamiento quirúrgico. El estándar de oro es la Reducción Abierta y Fijación Interna (RAFI) anatómica del peroné con placa y tornillos, para restaurar la longitud exacta del maléolo lateral y asegurar una mortaja articular congruente, evitando así la artrosis postraumática temprana.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "subtema": "ESTRABISMO",
+    "difficulty": "baja",
+    "case": "Lactante masculino de 9 meses de edad, es traído a su consulta de control del niño sano. La madre refiere preocupación porque nota que, al ver de frente, el niño frecuentemente \"mete el ojito derecho hacia la nariz\". A la inspección, se observa una desviación manifiesta del globo ocular derecho hacia adentro. Para confirmarlo, el médico realiza la prueba de reflejo luminoso corneal (Prueba de Hirschberg) proyectando una luz frente a la cara del niño: el reflejo de la luz cae en el centro exacto de la pupila izquierda, pero cae en el borde temporal (externo) del iris del ojo derecho.",
+    "questions": [
+      {
+        "question": "De acuerdo con la dirección de la desviación del eje visual y el resultado de la prueba de Hirschberg, ¿cuál es el diagnóstico clínico correcto de este trastorno de la motilidad ocular?",
+        "options": [
+          "Exotropia derecha",
+          "Hipertropia derecha",
+          "Endotropia (Esotropia) derecha",
+          "Pseudoestrabismo por epicanto"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Endotropia (o esotropia / estrabismo convergente) es la desviación del ojo hacia adentro (hacia la nariz). Al estar el ojo desviado hacia adentro, la luz de la linterna del médico impacta en la parte externa (temporal) de la córnea, haciendo que el reflejo corneal (Prueba de Hirschberg) se vea desplazado lateralmente. La exotropia es la desviación hacia afuera (reflejo nasal), y el pseudoestrabismo daría reflejos centrales y simétricos (es solo un efecto óptico por un puente nasal ancho o pliegues epicánticos).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si este defecto visual no es corregido tempranamente (idealmente antes de los 7-8 años de edad), el cerebro del niño suprimirá crónicamente la imagen borrosa del ojo desviado para evitar la visión doble (diplopía). ¿Qué nombre recibe esta secuela neurológica visual permanente e irreversible?",
+        "options": [
+          "Astigmatismo irregular",
+          "Ambliopía (Ojo vago)",
+          "Nistagmo pendular",
+          "Catarata congénita"
+        ],
+        "answerIndex": 1,
+        "explanation": "La ambliopía (ojo vago o perezoso) es la disminución de la agudeza visual de uno o ambos ojos debida a un desarrollo visual anormal durante la primera infancia, sin que exista una lesión orgánica en el globo ocular. El estrabismo es la causa más común; el cerebro \"apaga\" la imagen del ojo desviado. Si no se trata a tiempo (con parches en el ojo sano, lentes o cirugía) durante el periodo de plasticidad cerebral (antes de los 7-8 años), la pérdida visual será irreversible.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P1",
+    "subtema": "PROSTATITIS BACTERIANA AGUDA",
+    "difficulty": "media",
+    "case": "Masculino de 45 años, previamente sano, acude al servicio de urgencias por presentar fiebre de 39°C de inicio brusco, acompañada de escalofríos intensos, malestar general, mialgias y artralgias de 24 horas de evolución. Refiere intenso dolor sordo y pesado en la región perineal y rectal. Menciona que tiene mucho dolor y ardor al orinar (disuria severa), con chorro urinario muy débil y sensación de vaciamiento incompleto. A la exploración física, el paciente luce tóxico. Se le realiza un tacto rectal de manera muy suave, evidenciando una próstata marcadamente aumentada de tamaño, tensa, indurada, caliente y exquisitamente dolorosa.",
+    "questions": [
+      {
+        "question": "Ante la sospecha de una prostatitis bacteriana aguda grave (considerando la fiebre alta y la retención urinaria en curso), el médico de urgencias considera las opciones para aliviar la vejiga del paciente. ¿Qué procedimiento urológico está estrictamente contraindicado en este momento por el altísimo riesgo de desencadenar una bacteriemia masiva y choque séptico?",
+        "options": [
+          "Realizar un ultrasonido vesical suprapúbico",
+          "Masaje prostático vigoroso para obtención de líquido seminal",
+          "Colocación de una talla suprapúbica percutánea",
+          "Administración de antibióticos intravenosos empíricos"
+        ],
+        "answerIndex": 1,
+        "explanation": "En el contexto de una prostatitis bacteriana aguda, la próstata es un tejido sumamente inflamado, friable y lleno de microabscesos. El masaje prostático vigoroso (o incluso un tacto rectal agresivo) así como el sondaje transuretral están absolutamente contraindicados, ya que \"exprimen\" masivamente las bacterias hacia el torrente sanguíneo, precipitando una sepsis fulminante. Si hay retención urinaria, el drenaje de elección es mediante una talla suprapúbica (cistostomía).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Sabiendo que la patogenia más común es el ascenso de bacterias coliformes desde la uretra, ¿cuál es el agente patógeno responsable del 80% de los casos de esta infección urológica en varones adultos?",
+        "options": [
+          "Neisseria gonorrhoeae",
+          "Escherichia coli",
+          "Enterococcus faecalis",
+          "Pseudomonas aeruginosa"
+        ],
+        "answerIndex": 1,
+        "explanation": "Al igual que en las infecciones de vías urinarias (cistitis y pielonefritis), el bacilo gramnegativo Escherichia coli es el microorganismo causal más frecuente de la prostatitis bacteriana aguda, seguido por Proteus y Klebsiella. El tratamiento empírico inicial requiere hospitalización, hidratación y antibióticos intravenosos (ej. fluoroquinolonas, cefalosporinas de tercera generación o aminoglucósidos) por un periodo prolongado (2 a 4 semanas para asegurar la erradicación del tejido prostático profundo).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA PERIANAL",
+    "subtema": "FÍSTULA ANORRECTAL",
+    "difficulty": "baja",
+    "case": "Masculino de 40 años acude a la consulta externa de cirugía general. Refiere que hace 6 meses tuvo un absceso \"en la sentadera\" que le fue drenado en urgencias. Actualmente refiere que la herida nunca terminó de cerrar. Manifiesta ensuciar constantemente su ropa interior con una secreción amarillenta de mal olor y ocasionalmente manchada de sangre. A la exploración en posición proctológica, se observa un pequeño orificio secundario en la piel perianal, localizado a 3 cm del margen anal posterior, del cual drena material purulento a la presión.",
+    "questions": [
+      {
+        "question": "El cuadro clínico describe la evolución crónica clásica de una fístula anorrectal (secuela de un absceso perianal previo). En la evaluación clínica para predecir el trayecto de la fístula hacia su orificio primario interno en la línea dentada, se utiliza una regla anatómica clásica trazando una línea transversal imaginaria sobre el ano. ¿Qué nombre recibe esta regla que postula que los orificios secundarios anteriores tienen trayectos rectos y los posteriores tienen trayectos curvos hacia la línea media posterior?",
+        "options": [
+          "Regla de Salmon",
+          "Ley de Courvoisier",
+          "Regla de Goodsall",
+          "Clasificación de Parks"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Regla de Goodsall (o Goodsall-Salmon) es fundamental en la exploración proctológica. Establece que si el orificio externo (secundario) está en la mitad anterior del ano, el trayecto de la fístula será recto hacia la cripta más cercana. Si el orificio externo está en la mitad posterior (o a más de 3 cm del margen anal en la porción anterior), el trayecto será curvo hasta desembocar invariablemente en la línea media posterior de la línea dentada. La clasificación de Parks estadifica las fístulas según su relación anatómica con los esfínteres (interesfintérica es la más común). El tratamiento es siempre quirúrgico (fistulectomía/fistulotomía).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P3 / RINOLOGÍA Y FARINGE",
+    "subtema": "TRAUMA MAXILOFACIAL (LE FORT)",
+    "difficulty": "alta",
+    "case": "Masculino de 35 años es traído a la sala de choque tras sufrir un accidente automovilístico frontal contra un muro, sin portar cinturón de seguridad. El paciente impactó su rostro directamente contra el volante. A su ingreso, presenta edema facial masivo bilateral, equimosis periorbitaria (\"ojos de mapache\") y epistaxis bilateral profusa. Llama la atención que la cara del paciente parece alargada (\"cara de plato\"). A la exploración física intraoral, el paciente presenta maloclusión dental severa y mordida abierta anterior. Al tomar firmemente los incisivos superiores con una mano y estabilizar la frente con la otra, el médico percibe que todo el maxilar superior y los huesos nasales se mueven en bloque (como una pirámide), separándose del resto del cráneo, pero los arcos cigomáticos se mantienen estables e intactos.",
+    "questions": [
+      {
+        "question": "De acuerdo con la clasificación clásica de René Le Fort para las fracturas del tercio medio facial, ¿a qué patrón de fractura corresponde la movilidad en bloque del maxilar superior y la nariz (forma piramidal) con preservación de los cigomas?",
+        "options": [
+          "Fractura de Le Fort I (Transversal / Paladar flotante)",
+          "Fractura de Le Fort II (Piramidal)",
+          "Fractura de Le Fort III (Disyunción craneofacial)",
+          "Fractura del complejo cigomático-maxilar (Trípode)"
+        ],
+        "answerIndex": 1,
+        "explanation": "La clasificación de Le Fort evalúa las líneas de debilidad del macizo facial: Le Fort I: Fractura horizontal sobre los ápices dentales. Solo se mueve el paladar duro y los dientes superiores (\"paladar flotante\"). Le Fort II: Fractura piramidal que inicia en el maxilar, sube por la pared medial de la órbita y cruza los huesos nasales. Se mueve el maxilar y la nariz juntos. Le Fort III: Separación completa de la cara y el cráneo (disyunción craneofacial). La línea de fractura cruza las órbitas y los arcos cigomáticos. Todo el tercio medio facial se mueve libremente.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según los lineamientos del ATLS para el manejo inicial de pacientes con trauma maxilofacial masivo y sangrado profuso (como en las fracturas Le Fort II y III), ¿cuál es la complicación más inmediata que amenaza la vida y debe resolverse como prioridad máxima (la letra \"A\" del protocolo)?",
+        "options": [
+          "Hemorragia exanguinante por la arteria esfenopalatina",
+          "Obstrucción de la vía aérea por la caída del macizo facial, edema, coágulos y dientes rotos",
+          "Fístula de líquido cefalorraquídeo por fractura de la lámina cribosa",
+          "Ceguera por compresión del nervio óptico"
+        ],
+        "answerIndex": 1,
+        "explanation": "En el trauma maxilofacial grave, la principal causa de muerte evitable en los primeros minutos es la obstrucción de la vía aérea. El macizo facial fracturado tiende a desplazarse hacia atrás y hacia abajo en decúbito supino, obliterando la orofaringe, sumado al sangrado, secreciones y piezas dentales sueltas. El manejo definitivo suele requerir intubación endotraqueal temprana o, si es imposible, una cricotiroidotomía quirúrgica de urgencia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P1",
+    "subtema": "PATOLOGÍA ESCROTAL BENIGNA (VARICOCELE)",
+    "difficulty": "baja",
+    "case": "Masculino de 19 años, previamente sano, acude a consulta externa refiriendo una sensación de \"pesadez\" y molestia sorda en el testículo izquierdo que empeora al final del día o después de hacer ejercicio, y que mejora al acostarse. A la exploración física en bipedestación, se observa una asimetría escrotal. A la palpación del hemiescroto izquierdo, por encima del testículo, se palpa una masa blanda, irregular y compresible que el médico describe clásicamente como \"una bolsa de gusanos\". Esta masa aumenta de volumen cuando se le pide al paciente que puje (Maniobra de Valsalva positiva) y disminuye de tamaño al ponerlo en decúbito supino.",
+    "questions": [
+      {
+        "question": "Dada la presentación clínica patognomónica (\"bolsa de gusanos\" dependiente de la postura), ¿cuál es la explicación anatómica fundamental de por qué este padecimiento urológico (el varicocele) ocurre en más del 90% de los casos exclusivamente en el lado izquierdo?",
+        "options": [
+          "El testículo izquierdo es más grande y requiere mayor flujo arterial",
+          "La vena gonadal izquierda carece por completo de válvulas venosas desde el nacimiento",
+          "La vena gonadal (espermática) izquierda drena en ángulo recto (90 grados) directamente hacia la vena renal izquierda, lo que dificulta el retorno venoso y aumenta la presión hidrostática",
+          "La vena gonadal izquierda drena directamente en la vena cava inferior"
+        ],
+        "answerIndex": 2,
+        "explanation": "El varicocele es la dilatación anormal del plexo pampiniforme (venas testiculares). Ocurre casi siempre del lado izquierdo por pura anatomía: la vena gonadal izquierda desemboca en la vena renal izquierda en un ángulo perpendicular (90°), lo que hace que la sangre deba subir contra la gravedad y contra la alta presión de la vena renal. Por el contrario, la vena gonadal derecha desemboca en un ángulo agudo directamente en la vena cava inferior (un sistema de baja presión y flujo rápido). Si un varicocele aparece súbitamente del lado derecho o no se vacía al acostarse, se debe sospechar inmediatamente de una masa retroperitoneal o cáncer renal (trombosis de la vena cava).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
+    "subtema": "LUXACIÓN DE CADERA",
+    "difficulty": "media",
+    "case": "Masculino de 28 años, copiloto en un accidente automovilístico frontal. Refiere que al momento del impacto iba sentado con las piernas cruzadas y la rodilla chocó violentamente contra el tablero del vehículo (mecanismo de \"dashboard injury\"). Es ingresado a urgencias con dolor insoportable en la cadera derecha. A la inspección en la camilla, la extremidad inferior derecha se encuentra marcadamente acortada, en rotación interna y aducción (la rodilla derecha apunta y se recarga sobre el muslo izquierdo, en la clásica \"posición de bañista sorprendido\"). No se palpan pulsos disminuidos, pero el paciente refiere incapacidad para realizar la dorsiflexión del pie derecho (pie caído) y pérdida de sensibilidad en la cara lateral de la pierna y dorso del pie.",
+    "questions": [
+      {
+        "question": "Por la cinemática del trauma (golpe en la rodilla con la cadera flexionada) y la postura patognomónica de la extremidad (acortada, rotación interna y aducción), ¿cuál es el diagnóstico traumatológico clínico de este paciente?",
+        "options": [
+          "Fractura del cuello femoral",
+          "Luxación anterior de cadera",
+          "Luxación posterior de cadera",
+          "Fractura intertrocantérica de fémur"
+        ],
+        "answerIndex": 2,
+        "explanation": "La luxación posterior de cadera representa el 90% de las luxaciones coxofemorales. Su mecanismo clásico es el impacto sobre la rodilla flexionada contra el tablero del auto (dashboard injury). La clínica es inconfundible: la pierna adopta una posición de flexión, aducción y rotación interna (el paciente parece estar tratando de ocultar sus genitales, \"bañista sorprendido\"). Esto contrasta fuertemente con la fractura de cadera, donde la pierna está acortada pero en franca rotación externa.",
+        "gpcReference": ""
+      },
+      {
+        "question": "La exploración neurológica revela un \"pie caído\" (imposibilidad para la dorsiflexión) y déficit sensitivo en la cara lateral de la pierna. ¿Cuál es el nervio periférico que se encuentra clásicamente comprimido o estirado por la cabeza femoral desplazada hacia atrás en este tipo de luxación?",
+        "options": [
+          "Nervio femoral",
+          "Nervio obturador",
+          "Nervio ciático (específicamente su división peronea común)",
+          "Nervio glúteo superior"
+        ],
+        "answerIndex": 2,
+        "explanation": "El nervio ciático pasa anatómicamente justo por detrás de la articulación de la cadera. En una luxación posterior, la cabeza del fémur es empujada hacia atrás, golpeando, estirando o comprimiendo al nervio ciático (lesionado hasta en un 10- 20% de los casos). La rama más susceptible al daño dentro del nervio ciático es la división peronea común, lo que se manifiesta clínicamente como debilidad para la dorsiflexión del tobillo (pie caído) y anestesia en el dorso del pie. La reducción de la luxación debe ser una urgencia absoluta (en < 6 horas) para evitar la necrosis avascular de la cabeza femoral.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA GENERAL PEDIÁTRICA",
+    "subtema": "ATRESIA ESOFÁGICA / FÍSTULA TRAQUEOESOFÁGICA",
+    "difficulty": "alta",
+    "case": "Recién nacido masculino de término (39 SDG), producto de un embarazo complicado por polihidramnios severo detectado en el tercer trimestre. Inmediatamente después del nacimiento, en la sala de tococirugía, el pediatra nota que el neonato presenta sialorrea excesiva (babeo espumoso continuo por la boca y nariz). Al intentar el primer intento de alimentación al seno materno, el recién nacido presenta tos violenta, regurgitación inmediata del contenido y un episodio de cianosis y dificultad respiratoria (atragantamiento). Ante la sospecha diagnóstica, el médico intenta pasar una sonda orogástrica (calibre 8 Fr), pero encuentra un tope elástico a los 10 cm de la arcada dentaria y la sonda no logra avanzar hacia el estómago.",
+    "questions": [
+      {
+        "question": "La clínica de babeo excesivo desde el nacimiento, imposibilidad para pasar la sonda orogástrica y antecedentes de polihidramnios establecen el diagnóstico clínico de Atresia Esofágica. Se toma una radiografía de tórax y abdomen que muestra la sonda enrollada en el bolsón esofágico superior y, de manera muy importante, presencia de aire abundante en la cámara gástrica y el intestino. Según la clasificación de Gross, ¿qué tipo anatómico de atresia esofágica presenta este neonato, siendo además la variante más común (85% de los casos)?",
+        "options": [
+          "Tipo A (Atresia esofágica pura, sin fístula)",
+          "Tipo B (Atresia esofágica con fístula proximal)",
+          "Tipo C (Atresia esofágica proximal con fístula traqueoesofágica distal)",
+          "Tipo E (Fístula traqueoesofágica en \"H\" sin atresia)"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Atresia Esofágica Tipo C (Atresia proximal con fístula traqueoesofágica distal) es abrumadoramente la más frecuente (85%). En este tipo, el esófago superior termina en un saco ciego (lo que impide pasar la sonda y causa el babeo espumoso), mientras que el esófago inferior está conectado a la tráquea mediante una fístula. El hallazgo clave en la radiografía es la presencia de aire en el estómago/intestino, lo que demuestra que el aire respirado está pasando de la tráquea al estómago a través de la fístula distal. (En el Tipo A, el abdomen no tiene gas [\"abdomen opaco\"]).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Dado que esta anomalía congénita rara vez se presenta aislada, es obligatorio buscar intencionadamente otras malformaciones mediante el acrónimo VACTERL. ¿Qué sistema u órgano representa la letra \"V\" en esta asociación, el cual debe evaluarse mediante radiografías simples de columna?",
+        "options": [
+          "Defectos Valvulares cardíacos",
+          "Anomalías Vasculares periféricas",
+          "Anomalías Vertebrales (ej. hemivértebras, mariposa)",
+          "Defectos de la Vía biliar"
+        ],
+        "answerIndex": 2,
+        "explanation": "La asociación VACTERL (presente en más del 50% de los niños con atresia esofágica) significa: V = Anomalías Vertebrales (hemivértebras) A = Atresia Anorrectal (imperforación anal) C = Anomalías Cardiovasculares (CIV, CIA, Tetralogía de Fallot) TE = Fístula Traqueo-Esofágica R = Anomalías Renales (agenesia, riñón en herradura) L = Anomalías de las extremidades (Limbs en inglés, como aplasia del radio).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "subtema": "UVEÍTIS ANTERIOR AGUDA",
+    "difficulty": "media",
+    "case": "Masculino de 35 años, con antecedente de dolor lumbar crónico matutino y rigidez articular (sospecha de Espondilitis Anquilosante). Acude a urgencias oftalmológicas refiriendo un cuadro de inicio agudo (hace 24 horas) en su ojo izquierdo, caracterizado por dolor ocular profundo y sordo, enrojecimiento ocular franco y una intensa sensibilidad a la luz (fotofobia). Niega secreción purulenta. A la exploración física, la agudeza visual del ojo izquierdo está levemente disminuida. Se observa inyección ciliar (anillo de enrojecimiento profundo alrededor de la córnea). Llama la atención que la pupila izquierda se encuentra pequeña (miosis) y de forma irregular (discórica) en comparación con el ojo derecho, debido a que el iris parece estar adherido al cristalino en algunos puntos (sinequias posteriores).",
+    "questions": [
+      {
+        "question": "El cuadro clínico de \"ojo rojo doloroso\", fotofobia, miosis y sinequias en un paciente con posible espondiloartropatía (asociado al HLA-B27) es altamente sugestivo de inflamación del tracto uveal anterior (iris y cuerpo ciliar). Al revisarlo en la lámpara de hendidura, ¿cuál es el hallazgo patognomónico microscópico en la cámara anterior del ojo que confirmará el diagnóstico de uveítis anterior (iridociclitis)?",
+        "options": [
+          "Presencia de células inflamatorias flotando y proteínas en el humor acuoso (fenómeno de Tyndall o \"Cells and Flare\")",
+          "Neovascularización del iris (Rubeosis iridis)",
+          "Presencia de un nivel de sangre en la cámara anterior (Hifema)",
+          "Opacidad blanquecina total del cristalino"
+        ],
+        "answerIndex": 0,
+        "explanation": "El diagnóstico definitivo de la uveítis anterior aguda se realiza mediante la lámpara de hendidura, al observar la ruptura de la barrera hematoacuosa. El signo cardinal es el fenómeno de Tyndall positivo (\"Cells and Flare\"): se observan células blancas (leucocitos) y proteínas inflamatorias flotando en el humor acuoso de la cámara anterior, similar a ver partículas de polvo flotando en el haz de luz de un proyector de cine. Si la inflamación es masiva, los leucocitos sedimentan y forman un nivel blanquecino de pus en el fondo (hipopión). Las sinequias posteriores causan la pupila irregular característica al impedir que esta se dilate. Tratamiento: corticosteroides tópicos y midriáticos (ciclopentolato) para romper las sinequias y aliviar el dolor por espasmo ciliar.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA BILIAR",
+    "subtema": "COLEDOCOLITIASIS",
+    "difficulty": "media",
+    "case": "Femenina de 45 años, con antecedente de colecistectomía laparoscópica hace 3 años por colelitiasis sintomática. Acude a urgencias refiriendo dolor abdominal tipo cólico en epigastrio e hipocondrio derecho de 48 horas de evolución, acompañado de náuseas. En las últimas 24 horas, sus familiares notaron que \"se puso amarilla\" y ella refiere que su orina es muy oscura (coluria) y sus heces pálidas (acolia). No ha presentado fiebre. A la exploración física, hay ictericia franca en escleras y piel, con dolor a la palpación profunda en hipocondrio derecho, sin datos de irritación peritoneal. Laboratorios: Bilirrubina Total 6.5 mg/dL, Bilirrubina Directa 5.2 mg/dL, Fosfatasa Alcalina 450 U/L, GGT 320 U/L. Leucocitos normales.",
+    "questions": [
+      {
+        "question": "El cuadro clínico de ictericia obstructiva (patrón colestásico) y antecedente de litiasis biliar orientan a una coledocolitiasis (probablemente residual). Se solicita un ultrasonido abdominal que reporta vía biliar intrahepática dilatada y un conducto colédoco de 12 mm de diámetro (dilatado), pero el gas intestinal impide ver la porción distal del colédoco. ¿Cuál es el estudio de imagen no invasivo de elección, altamente sensible y específico, para confirmar la presencia del lito en la vía biliar principal antes de un procedimiento terapéutico?",
+        "options": [
+          "Tomografía computarizada de abdomen simple",
+          "Colangiopancreatografía por Resonancia Magnética (CPRM)",
+          "Gammagrafía biliar con HIDA",
+          "Radiografía simple de abdomen en bipedestación"
+        ],
+        "answerIndex": 1,
+        "explanation": "La Colangiopancreatografía por Resonancia Magnética (CPRM) es el estudio de imagen no invasivo de elección (estándar de oro diagnóstico) para confirmar la coledocolitiasis cuando hay alta sospecha pero el ultrasonido no es concluyente. Permite mapear toda la vía biliar de forma anatómica sin utilizar radiación ni contraste yodado. La CPRE se reserva exclusivamente para fines terapéuticos por sus riesgos (pancreatitis post-CPRE).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Tras confirmar mediante CPRM la presencia de un lito de 1 cm impactado en el colédoco distal, ¿cuál es el estándar de oro terapéutico mínimamente invasivo para extraer el cálculo y resolver la obstrucción en esta paciente ya colecistectomizada?",
+        "options": [
+          "Exploración abierta de vías biliares con colocación de sonda en T (Sonda de Kehr)",
+          "Colangiopancreatografía Retrógrada Endoscópica (CPRE) con esfinterotomía y extracción del lito con canastilla o balón",
+          "Derivación biliodigestiva (Coledocoduodenoanastomosis)",
+          "Litotricia extracorpórea por ondas de choque"
+        ],
+        "answerIndex": 1,
+        "explanation": "La CPRE (Colangiopancreatografía Retrógrada Endoscópica) es el procedimiento terapéutico de elección para la coledocolitiasis. Mediante endoscopia, se canula la ampolla de Vater, se realiza un corte en el esfínter de Oddi (esfinterotomía) y se extrae mecánicamente el lito utilizando un balón extractor o una canastilla de Dormia, restableciendo el flujo biliar de inmediato.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P2",
+    "subtema": "CÁNCER DE PRÓSTATA (ESCALA DE GLEASON)",
+    "difficulty": "alta",
+    "case": "Masculino de 72 años, asintomático. Durante su chequeo médico anual, se le detecta un Antígeno Prostático Específico (APE) de 14 ng/mL. Al tacto rectal, el urólogo palpa un nódulo pétreo e irregular en el lóbulo izquierdo de la próstata. Se realiza una biopsia transrectal guiada por ultrasonido (TRUS) tomando 12 cilindros. El reporte histopatológico confirma \"Adenocarcinoma acinar de próstata\". El patólogo describe que el patrón arquitectónico tumoral más predominante está formado por glándulas fusionadas y cribriformes (Grado 4), y el segundo patrón más frecuente consiste en nidos sólidos de células sin formación de glándulas y con áreas de necrosis comedoniana (Grado 5).",
+    "questions": [
+      {
+        "question": "De acuerdo con el sistema de graduación histológica utilizado mundialmente para evaluar la agresividad biológica del cáncer de próstata, ¿cuál es el puntaje o \"Score\" (Suma) de Gleason de este paciente y qué nivel de riesgo representa?",
+        "options": [
+          "Gleason 4 (Riesgo bajo)",
+          "Gleason 5 (Riesgo intermedio)",
+          "Gleason 9 (Riesgo muy alto / pobremente diferenciado)",
+          "Gleason 20 (Enfermedad metastásica)"
+        ],
+        "answerIndex": 2,
+        "explanation": "El Score de Gleason se calcula sumando el grado arquitectónico más predominante en la biopsia más el segundo grado más predominante (escala del 1 al 5 para cada uno). En este caso: Patrón primario (4) + Patrón secundario (5) = Suma de Gleason de 9. Un Gleason de 8, 9 o 10 indica un tumor pobremente diferenciado, altamente agresivo y con gran potencial de diseminación metastásica rápida.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Dado el alto grado del tumor (Gleason 9), se debe realizar un escrutinio de extensión sistemático. Considerando la historia natural del cáncer de próstata, ¿cuál es el sitio anatómico más frecuente de metástasis a distancia por diseminación hematógena, las cuales se caracterizan de forma casi exclusiva por ser lesiones osteoblásticas (formadoras de hueso)?",
+        "options": [
+          "Parénquima pulmonar",
+          "Hígado",
+          "Esqueleto axial (columna lumbar, pelvis y fémur proximal)",
+          "Cerebro"
+        ],
+        "answerIndex": 2,
+        "explanation": "El cáncer de próstata tiene una predilección absoluta por hacer metástasis al tejido óseo, particularmente al esqueleto axial (columna vertebral, pelvis y costillas) a través del plexo venoso de Batson. Una característica radiológica clásica y casi única del adenocarcinoma prostático es que sus metástasis óseas son predominantemente osteoblásticas (radio-densas o escleróticas), a diferencia de la mayoría de los cánceres (mama, pulmón, riñón) que causan lesiones osteolíticas (destructivas). El estudio de elección para detectarlas es el Gammagrama óseo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA ONCOLOGÍA",
+    "subtema": "CÁNCER COLORRECTAL (SÍNDROME DE LYNCH)",
+    "difficulty": "alta",
+    "case": "Masculino de 42 años de edad, previamente sano. Acude a consulta por anemia ferropénica en estudio y sangre oculta en heces positiva. Se le realiza una colonoscopia total encontrando un tumor vegetante en el ciego (colon derecho). Las biopsias confirman un adenocarcinoma colorrectal. Al realizar una historia clínica familiar detallada, el paciente menciona que su madre falleció de cáncer de endometrio a los 45 años, un tío materno tuvo cáncer de colon a los 40 años, y un hermano mayor fue diagnosticado con cáncer gástrico a los 48 años.",
+    "questions": [
+      {
+        "question": "La presentación de cáncer colorrectal a una edad temprana (antes de los 50 años), de localización predominantemente en el colon derecho, y con una fuerte historia familiar de cánceres sincrónicos o metacrónicos (colon, endometrio, ovario, estómago) cumpliendo los criterios de Ámsterdam II, es patognomónica del síndrome de predisposición hereditaria al cáncer más común del tracto gastrointestinal. ¿De qué síndrome estamos hablando?",
+        "options": [
+          "Poliposis Adenomatosa Familiar (PAF)",
+          "Síndrome de Peutz-Jeghers",
+          "Síndrome de Li-Fraumeni",
+          "Cáncer Colorrectal Hereditario No Polipósico (Síndrome de Lynch)"
+        ],
+        "answerIndex": 3,
+        "explanation": "El Síndrome de Lynch (CCHNP) es la causa hereditaria más frecuente de cáncer de colon. Se distingue clínicamente por la aparición temprana de cáncer (a menudo en el colon derecho) y su asociación innegable con otros tumores extracolónicos, siendo el cáncer de endometrio el segundo más frecuente en mujeres portadoras de la mutación. A diferencia de la Poliposis Adenomatosa Familiar (PAF), en el Síndrome de Lynch los pacientes desarrollan solo unos pocos pólipos que malignizan extremadamente rápido.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Desde el punto de vista de la biología molecular y la genética, ¿cuál es la alteración fisiopatológica subyacente responsable del Síndrome de Lynch?",
+        "options": [
+          "Mutación en el gen supresor de tumores APC",
+          "Mutaciones de la línea germinal en los genes del sistema de reparación de apareamientos erróneos del ADN (MMR, por ejemplo, MSH2, MLH1)",
+          "Amplificación del oncogén HER2/neu",
+          "Infección crónica por cepas oncogénicas de HPV"
+        ],
+        "answerIndex": 1,
+        "explanation": "El Síndrome de Lynch es causado por mutaciones autosómicas dominantes en los genes MMR (Mismatch Repair genes), principalmente MLH1, MSH2, MSH6 y PMS2. Estos genes son los encargados de \"corregir los errores ortográficos\" que ocurren naturalmente cuando el ADN se copia durante la división celular. Al estar mutados, los errores se acumulan masivamente, creando un estado de alta inestabilidad de microsatélites (MSI-H) que lleva a la rápida transformación maligna de las células epiteliales.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "TRAUMA GENER ALIDADES Y COMPLICACIONES",
+    "subtema": "QUEMADURAS ELÉCTRICAS",
+    "difficulty": "media",
+    "case": "Masculino de 30 años, trabajador de la construcción. Es traído a la sala de choque tras sufrir una descarga eléctrica accidental con un cable de alta tensión (aprox. 10,000 voltios) mientras manipulaba un andamio metálico. A su ingreso, el paciente se encuentra estuporoso, con TA de 90/60 mmHg y FC de 115 lpm. Presenta una herida de entrada pequeña, carbonizada y deprimida en la palma de la mano derecha, y una herida de salida \"en estallido\" en la planta del pie izquierdo. Tras colocarle una sonda Foley, la enfermera reporta que la orina extraída es de un color \"rojo oscuro brillante o parecido a la Coca-Cola\", pero la tira reactiva de orina no detecta eritrocitos microscópicos intactos.",
+    "questions": [
+      {
+        "question": "Dadas las características del trauma (alta tensión) y la apariencia oscura de la orina sin eritrocitos intactos, el paciente está cursando con una rabdomiólisis severa (destrucción masiva del músculo esquelético profundo a lo largo del trayecto de la corriente). ¿Cuál es la proteína muscular específica que se está filtrando masivamente por los glomérulos y que es altamente tóxica para los túbulos renales, amenazando con causar una Insuficiencia Renal Aguda?",
+        "options": [
+          "Hemoglobina libre",
+          "Mioglobina",
+          "Troponina I",
+          "Albúmina"
+        ],
+        "answerIndex": 1,
+        "explanation": "La corriente eléctrica de alto voltaje viaja a lo largo de los huesos y nervios (que ofrecen menor resistencia), cocinando térmicamente el músculo profundo. La necrosis muscular masiva (rabdomiólisis) libera mioglobina al torrente sanguíneo. La mioglobina es la proteína que almacena oxígeno en el músculo y es altamente nefrotóxica; precipita en los túbulos renales, causando necrosis tubular aguda. Es la responsable de la orina \"color Coca-Cola\" (mioglobinuria).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para prevenir el fallo renal inducido por la mioglobina en este paciente con quemadura eléctrica severa, ¿cuál es la meta fisiológica primaria de la reanimación hídrica agresiva con cristaloides (Ringer Lactato) que difiere de la meta en una quemadura térmica convencional?",
+        "options": [
+          "Mantener un gasto urinario de 0.5 ml/kg/hora",
+          "Mantener un gasto urinario elevado de 1 a 1.5 ml/kg/hora (o 75-100 ml/hora en el adulto) para \"lavar\" mecánicamente los túbulos renales",
+          "Inducir acidosis metabólica severa con solución salina",
+          "Restringir líquidos para evitar el edema cerebral"
+        ],
+        "answerIndex": 1,
+        "explanation": "En una quemadura térmica normal, la meta de reanimación hídrica (Fórmula de Parkland) es mantener una uresis de 0.5 ml/kg/hr (aprox. 30-50 ml/hr en adultos). Sin embargo, en la quemadura eléctrica por alta tensión con mioglobinuria, el protocolo ATLS exige aumentar masivamente el volumen de líquidos intravenosos para mantener un gasto urinario elevado de al menos 100 ml/hora en el adulto (o 1 - 1.5 ml/kg/hr). Esto garantiza un flujo tubular alto que mecánicamente \"lava\" la mioglobina, impidiendo que se precipite y tapone el riñón. A menudo se añade bicarbonato de sodio para alcalinizar la orina y aumentar la solubilidad de la mioglobina.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "subtema": "TENOSINOVITIS INFECCIOSA DE LOS FLEXORES (MANO)",
+    "difficulty": "baja",
+    "case": "Femenina de 28 años, de ocupación costurera. Acude a urgencias por presentar dolor extremo y aumento de volumen en el dedo índice de la mano derecha. Relata haberse pinchado accidentalmente con una aguja de coser sucia hace 48 horas. A la exploración física, el dedo índice derecho presenta cuatro signos muy llamativos: 1) Aumento de volumen fusiforme y simétrico de todo el dedo (\"dedo en salchicha\"), 2) El dedo adopta espontáneamente una postura en ligera flexión para aliviar la tensión, 3) Existe un dolor exquisito a la percusión o palpación a lo largo de toda la vaina tendinosa flexora en la cara palmar, y 4) Se desencadena un dolor insoportable y agudo cuando el médico intenta extender pasivamente el dedo.",
+    "questions": [
+      {
+        "question": "Estos cuatro signos clínicos cardinales son patognomónicos de una urgencia quirúrgica ortopédica (Tenosinovitis infecciosa purulenta de los flexores), la cual amenaza con necrosar el tendón y causar la pérdida funcional del dedo si no se drena rápidamente. ¿Qué epónimo médico reciben estos cuatro signos clásicos?",
+        "options": [
+          "Signos de Trousseau",
+          "Criterios de Centor",
+          "Signos de Kanavel",
+          "Nódulos de Bouchard y Heberden"
+        ],
+        "answerIndex": 2,
+        "explanation": "Los Signos de Kanavel son los cuatro signos cardinales de la tenosinovitis supurativa de los flexores de la mano: 1) Dedo hinchado fusiforme (en salchicha), 2) Dedo en semiflexión de reposo, 3) Dolor a la palpación del trayecto de la vaina flexora, y 4) Do lor exquisito a la extensión pasiva del dedo (el signo más temprano e importante). El tratamiento inicial, además de antibióticos IV, es el drenaje quirúrgico de urgencia y lavado exhaustivo de la vaina sinovial para evitar la isquemia tendinosa por la presión del pus.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "TRAUMA GENERALIDADES Y COMPLICACIONES",
+    "subtema": "FRACTURAS ABIERTAS (CLASIFICACIÓN DE GUSTILO-ANDERSON)",
+    "difficulty": "media",
+    "case": "Masculino de 25 años, repartidor en motocicleta, sufre accidente al ser impactado lateralmente por un vehículo. Es llevado a urgencias inmovilizado. A la exploración física de la extremidad inferior derecha, presenta una fractura diafisiaria de la tibia y el peroné. Se observa una herida lacerante en la cara anteromedial de la pierna de 4 centímetros de longitud, a través de la cual asoma el hueso fracturado. La herida presenta un daño moderado a los tejidos blandos circundantes y contaminación visible con tierra, pero el médico determina que existe una cobertura ósea (periostio y músculo) adecuada que permitirá el cierre primario o colgajos menores sin necesidad de injertos complejos. No hay lesión vascular arterial.",
+    "questions": [
+      {
+        "question": "La clasificación de Gustilo-Anderson es el estándar mundial para normar el tratamiento inicial y pronóstico de las fracturas expuestas. Considerando el tamaño de la herida (> 1 cm pero < 10 cm), la contaminación y el daño a partes blandas moderado con adecuada cobertura ósea, ¿a qué grado corresponde esta fractura abierta?",
+        "options": [
+          "Grado I",
+          "Grado II",
+          "Grado IIIA",
+          "Grado IIIB"
+        ],
+        "answerIndex": 1,
+        "explanation": "La clasificación de Gustilo-Anderson se divide en: Grado I: Herida < 1 cm, limpia, daño mínimo a tejidos blandos. Grado II: Herida > 1 cm pero < 10 cm, daño moderado a tejidos blandos, contaminación moderada, pero con cobertura ósea adecuada. Grado III: Herida > 10 cm, alta energía (arma de fuego, aplastamiento, granja). Se subdivide en IIIA (con buena cobertura perióstica/muscular), IIIB (pérdida masiva de tejidos que requiere colgajo libre o rotacional) y IIIC (lesión arterial que requiere reparación vascular, independientemente del tamaño de la herida).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la GPC y los consensos de traumatología, además del lavado quirúrgico exhaustivo y desbridamiento en quirófano antes de las 6 horas, ¿cuál es el esquema de profilaxis antibiótica intravenosa de elección recomendado para una fractura expuesta Grado II?",
+        "options": [
+          "Cefalosporina de 1ra generación (ej. Cefalotina o Cefazolina) como monoterapia",
+          "Cefalosporina de 1ra generación (Cefalotina) + Aminoglucósido (Amikacina o Gentamicina)",
+          "Penicilina G sódica a altas dosis exclusivamente",
+          "Vancomicina + Imipenem"
+        ],
+        "answerIndex": 1,
+        "explanation": "Para la profilaxis de fracturas expuestas: Grado I: Cefalosporina de 1ra generación (cubre Gram positivos como S. aureus). Grado II y III: Cefalosporina de 1ra generación + un Aminoglucósido (para cubrir bacilos Gram negativos). Si la lesión ocurrió en un ambiente agrícola/granja (contacto con heces/tierra negra): Se debe añadir Penicilina G para cubrir Clostridium perfringens (riesgo de gangrena gaseosa).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA GENERAL PEDIÁTRICA",
+    "subtema": "ENFERMEDAD DE HIRSCHSPRUNG (AGANGLIONOSIS CONGÉNITA)",
+    "difficulty": "alta",
+    "case": "Recién nacido masculino de término (40 SDG), obtenido por parto eutócico, con peso al nacer de 3.2 kg. El pediatra es interconsultado en el cunero porque el neonato no ha presentado evacuación de meconio en sus primeras 48 horas de vida extrauterina. La enfermera reporta que el bebé rechaza el alimento, presenta distensión abdominal progresiva e importante, y ha tenido dos episodios de vómito de color verde (biliar). A la exploración física, el abdomen está globoso y timpánico. Se decide realizar estimulación rectal introduciendo suavemente un termómetro lubricado (o el dedo meñique); inmediatamente tras la estimulación, el neonato presenta una salida explosiva de gas y meconio fétido abundante, tras lo cual el abdomen se descomprime no tablemente.",
+    "questions": [
+      {
+        "question": "El cuadro clásico de retraso en la evacuación de meconio (>48 hrs), distensión abdominal, vómito biliar y el signo patognomónico de la \"evacuación explosiva tras la estimulación o tacto rectal\" sugieren fuertemente una obstrucción intestinal funcional baja. ¿Cuál es el diagnóstico clínico más probable?",
+        "options": [
+          "Íleo meconial (asociado a Fibrosis Quística)",
+          "Atresia intestinal tipo III",
+          "Enfermedad de Hirschsprung (Aganglionosis colónica congénita)",
+          "Malrotación intestinal con vólvulo"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Enfermedad de Hirschsprung es la causa más común de obstrucción intestinal baja en el neonato. La clave clínica diferencial contra el íleo meconial (donde el meconio es tan espeso como engrudo que tapona el íleon) es que en Hirschsprung el esfínter anal interno está fuertemente contraído (espástico); al realizar la estimulación rectal, se vence mecánicamente el esfínter y el meconio acumulado a presión sale de forma explosiva.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Desde el punto de vista embriológico y fisiopatológico, ¿cuál es el defecto primario que causa esta enfermedad (ausencia de relajación del colon distal)?",
+        "options": [
+          "Hipertrofia congénita de la capa muscular circular del recto",
+          "Atrofia isquémica de la mucosa colónica in utero",
+          "Fracaso de la migración cráneo-caudal de las células de la cresta neural hacia los plexos mientérico (Auerbach) y submucoso (Meissner)",
+          "Infección viral intrauterina por Citomegalovirus"
+        ],
+        "answerIndex": 2,
+        "explanation": "La enfermedad de Hirschsprung se caracteriza por la ausencia total de células ganglionares parasimpáticas en la pared intestinal del recto y una porción variable del colon sigmoides (aganglionosis). Esto ocurre porque las células de la cresta neural fallan en su migración hacia el intestino distal durante el desarrollo embrionario. Sin estos ganglios, el segmento afectado no puede relajarse (pierde la inervación inhibitoria del óxido nítrico), manteniéndose permanentemente contraído y funcionando como una obstrucción mecánica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para el abordaje diagnóstico, el estudio de imagen inicial (colon por enema) mostraría la clásica \"zona de transición\" (un recto estrecho y un colon proximal masivamente dilatado). Sin embargo, para confirmar definitivamente el diagnóstico de aganglionosis antes de planear el tratamiento quirúrgico (descenso endorrectal transanal), ¿cuál es el estudio considerado el estándar de oro?",
+        "options": [
+          "Manometría anorrectal seriada",
+          "Biopsia rectal (por succión o quirúrgica a 2 cm de la línea dentada)",
+          "Ultrasonido abdominal con Doppler",
+          "Radiografía de abdomen en dos proyecciones"
+        ],
+        "answerIndex": 1,
+        "explanation": "La biopsia rectal (usualmente por succión, que incluye mucosa y submucosa) es el \"Gold Standard\". El diagnóstico histopatológico definitivo exige demostrar la ausencia de células ganglionares en el plexo de Meissner y la presencia de troncos nerviosos hipertróficos con tinción positiva para acetilcolinesterasa. La manometría anorrectal es útil en niños mayores (muestra ausencia del reflejo inhibitorio rectoanal), pero en neonatos la biopsia es obligatoria.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P1",
+    "subtema": "PARAFIMOSIS",
+    "difficulty": "baja",
+    "case": "Masculino de 80 años, residente de un asilo, con antecedente de deterioro cognitivo. Hace 48 horas se le colocó una sonda Foley por retención urinaria. Es traído a urgencias porque las enfermeras notaron gran aumento de volumen en sus genitales. A la exploración física, el paciente presenta dolor. El prepucio se encuentra retraído por detrás del surco balanoprepucial, formando un anillo constrictivo muy tenso y edematizado. El glande se observa sumamente pálido, cianótico y marcadamente hinchado debido a la isquemia y al compromiso del retorno venoso y linfático.",
+    "questions": [
+      {
+        "question": "Esta condición es una verdadera urgencia urológica que amenaza con causar la necrosis y pérdida del glande si no se resuelve rápidamente. Clínicamente se diferencia de la fimosis en que el prepucio está atrapado por detrás del glande (no por delante). ¿Cuál es el diagnóstico correcto?",
+        "options": [
+          "Balanopostitis aguda",
+          "Parafimosis",
+          "Fractura de pene",
+          "Enfermedad de Peyronie"
+        ],
+        "answerIndex": 1,
+        "explanation": "La parafimosis ocurre cuando un prepucio estrecho se retrae por detrás del glande (ya sea durante la higiene, el acto sexual, o típicamente como iatrogenia médica al no regresar el prepucio a su lugar después de colocar una sonda Foley). Este anillo actúa como un torniquete. La fimosis, en cambio, es la incapacidad para retraer el prepucio hacia atrás (el glande no se puede descubrir).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Ante el hallazgo descrito y el sufrimiento tisular inminente del glande, ¿cuál es la primera maniobra terapéutica no quirúrgica que debe intentar el médico de urgencias para resolver el cuadro?",
+        "options": [
+          "Aplicación de ungüento antibiótico y observación por 24 horas",
+          "Punción del glande con aguja fina para extraer sangre",
+          "Compresión manual sostenida del glande por 5-10 minutos para reducir el edema, seguida de tracción del prepucio hacia adelante mientras se empuja el glande hacia atrás",
+          "Circuncisión radical de urgencia inmediata"
+        ],
+        "answerIndex": 2,
+        "explanation": "El tratamiento inicial es la reducción manual inmediata. Se debe aplicar presión constante sobre el glande envuelto en una gasa fría o con anestésico local/hipertónico (ej. azúcar/manitol) durante unos minutos para \"exprimir\" el edema. Luego, usando los pulgares para empujar el glande y los índices para tirar del anillo prepucial, se intenta regresar el prepucio a su lugar. Si esto fracasa, se debe realizar una pequeña incisión dorsal quirúrgica del anillo constrictivo de urgencia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "subtema": "ORZUELO",
+    "difficulty": "baja",
+    "case": "Femenina de 18 años acude a su unidad de medicina familiar refiriendo dolor muy molesto en su ojo izquierdo de 3 días de evolución. A la inspección, se observa un nódulo muy eritematoso, inflamado, caliente y con una evidente \"punta\" blanquecina (purulenta), localizado exactamente en el borde libre del párpado inferior (entre las pestañas). La paciente parpadea con dificultad debido al intenso dolor (sensibilidad a la palpación). Shutterstock",
+    "questions": [
+      {
+        "question": "Por las características inflamatorias agudas (rubor, calor, dolor), la localización en el margen ciliar con salida de pus, es imperativo diferenciar esta lesión de un chalazión (que es crónico, estéril e indoloro). ¿Cuál es el diagnóstico clínico de esta infección estafilocócica aguda y cuál es la glándula típicamente afectada cuando es un padecimiento \"externo\"?",
+        "options": [
+          "Pterigión; glándula de Meibomio",
+          "Chalazión; glándulas de Moll",
+          "Orzuelo externo; glándulas de Zeis o Moll (sebáceas y sudoríparas asociadas a las pestañas)",
+          "Dacriocistitis; conducto nasolagrimal"
+        ],
+        "answerIndex": 2,
+        "explanation": "El orzuelo (vulgarmente \"perrilla\") es una infección estafilocócica (usualmente S. aureus) aguda y muy dolorosa. El orzuelo externo ocurre en las glándulas ciliares de Zeis (sebáceas) o Moll (sudoríparas apocrinas), justo en el nacimiento de la pestaña. (El orzuelo interno, que apunta hacia la conjuntiva, es una infección aguda de la glándula de Meibomio). El tratamiento se basa en compresas calientes, higiene de los párpados y, si es persistente o muy sintomático, un ungüento antibiótico tópico (eritromicina o tobramicina).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE (PEDIATRÍA)",
+    "subtema": "ASPIRACIÓN DE CUERPO EXTRAÑO EN VÍA AÉREA",
+    "difficulty": "media",
+    "case": "Lactante masculino de 2 años de edad es llevado al servicio de urgencias por sus padres. Refieren que mientras el niño jugaba y comía cacahuates, presentó súbitamente un acceso de tos paroxística muy violenta, sensación de ahogo (asfixia) y la cara se le puso morada (cianosis) durante un par de minutos. Posteriormente, el niño se calmó y dejó de toser, pero los padres notan que \"le silba el pecho\" al respirar. A la exploración física en urgencias, el niño está tranquilo, no cianótico, con signos vitales estables. Sin embargo, a la auscultación torácica, se detecta disminución del murmullo vesicular y sibilancias localizadas exclusivamente en el hemitórax derecho.",
+    "questions": [
+      {
+        "question": "Ante la alta sospecha clínica de un evento de aspiración (síndrome de penetración presenciado) con focalización pulmonar, se solicita una radiografía simple de tórax en inspiración y espiración. Debido a la anatomía del árbol traqueobronquial en niños y adultos, ¿en qué estructura se aloja con mayor frecuencia (hasta en un 60-70% de los casos) el cuerpo extraño aspirado, justificando los hallazgos en el pulmón derecho?",
+        "options": [
+          "Bronquio principal izquierdo",
+          "Tráquea proximal",
+          "Carina",
+          "Bronquio principal derecho"
+        ],
+        "answerIndex": 3,
+        "explanation": "El bronquio principal derecho es el destino anatómico más probable para un cuerpo extraño aspirado. Esto se debe a que es más ancho, más corto y tiene una disposición mucho más vertical (más recta respecto a la tráquea) que el bronquio principal izquierdo, el cual es más estrecho, largo y forma un ángulo más agudo debido a la presencia del corazón.",
+        "gpcReference": ""
+      },
+      {
+        "question": "La radiografía de tórax en espiración (o decúbito lateral en niños pequeños) revela la presencia de hiperinsuflación unilateral (atrapamiento de aire) en el pulmón derecho, y no se observan objetos radiopacos (los cacahuates son radiolúcidos). Ante la sospecha diagnóstica fundada, ¿cuál es el procedimiento diagnóstico y terapéutico de elección (Gold Standard) para confirmar y extraer el cuerpo extraño alojado en la vía aérea pediátrica?",
+        "options": [
+          "Esofagoscopia flexible",
+          "Tomografía axial computarizada de tórax de alta resolución",
+          "Broncoscopia rígida bajo anestesia general",
+          "Toracotomía de urgencia"
+        ],
+        "answerIndex": 2,
+        "explanation": "La broncoscopia rígida es el estándar de oro diagnóstico y terapéutico para el manejo del cuerpo extraño en la vía aérea de los niños. Permite mantener una vía aérea permeable segura y ofrece un canal de trabajo amplio para introducir pinzas especiales para la fragmentación y extracción del objeto bajo visión directa. La broncoscopia flexible se reserva en la actualidad para adultos o como método puramente diagnóstico ante alta duda en niños mayores.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "NEUROCIRUGÍA / ATLS P2",
+    "subtema": "HIPERTENSIÓN INTRACRANEAL (HERNIACIÓN UNCAL)",
+    "difficulty": "alta",
+    "case": "Masculino de 24 años sufre un traumatismo craneoencefálico severo al chocar en su motocicleta sin casco. Ingresa a urgencias intubado, con Glasgow de 6. Durante la evaluación secundaria en la sala de choque, el médico nota un cambio neurológico brusco: la pupila derecha del paciente se dilata rápidamente y deja de responder a la luz (midriasis paralítica ipsilateral). Simultáneamente, al aplicar un estímulo doloroso, el paciente presenta una postura de decorticación exclusivamente en el lado izquierdo del cuerpo (hemiparesia contralateral).",
+    "questions": [
+      {
+        "question": "La presentación clásica de midriasis ipsilateral seguida de hemiparesia contralateral en un paciente con TCE severo y un hematoma en expansión es el signo clínico ominoso de un desplazamiento del tejido cerebral. ¿Qué nombre recibe este síndrome de herniación cerebral específico?",
+        "options": [
+          "Herniación subfalcina (del cíngulo)",
+          "Herniación amigdalina (cerebelosa)",
+          "Herniación transtentorial lateral (Uncal)",
+          "Herniación diencefálica central"
+        ],
+        "answerIndex": 2,
+        "explanation": "La herniación uncal ocurre cuando una masa expansiva (como un hematoma epidural temporal) empuja la porción medial del lóbulo temporal (el uncus) hacia abajo, a través del borde libre de la tienda del cerebelo (tentorio). Esto comprime las estructuras adyacentes de forma secuencial, creando su cuadro clásico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Desde el punto de vista neuroanatómico, ¿cuál es el par craneal que está siendo comprimido directamente contra el borde del tentorio por el uncus herniado, provocando como primer signo clínico la midriasis arreactiva (por parálisis de sus fibras parasimpáticas superficiales)?",
+        "options": [
+          "Nervio Óptico (II par)",
+          "Nervio Motor Ocular Común u Oculomotor (III par)",
+          "Nervio Troclear (IV par)",
+          "Nervio Motor Ocular Externo o Abducens (VI par)"
+        ],
+        "answerIndex": 1,
+        "explanation": "El Nervio Oculomotor (III par craneal) viaja justo por debajo del uncus. Sus fibras parasimpáticas pupiloconstrictoras viajan en la periferia del nervio, por lo que son las primeras en sufrir compresión, provocando una dilatación pupilar (midriasis) arreactiva del mismo lado de la lesión. Posteriormente, la compresión de los pedúnculos cerebrales (vía corticoespinal) provoca la hemiparesia del lado contrario.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA GENERAL PEDIÁTRICA / ADULTOS",
+    "subtema": "APENDICITIS AGUDA",
+    "difficulty": "baja",
+    "case": "Masculino de 18 años acude a urgencias por referir un dolor abdominal que inició hace 12 horas en la región periumbilical, pero que en las últimas 4 horas ha migrado y se ha localizado de manera punzante en el cuadrante inferior derecho. Refiere haber vomitado en una ocasión y no tener apetito (anorexia). A la exploración física, tiene una temperatura de 37.8°C. A la palpación abdominal, presenta hiperestesia cutánea y dolor intenso en la fosa ilíaca derecha, con franco signo de rebote (dolor a la descompresión brusca).",
+    "questions": [
+      {
+        "question": "Al palpar la fosa ilíaca derecha, el médico busca intencionadamente el punto de máximo dolor. ¿Cuál es el epónimo del punto anatómico localizado clásicamente en la unión del tercio externo con los dos tercios internos de una línea imaginaria trazada desde la espina ilíaca anterosuperior hasta la cicatriz umbilical?",
+        "options": [
+          "Punto de Murphy",
+          "Punto de McBurney",
+          "Punto de Lanz",
+          "Punto de Rovsing"
+        ],
+        "answerIndex": 1,
+        "explanation": "El Punto de McBurney es el hallazgo topográfico clásico de la apendicitis aguda. Representa la ubicación anatómica más frecuente de la base del apéndice cecal. El Signo de Rovsing, por otro lado, es el dolor en la fosa ilíaca derecha al palpar y presionar la fosa ilíaca izquierda (por desplazamiento de los gases colónicos).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para sistematizar la probabilidad diagnóstica de este paciente, se utiliza la Escala de Alvarado. De acuerdo con esta escala clinico-laboratorial, de los 8 parámetros evaluados, solo hay dos que otorgan 2 puntos (los de mayor peso predictivo). Uno de ellos es el dolor en la fosa ilíaca derecha. ¿Cuál es el otro parámetro que otorga 2 puntos?",
+        "options": [
+          "Migración del dolor",
+          "Anorexia",
+          "Leucocitosis (> 10,000 células/mm³)",
+          "Desviación a la izquierda (Neutrofilia)"
+        ],
+        "answerIndex": 2,
+        "explanation": "La Escala de Alvarado (MANTRELS por sus siglas en inglés) tiene un puntaje máximo de 10. Los dos signos más importantes que valen 2 puntos cada uno son el dolor en el cuadrante inferior derecho (Tenderness in RLQ) y la Leucocitosis (Leukocytosis). Los demás (Migración, Anorexia, Náuseas/Vómitos, Rebote, Elevación de temperatura y Desviación a la izquierda) valen 1 punto cada uno. Un puntaje ≥ 7 indica alta probabilidad de apendicitis y sugiere tratamiento quirúrgico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "OFTALMOLOGÍA PEDIÁTRICA / ONCOLOGÍA",
+    "subtema": "RETINOBLASTOMA",
+    "difficulty": "media",
+    "case": "Lactante femenina de 18 meses de edad es llevada a la consulta de pediatría por sus padres. Refieren estar muy asustados porque al revisarle los ojos a la niña o al tomarle fotografías con flash, notan un \"reflejo blanco\" o brillo extraño en la pupila del ojo derecho, similar al ojo de un gato en la oscuridad. Además, la madre refiere que en las últimas semanas la niña ha comenzado a \"desviar\" el mismo ojo hacia adentro (estrabismo convergente). El niño se encuentra aparentemente sano en todos los demás aspectos. A la exploración oftalmoscópica bajo dilatación pupilar, se observa una masa blanquecina, exofítica, altamente vascularizada en la retina del ojo derecho.",
+    "questions": [
+      {
+        "question": "Ante la presencia de leucocoria (pupila blanca) y estrabismo de reciente inicio en un lactante o preescolar, ¿cuál es el diagnóstico oncológico que debe descartarse como primera y más urgente posibilidad por ser el tumor intraocular maligno primario más frecuente en la infancia?",
+        "options": [
+          "Retinopatía del prematuro",
+          "Catarata congénita",
+          "Melanoma uveal",
+          "Retinoblastoma"
+        ],
+        "answerIndex": 3,
+        "explanation": "El Retinoblastoma es la neoplasia maligna intraocular más común en los niños. Sus dos signos de presentación clásicos y tempranos, por los cuales los padres suelen buscar atención médica, son la leucocoria (reflejo pupilar blanco) en primer lugar, y el estrabismo de inicio reciente (porque la mácula está dañada y el ojo pierde fijación). Cualquier leucocoria en un niño es un retinoblastoma hasta demostrar lo contrario.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Desde el punto de vista genético y hereditario, el retinoblastoma fue el primer cáncer en el que se demostró la teoría del \"doble impacto\" (Two-Hit hypothesis) de Knudson. ¿A qué gen supresor de tumores específico se asocia el desarrollo de esta enfermedad (cuya forma hereditaria suele ser bilateral)?",
+        "options": [
+          "Gen TP53",
+          "Gen BRCA1",
+          "Gen RB1 (localizado en el cromosoma 13q14)",
+          "Gen APC"
+        ],
+        "answerIndex": 2,
+        "explanation": "El retinoblastoma es causado por mutaciones inactivadoras (pérdida de heterocigosidad) en el gen RB1, el cual es un clásico gen supresor de tumores encargado de regular el ciclo celular. En la forma hereditaria (germinal), el niño nace con una copia mutada en todas sus células y solo requiere que la segunda copia se dañe (segundo \"hit\") para desarrollar el tumor, lo que explica por qué los casos hereditarios suelen ser bilaterales, multifocales y aparecen a una edad más temprana (antes del año de edad).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ORTOPEDIA Y TRAUMATOLOGÍA",
+    "subtema": "SÍNDROME COMPARTIMENTAL",
+    "difficulty": "alta",
+    "case": "Masculino de 28 años, sufre fractura cerrada de la diáfisis tibial derecha al jugar fútbol. En urgencias, se le realiza reducción cerrada y se le coloca un yeso suropédico circular completo. Doce horas después de su alta, el paciente regresa a urgencias refiriendo un dolor agudísimo, quemante y pulsátil en la pierna derecha. Refiere que el dolor es \"peor que cuando se rompió el hueso\" y no ha cedido en absoluto a pesar de tomar los analgésicos opioides recetados. A la exploración, los dedos del pie derecho están ligeramente edematizados pero rosados, con buen llenado capilar y los pulsos distales (pedio) son palpables y fuertes.",
+    "questions": [
+      {
+        "question": "A pesar de tener pulsos normales, el médico tiene una altísima sospecha de que el paciente está desarrollando un síndrome compartimental agudo debido a la férula circular apretada y al edema propio de la fractura. De las llamadas \"6 P\" del síndrome compartimental (Pain, Pallor, Pulselessness, Paresthesias, Paralysis, Poikilothermia), ¿cuál es el hallazgo clínico exploratorio más precoz y patognomónico que establece el diagnóstico mucho antes de que se pierdan los pulsos?",
+        "options": [
+          "La ausencia de pulsos arteriales distales",
+          "La parálisis motora total de los dedos",
+          "Dolor extremo, desproporcionado a la lesión original, que se exacerba severamente al realizar el estiramiento pasivo de los músculos del compartimento afectado (ej. dorsiflexión/flexión plantar pasiva de los dedos)",
+          "Cianosis y frialdad extrema del pie"
+        ],
+        "answerIndex": 2,
+        "explanation": "El dolor desproporcionado que aumenta con el estiramiento pasivo de los músculos involucrados es el signo más temprano y confiable del síndrome compartimental. Esperar a la ausencia de pulsos, palidez o parálisis es un error gravísimo, ya que la isquemia arterial gruesa es un signo muy tardío; el síndrome compartimental primero ocluye el drenaje capilar y venoso muscular mientras los grandes vasos arteriales siguen latiendo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Al retirar inmediatamente y por completo el yeso circular, la presión tisular en la pierna no disminuye y el dolor persiste. Se mide la presión intracompartimental confirmando valores por encima de 30-40 mmHg. Ante este diagnóstico confirmado y el riesgo inminente de necrosis muscular irreversible en las próximas horas, ¿cuál es el tratamiento quirúrgico salvador de urgencia?",
+        "options": [
+          "Amputación supracondílea preventiva",
+          "Fasciotomía longitudinal amplia de los compartimentos afectados (usualmente los 4 compartimentos de la pierna)",
+          "Administración intravenosa de Manitol a altas dosis exclusivamente",
+          "Elevación extrema de la extremidad e inmovilización estricta"
+        ],
+        "answerIndex": 1,
+        "explanation": "El único tratamiento curativo para el síndrome compartimental agudo establecido es la fasciotomía descompresiva inmediata. Consiste en realizar incisiones quirúrgicas amplias y longitudinales en la piel y, fundamentalmente, en la fascia muscular rígida que envuelve a los compartimentos, permitiendo que el músculo isquémico se expanda libremente hacia afuera y restaurando así la perfusión capilar.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "UROLOGÍA P2",
+    "subtema": "CÁNCER DE PRÓSTATA (DIAGNÓSTICO)",
+    "difficulty": "baja",
+    "case": "Masculino de 65 años acude a su chequeo de rutina en la clínica de salud masculina. No refiere síntomas urinarios (IPSS de 4), niega hematuria o dolor óseo. Como parte de su escrutinio, se le realiza la determinación en sangre del Antígeno Prostático Específico (APE), el cual reporta un valor de 5.5 ng/mL (Valor de referencia normal: 0 - 4 ng/mL). Posteriormente, el médico procede a realizar una exploración física urológica que incluye tacto rectal.",
+    "questions": [
+      {
+        "question": "Durante el tacto rectal, el médico palpa una próstata de tamaño normal, pero detecta claramente la presencia de un nódulo indurado, duro como piedra (pétreo), en el lóbulo periférico derecho, el cual es altamente sugestivo de cáncer de próstata. Independientemente del valor del APE que presentó el paciente, ¿cuál es la conducta diagnóstica obligatoria indicada por las guías urológicas ante un tacto rectal sospechoso de malignidad?",
+        "options": [
+          "Iniciar tratamiento empírico con antibióticos por 4 semanas y repetir el tacto",
+          "Solicitar una Tomografía Computarizada de pelvis inmediatamente",
+          "Referir para la realización de una Biopsia transrectal de próstata guiada por ultrasonido",
+          "Repetir el APE en 6 meses mediante vigilancia activa"
+        ],
+        "answerIndex": 2,
+        "explanation": "Cualquier tacto rectal anormal (nódulo, induración focal, pérdida de los surcos anatómicos o asimetría pétrea) es una indicación absoluta para realizar una biopsia prostática, sin importar que el APE sea normal o levemente elevado. La biopsia transrectal guiada por ultrasonido (TRUS) tomando múltiples cilindros es el estándar para el diagnóstico histopatológico definitivo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Desde el punto de vista anatomopatológico (zonas de McNeal), la gran mayoría (70- 80%) de los cánceres de próstata tienen la característica de originarse en una zona específica de la glándula, lo que explica por qué son frecuentemente asintomáticos en etapas iniciales (no obstruyen la uretra) y por qué sí pueden ser palpados por el dedo del examinador durante un tacto rectal. ¿Cuál es esta zona?",
+        "options": [
+          "Zona transicional",
+          "Zona periférica",
+          "Zona central",
+          "Estroma fibromuscular anterior"
+        ],
+        "answerIndex": 1,
+        "explanation": "El 70-80% de los adenocarcinomas de próstata se originan en la zona periférica (la parte más posterior y externa de la glándula). Al estar pegada a la pared del recto, es la zona que el médico puede palpar directamente durante el tacto rectal. Por el contrario, la Hiperplasia Prostática Benigna (HPB) crece en la zona transicional (que rodea la uretra), razón por la cual la HPB causa síntomas urinarios obstructivos muy tempranamente, pero suele sentirse \"normal\" y elástica al tacto rectal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA DIVERTICULAR",
+    "subtema": "DIVERTICULITIS AGUDA",
+    "difficulty": "media",
+    "case": "Masculino de 68 años de edad, con antecedente de estreñimiento crónico y dieta baja en fibra. Acude a urgencias por presentar dolor abdominal de 48 horas de evolución, constante, localizado en la fosa ilíaca izquierda (cuadrante inferior izquierdo). Refiere fiebre no cuantificada, náuseas y alteración en los hábitos intestinales. A la exploración física: T 38.5°C, FC 100 lpm. El abdomen presenta dolor a la palpación profunda en la fosa ilíaca izquierda, con resistencia muscular voluntaria y signo de rebote positivo localizado. Sus laboratorios muestran leucocitosis de 15,000/mm³ con neutrofilia.",
+    "questions": [
+      {
+        "question": "El cuadro de \"apendicitis izquierda\" en un adulto mayor es clásico de la diverticulitis aguda. Para confirmar el diagnóstico y estadificar la gravedad de la inflamación o la presencia de complicaciones (abscesos/perforación), ¿cuál es el estudio de imagen de elección (estándar de oro) que debe solicitarse en el servicio de urgencias?",
+        "options": [
+          "Colonoscopia total",
+          "Radiografía simple de abdomen en bipedestación",
+          "Tomografía Computarizada (TAC) de abdomen y pelvis con contraste",
+          "Ultrasonido abdominal"
+        ],
+        "answerIndex": 2,
+        "explanation": "La **Tomografía Computarizada (TAC) con contraste** es el estudio de elección para el diagnóstico y estadificación de la diverticulitis aguda (Clasificación de Hinchey). Permite ver el engrosamiento de la pared colónica, la inflamación de la grasa peridiverticular y detectar complicaciones como abscesos o aire libre. La colonoscopia y el enema de bario están **estrictamente contraindicados** en el cuadro agudo por el altísimo riesgo de perforar un divertículo inflamado.",
+        "gpcReference": ""
+      },
+      {
+        "question": "La TAC reporta inflamación diverticular severa y la presencia de un **absceso pélvico de 5 cm** (Clasificación de Hinchey II). Dado el tamaño de la colección purulenta, ¿cuál es el tratamiento de primera línea indicado por las guías quirúrgicas para este estadio?",
+        "options": [
+          "Resección de colon sigmoides con anastomosis primaria (Cirugía de urgencia)",
+          "Procedimiento de Hartmann (Resección sigmoidea con colostomía terminal)",
+          "Drenaje percutáneo guiado por TAC o ultrasonido, más antibióticos intravenosos",
+          "Manejo conservador exclusivo con ciprofloxacino y metronidazol oral"
+        ],
+        "answerIndex": 2,
+        "explanation": "En la clasificación de Hinchey, el estadio I (flemón/absceso pericólico pequeño) se maneja con antibióticos. El **estadio II (absceso pélvico o retroperitoneal distante > 4-5 cm)** se maneja idealmente con **drenaje percutáneo guiado por imagen** y antibióticos IV para \"enfriar\" el cuadro y permitir una cirugía electiva posterior. Los estadios III (peritonitis purulenta) y IV (peritonitis fecaloidea) son urgencias quirúrgicas absolutas que típicamente requieren el **Procedimiento de Hartmann** (resección y colostomía). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS P1",
+    "subtema": "TRAUMA TORÁCICO (HEMOTÓRAX MASIVO)",
+    "difficulty": "alta",
+    "case": "Masculino de 30 años, ingresa a la sala de choque tras sufrir una herida por proyectil de arma de fuego en el hemitórax derecho (4to espacio intercostal, línea axilar anterior). A su ingreso, el paciente está confuso, pálido y diaforético, con TA de 70/40 mmHg y FC de 135 lpm. A la exploración del tórax, el hemitórax derecho presenta movimientos respiratorios disminuidos. A la auscultación, hay **ausencia total de ruidos respiratorios** en el lado derecho. A la percusión, se percibe una **franca matidez** en la base y tercio medio del hemitórax afectado. Las venas yugulares del cuello se encuentran colapsadas (planas).",
+    "questions": [
+      {
+        "question": "La presentación clínica de choque hipovolémico, ausencia de ruidos respiratorios, venas yugulares planas y **matidez a la percusión** conforman un cuadro letal en trauma de tórax. ¿Cuál es el diagnóstico puramente clínico que diferencia este cuadro de un neumotórax a tensión?",
+        "options": [
+          "Taponamiento cardíaco",
+          "Tórax inestable (Volet costal)",
+          "Neumotórax a tensión derecho",
+          "Hemotórax masivo derecho"
+        ],
+        "answerIndex": 3,
+        "explanation": "El **hemotórax masivo** ocurre por la acumulación rápida de gran cantidad de sangre en la cavidad pleural. Comparte con el neumotórax a tensión la hipotensión y la ausencia de ruidos respiratorios. Sin embargo, las claves diferenciales clínicas son: 1) A la percusión hay **matidez** (es líquido/sangre, no aire que daría hiperresonancia), y 2) Las venas yugulares están **colapsadas** por la pérdida masiva de volumen sanguíneo (en el neumotórax a tensión están ingurgitadas por falla en el retorno venoso).",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según los lineamientos del ATLS, se procede a colocar una sonda endopleural (tubo de tórax) en el 5to espacio intercostal derecho. Al momento de la inserción, se drena inmediatamente un volumen abundante de sangre. ¿Cuál de los siguientes volúmenes de drenaje inicial constituye una indicación absoluta para realizar una **toracotomía de reanimación de urgencia** en quirófano?",
+        "options": [
+          "Obtención inmediata de más de 500 ml de sangre",
+          "Obtención inmediata de más de 1,500 ml de sangre (o > 20 ml/kg)",
+          "Obtención de 200 ml de sangre continuos durante 30 minutos",
+          "Obtención de cualquier cantidad de sangre oscura no pulsátil"
+        ],
+        "answerIndex": 1,
+        "explanation": "Las indicaciones absolutas para toracotomía de urgencia en un hemotórax masivo según el ATLS son: 1) **Drenaje inicial inmediato mayor a 1,500 ml** de sangre al colocar el tubo, o 2) Un sangrado continuo mayor a **200 ml por hora durante 2 a 4 horas consecutivas**. Estos volúmenes indican que se ha lesionado un vaso mayor (arterias intercostales, mamaria interna o vasos hiliares) que no dejará de sangrar por sí solo. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA CÁMARA POSTERIOR",
+    "subtema": "DESPRENDIMIENTO DE RETINA REGMATÓGENO",
+    "difficulty": "media",
+    "case": "Femenina de 62 años, con antecedente de miopía magna (alta) desde la juventud. Acude a urgencias oftalmológicas refiriendo que hace dos días comenzó a ver \"destellos de luz como relámpagos\" (fotopsias) en su ojo derecho, seguidos por la aparición de múltiples \"moscas volantes\" de color oscuro (miodesopsias). El día de hoy, despertó notando que una **\"sombra oscura\" o \"telón\"** comenzó a caer sobre su campo visual desde la parte inferior, impidiéndole ver con la mitad inferior del ojo. No refiere dolor ocular en ningún momento.",
+    "questions": [
+      {
+        "question": "El cuadro clínico de fotopsias, miodesopsias agudas y la percepción indolora de una \"cortina o telón\" que oscurece el campo visual en un paciente con miopía alta es el síntoma patognomónico de una urgencia oftalmológica. ¿Cuál es el diagnóstico clínico?",
+        "options": [
+          "Oclusión de la arteria central de la retina",
+          "Desprendimiento de retina regmatógeno",
+          "Hemorragia vítrea por retinopatía diabética",
+          "Neuritis óptica aguda"
+        ],
+        "answerIndex": 1,
+        "explanation": "El **desprendimiento de retina regmatógeno** (causado por un desgarro o \"rhegma\" en la retina que permite que el líquido vítreo pase por debajo) es la forma más común de desprendimiento. Sus síntomas prodrómicos clásicos son las **fotopsias** (destellos por tracción vitreorretiniana) y **miodesopsias** abruptas (células o sangre en el vítreo). El síntoma cardinal tardío es el escotoma periférico que avanza hacia el centro, descrito invariablemente como una \"cortina oscura que cae\" sobre la visión. La miopía magna es el principal factor de riesgo debido al estiramiento y adelgazamiento de la retina periférica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "MORDEDURAS Y PICADURAS",
+    "subtema": "MORDEDURA DE SERPIENTES (ACCIDENTE OFÍDICO)",
+    "difficulty": "alta",
+    "case": "Masculino de 28 años, trabajador agrícola, es traído al servicio de urgencias rurales tras sufrir una mordedura de serpiente en la pierna derecha mientras cortaba caña. Los compañeros mataron a la serpiente y la traen consigo: se observa que tiene la cabeza triangular, fosetas termosensibles (loreales) entre el ojo y la nariz, y un \"cascabel\" en la cola. El accidente ocurrió hace 2 horas. A su ingreso, el paciente se queja de dolor quemante extremo en la pierna. A la exploración, se observan dos marcas de colmillos en el tobillo rodeadas de un **edema masivo que ya alcanzó la rodilla derecha, asociado a equimosis progresiva, flictenas hemorrágicas y sangrado continuo por los orificios de los colmillos**. Sus laboratorios iniciales muestran TP y TTP prolongados, y plaquetas en 60,000/mm³.",
+    "questions": [
+      {
+        "question": "Por las características anatómicas de la serpiente (cabeza triangular, foseta loreal, cascabel) y la clínica del paciente (edema severo progresivo, destrucción tisular local, coagulopatía de consumo y hemorragia), ¿a qué familia toxicológica pertenece este reptil y qué tipo de veneno predomina en ella?",
+        "options": [
+          "Familia Elapidae (Coralillos); predominio neurotóxico",
+          "Familia Viperidae (Vibóridos / Crotalinos); predominio proteolítico, vasculotóxico y hemotóxico",
+          "Familia Colubridae; predominio citotóxico leve",
+          "Familia Hydrophiidae (Serpientes marinas); predominio miotóxico"
+        ],
+        "answerIndex": 1,
+        "explanation": "Las serpientes de cascabel, nauyacas y cantiles pertenecen a la familia **Viperidae** (subfamilia Crotalinae). Su veneno es rico en enzimas **proteolíticas y hemotóxicas**, lo que causa destrucción tisular local severa (edema masivo, ampollas, necrosis) y alteraciones sistémicas de la coagulación (consumo de fibrinógeno, sangrado, CID). Por el contrario, la familia *Elapidae* (coralillos) no causa casi reacción local, pero su veneno es *neurotóxico*, provocando parálisis flácida respiratoria rápida.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según la estatificación clínica de Christopher-Rodning, este paciente cursa con un envenenamiento Crotálico **Grado III** (edema que se extiende más de un segmento, equimosis, bulas, y alteraciones en la coagulación). ¿Cuál es el tratamiento específico de primera línea que debe administrarse inmediatamente por vía intravenosa para neutralizar las toxinas?",
+        "options": [
+          "Aplicación de torniquete apretado y fasciotomía de urgencia",
+          "Corticosteroides sistémicos a dosis altas y antihistamínicos",
+          "Faboterapia polivalente antiviperina (Antiveneno específico)",
+          "Infiltración local de adrenalina y succión del veneno"
+        ],
+        "answerIndex": 2,
+        "explanation": "El único tratamiento efectivo para el accidente ofídico es la administración temprana del **Faboterápico (antiveneno) polivalente antiviperino**. En un Grado III, se requieren múltiples frascos (usualmente de 6 a 8 frascos iniciales en adultos) por vía intravenosa. El uso de torniquetes, succión con la boca, incisiones locales, hielo o terapias eléctricas está **absolutamente proscrito** y contraindicado, ya que aumentan drásticamente el daño tisular, el riesgo de infección y la isquemia de la extremidad. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "PATOLOGÍA INTESTINAL INFLAMATORIA",
+    "subtema": "COLITIS ULCEROSA (MEGACOLON TÓXICO)",
+    "difficulty": "baja",
+    "case": "Femenina de 32 años, con diagnóstico conocido de Colitis Ulcerosa Crónica Idiopática (CUCI) de 4 años de evolución, en tratamiento irregular. Ingresa a piso de medicina interna por una agudización severa de su enfermedad, presentando más de 10 evacuaciones diarreicas con abundante sangre y moco al día. Al tercer día de hospitalización, la enfermera reporta que la paciente dejó de evacuar súbitamente, pero presenta un franco deterioro de su estado general: fiebre de 39°C, taquicardia de 130 lpm, alteración del estado mental (letargo) y el abdomen se encuentra distendido masivamente, doloroso a la palpación difusa y timpánico.",
+    "questions": [
+      {
+        "question": "Ante el deterioro súbito con signos de toxicidad sistémica y distensión abdominal en una paciente con CUCI activo, se sospecha de una complicación letal. Se solicita una radiografía simple de abdomen urgente, la cual revela una pérdida de las haustras colónicas y una **dilatación masiva del colon transverso**. ¿Cuál es el punto de corte del diámetro del colon transverso (en centímetros) en la radiografía que, sumado a la toxicidad clínica, define el diagnóstico de Megacolon Tóxico?",
+        "options": [
+          "> 4 cm",
+          "> 6 cm",
+          "> 10 cm",
+          "> 12 cm"
+        ],
+        "answerIndex": 1,
+        "explanation": "El **Megacolon Tóxico** es una urgencia médica y quirúrgica, siendo una complicación grave de la enfermedad inflamatoria intestinal (principalmente CUCI) o colitis infecciosa (ej. por *C. difficile*). El diagnóstico se establece por clínica de toxicidad sistémica (fiebre, taquicardia, leucocitosis) sumado a la evidencia radiológica de una dilatación colónica no obstructiva severa, definida clásicamente como u n diámetro del colon transverso **mayor a 6 cm**. Si el paciente no responde rápidamente al manejo médico intensivo (esteroides IV, antibióticos, reposo intestinal), la indicación es la colectomía total de urgencia para evitar la inminente perforación y peritonitis fecal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA DE PARED ABDOMINAL",
+    "subtema": "HERNIA INGUINAL (ANATOMÍA Y TRATAMIENTO)",
+    "difficulty": "media",
+    "case": "Masculino de 45 años, de oficio cargador en un mercado, acude por presentar un \"bulto\" en la región inguinal derecha que aparece al realizar esfuerzos y desaparece al acostarse. A la exploración física, se palpa una protrusión que emerge por fuera de los vasos epigástricos inferiores, pasando a través del anillo inguinal profundo. Al realizar la maniobra de Valsalva, la hernia toca la punta del dedo del examinador insertado en el conducto inguinal. El paciente no refiere dolor intenso, solo molestia tipo pesadez.",
+    "questions": [
+      {
+        "question": "De acuerdo con la relación anatómica descrita (protrusión lateral a los vasos epigástricos inferiores y paso a través del anillo inguinal profundo), ¿qué tipo de hernia inguinal presenta este paciente?",
+        "options": [
+          "Hernia inguinal directa",
+          "Hernia inguinal indirecta",
+          "Hernia femoral (crural)",
+          "Hernia de Richter"
+        ],
+        "answerIndex": 1,
+        "explanation": "La **hernia inguinal indirecta** es la más común. Se caracteriza por salir de la cavidad abdominal a través del anillo inguinal profundo, desplazándose lateral a los vasos epigástricos inferiores. Es el resultado de la persistencia del conducto peritoneovaginal. Por el contrario, la hernia directa protruye medial a los vasos epigástricos, directamente a través de una debilidad en la fascia transversalis (triángulo de Hesselbach).",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la técnica quirúrgica considerada como el \"estándar de oro\" para la reparación de la hernia inguinal primaria en el adulto, que utiliza una malla protésica sin tensión y reporta las menores tasas de recurrencia?",
+        "options": [
+          "Técnica de Shouldice",
+          "Técnica de McVay",
+          "Técnica de Lichtenstein",
+          "Técnica de Bassini"
+        ],
+        "answerIndex": 2,
+        "explanation": "La **Técnica de Lichtenstein** es una reparación \"sin tensión\" que utiliza una malla de polipropileno para reforzar el piso del conducto inguinal. Es la técnica de elección en adultos por su baja tasa de complicaciones y recurrencia en comparación con las técnicas de sutura pura (como Bassini o Shouldice). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "QUEMADURAS (ATLS / GPC)",
+    "subtema": "REANIMACIÓN HÍDRICA (FÓRMULA DE PARKLAND)",
+    "difficulty": "alta",
+    "case": "Masculino de 35 años, de 80 kg de peso, es traído tras sufrir quemaduras por fuego directo en una explosión de gas. A la exploración, presenta quemaduras de 2do grado profundo y 3er grado en: todo el brazo derecho (9%), toda la pierna derecha (18%) y la cara anterior del tronco (18%). No hay lesiones en vía aérea. Los signos vitales muestran FC 110 lpm y TA 105/70 mmHg.",
+    "questions": [
+      {
+        "question": "Calculando el porcentaje de Superficie Corporal Total Quemada (SCTQ) mediante la Regla de los 9, el paciente tiene un 45%. Según la fórmula de Parkland (4 ml x kg x % SCTQ), ¿cuál es el volumen total de líquido (Ringer Lactato) que debe recibir este paciente en las primeras 24 horas desde el momento del accidente?",
+        "options": [
+          "7,200 ml",
+          "14,400 ml",
+          "12,800 ml",
+          "9,600 ml"
+        ],
+        "answerIndex": 1,
+        "explanation": "Fórmula de Parkland: 4 ml x 80 kg x 45% = **14,400 ml**. Es vital recordar que la mitad (7,200 ml) debe pasarse en las primeras 8 horas y la otra mitad en las siguientes 16 horas. (Nota: Actualmente algunas guías recomiendan iniciar con 2 ml en lugar de 4 ml para evitar la sobrecarga, pero para fines de examen ENARM/ATLS tradicional, 4 ml sigue siendo la cifra estándar). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA ABDOMINAL DE URGENCIA",
+    "subtema": "VÓLVULO DE SIGMOIDES",
+    "difficulty": "media",
+    "case": "Masculino de 72 años, residente de una casa de descanso, con antecedente de Parkinson y estreñimiento crónico severo tratado con laxantes. Acude por dolor abdominal tipo cólico, ausencia de evacuaciones y una distensión abdominal progresiva y masiva \"enorme\". La radiografía simple de abdomen muestra una imagen de una gran asa de colon dilatada que ocupa casi toda la cavidad, con una forma característica que nace desde la pelvis.",
+    "questions": [
+      {
+        "question": "La imagen radiológica descrita, donde se observa una gran asa distendida con dos paredes internas que simulan una hendidura central, es patognomónica de esta patología. ¿Qué nombre recibe este signo radiológico?",
+        "options": [
+          "Signo del grano de café",
+          "Signo de la doble burbuja",
+          "Signo de la cuenta de rosario",
+          "Signo de la manzana mordida"
+        ],
+        "answerIndex": 0,
+        "explanation": "El **signo del grano de café** (o de la \"U\" invertida) es típico del vólvulo de sigmoides. Ocurre cuando el colon sigmoides, que suele ser redundante en pacientes ancianos o con estreñimiento crónico, gira sobre su propio eje mesentérico, causando una obstrucción en asa cerrada.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si el paciente se encuentra estable, sin datos de irritación peritoneal (no hay perforación ni gangrena), ¿cuál es el procedimiento inicial de elección, que es tanto diagnóstico como terapéutico?",
+        "options": [
+          "Colectomía total inmediata",
+          "Destorsión por sigmoidoscopia rígida o flexible y colocación de sonda rectal",
+          "Laparotomía exploradora de urgencia",
+          "Enema de bario a presión"
+        ],
+        "answerIndex": 1,
+        "explanation": "En pacientes estables con vólvulo de sigmoides, el manejo inicial de elección es la **detorsión endoscópica (sigmoidoscopia)**. Esto permite descomprimir el colon y evacuar gases y heces. Sin embargo, debido a que la tasa de recurrencia es superior al 50%, se debe programar una resección del sigmoides (procedimiento definitivo) durante la misma hospitalización. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "TRAUMA ABDOMINAL (ATLS)",
+    "subtema": "TRAUMA ESPLÉNICO",
+    "difficulty": "alta",
+    "case": "Masculino de 19 años, ingresa tras accidente en motocicleta. Presenta dolor intenso en el hipocondrio izquierdo y dolor referido al hombro izquierdo (signo de Kehr). TA 90/60 mmHg (responde transitoriamente a cristaloides), FC 115 lpm. Se realiza un ultrasonido FAST que reporta líquido libre en el espacio esplenorrenal y corredera parietocólica izquierda. La TAC de abdomen reporta una laceración esplénica que afecta el 50% del parénquima con compromiso de vasos segmentarios (Grado III).",
+    "questions": [
+      {
+        "question": "¿Cuál es el órgano macizo que se lesiona con mayor frecuencia en pacientes con trauma abdominal cerrado (contuso)?",
+        "options": [
+          "Hígado",
+          "Páncreas",
+          "Bazo",
+          "Riñón"
+        ],
+        "answerIndex": 2,
+        "explanation": "El **bazo** es el órgano más frecuentemente lesionado en el trauma abdominal cerrado. Su cápsula delgada y su rica vascularización lo hacen muy susceptible a la desaceleración o al impacto directo. En trauma penetrante (arma blanca/fuego), el órgano más afectado suele ser el hígado o el intestino delgado.",
+        "gpcReference": ""
+      },
+      {
+        "question": "El paciente se estabiliza tras el paso de 1 litro de Ringer Lactato. Se decide manejo conservador bajo vigilancia estrecha. Sabiendo que el bazo cumple funciones inmunológicas críticas, ¿contra qué microorganismos debe vacunarse obligatoriamente a un paciente que requiere una **esplenectomía** (ya sea urgente o programada)?",
+        "options": [
+          "Bacterias anaerobias del colon",
+          "Bacterias gramnegativas entéricas",
+          "Bacterias encapsuladas (S. pneumoniae, H. influenzae, N. meningitidis)",
+          "Virus de la Hepatitis B y C"
+        ],
+        "answerIndex": 2,
+        "explanation": "La complicación más temida post-esplenectomía es la sepsis fulminante. El bazo es fundamental para eliminar bacterias opsonizadas, especialmente **bacterias encapsuladas**. Por ello, todo paciente esplenectomizado debe recibir inmunización contra *Streptococcus pneumoniae*, *Haemophilus influenzae* tipo B y *Neisseria meningitidis* (idealmente 2 semanas antes de una cirugía programada o tan pronto sea posible tras una cirugía de urgencia). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "OFTALMOLOGÍA (CÁMARA ANTERIOR)",
+    "subtema": "GLAUCOMA AGUDO DE ÁNGULO CERRADO",
+    "difficulty": "media",
+    "case": "Femenina de 65 años, hipermétrope, acude por dolor ocular derecho súbito y muy intenso (\"insoportable\"), acompañado de náuseas y vómito. Refiere ver \"halos de colores\" alrededor de las luces y pérdida súbita de la agudeza visual. A la exploración: el ojo derecho está muy rojo (inyección ciliar), la **pupila está en midriasis media no reactiva** y al tacto el globo ocular se siente \"duro como una piedra\".",
+    "questions": [
+      {
+        "question": "Ante la sospecha de glaucoma de ángulo cerrado, ¿cuál es el tratamiento farmacológico inicial de urgencia para disminuir la presión intraocular antes del tratamiento definitivo?",
+        "options": [
+          "Atropina tópica (midriático)",
+          "Timolol tópico, Acetazolamida sistémica y Pilocarpina (miótico)",
+          "Antibióticos oftálmicos de amplio espectro",
+          "Parche ocular compresivo"
+        ],
+        "answerIndex": 1,
+        "explanation": "El glaucoma de ángulo cerrado es una urgencia oftalmológica. El tratamiento busca bajar la presión rápidamente mediante inhibidores de la producción de humor acuoso (Timolol, Acetazolamida) y provocar miosis (Pilocarpina) para intentar abrir el ángulo. El tratamiento **definitivo** es la **iridotomía periférica con láser YAG** en ambos ojos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA DE PARED ABDOMINAL",
+    "subtema": "HERNIA CRURAL (FEMORAL)",
+    "difficulty": "media",
+    "case": "Femenina de 74 años, delgada, acude a urgencias por presentar dolor intenso y súbito en la región inguinal derecha, acompañado de náuseas y vómito. A la exploración física, se palpa una tumoración de 2 cm, no reductible y muy dolorosa, localizada por debajo del ligamento inguinal y medial a los vasos femorales. No se observan cambios de coloración en la piel de la zona.",
+    "questions": [
+      {
+        "question": "Por la localización anatómica de la protrusión (por debajo del ligamento inguinal), ¿cuál es el diagnóstico más probable?",
+        "options": [
+          "Hernia inguinal indirecta",
+          "Hernia inguinal directa",
+          "Hernia crural (femoral)",
+          "Hernia de Spiegel"
+        ],
+        "answerIndex": 2,
+        "explanation": "La **hernia crural o femoral** es mucho más frecuente en mujeres ancianas y delgadas. Su característica anatómica principal es que protruye a través del canal femoral, **por debajo del ligamento inguinal**. Tiene el riesgo más alto de incarceración y estrangulamiento (cerca del 40%) de todas las hernias inguinales debido a la rigidez de los límites del anillo femoral.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Dado que la hernia no es reductible y la paciente presenta dolor intenso y vómito (sugerente de obstrucción), ¿cuál es la conducta inmediata a seguir?",
+        "options": [
+          "Intentar reducción manual forzada (maniobra de taxis)",
+          "Solicitar una TAC con contraste y esperar resultados",
+          "Programar cirugía de urgencia para exploración y reparación",
+          "Iniciar manejo conservador con analgésicos y vigilancia"
+        ],
+        "answerIndex": 2,
+        "explanation": "Ante una hernia **no reductible (incancerada)** y con sintomatología aguda, la cirugía de urgencia es obligatoria. No se debe intentar la reducción manual si se sospecha compromiso vascular (estrangulamiento), ya que se podría introducir un segmento de intestino necrótico a la cavidad abdominal. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "ATLS / TRAUMA DE TÓRAX",
+    "subtema": "NEUMOTÓRAX A TENSIÓN",
+    "difficulty": "alta",
+    "case": "Masculino de 25 años, víctima de agresión con arma blanca en el hemitórax izquierdo. Ingresa con dificultad respiratoria severa, cianosis y agitación. Signos vitales: TA 70/40 mmHg, FC 140 lpm, FR 35 rpm. A la exploración: ausencia de ruidos respiratorios en el lado izquierdo, hiperresonancia (timpanismo) a la percusión del mismo lado e ingurgitación yugular evidente. Se observa desviación de la tráquea hacia el lado derecho.",
+    "questions": [
+      {
+        "question": "Este escenario clínico representa una de las lesiones que \"matan de inmediato\" en la evaluación inicial del ATLS. ¿Cuál es el tratamiento inicial de emergencia que debe realizarse antes de solicitar cualquier estudio de imagen?",
+        "options": [
+          "Intubación endotraqueal inmediata",
+          "Descompresión con aguja en el 2do espacio intercostal, línea medio clavicular (o 5to espacio línea axilar anterior)",
+          "Realizar una radiografía de tórax portátil",
+          "Pericardiocentesis de urgencia"
+        ],
+        "answerIndex": 1,
+        "explanation": "El **neumotórax a tensión** es un diagnóstico clínico, NO radiológico. Si esperas a la radiografía para tratarlo, el paciente puede fallecer por choque obstructivo. La **descompresión inmediata con aguja** convierte el neumotórax a tensión en un neumotórax simple, aliviando la presión intratorácica y permitiendo el retorno venoso al corazón. Posteriormente, se debe colocar un tubo de tórax (pleurostomía). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA ABDOMINAL / OBSTRUCCIÓN INTESTINAL",
+    "subtema": "SÍNDROME ADHERENCIA  L (BRIDAS)",
+    "difficulty": "baja",
+    "case": "Femenina de 40 años, con antecedente de apendicectomía y una cesárea hace 5 años. Acude por dolor abdominal tipo cólico, distensión progresiva, náuseas y vómitos biliosos. Refiere que no ha canalizado gases ni evacuado desde hace 24 horas. La radiografía de abdomen muestra niveles hidroaéreos en \"escalera\" y ausencia de gas en el recto.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa número uno de obstrucción mecánica del intestino delgado en adultos con antecedente de cirugías abdominales previas?",
+        "options": [
+          "Hernias inguinales",
+          "Neoplasias de colon",
+          "Adherencias (bridas) postquirúrgicas",
+          "Íleo biliar"
+        ],
+        "answerIndex": 2,
+        "explanation": "Las **adherencias o bridas** son la causa más común de obstrucción del intestino delgado (hasta el 75% de los casos). En pacientes que NO tienen cirugías previas, la causa número uno suelen ser las hernias de la pared abdominal. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "QUEMADURAS",
+    "subtema": "QUEMADURA ELÉCTRICA Y RABDOMIOLISIS",
+    "difficulty": "alta",
+    "case": "Masculino de 28 años, trabajador de una compañía eléctrica, sufre descarga de alta tensión (13,000 voltios). Presenta una herida de entrada en la mano derecha y una de salida en el pie izquierdo. A su llegada, el paciente está estable pero presenta orina de color oscuro (\"como refresco de cola\").",
+    "questions": [
+      {
+        "question": "En las quemaduras eléctricas de alta tensión, el daño tisular suele ser mucho más grave de lo que aparenta la piel (daño \"en iceberg\"). La presencia de orina oscura sugiere la liberación masiva de mioglobina por destrucción muscular. ¿Cuál es el objetivo de flujo urinario (diuresis horaria) recomendado en estos pacientes para prevenir la Insuficiencia Renal Aguda por mioglobinuria?",
+        "options": [
+          "0.5 ml/kg/hora",
+          "1.0 a 1.5 ml/kg/hora (o 100 ml/hr en adultos)",
+          "3.0 ml/kg/hora",
+          "Solo vigilancia, no requiere flujo específico"
+        ],
+        "answerIndex": 1,
+        "explanation": "En el trauma eléctrico con sospecha de **rabdomiolisis (mioglobinuria)**, se requiere una reanimación hídrica más agresiva que en las quemaduras térmicas. El objetivo es mantener una diuresis de **1 a 1.5 ml/kg/hr** hasta que la orina se aclare, para evitar que la mioglobina precipite en los túbulos renales y cause necrosis tubular aguda. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "cir",
+    "tema": "CIRUGÍA GENERAL / TRAUMA",
+    "subtema": "MANEJO DE HERIDA POR ARMA BLANCA EN ABDOMEN",
+    "difficulty": "media",
+    "case": "Masculino de 22 años, llega a urgencias tras recibir una puñalada en el epigastrio. El paciente está consciente, orientado, con TA 120/80 mmHg y FC 80 lpm. A la exploración física, se observa una herida de 3 cm de la cual **protruye un segmento de epiplón (evisceración)**. El abdomen no presenta datos de irritación peritoneal franca.",
+    "questions": [
+      {
+        "question": "Ante la presencia de una herida penetrante con evisceración de contenido abdominal, ¿cuál es la conducta terapéutica definitiva indicada?",
+        "options": [
+          "Reducción del epiplón en urgencias y sutura de la piel",
+          "Realizar un FAST y si es negativo, egresar a casa",
+          "Laparotomía exploradora",
+          "Tomografía axial computarizada de abdomen"
+        ],
+        "answerIndex": 2,
+        "explanation": "En trauma penetrante de abdomen (ya sea por arma blanca o fuego), la presencia de **evisceración**, inestabilidad hemodinámica o datos de irritación peritoneal son indicaciones absolutas de **laparotomía exploradora** inmediata, independientemente de que otros estudios parezcan normales.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Aborto inevitable",
+    "difficulty": "baja",
+    "case": "Una mujer de 22 años, G1P0, con 9 semanas de amenorrea acude al servicio de urgencias por sangrado vaginal de moderada cantidad desde hace 6 horas acompañado de dolor tipo cólico en hipogastrio. Refiere que el sangrado comenzó como manchas oscuras pero progresivamente aumentó. No presenta fiebre ni síntomas urinarios. En la exploración física se encuentra hemodinámicamente estable. El abdomen es blando con leve dolor a la palpación en hipogastrio. En la exploración ginecológica se observa sangrado activo proveniente del canal cervical y el cuello uterino se encuentra dilatado aproximadamente 2 cm. No se observan restos visibles en vagina. El ultrasonido transvaginal muestra saco gestacional intrauterino irregular con actividad cardiaca fetal ausente.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Amenaza de aborto",
+          "Aborto inevitable",
+          "Aborto retenido",
+          "Embarazo ectópico"
+        ],
+        "answerIndex": 1,
+        "explanation": "El aborto inevitable se caracteriza por sangrado vaginal acompañado de dilatación cervical antes de la expulsión del producto. La presencia de cuello uterino abierto indica que la pérdida del embarazo es inevitable. En la amenaza de aborto el cuello perman ece cerrado.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo inicial más apropiado en esta paciente?",
+        "options": [
+          "Observación ambulatoria",
+          "Administración de progesterona",
+          "Evacuación uterina mediante aspiración uterina",
+          "Cerclaje cervical"
+        ],
+        "answerIndex": 2,
+        "explanation": "Cuando existe aborto inevitable el manejo consiste en evacuar el contenido uterino, generalmente mediante aspiración uterina manual endouterina o legrado uterino, dependiendo del contexto clínico. La observación o progesterona se reservan para amenaza de aborto con cuello cerrado.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Amenaza de aborto",
+    "difficulty": "baja",
+    "case": "Paciente de 27 años, G2P0A1, con embarazo de 7 semanas confirmado por ultrasonido, acude a consulta por presentar sangrado vaginal escaso de color café desde la mañana. Niega dolor abdominal intenso, fiebre o expulsión de tejido. Refiere antecedente de aborto espontáneo hace un año. En la exploración física se encuentra hemodinámicamente estable. El abdomen es blando y no doloroso. En la exploración ginecológica se observa escaso sangrado oscuro en fondo de saco vaginal, el cuello uterino está cerrado y sin cambios cervicales. El ultrasonido transvaginal muestra embrión con actividad cardiaca presente y saco gestacional acorde con edad gestacional.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Aborto inevitable",
+          "Amenaza de aborto",
+          "Aborto incompleto",
+          "Mola hidatidiforme"
+        ],
+        "answerIndex": 1,
+        "explanation": "La amenaza de aborto se caracteriza por sangrado vaginal durante el primer trimestre con cuello uterino cerrado y embarazo intrauterino viable. La presencia de actividad cardiaca fetal indica que el embarazo aún puede continuar.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta más adecuada?",
+        "options": [
+          "Legrado uterino inmediato",
+          "Hospitalización obligatoria",
+          "Reposo relativo y vigilancia clínica",
+          "Inducción con misoprostol"
+        ],
+        "answerIndex": 2,
+        "explanation": "El manejo de la amenaza de aborto suele ser expectante con reposo relativo y seguimiento clínico y ecográfico. No está indicado realizar evacuación uterina si el embarazo es viable y el cuello uterino permanece cerrado.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Enfermedad trofoblástica gestacional",
+    "subtema": "Mola hidatidiforme completa",
+    "difficulty": "media",
+    "case": "Mujer de 19 años acude al servicio de urgencias con 11 semanas de amenorrea. Refiere náuseas y vómitos intensos desde hace varias semanas, además de sangrado vaginal intermitente oscuro. En los últimos días ha notado aumento del volumen abdominal mayor al esperado para la edad gestacional. A la exploración física se observa palidez leve. El abdomen muestra altura uterina mayor a la esperada para las semanas de gestación. En la exploración ginecológica se identifica sangrado oscuro escaso. El ultrasonido transvaginal muestra una imagen heterogénea intrauterina con múltiples vesículas pequeñas sin presencia de embrión o saco gestacional identificable. Los niveles de β-hCG son marcadamente elevados.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Aborto retenido",
+          "Embarazo ectópico",
+          "Mola hidatidiforme completa",
+          "Embarazo anembrionado"
+        ],
+        "answerIndex": 2,
+        "explanation": "La mola hidatidiforme completa se caracteriza por ausencia de embrión, niveles muy elevados de β-hCG y apariencia ecográfica clásica descrita como “tormenta de nieve” o múltiples vesículas. Además suele haber hiperémesis y útero mayor al esperado para la edad gestacional.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento inicial indicado?",
+        "options": [
+          "Metotrexato",
+          "Aspiración uterina y evacuación del contenido uterino",
+          "Histerectomía inmediata en todas las pacientes",
+          "Observación y control ecográfico"
+        ],
+        "answerIndex": 1,
+        "explanation": "El manejo inicial de la mola hidatidiforme es la evacuación uterina mediante aspiración. Posteriormente se requiere seguimiento seriado con β-hCG para descartar enfermedad trofoblástica persistente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Aborto incompleto",
+    "difficulty": "media",
+    "case": "Una mujer de 30 años, G3P1A1, con 10 semanas de amenorrea acude al servicio de urgencias por sangrado vaginal abundante desde hace aproximadamente 12 horas acompañado de dolor tipo cólico intenso en hipogastrio. Refiere que inicialmente presentó sangrado moderado pero posteriormente expulsó coágulos y un pequeño tejido que describe como “algo grisáceo”. Desde ese momento el dolor disminuyó ligeramente pero el sangrado continúa. Niega fiebre o flujo vaginal fétido. A la exploración física se encuentra hemodinámicamente estable aunque con ligera palidez. El abdomen presenta dolor leve a la palpación en hipogastrio. En la exploración ginecológica se observa sangrado activo y el cuello uterino se encuentra dilatado aproximadamente 1.5 cm. En el canal cervical se observan restos tisulares. El ultrasonido transvaginal muestra cavidad uterina con material ecogénico irregular compatible con restos ovulares retenidos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Aborto completo",
+          "Aborto incompleto",
+          "Amenaza de aborto",
+          "Aborto retenido"
+        ],
+        "answerIndex": 1,
+        "explanation": "El aborto incompleto ocurre cuando parte del contenido uterino ha sido expulsado pero aún permanecen restos ovulares dentro del útero. Se caracteriza por sangrado vaginal persistente, cuello uterino dilatado y evidencia ecográfica de restos dentro de la cavidad uterina.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo más adecuado en esta paciente?",
+        "options": [
+          "Reposo y vigilancia ambulatoria",
+          "Aspiración uterina para evacuación de restos",
+          "Progesterona intramuscular",
+          "Cerclaje cervical"
+        ],
+        "answerIndex": 1,
+        "explanation": "El tratamiento del aborto incompleto consiste en evacuar los restos ovulares para evitar sangrado persistente o infección. Esto se realiza generalmente mediante aspiración uterina manual endouterina o legrado uterino.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Aborto retenido (aborto diferido)",
+    "difficulty": "media",
+    "case": "Paciente de 34 años, G2P1, con 11 semanas de amenorrea acude a consulta para control prenatal. Refiere que desde hace algunos días ha notado desaparición de los síntomas de embarazo que tenía previamente, como náuseas y tensión mamaria. Niega sangrado vaginal o dolor abdominal. Su último ultrasonido fue hace tres semanas y mostraba embarazo intrauterino con embrión viable. En la exploración física se encuentra estable, sin dolor abdominal. La exploración ginecológica muestra cuello uterino cerrado sin sangrado. Se realiza ultrasonido transvaginal donde se observa embrión con longitud cráneo-caudal correspondiente a 8 semanas pero sin actividad cardiaca fetal.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Amenaza de aborto",
+          "Aborto inevitable",
+          "Aborto retenido",
+          "Embarazo ectópico"
+        ],
+        "answerIndex": 2,
+        "explanation": "El aborto retenido se caracteriza por muerte embrionaria o fetal sin expulsión del producto de la concepción. Clínicamente suele haber ausencia de síntomas o desaparición de los síntomas del embarazo, cuello uterino cerrado y diagnóstico ecográfico de embrión sin actividad cardiaca.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál de las siguientes opciones es un manejo adecuado?",
+        "options": [
+          "Manejo expectante o evacuación uterina según el caso",
+          "Cerclaje cervical urgente",
+          "Inducción con oxitocina intravenosa",
+          "Solo antibióticos profilácticos"
+        ],
+        "answerIndex": 0,
+        "explanation": "El aborto retenido puede manejarse de forma expectante, médica (misoprostol) o quirúrgica mediante aspiración uterina, dependiendo de las condiciones clínicas de la paciente y sus preferencias.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Embarazo ectópico tubárico",
+    "difficulty": "alta",
+    "case": "Mujer de 28 años, G1P0, acude al servicio de urgencias por dolor abdominal intenso en fosa iliaca derecha de inicio súbito desde hace 4 horas. Refiere retraso menstrual de aproximadamente 6 semanas y prueba de embarazo positiva realizada en casa hace una semana. También refiere sangrado vaginal escaso oscuro desde el día anterior. En la exploración física se observa diaforética y con dolor abdominal importante. La presión arterial es de 95/60 mmHg y la frecuencia cardiaca de 110 lpm. El abdomen muestra dolor a la palpación profunda en fosa iliaca derecha con datos de irritación peritoneal leve. En la exploración ginecológica el cuello uterino está cerrado y hay dolor intenso a la movilización cervical. Se realiza ultrasonido transvaginal que muestra cavidad uterina vacía y una masa anexial derecha heterogénea de aproximadamente 3 cm con pequeña cantidad de líquido libre en fondo de saco de Douglas. La β-hCG es positiva.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Aborto incompleto",
+          "Embarazo ectópico tubárico",
+          "Embarazo molar",
+          "Amenaza de aborto"
+        ],
+        "answerIndex": 1,
+        "explanation": "El embarazo ectópico se sospecha cuando existe prueba de embarazo positiva con ausencia de saco gestacional intrauterino en ultrasonido y presencia de masa anexial. El dolor abdominal y el sangrado vaginal en el primer trimestre son manifestaciones frecuentes.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Considerando la inestabilidad hemodinámica de la paciente, ¿cuál es el manejo más adecuado?",
+        "options": [
+          "Metotrexato intramuscular",
+          "Observación hospitalaria",
+          "Cirugía urgente (salpingectomía o salpingostomía)",
+          "Repetir β-hCG en 48 horas"
+        ],
+        "answerIndex": 2,
+        "explanation": "En pacientes con sospecha de embarazo ectópico y datos de inestabilidad hemodinámica o posible ruptura tubárica, el manejo indicado es quirúrgico urgente para controlar el sangrado y retirar el embarazo ectópico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Embarazo ectópico no roto",
+    "difficulty": "media",
+    "case": "Una mujer de 25 años, G1P0, acude a consulta por presentar dolor pélvico leve y sangrado vaginal escaso de color oscuro desde hace dos días. Refiere retraso menstrual de aproximadamente 5 semanas y prueba de embarazo positiva realizada en farmacia. No presenta síncope ni dolor abdominal intenso. Como antecedente refiere enfermedad inflamatoria pélvica hace dos años tratada con antibióticos. En la exploración física se encuentra hemodinámicamente estable, con presión arterial de 110/70 mmHg y frecuencia cardiaca de 84 lpm. El abdomen es blando con leve dolor a la palpación profunda en fosa iliaca izquierda. En la exploración ginecológica se observa cuello uterino cerrado con escaso sangrado oscuro en vagina. Existe dolor leve a la movilización cervical y discreta sensibilidad en anexo izquierdo. El ultrasonido transvaginal muestra cavidad uterina vacía y una masa anexial izquierda de aproximadamente 2.5 cm compatible con saco gestacional ectópico. No se observa actividad cardiaca embrionaria. Los niveles de β-hCG son de 1,800 mUI/mL.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Amenaza de aborto",
+          "Aborto incompleto",
+          "Embarazo ectópico tubárico no roto",
+          "Embarazo anembrionado"
+        ],
+        "answerIndex": 2,
+        "explanation": "El embarazo ectópico se sospecha cuando existe prueba de embarazo positiva con ausencia de saco gestacional intrauterino y presencia de masa anexial. En este caso la paciente se encuentra estable y no hay datos de ruptura tubárica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento más apropiado en este caso?",
+        "options": [
+          "Metotrexato intramuscular",
+          "Histerectomía",
+          "Aspiración uterina",
+          "Cerclaje cervical"
+        ],
+        "answerIndex": 0,
+        "explanation": "En pacientes con embarazo ectópico no roto, hemodinámicamente estables, con masa pequeña y sin actividad cardiaca embrionaria, el tratamiento médico con metotrexato es una opción adecuada.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Embarazo anembrionado (huevo anembrionado)",
+    "difficulty": "baja",
+    "case": "Paciente de 29 años, G2P1, acude a consulta para valoración por embarazo temprano. Refiere retraso menstrual de 8 semanas y prueba de embarazo positiva. Presenta náuseas leves pero niega dolor abdominal o sangrado vaginal. No tiene antecedentes ginecoobstétricos relevantes. Durante el control prenatal inicial se realiza ultrasonido transvaginal. En el estudio se observa saco gestacional intrauterino de aproximadamente 25 mm de diámetro medio, sin evidencia de embrión ni saco vitelino visible. Se repite el ultrasonido una sema na después y nuevamente se observa saco gestacional de mayor tamaño pero sin presencia de embrión. El cuello uterino permanece cerrado y la paciente continúa sin sangrado ni dolor.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Amenaza de aborto",
+          "Embarazo anembrionado",
+          "Aborto incompleto",
+          "Embarazo ectópico"
+        ],
+        "answerIndex": 1,
+        "explanation": "El embarazo anembrionado ocurre cuando se forma el saco gestacional pero el embrión no se desarrolla. Ecográficamente se observa saco gestacional sin embrión incluso cuando el diámetro es mayor al esperado para visualizarlo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es una opción de manejo adecuada?",
+        "options": [
+          "Manejo expectante o evacuación uterina según preferencia de la paciente",
+          "Cerclaje cervical",
+          "Administración de progesterona",
+          "Inducción con oxitocina"
+        ],
+        "answerIndex": 0,
+        "explanation": "El manejo puede ser expectante, médico con misoprostol o quirúrgico mediante aspiración uterina, dependiendo de la situación clínica y la decisión de la paciente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Aborto séptico",
+    "difficulty": "alta",
+    "case": "Una mujer de 23 años, G2P0A1, acude al servicio de urgencias por fiebre, dolor abdominal intenso y sangrado vaginal fétido desde hace 24 horas. Refiere que hace tres días presentó sangrado vaginal después de intentar interrumpir un embarazo de aproximadamente 9 semanas mediante la introducción de objetos en vagina. Desde entonces comenzó con dolor progresivo en hipogastrio, escalofríos y malestar general. A la exploración física se encuentra febril con temperatura de 39°C, presión arterial de 90/60 mmHg y frecuencia cardiaca de 120 lpm. El abdomen presenta dolor importante a la palpación en hipogastrio con defensa muscular. En la exploración ginecológica se observa sangrado vaginal con secreción maloliente. El cuello uterino está dilatado y el útero es doloroso a la palpación. Los estudios de laboratorio muestran leucocitosis marcada.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Aborto incompleto",
+          "Aborto séptico",
+          "Embarazo ectópico",
+          "Amenaza de aborto"
+        ],
+        "answerIndex": 1,
+        "explanation": "El aborto séptico ocurre cuando hay infección del útero asociada a aborto, generalmente tras procedimientos inseguros. Se caracteriza por fiebre, dolor abdominal, sangrado vaginal fétido y signos sistémicos de infección.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo inicial más importante?",
+        "options": [
+          "Antibióticos intravenosos de amplio espectro y evacuación uterina",
+          "Reposo domiciliario",
+          "Metotrexato intramuscular",
+          "Cerclaje cervical"
+        ],
+        "answerIndex": 0,
+        "explanation": "El aborto séptico es una emergencia médica. El tratamiento incluye estabilización hemodinámica, antibióticos intravenosos de amplio espectro y evacuación del contenido uterino una vez iniciada la terapia antibiótica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Aborto completo",
+    "difficulty": "baja",
+    "case": "Mujer de 26 años, G2P1, con antecedente de embarazo de 8 semanas según fecha de última menstruación, acude al servicio de urgencias por sangrado vaginal que inició hace dos días acompañado de dolor tipo cólico en hipogastrio. Refiere que el día anterior presentó expulsión de abundantes coágulos y un tejido blanquecino. Después de la expulsión el dolor disminuyó notablemente y el sangrado se ha vuelto escaso. En la exploración física la paciente se encuentra hemodinámicamente estable, con presión arterial de 112/72 mmHg y frecuencia cardiaca de 82 lpm. El abdomen es blando y no doloroso. En la exploración ginecológica se observa escaso sangrado vaginal oscuro, el cuello uterino se encuentra cerrado y no se identifican restos en el canal cervical. Se realiza ultrasonido transvaginal donde se observa cavidad uterina vacía con endometrio delgado y sin evidencia de restos ovulares.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Aborto incompleto",
+          "Aborto completo",
+          "Amenaza de aborto",
+          "Aborto retenido"
+        ],
+        "answerIndex": 1,
+        "explanation": "El aborto completo se caracteriza por expulsión total del producto de la concepción, lo que provoca disminución del dolor y del sangrado. Ecográficamente se observa cavidad uterina vacía y el cuello uterino suele encontrarse cerrado.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta más apropiada?",
+        "options": [
+          "Aspiración uterina inmediata",
+          "Antibióticos intravenosos",
+          "Observación y seguimiento clínico",
+          "Cerclaje cervical"
+        ],
+        "answerIndex": 2,
+        "explanation": "Cuando el aborto es completo y no existen restos intrauterinos ni signos de infección, el manejo es expectante con seguimiento clínico y en ocasiones control ecográfico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Enfermedad trofoblástica gestacional",
+    "subtema": "Mola hidatidiforme parcial",
+    "difficulty": "media",
+    "case": "Paciente de 32 años, G3P1A1, con 12 semanas de amenorrea acude a consulta por presentar sangrado vaginal intermitente desde hace una semana acompañado de náuseas moderadas. Refiere que el sangrado es escaso y de color oscuro. No presenta dolor abdominal importante. En la exploración física se encuentra hemodinámicamente estable. El útero se palpa ligeramente mayor al esperado para la edad gestacional. Durante la exploración ginecológica se observa escaso sangrado vaginal. El ultrasonido transvaginal muestra un saco gestacional con presencia de embrión sin actividad cardiaca. También se observan áreas quísticas en la placenta con aspecto heterogéneo. Los niveles de β-hCG están elevados pero no tanto como suele observarse en la mola completa.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Aborto retenido",
+          "Mola hidatidiforme parcial",
+          "Embarazo ectópico",
+          "Amenaza de aborto"
+        ],
+        "answerIndex": 1,
+        "explanation": "La mola parcial se caracteriza por la presencia de tejido placentario con cambios hidrópicos junto con tejido fetal o embrionario. A diferencia de la mola completa, puede haber embrión presente, aunque generalmente no viable.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo inicial indicado?",
+        "options": [
+          "Evacuación uterina mediante aspiración",
+          "Metotrexato inmediato",
+          "Histerectomía obligatoria",
+          "Solo observación"
+        ],
+        "answerIndex": 0,
+        "explanation": "El manejo inicial de la mola parcial consiste en la evacuación uterina mediante aspiración. Posteriormente se requiere seguimiento con mediciones seriadas de β- hCG para detectar enfermedad trofoblástica persistente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Diagnóstico diferencial de sangrado en el primer trimestre",
+    "difficulty": "media",
+    "case": "Una mujer de 24 años acude a urgencias por sangrado vaginal de moderada cantidad acompañado de dolor tipo cólico en hipogastrio. Refiere retraso menstrual de aproximadamente 7 semanas. No ha tenido control prenatal previo. En la exploración física se encuentra hemodinámicamente estable. El abdomen es blando con dolor leve en hipogastrio. En la exploración ginecológica el cuello uterino está cerrado y se observa sangrado vaginal moderado. No se identifican restos ovulares. Se realiza ultrasonido transvaginal que muestra saco gestacional intrauterino con embrión y actividad cardiaca fetal presente. No se observan masas anexiales ni líquido libre en cavidad.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Amenaza de aborto",
+          "Aborto incompleto",
+          "Embarazo ectópico",
+          "Aborto retenido"
+        ],
+        "answerIndex": 0,
+        "explanation": "El diagnóstico de amenaza de aborto se establece cuando hay sangrado vaginal en el primer trimestre con cuello uterino cerrado y embarazo intrauterino viable con actividad cardiaca fetal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál de los siguientes hallazgos sería un signo de mal pronóstico en este contexto?",
+        "options": [
+          "Sangrado leve autolimitado",
+          "Actividad cardiaca fetal presente",
+          "Hematoma subcoriónico grande en ultrasonido",
+          "Edad materna menor de 30 años"
+        ],
+        "answerIndex": 2,
+        "explanation": "Un hematoma subcoriónico grande se asocia con mayor riesgo de pérdida gestacional. Aunque muchos casos evolucionan favorablemente, su presencia incrementa el riesgo de aborto espontáneo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del primer trimestre",
+    "subtema": "Hematoma subcoriónico",
+    "difficulty": "media",
+    "case": "Mujer de 31 años, G2P1, con embarazo de 9 semanas confirmado por ultrasonido hace dos semanas, acude a consulta por presentar sangrado vaginal escaso de color rojo oscuro desde hace 24 horas. Refiere leve molestia en hipogastrio pero niega dolor intenso, fiebre o expulsión de tejido. Comenta que el embarazo previo cursó sin complicaciones. En la exploración física se encuentra hemodinámicamente estable, con presión arterial de 110/70 mmHg y frecuencia cardiaca de 80 lpm. El abdomen es blando y discretamente doloroso a la palpación profunda en hipogastrio. En la exploración ginecológica se observa escaso sangrado vaginal y el cuello uterino está cerrado. Se realiza ultrasonido transvaginal donde se identifica saco gestacional intrauterino con embrión vivo y actividad cardiaca fetal presente. Sin embargo, adyacente al saco gestacional se observa una colección hipoecoica entre el corion y la pared uterina compatible con hematoma subcoriónico de aproximadamente 2 cm.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Aborto inevitable",
+          "Hematoma subcoriónico",
+          "Aborto incompleto",
+          "Embarazo ectópico"
+        ],
+        "answerIndex": 1,
+        "explanation": "El hematoma subcoriónico es una acumulación de sangre entre el corion y la pared uterina. Puede manifestarse con sangrado vaginal durante el primer trimestre y se diagnostica mediante ultrasonido.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta más adecuada en esta paciente?",
+        "options": [
+          "Evacuación uterina inmediata",
+          "Metotrexato intramuscular",
+          "Vigilancia clínica y control ecográfico",
+          "Histerectomía"
+        ],
+        "answerIndex": 2,
+        "explanation": "La mayoría de los hematomas subcoriónicos pequeños se manejan de forma conservadora con seguimiento clínico y ultrasonográfico, ya que muchos se reabsorben espontáneamente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Embarazo ectópico",
+    "subtema": "Factores de riesgo para embarazo ectópico",
+    "difficulty": "baja",
+    "case": "Paciente de 28 años acude a consulta para orientación preconcepcional. Refiere que desea embarazarse en los próximos meses. Como antecedente ginecológico importante menciona que hace tres años fue diagnosticada con enfermedad inflamatoria pélvica secundaria a infección por Chlamydia trachomatis, la cual fue tratada con antibióticos. Actualmente se encuentra asintomática. Durante la consulta pregunta acerca de posibles riesgos asociados a futuros embarazos. El médico le explica que ciertas condiciones pueden aumentar la probabilidad de que un embarazo se implante fuera de la cavidad uterina.",
+    "questions": [
+      {
+        "question": "¿Cuál de los siguientes antecedentes representa un factor de riesgo importante para embarazo ectópico?",
+        "options": [
+          "Uso previo de anticonceptivos orales",
+          "Enfermedad inflamatoria pélvica previa",
+          "Menarca temprana",
+          "Ciclos menstruales regulares"
+        ],
+        "answerIndex": 1,
+        "explanation": "La enfermedad inflamatoria pélvica puede causar daño en las trompas de Falopio, lo que aumenta el riesgo de implantación anormal del embrión fuera del útero, especialmente en la trompa uterina.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el sitio más frecuente de implantación en el embarazo ectópico?",
+        "options": [
+          "Ovario",
+          "Trompa de Falopio (ampolla)",
+          "Cavidad abdominal",
+          "Cérvix"
+        ],
+        "answerIndex": 1,
+        "explanation": "El sitio más común de embarazo ectópico es la trompa de Falopio, particularmente la porción ampular, donde ocurre la mayoría de los casos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Embarazo ectópico",
+    "subtema": "Embarazo ectópico roto",
+    "difficulty": "alta",
+    "case": "Mujer de 33 años, G2P0A1, acude al servicio de urgencias por dolor abdominal súbito e intenso que inició hace una hora mientras se encontraba en su casa. Refiere retraso menstrual de aproximadamente 7 semanas y prueba de embarazo positiva realizada hace unos días. También refiere sangrado vaginal escaso oscuro desde la mañana. A su llegada se encuentra pálida, con presión arterial de 85/55 mmHg y frecuencia cardiaca de 120 lpm. Se queja de dolor intenso en abdomen inferior que se irradia hacia el hombro derecho. En la exploración abdominal se observa abdomen distendido con dolor generalizado y signos de irritación peritoneal. En la exploración ginecológica el cuello uterino está cerrado y existe dolor intenso a la movilización cervical. El ultrasonido transvaginal muestra cavidad uterina vacía y gran cantidad de líquido libre en cavidad abdominal.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Aborto incompleto",
+          "Embarazo ectópico roto",
+          "Amenaza de aborto",
+          "Mola hidatidiforme"
+        ],
+        "answerIndex": 1,
+        "explanation": "El embarazo ectópico roto es una emergencia médica. Se caracteriza por dolor abdominal súbito, signos de choque hipovolémico, líquido libre en cavidad abdominal y ausencia de embarazo intrauterino.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo inmediato indicado?",
+        "options": [
+          "Metotrexato intramuscular",
+          "Repetir β-hCG en 48 horas",
+          "Cirugía urgente para control del sangrado",
+          "Observación hospitalaria"
+        ],
+        "answerIndex": 2,
+        "explanation": "Ante un embarazo ectópico roto con inestabilidad hemodinámica, el tratamiento indicado es la intervención quirúrgica urgente para controlar el sangrado y retirar el embarazo ectópico. su",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del segundo trimestre",
+    "subtema": "Placenta previa",
+    "difficulty": "media",
+    "case": "Mujer de 34 años, G3P2, con embarazo de 28 semanas acude al servicio de urgencias por presentar sangrado vaginal rojo brillante de inicio súbito hace aproximadamente una hora. Refiere que el sangrado comenzó mientras estaba en reposo y niega dolor abdomina l, contracciones uterinas o traumatismos recientes. Comenta que en su embarazo anterior tuvo una cesárea por presentación pélvica. A la exploración física se encuentra consciente, hemodinámicamente estable, con presión arterial de 110/70 mmHg y frecuencia cardiaca de 90 lpm. El abdomen muestra útero acorde a edad gestacional, sin dolor a la palpación y sin actividad uterina evidente. La frecuencia cardiaca fetal es de 140 lpm y reactiva. No se realiza tacto vaginal debido al riesgo de aumentar el sangrado. Se solicita ultrasonido obstétrico que muestra placenta localizada en el segmento uterino inferior cubriendo parcialmente el orificio cervical interno.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Desprendimiento prematuro de placenta",
+          "Placenta previa",
+          "Ruptura uterina",
+          "Amenaza de parto pretérmino"
+        ],
+        "answerIndex": 1,
+        "explanation": "La placenta previa se caracteriza por sangrado vaginal rojo brillante, generalmente indoloro, en el segundo o tercer trimestre del embarazo. El diagnóstico se confirma mediante ultrasonido que muestra la placenta cubriendo parcial o totalmente el orificio cervical interno.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta inicial más importante ante la sospecha de esta condición?",
+        "options": [
+          "Realizar tacto vaginal para valorar dilatación",
+          "Inducir trabajo de parto",
+          "Evitar tacto vaginal y confirmar diagnóstico con ultrasonido",
+          "Administrar oxitocina"
+        ],
+        "answerIndex": 2,
+        "explanation": "En pacientes con sangrado durante el embarazo avanzado se debe evitar el tacto vaginal hasta descartar placenta previa mediante ultrasonido, ya que puede desencadenar hemorragia severa.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del segundo y tercer trimestre",
+    "subtema": "Desprendimiento prematuro de placenta normoinserta (DPPNI)",
+    "difficulty": "alta",
+    "case": "Paciente de 29 años, G2P1, con embarazo de 32 semanas acude a urgencias por dolor abdominal intenso de inicio súbito acompañado de sangrado vaginal oscuro. Refiere que el dolor es constante y no cede con el reposo. Como antecedente menciona hipertensión arterial diagnosticada durante el embarazo actual. A la exploración física se encuentra ansiosa, con presión arterial de 150/95 mmHg y frecuencia cardiaca de 105 lpm. El abdomen muestra útero rígido, doloroso a la palpación y con hipertonía uterina. Se detectan contracciones uterinas frecuentes. La frecuencia cardiaca fetal es de 100 lpm con desaceleraciones tardías. El ultrasonido muestra placenta aparentemente en posición normal, pero con sospecha de hematoma retroplacentario.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Placenta previa",
+          "Desprendimiento prematuro de placenta normoinserta",
+          "Ruptura uterina",
+          "Trabajo de parto pretérmino"
+        ],
+        "answerIndex": 1,
+        "explanation": "El DPPNI se caracteriza por dolor abdominal intenso, sangrado vaginal oscuro y útero hipertónico o rígido. Se asocia frecuentemente con hipertensión materna y puede comprometer rápidamente la vida fetal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la principal complicación fetal asociada a esta condición?",
+        "options": [
+          "Macrosomía fetal",
+          "Sufrimiento fetal agudo",
+          "Polihidramnios",
+          "Embarazo prolongado"
+        ],
+        "answerIndex": 1,
+        "explanation": "El desprendimiento prematuro de placenta puede comprometer la circulación uteroplacentaria, lo que provoca hipoxia fetal y sufrimiento fetal agudo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Hemorragias del tercer trimestre",
+    "subtema": "Vasa previa",
+    "difficulty": "alta",
+    "case": "Mujer de 30 años, G1P0, con embarazo de 36 semanas en seguimiento prenatal adecuado, acude al hospital por ruptura espontánea de membranas ocurrida hace 30 minutos. Poco después comienza con sangrado vaginal moderado. La paciente niega dolor abdominal o contracciones importantes. En la exploración física la madre se encuentra estable hemodinámicamente. Sin embargo, al monitorizar al feto se observa una frecuencia cardiaca fetal de 90 lpm con desaceleraciones variables profundas. El sangrado vaginal es rojo brillante. Se revisan los estudios previos de ultrasonido y se documenta inserción velamentosa del cordón umbilical diagnosticada semanas antes.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Placenta previa",
+          "Vasa previa",
+          "Desprendimiento prematuro de placenta",
+          "Ruptura uterina"
+        ],
+        "answerIndex": 1,
+        "explanation": "La vasa previa ocurre cuando vasos fetales atraviesan las membranas cerca del orificio cervical interno. Cuando las membranas se rompen, estos vasos pueden desgarrarse y causar sangrado fetal con bradicardia fetal rápida.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo inmediato indicado?",
+        "options": [
+          "Observación y vigilancia",
+          "Cesárea de emergencia",
+          "Inducción del trabajo de parto",
+          "Administración de tocolíticos"
+        ],
+        "answerIndex": 1,
+        "explanation": "La vasa previa es una emergencia obstétrica. Ante la ruptura de membranas y evidencia de compromiso fetal, el manejo indicado es realizar cesárea inmediata para evitar exanguinación fetal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Trastornos hipertensivos del embarazo",
+    "subtema": "Preeclampsia",
+    "difficulty": "baja",
+    "case": "Mujer de 23 años, G1P0, con embarazo de 30 semanas acude a consulta prenatal por cefalea persistente desde hace dos días y sensación de hinchazón en manos y cara. Refiere que previamente su embarazo había evolucionado sin complicaciones. Niega dolor abdominal intenso, sangrado vaginal o pérdida de líquido. En la exploración física se encuentra consciente y orientada. La presión arterial es de 150/95 mmHg en dos mediciones separadas por 15 minutos. Presenta edema en extremidades inferiores y discreto edema facial. El abdomen muestra útero acorde a edad gestacional y frecuencia cardiaca fetal de 145 lpm. Se solicita examen general de orina que reporta proteinuria de 1.5 g en 24 horas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Hipertensión gestacional",
+          "Preeclampsia",
+          "Eclampsia",
+          "Hipertensión crónica"
+        ],
+        "answerIndex": 1,
+        "explanation": "La preeclampsia se define por la presencia de hipertensión arterial después de la semana 20 del embarazo acompañada de proteinuria o datos de daño a órgano blanco.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es una complicación materna grave asociada a esta enfermedad?",
+        "options": [
+          "Hipoglucemia",
+          "Síndrome HELLP",
+          "Anemia ferropénica",
+          "Hipotiroidismo"
+        ],
+        "answerIndex": 1,
+        "explanation": "El síndrome HELLP (hemólisis, elevación de enzimas hepáticas y trombocitopenia) es una complicación grave de la preeclampsia que puede poner en riesgo la vida de la madre y del feto.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Trastornos hipertensivos del embarazo",
+    "subtema": "Eclampsia",
+    "difficulty": "media",
+    "case": "Paciente de 28 años, G2P1, con embarazo de 34 semanas es llevada al servicio de urgencias después de presentar una convulsión tónico-clónica generalizada en su domicilio. Familiares refieren que en los últimos días la paciente había presentado cefalea intensa, visión borrosa y edema en cara y manos. A su llegada al hospital la paciente se encuentra somnolienta. La presión arterial es de 170/110 mmHg y la frecuencia cardiaca de 100 lpm. El abdomen presenta útero acorde a edad gestacional y frecuencia cardiaca fetal de 135 lpm. El examen general de orina muestra proteinuria significativa.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Epilepsia",
+          "Eclampsia",
+          "Crisis convulsiva febril",
+          "Hipoglucemia"
+        ],
+        "answerIndex": 1,
+        "explanation": "La eclampsia se define como la aparición de convulsiones en una paciente con preeclampsia que no pueden explicarse por otra causa neurológica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento inicial de elección para prevenir nuevas convulsiones?",
+        "options": [
+          "Diazepam",
+          "Sulfato de magnesio",
+          "Fenitoína",
+          "Ácido valproico"
+        ],
+        "answerIndex": 1,
+        "explanation": "El sulfato de magnesio es el tratamiento de elección para prevenir y tratar convulsiones en pacientes con eclampsia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Trastornos hipertensivos del embarazo",
+    "subtema": "Síndrome HELLP",
+    "difficulty": "alta",
+    "case": "Mujer de 35 años, G2P1, con embarazo de 33 semanas acude al servicio de urgencias por dolor intenso en epigastrio y en el cuadrante superior derecho del abdomen desde hace varias horas. También refiere náuseas, vómitos y malestar general. Durante la última semana ha presentado cefalea y edema en extremidades inferiores. En la exploración física la presión arterial es de 160/105 mmHg. El abdomen muestra dolor a la palpación en hipocondrio derecho. La frecuencia cardiaca fetal es de 140 lpm. Los estudios de laboratorio reportan hemoglobina baja con datos de hemólisis, elevación significativa de AST y ALT, y plaquetas de 80,000/mm³.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Colecistitis aguda",
+          "Síndrome HELLP",
+          "Hepatitis viral",
+          "Pancreatitis aguda"
+        ],
+        "answerIndex": 1,
+        "explanation": "El síndrome HELLP es una complicación grave de la preeclampsia caracterizada por hemólisis, elevación de enzimas hepáticas y trombocitopenia. Puede presentarse con dolor en hipocondrio derecho o epigastrio.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo definitivo de esta condición?",
+        "options": [
+          "Antibióticos",
+          "Reposo domiciliario",
+          "Terminación del embarazo",
+          "Solo analgésicos"
+        ],
+        "answerIndex": 2,
+        "explanation": "El tratamiento definitivo del síndrome HELLP es la terminación del embarazo, ya que la enfermedad se origina por la disfunción placentaria. Mientras tanto se deben estabilizar las condiciones maternas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Diabetes en el embarazo",
+    "subtema": "Diabetes gestacional",
+    "difficulty": "baja",
+    "case": "Mujer de 27 años, G2P1, con embarazo de 26 semanas acude a consulta prenatal de rutina. Refiere que su embarazo ha evolucionado sin complicaciones hasta el momento. Como antecedente menciona que en su embarazo previo tuvo un recién nacido de 4,200 g al nacimiento. No tiene diagnóstico previo de diabetes mellitus. Durante el control prenatal se decide realizar tamizaje para diabetes gestacional. Se realiza prueba de tolerancia a la glucosa con carga de 50 g y el resultado muestra glucosa plasmática de 155 mg/dL una hora después de la carga. Posteriormente se realiza una curva de tolerancia oral a la glucosa con 100 g que muestra elevación de los valores en ayuno y a las dos horas. La paciente se encuentra asintomática, con presión arterial normal y crecimiento fetal adecuado para la edad gestacional.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Diabetes mellitus tipo 1",
+          "Diabetes gestacional",
+          "Hipoglucemia reactiva",
+          "Intolerancia leve a la glucosa sin importancia clínica"
+        ],
+        "answerIndex": 1,
+        "explanation": "La diabetes gestacional se diagnostica cuando durante el embarazo se detectan alteraciones en la tolerancia a la glucosa en una mujer sin diagnóstico previo de diabetes.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo inicial más apropiado?",
+        "options": [
+          "Insulina inmediata en todas las pacientes",
+          "Cambios en la dieta y ejercicio con monitoreo de glucosa",
+          "Suspender el embarazo",
+          "Solo vigilancia sin tratamiento"
+        ],
+        "answerIndex": 1,
+        "explanation": "El manejo inicial de la diabetes gestacional consiste en modificaciones en el estilo de vida, incluyendo dieta y ejercicio, además de monitoreo de glucosa. Si no se logran metas glucémicas, se inicia tratamiento farmacológico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Diabetes en el embarazo",
+    "subtema": "Complicaciones fetales de diabetes gestacional",
+    "difficulty": "media",
+    "case": "Paciente de 32 años, G3P2, con diagnóstico de diabetes gestacional desde la semana 28 del embarazo, acude a control prenatal a las 36 semanas. Refiere buen apego al tratamiento dietético aunque reconoce que en algunas ocasiones sus niveles de glucosa han sido elevados. Durante la exploración física se observa altura uterina mayor a la esperada para la edad gestacional. El ultrasonido obstétrico muestra un feto con peso estimado por arriba del percentil 90 para la edad gestacional y aumento del tejido adiposo subcutáneo fetal. El líquido amniótico se encuentra en el límite superior de la normalidad.",
+    "questions": [
+      {
+        "question": "¿Cuál es la complicación fetal más probable asociada a este cuadro?",
+        "options": [
+          "Restricción del crecimiento intrauterino",
+          "Macrosomía fetal",
+          "Microcefalia",
+          "Anencefalia"
+        ],
+        "answerIndex": 1,
+        "explanation": "La macrosomía fetal es una de las complicaciones más frecuentes de la diabetes gestacional mal controlada. Se debe a hiperinsulinemia fetal secundaria a hiperglucemia materna.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es una complicación obstétrica asociada a la macrosomía fetal?",
+        "options": [
+          "Desprendimiento prematuro de placenta",
+          "Distocia de hombros",
+          "Placenta previa",
+          "Ruptura prematura de membranas"
+        ],
+        "answerIndex": 1,
+        "explanation": "La macrosomía fetal aumenta el riesgo de distocia de hombros durante el parto vaginal, lo que puede provocar lesiones en el recién nacido como parálisis del plexo braquial.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Diabetes en el embarazo",
+    "subtema": "Hipoglucemia neonatal en hijos de madre diabética",
+    "difficulty": "alta",
+    "case": "Mujer de 35 años con diabetes gestacional tratada con insulina durante el embarazo da a luz a un recién nacido de 4,100 g mediante parto vaginal a las 39 semanas. El parto transcurre sin complicaciones mayores. A las dos horas de vida el recién nacido presenta irritabilidad, temblores y dificultad para alimentarse. El personal de salud decide medir glucosa capilar y el resultado es de 35 mg/dL. La exploración física muestra recién nacido macrosómico con signos vitales estables pero con temblor fino en extremidades.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa más probable de la hipoglucemia en este recién nacido?",
+        "options": [
+          "Insuficiencia pancreática",
+          "Hiperinsulinemia fetal secundaria a hiperglucemia materna",
+          "Déficit congénito de glucagón",
+          "Infección neonatal"
+        ],
+        "answerIndex": 1,
+        "explanation": "En hijos de madres diabéticas, el feto se expone a niveles elevados de glucosa durante el embarazo. Esto estimula la producción de insulina fetal. Después del nacimiento, al suspenderse el aporte materno de glucosa, la hiperinsulinemia provoca hipoglucemia neonatal.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo inicial más apropiado en este recién nacido?",
+        "options": [
+          "Administración inmediata de glucosa",
+          "Antibióticos intravenosos",
+          "Restricción de alimentación",
+          "Solo observación"
+        ],
+        "answerIndex": 0,
+        "explanation": "La hipoglucemia neonatal debe tratarse rápidamente mediante alimentación temprana o administración de glucosa para evitar complicaciones neurológicas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Ruptura prematura de membranas",
+    "subtema": "Ruptura prematura de membranas a término",
+    "difficulty": "baja",
+    "case": "Mujer de 24 años, G1P0, con embarazo de 38 semanas acude al servicio de urgencias por salida súbita de líquido claro a través de vagina desde hace aproximadamente dos horas. Refiere que el líquido fue abundante y ha continuado saliendo de manera intermitente. Niega sangrado vaginal, fiebre o dolor abdominal intenso. Tampoco ha iniciado contracciones uterinas regulares. En la exploración física la paciente se encuentra hemodinámicamente estable. El abdomen presenta útero acorde a edad gestacional con frecuencia cardiaca fetal de 140 lpm. Durante la exploración con espéculo se observa salida de líquido claro proveniente del orificio cervical. El cuello uterino se encuentra poco modificado. Se realiza prueba de nitrazina que resulta positiva y en la prueba de cristalización en helecho también se observa patrón característico.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Incontinencia urinaria",
+          "Ruptura prematura de membranas a término",
+          "Placenta previa",
+          "Desprendimiento prematuro de placenta"
+        ],
+        "answerIndex": 1,
+        "explanation": "La ruptura prematura de membranas se define como la ruptura de las membranas amnióticas antes del inicio del trabajo de parto. Cuando ocurre después de las 37 semanas se considera ruptura prematura de membranas a término.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la conducta más apropiada en esta paciente?",
+        "options": [
+          "Inducir el trabajo de parto si no inicia espontáneamente",
+          "Administrar tocolíticos",
+          "Dar de alta sin vigilancia",
+          "Iniciar sulfato de magnesio"
+        ],
+        "answerIndex": 0,
+        "explanation": "En ruptura prematura de membranas a término se recomienda inducir el trabajo de parto si no inicia de forma espontánea, para disminuir el riesgo de infección materno- fetal.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Ruptura prematura de membranas",
+    "subtema": "Ruptura prematura de membranas pretérmino (RPM pretérmino)",
+    "difficulty": "media",
+    "case": "Paciente de 29 años, G2P1, con embarazo de 32 semanas acude al hospital por salida de líquido vaginal claro desde hace 5 horas. Refiere sensación constante de humedad en ropa interior. Niega contracciones uterinas intensas o sangrado vaginal. En la exploración física se encuentra estable. El abdomen presenta útero acorde a edad gestacional con frecuencia cardiaca fetal de 145 lpm. En la exploración con espéculo se observa salida de líquido por el cuello uterino. Las pruebas de nitrazina y cristalización son positivas. No hay datos clínicos de infección intrauterina y el monitoreo fetal es tranquilizador.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Ruptura prematura de membranas pretérmino",
+          "Placenta previa",
+          "Amenaza de parto pretérmino",
+          "Desprendimiento prematuro de placenta"
+        ],
+        "answerIndex": 0,
+        "explanation": "La ruptura prematura de membranas pretérmino ocurre cuando las membranas se rompen antes de las 37 semanas de gestación y antes del inicio del trabajo de parto.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es una medida terapéutica importante en este contexto?",
+        "options": [
+          "Administrar corticoesteroides para maduración pulmonar fetal",
+          "Inducir parto inmediato en todos los casos",
+          "Administrar insulina",
+          "Realizar cesárea urgente"
+        ],
+        "answerIndex": 0,
+        "explanation": "En casos de RPM pretérmino sin datos de infección o sufrimiento fetal se busca prolongar el embarazo para mejorar la madurez fetal. Los corticoesteroides ayudan a acelerar la maduración pulmonar.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Ruptura prematura de membranas",
+    "subtema": "Corioamnionitis",
+    "difficulty": "alta",
+    "case": "Mujer de 30 años, G1P0, con embarazo de 31 semanas se encuentra hospitalizada por ruptura prematura de membranas desde hace 48 horas. Durante las últimas horas comienza a presentar fiebre, malestar general y aumento del dolor abdominal. También refiere salida de líquido vaginal con mal olor. En la exploración física la temperatura es de 38.7°C, la frecuencia cardiaca materna es de 110 lpm y la frecuencia cardiaca fetal es de 170 lpm. El abdomen muestra útero doloroso a la palpación. Los estudios de laboratorio muestran leucocitosis. El monitoreo fetal muestra taquicardia fetal persistente.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Amenaza de parto pretérmino",
+          "Corioamnionitis",
+          "Placenta previa",
+          "Preeclampsia"
+        ],
+        "answerIndex": 1,
+        "explanation": "La corioamnionitis es una infección de las membranas fetales y del líquido amniótico. Se sospecha cuando hay fiebre materna, taquicardia fetal, leucocitosis, dolor uterino y líquido amniótico maloliente.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo indicado en esta situación?",
+        "options": [
+          "Antibióticos y finalización del embarazo",
+          "Solo reposo",
+          "Tocolíticos",
+          "Alta hospitalaria"
+        ],
+        "answerIndex": 0,
+        "explanation": "El manejo de la corioamnionitis incluye antibióticos intravenosos y finalización del embarazo debido al alto riesgo de sepsis materna y complicaciones fetales.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Patología del embarazo",
+    "subtema": "Hiperemesis gravídica",
+    "difficulty": "media",
+    "case": "Mujer de 22 años, G1, con 10 semanas de gestación por FUM confiable. Acude a urgencias por vómitos persistentes desde hace 3 semanas que han aumentado en frecuencia e intensidad. Refiere incapacidad para tolerar alimentos sólidos ni líquidos en las últimas 48 horas. Menciona pérdida de aproximadamente 4 kg desde el inicio del embarazo. Niega fiebre, dolor abdominal intenso o sangrado vaginal. A la exploración física se observa paciente deshidratada, con mucosas secas y ligera hipotensión ortostática. Signos vitales: TA 95/60 mmHg FC 104 lpm FR 18 rpm Temperatura 36.8°C Abdomen blando, no doloroso. Útero acorde a edad gestacional. Laboratorio: • Na 132 mEq/L • K 3.1 mEq/L • Cetonas en orina positivas • BH normal • Función hepática ligeramente elevada Ultrasonido obstétrico: feto único vivo acorde a edad gestacional.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Náusea y vómito normal del embarazo",
+          "Gastroenteritis infecciosa",
+          "Hiperemesis gravídica",
+          "Apendicitis aguda"
+        ],
+        "answerIndex": 2,
+        "explanation": "La hiperemesis gravídica se caracteriza por vómitos persistentes que provocan pérdida de peso (>5%), deshidratación, cetonuria y alteraciones electrolíticas. El manejo inicial incluye: • Hospitalización • Reposición de líquidos intravenosos • Corrección de electrolitos • Antieméticos (metoclopramida, ondansetrón o doxilamina-piridoxina) En casos severos puede requerirse soporte nutricional. El diagnóstico diferencial incluye enfermedad trofoblástica y gestación múltiple.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo inicial más adecuado?",
+        "options": [
+          "Alta domiciliaria con antieméticos orales",
+          "Rehidratación IV, corrección de electrolitos y antieméticos",
+          "Cirugía urgente",
+          "Interrupción del embarazo"
+        ],
+        "answerIndex": 1,
+        "explanation": "La hiperemesis gravídica se caracteriza por vómitos persistentes que provocan pérdida de peso (>5%), deshidratación, cetonuria y alteraciones electrolíticas. El manejo inicial incluye: • Hospitalización • Reposición de líquidos intravenosos • Corrección de electrolitos • Antieméticos (metoclopramida, ondansetrón o doxilamina-piridoxina) En casos severos puede requerirse soporte nutricional. El diagnóstico diferencial incluye enfermedad trofoblástica y gestación múltiple.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Ginecología",
+    "subtema": "Síndrome de ovario poliquístico (SOP)",
+    "difficulty": "media",
+    "case": "Paciente de 25 años acude a consulta por irregularidad menstrual desde la adolescencia. Refiere ciclos cada 45–60 días. También menciona aumento progresivo de vello en mentón y abdomen inferior en los últimos años. Desea embarazo desde hace 1 año sin éxito. Antecedentes personales: sobrepeso desde adolescencia. Exploración física: IMC: 30 kg/m² Acné moderado facial Hirsutismo con puntaje de Ferriman-Gallwey de 12 Laboratorio: • LH elevada • FSH normal • Testosterona total ligeramente elevada • Glucosa en ayuno 105 mg/dL Ultrasonido transvaginal: Ovarios aumentados de tamaño con múltiples folículos periféricos pequeños.",
+    "questions": [
+      {
+        "question": "¿Cuáles son los criterios diagnósticos más utilizados para SOP?",
+        "options": [
+          "Criterios de Bethesda",
+          "Criterios de Rotterdam",
+          "Criterios de Framingham",
+          "Criterios de FIGO"
+        ],
+        "answerIndex": 1,
+        "explanation": "El síndrome de ovario poliquístico es la endocrinopatía más frecuente en mujeres en edad reproductiva. Criterios de Rotterdam (se requieren 2 de 3): 1.  Oligo/anovulación 2.  Hiperandrogenismo clínico o bioquímico 3.  Ovarios poliquísticos en ultrasonido El manejo depende del deseo reproductivo: • No desea embarazo:  anticonceptivos combinados para regular ciclos y disminuir hiperandrogenismo. • Desea embarazo: inducción de ovulación (letrozol o clomifeno). • Siempre se recomiendan modificaciones del estilo de vida y control metabólico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Según los criterios diagnósticos, ¿cuál de los siguientes es necesario para establecer el diagnóstico?",
+        "options": [
+          "Presencia de diabetes mellitus",
+          "Al menos 2 de 3: anovulación, hiperandrogenismo y ovarios poliquísticos",
+          "Amenorrea obligatoria",
+          "Infertilidad obligatoria"
+        ],
+        "answerIndex": 1,
+        "explanation": "El síndrome de ovario poliquístico es la endocrinopatía más frecuente en mujeres en edad reproductiva. Criterios de Rotterdam (se requieren 2 de 3): 1.  Oligo/anovulación 2.  Hiperandrogenismo clínico o bioquímico 3.  Ovarios poliquísticos en ultrasonido El manejo depende del deseo reproductivo: • No desea embarazo:  anticonceptivos combinados para regular ciclos y disminuir hiperandrogenismo. • Desea embarazo: inducción de ovulación (letrozol o clomifeno). • Siempre se recomiendan modificaciones del estilo de vida y control metabólico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el manejo inicial en paciente con SOP que no desea embarazo?",
+        "options": [
+          "Anticonceptivos hormonales combinados",
+          "Histerectomía",
+          "Insulina obligatoria",
+          "Cirugía ovárica inmediata"
+        ],
+        "answerIndex": 0,
+        "explanation": "El síndrome de ovario poliquístico es la endocrinopatía más frecuente en mujeres en edad reproductiva. Criterios de Rotterdam (se requieren 2 de 3): 1.  Oligo/anovulación 2.  Hiperandrogenismo clínico o bioquímico 3.  Ovarios poliquísticos en ultrasonido El manejo depende del deseo reproductivo: • No desea embarazo:  anticonceptivos combinados para regular ciclos y disminuir hiperandrogenismo. • Desea embarazo: inducción de ovulación (letrozol o clomifeno). • Siempre se recomiendan modificaciones del estilo de vida y control metabólico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Ginecología",
+    "subtema": "Endometriosis",
+    "difficulty": "media",
+    "case": "Mujer de 29 años acude a consulta por dolor pélvico crónico que ha aumentado progresivamente en los últimos dos años. Refiere menstruaciones dolorosas desde la adolescencia, pero en el último año el dolor aparece incluso fuera del periodo menstrual y se intensifica durante las relaciones sexuales. También comenta dificultad para lograr embarazo desde hace aproximadamente 18 meses. Sus ciclos menstruales son regulares cada 28 días con sangrado de 5 días. No utiliza anticonceptivos. A la exploración ginecológica se identifica dolor a la movilización cervical y sensibilidad en el fondo de saco posterior. El ultrasonido transvaginal muestra un quiste ovárico de aspecto homogéneo con ecos finos internos compatible con endometrioma.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Enfermedad pélvica inflamatoria",
+          "Endometriosis",
+          "Quiste ovárico funcional",
+          "Síndrome de ovario poliquístico"
+        ],
+        "answerIndex": 1,
+        "explanation": "La endometriosis se caracteriza por la presencia de tejido endometrial fuera de la cavidad uterina. El cuadro típico incluye dismenorrea progresiva, dolor pélvico crónico, dispareunia profunda e infertilidad. La presencia de un quiste ovárico con contenido homogéneo (“quiste de chocolate”) en ultrasonido sugiere endometrioma , una manifestación frecuente de esta enfermedad.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el método diagnóstico definitivo para confirmar la enfermedad?",
+        "options": [
+          "Ultrasonido transvaginal",
+          "Resonancia magnética",
+          "Laparoscopia diagnóstica con biopsia",
+          "Tomografía abdominal"
+        ],
+        "answerIndex": 2,
+        "explanation": "Aunque los estudios de imagen pueden sugerir el diagnóstico, el estándar de oro para confirmar endometriosis es la laparoscopia con visualización directa de implantes y confirmación histológica. Este procedimiento permite además clasificar la enfermedad y, en algunos casos, tratar las lesiones en el mismo acto quirúrgico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si la paciente no desea embarazo en este momento, ¿cuál es el manejo inicial más apropiado?",
+        "options": [
+          "Histerectomía inmediata",
+          "Anticonceptivos hormonales combinados",
+          "Quimioterapia",
+          "Radioterapia"
+        ],
+        "answerIndex": 1,
+        "explanation": "En mujeres con endometriosis que no buscan embarazo , el manejo inicial suele ser tratamiento hormonal con anticonceptivos combinados o progestágenos, que reducen la estimulación estrogénica del tejido endometrial ectópico. Esto disminuye el dolor y controla la progresión de la enfermedad.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Ginecología",
+    "subtema": "Enfermedad pélvica inflamatoria (EPI)",
+    "difficulty": "media",
+    "case": "Mujer de 23 años acude a urgencias por dolor abdominal bajo de tres días de evolución que ha aumentado progresivamente. Refiere fiebre, malestar general y flujo vaginal anormal con olor desagradable. Menciona que tuvo una nueva pareja sexual hace aproximadamente dos semanas y que no utiliza preservativo de forma regular. Sus ciclos menstruales son irregulares, y su última menstruación ocurrió hace tres semanas. A la exploración presenta temperatura de 38.5 °C, dolor intenso en hipogastrio y dolor marcado a la movilización cervical durante el tacto vaginal. También se identifica secreción mucopurulenta proveniente del cuello uterino.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Apendicitis aguda",
+          "Embarazo ectópico",
+          "Enfermedad pélvica inflamatoria",
+          "Endometriosis"
+        ],
+        "answerIndex": 2,
+        "explanation": "La enfermedad pélvica inflamatoria es una infección ascendente del tracto genital femenino que afecta útero, trompas y estructuras pélvicas. Los hallazgos clásicos incluyen dolor pélvico, fiebre, secreción cervical anormal y dolor a la movilización cervical. Los microorganismos más frecuentes son Chlamydia trachomatis y Neisseria gonorrhoeae.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la complicación a largo plazo más importante de esta enfermedad?",
+        "options": [
+          "Endometriosis",
+          "Infertilidad por daño tubárico",
+          "Miomatosis uterina",
+          "Amenorrea primaria"
+        ],
+        "answerIndex": 1,
+        "explanation": "La inflamación crónica y cicatrización de las trompas de Falopio puede provocar obstrucción tubárica, lo que aumenta el riesgo de infertilidad y embarazo ectópico. Por ello es fundamental iniciar tratamiento antibiótico oportuno para evitar secuelas reproductivas.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el esquema antibiótico recomendado en manejo ambulatorio según guías clínicas?",
+        "options": [
+          "Penicilina sola",
+          "Doxiciclina + ceftriaxona + metronidazol",
+          "Amoxicilina sola",
+          "Ciprofloxacino únicamente"
+        ],
+        "answerIndex": 1,
+        "explanation": "El tratamiento debe cubrir N. gonorrhoeae, C. trachomatis y bacterias anaerobias. Un esquema ambulatorio común incluye ceftriaxona intramuscular, doxiciclina oral y metronidazol, administrados durante aproximadamente 14 días. Este tratamiento reduce el riesgo de complicaciones y secuelas reproductivas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "gine",
+    "tema": "Ginecología",
+    "subtema": "Miomatosis uterina",
+    "difficulty": "media",
+    "case": "Mujer de 41 años consulta por menstruaciones cada vez más abundantes desde hace aproximadamente un año. Refiere que los sangrados duran hasta nueve días y se acompañan de coágulos grandes y fatiga intensa posterior al periodo. También comenta sensación de presión en la pelvis y aumento progresivo del tamaño abdominal. Tiene dos hijos y no desea más embarazos. A la exploración física se identifica palidez leve y, durante el examen ginecológico, el útero se palpa aumentado de tamaño e irregular. El ultrasonido transvaginal revela múltiples masas sólidas bien delimitadas dentro del miometrio, compatibles con miomas uterinos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Adenomiosis",
+          "Miomatosis uterina",
+          "Cáncer de endometrio",
+          "Endometriosis"
+        ],
+        "answerIndex": 1,
+        "explanation": "Los miomas uterinos o leiomiomas son tumores benignos del músculo liso del útero. Son la neoplasia benigna más frecuente en mujeres en edad reproductiva. Pueden provocar sangrado uterino anormal, anemia, dolor pélvico y síntomas compresivos dependiendo de su tamaño y localización.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el estudio inicial de elección para su evaluación?",
+        "options": [
+          "Tomografía abdominal",
+          "Ultrasonido transvaginal",
+          "Resonancia magnética obligatoria",
+          "Radiografía pélvica"
+        ],
+        "answerIndex": 1,
+        "explanation": "El ultrasonido transvaginal es el estudio de primera línea para evaluar miomas uterinos, ya que permite identificar su número, tamaño y localización. Es accesible, no invasivo y tiene alta sensibilidad para detectar estas lesiones.",
+        "gpcReference": ""
+      },
+      {
+        "question": "En una paciente sintomática que no desea fertilidad futura, ¿cuál es el tratamiento definitivo?",
+        "options": [
+          "Anticonceptivos hormonales",
+          "Análogos de GnRH indefinidamente",
+          "Histerectomía",
+          "Observación únicamente"
+        ],
+        "answerIndex": 2,
+        "explanation": "Cuando los síntomas son importantes y la paciente no desea preservar fertilidad, el tratamiento definitivo es la histerectomía, que elimina la fuente del sangrado y los síntomas asociados. Otras opciones como tratamiento hormonal o miomectomía se consideran cuando se desea conservar el útero. Una mujer de 26 años acude a consulta por flujo vaginal abundante desde hace una semana. Refiere que el flujo es blanco, grumoso y se acompaña de prurito vulvar intenso y ardor al orinar. Niega fiebre o dolor pélvico. Comenta que hace dos semanas terminó tratamiento con antibióticos por una infección respiratoria. A la exploración ginecológica se observa eritema vulvar y vaginal, además de secreción blanca adherida a las paredes vaginales. El pH vaginal es de 4.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el diagnóstico más probable?",
+        "options": [
+          "Vaginosis bacteriana",
+          "Candidiasis vulvovaginal",
+          "Tricomoniasis",
+          "Cervicitis gonocócica"
+        ],
+        "answerIndex": 1,
+        "explanation": "La candidiasis vulvovaginal se caracteriza por flujo blanco grumoso tipo “requesón”, prurito intenso, eritema vulvar y pH vaginal normal (≤4.5). Factores predisponentes incluyen el uso reciente de antibióticos, embarazo o diabetes. Vaginosis bacteriana suele tener pH elevado y olor a pescado; tricomoniasis produce flujo espumoso amarillo-verdoso.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento de primera línea en una paciente no embarazada?",
+        "options": [
+          "Metronidazol oral",
+          "Clindamicina vaginal",
+          "Fluconazol oral dosis única",
+          "Azitromicina oral"
+        ],
+        "answerIndex": 2,
+        "explanation": "El tratamiento de elección en candidiasis vulvovaginal no complicada es fluconazol 150 mg VO dosis única o azoles tópicos. Metronidazol y clindamicina se utilizan en vaginosis bacteriana o tricomoniasis.",
+        "gpcReference": ""
+      }
+    ]
   }
 ];
 
