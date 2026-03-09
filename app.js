@@ -3865,47 +3865,30 @@
                         });
                     }
 
-                    // Pre-expand pool: for clinical case questions (top-level entry with nested questions[]),
-                    // expand into individual sub-questions so that indexOf() works reliably
-                    // and challenge exams always get proper simple question objects.
-                    const expandPool = (rawPool) => {
-                        const expanded = [];
-                        rawPool.forEach(entry => {
-                            if (Array.isArray(entry.options) && entry.options.length > 0) {
-                                expanded.push(entry);
-                            } else if (entry.questions && Array.isArray(entry.questions)) {
-                                entry.questions.forEach(sq => {
-                                    if (sq && Array.isArray(sq.options) && sq.options.length > 0) {
-                                        expanded.push({ ...entry, question: sq.question, options: sq.options, answerIndex: sq.answerIndex, explanation: sq.explanation });
-                                    }
-                                });
-                            }
+                    // Filter by difficulty on the RAW pool (before expansion)
+                    // This matches the normal exam behavior
+                    let poolPrimary = [...pool];
+                    let poolSecondary = [];
+
+                    if (State.difficulty && State.difficulty !== "cualquiera") {
+                        poolPrimary = pool.filter(q => {
+                            const qDiff = (q.difficulty || "alta").toLowerCase();
+                            if (State.difficulty === "alta") return qDiff === "alta" || qDiff === "muy-alta";
+                            return qDiff === State.difficulty;
                         });
-                        return expanded;
-                    };
+                        poolSecondary = pool.filter(q => !poolPrimary.includes(q));
+                    }
 
-                    let poolPrimary = expandPool(pool).filter(q => {
-                        if (State.difficulty === "cualquiera") return true;
-                        const qDiff = (q.difficulty || "alta").toLowerCase();
-                        if (State.difficulty === "alta") return qDiff === "alta" || qDiff === "muy-alta";
-                        return qDiff === State.difficulty;
-                    });
-
-                    const processAndFlattenPool = (p, qty) => {
-                        const rnd = [...p].sort(() => 0.5 - Math.random());
-                        return rnd.slice(0, qty);
-                    };
-
+                    // Use the GLOBAL processAndFlattenPool (defined at line ~121)
+                    // which preserves multi-question clinical case grouping
                     let flatPrimary = processAndFlattenPool(poolPrimary, qty);
-                    if (flatPrimary.length < qty) {
-                        // Secondary pool: expand the full pool and exclude what's already selected
-                        const selectedTexts = new Set(flatPrimary.map(q => q.question));
-                        const poolSecondary = expandPool(pool).filter(q =>
-                            !selectedTexts.has(q.question) &&
-                            (State.difficulty === "cualquiera" || (q.difficulty || "alta").toLowerCase() !== poolPrimary[0]?.difficulty)
-                        );
+
+                    if (flatPrimary.length < qty && poolSecondary.length > 0) {
                         let missing = qty - flatPrimary.length;
-                        flatPrimary = flatPrimary.concat(processAndFlattenPool(poolSecondary, missing));
+                        let flatSecondary = processAndFlattenPool(poolSecondary, missing);
+                        if (flatSecondary.length > 0) {
+                            flatPrimary = flatPrimary.concat(flatSecondary);
+                        }
                     }
 
                     if (flatPrimary.length === 0) return showNotification("No hay suficientes preguntas.", "warning");
@@ -3918,20 +3901,18 @@
                     if (flatPrimary.length === 0) return showNotification("No hay preguntas de la especialidad seleccionada con esos filtros.", "warning");
 
                     // Map each selected question to an EXACT {idx, sub} identifier.
-                    // Using exact identifiers (not just parent index) ensures only the specifically
-                    // selected sub-questions are loaded — not all sub-questions of the parent case.
+                    // flatPrimary items come from processAndFlattenPool which expands cases
+                    // into sub-questions with inherited specialty from the parent.
                     const questionIndices = flatPrimary.map(q => {
-                        // Simple question: exact reference match (same object, guaranteed correct)
+                        // Simple question: exact reference match (same object)
                         const directIdx = QUESTIONS.indexOf(q);
                         if (directIdx !== -1) return { idx: directIdx, sub: -1 };
 
-                        // Expanded sub-question (copy): find parent and specific sub-question index
-                        // IMPORTANT: also match specialty to avoid cross-specialty contamination
-                        // when two cases from different specialties have identically-worded sub-questions
+                        // Expanded sub-question (copy): find parent + specific sub-question index
+                        // Match specialty to avoid cross-specialty contamination
                         for (let i = 0; i < QUESTIONS.length; i++) {
                             const ref = QUESTIONS[i];
                             if (!ref) continue;
-                            // Must be same specialty (expanded copies inherit parent's specialty)
                             if (ref.specialty !== q.specialty) continue;
                             // Simple question with same text
                             if (ref.question === q.question && Array.isArray(ref.options) && ref.options.length > 0) {
@@ -4176,6 +4157,7 @@
 
                 const finalSet = [];
                 let groupCounter = 1;
+                let lastParentIdx = -1; // Track to group consecutive sub-questions of the same case
 
                 indices.forEach((item) => {
                     // Support both NEW format {idx, sub} and LEGACY format (plain number)
@@ -4186,16 +4168,24 @@
                     const q = QUESTIONS[parentIdx];
                     if (!q) return;
 
+                    // Determine if this is a new case group or continuation of the previous one
+                    const isSameCase = (parentIdx === lastParentIdx);
+                    if (!isSameCase) {
+                        if (lastParentIdx !== -1) groupCounter++;
+                        lastParentIdx = parentIdx;
+                    }
+
                     if (Array.isArray(q.options) && q.options.length > 0) {
                         // Simple question (or legacy simple)
                         finalSet.push({ ...q, caseGroupId: groupCounter, subQuestionIndex: 1, totalSubQuestions: 1 });
-                        groupCounter++;
 
                     } else if (q.questions && Array.isArray(q.questions) && q.questions.length > 0) {
 
                         if (!isLegacy && subIdx >= 0) {
                             // NEW format: load ONLY the specific sub-question indicated by subIdx
                             const sq = q.questions[subIdx];
+                            // Count how many sub-questions from this same parent are in the indices
+                            const siblingCount = indices.filter(it => (typeof it === 'object' && it.idx === parentIdx)).length;
                             if (sq && Array.isArray(sq.options) && sq.options.length > 0) {
                                 finalSet.push({
                                     ...q,
@@ -4205,9 +4195,8 @@
                                     explanation: sq.explanation,
                                     caseGroupId: groupCounter,
                                     subQuestionIndex: subIdx + 1,
-                                    totalSubQuestions: q.questions.length
+                                    totalSubQuestions: siblingCount > 1 ? siblingCount : q.questions.length
                                 });
-                                groupCounter++;
                             }
                         } else {
                             // LEGACY format: expand all sub-questions of the case (old behavior)
@@ -4225,7 +4214,6 @@
                                     });
                                 }
                             });
-                            groupCounter++;
                         }
 
                     } else {
