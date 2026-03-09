@@ -3906,26 +3906,30 @@
 
                     if (flatPrimary.length === 0) return showNotification("No hay suficientes preguntas.", "warning");
 
-                    // Deduplicate: multiple expanded sub-questions may map to the same parent index.
-                    // We use a Set to ensure each parent case appears only once.
-                    const rawIndices = flatPrimary.map(q => {
-                        // Try exact reference first (works for simple questions that weren't cloned)
+                    // Map each selected question to an EXACT {idx, sub} identifier.
+                    // Using exact identifiers (not just parent index) ensures only the specifically
+                    // selected sub-questions are loaded — not all sub-questions of the parent case.
+                    const questionIndices = flatPrimary.map(q => {
+                        // Simple question: exact reference match
                         const directIdx = QUESTIONS.indexOf(q);
-                        if (directIdx !== -1) return directIdx;
-                        // For expanded case sub-questions: find the parent case entry
-                        const byText = QUESTIONS.findIndex(ref => {
-                            if (!ref) return false;
-                            if (ref.question === q.question && Array.isArray(ref.options)) return true;
-                            if (ref.questions && Array.isArray(ref.questions)) {
-                                return ref.questions.some(sq => sq && sq.question === q.question);
-                            }
-                            return false;
-                        });
-                        return byText;
-                    }).filter(idx => idx !== -1);
+                        if (directIdx !== -1) return { idx: directIdx, sub: -1 };
 
-                    // Deduplicate while preserving order
-                    const questionIndices = [...new Set(rawIndices)];
+                        // Expanded sub-question (copy): find parent and specific sub-question index
+                        for (let i = 0; i < QUESTIONS.length; i++) {
+                            const ref = QUESTIONS[i];
+                            if (!ref) continue;
+                            // Simple question with same text
+                            if (ref.question === q.question && Array.isArray(ref.options) && ref.options.length > 0) {
+                                return { idx: i, sub: -1 };
+                            }
+                            // Clinical case: find the exact sub-question index
+                            if (ref.questions && Array.isArray(ref.questions)) {
+                                const subIdx = ref.questions.findIndex(sq => sq && sq.question === q.question);
+                                if (subIdx !== -1) return { idx: i, sub: subIdx };
+                            }
+                        }
+                        return null;
+                    }).filter(item => item !== null);
 
                     if (questionIndices.length === 0) return showNotification("Error: No se pudieron mapear las preguntas al banco.", "error");
 
@@ -3960,9 +3964,9 @@
                             participants: participants,
                             participantIds: participantIds,
                             specialty: summarySpec,
-                            numQuestions: qty,        // Requested count
-                            targetQty: qty,           // Used to slice finalSet on exam start
-                            questionIndices: questionIndices,
+                            numQuestions: questionIndices.length,
+                            targetQty: questionIndices.length,
+                            questionIndices: questionIndices,   // Array of {idx, sub} pairs
                             status: "active",
                             createdAt: Date.now()
                         });
@@ -3973,7 +3977,7 @@
                         State.activeChallengeId = newDoc.id;
                         State.activeChallengeRole = "challenger";
                         if (typeof window._startChallengeInternal === "function") {
-                            window._startChallengeInternal(newDoc.id, questionIndices, qty);
+                            window._startChallengeInternal(newDoc.id, questionIndices, questionIndices.length);
                         }
                     } catch (err) {
                         showNotification("Error: " + err.message, "error");
@@ -4155,19 +4159,28 @@
                     return showNotification("Error: Los datos del reto están dañados o vacíos.", "error");
                 }
 
-                // Build finalSet from indices, properly handling clinical case questions
                 const finalSet = [];
                 let groupCounter = 1;
 
-                indices.forEach((idx) => {
-                    const q = QUESTIONS[idx];
+                indices.forEach((item) => {
+                    // Support both NEW format {idx, sub} and LEGACY format (plain number)
+                    const isLegacy = typeof item === 'number';
+                    const parentIdx = isLegacy ? item : item.idx;
+                    const subIdx = isLegacy ? -1 : item.sub;
+
+                    const q = QUESTIONS[parentIdx];
                     if (!q) return;
 
                     if (Array.isArray(q.options) && q.options.length > 0) {
+                        // Simple question (or legacy simple)
                         finalSet.push({ ...q, caseGroupId: groupCounter, subQuestionIndex: 1, totalSubQuestions: 1 });
                         groupCounter++;
+
                     } else if (q.questions && Array.isArray(q.questions) && q.questions.length > 0) {
-                        q.questions.forEach((sq, sqIdx) => {
+
+                        if (!isLegacy && subIdx >= 0) {
+                            // NEW format: load ONLY the specific sub-question indicated by subIdx
+                            const sq = q.questions[subIdx];
                             if (sq && Array.isArray(sq.options) && sq.options.length > 0) {
                                 finalSet.push({
                                     ...q,
@@ -4176,13 +4189,32 @@
                                     answerIndex: sq.answerIndex,
                                     explanation: sq.explanation,
                                     caseGroupId: groupCounter,
-                                    subQuestionIndex: sqIdx + 1,
+                                    subQuestionIndex: subIdx + 1,
                                     totalSubQuestions: q.questions.length
                                 });
+                                groupCounter++;
                             }
-                        });
-                        groupCounter++;
+                        } else {
+                            // LEGACY format: expand all sub-questions of the case (old behavior)
+                            q.questions.forEach((sq, sqIdx) => {
+                                if (sq && Array.isArray(sq.options) && sq.options.length > 0) {
+                                    finalSet.push({
+                                        ...q,
+                                        question: sq.question,
+                                        options: sq.options,
+                                        answerIndex: sq.answerIndex,
+                                        explanation: sq.explanation,
+                                        caseGroupId: groupCounter,
+                                        subQuestionIndex: sqIdx + 1,
+                                        totalSubQuestions: q.questions.length
+                                    });
+                                }
+                            });
+                            groupCounter++;
+                        }
+
                     } else {
+                        // Fallback: find by question text
                         const found = QUESTIONS.findIndex(
                             ref => ref.question && ref.question === q.question && Array.isArray(ref.options)
                         );
@@ -4194,15 +4226,15 @@
                 });
 
                 if (finalSet.length === 0) {
-                    return showNotification("Error al cargar preguntas. El banco de preguntas puede haber sido actualizado. Crea un nuevo reto.", "error");
+                    return showNotification("Error al cargar preguntas. El banco puede haber sido actualizado. Crea un nuevo reto.", "error");
                 }
 
-                // Trim to targetQty so the exam always has exactly the requested number of questions
+                // Safety trim: legacy challenges may expand more than intended
                 const resolvedQty = targetQty && targetQty > 0 ? targetQty : finalSet.length;
                 const trimmedSet = finalSet.slice(0, resolvedQty);
 
                 if (trimmedSet.length < resolvedQty) {
-                    showNotification(`Se cargaron ${trimmedSet.length} de ${resolvedQty} preguntas (algunas pueden estar desactualizadas).`, "warning");
+                    showNotification(`Se cargaron ${trimmedSet.length} de ${resolvedQty} preguntas.`, "warning");
                 }
 
                 State.questionSet = trimmedSet;
