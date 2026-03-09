@@ -3906,19 +3906,16 @@
 
                     if (flatPrimary.length === 0) return showNotification("No hay suficientes preguntas.", "warning");
 
-                    // Map each expanded question to its index in QUESTIONS
-                    // Since flatPrimary may be copies (expanded from cases), we match by question text + first option
-                    const questionIndices = flatPrimary.map(q => {
+                    // Deduplicate: multiple expanded sub-questions may map to the same parent index.
+                    // We use a Set to ensure each parent case appears only once.
+                    const rawIndices = flatPrimary.map(q => {
                         // Try exact reference first (works for simple questions that weren't cloned)
                         const directIdx = QUESTIONS.indexOf(q);
                         if (directIdx !== -1) return directIdx;
-                        // For expanded case sub-questions: find the parent case entry by matching
-                        // against the original top-level question OR sub-question text
+                        // For expanded case sub-questions: find the parent case entry
                         const byText = QUESTIONS.findIndex(ref => {
                             if (!ref) return false;
-                            // Match direct question
                             if (ref.question === q.question && Array.isArray(ref.options)) return true;
-                            // Match as sub-question inside a case
                             if (ref.questions && Array.isArray(ref.questions)) {
                                 return ref.questions.some(sq => sq && sq.question === q.question);
                             }
@@ -3926,6 +3923,9 @@
                         });
                         return byText;
                     }).filter(idx => idx !== -1);
+
+                    // Deduplicate while preserving order
+                    const questionIndices = [...new Set(rawIndices)];
 
                     if (questionIndices.length === 0) return showNotification("Error: No se pudieron mapear las preguntas al banco.", "error");
 
@@ -3960,7 +3960,8 @@
                             participants: participants,
                             participantIds: participantIds,
                             specialty: summarySpec,
-                            numQuestions: questionIndices.length,
+                            numQuestions: qty,        // Requested count
+                            targetQty: qty,           // Used to slice finalSet on exam start
                             questionIndices: questionIndices,
                             status: "active",
                             createdAt: Date.now()
@@ -3972,7 +3973,7 @@
                         State.activeChallengeId = newDoc.id;
                         State.activeChallengeRole = "challenger";
                         if (typeof window._startChallengeInternal === "function") {
-                            window._startChallengeInternal(newDoc.id, questionIndices);
+                            window._startChallengeInternal(newDoc.id, questionIndices, qty);
                         }
                     } catch (err) {
                         showNotification("Error: " + err.message, "error");
@@ -4149,31 +4150,27 @@
                 renderChallenges();
             });
 
-            const startChallengeExam = (id, indices) => {
+            const startChallengeExam = (id, indices, targetQty) => {
                 if (!Array.isArray(indices) || indices.length === 0) {
                     return showNotification("Error: Los datos del reto están dañados o vacíos.", "error");
                 }
 
                 // Build finalSet from indices, properly handling clinical case questions
-                // Some QUESTIONS entries are clinical cases with a nested questions[] array
-                // (no top-level options). We must expand them here just like processAndFlattenPool does.
                 const finalSet = [];
                 let groupCounter = 1;
 
                 indices.forEach((idx) => {
                     const q = QUESTIONS[idx];
-                    if (!q) return; // invalid/obsolete index
+                    if (!q) return;
 
                     if (Array.isArray(q.options) && q.options.length > 0) {
-                        // Simple question
                         finalSet.push({ ...q, caseGroupId: groupCounter, subQuestionIndex: 1, totalSubQuestions: 1 });
                         groupCounter++;
                     } else if (q.questions && Array.isArray(q.questions) && q.questions.length > 0) {
-                        // Clinical case with nested sub-questions
                         q.questions.forEach((sq, sqIdx) => {
                             if (sq && Array.isArray(sq.options) && sq.options.length > 0) {
                                 finalSet.push({
-                                    ...q,              // inherits case, tema, specialty, etc.
+                                    ...q,
                                     question: sq.question,
                                     options: sq.options,
                                     answerIndex: sq.answerIndex,
@@ -4186,7 +4183,6 @@
                         });
                         groupCounter++;
                     } else {
-                        // Fallback: try finding by question text (bank shift)
                         const found = QUESTIONS.findIndex(
                             ref => ref.question && ref.question === q.question && Array.isArray(ref.options)
                         );
@@ -4194,7 +4190,6 @@
                             finalSet.push({ ...QUESTIONS[found], caseGroupId: groupCounter, subQuestionIndex: 1, totalSubQuestions: 1 });
                             groupCounter++;
                         }
-                        // Otherwise silently skip (truly obsolete)
                     }
                 });
 
@@ -4202,20 +4197,24 @@
                     return showNotification("Error al cargar preguntas. El banco de preguntas puede haber sido actualizado. Crea un nuevo reto.", "error");
                 }
 
-                if (finalSet.length < indices.length) {
-                    showNotification(`Se cargaron ${finalSet.length} de ${indices.length} preguntas (algunas pueden estar desactualizadas).`, "warning");
+                // Trim to targetQty so the exam always has exactly the requested number of questions
+                const resolvedQty = targetQty && targetQty > 0 ? targetQty : finalSet.length;
+                const trimmedSet = finalSet.slice(0, resolvedQty);
+
+                if (trimmedSet.length < resolvedQty) {
+                    showNotification(`Se cargaron ${trimmedSet.length} de ${resolvedQty} preguntas (algunas pueden estar desactualizadas).`, "warning");
                 }
 
-                State.questionSet = finalSet;
-                State.mode = "simulacro"; // challenges always in simulacro mode
-                State.durationSec = 0; // sin límite de tiempo en retos
+                State.questionSet = trimmedSet;
+                State.mode = "simulacro";
+                State.durationSec = 0;
                 State.currentIndex = 0;
                 State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
                 State.currentExamType = "Reto Amistoso";
                 State.startTime = Date.now();
                 State.pausedElapsedTime = 0;
                 State.examActive = true;
-                isFinishing = false; // Usar variable del scope del IIFE, no window
+                isFinishing = false;
 
                 if (typeof renderExamQuestion === "function") renderExamQuestion();
                 showView("view-exam");
@@ -4250,7 +4249,7 @@
 
                 State.activeChallengeId = id;
                 State.activeChallengeRole = "challenged";
-                window._startChallengeInternal(id, data.questionIndices);
+                window._startChallengeInternal(id, data.questionIndices, data.targetQty);
             } catch (err) {
                 console.error(err);
                 showNotification("Error al cargar el reto: " + err.message, "error");
@@ -4267,7 +4266,7 @@
                 State.activeChallengeId = id;
                 State.activeChallengeRole = "challenger";
                 if (typeof window._startChallengeInternal === "function") {
-                    window._startChallengeInternal(id, data.questionIndices || []);
+                    window._startChallengeInternal(id, data.questionIndices || [], data.targetQty);
                 } else {
                     showNotification("La lógica del examen aún no está lista. Recarga la página.", "warning");
                 }
