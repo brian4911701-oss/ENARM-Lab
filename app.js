@@ -7,6 +7,8 @@
         view: "view-dashboard",
         mode: "simulacro", // "estudio" | "simulacro"
         difficulty: "cualquiera",
+        selectedSpecialties: [], // Tracks checked specs in setup
+        setupQty: 10,           // Tracks slider value in setup
         questionSet: [],
         currentIndex: 0,
         answers: [],
@@ -1454,8 +1456,18 @@
         $$(".spec-item").forEach(item => {
             item.addEventListener("click", () => {
                 item.classList.toggle("checked");
+                // Keep State in sync with DOM
+                State.selectedSpecialties = $$(".spec-item.checked").map(i => i.dataset.spec);
             });
         });
+
+        if (qtySlider) {
+            // Also sync State.setupQty on every slider change
+            qtySlider.addEventListener("input", () => {
+                State.setupQty = parseInt(qtySlider.value, 10);
+            });
+            State.setupQty = parseInt(qtySlider.value, 10);
+        }
 
         $$(".mode-toggle-btn").forEach(btn => {
             btn.addEventListener("click", () => {
@@ -3818,11 +3830,12 @@
                     const selectedCbs = document.querySelectorAll(".challenge-friend-cb:checked");
                     if (selectedCbs.length === 0) return showNotification("Selecciona al menos un amigo.", "warning");
 
-                    // Steal config from current setup state
-                    const selectedSpecs = document.querySelectorAll(".spec-item.checked");
+                    // Read config from State (always in sync with DOM via listeners in initSetupLogic)
+                    // Fallback to reading DOM directly in case the user hasn't interacted yet
+                    const domSpecs = Array.from(document.querySelectorAll(".spec-item.checked")).map(i => i.dataset.spec);
+                    const specsArray = domSpecs.length > 0 ? domSpecs : State.selectedSpecialties;
                     const qtySlider = document.getElementById("setup-qty-slider");
-                    const qty = parseInt(qtySlider ? qtySlider.value : 10, 10);
-                    const specsArray = Array.from(selectedSpecs).map(i => i.dataset.spec);
+                    const qty = qtySlider ? parseInt(qtySlider.value, 10) : (State.setupQty || 10);
 
                     if (specsArray.length === 0 && State.selectedTopics.length === 0) {
                         return showNotification("Configura especialidad o temas en 'Añadir Materias' primero.", "warning");
