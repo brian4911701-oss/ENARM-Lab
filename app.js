@@ -3921,14 +3921,18 @@
                     // Using exact identifiers (not just parent index) ensures only the specifically
                     // selected sub-questions are loaded — not all sub-questions of the parent case.
                     const questionIndices = flatPrimary.map(q => {
-                        // Simple question: exact reference match
+                        // Simple question: exact reference match (same object, guaranteed correct)
                         const directIdx = QUESTIONS.indexOf(q);
                         if (directIdx !== -1) return { idx: directIdx, sub: -1 };
 
                         // Expanded sub-question (copy): find parent and specific sub-question index
+                        // IMPORTANT: also match specialty to avoid cross-specialty contamination
+                        // when two cases from different specialties have identically-worded sub-questions
                         for (let i = 0; i < QUESTIONS.length; i++) {
                             const ref = QUESTIONS[i];
                             if (!ref) continue;
+                            // Must be same specialty (expanded copies inherit parent's specialty)
+                            if (ref.specialty !== q.specialty) continue;
                             // Simple question with same text
                             if (ref.question === q.question && Array.isArray(ref.options) && ref.options.length > 0) {
                                 return { idx: i, sub: -1 };
