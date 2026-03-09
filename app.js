@@ -3492,16 +3492,11 @@
                             });
 
                             window.quickChallenge = (uid) => {
+                                // Save the pre-selected friend UID; the modal will pick it up when opened
+                                window._pendingChallengeUid = uid;
+                                // Navigate to setup so the user can configure the exam first
                                 if (typeof showView === "function") showView("view-setup");
-                                const btn = $("btn-create-challenge");
-                                if (btn) {
-                                    btn.click(); // Abre el modal y repuebla checkboxes
-                                    // Dar tiempo suficiente para que el modal repueble los checkboxes
-                                    setTimeout(() => {
-                                        const cbs = document.querySelectorAll(".challenge-friend-cb");
-                                        cbs.forEach(cb => cb.checked = (cb.value === uid));
-                                    }, 300);
-                                }
+                                showNotification("🎯 ¡Amigo pre-seleccionado! Configura tu examen y luego pulsa 'Retar a un Amigo ⚔️'.", "info");
                             };
 
                             const lbList = document.querySelector(".leaderboard-list");
@@ -3814,6 +3809,12 @@
                             `;
                             checkboxesContainer.appendChild(div);
                         });
+                        // If we arrived from quickChallenge, auto-select that friend
+                        if (window._pendingChallengeUid) {
+                            const target = checkboxesContainer.querySelector(`input[value="${window._pendingChallengeUid}"]`);
+                            if (target) target.checked = true;
+                            window._pendingChallengeUid = null; // consume it
+                        }
                     }
                     modal.style.display = "flex";
                 });
