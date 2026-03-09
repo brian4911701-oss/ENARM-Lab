@@ -3783,6 +3783,10 @@
         };
 
         const setupChallengeLogic = () => {
+            // Guard: only initialize once to avoid duplicate event listeners
+            if (window._challengeLogicReady) return;
+            window._challengeLogicReady = true;
+
             const btnCreate = $("btn-create-challenge");
             const modal = $("challenge-modal");
             const btnClose = $("btn-close-challenge-modal");
@@ -3905,6 +3909,13 @@
                     }
 
                     if (flatPrimary.length === 0) return showNotification("No hay suficientes preguntas.", "warning");
+
+                    // Final specialty guard: ensure no leak from topic-expansion or secondary pool
+                    if (specsArray.length > 0) {
+                        flatPrimary = flatPrimary.filter(q => specsArray.includes(q.specialty));
+                    }
+
+                    if (flatPrimary.length === 0) return showNotification("No hay preguntas de la especialidad seleccionada con esos filtros.", "warning");
 
                     // Map each selected question to an EXACT {idx, sub} identifier.
                     // Using exact identifiers (not just parent index) ensures only the specifically
@@ -4569,10 +4580,8 @@
                     }
 
                     initCloudFeatures();
-                    // Ensure challenge logic is always initialized after login
-                    if (typeof setupChallengeLogic === 'function') {
-                        setupChallengeLogic();
-                    }
+                    // Note: setupChallengeLogic is already called from onAuthStateChanged callback.
+                    // Do NOT call it again here to avoid duplicate event listeners.
                 }
 
                 const providerBtn = document.querySelector(".auth-provider-btn");
