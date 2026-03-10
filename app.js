@@ -47,6 +47,62 @@
     const $ = (id) => document.getElementById(id);
     const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
+    // ---------------------------------------------------------------------------
+    // Topic Normalization (Unificación de subtemas y GPCs)
+    // ---------------------------------------------------------------------------
+    const getUnifiedTopicName = (text) => {
+        if (!text) return '';
+        let t = text.trim();
+        if (!t) return '';
+
+        let lower = t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+        if (lower.includes('ictericia') && (lower.includes('neonatal') || lower.includes('fisiologica') || lower.includes('patologica') || lower.includes('hiperbilirrubinemia') || lower.includes('leche materna'))) {
+            return 'Ictericia Neonatal';
+        }
+        if (lower.includes('apendicitis')) return 'Apendicitis Aguda';
+        if (lower.includes('colecistitis') || lower.includes('colelitiasis') || lower.includes('patologia biliar')) return 'Patología Biliar';
+        if (lower.includes('hernia') && (lower.includes('inguinal') || lower.includes('umbilical') || lower.includes('pared abdominal') || lower.includes('crural'))) return 'Hernias de la Pared Abdominal';
+        if (lower.includes('preeclampsia') || lower.includes('eclampsia') || lower.includes('hipertensivos del embarazo')) return 'Enfermedad Hipertensiva del Embarazo';
+        if (lower.includes('infarto agudo') || lower.includes('iam') || lower.includes('cardiopatia isquemica')) return 'Cardiopatía Isquémica';
+        if (lower.includes('diabetes mellitus') && !lower.includes('embarazo') && !lower.includes('gestacional')) return 'Diabetes Mellitus';
+        if (lower.includes('diabetes gestacional') || (lower.includes('diabetes') && lower.includes('embarazo'))) return 'Diabetes Gestacional';
+        if (lower.includes('hipotiroidismo')) return 'Hipotiroidismo';
+        if (lower.includes('hipertiroidismo')) return 'Hipertiroidismo';
+        if (lower.includes('fractura')) return 'Fracturas';
+        if (lower.includes('quemadura')) return 'Quemaduras';
+        if (lower.includes('asma')) return 'Asma';
+        if (lower.includes('epoc') || lower.includes('enfermedad pulmonar obstructiva')) return 'EPOC';
+        if (lower.includes('vih') || lower.includes('sida')) return 'VIH / SIDA';
+        if (lower.includes('tuberculosis')) return 'Tuberculosis';
+        if (lower.includes('neumonia')) return 'Neumonías';
+        if (lower.includes('lupus') || lower.includes('les')) return 'Lupus Eritematoso Sistémico';
+        if (lower.includes('artritis reumatoide')) return 'Artritis Reumatoide';
+        if (lower.includes('covid') || lower.includes('sars-cov-2')) return 'COVID-19';
+        if (lower.includes('endometriosis')) return 'Endometriosis';
+        if (lower.includes('hemorragia') && lower.includes('obstetrica')) return 'Hemorragia Obstétrica';
+
+        // Eliminar prefijos de GPC, NOM y palabras de relleno
+        let cleaned = t.replace(/^(GPC|NOM-[\w\-]+([,\s]*(Para\s*la|Para\s*el))?)\s*(?:Diagn[oó]stico[,\s]*|Tratamiento[,\s]*|Manejo[,\s]*|Prevenci[oó]n[,\s]*|Control[,\s]*|Atenci[oó]n[,\s]*|y\s*)*\s*(de\s*la\s*|del\s*|de\s*el\s*|de\s*las\s*|de\s*los\s*|de\s*|en\s*la\s*|en\s*el\s*|en\s*)?/i, '')
+            .replace(/\.$/, '').trim();
+
+        if (cleaned !== t && cleaned.length > 3) {
+            cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+            return cleaned;
+        }
+
+        return t;
+    };
+
+    // Normalizar la base de datos de preguntas cargada en questions.js globalmente
+    if (typeof QUESTIONS !== 'undefined' && Array.isArray(QUESTIONS)) {
+        QUESTIONS.forEach(q => {
+            if (q.tema) q.tema = getUnifiedTopicName(q.tema);
+            if (q.subtema) q.subtema = getUnifiedTopicName(q.subtema);
+            if (q.gpcReference) q.gpcReference = getUnifiedTopicName(q.gpcReference);
+        });
+    }
+
     const showNotification = (msg, type = 'info') => {
         let container = $('notification-container');
         if (!container) {
@@ -360,209 +416,122 @@
     // TEMARIO OFICIAL ENARM (Basado en el flujo temático)
     // ---------------------------------------------------------------------------
     const OFFICIAL_TEMARIO = [
+        "Ginecología y Obstetricia",
         "Introducción: Ciclo genital, Esterilidad y Anticonceptivos",
-        "Turner",
-        "Morris",
-        "Rokitansky",
         "Amenorreas Primarias y Secundarias",
         "Origen no anatómico: SOP",
         "Endometriosis",
         "Hemorragia Uterina Anormal",
-        "Osteoporosis",
-        "Piso Pélvico",
         "Menopausia y Climaterio",
-        "Origen anatómico: Miomatosis",
-        "Pólipos",
-        "Hemorragia Uterina Anormal",
         "Oncología Ginecología P1: Cáncer de Endometrio y Ovario",
         "Oncología Ginecología P2: Tamizaje CACU, CaVa, Vagina y Vulva",
         "Patología Mamaria: Benigna y Cáncer de Mama",
-        "Vaginitis",
-        "Vaginosis",
-        "EPI",
-        "Infecciones de Transmisión Sexual",
-        "Cambios Fisiológicos en el Embarazo y Control Prenatal",
-        "Aborto",
-        "Ectópico",
-        "Mola",
+        "Infecciones Ginecología",
         "Hemorragias del Primer Trimestre",
-        "Placenta Previa",
-        "Desprendimiento",
         "Hemorragias del Tercer Trimestre",
         "Diabetes Gestacional",
-        "Preeclampsia / Eclampsia",
         "Trastornos Hipertensivos del Embarazo",
-        "Isoinmunización",
-        "Polihidramnios",
         "Complicaciones del Embarazo",
         "Trabajo de Parto y Mecanismos del Parto",
         "Inducción, Conducción y Distocias",
         "Sepsis Puerperal e Infección de Herida Quirúrgica",
         "Choque Obstétrico y Hemorragia Obstétrica",
         "Puerperio Fisiológico y Lactancia Materna",
+        "Pediatría",
         "Introducción a la Pediatría / Reanimación Neonatal",
-        "Hijo de madre diabética",
-        "Electrolitos",
         "Patología Neonatal Metabólica",
-        "Sepsis",
-        "Conjuntivitis",
-        "Onfalitis",
         "Patología Neonatal Infecciosa",
-        "Membrana hialina",
-        "TTRN",
-        "SAM",
         "Patología Respiratoria Neonatal",
-        "Malformaciones",
-        "Onfalocele",
-        "Gastrosquisis",
         "Patología Neonatal Quirúrgica",
         "Infecciones TORCH y VIH Pediátrico",
         "Estenosis Hipertrófica de Píloro",
         "Ictericias Neonatales",
         "Tamiz Metabólico y Auditivo",
         "Crecimiento y Desarrollo P1",
-        "Hitos del desarrollo",
         "Crecimiento y Desarrollo P2",
-        "Esquema Nacional",
         "Vacunación",
-        "Reflujo",
-        "Intususcepción",
         "Patología Gastrointestinal",
         "Enfermedad Diarreica Aguda y Planes de Hidratación",
         "Diarrea Crónica y Síndromes de Mala Absorción",
         "Parasitosis en Pediatría",
-        "Bronquiolitis",
-        "Laringotraqueítis",
         "Patología Respiratoria del Lactante",
         "Neumonías y sus Complicaciones",
         "Asma Pediátrica",
-        "Otitis",
-        "Faringitis",
         "Infecciones de Vías Respiratorias Superiores",
         "Enfermedades Exantemáticas",
-        "Maltrato",
-        "Intoxicaciones",
-        "Quemaduras",
         "Urgencias Pediátricas",
         "Nefrología y Urología Pediátrica",
-        "Cianógenas y Acianógenas",
         "Cardiopatías Congénitas",
-        "Leucemias",
-        "Linfomas",
-        "Purpuras",
         "Onco-Hematología Pediátrica",
         "Neuropediatría",
         "Ortopedia Pediátrica",
-        "Especialidades",
         "Genética y Alteraciones Cromosómicas",
+        "Cirugía General",
         "Apendicitis Aguda",
         "Patología de Vesícula y Vías Biliares",
         "Pancreatitis Aguda",
-        "Acalasia",
-        "ERGE",
         "Patología Quirúrgica de Esófago",
-        "Ulcera péptica",
         "Patología de Estómago y Duodeno",
         "Abdomen Agudo y Oclusión Intestinal",
         "Patología de Intestino Delgado",
-        "Divertículos",
         "Patología de Colon y Recto",
-        "Fisuras",
-        "Hemorroides",
-        "Abscesos",
         "Patología Perianal",
         "Isquemia Mesentérica",
         "Hernias de la Pared Abdominal",
         "Hernias Inguinales y Crurales",
         "Urología P1: Litiasis Renal y Tumores",
         "Urología P2: Hiperplasia Prostática y Cáncer de Próstata",
-        "Enfoque Quirúrgico/Urológico",
         "Infecciones de Transmisión Sexual",
         "ATLS P1: Evaluación Inicial y Manejo de Vía Aérea",
         "ATLS P2: Trauma de Tórax y Abdomen",
-        "Antídotos principales",
         "Toxicología",
-        "Alacrán",
-        "Araña",
-        "Serpiente",
         "Mordeduras y Picaduras",
         "Quemaduras y Reanimación",
-        "Generalidades",
         "Oncocirugía P1",
         "Oncocirugía P2",
-        "Glaucoma",
-        "Catarata",
-        "Retinopatías",
         "Oftalmología P1",
-        "Ojo rojo",
-        "Trauma ocular",
         "Oftalmología P2",
-        "Patología de oído",
         "Otorrinolaringología P1",
-        "Nariz y Garganta",
         "Otorrinolaringología P2",
-        "Síndrome Compartimental",
         "Trauma: Generalidades y Complicaciones",
-        "Fracturas",
         "Patología de Extremidad Superior",
-        "Cadera",
-        "Tobillo",
         "Patología de Extremidad Inferior",
+        "Medicina Interna",
         "Conceptos básicos ENARM",
         "Epidemiología",
         "Extra: Clase de Inglés Médico",
         "Infectología: Principios, Antibióticos y Resistencia",
         "Tuberculosis",
         "VIH / SIDA",
-        "Dengue",
-        "Zika",
-        "Rickettsia",
         "Enfermedades transmitidas por Vector",
-        "Rabia",
-        "Tétanos",
-        "Brucella",
         "Zoonosis",
-        "Candidiasis",
-        "Histoplasmosis",
         "Patología Fúngica",
         "Neumología: Neumonías Ocupacionales",
         "Derrame Pleural y Empiema",
-        "Hiper/Hipo/Cáncer",
         "Endocrinología: Patología Tiroidea",
         "Síndrome Metabólico y Dislipidemias",
         "Diabetes Mellitus: Fisiopatología y Diagnóstico",
-        "Insulinas y Orales",
         "Diabetes Mellitus: Tratamiento",
-        "Cetoacidosis / Estado Hiperosmolar",
         "Complicaciones Agudas de Diabetes",
         "Patología de Glándula Suprarrenal",
-        "Ferropénica",
         "Hematología: Anemias Microcíticas",
         "Hematología: Anemias Macrocíticas y Hemolíticas",
         "Hematología: Leucemias y Linfomas",
         "Gastroenterología: Enfermedad Acidopéptica y H. Pylori",
         "Gastroenterología: Cirrosis y sus complicaciones",
         "Reumatología: Artritis Reumatoide",
-        "LES",
         "Reumatología: Lupus Eritematoso Sistémico",
         "Reumatología: Vasculitis y Gota",
-        "LRA",
         "Nefrología: Lesión Renal Aguda",
-        "ERC",
         "Nefrología: Enfermedad Renal Crónica",
         "Nefrología: Glomerulopatías y Síndromes Nefrótico/Nefrítico",
         "Cardiología: Electrocardiograma básico y Arritmias",
-        "Angina e Infarto",
         "Cardiología: Cardiopatía Isquémica",
         "Cardiología: Insuficiencia Cardíaca",
         "Hipertensión Arterial Sistémica",
         "Infecto-Cardio: Endocarditis y Pericarditis",
-        "EVC",
         "Neurología: Enfermedad Vascular Cerebral",
-        "Parkinson/Alzheimer",
         "Neurología: Enfermedades Neurodegenerativas",
-        "Migraña",
-        "Tensional",
         "Neurología: Cefaleas",
         "Neurología: Crisis Convulsivas y Epilepsia",
         "Dermatología: Tiñas y Acné",

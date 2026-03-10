@@ -25848,6 +25848,2431 @@ const QUESTIONS = [
         "gpcReference": ""
       }
     ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "subtema": "SÍNDROME NEFRÓTICO (ENFERMEDAD DE CAMBIOS MÍNIMOS)",
+    "difficulty": "media",
+    "case": "Preescolar masculino de 4 años es traído por su madre debido a \"hinchazón\" de párpados que empeora por las mañanas y edema en extremidades inferiores desde hace 5 días. No refiere fiebre ni antecedentes de infección reciente. A la exploración: Edema bipalpebral y pretibial con fóvea (++), ascitis leve. Tensión arterial 95/60 mmHg (normal para su edad). El examen general de orina muestra: Proteínas (++++), ausencia de eritrocitos y cilindros. Albúmina sérica de 2.0 g/dL y colesterol total de 280 mg/dL.",
+    "questions": [
+      {
+        "question": "De acuerdo con la GPC, ¿cuál es el diagnóstico clínico más probable y cuál es el criterio de proteinuria para definir este síndrome en pediatría?",
+        "options": [
+          "Síndrome Nefrítico; Proteinuria >50 mg/kg/día.",
+          "Glomerulonefritis postestreptocócica; Albúmina <3 g/dL.",
+          "Síndrome Nefrótico (Cambios Mínimos); Proteinuria >40 mg/m2/hora (o >50 mg/kg/día)",
+          "Nefropatía por IgA; Relación proteína/creatinina <0.2."
+        ],
+        "answerIndex": 2,
+        "explanation": "El Síndrome Nefrótico se define por la tríada: 1) Proteinuria masiva (>40 mg/m2/h), 2) Hipoalbuminemia (<2.5 g/dL) y 3) Edema. La Enfermedad de Cambios Mínimos representa el 85-90% de los casos en preescolares. El aumento de lípidos (colesterol/triglicéridos) es una respuesta compensatoria del hígado a la baja presión oncótica.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento inicial de elección (primera línea) para este paciente y qué indicación absoluta obligaría a realizar una biopsia renal temprana?",
+        "options": [
+          "Ciclofosfamida; Proteinuria de 1 gramo.",
+          "Esteroides (Prednisona) a 2 mg/kg/día por 4-6 semanas; Edad <1 año o >10 años (sospecha de otra histología)",
+          "Diuréticos de asa únicamente; Presencia de edema palpebral.",
+          "Albúmina humana al 20%; Hipercolesterolemia."
+        ],
+        "answerIndex": 1,
+        "explanation": "La gran mayoría de los niños con cambios mínimos responden a los esteroides (corticosensibles). No se biopsia de entrada si el paciente tiene entre 1 y 10 años y clínica típica. Se reserva la biopsia para: menores de 1 año (nefrótico congénito), mayores de 10 años, hematuria macroscópica, hipertensión persistente o falta de respuesta al esteroide (corticorresistencia). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "subtema": "SÍNDROME NEFRÍTICO (GLOMERULONEFRITIS POSTESTREPTOCÓCICA)",
+    "difficulty": "alta",
+    "case": "Escolar de 7 años acude por presentar orina color \"té\" o \"refresco de cola\", edema facial leve y cefalea. La madre refiere que hace 2 semanas el niño tuvo un cuadro de faringoamigdalitis purulenta que no recibió tratamiento antibiótico. A la exploración: TA 130/90 mmHg (elevada para la edad), edema periorbitario. Laboratorio: Creatinina ligeramente elevada, EGO con hematuria macroscópica, eritrocitos dismórficos y cilindros hemáticos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el marcador inmunológico que se encuentra disminuido en el 90% de estos pacientes durante la fase aguda y cuánto tiempo suele tardar en normalizarse?",
+        "options": [
+          "Complemento C4; 2 semanas.",
+          "Anticuerpos antinucleares (ANA); 1 año.",
+          "Complemento C3; 6 a 8 semanas",
+          "Factor Reumatoide; 4 semanas."
+        ],
+        "answerIndex": 2,
+        "explanation": "La Glomerulonefritis Postestreptocócica es el prototipo del síndrome nefrítico. Es mediada por inmunocomplejos que consumen el complemento por la vía alternativa, por lo que el C3 bajo es un hallazgo clave. Si el C3 permanece bajo más de 8 semanas, se debe sospechar de Glomerulonefritis Membranoproliferativa o Lupus y realizar biopsia.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el pilar del tratamiento para las complicaciones agudas (hipertensión y edema) en este síndrome?",
+        "options": [
+          "Restricción de líquidos y administración de diuréticos de asa (Furosemida)",
+          "Uso de Esteroides a dosis altas y Ciclosporina.",
+          "Antibióticos IV para eliminar el antígeno de forma inmediata.",
+          "Plasmaféresis urgente."
+        ],
+        "answerIndex": 0,
+        "explanation": "El manejo del síndrome nefrítico es de soporte. La hipertensión y el edema son por sobrecarga de volumen (retención de sodio y agua). Los diuréticos de asa son la primera línea. Los antibióticos se dan solo si la infección por estreptococo sigue activa (para evitar contagio), pero no cambian el curso de la glomerulonefritis ya establecida.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / ONCOLOGÍA",
+    "subtema": "LEUCEMIA LINFOBLÁSTICA AGUDA (LLA)",
+    "difficulty": "media",
+    "case": "Escolar de 4 años es llevado a consulta por presentar astenia, adinamia y picos febriles no cuantificados de 3 semanas de evolución. La madre refiere aparición de \"manchas moradas\" en piernas sin traumatismo previo. A la exploración física: Palidez generalizada intensa, petequias y equimosis en extremidades, linfadenopatía cervical y axilar bilateral (no dolorosa, de consistencia firme) y hepatosplenomegalia (hígado a 4 cm y bazo a 3 cm debajo del borde costal).",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio inicial indispensable para sospechar el diagnóstico y cuál es el estándar de oro para la confirmación definitiva?",
+        "options": [
+          "Biopsia de ganglio linfático; Inmunofenotipo.",
+          "Citometría hemática completa (BH); Aspirado de médula ósea con citometría de flujo",
+          "Ultrasonido abdominal; Frotis de sangre periférica.",
+          "Radiografía de tórax; Niveles de Deshidrogenasa Láctica (DHL)."
+        ],
+        "answerIndex": 1,
+        "explanation": "La LLA es el cáncer más frecuente en la edad pediátrica (pico entre 2 y 5 años). La BH suele mostrar citopenias (anemia, trombocitopenia) y leucocitosis (o leucopenia) con presencia de blastos en el frotis. El diagnóstico de certeza se establece con la presencia de ≥20% de blastos en el aspirado de médula ósea.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál de los siguientes se considera un factor de MUY MAL pronóstico (alto riesgo) al momento del diagnóstico en un paciente con LLA?",
+        "options": [
+          "Edad entre 1 y 9 años.",
+          "Cuenta de leucocitos inicial <50,000/mm3.",
+          "Presencia de la translocación t(9;22) [Cromosoma Filadelfia]",
+          "Respuesta rápida a la quimioterapia de inducción (día 8)."
+        ],
+        "answerIndex": 2,
+        "explanation": "Los criterios de riesgo son vitales. Son de riesgo estándar: edad 1-9 años y leucocitos <50,000. Son de alto riesgo: <1 año o >10 años, leucocitos >50,000, afectación a sistema nervioso central y citogenética desfavorable como la t(9;22). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / ONCOLOGÍA",
+    "subtema": "LINFOMA DE HODGKIN VS NO HODGKIN",
+    "difficulty": "alta",
+    "case": "Adolescente masculino de 15 años presenta una masa supraclavicular derecha, de crecimiento lento, no dolorosa, de consistencia \"gomosa\", de 2 meses de evolución. Refiere que en el último mes ha presentado sudoración nocturna profusa que obliga a cambiar la ropa de cama y pérdida de peso no intencionada de 6 kg.",
+    "questions": [
+      {
+        "question": "¿Cómo se denominan los síntomas sistémicos descritos (fiebre, sudoración, pérdida de peso) y qué hallazgo histopatológico es patognomónico de la enfermedad de Hodgkin?",
+        "options": [
+          "Síntomas B; Células de Reed-Sternberg",
+          "Síntomas paraneoplásicos; Células en \"cielo estrellado\".",
+          "Síntomas constitucionales; Blastos con bastones de Auer.",
+          "Reacción leucemoide; Rosetas de Homer-Wright."
+        ],
+        "answerIndex": 0,
+        "explanation": "El Linfoma de Hodgkin es más común en adolescentes. Los \"Síntomas B\" (fiebre >38°C, sudoración nocturna y pérdida de >10% del peso en 6 meses) tienen valor pronóstico y estadificador. Histológicamente, la célula de Reed-Sternberg (con apariencia de \"ojos de búho\") es el sello distintivo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Un preescolar de 5 años presenta dolor abdominal agudo y una masa palpable en fosa ilíaca derecha. En la biopsia se observa un patrón de \"cielo estrellado\" (macrófagos con restos celulares sobre un fondo de linfocitos B neoplásicos). ¿Cuál es el diagnóstico más probable y a qué virus se asocia frecuentemente?",
+        "options": [
+          "Linfoma de Hodgkin; Virus de la Hepatitis B.",
+          "Linfoma de Burkitt (Linfoma No Hodgkin); Virus de Epstein-Barr",
+          "Neuroblastoma; Citomegalovirus.",
+          "Tumor de Wilms; Virus del Papiloma Humano."
+        ],
+        "answerIndex": 1,
+        "explanation": "El Linfoma de Burkitt es el tumor de crecimiento más rápido en humanos. La variante endémica se asocia fuertemente al virus de Epstein-Barr (EBV). El patrón histológico de \"cielo estrellado\" es la clave clásica para identificarlo en los exámenes.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / ONCOLOGÍA",
+    "subtema": "TUMOR DE WILMS (NEFROBLASTOMA)",
+    "difficulty": "media",
+    "case": "Preescolar femenino de 3 años es traída por su madre quien, al bañarla, notó una \"masa\" en el lado derecho del abdomen. La niña se encuentra asintomática, sin dolor ni fiebre. A la exploración física: Masa abdominal en flanco derecho, lisa, firme, que NO cruza la línea media. Se documenta tensión arterial de 110/75 mmHg (percentil >95 para su edad). El examen de orina muestra hematuria microscópica.",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio de imagen inicial para el abordaje de esta masa y cuál es el hallazgo más probable en el riñón afectado?",
+        "options": [
+          "Radiografía de abdomen; Presencia de calcificaciones finas.",
+          "Ultrasonido renal/abdominal; Masa sólida intrarenal que desplaza el parénquima normal",
+          "Gammagrafía con DMSA; Áreas de hipocaptación generalizada.",
+          "Urografía excretora; Signo de la \"flor de loto\"."
+        ],
+        "answerIndex": 1,
+        "explanation": "El Tumor de Wilms es el tumor renal más frecuente en pediatría. Se presenta típicamente como una masa abdominal asintomática que respeta la línea media (a diferencia del neuroblastoma). La hipertensión arterial se presenta en el 25% de los casos debido a la activación del sistema renina-angiotensina por isquemia del parénquima renal comprimido.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Con qué asociación de malformaciones congénitas se relaciona clásicamente el Tumor de Wilms (Acrónimo WAGR)?",
+        "options": [
+          "Wilms, Aniridia, Malformaciones Genitourinarias y Retraso mental",
+          "Wilms, Atresia de coanas, Glaucoma y Raquitismo.",
+          "Wilms, Adenopatías, Glomerulonefritis y Rabdomiólisis.",
+          "Wilms, Albinismo, Gigantismo y Reflujo."
+        ],
+        "answerIndex": 0,
+        "explanation": "El síndrome WAGR es una deleción en el cromosoma 11p13 (gen WT1). La aniridia (ausencia de iris) es el dato clínico extra-abdominal más preguntado que debe hacernos sospechar de un Tumor de Wilms subyacente. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / ONCOLOGÍA",
+    "subtema": "NEUROBLASTOMA",
+    "difficulty": "alta",
+    "case": "Lactante de 14 meses presenta irritabilidad, pérdida de peso y una masa abdominal de bordes irregulares, consistencia pétrea, que cruza la línea media. A la exploración física se observan equimosis periorbitarias bilaterales (\"ojos de mapache\") y proptosis.",
+    "questions": [
+      {
+        "question": "¿Cuál es el origen celular de este tumor y qué marcadores urinarios son fundamentales para el diagnóstico?",
+        "options": [
+          "Epitelio tubular renal; Ácido vanilmandélico (AVM) y ácido homovanílico (AHV).",
+          "Células de la cresta neural (ganglios simpáticos o médula adrenal); Catecolaminas urinarias (AVM y AHV)",
+          "Tejido linfoide; Ácido úrico y DHL.",
+          "Células germinales; Alfa-fetoproteína."
+        ],
+        "answerIndex": 1,
+        "explanation": "El neuroblastoma es el tumor extracraneal sólido más frecuente en lactantes. Deriva del sistema nervioso simpático, por lo que el 50% se origina en la glándula suprarrenal. A diferencia del Wilms, este es muy irregular, cruza la línea media y frecuentemente presenta calcificaciones finas en la radiografía o TAC.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la causa de los \"ojos de mapache\" descritos en el caso clínico?",
+        "options": [
+          "Infiltración por leucemia.",
+          "Metástasis óseas a la base del cráneo (órbita)",
+          "Trombocitopenia severa.",
+          "Síndrome de vena cava superior."
+        ],
+        "answerIndex": 1,
+        "explanation": "El signo de los \"ojos de mapache\" en un niño con masa abdominal es patognomónico de metástasis de neuroblastoma a los huesos de la órbita (Síndrome de Hutchinson). Otro dato curioso es el síndrome de Opsoclonus-Mioclonus (\"pies y ojos danzantes\"), que es un fenómeno paraneoplásico asociado a este tumor.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / ORTOPEDIA",
+    "subtema": "DISPLASIA EN EL DESARROLLO DE LA CADERA (DDC)",
+    "difficulty": "media",
+    "case": "Lactante femenino de 2 meses de edad, nacida por cesárea debido a presentación de nalgas (pélvica). La madre refiere que nota una \"asimetría\" en las piernas. A la exploración física se observa asimetría de pliegues en muslos y glúteos. Al realizar la exploración de cadera, se percibe un \"clic\" palpable al abducir la cadera derecha (Maniobra de Ortolani positiva) y la cadera se luxa fácilmente al aducir y presionar hacia atrás (Maniobra de Barlow positiva).",
+    "questions": [
+      {
+        "question": "¿Cuál es el factor de riesgo más importante para DDC presente en este caso y cuál es el estudio de imagen de elección antes de los 4 meses de vida?",
+        "options": [
+          "Género femenino; Radiografía AP de pelvis.",
+          "Presentación de nalgas (pélvica); Ultrasonido de cadera (método de Graf)",
+          "Primiparidad; Tomografía computarizada.",
+          "Oligohidramnios; Gammagrafía ósea."
+        ],
+        "answerIndex": 1,
+        "explanation": "La DDC es más común en niñas y en productos de embarazos con poco espacio intrauterino (pélvicos, primigestas, oligohidramnios). El ultrasonido es el estándar de oro antes de los 4 meses porque la cabeza del fémur aún es cartílago y no se ve en rayos X. Después de los 4 meses, se prefieren las radiografías para ver el núcleo de osificación y medir los ángulos (Índice acetabular).",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento de elección para una cadera luxable o displásica en un lactante menor de 6 meses?",
+        "options": [
+          "Doble pañal y observación.",
+          "Reducción quirúrgica inmediata.",
+          "Arnés de Pavlik (ortesis de abducción)",
+          "Yeso pelvipedio por 12 semanas."
+        ],
+        "answerIndex": 2,
+        "explanation": "El Arnés de Pavlik es el tratamiento de primera línea en menores de 6 meses. Mantiene la cadera en flexión y abducción, permitiendo que la cabeza del fémur se asiente en el acetábulo y estimule su formación correcta. El uso de \"doble pañal\" ya no se recomienda por falta de evidencia. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / REUMATOLOGÍA",
+    "subtema": "ARTRITIS IDIOPÁTICA JUVENIL (AIJ)",
+    "difficulty": "alta",
+    "case": "Escolar de 8 años presenta dolor e inflamación en rodilla derecha y tobillo izquierdo de 2 meses de evolución. Refiere rigidez matutina que dura más de una hora y mejora con la actividad. No hay fiebre ni síntomas sistémicos. A la exploración física: Artritis franca en 2 articulaciones. Los exámenes reportan: Factor Reumatoide negativo, Proteína C Reactiva elevada y Anticuerpos Antinucleares (ANA) positivos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el subtipo de AIJ más probable en este paciente y qué complicación extraarticular grave requiere tamizaje oftalmológico urgente?",
+        "options": [
+          "AIJ Sistémica (Enfermedad de Still); Pericarditis.",
+          "AIJ Oligoarticular (≤4 articulaciones); Uveítis anterior crónica asintomática",
+          "AIJ Poliarticular (≥5 articulaciones); Nódulos subcutáneos.",
+          "Artritis relacionada con Entesitis; Espondilitis."
+        ],
+        "answerIndex": 1,
+        "explanation": "La AIJ Oligoarticular es la forma más frecuente. Los pacientes con ANA positivos tienen un riesgo muy elevado de desarrollar uveítis anterior, la cual es \"silenciosa\" (no duele ni se pone el ojo rojo) pero puede causar ceguera si no se detecta con lámpara de hendidura.",
+        "gpcReference": ""
+      },
+      {
+        "question": "En la AIJ de inicio sistémico (Enfermedad de Still), ¿cuál es la tríada clínica clásica que la diferencia de los otros subtipos?",
+        "options": [
+          "Artritis, fiebre diaria en picos (\"en agujas\") y exantema rosa evanescente (salmón)",
+          "Dolor de espalda, uveítis y HLA-B27 positivo.",
+          "Micrognatia, rigidez de cuello y factor reumatoide positivo.",
+          "Hepatosplenomegalia, ictericia y anemia hemolítica."
+        ],
+        "answerIndex": 0,
+        "explanation": "La AIJ Sistémica es un diagnóstico de exclusión. El exantema suele aparecer junto con los picos febriles (típicamente vespertinos) y desaparece cuando la fiebre baja. Es la variante con mayor afectación del estado general y riesgo de Síndrome de Activación Macrofágica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "SARAMPIÓN (PRIMERA ENFERMEDAD)",
+    "difficulty": "media",
+    "case": "Lactante de 18 meses, sin esquema de vacunación completo, presenta fiebre de 39.5°C, tos intensa, coriza y conjuntivitis con fotofobia de 4 días de evolución. A la exploración de la mucosa oral se observan pequeñas manchas blancas sobre un halo eritematoso a la altura de los molares. 24 horas después, aparece un exantema maculopapular eritematoso que inicia detrás de las orejas y en la línea del pelo, extendiéndose de forma cefalocaudal.",
+    "questions": [
+      {
+        "question": "¿Cuál es el nombre de las manchas orales descritas y cuál es la complicación neurológica TARDÍA (años después) más grave de esta infección?",
+        "options": [
+          "Manchas de Forchheimer; Encefalitis aguda.",
+          "Manchas de Koplik; Panencefalitis esclerosante subaguda (PEESA)",
+          "Lengua en fresa; Meningitis aséptica.",
+          "Líneas de Pastia; Absceso cerebral."
+        ],
+        "answerIndex": 1,
+        "explanation": "Las manchas de Koplik son patognomónicas del sarampión y aparecen en la fase prodrómica. El exantema es morbiliforme y confluyente. La PEESA es una complicación degenerativa rara pero mortal que ocurre de 5 a 10 años después de la infección primaria por persistencia de un virus defectuoso en el SNC. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "VARICELA (HERPES VIRUS 3)",
+    "difficulty": "baja",
+    "case": "Preescolar de 3 años presenta fiebre leve y malestar general. Horas después inicia con lesiones cutáneas que brotan en oleadas: primero máculas, que evolucionan a pápulas, luego a vesículas con base eritematosa (\"gota de rocío sobre pétalo de rosa\") y finalmente costras. En la exploración se observan todos los estadios de las lesiones al mismo tiempo. El niño refiere mucho prurito.",
+    "questions": [
+      {
+        "question": "¿Cómo se le denomina al hallazgo de encontrar lesiones en diferentes estadios de evolución y cuál es la complicación supurativa más frecuente?",
+        "options": [
+          "Signo de la bofetada; Neumonía viral.",
+          "Pleomorfismo regional; Sobreinfección bacteriana de la piel (S. aureus / S. pyogenes)",
+          "Exantema súbito; Ataxia cerebelosa.",
+          "Enantema de Nagayama; Celulitis orbitaria."
+        ],
+        "answerIndex": 1,
+        "explanation": "El pleomorfismo es la clave de la varicela. Las lesiones son intensamente pruriginosas, lo que facilita el rascado y la ruptura de la barrera cutánea, haciendo que la impetiginización o la celulitis sean las complicaciones más comunes. La complicación neurológica aguda más frecuente es la cerebelitis (ataxia). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "ESCARLATINA (S. PYOGENES)",
+    "difficulty": "media",
+    "case": "Escolar de 6 años con dolor faríngeo intenso y fiebre. A la exploración: faringe hiperémica con exudado purulento, lengua con capa blanca que luego se desprende dejando papilas rojas (\"lengua en fresa\"). Presenta un exantema eritematoso generalizado, de textura rugosa (papel de lija), que se acentúa en los pliegues cutáneos (axilas e ingles) formando líneas rojas que no blanquean a la presión.",
+    "questions": [
+      {
+        "question": "¿Cómo se llaman las líneas descritas en los pliegues y cuál es el tratamiento de elección para prevenir la Fiebre Reumática?",
+        "options": [
+          "Líneas de Pastia; Penicilina V potásica u oral por 10 días",
+          "Manchas de Janeway; Amoxicilina dosis única.",
+          "Signo de Nikolsky; Ceftriaxona IV.",
+          "Triada de Hutchinson; Eritromicina."
+        ],
+        "answerIndex": 0,
+        "explanation": "La escarlatina es causada por las exotoxinas pirogénicas del Estreptococo betahemolítico del grupo A. Las líneas de Pastia y la piel de lija son clásicas. El objetivo primordial del tratamiento antibiótico (Penicilina o Amoxicilina) es la erradicación del microorganismo para evitar complicaciones no supurativas como la Fiebre Reumática. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "ERITEMA INFECCIOSO (QUINTA ENFERMEDAD)",
+    "difficulty": "baja",
+    "case": "Escolar de 7 años que acude por presentar eritema brillante en ambas mejillas, respetando el área peribucal, dándole un aspecto de \"niño abofeteado\". No tiene fiebre ni ataque al estado general. Dos días después aparece un exantema reticulado (en encaje) en tronco y extremidades que se acentúa con el sol o el ejercicio.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico y qué complicación grave puede causar en pacientes con anemias hemolíticas crónicas (ej. Esferocitosis)?",
+        "options": [
+          "Virus Herpes 6; Convulsiones febriles.",
+          "Parvovirus B19; Crisis aplásica transitoria",
+          "Virus Coxsackie A16; Miocarditis.",
+          "Reovirus; Intususcepción."
+        ],
+        "answerIndex": 1,
+        "explanation": "El Parvovirus B19 tiene tropismo por los precursores eritroides en la médula ósea. En niños sanos solo causa el exantema (que es un fenómeno inmunológico, por lo que el niño ya no contagia cuando sale la \"bofetada\"), pero en pacientes con recambio eritrocitario alto puede detener la producción de glóbulos rojos por completo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "TOS FERINA (SÍNDROME COQUELUCHOIDE)",
+    "difficulty": "alta",
+    "case": "Lactante de 4 meses con esquema de vacunación incompleto. Acude por cuadro de 2 semanas de evolución caracterizado por accesos de tos paroxística, cianosante y emetizante. La madre refiere que al final de la tos, el niño hace un ruido agudo al inspirar (\"estridor o gallo\"). Entre los accesos de tos, el paciente se observa asintomático. En la BH destaca leucocitosis de 30,000 con 80% de linfocitos (reacción leucemoide).",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico, la fase clínica en la que se encuentra el paciente y el tratamiento de elección?",
+        "options": [
+          "Bordetella pertussis; Fase paroxística; Azitromicina",
+          "Haemophilus influenzae; Fase catarral; Ceftriaxona.",
+          "Mycoplasma pneumoniae; Fase de convalecencia; Claritromicina.",
+          "Virus Sincitial Respiratorio; Fase de estado; Soporte con oxígeno."
+        ],
+        "answerIndex": 0,
+        "explanation": "La tos ferina tiene 3 fases: Catarral (contagiosa, síntomas de gripe), Paroxística (tos en accesos, gallo inspiratorio y linfocitosis absoluta) y Convalecencia. Los macrólidos (Azitromicina) son el tratamiento de elección; aunque no siempre acortan la fase paroxística, eliminan la portación y el contagio. Es vital dar profilaxis a todos los contactos cercanos independientemente de su estado vacunal. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "PAROTIDITIS (PAPERAS)",
+    "difficulty": "media",
+    "case": "Escolar de 8 años presenta fiebre, malestar general y dolor al masticar. A la exploración física se observa borramiento del ángulo mandibular debido a una tumefacción de la glándula parótida derecha, de consistencia elástica, que desplaza el pabellón auricular hacia afuera y arriba. Se observa eritema en la desembocadura del conducto de Stenon.",
+    "questions": [
+      {
+        "question": "¿Cuál es la complicación más frecuente en niños prepúberes y cuál es la más temida en varones postpúberes?",
+        "options": [
+          "Pancreatitis; Orquiepididimitis epidémica.",
+          "Meningitis aséptica; Orquitis uriana (frecuentemente unilateral)",
+          "Sordera neurosensorial; Miocarditis.",
+          "Tiroiditis; Ooforitis."
+        ],
+        "answerIndex": 1,
+        "explanation": "El virus de la parotiditis (Paramyxoviridae) tiene predilección por tejido glandular y el SNC. La meningitis aséptica es la complicación extra-salival más común en niños. La orquitis es rara antes de la pubertad pero ocurre hasta en un 30% de los varones postpúberes, pudiendo comprometer la fertilidad si es bilateral. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "ENFERMEDAD MANO  -PIE-BOCA",
+    "difficulty": "baja",
+    "case": "Lactante de 2 años es llevado por presentar lesiones vesiculares pequeñas en la mucosa o ral y lengua, que posteriormente aparecen en las palmas de las manos y plantas de los pies. El niño tiene febrícula y refiere dolor al comer (disfagia). Las vesículas son ovales, con halo eritematoso y no son pruriginosas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico más común y cuál es el manejo recomendado?",
+        "options": [
+          "Virus Herpes Simple 1; Aciclovir oral.",
+          "Virus Coxsackie A16; Sintomático (analgésicos y dieta blanda fría)",
+          "Enterovirus 71; Inmunoglobulina IV.",
+          "Estreptococo del grupo A; Penicilina."
+        ],
+        "answerIndex": 1,
+        "explanation": "Es una de las exantemáticas más comunes en guarderías. Es causada por el virus Coxsackie A16. El diagnóstico es clínico y el tratamiento es puramente de soporte. Es importante vigilar la hidratación si el dolor oral impide la ingesta de líquidos. El Enterovirus 71 puede dar un cuadro similar pero con mayor riesgo de complicaciones neurológicas (romboencefalitis).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NUTRICIÓN",
+    "subtema": "DESNUTRICIÓN PROTEICO  -CALÓRICA (KWASHIORKOR VS. MARASMO)",
+    "difficulty": "media",
+    "case": "Lactante de 18 meses, destetado precozmente a los 4 meses y alimentado desde entonces casi exclusivamente con papillas de arroz y atoles de maíz (dieta alta en carbohidratos, baja en proteínas). A la exploración: Edema generalizado (fóvea ++), abdomen prom inente por ascitis y hepatomegalia, piel con lesiones descamativas (\"en pintura erosionada\") y cabello quebradizo, delgado y con bandas de diferente coloración (\"signo de la bandera\").",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico clínico de este paciente y cuál es el mecanismo fisiopatológico principal que explica el edema?",
+        "options": [
+          "Marasmo; Deficiencia severa de ácidos grasos esenciales.",
+          "Kwashiorkor; Disminución de la presión oncótica por hipoalbuminemia extrema",
+          "Raquitismo; Deficiencia de Vitamina D y Calcio.",
+          "Desnutrición mixta; Falla en la bomba sodio-potasio."
+        ],
+        "answerIndex": 1,
+        "explanation": "El Kwashiorkor es la desnutrición proteica aguda (niño \"hinchado\"). El consumo bajo de aminoácidos impide la síntesis de albúmina por el hígado, lo que provoca la salida de líquido al espacio intersticial. El signo de la bandera indica periodos intermitentes de buena y mala nutrición proteica reflejados en el pelo.",
+        "gpcReference": ""
+      },
+      {
+        "question": "A diferencia del caso anterior, un lactante con Marasmo presentará:",
+        "options": [
+          "Edema generalizado y esteatosis hepática.",
+          "Apariencia de \"cara de viejo\" o \"pasa\", emaciación muscular severa y ausencia de panículo adiposo",
+          "Talla alta para la edad y obesidad abdominal.",
+          "Piel hidratada y reflejos osteotendinosos exaltados."
+        ],
+        "answerIndex": 1,
+        "explanation": "El Marasmo es la desnutrición calórica crónica (niño \"hueso y pellejo\"). Es una adaptación del cuerpo a la inanición total, donde se consume la grasa y el músculo para sobrevivir. No hay edema porque la síntesis de albúmina se preserva hasta estadios muy finales. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / ENDOCRINOLOGÍA",
+    "subtema": "TALLA BAJA Y RETRASO CONSTITUCIONAL",
+    "difficulty": "alta",
+    "case": "Escolar masculino de 11 años es traído por sus padres por ser el más bajo de su clase. A la exploración: Talla en percentil 3, velocidad de crecimiento normal (5 cm/año). No tiene antecedentes patológicos. La exploración física es normal, con estadios de Tanner I (prepuberal). Se realiza radiografía de mano izquierda que reporta una edad ósea de 8 años (retrasada respecto a la cronológica). El padre del niño refiere que él \"estiró\" hasta los 17 años.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable y cuál es el pronóstico de talla final para este paciente?",
+        "options": [
+          "Talla baja familiar; Talla final baja acorde a los padres.",
+          "Retraso Constitucional del Crecimiento y la Pubertad; Talla final normal acorde a su potencial genético",
+          "Deficiencia de Hormona de Crecimiento; Talla final baja sin tratamiento.",
+          "Hipotiroidismo congénito; Talla baja y retraso mental."
+        ],
+        "answerIndex": 1,
+        "explanation": "En el retraso constitucional, el niño es \"lento pero seguro\". La edad ósea está retrasada, lo que significa que el niño tiene \"más tiempo para crecer\" que sus pares. La velocidad de crecimiento es normal. Clásicamente, hay un antecedente familiar de \"crecimiento tardío\". Suelen alcanzar una talla final normal, simplemente tardan más en llegar a la pubertad. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NUTRICIÓN",
+    "subtema": "VITAMINA D (RAQUITISMO)",
+    "difficulty": "media",
+    "case": "Lactante de 12 meses, alimentado con seno materno exclusivo, sin ablación adecuada y con nula exposición solar. A la exploración se observa ensanchamiento de las muñecas, prominencia de las uniones condrocostales (\"rosario raquítico\") y arqueamiento de los fémures (genu varo). Presenta retraso en el cierre de la fontanela anterior.",
+    "questions": [
+      {
+        "question": "¿Cuál es la deficiencia vitamínica y cuál es el hallazgo bioquímico inicial más característico?",
+        "options": [
+          "Vitamina A; Ceguera nocturna.",
+          "Vitamina D; Elevación de la Fosfatasa Alcalina (FA) y disminución de Fosfato sérico ",
+          "Vitamina C; Hemorragias subperiósticas.",
+          "Vitamina K; Alargamiento de tiempos de coagulación."
+        ],
+        "answerIndex": 1,
+        "explanation": "El raquitismo carencial se debe a la falta de Vitamina D, necesaria para la absorción de calcio y fósforo. El hueso no se mineraliza y se vuelve \"blando\", deformándose bajo el peso del niño. La elevación de la Fosfatasa Alcalina es un marcador temprano y sensible de recambio óseo alterado.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA Y OBSTETRICIA",
+    "subtema": "DIAGNÓSTICO DE EMBARAZO Y REGLA DE NAEGELE",
+    "difficulty": "baja",
+    "case": "Paciente de 26 años acude a consulta por amenorrea de varias semanas. Refiere que su Fecha de Última Regla (FUR) fue el 15 de mayo de 2025. Su ciclos son regulares de 28 días. Se realiza prueba inmunológica de embarazo en orina con resultado positivo.",
+    "questions": [
+      {
+        "question": "De acuerdo con la Regla de Naegele, ¿cuál es su Fecha Probable de Parto (FPP)?",
+        "options": [
+          "15 de febrero de 2026.",
+          "22 de febrero de 2026",
+          "22 de enero de 2026.",
+          "08 de febrero de 2026."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Regla de Naegele es: FPP = (FUR + 7 días) - 3 meses + 1 año. Cálculo: (15 + 7 = 22) / (Mayo - 3 meses = Febrero). Resultado: 22 de febrero de 2026.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿A partir de qué niveles de subunidad beta de la Gonadotropina Coriónica Humana (hCG) es posible visualizar el saco gestacional mediante ultrasonido transvaginal?",
+        "options": [
+          "500 mUI/ml.",
+          "1,500 - 2,000 mUI/ml",
+          "5,000 mUI/ml.",
+          "10,000 mUI/ml."
+        ],
+        "answerIndex": 1,
+        "explanation": "Se llama \"zona discriminatoria\". Por debajo de 1,500 mUI/ml es normal no ver nada en el útero. Si los niveles superan los 2,000 y el útero está vacío, debemos sospechar fuertemente un embarazo ectópico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA Y OBSTETRICIA",
+    "subtema": "CAMBIOS FISIOLÓGICOS EN EL EMBARAZO",
+    "difficulty": "media",
+    "case": "Primigesta de 24 semanas acude a control prenatal. Se encuentra asintomática. En sus laboratorios destaca: Hemoglobina 11.2 g/dL, Hematocrito 33%, Leucocitos 12,500/mm3 sin bandemia. En el examen general de orina se reporta glucosuria (+) sin proteinuria. Su presión arterial es 100/60 mmHg.",
+    "questions": [
+      {
+        "question": "¿Cuál de los siguientes hallazgos se considera PATOLÓGICO y requiere mayor estudio?",
+        "options": [
+          "Hemoglobina de 11.2 g/dL (Anemia dilucional).",
+          "Leucocitosis de 12,500/mm3.",
+          "TA de 100/60 mmHg.",
+          "Ninguno de los anteriores, todos son cambios fisiológicos"
+        ],
+        "answerIndex": 3,
+        "explanation": "¡Cuidado con las cifras! En el embarazo el volumen plasmático aumenta un 50% mientras que la masa eritrocitaria solo un 20-30%, causando anemia dilucional (Hb >11 es normal). La leucocitosis leve es normal. La glucosuria ocurre porque el umbral de reabsorción renal de glucosa disminuye. La TA suele bajar en el segundo trimestre.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Qué cambio ocurre a nivel del sistema urinario debido a la compresión mecánica del útero y la relajación por progesterona, que predispone a IVUs?",
+        "options": [
+          "Estenosis uretral.",
+          "Hidronefrosis e hidrouréter (predominio derecho)",
+          "Aumento del tono del esfínter vesical.",
+          "Disminución del filtrado glomerular."
+        ],
+        "answerIndex": 1,
+        "explanation": "La progesterona relaja el músculo liso, causando estasis urinaria. Además, el útero grávido (dextrorrotado) comprime más el uréter derecho al cruzar el borde de la pelvis. Esto es fisiológico, pero explica por qué una bacteriuria asintomática en el embarazo SIEMPRE se trata. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA Y OBSTETRICIA",
+    "subtema": "CONTROL PRENATAL (GPC)",
+    "difficulty": "media",
+    "case": "Paciente que acude a su primera consulta prenatal a las 10 semanas de gestación. No tiene antecedentes de importancia.",
+    "questions": [
+      {
+        "question": "De acuerdo con la GPC, ¿cuál es la dosis de Ácido Fólico recomendada para esta paciente sin factores de riesgo y cuál es el estudio de tamizaje para cromosomopatías que se debe ofrecer entre la semana 11 y 13.6?",
+        "options": [
+          "400 mcg (0.4 mg); Ultrasonido de primer trimestre (Translucencia nucal)",
+          "5 mg; Amniocentesis.",
+          "1 mg; Triple marcador.",
+          "400 mcg; Cordocentesis."
+        ],
+        "answerIndex": 0,
+        "explanation": "La dosis estándar es 400 mcg/día para prevenir defectos del tubo neural. Los 5 mg se reservan para mujeres con antecedente de hijo previo con DTN, diabetes o uso de anticonvulsivos. El USG de primer trimestre busca la translucencia nucal y el hueso nasal como marcadores de aneuploidía.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA Y OBSTETRICIA",
+    "subtema": "ABORTO (TIPOS Y MANEJO)",
+    "difficulty": "media",
+    "case": "Paciente de 22 años, G1, con 9 semanas de gestación por FUR. Acude por presentar sangrado transvaginal escaso y dolor tipo cólico en hipogastrio. A la exploración física: Signos vitales estables. Al tacto vaginal: Cérvix cerrado, útero de tamaño acorde a la gestación, sin expulsión de restos. El ultrasonido reporta embrión con frecuencia cardiaca presente.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico clínico y cuál es la conducta recomendada según la GPC?",
+        "options": [
+          "Aborto inevitable; Legrado uterino inmediato.",
+          "Amenaza de aborto; Reposo absoluto, abstinencia sexual y progesterona (si hay deficiencia)",
+          "Aborto diferido; Uso de Misoprostol.",
+          "Aborto en evolución; Hospitalización y oxitocina."
+        ],
+        "answerIndex": 1,
+        "explanation": "La amenaza de aborto se caracteriza por sangrado y dolor con cérvix CERRADO y vitalidad embrionaria confirmada. El manejo es conservador. Si el cérvix estuviera abierto, hablaríamos de aborto inevitable o en evolución.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si la paciente presentara un aborto incompleto (restos intrauterinos) con menos de 11 semanas y estabilidad hemodinámica, ¿cuál es el método de evacuación uterina preferible sobre el legrado instrumental (LI)?",
+        "options": [
+          "Histerectomía total.",
+          "Aspiración Manual Endouterina (AMEU)",
+          "Infusión de Gluconato de Calcio.",
+          "Observación por 48 horas."
+        ],
+        "answerIndex": 1,
+        "explanation": "La GPC prefiere el AMEU sobre el LI en embarazos menores a 11-12 semanas debido a que presenta menor tasa de complicaciones (perforación uterina, sinequias) y puede realizarse con anestesia local o sedación ligera. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA Y OBSTETRICIA",
+    "subtema": "EMBARAZO ECTÓPICO",
+    "difficulty": "alta",
+    "case": "Paciente de 28 años con antecedente de Salpingitis (EPI) hace 2 años. Acude por dolor abdominal súbito en fosa ilíaca derecha y manchado transvaginal oscuro. A la exploración: TA 90/60 mmHg, FC 110 lpm, dolor a la movilización cervical y masa anexial palpable. El ultrasonido muestra útero vacío y líquido libre en fondo de saco de Douglas. hCG de 2,500 mUI/ml.",
+    "questions": [
+      {
+        "question": "¿Cuál es la localización más frecuente del embarazo ectópico y cuál es el tratamiento de elección en este caso particular (inestabilidad hemodinámica)?",
+        "options": [
+          "Istmo; Metotrexato dosis única.",
+          "Ampolla (Ampular); Salpinguectomía por laparotomía/laparoscopia urgente",
+          "Fimbria; Salpingostomía lineal.",
+          "Intersticial; Observación y hCG seriada."
+        ],
+        "answerIndex": 1,
+        "explanation": "La región ampular de la trompa de Falopio es el sitio más común (70-80%). El factor de riesgo principal es la EPI previa. Ante signos de ruptura (hipotensión, taquicardia, líquido libre), el tratamiento SIEMPRE es quirúrgico radical (salpinguectomía). El manejo médico con Metotrexato solo es para pacientes estables, con saco <4 cm y sin FCF. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA Y OBSTETRICIA",
+    "subtema": "ENFERMEDAD TROFOBLÁSTICA GESTACIONAL (MOLA)",
+    "difficulty": "media",
+    "case": "Multípara de 42 años con 12 semanas de gestación. Presenta náuseas y vómitos severos (hiperemesis), sangrado transvaginal con salida de \"vesículas como uvas\". A la exploración: Útero de 18 semanas (mayor a amenorrea). El ultrasonido muestra una imagen en \"tormenta de nieve\" o \"panal de abejas\" sin feto presente. hCG de 150,000 mUI/ml.",
+    "questions": [
+      {
+        "question": "¿Cuál es el cariotipo más común en la mola hidatidiforme completa y cuál es el manejo inicial de elección?",
+        "options": [
+          "69 XXY; Metotrexato.",
+          "46 XX (origen puramente paterno); Evacuación mediante AMEU o legrado",
+          "45 X; Histerosonografía.",
+          "46 XY; Inducción del trabajo de parto."
+        ],
+        "answerIndex": 1,
+        "explanation": "La mola completa ocurre por la fecundación de un óvulo \"vacío\" por un espermatozoide que duplica su material genético (46XX). No hay tejido fetal. El riesgo de transformación a Coriocarcinoma es mayor en la completa que en la parcial. El seguimiento post-evacuación con niveles semanales de hCG hasta la negativización es OBLIGATORIO para descartar enfermedad persistente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "FARINGOAMIGDALITIS ESTREPTOCÓCICA",
+    "difficulty": "media",
+    "case": "Escolar de 7 años acude por fiebre de 39°C, dolor faríngeo intenso y odinofagia de 48 horas de evolución. A la exploración física se observa faringe hiperémica, amígdalas con exudado blanquecino, petequias en paladar blando y adenopatía cervical anterior dolorosa de 2 cm. No presenta tos, coriza ni conjuntivitis.",
+    "questions": [
+      {
+        "question": "De acuerdo con los criterios de Centor, ¿cuál es la conducta más apropiada en este paciente y cuál es el tratamiento de primera línea según la GPC?",
+        "options": [
+          "Realizar prueba rápida de antígeno; si es positiva, dar Penicilina V potásica o Amoxicilina",
+          "Iniciar tratamiento sintomático con paracetamol por sospecha viral.",
+          "Prescribir Azitromicina por 3 días de forma empírica.",
+          "Solicitar cultivo de exudado faríngeo y esperar 72 horas para tratar."
+        ],
+        "answerIndex": 0,
+        "explanation": "El paciente tiene 4 criterios de Centor (fiebre, exudado, adenopatía, ausencia de tos), lo que indica una alta probabilidad de infección por S. pyogenes. En niños, se recomienda confirmar con prueba rápida o cultivo. El tratamiento de elección sigue siendo la Penicilina o Amoxicilina por 10 días para prevenir la fiebre reumática. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "OTITIS MEDIA AGUDA (OMA)",
+    "difficulty": "media",
+    "case": "Lactante de 14 meses es traído por irritabilidad y llanto de predominio nocturno. La madre refiere antecedente de cuadro gripal hace 5 días. Durante la exploración, el niño se toca el oído derecho constantemente. Al realizar otoscopia se observa la membrana timpánica abombada, eritematosa, con movilidad disminuida a la otoscopia neumática y pérdida de los relieves óseos.",
+    "questions": [
+      {
+        "question": "¿Cuál es la tríada de agentes bacterianos más frecuentes en la OMA y cuál es el tratamiento de primera elección?",
+        "options": [
+          "S. aureus, Klebsiella y E. coli; Dicloxacilina.",
+          "S. pneumoniae, H. influenzae no tipificable y M. catarrhalis; Amoxicilina a dosis altas (80-90 mg/kg/día)",
+          "M. pneumoniae, Chlamydia y Legionella; Claritromicina.",
+          "Virus Sincitial Respiratorio y Adenovirus; Sintomático."
+        ],
+        "answerIndex": 1,
+        "explanation": "La OMA es una complicación frecuente de las IVRS por disfunción de la trompa de Eustaquio. El S. pneumoniae es el principal agente. Se prefieren dosis altas de Amoxicilina para vencer la resistencia de los neumococos. Si hay falla terapéutica a las 72 horas o conjuntivitis asociada, se escala a Amoxicilina con Ácido Clavulánico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "SINUSITIS AGUDA",
+    "difficulty": "alta",
+    "case": "Escolar de 9 años presenta rinorrea purulenta persistente, obstrucción nasal y tos que empeora por las noches. Los síntomas han durado 12 días sin mejoría. La madre refiere que el niño tiene \"mal aliento\" (halitosis) y dolor a la palpación en la región maxilar.",
+    "questions": [
+      {
+        "question": "¿Cuál es el criterio clínico principal para el diagnóstico de sinusitis bacteriana y cuál es el seno paranasal que se afecta con mayor frecuencia en la infancia?",
+        "options": [
+          "Persistencia de síntomas de vía aérea superior por >10 días; Seno Etmoidal",
+          "Fiebre >38.5°C por 2 días; Seno Esfenoidal.",
+          "Cefalea opresiva; Seno Frontal.",
+          "Rinorrea hialina; Seno Maxilar."
+        ],
+        "answerIndex": 0,
+        "explanation": "El diagnóstico de sinusitis en niños es CLÍNICO. Los criterios son: 1) Síntomas persistentes (>10 días), 2) Síntomas graves (fiebre alta + rinorrea purulenta por 3 días) o 3) Empeoramiento de síntomas (doble enfermedad). El seno etmoidal es el que está presente y desarrollado desde el nacimiento y se afecta más en niños pequeños, seguido del maxilar. El frontal termina de desarrollarse en la adolescencia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "MENINGITIS BACTERIANA AGUDA",
+    "difficulty": "alta",
+    "case": "Lactante de 14 meses con esquema de vacunación incompleto. Acude a urgencias por fiebre de 39.5°C, irritabilidad extrema, vómito en proyectil y rechazo a las tomas. A la exploración física: Fontanela anterior abombada y tensa, rigidez de nuca y presencia de signos de Brudzinski y Kerning positivos. Se observa un exantema de tipo petequial en extremidades inferiores.",
+    "questions": [
+      {
+        "question": "¿Cuál es la etiología más probable considerando el exantema petequial y cuál es el hallazgo clásico en el análisis del Líquido Cefalorraquídeo (LCR) en una meningitis bacteriana?",
+        "options": [
+          "Streptococcus pneumoniae; Glucosa normal y linfocitosis.",
+          "Neisseria meningitidis (Meningococo); Pleocitosis neutrofílica, hipoglucorraquia e hiperproteinorraquia",
+          "Haemophilus influenzae tipo b; Glucosa elevada y predominio de monocitos.",
+          "Listeria monocytogenes; LCR claro con proteínas normales."
+        ],
+        "answerIndex": 1,
+        "explanation": "La tríada de fiebre, rigidez de nuca y alteración del estado de alerta es clásica. El exantema petequial/purpúrico orienta fuertemente a Meningococo. El LCR bacteriano típico muestra: leucocitos >1,000 (neutrófilos), glucosa muy baja (<40 mg/dL o <50% de la sérica) y proteínas elevadas (>100 mg/dL).",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento antibiótico empírico inicial recomendado por la GPC para un lactante con sospecha de meningitis bacteriana fuera del periodo neonatal?",
+        "options": [
+          "Ampicilina + Gentamicina.",
+          "Vancomicina + Ceftriaxona (o Cefotaxima)",
+          "Penicilina G Sódica.",
+          "Dicloxacilina + Amikacina."
+        ],
+        "answerIndex": 1,
+        "explanation": "La combinación de una cefalosporina de 3ra generación (para cubrir Neumococo y Meningococo) más Vancomicina (por la alta resistencia de S. pneumoniae) es el estándar. En recién nacidos se añade Ampicilina para cubrir Listeria. Se recomienda iniciar Dexametasona justo antes o con la primera dosis de antibiótico para reducir la incidencia de sordera neurosensorial (especialmente en H. influenzae). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / REUMATOLOGÍA - INFECTOLOGÍA",
+    "subtema": "ENFERMEDAD DE KAWASAKI",
+    "difficulty": "alta",
+    "case": "Lactante masculino de 2 años presenta fiebre de 39°C de 6 días de evolución que no cede con antipiréticos. A la exploración física destaca: Inyección conjuntival bilateral no exudativa, labios fisurados y eritematosos, lengua en fresa, un exantema polimorfo en tronco y edema indurado en manos y pies con eritema palmar. Presenta una adenopatía cervical unilateral de 2 cm.",
+    "questions": [
+      {
+        "question": "¿Cuál es el criterio clínico OBLIGATORIO para el diagnóstico de esta enfermedad y cuál es la complicación más grave que se busca prevenir con el tratamiento?",
+        "options": [
+          "Adenopatía bilateral; Miocarditis aguda.",
+          "Fiebre de al menos 5 días; Aneurismas de las arterias coronarias",
+          "Lengua en fresa; Glomerulonefritis.",
+          "Descamación periungueal; Estenosis aórtica."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Enfermedad de Kawasaki es una vasculitis de medianos vasos. El diagnóstico es clínico: Fiebre ≥5 días + 4 de 5 criterios (Conjuntivitis, cambios en mucosas, cambios en extremidades, exantema, adenopatía cervical). El daño coronario ocurre hasta en el 25% de los niños no tratados.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el tratamiento de elección en la fase aguda para reducir el riesgo de anomalías coronarias?",
+        "options": [
+          "Inmunoglobulina intravenosa (IGIV) a dosis alta + Aspirina (dosis antiinflamatoria)",
+          "Prednisona a dosis altas + Ciclofosfamida.",
+          "Antibióticos de amplio espectro.",
+          "Paracetamol y reposo."
+        ],
+        "answerIndex": 0,
+        "explanation": "La IGIV (2 g/kg en infusión única) administrada en los primeros 10 días de la enfermedad reduce el riesgo de aneurismas al <5%. La aspirina se usa inicialmente a dosis altas por su efecto antiinflamatorio y se mantiene a dosis bajas (antiagregante) hasta que el ecocardiograma confirme que no hay daño coronario tras 6-8 semanas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEUROLOGÍA",
+    "subtema": "CONVULSIONES FEBRILES",
+    "difficulty": "media",
+    "case": "Lactante de 18 meses es traído a urgencias tras presentar un episodio de movimientos tónico-clónicos generalizados de 3 minutos de duración, asociado a un pico febril de 39.2°C secundario a una otitis media. Al llegar a la unidad, el niño se encuentra en periodo postictal, pero recupera la conciencia rápidamente. No tiene antecedentes de crisis afebriles ni retraso en el desarrollo.",
+    "questions": [
+      {
+        "question": "De acuerdo con las características del evento (duración <15 min, crisis única en 24h, generalizada), ¿cómo se clasifica esta crisis y cuál es el manejo de elección?",
+        "options": [
+          "Convulsión febril compleja; Iniciar Fenitoína de mantenimiento.",
+          "Convulsión febril simple; Control térmico y vigilancia (benigna)",
+          "Epilepsia mioclónica; Realizar Resonancia Magnética urgente.",
+          "Estatus epiléptico; Diazepam IV inmediato."
+        ],
+        "answerIndex": 1,
+        "explanation": "La convulsión febril simple es el trastorno convulsivo más común en la infancia (6 meses a 5 años). No requiere tratamiento anticonvulsivo crónico ni estudios de imagen/EEG de rutina. El riesgo de desarrollar epilepsia a futuro es apenas ligeramente superior al de la población general (~1-2%). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEUROLOGÍA",
+    "subtema": "EPILEPSIA (AUSENCIAS TÍPICAS)",
+    "difficulty": "media",
+    "case": "Escolar de 6 años es referida por su profesora porque \"se queda ida\" varias veces al día durante las clases. La madre nota que la niña detiene su actividad bruscamente, mantiene la mirada fija por 10 segundos y luego continúa como si nada hubiera pasado, sin recordar el evento. No hay movimientos tónicos ni pérdida del tono postural.",
+    "questions": [
+      {
+        "question": "¿Cuál es el hallazgo patognomónico esperado en el electroencefalograma (EEG) y cuál es el tratamiento de primera elección?",
+        "options": [
+          "Puntas y ondas lentas a 3 Hz; Etosuximida (o Valproato)",
+          "Hipsarritmia; Vigabatrina.",
+          "Punta-onda lenta a 1.5 Hz; Carbamazepina.",
+          "Complejos de Sharp; Fenobarbital."
+        ],
+        "answerIndex": 0,
+        "explanation": "Las crisis de ausencia son clásicas en escolares. El EEG con descargas de punta- onda a 3 ciclos por segundo (Hz) es diagnóstico. La Etosuximida es el fármaco de elección por su perfil de seguridad, seguido del Valproato de Magnesio. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEUROLOGÍA",
+    "subtema": "SÍNDROME DE WEST (ESPASMOS INFANTILES)",
+    "difficulty": "alta",
+    "case": "Lactante de 5 meses presenta episodios de flexión súbita del tronco y extremidades superiores (\"saludo de Sam\") que ocurren en salvas al despertar. La madre nota que el niño ha dejado de sonreír y ya no sostiene la cabeza como antes (regresión del desarrollo).",
+    "questions": [
+      {
+        "question": "¿Cómo se le denomina a la tríada clínica (espasmos, retraso/regresión del desarrollo e hipsarritmia en el EEG) y cuál es el tratamiento de primera línea?",
+        "options": [
+          "Síndrome de Lennox-Gastaut; Lamotrigina.",
+          "Síndrome de West; Hormona Adrenocorticotrópica (ACTH) o Vigabatrina",
+          "Síndrome de Dravet; Dieta cetogénica.",
+          "Malformación de Chiari; Derivación ventrículo-peritoneal."
+        ],
+        "answerIndex": 1,
+        "explanation": "El Síndrome de West es una encefalopatía epiléptica catastrófica del lactante. La hipsarritmia (caos eléctrico en el EEG) es el sello distintivo. El tratamiento con ACTH busca frenar los espasmos para intentar mitigar el daño cognitivo. Si el paciente tiene Esclerosis Tuberosa asociada, el fármaco de elección es la Vigabatrina.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEUROLOGÍA - NEUROCIRUGÍA",
+    "subtema": "DEFECTOS DEL TUBO NEURAL (MIELOMENINGOCELE)",
+    "difficulty": "media",
+    "case": "Recién nacido de término, hijo de madre de 19 años sin control prenatal ni ingesta de suplementos. Al nacimiento se observa una tumoración quística en la región lumbosacra de 5 cm de diámetro, recubierta por una membrana delgada y transparente. A través de ella se observa tejido neural (plácoda) y salida de líquido cefalorraquídeo. El neonato presenta ausencia de movimiento en miembros inferiores y esfínter anal laxo.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable y cuál es la malformación cerebral asociada más frecuentemente (90% de los casos) que produce hidrocefalia?",
+        "options": [
+          "Meningocele; Malformación de Dandy-Walker.",
+          "Mielomeningocele; Malformación de Arnold-Chiari tipo II",
+          "Espina bífida oculta; Agenesia del cuerpo calloso.",
+          "Encefalocele; Holoprosencefalia."
+        ],
+        "answerIndex": 1,
+        "explanation": "El mielomeningocele es la forma más grave de defecto del tubo neural abierto, ya que contiene médula y raíces nerviosas. La malformación de Chiari II (herniación del cerebelo y tallo a través del foramen magno) obstruye el flujo del LCR, provocando hidrocefalia en la gran mayoría de estos pacientes.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es la medida de manejo inicial inmediata en la sala de partos para evitar la infección del sistema nervioso central antes de la reparación quirúrgica?",
+        "options": [
+          "Aplicar solución de yodo directamente sobre el saco.",
+          "Cubrir el defecto con gasas estériles humedecidas con solución salina tibia y plástico estéril",
+          "Colocar al recién nacido en decúbito supino para comprimir el saco.",
+          "Iniciar alimentación al seno materno de inmediato."
+        ],
+        "answerIndex": 1,
+        "explanation": "El manejo inicial es crucial: posición decúbito prono (boca abajo) para evitar presión, y mantener el defecto húmedo y estéril para prevenir meningitis. La cirugía de cierre debe realizarse idealmente en las primeras 24-48 horas de vida. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / GENÉTICA - NEUROLOGÍA",
+    "subtema": "ATROFIA MUSCULAR ESPINAL (AME)",
+    "difficulty": "alta",
+    "case": "Lactante de 4 meses es traído por \"debilidad generalizada\". La madre nota que el niño ya no mueve las piernas y tiene un llanto muy débil. A la exploración física: Hipotonía severa (\"bebé laxo\"), ausencia de reflejos osteotendinosos, respiración paradójica (abdominal) y fasciculaciones en la lengua. El lactante nunca logró el sostén cefálico.",
+    "questions": [
+      {
+        "question": "¿Cuál es la fisiopatología de esta enfermedad (AME Tipo 1 o Enfermedad de Werdnig- Hoffmann) y cuál es el gen mutado?",
+        "options": [
+          "Degeneración de las neuronas motoras superiores; Gen de la Distrofina.",
+          "Degeneración de las neuronas de la asta anterior de la médula espinal; Gen SMN1 ",
+          "Destrucción de la placa neuromuscular; Receptor de Acetilcolina.",
+          "Desmielinización periférica; Gen PMP22."
+        ],
+        "answerIndex": 1,
+        "explanation": "La AME es una enfermedad autosómica recesiva caracterizada por la pérdida progresiva de neuronas motoras inferiores. Las fasciculaciones linguales son un signo clínico \"patognomónico\" en el contexto de un bebé hipotónico que orienta hacia este diagnóstico en el ENARM. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / ORTOPEDIA",
+    "subtema": "ESCOLIOSIS IDIOPÁTICA DEL ADOLESCENTE",
+    "difficulty": "baja",
+    "case": "Adolescente femenina de 13 años acude a revisión escolar. Al realizar la maniobra de inclinación hacia adelante (Test de Adams), se observa una prominencia costal (giba) en el hemitórax derecho y una asimetría de las crestas ilíacas. La paciente no refiere dolor.",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio radiológico necesario para confirmar el diagnóstico y qué ángulo se utiliza para medir la severidad de la curvatura?",
+        "options": [
+          "Radiografía AP y lateral de columna completa; Ángulo de Cobb",
+          "Tomografía de columna lumbar; Ángulo de Ferguson.",
+          "Resonancia Magnética; Ángulo de inclinación pélvica.",
+          "Densitometría ósea; T-score."
+        ],
+        "answerIndex": 0,
+        "explanation": "La escoliosis idiopática es más frecuente en mujeres adolescentes. El Test de Adams es la herramienta de tamizaje más sencilla. El diagnóstico se confirma con una curva >10 grados medida mediante el Ángulo de Cobb en una radiografía de columna total en bipedestación.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / MEDICINA PREVENTIVA",
+    "subtema": "VACUNAS (ESQUEMA NACIONAL DE VACUNACIÓN)",
+    "difficulty": "media",
+    "case": "Madre acude a la unidad de medicina familiar con su hijo de 6 meses para aplicación de vacunas correspondientes. El niño cuenta con esquema completo para su edad (BCG, Hepatitis B, Hexavalente, Rotavirus y Neumococo).",
+    "questions": [
+      {
+        "question": "De acuerdo con el esquema nacional vigente, ¿cuáles son las vacunas que le corresponden recibir en esta visita de los 6 meses?",
+        "options": [
+          "Pentavalente acelular, Rotavirus y Neumococo.",
+          "Hexavalente (3ra dosis), Rotavirus (3ra dosis si es monovalente) e Influenza (1ra dosis en temporada)",
+          "Triple viral (SRP) y Varicela.",
+          "DPT, Hepatitis B y Sabin."
+        ],
+        "answerIndex": 1,
+        "explanation": "A los 6 meses, el esquema marca la 3ra dosis de Hexavalente (Difteria, Tétanos, Tos ferina, Hepatitis B, Poliomielitis e Hib). El Rotavirus depende de la marca: si es la de 3 dosis, toca la última. Fundamental: a los 6 meses inicia la vacunación contra Influenza estacional (dos dosis con intervalo de un mes en la primera vez que se aplica). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / MEDICINA PREVENTIVA",
+    "subtema": "VACUNA BCG Y HEPATITIS B",
+    "difficulty": "baja",
+    "case": "Recién nacido de término con peso de 1,800 gramos al nacer, hijo de madre sana. El interno de pregrado se dispone a aplicar las vacunas del nacimiento.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta correcta respecto a la aplicación de la vacuna BCG en este paciente?",
+        "options": [
+          "Aplicar de inmediato por vía intramuscular.",
+          "Contraindicar la vacuna por el peso menor a 2,000 gramos; posponer hasta alcanzar dicho peso",
+          "Aplicar 0.5 ml por vía subcutánea en la región deltoidea.",
+          "No aplicar si no se tiene prueba de PPD previa."
+        ],
+        "answerIndex": 1,
+        "explanation": "La BCG (bacilo de Calmette-Guérin) protege contra formas graves de tuberculosis (meníngea y miliar). Se aplica en dosis única de 0.1 ml vía intradérmica en el brazo derecho. La contraindicación absoluta por peso es ser menor a 2,000 g. La Hepatitis B, por el contrario, sí se puede aplicar si la madre es HBsAg negativa, aunque en prematuros extremos se prefiere esperar. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / MEDICINA PREVENTIVA",
+    "subtema": "VACUNA SRP (TRIPLE VIRAL)",
+    "difficulty": "media",
+    "case": "Un niño de 12 meses es llevado a su consulta de niño sano. La madre pregunta por la vacuna que le toca hoy, ya que escuchó que protege contra el sarampión.",
+    "questions": [
+      {
+        "question": "¿Cuáles son las edades de aplicación (primera dosis y refuerzo) de la vacuna SRP y cuál es la contraindicación absoluta relacionada con alergias alimentarias?",
+        "options": [
+          "12 meses y 6 años (o 18 meses según GPC reciente); Alergia grave al huevo (anafilaxia)",
+          "6 meses y 12 meses; Alergia a las leguminosas.",
+          "4 años y 6 años; Alergia a la lactosa.",
+          "12 meses y 24 meses; Alergia al gluten."
+        ],
+        "answerIndex": 0,
+        "explanation": "La SRP protege contra Sarampión, Rubeola y Parotiditis. La primera dosis es al año. Tradicionalmente el refuerzo era a los 6 años, pero la actualización del esquema mexicano movió el refuerzo a los 18 meses para mejorar la cobertura. Al ser una vacuna cultivada en embriones de pollo, la anafilaxia al huevo es una contraindicación formal. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / URGENCIAS",
+    "subtema": "INGESTA DE CUERPOS EXTRAÑOS (PILAS DE BOTÓN Y MONEDAS)",
+    "difficulty": "alta",
+    "case": "Lactante de 2 años es traído a urgencias porque hace 1 hora la madre lo encontró jugando con el control remoto y ahora falta una pila de botón. El niño se encuentra asintomático, con adecuada tolerancia a la vía oral y sin dificultad respiratoria. Se toma radiografía de tórax y abdomen, localizando la pila en el tercio medio del esófago (signo del \"doble contorno\" o \"halo\").",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta inmediata de elección en este paciente?",
+        "options": [
+          "Observación por 24 horas para ver si progresa al estómago.",
+          "Endoscopia de urgencia para extracción inmediata",
+          "Administración de laxantes para favorecer la expulsión.",
+          "Repetir radiografía en 6 horas."
+        ],
+        "answerIndex": 1,
+        "explanation": "¡Regla de oro! Una pila de botón alojada en el ESÓFAGO es una urgencia endoscópica absoluta (debe extraerse en menos de 2 horas). La humedad de la mucosa completa el circuito eléctrico, causando quemaduras por álcalis y necrosis por licuefacción que pueden perforar el esófago en tiempo récord. Si la pila ya estuviera en el estómago y el niño fuera asintomático, se podría observar. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / URGENCIAS",
+    "subtema": "INGESTIÓN DE CÁUSTICOS",
+    "difficulty": "media",
+    "case": "Preescolar de 3 años ingiere accidentalmente una cantidad no determinada de desengrasante industrial (álcali fuerte). Presenta sialorrea intensa, dolor retroesternal y lesiones blanquecinas en la mucosa oral.",
+    "questions": [
+      {
+        "question": "¿Cuál de las siguientes maniobras está ESTRICTAMENTE CONTRAINDICADA en el manejo inicial?",
+        "options": [
+          "Inducir el vómito o realizar lavado gástrico",
+          "Mantener el ayuno.",
+          "Administrar analgésicos intravenosos.",
+          "Realizar endoscopia diagnóstica entre las 6 y 24 horas."
+        ],
+        "answerIndex": 0,
+        "explanation": "Nunca, bajo ninguna circunstancia, se debe inducir el vómito en ingesta de cáusticos (ácidos o álcalis), ya que se re-expone el esófago al daño químico (\"doble quemadura\"). Tampoco se debe intentar neutralizar con leche o jugo, pues la reacción exotérmica aumenta el daño térmico. La endoscopia es el estándar para clasificar la lesión (Escala de Zargar). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / TOXICOLOGÍA",
+    "subtema": "INTOXICACIÓN POR PARACETAMOL",
+    "difficulty": "media",
+    "case": "Escolar de 8 años ingiere por error una dosis de 200 mg/kg de paracetamol hace 4 horas. Actualmente se encuentra asintomático.",
+    "questions": [
+      {
+        "question": "¿Cuál es el antídoto específico de elección y cuál es la herramienta para decidir su administración según los niveles séricos?",
+        "options": [
+          "Atropina; Escala de Glasgow.",
+          "N-acetilcisteína; Nomograma de Rumack-Matthew",
+          "Flumazenil; Niveles de transaminasas.",
+          "Naloxona; Triada de opioidismo."
+        ],
+        "answerIndex": 1,
+        "explanation": "El paracetamol es hepatotóxico a dosis >150 mg/kg. La N-acetilcisteína actúa restaurando los niveles de glutatión para neutralizar el metabolito tóxico (NAPQI). El Nomograma de Rumack -Matthew permite predecir el riesgo de hepatotoxicidad basándose en la concentración plasmática de paracetamol a partir de las 4 horas de la ingesta. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / URGENCIAS",
+    "subtema": "ASPIRACIÓN DE CUERPO EXTRAÑO",
+    "difficulty": "alta",
+    "case": "Lactante de 18 meses presenta cuadro súbito de tos cianosante mientras comía cacahuates. Tras el evento inicial, persiste con sibilancias localizadas en el hemitórax derecho y disminución del murmullo vesicular en esa zona. La radiografía de tórax en espiración muestra atrapamiento aéreo en el pulmón derecho.",
+    "questions": [
+      {
+        "question": "¿Cuál es la localización anatómica más frecuente donde se alojan los objetos aspirados y cuál es el procedimiento definitivo?",
+        "options": [
+          "Bronquio principal izquierdo; Toracotomía.",
+          "Bronquio principal derecho; Broncoscopia rígida",
+          "Tráquea superior; Maniobra de Heimlich persistente.",
+          "Laringe; Intubación endotraqueal."
+        ],
+        "answerIndex": 1,
+        "explanation": "Debido a que el bronquio principal derecho es más ancho, corto y vertical, es el sitio predilecto de los cuerpos extraños. Las sibilancias UNILATERALES que no mejoran con broncodilatadores son el signo clínico clave. La broncoscopia rígida es tanto diagnóstica como terapéutica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / URGENCIAS - SOCIAL",
+    "subtema": "MALTRATO INFANTIL (SÍNDROME DEL NIÑO SACUDIDO)",
+    "difficulty": "alta",
+    "case": "Lactante de 5 meses es traído a urgencias por \"somnolencia y vómitos\" tras una supuesta caída de la cama (50 cm). A la exploración: Irritabilidad, fontanela abombada, ausencia de hematomas externos evidentes. Se realiza fondo de ojo que revela hemorragias retinianas extensas. La TC de cráneo muestra un hematoma subdural crónico y agudo (de diferentes edades).",
+    "questions": [
+      {
+        "question": "¿Cuál es la tríada clásica del Síndrome del Niño Sacudido (Trauma Craneal No Accidental) y cuál es el mecanismo de lesión?",
+        "options": [
+          "Fractura de fémur, equimosis y otitis; Impacto directo.",
+          "Hemorragia retiniana, hematoma subdural y edema cerebral; Aceleración- desaceleración angular",
+          "Fractura de cráneo, ceguera y fiebre; Caída de altura.",
+          "Convulsiones, anemia y soplo; Sacudida rítmica."
+        ],
+        "answerIndex": 1,
+        "explanation": "El cerebro del lactante es muy susceptible a fuerzas de cizallamiento debido al gran espacio subaracnoideo y poco tono cervical. Las hemorragias retinianas son casi patognomónicas de maltrato por sacudida. Un dato clave en el ENARM son las fracturas en diferentes estadios de consolidación o fracturas metafisarias en \"asa de cubo\". ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / GENÉTICA",
+    "subtema": "SÍNDROME DE DOWN (TRISOMÍA 21)",
+    "difficulty": "baja",
+    "case": "Recién nacido con hipotonía generalizada, perfil facial plano, fisuras palpebrales hacia arriba, pliegue palmar único transverso (simiesco) y apéndice preauricular. A la auscultación cardiaca se percibe un soplo sistólico grado III/VI.",
+    "questions": [
+      {
+        "question": "¿Cuál es la cardiopatía congénita más frecuentemente asociada a este síndrome y qué patología gastrointestinal obstructiva suele presentarse en el periodo neonatal?",
+        "options": [
+          "Persistencia del conducto arterioso; Estenosis pilórica.",
+          "Defecto del canal atrioventricular (cojines endocárdicos); Atresia duodenal",
+          "Tetralogía de Fallot; Enfermedad de Hirschsprung.",
+          "Coartación de la aorta; Malrotación intestinal."
+        ],
+        "answerIndex": 1,
+        "explanation": "El 50% de los niños con Down tienen cardiopatías, siendo el defecto del canal AV el rey. En lo digestivo, el signo de la \"doble burbuja\" en rayos X nos habla de la atresia duodenal concomitante. No olvides que tienen un riesgo aumentado de leucemia (LLA y LMA-M7) y enfermedad de Alzheimer temprana. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / GENÉTICA",
+    "subtema": "SÍNDROME DE TURNER (45, X)",
+    "difficulty": "media",
+    "case": "Niña de 10 años evaluada por talla baja (debajo del percentil 3). A la exploración: Cuello alado (pterygium colli), tórax en escudo con teletelia (pezones separados), cúbito valgo y ausencia de desarrollo puberal (Tanner I). No presenta retraso mental.",
+    "questions": [
+      {
+        "question": "¿Cuál es el cariotipo más común, la cardiopatía asociada y el hallazgo esperado en el ultrasonido pélvico?",
+        "options": [
+          "47, XXY; Comunicación interauricular; Útero ausente.",
+          "45, X; Coartación de la aorta; Gónadas en cinta (disgenesia gonadal)",
+          "46, XX; Estenosis pulmonar; Ovarios poliquísticos.",
+          "45, XO/46, XX; Prolapso mitral; Hidrometrocolpos."
+        ],
+        "answerIndex": 1,
+        "explanation": "El síndrome de Turner afecta solo a mujeres. La coartación de la aorta es la lesión cardiovascular clásica (pulso femoral débil). Al tener disgenesia gonadal, presentan niveles elevados de gonadotropinas (LH/FSH) por falta de retroalimentación de estrógenos. El tratamiento con hormona de crecimiento es estándar para mejorar la talla final.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / DERMATOLOGÍA",
+    "subtema": "DERMATITIS ATÓPICA (ECCEMA)",
+    "difficulty": "media",
+    "case": "Lactante de 6 meses presenta prurito intenso y lesiones eritematosas, descamativas y exudativas en ambas mejillas, respetando el triángulo nasogeniano. La madre refiere que el niño está muy irritable y se frota la cara contra las sábanas. Antecedente de asma en el padre.",
+    "questions": [
+      {
+        "question": "¿Cuál es la localización típica de las lesiones en la fase del lactante y cuál es el pilar del tratamiento de mantenimiento para evitar brotes?",
+        "options": [
+          "Superficies de extensión (rodillas y codos); Antibióticos tópicos.",
+          "Cara (mejillas) y superficies de extensión; Emolientes e hidratación constante",
+          "Pliegues flexores (fosas antecubitales); Esteroides fluorados de alta potencia.",
+          "Tronco y palmas; Fototerapia."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Dermatitis Atópica sigue la \"marcha atópica\" (eccema -> asma -> rinitis). En lactantes afecta cara y superficies de extensión. En escolares y adultos se mueve a los pliegues flexores. El tratamiento clave es la reparación de la barrera cutánea con cremas emolientes. Los esteroides tópicos son solo para el rescate en brotes agudos. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / DERMATOLOGÍA",
+    "subtema": "DERMATITIS DEL PAÑAL E INFECCIÓN POR CANDIDA",
+    "difficulty": "baja",
+    "case": "Lactante de 10 meses con cuadro de diarrea de 3 días. Presenta un exantema eritematoso brillante en el área del pañal que afecta los pliegues inguinales y muestra lesiones papulares eritematosas periféricas (\"lesiones satélite\").",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico más probable cuando se ven lesiones satélite y cuál es el tratamiento de elección?",
+        "options": [
+          "Staphylococcus aureus; Dicloxacilina.",
+          "Candida albicans; Nistatina o Clotrimazol tópico",
+          "Dermatitis irritativa primaria; Pasta lassar (óxido de zinc).",
+          "Herpes simple; Aciclovir."
+        ],
+        "answerIndex": 1,
+        "explanation": "La dermatitis del pañal irritativa simple suele RESPETAR los pliegues. Cuando el eritema es intenso, afecta los pliegues y presenta pápulas satélite, estamos ante una sobreinfección por Candida. El ambiente húmedo y ácido de la orina/heces favorece este crecimiento micótico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / DERMATOLOGÍA",
+    "subtema": "IMPÉTIGO (CONTAGIOSO Y AMPOLLOSO)",
+    "difficulty": "media",
+    "case": "Escolar de 5 años presenta lesiones peribucales que iniciaron como pequeñas vesículas y evolucionaron a costras de color amarillento, similares a la \"miel\" (melicéricas). No tiene fiebre ni ataque al estado general.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal más frecuente y cuál es el tratamiento de elección para lesiones localizadas?",
+        "options": [
+          "Streptococcus pyogenes; Mupirocina tópica",
+          "Staphylococcus aureus; Penicilina benzatínica.",
+          "Pseudomonas aeruginosa; Ciprofloxacino.",
+          "Virus del herpes; Foscarnet."
+        ],
+        "answerIndex": 0,
+        "explanation": "El impétigo no ampulloso (el de costras melicéricas) puede ser causado por S. aureus o S. pyogenes. Es la infección cutánea bacteriana más común en niños. Para casos localizados, la Mupirocina o el Ácido Fusídico son suficientes. Si es extenso o ampulloso, se requiere antibiótico oral (Dicloxacilina o Cefalexina).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA",
+    "subtema": "MÉTODOS ANTICONCEPTIVOS",
+    "difficulty": "media",
+    "case": "Paciente de 24 años, nuligesta, acude para asesoría anticonceptiva. Tiene una pareja estable desde hace 2 años y no desea embarazarse en los próximos 5 años. Refiere periodos menstruales abundantes (menorragia) y dismenorrea. No tiene antecedentes de importancia ni contraindicaciones para el uso de hormonas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el método anticonceptivo de larga duración (LARC) que, además de su alta eficacia, ofrece el beneficio adicional de reducir el sangrado menstrual y el dolor?",
+        "options": [
+          "Dispositivo Intrauterino de Cobre (DIU-Cu).",
+          "Sistema Intrauterino liberador de Levonorgestrel (SIU-LNG)",
+          "Implante subdérmico de etonogestrel.",
+          "Anticonceptivos orales combinados."
+        ],
+        "answerIndex": 1,
+        "explanation": "El SIU-LNG (Mirena) es ideal para pacientes con menorragia, ya que el progestágeno local produce atrofia endometrial, reduciendo el sangrado hasta en un 90%. El DIU de cobre, por el contrario, suele aumentar el sangrado y el cólico, por lo que no sería la mejor opción aquí. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA",
+    "subtema": "ANTICONCEPCIÓN DE EMERGENCIA",
+    "difficulty": "baja",
+    "case": "Paciente de 19 años acude a urgencias por rotura de condón hace 12 horas. Se encuentra en el día 14 de su ciclo menstrual. Desea evitar un embarazo.",
+    "questions": [
+      {
+        "question": "¿Cuál es el fármaco de elección para la anticoncepción de emergencia según la GPC y cuál es el mecanismo de acción principal?",
+        "options": [
+          "Misoprostol; Inducción de contracciones uterinas.",
+          "Levonorgestrel (1.5 mg dosis única); Retraso o inhibición de la ovulación",
+          "Etinilestradiol; Alteración del moco cervical.",
+          "Metotrexato; Interrupción de la implantación."
+        ],
+        "answerIndex": 1,
+        "explanation": "El Levonorgestrel es más eficaz cuanto antes se tome (idealmente <72 horas). Su función es retrasar el pico de LH para evitar que el óvulo salga. Es importante aclarar que NO es abortivo; si la ovulación y fecundación ya ocurrieron, el método no es efectivo. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA",
+    "subtema": "SÍNDROME DE OVARIO POLIQUÍSTICO (SOP)",
+    "difficulty": "alta",
+    "case": "Paciente de 22 años con IMC de 31 kg/m2 acude por amenorrea secundaria de 4 meses e hirsutismo (escala de Ferriman-Gallwey de 10 puntos). En el ultrasonido se observan más de 12 folículos de 2-9 mm en la periferia de ambos ovarios (\"collar de perlas\").",
+    "questions": [
+      {
+        "question": "De acuerdo con los Criterios de Rotterdam, ¿qué hallazgo es necesario para completar el diagnóstico en esta paciente y cuál es el tratamiento de primera línea para el manejo de su anovulación si deseara buscar un embarazo?",
+        "options": [
+          "Niveles elevados de Prolactina; Bromocriptina.",
+          "Hiperandrogenismo clínico o bioquímico; Citrato de Clomifeno o Letrozol",
+          "Resistencia a la insulina; Metformina únicamente.",
+          "Cariotipo 46, XX; Gonadotropinas."
+        ],
+        "answerIndex": 1,
+        "explanation": "Los Criterios de Rotterdam requieren 2 de 3: 1) Oligo/anovulación, 2) Hiperandrogenismo (clínico o lab), 3) Ovarios poliquísticos por USG. El SOP es la causa más común de infertilidad anovulatoria. El Letrozol ha ganado terreno como primera línea sobre el clomifeno en pacientes con obesidad.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / GASTROENTEROLOGÍA",
+    "subtema": "ESTENOSIS HIPERTRÓFICA DEL PÍLORO (EHP)",
+    "difficulty": "media",
+    "case": "Lactante masculino de 3 semanas de vida, primogénito, es traído a urgencias por presentar vómitos de contenido gástrico (no biliar), postprandiales inmediatos, \"en proyectil\". La madre refiere que después de vomitar el niño tiene mucha hambre (\"vómito hambriento\"). A la exploración física se palpa una masa firme, móvil, de 2 cm en el cuadrante superior derecho (oliva pilórica).",
+    "questions": [
+      {
+        "question": "¿Cuál es el desequilibrio hidroelectrolítico y ácido-base característico de esta patología?",
+        "options": [
+          "Acidosis metabólica hiperclorémica.",
+          "Alcalosis metabólica hipoclorémica e hipopotasémica",
+          "Alcalosis respiratoria compensada.",
+          "Acidosis láctica por deshidratación."
+        ],
+        "answerIndex": 1,
+        "explanation": "Al perder ácido clorhídrico (H+ y Cl-) por el vómito persistente, el cuerpo entra en alcalosis. El riñón intenta compensar reteniendo H+ a cambio de eliminar potasio (K+), lo que agrava la hipopotasemia. Es la causa más frecuente de cirugía abdominal en menores de 2 meses.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el estudio de imagen de primera elección para confirmar el diagnóstico y cuál es el tratamiento quirúrgico definitivo?",
+        "options": [
+          "Serie esofagogastroduodenal; Gastrectomía parcial.",
+          "Ultrasonido abdominal (Grosor muscular >4 mm); Piloromiotomía de Ramstedt",
+          "Endoscopia de vías altas; Dilatación con balón.",
+          "Tomografía computarizada; Ayuno prolongado."
+        ],
+        "answerIndex": 1,
+        "explanation": "El USG es el estándar de oro. Se buscan tres criterios: grosor del músculo pilórico >4 mm, longitud del canal >14 mm y diámetro total >10 mm. El tratamiento quirúrgico (Ramstedt) consiste en seccionar las fibras musculares del píloro sin entrar a la mucosa . ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / GASTROENTEROLOGÍA",
+    "subtema": "INTUSUSCEPCIÓN (INVAGINACIÓN INTESTINAL)",
+    "difficulty": "alta",
+    "case": "Lactante de 8 meses presenta cuadros súbitos de dolor abdominal intenso (llanto inconsolable con flexión de piernas sobre el abdomen) que duran 15 minutos y desaparecen por completo. Hace una hora presentó una evacuación con moco y sangre, con apariencia de \"jalea de grosella\". A la exploración se palpa una masa alargada en \"forma de salchicha\" en el hipocondrio derecho.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tipo de invaginación más frecuente y cuál es el estudio que es tanto diagnóstico como terapéutico en casos no complicados?",
+        "options": [
+          "Ileo-ileal; Colonoscopia.",
+          "Ileo-cólica; Colon por enema (hidrostático o neumático)",
+          "Yeyuno-ileal; Laparotomía exploradora inmediata.",
+          "Colo-cólica; Ultrasonido Doppler únicamente."
+        ],
+        "answerIndex": 1,
+        "explanation": "La invaginación es la causa más común de obstrucción intestinal entre los 3 meses y los 6 años. El USG muestra el signo de \"la diana\" o \"rosquilla\". Si el paciente no tiene signos de perforación o peritonitis, el enema neumático/hidrostático logra la reducción en el 80-90% de los casos. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / GASTROENTEROLOGÍA",
+    "subtema": "ENFERMEDAD POR REFLUJO GASTROESOFÁGICO (ERGE)",
+    "difficulty": "media",
+    "case": "Lactante de 4 meses que presenta regurgitaciones frecuentes después de comer. El niño tiene una curva de crecimiento normal (buen peso y talla), no presenta irritabilidad, tos crónica ni episodios de apnea.",
+    "questions": [
+      {
+        "question": "¿Cómo se le denomina clínicamente a este paciente y cuál es la conducta recomendada?",
+        "options": [
+          "Reflujador patológico; Iniciar Omeprazol a dosis altas.",
+          "\"Regurgitador feliz\" (Reflujo fisiológico); Medidas posturales y tranquilidad a los padres",
+          "Acalasia infantil; Realizar manometría esofágica.",
+          "Estenosis esofágica; Esofagostomía."
+        ],
+        "answerIndex": 1,
+        "explanation": "Es vital diferenciar entre \"Reflujo\" (paso de contenido al esófago, normal en el 50% de los bebés) y \"Enfermedad por Reflujo\" (cuando causa daño, falta de medro o síntomas respiratorios). El \"regurgitador feliz\" solo requiere medidas higiénico- dietéticas, como fraccionar tomas y posición semi-fowler.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "subtema": "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)",
+    "difficulty": "media",
+    "case": "Recién nacido pretérmino (30 semanas de gestación) que al tercer día de vida presenta taquicardia, pulsos saltones (amplios) y un soplo continuo en la región infraclavicular izquierda, con timbre rudo, que se describe como \"maquinaria de Gibson\". En la radiografía se observa cardiomegalia y aumento de la trama vascular pulmonar.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento farmacológico de primera elección para intentar el cierre del conducto en un prematuro y qué fármaco se usa para MANTENERLO abierto en cardiopatías ducto-dependientes?",
+        "options": [
+          "Indometacina o Ibuprofeno; Alprostadil (Prostaglandina E1)",
+          "Digoxina; Furosemida.",
+          "Epinefrina; Dopamina.",
+          "Propanolol; Nifedipino."
+        ],
+        "answerIndex": 0,
+        "explanation": "La PCA es la cardiopatía más común en prematuros. El cierre fisiológico ocurre por el aumento de oxígeno y caída de prostaglandinas al nacer. Los inhibidores de la COX (Indometacina/Ibuprofeno) cierran el ducto. Por el contrario, el Alprostadil mantiene la patencia del ducto en cardiopatías graves (como transposición) para permitir la oxigenación. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "subtema": "COMUNICACIÓN INTERAURICULAR (CIA)",
+    "difficulty": "media",
+    "case": "Preescolar de 4 años, asintomático, acude a revisión escolar. A la exploración física se ausculta un desdoblamiento amplio y fijo del segundo ruido cardiaco (S2), así como un soplo sistólico de eyección en el segundo espacio intercostal izquierdo (foco pulmonar). El ECG muestra bloqueo de rama derecha.",
+    "questions": [
+      {
+        "question": "¿Cuál es la variedad anatómica más frecuente de la CIA y cuál es el hallazgo electrocardiográfico característico?",
+        "options": [
+          "Ostum primum; Eje a la derecha.",
+          "Ostium secundum; Bloqueo de rama derecha y eje a la derecha",
+          "Seno venoso; Ondas T picudas.",
+          "Tipo fosa oval; Infradesnivel del segmento ST."
+        ],
+        "answerIndex": 1,
+        "explanation": "La CIA tipo Ostium Secundum representa el 70% de los casos. El desdoblamiento fijo del S2 es el dato clínico \"patognomónico\" en el examen. Al haber una sobrecarga de volumen en las cavidades derechas, es común ver el bloqueo de rama derecha en el ECG. La mayoría se cierran por cateterismo (amplatzer) si el defecto es significativo. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "subtema": "COMUNICACIÓN INTERVENTRICULAR (CIV)",
+    "difficulty": "alta",
+    "case": "Lactante de 2 meses presenta pobre ganancia ponderal, sudoración excesiva con las tomas (disnea de esfuerzo) y taquipnea. A la exploración se ausculta un soplo holosistólico, rudo, de alta intensidad en el tercer y cuarto espacio intercostal izquierdo (borde esternal izquierdo).",
+    "questions": [
+      {
+        "question": "¿Cuál es la cardiopatía congénita más frecuente a nivel mundial y cuál es el riesgo a largo plazo de no corregir una CIV grande con hipertensión pulmonar (Síndrome de Eisenmenger)?",
+        "options": [
+          "CIA; Estenosis pulmonar.",
+          "CIV; Inversión del cortocircuito (de derecha a izquierda) con cianosis fija",
+          "PCA; Endocarditis bacteriana únicamente.",
+          "Coartación aórtica; Infarto al miocardio."
+        ],
+        "answerIndex": 1,
+        "explanation": "La CIV es la cardiopatía congénita más frecuente en general. El Síndrome de Eisenmenger ocurre cuando la presión pulmonar supera a la sistémica debido al flujo aumentado crónico, causando que la sangre desoxigenada pase a la circulación sistémica. En ese punto, la cirugía ya está contraindicada.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "subtema": "TETRALOGÍA DE FALLOT",
+    "difficulty": "media",
+    "case": "Lactante masculino de 6 meses de edad es traído a consulta porque la madre nota que \"se pone morado\" alrededor de la boca y en los dedos cuando llora prolongadamente o hace esfuerzo al evacuar. A la exploración física: Cianosis peribucal y ungueal leve, acropaquias incipientes y un soplo sistólico expulsivo rudo en el foco pulmonar. La radiografía de tórax muestra el ápex levantado y una excavación en el borde izquierdo.",
+    "questions": [
+      {
+        "question": "¿Cuáles son los 4 componentes anatómicos que definen esta cardiopatía y cuál es la descripción clásica de la silueta cardiaca en la radiografía?",
+        "options": [
+          "CIA, hipertrofia ventricular izquierda, cabalgamiento aórtico y estenosis tricuspídea; Corazón en garrafa.",
+          "CIV, estenosis pulmonar (infundibular), cabalgamiento de la aorta e hipertrofia ventricular derecha; Corazón en \"zapato sueco\" (zueco)",
+          "PCA, atresia pulmonar, dextrocardia y CIV; Corazón en \"muñeco de nieve\".",
+          "CIV, estenosis aórtica, hipertrofia ventricular izquierda y CIA; Corazón en \"gota\"."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Tetralogía de Fallot es la cardiopatía cianógena más frecuente después del primer año de vida. El grado de estenosis pulmonar es el que dicta la severidad de la cianosis, ya que obliga a la sangre desoxigenada del ventrículo derecho a pasar por la CIV hacia la aorta (cortocircuito de derecha a izquierda). La hipertrofia del ventrículo derecho levanta la punta del corazón en la placa de tórax, dando la forma de zueco.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si este mismo paciente acude a urgencias con un episodio súbito de cianosis profunda, agitación e hiperventilación (Crisis Hipóxica), ¿cuál es la primera maniobra física que debes indicar a los padres o realizar en el consultorio?",
+        "options": [
+          "Colocar al paciente en posición de Trendelenburg.",
+          "Iniciar maniobra de Heimlich.",
+          "Colocar al paciente en posición genupectoral (rodillas al pecho) o en cuclillas",
+          "Dar ventilación con presión positiva inmediatamente."
+        ],
+        "answerIndex": 2,
+        "explanation": "Las crisis hipóxicas ocurren por un espasmo del infundíbulo pulmonar que bloquea el paso de sangre a los pulmones. La posición genupectoral (o agacharse en cuclillas en niños mayores) \"tuerce\" las arterias femorales, aumentando súbitamente las resistencias vasculares sistémicas, lo que empuja la sangre de regreso hacia el pulmón a través de la CIV. El manejo farmacológico de urgencia incluye Oxígeno, Morfina (para relajar el infundíbulo) y Propranolol. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "subtema": "TRANSPOSICIÓN DE GRANDES VASOS (TGV)",
+    "difficulty": "alta",
+    "case": "Recién nacido de término, macrosómico (4.2 kg), hijo de madre con diabetes gestacional. A las pocas horas de nacido presenta cianosis severa y generalizada que NO responde a la administración de oxígeno al 100% (prueba de hiperoxia fallida). A la auscultación el S2 es único y reforzado, sin soplos evidentes. La radiografía de tórax muestra un mediastino superior muy estrecho.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable, el hallazgo radiológico clásico y el fármaco de primera línea para mantener al paciente con vida antes de la cirugía?",
+        "options": [
+          "Atresia Tricuspídea; Corazón en garrafa; Indometacina.",
+          "Transposición de Grandes Vasos; Corazón en \"huevo suspendido en un hilo\"; Prostaglandina E1 (Alprostadil)",
+          "Drenaje Venoso Anómalo Total; Corazón en muñeco de nieve; Ibuprofeno.",
+          "Tronco Arterioso; Corazón en forma de bota; Furosemida."
+        ],
+        "answerIndex": 1,
+        "explanation": "La TGV es la cardiopatía cianógena más frecuente al NACIMIENTO. La aorta nace del ventrículo derecho y la arteria pulmonar del izquierdo, creando dos circuitos paralelos que no se mezclan. Es incompatible con la vida a menos que exista un cortocircuito (foramen oval o conducto arterioso). Por eso es vital infundir Prostaglandina E1 de inmediato para mantener abierto el conducto arterioso hasta que se pueda realizar una atrioseptostomía de Rashkind o la cirugía correctora definitiva (switch arterial de Jatene). El mediastino estrecho da la imagen de \"huevo colgando de un hilo\".",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "subtema": "INFECCIÓN DE VÍAS URINARIAS (IVU)",
+    "difficulty": "media",
+    "case": "Lactante femenino de 6 meses de edad, sin antecedentes perinatales de importancia. Es traída a urgencias por presentar fiebre de 39°C de 48 horas de evolución, irritabilidad, rechazo al alimento y vómitos aislados. A la exploración física no se encuentra un foco infeccioso evidente (vías respiratorias sanas, oídos limpios). Se toma un examen general de orina (EGO) por cateterismo vesical que reporta: Leucocitos >50 por campo, Nitritos positivos y Esterasa leucocitaria positiva.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico más probable y cuál es el estudio de gabinete de PRIMERA ELECCIÓN recomendado por la GPC tras el primer episodio de IVU febril en esta paciente?",
+        "options": [
+          "Proteus mirabilis; Cistouretrografía miccional (CUGM).",
+          "Escherichia coli; Ultrasonido renal y vesical",
+          "Klebsiella pneumoniae; Tomografía computarizada de abdomen.",
+          "Enterococcus faecalis; Gammagrama renal con DMSA inmediato."
+        ],
+        "answerIndex": 1,
+        "explanation": "E. coli es responsable del 80-90% de las IVU en pediatría. En todo lactante menor de 3 años con su PRIMERA infección de vías urinarias febril, el estudio inicial SIEMPRE es el ultrasonido renal y vesical para descartar malformaciones anatómicas mayores (como hidronefrosis). No se hace CUGM de rutina en el primer episodio a menos que el ultrasonido sea anormal o el patógeno sea atípico.",
+        "gpcReference": ""
+      },
+      {
+        "question": "¿Cuál es el estándar de oro para confirmar el diagnóstico de IVU y a partir de cuántas unidades formadoras de colonias (UFC) se considera positivo si la muestra se tomó por cateterismo transuretral?",
+        "options": [
+          "EGO; >100,000 UFC/ml.",
+          "Urocultivo; >10,000 UFC/ml a >50,000 UFC/ml",
+          "Tira reactiva; >1,000 UFC/ml.",
+          "Hemocultivo; >100 UFC/ml."
+        ],
+        "answerIndex": 1,
+        "explanation": "El urocultivo es indispensable antes de iniciar el antibiótico empírico. Los puntos de corte cambian según el método de recolección: - Punción suprapúbica: Cualquier crecimiento de gramnegativos (o >1,000 de cocos grampositivos). - Cateterismo: >10,000 a 50,000 UFC/ml. - Chorro medio (niños que controlan esfínteres): >100,000 UFC/ml. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "subtema": "REFLUJO VESICOURETERAL (RVU)",
+    "difficulty": "alta",
+    "case": "Preescolar femenino de 3 años, con antecedente de 3 episodios de IVU febril confirmados por urocultivo en el último año. Se le realiza un ultrasonido renal que reporta dilatación del sistema pielocalicial derecho (hidronefrosis leve). El pediatra sospecha de reflujo vesicoureteral.",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio de elección (estándar de oro) para diagnosticar y estadificar el reflujo vesicoureteral?",
+        "options": [
+          "Urografía excretora.",
+          "Gammagrama renal con DMSA.",
+          "Cistouretrografía miccional (CUGM)",
+          "Resonancia magnética pélvica."
+        ],
+        "answerIndex": 2,
+        "explanation": "La CUGM permite ver en tiempo real cómo la orina retrocede desde la vejiga hacia los uréteres y riñones durante la micción. Es el único estudio que permite clasificar el RVU del grado I al V. Se indica cuando hay IVU recurrente, IVU atípica o un ultrasonido alterado.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Para evaluar si estos múltiples episodios de infección le han dejado CICATRICES RENALES (daño parenquimatoso permanente), ¿cuál es el estudio de imagen más sensible y cuándo debe realizarse?",
+        "options": [
+          "Ultrasonido renal Doppler; Durante el pico febril.",
+          "Tomografía computarizada contrastada; A las 2 semanas del evento.",
+          "Gammagrama renal con ácido dimercaptosuccínico (DMSA); 4 a 6 meses después de la infección aguda",
+          "Gammagrama con MAG -3; Inmediatamente tras iniciar antibiótico."
+        ],
+        "answerIndex": 2,
+        "explanation": "El gammagrama con DMSA es el estándar de oro para ver el parénquima renal y detectar cicatrices (zonas que no captan el radiotrazador). Se debe hacer 4 a 6 meses después de la última infección, ya que hacerlo durante la fase aguda solo mostraría la inflamación temporal (pielonefritis aguda) y daría falsos positivos para daño permanente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "subtema": "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (TTRN)",
+    "difficulty": "media",
+    "case": "Recién nacido de 38 semanas de gestación, obtenido por cesárea electiva sin trabajo de parto previo. A las 2 horas de vida inicia con taquipnea de 80 rpm, aleteo nasal y tiraje intercostal leve (Silverman-Andersen 3). A la auscultación, los campos pulmonares están bien ventilados. La radiografía de tórax muestra atrapamiento aéreo leve, rectificación de arcos costales, líquido en las cisuras (cisuritis) y congestión hiliar radiante.",
+    "questions": [
+      {
+        "question": "¿Cuál es la fisiopatología de este cuadro y cuál es el pilar del tratamiento?",
+        "options": [
+          "Deficiencia de surfactante; Administración de surfactante exógeno.",
+          "Retraso en la reabsorción del líquido pulmonar fetal; Oxígeno suplementario (casco cefálico o CPAP) y ayuno transitorio",
+          "Inhalación de líquido amniótico meconial; Antibióticos intravenosos.",
+          "Infección intrauterina por estreptococo del grupo B; Ampicilina y Gentamicina."
+        ],
+        "answerIndex": 1,
+        "explanation": "La TTRN es la causa más común de dificultad respiratoria en neonatos de TÉRMINO o cercanos al término nacidos por CESÁREA. Al no pasar por el canal de parto (donde el tórax se exprime y las catecolaminas activan los canales de sodio para reabsorber el líquido), el pulmón queda \"húmedo\". Es un cuadro benigno y autolimitado (mejora en 24-72 horas). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "subtema": "SÍNDROME DE DIFICULTAD RESPIRATORIA (SDR / ENFERMEDAD DE",
+    "difficulty": "alta",
+    "case": "Recién nacido prematuro de 28 semanas de gestación, hijo de madre diabética. Minutos después del nacimiento presenta dificultad respiratoria severa (Silverman- Andersen 7), quejido espiratorio audible y cianosis central que no mejora con oxígeno a flujo libre. La radiografía de tórax evidencia un patrón reticulonodular fino difuso (\"vidrio despulido\"), broncograma aéreo prominente y volumen pulmonar disminuido.",
+    "questions": [
+      {
+        "question": "¿Qué células son responsables de la producción de la sustancia deficiente en este paciente y a partir de qué semana de gestación comienza su producción máxima?",
+        "options": [
+          "Neumocitos tipo I; 24 semanas.",
+          "Neumocitos tipo II; 34-35 semanas",
+          "Macrófagos alveolares; 28 semanas.",
+          "Células caliciformes; 32 semanas."
+        ],
+        "answerIndex": 1,
+        "explanation": "El SDR clásico afecta a los PREMATUROS. La falta de surfactante (producido por los neumocitos tipo II) causa colapso alveolar (atelectasia progresiva). La diabetes materna es un factor de riesgo mayor porque la insulina retrasa la maduración pulmonar.",
+        "gpcReference": ""
+      },
+      {
+        "question": "Si la madre hubiera llegado con amenaza de parto pretérmino a las 27 semanas, ¿cuál habría sido la intervención farmacológica de mayor impacto para prevenir este cuadro?",
+        "options": [
+          "Sulfato de magnesio intravenoso.",
+          "Indometacina vía oral.",
+          "Betametasona o Dexametasona intramuscular a la madre",
+          "Surfactante profiláctico intraamniótico."
+        ],
+        "answerIndex": 2,
+        "explanation": "Los corticosteroides antenatales son la medida preventiva más eficaz para inducir la maduración pulmonar fetal en embarazos de 24 a 34 semanas con riesgo inminente de parto prematuro. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "subtema": "SÍNDROME DE ASPIRACIÓN DE MECONIO (SAM)",
+    "difficulty": "media",
+    "case": "Recién nacido postérmino (42 semanas de gestación). Presenta sufrimiento fetal agudo durante el trabajo de parto. Al nacer, se observa líquido amniótico espeso con grumos verdes. El neonato nace hipotónico, con esfuerzo respiratorio ausente y frecuencia cardíaca de 80 lpm. Tras la reanimación inicial, desarrolla dificultad respiratoria severa. La radiografía muestra infiltrados algodonosos en parches (panal de abejas), abatimiento de los hemidiafragmas y aumento de los espacios intercostales.",
+    "questions": [
+      {
+        "question": "¿Cuál es la complicación cardiopulmonar más temida y frecuente asociada al Síndrome de Aspiración de Meconio grave?",
+        "options": [
+          "Hemorragia intraventricular.",
+          "Hipertensión Pulmonar Persistente del Recién Nacido (HPPRN)",
+          "Persistencia del Conducto Arterioso.",
+          "Displasia broncopulmonar."
+        ],
+        "answerIndex": 1,
+        "explanation": "El SAM es exclusivo de niños a TÉRMINO o POSTÉRMINO (los prematuros no suelen evacuar meconio). El meconio es estéril pero muy irritante (causa neumonitis química) y obstructivo (causa efecto de válvula atrapando aire, por eso el tórax se ve hiperinsuflado). La hipoxia severa y crónica lleva a una falla en la relajación del lecho vascular pulmonar, causando Hipertensión Pulmonar Persistente (flujo de derecha a izquierda por el foramen oval o ductus).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "subtema": "ICTERICIA PATOLÓGICA (INCOMPATIBILIDAD ABO Y Rh)",
+    "difficulty": "alta",
+    "case": "Recién nacido de término. Madre grupo O, Rh positivo. Neonato grupo A, Rh positivo. A las 12 horas de vida, la enfermera nota ictericia clínica que se extiende hasta el abdomen (Kramer III). Los laboratorios del cordón umbilical muestran Bilirrubina Total de 8 mg/dL a expensas de la indirecta, reticulocitosis y hemoglobina de 13 g/dL.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable y qué prueba de laboratorio confirma la presencia de anticuerpos unidos a los eritrocitos del bebé?",
+        "options": [
+          "Incompatibilidad Rh; Prueba de Coombs indirecto.",
+          "Incompatibilidad ABO; Prueba de Coombs directo positivo",
+          "Ictericia fisiológica; Medición de bilirrubina transcutánea.",
+          "Esferocitosis hereditaria; Frotis de sangre periférica."
+        ],
+        "answerIndex": 1,
+        "explanation": "¡Regla de oro del ENARM! La ictericia que aparece en las **primeras 24 horas de vida SIEMPRE es patológica** y hemolítica hasta demostrar lo contrario. La incompatibilidad ABO es la causa más común (Madre O, bebé A o B). La prueba de Coombs DIRECTO busca los anticuerpos maternos que ya están pegados a los glóbulos rojos del bebé. El Coombs indirecto se le realiza a la sangre de la madre para buscar anticuerpos circulantes. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "subtema": "ICTERICIA POR LACTANCIA VS. LECHE MATERNA",
+    "difficulty": "media",
+    "case": "Recién nacido de 10 días de vida, alimentado con seno materno exclusivo. Acude a consulta de control y se le nota ictérico hasta los muslos. La madre refiere que el bebé come excelente, tiene muy buena ganancia de peso, orina claro y evacúa color amarillo mostaza. Sus laboratorios reportan Bilirrubina indirecta en 14 mg/dL y resto de pruebas hepáticas normales.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable y cuál es la indicación médica correcta para la madre?",
+        "options": [
+          "Ictericia fisiológica prolongada; Suspender lactancia y dar fórmula por 3 días.",
+          "Ictericia por leche materna (Síndrome de Arias); Continuar lactancia materna exclusiva y vigilar",
+          "Ictericia por falta de aporte (hipoalimentación); Iniciar fórmula de inicio.",
+          "Atresia de vías biliares; Derivación hepatoportoenterostomía (Kasai)."
+        ],
+        "answerIndex": 1,
+        "explanation": "Es vital no confundirlas. La ictericia por **LECHE materna** aparece a partir de la segunda semana en un niño completamente sano y bien hidratado, causada por factores en la leche (como la beta-glucuronidasa) que aumentan la reabsorción de bilirrubina en el intestino. **NO se suspende la lactancia**. Por el contrario, la ictericia por **LACTANCIA (falta de aporte)** ocurre en la primera semana por mala técnica de alimentación, causando deshidratación, pérdida de peso excesiva y retraso en la evacuación del meconio. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "subtema": "ENCEFALOPATÍA BILIRRUBÍNICA (KERNICTERUS)",
+    "difficulty": "media",
+    "case": "Recién nacido de 4 días de vida, producto de parto fortuito sin control prenatal. Es llevado a urgencias por ictericia generalizada intensa que afecta palmas y plantas (Kramer V). A la exploración neurológica presenta letargo, rechazo absoluto al alimento, llanto agudo y episodios de hipertonía con arqueamiento del cuerpo (opistótonos).",
+    "questions": [
+      {
+        "question": "¿Qué estructura del sistema nervioso central es la más susceptible al depósito de bilirrubina indirecta libre (no conjugada) en esta patología?",
+        "options": [
+          "Corteza cerebral frontal.",
+          "Cerebelo (vermis).",
+          "Ganglios basales (especialmente el globo pálido) y núcleos de los pares craneales ",
+          "Hipotálamo."
+        ],
+        "answerIndex": 2,
+        "explanation": "El Kernicterus es la complicación más devastadora de la hiperbilirrubinemia severa no tratada. La bilirrubina indirecta es liposoluble y, cuando satura a la albúmina o se rompe la barrera hematoencefálica, penetra al cerebro. Tiene una afinidad clásica y destructiva por los ganglios basales. Si el paciente sobrevive, desarrollará parálisis cerebral coreoatetoide y sordera neurosensorial a largo plazo. El tratamiento de urgencia para evitar esto es la exanguinotransfusión.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA - INFECTOLOGÍA",
+    "subtema": "SEPSIS NEONATAL TEMPRANA",
+    "difficulty": "media",
+    "case": "Recién nacido de 35 semanas de gestación. La madre acudió con ruptura prematura de membranas de 24 horas de evolución y fiebre intraparto de 38.5°C; no recibió profilaxis antibiótica. A las 12 horas de vida, el neonato presenta letargo, rechazo al alimento, quejido espiratorio, taquipnea (70 rpm) y mala perfusión periférica (llenado capilar de 4 segundos).",
+    "questions": [
+      {
+        "question": "¿Cuáles son los dos agentes etiológicos más frecuentes en la sepsis neonatal temprana (<72 horas) y cuál es el esquema antibiótico empírico de primera elección según la GPC?",
+        "options": [
+          "E. coli y Listeria monocytogenes; Cefotaxima + Amikacina.",
+          "Streptococcus agalactiae (Estreptococo del Grupo B) y E. coli; Ampicilina + Gentamicina",
+          "Staphylococcus aureus y Klebsiella; Dicloxacilina + Cefepime.",
+          "Pseudomonas aeruginosa y Enterobacter; Meropenem."
+        ],
+        "answerIndex": 1,
+        "explanation": "La sepsis temprana se adquiere en el canal de parto (transmisión vertical). El S. agalactiae y E. coli dominan este escenario. La combinación de Ampicilina (que cubre Listeria y S. agalactiae) junto con Gentamicina (sinergia y cobertura para gramnegativos como E. coli) es el estándar de oro en todo el mundo para iniciar el manejo antes de tener los hemocultivos. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA - INFECTOLOGÍA",
+    "subtema": "SÍFILIS CONGÉNITA",
+    "difficulty": "alta",
+    "case": "Recién nacido de término, producto de madre adolescente sin control prenatal (se desconoce VDRL materno). Al nacimiento, el pediatra nota un recién nacido con bajo peso, que presenta abundante secreción nasal serosanguinolenta (\"snuffles\"). A la exploración cutánea destaca un exantema maculopapular que afecta palmas y plantas, con algunas lesiones vesículo-ampollares que se descaman. El abdomen es globoso por hepatoesplenomegalia masiva.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico clínico más probable y cuál es el tratamiento curativo de elección?",
+        "options": [
+          "Infección por Citomegalovirus; Ganciclovir intravenoso.",
+          "Rubeola congénita; Aislamiento de contacto y soporte.",
+          "Sífilis congénita temprana; Penicilina G Sódica Cristalina IV por 10 a 14 días",
+          "Infección por Virus del Herpes Simple; Aciclovir IV."
+        ],
+        "answerIndex": 2,
+        "explanation": "La tríada de rinitis serosanguinolenta + pénfigo sifilítico (lesiones descamativas/ampollares en palmas y plantas) + hepatoesplenomegalia en un neonato es Sífilis Congénita hasta demostrar lo contrario. Otro dato clásico en los casos clínicos es la \"pseudoparálisis de Parrot\" (el niño no mueve una extremidad por el dolor de la osteocondritis sifilítica). La Penicilina sigue siendo el único tratamiento eficaz. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA - INFECTOLOGÍA",
+    "subtema": "CITOMEGALOVIRUS (CMV) CONGÉNITO VS TOXOPLASMOSIS",
+    "difficulty": "alta",
+    "case": "Recién nacido de 38 semanas, pequeño para la edad gestacional (peso < percentil 10). Presenta ictericia generalizada desde el primer día, petequias difusas (\"blueberry muffin baby\") y hepatoesplenomegalia. A la exploración neurológica se detecta microcefalia. Se realiza una Tomografía Computarizada (TC) de cráneo evidenciando múltiples calcificaciones en la región periventricular.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico responsable de este cuadro y cuál es la principal secuela a largo plazo que presentan estos pacientes (incluso los que nacen asintomáticos)?",
+        "options": [
+          "Toxoplasma gondii; Ceguera por coriorretinitis.",
+          "Citomegalovirus; Sordera neurosensorial",
+          "Virus de la Rubeola; Cardiopatía congénita.",
+          "Virus del Zika; Parálisis cerebral espástica."
+        ],
+        "answerIndex": 1,
+        "explanation": "El CMV es la infección congénita más frecuente. Para diferenciarlo de la Toxoplasmosis en el ENARM, fíjate en las calcificaciones: el CMV produce calcificaciones PERIVENTRICULARES (alrededor de los ventrículos) y se asocia a microcefalia. La Toxoplasmosis produce calcificaciones DIFUSAS en el parénquima y se asocia a hidrocefalia (macrocefalia). El CMV es la principal causa de sordera neurosensorial no genética en la infancia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "subtema": "REANIMACIÓN NEONATAL (NRP)",
+    "difficulty": "media",
+    "case": "Recién nacido de 39 semanas de gestación, obtenido por parto vaginal. El líquido amniótico presenta meconio espeso. Al nacer, el neonato se observa flácido (hipotónico) y no respira. Se lleva a la cuna radiante, se coloca en posición de olfateo, se secreta la vía aérea, se seca y se estimula (pasos iniciales). A pesar de esto, a los 30 segundos de vida el paciente presenta jadeo (gasping) y una frecuencia cardíaca de 80 lpm.",
+    "questions": [
+      {
+        "question": "De acuerdo con la octava edición del manual de Reanimación Neonatal (NRP), ¿cuál es la conducta inmediata a seguir?",
+        "options": [
+          "Iniciar compresiones torácicas coordinadas con ventilación.",
+          "Intubación endotraqueal inmediata para aspiración directa de la tráquea.",
+          "Iniciar Ventilación con Presión Positiva (VPP) con mascarilla y monitorizar SpO2",
+          "Administrar Adrenalina intravenosa por vena umbilical."
+        ],
+        "answerIndex": 2,
+        "explanation": "¡Dato de oro actualizado! Las guías actuales ya NO recomiendan la intubación rutinaria para aspirar meconio, incluso en niños no vigorosos. Si tras los pasos iniciales (calentar, secar, estimular, posicionar) el niño no respira, jadea, o tiene una frecuencia cardíaca menor a 100 lpm, el siguiente paso inmediato es la Ventilación con Presión Positiva (VPP) durante 15 segundos antes de reevaluar. Las compresiones solo inician si la FC es menor a 60 lpm a pesar de 30 segundos de VPP efectiva. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "subtema": "ESCALA DE APGAR",
+    "difficulty": "baja",
+    "case": "Recién nacido de término se encuentra en su primer minuto de vida. A la evaluación presenta: Frecuencia cardíaca de 110 lpm, llanto débil e irregular, cierta flexión de las extremidades, hace muecas al aspirar sus secreciones y el cuerpo está rosado pero las manos y los pies están azulados (acrocianosis).",
+    "questions": [
+      {
+        "question": "¿Cuál es la puntuación de Apgar de este paciente y cuál es su interpretación clínica?",
+        "options": [
+          "5 puntos; Asfixia severa.",
+          "6 puntos; Depresión moderada",
+          "7 puntos; Estado normal (vigoroso).",
+          "8 puntos; Estado normal (vigoroso)."
+        ],
+        "answerIndex": 1,
+        "explanation": "Desglose del Apgar: - Apariencia (Color): Acrocianosis = 1 punto. - Pulso (FC): >100 lpm = 2 puntos. - Gesto (Reflejos): Mueca = 1 punto. - Actividad (Tono): Cierta flexión = 1 punto. - Respiración: Llanto débil = 1 punto. Total = 6 puntos. Recuerda: El Apgar evalúa la transición a la vida extrauterina, NO se usa para decidir cuándo iniciar la reanimación (eso lo dictan la FC y el esfuerzo respiratorio). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "subtema": "ESCALA DE SILVERMAN -ANDERSEN",
+    "difficulty": "alta",
+    "case": "Recién nacido prematuro tardío de 36 semanas ingresa a la UCIN. A la exploración física presenta: Movimientos toracoabdominales sincronizados (rítmicos), tiraje intercostal apenas visible, retracción xifoidea leve, aleteo nasal leve y quejido espiratorio que solo es audible con el estetoscopio.",
+    "questions": [
+      {
+        "question": "¿Cuál es la puntuación en la escala de Silverman-Andersen y su grado de severidad?",
+        "options": [
+          "2 puntos; Dificultad respiratoria leve.",
+          "4 puntos; Dificultad respiratoria moderada",
+          "5 puntos; Dificultad respiratoria moderada.",
+          "7 puntos; Dificultad respiratoria severa."
+        ],
+        "answerIndex": 1,
+        "explanation": "Desglose del Silverman: - Movimientos toracoabdominales: Sincronizados = 0 puntos. - Tiraje intercostal: Apenas visible (leve) = 1 punto. - Retracción xifoidea: Leve = 1 punto. - Aleteo nasal: Leve = 1 punto. - Quejido espiratorio: Audible solo con estetoscopio = 1 punto. Total = 4 puntos. Interpretación: 0 (Sin dificultad), 1-3 (Leve), 4-6 (Moderada), 7-10 (Severa). Al revés que el Apgar, en el Silverman ¡mientras más alto, peor le va al paciente!",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA",
+    "subtema": "FISIOLOGÍA DEL CICLO MENSTRUAL",
+    "difficulty": "media",
+    "case": "Paciente femenina de 28 años, con ciclos regulares de 28 días. Acude a consulta porque desea embarazarse y quiere saber cuáles son sus \"días fértiles\". Se le explica el funcionamiento del ciclo ovárico y endometrial.",
+    "questions": [
+      {
+        "question": "¿Cuál es la hormona predominante en la fase folicular (proliferativa) y cuál es el evento endocrinológico que desencadena directamente la ruptura folicular (ovulación)?",
+        "options": [
+          "Progesterona; Pico de FSH.",
+          "Estradiol; Pico de Hormona Luteinizante (LH)",
+          "Inhibina B; Caída abrupta de estrógenos.",
+          "GnRH; Aumento de Prolactina."
+        ],
+        "answerIndex": 1,
+        "explanation": "La fase folicular es dominada por los estrógenos (estradiol), los cuales hacen proliferar el endometrio. El pico de LH es el gatillo absoluto de la ovulación; ocurre aproximadamente 34-36 horas antes de la ruptura folicular (o 10-12 horas después de alcanzar su concentración máxima). Posteriormente, el cuerpo lúteo produce progesterona para estabilizar el endometrio. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA",
+    "subtema": "PLANIFICACIÓN FAMILIAR (LARC)",
+    "difficulty": "media",
+    "case": "Paciente de 24 años, nuligesta, estudiante de posgrado. Acude para asesoría anticonceptiva. Refiere tener una pareja estable y no desear embarazo en al menos 5 años. En su interrogatorio destaca antecedente de dismenorrea severa incapacitante y sangrado menstrual abundante (menorragia). No tiene otras patologías.",
+    "questions": [
+      {
+        "question": "De acuerdo con los Criterios Médicos de Elegibilidad de la OMS, ¿cuál es el método anticonceptivo reversible de larga duración (LARC) más indicado para esta paciente por sus beneficios no anticonceptivos?",
+        "options": [
+          "Dispositivo Intrauterino de Cobre (DIU-Cu).",
+          "Anticonceptivos Orales Combinados (AOC).",
+          "Sistema Intrauterino liberador de Levonorgestrel (SIU-LNG)",
+          "Salpingoclasia bilateral."
+        ],
+        "answerIndex": 2,
+        "explanation": "Los LARC (DIU y los implantes) son la primera línea recomendada incluso en nuligestas por su alta eficacia. El SIU-LNG (Mirena) es la opción ideal aquí porque el levonorgestrel ejerce un efecto local que adelgaza el endometrio, reduciendo drásticamente el volumen de sangrado y el dolor cólico (dismenorrea). El DIU de cobre está contraindicado relativamente en ella porque tiende a aumentar el sangrado y los cólicos. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEUMOLOGÍA",
+    "subtema": "ASMA (DIAGNÓSTICO INICIAL)",
+    "difficulty": "media",
+    "case": "Escolar masculino de 7 años es traído a consulta externa por presentar cuadros recurrentes de tos seca (predominio nocturno) y \"silbido en el pecho\". La madre refiere que estos episodios empeoran cuando el niño hace ejercicio en la clase de educación física o cuando hace frío. En la exploración física actual se encuentra asintomático y con campos pulmonares limpios. Tiene antecedente personal de dermatitis atópica.",
+    "questions": [
+      {
+        "question": "De acuerdo con las guías GINA/GPC, ¿cuál es el estudio de primera elección para confirmar el diagnóstico en este paciente y qué hallazgo clínico lo corrobora?",
+        "options": [
+          "Radiografía de tórax; Atrapamiento aéreo y abatimiento diafragmático.",
+          "Prueba de alergia cutánea (Prick test); Positividad a ácaros del polvo.",
+          "Espirometría; Patrón obstructivo con reversibilidad >12% tras la administración de un broncodilatador de acción corta",
+          "Pletismografía; Aumento de la capacidad pulmonar total y volumen residual."
+        ],
+        "answerIndex": 2,
+        "explanation": "En niños mayores de 5-6 años que cooperan, la espirometría es el estándar de oro. El asma es una enfermedad obstructiva REVERSIBLE. Un aumento del Volumen Espiratorio Forzado en el primer segundo (VEF1) >12% (y >200 ml) después de aplicar salbutamol confirma el diagnóstico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEUMOLOGÍA",
+    "subtema": "ASMA (MANEJO DE CONTROL crónico)",
+    "difficulty": "alta",
+    "case": "Niña de 9 años con diagnóstico confirmado de asma. Acude a cita de seguimiento. La madre refiere que en el último mes la niña ha presentado síntomas diurnos (tos y sibilancias) 3 días a la semana, y se ha despertado tosiendo 2 noches en el último mes. Ha requerido usar su inhalador de salbutamol de rescate unas 3 veces por semana.",
+    "questions": [
+      {
+        "question": "Según la clasificación clínica y el enfoque escalonado de GINA, ¿en qué escalón de tratamiento se encuentra y cuál es la terapia controladora de primera elección a indicar?",
+        "options": [
+          "Escalón 1; Salbutamol a demanda únicamente.",
+          "Escalón 2; Corticosteroide Inhalado (CSI) a dosis bajas diario o CSI-Formoterol a demanda",
+          "Escalón 4; Corticosteroide sistémico (Prednisona) oral diario.",
+          "Escalón 5; Omalizumab (Terapia biológica)."
+        ],
+        "answerIndex": 1,
+        "explanation": "¡Pregunta clásica de ENARM! Esta paciente tiene asma persistente leve (síntomas >2 veces/semana pero no diarios, y síntomas nocturnos >2 veces/mes). GINA ya NO recomienda el uso de SABA (salbutamol) solo a demanda por el riesgo de exacerbaciones. El Escalón 2 indica iniciar un Corticosteroide Inhalado (ej. Budesonida o Fluticasona) a dosis bajas de mantenimiento, o la terapia MART (CSI- Formoterol) según sea necesario. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / URGENCIAS",
+    "subtema": "CRISIS ASMÁTICA SEVERA",
+    "difficulty": "alta",
+    "case": "Preescolar de 5 años con antecedente de asma, es traído a urgencias por dificultad respiratoria de inicio súbito tras cuadro catarral. A su llegada: FC 145 lpm, FR 45 rpm, SatO2 88% al aire ambiente. Presenta tiraje intercostal severo, aleteo nasal y habla con palabras entrecortadas. A la auscultación hay un \"tórax silente\" (ausencia casi total de sibilancias y murmullo vesicular).",
+    "questions": [
+      {
+        "question": "¿Cuál es la interpretación clínica del \"tórax silente\" en este paciente y cuál es el manejo farmacológico inicial de rescate en la primera hora?",
+        "options": [
+          "Resolución del broncoespasmo; Egreso con Salbutamol en aerosol.",
+          "Obstrucción grave al flujo aéreo (inminencia de paro); Oxígeno + Salbutamol nebulizado + Bromuro de Ipratropio + Corticoide sistémico (IV/VO)",
+          "Neumonía atípica sobreagregada; Iniciar Macrólido IV.",
+          "Neumotórax a tensión; Colocación de sonda endopleural inmediata."
+        ],
+        "answerIndex": 1,
+        "explanation": "El \"tórax silente\" es una bandera roja absoluta; significa que el broncoespasmo es tan severo que ni siquiera hay flujo de aire suficiente para generar sibilancias. El manejo de una crisis severa incluye la tríada: Oxígeno (para saturar >94%), Broncodilatadores de acción corta (SABA) combinados con anticolinérgicos (Ipratropio) en nebulización continua o disparos múltiples, y la administración temprana de esteroides sistémicos (Metilprednisolona o Prednisona). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / URGENCIAS  - INFECTOLOGÍA",
+    "subtema": "LARINGOTRAQUEÍTIS AGUDA (CRUP)",
+    "difficulty": "media",
+    "case": "Lactante masculino de 18 meses de edad es llevado a urgencias a las 2:00 am. La madre refiere que hace dos días inició con escurrimiento nasal y fiebre de 38°C, pero esta noche despertó súbitamente con una tos metálica \"similar al ladrido de una foca\" y afonía. A la exploración física, el niño se encuentra tranquilo en brazos de su madre, presenta estridor inspiratorio ÚNICAMENTE cuando llora, sin tiraje intercostal en reposo.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico más frecuente de esta patología y qué signo radiológico clásico buscaría si solicitara una radiografía anteroposterior del cuello?",
+        "options": [
+          "Virus Sincitial Respiratorio; Signo del pulgar.",
+          "Haemophilus influenzae tipo B; Signo de la vela.",
+          "Virus Parainfluenza (tipos 1 y 3); Signo de la aguja o \"campanario\"",
+          "Rinovirus; Signo del halo."
+        ],
+        "answerIndex": 2,
+        "explanation": "La tríada de tos perruna, afonía y estridor inspiratorio es el sello del Crup (Laringotraqueítis aguda). El agente causal rey es el Virus Parainfluenza. Aunque el diagnóstico es puramente clínico, el signo radiológico clásico (por estrechamiento subglótico) es el signo del \"campanario\" o \"punta de lápiz\" en la Rx AP de cuello. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / URGENCIAS",
+    "subtema": "CRUP (MANEJO DE LA VÍA AÉREA)",
+    "difficulty": "alta",
+    "case": "Lactante de 2 años con cuadro clínico compatible con Crup. A su ingreso a la sala de urgencias, se observa agitado, presenta estridor inspiratorio franco EN REPOSO, cianosis peribucal leve, tiraje supraclavicular e intercostal evidente.",
+    "questions": [
+      {
+        "question": "Al clasificar a este paciente con un Crup Grave (Escala de Westley >6), ¿cuál es el tratamiento farmacológico inmediato de primera línea para evitar el colapso inminente de la vía aérea?",
+        "options": [
+          "Antibioticoterapia intravenosa urgente (Ceftriaxona).",
+          "Dexametasona dosis única (IM/VO) + Nebulización con L-Adrenalina (Adrenalina racémica)",
+          "Salbutamol en nebulización continua.",
+          "Intubación endotraqueal inmediata sin intento farmacológico."
+        ],
+        "answerIndex": 1,
+        "explanation": "Cuando el estridor aparece EN REPOSO o hay dificultad respiratoria evidente (Crup moderado/grave), el pilar del tratamiento de urgencia es la Adrenalina nebulizada. Esta actúa en minutos reduciendo el edema subglótico por vasoconstricción local, comprando tiempo vital. Siempre debe acompañarse de Dexametasona (0.6 mg/kg) porque la adrenalina tiene un efecto de \"rebote\" a las 2 horas, tiempo en el que el esteroide ya comienza a hacer efecto.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA - PARASITOLOGÍA",
+    "subtema": "GIARDIASIS INTESTINAL",
+    "difficulty": "media",
+    "case": "Preescolar masculino de 3 años, asiste a guardería desde hace 6 meses. Acude a consulta por cuadro de 3 semanas de evolución caracterizado por dolor abdominal intermitente, distensión y evacuaciones diarreicas explosivas, fétidas y de aspecto grasoso (esteatorrea), sin presencia de sangre. La madre ha notado que el niño no ha ganado peso en los últimos dos meses.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico responsable de este cuadro de malabsorción y cuál es el tratamiento farmacológico de primera elección según la GPC?",
+        "options": [
+          "Entamoeba histolytica; Paromomicina.",
+          "Giardia lamblia; Metronidazol o Tinidazol",
+          "Rotavirus; Hidratación oral y Zinc.",
+          "Ascaris lumbricoides; Albendazol."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Giardiasis es la parasitosis más frecuente en guarderías. El parásito (un protozoo flagelado) se adhiere a la mucosa del duodeno y yeyuno tapizando las vellosidades intestinales, lo que bloquea la absorción de grasas y vitaminas liposolubles, causando la clásica esteatorrea (heces flotantes y muy fétidas) y pérdida de peso. El tratamiento de elección es el Metronidazol. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA - PARASITOLOGÍA",
+    "subtema": "AMEBIASIS INTESTINAL (DISENTERÍA)",
+    "difficulty": "media",
+    "case": "Escolar femenina de 8 años, residente de una comunidad rural sin acceso a agua potable. Inicia hace 5 días con dolor abdominal tipo cólico severo, pujo, tenesmo rectal y múltiples evacuaciones de escaso volumen con abundante moco y sangre (disentería). A la exploración física se detecta febrícula de 37.8°C y dolor a la palpación en el marco colónico. Se solicita un examen coproparasitoscópico (CPS) en fresco.",
+    "questions": [
+      {
+        "question": "¿Qué hallazgo microscópico confirmaría el diagnóstico de la forma invasiva de esta enfermedad y cuál es el tratamiento sistémico de elección?",
+        "options": [
+          "Quistes multinucleados; Albendazol.",
+          "Huevos operculados; Prazicuantel.",
+          "Trofozoítos con eritrocitos fagocitados (hematófagos); Metronidazol",
+          "Ooquistes ácido-alcohol resistentes; Trimetoprima con Sulfametoxazol."
+        ],
+        "answerIndex": 2,
+        "explanation": "La presencia de disentería (moco y sangre) + pujo y tenesmo apunta a un síndrome disentérico. La *Entamoeba histolytica* en su fase invasiva (trofozoíto) destruye la mucosa colónica (úlceras en \"botón de camisa\") y fagocita eritrocitos, lo cual es el hallazgo patognomónico en las heces frescas. El Metronidazol es el pilar del tratamiento, muchas veces seguido de un amebicida luminal (como la quinfamida o paromomicina) para erradicar los quistes. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA - PARASITOLOGÍA",
+    "subtema": "OXIURIASIS (ENTEROBIUS VERMICULARIS)",
+    "difficulty": "baja",
+    "case": "Escolar masculino de 6 años es traído por su madre debido a que el niño presenta irritabilidad, alteraciones del sueño y refiere \"mucha comezón en la colita\" (prurito anal) de predominio nocturno. La madre menciona que otros dos hermanos menores han empezado con los mismos síntomas. Al revisar el área perianal, se observan lesiones por rascado (escoriaciones).",
+    "questions": [
+      {
+        "question": "¿Cuál es el método diagnóstico de elección (estándar de oro) para esta parasitosis y qué indicación terapéutica es fundamental para evitar la reinfección?",
+        "options": [
+          "Coproparasitoscópico seriado; Tratamiento exclusivo al niño sintomático.",
+          "Prueba de la cinta adhesiva transparente (Test de Graham); Tratamiento simultáneo a todos los miembros de la familia",
+          "Colonoscopia; Hervir la ropa interior del paciente.",
+          "Sangre oculta en heces; Desparasitación empírica a las mascotas del hogar."
+        ],
+        "answerIndex": 1,
+        "explanation": "El *Enterobius vermicularis* (oxiuro) es un nematodo cuyas hembras migran en la noche a los márgenes del ano para depositar sus huevos, causando un prurito nocturno intenso. Dado que los huevos no se mezclan con las heces, el CPS tradicional suele ser negativo. El Test de Graham recolecta los huevos adheridos a la piel perianal. El tratamiento (Albendazol o Mebendazol) DEBE darse a toda la familia simultáneamente por la altísima tasa de contagio en el hogar. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA - PARASITOLOGÍA",
+    "subtema": "ASCARIASIS (SÍNDROME DE LÖFFLER)",
+    "difficulty": "alta",
+    "case": "Preescolar de 4 años, proveniente de zona tropical. Acude por presentar tos seca irritativa, sibilancias aisladas y febrícula de 4 días de evolución. En la biometría hemática destaca una Eosinofilia del 15%. La madre refiere que el niño tiene la costumbre de comer tierra (geofagia). La radiografía de tórax muestra infiltrados pulmon ares migratorios y transitorios.",
+    "questions": [
+      {
+        "question": "¿Cuál es la fase del ciclo vital del parásito causante que explica esta sintomatología respiratoria (Síndrome de Löffler) y qué otro parásito puede causar un cuadro similar?",
+        "options": [
+          "Migración de los quistes; Giardia lamblia.",
+          "Migración transpulmonar de las larvas; Uncinarias (Necator americanus o Ancylostoma duodenale)",
+          "Alojamiento de los huevos en los alvéolos; Enterobius vermicularis.",
+          "Ruptura de quiste hidatídico; Echinococcus granulosus."
+        ],
+        "answerIndex": 1,
+        "explanation": "El Síndrome de Löffler es una neumonitis eosinofílica causada por el paso de las larvas de ciertos nematodos a través de los capilares pulmonares y alvéolos antes de ser deglutidas para llegar a su fase adulta en el intestino. Los agentes clásicos del ciclo de Loos son *Ascaris lumbricoides*, *Necator americanus*, *Ancylostoma duodenale* y *Strongyloides stercoralis*. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA - DERMATOLOGÍA",
+    "subtema": "ESCABIOSIS (SARNA)",
+    "difficulty": "media",
+    "case": "Lactante de 8 meses de edad presenta un exantema muy pruriginoso que le impide dormir. A la exploración física se observan múltiples pápulas eritematosas, excoriaciones y algunas vesículas distribuidas en palmas, plantas, piel cabelluda, axilas y pliegues inguinales. Los padres refieren tener lesiones similares en el tronco y espacios interdigitales que les causan mucha comezón en las noches.",
+    "questions": [
+      {
+        "question": "Considerando la edad del paciente y el cuadro clínico familiar, ¿cuál es el agente causal y cuál es el tratamiento tópico de primera línea recomendado por la GPC?",
+        "options": [
+          "Pediculus humanus; Lindano al 1%.",
+          "Sarcoptes scabiei variedad hominis; Permetrina tópica al 5%",
+          "Trichophyton rubrum; Terbinafina en crema.",
+          "Malassezia furfur; Ketoconazol tópico."
+        ],
+        "answerIndex": 1,
+        "explanation": "La sarna es causada por el ácaro *Sarcoptes scabiei*. El prurito nocturno y el contagio familiar son datos clave. Un detalle clásico del ENARM es la distribución: en adultos y niños mayores afecta pliegues interdigitales, muñecas y ombligo (respetando la cabeza), pero en LACTANTES afecta palmas, plantas y la piel cabelluda. La Permetrina al 5% es el tratamiento de elección (aplicar en todo el cuerpo del cuello hacia abajo, dejándola actuar toda la noche), junto con el tratamiento de todos los convivientes.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA - CIRUGÍA",
+    "subtema": "ENTEROCOLITIS NECROTIZANTE (CLASIFICACIÓN DE BELL)",
+    "difficulty": "alta",
+    "case": "Recién nacido prematuro de 29 semanas de gestación. Al 10° día de vida, encontrándose con alimentación enteral a base de fórmula, presenta residuo gástrico biliar, distensión abdominal importante y una evacuación con sangre rutilante. A la exploración física, el abdomen está tenso, doloroso a la palpación y con eritema en la pared abdominal. Se solicita una radiografía simple de abdomen que revela neumatosis intestinal y gas en la vena porta, sin evidencia de neumoperitoneo.",
+    "questions": [
+      {
+        "question": "De acuerdo con los Criterios de Bell modificados, ¿en qué estadio se encuentra este paciente y cuál es el manejo médico inicial indicado?",
+        "options": [
+          "Estadio I (Sospecha); Suspender vía oral y observar.",
+          "Estadio IIB (Enfermedad definida); Ayuno, sonda orogástrica a derivación, antibióticos de amplio espectro y valoración por cirugía pediátrica",
+          "Estadio IIIA (Enfermedad avanzada); Laparotomía exploradora inmediata.",
+          "Estadio IIIB (Perforación); Colocación de drenaje peritoneal en la cama del paciente."
+        ],
+        "answerIndex": 1,
+        "explanation": "La enterocolitis necrotizante (ECN) es la urgencia gastrointestinal más grave del prematuro. La clasificación de Bell es clave en el ENARM: - Estadio I: Signos inespecíficos. - Estadio IIA: Neumatosis intestinal (gas en la pared del intestino). - Estadio IIB: Neumatosis + gas en la vena porta y/o eritema en pared abdominal. - Estadio III: Ascitis, choque (IIIA) o neumoperitoneo por perforación (IIIB). El tratamiento en estadio IIB es médico estricto (ayuno, descompresión gástrica, antibióticos como Ampicilina + Amikacina + Metronidazol) con vigilancia quirúrgica estrecha. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA - INFECTOLOGÍA",
+    "subtema": "SEPSIS NEONATAL TARDÍA (ASOCIADA A CATÉTER)",
+    "difficulty": "media",
+    "case": "Recién nacido pretérmino de 30 semanas de gestación, actualmente con 15 días de vida en la UCIN. Cuenta con un catéter venoso central de inserción periférica (PICC) para nutrición parenteral. Súbitamente presenta inestabilidad térmica (hipotermia de 35.8°C), episodios de apnea, bradicardia y llenado capilar de 4 segundos.",
+    "questions": [
+      {
+        "question": "Considerando el inicio de los síntomas (>72 horas de vida) y la presencia del catéter, ¿cuál es el microorganismo etiológico más probable y cuál es el antibiótico empírico que debe incluirse en el esquema inicial?",
+        "options": [
+          "Streptococcus agalactiae; Ampicilina.",
+          "Escherichia coli; Cefotaxima.",
+          "Staphylococcus coagulasa negativo (S. epidermidis); Vancomicina",
+          "Listeria monocytogenes; Penicilina."
+        ],
+        "answerIndex": 2,
+        "explanation": "La sepsis tardía ocurre después de las 72 horas de vida y suele ser nosocomial. En pacientes en la UCIN con dispositivos invasivos (catéteres intravasculares), el *Staphylococcus epidermidis* (coagulasa negativo) es el rey absoluto de las infecciones. Debido a su alta resistencia a la meticilina y formación de biopelículas, el tratamiento empírico debe incluir Vancomicina en combinación con un aminoglucósido o cefalosporina de tercera generación. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "subtema": "REANIMACIÓN NEONATAL AVANZADA (NRP)",
+    "difficulty": "alta",
+    "case": "Recién nacido de 40 semanas. Nace flácido, en apnea y con líquido amniótico teñido de meconio. Se realizan los pasos iniciales de reanimación sin respuesta. Se inicia Ventilación con Presión Positiva (VPP) durante 30 segundos, asegurando que el tórax se expanda adecuadamente. Al reevaluar, el paciente persiste en apnea y su frecuencia cardíaca es de 45 latidos por minuto.",
+    "questions": [
+      {
+        "question": "De acuerdo con el algoritmo actual de Reanimación Neonatal (NRP), ¿cuál es el SIGUIENTE paso a realizar de forma inmediata?",
+        "options": [
+          "Administrar un bolo de solución salina normal al 0.9%.",
+          "Iniciar compresiones torácicas coordinadas con VPP (relación 3:1) y considerar intubación endotraqueal",
+          "Administrar Adrenalina por vía endotraqueal de inmediato.",
+          "Continuar VPP por 30 segundos más antes de cualquier otra intervención."
+        ],
+        "answerIndex": 1,
+        "explanation": "En la reanimación neonatal, la Frecuencia Cardíaca (FC) es la brújula. Si a pesar de 30 segundos de ventilación EFECTIVA (el pecho se mueve), la FC cae por debajo de 60 latidos por minuto, se debe iniciar RCP (compresiones torácicas) con una relación de 3 compresiones por 1 ventilación. En este punto, la guía recomienda fuertemente intubar al paciente para asegurar la vía aérea y la eficacia de las ventilaciones durante las compresiones. La adrenalina solo se indica si tras 60 segundos de RCP bien dada la FC sigue <60 lpm. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "subtema": "DIFICULTAD RESPIRATORIA EN EL PREMATURO TARDÍO",
+    "difficulty": "media",
+    "case": "Recién nacido de 35 semanas de gestación (prematuro tardío), obtenido por cesárea electiva. A las 2 horas de vida inicia con taquipnea (75 rpm) y quejido. La radiografía de tórax muestra hiperinsuflación leve, líquido en la cisura menor y una trama vascular perihiliar prominente. No se observa broncograma aéreo.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa fisiopatológica subyacente de este cuadro clínico?",
+        "options": [
+          "Déficit primario de factor surfactante por inmadurez de neumocitos tipo II.",
+          "Aspiración de líquido amniótico meconial al primer esfuerzo respiratorio.",
+          "Retraso en la reabsorción del líquido pulmonar por ausencia de trabajo de parto",
+          "Infección intrauterina por estreptococo del grupo B."
+        ],
+        "answerIndex": 2,
+        "explanation": "Este caso es un clásico distractor del ENARM. Aunque el niño es \"prematuro\", tiene 35 semanas, edad a la que ya hay una buena producción de surfactante. El antecedente de CESÁREA electiva (sin contracciones previas) y los hallazgos radiológicos (cisuritis, sin vidrio despulido) confirman una Taquipnea Transitoria del Recién Nacido (TTRN), causada por el exceso de líquido pulmonar retenido. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "subtema": "DISPLASIA BRONCOPULMONAR (DBP)",
+    "difficulty": "alta",
+    "case": "Lactante de 2 meses de edad, ex-prematuro extremo nacido a las 27 semanas de gestación. Durante su estancia en la UCIN requirió intubación endotraqueal y ventilación mecánica prolongada, además de altas concentraciones de oxígeno. Actualmente, a sus 35 semanas de edad postmenstrual, continúa siendo dependiente de oxígeno suplementario (FiO2 al 30%) para mantener saturaciones >90%.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico clínico que define la necesidad de oxígeno suplementario en este paciente y cuál es la alteración histológica principal que se produce en sus pulmones?",
+        "options": [
+          "Síndrome de Dificultad Respiratoria tipo I; Ausencia total de alvéolos.",
+          "Displasia Broncopulmonar; Interrupción de la septación alveolar y desarrollo vascular (simplificación alveolar)",
+          "Hipertensión Pulmonar Persistente; Hipertrofia de la capa muscular de las arterias pulmonares.",
+          "Fibrosis Quística; Metaplasia escamosa del epitelio bronquial."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Displasia Broncopulmonar (DBP) es la secuela pulmonar crónica más importante de la prematurez. Se define clínicamente como la necesidad de oxígeno suplementario durante al menos 28 días y/o a las 36 semanas de edad postmenstrual. Fisiopatológicamente, el barotrauma y el daño por radicales libres de oxígeno detienen el desarrollo normal del pulmón, resultando en alvéolos más grandes y en menor cantidad (simplificación alveolar), lo que reduce drásticamente el área de intercambio gaseoso.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "ENFERMEDAD DE KAWASAKI INCOMPLETO",
+    "difficulty": "alta",
+    "case": "Lactante masculino de 6 meses de edad presenta fiebre de 39°C de 7 días de evolución que no cede con paracetamol. A la exploración física solo se detecta inyección conjuntival bilateral (sin exudado) y labios fisurados sangrantes. No hay adenopatías palpables, ni alteraciones en extremidades, ni exantema en tronco. Los laboratorios muestran Leucocitosis de 18,000, Plaquetas en 600,000 (trombocitosis), PCR 80 mg/L y el Examen General de Orina reporta 15 leucocitos por campo con urocultivo negativo (piuria estéril).",
+    "questions": [
+      {
+        "question": "Ante la sospecha diagnóstica por la fiebre prolongada y los laboratorios sugestivos, ¿cuál es el estudio de gabinete URGENTE a solicitar para confirmar el diagnóstico y justificar el tratamiento con Inmunoglobulina IV?",
+        "options": [
+          "Punción lumbar para descartar meningitis aséptica.",
+          "Ecocardiograma Doppler para búsqueda de aneurismas coronarios",
+          "Hemocultivo central y periférico.",
+          "Tomografía de cuello para descartar absceso profundo."
+        ],
+        "answerIndex": 1,
+        "explanation": "¡Trampa clásica! Para el diagnóstico de Kawasaki Clásico necesitas fiebre de ≥5 días + 4 de 5 criterios clínicos. Sin embargo, en lactantes menores de 1 año (el grupo de mayor riesgo cardiovascular), es común el **Kawasaki Incompleto** (fiebre + solo 2 o 3 criterios). La trombocitosis, reactantes de fase aguda elevados y piuria estéril obligan a realizar un Ecocardiograma. Si se detectan anomalías coronarias, el diagnóstico se confirma y se debe dar IGIV y AAS de inmediato. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "TOS FERINA (SÍNDROME COQUELUCHOIDE)",
+    "difficulty": "media",
+    "case": "Lactante femenino de 3 meses de edad, esquema de vacunación retrasado. Acude a urgencias por un cuadro de 2 semanas de evolución que inició como un resfriado común, pero que hace 5 días evolucionó a accesos de tos violenta, paroxística y cianosante, terminando en un estridor inspiratorio (canto de gallo) y vómito post- tusígeno. La radiografía de tórax muestra el signo del \"corazón peludo\".",
+    "questions": [
+      {
+        "question": "¿Cuál es el hallazgo clásico que esperarías encontrar en la Biometría Hemática de esta paciente y cuál es el antibiótico de elección para la fase actual?",
+        "options": [
+          "Neutrofilia con bandemia; Ceftriaxona.",
+          "Eosinofilia severa; Albendazol.",
+          "Leucocitosis con linfocitosis absoluta (>50%); Macrólidos (Azitromicina o Claritromicina)",
+          "Leucopenia con neutropenia; Amoxicilina."
+        ],
+        "answerIndex": 2,
+        "explanation": "La Tos Ferina (Bordetella pertussis) tiene 3 fases: catarral, paroxística (la del caso) y de convalecencia. Un dato laboratorial casi \"patognomónico\" en el ENARM es la leucocitosis extrema (hasta 50,000) a expensas de **linfocitosis absoluta** (el bicho produce una toxina que bloquea la salida de linfocitos de la sangre). El antibiótico de elección son los macrólidos para erradicar el estado de portador, aunque si se da en la fase paroxística ya no acorta la duración de los síntomas drásticamente. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "MENINGITIS BACTERIANA EN EL ESCOLAR",
+    "difficulty": "alta",
+    "case": "Escolar masculino de 6 años es llevado a urgencias por deterioro del estado neurológico, fiebre de 40°C y cefalea intensa de inicio súbito. A la exploración física destaca rigidez de nuca, signos de Kernig y Brudzinski positivos, y un exantema petequial/purpúrico generalizado que no palidece a la presión.",
+    "questions": [
+      {
+        "question": "Considerando el grupo etario y el exantema clínico, ¿cuál es el agente causal más probable y qué hallazgos esperaría en la punción lumbar?",
+        "options": [
+          "Streptococcus pneumoniae; LCR claro, glucosa normal, predominio linfocítico.",
+          "Neisseria meningitidis (Meningococo); LCR turbio, hipoglucorraquia severa, pleocitosis neutrofílica (>1,000)",
+          "Haemophilus influenzae tipo B; LCR xantocrómico, hiperproteinorraquia leve.",
+          "Listeria monocytogenes; LCR purulento, glucosa normal."
+        ],
+        "answerIndex": 1,
+        "explanation": "En niños mayores de 1 mes y escolares, el *S. pneumoniae* y la *N. meningitidis* son los reyes de la meningitis. El **exantema petequial o purpúrico** de rápida evolución es la firma clínica de la infección por meningococo (que puede llevar a púrpura fulminans o Síndrome de Waterhouse-Friderichsen). El LCR es típicamente bacteriano: purulento, con muchas proteínas, glucosa consumida por las bacterias (<40 mg/dL) y lleno de neutrófilos (PMN). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "SARAMPIÓN COMPLICADO",
+    "difficulty": "media",
+    "case": "Niño de 4 años, no vacunado por ideología paterna. Inició hace 6 días con fiebre alta, coriza, conjuntivitis y tos. Hace 2 días comenzó con un exantema maculopapular confluente que inició en la línea de implantación del cabello y se extendió al tronco y extremidades. El día de hoy el exantema comienza a descamar finamente, pero el niño presenta taquipnea de 50 rpm, saturación de 88% y estertores crepitantes bilaterales a la auscultación.",
+    "questions": [
+      {
+        "question": "¿Cuál es la complicación aguda más frecuente y la principal causa de mortalidad asociada a esta enfermedad exantemática?",
+        "options": [
+          "Encefalitis aguda (Panencefalitis esclerosante subaguda).",
+          "Otitis media aguda.",
+          "Neumonía (por células gigantes de Hecht o sobreinfección bacteriana)",
+          "Miocarditis viral."
+        ],
+        "answerIndex": 2,
+        "explanation": "El Sarampión es altamente contagioso y peligroso en no vacunados. Aunque la otitis media es la complicación *más frecuente* en general, la **neumonía** es la complicación respiratoria más común y la **principal causa de muerte** en el sarampión agudo. La panencefalitis esclerosante subaguda es una secuela neurológica fatal, pero aparece años después de la infección inicial (crónica). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "subtema": "ESCARLATINA VS KAWASAKI",
+    "difficulty": "baja",
+    "case": "Escolar de 7 años presenta odinofagia intensa y fiebre de 39°C de inicio súbito. Al día siguiente aparece un exantema micropapular eritematoso que da la sensación de tocar \"papel de lija\", siendo más intenso en los pliegues axilares e inguinales (Líneas de Pastia). A la exploración oral se observa faringe hiperémica, amígdalas con exudado pultáceo, palidez peribucal (Triángulo de Filatov) y lengua aframbuesada.",
+    "questions": [
+      {
+        "question": "¿Cuál es la toxina responsable del cuadro clínico, producida por el agente causal (Streptococcus pyogenes), y cuál es el tratamiento de primera elección?",
+        "options": [
+          "Toxina exfoliativa estafilocócica; Dicloxacilina.",
+          "Exotoxina pirógena eritrogénica (A, B o C); Penicilina G benzatínica o Amoxicilina",
+          "Toxina del Síndrome de Choque Tóxico (TSST-1); Vancomicina.",
+          "Toxina diftérica; Macrólidos."
+        ],
+        "answerIndex": 1,
+        "explanation": "¡Diferenciador ENARM! La lengua en fresa y el exantema pueden hacerte dudar con Kawasaki, pero la faringitis exudativa previa, la edad (escolar) y la piel de lija apuntan directo a Escarlatina. Es causada por las toxinas eritrogénicas del Estreptococo Beta Hemolítico del Grupo A (S. pyogenes). Responde espectacularmente a la Penicilina (Amoxicilina VO o Penicilina Benzatínica IM dosis única).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / ENDOCRINOLOGÍA - GENÉTICA",
+    "subtema": "HIPERPLASIA SUPRARRENAL CONGÉNITA (HSC)",
+    "difficulty": "alta",
+    "case": "Recién nacida de 15 días de vida es traída a urgencias por letargo, vómitos persistentes y deshidratación severa. A la exploración física destaca la presencia de genitales ambiguos (fusión labioescrotal y clitoromegalia). Los laboratorios de urgencia reportan: Sodio de 118 mEq/L (Hiponatremia), Potasio de 6.8 mEq/L (Hiperpotasemia) y acidosis metabólica.",
+    "questions": [
+      {
+        "question": "¿Cuál es la deficiencia enzimática responsable de más del 90% de los casos de esta patología y qué metabolito se encontraría elevado en el tamiz metabólico o en suero?",
+        "options": [
+          "11-beta-hidroxilasa; 11-desoxicortisol.",
+          "21-hidroxilasa; 17-hidroxiprogesterona (17-OHP)",
+          "17-alfa-hidroxilasa; Pregnenolona.",
+          "3-beta-hidroxiesteroide deshidrogenasa; DHEA."
+        ],
+        "answerIndex": 1,
+        "explanation": "¡Caso clásico de choque pierde-sal! La deficiencia de 21-hidroxilasa bloquea la producción de cortisol y aldosterona, desviando toda la producción hacia los andrógenos (lo que causa la virilización en niñas). La falta de aldosterona provoca la pérdida masiva de sodio y la retención de potasio, llevando a una crisis suprarrenal letal si no se trata a tiempo. El diagnóstico se confirma con niveles elevados de 17- OHP. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / REUMATOLOGÍA - NEFROLOGÍA",
+    "subtema": "VASCULITIS POR IgA (PÚRPURA DE HENOCH -SCHÖNLEIN)",
+    "difficulty": "media",
+    "case": "Escolar masculino de 6 años de edad, con antecedente de infección de vías respiratorias superiores hace 10 días. Inicia su padecimiento con dolor abdominal tipo cólico difuso y artralgias en rodillas y tobillos. El día de hoy la madre nota la aparición de múltiples lesiones maculopapulares eritematosas que no palidecen a la presión, ubicadas simétricamente en glúteos y extremidades inferiores.",
+    "questions": [
+      {
+        "question": "Considerando el diagnóstico clínico de la vasculitis más común en la infancia, ¿cuál es el hallazgo de laboratorio que dictará el pronóstico a largo plazo y requiere seguimiento estrecho?",
+        "options": [
+          "Trombocitopenia severa (<20,000).",
+          "Hematuria y proteinuria (Nefritis por IgA)",
+          "Elevación de anticuerpos ANA y Anti-DNA.",
+          "Presencia de factor reumatoide positivo."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Púrpura de Henoch-Schönlein (ahora llamada Vasculitis por IgA) se caracteriza por la tétrada: Púrpura palpable (en zonas de declive), Artralgias/Artritis, Dolor abdominal y Afectación renal. Aunque la enfermedad suele ser autolimitada y el manejo es sintomático (AINEs/Esteroides si hay dolor abdominal severo), la afectación renal (nefritis con hematuria/proteinuria) es la principal causa de morbilidad a largo plazo, pudiendo progresar a insuficiencia renal. OJO: En la PHS, las plaquetas son NORMALES o elevadas (no es una púrpura trombocitopénica). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / CIRUGÍA",
+    "subtema": "MEGACOLON AGANGLIÓNICO (ENFERMEDAD DE HIRSCHSPRUNG)",
+    "difficulty": "alta",
+    "case": "Recién nacido de término (39 semanas). A las 48 horas de vida no ha presentado evacuación de meconio. Inicia con distensión abdominal importante, rechazo a la vía oral y vómitos de contenido biliar. Al realizar la exploración física y estimular el esfínter anal con el termómetro, se produce una salida explosiva de gas y heces fétidas, descomprimiendo el abdomen temporalmente.",
+    "questions": [
+      {
+        "question": "¿Cuál es la fisiopatología de esta enfermedad y cuál es el estándar de oro para confirmar el diagnóstico?",
+        "options": [
+          "Atresia del colon transverso; Colon por enema con bario.",
+          "Ausencia de células ganglionares en los plexos submucoso y mientérico; Biopsia rectal",
+          "Impactación de meconio espeso por déficit de enzimas pancreáticas; Prueba de sudor.",
+          "Hipertrofia del esfínter anal interno; Manometría anorrectal."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Enfermedad de Hirschsprung ocurre por una falla en la migración de las células de la cresta neural hacia el intestino distal (siempre afecta el recto y se extiende proximalmente). El segmento \"enfermo\" está contraído porque no tiene ganglios parasimpáticos para relajarse. El tacto rectal suele ser explosivo al vencer la resistencia del segmento agangliónico. Aunque el colon por enema muestra la \"zona de transición\", la biopsia rectal (demostrando ausencia de células ganglionares) es el estándar de oro definitivo. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / CIRUGÍA - GASTROENTEROLOGÍA",
+    "subtema": "DIVERTÍCULO DE MECKEL",
+    "difficulty": "alta",
+    "case": "Preescolar masculino de 2 años de edad, previamente sano. Es llevado a urgencias por presentar evacuaciones con abundante sangre fresca y coágulos (hematoquecia) sin moco. El paciente no presenta dolor abdominal, fiebre ni irritabilidad, pero se observa pálido y taquicárdico. Sus laboratorios reportan Hemoglobina en 8.5 g/dL.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa anatómica subyacente de esta hemorragia indolora y cuál es el estudio de elección para localizar la lesión?",
+        "options": [
+          "Pólipo juvenil solitario; Colonoscopia diagnóstica.",
+          "Persistencia del conducto onfalomesentérico (con mucosa gástrica ectópica); Gammagrafía con Pertecnetato de Tecnecio-99m",
+          "Invaginación intestinal ileocólica; Ultrasonido abdominal.",
+          "Úlcera duodenal perforada; Endoscopia superior."
+        ],
+        "answerIndex": 1,
+        "explanation": "El Divertículo de Meckel es la anomalía congénita más común del tracto gastrointestinal. Aplica la \"Regla de los 2\": Ocurre en el 2% de la población, se presenta antes de los 2 años, mide 2 pulgadas, está a 2 pies de la válvula ileocecal, y puede contener 2 tipos de mucosa ectópica (gástrica o pancreática). La mucosa gástrica secreta ácido, ulcerando el íleon adyacente y causando una **hemorragia masiva INDOLORA**. El gammagrama con Tc-99m detecta específicamente la mucosa gástrica ectópica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "PEDIATRÍA / CIRUGÍA NEONATAL",
+    "subtema": "ATRESIA ESOFÁGICA",
+    "difficulty": "media",
+    "case": "Recién nacido de 38 semanas, con antecedente de polihidramnios en el ultrasonido prenatal. Al nacimiento presenta sialorrea abundante (salivación excesiva). Durante el primer intento de alimentación al seno materno, el neonato presenta tos, atragantamiento y cianosis súbita. Se intenta pasar una sonda orogástrica, la cual se detiene a los 10 cm de la arcada dentaria.",
+    "questions": [
+      {
+        "question": "¿Cuál es la variedad anatómica más frecuente de la Atresia Esofágica (Tipo III o Tipo",
+        "options": [
+          "y qué malformaciones asociadas se deben buscar intencionadamente en este paciente?",
+          "Atresia sin fístula (aislada); Síndrome de Down.",
+          "Atresia proximal con fístula traqueoesofágica distal; Malformaciones VACTERL",
+          "Fístula traqueoesofágica aislada (tipo H); Cardiopatía congénita aislada.",
+          "Atresia distal con fístula proximal; Síndrome de Turner."
+        ],
+        "answerIndex": 2,
+        "explanation": "El 85% de las atresias esofágicas son del Tipo C o III (atresia de la bolsa proximal con fístula del cabo distal hacia la tráquea). Al tener fístula distal, el estómago del bebé se llena de aire al llorar, y al comer, la leche no puede pasar del saco proximal ciego, reurgitando hacia la vía aérea (causando atragantamiento). Siempre se debe descartar la asociación VACTERL (Vertebrales, Anorectales, Cardíacas, Traqueo- Esofágicas, Renales, Extremidades/Limbs).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA",
+    "subtema": "VAGINOSIS BACTERIANA",
+    "difficulty": "media",
+    "case": "Paciente femenina de 28 años, sexualmente activa. Acude a consulta refiriendo la presencia de un flujo vaginal abundante, de color grisáceo y consistencia homogénea. Lo que más le molesta es un fuerte y desagradable \"olor a pescado\" que empeora después de tener relaciones sexuales. A la exploración no se observa inflamación, eritema vulvar ni prurito. Se realiza medición del pH vaginal, reportando 5.0.",
+    "questions": [
+      {
+        "question": "De acuerdo con los Criterios de Amsel, ¿cuál es el hallazgo microscópico patognomónico que esperaría encontrar al aplicar una gota de solución salina al flujo y cuál es el tratamiento de primera elección?",
+        "options": [
+          "Hifas y pseudomicelios; Fluconazol.",
+          "Células guía (Clue cells); Metronidazol",
+          "Protozoarios flagelados móviles; Tinidazol.",
+          "Abundantes leucocitos polimorfonucleares; Clindamicina."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Vaginosis Bacteriana (causada principalmente por *Gardnerella vaginalis*) NO es una verdadera \"vaginitis\" porque no hay inflamación (no hay prurito ni eritema). Los Criterios de Amsel requieren 3 de 4: 1) Flujo grisáceo homogéneo, 2) pH >4.5, 3) Prueba de aminas positiva (olor a pescado al aplicar KOH), 4) Células clave/guía (células epiteliales tapizadas de bacterias). El tratamiento es Metronidazol (oral o vaginal). NO se requiere tratar a la pareja de rutina. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA",
+    "subtema": "CANDIDIAS IS VULVOVAGINAL",
+    "difficulty": "baja",
+    "case": "Paciente de 32 años con antecedente de diabetes mellitus tipo 2 en descontrol. Acude por presentar prurito vulvar intenso, ardor y disuria. A la exploración física con espejo vaginal, se observa la mucosa vaginal y vulvar intensamente eritematosa y edematosa, con presencia de un flujo blanco, espeso y grumoso, adherente a las paredes, con aspecto de \"requesón\" o \"leche cortada\". El pH vaginal es de 4.0.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico más frecuente y cuál es el tratamiento de primera línea recomendado para un episodio no complicado?",
+        "options": [
+          "Candida glabrata; Nistatina óvulos.",
+          "Trichomonas vaginalis; Metronidazol oral.",
+          "Candida albicans; Miconazol o Clotrimazol en crema/óvulos",
+          "Chlamydia trachomatis; Doxiciclina."
+        ],
+        "answerIndex": 2,
+        "explanation": "La candidiasis es inconfundible en el ENARM por el prurito intenso, el flujo en \"requesón\" y el pH que suele mantenerse normal o ácido (≤4.5). Los factores de riesgo incluyen diabetes, uso reciente de antibióticos de amplio espectro, embarazo e inmunosupresión. El tratamiento tópico con azoles (Clotrimazol/Miconazol) es la primera línea. Si es recurrente o complicada, se prefiere Fluconazol oral. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA",
+    "subtema": "TRICOMONIASIS VAGINAL",
+    "difficulty": "media",
+    "case": "Mujer de 24 años con múltiples parejas sexuales, acude por presentar leucorrea muy abundante, de color amarillo-verdoso y aspecto espumoso. Refiere disuria y dispareunia. A la exploración con colposcopio, se observa un cérvix con múltiples hemorragias puntiformes (aspecto de \"cérvix en fresa\"). El pH de la secreción es de 6.0.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento indicado por la GPC para esta paciente y qué indicación epidemiológica es estrictamente necesaria?",
+        "options": [
+          "Ceftriaxona IM dosis única; Tratamiento exclusivo a la paciente.",
+          "Fluconazol oral; Uso de preservativo por 7 días.",
+          "Metronidazol oral; Tratamiento obligatorio a la pareja o parejas sexuales",
+          "Azitromicina oral; Notificación epidemiológica semanal."
+        ],
+        "answerIndex": 2,
+        "explanation": "La tricomoniasis es causada por un protozoo flagelado (*Trichomonas vaginalis*) y es la única de las tres infecciones clásicas que se considera estrictamente una Infección de Transmisión Sexual (ITS). El flujo espumoso verde-amarillento y el \"cérvix en fresa\" (colpitis macular) son los datos pivote. El tratamiento es Metronidazol oral y es MANDATORIO dar tratamiento a la pareja para evitar reinfecciones (efecto ping- pong). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "ped",
+    "tema": "GINECOLOGÍA",
+    "subtema": "ENFERMEDAD PÉLVICA INFLAMATORIA (EPI)",
+    "difficulty": "alta",
+    "case": "Paciente de 27 años, nuligesta, usuaria de DIU de cobre desde hace 3 meses. Acude a urgencias por dolor abdominal bajo progresivo de 5 días de evolución, que se ha vuelto intenso, acompañado de fiebre de 38.5°C y flujo vaginal purulento. A la exploración bimanual, presenta dolor intenso a la movilización del cérvix, así como dolor a la palpación de los anexos de forma bilateral.",
+    "questions": [
+      {
+        "question": "¿Cuáles son los agentes etiológicos más frecuentemente involucrados en esta patología y cuál es el esquema de tratamiento ambulatorio de primera línea según la GPC?",
+        "options": [
+          "E. coli y Klebsiella; Ciprofloxacino + Metronidazol.",
+          "Neisseria gonorrhoeae y Chlamydia trachomatis; Ceftriaxona IM + Doxiciclina oral (+/- Metronidazol)",
+          "Actinomyces israelii y Gardnerella; Penicilina G Sódica + Clindamicina.",
+          "Ureaplasma urealyticum y Mycoplasma; Azitromicina dosis única."
+        ],
+        "answerIndex": 1,
+        "explanation": "La EPI es una infección ascendente del tracto genital superior. El dolor a la movilización cervical (signo de Chandelier) en el contexto de fiebre y leucorrea es el dato clínico clave. *C. trachomatis* y *N. gonorrhoeae* inician el daño, aunque la infección suele volverse polimicrobiana. El esquema de GPC para EPI leve a moderada (ambulatoria) es Ceftriaxona (cubre gonococo) + Doxiciclina (cubre clamidia) por 14 días. Se puede añadir Metronidazol para cubrir anaerobios.",
+        "gpcReference": ""
+      }
+    ]
   }
 ];
 
