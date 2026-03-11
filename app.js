@@ -418,17 +418,17 @@
     const OFFICIAL_TEMARIO = [
         "Ginecología y Obstetricia",
         "Amenorreas Primarias y Secundarias (Ginecología y Obstetricia)",
-        "Sx de \r\nTurner (Amenorreas Primarias y Secundarias)",
+        "Sx de Turner (Amenorreas Primarias y Secundarias)",
         "Sx de Swyer (Amenorreas Primarias y Secundarias)",
         "Sx de Morris (Amenorreas Primarias y Secundarias)",
         "Sx Rokitansky (Amenorreas Primarias y Secundarias)",
         "Sx Asherman (Amenorreas Primarias y Secundarias)",
         "Sx de Sheehan (Amenorreas Primarias y Secundarias)",
         "Sx de Kallman (Amenorreas Primarias y Secundarias)",
-        "Sx de \r\nPrader Willi (Amenorreas Primarias y Secundarias)",
+        "Sx de Prader Willi (Amenorreas Primarias y Secundarias)",
         "Ciclo Genital / Esterilidad / Anticonceptivos (Ginecología y Obstetricia)",
         "Sangrados Uterinos Anormales: Origen No Anatómico (Ginecología y Obstetricia)",
-        "Sangrados uterinos de origen \r\ndesconocido (Sangrados Uterinos Anormales: Origen No Anatómico)",
+        "Sangrados uterinos de origen desconocido (Sangrados Uterinos Anormales: Origen No Anatómico)",
         "SOP (Sangrados Uterinos Anormales: Origen No Anatómico)",
         "Endometriosis (Sangrados Uterinos Anormales: Origen No Anatómico)",
         "Coagulopatías (Sangrados Uterinos Anormales: Origen No Anatómico)",
@@ -436,87 +436,85 @@
         "Menopausia (Patología Menopausia y Climaterio)",
         "Sx climatérico (Patología Menopausia y Climaterio)",
         "Osteoporosis (Patología Menopausia y Climaterio)",
-        "Incontinencia \r\nurinaria (Patología Menopausia y Climaterio)",
+        "Incontinencia urinaria (Patología Menopausia y Climaterio)",
         "Trastornos del piso pélvico (Patología Menopausia y Climaterio)",
         "Sangrados Uterinos Anormales: Origen Anatómico No Maligno (Ginecología y Obstetricia)",
         "Adenomiosis (Sangrados Uterinos Anormales: Origen Anatómico No Maligno)",
         "Poliposis (Sangrados Uterinos Anormales: Origen Anatómico No Maligno)",
         "Miomatosis (Sangrados Uterinos Anormales: Origen Anatómico No Maligno)",
         "Torsión ovárica (Sangrados Uterinos Anormales: Origen Anatómico No Maligno)",
-        "Oncología Ginecológica P1 (Ginecología y Obstetricia)",
-        "CA de endometrio y \r\nCA de ovario (Oncología Ginecológica P1)",
-        "Oncología Ginecológica P2 (Ginecología y Obstetricia)",
-        "Prevención y \r\ntamizaje de CACU (Oncología Ginecológica P2)",
-        "CACU (Oncología Ginecológica P2)",
-        "CA de vagina y vulvar (Oncología Ginecológica P2)",
-        "Patología vulvar Bartolinitis (Oncología Ginecológica P2)",
+        "Oncología Ginecológica (Ginecología y Obstetricia)",
+        "CA de endometrio y CA de ovario (Oncología Ginecológica)",
+        "Prevención y tamizaje de CACU (Oncología Ginecológica)",
+        "CACU (Oncología Ginecológica)",
+        "CA de vagina y vulvar (Oncología Ginecológica)",
+        "Patología vulvar Bartolinitis (Oncología Ginecológica)",
         "Patología Mamaria Benigna (Ginecología y Obstetricia)",
-        "Mastopatía \r\nfibroquística (Patología Mamaria Benigna)",
+        "Mastopatía fibroquística (Patología Mamaria Benigna)",
         "Fibroadenoma (Patología Mamaria Benigna)",
-        "Mastitis puerperal y \r\nno puerperal (Patología Mamaria Benigna)",
+        "Mastitis puerperal y no puerperal (Patología Mamaria Benigna)",
         "Papiloma intraductal (Patología Mamaria Benigna)",
         "Cáncer de Mama (Ginecología y Obstetricia)",
         "Patología Infecciosa Cervical (Ginecología y Obstetricia)",
-        "Cervicovaginitis \r\nbacteriana (Patología Infecciosa Cervical)",
+        "Cervicovaginitis bacteriana (Patología Infecciosa Cervical)",
         "Cándida (Patología Infecciosa Cervical)",
         "Trichomonas (Patología Infecciosa Cervical)",
-        "Enfermedad \r\npélvica inflamatoria (Patología Infecciosa Cervical)",
+        "Enfermedad pélvica inflamatoria (Patología Infecciosa Cervical)",
         "Endocervicitis (Patología Infecciosa Cervical)",
-        "Control Prenatal P1 (Ginecología y Obstetricia)",
-        "Fisiología del embarazo (Control Prenatal P1)",
-        "Consultas prenatales (Control Prenatal P1)",
-        "Vacunas (Control Prenatal P1)",
-        "Maniobras de \r\nLeopold (Control Prenatal P1)",
-        "Control Prenatal P2 (Ginecología y Obstetricia)",
-        "Incompatibilidad grupo Rh (Control Prenatal P2)",
-        "Diagnóstico cromosomopatías (Control Prenatal P2)",
-        "Depresión materna (Control Prenatal P2)",
-        "Hiperémesis gravídica (Control Prenatal P2)",
-        "Patología tiroidea en el \r\nembarazo (Control Prenatal P2)",
+        "Control Prenatal (Ginecología y Obstetricia)",
+        "Fisiología del embarazo (Control Prenatal)",
+        "Consultas prenatales (Control Prenatal)",
+        "Vacunas (Control Prenatal)",
+        "Maniobras de Leopold (Control Prenatal)",
+        "Incompatibilidad grupo Rh (Control Prenatal)",
+        "Diagnóstico cromosomopatías (Control Prenatal)",
+        "Depresión materna (Control Prenatal)",
+        "Hiperémesis gravídica (Control Prenatal)",
+        "Patología tiroidea en el embarazo (Control Prenatal)",
         "Hemorragias del Primer Trimestre (Ginecología y Obstetricia)",
         "Aborto (Hemorragias del Primer Trimestre)",
         "Embarazo ectópico (Hemorragias del Primer Trimestre)",
         "Enf. Trofoblástica (Hemorragias del Primer Trimestre)",
         "Hemorragias del Segundo Trimestre (Ginecología y Obstetricia)",
-        "Placenta \r\nprevia (Hemorragias del Segundo Trimestre)",
+        "Placenta previa (Hemorragias del Segundo Trimestre)",
         "Acretismo placentario (Hemorragias del Segundo Trimestre)",
         "DPPNI (Hemorragias del Segundo Trimestre)",
         "Vasa previa (Hemorragias del Segundo Trimestre)",
         "R. uterina (Hemorragias del Segundo Trimestre)",
         "Patología del Embarazo: Estados Hipertensivos (Ginecología y Obstetricia)",
         "Hipertensión crónica en el embarazo (Patología del Embarazo: Estados Hipertensivos)",
-        "Hipertensión \r\ngestacional (Patología del Embarazo: Estados Hipertensivos)",
+        "Hipertensión gestacional (Patología del Embarazo: Estados Hipertensivos)",
         "Preeclampsia (Patología del Embarazo: Estados Hipertensivos)",
         "Eclampsia (Patología del Embarazo: Estados Hipertensivos)",
-        "Sx de \r\nHELLP (Patología del Embarazo: Estados Hipertensivos)",
+        "Sx de HELLP (Patología del Embarazo: Estados Hipertensivos)",
         "Patología del Embarazo (Ginecología y Obstetricia)",
         "OM2 (Patología del Embarazo)",
-        "Patología \r\nhepática del embarazo (Patología del Embarazo)",
+        "Patología hepática del embarazo (Patología del Embarazo)",
         "Trabajo de Parto (Ginecología y Obstetricia)",
         "Fisiológico (Trabajo de Parto)",
-        "Violencia \r\nobstétrica (Trabajo de Parto)",
+        "Violencia obstétrica (Trabajo de Parto)",
         "Parto Prematuro y Patología Coriónica (Ginecología y Obstetricia)",
-        "Parto \r\nprematuro (Parto Prematuro y Patología Coriónica)",
+        "Parto prematuro (Parto Prematuro y Patología Coriónica)",
         "RPM (Parto Prematuro y Patología Coriónica)",
         "Poli (Parto Prematuro y Patología Coriónica)",
         "Oligohidramnios (Parto Prematuro y Patología Coriónica)",
         "Corioamnionitis (Parto Prematuro y Patología Coriónica)",
         "Patología de Trabajo de Parto (Ginecología y Obstetricia)",
-        "Inducción de \r\ntrabajo de parto (Patología de Trabajo de Parto)",
+        "Inducción de trabajo de parto (Patología de Trabajo de Parto)",
         "Cesárea (Patología de Trabajo de Parto)",
         "Distocias (Patología de Trabajo de Parto)",
-        "Embarazo \r\ngemelar (Patología de Trabajo de Parto)",
+        "Embarazo gemelar (Patología de Trabajo de Parto)",
         "Patología Puerperal (Ginecología y Obstetricia)",
-        "Hemorragia obstétrica \r\nAtonía, trauma, tejido, coagulopatías (Patología Puerperal)",
-        "Choque en \r\nla paciente embarazada (Patología Puerperal)",
+        "Hemorragia obstétrica Atonía, trauma, tejido, coagulopatías (Patología Puerperal)",
+        "Choque en la paciente embarazada (Patología Puerperal)",
         "Sepsis materna (Patología Puerperal)",
         "Recién Nacido Sano (Pediatría)",
         "RN sano (Recién Nacido Sano)",
-        "Cuidados del \r\nrecién nacido (Recién Nacido Sano)",
+        "Cuidados del recién nacido (Recién Nacido Sano)",
         "Tamizajes del RN (Recién Nacido Sano)",
         "Cefalohematoma (Recién Nacido Sano)",
         "Parálisis braquial (Recién Nacido Sano)",
-        "Alteraciones dermatológicas al \r\nnacimiento (Recién Nacido Sano)",
+        "Alteraciones dermatológicas al nacimiento (Recién Nacido Sano)",
         "Reanimación Neonatal (Pediatría)",
         "Patología Neonatal Infecciosa (Pediatría)",
         "Sepsis (Patología Neonatal Infecciosa)",
@@ -534,9 +532,9 @@
         "Patología Neonatal (Pediatría)",
         "Asfixia (Patología Neonatal)",
         "EHI (Patología Neonatal)",
-        "Hemorragia de \r\nmatriz germinal (Patología Neonatal)",
+        "Hemorragia de matriz germinal (Patología Neonatal)",
         "Malf. congénitas (Patología Neonatal)",
-        "Hernias \r\ndiafragmáticas (Patología Neonatal)",
+        "Hernias diafragmáticas (Patología Neonatal)",
         "Atresia de las coanas (Patología Neonatal)",
         "A. pilórica (Patología Neonatal)",
         "A. duodenal (Patología Neonatal)",
@@ -558,43 +556,42 @@
         "Fisiológica (Ictericia Neonatal)",
         "Materna (Ictericia Neonatal)",
         "Incompatibilidad sanguínea (Ictericia Neonatal)",
-        "Ictericia por \r\nproblemas del metabolismo hepático (Ictericia Neonatal)",
-        "Atresia de \r\nvías biliares (Ictericia Neonatal)",
+        "Ictericia por problemas del metabolismo hepático (Ictericia Neonatal)",
+        "Atresia de vías biliares (Ictericia Neonatal)",
         "Tamiz Metabólico (Pediatría)",
         "Hipotiroidismo (Tamiz Metabólico)",
         "Fenilcetonuria (Tamiz Metabólico)",
         "Galactosemia (Tamiz Metabólico)",
-        "Deficiencia de \r\nbiotinidasa (Tamiz Metabólico)",
+        "Deficiencia de biotinidasa (Tamiz Metabólico)",
         "Hiperplasia suprarrenal (Tamiz Metabólico)",
-        "Fibrosis \r\nquística (Tamiz Metabólico)",
-        "Crecimiento y Desarrollo P1 (Pediatría)",
-        "Hitos del desarrollo (Crecimiento y Desarrollo P1)",
-        "Consulta del niño sano (Crecimiento y Desarrollo P1)",
-        "Maltrato infantil (Crecimiento y Desarrollo P1)",
-        "Crecimiento y Desarrollo P2 (Pediatría)",
-        "Crecimiento (Crecimiento y Desarrollo P2)",
-        "Alimentación (Crecimiento y Desarrollo P2)",
-        "Desnutrición (Crecimiento y Desarrollo P2)",
-        "Obesidad (Crecimiento y Desarrollo P2)",
-        "Talla baja (Crecimiento y Desarrollo P2)",
-        "Déficits vitamínicos (Crecimiento y Desarrollo P2)",
-        "Muerte súbita (Crecimiento y Desarrollo P2)",
+        "Fibrosis quística (Tamiz Metabólico)",
+        "Crecimiento y Desarrollo (Pediatría)",
+        "Hitos del desarrollo (Crecimiento y Desarrollo)",
+        "Consulta del niño sano (Crecimiento y Desarrollo)",
+        "Maltrato infantil (Crecimiento y Desarrollo)",
+        "Crecimiento (Crecimiento y Desarrollo)",
+        "Alimentación (Crecimiento y Desarrollo)",
+        "Desnutrición (Crecimiento y Desarrollo)",
+        "Obesidad (Crecimiento y Desarrollo)",
+        "Talla baja (Crecimiento y Desarrollo)",
+        "Déficits vitamínicos (Crecimiento y Desarrollo)",
+        "Muerte súbita (Crecimiento y Desarrollo)",
         "Vacunación (Pediatría)",
         "Patología Gastrointestinal del Pediátrico (Pediatría)",
         "Invaginación intestinal (Patología Gastrointestinal del Pediátrico)",
         "Divertículo de Meckel (Patología Gastrointestinal del Pediátrico)",
-        "Enf. \r\nde Hirschsprung (Patología Gastrointestinal del Pediátrico)",
+        "Enf. de Hirschsprung (Patología Gastrointestinal del Pediátrico)",
         "ERGE (Patología Gastrointestinal del Pediátrico)",
         "Diarrea en el Pediátrico (Pediatría)",
         "Planes de hidratación (Diarrea en el Pediátrico)",
         "Introducción diarreas (Diarrea en el Pediátrico)",
         "Diarreas Agudas y Crónicas (Pediatría)",
-        "Diarrea \r\nenteroinvasiva (Diarreas Agudas y Crónicas)",
+        "Diarrea enteroinvasiva (Diarreas Agudas y Crónicas)",
         "Intoxicaciones alimentarias (Diarreas Agudas y Crónicas)",
-        "Enf. \r\nCelíaca (Diarreas Agudas y Crónicas)",
+        "Enf. Celíaca (Diarreas Agudas y Crónicas)",
         "Enfermedades Parasitarias (Pediatría)",
         "Giardiasis (Enfermedades Parasitarias)",
-        "E. \r\nhistolytica (Enfermedades Parasitarias)",
+        "E. histolytica (Enfermedades Parasitarias)",
         "Ascaris (Enfermedades Parasitarias)",
         "Taeniasis cisticercosis (Enfermedades Parasitarias)",
         "Filariasis (Enfermedades Parasitarias)",
@@ -604,12 +601,12 @@
         "Bronquiolitis (Patología Respiratoria del Lactante y Preescolar)",
         "Laringotraqueítis (Patología Respiratoria del Lactante y Preescolar)",
         "Epiglotitis (Patología Respiratoria del Lactante y Preescolar)",
-        "Tos \r\nferina (Patología Respiratoria del Lactante y Preescolar)",
+        "Tos ferina (Patología Respiratoria del Lactante y Preescolar)",
         "Laringotraqueítis bacteriana (Patología Respiratoria del Lactante y Preescolar)",
         "Neumonías (Pediatría)",
         "Bacterianas (Neumonías)",
         "Virales (Neumonías)",
-        "Atípicas: en \r\nel adulto y pediátrico (Neumonías)",
+        "Atípicas: en el adulto y pediátrico (Neumonías)",
         "Asma en el Adulto y Pediátrico (Pediatría)",
         "IRAs / Convulsiones (Pediatría)",
         "Resfriado común (IRAs / Convulsiones)",
@@ -621,53 +618,52 @@
         "Rubéola (Enfermedades Exantemáticas)",
         "Varicela (Enfermedades Exantemáticas)",
         "5ta enfermedad (Enfermedades Exantemáticas)",
-        "6ta \r\nenfermedad (Enfermedades Exantemáticas)",
+        "6ta enfermedad (Enfermedades Exantemáticas)",
         "Escarlatina (Enfermedades Exantemáticas)",
         "Enfermedad de Kawasaki (Enfermedades Exantemáticas)",
         "Enfermedad Mano Boca Pie (Enfermedades Exantemáticas)",
         "Herpangina (Enfermedades Exantemáticas)",
         "Urgencias Pediátricas (Pediatría)",
-        "Intoxicaciones por ASA y \r\nparacetamol (Urgencias Pediátricas)",
+        "Intoxicaciones por ASA y paracetamol (Urgencias Pediátricas)",
         "Ingesta de cáusticos (Urgencias Pediátricas)",
-        "Ingesta de \r\nmetales pesados (Urgencias Pediátricas)",
-        "Obstrucción de la vía aérea \r\nsuperior (Urgencias Pediátricas)",
+        "Ingesta de metales pesados (Urgencias Pediátricas)",
+        "Obstrucción de la vía aérea superior (Urgencias Pediátricas)",
         "Uropedia (Pediatría)",
         "Torsión testicular (Uropedia)",
-        "Torsión del \r\napéndice testicular (Uropedia)",
+        "Torsión del apéndice testicular (Uropedia)",
         "Epididimitis (Uropedia)",
         "IVUs (Uropedia)",
-        "Reflujo \r\nvesicoureteral (Uropedia)",
+        "Reflujo vesicoureteral (Uropedia)",
         "Cardiopedia (Pediatría)",
-        "Cardiopatías acianógenas CIV, \r\nCIA, PCA, estenosis de la arteria pulmonar (Cardiopedia)",
-        "Cardiopatías cianógenas TF, tronco arterioso \r\ncomún (Cardiopedia)",
+        "Cardiopatías acianógenas CIV, CIA, PCA, estenosis de la arteria pulmonar (Cardiopedia)",
+        "Cardiopatías cianógenas TF, tronco arterioso común (Cardiopedia)",
         "Drenaje pulmonar venoso anómalo (Cardiopedia)",
         "Anomalía de Ebstein (Cardiopedia)",
-        "Transposición de grandes \r\nvasos (Cardiopedia)",
-        "Especialidades Pedia P1 (Pediatría)",
-        "Oncopedia: \r\nNeuroblastoma (Especialidades Pedia P1)",
-        "Nefroblastoma (Especialidades Pedia P1)",
-        "Astrocitoma (Especialidades Pedia P1)",
-        "Osteosarcoma (Especialidades Pedia P1)",
-        "Sarcoma de Ewing. Dermapedia: \r\nDermatitis atópica (Especialidades Pedia P1)",
-        "Dermatitis del pañal (Especialidades Pedia P1)",
-        "Molusco \r\ncontagioso (Especialidades Pedia P1)",
-        "Sx de piel escaldada (Especialidades Pedia P1)",
-        "Sx de shock \r\ntóxico (Especialidades Pedia P1)",
-        "Dermatitis seborreica (Especialidades Pedia P1)",
-        "Especialidades Pedia P2 (Pediatría)",
-        "Hematopedia: Púrpura \r\nde Henoch Schonlein (Especialidades Pedia P2)",
-        "Púrpura trombocitopénica. \r\nOrtopedia: Displasia de cadera (Especialidades Pedia P2)",
-        "Pie plano (Especialidades Pedia P2)",
-        "Cojera (Especialidades Pedia P2)",
+        "Transposición de grandes vasos (Cardiopedia)",
+        "Especialidades Pedia (Pediatría)",
+        "Oncopedia: Neuroblastoma (Especialidades Pedia)",
+        "Nefroblastoma (Especialidades Pedia)",
+        "Astrocitoma (Especialidades Pedia)",
+        "Osteosarcoma (Especialidades Pedia)",
+        "Sarcoma de Ewing. Dermapedia: Dermatitis atópica (Especialidades Pedia)",
+        "Dermatitis del pañal (Especialidades Pedia)",
+        "Molusco contagioso (Especialidades Pedia)",
+        "Sx de piel escaldada (Especialidades Pedia)",
+        "Sx de shock tóxico (Especialidades Pedia)",
+        "Dermatitis seborreica (Especialidades Pedia)",
+        "Hematopedia: Púrpura de Henoch Schonlein (Especialidades Pedia)",
+        "Púrpura trombocitopénica. Ortopedia: Displasia de cadera (Especialidades Pedia)",
+        "Pie plano (Especialidades Pedia)",
+        "Cojera (Especialidades Pedia)",
         "Alteraciones Cromosómicas y Perlas (Pediatría)",
-        "Sx de \r\nDown (Alteraciones Cromosómicas y Perlas)",
+        "Sx de Down (Alteraciones Cromosómicas y Perlas)",
         "Sx de Edwards (Alteraciones Cromosómicas y Perlas)",
         "Sx Patau (Alteraciones Cromosómicas y Perlas)",
         "Sx Klinefelter (Alteraciones Cromosómicas y Perlas)",
         "Introducción a Cirugía y Cirugía Abdominal (Cirugía)",
         "Abdomen agudo (Introducción a Cirugía y Cirugía Abdominal)",
         "Exploración física (Introducción a Cirugía y Cirugía Abdominal)",
-        "Tipo de \r\nheridas OX (Introducción a Cirugía y Cirugía Abdominal)",
+        "Tipo de heridas OX (Introducción a Cirugía y Cirugía Abdominal)",
         "Patología Esofágica (Cirugía)",
         "Abdomen agudo (Patología Esofágica)",
         "Exploración física (Patología Esofágica)",
@@ -675,7 +671,7 @@
         "Patología Gástrica (Cirugía)",
         "Gastritis aguda o crónica (Patología Gástrica)",
         "Úlcera péptica duodenal y gástrica (Patología Gástrica)",
-        "Úlcera péptica \r\ncomplicada y perforada (Patología Gástrica)",
+        "Úlcera péptica complicada y perforada (Patología Gástrica)",
         "Zollinger-Ellison (Patología Gástrica)",
         "Dispepsia funcional (Patología Gástrica)",
         "Patología Biliar (Cirugía)",
@@ -685,7 +681,7 @@
         "Colangitis (Patología Biliar)",
         "Íleo biliar (Patología Biliar)",
         "Patología Pancreática (Cirugía)",
-        "Pancreatitis aguda y \r\ncrónica (Patología Pancreática)",
+        "Pancreatitis aguda y crónica (Patología Pancreática)",
         "Apendicitis (Cirugía)",
         "Patología Diverticular (Cirugía)",
         "Diverticulosis (Patología Diverticular)",
@@ -695,7 +691,7 @@
         "Obstrucción intestinal (Patología Intestinal Qx)",
         "Vólvulo de colon y ciego (Patología Intestinal Qx)",
         "Patología Isquémica Intestinal (Cirugía)",
-        "Isquemia \r\nmesentérica aguda y crónica (Patología Isquémica Intestinal)",
+        "Isquemia mesentérica aguda y crónica (Patología Isquémica Intestinal)",
         "Patología Intestinal Inflamatoria (Cirugía)",
         "Colitis ulcerosa (Patología Intestinal Inflamatoria)",
         "Enfermedad de Crohn (Patología Intestinal Inflamatoria)",
@@ -708,22 +704,21 @@
         "STDA por várices esofágicas (Cirrosis y sus Complicaciones / Trasplante Hepático)",
         "Ascitis (Cirrosis y sus Complicaciones / Trasplante Hepático)",
         "Encefalopatía hepática (Cirrosis y sus Complicaciones / Trasplante Hepático)",
-        "Peritonitis bacteriana \r\nespontánea (Cirrosis y sus Complicaciones / Trasplante Hepático)",
+        "Peritonitis bacteriana espontánea (Cirrosis y sus Complicaciones / Trasplante Hepático)",
         "Esprue (Cirrosis y sus Complicaciones / Trasplante Hepático)",
         "Patología Arterial y Venosa (Cirugía)",
-        "Insuficiencia arterial \r\naguda (Patología Arterial y Venosa)",
+        "Insuficiencia arterial aguda (Patología Arterial y Venosa)",
         "Enfermedad arterial periférica (Patología Arterial y Venosa)",
-        "Trombosis \r\nvenosa profunda (Patología Arterial y Venosa)",
+        "Trombosis venosa profunda (Patología Arterial y Venosa)",
         "Tromboembolia pulmonar (Patología Arterial y Venosa)",
         "Patología Perianal (Cirugía)",
         "Hemorroides (Patología Perianal)",
         "Abscesos (Patología Perianal)",
         "Fisuras (Patología Perianal)",
         "Fístulas (Patología Perianal)",
-        "Urología P1 (Cirugía)",
-        "Infección de vías urinarias bajas y \r\naltas (Urología P1)",
-        "Urología P2 (Cirugía)",
-        "Litiasis renal (Urología P2)",
+        "Urología (Cirugía)",
+        "Infección de vías urinarias bajas y altas (Urología)",
+        "Litiasis renal (Urología)",
         "Patología Prostática (Cirugía)",
         "Hiperplasia prostática (Patología Prostática)",
         "Prostatitis (Patología Prostática)",
@@ -733,16 +728,14 @@
         "Chancroide (ETS)",
         "Sífilis (ETS)",
         "Herpes (ETS)",
-        "ATLS P1 (Cirugía)",
-        "Introducción (ATLS P1)",
-        "Manejo de vía aérea (ATLS P1)",
-        "Choque (ATLS P1)",
-        "Trauma torácico Neumotórax a tensión, \r\ntaponamiento cardíaco, hemotórax masivo, \r\nneumotórax abierto, tórax inestable (ATLS P1)",
-        "ATLS P2 (Cirugía)",
-        "TCE hemorragia epidural, \r\nsubaracnoidea, subdural (ATLS P2)",
-        "Sx medulares (ATLS P2)",
-        "ATLS P3 (Cirugía)",
-        "Trauma abdominal, Fx de cadera, \r\ntrauma genitourinario, ATLS en la embarazada (ATLS P3)",
+        "ATLS (Cirugía)",
+        "Introducción (ATLS)",
+        "Manejo de vía aérea (ATLS)",
+        "Choque (ATLS)",
+        "Trauma torácico Neumotórax a tensión, taponamiento cardíaco, hemotórax masivo, neumotórax abierto, tórax inestable (ATLS)",
+        "TCE hemorragia epidural, subaracnoidea, subdural (ATLS)",
+        "Sx medulares (ATLS)",
+        "Trauma abdominal, Fx de cadera, trauma genitourinario, ATLS en la embarazada (ATLS)",
         "Intoxicaciones (Cirugía)",
         "Toxíndromes: Serotoninérgico (Intoxicaciones)",
         "Anticolinérgico (Intoxicaciones)",
@@ -753,7 +746,7 @@
         "Alacranismo (Mordeduras y Picaduras)",
         "Loxoscelismo (Mordeduras y Picaduras)",
         "Latrodectismo (Mordeduras y Picaduras)",
-        "Mordedura de \r\nserpientes (Mordeduras y Picaduras)",
+        "Mordedura de serpientes (Mordeduras y Picaduras)",
         "Quemaduras / Golpe de Calor / Hipotermia (Cirugía)",
         "Cirugía Oncología (Cirugía)",
         "CA de esófago (Cirugía Oncología)",
@@ -761,7 +754,7 @@
         "Páncreas (Cirugía Oncología)",
         "CA de colon y recto (Cirugía Oncología)",
         "CA hepático (Cirugía Oncología)",
-        "CA \r\nrenal (Cirugía Oncología)",
+        "CA renal (Cirugía Oncología)",
         "Sx de Lynch (Cirugía Oncología)",
         "CA de Próstata / Tumores Testiculares (Cirugía)",
         "Introducción Oftalmología (Cirugía)",
@@ -793,9 +786,9 @@
         "Hipoacusia y Vértigo (Cirugía)",
         "VPPN (Hipoacusia y Vértigo)",
         "Enfermedad (Hipoacusia y Vértigo)",
-        "Sx de \r\nMeniere (Hipoacusia y Vértigo)",
+        "Sx de Meniere (Hipoacusia y Vértigo)",
         "Neuronitis vestibular (Hipoacusia y Vértigo)",
-        "Hipoacusia \r\nneurosensorial (Hipoacusia y Vértigo)",
+        "Hipoacusia neurosensorial (Hipoacusia y Vértigo)",
         "Otoesclerosis (Hipoacusia y Vértigo)",
         "Patología Infecciosa / Rinología y Faringe (Cirugía)",
         "OMA (Patología Infecciosa / Rinología y Faringe)",
@@ -804,11 +797,11 @@
         "SAOS (Patología Infecciosa / Rinología y Faringe)",
         "CA de laringe (Patología Infecciosa / Rinología y Faringe)",
         "Absceso periamigdalino y faríngeo (Patología Infecciosa / Rinología y Faringe)",
-        "Papilomatosis \r\nlaríngea (Patología Infecciosa / Rinología y Faringe)",
+        "Papilomatosis laríngea (Patología Infecciosa / Rinología y Faringe)",
         "Trauma Generalidades y Complicaciones (Cirugía)",
-        "Fx en \r\nrama verde (Trauma Generalidades y Complicaciones)",
+        "Fx en rama verde (Trauma Generalidades y Complicaciones)",
         "Sx compartimental (Trauma Generalidades y Complicaciones)",
-        "Sx de dolor \r\nlocoregional (Trauma Generalidades y Complicaciones)",
+        "Sx de dolor locoregional (Trauma Generalidades y Complicaciones)",
         "Embolia grasa (Trauma Generalidades y Complicaciones)",
         "Patología de Extremidad Superior (Cirugía)",
         "Fx de brazo (Patología de Extremidad Superior)",
@@ -846,29 +839,29 @@
         "Bisinosis (Neumonías Ocupacionales / Derrame Pleural)",
         "Silicosis (Neumonías Ocupacionales / Derrame Pleural)",
         "Asbestosis (Neumonías Ocupacionales / Derrame Pleural)",
-        "Neumonitis por \r\ncarbón (Neumonías Ocupacionales / Derrame Pleural)",
+        "Neumonitis por carbón (Neumonías Ocupacionales / Derrame Pleural)",
         "Sarcoidosis (Neumonías Ocupacionales / Derrame Pleural)",
         "Proteinosis alveolar (Neumonías Ocupacionales / Derrame Pleural)",
         "Patología Tiroidea (Medicina Interna)",
-        "Hipertiroidismo: Enfermedad \r\nde Graves (Patología Tiroidea)",
+        "Hipertiroidismo: Enfermedad de Graves (Patología Tiroidea)",
         "Tiroiditis de Riedel (Patología Tiroidea)",
-        "Tiroiditis de \r\nQuervain (Patología Tiroidea)",
+        "Tiroiditis de Quervain (Patología Tiroidea)",
         "Tirotoxicosis (Patología Tiroidea)",
         "Hipotiroidismo (Patología Tiroidea)",
         "Hashimoto (Patología Tiroidea)",
         "Coma mixedematoso (Patología Tiroidea)",
-        "Cáncer de \r\ntiroides (Patología Tiroidea)",
+        "Cáncer de tiroides (Patología Tiroidea)",
         "Síndrome Metabólico (Medicina Interna)",
         "Diabetes (Medicina Interna)",
         "Complicaciones Diabetes (Medicina Interna)",
         "Pie diabético (Complicaciones Diabetes)",
         "Neuropatía diabética (Complicaciones Diabetes)",
         "Cetoacidosis (Complicaciones Diabetes)",
-        "Edo \r\nHiperosmolar (Complicaciones Diabetes)",
+        "Edo Hiperosmolar (Complicaciones Diabetes)",
         "Patología Central y Suprarrenal (Medicina Interna)",
-        "Diabetes \r\ninsípida (Patología Central y Suprarrenal)",
+        "Diabetes insípida (Patología Central y Suprarrenal)",
         "Hiperprolactinemia (Patología Central y Suprarrenal)",
-        "Enfermedad de \r\nAddison (Patología Central y Suprarrenal)",
+        "Enfermedad de Addison (Patología Central y Suprarrenal)",
         "Sx de Cushing (Patología Central y Suprarrenal)",
         "Insuficiencia suprarrenal (Patología Central y Suprarrenal)",
         "Perlas (Medicina Interna)",
@@ -879,7 +872,7 @@
         "Anemia megaloblástica (Anemias Introducción y Anemias Carenciales)",
         "Anemias Hemolíticas (Medicina Interna)",
         "Talasemias (Anemias Hemolíticas)",
-        "Esferocitosis \r\nhereditaria (Anemias Hemolíticas)",
+        "Esferocitosis hereditaria (Anemias Hemolíticas)",
         "Deficiencia de glucosa 6 fosfato (Anemias Hemolíticas)",
         "Anemia falciforme (Anemias Hemolíticas)",
         "Anemias autoinmunes (Anemias Hemolíticas)",
@@ -889,13 +882,13 @@
         "LMC (Leucemias)",
         "Oncohematología (Medicina Interna)",
         "Linfoma Hodgkin (Oncohematología)",
-        "Linfoma \r\nNo Hodgkin (Oncohematología)",
+        "Linfoma No Hodgkin (Oncohematología)",
         "Anormalidades de la Hemostasia y Perlas (Medicina Interna)",
         "Hemofilia (Anormalidades de la Hemostasia y Perlas)",
         "Enf. de Von Willebrand (Anormalidades de la Hemostasia y Perlas)",
-        "Púrpura \r\ntrombocitopénica (Anormalidades de la Hemostasia y Perlas)",
+        "Púrpura trombocitopénica (Anormalidades de la Hemostasia y Perlas)",
         "Sx Mielodisplásicos (Anormalidades de la Hemostasia y Perlas)",
-        "Sx \r\nMieloproliferativos (Anormalidades de la Hemostasia y Perlas)",
+        "Sx Mieloproliferativos (Anormalidades de la Hemostasia y Perlas)",
         "Introducción Cardiología (Medicina Interna)",
         "Insuficiencia Cardíaca Aguda y Crónica (Medicina Interna)",
         "Valvulopatías (Medicina Interna)",
@@ -903,7 +896,7 @@
         "Mitral (Valvulopatías)",
         "Estenosis aórtica y mitral (Valvulopatías)",
         "Síndromes Coronarios (Medicina Interna)",
-        "Angina estable e \r\ninestable (Síndromes Coronarios)",
+        "Angina estable e inestable (Síndromes Coronarios)",
         "Infarto agudo al miocardio (Síndromes Coronarios)",
         "ACLS y BLS (Medicina Interna)",
         "Trastornos del Ritmo (Medicina Interna)",
@@ -916,41 +909,41 @@
         "Pericarditis (Infecto Cardio y Perlas)",
         "Endocarditis (Infecto Cardio y Perlas)",
         "Miocarditis (Infecto Cardio y Perlas)",
-        "Miocardiopatía \r\nhipertrófica (Infecto Cardio y Perlas)",
+        "Miocardiopatía hipertrófica (Infecto Cardio y Perlas)",
         "Tumores cardíacos (Infecto Cardio y Perlas)",
         "EVC Isquémico y Hemorrágico (Medicina Interna)",
         "Trastornos del Movimiento / Enf. Neurodegenerativas (Medicina Interna)",
         "Parkinson (Trastornos del Movimiento / Enf. Neurodegenerativas)",
         "ELA (Trastornos del Movimiento / Enf. Neurodegenerativas)",
-        "Esclerosis \r\nmúltiple (Trastornos del Movimiento / Enf. Neurodegenerativas)",
+        "Esclerosis múltiple (Trastornos del Movimiento / Enf. Neurodegenerativas)",
         "Temblor esencial (Trastornos del Movimiento / Enf. Neurodegenerativas)",
         "Miastenia gravis (Trastornos del Movimiento / Enf. Neurodegenerativas)",
         "Parálisis flácida Sx de Guillain Barré (Trastornos del Movimiento / Enf. Neurodegenerativas)",
         "Cefaleas (Medicina Interna)",
         "Cefalea tensional (Cefaleas)",
         "Migraña (Cefaleas)",
-        "Cefalea \r\nen racimos (Cefaleas)",
+        "Cefalea en racimos (Cefaleas)",
         "Cefalea trigémino autonómica (Cefaleas)",
         "Demencias (Medicina Interna)",
         "Alzheimer (Demencias)",
-        "Demencia \r\nfrontotemporal (Demencias)",
+        "Demencia frontotemporal (Demencias)",
         "Demencia por cuerpos de Lewis (Demencias)",
         "Infecto Derma (Medicina Interna)",
-        "Tiñas inflamatorias y no \r\ninflamatorias (Infecto Derma)",
+        "Tiñas inflamatorias y no inflamatorias (Infecto Derma)",
         "Lepra (Infecto Derma)",
         "Acné (Infecto Derma)",
         "Pitiriasis versicolor (Infecto Derma)",
         "Oncoderma (Medicina Interna)",
         "Melanoma (Oncoderma)",
         "CA basocelular (Oncoderma)",
-        "CA \r\nespinocelular (Oncoderma)",
+        "CA espinocelular (Oncoderma)",
         "Patología Dermatológica (Medicina Interna)",
         "Liquen plano (Patología Dermatológica)",
         "Vitiligo (Patología Dermatológica)",
         "Psoriasis (Patología Dermatológica)",
         "Pénfigo vulgar (Patología Dermatológica)",
         "Pitiriasis rosada (Patología Dermatológica)",
-        "Sx de \r\nStevens Johnson (Patología Dermatológica)",
+        "Sx de Stevens Johnson (Patología Dermatológica)",
         "Reumatología (Medicina Interna)",
         "Reacciones de hipersensibilidad (Reumatología)",
         "Artritis reumatoide (Reumatología)",
@@ -965,17 +958,16 @@
         "Sx nefríticos (Nefrología)",
         "Sx nefrótico (Nefrología)",
         "Abscesos renales (Nefrología)",
-        "Psiquiatría P1 (Medicina Interna)",
-        "Sx nefríticos (Psiquiatría P1)",
-        "Sx nefrótico (Psiquiatría P1)",
-        "Abscesos renales (Psiquiatría P1)",
-        "Psiquiatría P2 (Medicina Interna)",
-        "Adicciones (Psiquiatría P2)",
-        "Delirium tremens (Psiquiatría P2)",
-        "Autismo (Psiquiatría P2)",
-        "TDAH (Psiquiatría P2)",
-        "Esquizofrenia (Psiquiatría P2)",
-        "Trastornos del \r\nsueño (Psiquiatría P2)",
+        "Psiquiatría (Medicina Interna)",
+        "Sx nefríticos (Psiquiatría)",
+        "Sx nefrótico (Psiquiatría)",
+        "Abscesos renales (Psiquiatría)",
+        "Adicciones (Psiquiatría)",
+        "Delirium tremens (Psiquiatría)",
+        "Autismo (Psiquiatría)",
+        "TDAH (Psiquiatría)",
+        "Esquizofrenia (Psiquiatría)",
+        "Trastornos del sueño (Psiquiatría)",
         "Geriatría (Medicina Interna)",
         "Sx geriátricos (Geriatría)",
         "Escalas geriátricas (Geriatría)"
@@ -996,29 +988,37 @@
                 "Sx de Kallman",
                 "Sx de \r\nPrader Willi"
         ],
-        "Sx de \r\nTurner (Amenorreas Primarias y Secundarias)": [
-                "Sx de \r\nTurner"
+        "Sx de Turner (Amenorreas Primarias y Secundarias)": [
+                "Sx de Turner",
+                "Síndrome de Turner"
         ],
         "Sx de Swyer (Amenorreas Primarias y Secundarias)": [
-                "Sx de Swyer"
+                "Sx de Swyer",
+                "Síndrome de Swyer"
         ],
         "Sx de Morris (Amenorreas Primarias y Secundarias)": [
-                "Sx de Morris"
+                "Sx de Morris",
+                "Síndrome de Morris"
         ],
         "Sx Rokitansky (Amenorreas Primarias y Secundarias)": [
-                "Sx Rokitansky"
+                "Sx Rokitansky",
+                "Síndrome Rokitansky"
         ],
         "Sx Asherman (Amenorreas Primarias y Secundarias)": [
-                "Sx Asherman"
+                "Sx Asherman",
+                "Síndrome Asherman"
         ],
         "Sx de Sheehan (Amenorreas Primarias y Secundarias)": [
-                "Sx de Sheehan"
+                "Sx de Sheehan",
+                "Síndrome de Sheehan"
         ],
         "Sx de Kallman (Amenorreas Primarias y Secundarias)": [
-                "Sx de Kallman"
+                "Sx de Kallman",
+                "Síndrome de Kallman"
         ],
-        "Sx de \r\nPrader Willi (Amenorreas Primarias y Secundarias)": [
-                "Sx de \r\nPrader Willi"
+        "Sx de Prader Willi (Amenorreas Primarias y Secundarias)": [
+                "Sx de Prader Willi",
+                "Síndrome de Prader Willi"
         ],
         "Ciclo Genital / Esterilidad / Anticonceptivos (Ginecología y Obstetricia)": [
                 "Ciclo Genital / Esterilidad / Anticonceptivos"
@@ -1030,11 +1030,12 @@
                 "Endometriosis",
                 "Coagulopatías"
         ],
-        "Sangrados uterinos de origen \r\ndesconocido (Sangrados Uterinos Anormales: Origen No Anatómico)": [
-                "Sangrados uterinos de origen \r\ndesconocido"
+        "Sangrados uterinos de origen desconocido (Sangrados Uterinos Anormales: Origen No Anatómico)": [
+                "Sangrados uterinos de origen desconocido"
         ],
         "SOP (Sangrados Uterinos Anormales: Origen No Anatómico)": [
-                "SOP"
+                "SOP",
+                "Síndrome de Ovario Poliquístico"
         ],
         "Endometriosis (Sangrados Uterinos Anormales: Origen No Anatómico)": [
                 "Endometriosis"
@@ -1054,13 +1055,14 @@
                 "Menopausia"
         ],
         "Sx climatérico (Patología Menopausia y Climaterio)": [
-                "Sx climatérico"
+                "Sx climatérico",
+                "Síndrome climatérico"
         ],
         "Osteoporosis (Patología Menopausia y Climaterio)": [
                 "Osteoporosis"
         ],
-        "Incontinencia \r\nurinaria (Patología Menopausia y Climaterio)": [
-                "Incontinencia \r\nurinaria"
+        "Incontinencia urinaria (Patología Menopausia y Climaterio)": [
+                "Incontinencia urinaria"
         ],
         "Trastornos del piso pélvico (Patología Menopausia y Climaterio)": [
                 "Trastornos del piso pélvico"
@@ -1084,30 +1086,30 @@
         "Torsión ovárica (Sangrados Uterinos Anormales: Origen Anatómico No Maligno)": [
                 "Torsión ovárica"
         ],
-        "Oncología Ginecológica P1 (Ginecología y Obstetricia)": [
-                "Oncología Ginecológica P1",
-                "CA de endometrio y \r\nCA de ovario"
-        ],
-        "CA de endometrio y \r\nCA de ovario (Oncología Ginecológica P1)": [
-                "CA de endometrio y \r\nCA de ovario"
-        ],
-        "Oncología Ginecológica P2 (Ginecología y Obstetricia)": [
-                "Oncología Ginecológica P2",
+        "Oncología Ginecológica (Ginecología y Obstetricia)": [
+                "Oncología Ginecológica",
                 "Prevención y \r\ntamizaje de CACU",
                 "CACU",
                 "CA de vagina y vulvar",
                 "Patología vulvar (Bartolinitis)"
         ],
-        "Prevención y \r\ntamizaje de CACU (Oncología Ginecológica P2)": [
-                "Prevención y \r\ntamizaje de CACU"
+        "CA de endometrio y CA de ovario (Oncología Ginecológica)": [
+                "CA de endometrio y CA de ovario",
+                "Cáncer de endometrio y Cáncer de ovario"
         ],
-        "CACU (Oncología Ginecológica P2)": [
-                "CACU"
+        "Prevención y tamizaje de CACU (Oncología Ginecológica)": [
+                "Prevención y tamizaje de CACU",
+                "Prevención y tamizaje de Cáncer Cervicouterino"
         ],
-        "CA de vagina y vulvar (Oncología Ginecológica P2)": [
-                "CA de vagina y vulvar"
+        "CACU (Oncología Ginecológica)": [
+                "CACU",
+                "Cáncer Cervicouterino"
         ],
-        "Patología vulvar Bartolinitis (Oncología Ginecológica P2)": [
+        "CA de vagina y vulvar (Oncología Ginecológica)": [
+                "CA de vagina y vulvar",
+                "Cáncer de vagina y vulvar"
+        ],
+        "Patología vulvar Bartolinitis (Oncología Ginecológica)": [
                 "Patología vulvar Bartolinitis"
         ],
         "Patología Mamaria Benigna (Ginecología y Obstetricia)": [
@@ -1117,20 +1119,21 @@
                 "Mastitis puerperal y \r\nno puerperal",
                 "Papiloma intraductal"
         ],
-        "Mastopatía \r\nfibroquística (Patología Mamaria Benigna)": [
-                "Mastopatía \r\nfibroquística"
+        "Mastopatía fibroquística (Patología Mamaria Benigna)": [
+                "Mastopatía fibroquística"
         ],
         "Fibroadenoma (Patología Mamaria Benigna)": [
                 "Fibroadenoma"
         ],
-        "Mastitis puerperal y \r\nno puerperal (Patología Mamaria Benigna)": [
-                "Mastitis puerperal y \r\nno puerperal"
+        "Mastitis puerperal y no puerperal (Patología Mamaria Benigna)": [
+                "Mastitis puerperal y no puerperal"
         ],
         "Papiloma intraductal (Patología Mamaria Benigna)": [
                 "Papiloma intraductal"
         ],
         "Cáncer de Mama (Ginecología y Obstetricia)": [
-                "Cáncer de Mama"
+                "Cáncer de Mama",
+                "CA de Mama"
         ],
         "Patología Infecciosa Cervical (Ginecología y Obstetricia)": [
                 "Patología Infecciosa Cervical",
@@ -1140,8 +1143,8 @@
                 "Enfermedad \r\npélvica inflamatoria",
                 "Endocervicitis"
         ],
-        "Cervicovaginitis \r\nbacteriana (Patología Infecciosa Cervical)": [
-                "Cervicovaginitis \r\nbacteriana"
+        "Cervicovaginitis bacteriana (Patología Infecciosa Cervical)": [
+                "Cervicovaginitis bacteriana"
         ],
         "Cándida (Patología Infecciosa Cervical)": [
                 "Cándida"
@@ -1149,53 +1152,46 @@
         "Trichomonas (Patología Infecciosa Cervical)": [
                 "Trichomonas"
         ],
-        "Enfermedad \r\npélvica inflamatoria (Patología Infecciosa Cervical)": [
-                "Enfermedad \r\npélvica inflamatoria"
+        "Enfermedad pélvica inflamatoria (Patología Infecciosa Cervical)": [
+                "Enfermedad pélvica inflamatoria"
         ],
         "Endocervicitis (Patología Infecciosa Cervical)": [
                 "Endocervicitis"
         ],
-        "Control Prenatal P1 (Ginecología y Obstetricia)": [
-                "Control Prenatal P1",
-                "Fisiología del embarazo",
-                "Consultas prenatales",
-                "Vacunas",
-                "Maniobras de \r\nLeopold"
-        ],
-        "Fisiología del embarazo (Control Prenatal P1)": [
-                "Fisiología del embarazo"
-        ],
-        "Consultas prenatales (Control Prenatal P1)": [
-                "Consultas prenatales"
-        ],
-        "Vacunas (Control Prenatal P1)": [
-                "Vacunas"
-        ],
-        "Maniobras de \r\nLeopold (Control Prenatal P1)": [
-                "Maniobras de \r\nLeopold"
-        ],
-        "Control Prenatal P2 (Ginecología y Obstetricia)": [
-                "Control Prenatal P2",
+        "Control Prenatal (Ginecología y Obstetricia)": [
+                "Control Prenatal",
                 "Incompatibilidad grupo Rh",
                 "Diagnóstico cromosomopatías",
                 "Depresión materna",
                 "Hiperémesis gravídica",
                 "Patología tiroidea en el \r\nembarazo"
         ],
-        "Incompatibilidad grupo Rh (Control Prenatal P2)": [
+        "Fisiología del embarazo (Control Prenatal)": [
+                "Fisiología del embarazo"
+        ],
+        "Consultas prenatales (Control Prenatal)": [
+                "Consultas prenatales"
+        ],
+        "Vacunas (Control Prenatal)": [
+                "Vacunas"
+        ],
+        "Maniobras de Leopold (Control Prenatal)": [
+                "Maniobras de Leopold"
+        ],
+        "Incompatibilidad grupo Rh (Control Prenatal)": [
                 "Incompatibilidad grupo Rh"
         ],
-        "Diagnóstico cromosomopatías (Control Prenatal P2)": [
+        "Diagnóstico cromosomopatías (Control Prenatal)": [
                 "Diagnóstico cromosomopatías"
         ],
-        "Depresión materna (Control Prenatal P2)": [
+        "Depresión materna (Control Prenatal)": [
                 "Depresión materna"
         ],
-        "Hiperémesis gravídica (Control Prenatal P2)": [
+        "Hiperémesis gravídica (Control Prenatal)": [
                 "Hiperémesis gravídica"
         ],
-        "Patología tiroidea en el \r\nembarazo (Control Prenatal P2)": [
-                "Patología tiroidea en el \r\nembarazo"
+        "Patología tiroidea en el embarazo (Control Prenatal)": [
+                "Patología tiroidea en el embarazo"
         ],
         "Hemorragias del Primer Trimestre (Ginecología y Obstetricia)": [
                 "Hemorragias del Primer Trimestre",
@@ -1220,14 +1216,15 @@
                 "Vasa previa",
                 "R. uterina"
         ],
-        "Placenta \r\nprevia (Hemorragias del Segundo Trimestre)": [
-                "Placenta \r\nprevia"
+        "Placenta previa (Hemorragias del Segundo Trimestre)": [
+                "Placenta previa"
         ],
         "Acretismo placentario (Hemorragias del Segundo Trimestre)": [
                 "Acretismo placentario"
         ],
         "DPPNI (Hemorragias del Segundo Trimestre)": [
-                "DPPNI"
+                "DPPNI",
+                "Desprendimiento de Placenta"
         ],
         "Vasa previa (Hemorragias del Segundo Trimestre)": [
                 "Vasa previa"
@@ -1246,8 +1243,8 @@
         "Hipertensión crónica en el embarazo (Patología del Embarazo: Estados Hipertensivos)": [
                 "Hipertensión crónica en el embarazo"
         ],
-        "Hipertensión \r\ngestacional (Patología del Embarazo: Estados Hipertensivos)": [
-                "Hipertensión \r\ngestacional"
+        "Hipertensión gestacional (Patología del Embarazo: Estados Hipertensivos)": [
+                "Hipertensión gestacional"
         ],
         "Preeclampsia (Patología del Embarazo: Estados Hipertensivos)": [
                 "Preeclampsia"
@@ -1255,8 +1252,9 @@
         "Eclampsia (Patología del Embarazo: Estados Hipertensivos)": [
                 "Eclampsia"
         ],
-        "Sx de \r\nHELLP (Patología del Embarazo: Estados Hipertensivos)": [
-                "Sx de \r\nHELLP"
+        "Sx de HELLP (Patología del Embarazo: Estados Hipertensivos)": [
+                "Sx de HELLP",
+                "Síndrome de HELLP"
         ],
         "Patología del Embarazo (Ginecología y Obstetricia)": [
                 "Patología del Embarazo",
@@ -1266,8 +1264,8 @@
         "OM2 (Patología del Embarazo)": [
                 "OM2"
         ],
-        "Patología \r\nhepática del embarazo (Patología del Embarazo)": [
-                "Patología \r\nhepática del embarazo"
+        "Patología hepática del embarazo (Patología del Embarazo)": [
+                "Patología hepática del embarazo"
         ],
         "Trabajo de Parto (Ginecología y Obstetricia)": [
                 "Trabajo de Parto",
@@ -1277,8 +1275,8 @@
         "Fisiológico (Trabajo de Parto)": [
                 "Fisiológico"
         ],
-        "Violencia \r\nobstétrica (Trabajo de Parto)": [
-                "Violencia \r\nobstétrica"
+        "Violencia obstétrica (Trabajo de Parto)": [
+                "Violencia obstétrica"
         ],
         "Parto Prematuro y Patología Coriónica (Ginecología y Obstetricia)": [
                 "Parto Prematuro y Patología Coriónica",
@@ -1288,11 +1286,12 @@
                 "Oligohidramnios",
                 "Corioamnionitis"
         ],
-        "Parto \r\nprematuro (Parto Prematuro y Patología Coriónica)": [
-                "Parto \r\nprematuro"
+        "Parto prematuro (Parto Prematuro y Patología Coriónica)": [
+                "Parto prematuro"
         ],
         "RPM (Parto Prematuro y Patología Coriónica)": [
-                "RPM"
+                "RPM",
+                "Ruptura Prematura de Membranas"
         ],
         "Poli (Parto Prematuro y Patología Coriónica)": [
                 "Poli"
@@ -1310,8 +1309,8 @@
                 "Distocias",
                 "Embarazo \r\ngemelar"
         ],
-        "Inducción de \r\ntrabajo de parto (Patología de Trabajo de Parto)": [
-                "Inducción de \r\ntrabajo de parto"
+        "Inducción de trabajo de parto (Patología de Trabajo de Parto)": [
+                "Inducción de trabajo de parto"
         ],
         "Cesárea (Patología de Trabajo de Parto)": [
                 "Cesárea"
@@ -1319,8 +1318,8 @@
         "Distocias (Patología de Trabajo de Parto)": [
                 "Distocias"
         ],
-        "Embarazo \r\ngemelar (Patología de Trabajo de Parto)": [
-                "Embarazo \r\ngemelar"
+        "Embarazo gemelar (Patología de Trabajo de Parto)": [
+                "Embarazo gemelar"
         ],
         "Patología Puerperal (Ginecología y Obstetricia)": [
                 "Patología Puerperal",
@@ -1328,17 +1327,18 @@
                 "Choque en \r\nla paciente embarazada",
                 "Sepsis materna"
         ],
-        "Hemorragia obstétrica \r\nAtonía, trauma, tejido, coagulopatías (Patología Puerperal)": [
-                "Hemorragia obstétrica \r\nAtonía, trauma, tejido, coagulopatías"
+        "Hemorragia obstétrica Atonía, trauma, tejido, coagulopatías (Patología Puerperal)": [
+                "Hemorragia obstétrica Atonía, trauma, tejido, coagulopatías"
         ],
-        "Choque en \r\nla paciente embarazada (Patología Puerperal)": [
-                "Choque en \r\nla paciente embarazada"
+        "Choque en la paciente embarazada (Patología Puerperal)": [
+                "Choque en la paciente embarazada"
         ],
         "Sepsis materna (Patología Puerperal)": [
                 "Sepsis materna"
         ],
         "Recién Nacido Sano (Pediatría)": [
                 "Recién Nacido Sano",
+                "RN Sano",
                 "RN sano",
                 "Cuidados del \r\nrecién nacido",
                 "Tamizajes del RN",
@@ -1347,13 +1347,15 @@
                 "Alteraciones dermatológicas al \r\nnacimiento"
         ],
         "RN sano (Recién Nacido Sano)": [
-                "RN sano"
+                "RN sano",
+                "Recién Nacido sano"
         ],
-        "Cuidados del \r\nrecién nacido (Recién Nacido Sano)": [
-                "Cuidados del \r\nrecién nacido"
+        "Cuidados del recién nacido (Recién Nacido Sano)": [
+                "Cuidados del recién nacido"
         ],
         "Tamizajes del RN (Recién Nacido Sano)": [
-                "Tamizajes del RN"
+                "Tamizajes del RN",
+                "Tamizajes del Recién Nacido"
         ],
         "Cefalohematoma (Recién Nacido Sano)": [
                 "Cefalohematoma"
@@ -1361,8 +1363,8 @@
         "Parálisis braquial (Recién Nacido Sano)": [
                 "Parálisis braquial"
         ],
-        "Alteraciones dermatológicas al \r\nnacimiento (Recién Nacido Sano)": [
-                "Alteraciones dermatológicas al \r\nnacimiento"
+        "Alteraciones dermatológicas al nacimiento (Recién Nacido Sano)": [
+                "Alteraciones dermatológicas al nacimiento"
         ],
         "Reanimación Neonatal (Pediatría)": [
                 "Reanimación Neonatal"
@@ -1440,14 +1442,14 @@
         "EHI (Patología Neonatal)": [
                 "EHI"
         ],
-        "Hemorragia de \r\nmatriz germinal (Patología Neonatal)": [
-                "Hemorragia de \r\nmatriz germinal"
+        "Hemorragia de matriz germinal (Patología Neonatal)": [
+                "Hemorragia de matriz germinal"
         ],
         "Malf. congénitas (Patología Neonatal)": [
                 "Malf. congénitas"
         ],
-        "Hernias \r\ndiafragmáticas (Patología Neonatal)": [
-                "Hernias \r\ndiafragmáticas"
+        "Hernias diafragmáticas (Patología Neonatal)": [
+                "Hernias diafragmáticas"
         ],
         "Atresia de las coanas (Patología Neonatal)": [
                 "Atresia de las coanas"
@@ -1523,11 +1525,11 @@
         "Incompatibilidad sanguínea (Ictericia Neonatal)": [
                 "Incompatibilidad sanguínea"
         ],
-        "Ictericia por \r\nproblemas del metabolismo hepático (Ictericia Neonatal)": [
-                "Ictericia por \r\nproblemas del metabolismo hepático"
+        "Ictericia por problemas del metabolismo hepático (Ictericia Neonatal)": [
+                "Ictericia por problemas del metabolismo hepático"
         ],
-        "Atresia de \r\nvías biliares (Ictericia Neonatal)": [
-                "Atresia de \r\nvías biliares"
+        "Atresia de vías biliares (Ictericia Neonatal)": [
+                "Atresia de vías biliares"
         ],
         "Tamiz Metabólico (Pediatría)": [
                 "Tamiz Metabólico",
@@ -1547,32 +1549,17 @@
         "Galactosemia (Tamiz Metabólico)": [
                 "Galactosemia"
         ],
-        "Deficiencia de \r\nbiotinidasa (Tamiz Metabólico)": [
-                "Deficiencia de \r\nbiotinidasa"
+        "Deficiencia de biotinidasa (Tamiz Metabólico)": [
+                "Deficiencia de biotinidasa"
         ],
         "Hiperplasia suprarrenal (Tamiz Metabólico)": [
                 "Hiperplasia suprarrenal"
         ],
-        "Fibrosis \r\nquística (Tamiz Metabólico)": [
-                "Fibrosis \r\nquística"
+        "Fibrosis quística (Tamiz Metabólico)": [
+                "Fibrosis quística"
         ],
-        "Crecimiento y Desarrollo P1 (Pediatría)": [
-                "Crecimiento y Desarrollo P1",
-                "Hitos del desarrollo",
-                "Consulta del niño sano",
-                "Maltrato infantil"
-        ],
-        "Hitos del desarrollo (Crecimiento y Desarrollo P1)": [
-                "Hitos del desarrollo"
-        ],
-        "Consulta del niño sano (Crecimiento y Desarrollo P1)": [
-                "Consulta del niño sano"
-        ],
-        "Maltrato infantil (Crecimiento y Desarrollo P1)": [
-                "Maltrato infantil"
-        ],
-        "Crecimiento y Desarrollo P2 (Pediatría)": [
-                "Crecimiento y Desarrollo P2",
+        "Crecimiento y Desarrollo (Pediatría)": [
+                "Crecimiento y Desarrollo",
                 "Crecimiento",
                 "Alimentación",
                 "Desnutrición",
@@ -1581,25 +1568,34 @@
                 "Déficits vitamínicos",
                 "Muerte súbita"
         ],
-        "Crecimiento (Crecimiento y Desarrollo P2)": [
+        "Hitos del desarrollo (Crecimiento y Desarrollo)": [
+                "Hitos del desarrollo"
+        ],
+        "Consulta del niño sano (Crecimiento y Desarrollo)": [
+                "Consulta del niño sano"
+        ],
+        "Maltrato infantil (Crecimiento y Desarrollo)": [
+                "Maltrato infantil"
+        ],
+        "Crecimiento (Crecimiento y Desarrollo)": [
                 "Crecimiento"
         ],
-        "Alimentación (Crecimiento y Desarrollo P2)": [
+        "Alimentación (Crecimiento y Desarrollo)": [
                 "Alimentación"
         ],
-        "Desnutrición (Crecimiento y Desarrollo P2)": [
+        "Desnutrición (Crecimiento y Desarrollo)": [
                 "Desnutrición"
         ],
-        "Obesidad (Crecimiento y Desarrollo P2)": [
+        "Obesidad (Crecimiento y Desarrollo)": [
                 "Obesidad"
         ],
-        "Talla baja (Crecimiento y Desarrollo P2)": [
+        "Talla baja (Crecimiento y Desarrollo)": [
                 "Talla baja"
         ],
-        "Déficits vitamínicos (Crecimiento y Desarrollo P2)": [
+        "Déficits vitamínicos (Crecimiento y Desarrollo)": [
                 "Déficits vitamínicos"
         ],
-        "Muerte súbita (Crecimiento y Desarrollo P2)": [
+        "Muerte súbita (Crecimiento y Desarrollo)": [
                 "Muerte súbita"
         ],
         "Vacunación (Pediatría)": [
@@ -1618,8 +1614,8 @@
         "Divertículo de Meckel (Patología Gastrointestinal del Pediátrico)": [
                 "Divertículo de Meckel"
         ],
-        "Enf. \r\nde Hirschsprung (Patología Gastrointestinal del Pediátrico)": [
-                "Enf. \r\nde Hirschsprung"
+        "Enf. de Hirschsprung (Patología Gastrointestinal del Pediátrico)": [
+                "Enf. de Hirschsprung"
         ],
         "ERGE (Patología Gastrointestinal del Pediátrico)": [
                 "ERGE"
@@ -1641,14 +1637,14 @@
                 "Intoxicaciones alimentarias",
                 "Enf. \r\nCelíaca"
         ],
-        "Diarrea \r\nenteroinvasiva (Diarreas Agudas y Crónicas)": [
-                "Diarrea \r\nenteroinvasiva"
+        "Diarrea enteroinvasiva (Diarreas Agudas y Crónicas)": [
+                "Diarrea enteroinvasiva"
         ],
         "Intoxicaciones alimentarias (Diarreas Agudas y Crónicas)": [
                 "Intoxicaciones alimentarias"
         ],
-        "Enf. \r\nCelíaca (Diarreas Agudas y Crónicas)": [
-                "Enf. \r\nCelíaca"
+        "Enf. Celíaca (Diarreas Agudas y Crónicas)": [
+                "Enf. Celíaca"
         ],
         "Enfermedades Parasitarias (Pediatría)": [
                 "Enfermedades Parasitarias",
@@ -1663,8 +1659,8 @@
         "Giardiasis (Enfermedades Parasitarias)": [
                 "Giardiasis"
         ],
-        "E. \r\nhistolytica (Enfermedades Parasitarias)": [
-                "E. \r\nhistolytica"
+        "E. histolytica (Enfermedades Parasitarias)": [
+                "E. histolytica"
         ],
         "Ascaris (Enfermedades Parasitarias)": [
                 "Ascaris"
@@ -1698,8 +1694,8 @@
         "Epiglotitis (Patología Respiratoria del Lactante y Preescolar)": [
                 "Epiglotitis"
         ],
-        "Tos \r\nferina (Patología Respiratoria del Lactante y Preescolar)": [
-                "Tos \r\nferina"
+        "Tos ferina (Patología Respiratoria del Lactante y Preescolar)": [
+                "Tos ferina"
         ],
         "Laringotraqueítis bacteriana (Patología Respiratoria del Lactante y Preescolar)": [
                 "Laringotraqueítis bacteriana"
@@ -1716,8 +1712,8 @@
         "Virales (Neumonías)": [
                 "Virales"
         ],
-        "Atípicas: en \r\nel adulto y pediátrico (Neumonías)": [
-                "Atípicas: en \r\nel adulto y pediátrico"
+        "Atípicas: en el adulto y pediátrico (Neumonías)": [
+                "Atípicas: en el adulto y pediátrico"
         ],
         "Asma en el Adulto y Pediátrico (Pediatría)": [
                 "Asma en el Adulto y Pediátrico"
@@ -1765,8 +1761,8 @@
         "5ta enfermedad (Enfermedades Exantemáticas)": [
                 "5ta enfermedad"
         ],
-        "6ta \r\nenfermedad (Enfermedades Exantemáticas)": [
-                "6ta \r\nenfermedad"
+        "6ta enfermedad (Enfermedades Exantemáticas)": [
+                "6ta enfermedad"
         ],
         "Escarlatina (Enfermedades Exantemáticas)": [
                 "Escarlatina"
@@ -1787,17 +1783,17 @@
                 "Ingesta de \r\nmetales pesados",
                 "Obstrucción de la vía aérea \r\nsuperior"
         ],
-        "Intoxicaciones por ASA y \r\nparacetamol (Urgencias Pediátricas)": [
-                "Intoxicaciones por ASA y \r\nparacetamol"
+        "Intoxicaciones por ASA y paracetamol (Urgencias Pediátricas)": [
+                "Intoxicaciones por ASA y paracetamol"
         ],
         "Ingesta de cáusticos (Urgencias Pediátricas)": [
                 "Ingesta de cáusticos"
         ],
-        "Ingesta de \r\nmetales pesados (Urgencias Pediátricas)": [
-                "Ingesta de \r\nmetales pesados"
+        "Ingesta de metales pesados (Urgencias Pediátricas)": [
+                "Ingesta de metales pesados"
         ],
-        "Obstrucción de la vía aérea \r\nsuperior (Urgencias Pediátricas)": [
-                "Obstrucción de la vía aérea \r\nsuperior"
+        "Obstrucción de la vía aérea superior (Urgencias Pediátricas)": [
+                "Obstrucción de la vía aérea superior"
         ],
         "Uropedia (Pediatría)": [
                 "Uropedia",
@@ -1810,17 +1806,18 @@
         "Torsión testicular (Uropedia)": [
                 "Torsión testicular"
         ],
-        "Torsión del \r\napéndice testicular (Uropedia)": [
-                "Torsión del \r\napéndice testicular"
+        "Torsión del apéndice testicular (Uropedia)": [
+                "Torsión del apéndice testicular"
         ],
         "Epididimitis (Uropedia)": [
                 "Epididimitis"
         ],
         "IVUs (Uropedia)": [
-                "IVUs"
+                "IVUs",
+                "Infecciones de Vías Urinarias"
         ],
-        "Reflujo \r\nvesicoureteral (Uropedia)": [
-                "Reflujo \r\nvesicoureteral"
+        "Reflujo vesicoureteral (Uropedia)": [
+                "Reflujo vesicoureteral"
         ],
         "Cardiopedia (Pediatría)": [
                 "Cardiopedia",
@@ -1830,11 +1827,11 @@
                 "Anomalía de Ebstein",
                 "Transposición de grandes \r\nvasos)"
         ],
-        "Cardiopatías acianógenas CIV, \r\nCIA, PCA, estenosis de la arteria pulmonar (Cardiopedia)": [
-                "Cardiopatías acianógenas CIV, \r\nCIA, PCA, estenosis de la arteria pulmonar"
+        "Cardiopatías acianógenas CIV, CIA, PCA, estenosis de la arteria pulmonar (Cardiopedia)": [
+                "Cardiopatías acianógenas CIV, CIA, PCA, estenosis de la arteria pulmonar"
         ],
-        "Cardiopatías cianógenas TF, tronco arterioso \r\ncomún (Cardiopedia)": [
-                "Cardiopatías cianógenas TF, tronco arterioso \r\ncomún"
+        "Cardiopatías cianógenas TF, tronco arterioso común (Cardiopedia)": [
+                "Cardiopatías cianógenas TF, tronco arterioso común"
         ],
         "Drenaje pulmonar venoso anómalo (Cardiopedia)": [
                 "Drenaje pulmonar venoso anómalo"
@@ -1842,69 +1839,58 @@
         "Anomalía de Ebstein (Cardiopedia)": [
                 "Anomalía de Ebstein"
         ],
-        "Transposición de grandes \r\nvasos (Cardiopedia)": [
-                "Transposición de grandes \r\nvasos"
+        "Transposición de grandes vasos (Cardiopedia)": [
+                "Transposición de grandes vasos"
         ],
-        "Especialidades Pedia P1 (Pediatría)": [
-                "Especialidades Pedia P1",
-                "Oncopedia: \r\nNeuroblastoma",
-                "Nefroblastoma",
-                "Astrocitoma",
-                "Osteosarcoma",
-                "Sarcoma de Ewing. Dermapedia: \r\nDermatitis atópica",
-                "Dermatitis del pañal",
-                "Molusco \r\ncontagioso",
-                "Sx de piel escaldada",
-                "Sx de shock \r\ntóxico",
-                "Dermatitis seborreica"
-        ],
-        "Oncopedia: \r\nNeuroblastoma (Especialidades Pedia P1)": [
-                "Oncopedia: \r\nNeuroblastoma"
-        ],
-        "Nefroblastoma (Especialidades Pedia P1)": [
-                "Nefroblastoma"
-        ],
-        "Astrocitoma (Especialidades Pedia P1)": [
-                "Astrocitoma"
-        ],
-        "Osteosarcoma (Especialidades Pedia P1)": [
-                "Osteosarcoma"
-        ],
-        "Sarcoma de Ewing. Dermapedia: \r\nDermatitis atópica (Especialidades Pedia P1)": [
-                "Sarcoma de Ewing. Dermapedia: \r\nDermatitis atópica"
-        ],
-        "Dermatitis del pañal (Especialidades Pedia P1)": [
-                "Dermatitis del pañal"
-        ],
-        "Molusco \r\ncontagioso (Especialidades Pedia P1)": [
-                "Molusco \r\ncontagioso"
-        ],
-        "Sx de piel escaldada (Especialidades Pedia P1)": [
-                "Sx de piel escaldada"
-        ],
-        "Sx de shock \r\ntóxico (Especialidades Pedia P1)": [
-                "Sx de shock \r\ntóxico"
-        ],
-        "Dermatitis seborreica (Especialidades Pedia P1)": [
-                "Dermatitis seborreica"
-        ],
-        "Especialidades Pedia P2 (Pediatría)": [
-                "Especialidades Pedia P2",
+        "Especialidades Pedia (Pediatría)": [
+                "Especialidades Pedia",
                 "Hematopedia: Púrpura \r\nde Henoch Schonlein",
                 "Púrpura trombocitopénica. \r\nOrtopedia: Displasia de cadera",
                 "Pie plano",
                 "Cojera"
         ],
-        "Hematopedia: Púrpura \r\nde Henoch Schonlein (Especialidades Pedia P2)": [
-                "Hematopedia: Púrpura \r\nde Henoch Schonlein"
+        "Oncopedia: Neuroblastoma (Especialidades Pedia)": [
+                "Oncopedia: Neuroblastoma"
         ],
-        "Púrpura trombocitopénica. \r\nOrtopedia: Displasia de cadera (Especialidades Pedia P2)": [
-                "Púrpura trombocitopénica. \r\nOrtopedia: Displasia de cadera"
+        "Nefroblastoma (Especialidades Pedia)": [
+                "Nefroblastoma"
         ],
-        "Pie plano (Especialidades Pedia P2)": [
+        "Astrocitoma (Especialidades Pedia)": [
+                "Astrocitoma"
+        ],
+        "Osteosarcoma (Especialidades Pedia)": [
+                "Osteosarcoma"
+        ],
+        "Sarcoma de Ewing. Dermapedia: Dermatitis atópica (Especialidades Pedia)": [
+                "Sarcoma de Ewing. Dermapedia: Dermatitis atópica"
+        ],
+        "Dermatitis del pañal (Especialidades Pedia)": [
+                "Dermatitis del pañal"
+        ],
+        "Molusco contagioso (Especialidades Pedia)": [
+                "Molusco contagioso"
+        ],
+        "Sx de piel escaldada (Especialidades Pedia)": [
+                "Sx de piel escaldada",
+                "Síndrome de piel escaldada"
+        ],
+        "Sx de shock tóxico (Especialidades Pedia)": [
+                "Sx de shock tóxico",
+                "Síndrome de shock tóxico"
+        ],
+        "Dermatitis seborreica (Especialidades Pedia)": [
+                "Dermatitis seborreica"
+        ],
+        "Hematopedia: Púrpura de Henoch Schonlein (Especialidades Pedia)": [
+                "Hematopedia: Púrpura de Henoch Schonlein"
+        ],
+        "Púrpura trombocitopénica. Ortopedia: Displasia de cadera (Especialidades Pedia)": [
+                "Púrpura trombocitopénica. Ortopedia: Displasia de cadera"
+        ],
+        "Pie plano (Especialidades Pedia)": [
                 "Pie plano"
         ],
-        "Cojera (Especialidades Pedia P2)": [
+        "Cojera (Especialidades Pedia)": [
                 "Cojera"
         ],
         "Alteraciones Cromosómicas y Perlas (Pediatría)": [
@@ -1914,17 +1900,21 @@
                 "Sx Patau",
                 "Sx Klinefelter"
         ],
-        "Sx de \r\nDown (Alteraciones Cromosómicas y Perlas)": [
-                "Sx de \r\nDown"
+        "Sx de Down (Alteraciones Cromosómicas y Perlas)": [
+                "Sx de Down",
+                "Síndrome de Down"
         ],
         "Sx de Edwards (Alteraciones Cromosómicas y Perlas)": [
-                "Sx de Edwards"
+                "Sx de Edwards",
+                "Síndrome de Edwards"
         ],
         "Sx Patau (Alteraciones Cromosómicas y Perlas)": [
-                "Sx Patau"
+                "Sx Patau",
+                "Síndrome Patau"
         ],
         "Sx Klinefelter (Alteraciones Cromosómicas y Perlas)": [
-                "Sx Klinefelter"
+                "Sx Klinefelter",
+                "Síndrome Klinefelter"
         ],
         "Introducción a Cirugía y Cirugía Abdominal (Cirugía)": [
                 "Introducción a Cirugía y Cirugía Abdominal",
@@ -1938,8 +1928,8 @@
         "Exploración física (Introducción a Cirugía y Cirugía Abdominal)": [
                 "Exploración física"
         ],
-        "Tipo de \r\nheridas OX (Introducción a Cirugía y Cirugía Abdominal)": [
-                "Tipo de \r\nheridas OX"
+        "Tipo de heridas OX (Introducción a Cirugía y Cirugía Abdominal)": [
+                "Tipo de heridas OX"
         ],
         "Patología Esofágica (Cirugía)": [
                 "Patología Esofágica",
@@ -1970,8 +1960,8 @@
         "Úlcera péptica duodenal y gástrica (Patología Gástrica)": [
                 "Úlcera péptica duodenal y gástrica"
         ],
-        "Úlcera péptica \r\ncomplicada y perforada (Patología Gástrica)": [
-                "Úlcera péptica \r\ncomplicada y perforada"
+        "Úlcera péptica complicada y perforada (Patología Gástrica)": [
+                "Úlcera péptica complicada y perforada"
         ],
         "Zollinger-Ellison (Patología Gástrica)": [
                 "Zollinger-Ellison"
@@ -2006,8 +1996,8 @@
                 "Patología Pancreática",
                 "Pancreatitis aguda y \r\ncrónica"
         ],
-        "Pancreatitis aguda y \r\ncrónica (Patología Pancreática)": [
-                "Pancreatitis aguda y \r\ncrónica"
+        "Pancreatitis aguda y crónica (Patología Pancreática)": [
+                "Pancreatitis aguda y crónica"
         ],
         "Apendicitis (Cirugía)": [
                 "Apendicitis"
@@ -2042,8 +2032,8 @@
                 "Patología Isquémica Intestinal",
                 "Isquemia \r\nmesentérica aguda y crónica"
         ],
-        "Isquemia \r\nmesentérica aguda y crónica (Patología Isquémica Intestinal)": [
-                "Isquemia \r\nmesentérica aguda y crónica"
+        "Isquemia mesentérica aguda y crónica (Patología Isquémica Intestinal)": [
+                "Isquemia mesentérica aguda y crónica"
         ],
         "Patología Intestinal Inflamatoria (Cirugía)": [
                 "Patología Intestinal Inflamatoria",
@@ -2058,7 +2048,8 @@
                 "Enfermedad de Crohn"
         ],
         "Sx de intestino irritable (Patología Intestinal Inflamatoria)": [
-                "Sx de intestino irritable"
+                "Sx de intestino irritable",
+                "Síndrome de intestino irritable"
         ],
         "Hernias / Esplenectomía (Cirugía)": [
                 "Hernias / Esplenectomía"
@@ -2083,7 +2074,8 @@
                 "Esprue"
         ],
         "STDA por várices esofágicas (Cirrosis y sus Complicaciones / Trasplante Hepático)": [
-                "STDA por várices esofágicas"
+                "STDA por várices esofágicas",
+                "Sangrado de Tubo Digestivo Alto por várices esofágicas"
         ],
         "Ascitis (Cirrosis y sus Complicaciones / Trasplante Hepático)": [
                 "Ascitis"
@@ -2091,8 +2083,8 @@
         "Encefalopatía hepática (Cirrosis y sus Complicaciones / Trasplante Hepático)": [
                 "Encefalopatía hepática"
         ],
-        "Peritonitis bacteriana \r\nespontánea (Cirrosis y sus Complicaciones / Trasplante Hepático)": [
-                "Peritonitis bacteriana \r\nespontánea"
+        "Peritonitis bacteriana espontánea (Cirrosis y sus Complicaciones / Trasplante Hepático)": [
+                "Peritonitis bacteriana espontánea"
         ],
         "Esprue (Cirrosis y sus Complicaciones / Trasplante Hepático)": [
                 "Esprue"
@@ -2104,14 +2096,14 @@
                 "Trombosis \r\nvenosa profunda",
                 "Tromboembolia pulmonar"
         ],
-        "Insuficiencia arterial \r\naguda (Patología Arterial y Venosa)": [
-                "Insuficiencia arterial \r\naguda"
+        "Insuficiencia arterial aguda (Patología Arterial y Venosa)": [
+                "Insuficiencia arterial aguda"
         ],
         "Enfermedad arterial periférica (Patología Arterial y Venosa)": [
                 "Enfermedad arterial periférica"
         ],
-        "Trombosis \r\nvenosa profunda (Patología Arterial y Venosa)": [
-                "Trombosis \r\nvenosa profunda"
+        "Trombosis venosa profunda (Patología Arterial y Venosa)": [
+                "Trombosis venosa profunda"
         ],
         "Tromboembolia pulmonar (Patología Arterial y Venosa)": [
                 "Tromboembolia pulmonar"
@@ -2135,18 +2127,14 @@
         "Fístulas (Patología Perianal)": [
                 "Fístulas"
         ],
-        "Urología P1 (Cirugía)": [
-                "Urología P1",
-                "Infección de vías urinarias bajas y \r\naltas"
-        ],
-        "Infección de vías urinarias bajas y \r\naltas (Urología P1)": [
-                "Infección de vías urinarias bajas y \r\naltas"
-        ],
-        "Urología P2 (Cirugía)": [
-                "Urología P2",
+        "Urología (Cirugía)": [
+                "Urología",
                 "Litiasis renal"
         ],
-        "Litiasis renal (Urología P2)": [
+        "Infección de vías urinarias bajas y altas (Urología)": [
+                "Infección de vías urinarias bajas y altas"
+        ],
+        "Litiasis renal (Urología)": [
                 "Litiasis renal"
         ],
         "Patología Prostática (Cirugía)": [
@@ -2183,42 +2171,32 @@
         "Herpes (ETS)": [
                 "Herpes"
         ],
-        "ATLS P1 (Cirugía)": [
-                "ATLS P1",
-                "Introducción",
-                "Manejo de vía aérea",
-                "Choque",
-                "Trauma torácico (Neumotórax a tensión, \r\ntaponamiento cardíaco, hemotórax masivo, \r\nneumotórax abierto, tórax inestable)"
+        "ATLS (Cirugía)": [
+                "ATLS",
+                "Trauma abdominal, Fx de cadera, \r\ntrauma genitourinario, ATLS en la embarazada"
         ],
-        "Introducción (ATLS P1)": [
+        "Introducción (ATLS)": [
                 "Introducción"
         ],
-        "Manejo de vía aérea (ATLS P1)": [
+        "Manejo de vía aérea (ATLS)": [
                 "Manejo de vía aérea"
         ],
-        "Choque (ATLS P1)": [
+        "Choque (ATLS)": [
                 "Choque"
         ],
-        "Trauma torácico Neumotórax a tensión, \r\ntaponamiento cardíaco, hemotórax masivo, \r\nneumotórax abierto, tórax inestable (ATLS P1)": [
-                "Trauma torácico Neumotórax a tensión, \r\ntaponamiento cardíaco, hemotórax masivo, \r\nneumotórax abierto, tórax inestable"
+        "Trauma torácico Neumotórax a tensión, taponamiento cardíaco, hemotórax masivo, neumotórax abierto, tórax inestable (ATLS)": [
+                "Trauma torácico Neumotórax a tensión, taponamiento cardíaco, hemotórax masivo, neumotórax abierto, tórax inestable"
         ],
-        "ATLS P2 (Cirugía)": [
-                "ATLS P2",
-                "TCE hemorragia epidural, \r\nsubaracnoidea, subdural",
-                "Sx medulares"
+        "TCE hemorragia epidural, subaracnoidea, subdural (ATLS)": [
+                "TCE hemorragia epidural, subaracnoidea, subdural",
+                "Trauma Craneoencefálico hemorragia epidural, subaracnoidea, subdural"
         ],
-        "TCE hemorragia epidural, \r\nsubaracnoidea, subdural (ATLS P2)": [
-                "TCE hemorragia epidural, \r\nsubaracnoidea, subdural"
+        "Sx medulares (ATLS)": [
+                "Sx medulares",
+                "Síndrome medulares"
         ],
-        "Sx medulares (ATLS P2)": [
-                "Sx medulares"
-        ],
-        "ATLS P3 (Cirugía)": [
-                "ATLS P3",
-                "Trauma abdominal, Fx de cadera, \r\ntrauma genitourinario, ATLS en la embarazada"
-        ],
-        "Trauma abdominal, Fx de cadera, \r\ntrauma genitourinario, ATLS en la embarazada (ATLS P3)": [
-                "Trauma abdominal, Fx de cadera, \r\ntrauma genitourinario, ATLS en la embarazada"
+        "Trauma abdominal, Fx de cadera, trauma genitourinario, ATLS en la embarazada (ATLS)": [
+                "Trauma abdominal, Fx de cadera, trauma genitourinario, ATLS en la embarazada"
         ],
         "Intoxicaciones (Cirugía)": [
                 "Intoxicaciones",
@@ -2259,8 +2237,8 @@
         "Latrodectismo (Mordeduras y Picaduras)": [
                 "Latrodectismo"
         ],
-        "Mordedura de \r\nserpientes (Mordeduras y Picaduras)": [
-                "Mordedura de \r\nserpientes"
+        "Mordedura de serpientes (Mordeduras y Picaduras)": [
+                "Mordedura de serpientes"
         ],
         "Quemaduras / Golpe de Calor / Hipotermia (Cirugía)": [
                 "Quemaduras / Golpe de Calor / Hipotermia"
@@ -2276,7 +2254,8 @@
                 "Sx de Lynch"
         ],
         "CA de esófago (Cirugía Oncología)": [
-                "CA de esófago"
+                "CA de esófago",
+                "Cáncer de esófago"
         ],
         "Gástrico (Cirugía Oncología)": [
                 "Gástrico"
@@ -2285,19 +2264,24 @@
                 "Páncreas"
         ],
         "CA de colon y recto (Cirugía Oncología)": [
-                "CA de colon y recto"
+                "CA de colon y recto",
+                "Cáncer de colon y recto"
         ],
         "CA hepático (Cirugía Oncología)": [
-                "CA hepático"
+                "CA hepático",
+                "Cáncer hepático"
         ],
-        "CA \r\nrenal (Cirugía Oncología)": [
-                "CA \r\nrenal"
+        "CA renal (Cirugía Oncología)": [
+                "CA renal",
+                "Cáncer renal"
         ],
         "Sx de Lynch (Cirugía Oncología)": [
-                "Sx de Lynch"
+                "Sx de Lynch",
+                "Síndrome de Lynch"
         ],
         "CA de Próstata / Tumores Testiculares (Cirugía)": [
-                "CA de Próstata / Tumores Testiculares"
+                "CA de Próstata / Tumores Testiculares",
+                "Cáncer de Próstata / Tumores Testiculares"
         ],
         "Introducción Oftalmología (Cirugía)": [
                 "Introducción Oftalmología",
@@ -2322,7 +2306,8 @@
                 "Patología de anexos"
         ],
         "Sx de ojo seco (Introducción Oftalmología)": [
-                "Sx de ojo seco"
+                "Sx de ojo seco",
+                "Síndrome de ojo seco"
         ],
         "Blefaritis (Introducción Oftalmología)": [
                 "Blefaritis"
@@ -2415,14 +2400,15 @@
         "Enfermedad (Hipoacusia y Vértigo)": [
                 "Enfermedad"
         ],
-        "Sx de \r\nMeniere (Hipoacusia y Vértigo)": [
-                "Sx de \r\nMeniere"
+        "Sx de Meniere (Hipoacusia y Vértigo)": [
+                "Sx de Meniere",
+                "Síndrome de Meniere"
         ],
         "Neuronitis vestibular (Hipoacusia y Vértigo)": [
                 "Neuronitis vestibular"
         ],
-        "Hipoacusia \r\nneurosensorial (Hipoacusia y Vértigo)": [
-                "Hipoacusia \r\nneurosensorial"
+        "Hipoacusia neurosensorial (Hipoacusia y Vértigo)": [
+                "Hipoacusia neurosensorial"
         ],
         "Otoesclerosis (Hipoacusia y Vértigo)": [
                 "Otoesclerosis"
@@ -2450,13 +2436,14 @@
                 "SAOS"
         ],
         "CA de laringe (Patología Infecciosa / Rinología y Faringe)": [
-                "CA de laringe"
+                "CA de laringe",
+                "Cáncer de laringe"
         ],
         "Absceso periamigdalino y faríngeo (Patología Infecciosa / Rinología y Faringe)": [
                 "Absceso periamigdalino y faríngeo"
         ],
-        "Papilomatosis \r\nlaríngea (Patología Infecciosa / Rinología y Faringe)": [
-                "Papilomatosis \r\nlaríngea"
+        "Papilomatosis laríngea (Patología Infecciosa / Rinología y Faringe)": [
+                "Papilomatosis laríngea"
         ],
         "Trauma Generalidades y Complicaciones (Cirugía)": [
                 "Trauma Generalidades y Complicaciones",
@@ -2465,14 +2452,16 @@
                 "Sx de dolor \r\nlocoregional",
                 "Embolia grasa"
         ],
-        "Fx en \r\nrama verde (Trauma Generalidades y Complicaciones)": [
-                "Fx en \r\nrama verde"
+        "Fx en rama verde (Trauma Generalidades y Complicaciones)": [
+                "Fx en rama verde"
         ],
         "Sx compartimental (Trauma Generalidades y Complicaciones)": [
-                "Sx compartimental"
+                "Sx compartimental",
+                "Síndrome compartimental"
         ],
-        "Sx de dolor \r\nlocoregional (Trauma Generalidades y Complicaciones)": [
-                "Sx de dolor \r\nlocoregional"
+        "Sx de dolor locoregional (Trauma Generalidades y Complicaciones)": [
+                "Sx de dolor locoregional",
+                "Síndrome de dolor locoregional"
         ],
         "Embolia grasa (Trauma Generalidades y Complicaciones)": [
                 "Embolia grasa"
@@ -2592,7 +2581,8 @@
                 "Tétanos / Botulismo / Rabia / Patología Fúngica"
         ],
         "EPOC / CA de Pulmón (Medicina Interna)": [
-                "EPOC / CA de Pulmón"
+                "EPOC / CA de Pulmón",
+                "EPOC / Cáncer de Pulmón"
         ],
         "Neumonías Ocupacionales / Derrame Pleural (Medicina Interna)": [
                 "Neumonías Ocupacionales / Derrame Pleural",
@@ -2612,8 +2602,8 @@
         "Asbestosis (Neumonías Ocupacionales / Derrame Pleural)": [
                 "Asbestosis"
         ],
-        "Neumonitis por \r\ncarbón (Neumonías Ocupacionales / Derrame Pleural)": [
-                "Neumonitis por \r\ncarbón"
+        "Neumonitis por carbón (Neumonías Ocupacionales / Derrame Pleural)": [
+                "Neumonitis por carbón"
         ],
         "Sarcoidosis (Neumonías Ocupacionales / Derrame Pleural)": [
                 "Sarcoidosis"
@@ -2632,14 +2622,14 @@
                 "Coma mixedematoso",
                 "Cáncer de \r\ntiroides"
         ],
-        "Hipertiroidismo: Enfermedad \r\nde Graves (Patología Tiroidea)": [
-                "Hipertiroidismo: Enfermedad \r\nde Graves"
+        "Hipertiroidismo: Enfermedad de Graves (Patología Tiroidea)": [
+                "Hipertiroidismo: Enfermedad de Graves"
         ],
         "Tiroiditis de Riedel (Patología Tiroidea)": [
                 "Tiroiditis de Riedel"
         ],
-        "Tiroiditis de \r\nQuervain (Patología Tiroidea)": [
-                "Tiroiditis de \r\nQuervain"
+        "Tiroiditis de Quervain (Patología Tiroidea)": [
+                "Tiroiditis de Quervain"
         ],
         "Tirotoxicosis (Patología Tiroidea)": [
                 "Tirotoxicosis"
@@ -2653,11 +2643,13 @@
         "Coma mixedematoso (Patología Tiroidea)": [
                 "Coma mixedematoso"
         ],
-        "Cáncer de \r\ntiroides (Patología Tiroidea)": [
-                "Cáncer de \r\ntiroides"
+        "Cáncer de tiroides (Patología Tiroidea)": [
+                "Cáncer de tiroides",
+                "CA de tiroides"
         ],
         "Síndrome Metabólico (Medicina Interna)": [
-                "Síndrome Metabólico"
+                "Síndrome Metabólico",
+                "Sx Metabólico"
         ],
         "Diabetes (Medicina Interna)": [
                 "Diabetes"
@@ -2678,8 +2670,8 @@
         "Cetoacidosis (Complicaciones Diabetes)": [
                 "Cetoacidosis"
         ],
-        "Edo \r\nHiperosmolar (Complicaciones Diabetes)": [
-                "Edo \r\nHiperosmolar"
+        "Edo Hiperosmolar (Complicaciones Diabetes)": [
+                "Edo Hiperosmolar"
         ],
         "Patología Central y Suprarrenal (Medicina Interna)": [
                 "Patología Central y Suprarrenal",
@@ -2689,17 +2681,18 @@
                 "Sx de Cushing",
                 "Insuficiencia suprarrenal"
         ],
-        "Diabetes \r\ninsípida (Patología Central y Suprarrenal)": [
-                "Diabetes \r\ninsípida"
+        "Diabetes insípida (Patología Central y Suprarrenal)": [
+                "Diabetes insípida"
         ],
         "Hiperprolactinemia (Patología Central y Suprarrenal)": [
                 "Hiperprolactinemia"
         ],
-        "Enfermedad de \r\nAddison (Patología Central y Suprarrenal)": [
-                "Enfermedad de \r\nAddison"
+        "Enfermedad de Addison (Patología Central y Suprarrenal)": [
+                "Enfermedad de Addison"
         ],
         "Sx de Cushing (Patología Central y Suprarrenal)": [
-                "Sx de Cushing"
+                "Sx de Cushing",
+                "Síndrome de Cushing"
         ],
         "Insuficiencia suprarrenal (Patología Central y Suprarrenal)": [
                 "Insuficiencia suprarrenal"
@@ -2737,8 +2730,8 @@
         "Talasemias (Anemias Hemolíticas)": [
                 "Talasemias"
         ],
-        "Esferocitosis \r\nhereditaria (Anemias Hemolíticas)": [
-                "Esferocitosis \r\nhereditaria"
+        "Esferocitosis hereditaria (Anemias Hemolíticas)": [
+                "Esferocitosis hereditaria"
         ],
         "Deficiencia de glucosa 6 fosfato (Anemias Hemolíticas)": [
                 "Deficiencia de glucosa 6 fosfato"
@@ -2772,8 +2765,8 @@
         "Linfoma Hodgkin (Oncohematología)": [
                 "Linfoma Hodgkin"
         ],
-        "Linfoma \r\nNo Hodgkin (Oncohematología)": [
-                "Linfoma \r\nNo Hodgkin"
+        "Linfoma No Hodgkin (Oncohematología)": [
+                "Linfoma No Hodgkin"
         ],
         "Anormalidades de la Hemostasia y Perlas (Medicina Interna)": [
                 "Anormalidades de la Hemostasia y Perlas",
@@ -2789,14 +2782,16 @@
         "Enf. de Von Willebrand (Anormalidades de la Hemostasia y Perlas)": [
                 "Enf. de Von Willebrand"
         ],
-        "Púrpura \r\ntrombocitopénica (Anormalidades de la Hemostasia y Perlas)": [
-                "Púrpura \r\ntrombocitopénica"
+        "Púrpura trombocitopénica (Anormalidades de la Hemostasia y Perlas)": [
+                "Púrpura trombocitopénica"
         ],
         "Sx Mielodisplásicos (Anormalidades de la Hemostasia y Perlas)": [
-                "Sx Mielodisplásicos"
+                "Sx Mielodisplásicos",
+                "Síndrome Mielodisplásicos"
         ],
-        "Sx \r\nMieloproliferativos (Anormalidades de la Hemostasia y Perlas)": [
-                "Sx \r\nMieloproliferativos"
+        "Sx Mieloproliferativos (Anormalidades de la Hemostasia y Perlas)": [
+                "Sx Mieloproliferativos",
+                "Síndrome Mieloproliferativos"
         ],
         "Introducción Cardiología (Medicina Interna)": [
                 "Introducción Cardiología"
@@ -2824,8 +2819,8 @@
                 "Angina estable e \r\ninestable",
                 "Infarto agudo al miocardio"
         ],
-        "Angina estable e \r\ninestable (Síndromes Coronarios)": [
-                "Angina estable e \r\ninestable"
+        "Angina estable e inestable (Síndromes Coronarios)": [
+                "Angina estable e inestable"
         ],
         "Infarto agudo al miocardio (Síndromes Coronarios)": [
                 "Infarto agudo al miocardio"
@@ -2872,14 +2867,15 @@
         "Miocarditis (Infecto Cardio y Perlas)": [
                 "Miocarditis"
         ],
-        "Miocardiopatía \r\nhipertrófica (Infecto Cardio y Perlas)": [
-                "Miocardiopatía \r\nhipertrófica"
+        "Miocardiopatía hipertrófica (Infecto Cardio y Perlas)": [
+                "Miocardiopatía hipertrófica"
         ],
         "Tumores cardíacos (Infecto Cardio y Perlas)": [
                 "Tumores cardíacos"
         ],
         "EVC Isquémico y Hemorrágico (Medicina Interna)": [
-                "EVC Isquémico y Hemorrágico"
+                "EVC Isquémico y Hemorrágico",
+                "Enfermedad Vascular Cerebral Isquémico y Hemorrágico"
         ],
         "Trastornos del Movimiento / Enf. Neurodegenerativas (Medicina Interna)": [
                 "Trastornos del Movimiento / Enf. Neurodegenerativas",
@@ -2896,8 +2892,8 @@
         "ELA (Trastornos del Movimiento / Enf. Neurodegenerativas)": [
                 "ELA"
         ],
-        "Esclerosis \r\nmúltiple (Trastornos del Movimiento / Enf. Neurodegenerativas)": [
-                "Esclerosis \r\nmúltiple"
+        "Esclerosis múltiple (Trastornos del Movimiento / Enf. Neurodegenerativas)": [
+                "Esclerosis múltiple"
         ],
         "Temblor esencial (Trastornos del Movimiento / Enf. Neurodegenerativas)": [
                 "Temblor esencial"
@@ -2906,7 +2902,8 @@
                 "Miastenia gravis"
         ],
         "Parálisis flácida Sx de Guillain Barré (Trastornos del Movimiento / Enf. Neurodegenerativas)": [
-                "Parálisis flácida Sx de Guillain Barré"
+                "Parálisis flácida Sx de Guillain Barré",
+                "Parálisis flácida Síndrome de Guillain Barré"
         ],
         "Cefaleas (Medicina Interna)": [
                 "Cefaleas",
@@ -2921,8 +2918,8 @@
         "Migraña (Cefaleas)": [
                 "Migraña"
         ],
-        "Cefalea \r\nen racimos (Cefaleas)": [
-                "Cefalea \r\nen racimos"
+        "Cefalea en racimos (Cefaleas)": [
+                "Cefalea en racimos"
         ],
         "Cefalea trigémino autonómica (Cefaleas)": [
                 "Cefalea trigémino autonómica"
@@ -2936,8 +2933,8 @@
         "Alzheimer (Demencias)": [
                 "Alzheimer"
         ],
-        "Demencia \r\nfrontotemporal (Demencias)": [
-                "Demencia \r\nfrontotemporal"
+        "Demencia frontotemporal (Demencias)": [
+                "Demencia frontotemporal"
         ],
         "Demencia por cuerpos de Lewis (Demencias)": [
                 "Demencia por cuerpos de Lewis"
@@ -2949,8 +2946,8 @@
                 "Acné",
                 "Pitiriasis versicolor"
         ],
-        "Tiñas inflamatorias y no \r\ninflamatorias (Infecto Derma)": [
-                "Tiñas inflamatorias y no \r\ninflamatorias"
+        "Tiñas inflamatorias y no inflamatorias (Infecto Derma)": [
+                "Tiñas inflamatorias y no inflamatorias"
         ],
         "Lepra (Infecto Derma)": [
                 "Lepra"
@@ -2971,10 +2968,12 @@
                 "Melanoma"
         ],
         "CA basocelular (Oncoderma)": [
-                "CA basocelular"
+                "CA basocelular",
+                "Cáncer basocelular"
         ],
-        "CA \r\nespinocelular (Oncoderma)": [
-                "CA \r\nespinocelular"
+        "CA espinocelular (Oncoderma)": [
+                "CA espinocelular",
+                "Cáncer espinocelular"
         ],
         "Patología Dermatológica (Medicina Interna)": [
                 "Patología Dermatológica",
@@ -3000,8 +2999,9 @@
         "Pitiriasis rosada (Patología Dermatológica)": [
                 "Pitiriasis rosada"
         ],
-        "Sx de \r\nStevens Johnson (Patología Dermatológica)": [
-                "Sx de \r\nStevens Johnson"
+        "Sx de Stevens Johnson (Patología Dermatológica)": [
+                "Sx de Stevens Johnson",
+                "Síndrome de Stevens Johnson"
         ],
         "Reumatología (Medicina Interna)": [
                 "Reumatología",
@@ -3040,7 +3040,8 @@
                 "Granulomatosis"
         ],
         "Sx de Sjögren (Reumatología)": [
-                "Sx de Sjögren"
+                "Sx de Sjögren",
+                "Síndrome de Sjögren"
         ],
         "Nefrología (Medicina Interna)": [
                 "Nefrología",
@@ -3049,31 +3050,18 @@
                 "Abscesos renales"
         ],
         "Sx nefríticos (Nefrología)": [
-                "Sx nefríticos"
+                "Sx nefríticos",
+                "Síndrome nefríticos"
         ],
         "Sx nefrótico (Nefrología)": [
-                "Sx nefrótico"
+                "Sx nefrótico",
+                "Síndrome nefrótico"
         ],
         "Abscesos renales (Nefrología)": [
                 "Abscesos renales"
         ],
-        "Psiquiatría P1 (Medicina Interna)": [
-                "Psiquiatría P1",
-                "Sx nefríticos",
-                "Sx nefrótico",
-                "Abscesos renales"
-        ],
-        "Sx nefríticos (Psiquiatría P1)": [
-                "Sx nefríticos"
-        ],
-        "Sx nefrótico (Psiquiatría P1)": [
-                "Sx nefrótico"
-        ],
-        "Abscesos renales (Psiquiatría P1)": [
-                "Abscesos renales"
-        ],
-        "Psiquiatría P2 (Medicina Interna)": [
-                "Psiquiatría P2",
+        "Psiquiatría (Medicina Interna)": [
+                "Psiquiatría",
                 "Adicciones",
                 "Delirium tremens",
                 "Autismo",
@@ -3081,23 +3069,34 @@
                 "Esquizofrenia",
                 "Trastornos del \r\nsueño"
         ],
-        "Adicciones (Psiquiatría P2)": [
+        "Sx nefríticos (Psiquiatría)": [
+                "Sx nefríticos",
+                "Síndrome nefríticos"
+        ],
+        "Sx nefrótico (Psiquiatría)": [
+                "Sx nefrótico",
+                "Síndrome nefrótico"
+        ],
+        "Abscesos renales (Psiquiatría)": [
+                "Abscesos renales"
+        ],
+        "Adicciones (Psiquiatría)": [
                 "Adicciones"
         ],
-        "Delirium tremens (Psiquiatría P2)": [
+        "Delirium tremens (Psiquiatría)": [
                 "Delirium tremens"
         ],
-        "Autismo (Psiquiatría P2)": [
+        "Autismo (Psiquiatría)": [
                 "Autismo"
         ],
-        "TDAH (Psiquiatría P2)": [
+        "TDAH (Psiquiatría)": [
                 "TDAH"
         ],
-        "Esquizofrenia (Psiquiatría P2)": [
+        "Esquizofrenia (Psiquiatría)": [
                 "Esquizofrenia"
         ],
-        "Trastornos del \r\nsueño (Psiquiatría P2)": [
-                "Trastornos del \r\nsueño"
+        "Trastornos del sueño (Psiquiatría)": [
+                "Trastornos del sueño"
         ],
         "Geriatría (Medicina Interna)": [
                 "Geriatría",
@@ -3105,7 +3104,8 @@
                 "Escalas geriátricas"
         ],
         "Sx geriátricos (Geriatría)": [
-                "Sx geriátricos"
+                "Sx geriátricos",
+                "Síndrome geriátricos"
         ],
         "Escalas geriátricas (Geriatría)": [
                 "Escalas geriátricas"

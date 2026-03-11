@@ -10,18 +10,50 @@ const TEMARIO_MAPPING = {};
 
 let currentSpecialty = "Ginecología y Obstetricia";
 
+const synonyms = {
+    "Sx": "Síndrome",
+    "CA": "Cáncer",
+    "SOP": "Síndrome de Ovario Poliquístico",
+    "IVU": "Infección de Vías Urinarias",
+    "IVUs": "Infecciones de Vías Urinarias",
+    "EVC": "Enfermedad Vascular Cerebral",
+    "RN": "Recién Nacido",
+    "RPM": "Ruptura Prematura de Membranas",
+    "DPPNI": "Desprendimiento de Placenta",
+    "CACU": "Cáncer Cervicouterino",
+    "STDA": "Sangrado de Tubo Digestivo Alto",
+    "TCE": "Trauma Craneoencefálico"
+};
+
+function normalizeName(name) {
+    if (!name) return "";
+    // Clean newlines and extra spaces
+    let clean = name.replace(/\r?\n/g, ' ').replace(/\s+/g, ' ').trim();
+    // Remove P1, P2, P3 suffixes
+    clean = clean.replace(/\s+P[1-3](\s|$)/g, ' ').trim();
+    return clean;
+}
+
+function getAliases(name) {
+    let aliases = [name];
+    for (const [key, val] of Object.entries(synonyms)) {
+        if (name.includes(key)) {
+            aliases.push(name.replace(new RegExp(`\\b${key}\\b`, 'g'), val));
+        }
+        if (name.includes(val)) {
+            aliases.push(name.replace(new RegExp(`\\b${val}\\b`, 'g'), key));
+        }
+    }
+    return [...new Set(aliases)];
+}
+
 parts.forEach((part, index) => {
     let trimmed = part.trim();
     if (!trimmed) return;
 
-    // Check if it's a numbered topic
     const numberMatch = trimmed.match(/^(\d+)\.\s+/);
 
     if (numberMatch) {
-        // It's a topic block.
-        // We need to find where the topic name ends and subtopics start.
-        // Format: NUM. Topic Name (Sub1 / Sub2) trailing
-
         let firstParen = trimmed.indexOf('(');
         let lastParen = trimmed.lastIndexOf(')');
 
@@ -34,9 +66,7 @@ parts.forEach((part, index) => {
             subPart = trimmed.substring(firstParen + 1, lastParen).trim();
             trailing = trimmed.substring(lastParen + 1).trim();
         } else {
-            // No parens or broken
             topicName = trimmed.substring(numberMatch[0].length).trim();
-            // Trailing might be at the end after newlines
             let lines = topicName.split('\n');
             if (lines.length > 1) {
                 topicName = lines[0].trim();
@@ -44,39 +74,44 @@ parts.forEach((part, index) => {
             }
         }
 
-        topicName = topicName.replace(/\r?\n/g, ' ').replace(/\s+/g, ' ').trim();
+        topicName = normalizeName(topicName);
+        if (!topicName) return;
 
-        const displayTopic = `${topicName} (${currentSpecialty})`;
+        const displayTopic = `${topicName} (${normalizeName(currentSpecialty)})`;
         OFFICIAL_TEMARIO.push(displayTopic);
 
         let subs = subPart.split('/').map(s => s.trim()).filter(s => s.length > 0);
 
-        TEMARIO_MAPPING[displayTopic] = [topicName, ...subs];
+        // Mapping for main topic: Topic Name, Aliases of Topic Name, and all subtopics
+        let topicSearchTerms = getAliases(topicName);
+        TEMARIO_MAPPING[displayTopic] = [...new Set([...topicSearchTerms, ...subs])];
 
         subs.forEach(s => {
-            // Clean subtopic name (remove internal parens if any)
-            let cleanSub = s.replace(/\(|\)/g, '').trim();
+            let cleanSub = normalizeName(s.replace(/\(|\)/g, ''));
+            if (!cleanSub) return;
             const displaySub = `${cleanSub} (${topicName})`;
             OFFICIAL_TEMARIO.push(displaySub);
-            TEMARIO_MAPPING[displaySub] = [cleanSub];
+
+            // Mapping for subtopic: Sub name and its aliases
+            TEMARIO_MAPPING[displaySub] = getAliases(cleanSub);
         });
 
-        // Update specialty
         if (trailing && trailing.length > 0 && trailing.length < 50 && !/^\d+\./.test(trailing)) {
-            // If it has multiple lines, the specialty is the last line
             let subLines = trailing.split('\n').map(l => l.trim()).filter(l => l.length > 0);
             if (subLines.length > 0) {
                 currentSpecialty = subLines[subLines.length - 1];
             }
         }
     } else {
-        // Header block
         let lines = trimmed.split('\n').map(l => l.trim()).filter(l => l.length > 0);
         if (lines.length > 0) {
-            currentSpecialty = lines[lines.length - 1];
-            if (currentSpecialty.length < 50) {
-                OFFICIAL_TEMARIO.push(currentSpecialty);
-                TEMARIO_MAPPING[currentSpecialty] = [currentSpecialty];
+            let potential = normalizeName(lines[lines.length - 1]);
+            if (potential.length < 50 && !/^\d+\./.test(potential)) {
+                currentSpecialty = potential;
+                if (!OFFICIAL_TEMARIO.includes(currentSpecialty)) {
+                    OFFICIAL_TEMARIO.push(currentSpecialty);
+                    TEMARIO_MAPPING[currentSpecialty] = getAliases(currentSpecialty);
+                }
             }
         }
     }
@@ -122,4 +157,5 @@ appContent = replaceSection(appContent, '    const OFFICIAL_TEMARIO = [', '[');
 appContent = replaceSection(appContent, '    const TEMARIO_MAPPING = {', '{');
 
 fs.writeFileSync('D:\\ENARM Lab\\app.js', appContent, 'utf8');
-console.log('Update Success! Total items:', finalTopics.length);
+console.log('Update Success with Unification and P1/P2/P3 removal!');
+console.log('Total entries:', finalTopics.length);
