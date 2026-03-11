@@ -5,49 +5,61 @@ const cleanText = rawText.replace(/-+Page \(\d+\) Break-+/g, '');
 
 const parts = cleanText.split('•');
 
-const OFFICIAL_TEMARIO = [];
-const TEMARIO_MAPPING = {};
-
+const TEMARIO_MAP_ACCUMULATOR = {};
 let currentSpecialty = "Ginecología y Obstetricia";
 
 const synonyms = {
-    "Sx": "Síndrome",
-    "CA": "Cáncer",
-    "SOP": "Síndrome de Ovario Poliquístico",
-    "IVU": "Infección de Vías Urinarias",
-    "IVUs": "Infecciones de Vías Urinarias",
-    "EVC": "Enfermedad Vascular Cerebral",
-    "RN": "Recién Nacido",
-    "RPM": "Ruptura Prematura de Membranas",
-    "DPPNI": "Desprendimiento de Placenta",
-    "CACU": "Cáncer Cervicouterino",
-    "STDA": "Sangrado de Tubo Digestivo Alto",
-    "TCE": "Trauma Craneoencefálico"
+    "Sx": "Síndrome", "CA": "Cáncer", "SOP": "Síndrome de Ovario Poliquístico",
+    "IVU": "Infección de Vías Urinarias", "IVUs": "Infecciones de Vías Urinarias",
+    "EVC": "Enfermedad Vascular Cerebral", "RN": "Recién Nacido",
+    "RPM": "Ruptura Prematura de Membranas", "DPPNI": "Desprendimiento de Placenta",
+    "CACU": "Cáncer Cervicouterino", "STDA": "Sangrado de Tubo Digestivo Alto",
+    "TCE": "Trauma Craneoencefálico", "TF": "Tetralogía de Fallot",
+    "DM": "Diabetes Mellitus", "DM1": "Diabetes Mellitus", "DM2": "Diabetes Mellitus",
+    "Hipoacusia": "Sordera", "IRA": "Infección Respiratoria", "IRAs": "Infecciones Respiratorias",
+    "EPI": "Enfermedad pélvica inflamatoria",
+    "Vaginosis": "Cervicovaginitis",
+    "Preeclampsia": "Hipertensión",
+    "Eclampsia": "Hipertensión",
+    "Hemorragia": "Sangrado",
+    "Atonía": "Hemorragia",
+    "Oma": "Otitis",
+    "Ea": "Otitis"
 };
 
 function normalizeName(name) {
     if (!name) return "";
-    // Clean newlines and extra spaces
     let clean = name.replace(/\r?\n/g, ' ').replace(/\s+/g, ' ').trim();
-    // Remove P1, P2, P3 suffixes
     clean = clean.replace(/\s+P[1-3](\s|$)/g, ' ').trim();
     return clean;
 }
 
 function getAliases(name) {
     let aliases = [name];
-    for (const [key, val] of Object.entries(synonyms)) {
-        if (name.includes(key)) {
-            aliases.push(name.replace(new RegExp(`\\b${key}\\b`, 'g'), val));
-        }
-        if (name.includes(val)) {
-            aliases.push(name.replace(new RegExp(`\\b${val}\\b`, 'g'), key));
-        }
+    let parts = name.split(/\s+y\s+|\s*\,\s*/i);
+    if (parts.length > 1) {
+        parts.forEach(p => {
+            let cp = p.trim();
+            if (cp.length > 3) aliases.push(cp);
+        });
     }
-    return [...new Set(aliases)];
+
+    let synonymAliases = [];
+    aliases.forEach(a => {
+        for (const [key, val] of Object.entries(synonyms)) {
+            if (a.toLowerCase().includes(key.toLowerCase())) {
+                synonymAliases.push(a.toLowerCase().replace(key.toLowerCase(), val.toLowerCase()));
+            }
+            if (a.toLowerCase().includes(val.toLowerCase())) {
+                synonymAliases.push(a.toLowerCase().replace(val.toLowerCase(), key.toLowerCase()));
+            }
+        }
+    });
+
+    return [...new Set([...aliases, ...synonymAliases])];
 }
 
-parts.forEach((part, index) => {
+parts.forEach((part) => {
     let trimmed = part.trim();
     if (!trimmed) return;
 
@@ -56,10 +68,7 @@ parts.forEach((part, index) => {
     if (numberMatch) {
         let firstParen = trimmed.indexOf('(');
         let lastParen = trimmed.lastIndexOf(')');
-
-        let topicName = "";
-        let subPart = "";
-        let trailing = "";
+        let topicName = "", subPart = "", trailing = "";
 
         if (firstParen !== -1 && lastParen !== -1 && firstParen < lastParen) {
             topicName = trimmed.substring(numberMatch[0].length, firstParen).trim();
@@ -77,30 +86,25 @@ parts.forEach((part, index) => {
         topicName = normalizeName(topicName);
         if (!topicName) return;
 
-        const displayTopic = `${topicName} (${normalizeName(currentSpecialty)})`;
-        OFFICIAL_TEMARIO.push(displayTopic);
+        if (currentSpecialty.toLowerCase().includes("psiquiatr") && (topicName.toLowerCase().includes("nefro") || topicName.toLowerCase().includes("nefri"))) return;
+
+        if (!TEMARIO_MAP_ACCUMULATOR[topicName]) TEMARIO_MAP_ACCUMULATOR[topicName] = new Set();
+        getAliases(topicName).forEach(a => TEMARIO_MAP_ACCUMULATOR[topicName].add(a));
 
         let subs = subPart.split('/').map(s => s.trim()).filter(s => s.length > 0);
-
-        // Mapping for main topic: Topic Name, Aliases of Topic Name, and all subtopics
-        let topicSearchTerms = getAliases(topicName);
-        TEMARIO_MAPPING[displayTopic] = [...new Set([...topicSearchTerms, ...subs])];
-
         subs.forEach(s => {
             let cleanSub = normalizeName(s.replace(/\(|\)/g, ''));
             if (!cleanSub) return;
-            const displaySub = `${cleanSub} (${topicName})`;
-            OFFICIAL_TEMARIO.push(displaySub);
+            if (currentSpecialty.toLowerCase().includes("psiquiatr") && (cleanSub.toLowerCase().includes("nefrit") || cleanSub.toLowerCase().includes("nefrot") || cleanSub.toLowerCase().includes("absceso renal"))) return;
 
-            // Mapping for subtopic: Sub name and its aliases
-            TEMARIO_MAPPING[displaySub] = getAliases(cleanSub);
+            TEMARIO_MAP_ACCUMULATOR[topicName].add(cleanSub);
+            if (!TEMARIO_MAP_ACCUMULATOR[cleanSub]) TEMARIO_MAP_ACCUMULATOR[cleanSub] = new Set();
+            getAliases(cleanSub).forEach(a => TEMARIO_MAP_ACCUMULATOR[cleanSub].add(a));
         });
 
         if (trailing && trailing.length > 0 && trailing.length < 50 && !/^\d+\./.test(trailing)) {
             let subLines = trailing.split('\n').map(l => l.trim()).filter(l => l.length > 0);
-            if (subLines.length > 0) {
-                currentSpecialty = subLines[subLines.length - 1];
-            }
+            if (subLines.length > 0) currentSpecialty = subLines[subLines.length - 1];
         }
     } else {
         let lines = trimmed.split('\n').map(l => l.trim()).filter(l => l.length > 0);
@@ -108,17 +112,20 @@ parts.forEach((part, index) => {
             let potential = normalizeName(lines[lines.length - 1]);
             if (potential.length < 50 && !/^\d+\./.test(potential)) {
                 currentSpecialty = potential;
-                if (!OFFICIAL_TEMARIO.includes(currentSpecialty)) {
-                    OFFICIAL_TEMARIO.push(currentSpecialty);
-                    TEMARIO_MAPPING[currentSpecialty] = getAliases(currentSpecialty);
-                }
+                if (!TEMARIO_MAP_ACCUMULATOR[currentSpecialty]) TEMARIO_MAP_ACCUMULATOR[currentSpecialty] = new Set();
+                getAliases(currentSpecialty).forEach(a => TEMARIO_MAP_ACCUMULATOR[currentSpecialty].add(a));
             }
         }
     }
 });
 
-const finalTopics = [...new Set(OFFICIAL_TEMARIO)];
-const officialJS = JSON.stringify(finalTopics, null, 8).replace(/\]$/, '    ]');
+const OFFICIAL_TEMARIO = Object.keys(TEMARIO_MAP_ACCUMULATOR).sort();
+const TEMARIO_MAPPING = {};
+for (const [topic, set] of Object.entries(TEMARIO_MAP_ACCUMULATOR)) {
+    TEMARIO_MAPPING[topic] = [...set];
+}
+
+const officialJS = JSON.stringify(OFFICIAL_TEMARIO, null, 8).replace(/\]$/, '    ]');
 const mappingJS = JSON.stringify(TEMARIO_MAPPING, null, 8).replace(/\}$/, '    }');
 
 const newOfficialCode = `    const OFFICIAL_TEMARIO = ${officialJS};`;
@@ -157,5 +164,4 @@ appContent = replaceSection(appContent, '    const OFFICIAL_TEMARIO = [', '[');
 appContent = replaceSection(appContent, '    const TEMARIO_MAPPING = {', '{');
 
 fs.writeFileSync('D:\\ENARM Lab\\app.js', appContent, 'utf8');
-console.log('Update Success with Unification and P1/P2/P3 removal!');
-console.log('Total entries:', finalTopics.length);
+console.log('Update Success! Total UNIQUE topics:', OFFICIAL_TEMARIO.length);
