@@ -6,6 +6,7 @@ const cleanText = rawText.replace(/-+Page \(\d+\) Break-+/g, '');
 const parts = cleanText.split('•');
 
 const TEMARIO_MAP_ACCUMULATOR = {};
+const SUBTOPIC_TO_PARENT = {}; // Trastreo de subtema -> tema principal
 let currentSpecialty = "Ginecología y Obstetricia";
 
 const synonyms = {
@@ -17,14 +18,9 @@ const synonyms = {
     "TCE": "Trauma Craneoencefálico", "TF": "Tetralogía de Fallot",
     "DM": "Diabetes Mellitus", "DM1": "Diabetes Mellitus", "DM2": "Diabetes Mellitus",
     "Hipoacusia": "Sordera", "IRA": "Infección Respiratoria", "IRAs": "Infecciones Respiratorias",
-    "EPI": "Enfermedad pélvica inflamatoria",
-    "Vaginosis": "Cervicovaginitis",
-    "Preeclampsia": "Hipertensión",
-    "Eclampsia": "Hipertensión",
-    "Hemorragia": "Sangrado",
-    "Atonía": "Hemorragia",
-    "Oma": "Otitis",
-    "Ea": "Otitis"
+    "EPI": "Enfermedad pélvica inflamatoria", "Vaginosis": "Cervicovaginitis",
+    "Preeclampsia": "Hipertensión", "Eclampsia": "Hipertensión",
+    "Hemorragia": "Sangrado", "Atonía": "Hemorragia", "Oma": "Otitis", "Ea": "Otitis"
 };
 
 function normalizeName(name) {
@@ -47,12 +43,8 @@ function getAliases(name) {
     let synonymAliases = [];
     aliases.forEach(a => {
         for (const [key, val] of Object.entries(synonyms)) {
-            if (a.toLowerCase().includes(key.toLowerCase())) {
-                synonymAliases.push(a.toLowerCase().replace(key.toLowerCase(), val.toLowerCase()));
-            }
-            if (a.toLowerCase().includes(val.toLowerCase())) {
-                synonymAliases.push(a.toLowerCase().replace(val.toLowerCase(), key.toLowerCase()));
-            }
+            if (a.toLowerCase().includes(key.toLowerCase())) synonymAliases.push(a.toLowerCase().replace(key.toLowerCase(), val.toLowerCase()));
+            if (a.toLowerCase().includes(val.toLowerCase())) synonymAliases.push(a.toLowerCase().replace(val.toLowerCase(), key.toLowerCase()));
         }
     });
 
@@ -86,6 +78,7 @@ parts.forEach((part) => {
         topicName = normalizeName(topicName);
         if (!topicName) return;
 
+        // Skip the duplicated nefro themes in Psiquiatria
         if (currentSpecialty.toLowerCase().includes("psiquiatr") && (topicName.toLowerCase().includes("nefro") || topicName.toLowerCase().includes("nefri"))) return;
 
         if (!TEMARIO_MAP_ACCUMULATOR[topicName]) TEMARIO_MAP_ACCUMULATOR[topicName] = new Set();
@@ -98,6 +91,11 @@ parts.forEach((part) => {
             if (currentSpecialty.toLowerCase().includes("psiquiatr") && (cleanSub.toLowerCase().includes("nefrit") || cleanSub.toLowerCase().includes("nefrot") || cleanSub.toLowerCase().includes("absceso renal"))) return;
 
             TEMARIO_MAP_ACCUMULATOR[topicName].add(cleanSub);
+
+            // Registramos que este es un subtema de topicName
+            if (!SUBTOPIC_TO_PARENT[cleanSub]) SUBTOPIC_TO_PARENT[cleanSub] = new Set();
+            SUBTOPIC_TO_PARENT[cleanSub].add(topicName);
+
             if (!TEMARIO_MAP_ACCUMULATOR[cleanSub]) TEMARIO_MAP_ACCUMULATOR[cleanSub] = new Set();
             getAliases(cleanSub).forEach(a => TEMARIO_MAP_ACCUMULATOR[cleanSub].add(a));
         });
@@ -119,14 +117,29 @@ parts.forEach((part) => {
     }
 });
 
-const OFFICIAL_TEMARIO = Object.keys(TEMARIO_MAP_ACCUMULATOR).sort();
-const TEMARIO_MAPPING = {};
-for (const [topic, set] of Object.entries(TEMARIO_MAP_ACCUMULATOR)) {
-    TEMARIO_MAPPING[topic] = [...set];
-}
+// Generar temario con formato Subtema (Tema Principal)
+const FINAL_TOPICS = [];
+const FINAL_MAPPING = {};
 
-const officialJS = JSON.stringify(OFFICIAL_TEMARIO, null, 8).replace(/\]$/, '    ]');
-const mappingJS = JSON.stringify(TEMARIO_MAPPING, null, 8).replace(/\}$/, '    }');
+Object.keys(TEMARIO_MAP_ACCUMULATOR).sort().forEach(item => {
+    const isSubtopicOf = SUBTOPIC_TO_PARENT[item];
+
+    if (isSubtopicOf && isSubtopicOf.size > 0) {
+        // Es un subtema de uno o más temas. Creamos entradas combinadas.
+        isSubtopicOf.forEach(parent => {
+            const display = `${item} (${parent})`;
+            FINAL_TOPICS.push(display);
+            FINAL_MAPPING[display] = [...TEMARIO_MAP_ACCUMULATOR[item]];
+        });
+    } else {
+        // Es un tema principal
+        FINAL_TOPICS.push(item);
+        FINAL_MAPPING[item] = [...TEMARIO_MAP_ACCUMULATOR[item]];
+    }
+});
+
+const officialJS = JSON.stringify(FINAL_TOPICS, null, 8).replace(/\]$/, '    ]');
+const mappingJS = JSON.stringify(FINAL_MAPPING, null, 8).replace(/\}$/, '    }');
 
 const newOfficialCode = `    const OFFICIAL_TEMARIO = ${officialJS};`;
 const newMappingCode = `    const TEMARIO_MAPPING = ${mappingJS};`;
@@ -136,8 +149,7 @@ let appContent = fs.readFileSync('D:\\ENARM Lab\\app.js', 'utf8');
 const replaceSection = (content, startTag, bracketType) => {
     let startIdx = content.indexOf(startTag);
     if (startIdx === -1) return content;
-    let braceCount = 0;
-    let endIdx = -1;
+    let braceCount = 0, endIdx = -1;
     let closeType = bracketType === '[' ? ']' : '}';
     for (let i = startIdx; i < content.length; i++) {
         if (content[i] === bracketType) braceCount++;
@@ -164,4 +176,4 @@ appContent = replaceSection(appContent, '    const OFFICIAL_TEMARIO = [', '[');
 appContent = replaceSection(appContent, '    const TEMARIO_MAPPING = {', '{');
 
 fs.writeFileSync('D:\\ENARM Lab\\app.js', appContent, 'utf8');
-console.log('Update Success! Total UNIQUE topics:', OFFICIAL_TEMARIO.length);
+console.log('Update Success! Total topics in search:', FINAL_TOPICS.length);
