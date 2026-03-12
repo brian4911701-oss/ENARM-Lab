@@ -3258,6 +3258,24 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
     width: 90%;
     padding: 20px;
   }
+
+  /* Refuerzo para Calculadora en Móvil */
+  .calc-result-card {
+    padding: 24px !important;
+    border-radius: 16px !important;
+    margin-top: 10px;
+  }
+
+  .calc-score-val {
+    font-size: 32px !important;
+  }
+
+  .calculator-table th,
+  .calculator-table td {
+    padding: 10px 8px !important;
+    font-size: 11px !important;
+    white-space: nowrap;
+  }
 }
 
 /* Very small screens */

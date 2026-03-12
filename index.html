@@ -1064,22 +1064,25 @@
                         </div>
                     </div>
 
-                    <div style="margin-top: 40px;">
+                    <div style="margin-top: 40px; overflow: hidden;">
                         <h3 style="font-size: 16px; margin-bottom: 15px;">Puntajes de Referencia (Promedios Históricos)
                         </h3>
-                        <table class="calculator-table">
-                            <thead>
-                                <tr>
-                                    <th>Especialidad</th>
-                                    <th>Mínimo (2024)</th>
-                                    <th>Máximo (2024)</th>
-                                    <th>Tu Estatus</th>
-                                </tr>
-                            </thead>
-                            <tbody id="calc-table-body">
-                                <!-- Generado por JS -->
-                            </tbody>
-                        </table>
+                        <div class="table-container"
+                            style="width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                            <table class="calculator-table" style="min-width: 600px;">
+                                <thead>
+                                    <tr>
+                                        <th>Especialidad</th>
+                                        <th>Mínimo (2024)</th>
+                                        <th>Máximo (2024)</th>
+                                        <th>Tu Estatus</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="calc-table-body">
+                                    <!-- Generado por JS -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
