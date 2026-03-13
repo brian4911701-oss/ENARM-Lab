@@ -127,6 +127,65 @@
         }, 3500);
     };
 
+    // ---------------------------------------------------------------------------
+    // Feedback helpers
+    // ---------------------------------------------------------------------------
+    const FEEDBACK_EMAIL = "soporte@enarm-lab.com";
+
+    const buildFeedbackText = () => {
+        const name = $("feedback-name")?.value?.trim() || "";
+        const email = $("feedback-email")?.value?.trim() || "";
+        const type = $("feedback-type")?.value?.trim() || "General";
+        const message = $("feedback-message")?.value?.trim() || "";
+
+        const lines = [];
+        if (name) lines.push(`Nombre: ${name}`);
+        if (email) lines.push(`Email: ${email}`);
+        if (type) lines.push(`Tipo: ${type}`);
+        if (message) lines.push(`Mensaje:\n${message}`);
+        return lines.join("\n");
+    };
+
+    const openFeedbackEmail = () => {
+        const message = $("feedback-message")?.value?.trim() || "";
+        const type = $("feedback-type")?.value?.trim() || "General";
+        if (!message) {
+            showNotification("Escribe un mensaje de feedback.", "warning");
+            return;
+        }
+        const subject = `Feedback ENARM Lab - ${type}`;
+        const body = buildFeedbackText();
+        const mailto = `mailto:${FEEDBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailto;
+    };
+
+    const copyFeedbackToClipboard = async () => {
+        const text = buildFeedbackText();
+        const message = $("feedback-message")?.value?.trim() || "";
+        if (!message) {
+            showNotification("Escribe un mensaje de feedback.", "warning");
+            return;
+        }
+        try {
+            await navigator.clipboard.writeText(text);
+            showNotification("Feedback copiado.", "success");
+        } catch (err) {
+            const temp = document.createElement("textarea");
+            temp.value = text;
+            temp.style.position = "fixed";
+            temp.style.opacity = "0";
+            document.body.appendChild(temp);
+            temp.select();
+            try {
+                document.execCommand("copy");
+                showNotification("Feedback copiado.", "success");
+            } catch (e) {
+                showNotification("No se pudo copiar el feedback.", "error");
+            }
+            document.body.removeChild(temp);
+        }
+    };
+
     const showBanner = (title, msg, icon = '🔔', onClickCallback = null) => {
         let banner = $('global-notif-banner');
         if (!banner) {
@@ -229,6 +288,8 @@
         if (viewId === "view-reportes") renderReportedQuestions();
     };
     window.showView = showView; // Hacerla global para onclick de HTML
+    window.openFeedbackEmail = openFeedbackEmail;
+    window.copyFeedbackToClipboard = copyFeedbackToClipboard;
 
     const saveGlobalStats = () => {
         localStorage.setItem("enarm_stats", JSON.stringify(State.globalStats));

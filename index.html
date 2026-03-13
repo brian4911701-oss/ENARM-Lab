@@ -973,6 +973,56 @@
                                 <p>Revisa las preguntas que los usuarios han marcado con posibles errores.</p>
                             </div>
                         </div>
+                        <div class="list-item" onclick="showView('view-feedback')" style="cursor: pointer;">
+                            <div class="list-item-content">
+                                <h3>💬 Enviar Feedback</h3>
+                                <p>Comparte sugerencias, errores o ideas para mejorar la app.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- --- VIEW: FEEDBACK --- -->
+            <div id="view-feedback" class="view">
+                <div class="panel">
+                    <div class="panel-header"
+                        style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h2 class="panel-title"><span class="title-icon green-text">💬</span> Feedback</h2>
+                            <p class="panel-subtitle">Cuentanos que mejorar o que errores encontraste.</p>
+                        </div>
+                        <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
+                    </div>
+
+                    <div class="settings-form" style="margin-top: 20px;">
+                        <div class="input-group">
+                            <label>Nombre (opcional)</label>
+                            <input class="text-input" id="feedback-name" type="text" placeholder="Tu nombre">
+                        </div>
+                        <div class="input-group">
+                            <label>Email (opcional)</label>
+                            <input class="text-input" id="feedback-email" type="email"
+                                placeholder="correo@ejemplo.com">
+                        </div>
+                        <div class="input-group">
+                            <label>Tipo de feedback</label>
+                            <select class="text-input" id="feedback-type">
+                                <option value="Bug">Reporte de error</option>
+                                <option value="Sugerencia">Sugerencia</option>
+                                <option value="Contenido">Contenido</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Mensaje</label>
+                            <textarea class="text-input" id="feedback-message" rows="6"
+                                placeholder="Describe el problema o tu idea..."></textarea>
+                        </div>
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                            <button class="btn-primary" onclick="openFeedbackEmail()">Enviar feedback</button>
+                            <button class="btn-ghost" onclick="copyFeedbackToClipboard()">Copiar texto</button>
+                        </div>
                     </div>
                 </div>
             </div>
