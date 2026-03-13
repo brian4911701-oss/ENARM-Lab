@@ -1,7 +1,7 @@
 // questions.js – Banco de reactivos para ENARMlab
 const QUESTIONS = [
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "case": "Paciente masculino de 58 años con antecedentes de hipertensión arterial y tabaquismo activo. Acude a urgencias por presentar dolor precordial opresivo de gran intensidad (9/10), irradiado a mandíbula y brazo izquierdo, de 45 minutos de evolución, acompañado de diaforesis. El ECG muestra elevación del segmento ST de 3mm en V1-V4.",
     "question": "¿Cuál es el diagnóstico más probable y la conducta inicial más adecuada?",
     "options": [
@@ -12,7 +12,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La presencia de dolor típico, factores de riesgo y elevación del ST en cara anterior (V1-V4) confirma un IAMCEST. El tiempo es músculo; la reperfusión es la prioridad absoluta.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento del Infarto Agudo de Miocardio con Elevación del Segmento ST."
+    "gpcReference": "GPC Diagnóstico y Tratamiento del Infarto Agudo de Miocardio con Elevación del Segmento ST.",
+    "tema": "Enfermedad Hipertensiva del Embarazo"
   },
   {
     "specialty": "mi",
@@ -27,10 +28,10 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "En CAD, el primer paso es la restauración del volumen extracelular para mejorar la perfusión renal y disminuir los niveles de hormonas contrarreguladoras.",
     "gpcReference": "NOM-015-SSA2-2010, Para la prevención, tratamiento y control de la diabetes mellitus.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Diabetes Mellitus"
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "case": "Masculino de 34 años con pérdida de peso de 6 kg en el último mes, diaforesis nocturna y tos productiva con hemoptisis ocasional. Refiere contacto estrecho con un familiar con síntomas similares. Radiografía de tórax revela cavitaciones en ápice derecho.",
     "question": "¿Cuál es el método diagnóstico inicial de elección según la NOM?",
     "options": [
@@ -41,7 +42,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "En pacientes sintomáticos respiratorios con sospecha de TB pulmonar, el estudio inicial más rápido y costo-efectivo es la baciloscopia en serie de tres.",
-    "gpcReference": "NOM-006-SSA2-2013, Para la prevención y control de la tuberculosis."
+    "gpcReference": "NOM-006-SSA2-2013, Para la prevención y control de la tuberculosis.",
+    "tema": "Vigilancia y Control Prenatal"
   },
   {
     "specialty": "mi",
@@ -55,7 +57,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "Dada la ventana terapéutica (<4.5 horas) y el origen isquémico probable por FA, la fibrinólisis es el tratamiento de elección para reperfusión cerebral.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento del Infarto Cerebral Isquémico."
+    "gpcReference": "GPC Diagnóstico y Tratamiento del Infarto Cerebral Isquémico.",
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "mi",
@@ -70,7 +73,7 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "Aunque las pruebas de 4ta generación son altamente sensibles, el Western Blot o LIA siguen siendo las pruebas confirmatorias clásicas ante un tamizaje positivo.",
     "gpcReference": "NOM-010-SSA2-2010, Para la prevención y el control de la infección por Virus de la Inmunodeficiencia Humana.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "gyo",
@@ -84,7 +87,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "El sulfato de magnesio es el estándar de oro para prevenir la eclampsia en pacientes con preeclampsia con datos de severidad.",
-    "gpcReference": "GPC Prevención, Diagnóstico y Tratamiento de la Preeclampsia y Eclampsia."
+    "gpcReference": "GPC Prevención, Diagnóstico y Tratamiento de la Preeclampsia y Eclampsia.",
+    "tema": "Enfermedad Hipertensiva del Embarazo"
   },
   {
     "specialty": "gyo",
@@ -113,10 +117,10 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "Según los criterios de la IADPSG adoptados en México, un solo valor alterado en la curva de 75g (en este caso a la hora >180) hace el diagnóstico de DG.",
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Diabetes en el Embarazo.",
-    "tema": "Diabetes Gestacional"
+    "tema": "Vigilancia y Control Prenatal"
   },
   {
-    "specialty": "ped",
+    "specialty": "mi",
     "case": "Lactante masculino de 3 meses es llevado a consulta por presentar coriza y tos de 2 días de evolución, que progresa a dificultad respiratoria. Exploración: FR 62 rpm, sibilancias espiratorias bilaterales y estertores crepitantes finos. Es el primer episodio de sibilancias del paciente.",
     "question": "¿Cuál es el diagnóstico clínico y el agente etiológico más común?",
     "options": [
@@ -128,10 +132,10 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "El primer episodio de sibilancias en un menor de 2 años precedido por síntomas de vía aérea superior es diagnóstico de bronquiolitis, siendo el VSR el agente causal en >80% de los casos.",
     "gpcReference": "GPC Diagnóstico y Manejo de la Bronquiolitis Aguda en Niños.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "EPOC / Asma"
   },
   {
-    "specialty": "ped",
+    "specialty": "sp",
     "case": "Se recibe en consulta a lactante de 6 meses para revisión de niño sano y administración de vacunas. Según el Esquema Nacional de Vacunación en México, ¿cuáles vacunas le corresponden este mes?",
     "question": "¿Qué vacunas debe recibir el paciente?",
     "options": [
@@ -187,7 +191,7 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "El cuadro de choque obstructivo con ausencia de ruidos y timpanismo sugiere neumotórax a tensión. Es una emergencia clínica.",
     "gpcReference": "Manual ATLS (Advanced Trauma Life Support), 10ma Edición.",
-    "tema": "Nefrología: Enfermedad Renal Crónica"
+    "tema": "ATLS / Trauma"
   },
   {
     "specialty": "cir",
@@ -201,7 +205,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "Regla de los 9: Brazo 9%, Tronco Anterior 18%. Total: 27%.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento del Paciente con Quemaduras Graves."
+    "gpcReference": "GPC Diagnóstico y Tratamiento del Paciente con Quemaduras Graves.",
+    "tema": "Quemaduras"
   },
   {
     "specialty": "cir",
@@ -215,7 +220,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "Las hernias indirectas pasan por el anillo inguinal profundo, siendo las más comunes.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de Hernias Inguinales."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de Hernias Inguinales.",
+    "tema": "Hernias de la Pared Abdominal"
   },
   {
     "specialty": "mi",
@@ -229,7 +235,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "En el hipotiroidismo primario ( Hashimoto es la causa más común en zonas no deficientes de yodo), la glándula no produce suficiente hormona, lo que eleva la TSH por retroalimentación negativa.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de Hipotiroidismo Primario."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de Hipotiroidismo Primario.",
+    "tema": "Hipotiroidismo"
   },
   {
     "specialty": "mi",
@@ -244,7 +251,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "La ausencia de ondas P y el ritmo 'irregularmente irregular' es patognomónico de fibrilación auricular. El control de la frecuencia es el primer paso en pacientes estables.",
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Fibrilación Auricular.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Fibrilación Auricular"
   },
   {
     "specialty": "mi",
@@ -258,7 +265,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "El metotrexato es el estándar de oro inicial para el tratamiento de la artritis reumatoide para prevenir el daño articular irreversible.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de Artritis Reumatoide."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de Artritis Reumatoide.",
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "mi",
@@ -286,7 +294,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La meningitis por criptococo es una infección oportunista común en SIDA. La tinción de tinta china es altamente específica.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de Criptococosis Meníngea en pacientes con VIH."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de Criptococosis Meníngea en pacientes con VIH.",
+    "tema": "VIH / SIDA"
   },
   {
     "specialty": "gyo",
@@ -300,7 +309,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "El sangrado oscuro, la hipertonía uterina y el compromiso fetal son clásicos del DPPNI (Abruptio Placentae).",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Hemorragia Obstétrica en el Segundo Trimestre."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Hemorragia Obstétrica en el Segundo Trimestre.",
+    "tema": "Hemorragia Obstétrica"
   },
   {
     "specialty": "gyo",
@@ -315,7 +325,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "La tríada de amenorrea, dolor y masa anexial sugiere embarazo ectópico. Si hay líquido libre y dolor intenso, probablemente está roto, requiriendo cirugía urgente.",
     "gpcReference": "GPC Diagnóstico y Tratamiento del Embarazo Ectópico.",
-    "tema": "Hemorragias del Primer Trimestre"
+    "tema": "Vigilancia y Control Prenatal"
   },
   {
     "specialty": "gyo",
@@ -330,7 +340,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "Ante un reporte de LEIBG (o LIEBG) en la citología, el paso siguiente es la evaluación mediante colposcopia para dirigir biopsia si es necesario.",
     "gpcReference": "NOM-014-SSA2-1994, Para la prevención, detección, diagnóstico, tratamiento, control y vigilancia epidemiológica del cáncer cérvico uterino.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "CACU (Oncología Ginecológica)"
   },
   {
     "specialty": "gyo",
@@ -345,10 +355,10 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "La hiperémesis gravídica se define por vómitos incoercibles, pérdida de peso >5% y alteraciones metabólicas (cetonuria/desequilibrio hidroelectrolítico).",
     "gpcReference": "GPC Control Prenatal con Enfoque de Riesgo.",
-    "tema": "Nefrología: Enfermedad Renal Crónica"
+    "tema": "Vigilancia y Control Prenatal"
   },
   {
-    "specialty": "gyo",
+    "specialty": "mi",
     "case": "Paciente de 65 años con sangrado transvaginal postmenopáusico de 2 semanas de evolución. No usa terapia hormonal. Antecedente de obesidad y DM2.",
     "question": "¿Cuál es la primera patología a descartar mediante biopsia endometrial?",
     "options": [
@@ -359,7 +369,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "Todo sangrado postmenopáusico es cáncer de endometrio hasta demostrar lo contrario, especialmente en pacientes con factores de riesgo como obesidad.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento del Cáncer de Endometrio."
+    "gpcReference": "GPC Diagnóstico y Tratamiento del Cáncer de Endometrio.",
+    "tema": "Diabetes Mellitus"
   },
   {
     "specialty": "ped",
@@ -373,10 +384,11 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La clínica de vómito en proyectil no biliar y la 'oliva pilórica' es clásica de la estenosis de píloro entre la 2da y 6ta semana de vida.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Estenosis Hipertrófica de Píloro."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Estenosis Hipertrófica de Píloro.",
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
-    "specialty": "ped",
+    "specialty": "sp",
     "case": "Niño de 3 años con fiebre de 39°C, odinofagia importante y babeo. Se encuentra en posición de trípode (inclinado hacia adelante). No tiene antecedentes de vacunación completos.",
     "question": "¿Cuál es el diagnóstico más probable y la conducta inmediata?",
     "options": [
@@ -391,7 +403,7 @@ const QUESTIONS = [
     "tema": "Vacunación"
   },
   {
-    "specialty": "ped",
+    "specialty": "gyo",
     "case": "Lactante de 18 meses que presenta fiebre de 3 días que cede súbitamente, seguido de la aparición de un exantema maculopapular rosado, no pruriginoso, que inicia en tronco.",
     "question": "¿Cuál es el diagnóstico clínico?",
     "options": [
@@ -402,10 +414,11 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "El exantema súbito (HHV-6) se caracteriza por fiebre alta que desaparece justo cuando brotan las manchas en el tronco.",
-    "gpcReference": "GPC Diagnóstico de Enfermedades Exantemáticas en la Infancia."
+    "gpcReference": "GPC Diagnóstico de Enfermedades Exantemáticas en la Infancia.",
+    "tema": "Enfermedad Hipertensiva del Embarazo"
   },
   {
-    "specialty": "ped",
+    "specialty": "gyo",
     "case": "Escolar de 8 años con edema bipalpebral, hipertensión arterial y hematuria (orina color refresco de cola) tras haber padecido una faringoamigdalitis hace 2 semanas.",
     "question": "¿Cuál es el diagnóstico más probable?",
     "options": [
@@ -416,7 +429,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La tríada de edema, hipertensión y hematuria tras una infección por estreptococo define el síndrome nefrítico postestreptocócico.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Glomerulonefritis Postestreptocócica."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Glomerulonefritis Postestreptocócica.",
+    "tema": "Enfermedad Hipertensiva del Embarazo"
   },
   {
     "specialty": "ped",
@@ -431,7 +445,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "El abdomen excavado (escafoide) y la disnea con desplazamiento de ruidos cardiacos sugieren que las vísceras abdominales están en el tórax.",
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Hernia Diafragmática Congénita.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Hernias de la Pared Abdominal"
   },
   {
     "specialty": "cir",
@@ -446,7 +460,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "La lipasa es más específica y permanece elevada por más tiempo que la amilasa en cuadros de pancreatitis aguda.",
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Pancreatitis Aguda.",
-    "tema": "Pancreatitis Aguda"
+    "tema": "Apendicitis Aguda"
   },
   {
     "specialty": "cir",
@@ -461,10 +475,10 @@ const QUESTIONS = [
     "answerIndex": 0,
     "explanation": "Un pequeño absceso pericólico o flemón se clasifica como Hinchey I y suele responder a manejo médico conservador.",
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Enfermedad Diverticular del Colon.",
-    "tema": "Nefrología: Enfermedad Renal Crónica"
+    "tema": "Apendicitis Aguda"
   },
   {
-    "specialty": "cir",
+    "specialty": "mi",
     "case": "Masculino de 40 años que tras esfuerzo físico presenta dolor intenso en región lumbar irradiado a testículo ipsilateral. Se observa inquieto, no encuentra posición de alivio. El EGO muestra microhematuria.",
     "question": "¿Cuál es el diagnóstico más probable y el estudio de imagen 'estándar de oro'?",
     "options": [
@@ -476,10 +490,10 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "El dolor lumbar irradiado a genitales sin posición de alivio y hematuria es característico de litiasis urinaria. La TC es el estudio más sensible.",
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Litiasis Renal.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
-    "specialty": "cir",
+    "specialty": "mi",
     "case": "Femenino de 45 años con antecedentes de cirugías abdominales previas. Acude por dolor abdominal tipo cólico, distensión marcada, vómitos de contenido intestinal y ausencia de canalización de gases en las últimas 12 horas.",
     "question": "¿Cuál es la causa más común de obstrucción de intestino delgado en este paciente?",
     "options": [
@@ -491,7 +505,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "En pacientes con cirugías abdominales previas, las adherencias son los causantes de más del 60-70% de las obstrucciones intestinales.",
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Obstrucción Intestinal.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "mi",
@@ -505,7 +519,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La clínica de edema unilateral y dolor tras inmovilización prolongada sugiere TVP. El US Doppler es el estudio inicial estándar.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Enfermedad Tromboembólica Venosa."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Enfermedad Tromboembólica Venosa.",
+    "tema": "EPOC / Asma"
   },
   {
     "specialty": "mi",
@@ -520,7 +535,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "El patrón S1Q3T3, aunque poco sensible, es clásico en TEP. El antecedente quirúrgico reciente es un factor de riesgo mayor.",
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Tromboembolia Pulmonar Aguda.",
-    "tema": "Patología de Extremidad Inferior"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "mi",
@@ -548,10 +563,11 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La presencia de síntomas clásicos (4 P's) + una glucemia al azar >200 mg/dL es diagnóstica de Diabetes sin necesidad de confirmación.",
-    "gpcReference": "NOM-015-SSA2-2010, Para la prevención, tratamiento y control de la diabetes mellitus."
+    "gpcReference": "NOM-015-SSA2-2010, Para la prevención, tratamiento y control de la diabetes mellitus.",
+    "tema": "Diabetes Mellitus"
   },
   {
-    "specialty": "sp",
+    "specialty": "mi",
     "case": "Se realiza un estudio para evaluar la asociación entre el consumo de tabaco y el desarrollo de cáncer de pulmón. Se seleccionan dos grupos: uno de fumadores y otro de no fumadores, y se les sigue durante 10 años.",
     "question": "¿Qué tipo de diseño de estudio se está utilizando?",
     "options": [
@@ -563,10 +579,10 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "Los estudios que parten de la exposición (fumadores) y siguen a los sujetos hacia el futuro para ver el desenlace (cáncer) son estudios de cohorte.",
     "gpcReference": "Fundamentos de Epidemiología Clínica.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
-    "specialty": "sp",
+    "specialty": "gyo",
     "case": "En una comunidad se reportan 50 casos nuevos de Dengue en el mes de octubre. La población total es de 10,000 habitantes.",
     "question": "¿Qué medida de frecuencia se está calculando al decir '50 casos nuevos'?",
     "options": [
@@ -578,10 +594,10 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "La incidencia mide los casos nuevos que aparecen en una población en un periodo determinado.",
     "gpcReference": "Guía de Vigilancia Epidemiológica Integral de Dengue.",
-    "tema": "Enfermedades transmitidas por Vector"
+    "tema": "Vigilancia y Control Prenatal"
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "case": "Niño de 5 años con fiebre, odinofagia y aparición de vesículas en paladar posterior y pilares amigdalinos (Herpangina). También presenta lesiones vesiculares en palmas y plantas.",
     "question": "¿Cuál es el agente etiológico más probable?",
     "options": [
@@ -593,7 +609,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "El síndrome de mano-pie-boca es causado principalmente por Coxsackie virus, especialmente el serotipo A16.",
     "gpcReference": "GPC Diagnóstico y Manejo de Infecciones de Vías Respiratorias Superiores.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Patología Biliar"
   },
   {
     "specialty": "ped",
@@ -607,7 +623,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "La ictericia en las primeras 24 horas y el Coombs (+) con incompatibilidad de grupo sugieren hemólisis inmunitaria.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Ictericia Neonatal."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Ictericia Neonatal.",
+    "tema": "Neonatología"
   },
   {
     "specialty": "ped",
@@ -624,7 +641,7 @@ const QUESTIONS = [
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Invaginación Intestinal."
   },
   {
-    "specialty": "gyo",
+    "specialty": "mi",
     "case": "Mujer de 22 años con leucorrea de color blanco-grisáceo, maloliente (olor a pescado) que aumenta tras el coito. Al examen se observa flujo homogéneo y pH de 5.0. Prueba de KOH (+) con liberación de aminas.",
     "question": "¿Cuál es el diagnóstico y el tratamiento de elección?",
     "options": [
@@ -635,10 +652,11 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "Los criterios de Amsel (pH >4.5, olor a aminas, células clave) confirman vaginosis bacteriana.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Infección Vaginal."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Infección Vaginal.",
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
-    "specialty": "gyo",
+    "specialty": "mi",
     "case": "Gesta 1 de 34 semanas. Acude por salida de líquido transvaginal de 4 horas de evolución. Se confirma ruptura prematura de membranas (RPM) mediante prueba de nitrazina (+). No hay datos de infección ni trabajo de parto.",
     "question": "¿Cuál es la conducta recomendada ante un embarazo pretérmino (34-36 semanas)?",
     "options": [
@@ -649,7 +667,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "A partir de las 34 semanas con RPM, el riesgo de infección supera los beneficios de la prematurez, por lo que se recomienda el nacimiento.",
-    "gpcReference": "GPC Diagnóstico y Manejo de la Ruptura Prematura de Membranas."
+    "gpcReference": "GPC Diagnóstico y Manejo de la Ruptura Prematura de Membranas.",
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "cir",
@@ -663,7 +682,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "El bazo es el órgano más frecuentemente afectado en trauma cerrado, seguido del hígado.",
-    "gpcReference": "GPC Manejo del Traumatismo Abdominal en Adultos."
+    "gpcReference": "GPC Manejo del Traumatismo Abdominal en Adultos.",
+    "tema": "ATLS / Trauma"
   },
   {
     "specialty": "cir",
@@ -678,7 +698,7 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "Las quemaduras circunferenciales en tórax actúan como una coraza que impide la ventilación; la escarotomía libera esa tensión.",
     "gpcReference": "GPC Tratamiento del Paciente con Quemaduras Graves.",
-    "tema": "Nefrología: Enfermedad Renal Crónica"
+    "tema": "Quemaduras"
   },
   {
     "specialty": "urg",
@@ -692,7 +712,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 0,
     "explanation": "La atropina compite con la acetilcolina en los receptores muscarínicos, bloqueando los efectos del exceso de colinérgicos.",
-    "gpcReference": "GPC Diagnóstico y Manejo de Intoxicación por Organofosforados."
+    "gpcReference": "GPC Diagnóstico y Manejo de Intoxicación por Organofosforados.",
+    "tema": "Intoxicaciones"
   },
   {
     "specialty": "urg",
@@ -706,7 +727,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 0,
     "explanation": "La N-acetilcisteína repone los depósitos de glutatión y neutraliza el metabolito tóxico NAPQI.",
-    "gpcReference": "GPC Diagnóstico y Manejo de la Intoxicación por Paracetamol."
+    "gpcReference": "GPC Diagnóstico y Manejo de la Intoxicación por Paracetamol.",
+    "tema": "Intoxicaciones"
   },
   {
     "specialty": "mi",
@@ -721,7 +743,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "Las ondas T picudas y el ensanchamiento del QRS son signos electrocardiográficos graves de hiperpotasemia, común en falla renal terminal.",
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Insuficiencia Renal Crónica.",
-    "tema": "Nefrología: Enfermedad Renal Crónica"
+    "tema": "Hipertiroidismo"
   },
   {
     "specialty": "mi",
@@ -736,10 +758,10 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "Aunque los ANA son muy sensibles, el Anti-Smith es el más específico para LES según los criterios actuales.",
     "gpcReference": "GPC Diagnóstico y Manejo de Lupus Eritematoso Sistémico.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "case": "Masculino de 70 años con dolor óseo persistente en espalda, anemia y falla renal aguda. Se realiza electroforesis de proteínas encontrando pico monoclonal (Componente M).",
     "question": "¿Cuál es el diagnóstico más probable?",
     "options": [
@@ -750,7 +772,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La clínica de dolor óseo, anemia, falla renal (CRAB) y pico monoclonal sugiere fuertemente mieloma múltiple.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento del Mieloma Múltiple."
+    "gpcReference": "GPC Diagnóstico y Tratamiento del Mieloma Múltiple.",
+    "tema": "Urología"
   },
   {
     "specialty": "mi",
@@ -778,7 +801,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La tríada de ataxia, confusión y alteraciones oculomotoras es típica de la encefalopatía de Wernicke por déficit de tiamina.",
-    "gpcReference": "Guía de Práctica Clínica para la Prevención y Tratamiento del Abuso del Alcohol."
+    "gpcReference": "Guía de Práctica Clínica para la Prevención y Tratamiento del Abuso del Alcohol.",
+    "tema": "Cardiopatía Isquémica"
   },
   {
     "specialty": "mi",
@@ -808,7 +832,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "La amoxicilina sigue siendo el estándar de oro para la otitis media aguda en pediatría debido a su cobertura contra S. pneumoniae.",
     "gpcReference": "GPC Diagnóstico y Manejo de la Otitis Media Aguda en Niños.",
-    "tema": "Infecciones de Vías Respiratorias Superiores"
+    "tema": "Neumonías"
   },
   {
     "specialty": "mi",
@@ -822,7 +846,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La presencia de petequias y diplococos gramnegativos (meningococo) es característica de la meningitis meningocócica.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de la Meningitis Bacteriana Aguda."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de la Meningitis Bacteriana Aguda.",
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "mi",
@@ -852,7 +877,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "El pioderma gangrenoso se asocia frecuentemente a patologías sistémicas como CUCI o Crohn.",
     "gpcReference": "GPC Diagnóstico y Tratamiento de Pioderma Gangrenoso.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "cir",
@@ -866,7 +891,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "Aunque el USG es el inicial, la gammagrafía HIDA es el estándar de oro para confirmar la obstrucción del conducto cístico en colecistitis.",
-    "gpcReference": "GPC Diagnóstico y Tratamiento de Colecistitis y Colelitiasis."
+    "gpcReference": "GPC Diagnóstico y Tratamiento de Colecistitis y Colelitiasis.",
+    "tema": "Patología Biliar"
   },
   {
     "specialty": "cir",
@@ -880,10 +906,11 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "La tríada de Charcot es clásica de la colangitis, una infección de la vía biliar secundaria usualmente a coledocolitiasis.",
-    "gpcReference": "GPC Diagnóstico y Manejo de la Colangitis Aguda."
+    "gpcReference": "GPC Diagnóstico y Manejo de la Colangitis Aguda.",
+    "tema": "Patología Biliar"
   },
   {
-    "specialty": "ped",
+    "specialty": "sp",
     "case": "Se presenta a consulta niño de 12 meses. Según el esquema nacional de vacunación, ¿qué vacunas le corresponde recibir en esta visita?",
     "question": "Elegir la opción correcta.",
     "options": [
@@ -898,7 +925,7 @@ const QUESTIONS = [
     "tema": "Vacunación"
   },
   {
-    "specialty": "ped",
+    "specialty": "mi",
     "case": "Lactante de 1 mes traído por su madre por presentar regurgitaciones frecuentes tras las tomas. El niño gana peso adecuadamente y no presenta irritabilidad ni síntomas respiratorios.",
     "question": "¿Cuál es la conducta recomendada?",
     "options": [
@@ -910,7 +937,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "El 'regurgitador feliz' tiene reflujo gastroesofágico fisiológico que no requiere medicación, solo medidas generales.",
     "gpcReference": "GPC Diagnóstico y Tratamiento del Reflujo Gastroesofágico en Pediatría.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "gyo",
@@ -924,7 +951,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "BI-RADS 4 indica una sospecha de malignidad, por lo que se requiere confirmación histopatológica.",
-    "gpcReference": "NOM-041-SSA2-2011, Para la prevención, diagnóstico, tratamiento, control y vigilancia epidemiológica del cáncer de mama."
+    "gpcReference": "NOM-041-SSA2-2011, Para la prevención, diagnóstico, tratamiento, control y vigilancia epidemiológica del cáncer de mama.",
+    "tema": "Cáncer de Mama"
   },
   {
     "specialty": "gyo",
@@ -941,7 +969,7 @@ const QUESTIONS = [
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Endometriosis."
   },
   {
-    "specialty": "urg",
+    "specialty": "mi",
     "case": "Se presencia el colapso de un adulto en la vía pública. Tras verificar que la escena es segura, la persona no responde y no respira normalmente (solo jadea).",
     "question": "¿Cuál es la primera acción según las guías de la AHA?",
     "options": [
@@ -953,10 +981,10 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "El primer paso tras reconocer el paro es activar el sistema de emergencias antes de iniciar las maniobras.",
     "gpcReference": "Guías de RCP y ACE de la American Heart Association (AHA).",
-    "tema": "Patología Quirúrgica de Esófago"
+    "tema": "Nefrología: Lesión Renal Aguda"
   },
   {
-    "specialty": "urg",
+    "specialty": "mi",
     "case": "Paciente en paro cardiaco. El monitor muestra el ritmo siguiente: ausencia de actividad eléctrica y línea plana.",
     "question": "¿Cuál es la conducta correcta ante una asistolia?",
     "options": [
@@ -968,7 +996,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "La asistolia y la actividad eléctrica sin pulso son ritmos no desfibrilables; el manejo es RCP y adrenalina.",
     "gpcReference": "Soporte Vital Cardiovascular Avanzado (ACLS).",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "mi",
@@ -1011,10 +1039,10 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "El diagnóstico de certeza de EPOC requiere demostrar una obstrucción no reversible al flujo aéreo mediante espirometría.",
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Enfermedad Pulmonar Obstructiva Crónica.",
-    "tema": "Nefrología: Enfermedad Renal Crónica"
+    "tema": "EPOC / Asma"
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "case": "Paciente con sospecha de hipertensión arterial. Se le pide que realice mediciones de la TA en casa durante una semana.",
     "question": "¿A partir de qué valor se considera diagnóstico de HAS según la guía internacional y NOM-030 en mediciones domiciliarias (AMPA)?",
     "options": [
@@ -1025,7 +1053,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 1,
     "explanation": "En AMPA, el umbral diagnóstico es ligeramente inferior a la toma en consultorio, siendo >= 135/85 mmHg.",
-    "gpcReference": "NOM-030-SSA2-2009, Para la prevención, detección, diagnóstico, tratamiento y control de la hipertensión arterial sistémica."
+    "gpcReference": "NOM-030-SSA2-2009, Para la prevención, detección, diagnóstico, tratamiento y control de la hipertensión arterial sistémica.",
+    "tema": "Enfermedad Hipertensiva del Embarazo"
   },
   {
     "specialty": "gyo",
@@ -1039,10 +1068,11 @@ const QUESTIONS = [
     ],
     "answerIndex": 0,
     "explanation": "El caso clínico es clásico de Preeclampsia con datos de severidad (y síndrome HELLP). El medicamento estándar de oro para prevenir la eclampsia es el sulfato de magnesio, no los antihipertensivos o fenitoína de primera intención.",
-    "gpcReference": "GPC Diagnóstico y Manejo de la Preeclampsia-Eclampsia."
+    "gpcReference": "GPC Diagnóstico y Manejo de la Preeclampsia-Eclampsia.",
+    "tema": "Enfermedad Hipertensiva del Embarazo"
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "case": "Lactante femenino de 8 meses de edad que presenta desde hace 3 días rinorrea hialina y febrícula. Hoy inicia con dificultad respiratoria, tos perruna y estridor inspiratorio en reposo. A la exploración física: aleteo nasal, tiraje intercostal y cianosis peribucal al llorar.",
     "question": "¿Cuál es el tratamiento farámacológico inicial más adecuado según las guías clínicas?",
     "options": [
@@ -1054,10 +1084,10 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "Se trata de laringotraqueítis (Crup) moderada-grave (presencia de estridor en reposo y datos de dificultad respiratoria evidente). Está indicada la administración de esteroide sistémico más l-adrenalina o adrenalina racémica nebulizada para disminuir el edema subglótico de forma rápida.",
     "gpcReference": "GPC Diagnóstico y Manejo de la Laringotraqueítis Aguda en Pacientes Pediátricos.",
-    "tema": "Nefrología: Enfermedad Renal Crónica"
+    "tema": "Apendicitis Aguda"
   },
   {
-    "specialty": "cir",
+    "specialty": "mi",
     "case": "Masculino de 45 años, con antecedente de alcoholismo crónico, acude a Urgencias por dolor abdominal intenso transfixiante en epigastrio de 24 horas de evolución, acompañado de múltiples episodios eméticos. Al ingreso: FC 120 lpm, FR 24 rpm, TA 90/60 mmHg. Abdomen severamente doloroso, distendido. Laboratorios: Leucocitosis 18,000, Amilasa 1200 U/L, Lipasa 2500 U/L.",
     "question": "¿Cuál de los siguientes criterios tomográficos de Balthazar corresponde a un grado D?",
     "options": [
@@ -1069,10 +1099,10 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "En la clasificación topográfica de Balthazar para pancreatitis aguda: A (Normal), B (Aumento de tamaño), C (Inflamación peripancreática), D (Una acumulación única de líquido), E (Dos o más acumulaciones o gas retroperitoneal). Por lo tanto, el grado D es una sola colección líquida peri-pancreática.",
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Pancreatitis Aguda.",
-    "tema": "Pancreatitis Aguda"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
-    "specialty": "urg",
+    "specialty": "cir",
     "case": "Paciente de 25 años es traído a urgencias tras sufrir accidente de tráfico. A la exploración: estridor intenso, desviación de la tráquea hacia la izquierda, ausencia de murmullo vesicular en el hemitórax derecho e ingurgitación yugular evidente. TA 80/50 mmHg.",
     "question": "¿Cuál es la maniobra terapéutica inmediata que salva la vida y debe realizarse antes que cualquier estudio de imagen?",
     "options": [
@@ -1084,7 +1114,7 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "El cuadro es un clásico neumotórax a tensión (desviación traqueal, abolición de ruidos respiratorios, ingurgitación yugular y choque obstructivo). La descompresión pleural con aguja es el tratamiento de emergencia imprescindible antes de colocar el tubo de tórax definitivo.",
     "gpcReference": "ATLS (Advanced Trauma Life Support) - Principios de manejo de trauma torácico.",
-    "tema": "Patología Quirúrgica de Esófago"
+    "tema": "ATLS / Trauma"
   },
   {
     "specialty": "mi",
@@ -1099,10 +1129,10 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "Puntos CHA2DS2-VASc: Edad 65-74 años (1 punto), HAS (1 punto), DM (1 punto). Total: 3 puntos. En hombres, una puntuación ≥2 establece indicación formal de anticoagulación oral definitiva.",
     "gpcReference": "GPC Diagnóstico y tratamiento de la Fibrilación Auricular.",
-    "tema": "Neurología: Enfermedad Vascular Cerebral"
+    "tema": "Fibrilación Auricular"
   },
   {
-    "specialty": "sp",
+    "specialty": "mi",
     "case": "Se reportan 25 casos de enfermedad diarreica aguda en un asilo de ancianos durante las últimas 48 horas. Se identifica norovirus como el agente etiológico tras una investigación inicial de campo.",
     "question": "¿Qué tipo de medida epidemiológica representa la indicación de cuarentena a los residentes y la suspensión de visitas externas?",
     "options": [
@@ -1114,7 +1144,7 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "El control epidémico en sistemas cerrados como asilos o cárceles frente a brotes de gran contagiosidad (como norovirus) implica cerrar la instalación (cuarentena/restricción de visitas) y aislar a los infectados como medida primordial de contención de daños comunitarios.",
     "gpcReference": "NOM-017-SSA2-2012, Para la vigilancia epidemiológica.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "ped",
@@ -1129,7 +1159,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "En la meningitis neonatal (<1 mes de vida), los principales agentes etiológicos son Streptococcus agalactiae (estreptococo del grupo B), enterobacterias (principalmente E. coli) y Listeria monocytogenes por transmisión vertical.",
     "gpcReference": "GPC Prevención, diagnóstico y tratamiento de la Meningitis Bacteriana Aguda en edad Pediátrica.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "cir",
@@ -1143,7 +1173,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "El caso describe una colelitiasis sintomática (cólico biliar sin datos de colecistitis aguda o coledocolitiasis). El estándar de oro terapéutico en pacientes sintomáticos es la colecistectomía laparoscópica electiva programada de manera ambulatoria.",
-    "gpcReference": "GPC Diagnóstico y tratamiento de Colecistitis y Colelitiasis."
+    "gpcReference": "GPC Diagnóstico y tratamiento de Colecistitis y Colelitiasis.",
+    "tema": "Patología Biliar"
   },
   {
     "specialty": "gyo",
@@ -1158,7 +1189,7 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "Tanto el implante subdérmico como el SIU-LNG reducen significativamente el sangrado y la dismenorrea, siendo considerados métodos LARCs (Long Acting Reversible Contraceptives) de primera línea (categoría 1) excelentes en adolescentes y adultas jóvenes por su alta tasa de continuidad y eficacia sin depender del cumplimiento diario.",
     "gpcReference": "GPC Criterios médicos de elegibilidad para el uso de anticonceptivos WHO, adaptados al ENARM.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Cáncer de Mama"
   },
   {
     "specialty": "urg",
@@ -1172,7 +1203,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 0,
     "explanation": "En un ritmo desfibrilable (FV/TVSP), después de fallar la primera descarga y durante el segundo ciclo de RCP, debe inyectarse Adrenalina 1 mg IV/IO. La Amiodarona se da después de la 3era descarga si persiste la FV/TVSP.",
-    "gpcReference": "AHA Guidelines para Soporte Vital Cardiovascular Avanzado (ACLS)."
+    "gpcReference": "AHA Guidelines para Soporte Vital Cardiovascular Avanzado (ACLS).",
+    "tema": "Reanimación (ACLS/BLS)"
   },
   {
     "specialty": "mi",
@@ -1186,10 +1218,11 @@ const QUESTIONS = [
     ],
     "answerIndex": 2,
     "explanation": "El cuadro clínico, radiológico y de laboratorio es clásico de neumonía por Pneumocystis jirovecii (PJP). Al existir hipoxemia significativa (PaO2 < 70 mmHg o Gradiente A-a > 35 mmHg), está justificado el uso de corticoesteroides adyuvantes antes o al inicio del antibiótico (TMP/SMX) para disminuir la mortalidad por inflamación.",
-    "gpcReference": "GPC Diagnóstico y tratamiento de Infecciones Oportunistas en VIH."
+    "gpcReference": "GPC Diagnóstico y tratamiento de Infecciones Oportunistas en VIH.",
+    "tema": "Neumonías"
   },
   {
-    "specialty": "ped",
+    "specialty": "mi",
     "case": "Preescolar de 3 años llevado a urgencias por presentar edema facial y palpebral de rápido inicio, orina 'color de refresco de cola' (coluria) y presión arterial en el percentil 99 para su edad y talla. La madre refiere que hace 2 semanas el niño presentó lesiones costrosas color miel en la piel de la cara que se resolvieron.",
     "question": "¿Qué estudio de laboratorio inicial es el más útil para apoyar la etiología del cuadro descrito?",
     "options": [
@@ -1201,10 +1234,10 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "Es el cuadro típico del Glomerulonefritis Postestreptocócica (GNPE) tras una infección cutánea (impétigo, por las lesiones mielicéricas). Como es una glomerulonefritis mediada por inmunocomplejos, hay consumo de la vía alterna del complemento (C3 disminuido y C4 normal), además de evidencia serológica de infección previa.",
     "gpcReference": "GPC Diagnóstico y tratamiento de la Glomerulonefritis Aguda en Pediatría.",
-    "tema": "Nefrología: Enfermedad Renal Crónica"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "case": "Gestante de 28 semanas con embarazo gemelar bicorial biamniótico. Acude a triage obstétrico refiriendo contracciones dolorosas cada 5 minutos durante las últimas 2 horas. Tacto vaginal: cérvix borrado al 80%, 2 cm de dilatación, membranas íntegras.",
     "question": "¿Cuál es el pilar terapéutico inmediato para mejorar el pronóstico de los fetos ante la inminencia de parto pretérmino?",
     "options": [
@@ -1216,7 +1249,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "Ante un trabajo de parto pretérmino inminente entre las 24 y 34 semanas, el esquema de corticoesteroides prenatales tiene el mayor impacto en reducir la morbimortalidad neonatal, específicamente la enfermedad de membrana hialina, hemorragia intraventricular y enterocolitis necrotizante.",
     "gpcReference": "GPC Diagnóstico y Manejo del Parto Pretérmino.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Hemorragia Obstétrica"
   },
   {
     "specialty": "cir",
@@ -1231,10 +1264,10 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "Triada de Beck (hipotensión, ruidos cardiacos apagados e ingurgitación yugular) sugestiva de taponamiento cardiaco tras trauma penetrante en el tórax. Fisiopatológicamente, la presión intrapericárdica supera las presiones de llenado del corazón derecho y produce choque obstructivo.",
     "gpcReference": "ATLS (Advanced Trauma Life Support) - Principios de manejo de trauma torácico.",
-    "tema": "Nefrología: Enfermedad Renal Crónica"
+    "tema": "ATLS / Trauma"
   },
   {
-    "specialty": "urg",
+    "specialty": "mi",
     "case": "Femenina de 65 años traída por su hija debido a debilidad profunda y confusión. Tiene antecedentes de insuficiencia cardiaca en tratamiento crónico con espironolactona y enalapril. Un electrocardiograma a su llegada muestra ondas T picudas y simétricas, con ensanchamiento del complejo QRS y aplanamiento de las ondas P. Potasio sérico en 7.5 mEq/L.",
     "question": "¿Cuál de las siguientes medidas protege directamente al miocardio estabilizando la membrana, previniendo arritmias letales, sin disminuir los niveles corporales totales del ion?",
     "options": [
@@ -1245,10 +1278,11 @@ const QUESTIONS = [
     ],
     "answerIndex": 0,
     "explanation": "Las alteraciones ECG y el potasio > 7.0 configuran una hiperkalemia severa con cambios sintomáticos. El primer medicamento debe ser siempre gluconato de calcio (o cloruro de calcio), el cual antagoniza los efectos tóxicos en la membrana cardiaca (efecto cardioprotector) pero no disminuye las concentraciones séricas de potasio, para lo cual se emplean las otras medidas.",
-    "gpcReference": "GPC Diagnóstico y tratamiento de los desequilibrios hidroelectrolíticos en adultos."
+    "gpcReference": "GPC Diagnóstico y tratamiento de los desequilibrios hidroelectrolíticos en adultos.",
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
-    "specialty": "sp",
+    "specialty": "mi",
     "case": "En un área rural endémica de malaria, se instaura un programa donde se rocía el interior de las viviendas con insecticidas de acción residual para controlar al mosquito Anopheles.",
     "question": "¿En qué nivel de la cadena epidemiológica y tipo de prevención actúa predominantemente esta estrategia?",
     "options": [
@@ -1260,7 +1294,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "El control por rociamiento residual ataca directamente al vector dentro del medio ambiente doméstico, previniendo el contacto infectante. Es una clásica medida de prevención primaria (en específico, como medida de saneamiento y bloqueo vectorial).",
     "gpcReference": "Bases de Epidemiología y Salud Pública (Modelos Preventivos de Leavell y Clark).",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "mi",
@@ -1275,7 +1309,7 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "Una hipercalcemia con concentración elevada de hormona paratiroidea (PTH) indica invariablemente Hiperparatiroidismo primario (cuyo origen principal es un adenoma benigno paratiroideo). Al ya tener osteoporosis secundaria y de acuerdo a criterios internacionales, requiere curación por medio de paratiroidectomía.",
     "gpcReference": "GPC Diagnóstico y tratamiento del Hiperparatiroidismo Primario.",
-    "tema": "Nefrología: Enfermedad Renal Crónica"
+    "tema": "Lupus Eritematoso Sistémico"
   },
   {
     "specialty": "ped",
@@ -1289,7 +1323,8 @@ const QUESTIONS = [
     ],
     "answerIndex": 0,
     "explanation": "Estamos ante una hiperbilirrubinemia severa potencialmente neurotóxica (Kernicterus) mediada por hemólisis inmune (incompatibilidad ABO con Coombs +). Con BT en 22 mg/dL la conducta urgente protocolizada es Iniciar fototerapia e iniciar las preparaciones para un posible recambio sanguíneo terapéutico (exanguinotransfusión).",
-    "gpcReference": "GPC Diagnóstico y tratamiento de la Ictericia Neonatal."
+    "gpcReference": "GPC Diagnóstico y tratamiento de la Ictericia Neonatal.",
+    "tema": "Neonatología"
   },
   {
     "specialty": "gyo",
@@ -1304,7 +1339,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "En toda mujer posmenopáusica (especialmente con hiperestrogenismo periférico como la obesidad) que presente sangrado (Stryker transvaginal postmenopáusico), el síntoma cardinal es sospecha absoluta de cáncer de endometrio. El estudio inicial es ultrasonido pélvico endovaginal para evaluar engrosamiento endometrial superior a >4-5 mm (lo cual obliga a biopsia).",
     "gpcReference": "GPC Diagnóstico y tratamiento del Cáncer de Endometrio.",
-    "tema": "Patología Respiratoria Neonatal"
+    "tema": "Cáncer de Mama"
   },
   {
     "specialty": "cir",
@@ -1319,11 +1354,11 @@ const QUESTIONS = [
     "answerIndex": 2,
     "explanation": "Las fracturas pélvicas inestables en 'libro abierto' conllevan hemorragia retroperitoneal venosa grave que es la principal causa de muerte precoz. La maniobra inmediata más efectiva y salva vidas es la colocación de faja (binder) o cierre con una sábana rodeando los trocánteres mayores, lo que reduce el volumen anatómico y promueve un inicio taponamiento hemostático.",
     "gpcReference": "ATLS - Manual de reanimación y Trauma en Pelvis.",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico"
+    "tema": "ATLS / Trauma"
   },
   {
-    "specialty": "gyo",
-    "tema": "Introducción: Ciclo genital, Esterilidad y Anticonceptivos",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Mujer de 28 años, nuligesta, acude a consulta por incapacidad para concebir desde hace 18 meses de relaciones sexuales frecuentes sin uso de métodos anticonceptivos. Su pareja masculina, de 30 años, tiene una espermatobioscopía normal. La paciente tiene ciclos menstruales regulares de 28-29 días, sangrado moderado por 4 días sin dismenorrea incapacitante. Niega dispareunia o antecedentes de enfermedad inflamatoria pélvica. Al realizar una histerosalpingografía se reporta permeabilidad ovárica bilateral conservada y cavidad intrauterina de morfología habitual. Los niveles hormonales tomados en el día 21 del ciclo (Progesterona) rebasan los niveles ovulatorios e indican ovulación consistente.",
     "question": "¿Cuál es el siguiente paso más adecuado en el abordaje diagnóstico o terapéutico de esta pareja?",
     "options": [
@@ -1337,8 +1372,8 @@ const QUESTIONS = [
     "gpcReference": "GPC Diagnóstico y tratamiento inicial de la esterilidad en la mujer."
   },
   {
-    "specialty": "gyo",
-    "tema": "Amenorreas Primarias y Secundarias",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Mujer de 15 años es traída por su madre a consulta debido a la ausencia de menarquia, refiriendo dolor cíclico abdominal bajo que se ha presentado con periodicidad mensual durante los últimos 6 meses. A la exploración física se observan caracteres sexuales secundarios desarrollados (Tanner IV en mama y vello púbico) de acuerdo con su edad cronológica, estatura dentro del percentil 50. La revisión genital muestra introito vaginal abombado con coloración violácea, sin sangrado a la inspección pero muy sensible al tacto superficial.",
     "question": "¿Cuál es el manejo inicial y terapéutico definitivo para esta presentación clínica?",
     "options": [
@@ -1352,8 +1387,8 @@ const QUESTIONS = [
     "gpcReference": "GPC Diagnóstico, Tratamiento y Pronóstico del Síndrome del Dolor Pélvico Crónico y Amenorreas de Origen Anatómico."
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragia Uterina Anormal",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Paciente femenina de 24 años con IMC de 31 kg/m2, acude a revisión por oligomenorreas (3 a 4 menstruaciones al año) e incremento en la densidad del vello facial y acné noduloquístico de difícil control dermoestético. USG revela ambos ovarios con más de 12 folículos subcapsulares. Tras haber intentado dieta, ejercicio y uso de anticonceptivos combinados que fueron suspendidos por intolerancia gástrica, la paciente desea mejorar el sangrado uterino debido a episodios de metrorragias intermitentes disfuncionales que reducen severamente su calidad de vida y nivel de hemoglobina (Hb actual: 11 g/dL).",
     "question": "¿Cuál de los siguientes abordajes terapéuticos hormonales sería el más adecuado dada la intolerancia reportada y el perfil de la paciente (no desea fertilidad ahora)?",
     "options": [
@@ -1368,7 +1403,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Menopausia y Climaterio",
+    "tema": "Cáncer de Mama",
     "case": "Mujer de 54 años, con antecedente de FUM hace 18 meses, asiste a consulta de medicina integral quejándose de bochornos diurnos intensos (más de 10 episodios al día), insomnio, irritabilidad y resequedad vaginal moderada que condiciona dispareunia. Antecedentes heredofamiliares negativos para cáncer de mama y trombosis venosa. Índice de masa corporal de 23. Perfil de lípidos y mastografía bilaterales recientes dentro de rangos normales. Niega sangrado uterino e histerectomía previa.",
     "question": "¿Cuál sería el régimen ideal de primera línea en la terapia de reemplazo hormonal sistémica para el manejo de su sintomatología vasomotora?",
     "options": [
@@ -1383,7 +1418,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia Uterina Anormal",
+    "tema": "Hemorragia Obstétrica",
     "case": "Mujer de 44 años con sangrado menstrual abundante desde hace 1 año, usando 6-7 toallas nocturnas al día e impactando su rutina. Hb: 8.8 g/dL. USG: mioma submucoso de 3.5 cm tipo 1 (clasificación FIGO), deforma cavidad endometrial significativamente. Ha recibido AINE, ácido tranexámico y anticonceptivos combinados pero el volumen sólo ha disminuido en un 15% sin lograr evitar la anemia. No desea fertilidad futura pero si expone el deseo conservador de evitar histerectomía de no ser sumamente forzoso.",
     "question": "¿Cuál es el tratamiento quirúrgico más adecuado conociendo que posee un claro deseo conservador el cual fue externado con su médico general?",
     "options": [
@@ -1397,8 +1432,8 @@ const QUESTIONS = [
     "gpcReference": "GPC Diagnóstico y tratamiento de Miomatosis Uterina."
   },
   {
-    "specialty": "gyo",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Una paciente de 67 años acude refiriendo sentirse constipada, con indigestión y aumento rápido en de la envergadura del vientre (distensión) en los últimos 2 meses. Hay pérdida ponderal inexplicable de 8 kg. El estudio ultrasonográfico de emergencia sumado a la TAC abdominal corroboran abundante ascitis pélvica, sumado a un tumor ovárico predominantemente de morfología sólida heterogénea, multiseptado y con excrecencias gruesas en el anexo izquierdo (7 cm) que arroja siembras milimétricas serosas sobre el peritoneo de la cúpula diafragmática de hemidiafragma derecho.",
     "question": "¿A qué estadio clínico avanzado de la estadificación tradicional FIGO pertenece el cáncer epitelial de ovario cuando presenta afectación comprobada extrapélvica, es decir, implantes macróscopicos peritoneales fuera de la pelvis por encima del borde, comprobados en cápsula diafragmática o nivel de epiplón mayor?",
     "options": [
@@ -1413,7 +1448,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "tema": "CACU (Oncología Ginecológica)",
     "case": "Mujer de 33 años nativa de comunidad rural acude asintomática para revisión cervical tras jornada de salud. Inicio de relaciones sexuales múltiples a los 16 años y 3 partos previos vía vaginal. El frotis cervical reporta una citología vaginal convencional donde el patólogo diagnostica fidedignamente un LIE-AG (Lesión Intraepitelial Escamosa de Alto Grado). No tiene papanicolaou en los últimos 5 años documentado. A la exploración física y posterior colposcopia en unidad de colposcopia central, se muestra una zona de transformación extensa (T-1) con patrón de mosaico áspero, punteado grueso y borde de epitelio acetoblanco muy bien delimitado en el exocérvix.",
     "question": "¿Qué acción terapéutica o diagnóstica inmediata recomienda el consenso normativo en México una vez diagnosticado el antecedente citológico de Alto Grado con una colposcopia exocervical altamente satisfactoria (T-1) concurrente?",
     "options": [
@@ -1428,7 +1463,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología Mamaria: Benigna y Cáncer de Mama",
+    "tema": "Cáncer de Mama",
     "case": "Durante autoexploración rutinaria, una mujer de 42 años sin factores de riesgo en la genética primaria de su árbol genealógico, se palpó un cuerpo duro e indurado de bordes francamente irregulares y estriados. Es fijado e inmóvil de aprox 15 mm en el cuadrante superoexterno de la glándula senosófica derecha. La mastografía acusa a la lesión de estar dentro de categoría BI-RADS 4C, sugiriendo alta preocupación biológica de malignidad intermedia a alta. Al ecosonograma: nódulo hipoecoico, no paralelo y peor delimitado, que posee una sombra acústica posterior significativa en forma de cono atenuante invertido.",
     "question": "¿Cuál de los siguientes está considerado normativamente como el 'Gold Standard' de biopsia con técnica invasiva inicial requerida a fin de extraer tejido arquitectónico íntegro del estroma fibrótico para el marcaje previo oncológico de ese tumor sólido dudoso?",
     "options": [
@@ -1443,7 +1478,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Introducción a la Pediatría / Reanimación Neonatal",
+    "tema": "Neonatología",
     "case": "Recién nacido a término (39 semanas de gestación), obtenido por parto vaginal eutócico. Líquido amniótico claro. Al nacimiento, no respira y presenta flacidez marcada. Se coloca bajo fuente de calor radiante, se posiciona la vía aérea, se secan secreciones, y se estimula táctilmente, sin obtener respuesta. La frecuencia cardíaca evaluada por auscultación en la base del cordón umbilical es de 80 latidos por minuto. Presenta cianosis central.",
     "question": "¿Cuál es el paso inmediato más apropiado y de mayor impacto en la reanimación de este paciente según los lineamientos actuales de reanimación neonatal (NRP)?",
     "options": [
@@ -1458,7 +1493,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Patología Neonatal Infecciosa",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Neonato primigesto de 5 días de vida, nacido a las 38 semanas de gestación por parto vaginal. Madre con antecedente de ruptura prematura de membranas de 22 horas y fiebre intraparto de 38.5°C. El paciente no recibió profilaxis antibiótica intraparto. Acude al servicio de urgencias porque la madre lo nota 'apagado', rechaza el seno materno, y ha presentado un episodio de hipotermia (35.8°C en casa). A la exploración: letárgico, taquicardia de 170 lpm, polipnea de 65 rpm y llenado capilar de 4 segundos. La biometría hemática reporta leucopenia de 4,000/mm3, neutrófilos inmaduros/totales (índice I/T) de 0.25 y PCR de 45 mg/L.",
     "question": "¿Cuál es el esquema antibiótico empírico de primera elección más apropiado mientras se esperan los resultados de los hemocultivos y cultivos de LCR en este paciente?",
     "options": [
@@ -1473,7 +1508,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Patología Respiratoria Neonatal",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Recién nacido postérmino de 41.5 semanas de gestación. Parto complicado por distocia de hombros y líquido amniótico teñido de meconio espeso (puré de chícharos). Al nacer se encuentra deprimido, sin tono muscular y con esfuerzo respiratorio ausente, requiriendo reanimación avanzada. A las 2 horas de vida, ingresa a UCIN por insuficiencia respiratoria severa, requiriendo FiO2 del 80% para mantener saturación >90%. La radiografía de tórax muestra hiperinsuflación bilateral severa, infiltrados algodonosos gruesos asimétricos parcheados y aplanamiento de los hemidiafragmas.",
     "question": "¿Cuál de los siguientes mecanismos fisiopatológicos explica PRINCIPALMENTE el patrón radiológico de hiperinsuflación en este paciente?",
     "options": [
@@ -1487,8 +1522,8 @@ const QUESTIONS = [
     "gpcReference": "GPC Diagnóstico y tratamiento del Síndrome de Aspiración de Meconio."
   },
   {
-    "specialty": "ped",
-    "tema": "Infecciones TORCH y VIH Pediátrico",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Lactante menor de 4 meses es llevado a consulta por historia prolongada de fiebre intermitente, irritabilidad y lesiones en la piel. A la exploración física destaca microcefalia (perímetro cefálico por debajo del percentil 3), retinitis en parche (cicatrices coriorretinianas hiper e hipopigmentadas bilaterales) observadas a la oftalmoscopia y calcificaciones intracraneales de predominio netamente generalizado/difusas observadas en la TAC simple de cráneo. La madre, quien vive en área rural y convive con abundantes gatos domésticos y callejeros, relata haber tenido un cuadro de mononucleosis inespecífico en su primer trimestre.",
     "question": "¿Cuál es el diagnóstico nosológico congénito más probable basándose en la tétrada sintomática y antecedentes?",
     "options": [
@@ -1502,8 +1537,8 @@ const QUESTIONS = [
     "gpcReference": "GPC Diagnóstico, Tratamiento y Prevención de la Toxoplasmosis intrauterina."
   },
   {
-    "specialty": "ped",
-    "tema": "Estenosis Hipertrófica de Píloro",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Lactante varón primogénito de 4 semanas de vida acude a urgencias por historia de 5 días referida por la madre como vómitos en 'proyectil', de consistencia lechosa coagulada franca y que son postprandiales, sin contenido biliar o verdoso JAMÁS. Tras regurgitar, el bebé busca el seno materno muy hambriento. Está llorón, con los ojos hundidos. A la exploración abdominal palpamos una masa dura y muy móvil en forma de 'oliva' localizada en el cuadrante superior derecho o epigastrio. Gasometría venosa: pH 7.52, pCO2 45, HCO3 32, Cl 88, K 3.0 mEq/L.",
     "question": "¿Cuál de las siguientes alteraciones patognomónicas es la que presenta este lactante en sus exámenes serológicos?",
     "options": [
@@ -1517,8 +1552,8 @@ const QUESTIONS = [
     "gpcReference": "GPC Diagnóstico y tratamiento de la Estenosis Hipertrófica del Píloro."
   },
   {
-    "specialty": "ped",
-    "tema": "Crecimiento y Desarrollo P2",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Durante control institucional pediátrico ambulatorio (Niño Sano), valora a una bebé femenina de 9 meses. Apetito voraz y duerme bien. En su evaluación psicomotora nota que la bebé logra mantenerse sentada sola, rola del prono al supino sin ningún problema, mas no hace intentos de gatear. Tampoco intenta ponerse de pie sujetada a las cosas. En motricidad fina, cuando le entrega una ficha, la atrapa utilizando ambas manos a modo de palas completas ('toda la mano') y falla dramáticamente en utilizar sus pulgares ni logra traspasar la ficha de la mano izquierda a la derecha sin soltarla sobre la mesa.",
     "question": "¿Qué hito de motricidad fina DEBE estar presente obligadamente a los 9 meses de edad, cuya ausencia franca representaría en este caso una evidente señal de alarma ('bandera roja') para remisión a neuropediatría?",
     "options": [
@@ -1547,8 +1582,8 @@ const QUESTIONS = [
     "gpcReference": "GPC Esquema de Vacunación Nacional."
   },
   {
-    "specialty": "ped",
-    "tema": "Enfermedad Diarreica Aguda y Planes de Hidratación",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Paciente femenino de 13 meses de vida es vista en área de primer contacto. Su cuadro de 3 días se basa en diarrea pastosa y ahora líquida (más de 8 pañales/día sin sangre visible) y 4 cuadros de hemesis aguda (vómitos) la mañana de hoy al intentar beber sus tés. Pesa 9.5 kg actualmente. A la evaluación general: mucosas sublinguales blanquecinas y en extremo secas, saliva filante, y ausencia de lágrimas al emitir berrinches violentos de llanto ('irritabilidad franca'). Tolerancia a líquidos oral está abolida vomitando el 100%. Sus signos vitales: FC 145, FR 32. Su llenado capilar distal es de sólo 2 segundos.",
     "question": "¿Con qué condición nosológica de rehidratación la clasificaría la OMS según su evaluación inicial y cuál es el paso inmediato?",
     "options": [
@@ -1562,8 +1597,8 @@ const QUESTIONS = [
     "gpcReference": "GPC Prevención, Diagnóstico y Tratamiento de Diarrea Aguda y deshidratación (Planes OMS)."
   },
   {
-    "specialty": "ped",
-    "tema": "Infecciones de Vías Respiratorias Superiores",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Preescolar masculino de 3 años, asiste a consulta en enero, porque tiene escurrimiento y coriza desde hace 4 días y repentinamente desde anoche se queja de un inmenso dolor tirante sobre su oído derecho. Lloró toda la madrugada, y está febril cursando con 39.4 °C de temperatura. En la otoscopia revelas un conducto normal y una membrana timpánica del oído diestro muy roja, opaca, sumamente abombada expulsando el reflejo luminoso de su sitio, que ni siquiera se moviliza a la insuflación neumática. Nunca ha sido medicado contra estafilococos o neumococos recientemente.",
     "question": "¿Frente a una OMA aguda y severa por presentar fiebre mayor de 39 y dolor exacerbado documentado en un prescolar sin amoxicilinas de base o alergias pasadas, qué esquema farmacológico curativo inicial recomienda estipular la Guía de Práctica Clínica mexicana?",
     "options": [
@@ -1577,8 +1612,8 @@ const QUESTIONS = [
     "gpcReference": "GPC Diagnóstico y Tratamiento de la Otitis Media Aguda en la Edad Pediátrica."
   },
   {
-    "specialty": "ped",
-    "tema": "Urgencias Pediátricas",
+    "specialty": "cir",
+    "tema": "Quemaduras",
     "case": "Niño de 4 años de edad que sufre quemadura térmica accidental (por olla de frijoles hirvientes en cocineta de piso). El evento empapó brutalmente todo el miembro superior dominante derecho (brazo, antebrazo y mano por ambos bordes) y todo el volumen anatómico del tórax y abdomen por su cara anterior. El paramédico inspecciona la epidermis y dicta piel despellejada, húmeda, muy 'llorosa', intensamente hiperémica roja pero que inmediatamente se decolora/palidece si se presiona el lecho capilar; el paciente está gritando de exacerbado dolor.",
     "question": "¿De acuerdo con la valoración clínica por inspección general, cómo tipificamos la quemadura en cuanto a su superficie total y grado de progresión en hondura o estrato dérmico?",
     "options": [
@@ -1593,7 +1628,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Enfermedades transmitidas por Vector",
+    "tema": "EPOC / Asma",
     "case": "Paciente masculino de 28 años, originario y residente de Veracruz. Acude a urgencias con historia de 4 días de fiebre continua de 39.5°C, cefalea intensa de predominio retroocular, mialgias y artralgias incapacitantes ('fiebre quebrantahuesos'). El día de hoy refiere que la fiebre desapareció (defervescencia), pero súbitamente comenzó con dolor abdominal intenso y continuo, vómitos persistentes (más de 4 en 6 horas) y astenia profunda. A la exploración física se encuentra con palidez, frialdad distal, y se palpa hepatomegalia de 3 cm por debajo del reborde costal. Laboratorios: Hematocrito de 52% (elevación súbita respecto a uno basal previo de 44%), plaquetas de 35,000/mm3.",
     "question": "¿En qué etapa y clasificación clínica de la enfermedad se encuentra este paciente y cuál es la manifestación fisiopatológica principal que rige su gravedad actual?",
     "options": [
@@ -1608,7 +1643,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Cardiología: Cardiopatía Isquémica",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Hombre de 62 años, diabético con mal apego (HbA1c 9.5%) e hipertenso. Es traído por paramédicos tras 40 minutos de opresión toráxica retroesternal intensa, irradiada al brazo izquierdo y mandíbula, acompañada de diaforesis profusa y náusea clínica. A su llegada, sus signos son: TA 100/60 mmHg, FC 95 lpm, SatO2 93%. El electrocardiograma (ECG) inicial de 12 derivaciones en los primeros 10 minutos de la puerta revela una clara elevación del segmento ST de 3 mm en las derivaciones V1, V2, V3 y V4.",
     "question": "¿Qué arteria coronaria es casi con toda certeza el vaso causal (culpable) de este evento isquémico agudo detectado y qué cara anatómica del miocardio está sufriendo necrosis?",
     "options": [
@@ -1623,7 +1658,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Tuberculosis",
+    "tema": "EPOC / Asma",
     "case": "Masculino de 45 años de edad con antecedente de tabaquismo pesado y situación de hacinamiento por encarcelamiento previo hace 2 años. Acude al centro de salud aquejado por una tos crónica de 3 meses de evolución, que inicialmente era seca y ahora es purulenta, presentando hebras sanguinolentas (hemoptisis leve) durante las madrugadas. Presenta pérdida inexplicable de 12 kg, fiebre vespertina constante y fatiga severa. Muestra baciloscopías seriadas de esputo reportando BAAR con tres cruces (+++). Se decide iniciar inmediatamente Tratamiento Acortado Estrictamente Supervisado (TAES) fase intensiva primaria.",
     "question": "¿Cuál de los fármacos que integran el esquema de primera línea intensiva tradicional (Dotbal) en nuestro país, se le atribuye como principal efecto adverso la Neuritis Óptica (baja agudeza visual y alteración rojoverde)?",
     "options": [
@@ -1638,7 +1673,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Complicaciones Agudas de Diabetes",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Mujer joven de 22 años, recientemente diagnosticada con Diabetes Mellitus tipo 1, es llevada a urgencias en estado de estupor. Ha estado cursando con una infección urinaria descuidada. Presenta respiración profunda, laboriosa y suspirante (Respiración de Kussmaul), severa deshidratación, y aliento característico a 'manzana ácida'. La analítica sanguínea revela: Glucosa 480 mg/dL, pH arterial 7.15, HCO3 de 10 mEq/L, pCO2 de 25 mmHg. Cetonas séricas altamente positivas, potasio de 4.8 mEq/L y sodio de 136 mEq/L.",
     "question": "¿Dentro del protocolo estricto de manejo secuencial en la Unidad de Choque, cuál es la PRIMERA y más primordial indicación médica a iniciar simultáneamente con la evaluación de los laboratorios en este caso?",
     "options": [
@@ -1653,7 +1688,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Neurología: Enfermedad Vascular Cerebral",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "A las 14:00 horas, un varón de 68 años con fibrilación auricular tabaquística ingresa por la aparición de una hemiparesia braquiocrural derecha densa de instauración ultra-súbita que le colapsó, seguida de desviación ocular hacia la izquierda y afasia sensitivomotora global confirmada por el neurólogo. Sus familiares, altamente atentos, señalan que él estaba perfectamente sano sentándose a comer exactamente a las 12:50 del mediodía. Su nivel de TA de llegada es 170/95. La tomografía axial computarizada de cráneo sin contrate inicial (14:15 hrs) se reporta absolutamente libre de hemorragias en todos los cortes, sin mostrar tejido negro isquémico masivo agudo al momento.",
     "question": "¿De acuerdo con los consensos del tratamiento del stroke isquémico, qué criterio permite catalogar a este paciente como candidato de altísima prioridad indiscutible al uso de activador tisular del plasminógeno (Alteplasa IV / rt-PA)?",
     "options": [
@@ -1668,7 +1703,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Nefrología: Lesión Renal Aguda",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Campesino de 55 años, varón que laboró 12 horas seguidas en extremo calor estival sin hidratación bebible, y padeció una grave intoxicación alimentaria simultánea en la jornada presentando copiosas 15 evacuaciones líquidas abundantes y vómitos seguidos anoche. Ingresa letárgico, taquicárdico, turgencia cutánea de 'carpa' pobre e hipotensión de 80/50. En el balance registra únicamente anuria (< 50 ml) durante todo el día moderno. En los paraclínicos urgentes se arroja: Urea en la sangre multiplicada al triple, creatinina 3.0 mg/dL, Fracción Excretada de Sodio (FeNa) calculada del sedimento urinario en 0.4% (< 1%), relación NUS/Creatinina en sangre >20:1, su sedimento microscópico está en blanco careciendo de cilindros marrones u otros.",
     "question": "¿A qué cuadro fisiopatológico nefrítico encaja perfectamente esta clasificación funcional según características biomédicas, el FeNa aportado, sedimento transparente y la relación descrita?",
     "options": [
@@ -1683,7 +1718,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Gastroenterología: Cirrosis y sus complicaciones",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Varón de 50 años con enfermedad hepática en estadío avanzado documentada por etilismo de tres décadas. La familia llama a las emergencias al presenciarlo con múltiples crisis eméticas consistentes en franca Hematemesis masiva y coágulos rutilantes gruesos desde hace 60 min, produciendo compromiso y un episodio breve de síncope por baja perfusión. A la sala clínica: TA de 85/50, taquicárdico 120 pm. Estigmas hepáticos floridos generalizados con ascitis a tensión y nevos de araña aracniformes extensivos de pecho.",
     "question": "¿Cuál de las siguientes acciones y medidas preventivas farmacológicas (adicional al abordaje hemodinámico de reanimación y vía aérea forzosa por hipovolemia) dictaminan el abordaje internacional inicial para la probable etiología del sitio sangrante esofágico originado por su cirrosis?",
     "options": [
@@ -1698,7 +1733,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Reumatología: Artritis Reumatoide",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Femenina de 43 años de edad se atiende quejando de un largo transcurso de 8 meses de molestias dolorosas muy incapacitantes localizados a los largo de ambas manos corporales. Reporta rigidez dolorosísima extendida habitualmente 2 o 3 horas diarias exactas durante las mañanas luego de despertar de cama y que cede de tarde al moverse en casa. A la exploración exhaustiva: gran inflamación franca 'en huso' muy sensible localizada firmemente a las interfalángicas proximales (IFP) combinando articulaciones metacarpofalángicas de las dos palmas por simetría de afectación confirmada. Factor Reumatoide fuertemente positivo (título muy en alza).",
     "question": "¿Qué fármaco, de los clasificados como FAME biológicos / no biológicos (Fármacos Modificadores de la Enfermedad), se indica desde la primera piedra por todo el mundo para constituir la plataforma 'Ancla' fundacional en tratar clínicamente a estos pacientes de forma sostenida al largo plazo intentando bloquear el progreso anatómico destruyente por el curso de esta afección general articular?",
     "options": [
@@ -1713,7 +1748,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Nefrología: Enfermedad Renal Crónica",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Hombre de 58 años, diabético e hipertenso, inicia hace 90 minutos con dolor opresivo retroesternal irradiado a brazo izquierdo, acompañado de diaforesis y náusea. TA 140/90 mmHg, FC 96 lpm. ECG muestra elevación del ST en II, III y aVF. Hospital sin sala de hemodinamia; el centro con angioplastia más cercano está a 3 horas.",
     "question": "¿Cuál es el diagnóstico?",
@@ -1729,8 +1764,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "ped",
-    "tema": "Nefrología: Enfermedad Renal Crónica",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "difficulty": "alta",
     "case": "Niño de 7 años con antecedente de asma, presenta disnea progresiva tras infección viral. Habla en frases cortas, FR 38/min, tiraje intercostal, sibilancias audibles sin estetoscopio, SatO₂ 89%.",
     "question": "¿Cómo se clasifica la crisis?",
@@ -1747,7 +1782,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Pancreatitis Aguda",
+    "tema": "Patología Biliar",
     "difficulty": "alta",
     "case": "Hombre de 45 años, etilista crónico, presenta dolor epigástrico intenso irradiado a espalda, vómito persistente. Lipasa 6 veces el límite superior. TA 100/60 mmHg, FC 112 lpm. BUN 32 mg/dL.",
     "question": "¿Cuál es el diagnóstico?",
@@ -1763,8 +1798,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "gyo",
-    "tema": "Cáncer de endometrio",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Paciente de 65 años, obesa y diabética, consulta por sangrado transvaginal postmenopáusico de 2 semanas de evolución. El ultrasonido transvaginal reporta un endometrio de 12 mm.",
     "question": "Principal factor de riesgo en esta paciente:",
     "options": [
@@ -1780,7 +1815,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Nefrología: Enfermedad Renal Crónica",
+    "tema": "Diabetes Mellitus",
     "case": "Hombre de 72 años, DM2 y HAS, TFG 25 ml/min. Acude por astenia y palidez. Hb 9.2 g/dL, ferritina 150 ng/ml.",
     "question": "¿Cuál es el tratamiento inicial para este paciente?",
     "options": [
@@ -1795,8 +1830,8 @@ const QUESTIONS = [
     "difficulty": "media"
   },
   {
-    "specialty": "ped",
-    "tema": "Patología Gastrointestinal",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Lactante de 8 meses presenta llanto intenso, vómito y evacuación con moco y sangre ('jalea de grosella'). Masa palpable en cuadrante superior derecho. USG reporta imagen en 'diana'.",
     "question": "¿Cuál es el diagnóstico más probable?",
     "options": [
@@ -1827,8 +1862,8 @@ const QUESTIONS = [
     "difficulty": "alta"
   },
   {
-    "specialty": "urg",
-    "tema": "Manejo inicial del trauma (ATLS)",
+    "specialty": "cir",
+    "tema": "ATLS / Trauma",
     "case": "Masculino de 28 años tras accidente, TA 70/40 mmHg, FC 128 lpm, abdomen distendido y doloroso.",
     "question": "¿Cuál es la prioridad inmediata?",
     "options": [
@@ -1843,8 +1878,8 @@ const QUESTIONS = [
     "difficulty": "alta"
   },
   {
-    "specialty": "ped",
-    "tema": "Estenosis Hipertrófica del Píloro",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Lactante de 3 semanas con vómito gástrico en proyectil y masa olivácea en epigastrio.",
     "question": "¿Cuál es el trastorno hidroelectrolítico esperado?",
     "options": [
@@ -1875,8 +1910,8 @@ const QUESTIONS = [
     "difficulty": "media"
   },
   {
-    "specialty": "gyo",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Mujer de 30 años con amenorrea de 7 semanas, dolor pélvico unilateral y manchado transvaginal. β-hCG positiva. USG transvaginal sin saco gestacional intrauterino y masa anexial derecha.",
     "question": "Diagnóstico más probable:",
@@ -1909,8 +1944,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "ped",
-    "tema": "Nefrología: Enfermedad Renal Crónica",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Niño de 5 años con edema generalizado palpebral. Proteinuria >50 mg/kg/día, hipoalbuminemia 2.1 g/dL, hipercolesterolemia 300 mg/dL.",
     "question": "Complicación trombótica más frecuente:",
     "options": [
@@ -1942,7 +1977,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Meningitis bacteriana aguda",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Hombre de 19 años con fiebre, cefalea y rigidez de nuca. LCR: leucocitos 1,500 (90% PMN), glucosa 20, proteínas 250.",
     "question": "Diagnóstico sugerido por LCR:",
     "options": [
@@ -1958,7 +1993,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Varón de 52 años con lesión pigmentada en espalda, asimetría, bordes irregulares, color heterogéneo y 8 mm.",
     "question": "Marcador histopronóstico más importante:",
     "options": [
@@ -1974,7 +2009,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Tormenta tiroidea",
+    "tema": "Hipertiroidismo",
     "case": "Mujer de 35 años con hipertiroidismo mal controlado presenta fiebre 40°C, taquicardia 150 lpm y agitación tras infección.",
     "question": "Manejo inicial correcto:",
     "options": [
@@ -1989,8 +2024,8 @@ const QUESTIONS = [
     "difficulty": "alta"
   },
   {
-    "specialty": "cir",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "case": "Mujer de 68 años con antecedente de cirugías abdominales, presenta dolor tipo cólico, distensión y vómito fecaloide.",
     "question": "Conducta inicial en paciente estable:",
     "options": [
@@ -2006,7 +2041,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Colecistitis aguda",
+    "tema": "Patología Biliar",
     "case": "Mujer de 45 años con dolor en hipocondrio derecho, fiebre y signo de Murphy positivo. USG reporta pared vesicular de 5mm.",
     "question": "¿Cuál es el estudio inicial de elección?",
     "options": [
@@ -2021,8 +2056,8 @@ const QUESTIONS = [
     "difficulty": "facil"
   },
   {
-    "specialty": "cir",
-    "tema": "Pancreatitis Aguda",
+    "specialty": "mi",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "case": "Mujer de 45 años con dolor abdominal en cinturón y vómito. TA 90/60. PCR 160 mg/L a las 48h.",
     "question": "Criterio que define gravedad:",
     "options": [
@@ -2053,8 +2088,8 @@ const QUESTIONS = [
     "difficulty": "media"
   },
   {
-    "specialty": "gyo",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "specialty": "mi",
+    "tema": "Diabetes Mellitus",
     "difficulty": "alta",
     "case": "Mujer de 62 años, menopausia a los 50, obesa y diabética, consulta por sangrado transvaginal escaso indoloro. USG transvaginal muestra grosor endometrial de 16 mm.",
     "question": "Principal factor de riesgo en esta paciente:",
@@ -2070,8 +2105,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "Nefrología: Enfermedad Renal Crónica",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "difficulty": "alta",
     "case": "Hombre de 64 años con antecedente de diabetes mellitus tipo 2 e hipertensión de 20 años de evolución acude a consulta por fatiga progresiva y disminución de la tolerancia al ejercicio. TA 150/95 mmHg. Presenta palidez de tegumentos y edema leve en extremidades inferiores. Laboratorio: Hb 8.9 g/dL, VCM 88 fL, creatinina 3.2 mg/dL, TFG estimada 22 ml/min/1.73 m², ferritina normal, saturación de transferrina normal.",
     "question": "Pregunta. ¿Cuál es el manejo más adecuado de la anemia en este paciente?",
@@ -2087,8 +2122,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "ped",
-    "tema": "Patología Gastrointestinal",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Lactante de 8 meses previamente sano presenta episodios súbitos de llanto intenso con flexión de piernas sobre el abdomen, vómito y posteriormente evacuación con moco y sangre. A la exploración se palpa masa en cuadrante superior derecho. USG reporta imagen en “diana”.",
     "question": "¿Cuál es el diagnóstico más probable?",
@@ -2104,8 +2139,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "gyo",
-    "tema": "Nefrología: Enfermedad Renal Crónica",
+    "specialty": "mi",
+    "tema": "Hipotiroidismo",
     "difficulty": "alta",
     "case": "Mujer de 23 años con antecedente de pérdida de peso importante en los últimos 6 meses por dieta restrictiva y ejercicio excesivo. Refiere ausencia de menstruación desde hace 5 meses. β-hCG negativa. TSH y prolactina normales. FSH y LH bajas.",
     "question": "Pregunta. ¿Cuál es la causa más probable?",
@@ -2121,8 +2156,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "cir",
-    "tema": "Isquemia Mesentérica",
+    "specialty": "mi",
+    "tema": "Fibrilación Auricular",
     "difficulty": "muy-alta",
     "case": "Hombre de 72 años con fibrilación auricular sin anticoagulación presenta dolor abdominal súbito intenso “desproporcionado” a la exploración física. Abdomen blando, sin datos claros de irritación peritoneal. Lactato elevado.",
     "question": "Diagnóstico más probable:",
@@ -2139,7 +2174,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Medicina Interna – Hipotiroidismo primario",
+    "tema": "Hipotiroidismo",
     "difficulty": "media",
     "case": "Mujer de 45 años con aumento de peso, intolerancia al frío, estreñimiento y piel seca. FC 54 lpm. Laboratorio: TSH 18 mUI/L, T4 libre baja.",
     "question": "Pregunta. Tratamiento inicial indicado:",
@@ -2155,8 +2190,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "specialty": "gyo",
+    "tema": "CACU (Oncología Ginecológica)",
     "difficulty": "muy-alta",
     "case": "Mujer de 41 años, G4P4, inicio de vida sexual a los 16 años, múltiples parejas sexuales. Refiere que su última citología fue hace 6 años. Acude para chequeo. Se realiza prueba de VPH que resulta positiva para genotipo 16. Citología reporta NILM (negativa para lesión intraepitelial). No síntomas.",
     "question": "¿Cuál es la conducta más adecuada?",
@@ -2172,8 +2207,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "ped",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "RN de 10 días con ictericia persistente, hepatoesplenomegalia y microcefalia. Presenta convulsiones. USG transfontanelar muestra calcificaciones intracraneales difusas. Madre refiere haber tenido contacto frecuente con gatos durante el embarazo.",
     "question": "Diagnóstico más probable:",
@@ -2189,8 +2224,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "Infecciones de Vías Respiratorias Superiores",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "difficulty": "alta",
     "case": "Niño de 8 años con antecedente de faringitis hace 3 semanas, presenta edema palpebral, hematuria macroscópica y oliguria. TA 135/85 mmHg. Laboratorio: creatinina ligeramente elevada, C3 disminuido.",
     "question": "Diagnóstico más probable:",
@@ -2206,8 +2241,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "ATLS P1 – Manejo inicial del trauma",
+    "specialty": "gyo",
+    "tema": "CACU (Oncología Ginecológica)",
     "difficulty": "muy-alta",
     "case": "Hombre de 25 años sufre accidente automovilístico. Llega consciente pero agitado, con estridor audible y hematoma cervical expansivo. TA 100/60 mmHg, FC 120 lpm.",
     "question": "Pregunta. ¿Cuál es la prioridad inmediata?",
@@ -2224,7 +2259,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Reumatología – Vasculitis (Granulomatosis con poliangitis)",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "difficulty": "muy-alta",
     "case": "Hombre de 48 años con sinusitis crónica, epistaxis recurrente, hemoptisis y hematuria. Creatinina elevada. ANCA positivo tipo c-ANCA.",
     "question": "Diagnóstico más probable:",
@@ -2241,7 +2276,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Nefrología: Enfermedad Renal Crónica",
+    "tema": "Diabetes Mellitus",
     "difficulty": "muy-alta",
     "case": "Mujer de 52 años con DM2 desde hace 6 años en tratamiento con metformina a dosis máxima tolerada. IMC 34 kg/m². HbA1c 9.2%. TFG 85 ml/min. Refiere antecedente de infarto hace 2 años. No hipoglucemias previas.",
     "question": "¿Cuál es el siguiente fármaco más indicado?",
@@ -2257,8 +2292,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "Choque Obstétrico y Hemorragia Obstétrica",
+    "specialty": "gyo",
+    "tema": "Hemorragia Obstétrica",
     "difficulty": "alta",
     "case": "Mujer de 24 años, G2P2, 30 minutos posterior a parto vaginal eutócico presenta sangrado abundante. TA 85/50 mmHg, FC 130 lpm. Útero aumentado de tamaño y flácido a la palpación. Placenta completa.",
     "question": "Diagnóstico más probable:",
@@ -2274,8 +2309,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "ped",
-    "tema": "Cardiopatías Congénitas",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "difficulty": "alta",
     "case": "Lactante de 3 meses con diaforesis al alimentarse, pobre ganancia ponderal y taquipnea. A la auscultación presenta soplo holosistólico en borde esternal izquierdo inferior. Rx muestra cardiomegalia y aumento de flujo pulmonar.",
     "question": "Diagnóstico más probable:",
@@ -2292,7 +2327,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Urología P2 – Hiperplasia prostática benigna",
+    "tema": "Cardiopatía Isquémica",
     "difficulty": "alta",
     "case": "Hombre de 68 años con chorro urinario débil, nicturia y sensación de vaciamiento incompleto. Tacto rectal: próstata aumentada de tamaño, lisa y elástica. PSA 2.5 ng/ml. No hematuria.",
     "question": "Tratamiento inicial más adecuado:",
@@ -2309,7 +2344,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Neurología: Enfermedad Vascular Cerebral",
+    "tema": "Fibrilación Auricular",
     "difficulty": "muy-alta",
     "case": "Mujer de 70 años con fibrilación auricular sin anticoagulación presenta hemiparesia izquierda súbita y desviación de mirada a la derecha. Inicio hace 2 horas. TA 150/90 mmHg. TAC simple sin hemorragia.",
     "question": "Conducta inmediata:",
@@ -2325,8 +2360,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "Tuberculosis",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "difficulty": "alta",
     "case": "Hombre de 39 años, pérdida de peso de 6 kg en 2 meses, tos productiva con hemoptisis ocasional y sudoración nocturna. Vive con 3 personas en casa pequeña. Rx de tórax muestra infiltrado apical derecho con cavitación. Baciloscopía seriada positiva.",
     "question": "¿Cuál es el esquema inicial indicado?",
@@ -2343,7 +2378,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Nefrología: Enfermedad Renal Crónica",
+    "tema": "VIH / SIDA",
     "difficulty": "alta",
     "case": "Hombre de 32 años recién diagnosticado con VIH. CD4: 120 células/mm³. Carga viral elevada. No síntomas respiratorios. No tratamiento previo.",
     "question": "Pregunta. ¿Qué profilaxis debe iniciarse además de TAR?",
@@ -2360,7 +2395,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Enfermedades transmitidas por Vector",
+    "tema": "EPOC / Asma",
     "difficulty": "alta",
     "case": "Mujer de 25 años con fiebre de 4 días, mialgias intensas, cefalea retroocular y exantema. Vive en zona endémica. Laboratorio: plaquetas 95,000, hematocrito elevado respecto a basal. Dolor abdominal leve.",
     "question": "¿Qué dato indica probable progresión a dengue con signos de alarma?",
@@ -2376,8 +2411,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "Zoonosis",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "difficulty": "muy-alta",
     "case": "Hombre de 50 años sufre herida punzante con clavo oxidado. No recuerda última vacuna. A los días presenta trismus, rigidez muscular generalizada y espasmos dolorosos.",
     "question": "Diagnóstico más probable:",
@@ -2394,7 +2429,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Patología Respiratoria Neonatal",
+    "tema": "Neumonías",
     "difficulty": "alta",
     "case": "Mujer de 82 años hospitalizada por neumonía comienza con desorientación fluctuante, alteración del ciclo sueño-vigilia y pensamiento incoherente. No antecedentes de demencia.",
     "question": "Diagnóstico más probable:",
@@ -2411,7 +2446,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Psiquiatría – Trastorno depresivo mayor",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Mujer de 29 años acude por 2 meses de ánimo deprimido la mayor parte del día, anhedonia, fatiga, hiporexia, insomnio de conciliación y sentimientos de inutilidad. Refiere dificultad para concentrarse en su trabajo. Niega consumo de sustancias. No antecedentes psiquiátricos. No ideación suicida activa.",
     "question": "Diagnóstico más probable:",
@@ -2428,7 +2463,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "tema": "Fibrilación Auricular",
     "difficulty": "alta",
     "case": "Hombre de 61 años con lesión pigmentada en espalda que ha cambiado de tamaño y color en los últimos 6 meses. Bordes irregulares, diámetro 8 mm, asimétrica y con variación cromática. No dolor.",
     "question": "Criterio clínico que aumenta sospecha de malignidad:",
@@ -2461,8 +2496,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "urg",
-    "tema": "Urgencias – Cetoacidosis diabética",
+    "specialty": "mi",
+    "tema": "Diabetes Mellitus",
     "difficulty": "muy-alta",
     "case": "Hombre de 22 años con DM1 que suspendió insulina. Presenta polidipsia, vómito y respiración profunda. Glucosa 420 mg/dL, pH 7.15, bicarbonato 10 mEq/L, cetonas positivas.",
     "question": "Diagnóstico:",
@@ -2478,8 +2513,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "ped",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "difficulty": "alta",
     "case": "Niño de 8 años con antecedente de asma intermitente presenta disnea progresiva, sibilancias audibles, uso de músculos accesorios y saturación 91%. No cianosis. Puede hablar en frases cortas.",
     "question": "Clasificación de la crisis:",
@@ -2496,7 +2531,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Nefrología: Enfermedad Renal Crónica",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Hombre de 45 años con edema en miembros inferiores y párpados. Proteinuria 4.5 g/24h, albúmina 2.3 g/dL, colesterol elevado. Creatinina normal.",
     "question": "Diagnóstico sindromático:",
@@ -2513,7 +2548,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Cardiología – Síndrome coronario agudo con elevación del ST",
+    "tema": "Cardiopatía Isquémica",
     "difficulty": "alta",
     "case": "Hombre de 58 años con dolor opresivo retroesternal de 1 hora de evolución irradiado a brazo izquierdo. ECG: elevación del ST en DII, DIII y aVF. TA 100/70 mmHg.",
     "question": "Diagnóstico:",
@@ -2530,7 +2565,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Obstetricia – Preeclampsia con criterios de severidad",
+    "tema": "Vigilancia y Control Prenatal",
     "difficulty": "muy-alta",
     "case": "Primigesta de 34 semanas con cefalea intensa, fosfenos y edema. TA 170/110 mmHg en dos mediciones. Proteinuria 3+. Plaquetas 95,000.",
     "question": "Diagnóstico:",
@@ -2546,8 +2581,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "Medicina Crítica – Choque séptico",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "difficulty": "muy-alta",
     "case": "Hombre de 66 años con DM2 e hipertensión acude por fiebre, disuria y deterioro del estado de alerta. TA 82/50 mmHg, FC 120 lpm, FR 28 rpm, Temp 39°C. Lactato 4.8 mmol/L. Leucocitosis con neutrofilia. EGO con piuria abundante.",
     "question": "Diagnóstico más probable:",
@@ -2564,7 +2599,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Pancreatitis Aguda",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Hombre de 48 años con dolor epigástrico intenso irradiado a espalda posterior a ingesta alcohólica. Lipasa 5 veces el límite superior. A las 48 horas presenta hipotensión, creatinina elevada y PaO2 55 mmHg.",
     "question": "Criterio que define gravedad:",
@@ -2580,8 +2615,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "difficulty": "alta",
     "case": "Mujer de 19 años con fiebre, cefalea intensa y rigidez de nuca. Presenta fotofobia y vómito. TA estable. No focalización neurológica.",
     "question": "Conducta inmediata:",
@@ -2615,7 +2650,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Endocrinología – Tormenta tiroidea",
+    "tema": "Hipertiroidismo",
     "difficulty": "muy-alta",
     "case": "Mujer de 35 años con antecedente de hipertiroidismo mal controlado presenta fiebre 40°C, taquicardia 150 lpm, agitación y vómito posterior a infección respiratoria.",
     "question": "Diagnóstico:",
@@ -2631,8 +2666,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "cir",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Hombre de 72 años con antecedente de laparotomía por úlcera perforada hace 10 años. Acude por dolor abdominal tipo cólico, distensión progresiva, vómito fecaloide y ausencia de evacuaciones y gases desde hace 24 horas. TA 110/70 mmHg, FC 105 lpm. Abdomen distendido, timpanismo generalizado, ruidos aumentados en tono metálico. Rx muestra niveles hidroaéreos múltiples y dilatación de asas de intestino delgado.",
     "question": "Diagnóstico más probable:",
@@ -2649,7 +2684,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia Uterina Anormal",
+    "tema": "CACU (Oncología Ginecológica)",
     "difficulty": "alta",
     "case": "Mujer de 48 años con sangrado uterino abundante e irregular desde hace 6 meses. IMC 33 kg/m², nuligesta. USG transvaginal: endometrio de 16 mm. Hb 10 g/dL.",
     "question": "Factor de riesgo principal para patología endometrial maligna:",
@@ -2666,7 +2701,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Cardiología – Insuficiencia cardiaca con fracción de eyección reducida",
+    "tema": "Cardiopatía Isquémica",
     "difficulty": "muy-alta",
     "case": "Hombre de 64 años con antecedente de IAM previo, disnea de pequeños esfuerzos y ortopnea. Ecocardiograma con FEVI 30%. TA 130/80 mmHg, creatinina normal.",
     "question": "Grupo farmacológico que reduce mortalidad:",
@@ -2683,7 +2718,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Patología Neonatal Infecciosa",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Recién nacido de 38 semanas, madre con ruptura prolongada de membranas 22 horas y fiebre intraparto. A las 12 horas de vida presenta dificultad respiratoria, letargia y mala perfusión.",
     "question": "Factor de riesgo más importante en este caso:",
@@ -2700,7 +2735,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Hemorragias del Primer Trimestre",
+    "tema": "EPOC / Asma",
     "difficulty": "muy-alta",
     "case": "Mujer de 70 años con antecedente de uso reciente de diurético tiazídico presenta somnolencia y náusea. Na sérico 118 mEq/L. Osmolaridad plasmática baja.",
     "question": "Tipo de hiponatremia:",
@@ -2717,7 +2752,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Mujer de 42 años, usuaria de anticonceptivos orales, consulta por disnea súbita y dolor torácico pleurítico. FC 118 lpm, TA 110/70 mmHg, SatO₂ 89%. Dímero D elevado. Angiotomografía muestra defecto de llenado en arteria pulmonar segmentaria derecha.",
     "question": "Diagnóstico:",
@@ -2751,7 +2786,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Nefrología: Enfermedad Renal Crónica",
+    "tema": "VIH / SIDA",
     "difficulty": "muy-alta",
     "case": "Mujer de 38 años con obesidad central, cara redondeada, equimosis fácil y debilidad proximal. TA 150/95 mmHg. Cortisol libre urinario elevado.",
     "question": "Estudio inicial para confirmar hipercortisolismo:",
@@ -2767,8 +2802,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "gyo",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Gestante de 32 semanas con contracciones regulares cada 5 minutos y dilatación cervical de 3 cm. Membranas íntegras. Sin datos de infección.",
     "question": "Diagnóstico:",
@@ -2785,7 +2820,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Mujer de 50 años con cefalea súbita “en trueno”, la peor de su vida, acompañada de vómito y rigidez de nuca. TAC muestra sangre en espacio subaracnoideo.",
     "question": "Causa más frecuente:",
@@ -2802,7 +2837,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Hemorragias del Primer Trimestre",
+    "tema": "Diabetes Mellitus",
     "difficulty": "muy-alta",
     "case": "Hombre de 68 años con DM2 mal controlada es traído por confusión progresiva. Refiere poliuria y polidipsia desde hace una semana. TA 95/60 mmHg, FC 110 lpm. Glucosa 780 mg/dL, pH 7.38, bicarbonato 22 mEq/L, cetonas negativas, osmolaridad plasmática elevada.",
     "question": "Diagnóstico más probable:",
@@ -2819,7 +2854,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Cirugía – Colecistitis aguda",
+    "tema": "Patología Biliar",
     "difficulty": "alta",
     "case": "Mujer de 44 años con dolor en hipocondrio derecho de 24 horas, fiebre y náusea. Signo de Murphy positivo. USG: vesícula con pared engrosada y lito impactado en cuello vesicular.",
     "question": "Diagnóstico:",
@@ -2836,7 +2871,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Mujer de 26 años con petequias y equimosis espontáneas. Plaquetas 18,000/mm³. Hb y leucocitos normales. No esplenomegalia.",
     "question": "Diagnóstico más probable:",
@@ -2853,7 +2888,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias del Tercer Trimestre",
+    "tema": "Hemorragia Obstétrica",
     "difficulty": "muy-alta",
     "case": "Gestante de 36 semanas con dolor abdominal súbito, útero hipertónico y sangrado vaginal oscuro. FCF con desaceleraciones tardías.",
     "question": "Diagnóstico más probable:",
@@ -2887,7 +2922,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Trastornos ácido–base mixtos",
+    "tema": "Diabetes Mellitus",
     "difficulty": "muy-alta",
     "case": "Hombre de 30 años con antecedente de DM1 acude por vómito intenso y respiración profunda. Gasometría: pH 7.48, HCO₃ 18 mEq/L, PaCO₂ 25 mmHg. Na 138, Cl 100.",
     "question": "Trastorno primario:",
@@ -2904,7 +2939,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "alta",
     "case": "Mujer de 75 años con diarrea abundante por 4 días. TA 85/55 mmHg. Creatinina aumenta de 0.9 a 2.1 mg/dL. EGO sin cilindros patológicos. FeNa 0.5%.",
     "question": "Tipo de lesión renal:",
@@ -2921,7 +2956,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Nefrología: Enfermedad Renal Crónica",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Hombre de 62 años con ERC estadio 4 acude por debilidad muscular. K sérico 6.8 mEq/L. ECG con ondas T picudas y QRS ligeramente ensanchado.",
     "question": "Medida inmediata para estabilizar membrana miocárdica:",
@@ -2937,8 +2972,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "Nefrología: Enfermedad Renal Crónica",
+    "specialty": "cir",
+    "tema": "Urología",
     "difficulty": "alta",
     "case": "Mujer de 55 años con litiasis renal recurrente y estreñimiento. Calcio 11.8 mg/dL, PTH elevada.",
     "question": "Diagnóstico más probable:",
@@ -2954,8 +2989,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "Infecciones de Vías Respiratorias Superiores",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "difficulty": "muy-alta",
     "case": "Hombre de 18 años con antecedente de faringitis hace 2 semanas presenta edema facial, hematuria y TA 150/95 mmHg. Creatinina ligeramente elevada.",
     "question": "Diagnóstico más probable:",
@@ -2972,7 +3007,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "tema": "Lupus Eritematoso Sistémico",
     "difficulty": "muy-alta",
     "case": "Hombre de 54 años, antecedente de DM2 e hipertensión, ingresa por neumonía adquirida en la comunidad confirmada por infiltrado lobar derecho y leucocitosis. A las 48 horas presenta deterioro respiratorio progresivo con disnea intensa, taquipnea de 34 rpm y saturación 82% con mascarilla reservorio a 15 L/min. Se decide intubación orotraqueal. Gasometría con FiO₂ 100% muestra PaO₂ 60 mmHg. Rx de tórax con infiltrados bilaterales difusos no explicados por falla cardiaca. Ecocardiograma sin datos de disfunción ventricular significativa.",
     "question": "Diagnóstico más probable:",
@@ -2988,8 +3023,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "Pancreatitis Aguda",
+    "specialty": "cir",
+    "tema": "Patología Biliar",
     "difficulty": "muy-alta",
     "case": "Mujer de 47 años con antecedente de colelitiasis presenta dolor epigástrico intenso irradiado a espalda, náusea y vómito. Lipasa 6 veces el límite normal. A las 24 horas desarrolla hipotensión leve, oliguria y creatinina en ascenso. Hematocrito elevado y BUN aumentado. USG muestra litos vesiculares sin dilatación de vía biliar.",
     "question": "Etiología más probable:",
@@ -3006,7 +3041,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Neurología – Evento vascular cerebral isquémico y ventana terapéutica",
+    "tema": "Fibrilación Auricular",
     "difficulty": "muy-alta",
     "case": "extendida Hombre de 63 años con antecedente de fibrilación auricular sin anticoagulación es encontrado con hemiplejia derecha y afasia. Última vez visto sano hace 7 horas. TAC simple sin hemorragia. Angiotomografía muestra oclusión de arteria cerebral media izquierda proximal con tejido de penumbra viable en estudio de perfusión.",
     "question": "¿Es candidato a trombólisis IV estándar?",
@@ -3023,7 +3058,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Obstetricia – Corioamnionitis",
+    "tema": "Vigilancia y Control Prenatal",
     "difficulty": "muy-alta",
     "case": "Gestante de 30 semanas con ruptura prematura de membranas desde hace 24 horas presenta fiebre 38.8°C, taquicardia materna y fetal, útero doloroso a la palpación y líquido amniótico fétido.",
     "question": "Diagnóstico más probable:",
@@ -3039,8 +3074,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "difficulty": "muy-alta",
     "case": "Hombre de 62 años con antecedente de hipertensión y tabaquismo acude por dolor torácico opresivo de 3 horas de evolución. ECG con elevación del ST en V1–V4. Se realiza angioplastia primaria con reperfusión exitosa. A las 6 horas evoluciona con hipotensión (TA 78/50 mmHg), piel fría, oliguria y estertores bibasales. FC 120 lpm. Lactato elevado. Ecocardiograma muestra FEVI 25% con hipocinesia anterior extensa.",
     "question": "Diagnóstico actual:",
@@ -3056,8 +3091,8 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
-    "tema": "Gastroenterología – Colangitis aguda",
+    "specialty": "cir",
+    "tema": "Patología Biliar",
     "difficulty": "muy-alta",
     "case": "Mujer de 58 años con antecedente de colelitiasis acude por dolor en hipocondrio derecho, fiebre y ictericia progresiva. TA 95/60 mmHg, FC 115 lpm. Laboratorio con bilirrubina directa elevada y fosfatasa alcalina aumentada. USG con dilatación de vía biliar.",
     "question": "Diagnóstico más probable:",
@@ -3074,7 +3109,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "Neurología – Estado epiléptico convulsivo",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "difficulty": "media",
     "case": "Hombre de 28 años sin antecedentes conocidos presenta crisis tónico-clónica generalizada que dura más de 7 minutos sin recuperación de conciencia. En urgencias continúa convulsionando.",
     "question": "Diagnóstico:",
@@ -3091,7 +3126,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Reumatología: Lupus Eritematoso Sistémico",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "difficulty": "muy-alta",
     "case": "Gestante de 35 semanas con antecedente de preeclampsia presenta dolor en epigastrio intenso, náusea y malestar general. TA 165/105 mmHg. Laboratorio: AST y ALT elevadas, plaquetas 75,000/mm³, DHL elevada.",
     "question": "Diagnóstico más probable:",
@@ -3108,7 +3143,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Cirugía abdominal",
+    "tema": "Apendicitis Aguda",
     "subtema": "Apendicitis aguda",
     "difficulty": "Media",
     "case": "Paciente masculino de 25 años acude por dolor abdominal de 12 horas de evolución que inició en región periumbilical y posteriormente migró a fosa ilíaca derecha. Presenta náusea y anorexia. A la exploración física: T 37.8°C, FC 98 lpm. Abdomen con resistencia muscular voluntaria, signo de McBurney positivo, signo de Rovsing positivo y dolor a la descompresión (signo de Blumberg). Exámenes de laboratorio revelan leucocitosis de 14,000/mm³ con neutrofilia del 85%.",
@@ -3141,7 +3176,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Patología biliar",
+    "tema": "Patología Biliar",
     "subtema": "Colecistitis aguda",
     "difficulty": "Alta",
     "case": "Paciente femenina de 42 años, multípara, con IMC de 32 kg/m². Acude a urgencias por dolor intenso en hipocondrio derecho de 14 horas de evolución, irradiado a escápula derecha, acompañado de náusea y vómito de contenido biliar. Refiere fiebre no cuantificada en casa. A la exploración: T 38.5°C, FC 105 lpm, TA 110/70 mmHg. Ictericia leve en escleras. Abdomen doloroso a la palpación profunda en hipocondrio derecho con cese de la inspiración (signo de Murphy positivo) y masa palpable. Laboratorios: Leucocitos 16,000/mm³, PCR 50 mg/L, Bilirrubina total 2.1 mg/dL.",
@@ -3173,8 +3208,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P1",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "Trauma torácico (Neumotórax a tensión)",
     "difficulty": "Media",
     "case": "Masculino de 28 años ingresa a urgencias tras sufrir volcadura en vehículo automotor. Se encuentra agitado, con cianosis peribucal y franca dificultad respiratoria. Exploración física: TA 80/50 mmHg, FC 130 lpm, FR 34 rpm, SatO2 82%. Presenta ingurgitación yugular y la tráquea se encuentra desviada a la izquierda. En el hemitórax derecho se observan movimientos asimétricos, ausencia de ruidos respiratorios e hiperresonancia a la percusión.",
@@ -3207,7 +3242,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Hernias",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "Hernia inguinal",
     "difficulty": "Baja",
     "case": "Masculino de 65 años, trabajador de la construcción, acude a consulta por un abultamiento en la región inguinal derecha que aumenta de tamaño al toser o levantar objetos pesados y disminuye en decúbito supino. Ocasionalmente presenta dolor leve tipo pesantez. A la exploración física: en bipedestación se observa asimetría inguinal derecha; a la maniobra de Valsalva protruye una masa irreductible espontáneamente pero reductible a la manipulación suave. Al tacto del anillo inguinal superficial, el impulso se siente en la punta del dedo explorador.",
@@ -3240,7 +3275,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Quemaduras / Golpe de calor / Hipotermia",
+    "tema": "Quemaduras",
     "subtema": "Reanimación hídrica en paciente quemado",
     "difficulty": "Alta",
     "case": "Masculino de 35 años, peso de 70 kg, es rescatado de un incendio estructural. Presenta quemaduras de segundo y tercer grado que abarcan toda la cara anterior del tronco, toda la extremidad superior derecha y la cara anterior de la extremidad inferior izquierda. Es ingresado a sala de choque para manejo avanzado.",
@@ -3272,8 +3307,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Urología P2",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Litiasis renal",
     "difficulty": "Media",
     "case": "Masculino de 42 años acude a urgencias por presentar dolor de inicio súbito, muy intenso, tipo cólico en la región lumbar derecha que se irradia hacia el flanco y el testículo ipsilateral. El paciente se encuentra inquieto, diaforético y no encuentra una posición que alivie el dolor. Refiere náuseas y ha presentado un episodio de emesis. A la exploración física: signos vitales dentro de parámetros normales, abdomen blando, depresible, sin datos de irritación peritoneal, puñopercusión derecha francamente positiva. Examen general de orina con microhematuria.",
@@ -3305,8 +3340,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología cámara posterior",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "Glaucoma de ángulo cerrado agudo",
     "difficulty": "Alta",
     "case": "Femenina de 65 años acude a urgencias por dolor ocular severo en el ojo derecho de 3 horas de evolución, de inicio súbito tras salir de una sala de cine. Refiere visión borrosa, percepción de \"halos de colores\" alrededor de las luces, cefalea hemicraneal ipsilateral, náuseas y vómito. A la exploración oftalmológica básica: ojo derecho con hiperemia conjuntival importante (ojo rojo), córnea de aspecto opaco (edematosa) y pupila en semimidriasis arreactiva a la luz. A la palpación bidigital, el globo ocular derecho se percibe francamente pétreo en comparación con el izquierdo.",
@@ -3371,8 +3406,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología prostática",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Hiperplasia Prostática Benigna (HPB)",
     "difficulty": "Alta",
     "case": "Masculino de 68 años acude a consulta de primer nivel por presentar síntomas del tracto urinario inferior (STUI) de 2 años de evolución. Refiere nicturia (se levanta 4 veces por la noche), disminución en la fuerza y calibre del chorro urinario, pujo miccional, intermitencia y sensación de vaciamiento incompleto. Niega hematuria, pérdida de peso o dolor óseo. Al tacto rectal: esfínter normotónico, próstata de aproximadamente 50 gramos, simétrica, de consistencia ahulada (adenomatosa), bordes bien delimitados, sin nódulos palpables, indolora. Antígeno Prostático Específico (APE) en 2.1 ng/mL, EGO sin alteraciones. Femenina de 52 años, con antecedente de colelitiasis no tratada. Acude a urgencias por dolor abdominal de inicio súbito, transfictivo, localizado en epigastrio con irradiación en hemicinturón hacia la espalda, de 12 horas de evolución. Presenta náuseas y múltiples episodios de vómito gastroalimentario que no alivian el dolor. A la exploración física: FC 115 lpm, FR 22 rpm, TA 100/65 mmHg, temperatura 37.9°C. Abdomen globoso por panículo adiposo, doloroso a la palpación en epigastrio y mesogastrio, peristalsis ausente. Signo de Cullen y Grey-Turner negativos. Laboratorios: Leucocitos 15,500/mm³, Glucosa 180 mg/dL, AST 350 U/L, ALT 410 U/L, Lipasa 1,200 U/L (Valor de referencia hasta 60 U/L).",
@@ -3428,8 +3463,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología gástrica",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "Úlcera péptica perforada",
     "difficulty": "Media",
     "case": "Masculino de 68 años con antecedente de osteoartritis severa en rodillas, en tratamiento crónico con naproxeno y piroxicam. Es traído a urgencias por presentar dolor abdominal de inicio súbito, extremadamente intenso y generalizado, de 4 horas de evolución. A la exploración física: paciente inmóvil en la camilla (posición antiálgica), diaforético y taquicárdico (110 lpm). Abdomen plano, con rigidez muscular involuntaria (\"abdomen en madera\"), ausencia de ruidos peristálticos y pérdida de la matidez hepática a la percusión (Signo de Jobert positivo).",
@@ -3462,7 +3497,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Patología diverticular",
+    "tema": "Apendicitis Aguda",
     "subtema": "Diverticulitis aguda complicada",
     "difficulty": "Alta",
     "case": "Masculino de 60 años acude por dolor abdominal continuo en fosa ilíaca izquierda de 3 días de evolución, acompañado de fiebre no cuantificada y estreñimiento. A la exploración: T 38.5°C, FC 100 lpm. Abdomen con dolor a la palpación profunda en cuadrante inferior izquierdo, con resistencia muscular y masa palpable dolorosa en fosa ilíaca izquierda. Rebote negativo en el resto del abdomen. Laboratorios con leucocitosis de 16,000/mm³. Se le realiza una Tomografía Computarizada (TAC) de abdomen con contraste intravenoso que reporta: engrosamiento de la pared del colon sigmoides con inflamación de la grasa perocólica y presencia de un absceso pélvico tabicado de 6 cm de diámetro, sin aire libre ni líquido libre generalizado.",
@@ -3494,8 +3529,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Mordeduras y picaduras",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Alacranismo (Intoxicación por veneno de escorpión)",
     "difficulty": "Alta",
     "case": "Niño de 4 años, originario del estado de Nayarit, es llevado a la clínica rural por su madre tras presentar llanto súbito mientras jugaba en el patio hace 40 minutos. La madre trae el espécimen (un alacrán coloración pálida) en un frasco. A la exploración física: paciente muy inquieto, con sialorrea abundante, lagrimeo, nistagmo rotatorio, espasmos musculares y fasciculaciones linguales. Signos vitales: T 38.0°C, FC 140 lpm, FR 30 rpm.",
@@ -3527,8 +3562,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Hipoacusia y Vértigo",
+    "specialty": "mi",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "Vértigo Postural Paroxístico Benigno (VPPB)",
     "difficulty": "Baja",
     "case": "Femenina de 55 años acude a consulta externa refiriendo episodios de mareo muy intenso (\"siente que todo le da vueltas\") que duran menos de un minuto. Refiere que estos episodios se desencadenan exclusivamente cuando se acuesta en la cama, se gira hacia el lado derecho o al extender el cuello para alcanzar objetos altos. Niega pérdida de la audición (hipoacusia), acúfenos o alteraciones en la marcha.",
@@ -3560,8 +3595,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología intestinal QX",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Obstrucción intestinal",
     "difficulty": "Alta",
     "case": "Masculino de 55 años, con antecedente de laparotomía exploradora hace 3 años secundaria a trauma abdominal cerrado. Acude al servicio de urgencias refiriendo dolor abdominal tipo cólico de 24 horas de evolución, acompañado de náuseas, múltiples episodios de vómito de características fecaloides y distensión abdominal progresiva. Refiere incapacidad para canalizar gases y ausencia de evacuaciones desde el inicio del cuadro. A la exploración física: T 37.5°C, FC 105 lpm. Abdomen francamente distendido, timpánico a la percusión, peristalsis con ruidos metálicos de lucha en periodos de acentuación del dolor. Tacto rectal con ámpula vacía. Se solicita radiografía simple de abdomen en bipedestación.",
@@ -3593,8 +3628,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología arterial y venosa",
+    "specialty": "mi",
+    "tema": "VIH / SIDA",
     "subtema": "Insuficiencia Venosa Crónica",
     "difficulty": "Media",
     "case": "Femenina de 48 años, de ocupación cajera (bipedestación prolongada), con obesidad grado I. Acude a consulta externa por presentar pesadez, dolor tipo ardoroso, prurito y edema en extremidades inferiores que empeora por las tardes y mejora con el reposo y la elevación de las piernas. A la exploración física se observan trayectos venosos dilatados y tortuosos mayores a 3 mm en territorio de la vena safena magna bilateral. No se observan cambios de coloración en la piel (lipodermatoesclerosis) ni úlceras activas o cicatrizadas.",
@@ -3626,8 +3661,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Cirugía Oncología",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "Cáncer de colon y recto",
     "difficulty": "Media",
     "case": "Masculino de 68 años de edad, con antecedente de tabaquismo intenso. Acude a consulta por cuadro de 4 meses de evolución caracterizado por astenia, adinamia, pérdida de peso no intencionada de 8 kg y cambios en el hábito intestinal, refiriendo heces adelgazadas (\"acintadas\") y dolor abdominal tipo cólico intermitente. Exámenes de laboratorio revelan hemoglobina de 9.5 g/dL (anemia microcítica hipocrómica) y prueba de sangre oculta en heces positiva.",
@@ -3659,8 +3694,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Tumores testiculares y cáncer de próstata",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "Cáncer de próstata",
     "difficulty": "Alta",
     "case": "Masculino de 72 años acude a chequeo médico de rutina. Refiere síntomas del tracto urinario inferior (STUI) leves a moderados. Como parte de su tamizaje, se realiza un tacto rectal encontrando una próstata asimétrica, con aumento de consistencia en el lóbulo derecho donde se palpa un nódulo pétreo e indoloro. Se solicita Antígeno Prostático Específico (APE) total, el cual reporta 14 ng/mL.",
@@ -3692,8 +3727,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología intestinal inflamatoria",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Colitis Ulcerosa Crónica Idiopática (CUCI)",
     "difficulty": "Media",
     "case": "Femenina de 32 años de edad acude a consulta por cuadro de 3 meses de evolución caracterizado por diarrea sanguinolenta de 6 a 8 evacuaciones por día, acompañada de pujo, tenesmo rectal, dolor abdominal tipo cólico en cuadrante inferior izquierdo y pérdida de peso no intencionada de 4 kg. Refiere episodios febriles intermitentes. A la exploración física: palidez de tegumentos, taquicardia leve (100 lpm), abdomen doloroso a la palpación en marco colónico izquierdo, sin datos de irritación peritoneal. Tacto rectal evidencia restos hemáticos frescos.",
@@ -3725,8 +3760,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Cirrosis y sus complicaciones",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Sangrado de tubo digestivo alto (STDA) por várices esofágicas",
     "difficulty": "Alta",
     "case": "Masculino de 55 años con antecedente de alcoholismo crónico severo durante 20 años. Es traído a urgencias tras presentar dos episodios de hematemesis abundante en su domicilio, acompañados de mareo y síncope. A su ingreso: TA 85/50 mmHg, FC 120 lpm, FR 24 rpm. A la exploración se observan telangiectasias (arañas vasculares) en tórax, red venosa colateral en abdomen y red capilar palmar. Se inician maniobras de reanimación hídrica con cristaloides y transfusión de hemoderivados.",
@@ -3758,8 +3793,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Trauma generalidades y complicaciones",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Síndrome Compartimental",
     "difficulty": "Media",
     "case": "Masculino de 28 años, sufre accidente deportivo resultando en fractura cerrada de la diáfisis tibial derecha. Es tratado inicialmente en un hospital periférico con inmovilización mediante un aparato de yeso circular cruropodálico. Ocho horas después, el paciente acude a urgencias quejándose de un dolor insoportable en la pierna afectada que no cede con la administración de analgésicos opioides intravenosos. A la exploración: el paciente se muestra ansioso, la extremidad inmovilizada se siente a tensión, hay dolor extremo a la extensión pasiva de los dedos del pie derecho. Los pulsos distales (pedio y tibial posterior) son palpables y el llenado capilar es de 2 segundos.",
@@ -3791,7 +3826,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "Patología de extremidad superior",
     "subtema": "Fracturas de antebrazo y mano (Fractura de Colles)",
     "difficulty": "Baja",
@@ -3824,8 +3859,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología infecciosa / Rinología y faringe",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Otitis media maligna (Otitis externa maligna)",
     "difficulty": "Alta",
     "case": "Masculino de 72 años de edad con antecedente de diabetes mellitus tipo 2 de larga evolución, mal controlada (HbA1c 10.5%). Acude a consulta externa de otorrinolaringología por presentar otalgia derecha severa y de predominio nocturno de 3 semanas de evolución, que no responde a analgésicos comunes, acompañada de otorrea purulenta fétida. A la exploración física se observa asimetría facial con imposibilidad para cerrar el ojo derecho y desviación de la comisura labial hacia la izquierda. A la otoscopia se aprecia conducto auditivo externo edematizado y presencia de tejido de granulación en la unión osteocartilaginosa.",
@@ -3857,8 +3892,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ETS",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Sífilis primaria",
     "difficulty": "Baja",
     "case": "Masculino de 25 años, con múltiples parejas sexuales y uso inconsistente de preservativo, acude a consulta por la aparición de una úlcera en el glande de 1 semana de evolución. A la exploración física se observa una lesión ulcerada única de 1 cm de diámetro, de bordes limpios, sobreelevados, base indurada y que no duele a la palpación. Se palpan adenopatías inguinales bilaterales, firmes y no dolorosas.",
@@ -3890,8 +3925,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Introducción Oftalmología",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Patología de anexos (Chalazión)",
     "difficulty": "Media",
     "case": "Femenina de 30 años acude a consulta externa por la presencia de una \"bolita\" en el párpado superior del ojo derecho de 4 semanas de evolución. Refiere que en los primeros días presentó ligero enrojecimiento y molestia, pero actualmente es completamente asintomática, a excepción de la preocupación estética. A la exploración oftalmológica se palpa un nódulo subcutáneo de 5 mm en la cara tarsal del párpado superior, firme, bien delimitado, indoloro, sin hiperemia ni calor local. Se abrirá en una ventana nueva Shutterstock",
@@ -3956,8 +3991,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Cirugía Oncología",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Cáncer gástrico",
     "difficulty": "Media",
     "case": "Masculino de 65 años, fumador crónico, acude por pérdida de peso de 12 kg en los últimos 4 meses, acompañada de dolor epigástrico sordo, saciedad temprana y aversión reciente por la carne. A la exploración física destaca palidez de tegumentos y la palpación de un ganglio linfático supraclavicular izquierdo aumentado de tamaño, de consistencia pétrea e indoloro.",
@@ -3989,8 +4024,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología arterial y venosa",
+    "specialty": "mi",
+    "tema": "Fibrilación Auricular",
     "subtema": "Insuficiencia arterial aguda",
     "difficulty": "Alta",
     "case": "Femenina de 70 años con antecedente de fibrilación auricular crónica en tratamiento irregular con anticoagulantes. Acude a urgencias por dolor súbito, lancinante e insoportable en la extremidad inferior derecha de 2 horas de evolución. A la exploración física, la extremidad derecha se observa marcadamente pálida, fría al tacto en comparación con la contralateral, con ausencia total de pulsos poplíteo y pedio. La paciente refiere parestesias (\"hormigueo\") y tiene dificultad para mover los dedos del pie.",
@@ -4022,8 +4057,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P2",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Traumatismo Craneoencefálico (TCE) - Hematoma Epidural",
     "difficulty": "Alta",
     "case": "Masculino de 22 años sufre accidente al caer de su patineta sin portar casco, golpeándose fuertemente la región temporal derecha. Testigos refieren pérdida de la conciencia de aproximadamente 2 minutos, tras los cuales el paciente se levantó, refirió sentirse bien y caminó a su casa (intervalo lúcido). Dos horas después, sus familiares lo encuentran en el piso, con deterioro neurológico rápido, vómito en proyectil y respiración irregular. A su llegada a urgencias, presenta Glasgow de 7 (Apertura ocular 1, Respuesta verbal 2, Respuesta motora 4), anisocoria con midriasis derecha arreactiva y hemiparesia izquierda.",
@@ -4055,7 +4090,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "ped",
     "tema": "Patología esofágica",
     "subtema": "Acalasia",
     "difficulty": "Media",
@@ -4088,8 +4123,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología isquémica intestinal",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Isquemia mesentérica aguda",
     "difficulty": "Alta",
     "case": "Masculino de 75 años, hipertenso y con antecedente de fibrilación auricular no anticoagulada. Acude a urgencias quejándose de dolor abdominal de inicio súbito, periumbilical, severo (\"el peor dolor de su vida\") y constante, acompañado de un episodio de diarrea sanguinolenta y vómito. A la exploración física llama la atención que, a pesar de las quejas de dolor insoportable del paciente, el abdomen se encuentra blando, depresible y sin datos francos de irritación peritoneal (dolor desproporcionado a los hallazgos físicos). Signos vitales: TA 150/90 mmHg, FC 120 lpm (arrítmica), T 37.8°C.",
@@ -4121,8 +4156,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología perianal",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Fisura anal crónica",
     "difficulty": "Media",
     "case": "Femenina de 32 años, oficinista, con historia de estreñimiento crónico. Acude a consulta por dolor intenso, punzante, \"como si la cortaran con vidrio\", que se presenta exclusivamente durante la defecación y persiste por un par de horas después. Nota manchado de sangre roja fresca en el papel higiénico. A la inspección anal suave, se separa el margen anal y se observa un desgarro longitudinal en la línea media posterior, acompañado de un pliegue cutáneo engrosado en el borde externo.",
@@ -4154,7 +4189,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "Patología de extremidad inferior",
     "subtema": "Esguince de tobillo",
     "difficulty": "Baja",
@@ -4187,8 +4222,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología gástrica y esofágica",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Enfermedad por Reflujo Gastroesofágico (ERGE)",
     "difficulty": "Media",
     "case": "Masculino de 45 años, con IMC de 31 kg/m², acude a consulta por referir pirosis de predominio nocturno, regurgitación ácida y tos crónica de 1 año de evolución. Ha recibido tratamiento empírico con omeprazol a doble dosis durante 8 semanas sin mejoría significativa de los síntomas. Se le realiza una endoscopia superior que reporta esofagitis grado C de Los Ángeles y hernia hiatal por deslizamiento de 3 cm.",
@@ -4220,8 +4255,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Trauma generalidades y complicaciones",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Síndrome de embolia grasa",
     "difficulty": "Alta",
     "case": "Masculino de 24 años ingresa a urgencias tras sufrir un accidente en motocicleta. Presenta fractura cerrada de la diáfisis del fémur derecho. Se le inmoviliza con tracción cutánea a la espera de material de osteosíntesis. A las 48 horas de su ingreso, el paciente desarrolla agitación psicomotriz progresiva, desorientación, taquipnea (FR 28 rpm) y disnea. A la exploración física destaca la presencia de múltiples lesiones puntiformes eritematosas que no palidecen a la presión, localizadas en el tórax anterior, axilas y conjuntivas. La oximetría de pulso reporta SatO2 del 85% al aire ambiente.",
@@ -4253,8 +4288,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología cámara posterior",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Desprendimiento de retina",
     "difficulty": "Media",
     "case": "Masculino de 62 años, con antecedente de miopía magna (alta), acude a urgencias oftalmológicas refiriendo que desde hace 2 días comenzó a ver \"telarañas y moscas volantes\" (miodesopsias) en el ojo derecho, acompañadas de destellos de luz intermitentes (fotopsias). El día de hoy, nota la aparición súbita de una \"cortina negra\" que le tapa la visión desde la parte inferior hacia el centro. Niega dolor ocular o traumatismo reciente.",
@@ -4286,8 +4321,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología infecciosa / Rinología y faringe",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Absceso periamigdalino",
     "difficulty": "Baja",
     "case": "Adolescente masculino de 17 años acude a urgencias por fiebre de 39°C, odinofagia de predominio izquierdo severa e incapacidad para tragar saliva (sialorrea) de 3 días de evolución. Refiere haber tenido un cuadro de faringoamigdalitis hace una semana que fue tratado irregularmente con remedios caseros. A la exploración física destaca halitosis marcada, voz apagada (en \"papa caliente\") y dificultad para abrir la boca completamente (trismo). A la orofaringoscopia se observa abombamiento del pilar amigdalino anterior izquierdo, con la amígdala desplazada medialmente y la úvula desviada hacia el lado derecho (sano).",
@@ -4319,8 +4354,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología arterial y venosa",
+    "specialty": "gyo",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Trombosis Venosa Profunda (TVP)",
     "difficulty": "Media",
     "case": "Femenina de 38 años, usuaria de anticonceptivos orales combinados, se encuentra en su 5° día de postoperatorio de una histerectomía abdominal por miomatosis uterina. Comienza con dolor sordo e hinchazón progresiva en la extremidad inferior izquierda. A la exploración física, la pierna izquierda presenta aumento de volumen asimétrico (3 cm mayor que la derecha medido en la pantorrilla), eritema leve y aumento de la temperatura local. Se elicita dolor en la pantorrilla a la dorsiflexión pasiva del pie (Signo de Homans positivo) y a la compresión muscular contra el plano óseo (Signo de Olow positivo).",
@@ -4352,8 +4387,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P3",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Trauma Abdominal Cerrado",
     "difficulty": "Media",
     "case": "Masculino de 28 años es traído a urgencias tras sufrir accidente automovilístico con impacto frontal a alta velocidad. Se encontraba como conductor y portaba cinturón de seguridad. A su ingreso, se encuentra somnoliento, diaforético y pálido. Signos vitales: TA 85/50 mmHg, FC 125 lpm, FR 26 rpm. A la exploración física, presenta equimosis en \"cinturón de seguridad\" en la pared abdominal. El abdomen se encuentra distendido, con resistencia muscular y dolor a la palpación generalizada, acentuado en el cuadrante superior izquierdo, con irradiación hacia el hombro izquierdo (Signo de Kehr positivo).",
@@ -4419,7 +4454,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Cirugía Oncología",
+    "tema": "Patología Biliar",
     "subtema": "Cáncer de Páncreas",
     "difficulty": "Alta",
     "case": "Masculino de 68 años con antecedente de tabaquismo (índice tabáquico de 25 paquetes/año). Acude por un cuadro de 2 meses de evolución caracterizado por ictericia progresiva, coluria, acolia, prurito generalizado y pérdida de peso de 10 kg. Niega dolor abdominal agudo o fiebre. A la exploración física destaca tinte ictérico franco en piel y escleras. El abdomen es blando, sin dolor, y se palpa una masa piriforme de bordes lisos y renitentes en el cuadrante superior derecho que corresponde a la vesícula biliar (Signo de Courvoisier-Terrier positivo). Exámenes de laboratorio revelan patrón colestásico (Fosfatasa alcalina 450 U/L, GGT 320 U/L, Bilirrubina directa 12 mg/dL).",
@@ -4451,8 +4486,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología cámara anterior",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Pterigión",
     "difficulty": "Baja",
     "case": "Masculino de 45 años, de ocupación agricultor, acude a consulta oftalmológica refiriendo sensación de cuerpo extraño, ardor, ojo rojo ocasional y lagrimeo en el ojo derecho de varios años de evolución. Refiere que últimamente nota que una \"telita carnosa\" le está cubriendo la parte de color del ojo. A la exploración en la lámpara de hendidura, se observa un pliegue fibrovascular de forma triangular que se origina en la conjuntiva bulbar nasal, rebasa el limbo esclerocorneal y avanza aproximadamente 3 mm sobre la córnea, dirigiéndose hacia la pupila. Se abrirá en una ventana nueva Shutterstock Explorar",
@@ -4484,7 +4519,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "Intoxicaciones",
     "subtema": "Toxíndromes (Colinérgico / Organofosforados)",
     "difficulty": "Media",
@@ -4550,8 +4585,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología arterial y venosa",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "Enfermedad Arterial Periférica (EAP)",
     "difficulty": "Media",
     "case": "Masculino de 65 años, tabaquismo positivo a razón de 1 cajetilla diaria desde hace 30 años, hipertenso y dislipidémico. Acude a consulta por referir dolor tipo calambre en la pantorrilla derecha que aparece invariablemente al caminar aproximadamente 200 metros (claudicación intermitente) y que cede tras 5 minutos de reposo. A la exploración física, las extremidades inferiores presentan piel delgada, brillante, con pérdida de vello distal. Los pulsos pedio y tibial posterior de la extremidad derecha se palpan francamente disminuidos en comparación con la izquierda. Se observa palidez de la extremidad al elevarla a 60 grados.",
@@ -4583,8 +4618,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Urología P1",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "Pielonefritis aguda",
     "difficulty": "Baja",
     "case": "Femenina de 28 años, sin antecedentes de importancia, acude a urgencias por presentar fiebre de 38.8°C, escalofríos intensos y dolor constante en la región lumbar derecha de 2 días de evolución. Refiere que hace 5 días presentó ardor al orinar (disuria) y aumento en la frecuencia miccional, síntomas a los que no dio importancia. A la exploración física se encuentra taquicárdica (110 lpm), con abdomen blando pero doloroso a la palpación profunda en flanco derecho. La maniobra de Giordano (puñopercusión) es francamente positiva del lado derecho. Examen general de orina: leucocitos >50 por campo, nitritos positivos, bacterias abundantes.",
@@ -4616,8 +4651,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología cámara anterior",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Conjuntivitis alérgica",
     "difficulty": "Media",
     "case": "Masculino de 12 años, con antecedente personal de asma y rinitis alérgica. Es llevado a la consulta oftalmológica por su madre debido a que el niño se frota los ojos constantemente. Presenta hiperemia conjuntival bilateral, lagrimeo y secreción ocular hialina (acuosa y transparente) de 1 semana de evolución, la cual empeora al jugar en el parque. A la exploración en lámpara de hendidura, se observa hiperemia conjuntival moderada y en la eversión del párpado superior se aprecian múltiples formaciones sobreelevadas con aspecto de \"empedrado\" (reacción papilar).",
@@ -4649,7 +4684,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "Patología de extremidad superior",
     "subtema": "Luxación glenohumeral anterior",
     "difficulty": "Baja",
@@ -4682,8 +4717,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Cirugía Oncológica",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Cáncer Renal",
     "difficulty": "Alta",
     "case": "Masculino de 62 años, con antecedente de tabaquismo intenso (índice tabáquico de 30 paquetes/año). Acude a consulta externa refiriendo la presencia de orina con sangre (hematuria macroscópica) de forma intermitente desde hace 3 semanas, indolora. Además, refiere dolor sordo y constante en la fosa lumbar derecha y pérdida de peso no intencionada de 5 kg. A la exploración física, sus signos vitales son normales, pero a la palpación profunda del abdomen se detecta una masa firme en el flanco derecho. Se observa la presencia de un varicocele derecho que no se vacía al colocar al paciente en decúbito supino.",
@@ -4715,8 +4750,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología cámara posterior",
+    "specialty": "mi",
+    "tema": "Diabetes Mellitus",
     "subtema": "Catarata",
     "difficulty": "Baja",
     "case": "Femenina de 72 años, con antecedente de diabetes mellitus tipo 2 de 15 años de evolución. Acude a oftalmología quejándose de disminución progresiva, indolora y bilateral de la agudeza visual de 2 años de evolución, la cual describe como \"ver a través de un vidrio empañado\". Refiere que últimamente las luces de los autos le deslumbran mucho por la noche (halos). A la exploración oftalmológica, la agudeza visual es de 20/100 en el ojo derecho y 20/80 en el izquierdo. A la iluminación oblicua se observa una opacidad blanquecina en el área pupilar y a la oftalmoscopia directa hay ausencia del reflejo rojo de fondo.",
@@ -4748,8 +4783,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Urología P1",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Infección de vías urinarias bajas (Cistitis aguda)",
     "difficulty": "Baja",
     "case": "Femenina de 24 años, con vida sexual activa, acude a la consulta de medicina familiar refiriendo un cuadro de 24 horas de evolución caracterizado por ardor intenso al orinar (disuria), necesidad urgente de ir al baño (urgencia miccional) y aumento en la frecuencia (polaquiuria), orinando en escasa cantidad. Refiere dolor leve en hipogastrio. Niega fiebre, escalofríos, flujo vaginal o dolor lumbar. A la exploración física, signos vitales normales, puñopercusión lumbar bilateral negativa, dolor leve a la palpación en región suprapúbica. Examen general de orina con tira reactiva: leucocitos esterasa +, nitritos +, eritrocitos +.",
@@ -4781,8 +4816,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología Infecciosa / Rinología y faringe",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "Síndrome de Apnea Obstructiva del Sueño (SAOS)",
     "difficulty": "Media",
     "case": "Masculino de 50 años, con obesidad grado II (IMC 36 kg/m²) e hipertensión arterial de difícil control. Acude a consulta llevado por su esposa, quien refiere que el paciente ronca muy fuerte todas las noches y presenta pausas en la respiración de hasta 20 segundos, seguidas de un resoplido violento. El paciente refiere sentirse exhausto durante el día, quedándose dormido con facilidad en la sala de espera, viendo la televisión e incluso ha tenido episodios de somnolencia al conducir. Su puntuación en la escala de Epworth es de 16 (somnolencia diurna severa).",
@@ -4814,8 +4849,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología Biliar",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Colelitiasis sintomática",
     "difficulty": "Media",
     "case": "Femenina de 42 años, multípara, con sobrepeso. Acude a consulta externa refiriendo episodios recurrentes de dolor en el cuadrante superior derecho del abdomen. Relata que los episodios de dolor suelen iniciar de 30 a 60 minutos después de ingerir comidas ricas en grasas (tacos, lácteos enteros), son de tipo cólico, se irradian hacia el omóplato derecho y están acompañados de náuseas. El dolor alcanza una intensidad máxima sostenida y luego desaparece por completo tras 3 a 4 horas. Entre episodios, la paciente se encuentra totalmente asintomática. Niega haber presentado fiebre o coloración amarilla en los ojos (ictericia). Sus estudios de laboratorio en el momento de la consulta son completamente normales, sin leucocitosis ni alteración en las pruebas de función hepática.",
@@ -4847,8 +4882,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Mordeduras y picaduras",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Loxoscelismo (Araña violinista)",
     "difficulty": "Alta",
     "case": "Femenina de 34 años acude a urgencias por presentar una lesión dolorosa en el muslo derecho de 48 horas de evolución. Refiere haber sentido un \"piquete\" leve e indoloro inicial mientras se ponía un pantalón que llevaba meses guardado en el clóset. A la exploración física, signos vitales: T 38.5°C, FC 110 lpm. En la cara anterior del muslo se observa una lesión caracterizada por una úlcera necrótica central de bordes irregulares, rodeada por un halo isquémico pálido y un eritema periférico (placa livedoide o \"signo de la bandera francesa\"). La paciente refiere orina oscura (coluria). Laboratorios revelan anemia, elevación de bilirrubina indirecta y creatinina en 2.1 mg/dL.",
@@ -4880,8 +4915,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Tumores testiculares",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "",
     "difficulty": "Media",
     "case": "Masculino de 28 años, sin antecedentes crónicos, acude a la consulta externa refiriendo haber notado un aumento de volumen en su testículo derecho desde hace aproximadamente un mes. Refiere sensación de \"pesantez\" en el escroto, pero niega dolor, disuria o fiebre. A la exploración física se palpa el testículo derecho aumentado de tamaño, con una masa indurada, firme e indolora que no transilumina. El testículo izquierdo es de características normales. No se palpan adenopatías inguinales.",
@@ -4913,8 +4948,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología cámara posterior",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Retinopatía Diabética",
     "difficulty": "Alta",
     "case": "Masculino de 55 años, con diabetes mellitus tipo 2 de 15 años de evolución y mal control glucémico (HbA1c 9.5%). Acude a su revisión oftalmológica anual. Refiere ligera disminución de la agudeza visual central. A la exploración de fondo de ojo con pupila dilatada, se observan múltiples microaneurismas, hemorragias intrarretinianas en \"punto y mancha\" en los cuatro cuadrantes, exudados duros amarillentos y alteraciones venosas (arrosariamiento). No se observan vasos sanguíneos de neoformación en la papila ni en ninguna otra parte de la retina. Se abrirá en una ventana nueva Shutterstock",
@@ -4946,8 +4981,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología infecciosa / Rinología y faringe",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "OMA (Otitis Media Aguda)",
     "difficulty": "Baja",
     "case": "Preescolar masculino de 4 años, llevado a consulta por su madre debido a que presenta llanto constante, irritabilidad y se lleva la mano a la oreja derecha repetidamente. La madre refiere que el cuadro inició anoche, acompañado de fiebre de 39°C. Hace 5 días inició con un cuadro de escurrimiento nasal hialino y tos seca. A la otoscopia del oído derecho se observa la membrana timpánica intensamente eritematosa, abombada (pérdida del triángulo luminoso y relieves óseos) y con inmovilidad a la insuflación neumática.",
@@ -4979,7 +5014,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "Cirrosis y sus complicaciones",
     "subtema": "Peritonitis Bacteriana Espontánea (PBE)",
     "difficulty": "Alta",
@@ -5012,8 +5047,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología Hepática",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Absceso Hepático Amebiano",
     "difficulty": "Media",
     "case": "Masculino de 32 años, residente de zona rural, acude a urgencias por presentar cuadro de 2 semanas de evolución caracterizado por fiebre de predominio vespertino (38.5°C), diaforesis, pérdida de peso y dolor continuo en el hipocondrio derecho que se irradia hacia el hombro homolateral. Refiere haber presentado un episodio de diarrea disentérica hace un mes que remitió sin tratamiento. A la exploración física, el paciente luce agudamente enfermo, con palidez de tegumentos. El abdomen presenta hepatomegalia de 3 cm por debajo del reborde costal, extremadamente dolorosa a la palpación, y puñopercusión hepática positiva. Se realiza un ultrasonido abdominal que reporta una lesión quística única de 8 cm de diámetro en el lóbulo hepático derecho, de bordes bien definidos y contenido hipoecoico.",
@@ -5045,8 +5080,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P3",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Trauma Genitourinario (Trauma uretral)",
     "difficulty": "Alta",
     "case": "Masculino de 35 años, trabajador de la construcción, sufre caída de un andamio a horcajadas (\"a caballo\") sobre un tubo de metal. Es llevado a urgencias refiriendo dolor perineal intenso e incapacidad para miccionar. A la exploración física, sus signos vitales se encuentran estables. Se observa un hematoma perineal extenso en forma de \"alas de mariposa\" que se extiende hacia el escroto. Se evidencia la presencia de una gota de sangre franca en el meato uretral (uretrorragia). A la palpación abdominal, se detecta una masa suprapúbica compatible con globo vesical.",
@@ -5078,8 +5113,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Quemaduras / Golpe de calor / Hipotermia",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Golpe de Calor (Heat Stroke)",
     "difficulty": "Media",
     "case": "Masculino de 28 años, sin antecedentes de importancia, participa en una carrera de maratón al mediodía con una temperatura ambiente de 38°C y alta humedad. En el kilómetro 35, el paciente colapsa repentinamente. Es asistido por paramédicos quienes lo encuentran en estado de estupor, desorientado, con lenguaje incoherente. Sus signos vitales muestran una temperatura corporal central (rectal) de 41.2°C, FC 135 lpm, FR 28 rpm, TA 90/60 mmHg. A la exploración física, llama la atención que su piel se encuentra eritematosa, caliente y completamente seca (anhidrosis).",
@@ -5111,8 +5146,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Cirugía Oncología",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "Cáncer de Esófago",
     "difficulty": "Alta",
     "case": "Masculino de 62 años, de nivel socioeconómico bajo, con antecedente de consumo de alcohol intenso (1 litro de aguardiente al día) y tabaquismo (2 cajetillas/día) por más de 30 años. Acude refiriendo dificultad progresiva para la deglución (disfagia) de 6 meses de evolución, que inició con sólidos (carnes, pan) y actualmente es incluso para líquidos. Refiere dolor retroesternal al tragar (odinofagia), sialorrea, episodios de regurgitación, cambios en el tono de la voz (ronquera) y una pérdida de peso no intencionada de 15 kg.",
@@ -5144,7 +5179,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "Patología de Extremidad Inferior",
     "subtema": "Lesión de Ligamento Cruzado Anterior",
     "difficulty": "Baja",
@@ -5178,7 +5213,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "Hernias",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "Hernia Femoral (Crural)",
     "difficulty": "Alta",
     "case": "Femenina de 75 años, multípara, acude a urgencias por presentar un cuadro de 12 horas de evolución caracterizado por dolor intenso en la región inguinal derecha, náuseas y vómito de contenido biliar. A la exploración física, se observa el abdomen distendido, timpánico y con peristalsis metálica. En la región inguinocrural derecha se palpa una tumoración de 3 cm, tensa, eritematosa, exquisitamente dolorosa a la palpación e irreductible. Se abrirá en una ventana nueva Shutterstock",
@@ -5210,7 +5245,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "Patología diverticular",
     "subtema": "Hemorragia diverticular",
     "difficulty": "Media",
@@ -5243,8 +5278,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P3",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Trauma Pélvico",
     "difficulty": "Alta",
     "case": "Masculino de 45 años es ingresado a la sala de choque tras ser atropellado por un camión de carga. A su ingreso se encuentra estuporoso, pálido y diaforético. Signos vitales: TA 70/40 mmHg, FC 140 lpm, FR 28 rpm. A la exploración física, presenta excoriaciones dermoepidérmicas severas en el hipogastrio y la región inguinal bilateral. Al realizar compresión suave sobre ambas crestas ilíacas hacia afuera y hacia adentro, se detecta inestabilidad y crepitación ósea franca. Se observa asimetría en la longitud de las extremidades inferiores. El FAST abdominal es negativo para líquido libre. Se abrirá en una ventana nueva Getty Images X-ray image pelvis and hips view.",
@@ -5276,8 +5311,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Introducción Oftalmología",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Úlcera Corneal (Queratitis microbiana)",
     "difficulty": "Media",
     "case": "Femenina de 22 años, usuaria frecuente de lentes de contacto blandos (refiere dormir ocasionalmente con ellos). Acude a urgencias oftalmológicas por dolor ocular intenso en el ojo izquierdo, fotofobia incapacitante, lagrimeo y disminución de la agudeza visual de 48 horas de evolución. A la exploración en la lámpara de hendidura, se observa hiperemia ciliar (inyección periquerática) muy marcada y una lesión blanquecina, opaca y excavada de 3 mm de diámetro en el centro de la córnea, acompañada de hipopión (nivel de pus en la cámara anterior).",
@@ -5309,8 +5344,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Quemaduras / Golpe de calor / Hipotermia",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Quemaduras eléctricas",
     "difficulty": "Alta",
     "case": "Masculino de 35 años, trabajador de la CFE, sufre un accidente laboral al tocar un cable de alta tensión (10,000 voltios). Es proyectado a 3 metros de distancia. A su ingreso, el paciente está obnubilado. Presenta una quemadura profunda (de tercer grado, carbonizada) de 4x4 cm en la palma de la mano derecha (sitio de entrada) y una lesión similar \"en estallido\" en el pie izquierdo (sitio de salida). A la colocación de la sonda Foley, se obtiene orina de color rojo oscuro, similar al vino de Oporto.",
@@ -5342,8 +5377,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología intestinal QX",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Fractura de escafoides",
     "difficulty": "Media",
     "case": "Masculino de 78 años, residente de un asilo de ancianos, con historia de estreñimiento crónico severo y postración. Es traído a urgencias por presentar dolor abdominal tipo cólico de inicio insidioso, que ha progresado en las últimas 48 horas, acompañado de incapacidad absoluta para canalizar gases o evacuar. A la exploración física, destaca un abdomen asimétricamente distendido, timpánico a la percusión, sin datos de irritación peritoneal (rebote negativo). Se solicita una radiografía simple de abdomen en bipedestación y decúbito.Pregunta 1¿Cuál es el hallazgo radiológico patognomónico esperado en este paciente que confirma el diagnóstico de oclusión intestinal baja por esta etiología?A) Niveles hidroaéreos en escalera e imagen en \"pila de monedas\"B) Imagen en \"corazón de manzana\" en la fosa ilíaca izquierdaC) Asa intestinal masivamente dilatada en forma de \"U\" invertida o \"grano de café\" *D) Neumatosis intestinal y gas en el sistema portalRetroalimentación:El vólvulo de sigmoides se produce por la torsión del colon sobre su propio eje mesentérico. Clásicamente ocurre en ancianos con estreñimiento crónico. En la radiografía simple de abdomen se observa el signo del \"grano de café\" o del \"neumático\", que representa el asa sigmoidea masivamente dilatada que asciende desde la pelvis hacia el cuadrante superior derecho. La pila de monedas es de intestino delgado y el corazón de manzana es cáncer colorrectal.Pregunta 2Siendo el paciente un adulto mayor estable, sin datos de peritonitis, isquemia o perforación, ¿cuál es el tratamiento inicial de elección según la GPC?A) Laparotomía exploradora con resección y anastomosis primariaB) Procedimiento de Hartmann de urgenciaC) Destorsión y descompresión endoscópica mediante colonoscopia o rectosigmoidoscopia rígida *D) Colocación de tubo de fístula mucosaRetroalimentación:En ausencia de signos de estrangulación (fiebre, leucocitosis, peritonitis, choque), el tratamiento inicial de primera línea es la devolvulación (destorsión) y descompresión endoscópica, frecuentemente con la colocación de una sonda rectal. Esto permite aliviar la urgencia, preparar el colon y programar una resección sigmoidea electiva días después, ya que la tasa de recurrencia si solo se destuerce sin cirugía definitiva supera el 50%.Tema: Patología cámara posterior Femenina de 65 años con hipertensión arterial sistémica de 20 años de evolución, con pobre apego farmacológico. Acude a valoración oftalmológica por disminución leve de la agudeza visual. Su presión arterial en el consultorio es de 170/100 mmHg. A la oftalmoscopia directa se observan arteriolas con reflejo luminoso dorsal ensanchado (hilos de cobre), cruces arteriovenosos patológicos con indentación de la vena (Signo de Gunn), y la presencia de manchas blanquecinas de bordes difusos (exudados algodonosos) y algunas hemorragias en forma de flama. No se observa edema de la papila del nervio óptico.Pregunta 1De acuerdo con la clasificación clásica de Keith-Wagener-Barker, ¿en qué grado se encuentra la retinopatía de esta paciente?A) Grado IB) Grado IIC) Grado III *D) Grado IVRetroalimentación:La clasificación de Keith-Wagener-Barker evalúa el daño vascular retiniano crónico. Grado I: estrechamiento arterial leve. Grado II: cruces arteriovenosos patológicos (Signo de Gunn, Salus). Grado III: se agregan exudados algodonosos, exudados duros o hemorragias retinianas (como en este caso). Grado IV: se agrega papiledema (edema del disco óptico), lo cual es signo de hipertensión maligna.Pregunta 2Desde el punto de vista fisiopatológico, ¿qué representan los exudados algodonosos observados en la retina de esta paciente?A) Extravasación de lípidos y lipoproteínas de vasos incompetentesB) Zonas de isquemia focal e infartos de la capa de fibras nerviosas de la retina *C) Ruptura de microaneurismas arteriolaresD) Acumulación de macrófagos cargados de hemosiderinaRetroalimentación:Los exudados algodonosos (blancos, de bordes difusos) no son verdaderos exudados, sino que representan áreas de isquemia focal e infartos en la capa de las fibras nerviosas de la retina secundaria a la oclusión de las arteriolas precapilares por el vasoespasmo severo. Los exudados duros (amarillentos, de bordes netos) sí son acúmulos de lípidos y proteínas (fuga vascular).Tema: Patología prostática Masculino de 45 años, sin antecedentes de importancia, acude a urgencias por presentar fiebre de 39°C, escalofríos, dolor perineal punzante y síntomas urinarios obstructivos severos (disuria intensa, pujo, tenesmo y chorro urinario muy débil) de 3 días de evolución. A la exploración física, el paciente luce con facies álgica. El abdomen es doloroso a la palpación profunda en hipogastrio, con globo vesical palpable. Se procede a realizar un tacto rectal. Masculino de 48 años es referido a gastroenterología quirúrgica por un cuadro crónico de dolor epigástrico tipo ardoroso y diarrea acuosa. Se le ha realizado endoscopia superior en múltiples ocasiones, documentándose la presencia de múltiples úlceras pépticas gigantes (>2 cm), algunas localizadas en sitios atípicos como la segunda y tercera porción del duodeno e incluso en yeyuno proximal. Refiere que las úlceras son refractarias al tratamiento continuo con inhibidores de la bomba de protones a dosis estándar. Su historia familiar es positiva para hipercalcemia y litiasis renal. Masculino de 22 años, sufre caída mientras patinaba, apoyando todo el peso de su cuerpo sobre la mano derecha en hiperextensión (dorsiflexión forzada). Acude a urgencias quejándose de dolor en la muñeca derecha. A la exploración física, no presenta deformidad evidente, pero tiene dolor exquisito a la palpación en el fondo de la \"tabaquera anatómica\" y dolor a la compresión axial del primer metacarpiano (pulgar). Se le toman radiografías simples de muñeca (AP, lateral y oblicua) las cuales son reportadas como sin evidencia de fractura aguda. Se abrirá en una ventana nuevaShutterstockExplorar",
@@ -5424,7 +5459,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Preeclampsia con criterios de severidad",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "",
     "difficulty": "alta",
     "case": "Mujer de 27 años, G1P0, 33 semanas de gestación por FUM confiable. Acude por cefalea intensa persistente, fosfenos y dolor en epigastrio desde hace 8 horas. TA 168/112 mmHg en dos tomas separadas por 15 minutos. FC 96 lpm. Edema en extremidades inferiores ++. Proteinuria en tira reactiva +++. Laboratorio: plaquetas 130,000/mm³, TGO 78 U/L, creatinina 1.3 mg/dL.",
@@ -5456,8 +5491,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragia del primer trimestre – Embarazo ectópico",
+    "specialty": "cir",
+    "tema": "Apendicitis Aguda",
     "subtema": "",
     "difficulty": "alta",
     "case": "Mujer de 30 años, G2P1, 7 semanas de amenorrea. Dolor abdominal tipo cólico en fosa iliaca derecha y sangrado transvaginal escaso. TA 100/60 mmHg, FC 108 lpm. USG transvaginal: útero vacío, masa anexial derecha de 3 cm, BHCG 2,500 mUI/mL.",
@@ -5478,7 +5513,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia obstétrica – Atonía uterina",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "",
     "difficulty": "alta",
     "case": "Paciente de 24 años, G1P1, parto eutócico hace 30 minutos. Presenta sangrado abundante. TA 90/50 mmHg, FC 120 lpm. Útero flácido a la palpación.",
@@ -5511,7 +5546,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Diabetes gestacional",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "",
     "difficulty": "alta",
     "case": "Paciente de 32 años, 26 semanas de gestación. Glucosa en ayuno 98 mg/dL. Curva de tolerancia oral 75 g: 1h 185 mg/dL, 2h 160 mg/dL.",
@@ -5531,8 +5566,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Placenta previa",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "",
     "difficulty": "alta",
     "case": "Paciente de 35 años, G3P2, 34 semanas. Sangrado rojo brillante indoloro. Útero relajado, FCF normal.",
@@ -5553,7 +5588,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Cáncer cervicouterino – Tamizaje",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "",
     "difficulty": "alta",
     "case": "Mujer de 32 años, vida sexual activa desde los 18 años. Último Papanicolaou hace 4 años.",
@@ -5573,8 +5608,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Ruptura prematura de membranas (RPM)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "",
     "difficulty": "alta",
     "case": "Paciente 29 años, 35 semanas, salida de líquido claro transvaginal. Sin fiebre. FCF normal.",
@@ -5595,7 +5630,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Síndrome HELLP",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "",
     "difficulty": "Alta",
     "case": "Mujer de 29 años, G2P1, 35 semanas de gestación. Antecedente de preeclampsia en embarazo previo. Acude por cefalea intensa, náusea, vómito y dolor en hipocondrio derecho de 24 horas de evolución. Refiere disminución de movimientos fetales. TA 162/108 mmHg, FC 102 lpm. Edema ++ en extremidades inferiores. Laboratorio: Hb 11 g/dL, plaquetas 82,000/mm³, TGO 145 U/L, TGP 132 U/L, DHL elevada, bilirrubina indirecta elevada, creatinina 1.4 mg/dL. EGO con proteinuria ++.",
@@ -5627,8 +5662,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Desprendimiento prematuro de placenta normoinserta (DPPNI)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "",
     "difficulty": "Alta",
     "case": "Paciente de 38 años, G4P3, 36 semanas de gestación, antecedente de hipertensión crónica. Acude por dolor abdominal súbito, intenso, continuo, acompañado de sangrado transvaginal oscuro en cantidad moderada. Refiere disminución de movimientos fetales. TA 150/95 mmHg. Útero hipertónico, doloroso a la palpación. FCF 90 lpm con desaceleraciones tardías persistentes.",
@@ -5660,8 +5695,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Corioamnionitis",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "",
     "difficulty": "Media–Alta",
     "case": "Mujer de 24 años, G1P0, 32 semanas de gestación. Antecedente de ruptura prematura de membranas hace 36 horas. Presenta fiebre de 38.7°C, taquicardia materna (110 lpm) y fetal (170 lpm), dolor uterino a la palpación y líquido amniótico fétido.",
@@ -5682,7 +5717,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Eclampsia",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "",
     "difficulty": "Alta",
     "case": "Paciente de 19 años, G1, 30 semanas de gestación. Sin control prenatal. Presenta crisis convulsiva tónico-clónica generalizada en domicilio. Al ingreso: TA 170/115 mmHg, confusa, edema generalizado. Proteinuria +++.",
@@ -5714,8 +5749,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Sepsis puerperal",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "",
     "difficulty": "Media–Alta",
     "case": "Paciente de 31 años, G2P2, 5 días post cesárea por sufrimiento fetal. Refiere fiebre de 39°C, malestar general y dolor hipogástrico. TA 95/60 mmHg, FC 120 lpm. Útero subinvolucionado y doloroso, loquios fétidos.",
@@ -5736,7 +5771,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Distocia de hombros",
+    "tema": "Diabetes Gestacional",
     "subtema": "",
     "difficulty": "Alta",
     "case": "Mujer de 34 años, G2P1, antecedente de diabetes gestacional. Producto macrosómico estimado en 4,200 g. Durante el parto vaginal, tras la salida de la cabeza fetal, esta retrae contra el periné (signo de la tortuga). No progresa el descenso.",
@@ -5756,8 +5791,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto incompleto",
     "difficulty": "Media–Alta",
     "case": "Mujer de 26 años, G2P0A1, 10 semanas por FUM confiable. Acude por sangrado transvaginal abundante de 12 horas de evolución, acompañado de cólico hipogástrico intenso y expulsión de coágulos. Refiere que hace 3 días inició con manchado escaso. TA 100/65 mmHg, FC 105 lpm. A la exploración ginecológica: cérvix dilatado 2 cm, restos ovulares visibles en canal cervical. USG transvaginal: cavidad uterina con material ecogénico heterogéneo, sin saco gestacional íntegro.",
@@ -5789,8 +5824,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "cir",
+    "tema": "Patología Biliar",
     "subtema": "Enfermedad trofoblástica gestacional",
     "difficulty": "Alta",
     "case": "Paciente de 19 años, G1, 12 semanas de amenorrea. Presenta sangrado transvaginal intermitente, náusea y vómito incoercible. Refiere expulsión de vesículas. TA 140/90 mmHg. Útero aumentado de tamaño mayor al esperado para edad gestacional. BHCG 250,000 mUI/mL. USG: patrón en “tormenta de nieve” sin embrión visible.",
@@ -5822,8 +5857,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del segundo y tercer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Acretismo placentario",
     "difficulty": "Alta",
     "case": "Mujer de 37 años, G4P3, antecedente de 3 cesáreas previas. 35 semanas de gestación. USG reporta placenta previa oclusiva total con múltiples lagunas vasculares y pérdida del espacio retroplacentario. No presenta sangrado activo.",
@@ -5843,8 +5878,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología del embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Colestasis intrahepática del embarazo",
     "difficulty": "Media–Alta",
     "case": "Paciente de 30 años, G2P1, 33 semanas. Refiere prurito intenso predominante en palmas y plantas, sin lesiones cutáneas visibles. No dolor abdominal ni fiebre. TA normal. Laboratorio: bilirrubina normal, elevación leve de TGO/TGP, ácidos biliares elevados.",
@@ -5865,7 +5900,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología del trabajo de parto",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Inducción del trabajo de parto",
     "difficulty": "Alta",
     "case": "Paciente de 28 años, G1, 41 semanas de gestación. Sin trabajo de parto. Perfil biofísico 6/10 por disminución de líquido amniótico. Cérvix posterior, cerrado, 30% borramiento, Bishop 3.",
@@ -5898,7 +5933,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología puerperal",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Hemorragia obstétrica secundaria",
     "difficulty": "Media–Alta",
     "case": "Mujer de 22 años, 10 días post parto eutócico. Acude por sangrado transvaginal abundante súbito, acompañado de mareo. TA 95/60 mmHg. USG muestra restos retenidos intrauterinos.",
@@ -5918,8 +5953,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Estados hipertensivos del embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Preeclampsia sin criterios de severidad",
     "difficulty": "Media–Alta",
     "case": "Mujer de 31 años, G2P1, 34 semanas de gestación por FUM confiable y corroborada por ultrasonido del primer trimestre. Antecedente de obesidad grado I (IMC 32 kg/m²) y madre con antecedente de preeclampsia. Acude a consulta por cefalea leve intermitente y edema progresivo en extremidades inferiores desde hace 1 semana. Niega fosfenos, acúfenos o dolor epigástrico. Signos vitales: TA 148/94 mmHg en primera toma y 150/96 mmHg 20 minutos después. FC 88 lpm. FR 18 rpm. Temperatura 36.7°C. Altura uterina acorde a edad gestacional. FCF 145 lpm, reactiva. Laboratorio: Hb 12 g/dL, plaquetas 190,000/mm³, TGO/TGP normales, creatinina 0.8 mg/dL. EGO con proteinuria ++. Relación proteína/creatinina 0.5.",
@@ -5952,7 +5987,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias del segundo y tercer trimestre",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Vasa previa",
     "difficulty": "Alta",
     "case": "Paciente de 33 años, G3P2, 36 semanas de gestación. Embarazo con diagnóstico previo de placenta bilobulada identificado en ultrasonido estructural. Acude a urgencias por sangrado transvaginal rojo brillante posterior a ruptura espontánea de membranas. Niega dolor abdominal. A la exploración: útero relajado, no doloroso. TA 110/70 mmHg. FC 92 lpm. En monitor fetal se documenta bradicardia fetal sostenida de 80 lpm. El sangrado continúa en pequeña cantidad. No hay datos de choque materno.",
@@ -5984,8 +6019,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Parto pretérmino",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Amenaza de parto pretérmino (<34 semanas)",
     "difficulty": "Alta",
     "case": "Mujer de 24 años, G1, 31 semanas de gestación. Refiere contracciones uterinas regulares cada 8 minutos desde hace 4 horas, acompañadas de sensación de presión pélvica. Niega salida de líquido o sangrado. Control prenatal adecuado. Signos vitales normales. A la exploración obstétrica: dinámica uterina regular, 3 contracciones en 10 minutos. Tacto vaginal: cérvix 2 cm de dilatación, 50% borramiento, membranas íntegras. USG transvaginal con longitud cervical de 20 mm. FCF 150 lpm reactiva.",
@@ -6018,7 +6053,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología del trabajo de parto",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Ruptura uterina",
     "difficulty": "Alta",
     "case": "Paciente de 35 años, G4P3, antecedente de cesárea segmentaria hace 2 años. Cursa embarazo de 39 semanas. Se encuentra en trabajo de parto inducido con oxitocina por embarazo postérmino. Después de 6 horas presenta dolor abdominal súbito, intenso, persistente, diferente a las contracciones. Se documenta pérdida de la estación fetal previamente descendida y alteración súbita en FCF con desaceleraciones prolongadas. TA 90/60 mmHg, FC 120 lpm. Abdomen doloroso, palpación fácil de partes fetales.",
@@ -6051,7 +6086,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología del embarazo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Diabetes gestacional con falla a manejo nutricional",
     "difficulty": "Alta",
     "case": "Mujer de 36 años, G3P1A1, 29 semanas de gestación. Antecedente de macrosomía fetal en embarazo previo (4,250 g). IMC pregestacional 31 kg/m². En tamizaje con CTGO de 75 g a las 24 semanas presentó: ayuno 97 mg/dL, 1h 189 mg/dL, 2h 162 mg/dL, por lo que se diagnosticó diabetes gestacional. Se inició plan nutricional individualizado y recomendación de ejercicio aeróbico moderado 30 minutos diarios. La paciente refiere apego adecuado. En controles domiciliarios reporta las siguientes cifras en la última semana: •     Ayuno: 102–108 mg/dL •     1 hora postprandial: 165–185 mg/dL USG obstétrico: feto único vivo, biometría en percentil 90, líquido amniótico normal. No datos de restricción ni polihidramnios.",
@@ -6083,8 +6118,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del segundo y tercer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Placenta previa oclusiva total",
     "difficulty": "Media–Alta",
     "case": "Paciente de 34 años, G2P1, 32 semanas de gestación. Antecedente de cesárea hace 3 años. Consulta por sangrado transvaginal rojo brillante en moderada cantidad, sin dolor abdominal. Refiere episodio similar hace 2 semanas que cedió espontáneamente. Signos vitales: TA 110/70 mmHg, FC 90 lpm. Útero relajado, no doloroso. FCF 145 lpm reactiva. USG transvaginal confirma placenta previa oclusiva total. Hemoglobina 10.8 g/dL.",
@@ -6117,7 +6152,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Trabajo de parto prolongado por distocia dinámica (hipodinamia)",
     "difficulty": "Alta",
     "case": "Mujer de 22 años, G1, 39 semanas. Inició trabajo de parto hace 14 horas. Membranas rotas hace 8 horas. Dinámica uterina irregular, 1–2 contracciones en 10 minutos, de baja intensidad. Tacto vaginal actual: 4 cm de dilatación, 70% borramiento, presentación cefálica en -2 estación. No fiebre. FCF 140 lpm reactiva. Pelvis clínica adecuada.",
@@ -6150,7 +6185,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología puerperal",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Choque hipovolémico secundario a hemorragia obstétrica primaria",
     "difficulty": "Alta",
     "case": "Paciente de 28 años, G2P2, parto eutócico hace 20 minutos. Presenta sangrado abundante continuo estimado en 1,200 mL. Se encuentra pálida, diaforética, con TA 80/50 mmHg, FC 130 lpm, FR 24 rpm. Útero flácido a la palpación. No desgarros evidentes. Hb previa al parto 12 g/dL.",
@@ -6183,7 +6218,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Estados hipertensivos del embarazo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Hipertensión crónica con preeclampsia sobreagregada",
     "difficulty": "Alta",
     "case": "Mujer de 38 años, G3P2, 32 semanas de gestación. Antecedente de hipertensión arterial diagnosticada hace 4 años, en tratamiento con metildopa desde el inicio del embarazo. En controles previos mantenía cifras promedio de 135/85 mmHg sin proteinuria. Acude por cefalea progresiva de 48 horas, edema facial marcado y disminución de movimientos fetales. TA 168/110 mmHg en dos tomas separadas por 20 minutos. FC 96 lpm. Reflejos osteotendinosos ++ con clonus leve. Laboratorio: •     Plaquetas 145,000/mm³ •     Creatinina 1.2 mg/dL (previa 0.7 mg/dL) •     TGO 85 U/L •     Relación proteína/creatinina 0.8 USG obstétrico: feto con peso estimado en percentil 8 para edad gestacional, líquido amniótico disminuido.",
@@ -6216,7 +6251,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Parto pretérmino",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Ruptura prematura de membranas pretérmino (<34 semanas)",
     "difficulty": "Alta",
     "case": "Paciente de 27 años, G2P1, 30 semanas de gestación. Refiere salida súbita de líquido claro transvaginal hace 3 horas. Niega contracciones. Sin fiebre ni dolor abdominal. Exploración con espéculo: salida de líquido a través de OCE, prueba de cristalización positiva. TA 110/70 mmHg. FC 88 lpm. Temperatura 36.8°C. Biometría hemática normal. FCF 148 lpm reactiva. USG con líquido amniótico disminuido, feto acorde a edad gestacional.",
@@ -6248,8 +6283,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Embarazo múltiple",
+    "specialty": "cir",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "Síndrome de transfusión feto-fetal",
     "difficulty": "Alta",
     "case": "Paciente de 29 años, G1, 26 semanas de gestación gemelar monocoriónica biamniótica. En ultrasonido de control se observa un feto con polihidramnios severo y vejiga distendida, y el otro con oligohidramnios severo y vejiga colapsada. Diferencia significativa en peso estimado fetal. Doppler umbilical con alteraciones en el feto donador. La paciente refiere aumento rápido del perímetro abdominal y disnea leve.",
@@ -6282,7 +6317,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología del trabajo de parto",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Sufrimiento fetal agudo intraparto",
     "difficulty": "Alta",
     "case": "Mujer de 25 años, G1, 40 semanas. Trabajo de parto activo con 7 cm de dilatación. Monitoreo electrónico fetal muestra desaceleraciones tardías recurrentes en más del 50% de las contracciones durante 30 minutos, variabilidad mínima y ausencia de aceleraciones. TA materna normal. No fiebre. Líquido amniótico con meconio espeso.",
@@ -6314,8 +6349,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología del embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Oligohidramnios con restricción del crecimiento intrauterino",
     "difficulty": "Media–Alta",
     "case": "Paciente de 34 años, G2P1, 35 semanas. Control prenatal irregular. Refiere disminución de movimientos fetales en los últimos 2 días. USG: índice de líquido amniótico 3 cm, peso estimado fetal en percentil 5, Doppler umbilical con aumento de resistencia. TA 150/95 mmHg. Proteinuria +.",
@@ -6336,7 +6371,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Trabajo de parto fisiológico y análisis con partograma",
     "difficulty": "Alta",
     "case": "Paciente de 23 años, G1, 39 semanas de gestación, sin comorbilidades. Inicia trabajo de parto espontáneo hace 10 horas. Membranas íntegras. A su ingreso presentaba 3 cm de dilatación, 70% de borramiento, presentación cefálica en -2 estación. Se inicia vigilancia con partograma. Después de 6 horas en fase activa, se documenta progresión de 4 cm a 5 cm únicamente. Contracciones 3 en 10 minutos, intensidad moderada. FCF 145 lpm reactiva. Pelvis clínica adecuada. No fiebre.",
@@ -6369,7 +6404,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Complicaciones obstétricas graves",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Embolia de líquido amniótico",
     "difficulty": "Alta",
     "case": "Paciente de 35 años, G2P1, 40 semanas, en trabajo de parto activo con 8 cm de dilatación. Súbitamente presenta disnea intensa, cianosis, hipotensión (TA 70/40 mmHg), taquicardia 130 lpm y pérdida del estado de alerta. Se documenta bradicardia fetal severa. Posteriormente desarrolla sangrado incoercible por sitio de venopunción y datos de coagulopatía. No antecedente de cardiopatía ni alergias.",
@@ -6401,8 +6436,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología puerperal",
+    "specialty": "cir",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "Inversión uterina",
     "difficulty": "Alta",
     "case": "Paciente de 20 años, G1P1, parto eutócico hace 10 minutos. Durante el alumbramiento se realiza tracción excesiva del cordón umbilical sin signos claros de desprendimiento placentario. Inmediatamente presenta dolor intenso, hemorragia masiva y choque hipovolémico. A la exploración no se palpa fondo uterino en abdomen y se observa masa roja protruyendo por vagina. TA 80/40 mmHg, FC 140 lpm.",
@@ -6423,7 +6458,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología del embarazo",
+    "tema": "Diabetes Gestacional",
     "subtema": "Polihidramnios asociado a diabetes",
     "difficulty": "Media–Alta",
     "case": "Paciente de 33 años, G2P1, 34 semanas, con diagnóstico de diabetes gestacional en tratamiento irregular. Refiere disnea progresiva y sensación de distensión abdominal excesiva. USG: índice de líquido amniótico 28 cm, feto macrosómico estimado en percentil 95. Doppler normal. No contracciones. TA normal.",
@@ -6455,8 +6490,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Cardiopatías en el embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Miocardiopatía periparto",
     "difficulty": "Alta",
     "case": "Paciente de 30 años, G3P3, 2 semanas postparto. Acude por disnea progresiva, ortopnea y edema en extremidades inferiores. Niega fiebre. TA 100/60 mmHg, FC 115 lpm. Estertores crepitantes bibasales. Ingurgitación yugular. Ecocardiograma: fracción de eyección 35%, dilatación ventricular izquierda. No antecedentes cardiacos previos.",
@@ -6488,8 +6523,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Control prenatal",
+    "specialty": "ped",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Isoinmunización Rh y profilaxis anti-D",
     "difficulty": "Alta",
     "case": "Mujer de 27 años, G2P1, 28 semanas de gestación. Grupo sanguíneo O Rh negativo. Su primer embarazo terminó en parto eutócico hace 3 años; el recién nacido fue Rh positivo. La paciente refiere que no recuerda haber recibido alguna inyección posterior al parto. En el embarazo actual, el Coombs indirecto al inicio fue negativo. En la consulta actual se repite Coombs indirecto y continúa negativo. No presenta sangrado ni procedimientos invasivos recientes. Ultrasonido obstétrico normal, sin datos de hidrops fetal.",
@@ -6522,7 +6557,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología del embarazo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "Restricción del crecimiento intrauterino con Doppler severamente alterado",
     "difficulty": "Alta",
     "case": "Paciente de 35 años, G2P1, 33 semanas de gestación. Antecedente de preeclampsia en embarazo previo. Acude por disminución de movimientos fetales. TA 150/100 mmHg. Proteinuria +++. Ultrasonido obstétrico: peso fetal estimado en percentil 3, índice de líquido amniótico 4 cm. Doppler de arteria umbilical con flujo diastólico ausente persistente. Perfil biofísico 6/10.",
@@ -6542,8 +6577,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología tromboembólica en el embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Trombosis venosa profunda",
     "difficulty": "Media–Alta",
     "case": "Mujer de 30 años, G2P1, 29 semanas de gestación. Obesidad grado II. Refiere dolor y aumento de volumen en pierna izquierda desde hace 48 horas. Niega fiebre. A la exploración: edema asimétrico, aumento de temperatura local, dolor a la palpación en trayecto venoso profundo. Signos vitales estables. Ultrasonido Doppler confirma trombosis venosa profunda femoropoplítea izquierda.",
@@ -6576,7 +6611,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "tema": "Diabetes Gestacional",
     "subtema": "Macrosomía fetal",
     "difficulty": "Media–Alta",
     "case": "Paciente de 38 años, G4P3, 39 semanas. Diabetes gestacional con control irregular. Ultrasonido con peso fetal estimado de 4,450 g. Pelvis clínica aparentemente adecuada. No antecedente de cesárea previa.",
@@ -6596,8 +6631,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Marco normativo en atención obstétrica",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Violencia obstétrica (NOM-007)",
     "difficulty": "Media",
     "case": "Paciente de 19 años, G1, en trabajo de parto activo. Refiere que durante la atención médica se le realizaron múltiples tactos vaginales por diferentes personas sin explicación ni consentimiento. Además, se le practicó episiotomía sin indicación clínica clara y sin informarle previamente. No hubo complicaciones médicas, pero la paciente presenta angustia significativa posterior al evento.",
@@ -6618,7 +6653,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trastornos hipertensivos del embarazo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Eclampsia y manejo de toxicidad por sulfato de magnesio",
     "difficulty": "Alta",
     "case": "Paciente de 24 años, G1, 36 semanas de gestación. Acude por cefalea intensa occipital, fosfenos y dolor en epigastrio. TA 170/110 mmHg. Proteinuria +++. Durante la valoración presenta crisis convulsiva tónico-clónica generalizada de 1 minuto de duración. Se inicia manejo con sulfato de magnesio esquema de Pritchard. Dos horas después, la paciente se encuentra somnolienta, con frecuencia respiratoria de 8 rpm, reflejos osteotendinosos abolidos y diuresis de 15 mL/h en las últimas 2 horas.",
@@ -6650,8 +6685,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Complicaciones hepáticas del embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Hígado graso agudo del embarazo",
     "difficulty": "Alta",
     "case": "Paciente de 29 años, G2P1, 35 semanas. Refiere náusea persistente, vómitos, malestar general y dolor en hipocondrio derecho desde hace 4 días. TA 140/90 mmHg. No proteinuria significativa. Laboratorios: AST 350 U/L, ALT 280 U/L, bilirrubina total 4.2 mg/dL, glucosa 52 mg/dL, plaquetas 140,000, creatinina 1.8 mg/dL, INR prolongado. USG hepático sin datos de obstrucción biliar. No antecedente de hepatitis viral.",
@@ -6684,7 +6719,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias obstétricas",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Atonía uterina refractaria",
     "difficulty": "Alta",
     "case": "Paciente de 32 años, G3P3, parto vaginal hace 30 minutos. Producto macrosómico de 4,200 g. Presenta sangrado abundante estimado en 1,200 mL. Útero blando a la palpación. Se administra masaje uterino y oxitocina IV sin respuesta adecuada. Posteriormente se administran metilergonovina y misoprostol rectal sin mejoría significativa. Persiste hipotensión 85/50 mmHg.",
@@ -6704,8 +6739,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología hepática",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Colestasis intrahepática del embarazo",
     "difficulty": "Media–Alta",
     "case": "Paciente de 31 años, G2P1, 33 semanas. Refiere prurito intenso predominante en palmas y plantas, peor por la noche, sin lesiones cutáneas primarias. Niega fiebre. Laboratorios: bilirrubinas normales, AST y ALT ligeramente elevadas, ácidos biliares séricos elevados. Perfil biofísico normal.",
@@ -6737,8 +6772,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Inducción fallida",
     "difficulty": "Media–Alta",
     "case": "Paciente de 40 años, G2P1, 41 semanas. Bishop inicial 3 puntos. Se realiza maduración cervical con misoprostol y posteriormente oxitocina durante 18 horas con adecuada dinámica uterina documentada (4–5 contracciones en 10 minutos). Sin embargo, la dilatación permanece en 4 cm sin cambios durante 6 horas consecutivas. FCF reactiva. Membranas rotas hace 10 horas.",
@@ -6770,8 +6805,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del tercer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Desprendimiento prematuro de placenta normoinserta (DPPNI) severo",
     "difficulty": "Alta",
     "case": "Paciente de 34 años, G3P2, 35 semanas de gestación. Antecedente de hipertensión crónica mal controlada. Acude a urgencias por dolor abdominal súbito, intenso, continuo, acompañado de sangrado transvaginal oscuro en cantidad moderada desde hace 1 hora. Refiere disminución marcada de movimientos fetales. A la exploración: TA 90/60 mmHg, FC 120 lpm. Abdomen con hipertonía uterina, útero doloroso a la palpación, sin relajación entre contracciones. FCF 90 lpm sostenida. Laboratorios: Hb 8.5 g/dL, fibrinógeno bajo, TP y TTP prolongados.",
@@ -6791,8 +6826,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Infecciones en el embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Corioamnionitis clínica",
     "difficulty": "Media–Alta",
     "case": "Paciente de 22 años, G1, 39 semanas. Ruptura de membranas desde hace 20 horas. Refiere fiebre y malestar general. Exploración: TA 110/70 mmHg, FC 115 lpm, temperatura 38.7°C. Útero doloroso a la palpación. FCF 170 lpm. Líquido amniótico fétido. Leucocitosis 18,000.",
@@ -6812,8 +6847,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Emergencias obstétricas",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Ruptura uterina",
     "difficulty": "Alta",
     "case": "Paciente de 30 años, G2P1, antecedente de cesárea segmentaria hace 2 años. 40 semanas, en trabajo de parto con oxitocina. Tras varias horas, presenta dolor abdominal súbito intenso, cese de contracciones y pérdida de la estación fetal. Exploración: TA 85/50 mmHg, FC 130 lpm. FCF no detectable. Abdomen doloroso, palpación fácil de partes fetales.",
@@ -6833,8 +6868,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Anomalías placentarias",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Espectro de acretismo placentario",
     "difficulty": "Alta",
     "case": "Paciente de 38 años, G4P3, dos cesáreas previas. USG a las 32 semanas muestra placenta anterior baja con múltiples lagunas vasculares y pérdida de la zona hipoecoica retroplacentaria. Doppler con hipervascularidad anormal. Asintomática actualmente.",
@@ -6854,8 +6889,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del tercer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Vasa previa",
     "difficulty": "Alta",
     "case": "Paciente de 29 años, G2P1, 36 semanas. Diagnóstico prenatal de inserción velamentosa del cordón con vasos fetales atravesando el orificio cervical interno. Acude por ruptura espontánea de membranas con sangrado rojo brillante inmediato. FCF 70 lpm. Madre hemodinámicamente estable.",
@@ -6875,8 +6910,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del tercer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Placenta previa oclusiva total",
     "difficulty": "Media–Alta",
     "case": "Paciente de 33 años, G3P2, 34 semanas de gestación. Antecedente de una cesárea previa. Acude por sangrado transvaginal rojo brillante, abundante, de inicio súbito, indoloro, sin actividad uterina. Niega traumatismo. Refiere movimientos fetales normales. A la exploración: TA 110/70 mmHg, FC 95 lpm. Abdomen sin dolor a la palpación, útero relajado. FCF 140 lpm reactiva. Ultrasonido transvaginal reporta placenta que cubre completamente el orificio cervical interno.",
@@ -6896,8 +6931,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Infecciones perinatales",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Ruptura prematura de membranas pretérmino (RPMPT)",
     "difficulty": "Alta",
     "case": "Paciente de 26 años, G1, 32 semanas. Refiere salida de líquido claro abundante desde hace 4 horas. Sin fiebre ni dolor abdominal. Exploración: TA 100/65 mmHg, T 36.8°C. Especuloscopía con salida de líquido claro por OCI. Prueba de cristalización positiva. FCF 145 lpm. BH normal. Sin datos clínicos de infección.",
@@ -6917,8 +6952,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Endocrinología obstétrica",
+    "specialty": "mi",
+    "tema": "Diabetes Mellitus",
     "subtema": "Diabetes gestacional mal controlada intraparto",
     "difficulty": "Media–Alta",
     "case": "Paciente de 29 años, G2P1, 39 semanas, diabetes gestacional en tratamiento con insulina. Durante trabajo de parto presenta glucosa capilar de 210 mg/dL. Dinámica uterina adecuada. FCF normal.",
@@ -6959,8 +6994,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología hipertensiva",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Hipertensión gestacional vs preeclampsia",
     "difficulty": "Media–Alta",
     "case": "Paciente de 30 años, G1, 38 semanas. TA 150/95 mmHg en dos tomas separadas por 6 horas. No cefalea, no fosfenos. EGO sin proteinuria. Plaquetas normales, enzimas hepáticas normales.",
@@ -6980,8 +7015,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Prolapso de cordón umbilical",
     "difficulty": "Alta",
     "case": "Paciente de 27 años, G2P1, 38 semanas, en trabajo de parto activo con 6 cm de dilatación. Membranas se rompen espontáneamente durante la exploración. Inmediatamente se observa bradicardia fetal sostenida de 70 lpm. Al tacto vaginal se palpa estructura pulsátil por delante de la presentación cefálica. La paciente se encuentra hemodinámicamente estable. El quirófano está disponible.",
@@ -7002,7 +7037,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trastornos hipertensivos",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Preeclampsia con datos de severidad",
     "difficulty": "Alta",
     "case": "Paciente de 31 años, G1, 35 semanas. TA 165/110 mmHg, cefalea intensa persistente y fosfenos. Proteinuria ++. Plaquetas 110,000, AST 180 U/L. FCF reactiva. Sin trabajo de parto.",
@@ -7023,7 +7058,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia obstétrica",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Retención placentaria",
     "difficulty": "Media–Alta",
     "case": "Paciente de 22 años, G1P1, parto eutócico hace 40 minutos. Persistencia de placenta intrauterina sin signos claros de desprendimiento. Sangrado moderado continuo. Útero contraído parcialmente. Signos vitales estables.",
@@ -7043,8 +7078,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Infecciones en el embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Pielonefritis aguda",
     "difficulty": "Alta",
     "case": "Paciente de 24 años, G1, 26 semanas. Refiere fiebre 39°C, dolor lumbar derecho y náusea. TA 100/60 mmHg, FC 115 lpm. Dolor a la puñopercusión lumbar derecha. EGO con leucocituria y bacteriuria. Leucocitos 19,000.",
@@ -7064,8 +7099,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología fetal",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Oligohidramnios severo a término",
     "difficulty": "Media–Alta",
     "case": "Paciente de 36 años, G2P1, 39 semanas. Refiere disminución de movimientos fetales. USG reporta índice de líquido amniótico de 3 cm. Perfil biofísico 6/10. Doppler normal.",
@@ -7086,7 +7121,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trastornos hipertensivos del embarazo",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Eclampsia intraparto",
     "difficulty": "Alta",
     "case": "Paciente de 19 años, G1, 38 semanas, sin control prenatal adecuado. Ingresa en trabajo de parto con TA 170/115 mmHg, cefalea intensa y visión borrosa. Proteinuria +++. Durante la valoración presenta crisis convulsiva tónico-clónica generalizada de 90 segundos. Posterior a la crisis: FCF 100 lpm con desaceleraciones tardías recurrentes. Dilatación 5 cm.",
@@ -7119,7 +7154,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias obstétricas",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Atonía uterina con choque hipovolémico",
     "difficulty": "Alta",
     "case": "Paciente de 35 años, G4P4, parto vaginal hace 20 minutos. Producto de 4,300 g. Presenta sangrado masivo estimado en 1,800 mL. Útero flácido. TA 80/40 mmHg, FC 135 lpm, piel fría. Se inicia masaje uterino y oxitocina sin respuesta inmediata.",
@@ -7152,7 +7187,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Infecciones obstétricas",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Sepsis puerperal",
     "difficulty": "Alta",
     "case": "Paciente de 28 años, 5 días postcesárea. Presenta fiebre 39°C, hipotensión 85/50 mmHg, taquicardia 125 lpm, loquios fétidos y dolor abdominal intenso. Lactato elevado. Se sospecha foco uterino.",
@@ -7184,8 +7219,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Sufrimiento fetal agudo intraparto",
     "difficulty": "Alta",
     "case": "Paciente de 30 años, G2P1, 40 semanas, en fase activa con 8 cm de dilatación. Monitor muestra desaceleraciones tardías repetitivas, variabilidad mínima y taquicardia fetal 170 lpm. Contracciones adecuadas. No fiebre materna.",
@@ -7217,8 +7252,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Endocrinología obstétrica",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Cetoacidosis diabética en embarazo",
     "difficulty": "Alta",
     "case": "Paciente de 26 años, G1, 30 semanas, DM1. Refiere vómito, poliuria y malestar. TA 100/60 mmHg, FC 120 lpm. Glucosa 380 mg/dL, pH 7.18, bicarbonato bajo, cetonas positivas. FCF 165 lpm.",
@@ -7250,8 +7285,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto diferido (retenido)",
     "difficulty": "Media–Alta",
     "case": "Paciente de 30 años, G2P1, 11 semanas por FUM. Acude por manchado escaso oscuro desde hace 3 días, sin dolor tipo cólico intenso. Refiere disminución de síntomas gestacionales (náusea y mastalgia). Exploración: TA 110/70 mmHg. Cérvix cerrado. Útero acorde a 9 semanas. USG transvaginal: saco gestacional con embrión de 8 semanas sin actividad cardiaca. No líquido libre.",
@@ -7284,7 +7319,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Fase activa prolongada",
     "difficulty": "Alta",
     "case": "Paciente de 25 años, G1, 40 semanas, en trabajo de parto. Dilatación progresa de 6 a 7 cm en 5 horas, con dinámica uterina adecuada (4–5 contracciones/10 min). Pelvis clínica adecuada. Membranas rotas hace 6 horas. FCF normal.",
@@ -7317,7 +7352,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias del tercer trimestre",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Desprendimiento prematuro de placenta leve",
     "difficulty": "Media–Alta",
     "case": "Paciente de 29 años, G2P1, 36 semanas. Dolor abdominal leve continuo y sangrado oscuro escaso. TA 130/85 mmHg. Útero discretamente doloroso. FCF 140 lpm reactiva. USG sin placenta previa.",
@@ -7350,7 +7385,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Infecciones del embarazo",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "VIH en embarazo",
     "difficulty": "Alta",
     "case": "Paciente de 27 años, G1, 32 semanas. Diagnóstico reciente de VIH. Carga viral 15,000 copias/mL. No tratamiento previo. Sin complicaciones obstétricas.",
@@ -7382,8 +7417,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Complicaciones tromboembólicas",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Tromboembolia pulmonar en embarazo",
     "difficulty": "Alta",
     "case": "Paciente de 34 años, G2P1, 30 semanas. Inicio súbito de disnea, dolor torácico pleurítico y taquicardia 120 lpm. Saturación 88%. Sin fiebre. Pierna derecha con edema leve.",
@@ -7415,8 +7450,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología fetal",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Restricción del crecimiento intrauterino (RCIU) temprana con Doppler",
     "difficulty": "Alta",
     "case": "Paciente de 32 años, G1, 30 semanas. Antecedente de hipertensión crónica. Refiere disminución de movimientos fetales. USG: peso fetal estimado en percentil 5, líquido amniótico en límite inferior normal. Doppler de arteria umbilical con índice de pulsatilidad elevado y flujo diastólico ausente intermitente. Doppler de arteria cerebral media con redistribución (“brain sparing”). Perfil biofísico 8/10.",
@@ -7449,7 +7484,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Desproporción cefalopélvica",
     "difficulty": "Alta",
     "case": "Paciente de 24 años, G1, 40 semanas. Trabajo de parto con dinámica adecuada durante 6 horas en fase activa. Dilatación permanece en 6 cm sin cambios. Cabeza fetal en -2 estación persistente. Pelvis clínica estrecha en conjugado diagonal. FCF normal.",
@@ -7482,7 +7517,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Endocrinología obstétrica",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Hipotiroidismo subclínico en embarazo",
     "difficulty": "Media–Alta",
     "case": "Paciente de 29 años, G1, 10 semanas. Asintomática. Tamiz prenatal muestra TSH 6.5 mUI/L (elevada para primer trimestre), T4 libre normal. Anticuerpos anti-TPO positivos.",
@@ -7515,7 +7550,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Infecciones del embarazo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Sífilis gestacional",
     "difficulty": "Alta",
     "case": "Paciente de 23 años, G1, 24 semanas. VDRL 1:32, prueba treponémica confirmatoria positiva. Asintomática. Feto con biometría acorde a edad gestacional.",
@@ -7548,7 +7583,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia obstétrica",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Laceración cervical posparto",
     "difficulty": "Media–Alta",
     "case": "Paciente de 26 años, G2P2, parto vaginal instrumentado con fórceps. Posterior al alumbramiento presenta sangrado abundante. Útero firme y contraído. TA 95/60 mmHg. Al revisar canal del parto se identifica desgarro cervical sangrante.",
@@ -7580,8 +7615,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología hepática del embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Colestasis intrahepática con criterios de interrupción",
     "difficulty": "Alta",
     "case": "Paciente de 34 años, G2P1, 35 semanas. Refiere prurito intenso generalizado predominante en palmas y plantas, peor por la noche. Sin lesiones primarias. Laboratorios: ácidos biliares 65 μmol/L (elevados), AST y ALT discretamente elevadas, bilirrubina normal. Perfil biofísico 8/10. Doppler normal.",
@@ -7613,8 +7648,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Emergencias obstétricas",
+    "specialty": "mi",
+    "tema": "VIH / SIDA",
     "subtema": "Embolia pulmonar masiva en puerperio",
     "difficulty": "Alta",
     "case": "Paciente de 38 años, 3 días postcesárea. Obesidad grado II. Inicio súbito de disnea intensa, dolor torácico, síncope. TA 75/45 mmHg, FC 130 lpm, saturación 82%. Se sospecha tromboembolia pulmonar masiva.",
@@ -7647,7 +7682,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Líquido meconial espeso y manejo intraparto",
     "difficulty": "Media–Alta",
     "case": "Paciente de 29 años, G1, 41 semanas. Durante trabajo de parto se documenta salida de líquido amniótico espeso, verde oscuro. FCF 150 lpm con variabilidad moderada, sin desaceleraciones.",
@@ -7679,8 +7714,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Endocrinología obstétrica",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Diabetes pregestacional y malformaciones",
     "difficulty": "Alta",
     "case": "Paciente de 25 años con DM1 desde la adolescencia. Embarazo no planeado. HbA1c al inicio 10%. USG estructural a las 20 semanas muestra defecto del tubo neural.",
@@ -7713,7 +7748,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias obstétricas",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Coagulación intravascular diseminada secundaria a DPPNI",
     "difficulty": "Alta",
     "case": "Paciente de 36 años, G3P2, 34 semanas, con DPPNI severo. Sangrado abundante, útero hipertónico. Laboratorios: plaquetas 60,000, fibrinógeno bajo, TP prolongado, sangrado por sitios de venopunción.",
@@ -7745,8 +7780,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Embarazo molar completo",
     "difficulty": "Alta",
     "case": "Paciente de 19 años, G1, 12 semanas por FUM. Refiere náusea y vómito severos, sangrado transvaginal oscuro intermitente y crecimiento uterino mayor al esperado. Exploración: TA 150/95 mmHg. Útero correspondiente a 16 semanas. No se auscultan latidos fetales. β-hCG marcadamente elevada (>200,000 mUI/mL). USG: imagen en “tormenta de nieve”, sin embrión visible.",
@@ -7790,8 +7825,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Presentación pélvica a término",
     "difficulty": "Media–Alta",
     "case": "Paciente de 28 años, G1, 39 semanas. USG confirma presentación pélvica franca. Peso fetal estimado 3,200 g. Pelvis clínica adecuada. Sin comorbilidades.",
@@ -7824,7 +7859,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trastornos hipertensivos",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "Hipertensión crónica con sobreagregación de preeclampsia",
     "difficulty": "Alta",
     "case": "Paciente de 36 años con hipertensión crónica conocida desde antes del embarazo. Actualmente 32 semanas. TA habitual 140/90 mmHg. En consulta presenta TA 165/105 mmHg, proteinuria +++, plaquetas 130,000.",
@@ -7856,8 +7891,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Infecciones perinatales",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Profilaxis para Streptococcus del grupo B (EGB)",
     "difficulty": "Media–Alta",
     "case": "Paciente de 25 años, G1, 39 semanas, en trabajo de parto. Cultivo rectovaginal a las 36 semanas positivo para Streptococcus grupo B. Sin alergias medicamentosas.",
@@ -7890,7 +7925,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología del puerperio",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Mastitis puerperal",
     "difficulty": "Media",
     "case": "Paciente de 22 años, 3 semanas postparto. Refiere dolor en mama derecha, eritema localizado y fiebre 38.2°C. Lactancia activa. Sin fluctuación.",
@@ -7922,8 +7957,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología trofoblástica gestacional",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Neoplasia trofoblástica gestacional postmolar",
     "difficulty": "Alta",
     "case": "Paciente de 22 años con antecedente de embarazo molar completo evacuado hace 8 semanas. Seguimiento con β-hCG semanal mostró descenso inicial, pero en las últimas 3 determinaciones presenta meseta (5,200 → 5,400 → 5,350 mUI/mL). Asintomática. USG sin restos evidentes.",
@@ -7956,7 +7991,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Distocia por hipodinamia uterina",
     "difficulty": "Media–Alta",
     "case": "Paciente de 26 años, G1, 39 semanas, en fase activa con 5 cm de dilatación. Tras 4 horas solo progresa a 6 cm. Dinámica uterina: 2 contracciones en 10 minutos, de intensidad leve. FCF normal.",
@@ -7988,8 +8023,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del segundo trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Placenta previa diagnosticada antes de 28 semanas",
     "difficulty": "Media–Alta",
     "case": "Paciente de 30 años, G2P1, 24 semanas. USG muestra placenta parcialmente cubriendo OCI. Asintomática.",
@@ -8021,8 +8056,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Endocrinología obstétrica",
+    "specialty": "mi",
+    "tema": "Hipotiroidismo",
     "subtema": "Hipertiroidismo en el primer trimestre",
     "difficulty": "Alta",
     "case": "Paciente de 27 años, G1, 9 semanas. Palpitaciones, pérdida de peso y temblor. TSH suprimida, T4 libre elevada. Anticuerpos TRAb positivos.",
@@ -8055,7 +8090,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Complicaciones del puerperio",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Absceso mamario",
     "difficulty": "Media–Alta",
     "case": "Paciente de 24 años, 4 semanas postparto. Dolor intenso en mama izquierda, fiebre 38.8°C. Área eritematosa con fluctuación palpable. No mejoró tras 72 horas de antibiótico por mastitis.",
@@ -8087,8 +8122,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología hipertensiva del embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Preeclampsia antes de las 34 semanas sin datos de severidad",
     "difficulty": "Alta",
     "case": "Paciente de 29 años, G1, 31 semanas. TA 150/95 mmHg en dos ocasiones separadas por 6 horas. Proteinuria 400 mg en 24 horas. Sin cefalea, sin fosfenos. Plaquetas 180,000, AST y ALT normales. FCF reactiva, Doppler normal.",
@@ -8120,8 +8155,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Parto pretérmino espontáneo",
     "difficulty": "Alta",
     "case": "Paciente de 23 años, G2P1, 32 semanas. Contracciones regulares cada 5 minutos desde hace 2 horas. Dilatación 3 cm, borramiento 70%. Membranas íntegras. FCF reactiva.",
@@ -8198,8 +8233,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Infecciones perinatales",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Toxoplasmosis en embarazo",
     "difficulty": "Alta",
     "case": "Paciente de 26 años, G1, 18 semanas. Serología: IgM positiva, IgG negativa. Refiere contacto frecuente con gatos. Asintomática.",
@@ -8232,7 +8267,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Puerperio",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Depresión posparto",
     "difficulty": "Media–Alta",
     "case": "Paciente de 30 años, 6 semanas postparto. Refiere tristeza persistente, insomnio, anhedonia y sentimientos de culpa. Niega ideación suicida. Funcionalidad disminuida.",
@@ -8264,8 +8299,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología hipertensiva del embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Preeclampsia con datos de severidad y manejo intrahospitalario",
     "difficulty": "Alta",
     "case": "Paciente de 32 años, G2P1, 35 semanas de gestación, acude por cefalea intensa holocraneana de 12 horas de evolución, fosfenos y dolor en epigastrio irradiado a hipocondrio derecho. Refiere edema progresivo en extremidades inferiores desde hace una semana. A la exploración: TA 170/110 mmHg en dos tomas separadas por 15 minutos, FC 96 lpm, FR 20 rpm. Reflejos osteotendinosos ++ con discreta hiperreflexia. No hay datos de trabajo de parto. FCF 150 lpm reactiva. Laboratorios: Plaquetas 95,000/mm³ AST 110 U/L ALT 95 U/L Creatinina 1.3 mg/dL Proteinuria 3+ en tira reactiva",
@@ -8309,8 +8344,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias obstétricas",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Desprendimiento prematuro de placenta normoinserta (DPPNI)",
     "difficulty": "Alta",
     "case": "Paciente de 28 años, G3P2, 37 semanas, con antecedente de hipertensión gestacional en embarazo previo. Acude por dolor abdominal súbito, intenso y constante, acompañado de sangrado vaginal oscuro en moderada cantidad. Refiere disminución de movimientos fetales. A la exploración: TA 150/95 mmHg, abdomen con hipertonía uterina y dolor difuso a la palpación. FCF 90 lpm con desaceleraciones tardías repetitivas.",
@@ -8354,8 +8389,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Endocrinología ginecológica",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Síndrome de ovario poliquístico (SOP) y criterios diagnósticos",
     "difficulty": "Media–Alta",
     "case": "Paciente de 24 años con ciclos menstruales irregulares desde la adolescencia. Presenta aumento progresivo de vello facial y acné. IMC 31 kg/m². Refiere dificultad para embarazarse tras 1 año de relaciones sin protección. Laboratorios: Testosterona total ligeramente elevada. TSH normal. Prolactina normal. USG transvaginal: ovarios aumentados de volumen con múltiples folículos periféricos pequeños.",
@@ -8399,8 +8434,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Infecciones ginecológicas",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Enfermedad pélvica inflamatoria complicada",
     "difficulty": "Alta",
     "case": "Paciente de 27 años con antecedente de múltiples parejas sexuales y uso irregular de preservativo. Consulta por dolor pélvico de 5 días de evolución, fiebre 38.5°C y flujo vaginal purulento. A la exploración: dolor intenso a movilización cervical y dolor anexial bilateral. USG muestra masa anexial compleja de 6 cm compatible con absceso tubo-ovárico.",
@@ -8445,7 +8480,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Embarazo ectópico",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Manejo médico vs quirúrgico",
     "difficulty": "Alta",
     "case": "Paciente de 30 años, G2P0A1, acude por dolor pélvico unilateral izquierdo de 48 horas de evolución, tipo punzante, intensidad progresiva. Refiere amenorrea de 7 semanas y manchado vaginal escaso oscuro desde hace 3 días. Niega síncope. Exploración: TA 110/70 mmHg, FC 88 lpm. Abdomen con dolor en fosa iliaca izquierda sin datos de irritación peritoneal. A la exploración ginecológica: cérvix cerrado, dolor a movilización cervical, masa anexial izquierda dolorosa. β-hCG: 2,300 mUI/mL USG transvaginal: no se observa saco intrauterino, masa anexial izquierda de 2.5 cm, sin líquido libre significativo.",
@@ -8490,7 +8525,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia obstétrica",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Atonía uterina en el puerperio inmediato",
     "difficulty": "Alta",
     "case": "Paciente de 34 años, G4P4, parto vaginal eutócico hace 20 minutos. Producto de 3,900 g. Placenta completa. Presenta sangrado abundante transvaginal que empapa compresas rápidamente. TA 95/60 mmHg, FC 115 lpm. A la palpación abdominal: útero aumentado de tamaño, blando y mal contraído.",
@@ -8535,7 +8570,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Oncología ginecológica",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Cáncer cervicouterino etapa temprana",
     "difficulty": "Alta",
     "case": "Paciente de 41 años, sin tamizaje en los últimos 10 años. Consulta por sangrado poscoital intermitente. Especuloscopía: lesión exofítica friable de 2 cm en cérvix. Biopsia: carcinoma epidermoide invasor. RM pélvica: tumor limitado al cuello uterino, 2.2 cm, sin invasión parametrial.",
@@ -8579,8 +8614,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Obstetricia",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Ruptura prematura de membranas pretérmino (RPM pretérmino)",
     "difficulty": "Alta",
     "case": "Paciente de 25 años, G1, 30 semanas. Refiere salida súbita de líquido claro abundante hace 6 horas. No contracciones. TA normal. Temperatura 37.8°C. FCF reactiva. Especuloscopía: líquido claro en fondo de saco. Prueba de nitrazina positiva.",
@@ -8624,8 +8659,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Diabetes en el embarazo",
+    "specialty": "mi",
+    "tema": "Diabetes Mellitus",
     "subtema": "Cetoacidosis diabética en embarazo",
     "difficulty": "Muy Alta",
     "case": "Paciente de 27 años, G2P1, 28 semanas de gestación, antecedente de diabetes tipo 1 desde los 14 años. Acude por 24 horas de náuseas intensas, vómito y dolor abdominal difuso. Refiere haber suspendido parcialmente su insulina por inapetencia. Exploración: TA 100/60 mmHg, FC 120 lpm, FR 28 rpm con respiración profunda. Mucosas secas. FCF 170 lpm. Laboratorios: Glucosa 280 mg/dL pH 7.18 Bicarbonato 12 mEq/L Cetonas positivas en sangre Anión gap elevado",
@@ -8669,8 +8704,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto séptico",
     "difficulty": "Alta",
     "case": "Paciente de 22 años, 10 semanas por FUM, acude por fiebre de 39°C, dolor abdominal bajo intenso y sangrado vaginal fétido. Refiere intento de interrupción del embarazo con instrumento no médico hace 3 días. Exploración: TA 90/55 mmHg, FC 118 lpm. Abdomen doloroso con datos de irritación peritoneal leve. Cérvix abierto con restos ovulares visibles. Laboratorios: leucocitosis marcada con neutrofilia.",
@@ -8715,7 +8750,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Climaterio",
+    "tema": "Cáncer de Mama",
     "subtema": "Terapia hormonal de reemplazo (THR)",
     "difficulty": "Media–Alta",
     "case": "Paciente de 52 años, menopausia desde hace 1 año. Presenta bochornos intensos, sudoración nocturna y trastorno del sueño que afecta su calidad de vida. IMC 24. No antecedentes de cáncer de mama ni enfermedad tromboembólica. Útero íntegro.",
@@ -8759,8 +8794,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Obstetricia",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Restricción del crecimiento intrauterino (RCIU)",
     "difficulty": "Alta",
     "case": "Paciente de 33 años, G1, 34 semanas. Antecedente de hipertensión crónica. Refiere disminución de movimientos fetales. Altura uterina menor a la esperada para edad gestacional. USG: peso fetal estimado < percentil 5, líquido amniótico disminuido. Doppler de arteria umbilical con aumento de resistencia.",
@@ -8805,7 +8840,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología hipertensiva del embarazo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Síndrome HELLP",
     "difficulty": "Muy Alta",
     "case": "Paciente de 34 años, G3P2, 33 semanas de gestación. Acude por dolor intenso en epigastrio irradiado a hipocondrio derecho desde hace 8 horas, náusea y malestar general. Refiere cefalea leve. Sin antecedentes patológicos relevantes. Exploración: TA 155/100 mmHg, FC 102 lpm. Edema en extremidades inferiores ++. Reflejos osteotendinosos aumentados. Útero acorde a edad gestacional. FCF 150 lpm reactiva. Laboratorios: Plaquetas 68,000/mm³ AST 210 U/L ALT 190 U/L Bilirrubina indirecta elevada LDH elevada Esquistocitos en frotis",
@@ -8850,7 +8885,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias del tercer trimestre",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Placenta previa total sintomática",
     "difficulty": "Alta",
     "case": "Paciente de 37 años, G4P3, 36 semanas, antecedente de dos cesáreas previas. Consulta por sangrado vaginal rojo brillante abundante, indoloro, de inicio súbito. Niega dolor abdominal. Exploración: TA 105/70 mmHg, FC 100 lpm. Útero relajado, no doloroso. FCF 140 lpm reactiva. USG muestra placenta cubriendo completamente el orificio cervical interno.",
@@ -8895,7 +8930,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Endocrinología ginecológica",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Hiperprolactinemia y galactorrea",
     "difficulty": "Media–Alta",
     "case": "Paciente de 28 años consulta por amenorrea de 6 meses y salida espontánea de secreción láctea bilateral. Niega embarazo. No usa anticonceptivos. Refiere cefalea leve ocasional. Laboratorios: β-hCG negativa TSH normal Prolactina 120 ng/mL",
@@ -8939,8 +8974,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Obstetricia",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Isoinmunización Rh",
     "difficulty": "Alta",
     "case": "Paciente de 26 años, G2P1, 28 semanas. Grupo O Rh negativo. Primer embarazo terminó en parto vaginal sin aplicación documentada de inmunoglobulina anti-D. En control actual se detecta Coombs indirecto positivo con títulos elevados. USG muestra signos iniciales de hidropesía fetal leve.",
@@ -8984,8 +9019,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto retenido",
     "difficulty": "Media–Alta",
     "case": "Paciente de 29 años, G1, 9 semanas por FUM. Refiere desaparición de náuseas y mastalgia desde hace una semana. Niega sangrado abundante. Solo manchado marrón escaso. Sin dolor significativo. Exploración: cérvix cerrado, útero menor al esperado. USG transvaginal: saco gestacional con embrión de 8 semanas sin actividad cardiaca.",
@@ -9005,8 +9040,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Embarazo ectópico",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Ectópico roto",
     "difficulty": "Alta",
     "case": "Paciente de 26 años, amenorrea de 6 semanas. Dolor abdominal súbito intenso, síncope en domicilio. TA 85/50 mmHg, FC 130 lpm. Abdomen con rebote positivo. USG FAST: líquido libre abundante en cavidad. β-hCG 4,500 mUI/mL.",
@@ -9026,8 +9061,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología hipertensiva",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Eclampsia",
     "difficulty": "Muy Alta",
     "case": "Paciente de 19 años, 36 semanas, presenta convulsión tónico-clónica generalizada en sala de espera. TA 180/115 mmHg. Posterior al evento se encuentra somnolienta.",
@@ -9048,7 +9083,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia obstétrica",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Laceración cervical",
     "difficulty": "Media–Alta",
     "case": "Paciente con parto vaginal instrumentado. Presenta sangrado abundante, pero útero firme y bien contraído.",
@@ -9069,7 +9104,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Oncología ginecológica",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "NIC II–III",
     "difficulty": "Media–Alta",
     "case": "Paciente de 32 años con citología que reporta HSIL. Colposcopía con lesión acetoblanca extensa. Biopsia: NIC III.",
@@ -9089,7 +9124,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "mi",
     "tema": "Endocrinología reproductiva",
     "subtema": "Amenorrea secundaria – insuficiencia ovárica prematura",
     "difficulty": "Alta",
@@ -9111,7 +9146,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Obstetricia",
+    "tema": "Diabetes Gestacional",
     "subtema": "Macrosomía fetal",
     "difficulty": "Media–Alta",
     "case": "Paciente con diabetes gestacional mal controlada. USG estima peso fetal 4,400 g a las 39 semanas.",
@@ -9132,7 +9167,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Infecciones en embarazo",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Corioamnionitis",
     "difficulty": "Alta",
     "case": "Paciente 32 semanas con RPM hace 48 horas. Presenta fiebre 38.5°C, taquicardia materna y fetal, dolor uterino.",
@@ -9152,8 +9187,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del segundo trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Vasa previa",
     "difficulty": "Alta",
     "case": "Paciente de 31 años, G2P1, 35 semanas, acude por ruptura espontánea de membranas en domicilio seguida de sangrado vaginal rojo brillante moderado. Refiere disminución brusca de movimientos fetales. No presenta dolor abdominal. Exploración: TA 110/70 mmHg, FC 92 lpm. Útero no doloroso. FCF 80 lpm persistente. USG previo reportaba inserción velamentosa del cordón.",
@@ -9173,8 +9208,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología hipertensiva",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Hipertensión gestacional",
     "difficulty": "Media",
     "case": "Paciente de 24 años, G1, 37 semanas. TA 145/92 mmHg en dos mediciones separadas por 4 horas. Sin proteinuria. Laboratorios normales. Asintomática.",
@@ -9195,7 +9230,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Desproporción cefalopélvica",
     "difficulty": "Alta",
     "case": "Paciente primigesta, 40 semanas, en trabajo de parto activo con 6 cm de dilatación desde hace 5 horas pese a adecuada dinámica uterina (4 contracciones en 10 min, intensidad adecuada). Cabeza en estación -2 persistente. Feto estimado 4,100 g.",
@@ -9215,8 +9250,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Endocrinología obstétrica",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Diabetes gestacional diagnóstico",
     "difficulty": "Media",
     "case": "Paciente de 29 años, 26 semanas. Curva de tolerancia oral a la glucosa con 75 g: Ayuno 98 mg/dL 1 hora 190 mg/dL 2 horas 160 mg/dL",
@@ -9236,8 +9271,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Oncología ginecológica",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Cáncer de ovario epitelial",
     "difficulty": "Alta",
     "case": "Paciente de 58 años, distensión abdominal progresiva, pérdida de peso y sensación de saciedad temprana. USG muestra masa anexial compleja bilateral con ascitis. CA-125 elevado.",
@@ -9257,8 +9292,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Puerperio",
+    "specialty": "cir",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "Trombosis venosa profunda",
     "difficulty": "Alta",
     "case": "Paciente de 30 años, 10 días postcesárea. Dolor y aumento de volumen en pierna izquierda. Signo de Homans positivo. Doppler venoso confirma trombosis femoral.",
@@ -9300,7 +9335,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Obstetricia",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Polihidramnios",
     "difficulty": "Media",
     "case": "Paciente de 34 semanas con aumento excesivo de altura uterina. USG reporta índice de líquido amniótico de 28 cm. Feto con sospecha de atresia esofágica.",
@@ -9320,8 +9355,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del tercer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Ruptura uterina",
     "difficulty": "Alta",
     "case": "Paciente de 38 años, G5P4, con antecedente de dos cesáreas previas. Cursa 39 semanas y se encuentra en trabajo de parto con prueba de trabajo después de cesárea. Presenta súbitamente dolor abdominal intenso, diferente al de las contracciones, seguido de cese de la dinámica uterina. Refiere sensación de “desgarro”. Se observa sangrado vaginal moderado. Exploración: TA 90/60 mmHg, FC 120 lpm. Abdomen doloroso, partes fetales fácilmente palpables. FCF 70 lpm sostenida.",
@@ -9341,8 +9376,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología hipertensiva",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Preeclampsia con datos neurológicos",
     "difficulty": "Alta",
     "case": "Paciente de 25 años, 34 semanas, acude por cefalea intensa, fosfenos y visión borrosa de 24 horas de evolución. TA 165/105 mmHg. Proteinuria 2+. Plaquetas 140,000. Creatinina normal. Reflejos osteotendinosos aumentados. No convulsiones.",
@@ -9363,7 +9398,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "tema": "Diabetes Gestacional",
     "subtema": "Distocia de hombros",
     "difficulty": "Alta",
     "case": "Paciente con diabetes gestacional. Parto vaginal en curso a las 39 semanas. Tras salida de la cabeza fetal se observa retracción contra el periné (“signo de la tortuga”). No progresa el resto del cuerpo.",
@@ -9384,7 +9419,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Endocrinología ginecológica",
+    "tema": "Hemorragias del Primer Trimestre",
     "subtema": "Síndrome de Asherman",
     "difficulty": "Media",
     "case": "Paciente de 33 años con antecedente de legrado uterino posterior a aborto complicado hace un año. Desde entonces presenta hipomenorrea progresiva hasta amenorrea. Desea embarazo. Prueba de progesterona negativa (no sangrado).",
@@ -9425,8 +9460,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Obstetricia",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Oligohidramnios",
     "difficulty": "Media",
     "case": "Paciente de 36 semanas con antecedente de hipertensión crónica. Refiere disminución de movimientos fetales. USG muestra índice de líquido amniótico de 4 cm. Doppler con aumento de resistencia en arteria umbilical.",
@@ -9446,8 +9481,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Embarazo anembrionado",
     "difficulty": "Media",
     "case": "Paciente de 27 años, G1, 8 semanas por FUM, acude para ultrasonido de control. Refiere náuseas leves y mastalgia. Niega dolor o sangrado abundante, solo manchado escaso marrón en días previos. Exploración: cérvix cerrado, útero acorde a 8 semanas. USG transvaginal: saco gestacional de 30 mm sin embrión visible ni saco vitelino.",
@@ -9480,7 +9515,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología hipertensiva",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "Hipertensión crónica con sobreagregación de preeclampsia",
     "difficulty": "Alta",
     "case": "Paciente de 36 años con antecedente de hipertensión arterial crónica desde hace 5 años. Cursa 32 semanas. Habitualmente TA 135/85 mmHg con tratamiento. Consulta por edema súbito, cefalea y elevación de TA a 160/100 mmHg. Proteinuria 1.2 g en 24 horas.",
@@ -9512,8 +9547,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Presentación pélvica",
     "difficulty": "Alta",
     "case": "Paciente primigesta, 38 semanas, producto único en presentación pélvica franca diagnosticada por USG. Peso estimado 3,200 g. Pelvis clínicamente adecuada. Sin comorbilidades.",
@@ -9546,7 +9581,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Endocrinología reproductiva",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Hiperplasia endometrial",
     "difficulty": "Media",
     "case": "Paciente de 48 años con sangrado uterino anormal crónico. IMC 34 kg/m². USG: endometrio 16 mm. Biopsia: hiperplasia endometrial sin atipia.",
@@ -9611,8 +9646,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Obstetricia",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Prolapso de cordón umbilical",
     "difficulty": "Alta",
     "case": "Paciente de 35 semanas en trabajo de parto, presentación transversa. Tras ruptura artificial de membranas se observa cordón umbilical protruyendo por vagina. FCF 90 lpm.",
@@ -9644,8 +9679,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología hipertensiva del embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Eclampsia intraparto",
     "difficulty": "Alta",
     "case": "Paciente de 21 años, primigesta, 38 semanas, sin control prenatal adecuado. Ingresa en trabajo de parto activo con 6 cm de dilatación. TA al ingreso 155/100 mmHg. Refiere cefalea leve desde la mañana. Durante su estancia presenta crisis convulsiva tónico-clónica generalizada de aproximadamente 1 minuto. Posteriormente queda somnolienta, con respiración espontánea conservada. FCF 140 lpm reactiva. No hay datos de desprendimiento placentario. Laboratorios posteriores: plaquetas 130,000; AST ligeramente elevada; creatinina normal.",
@@ -9690,7 +9725,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia obstétrica",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Inversión uterina",
     "difficulty": "Alta",
     "case": "Paciente de 29 años, parto vaginal eutócico hace 15 minutos. Tras tracción excesiva del cordón durante el alumbramiento presenta dolor súbito intenso y hemorragia profusa. Se observa masa rojiza protruyendo por vagina. TA 85/55 mmHg, FC 125 lpm. A la palpación abdominal no se identifica fondo uterino en su posición habitual.",
@@ -9723,7 +9758,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Endocrinología obstétrica",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Hipotiroidismo en embarazo",
     "difficulty": "Media",
     "case": "Paciente de 30 años, 10 semanas de gestación, antecedente de tiroiditis autoinmune. Consulta por fatiga marcada y aumento leve de peso. TSH 6.5 mUI/L, T4 libre baja. No presenta bocio significativo.",
@@ -9756,7 +9791,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Oncología ginecológica",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Cáncer cervicouterino localmente avanzado",
     "difficulty": "Alta",
     "case": "Paciente de 48 años con sangrado poscoital y flujo fétido desde hace 6 meses. Nunca se ha realizado Papanicolaou. Especuloscopía muestra lesión infiltrante que compromete cuello uterino y parametrios. RM confirma extensión parametrial sin invasión a pared pélvica.",
@@ -9789,7 +9824,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Obstetricia",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "Restricción del crecimiento intrauterino severa con Doppler crítico",
     "difficulty": "Alta",
     "case": "Paciente de 32 años, 32 semanas, antecedente de preeclampsia leve. USG muestra peso fetal < percentil 3, oligohidramnios y Doppler con ausencia de flujo diastólico en arteria umbilical. Perfil biofísico 6/10.",
@@ -9821,8 +9856,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Ginecología",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Miomatosis uterina sintomática",
     "difficulty": "Media",
     "case": "Paciente de 40 años con sangrado uterino abundante y dolor pélvico crónico. USG muestra múltiples miomas intramurales y submucosos, el mayor de 6 cm deformando cavidad endometrial. Desea preservar fertilidad.",
@@ -9854,8 +9889,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto incompleto",
     "difficulty": "Media",
     "case": "Paciente de 32 años, G3P1A1, con amenorrea de 11 semanas, acude por sangrado vaginal abundante desde hace 8 horas acompañado de cólico hipogástrico intenso tipo contracción. Refiere expulsión parcial de tejido en domicilio. Exploración: TA 105/65 mmHg, FC 98 lpm. Abdomen con dolor leve a la palpación profunda. Especuloscopía: sangrado activo moderado. Tacto vaginal: cérvix dilatado 2 cm, restos tisulares palpables en canal cervical. USG transvaginal: cavidad uterina con material ecogénico heterogéneo compatible con restos ovulares retenidos.",
@@ -9887,8 +9922,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología hipertensiva del embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Preeclampsia sin proteinuria (criterios actuales)",
     "difficulty": "Alta",
     "case": "Paciente de 29 años, 35 semanas, con TA 160/105 mmHg en dos ocasiones separadas por 30 minutos. Niega proteinuria en tira reactiva. Refiere cefalea persistente y dolor en hipocondrio derecho. Laboratorios: plaquetas 110,000, AST 95 U/L, creatinina 1.4 mg/dL.",
@@ -9921,7 +9956,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Arresto de dilatación en fase activa",
     "difficulty": "Alta",
     "case": "Primigesta de 39 semanas en trabajo de parto. Dilatación 7 cm durante 6 horas pese a adecuada dinámica uterina documentada con monitorización interna (4–5 contracciones en 10 minutos, intensidad adecuada). Cabeza fetal en estación 0. Pelvis clínicamente adecuada. FCF normal.",
@@ -9953,8 +9988,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Endocrinología ginecológica",
+    "specialty": "mi",
+    "tema": "Fibrilación Auricular",
     "subtema": "Síndrome de ovario poliquístico – complicaciones metabólicas",
     "difficulty": "Media",
     "case": "Paciente de 26 años con diagnóstico previo de SOP. IMC 33 kg/m². Acantosis nigricans en cuello. Ciclos irregulares persistentes. Glucosa en ayuno 112 mg/dL.",
@@ -10020,7 +10055,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Obstetricia",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Embolia de líquido amniótico",
     "difficulty": "Alta",
     "case": "Paciente de 35 años durante trabajo de parto presenta súbitamente disnea intensa, cianosis, hipotensión severa y pérdida de la conciencia. Posteriormente desarrolla sangrado incoercible por sitios de punción. Se documenta hipoxemia severa y alteraciones compatibles con coagulación intravascular diseminada.",
@@ -10053,7 +10088,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias del tercer trimestre",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Placenta previa",
     "difficulty": "Alta",
     "case": "Paciente de 34 años, G4P2A1, 35 semanas de gestación, antecedente de 2 cesáreas previas, acude por sangrado vaginal rojo brillante de inicio súbito, indoloro, en cantidad moderada. Niega actividad uterina dolorosa. Refiere movimientos fetales presentes. Exploración: TA 110/70 mmHg, FC 92 lpm. Abdomen sin hipertonía uterina, no dolor a la palpación. FCF 140 lpm reactiva. No se realiza tacto vaginal digital. USG obstétrico: placenta cubriendo completamente el orificio cervical interno.",
@@ -10085,8 +10120,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del tercer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Desprendimiento prematuro de placenta normoinserta (DPPNI)",
     "difficulty": "Alta",
     "case": "Paciente de 29 años, 37 semanas, con antecedente de hipertensión gestacional, consulta por dolor abdominal intenso súbito acompañado de sangrado oscuro escaso. Refiere disminución de movimientos fetales. Exploración: TA 150/95 mmHg, útero hipertónico, doloroso a la palpación, FCF 100 lpm con desaceleraciones tardías.",
@@ -10118,8 +10153,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Infecciones en el embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Corioamnionitis",
     "difficulty": "Media",
     "case": "Primigesta de 22 años, 38 semanas, con ruptura de membranas desde hace 20 horas. Presenta fiebre de 38.6°C, taquicardia materna y fetal (170 lpm). Líquido amniótico fétido.",
@@ -10185,7 +10220,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Oncología ginecológica",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Cáncer cervicouterino – tamizaje",
     "difficulty": "Media",
     "case": "Paciente de 31 años, sin antecedentes patológicos, inicia vida sexual a los 17 años. Nunca se ha realizado citología cervical.",
@@ -10218,7 +10253,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Distocia de hombros",
     "difficulty": "Alta",
     "case": "Paciente de 28 años, G2P1, embarazo de 40 semanas con producto estimado de 4,200 g. Durante expulsivo, tras salida de la cabeza fetal, se observa retracción del mentón contra el periné (“signo de la tortuga”). No progresa el parto.",
@@ -10251,7 +10286,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Control prenatal",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Suplementación en embarazo",
     "difficulty": "Fácil",
     "case": "Paciente de 24 años, primigesta, acude a su primera consulta prenatal con 9 semanas de gestación confirmadas por ultrasonido. No antecedentes patológicos. IMC 23 kg/m². No consumo de medicamentos previo. Refiere náuseas leves. Pregunta específicamente qué suplementos debe iniciar para disminuir riesgos en su embarazo. Exploración física normal. Laboratorios iniciales sin alteraciones.",
@@ -10283,8 +10318,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Lactancia",
+    "specialty": "ped",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Beneficios de la lactancia materna exclusiva",
     "difficulty": "Fácil",
     "case": "Puérpera de 26 años, 24 horas postparto eutócico, pregunta si puede complementar con fórmula porque “siente que no produce suficiente leche”. El recién nacido pesa 3,200 g, succión adecuada, signos vitales normales.",
@@ -10382,8 +10417,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Fases del trabajo de parto",
     "difficulty": "Fácil",
     "case": "Primigesta de 39 semanas con contracciones regulares cada 4 minutos. Dilatación cervical 5 cm, borramiento 80%, membranas íntegras.",
@@ -10449,7 +10484,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología hipertensiva del embarazo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Eclampsia",
     "difficulty": "Alta",
     "case": "Paciente de 21 años, primigesta, 33 semanas de gestación, sin control prenatal adecuado, es llevada a urgencias tras presentar episodio convulsivo tónico-clónico generalizado de aproximadamente 1 minuto de duración, con recuperación parcial del estado de alerta. Familiares refieren cefalea intensa progresiva desde hace 48 horas, fosfenos y edema facial. Exploración: TA 170/115 mmHg, FC 105 lpm, FR 22 rpm. Edema en extremidades inferiores ++. Reflejos osteotendinosos exaltados. Altura uterina acorde a edad gestacional. FCF 150 lpm. Laboratorios: plaquetas 135,000; AST 70 U/L; creatinina 1.2 mg/dL. Tira reactiva con proteinuria ++.",
@@ -10494,7 +10529,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia obstétrica",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Atonía uterina",
     "difficulty": "Alta",
     "case": "Paciente de 30 años, G3P3, inmediatamente posterior a parto eutócico de producto de 4,100 g. Placenta íntegra expulsada. A los pocos minutos presenta sangrado vaginal abundante que empapa compresas rápidamente. Se observa útero aumentado de tamaño, blando, por arriba del ombligo. TA 90/60 mmHg, FC 120 lpm. Paciente pálida, diaforética.",
@@ -10539,7 +10574,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Embarazo ectópico",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Manejo médico con metotrexato",
     "difficulty": "Media",
     "case": "Paciente de 27 años, G2P0A1, 7 semanas por FUM, acude por dolor pélvico leve y manchado escaso. Hemodinámicamente estable. BHCG 1,800 mUI/mL. USG transvaginal: no saco intrauterino visible, masa anexial derecha de 2.5 cm sin actividad cardiaca embrionaria, sin líquido libre significativo.",
@@ -10571,8 +10606,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Infecciones de transmisión sexual",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Enfermedad pélvica inflamatoria",
     "difficulty": "Media",
     "case": "Paciente de 23 años consulta por dolor pélvico bilateral de 4 días de evolución, fiebre 38.3°C y leucorrea mucopurulenta. Refiere múltiples parejas sexuales y uso irregular de preservativo. Exploración: dolor a la movilización cervical, dolor anexial bilateral. BH con leucocitosis leve.",
@@ -10604,8 +10639,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Diabetes gestacional",
+    "specialty": "mi",
+    "tema": "Diabetes Mellitus",
     "subtema": "Tamizaje y diagnóstico",
     "difficulty": "Media",
     "case": "Paciente de 31 años, 26 semanas, IMC 31 kg/m², antecedente familiar de diabetes. Se realiza prueba de tamiz con 50 g de glucosa, resultado 165 mg/dL a la hora.",
@@ -10638,7 +10673,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Oncología ginecológica",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Lesión intraepitelial escamosa de alto grado",
     "difficulty": "Alta",
     "case": "Paciente de 35 años con citología que reporta LIEAG (HSIL). Colposcopía muestra zona acetoblanca extensa con mosaico grueso. Biopsia confirma NIC III.",
@@ -10658,8 +10693,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Ruptura prematura de membranas a término",
     "difficulty": "Media",
     "case": "Paciente de 25 años, primigesta, 39 semanas de gestación, acude por salida súbita de líquido claro abundante hace 3 horas. Niega fiebre, niega sangrado. Percibe movimientos fetales normales. Exploración: TA 110/70 mmHg, FC 88 lpm, T 36.8°C. Abdomen con producto único, longitudinal, cefálico. FCF 145 lpm reactiva. Especuloscopía: salida de líquido claro por orificio cervical. Prueba de cristalización positiva. Cérvix posterior, 1 cm de dilatación, 30% borrado. Sin actividad uterina regular.",
@@ -10691,8 +10726,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Parto pretérmino",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Amenaza de parto pretérmino",
     "difficulty": "Alta",
     "case": "Paciente de 29 años, G2P1, 32 semanas de gestación, acude por contracciones dolorosas cada 8 minutos desde hace 4 horas. Refiere sensación de presión pélvica. No salida de líquido. Exploración: TA 115/75 mmHg. FCF 150 lpm. Tacto vaginal: dilatación 2 cm, borramiento 50%, membranas íntegras. USG: longitud cervical 20 mm.",
@@ -10737,7 +10772,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia obstétrica",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Retención de restos placentarios",
     "difficulty": "Media",
     "case": "Paciente de 34 años, 2 horas postparto eutócico, presenta sangrado persistente moderado pese a útero contraído y firme. Placenta aparentemente completa al momento de la expulsión. TA 100/65 mmHg, FC 105 lpm. USG transabdominal: imagen ecogénica intrauterina compatible con restos placentarios.",
@@ -10770,7 +10805,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Endometriosis",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Presentación clínica clásica",
     "difficulty": "Media",
     "case": "Paciente de 30 años, nulípara, refiere dismenorrea progresiva desde hace 3 años, dolor pélvico crónico y dispareunia profunda. Desea embarazo desde hace 2 años sin éxito. Exploración: dolor a la movilización uterina, nodularidad en fondo de saco posterior. USG transvaginal: quiste ovárico izquierdo de 4 cm con contenido homogéneo en “vidrio esmerilado”.",
@@ -10802,8 +10837,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Climaterio",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Terapia hormonal de reemplazo",
     "difficulty": "Alta",
     "case": "Paciente de 52 años, 2 años postmenopausia, presenta bochornos intensos, insomnio y deterioro importante en calidad de vida. No antecedentes personales de cáncer, trombosis o enfermedad hepática. IMC 26 kg/m². Pregunta por tratamiento hormonal.",
@@ -10835,8 +10870,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Oncología ginecológica",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Cáncer de ovario – presentación clínica",
     "difficulty": "Alta",
     "case": "Paciente de 60 años, multipara, refiere distensión abdominal progresiva, saciedad temprana y pérdida de peso no intencionada desde hace 4 meses. Exploración: ascitis moderada, masa anexial derecha irregular de 8 cm. CA-125 elevado.",
@@ -10868,8 +10903,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Embarazo molar (Mola hidatidiforme completa)",
     "difficulty": "Alta",
     "case": "Paciente de 19 años, G1P0, 11 semanas por FUM, acude por sangrado vaginal intermitente oscuro desde hace 5 días, acompañado de náusea y vómito intensos incapacitantes. Refiere sensación de crecimiento abdominal mayor al esperado para la edad gestacional. Exploración: TA 140/90 mmHg, FC 96 lpm. Útero palpable a nivel de 16 semanas aproximadamente. No se auscultan latidos fetales con Doppler. Tacto vaginal: cérvix cerrado, sangrado escaso. Laboratorios: BHCG 280,000 mUI/mL. USG transvaginal: imagen en “copos de nieve”, sin embrión visible.",
@@ -10913,8 +10948,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología hipertensiva del embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Síndrome HELLP",
     "difficulty": "Alta",
     "case": "Paciente de 30 años, 34 semanas, con antecedente de preeclampsia diagnosticada hace 1 semana, acude por dolor intenso en epigastrio irradiado a hipocondrio derecho, náusea y malestar general. Exploración: TA 165/110 mmHg. Edema ++. Reflejos aumentados. Laboratorios: plaquetas 75,000; AST 220 U/L; LDH elevada; bilirrubina indirecta elevada; esquistocitos en frotis.",
@@ -10946,8 +10981,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Prolapso de cordón umbilical",
     "difficulty": "Alta",
     "case": "Paciente de 27 años, 38 semanas, en trabajo de parto con 4 cm de dilatación. Durante exploración tras ruptura artificial de membranas se documenta descenso brusco de FCF a 80 lpm sostenidos. Al tacto se palpa estructura pulsátil en vagina por delante de la presentación cefálica.",
@@ -10980,7 +11015,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Infecciones en el embarazo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Bacteriuria asintomática",
     "difficulty": "Media",
     "case": "Paciente de 24 años, 18 semanas de gestación, sin síntomas urinarios. Urocultivo de control prenatal reporta 120,000 UFC/mL de E. coli. Sin fiebre, sin dolor lumbar.",
@@ -11046,7 +11081,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Cáncer cervicouterino",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Cáncer invasor estadio temprano",
     "difficulty": "Alta",
     "case": "Paciente de 42 años con biopsia cervical que reporta carcinoma epidermoide invasor. Resonancia muestra lesión confinada al cuello uterino sin extensión parametrial.",
@@ -11079,7 +11114,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Control prenatal",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Cálculo de edad gestacional",
     "difficulty": "Fácil",
     "case": "Paciente de 22 años, primigesta, acude a consulta de primera vez. Refiere FUM el 3 de marzo, con ciclos regulares de 28 días. No antecedentes relevantes. Niega sangrado o dolor. Exploración física normal. Solicita saber su fecha probable de parto. La consulta se realiza el 10 de mayo del mismo año.",
@@ -11111,8 +11146,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Puerperio",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Endometritis puerperal",
     "difficulty": "Media",
     "case": "Paciente de 30 años, 5 días postcesárea por sufrimiento fetal. Consulta por fiebre de 38.5°C, malestar general y dolor hipogástrico progresivo. Refiere loquios fétidos. Exploración: TA 110/70 mmHg, FC 102 lpm. Útero doloroso a la palpación. Herida quirúrgica sin datos de infección superficial. Laboratorios: leucocitosis con neutrofilia.",
@@ -11178,7 +11213,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia obstétrica",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Inversión uterina",
     "difficulty": "Alta",
     "case": "Paciente de 27 años, inmediatamente posterior al alumbramiento, presenta dolor intenso súbito, hemorragia abundante y colapso hemodinámico. Se observa masa rojiza protruyendo por vagina. Útero no palpable en abdomen. TA 80/50 mmHg, FC 130 lpm.",
@@ -11243,8 +11278,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Infecciones ginecológicas",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Vaginosis bacteriana",
     "difficulty": "Fácil",
     "case": "Paciente de 28 años consulta por flujo vaginal grisáceo con olor fétido tipo “pescado” que se intensifica después de relaciones sexuales. No prurito intenso. pH vaginal 5.5. Prueba de aminas positiva.",
@@ -11276,8 +11311,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Embarazo ectópico",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Embarazo ectópico roto",
     "difficulty": "Alta",
     "case": "Paciente de 31 años, G2P1A0, 8 semanas por FUM, acude a urgencias por dolor abdominal súbito, intenso, localizado en fosa iliaca derecha, acompañado de lipotimia. Refiere manchado vaginal escaso desde hace 2 días. No control prenatal. Exploración: TA 85/55 mmHg, FC 122 lpm, palidez generalizada, diaforesis. Abdomen con dolor intenso a la palpación y datos de irritación peritoneal. Tacto vaginal: cérvix cerrado, dolor a la movilización cervical, fondo de saco posterior doloroso. BHCG positiva. USG FAST con líquido libre abundante en cavidad abdominal.",
@@ -11310,7 +11345,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia obstétrica",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Ruptura uterina",
     "difficulty": "Alta",
     "case": "Paciente de 36 años, G4P3, antecedente de cesárea segmentaria previa, en trabajo de parto con inducción mediante oxitocina. Presenta dolor abdominal súbito, intenso y persistente, seguido de pérdida de la dinámica uterina. FCF cae a 70 lpm. Se palpan fácilmente partes fetales a través del abdomen. TA 90/60 mmHg, FC 118 lpm.",
@@ -11343,7 +11378,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Control prenatal",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Pruebas de laboratorio iniciales",
     "difficulty": "Fácil",
     "case": "Paciente de 20 años, 10 semanas de gestación, acude a su primera consulta prenatal. Sin antecedentes patológicos. No síntomas actuales.",
@@ -11375,8 +11410,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Trastornos hipertensivos",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Hipertensión gestacional",
     "difficulty": "Media",
     "case": "Paciente de 28 años, 37 semanas, sin antecedentes, presenta TA 145/95 mmHg en dos ocasiones separadas por 4 horas. Niega cefalea, fosfenos o dolor epigástrico. Proteinuria negativa. Laboratorios normales.",
@@ -11408,8 +11443,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Patología mamaria",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Mastitis puerperal",
     "difficulty": "Media",
     "case": "Puérpera de 3 semanas, lactando, consulta por dolor en mama izquierda, eritema localizado, fiebre de 38.2°C y malestar general. Refiere grietas en pezón. Exploración: zona eritematosa caliente y dolorosa, sin fluctuación evidente.",
@@ -11441,8 +11476,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Trastornos menstruales",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Dismenorrea primaria",
     "difficulty": "Fácil",
     "case": "Adolescente de 16 años, ciclos regulares desde los 13 años, presenta dolor tipo cólico intenso durante los primeros 2 días de menstruación, sin síntomas intermenstruales. Exploración normal.",
@@ -11474,8 +11509,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del tercer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Vasa previa",
     "difficulty": "Alta",
     "case": "Paciente de 33 años, G2P1, 38 semanas, en trabajo de parto inicial con 3 cm de dilatación. Durante la ruptura artificial de membranas se observa salida de líquido amniótico claro seguida de sangrado vaginal rojo brillante en pequeña cantidad. Inmediatamente se documenta bradicardia fetal sostenida de 70 lpm. La paciente permanece hemodinámicamente estable, sin dolor uterino ni hipertonía. USG previo reportaba inserción velamentosa del cordón.",
@@ -11508,7 +11543,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología hipertensiva del embarazo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "Profilaxis con ácido acetilsalicílico",
     "difficulty": "Fácil",
     "case": "Paciente de 36 años, G2P1, 12 semanas de gestación. Antecedente de preeclampsia en embarazo previo con parto a las 35 semanas. IMC 30 kg/m². TA actual 110/70 mmHg.",
@@ -11541,7 +11576,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Índice de Bishop",
     "difficulty": "Media",
     "case": "Paciente de 29 años, 41 semanas, candidata a inducción por embarazo prolongado. Tacto vaginal: dilatación 1 cm, borramiento 40%, consistencia cervical firme, posición posterior, presentación cefálica en estación -2.",
@@ -11573,8 +11608,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Diabetes gestacional",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Tratamiento inicial",
     "difficulty": "Media",
     "case": "Paciente de 30 años, 28 semanas, diagnosticada con diabetes gestacional mediante curva confirmatoria. Glucosas en ayuno repetidas entre 92–95 mg/dL y posprandiales ligeramente elevadas.",
@@ -11607,7 +11642,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Oncología ginecológica",
+    "tema": "Cáncer de Mama",
     "subtema": "Cáncer de mama  – factores de riesgo",
     "difficulty": "Fácil",
     "case": "Paciente de 48 años, nulípara, menarquia a los 11 años, sin embarazos. Madre con cáncer de mama diagnosticado a los 50 años. Consulta por mastografía de rutina.",
@@ -11639,8 +11674,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Puerperio",
+    "specialty": "mi",
+    "tema": "VIH / SIDA",
     "subtema": "Trombosis venosa profunda",
     "difficulty": "Alta",
     "case": "Paciente de 35 años, 7 días postcesárea, obesidad IMC 34 kg/m², refiere dolor y aumento de volumen en pantorrilla izquierda. No fiebre. Exploración: edema unilateral, dolor a la palpación profunda, aumento de temperatura local.",
@@ -11685,7 +11720,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragia obstétrica",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "Coagulación intravascular diseminada (CID) secundaria a DPPNI",
     "difficulty": "Alta",
     "case": "Paciente de 32 años, 36 semanas, antecedente de hipertensión gestacional, acude por dolor abdominal súbito intenso y sangrado transvaginal oscuro moderado. Se documenta DPPNI clínico. Se realiza cesárea urgente por sufrimiento fetal. Durante el transoperatorio presenta sangrado difuso incoercible por sitios de incisión y punción venosa. TA 90/60 mmHg, FC 120 lpm. Laboratorios: plaquetas 45,000; TP y TTPa prolongados; fibrinógeno disminuido; dímero D elevado.",
@@ -11718,7 +11753,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Embarazo múltiple",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Síndrome de transfusión feto-fetal",
     "difficulty": "Alta",
     "case": "Paciente de 27 años, embarazo gemelar monocorial biamniótico de 24 semanas. USG reporta discrepancia significativa en líquido amniótico: un feto con oligohidramnios severo y otro con polihidramnios marcado. Diferencia de peso estimado >25%.",
@@ -11750,8 +11785,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Trastornos menstruales",
+    "specialty": "mi",
+    "tema": "Fibrilación Auricular",
     "subtema": "Sangrado uterino anormal anovulatorio",
     "difficulty": "Media",
     "case": "Paciente de 17 años, menarquia a los 12, ciclos irregulares desde entonces. Presenta episodios de sangrado abundante prolongado, sin dolor pélvico. USG normal. Hb 10 g/dL.",
@@ -11783,8 +11818,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Climaterio",
+    "specialty": "cir",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "Osteoporosis postmenopáusica",
     "difficulty": "Media",
     "case": "Paciente de 58 años, 6 años postmenopausia, sin terapia hormonal, IMC 21 kg/m². Antecedente materno de fractura de cadera. Se realiza densitometría ósea con T-score de - 2.7 en cuello femoral.",
@@ -11850,7 +11885,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Oncología ginecológica",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Hiperplasia endometrial sin atipia",
     "difficulty": "Media",
     "case": "Paciente de 45 años, obesa, con ciclos irregulares y sangrado uterino abundante. Biopsia endometrial reporta hiperplasia simple sin atipia.",
@@ -11883,7 +11918,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trabajo de parto",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Desproporción cefalopélvica",
     "difficulty": "Alta",
     "case": "Paciente de 24 años, primigesta, 40 semanas, en trabajo de parto desde hace 10 horas. Membranas rotas hace 6 horas. Dinámica uterina adecuada (4–5 contracciones en 10 minutos, intensidad adecuada). Dilatación estacionada en 8 cm durante 4 horas. Presentación cefálica en estación -1. Pelvis clínica aparentemente límite. FCF 140 lpm, reactiva. No hay datos de sufrimiento fetal, pero no existe progresión del descenso a pesar de adecuada actividad uterina documentada.",
@@ -11916,7 +11951,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Aborto diferido (retenido)",
     "difficulty": "Media",
     "case": "Paciente de 29 años, 10 semanas por FUM, refiere desaparición de síntomas de embarazo y leve manchado marrón intermitente. Niega dolor. Exploración: cérvix cerrado. USG transvaginal muestra embrión sin actividad cardiaca acorde a 8 semanas. BHCG menor a la esperada para edad gestacional.",
@@ -11948,8 +11983,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Infecciones en el embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Pielonefritis aguda gestacional",
     "difficulty": "Alta",
     "case": "Paciente de 26 años, 24 semanas, acude por fiebre de 39°C, dolor lumbar derecho intenso y náusea. Refiere disuria previa no tratada. Exploración: dolor a puño-percusión lumbar derecha. TA 100/65 mmHg, FC 110 lpm. EGO: bacteriuria, leucocituria. Leucocitosis en BH.",
@@ -12027,7 +12062,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología mamaria",
+    "tema": "Cáncer de Mama",
     "subtema": "Absceso mamario",
     "difficulty": "Media",
     "case": "Puérpera de 4 semanas con antecedente reciente de mastitis tratada parcialmente. Consulta por dolor intenso localizado en mama derecha, fiebre persistente y ahora presencia de zona fluctuante de 3 cm.",
@@ -12059,8 +12094,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Oncología ginecológica",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Cáncer de endometrio – síntoma de alarma",
     "difficulty": "Fácil",
     "case": "Paciente de 62 años, 12 años postmenopausia, consulta por sangrado vaginal escaso intermitente desde hace 2 semanas. IMC 32 kg/m². No terapia hormonal.",
@@ -12092,8 +12127,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología Biliar",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Íleo biliar",
     "difficulty": "alta",
     "case": "Femenina de 78 años de edad, con antecedente de diabetes mellitus tipo 2 y colelitiasis diagnosticada hace 10 años que rechazó tratamiento quirúrgico. Es traída al servicio de urgencias por sus familiares refiriendo dolor abdominal tipo cólico, difuso, acompañado de distensión abdominal progresiva, náuseas y vómitos de características fecaloides de 3 días de evolución. Refiere no haber canalizado gases ni evacuado en las últimas 72 horas. A la exploración física: signos vitales estables, paciente deshidratada (mucosas secas). Abdomen globoso, timpánico a la percusión, con peristalsis metálica aumentada en frecuencia. Se solicita una radiografía simple de abdomen en bipedestación que muestra dilatación de asas de intestino delgado con niveles hidroaéreos, presencia de gas en el árbol biliar y una imagen radiopaca redondeada de 3 cm en la fosa ilíaca derecha.",
@@ -12137,8 +12172,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Intoxicaciones",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Toxíndromes (Anticolinérgico)",
     "difficulty": "baja",
     "case": "Masculino de 18 años es llevado a urgencias por sus amigos después de haber ingerido un té de flor de campana (Datura stramonium) con fines recreativos. A la exploración física, el paciente se encuentra con agitación psicomotriz, delirio y murmullos incomprensibles (\"loco como sombrerero\"). Su piel está intensamente eritematosa (\"rojo como betabel\") y completamente seca (\"seco como un hueso\"), con temperatura de 39°C. Se observa midriasis bilateral arreactiva (\"ciego como murciélago\") y presenta taquicardia de 140 lpm con globo vesical palpable por retención urinaria.",
@@ -12192,7 +12227,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "ETS",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "Chancroide",
     "difficulty": "media",
     "case": "Masculino de 28 años, sexualmente activo con múltiples parejas, acude a consulta externa quejándose de la aparición de úlceras dolorosas en el pene de 5 días de evolución. A la exploración física, se observan tres úlceras en el prepucio y surco balanoprepucial; las lesiones miden entre 1 y 2 cm, tienen bordes irregulares, base eritematosa y están recubiertas por un exudado purulento, grisáceo y maloliente. Son exquisitamente dolorosas a la manipulación. Además, se palpa una gran adenopatía inguinal unilateral derecha, dolorosa y fluctuante (bubón inguinal).",
@@ -12212,8 +12247,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Introducción Oftalmología",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Celulitis Periorbitaria vs Orbitaria",
     "difficulty": "media",
     "case": "Escolar masculino de 8 años de edad, con antecedente de una sinusitis etmoidal bacteriana mal tratada hace 10 días. Es llevado a urgencias oftalmológicas por presentar fiebre alta de 39°C, edema palpebral severo, eritema y calor en el ojo derecho. A la exploración física, el paciente presenta el ojo derecho desplazado hacia adelante (proptosis/exoftalmos), inyección conjuntival marcada (quemosis) e incapacidad para mover el ojo derecho en ninguna dirección (oftalmoplejía total). Refiere dolor intenso al intentar movilizar el ojo y la agudeza visual de ese lado ha disminuido a 20/200.",
@@ -12245,8 +12280,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P1",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "Trauma Torácico (Hemotórax masivo)",
     "difficulty": "alta",
     "case": "Masculino de 35 años es traído a la sala de choque tras sufrir una herida por proyectil de arma de fuego en el hemitórax derecho, a nivel del quinto espacio intercostal línea axilar media. A su ingreso, el paciente presenta datos francos de choque hipovolémico: palidez extrema, diaforesis, TA 70/40 mmHg, FC 140 lpm y FR 30 rpm. A la exploración del tórax, la tráquea está central, no hay ingurgitación yugular. A la auscultación, los ruidos respiratorios están completamente abolidos en el hemitórax derecho, y a la percusión se encuentra matidez franca en ese mismo lado.",
@@ -12278,8 +12313,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología Infecciosa / Rinología y faringe",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Papilomatosis laríngea (Papilomatosis respiratoria recurrente)",
     "difficulty": "baja",
     "case": "Preescolar masculino de 3 años es llevado a la consulta de otorrinolaringología por su madre, quien refiere que el niño ha presentado cambios en su voz (disfonía) de varios meses de evolución, la cual ha progresado a un llanto débil. En las últimas semanas, la madre nota un ruido agudo al tomar aire (estridor inspiratorio) cuando el niño llora o hace esfuerzo. No ha presentado fiebre ni cuadros de infección aguda. Se le realiza una nasofibrolaringoscopia flexible encontrando múltiples lesiones exofíticas, rosadas, con aspecto de \"frambuesa\" o \"coliflor\", localizadas en ambas cuerdas vocales y la banda ventricular.",
@@ -12299,8 +12334,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Cirugía Oncología",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Cáncer de Recto",
     "difficulty": "alta",
     "case": "Femenina de 62 años acude a consulta por referir sangrado rectal fresco (hematoquecia) mezclado con las heces, pujo y sensación de evacuación incompleta (tenesmo rectal) de 4 meses de evolución. A la exploración física, el tacto rectal evidencia una masa indurada, friable, que ocupa la mitad de la circunferencia luminal, localizada en el recto inferior, a solo 3 centímetros del margen anal. Se realiza colonoscopia con biopsia que confirma un adenocarcinoma de recto moderadamente diferenciado.",
@@ -12344,8 +12379,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología cámara posterior",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Uveítis Anterior",
     "difficulty": "media",
     "case": "Masculino de 30 años, con antecedente de dolor lumbar crónico inflamatorio (diagnosticado con espondilitis anquilosante). Acude a urgencias oftalmológicas por presentar inicio agudo de enrojecimiento intenso, dolor ocular severo y fotofobia extrema en el ojo izquierdo, acompañado de lagrimeo y visión borrosa. A la exploración con la lámpara de hendidura, se observa inyección periquerática (anillo rojo alrededor de la córnea). La pupila izquierda se encuentra contraída (miosis) en comparación con la derecha. Al observar la cámara anterior, se aprecia el fenómeno de Tyndall positivo (células inflamatorias flotando en el humor acuoso) y depósitos blanquecinos en el endotelio corneal (precipitados queráticos).",
@@ -12377,8 +12412,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Mordeduras y picaduras",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Mordedura de Serpiente (Viperidae)",
     "difficulty": "alta",
     "case": "Masculino de 45 años, de ocupación agricultor, es traído al hospital rural tras haber sido mordido en la pantorrilla derecha hace 2 horas por una serpiente identificada como \"nauyaca\". A su ingreso, el paciente se queja de dolor insoportable en la extremidad. A la exploración física, se aprecian dos marcas de colmillos en la cara lateral de la pierna, con sangrado activo. Presenta un edema severo que ya abarca hasta el tercio medio del muslo derecho, acompañado de equimosis y múltiples flictenas de contenido hemorrágico. Los signos vitales muestran TA 90/50 mmHg, FC 115 lpm. Exámenes de laboratorio urgentes reportan plaquetas en 45,000/mm³, Tiempos de Protrombina (TP) y Tromboplastina (TTPa) prolongados al infinito (incoagulables), y fibrinógeno severamente disminuido.",
@@ -12422,8 +12457,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología Gástrica",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Dispepsia Funcional",
     "difficulty": "baja",
     "case": "Femenina de 28 años, sin antecedentes de importancia, acude por referir dolor y ardor en epigastrio, así como saciedad temprana y plenitud posprandial, de 4 meses de evolución, presentándose al menos 3 días a la semana. Niega pérdida de peso, vómitos, disfagia o sangrado gastrointestinal. Cuenta con una endoscopia superior reciente que se reporta completamente normal, sin evidencia de úlceras o lesiones estructurales, y prueba de H. pylori negativa.",
@@ -12443,8 +12478,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología Diverticular",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Diverticulosis",
     "difficulty": "baja",
     "case": "Masculino de 65 años, asintomático, acude a su chequeo médico de rutina. Refiere una dieta baja en fibra y antecedente de estreñimiento crónico. Como parte del escrutinio para cáncer de colon por su edad, se le realiza una colonoscopia de tamizaje. Durante el estudio, no se observan pólipos ni masas sospechosas, pero se reporta la presencia de múltiples invaginaciones saculares de la mucosa y submucosa a través de las capas musculares de la pared del colon, localizadas predominantemente en el colon sigmoides. La mucosa alrededor de estas saculaciones es de aspecto completamente normal, sin eritema ni sangrado activo.",
@@ -12476,8 +12511,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Patología Hepática",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Enfermedad Hepática Grasa",
     "difficulty": "media",
     "case": "Femenina de 48 años, con antecedente de obesidad grado II (IMC 36), diabetes mellitus tipo 2 y dislipidemia mixta. Acude a consulta por fatiga leve. En sus exámenes de laboratorio de rutina se detecta una elevación leve de transaminasas (ALT 65 U/L, AST 45 U/L), con fosfatasa alcalina y bilirrubinas normales. Niega consumo de alcohol y su panel viral para hepatitis B y C resulta negativo. Se le solicita un ultrasonido abdominal que reporta hígado aumentado de tamaño con un incremento difuso de la ecogenicidad (\"hígado brillante\"), atenuación del sonido posterior y pérdida de la definición de los vasos portales.",
@@ -12509,8 +12544,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ETS",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Linfogranuloma Venéreo",
     "difficulty": "alta",
     "case": "Masculino de 30 años de edad acude a consulta de infectología refiriendo la aparición de un aumento de volumen muy doloroso en la ingle derecha de 2 semanas de evolución. Al interrogatorio dirigido, menciona que hace aproximadamente 3 semanas notó una pequeña úlcera genital indolora que desapareció sola en un par de días, a la cual no le dio importancia. A la exploración física, presenta una gran linfadenopatía inguinal y femoral derecha, la cual está separada por el ligamento inguinal creando el clásico \"signo del surco\". Los ganglios están eritematosos, fijos, muy sensibles y algunos presentan áreas de fluctuación (bubones).",
@@ -12554,8 +12589,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "Introducción Oftalmología",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Blefaritis",
     "difficulty": "baja",
     "case": "Masculino de 65 años de edad acude a consulta oftalmológica por referir ardor crónico, sensación de arenilla y prurito en ambos ojos de meses de evolución, que empeora por las mañanas. A la exploración en la lámpara de hendidura, los ojos presentan hiperemia conjuntival leve. Llama la atención que los bordes libres de ambos párpados se encuentran eritematosos y engrosados, observándose múltiples escamas amarillentas en la base de las pestañas (costras similares a la caspa). No hay nódulos ni tumefacciones agudas localizadas.",
@@ -12575,8 +12610,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA GÁSTRICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "GASTRITIS AGUDA O CRONICA",
     "difficulty": "baja",
     "case": "Femenina de 60 años, con antecedente de osteoartritis severa en tratamiento crónico con diclofenaco e ibuprofeno a dosis altas desde hace 1 año. Acude a la consulta externa por presentar dolor en epigastrio de tipo ardoroso, náuseas ocasionales y saciedad temprana. Se le realiza una endoscopia superior que reporta eritema difuso y múltiples erosiones superficiales en la mucosa del antro y cuerpo gástrico, sin úlceras activas.",
@@ -12596,8 +12631,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA HEPÁTICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HEPATITIS AGUDAS Y CRÓNICAS",
     "difficulty": "media",
     "case": "Masculino de 28 años, usuario de drogas intravenosas, acude a urgencias por presentar un cuadro de 1 semana de evolución caracterizado por astenia profunda, adinamia, mialgias, náuseas, dolor sordo en el hipocondrio derecho y coluria. A la exploración física destaca ictericia franca en escleras y piel, con hepatomegalia dolorosa a la palpación. Sus laboratorios revelan AST de 1,200 U/L y ALT de 1,500 U/L, con bilirrubina total de 8.0 mg/dL a expensas de la directa. Se solicita un panel serológico viral que reporta: HBsAg (+), Anti-HBc IgM (+), Anti-HBs (-).",
@@ -12629,8 +12664,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA PERIANAL",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FISTULAS",
     "difficulty": "baja",
     "case": "Masculino de 45 años, con antecedente de un absceso perianal drenado quirúrgicamente hace 8 meses. Acude a consulta refiriendo que, desde la cirugía, nota la salida intermitente de material seropurulento y fecaloideo a través de un pequeño orificio en la piel cercana al ano, lo cual le causa prurito y mancha su ropa interior. A la exploración física en posición de navaja sevillana, se observa un orificio fistuloso secundario (externo) localizado en el radio de las 4 del reloj (cuadrante posterior derecho), a 2 cm del margen anal.",
@@ -12650,8 +12685,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P1",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "TRAUMA TORÁCICO (NEUMOTÓRAX ABIERTO)",
     "difficulty": "alta",
     "case": "Masculino de 30 años es atendido por paramédicos en la vía pública tras sufrir una agresión con un machete. Presenta una herida abierta de aproximadamente 5 cm de diámetro en la pared torácica lateral derecha (cuarto espacio intercostal). A la evaluación primaria (A, B, C), el paciente se encuentra con severa dificultad respiratoria, taquipneico (35 rpm) y cianótico. Durante la inspiración, los paramédicos escuchan un sonido de succión característico proveniente de la herida, y observan que sale sangre burbujeante durante la espiración.",
@@ -12695,8 +12730,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P2",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TCE HEMORRAGIA SUBDURAL",
     "difficulty": "media",
     "case": "Masculino de 78 años de edad, con antecedente de alcoholismo crónico y atrofia cortical documentada, es traído a urgencias por su hija. Ella refiere que en las últimas 3 semanas ha notado a su padre con alteraciones en el comportamiento, lentitud mental, cefalea matutina leve y una progresiva debilidad en el hemicuerpo izquierdo. Menciona que hace aproximadamente un mes, el paciente sufrió una caída desde su propia altura golpeándose la cabeza, pero no perdió el conocimiento ni acudieron a revisión médica en su momento. A la exploración, Glasgow 13 (confusión leve), con hemiparesia izquierda 4/5.",
@@ -12728,8 +12763,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P3",
+    "specialty": "gyo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "ATLS EN LA EMBARAZADA",
     "difficulty": "alta",
     "case": "Femenina de 28 años, cursando con embarazo de 34 semanas de gestación por fecha de última menstruación. Es ingresada a la sala de choque tras sufrir un accidente automovilístico con impacto frontal a alta velocidad; ella viajaba como copiloto y sí portaba el cinturón de seguridad. A su ingreso, la paciente se encuentra obnubilada, pálida y diaforética. Sus signos vitales revelan TA 80/50 mmHg, FC 125 lpm y FR 26 rpm. A la exploración física, el abdomen se encuentra globoso por el útero grávido, con altura uterina de 32 cm. Se palpa el útero hipertónico (leñoso) y la paciente presenta un sangrado transvaginal oscuro, de moderada cantidad.",
@@ -12774,7 +12809,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "PATOLOGÍA INTESTINAL QX",
+    "tema": "Apendicitis Aguda",
     "subtema": "VÓLVULO DE COLON Y CIEGO",
     "difficulty": "media",
     "case": "Femenina de 45 años, sin antecedentes quirúrgicos, acude por presentar dolor abdominal de inicio brusco en el mesogastrio y la fosa ilíaca derecha, progresivo, que posteriormente se generaliza. Refiere imposibilidad para canalizar gases, náuseas y dos episodios de vómito biliar. A la exploración física, el abdomen está francamente distendido, timpánico. Llama la atención que la fosa ilíaca derecha se palpa vacía, y se palpa una masa renitente y dolorosa en el mesogastrio.",
@@ -12806,8 +12841,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "MORDEDURAS Y PICADURAS",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "LATRODECTISMO",
     "difficulty": "media",
     "case": "Masculino de 32 años, campesino, acude a urgencias con intenso dolor generalizado de inicio súbito. Refiere haber sentido un pinchazo en el antebrazo derecho hace una hora mientras movía leña en un cuarto oscuro. A su llegada, el paciente se encuentra con diaforesis profusa, agitación psicomotriz, sialorrea, epífora y fasciculaciones. A la exploración abdominal, el abdomen se encuentra rígido, \"en madera\", simulando un abdomen agudo peritonítico. Sus signos vitales evidencian taquicardia (130 lpm) e hipertensión (160/100 mmHg).",
@@ -12827,8 +12862,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "ORZUELO",
     "difficulty": "baja",
     "case": "Femenina de 18 años acude a consulta por referir la aparición de una \"bolita\" en el párpado inferior del ojo izquierdo, la cual inició hace 48 horas con enrojecimiento y dolor. A la exploración física oftalmológica, se observa un nódulo eritematoso, focal y exquisitamente doloroso a la palpación en el margen libre del párpado inferior, centrado alrededor de un folículo piloso de una pestaña, con un pequeño punto blanquecino de supuración apuntando hacia el exterior.",
@@ -12848,8 +12883,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA ISQUÉMICA INTESTINAL",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "ISQUEMIA MESENTERICA AGUDA Y CRÓNICA",
     "difficulty": "media",
     "case": "Masculino de 68 años de edad, con antecedente de tabaquismo de 40 paquetes/año y enfermedad arterial periférica severa. Acude a la consulta de gastroenterología por pérdida de peso progresiva (12 kg en los últimos 6 meses) y dolor abdominal crónico. El paciente describe el dolor como un dolor cólico sordo en el mesogastrio que inicia de forma invariable 30 a 45 minutos después de ingerir cualquier alimento, y que cede lentamente al cabo de un par de horas. Debido a esto, el paciente refiere tener \"miedo a comer\" (sitofobia) y ha reducido drásticamente el tamaño de sus porciones.",
@@ -12881,8 +12916,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "INTRODUCCIÓN A CIRUGÍA Y CIRUGÍA ABDOMINAL",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SX DE DOLOR LOCOREGIONAL",
     "difficulty": "media",
     "case": "Masculino de 45 años, sin antecedentes crónicos de importancia, acude al servicio de urgencias por presentar dolor abdominal de inicio súbito y muy intenso, de 4 horas de evolución. Refiere que el dolor se exacerba con el más mínimo movimiento, incluso al toser o respirar profundamente. A la exploración física, el paciente se encuentra inmóvil en decúbito supino, diaforético y taquicárdico. El abdomen se encuentra plano, sin ruidos peristálticos, y presenta una rigidez muscular involuntaria generalizada (\"abdomen en tabla\"). Se elicita dolor intenso a la descompresión rápida de la pared abdominal en cualquier cuadrante. Femenina de 60 años, con diagnóstico de cirrosis hepática secundaria a esteatohepatitis no alcohólica (NASH), acude a consulta externa por referir un aumento progresivo del perímetro abdominal en el último mes, acompañado de ganancia de peso y edema en extremidades inferiores. Niega disnea, fiebre, dolor abdominal o alteraciones en el estado de alerta. A la exploración física, el abdomen se encuentra globoso, con matidez cambiante a la percusión y signo de la oleada ascítica positivo. Femenina de 52 años, quien sufrió una fractura de Colles (radio distal) en la muñeca derecha hace 8 semanas, tratada de forma conservadora con inmovilización prolongada con yeso. Actualmente la fractura se encuentra consolidada y el yeso fue retirado. Sin embargo, la paciente acude a consulta quejándose de un dolor ardoroso insoportable, continuo y desproporcionado en toda la mano derecha, que se desencadena incluso con el simple roce de la ropa (alodinia). A la exploración física, la mano derecha se observa edematizada, eritematosa, sudorosa, con temperatura aumentada en comparación con la contralateral. Los dedos están rígidos y la piel se nota lustrosa y atrófica.",
@@ -12963,7 +12998,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "HERNIAS / ESPLENECTOMÍA",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "Hernias",
     "difficulty": "baja",
     "case": "Lactante masculino de 10 meses de edad es llevado a la consulta de control del niño sano. La madre refiere preocupación porque nota una \"bolita\" en el ombligo del bebé que protruye más cuando llora o hace esfuerzo para evacuar, pero que desaparece cuando está dormido. A la exploración física, el paciente se encuentra tranquilo, asintomático. A nivel de la cicatriz umbilical se palpa un anillo herniario de aproximadamente 1.2 cm de diámetro, a través del cual protruye una masa blanda, indolora y fácilmente reductible.",
@@ -12983,8 +13018,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "QUEMADURAS / GOLPE DE CALOR / HIPOTERMIA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Hipotermia",
     "difficulty": "alta",
     "case": "Masculino de 45 años es rescatado por protección civil tras haberse perdido durante una excursión en la montaña y pasar la noche a la intemperie bajo una nevada severa. A su ingreso a urgencias, el paciente se encuentra letárgico, no presenta escalofríos (shivering abolido), tiene midriasis y bradicardia severa. La medición de su temperatura corporal central con termómetro esofágico marca 29°C. Getty Images",
@@ -13016,8 +13051,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA CÁMARA ANTERIOR",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "Pinguécula",
     "difficulty": "baja",
     "case": "Masculino de 50 años, albañil de profesión, acude a la consulta externa de oftalmología por notar una pequeña \"mancha amarillenta\" en la parte blanca de ambos ojos que le preocupa desde hace varios meses. Refiere irritación y ojo rojo ocasional tras jornadas expuestas al sol y al polvo, pero niega disminución de la agudeza visual. A la exploración en lámpara de hendidura, se observa un pequeño nódulo o depósito amarillento, solevantado, localizado en la conjuntiva bulbar nasal de ambos ojos, cerca del limbo esclerocorneal. Getty Images",
@@ -13037,8 +13072,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "Fx de antebrazo y mano",
     "difficulty": "media",
     "case": "Masculino de 26 años sufre caída desde su propia altura mientras jugaba fútbol, recibiendo un golpe directo en la cara posterior del antebrazo derecho al intentar protegerse. Acude a urgencias con intenso dolor, incapacidad funcional y deformidad evidente en el tercio proximal del antebrazo. A la exploración física, presenta dolor intenso a la pronosupinación, y se nota limitación para la extensión de la muñeca y los dedos (mano levemente caída).",
@@ -13082,8 +13117,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "HIPOACUSIA Y VÉRTIGO",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Hipoacusia neurosensorial",
     "difficulty": "media",
     "case": "Masculino de 75 años, sin antecedentes de trauma acústico ni exposición a fármacos ototóxicos. Acude a la consulta llevado por sus familiares, quienes refieren que el paciente tiene dificultades progresivas para entender las conversaciones desde hace varios años, especialmente en reuniones familiares o restaurantes donde hay ruido de fondo (\"oye pero no entiende\"). A la exploración, la otoscopia de ambos oídos es completamente normal, sin tapones de cerumen y con membranas timpánicas íntegras.",
@@ -13115,8 +13150,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA BILIAR",
+    "specialty": "mi",
+    "tema": "VIH / SIDA",
     "subtema": "COLECISTITIS AGUDA",
     "difficulty": "media",
     "case": "Femenina de 42 años, con obesidad grado I y multípara. Acude al servicio de urgencias por presentar dolor abdominal en epigastrio e hipocondrio derecho de 12 horas de evolución, continuo, de intensidad 8/10, que inició tras la ingesta de alimentos ricos en grasas. Refiere náuseas, dos episodios de vómito de contenido biliar y sensación de alza térmica. A la exploración física: Temperatura 38.1°C, FC 98 lpm, TA 120/80 mmHg. El abdomen presenta hiperestesia y resistencia muscular localizada en el cuadrante superior derecho. Al realizar la palpación profunda por debajo del reborde costal derecho y pedirle a la paciente que realice una inspiración profunda, esta interrumpe súbitamente la respiración debido a un tope doloroso.",
@@ -13161,7 +13196,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "PATOLOGÍA INTESTINAL QX",
+    "tema": "Apendicitis Aguda",
     "subtema": "APENDICITIS AGUDA",
     "difficulty": "baja",
     "case": "Masculino de 22 años, previamente sano, acude a urgencias quejándose de dolor abdominal de 18 horas de evolución. Refiere que el dolor comenzó de forma difusa alrededor del ombligo (periumbilical) pero hace 6 horas migró y se localizó de forma constante en la fosa ilíaca derecha. Presenta anorexia, náuseas y ha vomitado en una ocasión. A la exploración física: Temperatura 37.8°C. Abdomen plano, con dolor intenso a la palpación en el punto de McBurney y signo de rebote positivo localizado. Laboratorios: Leucocitos 13,000/mm³ con 85% de neutrófilos.",
@@ -13193,8 +13228,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P2",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "CÁNCER DE PRÓSTATA",
     "difficulty": "media",
     "case": "Masculino de 68 años acude a su chequeo médico anual. Se encuentra asintomático, sin datos de prostatismo (IPSS de 4 puntos). Como parte de su tamizaje, se le realiza la determinación de Antígeno Prostático Específico (APE), el cual se reporta en 8.5 ng/mL (marcadamente elevado para su edad). Se procede a realizar un tacto rectal, en el cual el médico palpa un nódulo pétreo, indurado e indoloro en el lóbulo derecho de la próstata.",
@@ -13214,8 +13249,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "TRAUMA GENERALIDADES Y COMPLICACIONES",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME COMPARTIMENTAL",
     "difficulty": "alta",
     "case": "Masculino de 30 años, sufrió una fractura cerrada de la diáfisis tibial izquierda hace 24 horas mientras jugaba fútbol. Fue tratado inicialmente en otro centro con reducción cerrada y colocación de un yeso cruropédico circular. Acude a urgencias quejándose de un dolor insoportable en la pierna izquierda, el cual describe como \"desgarrador\" y que no cede con la administración de opioides intravenosos. A la exploración, los dedos del pie izquierdo están pálidos y parestésicos. El médico retira inmediatamente el yeso completo, notando la pierna brillante, a tensión extrema (\"de madera\"). Los pulsos pedio y tibial posterior son palpables.",
@@ -13247,7 +13282,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "PATOLOGÍA CÁMARA POSTERIOR",
     "subtema": "DESPRENDIMIENTO DE RETINA",
     "difficulty": "media",
@@ -13269,7 +13304,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "PATOLOGÍA BILIAR",
+    "tema": "Patología Biliar",
     "subtema": "CÁNCER DE VESÍCULA BILIAR",
     "difficulty": "alta",
     "case": "Femenina de 72 años de edad, originaria de un poblado rural, con historia de dolor crónico en hipocondrio derecho tolerado por años sin buscar atención médica. Acude a urgencias por presentar en el último mes pérdida de peso no intencionada de 8 kg, ictericia progresiva, prurito y dolor constante en el cuadrante superior derecho que ya no cede con analgésicos comunes. A la exploración física, destaca tinte ictérico en piel y escleras. A la palpación abdominal, se percibe una masa dura, fija y mal definida en el lecho vesicular, así como hepatomegalia leve.",
@@ -13301,7 +13336,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "ped",
     "tema": "PATOLOGÍA ESOFÁGICA",
     "subtema": "ACALASIA",
     "difficulty": "alta",
@@ -13346,8 +13381,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P1",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "HIPERPLASIA PROSTÁTICA BENIGNA (HPB)",
     "difficulty": "baja",
     "case": "Masculino de 68 años acude a su unidad de medicina familiar quejándose de síntomas del tracto urinario inferior (LUTS) de varios años de evolución. Refiere que el chorro de su orina es débil e intermitente, tiene que hacer esfuerzo (pujo) para iniciar la micción, siente que no vacía por completo la vejiga y se levanta hasta 4 veces por la noche a orinar (nicturia). Su puntaje en la escala IPSS es de 18 (síntomas moderados a severos). A la exploración, el tacto rectal revela una próstata aumentada de tamaño (grado III), de consistencia ahulada, lisa, simétrica y sin nódulos palpables. Su Antígeno Prostático Específico (APE) es de 2.5 ng/mL.",
@@ -13367,8 +13402,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA ONCOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "CÁNCER DE MAMA",
     "difficulty": "media",
     "case": "Femenina de 55 años de edad, nulípara, con menopausia a los 53 años. Acude a consulta porque hace dos semanas, al bañarse, notó una \"bolita\" en su seno derecho. A la exploración física, las mamas son asimétricas. En el cuadrante superoexterno de la mama derecha se palpa un nódulo de 3 cm, de consistencia pétrea, bordes irregulares, fijo a planos profundos y completamente indoloro. A la inspección, se observa retracción de la piel suprayacente y un área con aspecto de \"piel de naranja\". Se palpan adenopatías axilares ipsilaterales duras y no dolorosas.",
@@ -13400,8 +13435,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "TRAUMA GENERALIDADES Y COMPLICACIONES",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "PROFILAXIS ANTITETÁNICA",
     "difficulty": "baja",
     "case": "Masculino de 35 años, trabajador agrícola, acude al servicio de urgencias rurales tras haber pisado accidentalmente un clavo oxidado y sucio con tierra y heces de animales mientras limpiaba un establo. La herida punzante en la planta del pie derecho tiene 3 cm de profundidad. Al interrogar sobre sus antecedentes de vacunación, el paciente refiere no haber recibido ninguna vacuna desde la infancia (\"esquema de vacunación desconocido\"). La herida se lava exhaustivamente en urgencias y se retira el tejido necrótico.",
@@ -13422,7 +13457,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "PATOLOGÍA DIVERTICULAR",
+    "tema": "Apendicitis Aguda",
     "subtema": "DIVERTICULITIS",
     "difficulty": "alta",
     "case": "Masculino de 62 años, con obesidad grado I y dieta baja en fibra, acude a urgencias por presentar dolor abdominal continuo de 3 días de evolución, localizado primariamente en la fosa ilíaca izquierda, acompañado de fiebre de 38.5°C, náuseas, vómito en una ocasión y alteraciones en el hábito intestinal (estreñimiento). A la exploración física, el paciente luce agudamente enfermo, taquicárdico (110 lpm). El abdomen es doloroso a la palpación profunda en el cuadrante inferior izquierdo, con resistencia muscular y signo de rebote (Blumberg) francamente positivo en esa área. Sus laboratorios reportan leucocitosis de 16,000/mm³ con desviación a la izquierda.",
@@ -13466,8 +13501,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "GLAUCOMA",
     "difficulty": "media",
     "case": "Femenina de 65 años, hipermétrope. Es llevada a urgencias oftalmológicas por inicio súbito (hace 2 horas) de dolor ocular derecho insoportable, hemicraneal, acompañado de náuseas intensas y vómito. Refiere que su visión se tornó muy borrosa y ve \"halos de colores\" alrededor de las luces. A la exploración, el ojo derecho presenta inyección ciliar severa (ojo rojo). La pupila está en midriasis media y fija (arreactiva a la luz). La córnea se observa opaca, deslustrada (edema corneal). A la palpación bidigital, el globo ocular derecho se siente extremadamente duro, \"como una canica de vidrio\".",
@@ -13500,7 +13535,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "UROLOGÍA P1",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "TORSIÓN TESTICULAR",
     "difficulty": "media",
     "case": "Masculino de 14 años es traído a urgencias durante la madrugada. Refiere inicio súbito de dolor escrotal derecho de extrema intensidad que lo despertó del sueño, irradiado a la región inguinal y abdominal baja, acompañado de náuseas. No hay antecedentes de trauma ni síntomas urinarios. A la exploración física, el testículo derecho está aumentado de tamaño, indurado, eritematoso y se encuentra ascendido en el escroto con un eje transversal (horizontalizado). El reflejo cremastérico derecho está ausente. Al elevar manualmente el testículo derecho, el dolor del paciente no disminuye, e incluso parece empeorar (Signo de Prehn negativo).",
@@ -13533,7 +13568,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "TRAUMA GENERALIDADES Y COMPLICACIONES",
+    "tema": "Patología Biliar",
     "subtema": "ATB EN TRAUMA Y PROFILAXIS QX",
     "difficulty": "baja",
     "case": "Femenina de 45 años, programada para una colecistectomía laparoscópica electiva por colelitiasis sintomática (cólicos biliares de repetición), sin datos actuales de colecistitis aguda o infección de vías biliares. El procedimiento se considera una cirugía limpia-contaminada, por lo que se decide indicar profilaxis antibiótica perioperatoria con Cefazolina intravenosa.",
@@ -13553,7 +13588,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
     "subtema": "Fx de clavicula",
     "difficulty": "baja",
@@ -13574,8 +13609,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA ONCOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "CÁNCER DE TIROIDES",
     "difficulty": "media",
     "case": "Femenina de 35 años, sin antecedentes familiares de importancia ni exposición a radiación, acude a consulta por notar un aumento de volumen en la región anterior del cuello de crecimiento lento durante los últimos 6 meses. Se encuentra asintomática, negando disfagia, disfonía o síntomas de hipertiroidismo. A la exploración física, se palpa un nódulo tiroideo en el lóbulo derecho, de aproximadamente 3 cm, de consistencia firme, no doloroso y móvil a la deglución. Las pruebas de función tiroidea (TSH y T4 libre) se reportan dentro de rangos normales. Se solicita un ultrasonido de cuello que reporta un nódulo sólido, hipoecoico, de márgenes irregulares y con presencia de microcalcificaciones.",
@@ -13608,7 +13643,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "HERNIAS / ESPLENECTOMÍA",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "HERNIA INGUINAL",
     "difficulty": "baja",
     "case": "Masculino de 45 años, de ocupación cargador en la central de abastos. Acude a la consulta externa quejándose de la aparición de un \"bulto\" en la región inguinal derecha que aumenta de tamaño al final del día laboral o al cargar objetos pesados, y que desaparece al acostarse. A la exploración física en bipedestación, se le pide al paciente que realice la maniobra de Valsalva, observándose la protrusión de una masa en la región inguinocrural derecha. Al realizar la exploración digital del conducto inguinal, el médico percibe que la hernia protruye rozando la punta de su dedo (bajando por el canal) y, ecográficamente, se confirma que el defecto tiene su origen lateral a los vasos epigástricos inferiores.",
@@ -13628,8 +13663,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P2",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER UROTELIAL Y TESTICULAR",
     "difficulty": "alta",
     "case": "Masculino de 65 años, trabajador jubilado de una fábrica de pinturas y fumador crónico (índice tabáquico de 40 paquetes/año). Acude a consulta urológica refiriendo que, en las últimas tres semanas, ha notado que su orina es de color rojo franco y en ocasiones presenta coágulos. Menciona que este sangrado es completamente indoloro y no se acompaña de ardor, fiebre, ni molestias para orinar (disuria). Su tacto rectal reporta una próstata grado I, lisa y sin nódulos. Un examen general de orina confirma la presencia de hematuria macroscópica masiva sin datos de infección (nitritos y leucocitosis negativos).",
@@ -13673,7 +13708,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
     "subtema": "Fx de cadera",
     "difficulty": "media",
@@ -13706,8 +13741,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA INTESTINAL QX",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "OCLUSION INTESTINAL",
     "difficulty": "media",
     "case": "Masculino de 50 años, con antecedente de una apendicectomía abierta complicada por peritonitis hace 10 años. Acude a urgencias refiriendo dolor abdominal difuso de tipo cólico (intermitente) intenso, de 24 horas de evolución, acompañado de náuseas y vómitos de contenido fecaloide en repetidas ocasiones. Refiere imposibilidad para evacuar o canalizar gases desde que inició el dolor. A la exploración física, presenta abdomen distendido, timpánico a la percusión, con peristalsis aumentada (\"ruidos de lucha\") pero sin datos francos de irritación peritoneal (rebote negativo).",
@@ -13727,8 +13762,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA PERIANAL",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FISURA ANAL",
     "difficulty": "baja",
     "case": "Femenina de 30 años, con antecedente de estreñimiento crónico, acude a consulta quejándose de dolor anal extremo, lacerante y transfixiante que se presenta durante y minutos después de la defecación. La paciente refiere tener \"miedo a ir al baño\" por el intenso dolor, y menciona haber notado estrías de sangre roja brillante en el papel higiénico. A la exploración física cuidadosa (separando los glúteos), se observa un desgarro longitudinal en el epitelio escamoso del canal anal, localizado exactamente en la línea media posterior.",
@@ -13748,8 +13783,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA ONCOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER GÁSTRICO",
     "difficulty": "alta",
     "case": "Masculino de 65 años, originario de una comunidad con alta ingesta de alimentos ahumados y salados, con tabaquismo crónico positivo. Acude a consulta por pérdida de peso no intencionada de 10 kg en 4 meses, saciedad temprana, astenia, adinamia y molestia sorda en el epigastrio. A la exploración física, el paciente presenta palidez de tegumentos. A la palpación de las cadenas ganglionares, destaca un nódulo indurado, fijo e indoloro en la fosa supraclavicular izquierda. Sus laboratorios de rutina muestran anemia microcítica hipocrómica (Hb 9.0 g/dL, VCM 72 fL).",
@@ -13793,8 +13828,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "TRAUMA GENERALIDADES Y COMPLICACIONES",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CHOQUE HIPOVOLÉMICO HEMORRÁGICO",
     "difficulty": "media",
     "case": "Masculino de 35 años sufre amputación traumática de la pierna izquierda a nivel del tercio medio de la tibia tras quedar atrapado en maquinaria agrícola. A su ingreso a la sala de choque, los paramédicos han colocado un torniquete proximal funcional. El paciente se encuentra confuso y muy ansioso. Sus signos vitales muestran: FC 135 lpm, TA 85/50 mmHg, FR 32 rpm. La diuresis medida tras la colocación de sonda Foley es de 10 ml/h (oliguria).",
@@ -13826,7 +13861,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "ped",
     "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
     "subtema": "RETINOBLASTOMA",
     "difficulty": "alta",
@@ -13847,8 +13882,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P2",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER DE PENE",
     "difficulty": "baja",
     "case": "Masculino de 65 años, no circuncidado, con tabaquismo crónico intenso. Acude a consulta urológica por presentar una lesión ulcerada y exofítica en el glande de 4 meses de evolución, la cual es indolora, indurada, de bordes evertidos y sangra fácilmente al roce de la ropa interior. Refiere secreción purulenta y fétida por debajo del prepucio (fimosis crónica). A la exploración física, además de la lesión descrita, se palpan adenopatías inguinales bilaterales duras y fijas.",
@@ -13868,7 +13903,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "mi",
     "tema": "PATOLOGÍA INTESTINAL QX",
     "subtema": "CÁNCER COLORRECTAL",
     "difficulty": "alta",
@@ -13913,8 +13948,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P1",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VÍA AÉREA Y VENTILACIÓN",
     "difficulty": "media",
     "case": "Masculino de 28 años, motociclista que sufre accidente a alta velocidad impactando su rostro directamente contra el pavimento (no portaba casco cerrado). Ingresa a la sala de choque con Glasgow de 6, cianosis peribucal, y un traumatismo maxilofacial severo (fracturas panfaciales múltiples, sangrado activo profuso en cavidad oral y destrucción de la anatomía mandibular). La saturación de oxígeno es del 78%. El anestesiólogo intenta la intubación orotraqueal directa en dos ocasiones pero resulta imposible (\"no intubable, no ventilable\") debido a la hemorragia masiva y la pérdida de las referencias anatómicas.",
@@ -13946,8 +13981,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "specialty": "ped",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "RETINOPATÍA DEL PREMATURO",
     "difficulty": "media",
     "case": "Neonato prematuro nacido a las 27 semanas de gestación, con peso al nacer de 900 gramos. Durante su estancia en la Unidad de Cuidados Intensivos Neonatales (UCIN), cursó con Síndrome de Dificultad Respiratoria tipo 1 (Enfermedad de membrana hialina), requiriendo intubación orotraqueal y ventilación mecánica con fracciones inspiradas de oxígeno (FiO2) elevadas y fluctuantes durante 4 semanas para mantener la saturación por arriba del 90%.",
@@ -14000,8 +14035,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "HIPOACUSIA Y VÉRTIGO",
+    "specialty": "mi",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "VÉRTIGO POSTURAL PAROXÍSTICO BENIGNO (VPPB)",
     "difficulty": "baja",
     "case": "Femenina de 55 años, sin antecedentes crónicos, acude a consulta refiriendo episodios de mareo intenso con sensación de que \"el cuarto le da vueltas\" (vértigo rotatorio). Menciona que estos episodios duran unos 15 a 30 segundos y se desencadenan exclusivamente cuando se acuesta en la cama y gira la cabeza hacia el lado derecho. Entre episodios se encuentra completamente asintomática. Niega pérdida de la audición, zumbidos (acúfenos) o dolor de oído.",
@@ -14021,7 +14056,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "mi",
     "tema": "PATOLOGÍA INTESTINAL INFLAMATORIA",
     "subtema": "COLITIS ULCEROSA CRÓNICA IDIOPÁTICA (CUCI)",
     "difficulty": "alta",
@@ -14066,8 +14101,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P2",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TCE ESCALA DE GLASGOW",
     "difficulty": "media",
     "case": "Masculino de 25 años, ingresa a la sala de urgencias tras sufrir un accidente en motocicleta a alta velocidad sin portar casco. El paciente no obedece órdenes. A la evaluación primaria, el médico nota que el paciente abre los ojos únicamente cuando se le aplica un estímulo doloroso intenso en el lecho ungueal. No emite ninguna palabra, produciendo únicamente sonidos incomprensibles (gemidos). Al aplicar el estímulo doloroso, el paciente flexiona y rota internamente ambos brazos sobre el pecho de forma anormal, y extiende rígidamente las piernas.",
@@ -14099,8 +14134,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA GÁSTRICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HERNIA HIATAL / ERGE",
     "difficulty": "media",
     "case": "Masculino de 45 años, con IMC de 32 (obesidad), acude a consulta por referir sensación de ardor retroesternal (pirosis) y regurgitación de sabor ácido que empeora al acostarse o al agacharse a atarse los zapatos, de 2 años de evolución. Refiere que últimamente ha presentado tos seca nocturna y disfonía matutina. Recibió un tratamiento empírico con Omeprazol 20 mg/día por 4 semanas con mejoría muy leve, por lo que regresó a consulta. Se le realizó una endoscopia superior que no mostró esofagitis erosiva ni úlceras (ERGE no erosivo).",
@@ -14132,8 +14167,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P1",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CRIPTORQUIDIA",
     "difficulty": "baja",
     "case": "Lactante masculino de 12 meses de edad es traído a su consulta de control de niño sano. Su madre refiere que, desde el nacimiento, el escroto derecho \"se ve más pequeño y vacío\". A la exploración física en ambiente cálido, el testículo izquierdo se encuentra en la bolsa escrotal, de tamaño y consistencia normales. El testículo derecho no es palpable en la bolsa escrotal, sino que se palpa en el tercio distal del canal inguinal, siendo imposible descenderlo manualmente hasta el escroto.",
@@ -14153,8 +14188,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA PANCREÁTICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PANCREATITIS AGUDA",
     "difficulty": "alta",
     "case": "Femenina de 45 años, con antecedente de colelitiasis demostrada por ecografía hace un año, sin tratamiento quirúrgico. Es traída al servicio de urgencias por presentar dolor abdominal de inicio súbito e intensidad 10/10 en el epigastrio, el cual se irradia en forma de \"cinturón\" (transfictivo) hacia la espalda. El cuadro se acompaña de náuseas y múltiples episodios de vómito de contenido gastroalimentario que no alivian el dolor. A la exploración física: T 37.8°C, FC 115 lpm, TA 100/65 mmHg, FR 22 rpm. El abdomen se encuentra distendido, con disminución de los ruidos peristálticos, hiperestesia y dolor exquisito a la palpación profunda en el epigastrio, sin datos de irritación peritoneal franca. Laboratorios: Leucocitos 14,000/mm³, Glucosa 180 mg/dL, Amilasa sérica 850 U/L (Valor normal < 140 U/L) y Lipasa sérica 1,200 U/L (Valor normal < 160 U/L). Pruebas de función hepática con elevación de AST (250 U/L) y ALT (310 U/L).",
@@ -14198,8 +14233,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "EPIGLOTITIS",
     "difficulty": "media",
     "case": "Preescolar masculino de 4 años, no cuenta con cartilla de vacunación actualizada debido a creencias familiares. Es llevado al servicio de urgencias pediátricas por presentar un cuadro de inicio abrupto (hace 8 horas) caracterizado por fiebre de 39.5°C, dificultad progresiva para respirar y dolor de garganta intenso (odinofagia). A la inspección, el niño luce ansioso, tóxico, babeando profusamente (sialorrea) porque es incapaz de tragar su propia saliva. Adopta una postura característica: sentado, inclinado hacia adelante con el cuello hiperextendido y la mandíbula protruida (posición en trípode). Presenta estridor inspiratorio suave.",
@@ -14232,7 +14267,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "UROLOGÍA P2",
+    "tema": "Apendicitis Aguda",
     "subtema": "LITIASIS RENAL",
     "difficulty": "baja",
     "case": "Masculino de 35 años, de oficio taxista (baja ingesta de líquidos), acude a urgencias quejándose de dolor severo (10/10), de tipo cólico, que inició de manera súbita en la fosa lumbar derecha y se irradia hacia la fosa ilíaca derecha y el testículo ipsilateral. El paciente no encuentra una posición que le alivie el dolor y se mueve constantemente en la camilla. Presenta náuseas, vómito y diaforesis. Su examen general de orina mediante tira reactiva demuestra microhematuria (++). No tiene fiebre ni datos de choque.",
@@ -14252,8 +14287,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA PERIANAL",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HEMORROIDES",
     "difficulty": "media",
     "case": "Masculino de 50 años, con antecedente de estreñimiento crónico. Acude a la consulta externa de cirugía general por presentar sangrado transrectal intermitente desde hace 6 meses. Refiere que el sangrado es de color rojo brillante, sin coágulos, y se presenta típicamente como gotas al final de la evacuación o manchando el papel higiénico. Lo que más le preocupa es que, después de defecar, siente que \"una masa se sale por el ano\" (prolapso). Menciona que esta masa no regresa sola hacia adentro, sino que debe empujarla y reintroducirla con sus propios dedos (reducción manual), tras lo cual se queda en su lugar. Niega dolor intenso anal, fiebre o pérdida de peso.",
@@ -14306,8 +14341,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "QUEMADURAS / GOLPE DE CALOR / HIPOTERMIA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "QUEMADURAS TÉRMICAS Y REANIMACIÓN HÍDRICA",
     "difficulty": "alta",
     "case": "Masculino de 35 años, peso de 70 kg, es rescatado de un incendio en un espacio cerrado. A su ingreso a la sala de urgencias, el paciente se encuentra con la vía aérea permeable y sin datos de quemadura por inhalación. A la exploración física, presenta quem aduras que se caracterizan por ser de un color rojo oscuro, húmedas, con flictenas (ampollas) rotas, dolorosas al tacto profundo, pero con llenado capilar ausente. Estas lesiones abarcan toda la circunferencia del brazo y antebrazo derecho, toda la circunferencia del brazo y antebrazo izquierdo, y la totalidad de la cara anterior del tronco (tórax y abdomen).",
@@ -14352,7 +14387,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE",
+    "tema": "ATLS / Trauma",
     "subtema": "EPISTAXIS",
     "difficulty": "baja",
     "case": "Masculino de 15 años es llevado a la enfermería de su escuela por presentar sangrado nasal abundante del lado derecho de 10 minutos de evolución, el cual inició tras hurgarse la nariz (trauma digital). El paciente se encuentra estable, no hay antecedente de coagulopatías. A la rinoscopia anterior, tras limpiar los coágulos, se observa un sitio de sangrado activo, de tipo capilar, localizado en la porción anteroinferior del tabique nasal cartilaginoso.",
@@ -14372,7 +14407,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
     "subtema": "ESGUINCE DE TOBILLO",
     "difficulty": "media",
@@ -14405,8 +14440,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "specialty": "mi",
+    "tema": "Hipotiroidismo",
     "subtema": "SÍNDROME DEL TÚNEL CARPIANO",
     "difficulty": "media",
     "case": "Femenina de 48 años, de ocupación costurera, con antecedente de hipotiroidismo primario. Acude a consulta ortopédica quejándose de adormecimiento, hormigueo (parestesias) y dolor en los primeros tres dedos de la mano derecha (pulgar, índice y medio). Refiere que el dolor es peor por las noches, despertándola de madrugada, y que encuentra alivio al sacudir vigorosamente la mano (\"signo de la sacudida\"). A la inspección, se observa atrofia leve de la eminencia tenar.",
@@ -14438,8 +14473,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "TRAUMA GENERALIDADES Y COMPLICACIONES",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CICATRIZACIÓN",
     "difficulty": "baja",
     "case": "Femenina de 28 años acude a la consulta externa de cirugía general para revisión de la cicatriz de una cesárea realizada hace 14 meses. La paciente refiere que hace aproximadamente 8 meses la cicatriz comenzó a engrosarse, a elevarse y a causarle comezón intensa y dolor punzante ocasional. A la exploración física de la región suprapúbica (incisión de Pfannenstiel), se observa una cicatriz muy gruesa, exuberante, eritematosa y firme, la cual sobrepasa los márgenes anatómicos de la incisión quirúrgica original, invadiendo la piel sana circundante en forma de \"pinzas de cangrejo\".",
@@ -14459,8 +14494,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA ARTERIAL Y VENOSA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INSUFICIENCIA VENOSA CRÓNICA",
     "difficulty": "media",
     "case": "Femenina de 55 años, con obesidad grado II, ocupación cajera de supermercado (bipedestación prolongada por más de 8 horas diarias). Acude a consulta por referir pesadez, dolor sordo y edema en ambas extremidades inferiores, los cuales empeoran notablemente al final del día y mejoran al elevar las piernas. A la exploración física en bipedestación, se observan múltiples trayectos venosos dilatados y tortuosos en ambas piernas. Llama la atención que en el tercio distal de la pierna izquierda, por encima del maléolo medial, presenta una piel engrosada, con hiperpigmentación color ocre (dermatitis por estasis) y una úlcera superficial de 3 cm de diámetro, de bordes irregulares, fondo rosado (limpio) y exudado moderado. La úlcera es indolora. Los pulsos arteriales distales son normales.",
@@ -14492,8 +14527,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA ONCOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "MELANOMA",
     "difficulty": "baja",
     "case": "Masculino de 45 años, de tez clara y antecedente de múltiples quemaduras solares con ampollas en la infancia. Acude a dermatología para revisión de un lunar en la región interescapular (espalda). Refiere que en los últimos 4 meses el lunar ha crecido rápidamente, presenta un borde asimétrico e irregular, y tiene múltiples tonos de color (negro, marrón y azul). Se realiza una biopsia escisional que reporta un \"Melanoma de extensión superficial\" sin ulceración. El patólogo reporta un grosor tumoral (Índice de Breslow) de 1.5 milímetros.",
@@ -14513,8 +14548,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P1",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "IVU (INFECCIONES DE VÍAS URINARIAS)",
     "difficulty": "media",
     "case": "Femenina de 24 años, sana, con vida sexual activa. Acude a su unidad de medicina familiar por referir un cuadro de 24 horas de evolución caracterizado por dolor ardoroso al orinar (disuria), aumento en la frecuencia de las micciones en pequeñas cantidades (polaquiuria) y sensación de vaciamiento incompleto (tenesmo vesical). Refiere que su orina tiene un olor más fuerte de lo normal y aspecto turbio. Niega fiebre, escalofríos, náuseas, vómito o dolor en la región lumbar. A la exploración física, el abdomen es blando, sin dolor a la palpación profunda y la maniobra de puñopercusión (Giordano) es bilateralmente negativa.",
@@ -14591,8 +14626,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "HERNIAS / ESPLENECTOMÍA (TRAUMA GENERALIDADES)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESPLENECTOMÍA",
     "difficulty": "baja",
     "case": "Masculino de 20 años de edad sufre un accidente al circular en bicicleta deportiva y caer sobre el manubrio, recibiendo un fuerte impacto cerrado en el hipocondrio izquierdo. Es ingresado a urgencias taquicárdico e hipotenso. Se le realiza un ultrasonido FAST que resulta positivo para líquido libre en el espacio hepatorrenal (Morison) y esplenorrenal. Ante la inestabilidad hemodinámica, es llevado a laparotomía exploradora de urgencia, encontrando un estallamiento masivo del bazo (Lesión Grado V), con hemorragia activa incontrolable. El cirujano decide realizar una esplenectomía total de urgencia para salvarle la vida.",
@@ -14612,8 +14647,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P2",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER RENAL",
     "difficulty": "alta",
     "case": "Masculino de 65 años, fumador intenso (índice tabáquico de 45 paquetes/año) y con obesidad grado I. Acude a consulta externa refiriendo que en las últimas semanas ha presentado orina con sangre de forma intermitente, sin ardor ni dolor al orinar. Además, refiere un dolor sordo y constante en la fosa lumbar izquierda de 2 meses de evolución, acompañado de pérdida de peso de 6 kg. A la exploración física, se palpa una masa firme en el flanco izquierdo. Llama la atención la presencia de un varicocele izquierdo de reciente aparición que no desaparece cuando el paciente adopta la posición de decúbito supino.",
@@ -14657,8 +14692,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA ESOFÁGICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER DE ESÓFAGO",
     "difficulty": "media",
     "case": "Masculino de 68 años de edad, con antecedente de Enfermedad por Reflujo Gastroesofágico (ERGE) de 20 años de evolución, tratada intermitentemente con antiácidos. Acude a la consulta de gastroenterología por presentar disfagia progresiva de 4 meses de evolución. Refiere que inicialmente sentía que la comida sólida (como la carne) \"se le atoraba\" en el pecho, pero en las últimas dos semanas también tiene dificultad para tragar líquidos. Ha presentado una pérdida de peso involuntaria de 12 kg y refiere regurgitación frecuente de saliva no digerida.",
@@ -14691,7 +14726,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "CIRUGÍA ONCOLOGÍA",
+    "tema": "Patología Biliar",
     "subtema": "CÁNCER DE PÁNCREAS",
     "difficulty": "alta",
     "case": "Masculino de 72 años, tabaquismo positivo de 30 paquetes/año y diagnóstico reciente de diabetes mellitus tipo 2 (hace 6 meses) de difícil control sin antecedente familiar. Acude a urgencias traído por su familia debido a que han notado una coloración amarillenta en sus ojos y piel en las últimas 3 semanas. El paciente refiere astenia, hiporexia, pérdida de peso de 8 kg y menciona que su orina está \"como té cargado\" (coluria) y sus heces son de color \"masilla\" (acolia). Menciona que todo esto ha ocurrido sin dolor abdominal. A la exploración física, además de la ictericia franca, se palpa una vesícula biliar distendida, lisa y no dolorosa en el hipocondrio derecho.",
@@ -14768,8 +14803,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P3",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA PEDIÁTRICO",
     "difficulty": "baja",
     "case": "Escolar masculino de 8 años es traído a la sala de urgencias tras caer de un árbol desde aproximadamente 3 metros de altura, golpeándose el abdomen contra una rama gruesa. A su ingreso, el niño se encuentra asustado, pero está consciente (Glasgow 15). Sus signos vitales muestran una FC de 105 lpm y una TA de 100/65 mmHg (hemodinámicamente completamente estable para su edad). Presenta dolor en el hipocondrio izquierdo. La tomografía de abdomen contrastada revela una laceración esplénica Grado III, con un pequeño hematoma subcapsular, sin evidencia de extravasación activa de contraste (blush) ni neumoperitoneo.",
@@ -14789,7 +14824,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
     "subtema": "LUXACIÓN DE HOMBRO",
     "difficulty": "media",
@@ -14822,8 +14857,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P2",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER UROTELIAL Y TESTICULAR",
     "difficulty": "baja",
     "case": "Masculino de 28 años, previamente sano y asintomático. Acude a la consulta externa de urología refiriendo haber palpado una \"bolita\" en su testículo derecho mientras se bañaba hace 3 semanas. Menciona que no le causa ningún dolor, solo una sensación de \"pesadez\" en el escroto. A la exploración física, se palpa una masa sólida, pétrea, indolora y que no transilumina, dependiente directamente del parénquima del testículo derecho. El epidídimo es normal. Se solicita un ultrasonido testicular que confirma una masa hipoecoica sólida intratesticular y muy vascularizada.",
@@ -14843,8 +14878,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA CÁMARA POSTERIOR",
+    "specialty": "mi",
+    "tema": "Diabetes Mellitus",
     "subtema": "RETINOPATÍA DIABÉTICA",
     "difficulty": "alta",
     "case": "Femenina de 60 años, con diagnóstico de diabetes mellitus tipo 2 de 18 años de evolución, tratada con insulina NPH, con mal apego al tratamiento (HbA1c reciente de 10.5%). Acude a la consulta oftalmológica por disminución progresiva de la agudeza visual en ambos ojos. A la exploración del fondo de ojo bajo dilatación pupilar, el oftalmólogo describe múltiples microaneurismas, hemorragias intrarretinianas \"en flama\" y exudados duros amarillentos en el polo posterior. Además, se observa claramente la presencia de una red de vasos sanguíneos delgados y tortuosos creciendo sobre la superficie del disco óptico (papila) y extendiéndose hacia el humor vítreo.",
@@ -14888,8 +14923,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "LESIONES MENISCALES / LIGAMENTOS RODILLA",
     "difficulty": "media",
     "case": "Masculino de 20 años, jugador aficionado de fútbol rápido. Acude a urgencias dos horas después de sufrir una lesión en la rodilla izquierda. Refiere que, al correr a gran velocidad e intentar hacer un cambio brusco de dirección (pivote) con el pie izquierdo firmemente apoyado en el suelo (mecanismo de valgo y rotación externa), sintió que la rodilla le \"falló\" y escuchó un chasquido fuerte (pop). El paciente fue incapaz de continuar jugando. A su ingreso, la rodilla izquierda presenta un derrame articular (aumento de volumen) masivo y a tensión que se desarrolló en menos de 2 horas.",
@@ -14922,7 +14957,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "PATOLOGÍA BILIAR",
+    "tema": "Patología Biliar",
     "subtema": "COLANGITIS AGUDA",
     "difficulty": "media",
     "case": "Femenina de 65 años, con antecedente de coledocolitiasis manejada de forma conservadora. Ingresa a la sala de choque en ambulancia por presentar un cuadro de franco deterioro neurológico (estupor). Sus familiares refieren que en los últimos dos días presentó fiebre alta, temblores (escalofríos) y dolor en el cuadrante superior derecho del abdomen, notándola \"amarilla\" desde ayer. A su ingreso, los signos vitales revelan: T 39.5°C, FC 125 lpm, FR 28 rpm y TA 80/50 mmHg. A la exploración, presenta ictericia generalizada marcada. Sus laboratorios de urgencia muestran una leucocitosis de 22,000/mm³ con 90% de neutrófilos, hiperbilirrubinemia directa severa y alteración de las pruebas de función hepática.",
@@ -14954,8 +14989,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA ESOFÁGICA",
+    "specialty": "mi",
+    "tema": "EPOC",
     "subtema": "PERFORACIÓN ESOFÁGICA (SÍNDROME DE BOERHAAVE)",
     "difficulty": "alta",
     "case": "Masculino de 45 años, con antecedente de alcoholismo intenso. Es traído a urgencias tras asistir a un banquete donde ingirió grandes cantidades de comida y alcohol. Sus familiares refieren que el paciente comenzó con episodios de vómito violento y repetitivo (arcadas severas). Durante uno de estos episodios, el paciente gritó y se llevó las manos al pecho, quejándose de un dolor torácico retroesternal de inicio súbito, desgarrador, que se irradia hacia la espalda y el cuello. A la exploración física, el paciente se encuentra diaforético, taquicárdico (125 lpm) y con dificultad respiratoria. A la palpación de la base del cuello y la región supraclavicular izquierda, se percibe una franca crepitación (enfisema subcutáneo).",
@@ -15000,7 +15035,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
+    "tema": "Apendicitis Aguda",
     "subtema": "FRACTURA DE PELVIS",
     "difficulty": "media",
     "case": "Masculino de 30 años, trabajador de la construcción, ingresa a la sala de choque tras haber sido aplastado por una barda de concreto a nivel de la cadera. A su ingreso, el paciente se encuentra pálido, confuso, con TA de 70/40 mmHg, FC de 135 lpm y FR de 28 rpm. A la inspección, se observan escoriaciones severas en el hipogastrio y equimosis en el periné y escroto (Signo de Destot). A la compresión manual suave sobre ambas crestas ilíacas hacia afuera y hacia atrás, el médico percibe inestabilidad mecánica del anillo pélvico (\"pelvis en libro abierto\"). Se solicita una radiografía portátil de pelvis en la sala de choque.",
@@ -15032,8 +15067,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA INTESTINAL QX",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VÓLVULO DE SIGMOIDES",
     "difficulty": "baja",
     "case": "Masculino de 75 años, residente de un asilo de ancianos, con antecedente de estreñimiento crónico y uso habitual de laxantes. Es traído a urgencias por distensión abdominal masiva y progresiva de 3 días de evolución, ausencia de canalización de gases y dolor abdominal tipo cólico. A la exploración física, el abdomen está francamente globoso, muy timpánico a la percusión, sin datos de peritonitis (sin rebote ni rigidez). Se toma una radiografía simple de abdomen en bipedestación.",
@@ -15053,7 +15088,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "PATOLOGÍA CÁMARA ANTERIOR",
     "subtema": "ÚLCERA CORNEAL / QUERATITIS INFECCIOSA",
     "difficulty": "media",
@@ -15074,8 +15109,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "MORDEDURAS Y PICADURAS",
+    "specialty": "urg",
+    "tema": "Mordeduras y Picaduras",
     "subtema": "MORDEDURAS DE MAMÍFEROS Y RABIA",
     "difficulty": "alta",
     "case": "Escolar masculino de 8 años es llevado a urgencias por sus padres tras haber sido atacado sorpresivamente por un perro callejero (desconocido y que huyó del lugar) mientras el niño jugaba en el parque. El paciente presenta una herida lacerante de 4 cm de longitud, profunda y anfractuosa, localizada en el labio superior y la mejilla derecha, con sangrado activo.",
@@ -15107,8 +15142,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "INTRODUCCIÓN A CIRUGÍA Y CIRUGÍA ABDOMINAL",
+    "specialty": "mi",
+    "tema": "Diabetes Mellitus",
     "subtema": "RESPUESTA METABÓLICA AL TRAUMA",
     "difficulty": "media",
     "case": "Masculino de 45 años, ingresado en la Unidad de Cuidados Intensivos en su tercer día postoperatorio tras una laparotomía exploradora por trauma abdominal cerrado complejo (lesión hepática grado IV). El paciente se encuentra extubado pero febril (38.2°C), taquicárdico (110 lpm) y con una glucemia capilar de 180 mg/dL a pesar de no ser diabético. Sus laboratorios muestran un balance nitrogenado marcadamente negativo.",
@@ -15129,7 +15164,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "QUEMADURAS / GOLPE DE CALOR / HIPOTERMIA",
+    "tema": "Quemaduras",
     "subtema": "GOLPE DE CALOR",
     "difficulty": "alta",
     "case": "Masculino de 28 años, atleta aficionado, es traído a urgencias en ambulancia tras colapsar repentinamente mientras corría un maratón al mediodía con una temperatura ambiental de 38°C y alta humedad. Los paramédicos reportan que lo encontraron convulsionando. A su ingreso en la sala de choque, el paciente se encuentra en estado de coma (Glasgow 5), francamente taquicárdico (140 lpm) e hipotenso. A la palpación, su piel está extremadamente caliente y sorprendentemente seca (anhidrosis). Su temperatura central medida con termómetro rectal es de 41.5°C.",
@@ -15161,8 +15196,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P1",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INCONTINENCIA URINARIA",
     "difficulty": "baja",
     "case": "Femenina de 55 años, con antecedente de 4 partos vaginales (multípara) y menopausia a los 50 años. Acude a su clínica de medicina familiar por un problema que le causa gran vergüenza y afecta su calidad de vida. Refiere que desde hace 2 años presenta escapes involuntarios de orina, los cuales ocurren de forma predecible y exclusiva cuando tose, estornuda, se ríe a carcajadas o carga bolsas pesadas del supermercado. Niega sentir un \"deseo imperioso y repentino\" de orinar antes de los escapes, no tiene disuria ni sensación de vaciamiento incompleto. A la exploración ginecológica en posición de litotomía, se le pide a la paciente que tosa con la vejiga llena, observándose la salida evidente de orina a través del meato uretral.",
@@ -15206,8 +15241,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "HIPOACUSIA Y VÉRTIGO",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENFERMEDAD DE MENIERE",
     "difficulty": "media",
     "case": "Masculino de 48 años acude a la consulta de otorrinolaringología refiriendo episodios muy incapacitantes de vértigo rotatorio severo, los cuales tienen una duración de entre 2 y 4 horas y se acompañan de náuseas y vómito. El paciente menciona que antes y durante el ataque vertiginoso, experimenta una sensación de presión intensa (\"plenitud ótica\") en el oído izquierdo, seguida de un zumbido grave (\"como un motor\") y una notoria disminución de su capacidad para escuchar por ese mismo oído. Una vez que el episodio de vértigo cede, la audición se recupera parcialmente, pero nota que con el paso de los meses y tras varios ataques, su audición izquierda ha empeorado permanentemente.",
@@ -15272,8 +15307,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA HEPÁTICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ABSCESO HEPÁTICO (AMEBIANO Y PIÓGENO)",
     "difficulty": "media",
     "case": "Masculino de 35 años de edad, residente de una zona rural sin acceso a agua potable, de ocupación agricultor. Acude al servicio de urgencias por un cuadro de 2 semanas de evolución caracterizado por fiebre de predominio vespertino (39°C), diaforesis nocturna, pérdida de peso no cuantificada y dolor constante y sordo en el hipocondrio derecho que se irradia hacia el hombro derecho. Refiere haber presentado un cuadro de diarrea con moco y sangre hace un mes que se autolimitó. A la exploración física: T 38.5°C, FC 110 lpm. Presenta ictericia leve en escleras. A la palpación abdominal, el hígado se encuentra rebasando el reborde costal por 4 cm, siendo exquisitamente doloroso (hepatomegalia dolorosa), y se elicita dolor a la percusión (puñopercusión hepática positiva).",
@@ -15317,8 +15352,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA ESOFÁGICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DESGARRO DE MALLORY  -WEISS",
     "difficulty": "baja",
     "case": "Masculino de 22 años, estudiante universitario, es traído a urgencias por sus compañeros la madrugada del domingo. Refieren que el paciente ingirió grandes cantidades de alcohol (binge drinking) durante una fiesta y posteriormente presentó múltiples episodios de vómito de contenido gastroalimentario. Durante el último episodio de arqueo violento, el paciente comenzó a vomitar sangre fresca abundante (hematemesis). A su ingreso, el paciente está consciente, asustado, con TA 110/70 mmHg y FC 95 lpm (hemodinámicamente estable).",
@@ -15339,7 +15374,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "HERNIAS / ESPLENECTOMÍA",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "HERNIA FEMORAL (CRURAL)",
     "difficulty": "media",
     "case": "Femenina de 68 años, multípara (5 partos vaginales), delgada. Acude a urgencias quejándose de dolor abdominal tipo cólico, náuseas y vómito de características biliares de 12 horas de evolución. A la exploración física, el abdomen está distendido, con ruidos peristálticos metálicos aumentados. Al examinar la región inguinal derecha, se palpa una masa de 3 cm, tensa, irreductible, intensamente dolorosa a la palpación y con eritema en la piel suprayacente. La masa se localiza anatómicamente por debajo de la línea del ligamento inguinal y por dentro de los latidos de la arteria femoral.",
@@ -15371,8 +15406,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FRACTURA DE ESCAFOIDES",
     "difficulty": "media",
     "case": "Masculino de 20 años sufre una caída apoyando la palma de la mano derecha en hiperextensión (\"caída sobre mano extendida\" o mecanismo FOOSH) mientras patinaba. Acude a urgencias quejándose de dolor en la muñeca derecha. A la exploración física, no presenta deformidad evidente ni limitación importante de los rangos de movimiento de la muñeca. Sin embargo, el médico elicita un dolor agudo y exquisito al realizar palpación profunda en la depresión anatómica localizada en la base del pulgar, delimitada por los tendones del extensor largo y corto del pulgar y el abductor largo. Se solicitan radiografías iniciales (AP, Lateral y oblicua de muñeca) que se reportan sin evidencia de trazo de fractura.",
@@ -15404,8 +15439,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "OTITIS MEDIA AGUDA (OMA) / MASTOIDITIS",
     "difficulty": "alta",
     "case": "Preescolar masculino de 6 años es traído a urgencias por su madre. Refiere que hace 2 semanas el niño presentó fiebre y dolor intenso en el oído derecho, que la madre trató únicamente con Paracetamol y gotas óticas naturistas. Desde ayer, el niño presenta fiebre de 39.5°C, irritabilidad y un notable aumento de volumen detrás de la oreja derecha. A la inspección, se observa el pabellón auricular derecho francamente desplazado hacia adelante y hacia abajo (proptosis auricular). La región retroauricular está eritematosa, caliente, edematizada, sin fluctuación evidente, pero exquisitamente dolorosa a la palpación. A la otoscopia, se observa la membrana timpánica abombada, eritematosa y opaca, con pérdida del triángulo luminoso.",
@@ -15449,8 +15484,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "TRAUMA GENERALIDADES Y COMPLICACIONES",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "FRACTURAS EN NIÑOS (SALTER-HARRIS)",
     "difficulty": "baja",
     "case": "Escolar masculino de 10 años, sufre caída desde un pasamanos cayendo sobre su muñeca derecha en extensión. Acude a urgencias con dolor, edema y deformidad en el tercio distal del antebrazo. Las radiografías muestran un trazo de fractura en el radio distal que atraviesa transversalmente la placa de crecimiento (fisis) y se extiende oblicuamente hacia arriba, rompiendo un fragmento triangular de la metáfisis ósea, pero respetando por completo la epífisis y la articulación.",
@@ -15470,8 +15505,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA CÁMARA POSTERIOR",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "OCLUSIÓN VASCULAR RETINIANA",
     "difficulty": "media",
     "case": "Masculino de 68 años, con antecedente de hipertensión arterial mal controlada y fibrilación auricular paroxística. Acude a urgencias oftalmológicas refiriendo pérdida de la visión del ojo derecho de inicio súbito (\"en un segundo\"), total e indolora, que ocurrió hace 2 horas mientras desayunaba. A la exploración física, el paciente tiene agudeza visual de \"percepción de luz\" en el ojo derecho. Las pupilas presentan un defecto pupilar aferente relativo derecho (pupila de Marcus Gunn). En la oftalmoscopia directa, se observa la retina blanquecina, pálida y edematosa, con una característica mancha roja brillante en el centro de la mácula. Los vasos retinianos se ven muy adelgazados.",
@@ -15503,8 +15538,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P1",
+    "specialty": "mi",
+    "tema": "Diabetes Mellitus",
     "subtema": "INFECCIONES DE VÍAS URINARIAS (PIELONEFRITIS)",
     "difficulty": "alta",
     "case": "Femenina de 55 años, con antecedente de diabetes mellitus tipo 2 de 15 años de evolución, con neuropatía diabética periférica y mal apego al tratamiento (HbA1c 11%). Es traída a urgencias por fiebre de 39.5°C, escalofríos intensos, náuseas, vómito y dolor severo en la fosa lumbar derecha de 3 días de evolución. A su ingreso, la paciente se encuentra obnubilada, taquicárdica (130 lpm), taquipneica (28 rpm) e hipotensa (85/50 mmHg). A la exploración, el dolor a la puñopercusión renal derecha (signo de Giordano) es exquisito. Sus laboratorios muestran leucocitosis de 25,000/mm³, creatinina de 2.1 mg/dL y un examen general de orina con piuria masiva, bacteriuria y cilindros leucocitarios.",
@@ -15548,8 +15583,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA GENERAL PEDIÁTRICA / CUELLO",
+    "specialty": "mi",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "PATOLOGÍA BENIGNA DE CUELLO (QUISTE TIROGLOSO)",
     "difficulty": "media",
     "case": "Preescolar femenino de 5 años es llevada a la consulta de cirugía pediátrica por presentar un \"bulto\" en la parte anterior del cuello que la madre notó hace 3 meses tras un cuadro de infección respiratoria, y que no ha desaparecido. A la exploración física, la niña se encuentra asintomática. Se palpa una tumoración de 2 cm, redondeada, de consistencia renitente, indolora y no eritematosa. La masa se localiza exactamente en la línea media del cuello, a nivel del hueso hioides (justo por debajo del mentón).",
@@ -15581,8 +15616,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA ARTERIAL Y VENOSA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA URETRAL Y VESICAL",
     "difficulty": "media",
     "case": "Masculino de 70 años, con antecedente de infarto agudo de miocardio antiguo y diagnóstico de fibrilación auricular crónica sin tratamiento anticoagulante por abandono médico. Acude al servicio de urgencias refiriendo dolor insoportable (\"el peor de su vida\") en la pierna y pie derechos, de inicio completamente súbito hace 4 horas mientras estaba sentado viendo la televisión. A la exploración física, la extremidad inferior derecha se observa pálida (con aspecto de cera), fría al tacto y el paciente es incapaz de mover los dedos del pie. Refiere adormecimiento (parestesias) en toda la pantorrilla. A la palpación, el pulso femoral derecho es simétrico al izquierdo, pero los pulsos poplíteo, tibial posterior y pedio están completamente ausentes en el lado derecho. Masculino de 35 años, albañil, sufre una caída \"a horcajadas\" sobre una viga de andamio mientras trabajaba a un metro de altura. Es llevado a urgencias quejándose de un dolor intenso en el periné y la incapacidad absoluta para orinar (retención aguda de orina) desde el accidente hace 2 horas. A la exploración física, el paciente se encuentra hemodinámicamente estable. Se observa la presencia de sangre fresca en el meato urinario (uretrorragia) y un gran hematoma equimótico en la región perineal que adopta una forma clásica en \"alas de mariposa\". A la palpación abdominal, se detecta globo vesical. El tacto rectal revela una próstata en posición anatómica normal.",
@@ -15650,8 +15685,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA ARTERIAL Y VENOSA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENFERMEDAD ARTERIAL PERIFÉRICA",
     "difficulty": "alta",
     "case": "Masculino de 65 años, fumador activo (20 cigarros al día por 40 años) y diabético mal controlado. Acude a consulta de cirugía vascular refiriendo un dolor tipo calambre muy molesto y opresivo en la pantorrilla de la pierna derecha. Menciona que este dolor aparece invariablemente cuando camina aproximadamente 2 cuadras (200 metros) e incluso le obliga a detenerse. Tras reposar de pie durante 3 a 5 minutos, el dolor desaparece por completo y puede volver a caminar otra distancia similar antes de que el dolor reaparezca. Niega dolor en reposo o por las noches. A la exploración física, la pierna derecha se observa con piel atrófica, brillante, pérdida de vello y las uñas de los pies están engrosadas. A la palpación, el pulso femoral derecho es de buena intensidad, pero el pulso poplíteo y los pulsos pedio y tibial posterior están marcadamente disminuidos en comparación con la pierna contralateral.",
@@ -15695,8 +15730,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA CÁMARA POSTERIOR",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "RETINOPATÍA HIPERTENSIVA",
     "difficulty": "baja",
     "case": "Femenina de 60 años, con diagnóstico de hipertensión arterial sistémica primaria de 15 años de evolución, con pobre apego farmacológico. Acude a una revisión oftalmológica de rutina. Se encuentra completamente asintomática visualmente. A la evaluación del fondo de ojo bajo midriasis farmacológica, el médico oftalmólogo identifica arteriolas retinianas estrechadas y esclerosadas con un aumento del reflejo luminoso central (aspecto de \"hilos de cobre\"). Llama la atención que en los puntos donde las arteriolas cruzan por encima de las vénulas, las venas se ven comprimidas, adelgazadas y presentan cambios en su dirección (signo de Gunn y de Salus). No se observan hemorragias, exudados algodonosos ni edema de papila.",
@@ -15717,7 +15752,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "HERNIAS / ESPLENECTOMÍA",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "HERNIA EPIGÁSTRICA",
     "difficulty": "baja",
     "case": "Masculino de 38 años, de ocupación levantador de pesas y entrenador de gimnasio. Acude a consulta general refiriendo haber notado la aparición de una pequeña \"bolita\" en su abdomen hace 2 meses, la cual le duele ocasionalmente al realizar esfuerzos abdominales intensos o flexiones. A la exploración física del abdomen, se palpa un defecto herniario pequeño (aprox 1.5 cm) de consistencia blanda, reductible, localizado exactamente en la línea media del abdomen, equidistante (a medio camino) entre el apéndice xifoides y la cicatriz umbilical.",
@@ -15737,8 +15772,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA INTESTINAL QX",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "OBSTRUCCIÓN INTESTINAL (ÍLEO PARALÍTICO)",
     "difficulty": "media",
     "case": "Femenina de 62 años, cursando su tercer día de postoperatorio de una histerectomía abdominal abierta por miomatosis uterina. La enfermera reporta que la paciente se encuentra muy distendida, no ha canalizado gases ni ha evacuado desde la cirugía. La paciente se queja de distensión molesta y náuseas constantes, pero niega dolor abdominal tipo cólico espasmódico intenso. A la exploración física, el abdomen está marcadamente distendido y timpánico a la percusión. A la auscultación cuidadosa durante 2 minutos completos, los ruidos peristálticos están completamente ausentes (\"silencio abdominal\"). No hay datos de irritación peritoneal y la herida quirúrgica se ve limpia.",
@@ -15770,8 +15805,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "MORDEDURAS Y PICADURAS",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "LOXOSCELISMO",
     "difficulty": "alta",
     "case": "Femenina de 34 años de edad, previamente sana. Acude al servicio de urgencias refiriendo que hace aproximadamente 12 horas, mientras sacaba ropa de un clóset oscuro que no abría desde hace meses, sintió un \"piquete\" leve en la cara anterior del muslo izquierdo al cual no le dio importancia. Sin embargo, el dolor fue aumentando progresivamente hasta volverse urente e insoportable. A su ingreso, la paciente luce agudamente enferma, con fiebre de 38.9°C y mialgias generalizadas. A la exploración del muslo, se observa una lesión característica: una zona central necrótica y hundida, rodeada de un halo isquémico pálido, el cual a su vez está rodeado por un halo eritematoso externo (Placa livedoide o \"signo de la bandera francesa\"). Sus laboratorios de urgencia revelan anemia aguda severa, hemoglobinuria (orina oscura) y elevación de azoados (Lesión Renal Aguda).",
@@ -15815,8 +15850,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA PANCREÁTICA",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "PANCREATITIS CRÓNICA",
     "difficulty": "media",
     "case": "Masculino de 55 años, con antecedente de alcoholismo intenso y tabaquismo desde hace 30 años. Acude a la consulta de gastroenterología por pérdida de peso progresiva de 12 kg en el último año, a pesar de tener buen apetito. Refiere dolor abdominal sordo y persistente en epigastrio, que empeora después de comer. Menciona que en los últimos meses sus evacuaciones se han vuelto muy voluminosas, pálidas, de olor fétido y flotan en el inodoro (difíciles de bajar al tirar de la cadena). Además, recientemente inició con poliuria y polidipsia, documentándose una glucosa en ayuno de 210 mg/dL.",
@@ -15848,8 +15883,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "HIPOACUSIA Y VÉRTIGO",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "OTOESCLEROSIS",
     "difficulty": "alta",
     "case": "Femenina de 32 años, sin antecedentes traumáticos ni infecciosos óticos, acude a consulta por referir disminución de la audición progresiva en ambos oídos, más acentuada en el lado derecho, de 2 años de evolución. Menciona que la pérdida de audición pareció acelerarse significativamente durante su reciente embarazo. Refiere escuchar zumbidos (acúfenos) de tono grave. Curiosamente, la paciente nota que \"escucha y entiende mejor las conversaciones cuando está en ambientes muy ruidosos\" (Paracusia de Willis). A la otoscopia, las membranas timpánicas son de aspecto normal, íntegras y móviles, sin secreciones.",
@@ -15881,8 +15916,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P1",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PRIAPISMO",
     "difficulty": "media",
     "case": "Masculino de 28 años, con antecedente de Anemia de Células Falciformes (Drepanocitosis) desde la infancia. Acude al servicio de urgencias refiriendo que hace 6 horas, tras despertar por la mañana, presentó una erección del pene de máxima rigidez que no ha cedido en absoluto, a pesar de no existir ningún estímulo o deseo sexual. El paciente se queja de dolor extremo y constante en el pene. A la exploración física, los cuerpos cavernosos se palpan rígidamente ingurgitados y dolorosos, mientras que el cuerpo esponjoso y el glande se encuentran blandos.",
@@ -15914,8 +15949,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "CHALAZIÓN",
     "difficulty": "baja",
     "case": "Femenina de 35 años acude a consulta oftalmológica refiriendo la presencia de una \"bolita\" en su párpado superior derecho que apareció de forma muy gradual a lo largo de los últimos dos meses. Refiere que, a diferencia de un \"perrilla\" (orzuelo) que tuvo años atrás, esta lesión no le causa ningún dolor, ni se pone roja o caliente. A la exploración física, se palpa un nódulo solitario, duro, circunscrito, de aproximadamente 6 mm, localizado en el espesor del tarso del párpado superior, completamente indoloro a la palpación y sin signos de inflamación aguda.",
@@ -15935,8 +15970,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P1",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA TORÁCICO (TAPONAMIENTO CARDÍACO)",
     "difficulty": "media",
     "case": "Masculino de 28 años es traído a la sala de choque tras sufrir una herida por arma blanca en hemitórax izquierdo, a nivel del 4to espacio intercostal, línea paraesternal. A su ingreso, el paciente se encuentra sumamente agitado, diaforético, con TA de 80/50 mmHg, FC de 130 lpm y FR de 28 rpm. A la inspección del cuello, se observa una franca ingurgitación de las venas yugulares. A la auscultación, los ruidos respiratorios son normales y bilaterales, pero los ruidos cardíacos se perciben muy lejanos y apagados (velados).",
@@ -15968,8 +16003,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "FX DE ANTEBRAZO Y MANO (FRACTURA DE COLLES)",
     "difficulty": "baja",
     "case": "Femenina de 65 años, con antecedente de osteoporosis. Acude a urgencias tras sufrir una caída desde su propia altura al tropezar con una alfombra. Relata haber metido las manos para amortiguar el golpe, apoyando la palma de la mano derecha con la muñeca en hiperextensión (mecanismo FOOSH). Presenta dolor intenso, edema y una deformidad muy evidente en el tercio distal del antebrazo derecho. Vista de perfil, la muñeca adopta una forma clásica que recuerda a un tenedor de mesa (\"deformidad en dorso de tenedor\").",
@@ -15990,7 +16025,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "PATOLOGÍA ARTERIAL Y VENOSA",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "ANEURISMA DE AORTA ABDOMINAL (AAA)",
     "difficulty": "alta",
     "case": "Masculino de 75 años, hipertenso, dislipidémico y fumador crónico (índice tabáquico de 50 paquetes/año). Es traído a urgencias en ambulancia refiriendo un dolor abdominal periumbilical súbito, transfixiante e insoportable, que se irradia hacia la región lumbar (espalda baja) de forma bilateral. Durante el traslado, el paciente presentó un episodio de síncope. A su ingreso a la sala de choque, luce sumamente pálido, diaforético, con FC de 120 lpm y TA de 70/40 mmHg. A la palpación abdominal, el médico percibe una masa intensamente pulsátil y expansiva por encima de la cicatriz umbilical.",
@@ -16034,8 +16069,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P1",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "EPIDIDIMITIS",
     "difficulty": "media",
     "case": "Masculino de 25 años, con múltiples parejas sexuales y antecedente de uretritis no tratada hace un mes. Acude a la consulta externa de urología refiriendo dolor escrotal derecho de inicio gradual (a lo largo de 3 días), acompañado de aumento de volumen del escroto, fiebre de 38°C, disuria y urgencia miccional. A la exploración física, el hemiescroto derecho está eritematoso, caliente y edematizado. Al palpar cuidadosamente el testículo derecho, se nota un engrosamiento muy doloroso en el polo superior y posterior (zona del epidídimo). Al elevar manualmente el testículo derecho hacia el canal inguinal, el paciente refiere que el dolor disminuye significativamente.",
@@ -16067,8 +16102,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "specialty": "urg",
+    "tema": "Mordeduras y Picaduras",
     "subtema": "TRAUMA OCULAR (QUEMADURAS QUÍMICAS)",
     "difficulty": "baja",
     "case": "Masculino de 40 años, trabajador de mantenimiento industrial. Es llevado urgentemente al servicio médico de la empresa y posteriormente a urgencias hospitalarias tras sufrir una salpicadura directa en ambos ojos con hidróxido de sodio (sosa cáustica / álcali), un producto utilizado para destapar cañerías. El paciente grita de dolor, presenta blefaroespasmo intenso (imposibilidad para abrir los ojos), fotofobia severa y lagrimeo. A duras penas, el médico logra abrir los párpados para observar los globos oculares.",
@@ -16088,8 +16123,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE",
+    "specialty": "gyo",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "FARINGOAMIGDALITIS",
     "difficulty": "media",
     "case": "Escolar masculino de 8 años es traído a consulta de pediatría por fiebre de 39°C de inicio brusco y dolor de garganta intenso (odinofagia) que le impide comer, de 24 horas de evolución. La madre refiere que el niño no ha tenido tos, ni escurrimiento nasal (rinorrea). A la exploración física, las amígdalas palatinas se observan francamente hipertróficas, eritematosas y recubiertas por un exudado blanquecino pultáceo. Además, a la palpación del cuello, se detectan ganglios linfáticos cervicales anteriores aumentados de tamaño y muy dolorosos (adenopatía cervical anterior dolorosa).",
@@ -16121,8 +16156,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P1",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA TORÁCICO (NEUMOTÓRAX A TENSIÓN)",
     "difficulty": "media",
     "case": "Masculino de 22 años, sufre accidente automovilístico con volcadura, sin portar cinturón de seguridad. Es ingresado a la sala de choque con Glasgow de 13, gran agitación y dificultad respiratoria severa (FR 35 rpm). Sus signos vitales muestran FC 135 lpm, TA 80/40 mmHg y SatO2 de 82% con oxígeno suplementario. A la exploración del tórax, el hemitórax derecho se observa hiperinsuflado y sin movimientos respiratorios. A la auscultación, hay ausencia total de ruidos respiratorios en el lado derecho. A la percusión, se percibe franca hiperresonancia (timpanismo) en ese mismo lado. A la inspección del cuello, la tráquea está visiblemente desviada hacia el lado izquierdo y las venas yugulares están ingurgitadas.",
@@ -16154,8 +16189,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA PERIANAL",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ABSCESO ANORRECTAL Y FÍSTULA",
     "difficulty": "baja",
     "case": "Masculino de 45 años, con antecedente de diabetes mellitus tipo 2. Acude a la consulta de cirugía general refiriendo dolor perianal intenso, pulsátil y continuo de 4 días de evolución, el cual se exacerba insoportablemente al sentarse o al intentar defecar, al grado de impedirle conciliar el sueño. Refiere fiebre no cuantificada. A la exploración proctológica (en posición de Sims), se observa una tumoración en el margen anal derecho, intensamente eritematosa, caliente al tacto y francamente fluctuante.",
@@ -16188,7 +16223,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "tema": "ATLS / Trauma",
     "subtema": "FRACTURA SUPRACONDÍLEA DE HÚMERO",
     "difficulty": "alta",
     "case": "Escolar masculino de 6 años es llevado a urgencias traumatológicas tras caer de un \"brincolín\", apoyando su brazo izquierdo contra el piso con el codo en hiperextensión. A su ingreso, el niño llora inconsolablemente sosteniendo su codo izquierdo. A la inspección, el codo presenta un edema masivo y una deformidad clásica en forma de \"S\" itálica. A la exploración neurovascular de la mano izquierda, el llenado capilar es mayor a 3 segundos, el pulso radial está ausente y el niño es incapaz de hacer la señal de \"OK\" (pinza fina) con los dedos pulgar e índice, refiriendo hormigueo en esa zona.",
@@ -16232,8 +16267,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "",
     "difficulty": "media",
     "case": "Masculino de 25 años acude a su clínica periférica por presentar \"ojo rojo\" severo. Refiere que hace 3 días cursó con dolor de garganta y escurrimiento nasal, y ayer comenzó con sensación de arena (cuerpo extraño), lagrimeo intenso, fotofobia leve y enrojecimiento en el ojo derecho, síntomas que hoy por la mañana se extendieron al ojo izquierdo. A la exploración física, el paciente presenta secreción francamente acuosa (no purulenta). En la conjuntiva tarsal inferior se observan múltiples elevaciones avasculares translúcidas, y llama la atención la presencia de un ganglio preauricular palpable y doloroso en el lado derecho.",
@@ -16253,8 +16288,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA GÁSTRICA",
+    "specialty": "mi",
+    "tema": "VIH / SIDA",
     "subtema": "ÚLCERA PÉPTICA PERFORADA",
     "difficulty": "baja",
     "case": "Femenina de 65 años, con antecedente de dolor articular por osteoartritis severa automedicada desde hace 3 años con Ibuprofeno y Naproxeno a altas dosis diarias. Es llevada a urgencias por presentar dolor abdominal súbito, descrito como una \"puñalada\", de extrema intensidad, originado en el epigastrio y que rápidamente se generalizó a todo el abdomen. A la exploración física, la paciente luce agudamente enferma, sudorosa, en posición fetal, rehusándose a moverse. El abdomen está rígido, plano (\"abdomen en tabla\" o \"de madera\"), con dolor difuso a la palpación superficial y rebote positivo generalizado. A la percusión hepática, se encuentra pérdida de la matidez normal en el cuadrante superior derecho.",
@@ -16274,8 +16309,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA ONCOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "PATOLOGÍA BENIGNA DE MAMA",
     "difficulty": "baja",
     "case": "Femenina de 22 años, nulípara, sin antecedentes heredofamiliares de importancia. Acude a consulta por notar una \"bolita\" en su seno derecho mientras se bañaba hace un mes. Refiere que la masa no le causa dolor, incluso durante su periodo menstrual. A la exploración física, en el cuadrante superoexterno de la mama derecha, se palpa un nódulo de aproximadamente 2.5 cm de diámetro. Llama la atención que la masa es de consistencia ahulada, bordes lisos y muy bien delimitados, y es extremadamente móvil (se desliza fácilmente bajo los dedos, conocido clínicamente como el signo del \"ratón de las mamas\"). No hay retracción de piel, secreción por el pezón ni adenopatías axilares.",
@@ -16295,8 +16330,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA INTESTINAL QX / PEDIATRÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DIVERTÍCULO DE MECKEL",
     "difficulty": "media",
     "case": "Lactante masculino de 2 años de edad es llevado al servicio de urgencias por su madre, sumamente angustiada, al notar que en el último pañal el niño presentó una evacuación con sangre fresca y abundante (hematoquecia color rojo vino), sin presencia de moco ni heces. Al interrogar a la madre, refiere que el niño se encuentra completamente sano, no ha tenido fiebre, no ha llorado por dolor abdominal y no tiene alteraciones en el crecimiento. A la exploración física, el paciente se encuentra pálido, taquicárdico, pero con el abdomen blando, depresible y sin masas palpables ni dolor.",
@@ -16328,8 +16363,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TENOSINOVITIS DE DE QUERVAIN",
     "difficulty": "baja",
     "case": "Femenina de 30 años, madre reciente de un bebé de 3 meses. Acude a consulta externa de ortopedia refiriendo dolor muy intenso en la cara lateral de la muñeca derecha (lado del pulgar) de 3 semanas de evolución. Menciona que el dolor es punzante, se irradia hacia el antebrazo y empeora drásticamente cada vez que intenta levantar a su bebé de la cuna o al exprimir trapos. A la exploración física, se observa leve aumento de volumen en la apófisis estiloides del radio.",
@@ -16362,7 +16397,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "UROLOGÍA P1",
+    "tema": "Urología",
     "subtema": "HPB (COMPLICACIONES Y TRATAMIENTO QX)",
     "difficulty": "alta",
     "case": "Masculino de 72 años, con antecedente de Hiperplasia Prostática Benigna (HPB) de 6 años de evolución, en tratamiento médico combinado (Tamsulosina + Finasterida) sin adecuada respuesta clínica (IPSS 22, persistencia de chorro débil y nicturia severa). En los últimos 6 meses, ha presentado dos cuadros de Retención Aguda de Orina (RAO) que ameritaron colocación de sonda Foley en urgencias, y dos episodios de Infección de Vías Urinarias comprobada por urocultivo. Un ultrasonido vesical y prostático reciente revela una próstata de 60 gramos (cc), volumen residual postmiccional de 150 ml (anormal) y la presencia de dos litos de 2 cm en el interior de la vejiga.",
@@ -16394,8 +16429,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CELULITIS ORBITARIA",
     "difficulty": "media",
     "case": "Escolar masculino de 8 años es llevado a urgencias pediátricas. Su madre refiere que el niño tuvo un cuadro de rinosinusitis aguda (congestión y moco verde) hace una semana. Desde ayer, el niño inició con fiebre de 39°C, malestar general y notó que el ojo derecho comenzó a hincharse rápidamente. A la inspección, el ojo derecho presenta edema palpebral severo, eritema, y el globo ocular está francamente desplazado hacia adelante (proptosis/exoftalmos). A la exploración oftalmológica, la agudeza visual del ojo derecho está disminuida. Llama la atención que la conjuntiva está muy inflamada (quemosis) y el paciente refiere un dolor insoportable al intentar mover el ojo, presentando limitación evidente para mirar hacia arriba y hacia la derecha (oftalmoplejía).",
@@ -16427,8 +16462,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P2",
+    "specialty": "gyo",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "TRAUMA MEDULAR Y CHOQUE NEUROGÉNICO",
     "difficulty": "alta",
     "case": "Masculino de 28 años ingresa a la sala de choque tras sufrir una volcadura en su vehículo a alta velocidad. Los paramédicos lo extrajeron con inmovilización cervical y tabla rígida. A su ingreso, el paciente se encuentra alerta, pero refiere incapacidad total para mover los brazos y las piernas (tetraplejía), así como pérdida de la sensibilidad por debajo del nivel de las clavículas. Sus signos vitales al monitor muestran una Presión Arterial de 75/40 mmHg y una Frecuencia Cardíaca de 55 lpm. A la exploración física, llama la atención que, a pesar de la hipotensión profunda, las extremidades del paciente se sienten calientes, rosadas y secas, sin evidencia de diaforesis.",
@@ -16460,8 +16495,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA INTESTINAL QX / CIRUGÍA PEDIÁTRICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INVAGINACIÓN INTESTINAL (INTUSUSCEPCIÓN)",
     "difficulty": "media",
     "case": "Lactante masculino de 8 meses de edad es traído a urgencias por presentar irritabilidad extrema y llanto inconsolable de inicio súbito. La madre refiere que los episodios de llanto duran unos 15 minutos, durante los cuales el niño palidece y flexiona fuertemente las piernas sobre el abdomen; luego el niño se relaja y parece normal (letárgico) hasta el siguiente episodio. Ha vomitado en dos ocasiones. Al interrogar sobre las evacuaciones, la madre muestra un pañal que contiene heces gelatinosas de color rojo oscuro, mezcladas con moco. A la exploración física, en el cuadrante superior derecho del abdomen se palpa una masa alargada (\"en forma de salchicha\").",
@@ -16505,8 +16540,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR / ORTOPEDIA PEDIÁTRICA",
+    "specialty": "gyo",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "DISPLASIA DEL DESARROLLO DE LA CADERA (DDC)",
     "difficulty": "media",
     "case": "Recién nacida femenina, obtenida por parto vaginal en presentación de nalgas (pélvica). Como antecedente familiar, la madre refiere haber utilizado aparatos ortopédicos en las piernas durante su infancia. En la primera revisión en el cunero (a las 24 horas de vida), el pediatra realiza maniobras dinámicas de exploración en la cadera izquierda de la bebé. Al abducir la cadera izquierda (abrir la pierna hacia afuera) y presionar el trocánter mayor hacia arriba, el médico percibe un \"clack\" (un resalte palpable y audible), que corresponde a la reducción de la cabeza del fémur previamente luxada hacia el interior del acetábulo.",
@@ -16550,8 +16585,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "HIPOACUSIA Y VÉRTIGO",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "NEURITIS VESTIBULAR",
     "difficulty": "baja",
     "case": "Masculino de 35 años acude a urgencias quejándose de mareo intenso con sensación de giro (vértigo rotatorio) de inicio súbito que comenzó al despertar hace 2 días. Refiere que el mareo es constante (no cede ni siquiera al estar inmóvil), se acompaña de náuseas severas, múltiples episodios de vómito e inestabilidad para caminar (se va hacia el lado derecho). Como antecedente, refiere haber tenido una infección de vías respiratorias altas (gripa) hace una semana. Al interrogatorio dirigido, el paciente niega rotundamente tener zumbidos de oído (acúfenos), dolor ótico, o disminución de la audición. A la exploración física, presenta un nistagmo espontáneo horizontal-torsional.",
@@ -16583,8 +16618,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P2 / ATLS P2",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA RENAL",
     "difficulty": "media",
     "case": "Masculino de 18 años, jugador de fútbol americano, recibe un golpe directo y violento (tacleada) con un casco en la región lumbar (flanco) izquierda. Acude a urgencias por presentar dolor continuo en la zona del golpe. A la exploración física, sus signos vitales son completamente normales (TA 120/80 mmHg, FC 80 lpm) y el abdomen es blando y depresible. En la fosa lumbar izquierda presenta equimosis leve. Al solicitarle que orine en un frasco, la orina tiene un aspecto francamente rojo oscuro (hematuria macroscópica).",
@@ -16616,8 +16651,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA INTESTINAL QX",
+    "specialty": "mi",
+    "tema": "Fibrilación Auricular",
     "subtema": "ISQUEMIA MESENTÉRICA AGUDA",
     "difficulty": "alta",
     "case": "Masculino de 75 años, con antecedente de insuficiencia cardíaca congestiva y fibrilación auricular crónica en tratamiento irregular. Es traído a urgencias refiriendo dolor abdominal de inicio súbito, periumbilical, de intensidad 10/10 (\"el peor de su vida\"), que inició hace 3 horas. El paciente se encuentra diaforético, con náuseas y ha presentado una evacuación diarreica con pintas de sangre. A la exploración física, los signos vitales muestran FC 120 lpm, TA 150/90 mmHg, FR 24 rpm. Llama poderosamente la atención que, a pesar de que el paciente se retuerce de dolor y grita, a la palpación el abdomen se encuentra blando, depresible, sin resistencia muscular, sin signo de rebote y con peristalsis levemente disminuida.",
@@ -16661,8 +16696,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P3",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA DE CUELLO",
     "difficulty": "media",
     "case": "Masculino de 25 años ingresa a la sala de choque tras sufrir una herida por arma blanca (cuchillo) en la región anterior del cuello durante un asalto. A su ingreso, el paciente se encuentra consciente (Glasgow 15), pero su vía aérea se nota comprometida por la acumulación de sangre. Sus signos vitales: FC 115 lpm, TA 90/60 mmHg. A la exploración, se observa una herida penetrante de 3 cm ubicada exactamente a la altura del cartílago tiroides (manzana de Adán). De la herida brota un sangrado pulsátil de color rojo brillante y se observa un hematoma que está creciendo rápidamente, desplazando la tráquea hacia el lado izquierdo.",
@@ -16694,8 +16729,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FRACTURA DE DIÁFISIS FEMORAL",
     "difficulty": "baja",
     "case": "Masculino de 30 años, motociclista, sufre impacto lateral por un automóvil a alta velocidad. Es ingresado con dolor insoportable en el muslo derecho. A la inspección, el muslo presenta un severo aumento de volumen, deformidad en angulación y la extremidad se encuentra acortada y rotada externamente. Las radiografías revelan una fractura transversal desplazada en el tercio medio de la diáfisis del fémur. Sus signos vitales muestran taquicardia (110 lpm) y TA de 100/65 mmHg.",
@@ -16728,7 +16763,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "UROLOGÍA P2",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "CÁNCER TESTICULAR (SEMINOMA)",
     "difficulty": "media",
     "case": "Masculino de 32 años de edad, asintomático. Acude a urología porque notó un endurecimiento progresivo de su testículo derecho a lo largo de 3 meses. Niega dolor, fiebre o trauma. A la exploración física, se palpa el testículo derecho aumentado de tamaño, con una masa sólida, pétrea e indolora que no transilumina. Se realiza una orquiectomía radical inguinal derecha. El reporte histopatológico de la pieza quirúrgica confirma un \"Seminoma puro clásico\", sin invasión linfovascular.",
@@ -16760,8 +16795,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA CÁMARA ANTERIOR",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PTERIGIÓN",
     "difficulty": "baja",
     "case": "Masculino de 45 años, de ocupación albañil, sin antecedentes crónicos. Acude a oftalmología por irritación ocular crónica, sensación de cuerpo extraño y enrojecimiento en su ojo izquierdo, el cual empeora tras estar en el sol. A la inspección, se observa una lesión fibrovascular carnosa, de forma triangular, que se origina en la conjuntiva bulbar nasal (cerca del canto interno) y cruza el limbo esclerocorneal, invadiendo el tejido transparente de la córnea en aproximadamente 2 milímetros hacia el eje visual.",
@@ -16781,8 +16816,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA GENERAL PEDIÁTRICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESTENOSIS HIPERTRÓFICA DEL PÍLORO",
     "difficulty": "alta",
     "case": "Lactante masculino de 3 semanas de vida, primogénito. Es llevado a urgencias por su madre debido a que desde hace 5 días presenta vómitos después de cada toma de leche. La madre describe que los vómitos han ido empeorando, volviéndose \"en proyectil\", de contenido exclusivamente lácteo (no biliar) y que, inmediatamente después de vomitar, el bebé llora con mucha hambre y quiere volver a comer (\"vomitador hambriento\"). A la exploración física, el lactante luce deshidratado (mucosas secas, llanto sin lágrimas). Al descubrir el abdomen durante la toma del biberón, se observan ondas peristálticas visibles que van de izquierda a derecha en el epigastrio. A la palpación profunda y suave en el cuadrante superior derecho, se percibe una masa dura, móvil, del tamaño de una aceituna (oliva pilórica).",
@@ -16826,8 +16861,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR / ORTOPEDIA PEDIÁTRICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "EPIFISIOLISTESIS FEMORAL CAPITAL",
     "difficulty": "media",
     "case": "Adolescente masculino de 13 años, con obesidad grado I (IMC de 31). Es traído a la consulta externa de ortopedia porque su madre nota que \"cojea\" (claudicación) al caminar desde hace un mes. El paciente refiere un dolor sordo y vago que inicialmente comenzó en la rodilla derecha, pero ahora se localiza en la ingle y el muslo derecho. A la exploración física, el paciente camina con la extremidad derecha en rotación externa. Al acostarlo en la camilla y flexionar pasivamente su cadera derecha a 90 grados, la pierna se desvía de forma automática e involuntaria hacia la rotación externa y abducción (Signo de Drehmann positivo). La rotación interna de la cadera está marcadamente limitada y es dolorosa.",
@@ -16859,8 +16894,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "OTITIS EXTERNA (OÍDO DE NADADOR)",
     "difficulty": "baja",
     "case": "Masculino de 14 años, miembro del equipo de natación de su escuela. Acude a la consulta médica por presentar un dolor intenso (otalgia) en el oído izquierdo de 48 horas de evolución, acompañado de intensa comezón (prurito) y sensación de oído tapado. A la exploración física, el médico apenas roza el pabellón auricular y el paciente se retira bruscamente. Al tirar suavemente del lóbulo de la oreja hacia atrás o presionar el cartílago por delante del conducto auditivo (Signo del trago), se desencadena un dolor insoportable. A la otoscopia, el conducto auditivo externo se observa severamente eritematoso, edematizado, con descamación y escasa secreción purulenta, lo que dificulta visualizar la membrana timpánica.",
@@ -16880,8 +16915,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "GLAUCOMA PRIMARIO DE ÁNGULO ABIERTO",
     "difficulty": "media",
     "case": "Masculino de 65 años, afrodescendiente, con diagnóstico de diabetes mellitus tipo 2, acude a una campaña de salud visual para hacerse una revisión de lentes, ya que siente que últimamente tropieza con las cosas a su alrededor y ha notado una \"disminución de su visión lateral\". El paciente niega enfáticamente haber tenido dolor ocular, ojo rojo, fotofobia o náuseas. Durante el tamizaje, el optometrista le detecta una Presión Intraocular (PIO) de 26 mmHg en ambos ojos (Valor normal: 10 - 21 mmHg). El paciente es derivado al oftalmólogo, quien al realizar la oftalmoscopia directa observa en ambas papilas ópticas (disco óptico) una excavación profunda, pálida y ensanchada, con una relación copa/disco (C/D) de 0.8, además de rechazo nasal de los vasos centrales.",
@@ -16913,8 +16948,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P1",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "TRAUMA TORÁCICO (TÓRAX INESTABLE / VOLET COSTAL)",
     "difficulty": "alta",
     "case": "Masculino de 45 años, conductor de un camión de carga, sufre impacto frontal a alta velocidad sin bolsa de aire, golpeando su pecho fuertemente contra el volante. Ingresa a la sala de urgencias muy inquieto, taquipneico (FR 32 rpm), con tiraje intercostal y una SatO2 de 85% con mascarilla de oxígeno. A la inspección del tórax desnudo, el médico observa una equimosis masiva en el hemitórax izquierdo y nota un movimiento asimétrico y anormal de la pared torácica: un segmento amplio de las costillas izquierdas se hunde (se deprime) profundamente durante la inspiración y se abomba hacia afuera durante la espiración.",
@@ -16946,7 +16981,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "PATOLOGÍA GÁSTRICA",
     "subtema": "HEMORRAGIA DE TUBO DIGESTIVO ALTO (ÚLCERA PÉPTICA)",
     "difficulty": "alta",
@@ -16991,8 +17026,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA ONCOLOGÍA / DERMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER DE PIEL NO MELANOMA (CARCINOMA BASOCELULAR)",
     "difficulty": "baja",
     "case": "Masculino de 70 años, de ocupación campesino (alta exposición solar crónica), de tez muy clara (fototipo I). Acude a la consulta de primer nivel para mostrarle al médico un \"granito\" que le salió en el ala derecha de la nariz hace aproximadamente 8 meses y que no sana. Refiere que ocasionalmente sangra cuando se lava la cara. A la exploración física, se observa una pápula o nódulo de 8 milímetros, de aspecto translúcido o \"perlado\", con bordes elevados y la presencia de finos vasos sanguíneos ramificados en su superficie (telangiectasias). En el centro de la lesión se aprecia una pequeña costra que, al desprenderse, revela una úlcera superficial.",
@@ -17012,8 +17047,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P2",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA CRANEOENCEFÁLICO (HEMATOMA SUBDURAL)",
     "difficulty": "media",
     "case": "Masculino de 75 años, con antecedente de alcoholismo crónico. Es traído a urgencias por sus hijos, quienes notan que en los últimos días el paciente ha estado muy somnoliento, confuso y ha desarrollado debilidad progresiva en el brazo y la pierna derechas (hemiparesia). Al interrogar sobre caídas, un hijo recuerda que el paciente resbaló en el baño y se golpeó la cabeza hace aproximadamente 2 semanas, pero no perdió el conocimiento ni acudió al médico. A la exploración neurológica actual, el paciente tiene Glasgow de 12 y anisocoria (pupila izquierda dilatada).",
@@ -17045,8 +17080,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA DE GLÁNDULA SALIVAL / CUELLO",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SIALOLITIASIS",
     "difficulty": "media",
     "case": "Masculino de 45 años, previamente sano, acude a la consulta externa refiriendo episodios repetitivos de dolor agudo y aumento de volumen (hinchazón) en la región por debajo de la mandíbula del lado derecho. Menciona que estos episodios son muy predecibles, ya que ocurren sistemáticamente justo antes y durante las comidas (especialmente si come cosas ácidas, como limón), y la hinchazón desaparece gradualmente en el lapso de un par de horas después de comer. A la exploración física del piso de la boca, el médico logra palpar una masa dura, pequeña y móvil a lo largo del trayecto del conducto salival principal del lado derecho.",
@@ -17078,8 +17113,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "LUXACIÓN ACROMIOCLAVICULAR",
     "difficulty": "baja",
     "case": "Masculino de 28 años, ciclista de montaña, sufre caída golpeando el \"vértice del hombro\" directamente contra el suelo con el brazo pegado al cuerpo. Acude a urgencias sosteniendo el brazo afectado. A la inspección del hombro derecho, se observa una prominencia o abultamiento evidente y anormal en la parte superior del hombro, donde la clavícula se articula con el omóplato.",
@@ -17099,8 +17134,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA BILIAR / PATOLOGÍA INTESTINAL QX",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ÍLEO BILIAR",
     "difficulty": "alta",
     "case": "Femenina de 75 años, con antecedente de cólicos biliares de repetición durante años que nunca quiso operarse por miedo a la cirugía. Es traída a urgencias por presentar distensión abdominal progresiva, incapacidad para canalizar gases o evacuar desde hace 3 días, y vómitos de contenido fecaloide. A la exploración física, el abdomen se encuentra muy distendido, timpánico a la percusión, con ruidos peristálticos de tono alto (\"ruidos metálicos\"). Se solicita una radiografía simple de abdomen en bipedestación que muestra dilatación importante de asas de intestino delgado con múltiples niveles hidroaéreos. Llama la atención la presencia de gas dibujando la silueta de la vía biliar en el cuadrante superior derecho y una imagen radiopaca ovoide de 3 cm proyectada en la fosa ilíaca derecha.",
@@ -17144,8 +17179,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
+    "specialty": "mi",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "FRACTURAS DE TOBILLO (CLASIFICACIÓN DE WEBER)",
     "difficulty": "media",
     "case": "Masculino de 30 años, jugador aficionado de fútbol. Acude a urgencias tras sufrir una torcedura de su tobillo derecho durante un partido. Refiere que su pie quedó trabado en el pasto mientras su cuerpo giraba, provocando un mecanismo de supinación y rotación externa forzada. Presenta dolor intenso, incapacidad para apoyar el pie, aumento de volumen y equimosis en la cara lateral del tobillo. Se solicitan radiografías de tobillo (AP, lateral y mortaja) que evidencian una fractura oblicua del peroné distal. El trazo de fractura inicia exactamente a nivel de la articulación tibioperonea (sindesmosis) y se extiende oblicuamente hacia arriba y hacia atrás.",
@@ -17177,7 +17212,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "ped",
     "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
     "subtema": "ESTRABISMO",
     "difficulty": "baja",
@@ -17210,8 +17245,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P1",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PROSTATITIS BACTERIANA AGUDA",
     "difficulty": "media",
     "case": "Masculino de 45 años, previamente sano, acude al servicio de urgencias por presentar fiebre de 39°C de inicio brusco, acompañada de escalofríos intensos, malestar general, mialgias y artralgias de 24 horas de evolución. Refiere intenso dolor sordo y pesado en la región perineal y rectal. Menciona que tiene mucho dolor y ardor al orinar (disuria severa), con chorro urinario muy débil y sensación de vaciamiento incompleto. A la exploración física, el paciente luce tóxico. Se le realiza un tacto rectal de manera muy suave, evidenciando una próstata marcadamente aumentada de tamaño, tensa, indurada, caliente y exquisitamente dolorosa.",
@@ -17243,8 +17278,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA PERIANAL",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FÍSTULA ANORRECTAL",
     "difficulty": "baja",
     "case": "Masculino de 40 años acude a la consulta externa de cirugía general. Refiere que hace 6 meses tuvo un absceso \"en la sentadera\" que le fue drenado en urgencias. Actualmente refiere que la herida nunca terminó de cerrar. Manifiesta ensuciar constantemente su ropa interior con una secreción amarillenta de mal olor y ocasionalmente manchada de sangre. A la exploración en posición proctológica, se observa un pequeño orificio secundario en la piel perianal, localizado a 3 cm del margen anal posterior, del cual drena material purulento a la presión.",
@@ -17264,8 +17299,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P3 / RINOLOGÍA Y FARINGE",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA MAXILOFACIAL (LE FORT)",
     "difficulty": "alta",
     "case": "Masculino de 35 años es traído a la sala de choque tras sufrir un accidente automovilístico frontal contra un muro, sin portar cinturón de seguridad. El paciente impactó su rostro directamente contra el volante. A su ingreso, presenta edema facial masivo bilateral, equimosis periorbitaria (\"ojos de mapache\") y epistaxis bilateral profusa. Llama la atención que la cara del paciente parece alargada (\"cara de plato\"). A la exploración física intraoral, el paciente presenta maloclusión dental severa y mordida abierta anterior. Al tomar firmemente los incisivos superiores con una mano y estabilizar la frente con la otra, el médico percibe que todo el maxilar superior y los huesos nasales se mueven en bloque (como una pirámide), separándose del resto del cráneo, pero los arcos cigomáticos se mantienen estables e intactos.",
@@ -17297,8 +17332,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P1",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PATOLOGÍA ESCROTAL BENIGNA (VARICOCELE)",
     "difficulty": "baja",
     "case": "Masculino de 19 años, previamente sano, acude a consulta externa refiriendo una sensación de \"pesadez\" y molestia sorda en el testículo izquierdo que empeora al final del día o después de hacer ejercicio, y que mejora al acostarse. A la exploración física en bipedestación, se observa una asimetría escrotal. A la palpación del hemiescroto izquierdo, por encima del testículo, se palpa una masa blanda, irregular y compresible que el médico describe clásicamente como \"una bolsa de gusanos\". Esta masa aumenta de volumen cuando se le pide al paciente que puje (Maniobra de Valsalva positiva) y disminuye de tamaño al ponerlo en decúbito supino.",
@@ -17319,7 +17354,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
+    "tema": "ATLS / Trauma",
     "subtema": "LUXACIÓN DE CADERA",
     "difficulty": "media",
     "case": "Masculino de 28 años, copiloto en un accidente automovilístico frontal. Refiere que al momento del impacto iba sentado con las piernas cruzadas y la rodilla chocó violentamente contra el tablero del vehículo (mecanismo de \"dashboard injury\"). Es ingresado a urgencias con dolor insoportable en la cadera derecha. A la inspección en la camilla, la extremidad inferior derecha se encuentra marcadamente acortada, en rotación interna y aducción (la rodilla derecha apunta y se recarga sobre el muslo izquierdo, en la clásica \"posición de bañista sorprendido\"). No se palpan pulsos disminuidos, pero el paciente refiere incapacidad para realizar la dorsiflexión del pie derecho (pie caído) y pérdida de sensibilidad en la cara lateral de la pierna y dorso del pie.",
@@ -17351,8 +17386,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA GENERAL PEDIÁTRICA",
+    "specialty": "ped",
+    "tema": "Neonatología",
     "subtema": "ATRESIA ESOFÁGICA / FÍSTULA TRAQUEOESOFÁGICA",
     "difficulty": "alta",
     "case": "Recién nacido masculino de término (39 SDG), producto de un embarazo complicado por polihidramnios severo detectado en el tercer trimestre. Inmediatamente después del nacimiento, en la sala de tococirugía, el pediatra nota que el neonato presenta sialorrea excesiva (babeo espumoso continuo por la boca y nariz). Al intentar el primer intento de alimentación al seno materno, el recién nacido presenta tos violenta, regurgitación inmediata del contenido y un episodio de cianosis y dificultad respiratoria (atragantamiento). Ante la sospecha diagnóstica, el médico intenta pasar una sonda orogástrica (calibre 8 Fr), pero encuentra un tope elástico a los 10 cm de la arcada dentaria y la sonda no logra avanzar hacia el estómago.",
@@ -17384,8 +17419,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "specialty": "mi",
+    "tema": "Fibrilación Auricular",
     "subtema": "UVEÍTIS ANTERIOR AGUDA",
     "difficulty": "media",
     "case": "Masculino de 35 años, con antecedente de dolor lumbar crónico matutino y rigidez articular (sospecha de Espondilitis Anquilosante). Acude a urgencias oftalmológicas refiriendo un cuadro de inicio agudo (hace 24 horas) en su ojo izquierdo, caracterizado por dolor ocular profundo y sordo, enrojecimiento ocular franco y una intensa sensibilidad a la luz (fotofobia). Niega secreción purulenta. A la exploración física, la agudeza visual del ojo izquierdo está levemente disminuida. Se observa inyección ciliar (anillo de enrojecimiento profundo alrededor de la córnea). Llama la atención que la pupila izquierda se encuentra pequeña (miosis) y de forma irregular (discórica) en comparación con el ojo derecho, debido a que el iris parece estar adherido al cristalino en algunos puntos (sinequias posteriores).",
@@ -17405,8 +17440,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA BILIAR",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "COLEDOCOLITIASIS",
     "difficulty": "media",
     "case": "Femenina de 45 años, con antecedente de colecistectomía laparoscópica hace 3 años por colelitiasis sintomática. Acude a urgencias refiriendo dolor abdominal tipo cólico en epigastrio e hipocondrio derecho de 48 horas de evolución, acompañado de náuseas. En las últimas 24 horas, sus familiares notaron que \"se puso amarilla\" y ella refiere que su orina es muy oscura (coluria) y sus heces pálidas (acolia). No ha presentado fiebre. A la exploración física, hay ictericia franca en escleras y piel, con dolor a la palpación profunda en hipocondrio derecho, sin datos de irritación peritoneal. Laboratorios: Bilirrubina Total 6.5 mg/dL, Bilirrubina Directa 5.2 mg/dL, Fosfatasa Alcalina 450 U/L, GGT 320 U/L. Leucocitos normales.",
@@ -17438,8 +17473,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P2",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "CÁNCER DE PRÓSTATA (ESCALA DE GLEASON)",
     "difficulty": "alta",
     "case": "Masculino de 72 años, asintomático. Durante su chequeo médico anual, se le detecta un Antígeno Prostático Específico (APE) de 14 ng/mL. Al tacto rectal, el urólogo palpa un nódulo pétreo e irregular en el lóbulo izquierdo de la próstata. Se realiza una biopsia transrectal guiada por ultrasonido (TRUS) tomando 12 cilindros. El reporte histopatológico confirma \"Adenocarcinoma acinar de próstata\". El patólogo describe que el patrón arquitectónico tumoral más predominante está formado por glándulas fusionadas y cribriformes (Grado 4), y el segundo patrón más frecuente consiste en nidos sólidos de células sin formación de glándulas y con áreas de necrosis comedoniana (Grado 5).",
@@ -17471,8 +17506,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA ONCOLOGÍA",
+    "specialty": "mi",
+    "tema": "Cardiopatía Isquémica",
     "subtema": "CÁNCER COLORRECTAL (SÍNDROME DE LYNCH)",
     "difficulty": "alta",
     "case": "Masculino de 42 años de edad, previamente sano. Acude a consulta por anemia ferropénica en estudio y sangre oculta en heces positiva. Se le realiza una colonoscopia total encontrando un tumor vegetante en el ciego (colon derecho). Las biopsias confirman un adenocarcinoma colorrectal. Al realizar una historia clínica familiar detallada, el paciente menciona que su madre falleció de cáncer de endometrio a los 45 años, un tío materno tuvo cáncer de colon a los 40 años, y un hermano mayor fue diagnosticado con cáncer gástrico a los 48 años.",
@@ -17504,8 +17539,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "TRAUMA GENER ALIDADES Y COMPLICACIONES",
+    "specialty": "mi",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "QUEMADURAS ELÉCTRICAS",
     "difficulty": "media",
     "case": "Masculino de 30 años, trabajador de la construcción. Es traído a la sala de choque tras sufrir una descarga eléctrica accidental con un cable de alta tensión (aprox. 10,000 voltios) mientras manipulaba un andamio metálico. A su ingreso, el paciente se encuentra estuporoso, con TA de 90/60 mmHg y FC de 115 lpm. Presenta una herida de entrada pequeña, carbonizada y deprimida en la palma de la mano derecha, y una herida de salida \"en estallido\" en la planta del pie izquierdo. Tras colocarle una sonda Foley, la enfermera reporta que la orina extraída es de un color \"rojo oscuro brillante o parecido a la Coca-Cola\", pero la tira reactiva de orina no detecta eritrocitos microscópicos intactos.",
@@ -17537,8 +17572,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "TENOSINOVITIS INFECCIOSA DE LOS FLEXORES (MANO)",
     "difficulty": "baja",
     "case": "Femenina de 28 años, de ocupación costurera. Acude a urgencias por presentar dolor extremo y aumento de volumen en el dedo índice de la mano derecha. Relata haberse pinchado accidentalmente con una aguja de coser sucia hace 48 horas. A la exploración física, el dedo índice derecho presenta cuatro signos muy llamativos: 1) Aumento de volumen fusiforme y simétrico de todo el dedo (\"dedo en salchicha\"), 2) El dedo adopta espontáneamente una postura en ligera flexión para aliviar la tensión, 3) Existe un dolor exquisito a la percusión o palpación a lo largo de toda la vaina tendinosa flexora en la cara palmar, y 4) Se desencadena un dolor insoportable y agudo cuando el médico intenta extender pasivamente el dedo.",
@@ -17558,8 +17593,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "TRAUMA GENERALIDADES Y COMPLICACIONES",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FRACTURAS ABIERTAS (CLASIFICACIÓN DE GUSTILO-ANDERSON)",
     "difficulty": "media",
     "case": "Masculino de 25 años, repartidor en motocicleta, sufre accidente al ser impactado lateralmente por un vehículo. Es llevado a urgencias inmovilizado. A la exploración física de la extremidad inferior derecha, presenta una fractura diafisiaria de la tibia y el peroné. Se observa una herida lacerante en la cara anteromedial de la pierna de 4 centímetros de longitud, a través de la cual asoma el hueso fracturado. La herida presenta un daño moderado a los tejidos blandos circundantes y contaminación visible con tierra, pero el médico determina que existe una cobertura ósea (periostio y músculo) adecuada que permitirá el cierre primario o colgajos menores sin necesidad de injertos complejos. No hay lesión vascular arterial.",
@@ -17591,8 +17626,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA GENERAL PEDIÁTRICA",
+    "specialty": "ped",
+    "tema": "Neonatología",
     "subtema": "ENFERMEDAD DE HIRSCHSPRUNG (AGANGLIONOSIS CONGÉNITA)",
     "difficulty": "alta",
     "case": "Recién nacido masculino de término (40 SDG), obtenido por parto eutócico, con peso al nacer de 3.2 kg. El pediatra es interconsultado en el cunero porque el neonato no ha presentado evacuación de meconio en sus primeras 48 horas de vida extrauterina. La enfermera reporta que el bebé rechaza el alimento, presenta distensión abdominal progresiva e importante, y ha tenido dos episodios de vómito de color verde (biliar). A la exploración física, el abdomen está globoso y timpánico. Se decide realizar estimulación rectal introduciendo suavemente un termómetro lubricado (o el dedo meñique); inmediatamente tras la estimulación, el neonato presenta una salida explosiva de gas y meconio fétido abundante, tras lo cual el abdomen se descomprime no tablemente.",
@@ -17636,8 +17671,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA P1",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PARAFIMOSIS",
     "difficulty": "baja",
     "case": "Masculino de 80 años, residente de un asilo, con antecedente de deterioro cognitivo. Hace 48 horas se le colocó una sonda Foley por retención urinaria. Es traído a urgencias porque las enfermeras notaron gran aumento de volumen en sus genitales. A la exploración física, el paciente presenta dolor. El prepucio se encuentra retraído por detrás del surco balanoprepucial, formando un anillo constrictivo muy tenso y edematizado. El glande se observa sumamente pálido, cianótico y marcadamente hinchado debido a la isquemia y al compromiso del retorno venoso y linfático.",
@@ -17669,8 +17704,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "INTRODUCCIÓN OFTALMOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ORZUELO",
     "difficulty": "baja",
     "case": "Femenina de 18 años acude a su unidad de medicina familiar refiriendo dolor muy molesto en su ojo izquierdo de 3 días de evolución. A la inspección, se observa un nódulo muy eritematoso, inflamado, caliente y con una evidente \"punta\" blanquecina (purulenta), localizado exactamente en el borde libre del párpado inferior (entre las pestañas). La paciente parpadea con dificultad debido al intenso dolor (sensibilidad a la palpación). Shutterstock",
@@ -17690,8 +17725,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE (PEDIATRÍA)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ASPIRACIÓN DE CUERPO EXTRAÑO EN VÍA AÉREA",
     "difficulty": "media",
     "case": "Lactante masculino de 2 años de edad es llevado al servicio de urgencias por sus padres. Refieren que mientras el niño jugaba y comía cacahuates, presentó súbitamente un acceso de tos paroxística muy violenta, sensación de ahogo (asfixia) y la cara se le puso morada (cianosis) durante un par de minutos. Posteriormente, el niño se calmó y dejó de toser, pero los padres notan que \"le silba el pecho\" al respirar. A la exploración física en urgencias, el niño está tranquilo, no cianótico, con signos vitales estables. Sin embargo, a la auscultación torácica, se detecta disminución del murmullo vesicular y sibilancias localizadas exclusivamente en el hemitórax derecho.",
@@ -17724,7 +17759,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "NEUROCIRUGÍA / ATLS P2",
+    "tema": "ATLS / Trauma",
     "subtema": "HIPERTENSIÓN INTRACRANEAL (HERNIACIÓN UNCAL)",
     "difficulty": "alta",
     "case": "Masculino de 24 años sufre un traumatismo craneoencefálico severo al chocar en su motocicleta sin casco. Ingresa a urgencias intubado, con Glasgow de 6. Durante la evaluación secundaria en la sala de choque, el médico nota un cambio neurológico brusco: la pupila derecha del paciente se dilata rápidamente y deja de responder a la luz (midriasis paralítica ipsilateral). Simultáneamente, al aplicar un estímulo doloroso, el paciente presenta una postura de decorticación exclusivamente en el lado izquierdo del cuerpo (hemiparesia contralateral).",
@@ -17757,7 +17792,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "CIRUGÍA GENERAL PEDIÁTRICA / ADULTOS",
+    "tema": "Apendicitis Aguda",
     "subtema": "APENDICITIS AGUDA",
     "difficulty": "baja",
     "case": "Masculino de 18 años acude a urgencias por referir un dolor abdominal que inició hace 12 horas en la región periumbilical, pero que en las últimas 4 horas ha migrado y se ha localizado de manera punzante en el cuadrante inferior derecho. Refiere haber vomitado en una ocasión y no tener apetito (anorexia). A la exploración física, tiene una temperatura de 37.8°C. A la palpación abdominal, presenta hiperestesia cutánea y dolor intenso en la fosa ilíaca derecha, con franco signo de rebote (dolor a la descompresión brusca).",
@@ -17789,8 +17824,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "OFTALMOLOGÍA PEDIÁTRICA / ONCOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "RETINOBLASTOMA",
     "difficulty": "media",
     "case": "Lactante femenina de 18 meses de edad es llevada a la consulta de pediatría por sus padres. Refieren estar muy asustados porque al revisarle los ojos a la niña o al tomarle fotografías con flash, notan un \"reflejo blanco\" o brillo extraño en la pupila del ojo derecho, similar al ojo de un gato en la oscuridad. Además, la madre refiere que en las últimas semanas la niña ha comenzado a \"desviar\" el mismo ojo hacia adentro (estrabismo convergente). El niño se encuentra aparentemente sano en todos los demás aspectos. A la exploración oftalmoscópica bajo dilatación pupilar, se observa una masa blanquecina, exofítica, altamente vascularizada en la retina del ojo derecho.",
@@ -17822,8 +17857,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ORTOPEDIA Y TRAUMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME COMPARTIMENTAL",
     "difficulty": "alta",
     "case": "Masculino de 28 años, sufre fractura cerrada de la diáfisis tibial derecha al jugar fútbol. En urgencias, se le realiza reducción cerrada y se le coloca un yeso suropédico circular completo. Doce horas después de su alta, el paciente regresa a urgencias refiriendo un dolor agudísimo, quemante y pulsátil en la pierna derecha. Refiere que el dolor es \"peor que cuando se rompió el hueso\" y no ha cedido en absoluto a pesar de tomar los analgésicos opioides recetados. A la exploración, los dedos del pie derecho están ligeramente edematizados pero rosados, con buen llenado capilar y los pulsos distales (pedio) son palpables y fuertes.",
@@ -17889,7 +17924,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "PATOLOGÍA DIVERTICULAR",
+    "tema": "Apendicitis Aguda",
     "subtema": "DIVERTICULITIS AGUDA",
     "difficulty": "media",
     "case": "Masculino de 68 años de edad, con antecedente de estreñimiento crónico y dieta baja en fibra. Acude a urgencias por presentar dolor abdominal de 48 horas de evolución, constante, localizado en la fosa ilíaca izquierda (cuadrante inferior izquierdo). Refiere fiebre no cuantificada, náuseas y alteración en los hábitos intestinales. A la exploración física: T 38.5°C, FC 100 lpm. El abdomen presenta dolor a la palpación profunda en la fosa ilíaca izquierda, con resistencia muscular voluntaria y signo de rebote positivo localizado. Sus laboratorios muestran leucocitosis de 15,000/mm³ con neutrofilia.",
@@ -17921,8 +17956,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS P1",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA TORÁCICO (HEMOTÓRAX MASIVO)",
     "difficulty": "alta",
     "case": "Masculino de 30 años, ingresa a la sala de choque tras sufrir una herida por proyectil de arma de fuego en el hemitórax derecho (4to espacio intercostal, línea axilar anterior). A su ingreso, el paciente está confuso, pálido y diaforético, con TA de 70/40 mmHg y FC de 135 lpm. A la exploración del tórax, el hemitórax derecho presenta movimientos respiratorios disminuidos. A la auscultación, hay **ausencia total de ruidos respiratorios** en el lado derecho. A la percusión, se percibe una **franca matidez** en la base y tercio medio del hemitórax afectado. Las venas yugulares del cuello se encuentran colapsadas (planas).",
@@ -17954,8 +17989,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA CÁMARA POSTERIOR",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DESPRENDIMIENTO DE RETINA REGMATÓGENO",
     "difficulty": "media",
     "case": "Femenina de 62 años, con antecedente de miopía magna (alta) desde la juventud. Acude a urgencias oftalmológicas refiriendo que hace dos días comenzó a ver \"destellos de luz como relámpagos\" (fotopsias) en su ojo derecho, seguidos por la aparición de múltiples \"moscas volantes\" de color oscuro (miodesopsias). El día de hoy, despertó notando que una **\"sombra oscura\" o \"telón\"** comenzó a caer sobre su campo visual desde la parte inferior, impidiéndole ver con la mitad inferior del ojo. No refiere dolor ocular en ningún momento.",
@@ -17975,8 +18010,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "MORDEDURAS Y PICADURAS",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "MORDEDURA DE SERPIENTES (ACCIDENTE OFÍDICO)",
     "difficulty": "alta",
     "case": "Masculino de 28 años, trabajador agrícola, es traído al servicio de urgencias rurales tras sufrir una mordedura de serpiente en la pierna derecha mientras cortaba caña. Los compañeros mataron a la serpiente y la traen consigo: se observa que tiene la cabeza triangular, fosetas termosensibles (loreales) entre el ojo y la nariz, y un \"cascabel\" en la cola. El accidente ocurrió hace 2 horas. A su ingreso, el paciente se queja de dolor quemante extremo en la pierna. A la exploración, se observan dos marcas de colmillos en el tobillo rodeadas de un **edema masivo que ya alcanzó la rodilla derecha, asociado a equimosis progresiva, flictenas hemorrágicas y sangrado continuo por los orificios de los colmillos**. Sus laboratorios iniciales muestran TP y TTP prolongados, y plaquetas en 60,000/mm³.",
@@ -18008,8 +18043,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA INTESTINAL INFLAMATORIA",
+    "specialty": "mi",
+    "tema": "Fibrilación Auricular",
     "subtema": "COLITIS ULCEROSA (MEGACOLON TÓXICO)",
     "difficulty": "baja",
     "case": "Femenina de 32 años, con diagnóstico conocido de Colitis Ulcerosa Crónica Idiopática (CUCI) de 4 años de evolución, en tratamiento irregular. Ingresa a piso de medicina interna por una agudización severa de su enfermedad, presentando más de 10 evacuaciones diarreicas con abundante sangre y moco al día. Al tercer día de hospitalización, la enfermera reporta que la paciente dejó de evacuar súbitamente, pero presenta un franco deterioro de su estado general: fiebre de 39°C, taquicardia de 130 lpm, alteración del estado mental (letargo) y el abdomen se encuentra distendido masivamente, doloroso a la palpación difusa y timpánico.",
@@ -18030,7 +18065,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "CIRUGÍA DE PARED ABDOMINAL",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "HERNIA INGUINAL (ANATOMÍA Y TRATAMIENTO)",
     "difficulty": "media",
     "case": "Masculino de 45 años, de oficio cargador en un mercado, acude por presentar un \"bulto\" en la región inguinal derecha que aparece al realizar esfuerzos y desaparece al acostarse. A la exploración física, se palpa una protrusión que emerge por fuera de los vasos epigástricos inferiores, pasando a través del anillo inguinal profundo. Al realizar la maniobra de Valsalva, la hernia toca la punta del dedo del examinador insertado en el conducto inguinal. El paciente no refiere dolor intenso, solo molestia tipo pesadez.",
@@ -18062,8 +18097,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "QUEMADURAS (ATLS / GPC)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "REANIMACIÓN HÍDRICA (FÓRMULA DE PARKLAND)",
     "difficulty": "alta",
     "case": "Masculino de 35 años, de 80 kg de peso, es traído tras sufrir quemaduras por fuego directo en una explosión de gas. A la exploración, presenta quemaduras de 2do grado profundo y 3er grado en: todo el brazo derecho (9%), toda la pierna derecha (18%) y la cara anterior del tronco (18%). No hay lesiones en vía aérea. Los signos vitales muestran FC 110 lpm y TA 105/70 mmHg.",
@@ -18117,7 +18152,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "TRAUMA ABDOMINAL (ATLS)",
+    "tema": "ATLS / Trauma",
     "subtema": "TRAUMA ESPLÉNICO",
     "difficulty": "alta",
     "case": "Masculino de 19 años, ingresa tras accidente en motocicleta. Presenta dolor intenso en el hipocondrio izquierdo y dolor referido al hombro izquierdo (signo de Kehr). TA 90/60 mmHg (responde transitoriamente a cristaloides), FC 115 lpm. Se realiza un ultrasonido FAST que reporta líquido libre en el espacio esplenorrenal y corredera parietocólica izquierda. La TAC de abdomen reporta una laceración esplénica que afecta el 50% del parénquima con compromiso de vasos segmentarios (Grado III).",
@@ -18149,8 +18184,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "OFTALMOLOGÍA (CÁMARA ANTERIOR)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "GLAUCOMA AGUDO DE ÁNGULO CERRADO",
     "difficulty": "media",
     "case": "Femenina de 65 años, hipermétrope, acude por dolor ocular derecho súbito y muy intenso (\"insoportable\"), acompañado de náuseas y vómito. Refiere ver \"halos de colores\" alrededor de las luces y pérdida súbita de la agudeza visual. A la exploración: el ojo derecho está muy rojo (inyección ciliar), la **pupila está en midriasis media no reactiva** y al tacto el globo ocular se siente \"duro como una piedra\".",
@@ -18171,7 +18206,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "CIRUGÍA DE PARED ABDOMINAL",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "HERNIA CRURAL (FEMORAL)",
     "difficulty": "media",
     "case": "Femenina de 74 años, delgada, acude a urgencias por presentar dolor intenso y súbito en la región inguinal derecha, acompañado de náuseas y vómito. A la exploración física, se palpa una tumoración de 2 cm, no reductible y muy dolorosa, localizada por debajo del ligamento inguinal y medial a los vasos femorales. No se observan cambios de coloración en la piel de la zona.",
@@ -18203,8 +18238,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS / TRAUMA DE TÓRAX",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "NEUMOTÓRAX A TENSIÓN",
     "difficulty": "alta",
     "case": "Masculino de 25 años, víctima de agresión con arma blanca en el hemitórax izquierdo. Ingresa con dificultad respiratoria severa, cianosis y agitación. Signos vitales: TA 70/40 mmHg, FC 140 lpm, FR 35 rpm. A la exploración: ausencia de ruidos respiratorios en el lado izquierdo, hiperresonancia (timpanismo) a la percusión del mismo lado e ingurgitación yugular evidente. Se observa desviación de la tráquea hacia el lado derecho.",
@@ -18224,8 +18259,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA ABDOMINAL / OBSTRUCCIÓN INTESTINAL",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME ADHERENCIA  L (BRIDAS)",
     "difficulty": "baja",
     "case": "Femenina de 40 años, con antecedente de apendicectomía y una cesárea hace 5 años. Acude por dolor abdominal tipo cólico, distensión progresiva, náuseas y vómitos biliosos. Refiere que no ha canalizado gases ni evacuado desde hace 24 horas. La radiografía de abdomen muestra niveles hidroaéreos en \"escalera\" y ausencia de gas en el recto.",
@@ -18246,7 +18281,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "QUEMADURAS",
+    "tema": "Quemaduras",
     "subtema": "QUEMADURA ELÉCTRICA Y RABDOMIOLISIS",
     "difficulty": "alta",
     "case": "Masculino de 28 años, trabajador de una compañía eléctrica, sufre descarga de alta tensión (13,000 voltios). Presenta una herida de entrada en la mano derecha y una de salida en el pie izquierdo. A su llegada, el paciente está estable pero presenta orina de color oscuro (\"como refresco de cola\").",
@@ -18287,8 +18322,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto inevitable",
     "difficulty": "baja",
     "case": "Una mujer de 22 años, G1P0, con 9 semanas de amenorrea acude al servicio de urgencias por sangrado vaginal de moderada cantidad desde hace 6 horas acompañado de dolor tipo cólico en hipogastrio. Refiere que el sangrado comenzó como manchas oscuras pero progresivamente aumentó. No presenta fiebre ni síntomas urinarios. En la exploración física se encuentra hemodinámicamente estable. El abdomen es blando con leve dolor a la palpación en hipogastrio. En la exploración ginecológica se observa sangrado activo proveniente del canal cervical y el cuello uterino se encuentra dilatado aproximadamente 2 cm. No se observan restos visibles en vagina. El ultrasonido transvaginal muestra saco gestacional intrauterino irregular con actividad cardiaca fetal ausente.",
@@ -18321,7 +18356,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Amenaza de aborto",
     "difficulty": "baja",
     "case": "Paciente de 27 años, G2P0A1, con embarazo de 7 semanas confirmado por ultrasonido, acude a consulta por presentar sangrado vaginal escaso de color café desde la mañana. Niega dolor abdominal intenso, fiebre o expulsión de tejido. Refiere antecedente de aborto espontáneo hace un año. En la exploración física se encuentra hemodinámicamente estable. El abdomen es blando y no doloroso. En la exploración ginecológica se observa escaso sangrado oscuro en fondo de saco vaginal, el cuello uterino está cerrado y sin cambios cervicales. El ultrasonido transvaginal muestra embrión con actividad cardiaca presente y saco gestacional acorde con edad gestacional.",
@@ -18353,8 +18388,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Enfermedad trofoblástica gestacional",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Mola hidatidiforme completa",
     "difficulty": "media",
     "case": "Mujer de 19 años acude al servicio de urgencias con 11 semanas de amenorrea. Refiere náuseas y vómitos intensos desde hace varias semanas, además de sangrado vaginal intermitente oscuro. En los últimos días ha notado aumento del volumen abdominal mayor al esperado para la edad gestacional. A la exploración física se observa palidez leve. El abdomen muestra altura uterina mayor a la esperada para las semanas de gestación. En la exploración ginecológica se identifica sangrado oscuro escaso. El ultrasonido transvaginal muestra una imagen heterogénea intrauterina con múltiples vesículas pequeñas sin presencia de embrión o saco gestacional identificable. Los niveles de β-hCG son marcadamente elevados.",
@@ -18386,8 +18421,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto incompleto",
     "difficulty": "media",
     "case": "Una mujer de 30 años, G3P1A1, con 10 semanas de amenorrea acude al servicio de urgencias por sangrado vaginal abundante desde hace aproximadamente 12 horas acompañado de dolor tipo cólico intenso en hipogastrio. Refiere que inicialmente presentó sangrado moderado pero posteriormente expulsó coágulos y un pequeño tejido que describe como “algo grisáceo”. Desde ese momento el dolor disminuyó ligeramente pero el sangrado continúa. Niega fiebre o flujo vaginal fétido. A la exploración física se encuentra hemodinámicamente estable aunque con ligera palidez. El abdomen presenta dolor leve a la palpación en hipogastrio. En la exploración ginecológica se observa sangrado activo y el cuello uterino se encuentra dilatado aproximadamente 1.5 cm. En el canal cervical se observan restos tisulares. El ultrasonido transvaginal muestra cavidad uterina con material ecogénico irregular compatible con restos ovulares retenidos.",
@@ -18420,7 +18455,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Aborto retenido (aborto diferido)",
     "difficulty": "media",
     "case": "Paciente de 34 años, G2P1, con 11 semanas de amenorrea acude a consulta para control prenatal. Refiere que desde hace algunos días ha notado desaparición de los síntomas de embarazo que tenía previamente, como náuseas y tensión mamaria. Niega sangrado vaginal o dolor abdominal. Su último ultrasonido fue hace tres semanas y mostraba embarazo intrauterino con embrión viable. En la exploración física se encuentra estable, sin dolor abdominal. La exploración ginecológica muestra cuello uterino cerrado sin sangrado. Se realiza ultrasonido transvaginal donde se observa embrión con longitud cráneo-caudal correspondiente a 8 semanas pero sin actividad cardiaca fetal.",
@@ -18452,8 +18487,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "cir",
+    "tema": "Apendicitis Aguda",
     "subtema": "Embarazo ectópico tubárico",
     "difficulty": "alta",
     "case": "Mujer de 28 años, G1P0, acude al servicio de urgencias por dolor abdominal intenso en fosa iliaca derecha de inicio súbito desde hace 4 horas. Refiere retraso menstrual de aproximadamente 6 semanas y prueba de embarazo positiva realizada en casa hace una semana. También refiere sangrado vaginal escaso oscuro desde el día anterior. En la exploración física se observa diaforética y con dolor abdominal importante. La presión arterial es de 95/60 mmHg y la frecuencia cardiaca de 110 lpm. El abdomen muestra dolor a la palpación profunda en fosa iliaca derecha con datos de irritación peritoneal leve. En la exploración ginecológica el cuello uterino está cerrado y hay dolor intenso a la movilización cervical. Se realiza ultrasonido transvaginal que muestra cavidad uterina vacía y una masa anexial derecha heterogénea de aproximadamente 3 cm con pequeña cantidad de líquido libre en fondo de saco de Douglas. La β-hCG es positiva.",
@@ -18486,7 +18521,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Embarazo ectópico no roto",
     "difficulty": "media",
     "case": "Una mujer de 25 años, G1P0, acude a consulta por presentar dolor pélvico leve y sangrado vaginal escaso de color oscuro desde hace dos días. Refiere retraso menstrual de aproximadamente 5 semanas y prueba de embarazo positiva realizada en farmacia. No presenta síncope ni dolor abdominal intenso. Como antecedente refiere enfermedad inflamatoria pélvica hace dos años tratada con antibióticos. En la exploración física se encuentra hemodinámicamente estable, con presión arterial de 110/70 mmHg y frecuencia cardiaca de 84 lpm. El abdomen es blando con leve dolor a la palpación profunda en fosa iliaca izquierda. En la exploración ginecológica se observa cuello uterino cerrado con escaso sangrado oscuro en vagina. Existe dolor leve a la movilización cervical y discreta sensibilidad en anexo izquierdo. El ultrasonido transvaginal muestra cavidad uterina vacía y una masa anexial izquierda de aproximadamente 2.5 cm compatible con saco gestacional ectópico. No se observa actividad cardiaca embrionaria. Los niveles de β-hCG son de 1,800 mUI/mL.",
@@ -18519,7 +18554,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Embarazo anembrionado (huevo anembrionado)",
     "difficulty": "baja",
     "case": "Paciente de 29 años, G2P1, acude a consulta para valoración por embarazo temprano. Refiere retraso menstrual de 8 semanas y prueba de embarazo positiva. Presenta náuseas leves pero niega dolor abdominal o sangrado vaginal. No tiene antecedentes ginecoobstétricos relevantes. Durante el control prenatal inicial se realiza ultrasonido transvaginal. En el estudio se observa saco gestacional intrauterino de aproximadamente 25 mm de diámetro medio, sin evidencia de embrión ni saco vitelino visible. Se repite el ultrasonido una sema na después y nuevamente se observa saco gestacional de mayor tamaño pero sin presencia de embrión. El cuello uterino permanece cerrado y la paciente continúa sin sangrado ni dolor.",
@@ -18551,8 +18586,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto séptico",
     "difficulty": "alta",
     "case": "Una mujer de 23 años, G2P0A1, acude al servicio de urgencias por fiebre, dolor abdominal intenso y sangrado vaginal fétido desde hace 24 horas. Refiere que hace tres días presentó sangrado vaginal después de intentar interrumpir un embarazo de aproximadamente 9 semanas mediante la introducción de objetos en vagina. Desde entonces comenzó con dolor progresivo en hipogastrio, escalofríos y malestar general. A la exploración física se encuentra febril con temperatura de 39°C, presión arterial de 90/60 mmHg y frecuencia cardiaca de 120 lpm. El abdomen presenta dolor importante a la palpación en hipogastrio con defensa muscular. En la exploración ginecológica se observa sangrado vaginal con secreción maloliente. El cuello uterino está dilatado y el útero es doloroso a la palpación. Los estudios de laboratorio muestran leucocitosis marcada.",
@@ -18584,8 +18619,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto completo",
     "difficulty": "baja",
     "case": "Mujer de 26 años, G2P1, con antecedente de embarazo de 8 semanas según fecha de última menstruación, acude al servicio de urgencias por sangrado vaginal que inició hace dos días acompañado de dolor tipo cólico en hipogastrio. Refiere que el día anterior presentó expulsión de abundantes coágulos y un tejido blanquecino. Después de la expulsión el dolor disminuyó notablemente y el sangrado se ha vuelto escaso. En la exploración física la paciente se encuentra hemodinámicamente estable, con presión arterial de 112/72 mmHg y frecuencia cardiaca de 82 lpm. El abdomen es blando y no doloroso. En la exploración ginecológica se observa escaso sangrado vaginal oscuro, el cuello uterino se encuentra cerrado y no se identifican restos en el canal cervical. Se realiza ultrasonido transvaginal donde se observa cavidad uterina vacía con endometrio delgado y sin evidencia de restos ovulares.",
@@ -18617,8 +18652,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Enfermedad trofoblástica gestacional",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Mola hidatidiforme parcial",
     "difficulty": "media",
     "case": "Paciente de 32 años, G3P1A1, con 12 semanas de amenorrea acude a consulta por presentar sangrado vaginal intermitente desde hace una semana acompañado de náuseas moderadas. Refiere que el sangrado es escaso y de color oscuro. No presenta dolor abdominal importante. En la exploración física se encuentra hemodinámicamente estable. El útero se palpa ligeramente mayor al esperado para la edad gestacional. Durante la exploración ginecológica se observa escaso sangrado vaginal. El ultrasonido transvaginal muestra un saco gestacional con presencia de embrión sin actividad cardiaca. También se observan áreas quísticas en la placenta con aspecto heterogéneo. Los niveles de β-hCG están elevados pero no tanto como suele observarse en la mola completa.",
@@ -18650,8 +18685,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Diagnóstico diferencial de sangrado en el primer trimestre",
     "difficulty": "media",
     "case": "Una mujer de 24 años acude a urgencias por sangrado vaginal de moderada cantidad acompañado de dolor tipo cólico en hipogastrio. Refiere retraso menstrual de aproximadamente 7 semanas. No ha tenido control prenatal previo. En la exploración física se encuentra hemodinámicamente estable. El abdomen es blando con dolor leve en hipogastrio. En la exploración ginecológica el cuello uterino está cerrado y se observa sangrado vaginal moderado. No se identifican restos ovulares. Se realiza ultrasonido transvaginal que muestra saco gestacional intrauterino con embrión y actividad cardiaca fetal presente. No se observan masas anexiales ni líquido libre en cavidad.",
@@ -18684,7 +18719,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias del primer trimestre",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Hematoma subcoriónico",
     "difficulty": "media",
     "case": "Mujer de 31 años, G2P1, con embarazo de 9 semanas confirmado por ultrasonido hace dos semanas, acude a consulta por presentar sangrado vaginal escaso de color rojo oscuro desde hace 24 horas. Refiere leve molestia en hipogastrio pero niega dolor intenso, fiebre o expulsión de tejido. Comenta que el embarazo previo cursó sin complicaciones. En la exploración física se encuentra hemodinámicamente estable, con presión arterial de 110/70 mmHg y frecuencia cardiaca de 80 lpm. El abdomen es blando y discretamente doloroso a la palpación profunda en hipogastrio. En la exploración ginecológica se observa escaso sangrado vaginal y el cuello uterino está cerrado. Se realiza ultrasonido transvaginal donde se identifica saco gestacional intrauterino con embrión vivo y actividad cardiaca fetal presente. Sin embargo, adyacente al saco gestacional se observa una colección hipoecoica entre el corion y la pared uterina compatible con hematoma subcoriónico de aproximadamente 2 cm.",
@@ -18717,7 +18752,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Embarazo ectópico",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Factores de riesgo para embarazo ectópico",
     "difficulty": "baja",
     "case": "Paciente de 28 años acude a consulta para orientación preconcepcional. Refiere que desea embarazarse en los próximos meses. Como antecedente ginecológico importante menciona que hace tres años fue diagnosticada con enfermedad inflamatoria pélvica secundaria a infección por Chlamydia trachomatis, la cual fue tratada con antibióticos. Actualmente se encuentra asintomática. Durante la consulta pregunta acerca de posibles riesgos asociados a futuros embarazos. El médico le explica que ciertas condiciones pueden aumentar la probabilidad de que un embarazo se implante fuera de la cavidad uterina.",
@@ -18750,7 +18785,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Embarazo ectópico",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Embarazo ectópico roto",
     "difficulty": "alta",
     "case": "Mujer de 33 años, G2P0A1, acude al servicio de urgencias por dolor abdominal súbito e intenso que inició hace una hora mientras se encontraba en su casa. Refiere retraso menstrual de aproximadamente 7 semanas y prueba de embarazo positiva realizada hace unos días. También refiere sangrado vaginal escaso oscuro desde la mañana. A su llegada se encuentra pálida, con presión arterial de 85/55 mmHg y frecuencia cardiaca de 120 lpm. Se queja de dolor intenso en abdomen inferior que se irradia hacia el hombro derecho. En la exploración abdominal se observa abdomen distendido con dolor generalizado y signos de irritación peritoneal. En la exploración ginecológica el cuello uterino está cerrado y existe dolor intenso a la movilización cervical. El ultrasonido transvaginal muestra cavidad uterina vacía y gran cantidad de líquido libre en cavidad abdominal.",
@@ -18783,7 +18818,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias del segundo trimestre",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Placenta previa",
     "difficulty": "media",
     "case": "Mujer de 34 años, G3P2, con embarazo de 28 semanas acude al servicio de urgencias por presentar sangrado vaginal rojo brillante de inicio súbito hace aproximadamente una hora. Refiere que el sangrado comenzó mientras estaba en reposo y niega dolor abdomina l, contracciones uterinas o traumatismos recientes. Comenta que en su embarazo anterior tuvo una cesárea por presentación pélvica. A la exploración física se encuentra consciente, hemodinámicamente estable, con presión arterial de 110/70 mmHg y frecuencia cardiaca de 90 lpm. El abdomen muestra útero acorde a edad gestacional, sin dolor a la palpación y sin actividad uterina evidente. La frecuencia cardiaca fetal es de 140 lpm y reactiva. No se realiza tacto vaginal debido al riesgo de aumentar el sangrado. Se solicita ultrasonido obstétrico que muestra placenta localizada en el segmento uterino inferior cubriendo parcialmente el orificio cervical interno.",
@@ -18816,7 +18851,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Hemorragias del segundo y tercer trimestre",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Desprendimiento prematuro de placenta normoinserta (DPPNI)",
     "difficulty": "alta",
     "case": "Paciente de 29 años, G2P1, con embarazo de 32 semanas acude a urgencias por dolor abdominal intenso de inicio súbito acompañado de sangrado vaginal oscuro. Refiere que el dolor es constante y no cede con el reposo. Como antecedente menciona hipertensión arterial diagnosticada durante el embarazo actual. A la exploración física se encuentra ansiosa, con presión arterial de 150/95 mmHg y frecuencia cardiaca de 105 lpm. El abdomen muestra útero rígido, doloroso a la palpación y con hipertonía uterina. Se detectan contracciones uterinas frecuentes. La frecuencia cardiaca fetal es de 100 lpm con desaceleraciones tardías. El ultrasonido muestra placenta aparentemente en posición normal, pero con sospecha de hematoma retroplacentario.",
@@ -18848,8 +18883,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Hemorragias del tercer trimestre",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Vasa previa",
     "difficulty": "alta",
     "case": "Mujer de 30 años, G1P0, con embarazo de 36 semanas en seguimiento prenatal adecuado, acude al hospital por ruptura espontánea de membranas ocurrida hace 30 minutos. Poco después comienza con sangrado vaginal moderado. La paciente niega dolor abdominal o contracciones importantes. En la exploración física la madre se encuentra estable hemodinámicamente. Sin embargo, al monitorizar al feto se observa una frecuencia cardiaca fetal de 90 lpm con desaceleraciones variables profundas. El sangrado vaginal es rojo brillante. Se revisan los estudios previos de ultrasonido y se documenta inserción velamentosa del cordón umbilical diagnosticada semanas antes.",
@@ -18882,7 +18917,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trastornos hipertensivos del embarazo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Preeclampsia",
     "difficulty": "baja",
     "case": "Mujer de 23 años, G1P0, con embarazo de 30 semanas acude a consulta prenatal por cefalea persistente desde hace dos días y sensación de hinchazón en manos y cara. Refiere que previamente su embarazo había evolucionado sin complicaciones. Niega dolor abdominal intenso, sangrado vaginal o pérdida de líquido. En la exploración física se encuentra consciente y orientada. La presión arterial es de 150/95 mmHg en dos mediciones separadas por 15 minutos. Presenta edema en extremidades inferiores y discreto edema facial. El abdomen muestra útero acorde a edad gestacional y frecuencia cardiaca fetal de 145 lpm. Se solicita examen general de orina que reporta proteinuria de 1.5 g en 24 horas.",
@@ -18915,7 +18950,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Trastornos hipertensivos del embarazo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Eclampsia",
     "difficulty": "media",
     "case": "Paciente de 28 años, G2P1, con embarazo de 34 semanas es llevada al servicio de urgencias después de presentar una convulsión tónico-clónica generalizada en su domicilio. Familiares refieren que en los últimos días la paciente había presentado cefalea intensa, visión borrosa y edema en cara y manos. A su llegada al hospital la paciente se encuentra somnolienta. La presión arterial es de 170/110 mmHg y la frecuencia cardiaca de 100 lpm. El abdomen presenta útero acorde a edad gestacional y frecuencia cardiaca fetal de 135 lpm. El examen general de orina muestra proteinuria significativa.",
@@ -18947,8 +18982,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Trastornos hipertensivos del embarazo",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Síndrome HELLP",
     "difficulty": "alta",
     "case": "Mujer de 35 años, G2P1, con embarazo de 33 semanas acude al servicio de urgencias por dolor intenso en epigastrio y en el cuadrante superior derecho del abdomen desde hace varias horas. También refiere náuseas, vómitos y malestar general. Durante la última semana ha presentado cefalea y edema en extremidades inferiores. En la exploración física la presión arterial es de 160/105 mmHg. El abdomen muestra dolor a la palpación en hipocondrio derecho. La frecuencia cardiaca fetal es de 140 lpm. Los estudios de laboratorio reportan hemoglobina baja con datos de hemólisis, elevación significativa de AST y ALT, y plaquetas de 80,000/mm³.",
@@ -18980,8 +19015,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Diabetes en el embarazo",
+    "specialty": "ped",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Diabetes gestacional",
     "difficulty": "baja",
     "case": "Mujer de 27 años, G2P1, con embarazo de 26 semanas acude a consulta prenatal de rutina. Refiere que su embarazo ha evolucionado sin complicaciones hasta el momento. Como antecedente menciona que en su embarazo previo tuvo un recién nacido de 4,200 g al nacimiento. No tiene diagnóstico previo de diabetes mellitus. Durante el control prenatal se decide realizar tamizaje para diabetes gestacional. Se realiza prueba de tolerancia a la glucosa con carga de 50 g y el resultado muestra glucosa plasmática de 155 mg/dL una hora después de la carga. Posteriormente se realiza una curva de tolerancia oral a la glucosa con 100 g que muestra elevación de los valores en ayuno y a las dos horas. La paciente se encuentra asintomática, con presión arterial normal y crecimiento fetal adecuado para la edad gestacional.",
@@ -19014,7 +19049,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Diabetes en el embarazo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Complicaciones fetales de diabetes gestacional",
     "difficulty": "media",
     "case": "Paciente de 32 años, G3P2, con diagnóstico de diabetes gestacional desde la semana 28 del embarazo, acude a control prenatal a las 36 semanas. Refiere buen apego al tratamiento dietético aunque reconoce que en algunas ocasiones sus niveles de glucosa han sido elevados. Durante la exploración física se observa altura uterina mayor a la esperada para la edad gestacional. El ultrasonido obstétrico muestra un feto con peso estimado por arriba del percentil 90 para la edad gestacional y aumento del tejido adiposo subcutáneo fetal. El líquido amniótico se encuentra en el límite superior de la normalidad.",
@@ -19046,8 +19081,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Diabetes en el embarazo",
+    "specialty": "ped",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Hipoglucemia neonatal en hijos de madre diabética",
     "difficulty": "alta",
     "case": "Mujer de 35 años con diabetes gestacional tratada con insulina durante el embarazo da a luz a un recién nacido de 4,100 g mediante parto vaginal a las 39 semanas. El parto transcurre sin complicaciones mayores. A las dos horas de vida el recién nacido presenta irritabilidad, temblores y dificultad para alimentarse. El personal de salud decide medir glucosa capilar y el resultado es de 35 mg/dL. La exploración física muestra recién nacido macrosómico con signos vitales estables pero con temblor fino en extremidades.",
@@ -19080,7 +19115,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Ruptura prematura de membranas",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "Ruptura prematura de membranas a término",
     "difficulty": "baja",
     "case": "Mujer de 24 años, G1P0, con embarazo de 38 semanas acude al servicio de urgencias por salida súbita de líquido claro a través de vagina desde hace aproximadamente dos horas. Refiere que el líquido fue abundante y ha continuado saliendo de manera intermitente. Niega sangrado vaginal, fiebre o dolor abdominal intenso. Tampoco ha iniciado contracciones uterinas regulares. En la exploración física la paciente se encuentra hemodinámicamente estable. El abdomen presenta útero acorde a edad gestacional con frecuencia cardiaca fetal de 140 lpm. Durante la exploración con espéculo se observa salida de líquido claro proveniente del orificio cervical. El cuello uterino se encuentra poco modificado. Se realiza prueba de nitrazina que resulta positiva y en la prueba de cristalización en helecho también se observa patrón característico.",
@@ -19113,7 +19148,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Ruptura prematura de membranas",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "Ruptura prematura de membranas pretérmino (RPM pretérmino)",
     "difficulty": "media",
     "case": "Paciente de 29 años, G2P1, con embarazo de 32 semanas acude al hospital por salida de líquido vaginal claro desde hace 5 horas. Refiere sensación constante de humedad en ropa interior. Niega contracciones uterinas intensas o sangrado vaginal. En la exploración física se encuentra estable. El abdomen presenta útero acorde a edad gestacional con frecuencia cardiaca fetal de 145 lpm. En la exploración con espéculo se observa salida de líquido por el cuello uterino. Las pruebas de nitrazina y cristalización son positivas. No hay datos clínicos de infección intrauterina y el monitoreo fetal es tranquilizador.",
@@ -19145,8 +19180,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Ruptura prematura de membranas",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Corioamnionitis",
     "difficulty": "alta",
     "case": "Mujer de 30 años, G1P0, con embarazo de 31 semanas se encuentra hospitalizada por ruptura prematura de membranas desde hace 48 horas. Durante las últimas horas comienza a presentar fiebre, malestar general y aumento del dolor abdominal. También refiere salida de líquido vaginal con mal olor. En la exploración física la temperatura es de 38.7°C, la frecuencia cardiaca materna es de 110 lpm y la frecuencia cardiaca fetal es de 170 lpm. El abdomen muestra útero doloroso a la palpación. Los estudios de laboratorio muestran leucocitosis. El monitoreo fetal muestra taquicardia fetal persistente.",
@@ -19179,7 +19214,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "gyo",
-    "tema": "Patología del embarazo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "Hiperemesis gravídica",
     "difficulty": "media",
     "case": "Mujer de 22 años, G1, con 10 semanas de gestación por FUM confiable. Acude a urgencias por vómitos persistentes desde hace 3 semanas que han aumentado en frecuencia e intensidad. Refiere incapacidad para tolerar alimentos sólidos ni líquidos en las últimas 48 horas. Menciona pérdida de aproximadamente 4 kg desde el inicio del embarazo. Niega fiebre, dolor abdominal intenso o sangrado vaginal. A la exploración física se observa paciente deshidratada, con mucosas secas y ligera hipotensión ortostática. Signos vitales: TA 95/60 mmHg FC 104 lpm FR 18 rpm Temperatura 36.8°C Abdomen blando, no doloroso. Útero acorde a edad gestacional. Laboratorio: • Na 132 mEq/L • K 3.1 mEq/L • Cetonas en orina positivas • BH normal • Función hepática ligeramente elevada Ultrasonido obstétrico: feto único vivo acorde a edad gestacional.",
@@ -19211,8 +19246,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Ginecología",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Síndrome de ovario poliquístico (SOP)",
     "difficulty": "media",
     "case": "Paciente de 25 años acude a consulta por irregularidad menstrual desde la adolescencia. Refiere ciclos cada 45–60 días. También menciona aumento progresivo de vello en mentón y abdomen inferior en los últimos años. Desea embarazo desde hace 1 año sin éxito. Antecedentes personales: sobrepeso desde adolescencia. Exploración física: IMC: 30 kg/m² Acné moderado facial Hirsutismo con puntaje de Ferriman-Gallwey de 12 Laboratorio: • LH elevada • FSH normal • Testosterona total ligeramente elevada • Glucosa en ayuno 105 mg/dL Ultrasonido transvaginal: Ovarios aumentados de tamaño con múltiples folículos periféricos pequeños.",
@@ -19256,8 +19291,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Ginecología",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Endometriosis",
     "difficulty": "media",
     "case": "Mujer de 29 años acude a consulta por dolor pélvico crónico que ha aumentado progresivamente en los últimos dos años. Refiere menstruaciones dolorosas desde la adolescencia, pero en el último año el dolor aparece incluso fuera del periodo menstrual y se intensifica durante las relaciones sexuales. También comenta dificultad para lograr embarazo desde hace aproximadamente 18 meses. Sus ciclos menstruales son regulares cada 28 días con sangrado de 5 días. No utiliza anticonceptivos. A la exploración ginecológica se identifica dolor a la movilización cervical y sensibilidad en el fondo de saco posterior. El ultrasonido transvaginal muestra un quiste ovárico de aspecto homogéneo con ecos finos internos compatible con endometrioma.",
@@ -19301,8 +19336,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Ginecología",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Enfermedad pélvica inflamatoria (EPI)",
     "difficulty": "media",
     "case": "Mujer de 23 años acude a urgencias por dolor abdominal bajo de tres días de evolución que ha aumentado progresivamente. Refiere fiebre, malestar general y flujo vaginal anormal con olor desagradable. Menciona que tuvo una nueva pareja sexual hace aproximadamente dos semanas y que no utiliza preservativo de forma regular. Sus ciclos menstruales son irregulares, y su última menstruación ocurrió hace tres semanas. A la exploración presenta temperatura de 38.5 °C, dolor intenso en hipogastrio y dolor marcado a la movilización cervical durante el tacto vaginal. También se identifica secreción mucopurulenta proveniente del cuello uterino.",
@@ -19346,8 +19381,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
-    "tema": "Ginecología",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Miomatosis uterina",
     "difficulty": "media",
     "case": "Mujer de 41 años consulta por menstruaciones cada vez más abundantes desde hace aproximadamente un año. Refiere que los sangrados duran hasta nueve días y se acompañan de coágulos grandes y fatiga intensa posterior al periodo. También comenta sensación de presión en la pelvis y aumento progresivo del tamaño abdominal. Tiene dos hijos y no desea más embarazos. A la exploración física se identifica palidez leve y, durante el examen ginecológico, el útero se palpa aumentado de tamaño e irregular. El ultrasonido transvaginal revela múltiples masas sólidas bien delimitadas dentro del miometrio, compatibles con miomas uterinos.",
@@ -19415,8 +19450,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PATOLOGÍA MAMARIA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "CÁNCER DE MAMA (TAMIZAJE Y CLASIFICACIÓN)",
     "difficulty": "alta",
     "case": "Femenina de 52 años acude a su mastografía de tamizaje anual. No refiere síntomas ni se palpa nódulos. El reporte del radiólogo describe una zona de microcalcificaciones pleomórficas agrupadas en el cuadrante superior externo de la mama derecha, sin nódulos dominantes. El reporte concluye con una clasificación de BI-RADS 4.",
@@ -19491,7 +19526,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "GASTROENTEROLOGÍA QUIRÚRGICA (ONCOLOGÍA)",
+    "tema": "Patología Biliar",
     "subtema": "ADENOCARCINOMA DE PÁNCREAS",
     "difficulty": "alta",
     "case": "Masculino de 62 años, fumador crónico, acude por presentar **ictericia obstructiva progresiva** (tinte amarillento en piel y conjuntivas), coluria (orina oscura) y acolia (evacuaciones blancas). Refiere pérdida de peso de 10 kg en dos meses y dolor sordo en epigastrio que se irradia a la espalda. A la exploración física, se palpa una **vesícula biliar distendida, indolora** en el hipocondrio derecho (Signo de Courvoisier-Terrier).",
@@ -19523,8 +19558,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ONCOLOGÍA QUIRÚRGICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SARCOMAS DE PARTES BLANDAS",
     "difficulty": "alta",
     "case": "Masculino de 55 años acude por presentar una masa en el muslo derecho de crecimiento progresivo en los últimos 6 meses. La tumoración es profunda, de consistencia firme, no dolorosa y mide 10 cm de diámetro. No refiere antecedentes de traumatismos. Se solicita una Resonancia Magnética que muestra una lesión voluminosa que desplaza los compartimentos musculares sin infiltrar hueso.",
@@ -19556,8 +19591,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "GASTROENTEROLOGÍA QUIRÚRGICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ACALASIA (TRATAMIENTO)",
     "difficulty": "media",
     "case": "Femenina de 34 años con disfagia progresiva tanto a sólidos como a líquidos de 2 años de evolución, acompañada de regurgitación de alimentos no digeridos y pérdida de peso de 5 kg. El esofagograma muestra una dilatación del cuerpo esofágico con una terminación distal afilada en pico de pájaro. La manometría confirma ausencia de peristalsis y relajación incompleta del esfínter esofágico inferior.",
@@ -19577,8 +19612,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS / QUEMADURAS",
+    "specialty": "urg",
+    "tema": "Mordeduras y Picaduras",
     "subtema": "QUEMADURAS QUÍMICAS",
     "difficulty": "baja",
     "case": "Masculino de 24 años, empleado de una fábrica de limpieza, sufre salpicadura de un producto alcalino (lejía/sosa cáustica) en ambos brazos y tórax. Refiere dolor quemante intenso.",
@@ -19598,8 +19633,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS / TRAUMA CRANEOENCEFÁLICO",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HEMATOMA SUBDURAL",
     "difficulty": "media",
     "case": "Masculino de 75 años, con antecedente de fibrilación auricular en tratamiento con warfarina. Sus familiares lo traen por presentar desorientación progresiva, somnolencia y debilidad en el lado derecho de 3 días de evolución. Refieren una caída trivial hace 2 semanas en la que se golpeó la cabeza pero no perdió el conocimiento.",
@@ -19619,8 +19654,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "GASTROENTEROLOGÍA QUIRÚRGICA (ONCOLOGÍA)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER DE ESÓFAGO",
     "difficulty": "alta",
     "case": "Masculino de 64 años, con antecedente de tabaquismo intenso y reflujo gastroesofágico de 20 años de evolución mal tratado. Acude por disfagia progresiva, inicialmente a sólidos y ahora a líquidos, de 3 meses de evolución, acompañada de pérdida de peso de 12 kg y dolor retroesternal. Se realiza endoscopia que muestra una lesión exofítica estenosante en el tercio distal del esófago. La biopsia reporta Adenocarcinoma.",
@@ -19652,8 +19687,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA PEDIÁTRICA / INTESTINO DELGADO",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DIVERTÍCULO DE MECKEL",
     "difficulty": "media",
     "case": "Paciente masculino de 4 años de edad es traído a urgencias por presentar evacuaciones con sangre fresca (hematoquecia) en abundante cantidad, sin dolor abdominal ni fiebre. A la exploración física, el niño se encuentra pálido pero con abdomen  blando y depresible, sin masas palpables.",
@@ -19685,8 +19720,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS / TRAUMA DE EXTREMIDADES",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME COMPARTIMENTAL",
     "difficulty": "alta",
     "case": "Masculino de 30 años ingresa tras sufrir una fractura cerrada de tibia y peroné derecha por aplastamiento. Tras la colocación de una férula de yeso, el paciente refiere un dolor desproporcionado a la lesión, que no cede con opioides y que aumenta notablemente al realizar la extensión pasiva de los dedos del pie. El pulso pedio está presente pero débil.",
@@ -19772,8 +19807,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS / TRAUMA DE TÓRAX",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TAPONAMIENTO CARDÍACO",
     "difficulty": "alta",
     "case": "Masculino de 28 años ingresa tras herida por arma blanca en el área precordial. El paciente está consciente pero muy ansioso. Signos vitales: TA 80/50 mmHg, FC 130 lpm. A la exploración se observa ingurgitación yugular y los ruidos cardíacos se escuchan muy distantes o apagados.",
@@ -19806,7 +19841,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "UROLOGÍA (ONCOLOGÍA)",
+    "tema": "ATLS / Trauma",
     "subtema": "CÁNCER DE TESTÍCULO",
     "difficulty": "media",
     "case": "Masculino de 24 años acude por notar un aumento de tamaño y pesadez en el testículo derecho de 2 meses de evolución. No refiere dolor ni traumatismos. A la exploración se palpa una masa intratesticular pétrea, firme e indolora que no transilumina.",
@@ -19838,8 +19873,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA VASCULAR",
+    "specialty": "mi",
+    "tema": "Fibrilación Auricular",
     "subtema": "INSUFICIENCIA ARTERIAL AGUDA",
     "difficulty": "media",
     "case": "Femenina de 72 años, con antecedente de fibrilación auricular sin tratamiento anticoagulante, acude por dolor súbito e intenso en la pierna izquierda de 2 horas de evolución. A la exploración, la extremidad está fría, pálida y no se palpan pulsos pedio ni tibial posterior. Presenta disminución de la sensibilidad en los dedos.",
@@ -19860,7 +19895,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "GASTROENTEROLOGÍA QUIRÚRGICA",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "ENFERMEDAD POR REFLUJO GASTROESOFÁGICO (TRATAMIENTO",
     "difficulty": "media",
     "case": "Femenina de 42 años con diagnóstico de ERGE de 5 años de evolución. Ha sido tratada con IBP a dosis máximas con alivio parcial de los síntomas. La paciente no desea continuar con tratamiento farmacológico de por vida. La pH-metría de 24 horas reporta un Score de DeMeester de 24 (normal <14.7) y la manometría muestra un esfínter esofágico inferior con presión de 6 mmHg (hipotenso). La endoscopia revela una hernia hiatal por deslizamiento de 3 cm.",
@@ -19880,8 +19915,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS / TRAUMA ABDOMINAL",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA RENAL",
     "difficulty": "alta",
     "case": "Masculino de 19 años sufre traumatismo contuso en flanco derecho durante un partido de fútbol americano. Presenta dolor intenso y hematuria macroscópica franca. Sus signos vitales son estables (TA 115/75, FC 88 lpm). Se solicita una TAC de abdomen con contraste en fase excretora que muestra una laceración cortical profunda que se extiende hasta el sistema colector (cálices), con extravasación de contraste, pero sin lesión de la arteria renal principal.",
@@ -19946,7 +19981,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "ped",
     "tema": "ORTOPEDIA Y TRAUMATOLOGÍA",
     "subtema": "FRACTURA DE COLLES",
     "difficulty": "baja",
@@ -19967,8 +20002,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ANGIOLOGÍA Y CIRUGÍA VASCULAR",
+    "specialty": "gyo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "INSUFICIENCIA VENOSA CRÓNICA (IVC)",
     "difficulty": "baja",
     "case": "Femenina de 48 años, de ocupación cajera de supermercado (permanece 8 horas de pie), con antecedente de 3 embarazos. Acude por presentar pesadez y dolor en ambas piernas que aumenta al final del día, así como edema que disminuye con el reposo nocturno. A la exploración física se observan venas dilatadas y tortuosas en trayecto de la safena interna, además de hiperpigmentación ocre en la región maleolar de ambos tobillos.",
@@ -20010,7 +20045,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "ATLS / TRAUMA DE TÓRAX",
+    "tema": "ATLS / Trauma",
     "subtema": "TÓRAX INESTABLE (VOLET COSTAL)",
     "difficulty": "media",
     "case": "Masculino de 35 años ingresa tras accidente automovilístico con impacto frontal. Presenta dolor torácico severo y dificultad respiratoria. A la inspección, se observa que un segmento de la pared costal anterior derecha se hunde durante la inspiración y protruye durante la expiración.",
@@ -20052,7 +20087,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "CIRUGÍA DE PARED ABDOMINAL",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "HERNIAS RARAS (AMYAND Y GARENGEOT)",
     "difficulty": "alta",
     "case": "Masculino de 65 años acude por dolor intenso en la región inguinal derecha y presencia de una masa no reductible. A la exploración quirúrgica de urgencia por sospecha de hernia inguinal encarcelada, se encuentra que el contenido del saco herniario es el apéndice cecal con datos de inflamación aguda (apendicitis).",
@@ -20073,7 +20108,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "ATLS / TRAUMA MÚSCULO-ESQUELÉTICO",
+    "tema": "Apendicitis Aguda",
     "subtema": "FRACTURA DE PELVIS",
     "difficulty": "alta",
     "case": "Masculino de 28 años, atropellado por vehículo pesado. Ingresa con inestabilidad hemodinámica grave (TA 70/40 mmHg, FC 140 lpm). A la exploración se observa equimosis perineal y sangrado por el meato urinario. Al realizar la maniobra de compresión-distracción de las crestas ilíacas, se percibe inestabilidad mecánica de la pelvis.",
@@ -20093,8 +20128,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA (ONCOLOGÍA)",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "CÁNCER DE PENE",
     "difficulty": "media",
     "case": "Masculino de 60 años, con antecedente de tabaquismo y fimosis crónica (nunca se ha realizado circuncisión). Acude por presentar una lesión ulcerada, indolora, de bordes irregulares en el glande, que ha crecido en los últimos 4 meses y presenta secreción fétida.",
@@ -20135,8 +20170,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "GINECOLOGÍA Y CIRUGÍA DE MAMA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "FIBROADENOMA MAMARIO",
     "difficulty": "baja",
     "case": "Femenina de 22 años acude por notar un \"bultito\" en la mama izquierda desde hace 2 meses. No refiere dolor ni cambios con el ciclo menstrual. A la exploración física se palpa un nódulo de 2 cm, de consistencia firme (gomosa), bordes regulares, muy móvil y no adherido a planos profundos. No se palpan adenopatías axilares.",
@@ -20157,7 +20192,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "ATLS / TRAUMA UROLÓGICO",
+    "tema": "ATLS / Trauma",
     "subtema": "LESIÓN DE URETRA",
     "difficulty": "alta",
     "case": "Masculino de 35 años sufre accidente por caída a horcajadas sobre una barra de metal. Acude por dolor perineal intenso y presencia de sangre en el meato urinario (uretrorragia). El paciente refiere deseos de orinar pero no puede hacerlo. A la exploración se observa un hematoma en \"alas de mariposa\" en el periné y el escroto.",
@@ -20177,8 +20212,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA (ONCOLOGÍA)",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "CÁNCER DE PRÓSTATA (BIOPSIA)",
     "difficulty": "media",
     "case": "Masculino de 62 años acude a revisión prostática. El Antígeno Prostático Específico (APE) se reporta en 7.2 ng/ml. Al realizar el tacto rectal, se palpa un nódulo de consistencia pétrea en el lóbulo derecho.",
@@ -20219,8 +20254,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PROCTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HEMORROIDES",
     "difficulty": "baja",
     "case": "Masculino de 45 años, con antecedente de estreñimiento crónico, acude por presentar protuberancias en la región anal tras la defecación. Refiere que estas masas \"salen\" al pujar y debe reintroducirlas manualmente para aliviar la molestia. Presenta sangrado rojo rutilante ocasional al limpiar con papel higiénico. No hay dolor intenso.",
@@ -20240,8 +20275,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS / TRAUMA DE TÓRAX",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "HEMOTÓRAX MASIVO",
     "difficulty": "alta",
     "case": "Masculino de 30 años ingresa tras herida por proyectil de arma de fuego en hemitórax izquierdo. El paciente está hipotenso (TA 80/40), taquicárdico y con dificultad respiratoria. A la exploración: ausencia de ruidos respiratorios en el lado izquierdo y matidez a la percusión del mismo lado. Se coloca un tubo de tórax (pleurostomía) obteniéndose de forma inmediata 1,600 ml de sangre fresca.",
@@ -20261,8 +20296,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA (INFECTOLOGÍA)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ORQUIEPIDIDIMITIS",
     "difficulty": "media",
     "case": "Masculino de 22 años acude por dolor escrotal derecho de inicio gradual (2 días), acompañado de disuria y fiebre de 38.5°C. A la exploración: el epidídimo está indurado y doloroso. El reflejo cremastérico está presente. El dolor disminuye significativamente cuando el médico eleva el escroto hacia la sínfisis del pubis.",
@@ -20282,7 +20317,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "ped",
     "tema": "ORTOPEDIA Y TRAUMATOLOGÍA",
     "subtema": "FRACTURA DE TOBILLO (WEBER)",
     "difficulty": "media",
@@ -20324,8 +20359,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS / TRAUMA DE TÓRAX",
+    "specialty": "mi",
+    "tema": "Fibrilación Auricular",
     "subtema": "CONTUSIÓN PULMONAR",
     "difficulty": "alta",
     "case": "Masculino de 25 años tras accidente en motocicleta con impacto directo en el pecho. Inicialmente presenta estabilidad hemodinámica, pero 6 horas después desarrolla taquipnea, aumento del trabajo respiratorio e hipoxemia (PaO2 <60 mmHg). La radiografía de tórax inicial era normal, pero la actual muestra infiltrados alveolares irregulares no segmentarios en el pulmón derecho.",
@@ -20345,8 +20380,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "QUEMADURAS",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CRITERIOS DE ENVÍO A UNIDAD DE QUEMADOS",
     "difficulty": "media",
     "case": "Masculino de 20 años que sufre quemaduras por contacto con aceite hirviendo en ambas manos (palma y dorso) y genitales. Las lesiones son de segundo grado profundo.",
@@ -20366,7 +20401,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "ped",
     "tema": "ORTOPEDIA Y TRAUMATOLOGÍA",
     "subtema": "FRACTURA DE LA CÚPULA RADIAL (ESCALA DE MASON)",
     "difficulty": "alta",
@@ -20387,8 +20422,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "PROCTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FISURA ANAL",
     "difficulty": "baja",
     "case": "Femenina de 32 años acude por dolor anal intenso \"como si se cortara con un vidrio\" que aparece durante la defecación y persiste varias horas después. Refiere miedo a evacuar por el dolor y presencia de escasa sangre roja brillante en el papel higiénico. A la exploración se observa una solución de continuidad lineal en el borde anal, localizada en la línea media posterior.",
@@ -20408,8 +20443,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS / TRAUMA DE TÓRAX",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "NEUMOTÓRAX SIMPLE",
     "difficulty": "media",
     "case": "Masculino de 22 años sufre herida por arma blanca en el 4to espacio intercostal derecho, línea axilar anterior. Se encuentra estable hemodinámicamente. A la exploración: disminución de los ruidos respiratorios y timpanismo a la percusión en el hemitórax derecho. La tráquea está central y no hay ingurgitación yugular.",
@@ -20450,7 +20485,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "ped",
     "tema": "ORTOPEDIA Y TRAUMATOLOGÍA",
     "subtema": "LUXACIÓN ANTERIOR DE HOMBRO",
     "difficulty": "baja",
@@ -20472,7 +20507,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "CIRUGÍA DE COLON Y RECTO",
+    "tema": "Apendicitis Aguda",
     "subtema": "DIVERTICULITIS AGUDA (ESCALA DE HINCHEY)",
     "difficulty": "alta",
     "case": "Masculino de 62 años acude por dolor intenso en la fosa ilíaca izquierda, fiebre de 38.8°C y estreñimiento. A la exploración física se detectan signos de irritación peritoneal localizados en el cuadrante inferior izquierdo. Se solicita una TAC de abdomen que reporta engrosamiento de la pared del colon sigmoides y una colección de pus (absceso) de 5 cm localizada en la pelvis, adyacente al sigmoides, sin aire libre subdiafragmático.",
@@ -20505,7 +20540,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "ATLS / TRAUMA DE TÓRAX",
+    "tema": "ATLS / Trauma",
     "subtema": "RUPTURA TRAUMÁTICA DE DIAFRAGMA",
     "difficulty": "alta",
     "case": "Masculino de 30 años tras trauma cerrado de abdomen y tórax por accidente automovilístico. En la radiografía de tórax se observa la presencia de niveles hidroaéreos en el hemitórax izquierdo y el paso de la sonda nasogástrica hacia el tórax.",
@@ -20567,8 +20602,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "CIRUGÍA DE CABEZA Y CUELLO",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "CÁNCER DE TIROIDES",
     "difficulty": "media",
     "case": "Femenina de 35 años acude por presencia de un nódulo firme en el lóbulo tiroideo derecho de 1.5 cm, detectado hace 3 meses. La paciente se encuentra eutiroidea. La biopsia por aspiración con aguja fina (BAAF) reporta \"Células foliculares dispuestas en estructuras papilares con cuerpos de psamoma\".",
@@ -20588,7 +20623,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "OFTALMOLOGÍA QUIRÚRGICA (URGENCIAS)",
     "subtema": "DESPRENDIMIENTO DE RETINA",
     "difficulty": "media",
@@ -20610,7 +20645,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "ATLS / TRAUMA DE TÓRAX",
+    "tema": "ATLS / Trauma",
     "subtema": "LESIÓN DE GRANDES VASOS (RUPTURA DE AORTA)",
     "difficulty": "alta",
     "case": "Masculino de 40 años tras accidente por desaceleración brusca (choque frontal a 100 km/h). Ingresa con dolor torácico irradiado a la espalda. La radiografía de tórax muestra un ensanchamiento del mediastino (>8 cm), pérdida del contorno del botón aórtico y desviación de la tráquea a la derecha.",
@@ -20664,7 +20699,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "PATOLOGÍA BILIAR",
+    "tema": "Patología Biliar",
     "subtema": "COLECISTITIS AGUDA (CRITERIOS DE TOKIO 2018)",
     "difficulty": "alta",
     "case": "Femenina de 64 años con antecedente de diabetes mal controlada. Acude por dolor en hipocondrio derecho, fiebre de 39°C y Murphy positivo. Laboratorios: Leucocitos 19,000/mm³, Creatinina 1.8 mg/dl (basal 0.9), y una marcada respuesta inflamatoria. El ultrasonido muestra vesícula de paredes engrosadas (6 mm) con lito impactado y líquido pericolecístico.",
@@ -20685,7 +20720,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "ENFERMEDAD DIVERTICULAR",
+    "tema": "Apendicitis Aguda",
     "subtema": "DIVERTICULITIS AGUDA (ESCALA DE HINCHEY)",
     "difficulty": "alta",
     "case": "Masculino de 58 años acude por dolor en fosa ilíaca izquierda y fiebre. La TAC de abdomen reporta diverticulitis en sigmoides asociada a una colección de material purulento no tabicado que se extiende por toda la cavidad abdominal (peritonitis generalizada). No se observa salida de material fecaloide ni aire libre subdiafragmático masivo.",
@@ -20705,8 +20740,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "ATLS / TRAUMA DE CUELLO",
+    "specialty": "mi",
+    "tema": "EPOC",
     "subtema": "ZONAS ANATÓMICAS DE MONSON",
     "difficulty": "media",
     "case": "Masculino de 25 años ingresa con herida penetrante por arma blanca en el cuello, localizada por debajo del cartílago cricoides, justo por encima de la escotadura esternal y las clavículas. El paciente tiene enfisema subcutáneo y un pequeño hematoma en expa nsión.",
@@ -20726,8 +20761,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "UROLOGÍA (ONCOLOGÍA)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "QUISTES RENALES (CLASIFICACIÓN DE BOSNIAK)",
     "difficulty": "alta",
     "case": "Se realiza una TAC a un paciente de 50 años por dolor lumbar. Se identifica un quiste renal derecho de 4 cm que presenta múltiples tabiques finos en su interior y algunas calcificaciones lineales en la pared. Tras la administración de contraste, no hay un realce significativo de los tabiques.",
@@ -20748,7 +20783,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "cir",
-    "tema": "QUEMADURAS",
+    "tema": "Quemaduras",
     "subtema": "QUEMADURA ELÉCTRICA Y MIOGLOBINURIA",
     "difficulty": "alta",
     "case": "Trabajador de la construcción de 30 años sufre descarga de alta tensión (13,000 voltios). Presenta herida de entrada en mano derecha y salida en pie izquierdo. En urgencias, su orina se observa de coloración oscura (color \"coca-cola\").",
@@ -20768,8 +20803,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "MEDICINA INTERNA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Neumonías",
     "subtema": "CHOQUE SÉPTICO (DEFINICIÓN SEPSIS -3)",
     "difficulty": "alta",
     "case": "Masculino de 65 años, hospitalizado por neumonía adquirida en la comunidad. Presenta deterioro clínico con TA de 70/40 mmHg. A pesar de una adecuada reanimación hídrica con 30 ml/kg de cristaloides, la hipotensión persiste. Se inician vasopresores (norepinefrina) y se toman laboratorios de control que reportan un lactato sérico de 3.5 mmol/L.",
@@ -20789,8 +20824,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "MEDICINA INTERNA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TUBERCULOSIS PULMONAR (EFECTOS ADVERSOS DEL TAES)",
     "difficulty": "media",
     "case": "Femenina de 40 años, recién diagnosticada con tuberculosis pulmonar (BAAR positivo en esputo). Inicia tratamiento acortado estrictamente supervisado (TAES) con la fase intensiva de 4 fármacos (Isoniazida, Rifampicina, Pirazinamida y Etambutol). A las 3 semanas de tratamiento, acude refiriendo visión borrosa y dificultad para distinguir los colores rojo y verde.",
@@ -20810,8 +20845,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "MEDICINA INTERNA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VIRUS DE LA INMUNODEFICIENCIA HUMANA (INFECCIONES",
     "difficulty": "media",
     "case": "Masculino de 32 años con diagnóstico reciente de infección por VIH, sin tratamiento antirretroviral previo. Su recuento de CD4 es de 120 células/mm³. Acude por cuadro subagudo (3 semanas de evolución) de tos seca, fiebre no cuantificada y disnea progresiva que empeora notablemente al esfuerzo. En la gasometría se evidencia hipoxemia severa. La radiografía de tórax muestra un infiltrado intersticial bilateral difuso \"en vidrio despulido\" de predominio perihiliar. Sus niveles de deshidrogenasa láctica (LDH) están marcadamente elevados.",
@@ -20831,7 +20866,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "mi",
     "tema": "MEDICINA INTERNA / INFECTOLOGÍA",
     "subtema": "ENFERMEDADES TRANSMITIDAS POR VECTOR (DENGUE)",
     "difficulty": "baja",
@@ -20852,8 +20887,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
-    "tema": "MEDICINA INTERNA / NEUMOLOGÍA",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "ENFERMEDAD PULMONAR OBSTRUCTIVA CRÓNICA (EPOC)",
     "difficulty": "baja",
     "case": "Masculino de 68 años, con índice tabáquico de 45 paquetes/año. Acude por disnea progresiva de grandes a medianos esfuerzos y tos productiva matutina de años de evolución. Se sospecha de EPOC y se le solicita una espirometría con broncodilatador para confirmar el diagnóstico.",
@@ -20874,7 +20909,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / RECIÉN NACIDO SANO",
+    "tema": "Neonatología",
     "subtema": "TRAUMA OBSTÉTRICO (CEFALOHEMATOMA)",
     "difficulty": "media",
     "case": "Recién nacido de término (39 SDG), producto de un parto vaginal prolongado e instrumentado con fórceps. A las 24 horas de vida, el pediatra nota aumento de volumen en la región parietal derecha del cráneo del neonato. A la palpación, la tumefacción es de consistencia renitente, no presenta cambios de coloración en la piel suprayacente y respeta claramente la línea de la sutura sagital, sin cruzar la línea media. El neonato se encuentra estable y con buena succión.",
@@ -20895,7 +20930,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / RECIÉN NACIDO SANO",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "TRAUMA OBSTÉTRICO (PARÁLISIS BRAQUIAL)",
     "difficulty": "baja",
     "case": "Recién nacido macrosómico (4,200 g) tras parto vaginal complicado por distocia de hombros. A la exploración física inicial, se observa que el brazo derecho se encuentra en aducción y rotación interna, con el codo extendido, el antebrazo pronado y la muñeca  flexionada (postura en \"propina de mesero\"). El reflejo de Moro es asimétrico (ausente del lado derecho) y el reflejo de prensión palmar está conservado en ambas manos.",
@@ -20916,7 +20951,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / RECIÉN NACIDO SANO",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ALTERACIONES DERMATOLÓGICAS AL NACIMIENTO",
     "difficulty": "baja",
     "case": "Recién nacido de 2 días de vida, alimentado con seno materno exclusivo. La madre refiere estar preocupada porque hoy le aparecieron \"ronchas\" en el cuerpo. A la exploración, se observan múltiples máculas eritematosas, algunas con pequeñas pápulas y pústulas centrales de color blanco-amarillento, distribuidas en el tronco y las extremidades, respetando palmas y plantas. El neonato está afebril y luce sano.",
@@ -20937,7 +20972,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / REANIMACIÓN NEONATAL",
+    "tema": "Neonatología",
     "subtema": "PASOS INICIALES (MINUTO DE ORO)",
     "difficulty": "media",
     "case": "Se atiende el parto de un recién nacido de 38 SDG con antecedente de líquido amniótico claro. Al nacer, el neonato no llora, presenta tono muscular flácido y esfuerzo respiratorio ausente. El médico tratante lo lleva a la cuna radiante.",
@@ -20958,7 +20993,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / RECIÉN NACIDO SANO",
+    "tema": "Neonatología",
     "subtema": "TAMIZ NEONATAL METABÓLICO",
     "difficulty": "media",
     "case": "Recién nacido de término, sano, egresado a las 24 horas de vida junto con su madre. Acuden a consulta externa para revisión. El médico le informa a la madre que deben realizarle la prueba de tamiz metabólico neonatal.",
@@ -20979,7 +21014,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / REANIMACIÓN NEONATAL",
+    "tema": "Neonatología",
     "subtema": "LÍQUIDO AMNIÓTICO MECONIAL",
     "difficulty": "alta",
     "case": "Recién nacido de 40 SDG, se atiende el parto observando líquido amniótico teñido de meconio espeso (\"puré de chícharos\"). Al momento de nacer, el neonato se encuentra con tono muscular flácido, no respira (apnea) y tiene una frecuencia cardíaca de 80 lpm. Se lleva rápidamente a la cuna radiante.",
@@ -21000,7 +21035,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA NEONATAL INFECCIOSA",
+    "tema": "Neonatología",
     "subtema": "SEPSIS NEONATAL TEMPRANA",
     "difficulty": "media",
     "case": "Recién nacido de 35 SDG, madre con antecedente de ruptura prematura de membranas de 24 horas y corioamnionitis (fiebre intraparto y taquicardia fetal). A las 12 horas de vida, el neonato presenta letargo, rechazo al alimento, inestabilidad térmica (hipotermia de 35.8°C) y dificultad respiratoria leve.",
@@ -21021,7 +21056,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA NEONATAL INFECCIOSA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENTEROCOLITIS NECROTIZANTE (ECN)",
     "difficulty": "alta",
     "case": "Recién nacido prematuro de 28 SDG, con peso al nacer de 1,100 gramos. En su segunda semana de vida, mientras se encuentra en la UCIN recibiendo alimentación enteral con fórmula, presenta súbitamente distensión abdominal importante, residuo gástrico bilioso, rectorragia (sangre en heces) y episodios de apnea.",
@@ -21042,7 +21077,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA NEONATAL INFECCIOSA",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "ONFALITIS",
     "difficulty": "baja",
     "case": "Recién nacido de 8 días de vida, es llevado a la consulta de niño sano porque la madre nota mal olor y salida de escaso material purulento a través del muñón umbilical. A la exploración física, se observa eritema e induración en la piel periumbilical que se extiende aproximadamente 3 mm alrededor del anillo. El niño está afebril, come bien y luce reactivo.",
@@ -21063,7 +21098,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA NEONATAL INFECCIOSA",
+    "tema": "Neonatología",
     "subtema": "MENINGITIS NEONATAL",
     "difficulty": "media",
     "case": "Recién nacido de 15 días de vida, acude a urgencias por fiebre de 39°C, irritabilidad extrema, llanto agudo (\"grito cefálico\") y rechazo al seno materno. A la exploración física, no presenta rigidez de nuca, pero destaca la fontanela anterior francamente abombada y tensa. Se realiza punción lumbar obteniendo líquido cefalorraquídeo (LCR) de aspecto turbio.",
@@ -21084,7 +21119,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA RESPIRATORIA NEONATAL",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "ENFERMEDAD DE MEMBRANA HIALINA (SDR TIPO I)",
     "difficulty": "media",
     "case": "Recién nacido prematuro de 29 SDG, obtenido por cesárea de urgencia por preeclampsia severa, sin esquema de maduración pulmonar previo. A los pocos minutos de nacer, inicia con dificultad respiratoria severa: aleteo nasal, quejido espiratorio audible, tiraje intercostal y disociación tóraco-abdominal (Silverman- Andersen de 7). La radiografía de tórax muestra un patrón reticulonodular difuso bilateral (\"en vidrio esmerilado\"), con disminución del volumen pulmonar y presencia de broncograma aéreo.",
@@ -21105,7 +21140,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA RESPIRATORIA NEONATAL",
+    "tema": "Neonatología",
     "subtema": "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (SDR TIPO II)",
     "difficulty": "baja",
     "case": "Recién nacido de término (38 SDG), obtenido por cesárea electiva sin trabajo de parto previo. A las 2 horas de vida, el neonato presenta taquipnea de 75 respiraciones por minuto y leve tiraje intercostal, sin cianosis. Se solicita una radiografía de tórax que evidencia hiperinsuflación pulmonar, congestión perihiliar (trama vascular prominente) y la presencia de líquido en las cisuras interlobares (cisuritis).",
@@ -21126,7 +21161,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA RESPIRATORIA NEONATAL",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME DE ASPIRACIÓN DE MECONIO (SAM)",
     "difficulty": "alta",
     "case": "Recién nacido postérmino (41 SDG), con antecedente de sufrimiento fetal agudo (bradicardia fetal sostenida) y líquido amniótico teñido de meconio espeso (\"puré de chícharos\"). Nace deprimido y requiere reanimación avanzada. Posteriormente en la UCIN, desarrolla dificultad respiratoria severa, tórax en tonel e hipoxemia profunda que no responde al aumento de la FiO2. La radiografía de tórax revela opacidades algodonosas asimétricas (\"en parches\"), áreas de hiperinsuflación y aplanamiento de los hemidiafragmas.",
@@ -21147,7 +21182,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA RESPIRATORIA NEONATAL",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DISPLASIA BRONCOPULMONAR (DBP)",
     "difficulty": "media",
     "case": "Recién nacido prematuro de 26 SDG, con peso al nacer de 800 gramos. Durante su estancia en la UCIN, presentó Enfermedad de Membrana Hialina grave y requirió ventilación mecánica invasiva por 21 días. Actualmente tiene 32 días de vida y sigue requiriendo oxígeno suplementario por cánulas nasales para mantener saturaciones > 90%. La radiografía de tórax muestra un patrón espongiforme con áreas de hiperclaridad quística alternadas con tractos fibróticos.",
@@ -21168,7 +21203,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA NEONATAL",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "APNEA DEL PREMATURO",
     "difficulty": "baja",
     "case": "Recién nacido prematuro de 30 SDG, cursando su cuarto día de vida en la UCIN. Las enfermeras reportan que el neonato presenta múltiples episodios diarios en los que deja de respirar por periodos de 22 a 25 segundos, los cuales se acompañan consistentemente de bradicardia (FC < 80 lpm) y desaturación (SpO2 < 85%). Al ser estimulado táctilmente, el neonato reinicia la respiración.",
@@ -21189,7 +21224,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / DEFECTOS DE PARED ABDOMINAL",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "ONFALOCELE VS GASTROSQUISIS",
     "difficulty": "media",
     "case": "Recién nacido de término, obtenido por parto vaginal. A la exploración física inmediata se observa un defecto en la pared abdominal de 4 cm, localizado a la derecha del cordón umbilical. Las asas intestinales están expuestas, se observan edematosas, con una capa de fibrina y NO están cubiertas por ningún saco o membrana. El cordón umbilical se inserta normalmente en la pared abdominal.",
@@ -21210,7 +21245,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA QUIRÚRGICA NEONATAL",
+    "tema": "Neonatología",
     "subtema": "HERNIA DIAFRAGMÁTICA CONGÉNITA (BOCHDALEK)",
     "difficulty": "alta",
     "case": "Recién nacido de 38 SDG que presenta dificultad respiratoria grave desde el primer minuto de vida, cianosis y abdomen excavado (escafoide). A la auscultación, los ruidos cardíacos están desplazados a la derecha y se escuchan ruidos hidroaéreos en el hemitórax izquierdo. Se intenta estabilizar con bolsa-valvula-mascarilla (VPP) pero el paciente empeora rápidamente.",
@@ -21231,7 +21266,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA QUIRÚRGICA NEONATAL",
+    "tema": "Neonatología",
     "subtema": "ATRESIA DE ESÓFAGO",
     "difficulty": "media",
     "case": "Recién nacido que desde el nacimiento presenta sialorrea abundante (salivación excesiva), cianosis y asfixia inmediata al intentar la alimentación al seno materno. Se intenta pasar una sonda radiopaca hacia el estómago, pero se encuentra resistencia a los 10 cm de la arcada dentaria. La radiografía de tórax y abdomen muestra la sonda enrollada en el saco esofágico superior y presencia de aire en el estómago y resto del intestino.",
@@ -21252,7 +21287,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA QUIRÚRGICA NEONATAL",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "ATRESIA DUODENAL",
     "difficulty": "media",
     "case": "Neonato de 2 días de vida que presenta vómitos biliosos desde las primeras horas de vida. No hay distensión abdominal (el abdomen es plano o excavado). La madre tiene antecedente de polihidramnios durante el embarazo. En la radiografía simple de abdomen se  observa el signo de la \"doble burbuja\" y ausencia total de gas distal.",
@@ -21273,7 +21308,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA NEONATAL",
+    "tema": "Neonatología",
     "subtema": "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)",
     "difficulty": "baja",
     "case": "Recién nacido prematuro de 30 SDG que al quinto día de vida presenta deterioro respiratorio, pulsos saltones y un soplo continuo, rudo, en maquinaria (de Gibson) audible en la región infraclavicular izquierda.",
@@ -21294,7 +21329,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / GASTROENTEROLOGÍA NEONATAL",
+    "tema": "Neonatología",
     "subtema": "ICTERICIA FISIOLÓGICA VS PATOLÓGICA",
     "difficulty": "media",
     "case": "Recién nacido de término (39 SDG), de 18 horas de vida, alimentado con seno materno. La enfermera nota coloración amarillenta de piel que llega hasta el tronco (Kramer II). Al interrogatorio, la madre refiere ser O Rh positivo y el neonato es A Rh positivo. Laboratorios: Bilirrubina Total (BT) de 13 mg/dl a expensas de la indirecta. El reporte de Coombs directo es negativo.",
@@ -21315,7 +21350,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / HEMATOLOGÍA NEONATAL",
+    "tema": "Neonatología",
     "subtema": "ISOINMUNIZACIÓN MATERNO  -FETAL (Rh)",
     "difficulty": "alta",
     "case": "Femenina multigesta (G3, P2) con grupo sanguíneo O Rh negativo. No recibió profilaxis con inmunoglobulina anti-D en sus embarazos previos. Recién nacido actual de 39 SDG, grupo A Rh positivo. A las 6 horas de vida presenta ictericia intensa (Kramer IV), hepatoesplenomegalia y palidez de tegumentos. Laboratorios: Hemoglobina 10 g/dl, BT 18 mg/dl (indirecta), Coombs directo fuertemente positivo (++++).",
@@ -21336,7 +21371,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / TRASTORNOS METABÓLICOS NEONATALES",
+    "tema": "Diabetes Mellitus",
     "subtema": "HIPOGLUCEMIA NEONATAL",
     "difficulty": "media",
     "case": "Recién nacido de 38 SDG, hijo de madre con Diabetes Mellitus tipo 2 gestacional mal controlada. Peso al nacer: 4,500 g (Macrosómico). A las 2 horas de vida, el neonato presenta temblores (jitteriness), irritabilidad, succión débil y episodios de cianosis peribucal. Se realiza toma de glucemia capilar reportando 35 mg/dl.",
@@ -21357,7 +21392,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / TRASTORNOS METABÓLICOS NEONATALES",
+    "tema": "Neonatología",
     "subtema": "HIPOCALCEMIA NEONATAL",
     "difficulty": "media",
     "case": "Recién nacido prematuro de 32 SDG. A las 48 horas de vida presenta movimientos de extremidades tipo sacudidas, estridor laringeo y signo de Chvostek positivo. Se documenta calcio sérico total de 6.2 mg/dl (normal >7.0 en prematuros).",
@@ -21378,7 +21413,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / ERRORES INNATOS DEL METABOLISMO",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FENILCETONURIA (PKU)",
     "difficulty": "alta",
     "case": "Lactante de 4 meses de edad es llevado a consulta por retraso en el desarrollo psicomotor. La madre refiere que la orina del bebé tiene un \"olor muy fuerte, como a ratón o humedad\". A la exploración, destaca que el lactante tiene piel muy clara y ojos azules, a pesar de que ambos padres son de fenotipo moreno. El tamiz neonatal no se realizó.",
@@ -21462,7 +21497,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / RECIÉN NACIDO SANO",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "EVALUACIÓN DE EDAD GESTACIONAL (CAPURRO Y BALLARD)",
     "difficulty": "media",
     "case": "Se atiende parto de neonato de quien se desconoce la fecha de última regla (FUM). Tras la estabilización, el pediatra evalúa: formación de la oreja (pabellón totalmente incurvado), tamaño de la glándula mamaria (palpable >10 mm), formación del pezón (diámetro >7.5 mm, areola punteada y levantada), textura de la piel (gruesa, grietas profundas) y pliegues plantares (surcos en más de la mitad anterior).",
@@ -21503,8 +21538,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NUTRICIÓN",
+    "specialty": "gyo",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "LACTANCIA MATERNA (PROPIEDADES Y TIPOS)",
     "difficulty": "baja",
     "case": "Madre primigesta acude a consulta de puerperio a los 4 días del parto. Refiere que la leche que le sale es de color amarillento, espesa y en poca cantidad, y le preocupa que no sea suficiente para nutrir a su bebé.",
@@ -21525,7 +21560,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NUTRICIÓN",
+    "tema": "Cáncer de Mama",
     "subtema": "CONTRAINDICACIONES DE LA LACTANCIA MATERNA",
     "difficulty": "media",
     "case": "Femenina de 24 años, con diagnóstico de infección por virus de la inmunodeficiencia humana (VIH) detectado durante el tercer trimestre del embarazo, acude para asesoría sobre la alimentación de su recién nacido. Ella desea amamantar.",
@@ -21545,8 +21580,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NUTRICIÓN",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DESNUTRICIÓN PROTEICO  -CALÓRICA (KWASHIORKOR)",
     "difficulty": "media",
     "case": "Lactante de 18 meses es llevado a consulta. Vive en condiciones de pobreza extrema y su dieta se basa casi exclusivamente en papillas de maíz y agua (alta en carbohidratos, baja en proteínas). A la exploración presenta edema generalizado (anasarca), abdomen globoso, hepatomegalia y lesiones en la piel tipo \"pintura descascarada\". Su cabello es quebradizo y presenta franjas de distinto color (signo de la bandera).",
@@ -21587,8 +21622,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NUTRICIÓN",
+    "specialty": "mi",
+    "tema": "Insuficiencia Cardiaca",
     "subtema": "SÍNDROME DE REALIMENTACIÓN",
     "difficulty": "alta",
     "case": "Se inicia apoyo nutricional intensivo en un paciente con desnutrición grave. A las 48 horas de iniciado el soporte, el paciente presenta arritmias cardiacas, debilidad muscular extrema y datos de insuficiencia cardiaca congestiva.",
@@ -21608,8 +21643,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA RESPIRATORIA",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "EPIGLOTITIS AGUDA",
     "difficulty": "alta",
     "case": "Preescolar de 4 años, con esquema de vacunación incompleto, es traído por fiebre alta, aspecto tóxico y dificultad respiratoria progresiva. Al examen físico, el niño se encuentra en posición de \"trípode\" (sentado, inclinado hacia adelante con la boca abierta), presenta sialorrea (babeo) y ausencia de tos perruna. Se observa gran ansiedad y estridor inspiratorio leve.",
@@ -21629,8 +21664,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA RESPIRATORIA",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "BRONQUIOLITIS OBLITERANTE",
     "difficulty": "media",
     "case": "Lactante de 5 meses de edad, acude en temporada invernal por cuadro de 3 días de evolución con rinorrea y estornudos, que hoy progresa a tos, taquipnea (65 rpm), sibilancias espiratorias bilaterales y retracción intercostal. Es su primer episodio de sibilancias. Se documenta saturación de 88% al aire ambiente.",
@@ -21650,8 +21685,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA RESPIRATORIA",
+    "specialty": "mi",
+    "tema": "Neumonías",
     "subtema": "NEUMONÍA ADQUIRIDA EN LA COMUNIDAD (NAC)",
     "difficulty": "media",
     "case": "Escolar de 7 años acude por fiebre alta, escalofríos y tos productiva con dolor torácico tipo pleurítico. A la auscultación se detecta síndrome de condensación pulmonar (estertores crepitantes y soplo tubárico) localizado en la base derecha.",
@@ -21671,8 +21706,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / PATOLOGÍA RESPIRATORIA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "NEUMONÍA ATÍPICA",
     "difficulty": "media",
     "case": "Adolescente de 14 años con cuadro de 2 semanas de evolución caracterizado por tos seca persistente, febrícula, cefalea y malestar general. En la radiografía de tórax se observan infiltrados intersticiales bilaterales difusos que parecen \"peores\" de lo que el examen físico sugiere.",
@@ -21692,8 +21727,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECCIOSAS",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "TOS FERINA (SÍNDROME COQUELUCHOIDE)",
     "difficulty": "alta",
     "case": "Lactante de 3 meses con esquema de vacunación incompleto. Presenta accesos de tos paroxística, cianozante, que terminan en un \"gallo\" inspiratorio y a menudo con vómito tras la tos. En la biometría hemática destaca leucocitosis importante con linfocitosis absoluta.",
@@ -21713,8 +21748,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "SARAMPIÓN",
     "difficulty": "media",
     "case": "Escolar de 6 años, sin antecedentes de vacunación (padres antivacunas), presenta cuadro de 4 días de fiebre alta (39.5°C), tos intensa, coriza y conjuntivitis con fotofobia. Al explorar la mucosa bucal, se observan pequeñas manchas blancas con halo eritematoso frente a los molares. 24 horas después, aparece un exantema maculopapular rojo intenso que inicia detrás de las orejas y se extiende de forma cefalocaudal.",
@@ -21797,8 +21832,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "cir",
+    "tema": "Patología Biliar",
     "subtema": "VARICELA",
     "difficulty": "media",
     "case": "Paciente de 3 años con fiebre leve y exantema muy pruriginoso. A la exploración se observan lesiones en diferentes estadios de evolución: máculas, pápulas, vesículas (\"gotas de rocío\") y costras, todas presentes al mismo tiempo (patrón en \"cielo estrellado\").",
@@ -21818,8 +21853,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / GASTROENTEROLOGÍA",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "ENFERMEDAD DIARREICA AGUDA (ROTAVIRUS)",
     "difficulty": "baja",
     "case": "Lactante de 14 meses, con esquema de vacunación incompleto, presenta cuadro de 48 horas de evolución con vómitos iniciales, seguidos de numerosas evacuaciones líquidas, abundantes, sin sangre ni moco, y fiebre de 38.2°C. En la guardería hay varios niños con síntomas similares.",
@@ -21861,7 +21896,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / GASTROENTEROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESTENOSIS HIPERTRÓFICA DEL PÍLORO (EHP)",
     "difficulty": "media",
     "case": "Recién nacido masculino de 3 semanas de vida. La madre refiere que desde hace 3 días presenta vómitos después de cada toma de leche. Los vómitos son de contenido lácteo (no biliosos), proyectivos (\"en proyectil\") y el niño se muestra con mucha hambre después de vomitar. A la exploración física se palpa una masa firme de 2 cm en el epigastrio (oliva pilórica).",
@@ -21881,8 +21916,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / GASTROENTEROLOGÍA",
+    "specialty": "mi",
+    "tema": "Cardiopatía Isquémica",
     "subtema": "INVAGINACIÓN INTESTINAL (INTUSUSCEPCIÓN)",
     "difficulty": "alta",
     "case": "Lactante de 8 meses, previamente sano, presenta cuadros súbitos de dolor abdominal paroxístico (el niño encoge las piernas y llora inconsolablemente), alternados con periodos de letargo. Hace una hora presentó una evacuación con aspecto de \"jalea de grosella\" (sangre y moco). A la palpación se detecta una masa alargada en forma de \"salchicha\" en el hipocondrio derecho.",
@@ -21902,8 +21937,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / GASTROENTEROLOGÍA",
+    "specialty": "mi",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "REFLUJO GASTROESOFÁGICO (RGE) VS ENFERMEDAD (ERGE)",
     "difficulty": "baja",
     "case": "Lactante de 4 meses que presenta regurgitaciones frecuentes después de comer. El niño tiene una curva de crecimiento normal (buen peso y talla), no presenta irritabilidad, síntomas respiratorios ni anemia. La madre está muy angustiada por los vómitos.",
@@ -21923,8 +21958,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INFECCIÓN DE VÍAS URINARIAS (IVU)",
     "difficulty": "media",
     "case": "Lactante femenina de 8 meses presenta fiebre de 39°C de 24 horas de evolución, sin foco infeccioso aparente (no hay síntomas respiratorios ni gastrointestinales). Se observa irritable y con rechazo al alimento. Se realiza recolección de orina mediante sonda vesical. El examen general de orina (EGO) muestra nitritos positivos y esterasa leucocitaria positiva.",
@@ -21944,8 +21979,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / UROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "REFLUJO VESICOURETERAL (RVU)",
     "difficulty": "media",
     "case": "Lactante masculino de 10 meses con antecedente de dos episodios de IVU febriles confirmadas por cultivo. El ultrasonido renal reporta dilatación de los uréteres y de la pelvis renal bilateral.",
@@ -21965,8 +22000,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME NEFRÓTICO (CAMBIOS MÍNIMOS)",
     "difficulty": "media",
     "case": "Escolar de 4 años acude por presentar edema bipalpebral y de extremidades inferiores que ha progresado a anasarca en una semana. El niño no tiene antecedentes de faringitis previa. Laboratorios: Proteinuria masiva (relación proteína/creatinina en orina >2), Albúmina sérica de 1.8 g/dl (hipoalbuminemia) y Colesterol total de 300 mg/dl (hiperlipidemia). Presión arterial normal y sedimento urinario sin eritrocitos.",
@@ -21986,8 +22021,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "SÍNDROME NEFRÍTICO (POSTESTREPTOCÓCICO)",
     "difficulty": "media",
     "case": "Escolar de 8 años acude por presentar orina color \"refresco de cola\" (hematuria macroscópica), edema leve en párpados y disminución del volumen urinario (oliguria). La madre refiere que hace 2 semanas el niño tuvo una infección de garganta con fiebre. A la exploración física se detecta Presión Arterial de 130/90 mmHg (hipertensión para su edad).",
@@ -22007,8 +22042,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / UROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CRIPTORQUIDIA",
     "difficulty": "baja",
     "case": "Lactante de 6 meses acude a revisión de niño sano. A la exploración de los genitales, no se palpa el testículo derecho en la bolsa escrotal; se logra palpar en el canal inguinal pero no se puede descender manualmente al escroto.",
@@ -22049,8 +22084,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / HEMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PÚRPURA TROMBOCITOPÉNICA INMUNE (PTI)",
     "difficulty": "media",
     "case": "Escolar de 6 años que hace 2 semanas presentó un cuadro de infección respiratoria superior. Hoy acude por la aparición súbita de petequias y equimosis en extremidades y tronco, sin antecedentes de trauma. No presenta fiebre, hepatomegalia ni adenopatías. Laboratorios: Plaquetas de 15,000/mm³, Hemoglobina y Leucocitos normales. Frotis de sangre periférica confirma trombocitopenia con plaquetas de tamaño aumentado.",
@@ -22070,8 +22105,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ONCOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "LEUCEMIA LINFOBLÁSTICA AGUDA (LLA)",
     "difficulty": "alta",
     "case": "Preescolar de 4 años presenta cuadro de 3 semanas de evolución con fatiga, fiebre persistente, dolor óseo que le impide caminar y aparición de moretones sin causa aparente. A la exploración física se detecta palidez intensa, linfadenopatías cervicales y axilares, y hepatosplenomegalia franca (hígado a 4 cm y bazo a 5 cm debajo del borde costal). Biometría hemática: Hb 6 g/dl, Plaquetas 30,000/mm³, Leucocitos 50,000/mm³ con presencia de un 80% de células inmaduras (blastos).",
@@ -22091,8 +22126,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ONCOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "TUMOR DE WILMS (NEFROBLASTOMA)",
     "difficulty": "media",
     "case": "Lactante de 3 años es llevado a consulta porque la madre notó una masa en el abdomen mientras lo bañaba. El niño se encuentra asintomático. A la palpación se detecta una masa firme, lisa, que no cruza la línea media en el flanco izquierdo. Se documenta hipertensión arterial leve.",
@@ -22112,8 +22147,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / HEMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "HEMOFILIA",
     "difficulty": "media",
     "case": "Paciente masculino de 2 años presenta aumento de volumen, calor y dolor intenso en la rodilla derecha tras una caída leve. Tiene antecedentes de sangrado prolongado tras la circuncisión. Laboratorios: Tiempo de Protrombina (TP) normal, Tiempo de Tromboplastina Parcial activada (TTPa) muy prolongado que corrige al mezclar con plasma normal.",
@@ -22154,8 +22189,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUROLOGÍA",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "MENINGITIS BACTERIANA AGUDA",
     "difficulty": "alta",
     "case": "Lactante de 7 meses con esquema de vacunación incompleto (falta Pentavalente y Neumococo). Inicia con fiebre, irritabilidad, vómito en proyectil y abombamiento de la fontanela anterior. A la exploración se encuentra rigidez de nuca y signos de Kernig y Brudzinski positivos. Se sospecha meningitis y se planea punción lumbar.",
@@ -22175,8 +22210,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "EPILEPSIA (AUSENCIAS TÍPICAS)",
     "difficulty": "media",
     "case": "Escolar de 7 años es referido por su maestra debido a que presenta múltiples episodios al día donde \"se queda ido\" por 5 a 10 segundos, interrumpiendo su actividad y sin perder el tono postural. No recuerda lo sucedido. El EEG muestra un patrón de punta-onda lenta de 3 Hz, generalizado y simétrico.",
@@ -22197,7 +22232,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUROLOGÍA",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "DEFECTOS DEL TUBO NEURAL",
     "difficulty": "baja",
     "case": "Recién nacido de madre que no cursó con control prenatal ni tomó suplementos de ácido fólico. Presenta una tumoración en la región lumbosacra que contiene líquido cefalorraquídeo, meninges y raíces nerviosas expuestas, sin cobertura de piel. Se observa parálisis de extremidades inferiores.",
@@ -22217,8 +22252,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HIDROCEFALIA / MALFORMACIÓN DE CHIARI",
     "difficulty": "media",
     "case": "Lactante de 4 meses con crecimiento acelerado del perímetro cefálico (por encima del percentil 95). A la exploración: fontanela tensa, diástasis de suturas craneales y \"signo del sol poniente\" (desviación de la mirada hacia abajo). La RM muestra descenso de las amígdalas cerebelosas a través del foramen magno.",
@@ -22238,8 +22273,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / URGENCIAS",
+    "specialty": "mi",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "INGESTIÓN DE CUERPOS EXTRAÑOS",
     "difficulty": "media",
     "case": "Lactante de 2 años es traído a urgencias porque hace una hora la madre lo encontró jugando con una caja de herramientas y sospecha que tragó una \"pila de botón\". El niño se encuentra asintomático, sin dificultad respiratoria ni sialorrea. Se realiza radiografía de tórax y abdomen, localizando el objeto circular en el esófago medio, con el signo del \"doble contorno\" o \"halo\".",
@@ -22301,8 +22336,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ACCIDENTES",
+    "specialty": "cir",
+    "tema": "Patología Biliar",
     "subtema": "ASPIRACIÓN DE CUERPO EXTRAÑO EN VÍA AÉREA",
     "difficulty": "alta",
     "case": "Lactante de 18 meses, mientras comía cacahuates, presenta cuadro súbito de tos cianozante y asfixia que cede parcialmente. Actualmente se encuentra con sibilancias localizadas en el hemitórax derecho y disminución del murmullo vesicular en esa zona. La radiografía de tórax en espiración muestra enfisema obstructivo (atrapamiento aéreo) del lado derecho.",
@@ -22322,8 +22357,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / URGENCIAS",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INTOXICACIÓN POR HIERRO",
     "difficulty": "alta",
     "case": "Preescolar que ingiere suplementos de sulfato ferroso de su madre. Presenta vómitos hemáticos y dolor abdominal (Fase 1). Tras una mejoría aparente (Fase 2), desarrolla choque, acidosis metabólica y falla hepática (Fase 3). En la radiografía de abdomen se observan múltiples tabletas radiopacas.",
@@ -22343,8 +22378,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ASPECTOS LEGALES Y SOCIALES",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "MALTRATO INFANTIL (SÍNDROME DEL NIÑO MALTRATADO)",
     "difficulty": "media",
     "case": "Lactante de 9 meses es traído a urgencias por \"caída de la cama\" hace 2 horas. A la exploración física, el niño se encuentra irritable y con vómito. Se observan equimosis en diferentes estadios de evolución en espalda y glúteos, así como una quemadura circular pequeña en la planta del pie. La tomografía de cráneo revela un hematoma subdural y la serie ósea muestra fracturas en \"asa de balde\" (metafisiarias) y fracturas costales posteriores.",
@@ -22365,7 +22400,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA NEONATAL",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "SEPSIS NEONATAL TEMPRANA",
     "difficulty": "alta",
     "case": "Recién nacido de 12 horas de vida presenta inestabilidad térmica (hipotermia), rechazo a la vía oral y taquicardia. Antecedentes: Madre con ruptura prematura de membranas de 24 horas, fiebre intraparto y líquido amniótico fétido. Laboratorios: Leucopenia (<5,000), neutropenia y Proteína C Reactiva elevada.",
@@ -22385,8 +22420,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CHOQUE SÉPTICO EN PEDIATRÍA",
     "difficulty": "alta",
     "case": "Escolar de 8 años con sospecha de foco infeccioso abdominal, presenta fiebre, taquicardia, llenado capilar de 4 segundos, pulsos débiles y alteración del estado de conciencia. Se inicia reanimación hídrica agresiva.",
@@ -22406,8 +22441,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / VACUNACIÓN",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "VACUNA SRP (TRIPLE VIRAL)",
     "difficulty": "baja",
     "case": "Madre acude con su hijo de 12 meses de edad para la aplicación de las vacunas correspondientes. El niño ya cuenta con el esquema previo completo (Hexavalente, Rotavirus, Neumococo).",
@@ -22448,8 +22483,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ORTOPEDIA",
+    "specialty": "cir",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "ENFERMEDAD DE LEGG -CALVÉ-PERTHES",
     "difficulty": "media",
     "case": "Escolar masculino de 6 años presenta cojera (claudicación) de inicio insidioso y dolor leve en la región inguinal que se irradia a la rodilla derecha de 2 meses de evolución. A la exploración física, presenta limitación para la abducción y rotación interna de la cadera derecha. No tiene antecedente de fiebre ni traumatismo reciente. El paciente es de talla baja para su edad.",
@@ -22469,8 +22504,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ORTOPEDIA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "EPIFISIOLISIS FEMORAL PROXIMAL",
     "difficulty": "media",
     "case": "Adolescente de 13 años con obesidad grado I (IMC en percentil 97) acude por dolor crónico en el muslo izquierdo y rodilla, de 3 semanas de evolución, que empeora con la actividad física. Al caminar, el paciente mantiene el pie izquierdo en rotación externa. A la exploración, al flexionar la cadera, esta se desvía obligatoriamente a la rotación externa (Signo de Drehmann).",
@@ -22490,8 +22525,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / REUMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PÚRPURA DE HENOCH  -SCHÖNLEIN (VASCULITIS POR IgA)",
     "difficulty": "media",
     "case": "Preescolar de 5 años presenta exantema papular eritematoso que progresa a púrpura palpable, localizado simétricamente en glúteos y extremidades inferiores. Se acompaña de dolor abdominal tipo cólico y artralgias en tobillos. El examen general de orina muestra hematuria microscópica. El recuento de plaquetas y tiempos de coagulación son normales.",
@@ -22511,8 +22546,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / REUMATOLOGÍA",
+    "specialty": "gyo",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "ENFERMEDAD DE KAWASAKI",
     "difficulty": "alta",
     "case": "Lactante de 2 años presenta fiebre de 39°C de 6 días de evolución que no cede con antipiréticos. A la exploración destaca: inyección conjuntival bilateral no exudativa, labios fisurados y eritematosos (\"lengua en fresa\"), exantema polimorfo en tronco, edema en manos y pies, y una adenopatía cervical unilateral de 2 cm.",
@@ -22532,8 +22567,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / REUMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ARTRITIS IDIOPÁTICA JUVENIL (AIJ) SISTÉMICA",
     "difficulty": "alta",
     "case": "Escolar de 7 años presenta picos febriles diarios (>39°C) de 2 semanas de duración, acompañados de un exantema evanescente (que va y viene) de color salmón en tronco. A la exploración se encuentra hepatoesplenomegalia y artritis en muñecas. Laboratorios muestran leucocitosis, trombocitosis y ferritina muy elevada.",
@@ -22554,7 +22589,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / ENDOCRINOLOGÍA",
+    "tema": "Neonatología",
     "subtema": "HIPOTIROIDISMO CONGÉNITO",
     "difficulty": "alta",
     "case": "Recién nacido de 15 días de vida es traído a consulta tras reporte de tamiz neonatal metabólico sospechoso. A la exploración física destaca fontanela posterior amplia (>1 cm), ictericia prolongada, piel seca, macroglosia y una hernia umbilical reducible. La madre refiere que el niño es \"muy tranquilo\" y tiene estreñimiento.",
@@ -22574,8 +22609,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ENDOCRINOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DIABETES MELLITUS TIPO 1 (DM1)",
     "difficulty": "media",
     "case": "Escolar de 9 años acude a urgencias por presentar cuadro de 24 horas con dolor abdominal, náuseas y vómito. La madre refiere que en las últimas 2 semanas el niño ha bajado de peso a pesar de tener mucha hambre, orina frecuentemente (incluso en la noche) y toma mucha agua. A la exploración: deshidratación moderada, respiración rápida y profunda (Kussmaul) y aliento con olor a frutas (cetónico). Laboratorios: Glucosa 350 mg/dl, pH 7.15, HCO3 12 mEq/L, cetonuria (+++).",
@@ -22595,8 +22630,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ENDOCRINOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TALLA BAJA (VARIANTES NORMALES)",
     "difficulty": "media",
     "case": "Escolar de 10 años acude por talla baja. Se encuentra por debajo del percentil 3 para su edad. Sus padres son de estatura promedio. Al realizar la Edad Ósea (Radiografía de mano no dominante), esta reporta 7 años (retrasada respecto a la edad cronológica). El niño no ha iniciado caracteres sexuales secundarios.",
@@ -22617,7 +22652,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / ENDOCRINOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HIPERPLASIA SUPRARRENAL CONGÉNITA (HSC)",
     "difficulty": "alta",
     "case": "Recién nacido de 10 días de vida presenta cuadro de deshidratación grave, vómito y pérdida de peso importante. Laboratorios reportan: Hiponatremia severa, Hiperpotasemia y Acidosis metabólica. Al revisar los genitales se observa ambigüedad genital (hipertrofia de clítoris y fusión de labios mayores).",
@@ -22637,8 +22672,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ENDOCRINOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "PUBERTAD PRECOZ",
     "difficulty": "media",
     "case": "Niña de 7 años presenta aparición de vello púbico y telarquia (botón mamario) Tanner II. La madre refiere que la niña ha crecido mucho en el último año. La edad ósea está adelantada (9 años).",
@@ -22658,8 +22693,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PARASITOSIS INTESTINAL (GIARDIASIS)",
     "difficulty": "media",
     "case": "Preescolar de 4 años acude a guardería. Presenta cuadro de 3 semanas de evolución con evacuaciones disminuidas de consistencia, esteatorreicas (grasosas, fétidas, flotan en el agua), acompañadas de distensión abdominal, flatulencia y pérdida de peso ponderal. No presenta sangre ni moco en las heces.",
@@ -22691,8 +22726,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENTEROBIASIS (OXIUROS)",
     "difficulty": "baja",
     "case": "Escolar de 6 años presenta prurito anal de predominio nocturno muy intenso, lo que le provoca insomnio e irritabilidad. La madre refiere haber visto \"pequeños hilos blancos\" moviéndose en la región perianal del niño mientras dormía.",
@@ -22724,8 +22759,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Neumonías",
     "subtema": "TUBERCULOSIS PEDIÁTRICA",
     "difficulty": "alta",
     "case": "Lactante de 18 meses acude por fiebre persistente de 2 semanas, tos no productiva y falla para medrar (pérdida de peso). Antecedente de abuelo con \"tos crónica\" que vive en la misma casa. Se realiza prueba de PPD (Tuberculina) resultando en una induración de 12 mm a las 72 horas. La radiografía de tórax muestra linfadenopatía hiliar y un foco de consolidación (Complejo de Ghon).",
@@ -22758,7 +22793,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "tema": "Neonatología",
     "subtema": "VIH EN PEDIATRÍA",
     "difficulty": "alta",
     "case": "Recién nacido de madre con diagnóstico de VIH realizado durante el parto (sin tratamiento previo). Se desea descartar la transmisión vertical en el neonato.",
@@ -22790,8 +22825,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)",
     "difficulty": "media",
     "case": "Lactante femenino de 2 meses de edad, nacida prematura a las 32 semanas de gestación. La madre refiere que se cansa al succionar, presenta sudoración excesiva y falta de ganancia de peso. A la exploración física se detecta un soplo continuo, rudo, en región infraclavicular izquierda, con zumbido mecánico (maquinaria de Gibson) y pulsos periféricos saltones.",
@@ -22823,8 +22858,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "COMUNICACIÓN INTERVENTRICULAR (CIV)",
     "difficulty": "media",
     "case": "Lactante de 3 meses presenta un soplo holosistólico grado III/IV, rudo, de alta frecuencia, mejor escuchado en el tercer o cuarto espacio intercostal izquierdo, con irradiación en barra. Se detecta hiperflujo pulmonar en la radiografía.",
@@ -22877,8 +22912,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "COARTACIÓN DE LA AORTA",
     "difficulty": "media",
     "case": "Escolar de 10 años es enviado a valoración por presentar cifras tensionales de 140/90 mmHg. A la exploración física se detecta una diferencia de presión arterial entre miembros superiores e inferiores, y pulsos femorales débiles y retardados respecto al pulso braquial.",
@@ -22899,7 +22934,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / CIRUGÍA NEONATAL",
+    "tema": "Neonatología",
     "subtema": "ATRESIA DE ESÓFAGO",
     "difficulty": "media",
     "case": "Recién nacido de término, con antecedente materno de polihidramnios severo. A los pocos minutos del nacimiento, presenta sialorrea abundante, cianosis y dificultad respiratoria que aumenta al intentar la alimentación. Se intenta pasar una sonda orogástrica, la cual se encuentra con resistencia a los 10 cm de la arcada dental.",
@@ -22932,7 +22967,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / CIRUGÍA NEONATAL",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HERNIA DIAFRAGMÁTICA CONGÉNITA (BOCHDALEK)",
     "difficulty": "alta",
     "case": "Recién nacido de 38 semanas presenta dificultad respiratoria severa inmediata al nacer, cianosis y abdomen excavado (escafoide). A la auscultación, los ruidos cardiacos están desplazados a la derecha y se escuchan ruidos hidroaéreos en el hemitórax izquierdo.",
@@ -22965,7 +23000,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / CIRUGÍA NEONATAL",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "GASTROSQUISIS VS ONFALOCELE",
     "difficulty": "media",
     "case": "Recién nacido presenta un defecto en la pared abdominal de 3 cm, localizado a la derecha del cordón umbilical. Las asas intestinales están expuestas, sin saco protector, y se observan edematosas y con restos de fibrina. El cordón umbilical está insertado normalmente a la izquierda del defecto.",
@@ -22985,8 +23020,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / DERMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DERMATITIS ATÓPICA",
     "difficulty": "media",
     "case": "Lactante de 5 meses presenta lesiones eccematosas, eritematosas y con costras hemáticas en ambas mejillas, respetando el triángulo nasolabial, y en superficies extensoras de extremidades. La madre refiere que el niño está muy irritable y se frota constantemente contra las sábanas. Antecedente de madre con asma bronquial.",
@@ -23006,8 +23041,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / DERMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DERMATITIS DEL PAÑAL",
     "difficulty": "baja",
     "case": "Lactante de 8 meses presenta eritema intenso en área del pañal de 3 días de evolución. A la exploración se observa eritema confluente en \"W\" que respeta los pliegues inguinales. No hay lesiones satélites.",
@@ -23027,8 +23062,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA DERMATOLÓGICA",
+    "specialty": "cir",
+    "tema": "Patología Biliar",
     "subtema": "IMPÉTIGO",
     "difficulty": "baja",
     "case": "Escolar de 6 años presenta lesiones alrededor de la nariz y boca que iniciaron como pequeñas vesículas y ahora son costras de color amarillento (\"melicéricas\"). El niño se encuentra afebril y en buen estado general.",
@@ -23049,7 +23084,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / OFTALMOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "RETINOPATÍA DEL PREMATURO (ROP)",
     "difficulty": "alta",
     "case": "Recién nacido de 29 semanas de gestación, con peso de 1,100 g al nacer. Requirió ventilación mecánica y oxígeno suplementario por 15 días. Actualmente tiene 4 semanas de vida extrauterina.",
@@ -23090,8 +23125,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / URGENCIAS",
+    "specialty": "mi",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "REANIMACIÓN CARDIOPULMONAR (RCP) PEDIÁTRICA",
     "difficulty": "alta",
     "case": "Se encuentra en el área de urgencias cuando traen a un lactante de 8 meses inconsciente tras un evento de atragantamiento. Al evaluar, el niño no respira y no se palpa pulso braquial. Usted se encuentra solo en ese momento.",
@@ -23123,8 +23158,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / URGENCIAS",
+    "specialty": "cir",
+    "tema": "Quemaduras",
     "subtema": "QUEMADURAS (EXTENSIÓN Y LÍQUIDOS)",
     "difficulty": "media",
     "case": "Preescolar de 3 años, con peso de 15 kg, sufre quemadura por escaldadura (agua hirviendo) que afecta toda la extremidad superior derecha y la cara anterior del tronco.",
@@ -23189,8 +23224,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / PSIQUIATRÍA INFANTIL",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRASTORNO POR DÉFICIT DE ATENCIÓN E HIPERACTIVIDAD (TDAH)",
     "difficulty": "media",
     "case": "Escolar de 7 años es referido por su maestra debido a que \"no puede estar sentado\", interrumpe constantemente a sus compañeros, pierde sus útiles escolares y no sigue instrucciones completas. Los síntomas se presentan tanto en la escuela como en casa desde los 5 años. A la exploración en el consultorio, el niño se muestra inquieto, cambia de actividad rápidamente y responde antes de que se termine la pregunta.",
@@ -23222,8 +23257,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / PSIQUIATRÍA INFANTIL",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRASTORNO DEL ESPECTRO AUTISTA (TEA)",
     "difficulty": "alta",
     "case": "Lactante de 22 meses es llevado por sus padres porque \"parece que no escucha\" y aún no dice palabras con sentido. Al observarlo en consulta, el niño no realiza contacto visual, no señala objetos para mostrar interés (atención conjunta) y se molesta intensamente ante ruidos fuertes. Presenta movimientos estereotipados con las manos (aleteo).",
@@ -23255,8 +23290,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / PSIQUIATRÍA INFANTIL",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "TRASTORNO NEGATIVISTA DESAFIANTE (TND)",
     "difficulty": "media",
     "case": "Escolar de 8 años con antecedentes de desobediencia persistente hacia figuras de autoridad, discute con adultos, se niega a cumplir normas y culpa a otros de sus errores. Las conductas tienen una duración de 8 meses. No presenta conductas delictivas ni agresión física grave a terceros.",
@@ -23276,8 +23311,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / REUMATOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "FIEBRE REUMÁTICA (FR)",
     "difficulty": "media",
     "case": "Escolar de 9 años acude por dolor articular migratorio que afecta rodilla derecha y ahora tobillo izquierdo, con signos de inflamación franca. Antecedente de faringoamigdalitis purulenta hace 3 semanas. A la exploración física se detecta un soplo holosistólico apical (sugerente de insuficiencia mitral) y nódulos subcutáneos firmes en superficies extensoras.",
@@ -23309,8 +23344,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INMUNOLOGÍA",
+    "specialty": "mi",
+    "tema": "Neumonías",
     "subtema": "INMUNODEFICIENCIA COMBINADA GRAVE (IDCG)",
     "difficulty": "alta",
     "case": "Lactante de 4 meses presenta candidiasis oral persistente (que no cede a nistatina), diarrea crónica y tres episodios de neumonía, uno de ellos confirmado por Pneumocystis jirovecii. En la biometría hemática destaca linfopenia severa (<1,000 linfocitos totales). La radiografía de tórax muestra ausencia de sombra tímica.",
@@ -23342,8 +23377,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INMUNOLOGÍA",
+    "specialty": "mi",
+    "tema": "Neumonías",
     "subtema": "AGAMMAGLOBULINEMIA LIGADA AL X (BRUTON)",
     "difficulty": "media",
     "case": "Lactante masculino de 8 meses inicia con cuadros repetitivos de otitis media y neumonía por bacterias encapsuladas (S. pneumoniae, H. influenzae). Los síntomas iniciaron después de los 6 meses de vida. Laboratorios: Ausencia de linfocitos B periféricos (CD19/CD20) y niveles muy bajos de todas las inmunoglobulinas (IgG, IgA, IgM).",
@@ -23363,8 +23398,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NUTRICIÓN",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DESNUTRICIÓN PROTEICO  -CALÓRICA (KWASHIORKOR VS MARASMO)",
     "difficulty": "media",
     "case": "Lactante de 18 meses, cuya dieta se basa exclusivamente en atoles de maíz y caldos desde el destete a los 6 meses. A la exploración física se observa edema generalizado (anasarca) que deja fóvea, abdomen globoso por hepatomegalia (esteatosis hepática), cabello quebradizo y rojizo (\"signo de la bandera\") y lesiones cutáneas descamativas en \"pintura loca\". El niño se muestra sumamente apático e irritable.",
@@ -23396,8 +23431,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NUTRICIÓN",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "MARASMO (DESNUTRICIÓN CALÓRICA)",
     "difficulty": "baja",
     "case": "Lactante de 8 meses con peso y talla muy por debajo del percentil 3. A la exploración se observa pérdida severa de tejido adiposo y muscular, costillas prominentes y cara de \"viejito\" o \"pasa\" por pérdida de las bolsas de Bichat. El niño tiene un apetito voraz pero no ha recibido suficiente aporte lácteo.",
@@ -23417,8 +23452,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NUTRICIÓN",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "RAQUITISMO (DEFICIENCIA DE VITAMINA D)",
     "difficulty": "media",
     "case": "Lactante de 10 meses con lactancia materna exclusiva sin suplementación. A la exploración física se detecta rosario raquítico (abultamiento de las uniones costocondrales), craneotabes (huesos del cráneo blandos) y ensanchamiento de las muñecas. El niño aún no gatea por debilidad muscular.",
@@ -23439,7 +23474,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NUTRICIÓN",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "VITAMINA A Y K",
     "difficulty": "baja",
     "case": "Recién nacido de 2 días de vida, nacido en casa sin atención médica. Presenta sangrado activo por el cordón umbilical y equimosis múltiples.",
@@ -23459,8 +23494,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ADOLESCENCIA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "DESARROLLO PUBERAL (ESCALA DE TANNER)",
     "difficulty": "media",
     "case": "Niña de 11 años acude a revisión. A la exploración física se observa: elevación de la mama y el pezón como un pequeño montículo con aumento del diámetro de la aureola (Botón mamario). El vello púbico es escaso, largo, ligeramente pigmentado, liso o levemente rizado, localizado principalmente a lo largo de los labios mayores. No ha presentado la menarquia.",
@@ -23492,8 +23527,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ADOLESCENCIA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DESARROLLO PUBERAL MASCULINO",
     "difficulty": "media",
     "case": "Adolescente masculino de 13 años. A la exploración se detecta un volumen testicular de 5 ml (medido con orquidómetro de Prader) y adelgazamiento del escroto con cambio en su textura. Se observa vello púbico escaso en la base del pene.",
@@ -23513,8 +23548,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ADOLESCENCIA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRASTORNOS DE LA CONDUCTA ALIMENTARIA (ANOREXIA NERVIOSA)",
     "difficulty": "alta",
     "case": "Adolescente de 15 años es traída por pérdida de peso de 10 kg en 3 meses. La paciente refiere que \"se siente gorda\" a pesar de tener un IMC de 16 kg/m². Presenta amenorrea de 4 meses, piel seca, lanugo en espalda y bradicardia (FC 48 lpm). Niega provocarse el vómito, pero realiza ejercicio extenuante 4 horas al día.",
@@ -23546,8 +23581,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ADOLESCENCIA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "GINECOMASTIA PUBERAL",
     "difficulty": "baja",
     "case": "Varón de 14 años, Tanner G3, presenta crecimiento mamario bilateral de 2 cm, ligeramente doloroso a la palpación, localizado debajo de la areola. No presenta secreción por el pezón ni masas pétreas.",
@@ -23642,8 +23677,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INTOXICACIONES",
+    "specialty": "urg",
+    "tema": "Intoxicaciones",
     "subtema": "INTOXICACIÓN POR PLOMO (SATURNISMO)",
     "difficulty": "media",
     "case": "Niño de 4 años que vive en una casa antigua con pintura descascarada presenta irritabilidad, dolor abdominal crónico y retraso en el lenguaje. La biometría hemática reporta anemia microcítica con punteado basófilo en los eritrocitos.",
@@ -23663,8 +23698,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INMUNIZACIONES",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "ESQUEMA DE RESCATE (VACUNA HEXAVALENTE)",
     "difficulty": "alta",
     "case": "Lactante de 14 meses es traído por primera vez a la unidad de salud. No cuenta con antecedentes de vacunación previos, excepto BCG y Hepatitis B al nacer. La madre desea ponerlo al corriente.",
@@ -23684,8 +23719,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INMUNIZACIONES",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "REACCIONES ADVERSAS (ESAVI)",
     "difficulty": "media",
     "case": "Lactante de 2 meses recibe sus vacunas correspondientes (Hexavalente, Rotavirus y Neumococo). A las 6 horas, presenta llanto inconsolable, persistente por más de 3 horas, y fiebre de 38.5°C. No hay convulsiones ni alteración del estado de alerta.",
@@ -23705,8 +23740,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INMUNIZACIONES",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VACUNA CONTRA ROTAVIRUS",
     "difficulty": "alta",
     "case": "Lactante de 8 meses y 2 semanas acude a consulta. No tiene ninguna dosis previa de la vacuna contra Rotavirus. La madre solicita que se le aplique.",
@@ -23727,7 +23762,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / INMUNIZACIONES",
+    "tema": "Neonatología",
     "subtema": "VACUNA BCG (TUBERCULOSIS)",
     "difficulty": "baja",
     "case": "Recién nacido de 3,200 g, sano, hijo de madre con VIH que recibió tratamiento antirretroviral y tiene carga viral indetectable. El niño iniciará profilaxis con zidovudina.",
@@ -23747,8 +23782,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)",
     "difficulty": "media",
     "case": "Lactante femenino de 2 meses de edad, nacida prematura a las 32 semanas de gestación. La madre refiere que se cansa al succionar, presenta sudoración excesiva y falta de ganancia de peso. A la exploración física se detecta un soplo continuo, rudo, en región infraclavicular izquierda, con zumbido mecánico (maquinaria de Gibson) y pulsos periféricos saltones.",
@@ -23780,8 +23815,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "COMUNICACIÓN INTERVENTRICULAR (CIV)",
     "difficulty": "media",
     "case": "Lactante de 3 meses presenta un soplo holosistólico grado III/IV, rudo, de alta frecuencia, mejor escuchado en el tercer o cuarto espacio intercostal izquierdo, con irradiación en barra. Se detecta hiperflujo pulmonar en la radiografía.",
@@ -23834,8 +23869,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "COARTACIÓN DE LA AORTA",
     "difficulty": "media",
     "case": "Escolar de 10 años es enviado a valoración por presentar cifras tensionales de 140/90 mmHg. A la exploración física se detecta una diferencia de presión arterial entre miembros superiores e inferiores, y pulsos femorales débiles y retardados respecto al pulso braquial.",
@@ -23855,8 +23890,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / HEMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ANEMIA FERROPÉNICA (DIAGNÓSTICO DIFERENCIAL)",
     "difficulty": "media",
     "case": "Lactante masculino de 2 años de edad es llevado a consulta por palidez extrema y pica (deseo de comer tierra). En el interrogatorio, la madre menciona que el niño toma aproximadamente 1.5 litros de leche entera de vaca al día y rechaza la carne. Biometría hemática: Hb 8.0 g/dL, VCM 65 fL (microcitosis), HCM 20 pg (hipocromía), Leucocitos y Plaquetas normales. El Índice de Distribución Eritrocitaria (RDW o ADE) se encuentra elevado (18%).",
@@ -23888,8 +23923,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / HEMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ANEMIA DE CÉLULAS FALCIFORMES (DREPANOCITOSIS)",
     "difficulty": "alta",
     "case": "Escolar masculino de 6 años, originario de la costa de Veracruz, acude a urgencias por presentar dolor óseo súbito y muy intenso en ambas piernas y brazos, acompañado de fiebre de 38.5°C. El cuadro inició después de que el niño estuviera jugando bajo el sol sin hidratarse adecuadamente. A la exploración física se observa palidez de tegumentos, escleróticas subictéricas y dolor a la palpación de huesos largos.",
@@ -23922,7 +23957,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / HEMATOLOGÍA",
+    "tema": "Neonatología",
     "subtema": "DEFICIENCIA DE GLUCOSA -6-FOSFATO DESHIDROGENASA (G6PD)",
     "difficulty": "media",
     "case": "Preescolar masculino de 4 años presenta inicio súbito de ictericia generalizada, palidez, fatiga y orina de color oscuro (\"como té negro\" - hemoglobinuria). La madre refiere que hace dos días le administró Trimetoprima con Sulfametoxazol por una infección respiratoria.",
@@ -23942,8 +23977,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ONCOLOGÍA",
+    "specialty": "cir",
+    "tema": "Apendicitis Aguda",
     "subtema": "LINFOMA NO HODGKIN (BURKITT)",
     "difficulty": "media",
     "case": "Escolar masculino de 8 años es llevado a urgencias por dolor abdominal intenso, náuseas y vómito. A la exploración se detecta una masa abdominal palpable en fosa iliaca derecha y datos clínicos de invaginación intestinal. Durante la cirugía de urgencia, se reseca una gran tumoración dependiente del íleon terminal. El reporte de patología informa proliferación monótona de linfocitos de tamaño intermedio con alta tasa mitótica y macrófagos dispersos con restos celulares fagocitados (patrón en \"cielo estrellado\").",
@@ -23963,8 +23998,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "SÍNDROME URÉMICO HEMOLÍTICO (SUH)",
     "difficulty": "alta",
     "case": "Preescolar de 3 años es traído a urgencias por palidez generalizada, fatiga extrema y disminución drástica de la orina (oliguria) en las últimas 12 horas. La madre refiere que hace 5 días el niño presentó un cuadro de diarrea aguda con hilos de sangre, tras consumir una hamburguesa de carne poco cocida en una feria. A la exploración física se observan petequias en extremidades inferiores e hipertensión arterial (130/85 mmHg). Laboratorios: Hb 7.0 g/dL, Plaquetas 40,000/mm3, Creatinina sérica 2.5 mg/dL y Urea 90 mg/dL. Frotis de sangre periférica: abundantes esquistocitos (eritrocitos fragmentados).",
@@ -23996,8 +24031,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "ACIDOSIS TUBULAR RENAL (ATR)",
     "difficulty": "alta",
     "case": "Lactante de 10 meses de edad acude a consulta por \"falla para medrar\" (peso y talla en percentil 1). No presenta diarrea ni vómitos. A la exploración física se documenta poliuria compensatoria y deshidratación leve. Laboratorios: pH sanguíneo 7.28, HCO3 14 mEq/L (acidosis metabólica). Brecha aniónica (Anion Gap) plasmática normal. Sodio, Cloro y Potasio normales, a excepción de una leve hipopotasemia. El examen general de orina muestra un pH de 6.8 (inapropiadamente alcalino para el grado de acidosis sistémica).",
@@ -24017,8 +24052,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "ENFERMEDAD RENAL CRÓNICA (ERC) EN PEDIATRÍA",
     "difficulty": "baja",
     "case": "Escolar de 10 años, con antecedente de reflujo vesicoureteral grado V bilateral diagnosticado tardíamente. Actualmente se encuentra asintomático, pero sus laboratorios de rutina muestran una Tasa de Filtrado Glomerular (TFG) calculada por la fórmula de Schwartz de 45 mL/min/1.73 m2, persistente por más de 3 meses.",
@@ -24038,8 +24073,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / GASTROENTEROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ALERGIA A LA PROTEÍNA DE LA LECHE DE VACA (APLV)",
     "difficulty": "media",
     "case": "Lactante de 2 meses de edad, alimentado exclusivamente con fórmula de inicio a base de leche de vaca. Acude a consulta porque desde hace 2 semanas presenta irritabilidad extrema tras las tomas, cólicos severos, distensión abdominal y evacuaciones con estrías de sangre fresca y moco. A la exploración física, el lactante presenta un eccema moderado en las mejillas. Su curva de peso se ha estancado.",
@@ -24093,7 +24128,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA GASTROINTESTINAL",
+    "tema": "Neonatología",
     "subtema": "HEPATITIS VIRAL TIPO A",
     "difficulty": "baja",
     "case": "Escolar de 6 años presenta un cuadro de 5 días de evolución con fiebre de 38°C, ataque al estado general, astenia, náuseas y dolor en hipocondrio derecho. Hoy la madre notó que sus ojos están \"amarillos\" (ictericia escleral) y que su orina es muy oscura (coluria). A la exploración, se palpa hepatomegalia dolorosa. Laboratorios: AST 1,200 U/L, ALT 1,500 U/L, Bilirrubina Total 6 mg/dL (a expensas de la directa).",
@@ -24114,7 +24149,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA GASTROINTESTINAL",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "PREVENCIÓN DE HEPATITIS B VERTICAL",
     "difficulty": "alta",
     "case": "Se atiende el parto de un recién nacido a término, hijo de madre con diagnóstico conocido de infección crónica por el Virus de la Hepatitis B (HBsAg positivo y HBeAg positivo).",
@@ -24134,8 +24169,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / CIRUGÍA PEDIÁTRICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ATRESIA DE VÍAS BILIARES",
     "difficulty": "media",
     "case": "Lactante de 4 semanas de vida acude por ictericia persistente desde su primera semana. La madre reporta que las evacuaciones del bebé son \"blancas como la masilla\" (acolia) y la orina mancha el pañal de amarillo oscuro (coluria). Laboratorios: Bilirrubina total de 12 mg/dL, con Bilirrubina Directa de 9 mg/dL.",
@@ -24155,8 +24190,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "TOS FERINA (SÍNDROME COQUELUCHOIDE)",
     "difficulty": "media",
     "case": "Lactante de 3 meses de edad, con esquema de vacunación incompleto (no ha recibido la Hexavalente). Inició hace 2 semanas con escurrimiento nasal y febrícula (fase catarral). Actualmente es traído a urgencias porque presenta accesos de tos violenta, repetitiva (paroxística), que terminan con un estridor inspiratorio prolongado (canto de gallo) y, en ocasiones, con vómito postusígeno o cianosis. A la exploración física no se auscultan sibilancias ni estertores.",
@@ -24189,7 +24224,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA RESPIRATORIA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VIRUS SINCITIAL RESPIRATORIO (PROFILAXIS EN BRONQUIOLITIS)",
     "difficulty": "alta",
     "case": "Recién nacido de 28 semanas de gestación, actualmente con 3 meses de vida extrauterina. Fue dado de alta hace 2 semanas tras cursar con displasia broncopulmonar que requirió oxígeno suplementario. Estamos a finales de octubre y se espera un repunte en las infecciones respiratorias invernales.",
@@ -24222,7 +24257,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "TÉTANOS NEONATAL",
     "difficulty": "media",
     "case": "Recién nacido de 8 días de vida, producto de parto fortuito en domicilio rural, atendido por partera empírica quien cortó el cordón umbilical con tijeras no esterilizadas y aplicó tierra para \"secar\" el muñón. La madre lo trae a urgencias porque el niño dejó de succionar, presenta rigidez generalizada, espasmos musculares dolorosos ante el ruido y la luz, y una expresión facial característica con contracción de los músculos peribucales.",
@@ -24287,8 +24322,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME DE LENNOX -GASTAUT",
     "difficulty": "alta",
     "case": "Preescolar de 4 años, con antecedente de asfixia perinatal severa y retraso mental moderado. Acude por presentar convulsiones de difícil control. La madre describe múltiples tipos de crisis al día: algunas donde el niño \"se pone rígido\" (tónicas), otras donde pierde el tono muscular de repente y cae al suelo golpeándose la cara (\"drop attacks\" o atónicas), y episodios donde se queda con la mirada fija por varios segundos (ausencias atípicas).",
@@ -24308,8 +24343,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUROLOGÍA E INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENCEFALITIS VIRAL (HERPES SIMPLE)",
     "difficulty": "media",
     "case": "Escolar de 7 años es llevado a urgencias por presentar fiebre de 39°C y cefalea intensa de 3 días de evolución. En las últimas 24 horas, la familia nota alteraciones importantes de la conducta (agresividad severa, dice ver cosas que no están ahí - alucinaciones olfatorias y visuales) y hace una hora presentó una crisis convulsiva focal motora en el hemicuerpo derecho que generalizó secundariamente. El LCR reporta: pleocitosis de 150 células (90% linfocitos), proteínas de 80 mg/dL (levemente elevadas) y glucosa normal (60 mg/dL).",
@@ -24342,7 +24377,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA Y NEUROLOGÍA",
+    "tema": "Neonatología",
     "subtema": "CRISIS NEONATALES",
     "difficulty": "baja",
     "case": "Recién nacido de término con antecedente de sufrimiento fetal agudo (Apgar 3 al minuto y 5 a los 5 minutos, requirió ventilación con presión positiva). A las 18 horas de vida, la enfermera nota que el bebé presenta movimientos rítmicos de \"pedaleo\" con las piernas, chupeteo constante y desviación ocular sostenida, acompañados de desaturación leve.",
@@ -24362,8 +24397,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ENDOCRINOLOGÍA Y URGENCIAS",
+    "specialty": "mi",
+    "tema": "Diabetes Mellitus",
     "subtema": "CETOACIDOSIS DIABÉTICA (COMPLICACIÓN)",
     "difficulty": "alta",
     "case": "Escolar de 9 años con diagnóstico reciente de DM1 se encuentra en su sexta hora de tratamiento por Cetoacidosis Diabética (CAD) grave. Ha recibido reanimación hídrica e infusión continua de insulina a 0.1 U/kg/h. Sus laboratorios de control muestran glucosa en 250 mg/dL, por lo que se agregó solución glucosada a los líquidos de mantenimiento. De forma súbita, el paciente se torna somnoliento, se queja de cefalea intensa, presenta bradicardia (FC 55 lpm) y la presión arterial se eleva a 135/90 mmHg.",
@@ -24396,7 +24431,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA Y ENDOCRINOLOGÍA",
+    "tema": "Diabetes Mellitus",
     "subtema": "HIPOGLUCEMIA NEONATAL",
     "difficulty": "media",
     "case": "Recién nacido de 39 semanas de gestación, macrosómico (peso 4,300 g), hijo de madre con diabetes gestacional mal controlada. A las 2 horas de vida, el neonato presenta temblores finos (tremor), irritabilidad, letargo y cianosis peribucal al llanto. Se realiza una glucemia capilar que reporta 35 mg/dL.",
@@ -24428,8 +24463,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ENDOCRINOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENFERMEDAD DE GRAVES (HIPERTIROIDISMO PEDIÁTRICO)",
     "difficulty": "media",
     "case": "Adolescente femenina de 14 años acude por pérdida de peso importante a pesar de tener un apetito aumentado (polifagia), palpitaciones, intolerancia al calor y caída en su rendimiento escolar por falta de concentración. A la exploración física destaca taquicardia (110 lpm), temblor fino en manos, bocio difuso indoloro y exoftalmos bilateral leve.",
@@ -24449,8 +24484,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ENDOCRINOLOGÍA",
+    "specialty": "mi",
+    "tema": "Fibrilación Auricular",
     "subtema": "HIPOTIROIDISMO ADQUIRIDO (TIROIDITIS DE HASHIMOTO)",
     "difficulty": "baja",
     "case": "Escolar femenina de 10 años, con antecedente de Síndrome de Down, es traída por fatiga crónica, estreñimiento severo, piel seca y sensación de frío constante. A la exploración se palpa bocio firme, no doloroso y de superficie irregular (ulcerada/lobulada). Su curva de crecimiento ha descendido del percentil 50 al percentil 10 en el último año.",
@@ -24503,8 +24538,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / UROLOGÍA",
+    "specialty": "cir",
+    "tema": "Urología",
     "subtema": "REFLUJO VESICOURETERAL (RVU)",
     "difficulty": "alta",
     "case": "A la paciente del caso anterior (6 meses con su primera IVU febril) se le realiza un Ultrasonido Renal y Vesical de control, el cual reporta dilatación de la pelvis renal y los cálices derechos (hidronefrosis leve a moderada).",
@@ -24524,8 +24559,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / UROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CRIPTORQUIDIA",
     "difficulty": "media",
     "case": "Lactante masculino de 12 meses acude a su control de niño sano. A la exploración física, el escroto derecho se palpa vacío e hipoplásico. El testículo derecho se localiza en el canal inguinal, pero al intentar descenderlo manualmente hacia el escroto, presenta una tensión que impide que permanezca ahí, retrayéndose inmediatamente al canal.",
@@ -24545,8 +24580,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / UROLOGÍA (URGENCIAS)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TORSIÓN TESTICULAR",
     "difficulty": "baja",
     "case": "Adolescente de 14 años despierta a las 3:00 a.m. con un dolor escrotal izquierdo súbito y de intensidad insoportable, acompañado de náuseas. A la exploración en urgencias, el testículo izquierdo está ascendido, horizontalizado y extremadamente doloroso a la palpación. El reflejo cremastérico está ausente y la elevación manual del testículo no alivia el dolor (Signo de Prehn negativo).",
@@ -24567,7 +24602,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Neonatología",
     "subtema": "SÍFILIS CONGÉNITA",
     "difficulty": "alta",
     "case": "Recién nacido de término, producto de madre sin control prenatal. A la exploración física de ingreso destaca un neonato con bajo peso, presencia de secreción nasal serosanguinolenta (rinitis sifilítica o \"snuffles\") y un exantema maculopapular descamativo prominente en palmas y plantas. Se palpa hepatoesplenomegalia.",
@@ -24612,7 +24647,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "SÍNDROME DE RUBÉOLA CONGÉNITA",
     "difficulty": "media",
     "case": "Recién nacido prematuro con peso de 1,800 g. A la exploración física inicial se detecta ausencia del reflejo rojo bilateral, y la evaluación oftalmológica confirma cataratas bilaterales. A la auscultación cardiaca se percibe un soplo continuo \"en maquinaria\" en la región infraclavicular izquierda. El tamiz auditivo reporta hipoacusia neurosensorial bilateral profunda. La madre refiere haber cursado con un cuadro de fiebre leve, adenopatías retroauriculares y un exantema en cara y tronco durante su primer mes de embarazo.",
@@ -24645,7 +24680,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CITOMEGALOVIRUS (CMV) CONGÉNITO",
     "difficulty": "alta",
     "case": "Recién nacido a término, pequeño para la edad gestacional, que ingresa a la UCIN por presentar microcefalia severa, hepatoesplenomegalia profunda e ictericia. Se observan múltiples lesiones purpúricas y petequiales en la piel de todo el cuerpo (aspecto de \"muffin de arándano\"). Se realiza una Tomografía de cráneo que es clave para el diagnóstico diferencial.",
@@ -24677,8 +24712,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "TOXOPLASMOSIS CONGÉNITA",
     "difficulty": "media",
     "case": "Lactante de 1 mes de edad, cuya madre refiere consumo de carne cruda (tartar) y contacto estrecho con gatos jóvenes durante el embarazo. El niño presenta un perímetro cefálico por encima del percentil 95 (macrocefalia). El oftalmólogo reporta inflamación severa en el fondo de ojo. La tomografía cerebral muestra hidrocefalia y calcificaciones difusas en la corteza cerebral.",
@@ -24699,7 +24734,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA (REANIMACIÓN)",
+    "tema": "Patología Biliar",
     "subtema": "HERNIA DIAFRAGMÁTICA (MANEJO EN SALA DE PARTOS)",
     "difficulty": "alta",
     "case": "Recién nacido de 38 semanas, obtenido por parto vaginal. Al nacimiento, se observa cianótico, con esfuerzo respiratorio débil y un abdomen característicamente excavado (escafoide). A la auscultación, los ruidos cardiacos están desplazados hacia el hemitórax derecho y el hemitórax izquierdo presenta disminución del murmullo vesicular. Se sospecha hernia diafragmática congénita de Bochdalek.",
@@ -24720,7 +24755,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "SÍNDROME DE ASPIRACIÓN DE MECONIO (SAM)",
     "difficulty": "alta",
     "case": "Recién nacido de 41 semanas de gestación (postérmino). Durante el trabajo de parto se detectó bradicardia fetal y líquido amniótico espeso teñido de meconio (\"puré de chícharos\"). Al nacer, el niño se encuentra hipotónico, apneico y con una frecuencia cardiaca de 80 lpm (no vigoroso).",
@@ -24753,7 +24788,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (TTRN)",
     "difficulty": "media",
     "case": "Recién nacido de 38 semanas, obtenido por cesárea electiva (sin trabajo de parto) debido a presentación pélvica. A la hora de vida inicia con taquipnea (FC 75 rpm), aleteo nasal y quejido espiratorio leve. No requiere oxígeno a altas concentraciones (SaO2 92% al aire ambiente). Se le toma una radiografía de tórax.",
@@ -24786,7 +24821,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "ENFERMEDAD DE MEMBRANA HIALINA (SDR TIPO 1)",
     "difficulty": "alta",
     "case": "Recién nacido de 28 semanas de gestación, obtenido por cesárea de urgencia por preeclampsia severa. La madre no recibió esquema de maduración pulmonar. A los pocos minutos de nacer, el prematuro presenta dificultad respiratoria grave (Silverman-Andersen de 8), quejido espiratorio audible a distancia, aleteo nasal y cianosis central que no revierte con oxígeno a flujo libre. Se toma una radiografía de tórax portátil.",
@@ -24818,8 +24853,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA (GASTROENTEROLOGÍA CIRUGÍA)",
+    "specialty": "gyo",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "ENTEROCOLITIS NECROTIZANTE (ECN)",
     "difficulty": "alta",
     "case": "Prematuro de 30 semanas de gestación y 14 días de vida extrauterina en la UCIN. Ha estado recibiendo alimentación enteral trófica con fórmula para prematuros. En el turno nocturno presenta distensión abdominal importante, letargia, apneas, residuo gástrico biliar (porrón) y evacuaciones con sangre macroscópica. A la exploración física, el abdomen está tenso, brillante y eritematoso.",
@@ -24852,7 +24887,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA NEONATAL",
+    "tema": "Neonatología",
     "subtema": "SEPSIS NEONATAL TARDÍA",
     "difficulty": "media",
     "case": "Recién nacido de 28 semanas, en su día 15 de estancia en la UCIN. Es portador de un catéter venoso central de inserción periférica (PICC) desde su nacimiento para nutrición parenteral. Inicia con inestabilidad térmica (hipotermia de 35.5°C), episodios de bradicardia, apneas que requieren estimulación e intolerancia a la vía oral. Se sospecha sepsis neonatal tardía (nosocomial).",
@@ -24872,8 +24907,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRASTORNOS PAROXÍSTICOS NO EPILÉPTICOS (ESPASMO DEL SOLLOZO)",
     "difficulty": "media",
     "case": "Lactante de 18 meses de edad es traído a consulta porque hace un par de horas, tras ser regañado por su madre al quitarle un juguete, comenzó a llorar vigorosamente. De repente, detuvo la respiración en espiración, se tornó cianótico alrededor de la boca, perdió el tono muscular y cayó al suelo inconsciente durante unos 15 segundos. Posteriormente, recuperó la conciencia rápidamente sin periodo postictal, aunque se quedó un poco somnoliento. Es el tercer episodio en el mes.",
@@ -24905,8 +24940,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUROLOGÍA",
+    "specialty": "gyo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "PARÁLISIS CEREBRAL INFANTIL (PCI)",
     "difficulty": "alta",
     "case": "Lactante masculino de 18 meses, con antecedente de prematurez extrema (28 semanas de gestación). La madre lo trae porque \"aún no camina ni se sienta solo\". A la exploración física, el desarrollo cognitivo parece conservado (sonríe, interactúa, balbucea), pero presenta hipertonía marcada en ambas extremidades inferiores (espasticidad \"en tijera\" al intentar pararlo) y reflejos osteotendinosos exaltados (hiperreflexia y Babinski bilateral). Las extremidades superiores tienen un tono casi normal.",
@@ -24938,8 +24973,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME DE GUILLAIN-BARRÉ (SGB)",
     "difficulty": "alta",
     "case": "Escolar masculino de 8 años acude a urgencias por debilidad muscular progresiva y dificultad para caminar. Hace 2 semanas presentó un cuadro de gastroenteritis aguda que se autolimitó. La debilidad inició hace 3 días en los pies y hoy ya no puede levantarse de la silla. A la exploración física, presenta fuerza muscular 2/5 en miembros inferiores y 4/5 en superiores, con arreflexia rotuliana y aquílea bilateral. La sensibilidad está conservada. No hay fiebre.",
@@ -24971,8 +25006,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME NEFRÍTICO (GLOMERULONEFRITIS POSTESTREPTOCÓCICA)",
     "difficulty": "media",
     "case": "Escolar masculino de 7 años acude a urgencias por presentar edema facial de predominio matutino (párpados hinchados) y orina oscura \"color refresco de cola\" desde hace 24 horas. La madre refiere que hace 3 semanas el niño tuvo una faringoamigdalitis severa que fue tratada únicamente con tés y remedios caseros. A la exploración física, el paciente se encuentra afebril, pero destaca una presión arterial de 135/90 mmHg (por arriba del percentil 95 para su edad y talla) y edema en extremidades inferiores que deja fóvea.",
@@ -25004,8 +25039,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA (EXANTEMÁTICAS)",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "SARAMPIÓN",
     "difficulty": "media",
     "case": "Lactante masculino de 10 meses, sin esquema de vacunación, es traído a urgencias por fiebre de 40°C de 4 días de evolución, acompañada de tos intensa, escurrimiento nasal abundante (coriza) y conjuntivitis con fotofobia severa (\"triple catarro\"). Al explorarlo, se observan pequeñas pápulas blanquecinas sobre una base eritematosa en la mucosa yugal, a la altura de los segundos molares. 24 horas después, desarrolla un exantema maculopapular eritematoso, confluente, que inicia detrás de las orejas y en la línea de implantación del cabello, descendiendo progresivamente hacia el tronco y las extremidades.",
@@ -25037,8 +25072,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA (EXANTEMÁTICAS)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "RUBÉOLA",
     "difficulty": "media",
     "case": "Escolar de 6 años, con esquema de vacunación desconocido, presenta febrícula (37.8°C), malestar general leve y la aparición de un exantema maculopapular de color rosado pálido que inició en la cara y se extendió al tronco y extremidades en menos de 24 horas. A la exploración física destaca la presencia de adenopatías retroauriculares y suboccipitales dolorosas a la palpación, así como petequias en el paladar blando. El exantema no confluye y la madre refiere que al tercer día \"empezó a borrarse\".",
@@ -25091,8 +25126,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA (EXANTEMÁTICAS)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESCARLATINA",
     "difficulty": "media",
     "case": "Escolar masculino de 7 años es llevado a consulta por fiebre de 39°C, odinofagia intensa, cefalea y vómitos de 48 horas de evolución. A la exploración física, destaca una faringe hiperémica con exudado amigdalino purulento y una lengua con papilas hipertrofiadas (\"lengua en fresa\"). En la piel presenta un exantema eritematoso difuso, que blanquea a la presión, constituido por micropápulas que le dan una textura áspera, como \"papel de lija\". Este exantema es más intenso en los pliegues de flexión (axilas, ingles, codos), donde forma líneas transversales de un rojo más oscuro que no blanquean a la presión.",
@@ -25145,8 +25180,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA (EXANTEMÁTICAS)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VARICELA",
     "difficulty": "alta",
     "case": "Preescolar de 4 años, no vacunado, inicia con febrícula y malestar general. A las 24 horas, aparece una erupción intensamente pruriginosa que inició en el cuero cabelludo y la cara, y se diseminó rápidamente al tronco. A la exploración física se observan lesiones en diferentes estadios de evolución de forma simultánea: máculas eritematosas, pápulas, vesículas umbilicadas con contenido claro (\"gotas de rocío sobre un pétalo de rosa\") y costras.",
@@ -25178,8 +25213,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA Y REUMATOLOGÍA",
+    "specialty": "gyo",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "ENFERMEDAD DE KAWASAKI",
     "difficulty": "alta",
     "case": "Lactante masculino de 3 años es traído a urgencias por presentar fiebre de 39.5°C continua, que no cede a paracetamol, desde hace 6 días. La madre nota que el niño está sumamente irritable. A la exploración física se documenta: inyección conjuntival bilateral (sin exudado purulento), labios agrietados y sangrantes, lengua con papilas prominentes (\"lengua en fresa\"), adenopatía cervical unilateral derecha de 2 cm (dolorosa), un exantema maculopapular polimorfo en el tronco y eritema intenso con edema duro en las palmas de las manos y plantas de los pies.",
@@ -25211,8 +25246,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA (URGENCIAS)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME DE CHOQUE TÓXICO ESTAFILOCÓCICO (SCT)",
     "difficulty": "media",
     "case": "Adolescente femenina de 14 años, previamente sana, se presenta a urgencias con inicio súbito de fiebre de 40°C, vómitos, diarrea acuosa profusa, mialgias severas y confusión mental. La paciente se encuentra en su tercer día de menstruación y refiere el uso de tampones superabsorbentes. A la exploración física destaca hipotensión (80/40 mmHg), taquicardia (130 lpm) y un exantema macular eritematoso difuso que abarca todo el cuerpo, incluyendo palmas y plantas, dándole un aspecto similar al de una \"quemadura solar grave\".",
@@ -25244,8 +25279,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUMOLOGÍA (URGENCIAS)",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "LARINGOTRAQUEÍTIS INFECCIOSA (CRUP)",
     "difficulty": "media",
     "case": "Preescolar masculino de 2 años de edad es traído a urgencias a las 3:00 a.m. por dificultad respiratoria. La madre refiere que hace dos días inició con escurrimiento nasal y febrícula. Esta noche despertó súbitamente con una tos metálica muy llamativa (\"tos perruna\" o de foca), afonía y un ruido ronco al meter el aire. A la exploración física, el niño presenta estridor inspiratorio leve en reposo y tiraje intercostal.",
@@ -25277,8 +25312,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUMOLOGÍA (URGENCIAS)",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "EPIGLOTITIS AGUDA",
     "difficulty": "alta",
     "case": "Preescolar de 4 años, proveniente de una comunidad rural y sin esquema de vacunación, es traído en brazos por su madre a urgencias. Presenta inicio súbito (hace 6 horas) de fiebre de 40°C, dolor de garganta extremo e incapacidad para tragar saliva, lo que le provoca babeo continuo (sialorrea). El niño luce sumamente ansioso, con aspecto tóxico, y se mantiene sentado inclinado hacia adelante, con el cuello hiperextendido y la boca abierta (posición de trípode). Se percibe un estridor inspiratorio suave, sin tos.",
@@ -25310,8 +25345,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUMOLOGÍA (ANATOMÍA)",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "LARINGOMALACIA",
     "difficulty": "baja",
     "case": "Lactante de 2 meses de edad acude a su control de niño sano. La madre refiere que desde las 2 semanas de vida, el bebé hace un \"ruido ronco\" al respirar (estridor inspiratorio). El ruido empeora marcadamente cuando el bebé llora, se agita o cuando lo acuesta boca arriba (decúbito supino), pero mejora cuando lo pone boca abajo (prono). El niño se alimenta bien, no tiene fiebre, su ganancia de peso es excelente (percentil 50) y no presenta cianosis.",
@@ -25331,8 +25366,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUMOLOGÍA",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "BRONQUIOLITIS AGUDA",
     "difficulty": "media",
     "case": "Lactante masculino de 6 meses acude a urgencias en pleno mes de diciembre. La madre refiere que hace 3 días inició con rinorrea hialina, tos seca y febrícula. Desde esta mañana, nota que el niño respira muy rápido (taquipnea de 65 rpm), \"se le hunden las costillas\" (tiraje intercostal) y presenta un silbido al respirar. A la auscultación pulmonar se escuchan sibilancias espiratorias bilaterales y estertores crepitantes finos. La saturación de oxígeno (SaO2) al aire ambiente es de 88%. Es su primer episodio de sibilancias.",
@@ -25364,8 +25399,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUMOLOGÍA",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "ASMA PEDIÁTRICA (CRISIS ASMÁTICA)",
     "difficulty": "alta",
     "case": "Escolar femenino de 8 años, con diagnóstico previo de asma moderada persistente. Acude a urgencias por presentar disnea progresiva, tos seca y sensación de opresión torácica tras adquirir una infección viral de vías altas. A la exploración: FC 120 lpm, FR 35 rpm, SaO2 91%. Habla en frases cortas. A la auscultación presenta sibilancias diseminadas inspiratorias y espiratorias en ambos campos pulmonares.",
@@ -25385,8 +25420,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUMOLOGÍA (URGENCIAS)",
+    "specialty": "cir",
+    "tema": "Patología Biliar",
     "subtema": "ASPIRACIÓN DE CUERPO EXTRAÑO",
     "difficulty": "alta",
     "case": "Preescolar de 3 años, previamente sano. Estaba jugando y comiendo cacahuates bajo la supervisión de su hermano mayor, cuando presentó de forma súbita un acceso de tos ahogada, cianosis transitoria y dificultad respiratoria (\"síndrome de penetración\"). A su llegada a urgencias, el niño está estable pero respira con cierta dificultad. A la auscultación pulmonar, hay franca asimetría en los ruidos respiratorios: disminución del murmullo vesicular y sibilancias localizadas exclusivamente en el hemitórax derecho.",
@@ -25406,8 +25441,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "COMUNICACIÓN INTERVENTRICULAR (CIV)",
     "difficulty": "alta",
     "case": "Lactante de 2 meses de edad es llevado a su revisión de niño sano. La madre refiere que el bebé se fatiga y suda mucho en la frente al tomar el pecho, y nota que respira muy rápido. Su ganancia de peso ha sido pobre (está en el percentil 10). A la exploración física, destaca un soplo holosistólico grado III/VI, áspero, localizado en el borde esternal inferior izquierdo (tercer y cuarto espacio intercostal), que se irradia en \"barra\" hacia la derecha. A la palpación se percibe un frémito en la misma zona.",
@@ -25439,8 +25474,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "COMUNICACIÓN INTERAURICULAR (CIA)",
     "difficulty": "media",
     "case": "Escolar de 5 años, asintomático, es evaluado por su pediatra para un certificado médico escolar. Durante la auscultación cardiaca, el médico detecta un soplo sistólico eyectivo grado II/VI en el foco pulmonar (segundo espacio intercostal izquierdo). El hallazgo más llamativo es un desdoblamiento amplio y FIJO del segundo ruido cardiaco (S2), que no varía con los movimientos respiratorios del niño. El electrocardiograma muestra un bloqueo incompleto de rama derecha (BIRD).",
@@ -25461,7 +25496,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)",
     "difficulty": "alta",
     "case": "Recién nacido prematuro de 28 semanas de gestación, que en su tercer día de vida en la UCIN desarrolla taquicardia, pulsos saltones (hiperdinámicos) y aumento de los requerimientos de oxígeno en el ventilador. A la auscultación se percibe un soplo continuo, rudo, con refuerzo sistólico tardío (\"en maquinaria\" o soplo de Gibson) localizado en la región infraclavicular izquierda.",
@@ -25515,7 +25550,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "tema": "Diabetes Mellitus",
     "subtema": "TRANSPOSICIÓN DE LAS GRANDES ARTERIAS (TGA)",
     "difficulty": "alta",
     "case": "Recién nacido de término, macrosómico, hijo de madre con diabetes pregestacional mal controlada. A los pocos minutos del nacimiento, presenta cianosis central profunda que no mejora con la administración de oxígeno al 100% (prueba de hiperoxia negativa) ni con la ventilación con presión positiva. A la auscultación, los ruidos cardiacos son rítmicos, el S2 es único y reforzado, y no se auscultan soplos evidentes. La radiografía de tórax muestra un pedículo vascular estrecho y una silueta cardiaca ovalada.",
@@ -25548,7 +25583,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / CIRUGÍA PEDIÁTRICA",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "GASTROSQUISIS",
     "difficulty": "media",
     "case": "Se atiende el parto vaginal de una paciente primigesta de 19 años, sin control prenatal adecuado. Al nacimiento, se recibe a un neonato de 36 semanas de gestación. A la exploración física inmediata en la cuna radiante, se observa un defecto en la pared abdominal de aproximadamente 3 cm, localizado a la derecha del cordón umbilical (el cual está intacto en su base normal). A través del defecto protruyen asas de intestino delgado y grueso que se observan edematosas, engrosadas, cubiertas por una \"cáscara\" fibrinosa y sin ningún saco o membrana que las recubra.",
@@ -25581,7 +25616,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / CIRUGÍA PEDIÁTRICA",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "ONFALOCELE",
     "difficulty": "alta",
     "case": "Recién nacido de término, macrosómico, es evaluado por el pediatra al nacer. Presenta un defecto central en la pared abdominal de 6 cm de diámetro, a través del cual protruyen asas intestinales y el hígado. El defecto está cubierto íntegramente por un saco translúcido avascular (formado por amnios y peritoneo) y el cordón umbilical se inserta directamente en el vértice de este saco. A la exploración facial destaca una macroglosia importante.",
@@ -25602,7 +25637,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / CIRUGÍA PEDIÁTRICA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ATRESIA ESOFÁGICA",
     "difficulty": "alta",
     "case": "Recién nacido prematuro de 34 semanas, con antecedente de polihidramnios materno severo. En sus primeros minutos de vida presenta sialorrea excesiva (\"burbujeo\" por la boca) y episodios de tos y cianosis al intentar deglutir sus propias secreciones. Se intenta pasar una sonda orogástrica para permeabilidad, pero esta se detiene a unos 10 cm de la arcada dentaria y se enrolla. Se toma una radiografía toracoabdominal que muestra la sonda enrollada en el bolsón esofágico superior y presencia de abundante gas en la cámara gástrica y el intestino.",
@@ -25634,8 +25669,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "CIRUGÍA PEDIÁTRICA / GASTROENTEROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESTENOSIS HIPERTRÓFICA DEL PÍLORO (EHP)",
     "difficulty": "media",
     "case": "Lactante masculino de 3 semanas de vida, primogénito, es traído a urgencias por presentar vómitos de contenido alimentario (lácteo), no biliar, en proyectil, inmediatamente después de cada toma desde hace 3 días. La madre refiere que el niño tiene \"mucha hambre\" después de vomitar. A la exploración física, se observa deshidratación leve y se palpa una masa firme, móvil y ovoidea de unos 2 cm en el epigastrio, a la derecha de la línea media (oliva pilórica).",
@@ -25667,8 +25702,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "CIRUGÍA PEDIÁTRICA / URGENCIAS",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "INVAGINACIÓN INTESTINAL (INTUSUSCEPCIÓN)",
     "difficulty": "alta",
     "case": "Lactante de 7 meses, previamente sano, presenta cuadros súbitos de llanto paroxístico e intenso, con flexión de las piernas sobre el abdomen, que duran 10 minutos y ceden espontáneamente, repitiéndose cada hora. Entre los episodios, el niño luce letárgico. Hace una hora presentó una evacuación con moco y sangre, con aspecto de \"jalea de grosella\". A la palpación abdominal se percibe una masa alargada en forma de \"salchicha\" en el hipocondrio derecho.",
@@ -25700,7 +25735,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "CIRUGÍA PEDIÁTRICA",
     "subtema": "DIVERTÍCULO DE MECKEL",
     "difficulty": "media",
@@ -25721,8 +25756,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / UROLOGÍA",
+    "specialty": "cir",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "CRIPTORQUIDIA",
     "difficulty": "media",
     "case": "Lactante masculino de 6 meses es llevado a revisión. A la exploración física, el escroto izquierdo se encuentra bien desarrollado con el testículo palpable, pero el lado derecho se observa hipoplásico y no se palpa el testículo en la bolsa escrotal. Al realizar maniobras, se logra palpar el testículo en el conducto inguinal, pero al soltarlo, regresa inmediatamente a su posición inguinal.",
@@ -25742,8 +25777,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / UROLOGÍA (URGENCIAS)",
+    "specialty": "cir",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "ESCROTO AGUDO (TORSIÓN TESTICULAR)",
     "difficulty": "alta",
     "case": "Escolar de 11 años acude a urgencias por dolor testicular derecho de inicio súbito e intenso tras realizar actividad física hace 3 horas. El dolor se irradia a la región inguinal y se acompaña de náuseas. A la exploración: testículo derecho elevado, con eje horizontal (Signo de Angel), muy doloroso a la palpación. El reflejo cremastérico está ausente y el dolor NO mejora al elevar el testículo (Signo de Prehn negativo).",
@@ -25764,7 +25799,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / UROLOGÍA",
+    "tema": "Neonatología",
     "subtema": "HIPOSPADIAS",
     "difficulty": "baja",
     "case": "Recién nacido masculino es evaluado en el tamiz neonatal. Se observa que el meato urinario no se encuentra en la punta del glande, sino localizado en la cara ventral del pene, a nivel del surco balanoprepucial. Además, presenta una curvatura ventral del pene (encordamiento) y el prepucio está acumulado en la cara dorsal (\"en capuchón\").",
@@ -25784,8 +25819,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INFECCIÓN DE VÍAS URINARIAS (IVU)",
     "difficulty": "media",
     "case": "Lactante femenino de 8 meses acude por fiebre de 39.2°C de 24 horas de evolución, irritabilidad y rechazo a las tomas. No presenta síntomas respiratorios ni gastrointestinales. A la exploración física no se encuentra foco infeccioso aparente. Se realiza recolección de orina por sondaje vesical. El examen general de orina (EGO) reporta: esterasa leucocitaria (++), nitritos (+) y >10 leucocitos por campo.",
@@ -25817,8 +25852,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "REFLUJO VESICOURETERAL (RVU)",
     "difficulty": "alta",
     "case": "Lactante masculino de 1 año con antecedente de dos episodios de pielonefritis. El ultrasonido renal muestra dilatación del uréter y de la pelvis renal derecha. Se realiza cistografía miccional la cual reporta reflujo del contraste que alcanza la pelvis renal y los cálices, provocando una dilatación moderada y tortuosidad del uréter, con borramiento de los ángulos de los fórnix caliciales.",
@@ -25850,8 +25885,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME NEFRÓTICO (ENFERMEDAD DE CAMBIOS MÍNIMOS)",
     "difficulty": "media",
     "case": "Preescolar masculino de 4 años es traído por su madre debido a \"hinchazón\" de párpados que empeora por las mañanas y edema en extremidades inferiores desde hace 5 días. No refiere fiebre ni antecedentes de infección reciente. A la exploración: Edema bipalpebral y pretibial con fóvea (++), ascitis leve. Tensión arterial 95/60 mmHg (normal para su edad). El examen general de orina muestra: Proteínas (++++), ausencia de eritrocitos y cilindros. Albúmina sérica de 2.0 g/dL y colesterol total de 280 mg/dL.",
@@ -25883,8 +25918,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME NEFRÍTICO (GLOMERULONEFRITIS POSTESTREPTOCÓCICA)",
     "difficulty": "alta",
     "case": "Escolar de 7 años acude por presentar orina color \"té\" o \"refresco de cola\", edema facial leve y cefalea. La madre refiere que hace 2 semanas el niño tuvo un cuadro de faringoamigdalitis purulenta que no recibió tratamiento antibiótico. A la exploración: TA 130/90 mmHg (elevada para la edad), edema periorbitario. Laboratorio: Creatinina ligeramente elevada, EGO con hematuria macroscópica, eritrocitos dismórficos y cilindros hemáticos.",
@@ -25916,8 +25951,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ONCOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "LEUCEMIA LINFOBLÁSTICA AGUDA (LLA)",
     "difficulty": "media",
     "case": "Escolar de 4 años es llevado a consulta por presentar astenia, adinamia y picos febriles no cuantificados de 3 semanas de evolución. La madre refiere aparición de \"manchas moradas\" en piernas sin traumatismo previo. A la exploración física: Palidez generalizada intensa, petequias y equimosis en extremidades, linfadenopatía cervical y axilar bilateral (no dolorosa, de consistencia firme) y hepatosplenomegalia (hígado a 4 cm y bazo a 3 cm debajo del borde costal).",
@@ -25949,8 +25984,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ONCOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "LINFOMA DE HODGKIN VS NO HODGKIN",
     "difficulty": "alta",
     "case": "Adolescente masculino de 15 años presenta una masa supraclavicular derecha, de crecimiento lento, no dolorosa, de consistencia \"gomosa\", de 2 meses de evolución. Refiere que en el último mes ha presentado sudoración nocturna profusa que obliga a cambiar la ropa de cama y pérdida de peso no intencionada de 6 kg.",
@@ -25982,8 +26017,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ONCOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TUMOR DE WILMS (NEFROBLASTOMA)",
     "difficulty": "media",
     "case": "Preescolar femenino de 3 años es traída por su madre quien, al bañarla, notó una \"masa\" en el lado derecho del abdomen. La niña se encuentra asintomática, sin dolor ni fiebre. A la exploración física: Masa abdominal en flanco derecho, lisa, firme, que NO cruza la línea media. Se documenta tensión arterial de 110/75 mmHg (percentil >95 para su edad). El examen de orina muestra hematuria microscópica.",
@@ -26015,8 +26050,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ONCOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "NEUROBLASTOMA",
     "difficulty": "alta",
     "case": "Lactante de 14 meses presenta irritabilidad, pérdida de peso y una masa abdominal de bordes irregulares, consistencia pétrea, que cruza la línea media. A la exploración física se observan equimosis periorbitarias bilaterales (\"ojos de mapache\") y proptosis.",
@@ -26048,8 +26083,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ORTOPEDIA",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "DISPLASIA EN EL DESARROLLO DE LA CADERA (DDC)",
     "difficulty": "media",
     "case": "Lactante femenino de 2 meses de edad, nacida por cesárea debido a presentación de nalgas (pélvica). La madre refiere que nota una \"asimetría\" en las piernas. A la exploración física se observa asimetría de pliegues en muslos y glúteos. Al realizar la exploración de cadera, se percibe un \"clic\" palpable al abducir la cadera derecha (Maniobra de Ortolani positiva) y la cadera se luxa fácilmente al aducir y presionar hacia atrás (Maniobra de Barlow positiva).",
@@ -26081,8 +26116,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / REUMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ARTRITIS IDIOPÁTICA JUVENIL (AIJ)",
     "difficulty": "alta",
     "case": "Escolar de 8 años presenta dolor e inflamación en rodilla derecha y tobillo izquierdo de 2 meses de evolución. Refiere rigidez matutina que dura más de una hora y mejora con la actividad. No hay fiebre ni síntomas sistémicos. A la exploración física: Artritis franca en 2 articulaciones. Los exámenes reportan: Factor Reumatoide negativo, Proteína C Reactiva elevada y Anticuerpos Antinucleares (ANA) positivos.",
@@ -26114,8 +26149,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "SARAMPIÓN (PRIMERA ENFERMEDAD)",
     "difficulty": "media",
     "case": "Lactante de 18 meses, sin esquema de vacunación completo, presenta fiebre de 39.5°C, tos intensa, coriza y conjuntivitis con fotofobia de 4 días de evolución. A la exploración de la mucosa oral se observan pequeñas manchas blancas sobre un halo eritematoso a la altura de los molares. 24 horas después, aparece un exantema maculopapular eritematoso que inicia detrás de las orejas y en la línea del pelo, extendiéndose de forma cefalocaudal.",
@@ -26135,8 +26170,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VARICELA (HERPES VIRUS 3)",
     "difficulty": "baja",
     "case": "Preescolar de 3 años presenta fiebre leve y malestar general. Horas después inicia con lesiones cutáneas que brotan en oleadas: primero máculas, que evolucionan a pápulas, luego a vesículas con base eritematosa (\"gota de rocío sobre pétalo de rosa\") y finalmente costras. En la exploración se observan todos los estadios de las lesiones al mismo tiempo. El niño refiere mucho prurito.",
@@ -26156,8 +26191,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESCARLATINA (S. PYOGENES)",
     "difficulty": "media",
     "case": "Escolar de 6 años con dolor faríngeo intenso y fiebre. A la exploración: faringe hiperémica con exudado purulento, lengua con capa blanca que luego se desprende dejando papilas rojas (\"lengua en fresa\"). Presenta un exantema eritematoso generalizado, de textura rugosa (papel de lija), que se acentúa en los pliegues cutáneos (axilas e ingles) formando líneas rojas que no blanquean a la presión.",
@@ -26177,8 +26212,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "ERITEMA INFECCIOSO (QUINTA ENFERMEDAD)",
     "difficulty": "baja",
     "case": "Escolar de 7 años que acude por presentar eritema brillante en ambas mejillas, respetando el área peribucal, dándole un aspecto de \"niño abofeteado\". No tiene fiebre ni ataque al estado general. Dos días después aparece un exantema reticulado (en encaje) en tronco y extremidades que se acentúa con el sol o el ejercicio.",
@@ -26198,8 +26233,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "TOS FERINA (SÍNDROME COQUELUCHOIDE)",
     "difficulty": "alta",
     "case": "Lactante de 4 meses con esquema de vacunación incompleto. Acude por cuadro de 2 semanas de evolución caracterizado por accesos de tos paroxística, cianosante y emetizante. La madre refiere que al final de la tos, el niño hace un ruido agudo al inspirar (\"estridor o gallo\"). Entre los accesos de tos, el paciente se observa asintomático. En la BH destaca leucocitosis de 30,000 con 80% de linfocitos (reacción leucemoide).",
@@ -26219,8 +26254,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PAROTIDITIS (PAPERAS)",
     "difficulty": "media",
     "case": "Escolar de 8 años presenta fiebre, malestar general y dolor al masticar. A la exploración física se observa borramiento del ángulo mandibular debido a una tumefacción de la glándula parótida derecha, de consistencia elástica, que desplaza el pabellón auricular hacia afuera y arriba. Se observa eritema en la desembocadura del conducto de Stenon.",
@@ -26240,8 +26275,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "cir",
+    "tema": "Patología Biliar",
     "subtema": "ENFERMEDAD MANO  -PIE-BOCA",
     "difficulty": "baja",
     "case": "Lactante de 2 años es llevado por presentar lesiones vesiculares pequeñas en la mucosa o ral y lengua, que posteriormente aparecen en las palmas de las manos y plantas de los pies. El niño tiene febrícula y refiere dolor al comer (disfagia). Las vesículas son ovales, con halo eritematoso y no son pruriginosas.",
@@ -26261,8 +26296,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NUTRICIÓN",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DESNUTRICIÓN PROTEICO  -CALÓRICA (KWASHIORKOR VS. MARASMO)",
     "difficulty": "media",
     "case": "Lactante de 18 meses, destetado precozmente a los 4 meses y alimentado desde entonces casi exclusivamente con papillas de arroz y atoles de maíz (dieta alta en carbohidratos, baja en proteínas). A la exploración: Edema generalizado (fóvea ++), abdomen prom inente por ascitis y hepatomegalia, piel con lesiones descamativas (\"en pintura erosionada\") y cabello quebradizo, delgado y con bandas de diferente coloración (\"signo de la bandera\").",
@@ -26294,8 +26329,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ENDOCRINOLOGÍA",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "TALLA BAJA Y RETRASO CONSTITUCIONAL",
     "difficulty": "alta",
     "case": "Escolar masculino de 11 años es traído por sus padres por ser el más bajo de su clase. A la exploración: Talla en percentil 3, velocidad de crecimiento normal (5 cm/año). No tiene antecedentes patológicos. La exploración física es normal, con estadios de Tanner I (prepuberal). Se realiza radiografía de mano izquierda que reporta una edad ósea de 8 años (retrasada respecto a la cronológica). El padre del niño refiere que él \"estiró\" hasta los 17 años.",
@@ -26315,8 +26350,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NUTRICIÓN",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VITAMINA D (RAQUITISMO)",
     "difficulty": "media",
     "case": "Lactante de 12 meses, alimentado con seno materno exclusivo, sin ablación adecuada y con nula exposición solar. A la exploración se observa ensanchamiento de las muñecas, prominencia de las uniones condrocostales (\"rosario raquítico\") y arqueamiento de los fémures (genu varo). Presenta retraso en el cierre de la fontanela anterior.",
@@ -26336,8 +26371,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA Y OBSTETRICIA",
+    "specialty": "gyo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "DIAGNÓSTICO DE EMBARAZO Y REGLA DE NAEGELE",
     "difficulty": "baja",
     "case": "Paciente de 26 años acude a consulta por amenorrea de varias semanas. Refiere que su Fecha de Última Regla (FUR) fue el 15 de mayo de 2025. Su ciclos son regulares de 28 días. Se realiza prueba inmunológica de embarazo en orina con resultado positivo.",
@@ -26369,8 +26404,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA Y OBSTETRICIA",
+    "specialty": "gyo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "CAMBIOS FISIOLÓGICOS EN EL EMBARAZO",
     "difficulty": "media",
     "case": "Primigesta de 24 semanas acude a control prenatal. Se encuentra asintomática. En sus laboratorios destaca: Hemoglobina 11.2 g/dL, Hematocrito 33%, Leucocitos 12,500/mm3 sin bandemia. En el examen general de orina se reporta glucosuria (+) sin proteinuria. Su presión arterial es 100/60 mmHg.",
@@ -26402,8 +26437,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA Y OBSTETRICIA",
+    "specialty": "gyo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "CONTROL PRENATAL (GPC)",
     "difficulty": "media",
     "case": "Paciente que acude a su primera consulta prenatal a las 10 semanas de gestación. No tiene antecedentes de importancia.",
@@ -26423,8 +26458,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA Y OBSTETRICIA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ABORTO (TIPOS Y MANEJO)",
     "difficulty": "media",
     "case": "Paciente de 22 años, G1, con 9 semanas de gestación por FUR. Acude por presentar sangrado transvaginal escaso y dolor tipo cólico en hipogastrio. A la exploración física: Signos vitales estables. Al tacto vaginal: Cérvix cerrado, útero de tamaño acorde a la gestación, sin expulsión de restos. El ultrasonido reporta embrión con frecuencia cardiaca presente.",
@@ -26456,8 +26491,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA Y OBSTETRICIA",
+    "specialty": "cir",
+    "tema": "Apendicitis Aguda",
     "subtema": "EMBARAZO ECTÓPICO",
     "difficulty": "alta",
     "case": "Paciente de 28 años con antecedente de Salpingitis (EPI) hace 2 años. Acude por dolor abdominal súbito en fosa ilíaca derecha y manchado transvaginal oscuro. A la exploración: TA 90/60 mmHg, FC 110 lpm, dolor a la movilización cervical y masa anexial palpable. El ultrasonido muestra útero vacío y líquido libre en fondo de saco de Douglas. hCG de 2,500 mUI/ml.",
@@ -26477,8 +26512,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA Y OBSTETRICIA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENFERMEDAD TROFOBLÁSTICA GESTACIONAL (MOLA)",
     "difficulty": "media",
     "case": "Multípara de 42 años con 12 semanas de gestación. Presenta náuseas y vómitos severos (hiperemesis), sangrado transvaginal con salida de \"vesículas como uvas\". A la exploración: Útero de 18 semanas (mayor a amenorrea). El ultrasonido muestra una imagen en \"tormenta de nieve\" o \"panal de abejas\" sin feto presente. hCG de 150,000 mUI/ml.",
@@ -26498,8 +26533,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "gyo",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "FARINGOAMIGDALITIS ESTREPTOCÓCICA",
     "difficulty": "media",
     "case": "Escolar de 7 años acude por fiebre de 39°C, dolor faríngeo intenso y odinofagia de 48 horas de evolución. A la exploración física se observa faringe hiperémica, amígdalas con exudado blanquecino, petequias en paladar blando y adenopatía cervical anterior dolorosa de 2 cm. No presenta tos, coriza ni conjuntivitis.",
@@ -26519,8 +26554,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "OTITIS MEDIA AGUDA (OMA)",
     "difficulty": "media",
     "case": "Lactante de 14 meses es traído por irritabilidad y llanto de predominio nocturno. La madre refiere antecedente de cuadro gripal hace 5 días. Durante la exploración, el niño se toca el oído derecho constantemente. Al realizar otoscopia se observa la membrana timpánica abombada, eritematosa, con movilidad disminuida a la otoscopia neumática y pérdida de los relieves óseos.",
@@ -26561,8 +26596,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "MENINGITIS BACTERIANA AGUDA",
     "difficulty": "alta",
     "case": "Lactante de 14 meses con esquema de vacunación incompleto. Acude a urgencias por fiebre de 39.5°C, irritabilidad extrema, vómito en proyectil y rechazo a las tomas. A la exploración física: Fontanela anterior abombada y tensa, rigidez de nuca y presencia de signos de Brudzinski y Kerning positivos. Se observa un exantema de tipo petequial en extremidades inferiores.",
@@ -26594,8 +26629,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / REUMATOLOGÍA - INFECTOLOGÍA",
+    "specialty": "gyo",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "ENFERMEDAD DE KAWASAKI",
     "difficulty": "alta",
     "case": "Lactante masculino de 2 años presenta fiebre de 39°C de 6 días de evolución que no cede con antipiréticos. A la exploración física destaca: Inyección conjuntival bilateral no exudativa, labios fisurados y eritematosos, lengua en fresa, un exantema polimorfo en tronco y edema indurado en manos y pies con eritema palmar. Presenta una adenopatía cervical unilateral de 2 cm.",
@@ -26627,8 +26662,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CONVULSIONES FEBRILES",
     "difficulty": "media",
     "case": "Lactante de 18 meses es traído a urgencias tras presentar un episodio de movimientos tónico-clónicos generalizados de 3 minutos de duración, asociado a un pico febril de 39.2°C secundario a una otitis media. Al llegar a la unidad, el niño se encuentra en periodo postictal, pero recupera la conciencia rápidamente. No tiene antecedentes de crisis afebriles ni retraso en el desarrollo.",
@@ -26648,8 +26683,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUROLOGÍA",
+    "specialty": "mi",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "EPILEPSIA (AUSENCIAS TÍPICAS)",
     "difficulty": "media",
     "case": "Escolar de 6 años es referida por su profesora porque \"se queda ida\" varias veces al día durante las clases. La madre nota que la niña detiene su actividad bruscamente, mantiene la mirada fija por 10 segundos y luego continúa como si nada hubiera pasado, sin recordar el evento. No hay movimientos tónicos ni pérdida del tono postural.",
@@ -26691,7 +26726,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUROLOGÍA - NEUROCIRUGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DEFECTOS DEL TUBO NEURAL (MIELOMENINGOCELE)",
     "difficulty": "media",
     "case": "Recién nacido de término, hijo de madre de 19 años sin control prenatal ni ingesta de suplementos. Al nacimiento se observa una tumoración quística en la región lumbosacra de 5 cm de diámetro, recubierta por una membrana delgada y transparente. A través de ella se observa tejido neural (plácoda) y salida de líquido cefalorraquídeo. El neonato presenta ausencia de movimiento en miembros inferiores y esfínter anal laxo.",
@@ -26723,8 +26758,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / GENÉTICA - NEUROLOGÍA",
+    "specialty": "mi",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "ATROFIA MUSCULAR ESPINAL (AME)",
     "difficulty": "alta",
     "case": "Lactante de 4 meses es traído por \"debilidad generalizada\". La madre nota que el niño ya no mueve las piernas y tiene un llanto muy débil. A la exploración física: Hipotonía severa (\"bebé laxo\"), ausencia de reflejos osteotendinosos, respiración paradójica (abdominal) y fasciculaciones en la lengua. El lactante nunca logró el sostén cefálico.",
@@ -26744,8 +26779,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ORTOPEDIA",
+    "specialty": "cir",
+    "tema": "Apendicitis Aguda",
     "subtema": "ESCOLIOSIS IDIOPÁTICA DEL ADOLESCENTE",
     "difficulty": "baja",
     "case": "Adolescente femenina de 13 años acude a revisión escolar. Al realizar la maniobra de inclinación hacia adelante (Test de Adams), se observa una prominencia costal (giba) en el hemitórax derecho y una asimetría de las crestas ilíacas. La paciente no refiere dolor.",
@@ -26765,8 +26800,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / MEDICINA PREVENTIVA",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "VACUNAS (ESQUEMA NACIONAL DE VACUNACIÓN)",
     "difficulty": "media",
     "case": "Madre acude a la unidad de medicina familiar con su hijo de 6 meses para aplicación de vacunas correspondientes. El niño cuenta con esquema completo para su edad (BCG, Hepatitis B, Hexavalente, Rotavirus y Neumococo).",
@@ -26787,7 +26822,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / MEDICINA PREVENTIVA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VACUNA BCG Y HEPATITIS B",
     "difficulty": "baja",
     "case": "Recién nacido de término con peso de 1,800 gramos al nacer, hijo de madre sana. El interno de pregrado se dispone a aplicar las vacunas del nacimiento.",
@@ -26807,8 +26842,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / MEDICINA PREVENTIVA",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "VACUNA SRP (TRIPLE VIRAL)",
     "difficulty": "media",
     "case": "Un niño de 12 meses es llevado a su consulta de niño sano. La madre pregunta por la vacuna que le toca hoy, ya que escuchó que protege contra el sarampión.",
@@ -26828,8 +26863,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / URGENCIAS",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "INGESTA DE CUERPOS EXTRAÑOS (PILAS DE BOTÓN Y MONEDAS)",
     "difficulty": "alta",
     "case": "Lactante de 2 años es traído a urgencias porque hace 1 hora la madre lo encontró jugando con el control remoto y ahora falta una pila de botón. El niño se encuentra asintomático, con adecuada tolerancia a la vía oral y sin dificultad respiratoria. Se toma radiografía de tórax y abdomen, localizando la pila en el tercio medio del esófago (signo del \"doble contorno\" o \"halo\").",
@@ -26849,8 +26884,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / URGENCIAS",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INGESTIÓN DE CÁUSTICOS",
     "difficulty": "media",
     "case": "Preescolar de 3 años ingiere accidentalmente una cantidad no determinada de desengrasante industrial (álcali fuerte). Presenta sialorrea intensa, dolor retroesternal y lesiones blanquecinas en la mucosa oral.",
@@ -26891,8 +26926,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / URGENCIAS",
+    "specialty": "cir",
+    "tema": "Patología Biliar",
     "subtema": "ASPIRACIÓN DE CUERPO EXTRAÑO",
     "difficulty": "alta",
     "case": "Lactante de 18 meses presenta cuadro súbito de tos cianosante mientras comía cacahuates. Tras el evento inicial, persiste con sibilancias localizadas en el hemitórax derecho y disminución del murmullo vesicular en esa zona. La radiografía de tórax en espiración muestra atrapamiento aéreo en el pulmón derecho.",
@@ -26912,8 +26947,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / URGENCIAS - SOCIAL",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "MALTRATO INFANTIL (SÍNDROME DEL NIÑO SACUDIDO)",
     "difficulty": "alta",
     "case": "Lactante de 5 meses es traído a urgencias por \"somnolencia y vómitos\" tras una supuesta caída de la cama (50 cm). A la exploración: Irritabilidad, fontanela abombada, ausencia de hematomas externos evidentes. Se realiza fondo de ojo que revela hemorragias retinianas extensas. La TC de cráneo muestra un hematoma subdural crónico y agudo (de diferentes edades).",
@@ -26934,7 +26969,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / GENÉTICA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME DE DOWN (TRISOMÍA 21)",
     "difficulty": "baja",
     "case": "Recién nacido con hipotonía generalizada, perfil facial plano, fisuras palpebrales hacia arriba, pliegue palmar único transverso (simiesco) y apéndice preauricular. A la auscultación cardiaca se percibe un soplo sistólico grado III/VI.",
@@ -26954,8 +26989,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / GENÉTICA",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "SÍNDROME DE TURNER (45, X)",
     "difficulty": "media",
     "case": "Niña de 10 años evaluada por talla baja (debajo del percentil 3). A la exploración: Cuello alado (pterygium colli), tórax en escudo con teletelia (pezones separados), cúbito valgo y ausencia de desarrollo puberal (Tanner I). No presenta retraso mental.",
@@ -26975,8 +27010,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / DERMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DERMATITIS ATÓPICA (ECCEMA)",
     "difficulty": "media",
     "case": "Lactante de 6 meses presenta prurito intenso y lesiones eritematosas, descamativas y exudativas en ambas mejillas, respetando el triángulo nasogeniano. La madre refiere que el niño está muy irritable y se frota la cara contra las sábanas. Antecedente de asma en el padre.",
@@ -26996,8 +27031,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / DERMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DERMATITIS DEL PAÑAL E INFECCIÓN POR CANDIDA",
     "difficulty": "baja",
     "case": "Lactante de 10 meses con cuadro de diarrea de 3 días. Presenta un exantema eritematoso brillante en el área del pañal que afecta los pliegues inguinales y muestra lesiones papulares eritematosas periféricas (\"lesiones satélite\").",
@@ -27017,8 +27052,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / DERMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "IMPÉTIGO (CONTAGIOSO Y AMPOLLOSO)",
     "difficulty": "media",
     "case": "Escolar de 5 años presenta lesiones peribucales que iniciaron como pequeñas vesículas y evolucionaron a costras de color amarillento, similares a la \"miel\" (melicéricas). No tiene fiebre ni ataque al estado general.",
@@ -27038,8 +27073,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "MÉTODOS ANTICONCEPTIVOS",
     "difficulty": "media",
     "case": "Paciente de 24 años, nuligesta, acude para asesoría anticonceptiva. Tiene una pareja estable desde hace 2 años y no desea embarazarse en los próximos 5 años. Refiere periodos menstruales abundantes (menorragia) y dismenorrea. No tiene antecedentes de importancia ni contraindicaciones para el uso de hormonas.",
@@ -27059,8 +27094,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "ANTICONCEPCIÓN DE EMERGENCIA",
     "difficulty": "baja",
     "case": "Paciente de 19 años acude a urgencias por rotura de condón hace 12 horas. Se encuentra en el día 14 de su ciclo menstrual. Desea evitar un embarazo.",
@@ -27080,7 +27115,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "gyo",
     "tema": "GINECOLOGÍA",
     "subtema": "SÍNDROME DE OVARIO POLIQUÍSTICO (SOP)",
     "difficulty": "alta",
@@ -27101,8 +27136,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / GASTROENTEROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESTENOSIS HIPERTRÓFICA DEL PÍLORO (EHP)",
     "difficulty": "media",
     "case": "Lactante masculino de 3 semanas de vida, primogénito, es traído a urgencias por presentar vómitos de contenido gástrico (no biliar), postprandiales inmediatos, \"en proyectil\". La madre refiere que después de vomitar el niño tiene mucha hambre (\"vómito hambriento\"). A la exploración física se palpa una masa firme, móvil, de 2 cm en el cuadrante superior derecho (oliva pilórica).",
@@ -27177,7 +27212,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)",
     "difficulty": "media",
     "case": "Recién nacido pretérmino (30 semanas de gestación) que al tercer día de vida presenta taquicardia, pulsos saltones (amplios) y un soplo continuo en la región infraclavicular izquierda, con timbre rudo, que se describe como \"maquinaria de Gibson\". En la radiografía se observa cardiomegalia y aumento de la trama vascular pulmonar.",
@@ -27197,8 +27232,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "COMUNICACIÓN INTERAURICULAR (CIA)",
     "difficulty": "media",
     "case": "Preescolar de 4 años, asintomático, acude a revisión escolar. A la exploración física se ausculta un desdoblamiento amplio y fijo del segundo ruido cardiaco (S2), así como un soplo sistólico de eyección en el segundo espacio intercostal izquierdo (foco pulmonar). El ECG muestra bloqueo de rama derecha.",
@@ -27218,8 +27253,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "COMUNICACIÓN INTERVENTRICULAR (CIV)",
     "difficulty": "alta",
     "case": "Lactante de 2 meses presenta pobre ganancia ponderal, sudoración excesiva con las tomas (disnea de esfuerzo) y taquipnea. A la exploración se ausculta un soplo holosistólico, rudo, de alta intensidad en el tercer y cuarto espacio intercostal izquierdo (borde esternal izquierdo).",
@@ -27273,7 +27308,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / CARDIOLOGÍA",
+    "tema": "Diabetes Gestacional",
     "subtema": "TRANSPOSICIÓN DE GRANDES VASOS (TGV)",
     "difficulty": "alta",
     "case": "Recién nacido de término, macrosómico (4.2 kg), hijo de madre con diabetes gestacional. A las pocas horas de nacido presenta cianosis severa y generalizada que NO responde a la administración de oxígeno al 100% (prueba de hiperoxia fallida). A la auscultación el S2 es único y reforzado, sin soplos evidentes. La radiografía de tórax muestra un mediastino superior muy estrecho.",
@@ -27293,8 +27328,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEFROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INFECCIÓN DE VÍAS URINARIAS (IVU)",
     "difficulty": "media",
     "case": "Lactante femenino de 6 meses de edad, sin antecedentes perinatales de importancia. Es traída a urgencias por presentar fiebre de 39°C de 48 horas de evolución, irritabilidad, rechazo al alimento y vómitos aislados. A la exploración física no se encuentra un foco infeccioso evidente (vías respiratorias sanas, oídos limpios). Se toma un examen general de orina (EGO) por cateterismo vesical que reporta: Leucocitos >50 por campo, Nitritos positivos y Esterasa leucocitaria positiva.",
@@ -27360,7 +27395,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (TTRN)",
     "difficulty": "media",
     "case": "Recién nacido de 38 semanas de gestación, obtenido por cesárea electiva sin trabajo de parto previo. A las 2 horas de vida inicia con taquipnea de 80 rpm, aleteo nasal y tiraje intercostal leve (Silverman-Andersen 3). A la auscultación, los campos pulmonares están bien ventilados. La radiografía de tórax muestra atrapamiento aéreo leve, rectificación de arcos costales, líquido en las cisuras (cisuritis) y congestión hiliar radiante.",
@@ -27381,7 +27416,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Neonatología",
     "subtema": "SÍNDROME DE DIFICULTAD RESPIRATORIA (SDR / ENFERMEDAD DE",
     "difficulty": "alta",
     "case": "Recién nacido prematuro de 28 semanas de gestación, hijo de madre diabética. Minutos después del nacimiento presenta dificultad respiratoria severa (Silverman- Andersen 7), quejido espiratorio audible y cianosis central que no mejora con oxígeno a flujo libre. La radiografía de tórax evidencia un patrón reticulonodular fino difuso (\"vidrio despulido\"), broncograma aéreo prominente y volumen pulmonar disminuido.",
@@ -27414,7 +27449,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME DE ASPIRACIÓN DE MECONIO (SAM)",
     "difficulty": "media",
     "case": "Recién nacido postérmino (42 semanas de gestación). Presenta sufrimiento fetal agudo durante el trabajo de parto. Al nacer, se observa líquido amniótico espeso con grumos verdes. El neonato nace hipotónico, con esfuerzo respiratorio ausente y frecuencia cardíaca de 80 lpm. Tras la reanimación inicial, desarrolla dificultad respiratoria severa. La radiografía muestra infiltrados algodonosos en parches (panal de abejas), abatimiento de los hemidiafragmas y aumento de los espacios intercostales.",
@@ -27435,7 +27470,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Neonatología",
     "subtema": "ICTERICIA PATOLÓGICA (INCOMPATIBILIDAD ABO Y Rh)",
     "difficulty": "alta",
     "case": "Recién nacido de término. Madre grupo O, Rh positivo. Neonato grupo A, Rh positivo. A las 12 horas de vida, la enfermera nota ictericia clínica que se extiende hasta el abdomen (Kramer III). Los laboratorios del cordón umbilical muestran Bilirrubina Total de 8 mg/dL a expensas de la indirecta, reticulocitosis y hemoglobina de 13 g/dL.",
@@ -27456,7 +27491,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ICTERICIA POR LACTANCIA VS. LECHE MATERNA",
     "difficulty": "media",
     "case": "Recién nacido de 10 días de vida, alimentado con seno materno exclusivo. Acude a consulta de control y se le nota ictérico hasta los muslos. La madre refiere que el bebé come excelente, tiene muy buena ganancia de peso, orina claro y evacúa color amarillo mostaza. Sus laboratorios reportan Bilirrubina indirecta en 14 mg/dL y resto de pruebas hepáticas normales.",
@@ -27477,7 +27512,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Neonatología",
     "subtema": "ENCEFALOPATÍA BILIRRUBÍNICA (KERNICTERUS)",
     "difficulty": "media",
     "case": "Recién nacido de 4 días de vida, producto de parto fortuito sin control prenatal. Es llevado a urgencias por ictericia generalizada intensa que afecta palmas y plantas (Kramer V). A la exploración neurológica presenta letargo, rechazo absoluto al alimento, llanto agudo y episodios de hipertonía con arqueamiento del cuerpo (opistótonos).",
@@ -27498,7 +27533,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA - INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SEPSIS NEONATAL TEMPRANA",
     "difficulty": "media",
     "case": "Recién nacido de 35 semanas de gestación. La madre acudió con ruptura prematura de membranas de 24 horas de evolución y fiebre intraparto de 38.5°C; no recibió profilaxis antibiótica. A las 12 horas de vida, el neonato presenta letargo, rechazo al alimento, quejido espiratorio, taquipnea (70 rpm) y mala perfusión periférica (llenado capilar de 4 segundos).",
@@ -27519,7 +27554,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA - INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍFILIS CONGÉNITA",
     "difficulty": "alta",
     "case": "Recién nacido de término, producto de madre adolescente sin control prenatal (se desconoce VDRL materno). Al nacimiento, el pediatra nota un recién nacido con bajo peso, que presenta abundante secreción nasal serosanguinolenta (\"snuffles\"). A la exploración cutánea destaca un exantema maculopapular que afecta palmas y plantas, con algunas lesiones vesículo-ampollares que se descaman. El abdomen es globoso por hepatoesplenomegalia masiva.",
@@ -27540,7 +27575,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA - INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CITOMEGALOVIRUS (CMV) CONGÉNITO VS TOXOPLASMOSIS",
     "difficulty": "alta",
     "case": "Recién nacido de 38 semanas, pequeño para la edad gestacional (peso < percentil 10). Presenta ictericia generalizada desde el primer día, petequias difusas (\"blueberry muffin baby\") y hepatoesplenomegalia. A la exploración neurológica se detecta microcefalia. Se realiza una Tomografía Computarizada (TC) de cráneo evidenciando múltiples calcificaciones en la región periventricular.",
@@ -27561,7 +27596,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "REANIMACIÓN NEONATAL (NRP)",
     "difficulty": "media",
     "case": "Recién nacido de 39 semanas de gestación, obtenido por parto vaginal. El líquido amniótico presenta meconio espeso. Al nacer, el neonato se observa flácido (hipotónico) y no respira. Se lleva a la cuna radiante, se coloca en posición de olfateo, se secreta la vía aérea, se seca y se estimula (pasos iniciales). A pesar de esto, a los 30 segundos de vida el paciente presenta jadeo (gasping) y una frecuencia cardíaca de 80 lpm.",
@@ -27582,7 +27617,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Fibrilación Auricular",
     "subtema": "ESCALA DE APGAR",
     "difficulty": "baja",
     "case": "Recién nacido de término se encuentra en su primer minuto de vida. A la evaluación presenta: Frecuencia cardíaca de 110 lpm, llanto débil e irregular, cierta flexión de las extremidades, hace muecas al aspirar sus secreciones y el cuerpo está rosado pero las manos y los pies están azulados (acrocianosis).",
@@ -27603,7 +27638,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESCALA DE SILVERMAN -ANDERSEN",
     "difficulty": "alta",
     "case": "Recién nacido prematuro tardío de 36 semanas ingresa a la UCIN. A la exploración física presenta: Movimientos toracoabdominales sincronizados (rítmicos), tiraje intercostal apenas visible, retracción xifoidea leve, aleteo nasal leve y quejido espiratorio que solo es audible con el estetoscopio.",
@@ -27623,8 +27658,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FISIOLOGÍA DEL CICLO MENSTRUAL",
     "difficulty": "media",
     "case": "Paciente femenina de 28 años, con ciclos regulares de 28 días. Acude a consulta porque desea embarazarse y quiere saber cuáles son sus \"días fértiles\". Se le explica el funcionamiento del ciclo ovárico y endometrial.",
@@ -27644,8 +27679,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "PLANIFICACIÓN FAMILIAR (LARC)",
     "difficulty": "media",
     "case": "Paciente de 24 años, nuligesta, estudiante de posgrado. Acude para asesoría anticonceptiva. Refiere tener una pareja estable y no desear embarazo en al menos 5 años. En su interrogatorio destaca antecedente de dismenorrea severa incapacitante y sangrado menstrual abundante (menorragia). No tiene otras patologías.",
@@ -27665,8 +27700,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUMOLOGÍA",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "ASMA (DIAGNÓSTICO INICIAL)",
     "difficulty": "media",
     "case": "Escolar masculino de 7 años es traído a consulta externa por presentar cuadros recurrentes de tos seca (predominio nocturno) y \"silbido en el pecho\". La madre refiere que estos episodios empeoran cuando el niño hace ejercicio en la clase de educación física o cuando hace frío. En la exploración física actual se encuentra asintomático y con campos pulmonares limpios. Tiene antecedente personal de dermatitis atópica.",
@@ -27686,8 +27721,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEUMOLOGÍA",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "ASMA (MANEJO DE CONTROL crónico)",
     "difficulty": "alta",
     "case": "Niña de 9 años con diagnóstico confirmado de asma. Acude a cita de seguimiento. La madre refiere que en el último mes la niña ha presentado síntomas diurnos (tos y sibilancias) 3 días a la semana, y se ha despertado tosiendo 2 noches en el último mes. Ha requerido usar su inhalador de salbutamol de rescate unas 3 veces por semana.",
@@ -27707,8 +27742,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / URGENCIAS",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "CRISIS ASMÁTICA SEVERA",
     "difficulty": "alta",
     "case": "Preescolar de 5 años con antecedente de asma, es traído a urgencias por dificultad respiratoria de inicio súbito tras cuadro catarral. A su llegada: FC 145 lpm, FR 45 rpm, SatO2 88% al aire ambiente. Presenta tiraje intercostal severo, aleteo nasal y habla con palabras entrecortadas. A la auscultación hay un \"tórax silente\" (ausencia casi total de sibilancias y murmullo vesicular).",
@@ -27728,8 +27763,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / URGENCIAS  - INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "LARINGOTRAQUEÍTIS AGUDA (CRUP)",
     "difficulty": "media",
     "case": "Lactante masculino de 18 meses de edad es llevado a urgencias a las 2:00 am. La madre refiere que hace dos días inició con escurrimiento nasal y fiebre de 38°C, pero esta noche despertó súbitamente con una tos metálica \"similar al ladrido de una foca\" y afonía. A la exploración física, el niño se encuentra tranquilo en brazos de su madre, presenta estridor inspiratorio ÚNICAMENTE cuando llora, sin tiraje intercostal en reposo.",
@@ -27749,8 +27784,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / URGENCIAS",
+    "specialty": "mi",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "CRUP (MANEJO DE LA VÍA AÉREA)",
     "difficulty": "alta",
     "case": "Lactante de 2 años con cuadro clínico compatible con Crup. A su ingreso a la sala de urgencias, se observa agitado, presenta estridor inspiratorio franco EN REPOSO, cianosis peribucal leve, tiraje supraclavicular e intercostal evidente.",
@@ -27770,8 +27805,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA - PARASITOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "GIARDIASIS INTESTINAL",
     "difficulty": "media",
     "case": "Preescolar masculino de 3 años, asiste a guardería desde hace 6 meses. Acude a consulta por cuadro de 3 semanas de evolución caracterizado por dolor abdominal intermitente, distensión y evacuaciones diarreicas explosivas, fétidas y de aspecto grasoso (esteatorrea), sin presencia de sangre. La madre ha notado que el niño no ha ganado peso en los últimos dos meses.",
@@ -27791,8 +27826,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA - PARASITOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "AMEBIASIS INTESTINAL (DISENTERÍA)",
     "difficulty": "media",
     "case": "Escolar femenina de 8 años, residente de una comunidad rural sin acceso a agua potable. Inicia hace 5 días con dolor abdominal tipo cólico severo, pujo, tenesmo rectal y múltiples evacuaciones de escaso volumen con abundante moco y sangre (disentería). A la exploración física se detecta febrícula de 37.8°C y dolor a la palpación en el marco colónico. Se solicita un examen coproparasitoscópico (CPS) en fresco.",
@@ -27812,8 +27847,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA - PARASITOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "OXIURIASIS (ENTEROBIUS VERMICULARIS)",
     "difficulty": "baja",
     "case": "Escolar masculino de 6 años es traído por su madre debido a que el niño presenta irritabilidad, alteraciones del sueño y refiere \"mucha comezón en la colita\" (prurito anal) de predominio nocturno. La madre menciona que otros dos hermanos menores han empezado con los mismos síntomas. Al revisar el área perianal, se observan lesiones por rascado (escoriaciones).",
@@ -27833,8 +27868,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA - PARASITOLOGÍA",
+    "specialty": "mi",
+    "tema": "EPOC / Asma",
     "subtema": "ASCARIASIS (SÍNDROME DE LÖFFLER)",
     "difficulty": "alta",
     "case": "Preescolar de 4 años, proveniente de zona tropical. Acude por presentar tos seca irritativa, sibilancias aisladas y febrícula de 4 días de evolución. En la biometría hemática destaca una Eosinofilia del 15%. La madre refiere que el niño tiene la costumbre de comer tierra (geofagia). La radiografía de tórax muestra infiltrados pulmon ares migratorios y transitorios.",
@@ -27854,8 +27889,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA - DERMATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESCABIOSIS (SARNA)",
     "difficulty": "media",
     "case": "Lactante de 8 meses de edad presenta un exantema muy pruriginoso que le impide dormir. A la exploración física se observan múltiples pápulas eritematosas, excoriaciones y algunas vesículas distribuidas en palmas, plantas, piel cabelluda, axilas y pliegues inguinales. Los padres refieren tener lesiones similares en el tronco y espacios interdigitales que les causan mucha comezón en las noches.",
@@ -27876,7 +27911,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA - CIRUGÍA",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "ENTEROCOLITIS NECROTIZANTE (CLASIFICACIÓN DE BELL)",
     "difficulty": "alta",
     "case": "Recién nacido prematuro de 29 semanas de gestación. Al 10° día de vida, encontrándose con alimentación enteral a base de fórmula, presenta residuo gástrico biliar, distensión abdominal importante y una evacuación con sangre rutilante. A la exploración física, el abdomen está tenso, doloroso a la palpación y con eritema en la pared abdominal. Se solicita una radiografía simple de abdomen que revela neumatosis intestinal y gas en la vena porta, sin evidencia de neumoperitoneo.",
@@ -27897,7 +27932,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA - INFECTOLOGÍA",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "SEPSIS NEONATAL TARDÍA (ASOCIADA A CATÉTER)",
     "difficulty": "media",
     "case": "Recién nacido pretérmino de 30 semanas de gestación, actualmente con 15 días de vida en la UCIN. Cuenta con un catéter venoso central de inserción periférica (PICC) para nutrición parenteral. Súbitamente presenta inestabilidad térmica (hipotermia de 35.8°C), episodios de apnea, bradicardia y llenado capilar de 4 segundos.",
@@ -27918,7 +27953,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "REANIMACIÓN NEONATAL AVANZADA (NRP)",
     "difficulty": "alta",
     "case": "Recién nacido de 40 semanas. Nace flácido, en apnea y con líquido amniótico teñido de meconio. Se realizan los pasos iniciales de reanimación sin respuesta. Se inicia Ventilación con Presión Positiva (VPP) durante 30 segundos, asegurando que el tórax se expanda adecuadamente. Al reevaluar, el paciente persiste en apnea y su frecuencia cardíaca es de 45 latidos por minuto.",
@@ -27939,7 +27974,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "tema": "Vigilancia y Control Prenatal",
     "subtema": "DIFICULTAD RESPIRATORIA EN EL PREMATURO TARDÍO",
     "difficulty": "media",
     "case": "Recién nacido de 35 semanas de gestación (prematuro tardío), obtenido por cesárea electiva. A las 2 horas de vida inicia con taquipnea (75 rpm) y quejido. La radiografía de tórax muestra hiperinsuflación leve, líquido en la cisura menor y una trama vascular perihiliar prominente. No se observa broncograma aéreo.",
@@ -27959,8 +27994,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / NEONATOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DISPLASIA BRONCOPULMONAR (DBP)",
     "difficulty": "alta",
     "case": "Lactante de 2 meses de edad, ex-prematuro extremo nacido a las 27 semanas de gestación. Durante su estancia en la UCIN requirió intubación endotraqueal y ventilación mecánica prolongada, además de altas concentraciones de oxígeno. Actualmente, a sus 35 semanas de edad postmenstrual, continúa siendo dependiente de oxígeno suplementario (FiO2 al 30%) para mantener saturaciones >90%.",
@@ -27980,8 +28015,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENFERMEDAD DE KAWASAKI INCOMPLETO",
     "difficulty": "alta",
     "case": "Lactante masculino de 6 meses de edad presenta fiebre de 39°C de 7 días de evolución que no cede con paracetamol. A la exploración física solo se detecta inyección conjuntival bilateral (sin exudado) y labios fisurados sangrantes. No hay adenopatías palpables, ni alteraciones en extremidades, ni exantema en tronco. Los laboratorios muestran Leucocitosis de 18,000, Plaquetas en 600,000 (trombocitosis), PCR 80 mg/L y el Examen General de Orina reporta 15 leucocitos por campo con urocultivo negativo (piuria estéril).",
@@ -28001,8 +28036,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "TOS FERINA (SÍNDROME COQUELUCHOIDE)",
     "difficulty": "media",
     "case": "Lactante femenino de 3 meses de edad, esquema de vacunación retrasado. Acude a urgencias por un cuadro de 2 semanas de evolución que inició como un resfriado común, pero que hace 5 días evolucionó a accesos de tos violenta, paroxística y cianosante, terminando en un estridor inspiratorio (canto de gallo) y vómito post- tusígeno. La radiografía de tórax muestra el signo del \"corazón peludo\".",
@@ -28043,8 +28078,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SARAMPIÓN COMPLICADO",
     "difficulty": "media",
     "case": "Niño de 4 años, no vacunado por ideología paterna. Inició hace 6 días con fiebre alta, coriza, conjuntivitis y tos. Hace 2 días comenzó con un exantema maculopapular confluente que inició en la línea de implantación del cabello y se extendió al tronco y extremidades. El día de hoy el exantema comienza a descamar finamente, pero el niño presenta taquipnea de 50 rpm, saturación de 88% y estertores crepitantes bilaterales a la auscultación.",
@@ -28064,8 +28099,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / INFECTOLOGÍA",
+    "specialty": "cir",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "ESCARLATINA VS KAWASAKI",
     "difficulty": "baja",
     "case": "Escolar de 7 años presenta odinofagia intensa y fiebre de 39°C de inicio súbito. Al día siguiente aparece un exantema micropapular eritematoso que da la sensación de tocar \"papel de lija\", siendo más intenso en los pliegues axilares e inguinales (Líneas de Pastia). A la exploración oral se observa faringe hiperémica, amígdalas con exudado pultáceo, palidez peribucal (Triángulo de Filatov) y lengua aframbuesada.",
@@ -28085,8 +28120,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / ENDOCRINOLOGÍA - GENÉTICA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HIPERPLASIA SUPRARRENAL CONGÉNITA (HSC)",
     "difficulty": "alta",
     "case": "Recién nacida de 15 días de vida es traída a urgencias por letargo, vómitos persistentes y deshidratación severa. A la exploración física destaca la presencia de genitales ambiguos (fusión labioescrotal y clitoromegalia). Los laboratorios de urgencia reportan: Sodio de 118 mEq/L (Hiponatremia), Potasio de 6.8 mEq/L (Hiperpotasemia) y acidosis metabólica.",
@@ -28106,8 +28141,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / REUMATOLOGÍA - NEFROLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VASCULITIS POR IgA (PÚRPURA DE HENOCH -SCHÖNLEIN)",
     "difficulty": "media",
     "case": "Escolar masculino de 6 años de edad, con antecedente de infección de vías respiratorias superiores hace 10 días. Inicia su padecimiento con dolor abdominal tipo cólico difuso y artralgias en rodillas y tobillos. El día de hoy la madre nota la aparición de múltiples lesiones maculopapulares eritematosas que no palidecen a la presión, ubicadas simétricamente en glúteos y extremidades inferiores.",
@@ -28128,7 +28163,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / CIRUGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "MEGACOLON AGANGLIÓNICO (ENFERMEDAD DE HIRSCHSPRUNG)",
     "difficulty": "alta",
     "case": "Recién nacido de término (39 semanas). A las 48 horas de vida no ha presentado evacuación de meconio. Inicia con distensión abdominal importante, rechazo a la vía oral y vómitos de contenido biliar. Al realizar la exploración física y estimular el esfínter anal con el termómetro, se produce una salida explosiva de gas y heces fétidas, descomprimiendo el abdomen temporalmente.",
@@ -28148,8 +28183,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "PEDIATRÍA / CIRUGÍA - GASTROENTEROLOGÍA",
+    "specialty": "mi",
+    "tema": "Cardiopatía Isquémica",
     "subtema": "DIVERTÍCULO DE MECKEL",
     "difficulty": "alta",
     "case": "Preescolar masculino de 2 años de edad, previamente sano. Es llevado a urgencias por presentar evacuaciones con abundante sangre fresca y coágulos (hematoquecia) sin moco. El paciente no presenta dolor abdominal, fiebre ni irritabilidad, pero se observa pálido y taquicárdico. Sus laboratorios reportan Hemoglobina en 8.5 g/dL.",
@@ -28170,7 +28205,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "PEDIATRÍA / CIRUGÍA NEONATAL",
+    "tema": "Neonatología",
     "subtema": "ATRESIA ESOFÁGICA",
     "difficulty": "media",
     "case": "Recién nacido de 38 semanas, con antecedente de polihidramnios en el ultrasonido prenatal. Al nacimiento presenta sialorrea abundante (salivación excesiva). Durante el primer intento de alimentación al seno materno, el neonato presenta tos, atragantamiento y cianosis súbita. Se intenta pasar una sonda orogástrica, la cual se detiene a los 10 cm de la arcada dentaria.",
@@ -28191,8 +28226,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VAGINOSIS BACTERIANA",
     "difficulty": "media",
     "case": "Paciente femenina de 28 años, sexualmente activa. Acude a consulta refiriendo la presencia de un flujo vaginal abundante, de color grisáceo y consistencia homogénea. Lo que más le molesta es un fuerte y desagradable \"olor a pescado\" que empeora después de tener relaciones sexuales. A la exploración no se observa inflamación, eritema vulvar ni prurito. Se realiza medición del pH vaginal, reportando 5.0.",
@@ -28212,8 +28247,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA",
+    "specialty": "mi",
+    "tema": "Diabetes Mellitus",
     "subtema": "CANDIDIAS IS VULVOVAGINAL",
     "difficulty": "baja",
     "case": "Paciente de 32 años con antecedente de diabetes mellitus tipo 2 en descontrol. Acude por presentar prurito vulvar intenso, ardor y disuria. A la exploración física con espejo vaginal, se observa la mucosa vaginal y vulvar intensamente eritematosa y edematosa, con presencia de un flujo blanco, espeso y grumoso, adherente a las paredes, con aspecto de \"requesón\" o \"leche cortada\". El pH vaginal es de 4.0.",
@@ -28233,8 +28268,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRICOMONIASIS VAGINAL",
     "difficulty": "media",
     "case": "Mujer de 24 años con múltiples parejas sexuales, acude por presentar leucorrea muy abundante, de color amarillo-verdoso y aspecto espumoso. Refiere disuria y dispareunia. A la exploración con colposcopio, se observa un cérvix con múltiples hemorragias puntiformes (aspecto de \"cérvix en fresa\"). El pH de la secreción es de 6.0.",
@@ -28254,8 +28289,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
-    "tema": "GINECOLOGÍA",
+    "specialty": "mi",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENFERMEDAD PÉLVICA INFLAMATORIA (EPI)",
     "difficulty": "alta",
     "case": "Paciente de 27 años, nuligesta, usuaria de DIU de cobre desde hace 3 meses. Acude a urgencias por dolor abdominal bajo progresivo de 5 días de evolución, que se ha vuelto intenso, acompañado de fiebre de 38.5°C y flujo vaginal purulento. A la exploración bimanual, presenta dolor intenso a la movilización del cérvix, así como dolor a la palpación de los anexos de forma bilateral.",
@@ -28276,7 +28311,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Neumonías",
     "subtema": "CHOQUE SÉPTICO",
     "difficulty": "alta",
     "case": "Masculino de 65 años, diabético, ingresa a urgencias por fiebre de 39°C, alteración del estado de alerta y taquipnea. A la exploración: TA 70/40 mmHg, FC 125 lpm, FR 28 rpm. Se diagnostica neumonía adquirida en la comunidad severa. Se inicia reanimación hídrica con 30 ml/kg de cristaloides, sin embargo, la presión arterial media (PAM) se mantiene en 50 mmHg. El lactato sérico es de 4.5 mmol/L.",
@@ -28297,7 +28332,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TUBERCULOSIS (EFECTOS ADVERSOS DEL TRATAMIENTO)",
     "difficulty": "media",
     "case": "Femenina de 40 años, en su tercera semana de tratamiento primario acortado (fase intensiva) para Tuberculosis Pulmonar confirmada por baciloscopia. Acude a consulta refiriendo disminución de la agudeza visual y alteración en la percepción de los colores (discromatopsia), específicamente dificultad para distinguir entre el rojo y el verde.",
@@ -28318,7 +28353,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VIRUS DE LA INMUNODEFICIENCIA HUMANA (INFECCIONES",
     "difficulty": "alta",
     "case": "Masculino de 35 años, con diagnóstico reciente de infección por VIH, sin tratamiento antirretroviral. Presenta un conteo de linfocitos CD4+ de 150 células/mm³. Acude por un cuadro subagudo de 3 semanas de evolución caracterizado por disnea progresiva, tos seca y fiebre no cuantificada. La radiografía de tórax muestra infiltrados intersticiales bilaterales difusos en \"vidrio despulido\". La gasometría reporta hipoxemia severa.",
@@ -28339,7 +28374,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENFERMEDAD DE LYME",
     "difficulty": "media",
     "case": "Masculino de 28 años, excursionista, que hace 2 semanas realizó un viaje de campamento a una zona boscosa. Acude a consulta por malestar general, astenia, febrícula y la aparición de una lesión cutánea en el muslo derecho: una mácula eritematosa que se ha expandido, con un aclaramiento central, adoptando una forma de \"tiro al blanco\" (eritema migrans).",
@@ -28360,7 +28395,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "BRUCELOSIS",
     "difficulty": "baja",
     "case": "Masculino de 45 años, ganadero, refiere fiebre de predominio vespertino acompañado de diaforesis profusa, mialgias, artralgias y astenia de 3 semanas de evolución. Refiere consumo frecuente de queso fresco no pasteurizado. A la exploración física destaca hepatoesplenomegalia leve.",
@@ -28381,7 +28416,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUMOLOGÍA",
+    "tema": "EPOC / Asma",
     "subtema": "ENFERMEDAD PULMONAR OBSTRUCTIVA CRÓNICA (EPOC)",
     "difficulty": "alta",
     "case": "Masculino de 68 años, tabaquismo positivo (índice tabáquico de 45 paquetes/año). Acude por disnea progresiva que actualmente le impide caminar más de 100 metros en terreno llano. La espirometría post-broncodilatador muestra FEV1/FVC de 65% y un FEV1 del 45% del predicho. El paciente refiere haber tenido 2 exacerbaciones en el último año, una de las cuales requirió hospitalización.",
@@ -28402,7 +28437,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUMOLOGÍA",
+    "tema": "EPOC / Asma",
     "subtema": "ASMA (CRITERIOS DIAGNÓSTICOS)",
     "difficulty": "media",
     "case": "Femenina de 22 años con antecedente de rinitis alérgica. Refiere episodios de sibilancias, opresión torácica y tos seca de predominio nocturno desde hace 6 meses. Se sospecha asma bronquial y se le solicita una espirometría.",
@@ -28423,7 +28458,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUMOLOGÍA",
+    "tema": "Insuficiencia Cardiaca",
     "subtema": "DERRAME PLEURAL (CRITERIOS DE LIGHT)",
     "difficulty": "media",
     "case": "Paciente de 55 años con antecedente de insuficiencia cardiaca crónica y abandono de tratamiento. Ingresa por disnea severa. La radiografía de tórax muestra borramiento del ángulo costofrénico derecho. Se realiza toracocentesis diagnóstica extrayendo un líquido amarillento claro.",
@@ -28443,8 +28478,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "NEUMOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "NEUMONÍAS OCUPACIONALES (SILICOSIS)",
     "difficulty": "baja",
     "case": "Masculino de 50 años que ha trabajado como minero perforador de roca durante 20 años. Acude por tos crónica y disnea de esfuerzo progresiva. La radiografía de tórax revela múltiples nódulos pequeños (<10 mm) de predominio en los lóbulos superiores y adenopatías hiliares con calcificación \"en cáscara de huevo\".",
@@ -28465,7 +28500,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "ENDOCRINOLOGÍA",
+    "tema": "Diabetes Mellitus",
     "subtema": "DIABETES MELLITUS (CETOACIDOSIS DIABÉTICA)",
     "difficulty": "alta",
     "case": "Masculino de 19 años con DM1 acude a urgencias por dolor abdominal, vómitos y alteración del estado de alerta. A la exploración presenta respiración de Kussmaul y aliento afrutado. Laboratorios: Glucosa 450 mg/dL, pH 7.1, HCO3 12 mEq/L, cetonas en orina +++, Potasio sérico 4.5 mEq/L.",
@@ -28486,7 +28521,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "ENDOCRINOLOGÍA",
+    "tema": "Diabetes Mellitus",
     "subtema": "DIABETES MELLITUS (PIE DIABÉTICO)",
     "difficulty": "baja",
     "case": "Masculino de 60 años con DM2 mal controlada. Acude a consulta por presentar una úlcera en la planta del pie derecho (cabeza del primer metatarsiano). A la exploración, la úlcera es profunda, llega hasta el tendón y la cápsula articular, pero no hay evidencia de absceso ni osteomielitis clínica o radiológica.",
@@ -28507,7 +28542,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "ENDOCRINOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENFERMEDAD DE GRAVES (HIPERTIROIDISMO)",
     "difficulty": "media",
     "case": "Femenina de 32 años acude por pérdida de peso de 8 kg en un mes a pesar de tener polifagia, acompañada de palpitaciones, intolerancia al calor, temblor fino distal e insomnio. A la exploración física destaca exoftalmos bilateral y bocio difuso, indoloro a la palpación.",
@@ -28528,7 +28563,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "ENDOCRINOLOGÍA",
+    "tema": "Hipotiroidismo",
     "subtema": "HIPOTIROIDISMO PRIMARIO (TIROIDITIS DE HASHIMOTO)",
     "difficulty": "baja",
     "case": "Femenina de 45 años, con antecedente familiar de enfermedades autoinmunes. Acude por astenia, caída de cabello, piel seca, estreñimiento y aumento de peso. El perfil tiroideo muestra TSH de 12 mUI/L y T4 libre disminuida.",
@@ -28548,8 +28583,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "ENDOCRINOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "CÁNCER DE TIROIDES",
     "difficulty": "alta",
     "case": "Femenina de 35 años a quien se le detectó un nódulo tiroideo solitario de 2 cm, pétreo, fijo a planos profundos. Se le realiza una biopsia por aspiración con aguja fina (BAAF) que reporta células con núcleos ópticamente claros (en \"ojos de la huérfana Annie\") y la presencia de cuerpos de Psamoma.",
@@ -28633,7 +28668,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "HEMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ANEMIAS HEMOLÍTICAS (ESFEROCITOSIS HEREDITARIA)",
     "difficulty": "alta",
     "case": "Paciente masculino de 14 años, con antecedente de colecistectomía por litiasis biliar de colesterol a los 12 años. Acude por astenia y coloración amarillenta de la piel. A la exploración física se palpa esplenomegalia masiva. Laboratorios: Hb 10 g/dL, VCM 82 fL, Concentración Media de Hemoglobina Corpuscular (CHCM) de 37 g/dL (Elevada), Reticulocitos 8%.",
@@ -28654,7 +28689,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "HEMATOLOGÍA",
+    "tema": "EPOC / Asma",
     "subtema": "LEUCEMIAS (LEUCEMIA MIELOIDE AGUDA)",
     "difficulty": "media",
     "case": "Masculino de 55 años que acude a urgencias por fiebre de 39°C, sangrado gingival espontáneo, equimosis en extremidades y fatiga extrema de 2 semanas de evolución. La biometría hemática reporta: Leucocitos 45,000/mm³, Hemoglobina 7.5 g/dL, Plaquetas 20,000/mm³. Se realiza un frotis de sangre periférica donde se observan células inmaduras (blastos) con inclusiones citoplasmáticas en forma de bastón (Bastones de Auer).",
@@ -28695,8 +28730,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "HEMATOLOGÍA",
+    "specialty": "gyo",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "ONCOHEMATOLOGÍA (LINFOMA DE HODGKIN)",
     "difficulty": "media",
     "case": "Masculino de 25 años acude por notar un \"bulto\" en el cuello. A la exploración se palpa una adenopatía cervical derecha de 3 cm, de consistencia ahulada, móvil e indolora. El paciente refiere que el ganglio le duele intensamente cuando ingiere bebidas alcohólicas (Signo de Hoster). Además, reporta fiebre vespertina, sudoración nocturna profusa y pérdida del 15% de su peso en los últimos 3 meses (Síntomas B).",
@@ -28717,7 +28752,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "HEMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ANORMALIDADES DE LA HEMOSTASIA (ENFERMEDAD DE VON",
     "difficulty": "baja",
     "case": "Femenina de 21 años acude a consulta por presentar menstruaciones sumamente abundantes (menorragia) que le han causado anemia y episodios frecuentes de epistaxis desde la infancia. Refiere que su madre presenta el mismo cuadro. Laboratorios: Plaquetas 200,000/mm³ (Normales), TP normal, TTPa discretamente prolongado y un Tiempo de Sangrado (Ivy) francamente prolongado (12 minutos).",
@@ -28738,7 +28773,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Diabetes Mellitus",
     "subtema": "HIPERTENSIÓN ARTERIAL (TRATAMIENTO)",
     "difficulty": "media",
     "case": "Femenina de 60 años con diagnóstico reciente de HAS. Cuenta con antecedentes de Diabetes Mellitus tipo 2 y Microalbuminuria. Su TA actual es de 150/94 mmHg.",
@@ -28759,7 +28794,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Insuficiencia Cardiaca",
     "subtema": "INSUFICIENCIA CARDÍACA CRÓNICA (TRATAMIENTO)",
     "difficulty": "alta",
     "case": "Masculino de 65 años con insuficiencia cardíaca con fracción de eyección reducida (FEVI 30%). Se encuentra en tratamiento con Enalapril, Metoprolol y Espironolactona a dosis óptimas. A pesar de ello, persiste en clase funcional NYHA II, con disnea de medianos esfuerzos.",
@@ -28780,7 +28815,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INSUFICIENCIA CARDÍACA AGUDA (EDEMA AGUDO DE PULMÓN)",
     "difficulty": "media",
     "case": "Femenina de 72 años es traída a urgencias por disnea súbita, ortopnea y expectoración asalmonada. A la exploración: TA 180/100 mmHg, estertores crepitantes bilaterales hasta campos medios y uso de músculos accesorios.",
@@ -28801,7 +28836,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "VALVULOPATÍAS (ESTENOSIS AÓRTICA)",
     "difficulty": "media",
     "case": "Masculino de 75 años presenta cuadro de síncope al realizar esfuerzos físicos. Refiere además dolor torácico ocasional. A la exploración se ausculta un soplo sistólico eyectivo, áspero, en el segundo espacio intercostal derecho, que se irradia a las carótidas. El pulso es pequeño y lento (parvus et tardus).",
@@ -28822,7 +28857,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Fibrilación Auricular",
     "subtema": "VALVULOPATÍAS (ESTENOSIS MITRAL)",
     "difficulty": "alta",
     "case": "Femenina de 45 años con antecedente de fiebre reumática en la infancia. Acude por disnea de grandes esfuerzos y palpitaciones. A la auscultación se percibe un chasquido de apertura seguido de un retumbo diastólico en el ápex. El electrocardiograma muestra ausencia de ondas P y ritmo irregular.",
@@ -28864,7 +28899,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "MIOCARDIOPATÍA HIPERTRÓFICA",
     "difficulty": "alta",
     "case": "Masculino de 18 años, deportista de alto rendimiento, sufre colapso súbito durante un partido de fútbol. El paciente fallece a pesar de las maniobras de reanimación. Se menciona que un hermano del paciente falleció también a temprana edad de forma súbita.",
@@ -28885,7 +28920,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROMES CORONARIOS AGUDOS (IAMCEST)",
     "difficulty": "alta",
     "case": "Masculino de 58 años, fumador y sedentario. Acude a urgencias por dolor retroesternal opresivo de gran intensidad, irradiado a mandíbula y brazo izquierdo, de 45 minutos de evolución, acompañado de diaforesis. El electrocardiograma muestra elevación del segmento ST de 3 mm en las derivaciones V1, V2, V3 y V4.",
@@ -28905,8 +28940,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "SÍNDROMES CORONARIOS AGUDOS (IAMSEST)",
     "difficulty": "media",
     "case": "Femenina de 65 años con antecedente de hipertensión. Presenta dolor torácico opresivo de 30 minutos que cedió parcialmente con el reposo. El EKG muestra inversión de la onda T en cara lateral (V5, V6, I, aVL) sin elevación del ST. Las troponinas cardíacas se reportan elevadas por encima del percentil 99.",
@@ -28927,7 +28962,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Neumonías",
     "subtema": "COMPLICACIONES DEL INFARTO (CLASIFICACIÓN DE KILLIP)",
     "difficulty": "baja",
     "case": "Masculino de 70 años cursando su segundo día post-infarto agudo al miocardio extenso. Inicia con disnea súbita. A la exploración física se ausculta un tercer ruido (S3) y estertores crepitantes en la mitad inferior de ambos campos pulmonares. TA 110/70 mmH g.",
@@ -28948,7 +28983,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Fibrilación Auricular",
     "subtema": "ACLS (RITMOS DESFIBRILABLES)",
     "difficulty": "media",
     "case": "Durante la guardia, un paciente con antecedente de IAM presenta pérdida súbita del estado de alerta y ausencia de pulso. Al conectar el monitor, se observa un trazo caótico, irregular, sin ondas P ni complejos QRS organizados.",
@@ -28969,7 +29004,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ACLS (RITMOS NO DESFIBRILABLES)",
     "difficulty": "media",
     "case": "Se activa código de paro en el área de hospitalización. El paciente no responde, no respira y no tiene pulso. El monitor muestra una línea isoeléctrica plana en dos derivaciones.",
@@ -28990,7 +29025,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Fibrilación Auricular",
     "subtema": "TRASTORNOS DEL RITMO (FIBRILACIÓN AURICULAR)",
     "difficulty": "alta",
     "case": "Femenina de 72 años con hipertensión y DM2. Acude por palpitaciones y fatiga. El EKG muestra un ritmo irregularmente irregular con ausencia de ondas P y frecuencia ventricular de 120 lpm.",
@@ -29032,7 +29067,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FARMACOLOGÍA CARDIOVASCULAR (DIGOXINA)",
     "difficulty": "baja",
     "case": "Paciente de 75 años en tratamiento por insuficiencia cardíaca y FA crónica. Acude por náuseas, vómitos, visión amarillenta (xantopsia) y malestar general. El EKG muestra una depresión del segmento ST con forma de \"cubeta\" o \"bigote de Dalí\".",
@@ -29158,7 +29193,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CEFALEA MIGRANA",
     "difficulty": "baja",
     "case": "Femenina de 24 años acude por episodios de dolor de cabeza unilateral, de tipo pulsátil, de gran intensidad, acompañados de náuseas, vómitos, fotofobia y fonofobia. Refiere que antes del dolor ve \"luces brillantes\" (escotomas centellantes).",
@@ -29179,7 +29214,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CEFALEA EN RACIMOS (CLUSTER)",
     "difficulty": "media",
     "case": "Masculino de 35 años, fumador. Acude por dolor lancinante, estrictamente unilateral, localizado en la región periorbitaria derecha, que dura 60 minutos. El dolor se acompaña de lagrimeo, rinorrea y ptosis del mismo lado. Refiere que los ataques ocurren varias veces al día, frecuentemente por la noche.",
@@ -29221,7 +29256,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "REUMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ARTRITIS REUMATOIDE (AR)",
     "difficulty": "media",
     "case": "Femenina de 45 años con cuadro de 8 meses de evolución caracterizado por dolor y rigidez matutina de más de 1 hora en manos, muñecas y rodillas. A la exploración física se observa inflamación simétrica de articulaciones metacarpofalángicas e interfalángicas proximales, con respeto de las interfalángicas distales.",
@@ -29263,7 +29298,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "REUMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESPONDILITIS ANQUILOSANTE",
     "difficulty": "media",
     "case": "Masculino de 28 años refiere dolor lumbar crónico que empeora con el reposo y mejora con la actividad física. Presenta rigidez importante por las mañanas. En la radiografía de columna se observa osificación de los ligamentos intervertebrales (\"columna en caña de bambú\").",
@@ -29283,8 +29318,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "REUMATOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "VASCULITIS (GRANULOMATOSIS CON POLIANGEÍTIS / WEGENER)",
     "difficulty": "alta",
     "case": "Masculino de 45 años acude por sinusitis crónica, epistaxis y presencia de nódulos pulmonares cavitados en la radiografía. Los laboratorios muestran hematuria y cilindros eritrocitarios.",
@@ -29326,7 +29361,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEFROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME NEFRÍTICO",
     "difficulty": "media",
     "case": "Masculino de 8 años con antecedente de faringoamigdalitis hace 2 semanas. Acude por presentar orina color \"refresco de cola\" (hematuria macroscópica), edema leve y TA de 130/85 mmHg (elevada para su edad).",
@@ -29368,7 +29403,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEFROLOGÍA",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "ENFERMEDAD RENAL CRÓNICA (ERC)",
     "difficulty": "alta",
     "case": "Paciente con ERC estadio 4 (Tasa de Filtración Glomerular de 20 ml/min/1.73m²). Acude a consulta de seguimiento. Presenta anemia (Hb 9.2 g/dL) con cinetica de hierro normal.",
@@ -29389,7 +29424,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEFROLOGÍA",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "TRASTORNOS ELECTROLÍTICOS (HIPERKALEMIA)",
     "difficulty": "alta",
     "case": "Masculino de 60 años con ERC presenta potasio sérico de 7.2 mEq/L. El electrocardiograma muestra ondas T picudas, simétricas y estrechas, seguidas de un ensanchamiento del complejo QRS.",
@@ -29410,7 +29445,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "DERMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER DE PIEL (MELANOMA)",
     "difficulty": "alta",
     "case": "Femenina de 40 años acude por cambio en un lunar en la espalda. A la exploración se observa una lesión pigmentada asimétrica, de bordes irregulares, con varios tonos de marrón y negro, y un diámetro de 8 mm.",
@@ -29431,7 +29466,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "DERMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PSORIASIS",
     "difficulty": "media",
     "case": "Masculino de 35 años presenta placas eritematosas con escama blanquecina (\"micácea\") de distribución simétrica en codos, rodillas y región sacra. Al raspar la lesión, se observan pequeñas gotas de sangre (Signo de Auspitz).",
@@ -29452,7 +29487,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "DERMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FARMACODERMIAS (SX STEVENS -JOHNSON / NET)",
     "difficulty": "alta",
     "case": "Paciente de 25 años que inició tratamiento con carbamazepina hace 10 días. Acude por fiebre, malestar general y aparición súbita de ampollas y erosiones que afectan piel y mucosas (oral y conjuntival). Presenta desprendimiento de la epidermis en el 25% de la superficie corporal. El signo de Nikolsky es positivo.",
@@ -29472,8 +29507,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "GASTROENTEROLOGÍA",
+    "specialty": "ped",
+    "tema": "Neonatología",
     "subtema": "CIRROSIS HEPÁTICA (COMPLICACIONES)",
     "difficulty": "alta",
     "case": "Masculino de 55 años con antecedente de alcoholismo crónico. Acude por aumento del perímetro abdominal y edema de miembros inferiores. A la exploración: ictericia, telangiectasias en tórax y ascitis evidente. Los laboratorios muestran Albúmina 2.5 g/dL, Bilirrubina 3.5 mg/dL, e INR 1.8. Tiene encefalopatía grado I.",
@@ -29578,7 +29613,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "GERIATRÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DELIRIUM (SÍNDROME CONFUSIONAL AGUDO)",
     "difficulty": "baja",
     "case": "Femenina de 85 años, hospitalizada por fractura de cadera. Durante la noche presenta agitación psicomotriz, desorientación, alucinaciones visuales y lenguaje incoherente. El cuadro inició de forma súbita y fluctúa durante el día.",
@@ -29620,7 +29655,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "GERIATRÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ÚLCERAS POR PRESIÓN",
     "difficulty": "baja",
     "case": "Paciente de 88 años, encamado por secuelas de EVC. Presenta en la región sacra una lesión con pérdida del espesor total de la piel, donde se observa tejido adiposo, pero no se visualiza hueso, tendón ni músculo.",
@@ -29641,7 +29676,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "PSIQUIATRÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRASTORNO DEPRESIVO MAYOR",
     "difficulty": "baja",
     "case": "Femenina de 34 años refiere tristeza profunda, anhedonia (pérdida de interés), insomnio de tercera fase, pérdida de apetito y sentimientos de culpa de 3 semanas de duración. Ha comenzado a tener ideas de muerte.",
@@ -29662,7 +29697,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "PSIQUIATRÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRASTORNO BIPOLAR",
     "difficulty": "media",
     "case": "Masculino de 28 años es traído por presentar desde hace una semana verborrea, fuga de ideas, disminución de la necesidad de dormir (duerme 2 horas y se siente con energía), gastos excesivos e hipersexualidad. Presenta un episodio depresivo previo documentado.",
@@ -29683,7 +29718,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "PSIQUIATRÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESQUIZOFRENIA",
     "difficulty": "media",
     "case": "Masculino de 22 años refiere que \"el FBI le ha implantado un chip\" y que escucha voces que comentan sus actos. Su familia nota que está retraído, no se baña y tiene un afecto plano. Los síntomas han persistido por 8 meses.",
@@ -29746,7 +29781,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "PSIQUIATRÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRASTORNO DE PÁNICO",
     "difficulty": "media",
     "case": "Paciente de 25 años acude a urgencias por sensación de muerte inminente, palpitaciones, falta de aire y dolor precordial de inicio súbito que duró 10 minutos. Los estudios cardíacos y laboratorios son normales. Es el tercer episodio similar en un mes.",
@@ -29766,7 +29801,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "urg",
     "tema": "TOXICOLOGÍA",
     "subtema": "INTOXICACIÓN POR PARACETAMOL",
     "difficulty": "media",
@@ -29830,7 +29865,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "TOXICOLOGÍA",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "INTOXICACIÓN POR OPIOIDES",
     "difficulty": "baja",
     "case": "Masculino de 28 años con antecedente de toxicomanías es encontrado inconsciente con frecuencia respiratoria de 6 rpm y pupilas puntiformes (miosis extrema).",
@@ -29851,7 +29886,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "TOXICOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INTOXICACIÓN POR BENZODIACEPINAS",
     "difficulty": "baja",
     "case": "Femenina de 45 años ingiere 30 tabletas de Clonazepam. Presenta somnolencia profunda, disartria y ataxia, pero con signos vitales estables y pupilas normales.",
@@ -29871,7 +29906,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "urg",
     "tema": "TOXICOLOGÍA",
     "subtema": "MORDEDURA DE SERPIENTE (VIPERIDAE)",
     "difficulty": "media",
@@ -29914,7 +29949,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INMUNOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INMUNODEFICIENCIA COMÚN VARIABLE",
     "difficulty": "alta",
     "case": "Masculino de 20 años con antecedente de múltiples episodios de neumonía y sinusitis desde la adolescencia. Se detectan niveles muy bajos de IgG, IgA e IgM, con linfocitos B presentes pero incapaces de diferenciarse en células plasmáticas.",
@@ -29977,7 +30012,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VIH / SIDA (DIAGNÓSTICO Y GENERALIDADES)",
     "difficulty": "media",
     "case": "Masculino de 28 años, con antecedente de múltiples parejas sexuales sin protección. Acude por cuadro de 3 semanas de fiebre, pérdida de peso, sudoración nocturna y adenopatías generalizadas. Se realiza prueba de tamizaje (ELISA de 4ta generación) resultando positiva.",
@@ -29998,7 +30033,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VIH (INFECCIONES OPORTUNISTAS - TOXOPLASMOSIS)",
     "difficulty": "alta",
     "case": "Paciente con VIH (CD4 50 cél/mm³) que presenta cefalea intensa, fiebre y crisis convulsivas de inicio reciente. En la Resonancia Magnética de cráneo se observan múltiples lesiones que realzan en forma de \"anillo\" en los ganglios basales, rodeadas de edema.",
@@ -30040,7 +30075,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "VIH / SIDA",
     "subtema": "HEPATITIS C",
     "difficulty": "media",
     "case": "Femenina de 50 años con antecedente de transfusión sanguínea en 1988. Acude por fatiga crónica. Se detectan anticuerpos Anti-VHC positivos. La carga viral (RNA-VHC) es reportada como detectable.",
@@ -30061,7 +30096,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TUBERCULOSIS MENÍNGEA",
     "difficulty": "alta",
     "case": "Masculino de 40 años con fiebre, cefalea crónica de 2 semanas y parálisis del VI par craneal. Se realiza punción lumbar que reporta: Aspecto xantocrómico, Pleocitosis linfocitaria (300 células), Proteínas muy elevadas (200 mg/dl) y Glucosa baja (20 mg/dl).",
@@ -30124,7 +30159,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INFECTO -PERLAS (MALARIA / PALUDISMO)",
     "difficulty": "media",
     "case": "Viajero que regresa de Chiapas con fiebre cada 48 horas (fiebre terciana), escalofríos intensos y anemia. A la exploración presenta esplenomegalia.",
@@ -30166,7 +30201,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "COMPLICACIONES MECÁNICAS DEL IAM",
     "difficulty": "alta",
     "case": "Masculino de 65 años, al cuarto día post-infarto agudo al miocardio de cara anterior, presenta de forma súbita disnea grave, hipotensión y un soplo holosistólico nuevo, rudo, en borde esternal izquierdo inferior, acompañado de frémito.",
@@ -30208,7 +30243,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FARMACOLOGÍA (ANTIARRÍTMICOS)",
     "difficulty": "alta",
     "case": "Un fármaco antiarrítmico es conocido por su capacidad de bloquear canales de potasio (Clase III), pero también tiene efectos de Clase I, II y IV. Puede causar fibrosis pulmonar, hipotiroidismo o hipertiroidismo.",
@@ -30229,7 +30264,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CRITERIOS DE VOLTAJE (HIPERTROFIA)",
     "difficulty": "media",
     "case": "Se analiza el EKG de un paciente hipertenso de larga evolución. Se observa que la suma de la onda S en V1 y la onda R en V5 es de 42 mm. El QRS dura 100 ms.",
@@ -30250,7 +30285,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Tuberculosis",
     "subtema": "PERICARDITIS CONSTRICTIVA",
     "difficulty": "alta",
     "case": "Masculino de 45 años con antecedente de tuberculosis pulmonar. Presenta edema de miembros inferiores, ascitis y distensión venosa yugular que aumenta durante la inspiración (Signo de Kussmaul). Al auscultar el corazón se escucha un sonido agudo tras el segundo ruido (golpe pericárdico).",
@@ -30313,7 +30348,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUMOLOGÍA",
+    "tema": "EPOC / Asma",
     "subtema": "EPOC (TRATAMIENTO Y OXIGENOTERAPIA)",
     "difficulty": "alta",
     "case": "Paciente con EPOC grave y cor pulmonale. En gasometría de aire ambiente presenta una PaO2 de 52 mmHg y SaO2 de 87%.",
@@ -30354,7 +30389,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "urg",
     "tema": "NEUMOLOGÍA",
     "subtema": "TROMBOEMBOLIA PULMONAR (MANEJO)",
     "difficulty": "alta",
@@ -30376,7 +30411,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUMOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DERRAME PLEURAL (CRITERIOS DE LIGHT)",
     "difficulty": "media",
     "case": "Masculino de 55 años con fiebre y tos productiva. La radiografía muestra derrame pleural derecho. Se realiza toracocentesis: Proteínas pleurales/séricas 0.7, LDH pleural/sérica 0.8.",
@@ -30397,7 +30432,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUMOLOGÍA",
+    "tema": "EPOC / Asma",
     "subtema": "CÁNCER DE PULMÓN",
     "difficulty": "media",
     "case": "Masculino de 62 años, fumador intenso, presenta hemoptisis y pérdida de peso. La radiografía muestra una masa central hiliar. La biopsia reporta células pequeñas con escaso citoplasma (\"en grano de avena\").",
@@ -30417,8 +30452,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "NEUMOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "SÍNDROME DE APNEA OBSTRUCTIVA DEL SUEÑO (SAOS)",
     "difficulty": "baja",
     "case": "Masculino de 45 años con obesidad grado II e hipertensión. Su pareja refiere ronquidos intensos y pausas respiratorias mientras duerme. El paciente presenta somnolencia diurna excesiva.",
@@ -30439,7 +30474,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUMOLOGÍA",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "NEUMOTÓRAX",
     "difficulty": "media",
     "case": "Masculino de 20 años, alto y delgado, presenta dolor torácico súbito y disnea tras realizar un esfuerzo leve. A la exploración: ausencia de ruidos respiratorios y timpanismo a la percusión en hemitórax izquierdo. TA estable.",
@@ -30481,7 +30516,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "ENDOCRINOLOGÍA",
+    "tema": "Hipertiroidismo",
     "subtema": "TORMENTA TIROIDEA",
     "difficulty": "alta",
     "case": "Paciente con antecedente de hipertiroidismo mal controlado es llevada a urgencias por fiebre de 40°C, taquicardia extrema (160 lpm), agitación psicomotriz e ictericia. Se sospecha tormenta tiroidea.",
@@ -30501,8 +30536,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "ENDOCRINOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "NÓDULO TIROIDEO Y CÁNCER",
     "difficulty": "media",
     "case": "Masculino de 50 años presenta un nódulo palpable en la región anterior del cuello, firme y fijo. El ultrasonido reporta nódulo sólido de 1.5 cm con microcalcificaciones y márgenes irregulares. TSH normal.",
@@ -30522,8 +30557,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "ENDOCRINOLOGÍA",
+    "specialty": "cir",
+    "tema": "Urología",
     "subtema": "HIPERPARATIROIDISMO PRIMARIO",
     "difficulty": "media",
     "case": "Paciente con historia de litiasis renal recurrente, dolor óseo y estreñimiento crónico. Laboratorios: Calcio sérico 11.5 mg/dl (elevado), Fósforo 2.0 mg/dl (bajo).",
@@ -30543,8 +30578,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "HEMATOLOGÍA",
+    "specialty": "gyo",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "LINFOMA DE HODGKIN",
     "difficulty": "media",
     "case": "Masculino de 24 años acude por presencia de una masa cervical indolora, de consistencia elástica, de 2 meses de evolución. Refiere fiebre vespertina, sudoración nocturna profusa y pérdida de peso del 10% en los últimos meses (Síntomas B). En la biopsia de ganglio se reportan células de Reed-Sternberg.",
@@ -30586,7 +30621,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "HEMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "MIELOMA MÚLTIPLE (MM)",
     "difficulty": "media",
     "case": "Masculino de 68 años acude por dolor óseo lumbar persistente. Laboratorios: Hemoglobina 9 g/dL, Calcio 11.5 mg/dL, Creatinina 2.1 mg/dL. La radiografía de cráneo muestra lesiones osteolíticas \"en sacabocado\".",
@@ -30649,7 +30684,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "HEMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HEMOFILIAS",
     "difficulty": "baja",
     "case": "Niño de 2 años con hemartrosis (sangrado en articulaciones) recurrente tras traumatismos mínimos. El TTPa está prolongado, mientras que el TP y el tiempo de sangrado son normales.",
@@ -30691,7 +30726,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "HEMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "POLICITEMIA VERA",
     "difficulty": "media",
     "case": "Masculino de 55 años con plétora facial, cefalea, prurito acuagénico (tras bañarse con agua caliente) y esplenomegalia. Laboratorios: Hemoglobina 19 g/dL, Hematocrito 58%, Eritropoyetina (EPO) sérica baja.",
@@ -30711,7 +30746,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "urg",
     "tema": "INFECTOLOGÍA / URGENCIAS",
     "subtema": "SEPSIS (MANEJO INICIAL)",
     "difficulty": "media",
@@ -30753,8 +30788,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "specialty": "cir",
+    "tema": "ATLS / Trauma",
     "subtema": "OSTEOMIELITIS",
     "difficulty": "media",
     "case": "Masculino de 12 años presenta dolor intenso en la metáfisis del fémur distal, fiebre y limitación funcional tras un traumatismo leve.",
@@ -30775,7 +30810,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENDOCARDITIS INFECCIOSA (CRITERIOS DE DUKE)",
     "difficulty": "alta",
     "case": "Paciente con antecedente de uso de drogas parenterales presenta fiebre, soplo de insuficiencia tricuspídea y lesiones hemorrágicas en lechos ungueales.",
@@ -30817,7 +30852,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ABSCESO HEPÁTICO",
     "difficulty": "media",
     "case": "Masculino de 35 años con dolor en hipocondrio derecho, fiebre y hepatomegalia. El USG muestra una lesión única en el lóbulo derecho con aspecto de \"pasta de anchoas\".",
@@ -30838,7 +30873,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA / GASTROENTEROLOGÍA",
+    "tema": "Neumonías",
     "subtema": "DIARREA POR CLOSTRIDIOIDES DIFFICILE",
     "difficulty": "media",
     "case": "Paciente hospitalizado hace 10 días por neumonía, tratado con clindamicina. Inicia con diarrea acuosa abundante (10 deposiciones al día), dolor abdominal y leucocitosis. La colonoscopia muestra placas blanquecinas/amarillentas en la mucosa (pseudomembranas ).",
@@ -30859,7 +30894,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ARTRITIS SÉPTICA",
     "difficulty": "media",
     "case": "Paciente masculino de 25 años acude por dolor, eritema e incapacidad para la movilización de la rodilla derecha de forma aguda. Niega traumatismos, pero refiere uretritis hace 1 semana.",
@@ -30880,7 +30915,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEFROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "GLOMERULOPATÍA MEMBRANOSA",
     "difficulty": "alta",
     "case": "Paciente con antecedente de insuficiencia renal crónica que presenta náuseas, vómitos y respiración profunda y rápida (Kussmaul). Gasometría: pH 7.25, HCO3 12 mEq/L, PaCO2 28 mmHg. Na 140, Cl 105. Masculino de 50 años con síndrome nefrótico franco. La biopsia renal muestra engrosamiento de la membrana basal con presencia de \"spikes\" (espículas) en la tinción de plata y depósitos granulares de IgG y C3.",
@@ -30905,7 +30940,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEFROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "NEFROPATÍA POR IgA (ENFERMEDAD DE BERGER)",
     "difficulty": "media",
     "case": "Masculino de 20 años presenta hematuria macroscópica coincidiendo con un cuadro de infección de vías respiratorias superiores (\"hematuria sinquística\"). La función renal y el complemento están normales.",
@@ -30946,8 +30981,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "NEFROLOGÍA",
+    "specialty": "cir",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "ESTENOSIS DE LA ARTERIA RENAL",
     "difficulty": "media",
     "case": "Femenina de 25 años con hipertensión arterial de reciente diagnóstico (160/100 mmHg). A la exploración se ausculta un soplo abdominal periumbilical.",
@@ -30968,7 +31003,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEFROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENFERMEDAD RENAL POLIQUÍSTICA AUTOSÓMICA DOMINANTE (ERPAD)",
     "difficulty": "baja",
     "case": "Masculino de 40 años con historia familiar de enfermedad renal. Acude por dolor en flanco y hematuria. Al palpar el abdomen se encuentran masas bilaterales. Presenta TA 150/90.",
@@ -30989,7 +31024,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEFROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "RTA (ACIDOSIS TUBULAR RENAL)",
     "difficulty": "alta",
     "case": "Niño de 2 años con retraso en el crecimiento, raquitismo y poliuria. Los laboratorios muestran acidosis metabólica de anión gap normal, hipopotasemia y glucosuria con niveles de glucosa en sangre normales (Síndrome de Fanconi).",
@@ -31010,7 +31045,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEFROLOGÍA",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "MIELOMA Y RIÑÓN",
     "difficulty": "media",
     "case": "Paciente con Mieloma Múltiple presenta falla renal aguda. La orina es negativa para proteínas en la tira reactiva, pero positiva en la prueba de ácido sulfosalicílico.",
@@ -31051,8 +31086,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "NEUROLOGÍA",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "EVC HEMORRÁGICO (HEMORRAGIA INTRACEREBRAL)",
     "difficulty": "media",
     "case": "Masculino de 68 años con antecedente de hipertensión arterial mal controlada. Presenta de forma súbita cefalea intensa, vómito en proyectil, hemiplejía derecha y desviación de la mirada hacia la izquierda. TA 210/110 mmHg.",
@@ -31072,8 +31107,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "NEUROLOGÍA",
+    "specialty": "cir",
+    "tema": "ATLS / Trauma",
     "subtema": "HEMORRAGIA SUBARACNOIDEA (HSA)",
     "difficulty": "alta",
     "case": "Femenina de 45 años presenta súbitamente \"la peor cefalea de su vida\", seguida de pérdida transitoria del estado de alerta y rigidez de nuca. No hay antecedentes de trauma.",
@@ -31199,7 +31234,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUROLOGÍA",
+    "tema": "Diabetes Mellitus",
     "subtema": "DEMENCIA VASCULAR",
     "difficulty": "media",
     "case": "Masculino de 75 años con HAS, DM2 y tabaquismo. Presenta deterioro cognitivo de inicio súbito, con progresión \"en escalones\" (periodos de estabilidad seguidos de declive brusco tras pequeños eventos isquémicos).",
@@ -31241,7 +31276,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "REUMATOLOGÍA",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "ESPONDILITIS ANQUILOSANTE",
     "difficulty": "media",
     "case": "Masculino de 25 años con dolor lumbar crónico que mejora con el ejercicio y empeora con el reposo, de predominio nocturno. Presenta limitación de la flexión lumbar (Prueba de Schober positiva).",
@@ -31282,8 +31317,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "REUMATOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "GRANULOMATOSIS CON POLIANGEITIS (WEGENER)",
     "difficulty": "alta",
     "case": "Masculino de 40 años con sinusitis crónica, rinitis costrosa, nariz en \"silla de montar\", nódulos pulmonares cavitados y falla renal aguda (síndrome reno-pulmonar).",
@@ -31303,8 +31338,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "REUMATOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "POLIARTERITIS NODOSA (PAN)",
     "difficulty": "alta",
     "case": "Masculino de 45 años con dolor abdominal postprandial (angina mesentérica), livedo reticularis, mononeuritis múltiple e hipertensión de reciente inicio. Se asocia a infección por Hepatitis B.",
@@ -31387,8 +31422,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "GASTROENTEROLOGÍA",
+    "specialty": "cir",
+    "tema": "Patología Biliar",
     "subtema": "COLECISTITIS AGUDA",
     "difficulty": "baja",
     "case": "Femenina de 42 años, con obesidad, acude por dolor intenso en hipocondrio derecho irradiado a escápula ipsilateral, náuseas y vómito tras ingesta de comida colecistoquinética. A la exploración: signo de Murphy positivo.",
@@ -31409,7 +31444,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "GASTROENTEROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "COLEDOCOLITIASIS Y COLANGITIS",
     "difficulty": "alta",
     "case": "Paciente con antecedente de litiasis biliar presenta ictericia, dolor en hipocondrio derecho y fiebre (Tríada de Charcot). Se añade hipotensión y alteración del estado de alerta.",
@@ -31513,7 +31548,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "GASTROENTEROLOGÍA",
     "subtema": "VARICES ESOFÁGICAS",
     "difficulty": "alta",
@@ -31556,7 +31591,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "MEDICINA CRÍTICA / URGENCIAS",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESTADO DE CHOQUE (FISIOPATOLOGÍA)",
     "difficulty": "alta",
     "case": "Paciente de 60 años traído a urgencias por hipotensión (70/40 mmHg). A la exploración: piel fría, cianosis periférica, ingurgitación yugular y estertores crepitantes bilaterales. El catéter de Swan-Ganz reporta: Presión de Cuña Pulmonar (PCP) elevada, Gasto Cardíaco (GC) bajo y Resistencias Vasculares Sistémicas (RVS) elevadas.",
@@ -31577,7 +31612,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "MEDICINA CRÍTICA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME DE DISTRÉS RESPIRATORIO AGUDO (SDRA)",
     "difficulty": "alta",
     "case": "Paciente con sepsis abdominal desarrolla disnea súbita. La radiografía de tórax muestra infiltrados alveolares bilaterales. La relación PaO2/FiO2 (Kirby) es de 150 mmHg con un PEEP de 5 cmH2O. No hay evidencia de falla cardíaca izquierda.",
@@ -31597,7 +31632,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "urg",
     "tema": "URGENCIAS CARDIOVASCULARES",
     "subtema": "DISECCIÓN AÓRTICA",
     "difficulty": "alta",
@@ -31618,8 +31653,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "URGENCIAS CARDIOVASCULARES",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "TAPONAMIENTO CARDÍACO",
     "difficulty": "media",
     "case": "Paciente con antecedente de cáncer de mama presenta disnea, hipotensión, ruidos cardíacos distantes y distensión venosa yugular.",
@@ -31639,8 +31674,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "MEDICINA CRÍTICA",
+    "specialty": "cir",
+    "tema": "ATLS / Trauma",
     "subtema": "MUERTE ENCEFÁLICA",
     "difficulty": "media",
     "case": "Paciente con traumatismo craneoencefálico severo. Se sospecha muerte encefálica. Presenta coma arreactivo, ausencia de reflejos de tallo (fotomotor, corneal, oculocefálicos) y ausencia de esfuerzo respiratorio tras desconexión del ventilador.",
@@ -31661,7 +31696,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "TOXICOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PICADURA DE ALACRÁN (Centruroides)",
     "difficulty": "baja",
     "case": "Niño de 5 años con sialorrea, nistagmus, sensación de cuerpo extraño en la garganta y fasciculaciones linguales tras picadura de alacrán.",
@@ -31703,7 +31738,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "ENDOCRINOLOGÍA / URGENCIAS",
+    "tema": "Diabetes Mellitus",
     "subtema": "CETOACIDOSIS DIABÉTICA (CAD)",
     "difficulty": "media",
     "case": "Femenina de 19 años con DM1 acude por náuseas, vómito y dolor abdominal. Presenta respiración de Kussmaul y aliento cetónico. Laboratorios: Glucosa 350 mg/dl, pH 7.20, HCO3 12 mEq/L, cetonas en orina (+++).",
@@ -31744,7 +31779,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "urg",
     "tema": "TOXICOLOGÍA",
     "subtema": "INTOXICACIÓN POR PARACETAMOL",
     "difficulty": "media",
@@ -31808,7 +31843,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "URGENCIAS CARDIOVASCULARES",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "INFARTO AL MIOCARDIO CON ELEVACIÓN DEL ST (IAMCEST)",
     "difficulty": "media",
     "case": "Masculino de 55 años con dolor precordial de 2 horas de evolución. El EKG muestra elevación del ST de 3 mm en V1-V4. El hospital no cuenta con sala de hemodinamia. El centro más cercano con capacidad de angioplastia está a 3 horas de distancia.",
@@ -31828,7 +31863,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "urg",
     "tema": "URGENCIAS CARDIOVASCULARES",
     "subtema": "TORMENTA ARRÍTMICA / TV SIN PULSO",
     "difficulty": "baja",
@@ -31850,7 +31885,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA / NEUROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENCEFALITIS HERPÉTICA",
     "difficulty": "alta",
     "case": "Masculino de 35 años presenta fiebre, cefalea y alteración del comportamiento (alucinaciones olfatorias y agresividad). La RM muestra edema y hemorragia en los lóbulos temporales.",
@@ -31871,7 +31906,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VIH / SIDA (INFECCIONES OPORTUNISTAS)",
     "difficulty": "media",
     "case": "Paciente con diagnóstico de VIH y conteo de CD4 de 80 células/μL. Presenta disnea progresiva de 2 semanas, tos seca y fiebre. La radiografía muestra infiltrados intersticiales bilaterales \"en vidrio despulido\".",
@@ -31892,7 +31927,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "NEUROCISTICERCOSIS",
     "difficulty": "media",
     "case": "Femenina de 30 años originaria de zona rural. Acude por presentar su primera crisis convulsiva tónico-clónica. La TC de cráneo muestra múltiples lesiones quísticas pequeñas con un punto hiperdense en su interior (escólex).",
@@ -31913,7 +31948,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA / URGENCIAS",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "MALARIA (PALUDISMO)",
     "difficulty": "alta",
     "case": "Viajero que regresa de África subsahariana presenta fiebre intermitente cada 48 horas, escalofríos intensos, anemia y esplenomegalia. El frotis de sangre periférica (gota gruesa) muestra eritrocitos parasitados con formas en anillo.",
@@ -31955,7 +31990,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "BRUCELOSIS (FIEBRE DE MALTA)",
     "difficulty": "media",
     "case": "Ganadero con fiebre ondulante, sudoración profusa con olor a \"paja mojada\", artralgias y orquiepididimitis.",
@@ -31976,7 +32011,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TUBERCULOSIS MENÍNGEA",
     "difficulty": "alta",
     "case": "Paciente con diagnóstico de TB pulmonar inicia con cefalea crónica, parálisis de pares craneales (VI par) y signos meníngeos. El LCR muestra: Pleocitosis linfocitaria, glucosa muy baja (<20 mg/dl) y proteínas muy elevadas.",
@@ -31997,7 +32032,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "DENGUE (SIGNOS DE ALARMA)",
     "difficulty": "media",
     "case": "Paciente en zona endémica con fiebre, mialgias y dolor retroocular. Al tercer día la fiebre cede, pero presenta dolor abdominal intenso, vómitos persistentes y descenso brusco de plaquetas con aumento del hematocrito.",
@@ -32039,7 +32074,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "GERIATRÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ÚLCERAS POR PRESIÓN (UPP)",
     "difficulty": "baja",
     "case": "Paciente de 88 años con demencia avanzada, postrado en cama. Presenta una lesión en región sacra con pérdida total del grosor de la piel, visualizándose el tejido adiposo, pero sin exposición de músculo ni hueso.",
@@ -32164,8 +32199,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "GERIATRÍA",
+    "specialty": "sp",
+    "tema": "Vacunación",
     "subtema": "VACUNACIÓN EN EL ADULTO MAYOR",
     "difficulty": "baja",
     "case": "Hombre de 65 años acude a su unidad de medicina familiar para actualización de esquema vacunal.",
@@ -32228,7 +32263,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PARÁLISIS DE BELL (VII PAR)",
     "difficulty": "baja",
     "case": "Paciente de 25 años que despierta con desviación de la comisura bucal a la derecha, imposibilidad para cerrar el ojo izquierdo y borramiento de las arrugas frontales del lado izquierdo.",
@@ -32249,7 +32284,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CEFALEA EN RACIMOS (CLUSTER)",
     "difficulty": "media",
     "case": "Masculino de 30 años con episodios de dolor periorbitario derecho extremadamente intenso, de 30 minutos de duración, que ocurren varias veces al día, acompañados de lagrimeo, rinorrea y ptosis ipsilateral.",
@@ -32291,7 +32326,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME DE TOLOSA -HUNT",
     "difficulty": "alta",
     "case": "Paciente con dolor orbitario intenso acompañado de parálisis de los pares craneales III, IV y VI (oftalmoplejía). La RM muestra inflamación en el seno cavernoso.",
@@ -32333,7 +32368,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUROLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "NARCOLEPSIA",
     "difficulty": "media",
     "case": "Paciente joven con somnolencia diurna excesiva, ataques de sueño incontrolables y pérdida súbita del tono muscular ante emociones fuertes (cataplejía).",
@@ -32354,7 +32389,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUMOLOGÍA",
+    "tema": "EPOC / Asma",
     "subtema": "EPOC (CLASIFICACIÓN Y MANEJO)",
     "difficulty": "media",
     "case": "Masculino de 65 años, tabaquismo de 40 paquetes/año. Presenta disnea mMRC grado 2 y ha tenido 2 exacerbaciones en el último año que requirieron antibiótico, pero ninguna hospitalización. La espirometría post-broncodilatador muestra FEV1/FVC 0.65 y FEV1 55%.",
@@ -32396,7 +32431,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUMOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DERRAME PLEURAL (CRITERIOS DE LIGHT)",
     "difficulty": "media",
     "case": "Masculino de 50 años con derrame pleural derecho. Se realiza toracocentesis: Proteínas pleurales/séricas 0.7, DHL pleural/sérica 0.8.",
@@ -32417,7 +32452,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUMOLOGÍA",
+    "tema": "VIH / SIDA",
     "subtema": "SÍNDROME DE APNEA OBSTRUCTIVA DEL SUEÑO (SAOS)",
     "difficulty": "baja",
     "case": "Masculino con obesidad grado II, refiere somnolencia diurna excesiva, ronquidos intensos y pausas respiratorias durante el sueño presenciadas por su esposa.",
@@ -32480,7 +32515,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "HEMATOLOGÍA",
+    "tema": "Nefrología: Enfermedad Renal Crónica",
     "subtema": "LEUCEMIA LINFOCÍTICA AGUDA (LLA)",
     "difficulty": "media",
     "case": "Niño de 4 años con fiebre, dolor óseo, linfadenopatías y hepatoesplenomegalia. El aspirado de médula ósea muestra hipercelularidad de linaje linfoide.",
@@ -32521,8 +32556,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "HEMATOLOGÍA",
+    "specialty": "gyo",
+    "tema": "CACU (Oncología Ginecológica)",
     "subtema": "LINFOMA DE HODGKIN",
     "difficulty": "media",
     "case": "Joven de 22 años con adenopatía cervical indolora, de consistencia \"elástica\". Refiere fiebre nocturna, pérdida de peso y diaforesis profusa (Síntomas B).",
@@ -32585,7 +32620,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "HEMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PÚRPURA TROMBOCITOPÉNICA INMUNITARIA (PTI)",
     "difficulty": "media",
     "case": "Femenina de 28 años con petequias y gingivorragia. Plaquetas de 15,000. Resto de las líneas celulares normales. No hay esplenomegalia.",
@@ -32627,7 +32662,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "HEMATOLOGÍA",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "ANEMIA APLÁSICA",
     "difficulty": "media",
     "case": "Paciente joven con pancitopenia severa. El aspirado de médula ósea muestra una celularidad <25% con sustitución por tejido adiposo.",
@@ -32710,8 +32745,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "GASTROENTEROLOGÍA",
+    "specialty": "cir",
+    "tema": "Apendicitis Aguda",
     "subtema": "DIVERTICULITIS AGUDA",
     "difficulty": "media",
     "case": "Masculino de 65 años con dolor en fosa ilíaca izquierda, fiebre y leucocitosis.",
@@ -32753,7 +32788,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "GASTROENTEROLOGÍA",
+    "tema": "Fibrilación Auricular",
     "subtema": "ISQUEMIA MESENTÉRICA AGUDA",
     "difficulty": "alta",
     "case": "Masculino de 75 años con antecedente de fibrilación auricular. Presenta dolor abdominal súbito, desproporcionado a los hallazgos en la exploración física (abdomen blando y depresible).",
@@ -32816,7 +32851,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "GASTROENTEROLOGÍA",
+    "tema": "Neumonías",
     "subtema": "SEUDOOBSTRUCCIÓN COLÓNICA AGUDA (SÍNDROME DE OGILVIE)",
     "difficulty": "media",
     "case": "Paciente anciano hospitalizado por neumonía, presenta distensión abdominal masiva. La radiografía muestra dilatación importante del colon (ciego >10 cm) sin evidencia de obstrucción mecánica.",
@@ -32837,7 +32872,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "DERMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER DE PIEL (BASOCELULAR)",
     "difficulty": "media",
     "case": "Masculino de 65 años, trabajador del campo, con una lesión en el ala nasal de crecimiento lento. Es una pápula \"perlada\" con telangiectasias superficiales y un centro ulcerado (ulcus rodens).",
@@ -32858,7 +32893,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "DERMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "MELANOMA MALIGNO",
     "difficulty": "alta",
     "case": "Paciente con una lesión pigmentada en la espalda que ha cambiado de forma. Aplicamos la regla ABCDE: Asimetría, Bordes irregulares, Color variado, Diámetro >6mm y Evolución.",
@@ -32879,7 +32914,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "DERMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PSORIASIS EN PLACAS",
     "difficulty": "media",
     "case": "Paciente con placas eritematosas, bien delimitadas, cubiertas por una escama blanquecina/plateada en codos, rodillas y región sacra. Al raspar la lesión, presenta el signo de la \"mancha de cera\" y posteriormente un punteado hemorrágico.",
@@ -32900,7 +32935,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "DERMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PÉNFIGO VULGAR",
     "difficulty": "alta",
     "case": "Paciente con ampollas flácidas que aparecen sobre piel sana y se rompen fácilmente dejando erosiones dolorosas. Inició con lesiones en la mucosa oral. La histopatología muestra acantólisis (células separadas) y depósitos de IgG en \"red de pescar\".",
@@ -32920,8 +32955,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "DERMATOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "ERITREMA NODOSO",
     "difficulty": "media",
     "case": "Femenina de 25 años con nódulos eritematosos, calientes y muy dolorosos en la cara anterior de ambas tibias. Presenta además fiebre y artralgias.",
@@ -32963,7 +32998,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "DERMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESCABIASIS (SARNA)",
     "difficulty": "baja",
     "case": "Paciente con prurito intenso de predominio nocturno. Presenta pápulas y surcos en espacios interdigitales, muñecas y genitales. Otros miembros de la familia tienen síntomas similares.",
@@ -33004,8 +33039,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "specialty": "cir",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "SÍFILIS (Treponema pallidum)",
     "difficulty": "media",
     "case": "Masculino de 28 años presenta una úlcera única en el glande, de bordes limpios, fondo limpio, e indolora (chancro duro), acompañada de adenopatía inguinal bilateral no supurativa.",
@@ -33026,7 +33061,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍFILIS SECUNDARIA",
     "difficulty": "media",
     "case": "Paciente con antecedente de conducta sexual de riesgo presenta fiebre, malestar general y un exantema maculopapular generalizado que afecta palmas de las manos y plantas de los pies. Presenta además \"parches mucosos\" en faringe.",
@@ -33046,8 +33081,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "specialty": "cir",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "LINFOGRANULOMA VENÉREO",
     "difficulty": "alta",
     "case": "Masculino con proctitis y adenopatías inguinales dolorosas que forman una masa inflamatoria (bubón) con el \"signo de la hendidura\" (separación por el ligamento inguinal).",
@@ -33068,7 +33103,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CHANCRO BLANDO (CHANCROIDE)",
     "difficulty": "media",
     "case": "Paciente con múltiples úlceras genitales muy dolorosas, de bordes irregulares y fondo sucio/necrótico. Presenta una adenopatía inguinal unilateral que tiende a la fluctuación.",
@@ -33131,7 +33166,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "HISTOPLASMOSIS",
     "difficulty": "media",
     "case": "Paciente con antecedente de haber visitado cuevas o limpiado gallineros. Presenta cuadro respiratorio agudo, fiebre y hepatoesplenomegalia. En el frotis de médula ósea se observan pequeñas levaduras intracelulares dentro de macrófagos.",
@@ -33151,8 +33186,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "CRIPTOCOCOSIS",
     "difficulty": "media",
     "case": "Paciente con VIH acude por cefalea subaguda, fiebre y signos de hipertensión intracraneal. La punción lumbar muestra presión de apertura elevada y el líquido teñido con Tinta China revela levaduras con cápsula prominente.",
@@ -33172,7 +33207,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "INFECTOLOGÍA",
     "subtema": "CANDIDIASIS ORAL (Muguet)",
     "difficulty": "baja",
@@ -33236,7 +33271,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "GENÉTICA MÉDICA",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "FIBROSIS QUÍSTICA",
     "difficulty": "media",
     "case": "Niño con infecciones respiratorias recurrentes, esteatorrea y retraso en el crecimiento. Se realiza prueba de cloruros en sudor que resulta positiva (65 mmol/L).",
@@ -33257,7 +33292,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "PSIQUIATRÍA / MEDICINA INTERNA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRASTORNO DE DEPRESIÓN MAYOR",
     "difficulty": "baja",
     "case": "Femenina de 45 años con tristeza profunda, anhedonia, pérdida de apetito, insomnio y sentimientos de culpa de 3 semanas de evolución.",
@@ -33278,7 +33313,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "PSIQUIATRÍA / MEDICINA INTERNA",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "ESQUIZOFRENIA",
     "difficulty": "media",
     "case": "Varón de 22 años con ideas delirantes de persecución, alucinaciones auditivas comentadoras y lenguaje desorganizado de 7 meses de duración. Ha descuidado su higiene y se ha aislado socialmente.",
@@ -33298,7 +33333,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "urg",
     "tema": "URGENCIAS PSIQUIÁTRICAS",
     "subtema": "SÍNDROME NEUROLÉPTICO MALIGNO (SNM)",
     "difficulty": "alta",
@@ -33341,7 +33376,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "MEDICINA PREVENTIVA / NOM",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DISLIPIDEMIAS (NOM-037-SSA2 -2012)",
     "difficulty": "media",
     "case": "Se realiza perfil de lípidos a paciente de 55 años con riesgo cardiovascular alto. Resultados: Colesterol total 250, LDL 180, HDL 35, Triglicéridos 450.",
@@ -33361,7 +33396,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "urg",
     "tema": "MEDICINA DEL TRABAJO / TOXICOLOGÍA INDUSTRIAL",
     "subtema": "SATURNISMO (INTOXICACIÓN POR PLOMO)",
     "difficulty": "media",
@@ -33383,7 +33418,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "MEDICINA DEL TRABAJO",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "NEUMOCONIOSIS (ASBESTOSIS)",
     "difficulty": "alta",
     "case": "Trabajador de la industria de demolición y frenos presenta disnea de esfuerzo progresiva. La radiografía de tórax muestra placas pleurales calcificadas y fibrosis en bases pulmonares.",
@@ -33403,7 +33438,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "sp",
     "tema": "BIOÉTICA CLÍNICA",
     "subtema": "PRINCIPIOS DE LA BIOÉTICA",
     "difficulty": "baja",
@@ -33425,7 +33460,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "BIOÉTICA CLÍNICA",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "VOLUNTAD ANTICIPADA",
     "difficulty": "media",
     "case": "Paciente con diagnóstico de enfermedad terminal firma un documento donde estipula que, en caso de paro cardiorrespiratorio o falla orgánica, no desea maniobras de reanimación ni soporte vital invasivo.",
@@ -33445,8 +33480,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "MEDICINA PREVENTIVA",
+    "specialty": "urg",
+    "tema": "Intoxicaciones",
     "subtema": "CADENA EPIDEMIOLÓGICA",
     "difficulty": "baja",
     "case": "Se presenta un brote de intoxicación alimentaria en una escuela. Se identifica que el patógeno fue Salmonella y el vehículo fue una ensalada de pollo contaminada.",
@@ -33487,7 +33522,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "urg",
     "tema": "TOXICOLOGÍA",
     "subtema": "INTOXICACIÓN POR METANOL",
     "difficulty": "media",
@@ -33508,8 +33543,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "MEDICINA PREVENTIVA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "NIVELES DE PREVENCIÓN (LEAVELL Y CLARK)",
     "difficulty": "baja",
     "case": "Un médico realiza una mastografía de tamizaje a una mujer de 50 años asintomática.",
@@ -33530,7 +33565,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUROLOGÍA / GERIATRÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DEMENCIA POR CUERPOS DE LEWY",
     "difficulty": "alta",
     "case": "Masculino de 72 años con deterioro cognitivo fluctuante, alucinaciones visuales detalladas (ve animales pequeños en la habitación) y signos de parkinsonismo leve (rigidez y bradicinesia). El paciente presenta una sensibilidad extrema a los neurolépticos, desarrollando un síndrome extrapiramidal severo tras una dosis de haloperidol.",
@@ -33551,7 +33586,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "GERIATRÍA / PSIQUIATRÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INSOMNIO EN EL ANCIANO",
     "difficulty": "media",
     "case": "Paciente de 82 años con dificultad para conciliar el sueño y múltiples despertares nocturnos. El familiar solicita benzodiacepinas.",
@@ -33614,7 +33649,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUROLOGÍA / GERIATRÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENFERMEDAD DE CREUTZFELDT -JAKOB",
     "difficulty": "alta",
     "case": "Paciente de 62 años con demencia de progresión extremadamente rápida (semanas), acompañada de mioclonías provocadas por el ruido y ataxia. El EEG muestra complejos de ondas agudas trifásicas periódicas.",
@@ -33635,7 +33670,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "REUMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ARTERITIS DE TAKAYASU",
     "difficulty": "alta",
     "case": "Mujer de 25 años con astenia, fiebre y diferencia de presión arterial >10 mmHg entre ambos brazos. A la exploración se auscultan soplos sobre las arterias subclavias y carótidas. Los pulsos radiales son débiles.",
@@ -33655,8 +33690,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "REUMATOLOGÍA",
+    "specialty": "gyo",
+    "tema": "Cáncer de Mama",
     "subtema": "POLIARTERITIS NODOSA (PAN)",
     "difficulty": "alta",
     "case": "Masculino de 45 años con fiebre, pérdida de peso, dolor abdominal postprandial (angina mesentérica), mononeuritis múltiple (pie caído) y nódulos cutáneos. Presenta antecedente de Hepatitis B crónica.",
@@ -33698,7 +33733,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "REUMATOLOGÍA",
+    "tema": "EPOC / Asma",
     "subtema": "GRANULOMATOSIS EOSINOFÍLICA CON POLIANGEÍTIS (CHURG -STRAUSS)",
     "difficulty": "alta",
     "case": "Paciente de 40 años con antecedente de asma grave de difícil control y rinitis alérgica. Presenta ahora mononeuritis múltiple y eosinofilia periférica marcada (>1500/mm³).",
@@ -33719,7 +33754,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "REUMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PÚRPURA DE HENOCH -SCHÖNLEIN",
     "difficulty": "baja",
     "case": "Niño de 7 años con antecedente de infección respiratoria hace 2 semanas. Presenta púrpura palpable en glúteos y piernas, dolor abdominal y artralgias.",
@@ -33761,7 +33796,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "REUMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "POLIMIOSITIS / SÍNDROME ANTISINTETASA",
     "difficulty": "alta",
     "case": "Paciente con debilidad muscular proximal y enfermedad pulmonar intersticial. Presenta además \"manos de mecánico\" (hiperqueratosis y fisuras en las caras laterales de los dedos).",
@@ -33782,7 +33817,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "REUMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENFERMEDAD DE BEHÇET",
     "difficulty": "alta",
     "case": "Masculino de 30 años con úlceras orales recurrentes dolorosas, úlceras genitales y uveítis posterior. Presenta una pústula en el sitio donde se le realizó una extracción de sangre hace 24 horas.",
@@ -33803,7 +33838,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA CRÍTICA",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "SEPSIS Y CHOQUE SÉPTICO (SEPSIS-3)",
     "difficulty": "alta",
     "case": "Masculino de 68 años con antecedente de infección urinaria. Presenta desorientación, TA 85/50 mmHg, frecuencia respiratoria de 24 lpm y lactato de 4.0 mmol/L. A pesar de la reanimación hídrica con 30 ml/kg, persiste hipotenso y requiere norepinefrina.",
@@ -33845,7 +33880,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA CRÍTICA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CHOQUE SÉPTICO - METAS DE REANIMACIÓN",
     "difficulty": "media",
     "case": "Se inicia manejo en un paciente con choque séptico. La GPC mexicana sigue las recomendaciones de la campaña \"Sobreviviendo a la Sepsis\".",
@@ -33929,7 +33964,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA CRÍTICA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "MENINGITIS BACTERIANA AGUDA",
     "difficulty": "media",
     "case": "Masculino de 20 años con fiebre, rigidez de nuca y púrpuras palpables. El LCR muestra pleocitosis neutrofílica, glucosa baja y proteínas elevadas.",
@@ -33950,7 +33985,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA CRÍTICA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CANDIDEMIA EN UCI",
     "difficulty": "alta",
     "case": "Paciente con estancia prolongada en UCI, nutrición parenteral total y múltiples antibióticos, que persiste febril pese a cobertura bacteriana de amplio espectro.",
@@ -33970,8 +34005,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "GERIATRÍA",
+    "specialty": "gyo",
+    "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "POLIFARMACIA Y CRITERIOS DE BEERS / STOPP-START",
     "difficulty": "media",
     "case": "Masculino de 82 años con hipertensión, DM2, osteoartritis y depresión. Consume 9 fármacos distintos. Acude por mareos, confusión y una caída reciente.",
@@ -34034,7 +34069,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CUIDADOS PALIATIVOS",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "MANEJO DE LA DISNEA EN EL PACIENTE TERMINAL",
     "difficulty": "media",
     "case": "Paciente con cáncer de pulmón en fase terminal presenta disnea intensa de reposo y ansiedad. La saturación de oxígeno es de 88% con puntas nasales.",
@@ -34076,7 +34111,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CUIDADOS PALIATIVOS",
+    "tema": "VIH / SIDA",
     "subtema": "DOLOR POR CÁNCER (ESCALERA DE LA OMS)",
     "difficulty": "baja",
     "case": "Paciente con metástasis óseas que no controla el dolor con Paracetamol y Naproxeno. Refiere una intensidad de 7/10 en la escala EVA.",
@@ -34118,7 +34153,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEFROLOGÍA / ELECTROLITOS",
+    "tema": "EPOC / Asma",
     "subtema": "HIPONATREMIA (SIADH)",
     "difficulty": "media",
     "case": "Masculino de 65 años con antecedente de cáncer de pulmón de células pequeñas. Presenta confusión y letargia. Laboratorios: Sodio sérico 122 mEq/L, Osmolalidad plasmática baja (<275 mOsm/kg), Osmolalidad urinaria elevada (>100 mOsm/kg) y Sodio urinario >40 mEq/L. Está normovolémico.",
@@ -34138,7 +34173,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "urg",
     "tema": "URGENCIAS / TOXICOLOGÍA",
     "subtema": "INTOXICACIÓN POR PARACETAMOL",
     "difficulty": "media",
@@ -34202,7 +34237,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "GASTROENTEROLOGÍA / INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ABSCESO HEPÁTICO",
     "difficulty": "media",
     "case": "Masculino con dolor en hipocondrio derecho, fiebre y hepatomegalia. El USG muestra una lesión única en lóbulo derecho de 6 cm. Antecedente de diarrea con moco y sangre hace 1 mes.",
@@ -34223,7 +34258,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Cardiopatía Isquémica",
     "subtema": "ESTENOSIS AÓRTICA",
     "difficulty": "baja",
     "case": "Paciente de 75 años con tríada de: Disnea, Angina y Síncope. A la exploración: soplo sistólico crescendo-decrescendo en foco aórtico irradiado a carótidas.",
@@ -34244,7 +34279,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "HEMATOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TROMBOEMBOLIA PULMONAR (TEP)",
     "difficulty": "media",
     "case": "Paciente de 70 años con dolor óseo, anemia, falla renal e hipercalcemia. La radiografía de cráneo muestra lesiones líticas en \"sacabocado\". Masculino de 50 años despierta con dolor exquisito, eritema y edema en la primera articulación metatarsofalángica (podagra). Femenina postoperada de cadera presenta disnea súbita y taquicardia. Escala de Wells de 7 puntos.",
@@ -34272,8 +34307,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "REUMATOLOGÍA",
+    "specialty": "cir",
+    "tema": "Hernias de la Pared Abdominal",
     "subtema": "OSTEOPOROSIS",
     "difficulty": "media",
     "case": "Femenina de 65 años en protocolo de tamizaje. La densitometría ósea (DEXA) reporta un T-score de -2.7 en cuello femoral.",
@@ -34294,7 +34329,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "VIH / SIDA",
     "subtema": "VIH / SIDA (PROFILAXIS)",
     "difficulty": "media",
     "case": "Paciente con VIH recién diagnosticado cuenta con un conteo de linfocitos CD4 de 80 células/μL.",
@@ -34315,7 +34350,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "CARDIOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PERICARDITIS AGUDA",
     "difficulty": "baja",
     "case": "Masculino de 30 años con dolor torácico que aumenta con la inspiración profunda y mejora al inclinarse hacia adelante (posición mahometana). El EKG muestra elevación difusa del segmento ST de concavidad superior en casi todas las derivaciones.",
@@ -34336,7 +34371,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "NEUMOLOGÍA",
+    "tema": "Insuficiencia Cardiaca",
     "subtema": "DERRAME PLEURAL (CRITERIOS DE LIGHT)",
     "difficulty": "media",
     "case": "Se realiza toracocentesis a un paciente con insuficiencia cardíaca descompensada. El líquido pleural reporta: Proteínas L.P. / Proteínas séricas = 0.3; DHL L.P. / DHL sérica = 0.4.",
@@ -34441,7 +34476,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "INFECTOLOGÍA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "BRUCELOSIS",
     "difficulty": "media",
     "case": "Ganadero con fiebre ondulante, diaforesis nocturna con olor a \"paja mojada\" y artralgias.",
@@ -34504,7 +34539,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "MEDICINA INTERNA INTEGRADORA",
+    "tema": "EPOC / Asma",
     "subtema": "VASCULITIS Y NEFROLOGÍA",
     "difficulty": "media",
     "case": "Masculino de 60 años con antecedente de asma, presenta ahora púrpura palpable, hematuria y dolor abdominal. La biopsia de piel reporta vasculitis leucocitoclástica con depósitos de IgA.",
@@ -34525,7 +34560,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "MEDICINA INTERNA INTEGRADORA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INFECTO LOGÍA Y CARDIOLOGÍA",
     "difficulty": "media",
     "case": "Paciente con fiebre de 2 semanas, esplenomegalia y lesiones eritematosas no dolorosas en las palmas (Manchas de Janeway). Antecedente de prótesis valvular hace 6 meses.",
@@ -34546,7 +34581,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "MEDICINA INTERNA INTEGRADORA",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "NEUROLOGÍA Y DERMATOLOGÍA",
     "difficulty": "baja",
     "case": "Paciente joven con múltiples manchas \"café con leche\" en tronco, pecas axilares (signo de Crowe) y pequeños tumores cutáneos blandos y sésiles.",
@@ -34566,8 +34601,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "MEDICINA INTERNA INTEGRADORA",
+    "specialty": "cir",
+    "tema": "Patología Biliar",
     "subtema": "GASTRO / DERMA (ENFERMEDAD CELÍACA)",
     "difficulty": "media",
     "case": "Paciente con diarrea crónica, pérdida de peso y una erupción cutánea pruriginosa con vesículas en codos y rodillas (dermatitis herpetiforme).",
@@ -34588,7 +34623,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "mi",
-    "tema": "MEDICINA INTERNA INTEGRADORA",
+    "tema": "Nefrología: Lesión Renal Aguda",
     "subtema": "INTOXICACIONES (SÍNDROME COLINÉRGICO)",
     "difficulty": "media",
     "case": "Paciente agricultor que es traído por miosis, sialorrea, bradicardia, fasciculaciones musculares y dificultad respiratoria tras fumigar su campo.",
@@ -34608,8 +34643,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "PEDIATRÍA",
+    "specialty": "ped",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESCALA DE SILVERMAN -ANDERSON",
     "difficulty": "media",
     "case": "Neonato prematuro de 34 semanas presenta aleteo nasal discreto, quejido espiratorio audible con estetoscopio y tiraje intercostal leve. No presenta disociación toraco-abdominal.",
@@ -34629,8 +34664,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "PEDIATRÍA",
+    "specialty": "ped",
+    "tema": "Neonatología",
     "subtema": "TAMIZ NEONATAL (NOM -007)",
     "difficulty": "media",
     "case": "Acude madre con neonato de 4 días de vida a su clínica para realización de tamizaje metabólico.",
@@ -34650,8 +34685,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "PEDIATRÍA",
+    "specialty": "ped",
+    "tema": "Neonatología",
     "subtema": "PROFILAXIS NEONATAL",
     "difficulty": "baja",
     "case": "Como parte de los cuidados de rutina en el recién nacido, se aplican medidas preventivas para evitar complicaciones hemorrágicas y oculares.",
@@ -34671,8 +34706,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "PEDIATRÍA",
+    "specialty": "ped",
+    "tema": "Hemorragia Obstétrica",
     "subtema": "CAPUT SUCCEDANEUM VS CEFALOHEMATOMA",
     "difficulty": "media",
     "case": "Recién nacido por parto instrumentado presenta una colección de partes blandas en el cuero cabelludo que cruza las líneas de sutura y es de consistencia edematosa.",
@@ -34692,8 +34727,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "PEDIATRÍA",
+    "specialty": "ped",
+    "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)",
     "difficulty": "media",
     "case": "Neonato pretérmino de 30 semanas presenta soplo continuo en \"maquinaria\" (Gibson) en región infraclavicular izquierda, pulsos saltones y precordio hiperdinámico.",
@@ -34713,8 +34748,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
-    "tema": "PEDIATRÍA",
+    "specialty": "ped",
+    "tema": "Neonatología",
     "subtema": "ENTEROCOLITIS NECROTIZANTE (ECN)",
     "difficulty": "alta",
     "case": "Recién nacido pretérmino en su 10° día de vida inicia con distensión abdominal, intolerancia a la vía oral y evacuaciones con sangre fresca. La radiografía muestra pneumatosis intestinal.",
