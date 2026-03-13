@@ -1,8 +1,10 @@
 # Informe de Casos Faltantes y Recomendados para Completar la App
 
-**Situación Actual:**
-- Total de casos en la base de datos mapeados o registrados: 1131
-- Total de casos mínimos recomendados para que la aplicación sea robusta: **3145**
+**Situación Actual (Actualizado al 12 de marzo de 2026):**
+- Total de casos en la base de datos: **1382**
+- Total de casos mínimos recomendados: **3145**
+- Casos recientemente agregados: **307** (Medicina Interna y Pediatría)
+- Casos restantes para la meta: **1763**
 
 A continuación se desglosan los temas donde **no hay ningún caso** cargado, así como aquellos donde hay **muy pocos casos** en proporción a la recomendación estimada.
 
@@ -18,7 +20,6 @@ A continuación se desglosan los temas donde **no hay ningún caso** cargado, as
 ### Pediatría
 - **04. Patología Respiratoria del Pediátrico** (Recomendados: 15 casos)
 - **06. Patología Neonatal Congénita Infecciosa** (Recomendados: 10 casos)
-- **08. Ictericia Neonatal** (Recomendados: 10 casos)
 - **09. Tamiz Metabólico** (Recomendados: 5 casos)
 - **10. Crecimiento y Desarrollo P1** (Recomendados: 5 casos)
 - **14. Diarrea en el Pediátrico** (Recomendados: 15 casos)
@@ -30,7 +31,6 @@ A continuación se desglosan los temas donde **no hay ningún caso** cargado, as
 - **20. IRAs / Convulsiones** (Recomendados: 5 casos)
 - **21. Enfermedades Exantemáticas** (Recomendados: 5 casos)
 - **23. Uropedia** (Recomendados: 15 casos)
-- **24. Cardiopedia** (Recomendados: 15 casos)
 - **25. Especialidades Pedia P1** (Recomendados: 15 casos)
 - **26. Especialidades Pedia P2** (Recomendados: 15 casos)
 - **27. Alteraciones Cromosómicas y Perlas** (Recomendados: 5 casos)
@@ -38,33 +38,12 @@ A continuación se desglosan los temas donde **no hay ningún caso** cargado, as
 - **36. Epidemiología** (Recomendados: 5 casos)
 - **37. Clase de Inglés** (Recomendados: 5 casos)
 ### Medicina Interna
-- **01. Introducción MI / Introducción Infectología** (Recomendados: 5 casos)
-- **03. Virus de la Inmunodeficiencia Humana** (Recomendados: 5 casos)
 - **06. Tétanos / Botulismo / Rabia / Patología Fúngica** (Recomendados: 5 casos)
-- **07. EPOC / CA de Pulmón** (Recomendados: 10 casos)
-- **08. Neumonías Ocupacionales / Derrame Pleural** (Recomendados: 15 casos)
-- **09. Patología Tiroidea** (Recomendados: 5 casos)
-- **10. Síndrome Metabólico** (Recomendados: 5 casos)
-- **12. Complicaciones Diabetes** (Recomendados: 15 casos)
 - **13. Patología Central y Suprarrenal** (Recomendados: 5 casos)
 - **14. Perlas** (Recomendados: 5 casos)
-- **15. Anemias Introducción y Anemias Carenciales** (Recomendados: 5 casos)
-- **16. Anemias Hemolíticas** (Recomendados: 5 casos)
-- **17. Leucemias** (Recomendados: 5 casos)
-- **18. Oncohematología** (Recomendados: 5 casos)
-- **19. Anormalidades de la Hemostasia y Perlas** (Recomendados: 5 casos)
-- **20. Introducción Cardiología** (Recomendados: 5 casos)
-- **21. Insuficiencia Cardíaca Aguda y Crónica** (Recomendados: 5 casos)
-- **22. Valvulopatías** (Recomendados: 5 casos)
-- **23. Síndromes Coronarios** (Recomendados: 5 casos)
-- **24. ACLS y BLS** (Recomendados: 5 casos)
-- **25. Trastornos del Ritmo** (Recomendados: 5 casos)
-- **26. Hipertensión Arterial** (Recomendados: 15 casos)
-- **27. Infecto Cardio y Perlas** (Recomendados: 5 casos)
 - **28. EVC Isquémico y Hemorrágico** (Recomendados: 5 casos)
 - **29. Trastornos del Movimiento / Enf. Neurodegenerativas** (Recomendados: 5 casos)
 - **30. Cefaleas** (Recomendados: 5 casos)
-- **31. Demencias** (Recomendados: 5 casos)
 - **32. Infecto Derma** (Recomendados: 5 casos)
 - **33. Oncoderma** (Recomendados: 5 casos)
 - **34. Patología Dermatológica** (Recomendados: 5 casos)
@@ -113,6 +92,27 @@ A continuación se desglosan los temas donde **no hay ningún caso** cargado, as
 - **04. Enfermedades Transmitidas por Vector**: Tienes 3. (Faltan: **2** para llegar a los 5 recomendados)
 - **05. Enfermedades por Zoonosis**: Tienes 1. (Faltan: **4** para llegar a los 5 recomendados)
 - **11. Diabetes**: Tienes 9. (Faltan: **6** para llegar a los 15 recomendados)
+- **01. Introducción MI / Infectología**: Tienes 1+. (Faltan: **~4**)
+- **03. VIH**: Tienes 1+. (Faltan: **~4**)
+- **07. EPOC / CA de Pulmón**: Tienes 1+. (Faltan: **~9**)
+- **08. Neumonías Ocupacionales / Derrame Pleural**: Tienes 1+. (Faltan: **~14**)
+- **09. Patología Tiroidea**: Tienes 3+. (Faltan: **~2**)
+- **10. Síndrome Metabólico**: Tienes 1+. (Faltan: **~4**)
+- **12. Complicaciones Diabetes**: Tienes 1+. (Faltan: **~14**)
+- **15. Anemias carenciales**: Tienes 1+. (Faltan: **~4**)
+- **16. Anemias Hemolíticas**: Tienes 1+. (Faltan: **~4**)
+- **17. Leucemias**: Tienes 2+. (Faltan: **~3**)
+- **18. Oncohematología**: Tienes 1+. (Faltan: **~4**)
+- **19. Hemostasia y Perlas**: Tienes 1+. (Faltan: **~4**)
+- **20. Introducción Cardiología**: Tienes 1+. (Faltan: **~4**)
+- **21. Insuficiencia Cardíaca**: Tienes 2+. (Faltan: **~3**)
+- **22. Valvulopatías**: Tienes 3+. (Faltan: **~2**)
+- **23. Síndromes Coronarios**: Tienes 3+. (Faltan: **~2**)
+- **24. ACLS y BLS**: Tienes 1+. (Faltan: **~4**)
+- **25. Trastornos del Ritmo**: Tienes 2+. (Faltan: **~3**)
+- **26. Hipertensión Arterial**: Tienes 1+. (Faltan: **~14**)
+- **27. Infecto Cardiología**: Tienes 1+. (Faltan: **~4**)
+- **31. Demencias**: Tienes 1+. (Faltan: **~4**)
 ### Otros Casos (No mapeados correctamente al temario)
 - **Oftalmología P2**: Tienes 1. (Faltan: **4** para llegar a los 5 recomendados)
 - **Infecciones de Vías Respiratorias Superiores**: Tienes 4. (Faltan: **6** para llegar a los 10 recomendados)
@@ -321,4 +321,4 @@ A continuación se desglosan los temas donde **no hay ningún caso** cargado, as
 - **PEDIATRÍA / CIRUGÍA - GASTROENTEROLOGÍA**: Tienes 1. (Faltan: **14** para llegar a los 15 recomendados)
 
 ## 💡 Conclusión y Recomendación
-Para que la aplicación se considere un banco de preguntas **completo y competitivo** para el ENARM, se requiere la creación de **aproximadamente 2014 casos clínicos nuevos**, enfocándose primeramente en la sección de **Medicina Interna** y completando los huecos importantes en **Pediatría**, **Ginecología** y las subespecialidades de **Cirugía**.
+Para que la aplicación se considere un banco de preguntas **completo y competitivo** para el ENARM, se requiere la creación de **aproximadamente 1763 casos clínicos nuevos**, enfocándose en completar los huecos en **Pediatría** (Neonatología, Ictericia, Cardiopedia), **Ginecología** (Ciclo Genital, Sangrados) y las subespecialidades de **Cirugía**. La sección de Medicina Interna ha tenido un avance significativo, pero aún requiere volumen para cubrir la profundidad del temario.

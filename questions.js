@@ -28273,6 +28273,6465 @@ const QUESTIONS = [
         "gpcReference": ""
       }
     ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "CHOQUE SÉPTICO",
+    "difficulty": "alta",
+    "case": "Masculino de 65 años, diabético, ingresa a urgencias por fiebre de 39°C, alteración del estado de alerta y taquipnea. A la exploración: TA 70/40 mmHg, FC 125 lpm, FR 28 rpm. Se diagnostica neumonía adquirida en la comunidad severa. Se inicia reanimación hídrica con 30 ml/kg de cristaloides, sin embargo, la presión arterial media (PAM) se mantiene en 50 mmHg. El lactato sérico es de 4.5 mmol/L.",
+    "questions": [
+      {
+        "question": "Ante la falta de respuesta a líquidos, se establece el diagnóstico de choque séptico. Según las guías de la Campaña Sobrevivir a la Sepsis (Surviving Sepsis Campaign) y la GPC, ¿cuál es el vasopresor de primera elección para alcanzar una PAM ≥ 65 mmHg?",
+        "options": [
+          "Dopamina.",
+          "Adrenalina.",
+          "Norepinefrina",
+          "Vasopresina."
+        ],
+        "answerIndex": 2,
+        "explanation": "La norepinefrina es el vasopresor inicial de elección en el choque séptico. La dopamina ya no se recomienda como primera línea debido al mayor riesgo de arritmias. La vasopresina se puede añadir si no se alcanzan las metas con norepinefrina. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "TUBERCULOSIS (EFECTOS ADVERSOS DEL TRATAMIENTO)",
+    "difficulty": "media",
+    "case": "Femenina de 40 años, en su tercera semana de tratamiento primario acortado (fase intensiva) para Tuberculosis Pulmonar confirmada por baciloscopia. Acude a consulta refiriendo disminución de la agudeza visual y alteración en la percepción de los colores (discromatopsia), específicamente dificultad para distinguir entre el rojo y el verde.",
+    "questions": [
+      {
+        "question": "¿Cuál de los fármacos antifímicos de primera línea es el responsable más probable de este efecto adverso neurológico?",
+        "options": [
+          "Isoniazida.",
+          "Rifampicina.",
+          "Pirazinamida.",
+          "Etambutol"
+        ],
+        "answerIndex": 3,
+        "explanation": "El Etambutol tiene como efecto adverso clásico la neuritis óptica (disminución de agudeza visual y discromatopsia rojo-verde). La Isoniazida causa neuropatía periférica (se previene con piridoxina); la Rifampicina tiñe las secreciones de naranja; y la Pirazinamida causa hiperuricemia. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "VIRUS DE LA INMUNODEFICIENCIA HUMANA (INFECCIONES",
+    "difficulty": "alta",
+    "case": "Masculino de 35 años, con diagnóstico reciente de infección por VIH, sin tratamiento antirretroviral. Presenta un conteo de linfocitos CD4+ de 150 células/mm³. Acude por un cuadro subagudo de 3 semanas de evolución caracterizado por disnea progresiva, tos seca y fiebre no cuantificada. La radiografía de tórax muestra infiltrados intersticiales bilaterales difusos en \"vidrio despulido\". La gasometría reporta hipoxemia severa.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico más probable de esta neumonía atípica y cuál es el tratamiento de primera elección?",
+        "options": [
+          "Mycobacterium tuberculosis; Esquema RIPE.",
+          "Pneumocystis jirovecii; Trimetoprima-Sulfametoxazol (TMP-SMX)",
+          "Citomegalovirus; Ganciclovir.",
+          "Histoplasma capsulatum; Anfotericina B."
+        ],
+        "answerIndex": 1,
+        "explanation": "La neumonía por *Pneumocystis jirovecii* es la infección oportunista definitoria de SIDA más común en pacientes con CD4 < 200. La clínica subaguda, la tos seca y la imagen en \"vidrio despulido\" son clásicas. El tratamiento de elección y la profilaxis se realizan con TMP-SMX. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "ENFERMEDAD DE LYME",
+    "difficulty": "media",
+    "case": "Masculino de 28 años, excursionista, que hace 2 semanas realizó un viaje de campamento a una zona boscosa. Acude a consulta por malestar general, astenia, febrícula y la aparición de una lesión cutánea en el muslo derecho: una mácula eritematosa que se ha expandido, con un aclaramiento central, adoptando una forma de \"tiro al blanco\" (eritema migrans).",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico de esta enfermedad transmitida por garrapatas y cuál es el antibiótico de elección para la enfermedad temprana localizada en adultos?",
+        "options": [
+          "Rickettsia rickettsii; Cloranfenicol.",
+          "Borrelia burgdorferi; Doxiciclina",
+          "Treponema pallidum; Penicilina G Benzatínica.",
+          "Bartonella henselae; Azitromicina."
+        ],
+        "answerIndex": 1,
+        "explanation": "La enfermedad de Lyme es causada por la espiroqueta *Borrelia burgdorferi*, transmitida por garrapatas del género *Ixodes*. La lesión inicial patognomónica es el **eritema migrans**. El tratamiento de primera línea en adultos y niños mayores de 8 años es la Doxiciclina. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "BRUCELOSIS",
+    "difficulty": "baja",
+    "case": "Masculino de 45 años, ganadero, refiere fiebre de predominio vespertino acompañado de diaforesis profusa, mialgias, artralgias y astenia de 3 semanas de evolución. Refiere consumo frecuente de queso fresco no pasteurizado. A la exploración física destaca hepatoesplenomegalia leve.",
+    "questions": [
+      {
+        "question": "¿Cuál es la prueba de tamizaje inicial indicada por la GPC y cuál es el tratamiento de primera elección (Esquema A) para este paciente adulto sin contraindicaciones?",
+        "options": [
+          "Hemocultivo; Ciprofloxacino por 14 días.",
+          "Reacciones febriles (Huddleson); Penicilina G.",
+          "Rosa de Bengala; Doxiciclina + Rifampicina por 6 semanas",
+          "Prueba de SAT; Trimetoprima-Sulfametoxazol."
+        ],
+        "answerIndex": 2,
+        "explanation": "La prueba de Rosa de Bengala es el tamizaje inicial por su alta sensibilidad. El esquema de primera elección en adultos (Esquema A de la OMS) es Doxiciclina + Rifampicina durante 6 semanas para evitar recaídas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "ENFERMEDAD PULMONAR OBSTRUCTIVA CRÓNICA (EPOC)",
+    "difficulty": "alta",
+    "case": "Masculino de 68 años, tabaquismo positivo (índice tabáquico de 45 paquetes/año). Acude por disnea progresiva que actualmente le impide caminar más de 100 metros en terreno llano. La espirometría post-broncodilatador muestra FEV1/FVC de 65% y un FEV1 del 45% del predicho. El paciente refiere haber tenido 2 exacerbaciones en el último año, una de las cuales requirió hospitalización.",
+    "questions": [
+      {
+        "question": "De acuerdo con la clasificación GOLD actual (basada en síntomas y riesgo de exacerbaciones), ¿a qué grupo pertenece este paciente y cuál es el tratamiento farmacológico inicial recomendado?",
+        "options": [
+          "Grupo A; Broncodilatador de acción corta a demanda (SABA).",
+          "Grupo B; LAMA o LABA monoterapia.",
+          "Grupo E; Terapia combinada LAMA + LABA",
+          "Grupo C; Corticoide inhalado aislado."
+        ],
+        "answerIndex": 2,
+        "explanation": "El paciente pertenece al Grupo E (alto riesgo de exacerbaciones) debido a tener ≥2 exacerbaciones moderadas o 1 que requirió hospitalización. Las guías GOLD más recientes recomiendan iniciar directamente con terapia dual broncodilatadora (LAMA + LABA) en este grupo. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "ASMA (CRITERIOS DIAGNÓSTICOS)",
+    "difficulty": "media",
+    "case": "Femenina de 22 años con antecedente de rinitis alérgica. Refiere episodios de sibilancias, opresión torácica y tos seca de predominio nocturno desde hace 6 meses. Se sospecha asma bronquial y se le solicita una espirometría.",
+    "questions": [
+      {
+        "question": "¿Qué hallazgo espirométrico post-broncodilatador confirmaría el diagnóstico de asma en esta paciente?",
+        "options": [
+          "Aumento del FEV1 ≥ 12% y ≥ 200 mL respecto al valor basal",
+          "Relación FEV1/FVC < 70% sin cambios tras la prueba.",
+          "Capacidad Vital Forzada (FVC) < 80% del predicho.",
+          "Aumento del flujo espiratorio pico en un 5%."
+        ],
+        "answerIndex": 0,
+        "explanation": "La reversibilidad de la vía aérea es el pilar diagnóstico del asma. Se define por un incremento en el Volumen Espiratorio Forzado en el primer segundo (FEV1) igual o mayor al 12% y 200 mL tras la administración de un broncodilatador de acción corta (Salbutamol). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "DERRAME PLEURAL (CRITERIOS DE LIGHT)",
+    "difficulty": "media",
+    "case": "Paciente de 55 años con antecedente de insuficiencia cardiaca crónica y abandono de tratamiento. Ingresa por disnea severa. La radiografía de tórax muestra borramiento del ángulo costofrénico derecho. Se realiza toracocentesis diagnóstica extrayendo un líquido amarillento claro.",
+    "questions": [
+      {
+        "question": "De acuerdo con los Criterios de Light, ¿qué perfil de laboratorio confirmaría que el líquido es un TRASUDADO, compatible con su patología de base?",
+        "options": [
+          "Relación proteínas pleura/suero > 0.5.",
+          "LDH pleural > 2/3 del límite superior normal en suero.",
+          "Relación LDH pleura/suero < 0.6 y Relación proteínas pleura/suero < 0.5",
+          "Proteínas en líquido pleural > 3 g/dL."
+        ],
+        "answerIndex": 2,
+        "explanation": "Un trasudado ocurre por desequilibrio de presiones hidrostáticas/oncóticas (ej. Insuficiencia cardiaca, cirrosis). Para ser trasudado, debe cumplir TODOS los criterios de Light negativos: proteínas pleura/suero ≤ 0.5, LDH pleura/suero ≤ 0.6, y LDH pleural ≤ 2/3 del límite superior normal sérico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "NEUMONÍAS OCUPACIONALES (SILICOSIS)",
+    "difficulty": "baja",
+    "case": "Masculino de 50 años que ha trabajado como minero perforador de roca durante 20 años. Acude por tos crónica y disnea de esfuerzo progresiva. La radiografía de tórax revela múltiples nódulos pequeños (<10 mm) de predominio en los lóbulos superiores y adenopatías hiliares con calcificación \"en cáscara de huevo\".",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico clínico-radiológico más probable y qué complicación infecciosa grave tiene este paciente un riesgo significativamente mayor de desarrollar?",
+        "options": [
+          "Asbestosis; Mesotelioma.",
+          "Bisinosis; Asma bronquial.",
+          "Silicosis; Tuberculosis pulmonar",
+          "Neumonitis por hipersensibilidad; Fibrosis quística."
+        ],
+        "answerIndex": 2,
+        "explanation": "La exposición al polvo de sílice (minería, canteras, vidrio) causa silicosis. La calcificación ganglionar \"en cáscara de huevo\" es un signo radiológico clásico. Estos pacientes tienen un riesgo muy elevado de desarrollar Tuberculosis (Silicotuberculosis) debido a la disfunción de los macrófagos alveolares.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "ENDOCRINOLOGÍA",
+    "subtema": "DIABETES MELLITUS (CETOACIDOSIS DIABÉTICA)",
+    "difficulty": "alta",
+    "case": "Masculino de 19 años con DM1 acude a urgencias por dolor abdominal, vómitos y alteración del estado de alerta. A la exploración presenta respiración de Kussmaul y aliento afrutado. Laboratorios: Glucosa 450 mg/dL, pH 7.1, HCO3 12 mEq/L, cetonas en orina +++, Potasio sérico 4.5 mEq/L.",
+    "questions": [
+      {
+        "question": "De acuerdo con las guías de manejo de crisis hiperglucémicas, ¿cuál es el paso INICIAL y más importante en el tratamiento de este paciente antes de iniciar la infusión de insulina?",
+        "options": [
+          "Administrar bicarbonato de sodio intravenoso.",
+          "Iniciar reposición hídrica agresiva con Solución Salina al 0.9%",
+          "Administrar un bolo de insulina regular de 0.1 U/kg.",
+          "Reponer potasio inmediatamente."
+        ],
+        "answerIndex": 1,
+        "explanation": "En la Cetoacidosis Diabética (CAD), el déficit de líquidos es severo (habitualmente de 3 a 6 litros). El primer paso siempre es la expansión de volumen con cristaloides isotónicos (NaCl 0.9%) durante la primera hora para restaurar la perfusión tisular antes de iniciar la insulina, ya que la insulina por sí sola puede agravar el choque al introducir agua y glucosa a las células. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "ENDOCRINOLOGÍA",
+    "subtema": "DIABETES MELLITUS (PIE DIABÉTICO)",
+    "difficulty": "baja",
+    "case": "Masculino de 60 años con DM2 mal controlada. Acude a consulta por presentar una úlcera en la planta del pie derecho (cabeza del primer metatarsiano). A la exploración, la úlcera es profunda, llega hasta el tendón y la cápsula articular, pero no hay evidencia de absceso ni osteomielitis clínica o radiológica.",
+    "questions": [
+      {
+        "question": "De acuerdo con la clasificación de Wagner para pie diabético, ¿en qué grado se encuentra esta lesión?",
+        "options": [
+          "Grado 1 (Úlcera superficial).",
+          "Grado 2 (Úlcera profunda que llega a tendón/cápsula sin infección profunda)",
+          "Grado 3 (Úlcera profunda con absceso u osteomielitis).",
+          "Grado 4 (Gangrena localizada)."
+        ],
+        "answerIndex": 1,
+        "explanation": "La clasificación de Wagner evalúa la profundidad y presencia de infección/gangrena. Un grado 2 es una úlcera profunda que penetra tejido celular subcutáneo hasta tendón, hueso o cápsula, pero SIN signos de infección profunda (osteomielitis o absceso), que sería un grado 3. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "ENDOCRINOLOGÍA",
+    "subtema": "ENFERMEDAD DE GRAVES (HIPERTIROIDISMO)",
+    "difficulty": "media",
+    "case": "Femenina de 32 años acude por pérdida de peso de 8 kg en un mes a pesar de tener polifagia, acompañada de palpitaciones, intolerancia al calor, temblor fino distal e insomnio. A la exploración física destaca exoftalmos bilateral y bocio difuso, indoloro a la palpación.",
+    "questions": [
+      {
+        "question": "¿Cuál es el perfil tiroideo esperado y cuál es el anticuerpo específico responsable de la fisiopatología de esta enfermedad?",
+        "options": [
+          "TSH baja, T4L alta; Anticuerpos anti-peroxidasa (Anti-TPO).",
+          "TSH alta, T4L baja; Anticuerpos anti-tiroglobulina.",
+          "TSH baja, T4L alta; Anticuerpos estimulantes del receptor de TSH (TSI / TRAb)",
+          "TSH alta, T4L alta; Anticuerpos antinucleares (ANA)."
+        ],
+        "answerIndex": 2,
+        "explanation": "La Enfermedad de Graves es un hipertiroidismo primario autoinmune (TSH suprimida < 0.1 y T4 Libre elevada). Los anticuerpos TSI se unen al receptor de TSH en la tiroides, estimulando la sobreproducción de hormonas tiroideas. Los Anti-TPO son característicos del Hashimoto. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "ENDOCRINOLOGÍA",
+    "subtema": "HIPOTIROIDISMO PRIMARIO (TIROIDITIS DE HASHIMOTO)",
+    "difficulty": "baja",
+    "case": "Femenina de 45 años, con antecedente familiar de enfermedades autoinmunes. Acude por astenia, caída de cabello, piel seca, estreñimiento y aumento de peso. El perfil tiroideo muestra TSH de 12 mUI/L y T4 libre disminuida.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa más común de esta patología en zonas con suficiencia de yodo y cuál es el marcador serológico más frecuentemente positivo?",
+        "options": [
+          "Deficiencia endémica de yodo; Anticuerpos TSI.",
+          "Tiroiditis de De Quervain; Velocidad de sedimentación globular (VSG) elevada.",
+          "Tiroiditis de Hashimoto; Anticuerpos anti-peroxidasa tiroidea (Anti-TPO)",
+          "Tiroiditis de Riedel; Anticuerpos anti-tiroglobulina exclusivos."
+        ],
+        "answerIndex": 2,
+        "explanation": "La Tiroiditis de Hashimoto es la causa número uno de hipotiroidismo primario en países desarrollados o con sal yodada. Los anticuerpos anti-TPO están presentes en más del 90% de los pacientes y confirman la etiología autoinmune. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "ENDOCRINOLOGÍA",
+    "subtema": "CÁNCER DE TIROIDES",
+    "difficulty": "alta",
+    "case": "Femenina de 35 años a quien se le detectó un nódulo tiroideo solitario de 2 cm, pétreo, fijo a planos profundos. Se le realiza una biopsia por aspiración con aguja fina (BAAF) que reporta células con núcleos ópticamente claros (en \"ojos de la huérfana Annie\") y la presencia de cuerpos de Psamoma.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tipo histológico de cáncer de tiroides más probable, el cual representa la variedad más frecuente y de mejor pronóstico?",
+        "options": [
+          "Carcinoma medular.",
+          "Carcinoma folicular.",
+          "Carcinoma anaplásico.",
+          "Carcinoma papilar"
+        ],
+        "answerIndex": 3,
+        "explanation": "El carcinoma papilar representa aproximadamente el 80% de los cánceres de tiroides. Su diseminación es linfática (ganglios cervicales). Los hallazgos patognomónicos en la biopsia son los cuerpos de Psamoma y los núcleos con vaciamiento de cromatina (ojos de la huérfana Annie). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "ENDOCRINOLOGÍA",
+    "subtema": "HIPERPROLACTINEMIA",
+    "difficulty": "baja",
+    "case": "Femenina de 28 años, nuligesta, acude por amenorrea secundaria de 6 meses de evolución y secreción lechosa bilateral por los pezones (galactorrea). Además, refiere dolores de cabeza frecuentes y pérdida de la visión lateral (hemianopsia bitemporal). Laboratorios reportan Prolactina sérica de 250 ng/mL.",
+    "questions": [
+      {
+        "question": "Ante la sospecha de un prolactinoma (macroadenoma hipofisario), ¿cuál es el tratamiento médico de primera línea antes de considerar la cirugía?",
+        "options": [
+          "Antagonistas de dopamina (Cabergolina o Bromocriptina)",
+          "Anticonceptivos orales combinados.",
+          "Resección transesfenoidal inmediata.",
+          "Somatostatina (Octreotide)."
+        ],
+        "answerIndex": 0,
+        "explanation": "Los prolactinomas son los únicos tumores hipofisarios cuyo tratamiento de primera línea es médico, incluso si son macroadenomas con compromiso visual. Los agonistas dopaminérgicos (como la cabergolina) inhiben la secreción de prolactina y reducen significativamente el tamaño del tumor. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "ENDOCRINOLOGÍA",
+    "subtema": "SÍNDROME METABÓLICO (CRITERIOS ATP III)",
+    "difficulty": "baja",
+    "case": "Masculino de 45 años, sedentario. Acude a chequeo de rutina. A la exploración: Circunferencia abdominal de 105 cm, TA 135/85 mmHg. Laboratorios en ayuno: Glucosa 115 mg/dL, Triglicéridos 180 mg/dL, HDL 35 mg/dL.",
+    "questions": [
+      {
+        "question": "Considerando los criterios modificados del ATP III (Adult Treatment Panel III), ¿cuántos criterios cumple el paciente y cuál es el diagnóstico?",
+        "options": [
+          "2 criterios; Sobrepeso.",
+          "5 criterios; Síndrome Metabólico",
+          "3 criterios; Dislipidemia mixta.",
+          "4 criterios; Prediabetes."
+        ],
+        "answerIndex": 1,
+        "explanation": "Para el diagnóstico de Síndrome Metabólico según ATP III, se requieren 3 de 5 criterios. Este paciente cumple los 5: 1) Obesidad abdominal (>90 cm en hombres latinos), 2) Glucosa en ayuno ≥ 100 mg/dL, 3) Triglicéridos ≥ 150 mg/dL, 4) HDL < 40 mg/dL en hombres, 5) TA ≥ 130/85 mmHg.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "ANEMIAS CARENCIALES (MEGALOBLÁSTICA)",
+    "difficulty": "media",
+    "case": "Masculino de 65 años, vegano estricto desde hace 10 años. Acude por fatiga progresiva, parestesias en extremidades inferiores, marcha inestable y alteraciones en la memoria. A la exploración física destaca glositis (lengua lisa, roja y brillante) y pérdida de la sensibilidad vibratoria en pies. Laboratorios: Hb 9.0 g/dL, VCM 115 fL.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa más probable de su anemia macrocítica y qué hallazgo patognomónico se espera encontrar en el frotis de sangre periférica?",
+        "options": [
+          "Deficiencia de Ácido fólico; Esquistocitos.",
+          "Deficiencia de Vitamina B12; Neutrófilos hipersegmentados",
+          "Síndrome mielodisplásico; Células en \"lágrima\" (dacriocitos).",
+          "Anemia perniciosa; Cuerpos de Heinz."
+        ],
+        "answerIndex": 1,
+        "explanation": "Tanto el déficit de B12 como de folatos causan anemia megaloblástica (VCM > 100 fL) y **neutrófilos hipersegmentados** (más de 5 lóbulos) en el frotis. Sin embargo, los síntomas neurológicos (parestesias, ataxia, demencia) y la glositis son característicos y exclusivos de la **deficiencia de Vitamina B12** (Cianocobalamina). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "ANEMIAS HEMOLÍTICAS (ESFEROCITOSIS HEREDITARIA)",
+    "difficulty": "alta",
+    "case": "Paciente masculino de 14 años, con antecedente de colecistectomía por litiasis biliar de colesterol a los 12 años. Acude por astenia y coloración amarillenta de la piel. A la exploración física se palpa esplenomegalia masiva. Laboratorios: Hb 10 g/dL, VCM 82 fL, Concentración Media de Hemoglobina Corpuscular (CHCM) de 37 g/dL (Elevada), Reticulocitos 8%.",
+    "questions": [
+      {
+        "question": "¿Cuál es la prueba estándar de oro para confirmar el diagnóstico de esta anemia hemolítica congénita y cuál es su tratamiento curativo?",
+        "options": [
+          "Prueba de Coombs directa; Glucocorticoides a dosis altas.",
+          "Electroforesis de hemoglobina; Hidroxiurea.",
+          "Prueba de fragilidad osmótica; Esplenectomía",
+          "Medición de Glucosa-6-Fosfato Deshidrogenasa; Evitar habas y sulfamidas."
+        ],
+        "answerIndex": 2,
+        "explanation": "La Esferocitosis Hereditaria es la única anemia con **CHCM elevada** (hipercromía). Se debe a un defecto en las proteínas de membrana del eritrocito (espectrina, anquirina). La prueba diagnóstica clásica es la fragilidad osmótica de los eritrocitos. El tratamiento definitivo para detener la hemólisis es la esplenectomía (después de los 5-6 años de edad para evitar sepsis grave). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "LEUCEMIAS (LEUCEMIA MIELOIDE AGUDA)",
+    "difficulty": "media",
+    "case": "Masculino de 55 años que acude a urgencias por fiebre de 39°C, sangrado gingival espontáneo, equimosis en extremidades y fatiga extrema de 2 semanas de evolución. La biometría hemática reporta: Leucocitos 45,000/mm³, Hemoglobina 7.5 g/dL, Plaquetas 20,000/mm³. Se realiza un frotis de sangre periférica donde se observan células inmaduras (blastos) con inclusiones citoplasmáticas en forma de bastón (Bastones de Auer).",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable de acuerdo con la epidemiología y los hallazgos en el frotis?",
+        "options": [
+          "Leucemia Linfoblástica Aguda (LLA).",
+          "Leucemia Mieloide Aguda (LMA)",
+          "Linfoma de Hodgkin.",
+          "Leucemia Mieloide Crónica (LMC)."
+        ],
+        "answerIndex": 1,
+        "explanation": "La presentación clínica de pancitopenia (infecciones, anemia, sangrado) indica una ocupación medular aguda. Los **Bastones de Auer** (cristalizaciones de gránulos azurófilos) son patognomónicos de las leucemias de estirpe **mieloide aguda (LMA)**. Además, la LMA es la leucemia aguda más común en adultos. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "LEUCEMIAS (LEUCEMIA MIELOIDE CRÓNICA)",
+    "difficulty": "alta",
+    "case": "Masculino de 48 años, asintomático. Acude a donar sangre y es rechazado porque su biometría hemática de escrutinio reporta leucocitosis de 110,000/mm³ con desviación a la izquierda (presencia de mielocitos, metamielocitos y bandas), basofilia y plaquetas en 600,000/mm³. A la exploración física dirigida, el único hallazgo es esplenomegalia palpable a 5 cm por debajo del borde costal.",
+    "questions": [
+      {
+        "question": "¿Cuál es la alteración citogenética característica de esta enfermedad y cuál es la terapia dirigida de primera línea?",
+        "options": [
+          "Translocación t(8;14); Rituximab.",
+          "Translocación t(15;17); Ácido todo-trans-retinoico (ATRA).",
+          "Translocación t(9;22) o Cromosoma Filadelfia; Imatinib",
+          "Deleción del brazo largo del cromosoma 5 (5q-); Lenalidomida."
+        ],
+        "answerIndex": 2,
+        "explanation": "La leucocitosis extrema con basofilia y esplenomegalia gigante es la presentación clásica de la Leucemia Mieloide Crónica (LMC). El 95% de los casos presentan el **cromosoma Filadelfia** [translocación t(9;22)], que crea el gen de fusión BCR-ABL (una tirosina cinasa). El tratamiento revolucionario e inicial son los inhibidores de tirosina cinasa como el **Imatinib**. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "ONCOHEMATOLOGÍA (LINFOMA DE HODGKIN)",
+    "difficulty": "media",
+    "case": "Masculino de 25 años acude por notar un \"bulto\" en el cuello. A la exploración se palpa una adenopatía cervical derecha de 3 cm, de consistencia ahulada, móvil e indolora. El paciente refiere que el ganglio le duele intensamente cuando ingiere bebidas alcohólicas (Signo de Hoster). Además, reporta fiebre vespertina, sudoración nocturna profusa y pérdida del 15% de su peso en los últimos 3 meses (Síntomas B).",
+    "questions": [
+      {
+        "question": "Se le realiza una biopsia escisional del ganglio. ¿Qué hallazgo histopatológico es indispensable para confirmar el diagnóstico clásico de esta enfermedad?",
+        "options": [
+          "Presencia de macrófagos en \"cielo estrellado\".",
+          "Células de Reed-Sternberg (células binucleadas en \"ojos de búho\")",
+          "Infiltrado monótono de linfocitos T maduros.",
+          "Presencia de células plasmáticas atípicas."
+        ],
+        "answerIndex": 1,
+        "explanation": "La presentación bimodal (jóvenes de 20-30 años y mayores de 60), las adenopatías indoloras y la presencia de \"Síntomas B\" apuntan fuertemente al Linfoma de Hodgkin. El diagnóstico definitivo siempre requiere demostrar la célula neoplásica característica: la **célula de Reed-Sternberg** en el tejido bipsiado. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "ANORMALIDADES DE LA HEMOSTASIA (ENFERMEDAD DE VON",
+    "difficulty": "baja",
+    "case": "Femenina de 21 años acude a consulta por presentar menstruaciones sumamente abundantes (menorragia) que le han causado anemia y episodios frecuentes de epistaxis desde la infancia. Refiere que su madre presenta el mismo cuadro. Laboratorios: Plaquetas 200,000/mm³ (Normales), TP normal, TTPa discretamente prolongado y un Tiempo de Sangrado (Ivy) francamente prolongado (12 minutos).",
+    "questions": [
+      {
+        "question": "¿Cuál es la coagulopatía hereditaria más común a nivel mundial que encaja con este cuadro y cuál es el tratamiento farmacológico de primera elección para episodios de sangrado leve a moderado?",
+        "options": [
+          "Hemofilia A; Concentrado de factor VIII purificado.",
+          "Púrpura Trombocitopénica Trombótica; Plasmaféresis.",
+          "Enfermedad de Von Willebrand; Desmopresina (DDAVP)",
+          "Deficiencia de Vitamina K; Fitomenadiona."
+        ],
+        "answerIndex": 2,
+        "explanation": "La Enfermedad de Von Willebrand afecta tanto a hombres como mujeres. Se caracteriza por sangrados mucocutáneos (plaquetarios) con conteo de plaquetas normal, pero disfuncionales (tiempo de sangrado alargado). La **desmopresina (DDAVP)** estimula la liberación del factor de Von Willebrand almacenado en las células endoteliales. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "HIPERTENSIÓN ARTERIAL (TRATAMIENTO)",
+    "difficulty": "media",
+    "case": "Femenina de 60 años con diagnóstico reciente de HAS. Cuenta con antecedentes de Diabetes Mellitus tipo 2 y Microalbuminuria. Su TA actual es de 150/94 mmHg.",
+    "questions": [
+      {
+        "question": "¿Cuál es el grupo farmacológico de primera elección para el inicio del tratamiento antihipertensivo en esta paciente debido a su efecto nefroprotector?",
+        "options": [
+          "Diuréticos tiazídicos.",
+          "Inhibidores de la Enzima Convertidora de Angiotensina (IECA) o ARA II",
+          "Calcioantagonistas.",
+          "Betabloqueadores."
+        ],
+        "answerIndex": 1,
+        "explanation": "En pacientes con diabetes, enfermedad renal crónica o proteinuria/albuminuria, los IECA o ARA II son la primera elección. Estos fármacos disminuyen la presión intraglomerular y frenan la progresión del daño renal, además de controlar la TA sistémica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "INSUFICIENCIA CARDÍACA CRÓNICA (TRATAMIENTO)",
+    "difficulty": "alta",
+    "case": "Masculino de 65 años con insuficiencia cardíaca con fracción de eyección reducida (FEVI 30%). Se encuentra en tratamiento con Enalapril, Metoprolol y Espironolactona a dosis óptimas. A pesar de ello, persiste en clase funcional NYHA II, con disnea de medianos esfuerzos.",
+    "questions": [
+      {
+        "question": "Según las actualizaciones de las guías de práctica clínica, ¿qué grupo farmacológico ha demostrado reducir la mortalidad y hospitalizaciones, y debe ser agregado al esquema de este paciente (los 4 pilares de la falla cardíaca)?",
+        "options": [
+          "Digoxina.",
+          "Inhibidores de SGLT2 (iSGLT2) como Empagliflozina",
+          "Isosorbide.",
+          "Furosemida a dosis altas."
+        ],
+        "answerIndex": 1,
+        "explanation": "Los 4 pilares actuales que reducen mortalidad en IC con FEVI reducida son: 1) ARNI (Sacubitrilo/Valsartán) o IECA/ARAII, 2) Betabloqueadores, 3) Antagonistas de receptores de mineralocorticoides (Espironolactona) y 4) Inhibidores de SGLT2.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "INSUFICIENCIA CARDÍACA AGUDA (EDEMA AGUDO DE PULMÓN)",
+    "difficulty": "media",
+    "case": "Femenina de 72 años es traída a urgencias por disnea súbita, ortopnea y expectoración asalmonada. A la exploración: TA 180/100 mmHg, estertores crepitantes bilaterales hasta campos medios y uso de músculos accesorios.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo farmacológico inicial inmediato para disminuir la precarga y mejorar la sintomatología respiratoria?",
+        "options": [
+          "Infusión de Dobutamina.",
+          "Nitroglicerina y Furosemida IV",
+          "Bloqueadores de canales de calcio.",
+          "Antibioticoterapia de amplio espectro."
+        ],
+        "answerIndex": 1,
+        "explanation": "El edema agudo de pulmón hipertensivo requiere disminuir la precarga y la postcarga de forma rápida. La Furosemida actúa como diurético y vasodilatador venoso, mientras que la Nitroglicerina ayuda a reducir la congestión pulmonar.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "VALVULOPATÍAS (ESTENOSIS AÓRTICA)",
+    "difficulty": "media",
+    "case": "Masculino de 75 años presenta cuadro de síncope al realizar esfuerzos físicos. Refiere además dolor torácico ocasional. A la exploración se ausculta un soplo sistólico eyectivo, áspero, en el segundo espacio intercostal derecho, que se irradia a las carótidas. El pulso es pequeño y lento (parvus et tardus).",
+    "questions": [
+      {
+        "question": "¿Cuál es la tríada clásica de esta valvulopatía y cuál es el estudio diagnóstico de elección?",
+        "options": [
+          "Disnea, hemoptisis, palpitaciones; ECG.",
+          "Angina, síncope, disnea; Ecocardiograma transtorácico",
+          "Fiebre, soplo, embolismo; Hemocultivo.",
+          "Cianosis, acropaquia, soplo; Radiografía de tórax."
+        ],
+        "answerIndex": 1,
+        "explanation": "La estenosis aórtica es la valvulopatía más común en el anciano. Su tríada es Angina, Síncope y Disnea (ASCO). El ecocardiograma Doppler es el estándar para evaluar el área valvular y el gradiente de presión.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "VALVULOPATÍAS (ESTENOSIS MITRAL)",
+    "difficulty": "alta",
+    "case": "Femenina de 45 años con antecedente de fiebre reumática en la infancia. Acude por disnea de grandes esfuerzos y palpitaciones. A la auscultación se percibe un chasquido de apertura seguido de un retumbo diastólico en el ápex. El electrocardiograma muestra ausencia de ondas P y ritmo irregular.",
+    "questions": [
+      {
+        "question": "¿Cuál es la complicación arrítmica más frecuente asociada a esta valvulopatía debido al crecimiento de la aurícula izquierda?",
+        "options": [
+          "Taquicardia ventricular.",
+          "Fibrilación auricular",
+          "Bloqueo AV de tercer grado.",
+          "Síndrome de Wolff-Parkinson-White."
+        ],
+        "answerIndex": 1,
+        "explanation": "La estenosis mitral (causada frecuentemente por fiebre reumática) provoca una sobrecarga de presión en la aurícula izquierda. Su dilatación es el sustrato perfecto para la Fibrilación Auricular, lo que aumenta drásticamente el riesgo de eventos tromboembólicos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "VALVULOPATÍAS (INSUFICIENCIA AÓRTICA)",
+    "difficulty": "media",
+    "case": "Masculino de 50 años con diagnóstico de síndrome de Marfan. Acude a revisión. A la exploración física se observa el \"Signo de Musset\" (balanceo rítmico de la cabeza con cada latido) y se ausculta un soplo diastólico decreciente en el borde esternal izquierdo. La presión diferencial está muy amplia (TA 160/50 mmHg).",
+    "questions": [
+      {
+        "question": "¿Cómo se denomina al soplo diastólico que se escucha en el ápex en pacientes con insuficiencia aórtica severa sin estenosis mitral orgánica?",
+        "options": [
+          "Soplo de Graham-Steell.",
+          "Soplo de Austin Flint",
+          "Soplo de Carey-Coombs.",
+          "Soplo de Gibson."
+        ],
+        "answerIndex": 1,
+        "explanation": "El soplo de Austin Flint es un retumbo diastólico apical producido por el choque del chorro de regurgitación aórtica sobre la valva anterior de la mitral, simulando una estenosis. La presión diferencial amplia y los signos periféricos (Musset, Quincke, Corrigan) son típicos de la insuficiencia aórtica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "MIOCARDIOPATÍA HIPERTRÓFICA",
+    "difficulty": "alta",
+    "case": "Masculino de 18 años, deportista de alto rendimiento, sufre colapso súbito durante un partido de fútbol. El paciente fallece a pesar de las maniobras de reanimación. Se menciona que un hermano del paciente falleció también a temprana edad de forma súbita.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa más probable de muerte súbita en este paciente joven y cuál es el hallazgo histopatológico característico?",
+        "options": [
+          "Infarto agudo al miocardio; Placa de ateroma rota.",
+          "Miocardiopatía hipertrófica; Desorganización (disarray) de los miocitos",
+          "Síndrome de Brugada; Mutación del canal de sodio.",
+          "Miocarditis viral; Infiltrado linfocitario."
+        ],
+        "answerIndex": 1,
+        "explanation": "La miocardiopatía hipertrófica (especialmente la septal asimétrica) es la causa principal de muerte súbita en atletas jóvenes debido a arritmias ventriculares. Es una enfermedad genética con herencia autosómica dominante caracterizada por el \"disarray\" o desorden de las fibras musculares cardíacas.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "SÍNDROMES CORONARIOS AGUDOS (IAMCEST)",
+    "difficulty": "alta",
+    "case": "Masculino de 58 años, fumador y sedentario. Acude a urgencias por dolor retroesternal opresivo de gran intensidad, irradiado a mandíbula y brazo izquierdo, de 45 minutos de evolución, acompañado de diaforesis. El electrocardiograma muestra elevación del segmento ST de 3 mm en las derivaciones V1, V2, V3 y V4.",
+    "questions": [
+      {
+        "question": "De acuerdo con la GPC, ¿cuál es la arteria coronaria probablemente ocluida y cuál es la estrategia de reperfusión de elección si el hospital cuenta con sala de hemodinamia y el tiempo puerta-balón es < 90 minutos?",
+        "options": [
+          "Arteria Coronaria Derecha; Fibrinolisis con Alteplase.",
+          "Arteria Descendente Anterior; Intervención Coronaria Percutánea (ICP) primaria",
+          "Arteria Circunfleja; Bypass coronario de urgencia.",
+          "Arteria Marginal; Terapia doble antiagregante solamente."
+        ],
+        "answerIndex": 1,
+        "explanation": "La elevación del ST en V1-V4 indica un infarto de la cara anterior, cuya arteria responsable es la Descendente Anterior (DA). La ICP primaria es el estándar de oro si se puede realizar en los primeros 90-120 minutos desde el contacto médico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "SÍNDROMES CORONARIOS AGUDOS (IAMSEST)",
+    "difficulty": "media",
+    "case": "Femenina de 65 años con antecedente de hipertensión. Presenta dolor torácico opresivo de 30 minutos que cedió parcialmente con el reposo. El EKG muestra inversión de la onda T en cara lateral (V5, V6, I, aVL) sin elevación del ST. Las troponinas cardíacas se reportan elevadas por encima del percentil 99.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico definitivo y qué escala se debe utilizar para estratificar el riesgo de mortalidad y decidir una conducta invasiva temprana?",
+        "options": [
+          "Angina Inestable; Escala de NYHA.",
+          "IAM sin elevación del ST (IAMSEST); Escala de GRACE o TIMI",
+          "Infarto con elevación del ST; Escala de Killip.",
+          "Angina de Prinzmetal; Escala de Glasgow."
+        ],
+        "answerIndex": 1,
+        "explanation": "La diferencia entre Angina Inestable e IAMSEST es la presencia de biomarcadores de necrosis (troponinas). Al estar elevadas, el diagnóstico es IAMSEST. Las escalas GRACE y TIMI permiten decidir si el paciente requiere cateterismo en las primeras 24- 72 horas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "COMPLICACIONES DEL INFARTO (CLASIFICACIÓN DE KILLIP)",
+    "difficulty": "baja",
+    "case": "Masculino de 70 años cursando su segundo día post-infarto agudo al miocardio extenso. Inicia con disnea súbita. A la exploración física se ausculta un tercer ruido (S3) y estertores crepitantes en la mitad inferior de ambos campos pulmonares. TA 110/70 mmH g.",
+    "questions": [
+      {
+        "question": "¿En qué estadio de la clasificación de Killip y Kimball se encuentra este paciente?",
+        "options": [
+          "Killip I (Sin insuficiencia cardíaca).",
+          "Killip II (Insuficiencia cardíaca moderada: estertores, S3)",
+          "Killip III (Edema agudo de pulmón).",
+          "Killip IV (Choque cardiogénico)."
+        ],
+        "answerIndex": 1,
+        "explanation": "La clasificación de Killip evalúa el pronóstico post-IAM basado en la exploración clínica. El grado II implica insuficiencia cardíaca con estertores en menos del 50% de los campos pulmonares o presencia de tercer ruido (galope). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "ACLS (RITMOS DESFIBRILABLES)",
+    "difficulty": "media",
+    "case": "Durante la guardia, un paciente con antecedente de IAM presenta pérdida súbita del estado de alerta y ausencia de pulso. Al conectar el monitor, se observa un trazo caótico, irregular, sin ondas P ni complejos QRS organizados.",
+    "questions": [
+      {
+        "question": "¿Cuál es el ritmo identificado y cuál es la acción inmediata a seguir según el algoritmo de soporte vital cardiovascular avanzado (ACLS)?",
+        "options": [
+          "Asistolia; Administrar Adrenalina 1mg.",
+          "Fibrilación Ventricular; Realizar una descarga eléctrica inmediata (desfibrilación)",
+          "Actividad Eléctrica Sin Pulso; Iniciar RCP de alta calidad por 2 minutos.",
+          "Taquicardia Ventricular con pulso; Cardioversión sincrónica."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Fibrilación Ventricular (FV) y la Taquicardia Ventricular sin pulso son ritmos desfibrilables. La prioridad absoluta es la desfibrilación temprana. La adrenalina se administra después de la segunda descarga fallida. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "ACLS (RITMOS NO DESFIBRILABLES)",
+    "difficulty": "media",
+    "case": "Se activa código de paro en el área de hospitalización. El paciente no responde, no respira y no tiene pulso. El monitor muestra una línea isoeléctrica plana en dos derivaciones.",
+    "questions": [
+      {
+        "question": "¿Cuál es el ritmo y cuál es el fármaco de primera elección que debe administrarse lo antes posible?",
+        "options": [
+          "Fibrilación Ventricular; Amiodarona.",
+          "Actividad Eléctrica Sin Pulso; Atropina.",
+          "Asistolia; Adrenalina 1 mg cada 3-5 minutos",
+          "Bloqueo AV; Isoproterenol."
+        ],
+        "answerIndex": 2,
+        "explanation": "La asistolia y la actividad eléctrica sin pulso (AESP) NO son ritmos desfibrilables. El manejo se centra en RCP de alta calidad y administración de adrenalina lo más pronto posible, mientras se buscan las causas reversibles (H y T). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "TRASTORNOS DEL RITMO (FIBRILACIÓN AURICULAR)",
+    "difficulty": "alta",
+    "case": "Femenina de 72 años con hipertensión y DM2. Acude por palpitaciones y fatiga. El EKG muestra un ritmo irregularmente irregular con ausencia de ondas P y frecuencia ventricular de 120 lpm.",
+    "questions": [
+      {
+        "question": "¿Cuál es la herramienta recomendada para evaluar el riesgo tromboembólico y decidir el inicio de anticoagulación oral en esta paciente?",
+        "options": [
+          "Escala HAS-BLED.",
+          "Escala CHA2DS2-VASc",
+          "Escala de Wells.",
+          "Criterios de Framingham."
+        ],
+        "answerIndex": 1,
+        "explanation": "En la Fibrilación Auricular (FA), se utiliza el CHA2DS2-VASc para decidir anticoagulación (En mujeres, un puntaje ≥ 3 es indicación clara). La escala HAS-BLED se usa simultáneamente para evaluar el riesgo de sangrado, pero no para decidir si anticoagular o no. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "TRASTORNOS DEL RITMO (BRADICARDIAS)",
+    "difficulty": "media",
+    "case": "Masculino de 80 años acude por mareos y un episodio de síncope. El EKG muestra una frecuencia cardíaca de 35 lpm, con ondas P que no guardan relación alguna con los complejos QRS (disociación aurículo-ventricular).",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico electrocardiográfico y el tratamiento definitivo de elección?",
+        "options": [
+          "Bloqueo AV de primer grado; Atropina de por vida.",
+          "Bloqueo AV de segundo grado Mobitz I; Observación.",
+          "Bloqueo AV de tercer grado (completo); Marcapasos definitivo",
+          "Bradicardia sinusal; Betabloqueadores."
+        ],
+        "answerIndex": 2,
+        "explanation": "El bloqueo AV de tercer grado se caracteriza por la falta total de conducción entre aurículas y ventrículos. Al ser una causa frecuente de bajo gasto y síncope (Stokes- Adams), el tratamiento definitivo es el implante de un marcapasos permanente. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "FARMACOLOGÍA CARDIOVASCULAR (DIGOXINA)",
+    "difficulty": "baja",
+    "case": "Paciente de 75 años en tratamiento por insuficiencia cardíaca y FA crónica. Acude por náuseas, vómitos, visión amarillenta (xantopsia) y malestar general. El EKG muestra una depresión del segmento ST con forma de \"cubeta\" o \"bigote de Dalí\".",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico clínico y cuál es el trastorno electrolítico que más frecuentemente predispone a esta complicación?",
+        "options": [
+          "Intoxicación por amiodarona; Hiponatremia.",
+          "Intoxicación digitálica; Hipopotasemia (Hipocalemia)",
+          "Infarto agudo al miocardio; Hipercalcemia.",
+          "Efecto normal de diuréticos; Hipermagnesemia."
+        ],
+        "answerIndex": 1,
+        "explanation": "La intoxicación por digoxina se manifiesta con síntomas gastrointestinales, neurológicos y visuales. El signo electrocardiográfico de impregnación (no necesariamente intoxicación) es la cubeta digitálica. La hipopotasemia aumenta la toxicidad de la digoxina al competir por el mismo sitio de unión en la bomba Na/K ATPasa. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "PERLAS (TUMORES CARDÍACOS)",
+    "difficulty": "media",
+    "case": "Femenina de 55 años acude por fiebre, pérdida de peso y episodios de disnea que cambian según la posición corporal. A la exploración se escucha un \"plop\" diastólico. El ecocardiograma revela una masa móvil pedunculada en la aurícula izquierda.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tumor cardíaco primario más frecuente en adultos y cuál es su localización habitual?",
+        "options": [
+          "Rabdomioma; Ventrículo derecho.",
+          "Mixoma auricular; Aurícula izquierda",
+          "Angiosarcoma; Aurícula derecha.",
+          "Fibroma; Septum interventricular."
+        ],
+        "answerIndex": 1,
+        "explanation": "El mixoma es el tumor benigno más frecuente del corazón en adultos. El 75-80% se localiza en la aurícula izquierda. Suelen dar síntomas generales (constitucionales) y embólicos, además de obstrucción valvular intermitente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "EVC ISQUÉMICO (MANEJO AGUDO)",
+    "difficulty": "alta",
+    "case": "Masculino de 62 años con antecedente de FA no anticoagulada. Es traído a urgencias por presentar de forma súbita hemiparesia derecha y afasia de 2 horas de evolución. A su llegada: TA 170/90 mmHg, Glucosa 110 mg/dL. La TC de cráneo simple no muestra evidencia de hemorragia ni signos de infarto extenso.",
+    "questions": [
+      {
+        "question": "De acuerdo con la ventana terapéutica y los criterios de inclusión de la GPC, ¿cuál es el tratamiento de elección en este momento?",
+        "options": [
+          "Aspirina 325 mg y Clopidogrel 75 mg.",
+          "Trombólisis intravenosa con r-tPA (Alteplase)",
+          "Trombectomía mecánica inmediata sin paso previo por fármacos.",
+          "Manejo conservador y control estricto de la TA < 140/90 mmHg."
+        ],
+        "answerIndex": 1,
+        "explanation": "La ventana terapéutica para trombólisis intravenosa es de hasta 4.5 horas desde el inicio de los síntomas. Al no haber hemorragia en la TC y estar dentro del tiempo, el r- tPA es el estándar para intentar recanalizar el vaso y salvar la penumbra isquémica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "EVC HEMORRÁGICO (HEMORRAGIA SUBARACNOIDEA)",
+    "difficulty": "alta",
+    "case": "Femenina de 45 años sin antecedentes. Presenta de forma súbita \"el peor dolor de cabeza de su vida\", seguido de pérdida transitoria del estado de alerta y vómito en proyectil. A la exploración presenta rigidez de nuca. La TC de cráneo muestra sangre en las cisternas de la base y espacio subaracnoideo.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa más frecuente de este cuadro no traumático y qué fármaco se utiliza para prevenir la complicación de vasoespasmo?",
+        "options": [
+          "Rotura de malformación arteriovenosa; Fenitoína.",
+          "Rotura de aneurisma sacular; Nimodipino",
+          "Hipertensión arterial sistémica; Hidralazina.",
+          "Angiopatía amiloide; Vitamina K."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Hemorragia Subaracnoidea (HSA) aneurismática se caracteriza por cefalea súbita e intensa. El Nimodipino (calcioantagonista) es fundamental durante los primeros 21 días para reducir el daño isquémico secundario al vasoespasmo cerebral. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "ENFERMEDAD DE PARKINSON",
+    "difficulty": "media",
+    "case": "Masculino de 68 años presenta temblor en reposo en mano derecha que cede al realizar movimientos voluntarios, bradicinesia (lentitud al caminar) e inestabilidad postural. A la exploración se observa \"facies de máscara\" y rigidez en \"rueda dentada\".",
+    "questions": [
+      {
+        "question": "¿Cuál es la zona del sistema nervioso central afectada por la pérdida de neuronas dopaminérgicas y cuál es el tratamiento farmacológico \"estándar de oro\"?",
+        "options": [
+          "Núcleo caudado; Haloperidol.",
+          "Sustancia negra pars compacta; Levodopa/Carbidopa",
+          "Cerebelo; Primidona.",
+          "Corteza prefrontal; Donepezilo."
+        ],
+        "answerIndex": 1,
+        "explanation": "El Parkinson es una enfermedad neurodegenerativa por pérdida de neuronas en la sustancia negra. La tríada diagnóstica es temblor en reposo, rigidez y bradicinesia. La Levodopa sigue siendo el tratamiento más eficaz para el control de síntomas motores. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "ESCLEROSIS MÚLTIPLE",
+    "difficulty": "alta",
+    "case": "Femenina de 28 años refiere que hace 1 año presentó pérdida de la visión del ojo izquierdo que recuperó tras tratamiento con esteroides. Acude hoy por debilidad en ambas piernas y sensación de \"choque eléctrico\" que recorre la espalda al flexionar el cuello (Signo de Lhermitte).",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio de imagen más sensible para confirmar el diagnóstico y qué hallazgo se espera encontrar en el líquido cefalorraquídeo (LCR)?",
+        "options": [
+          "TC de cráneo con contraste; Hipoproteinorraquia.",
+          "Resonancia Magnética (RM) con gadolinio; Bandas oligoclonales de IgG",
+          "Electromiografía; Disociación albúmino-citológica.",
+          "Mielografía; Pleocitosis linfocitaria extrema."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Esclerosis Múltiple (EM) se define por la diseminación de lesiones desmielinizantes en espacio y tiempo. La RM muestra placas de desmielinización y el LCR confirma el proceso inflamatorio mediante la presencia de bandas oligoclonales. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "CEFALEA MIGRANA",
+    "difficulty": "baja",
+    "case": "Femenina de 24 años acude por episodios de dolor de cabeza unilateral, de tipo pulsátil, de gran intensidad, acompañados de náuseas, vómitos, fotofobia y fonofobia. Refiere que antes del dolor ve \"luces brillantes\" (escotomas centellantes).",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento de elección para el ataque agudo de intensidad moderada- severa y qué fármaco se utiliza para la profilaxis si presenta >3 crisis al mes?",
+        "options": [
+          "Paracetamol; Indometacina.",
+          "Triptanos (Suma/Zolmitriptano); Propranolol o Topiramato",
+          "Ergotamina; Oxígeno a flujos altos.",
+          "Amitriptilina; Carbamazepina."
+        ],
+        "answerIndex": 1,
+        "explanation": "La migraña con aura se trata en fase aguda con triptanos (agonistas 5-HT 1B/1D). Si las crisis son frecuentes o incapacitantes, se debe iniciar profilaxis con betabloqueadores, antiepilépticos o antidepresivos tricíclicos. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "CEFALEA EN RACIMOS (CLUSTER)",
+    "difficulty": "media",
+    "case": "Masculino de 35 años, fumador. Acude por dolor lancinante, estrictamente unilateral, localizado en la región periorbitaria derecha, que dura 60 minutos. El dolor se acompaña de lagrimeo, rinorrea y ptosis del mismo lado. Refiere que los ataques ocurren varias veces al día, frecuentemente por la noche.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento abortivo de primera línea para esta cefalea trigémino- autonómica?",
+        "options": [
+          "Ibuprofeno 800 mg.",
+          "Oxígeno al 100% a través de mascarilla (7-12 L/min)",
+          "Prednisona oral.",
+          "Toxina botulínica."
+        ],
+        "answerIndex": 1,
+        "explanation": "La cefalea en racimos afecta más a hombres y es exquisitamente dolorosa. El tratamiento de elección para detener el ataque es el oxígeno suplementario a alto flujo y los triptanos subcutáneos. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "EPILEPSIA (CRISIS TÓNICO-CLÓNICAS)",
+    "difficulty": "media",
+    "case": "Masculino de 20 años presenta episodio de pérdida de conciencia con rigidez generalizada seguida de sacudidas rítmicas de las cuatro extremidades, mordedura de lengua y relajación de esfínteres. El episodio duró 2 minutos, seguido de un periodo de confusión (estado post-ictal).",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio inicial para clasificar el síndrome epiléptico y cuál es el fármaco de primera línea para crisis tónico-clónicas generalizadas según la GPC?",
+        "options": [
+          "TC de cráneo; Etosuximida.",
+          "Electroencefalograma (EEG); Valproato de magnesio",
+          "Punción lumbar; Diazepam oral.",
+          "RM de cráneo; Fenitoína."
+        ],
+        "answerIndex": 1,
+        "explanation": "El EEG es fundamental para identificar la actividad paroxística y focalidad. El Valproato es el fármaco de elección para crisis generalizadas primarias debido a su amplio espectro de acción. (Nota: Etosuximida es elección solo en crisis de ausencia).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "ARTRITIS REUMATOIDE (AR)",
+    "difficulty": "media",
+    "case": "Femenina de 45 años con cuadro de 8 meses de evolución caracterizado por dolor y rigidez matutina de más de 1 hora en manos, muñecas y rodillas. A la exploración física se observa inflamación simétrica de articulaciones metacarpofalángicas e interfalángicas proximales, con respeto de las interfalángicas distales.",
+    "questions": [
+      {
+        "question": "¿Cuál es el marcador serológico más específico para el diagnóstico de esta patología y cuál es el fármaco modificador de la enfermedad (FAME) de primera elección?",
+        "options": [
+          "Factor Reumatoide; Sulfasalazina.",
+          "Anticuerpos anti-péptido cíclico citrulinado (anti-CCP); Metotrexato",
+          "Anticuerpos anti-DsDNA; Prednisona.",
+          "Anticuerpos anti-Jo1; Azatioprina."
+        ],
+        "answerIndex": 1,
+        "explanation": "La AR es una enfermedad inflamatoria simétrica. Aunque el Factor Reumatoide es muy sensible, los anti-CCP tienen una especificidad >95%. El Metotrexato es el pilar del tratamiento (FAME sintético convencional) según la GPC. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "LUPUS ERITEMATOSO SISTÉMICO (LES)",
+    "difficulty": "alta",
+    "case": "Femenina de 22 años presenta fiebre, artralgias, fotosensibilidad y un exantema eritematoso en mejillas y puente nasal que respeta los surcos nasogenianos. Los laboratorios reportan anemia, leucopenia y proteinuria de 1 gramo en 24 horas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el anticuerpo más sensible para el tamizaje y cuál es el más específico que además se relaciona con actividad lúpica renal?",
+        "options": [
+          "ANA (Antinucleares); Anti-Smith y Anti-DNA de doble cadena (anti-dsDNA)",
+          "Anti-Ro y Anti-La; Anti-centrómero.",
+          "Anti-Scl70; Anti-histona.",
+          "Anti-RNP; Anti-citoplasma de neutrófilo (ANCA)."
+        ],
+        "answerIndex": 0,
+        "explanation": "Los ANA positivos están presentes en el 99% de los casos de LES (alta sensibilidad). Sin embargo, el Anti-Smith es el más específico. El Anti-dsDNA es específico y sus títulos fluctúan con la actividad de la enfermedad, especialmente en la nefritis lúpica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "ESPONDILITIS ANQUILOSANTE",
+    "difficulty": "media",
+    "case": "Masculino de 28 años refiere dolor lumbar crónico que empeora con el reposo y mejora con la actividad física. Presenta rigidez importante por las mañanas. En la radiografía de columna se observa osificación de los ligamentos intervertebrales (\"columna en caña de bambú\").",
+    "questions": [
+      {
+        "question": "¿Cuál es el antígeno leucocitario humano (HLA) fuertemente asociado a esta patología y cuál es la manifestación extraarticular más común?",
+        "options": [
+          "HLA-B27; Uveítis anterior aguda",
+          "HLA-DR4; Fibrosis pulmonar apical.",
+          "HLA-B51; Úlceras orales.",
+          "HLA-DQ8; Insuficiencia aórtica."
+        ],
+        "answerIndex": 0,
+        "explanation": "La espondilitis anquilosante pertenece al grupo de espondiloartropatías seronegativas (Factor Reumatoide negativo). El 90% de los pacientes son HLA-B27 positivos. La uveítis anterior es la complicación extraarticular más frecuente. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "VASCULITIS (GRANULOMATOSIS CON POLIANGEÍTIS / WEGENER)",
+    "difficulty": "alta",
+    "case": "Masculino de 45 años acude por sinusitis crónica, epistaxis y presencia de nódulos pulmonares cavitados en la radiografía. Los laboratorios muestran hematuria y cilindros eritrocitarios.",
+    "questions": [
+      {
+        "question": "¿Qué anticuerpo es característico de esta vasculitis de pequeño vaso y cuál es el tratamiento de inducción de elección?",
+        "options": [
+          "p-ANCA (anti-mieloperoxidasa); Ciclosporina.",
+          "c-ANCA (anti-proteinasa 3); Ciclofosfamida y glucocorticoides",
+          "Anti-MBG (membrana basal glomerular); Plasmaféresis.",
+          "Anticuerpos antifosfolípidos; Warfarina."
+        ],
+        "answerIndex": 1,
+        "explanation": "La tríada de Wegener incluye afectación de vías respiratorias superiores, inferiores y riñón (síndrome reno-pulmonar). El marcador clave es el c-ANCA (citoplasmático). El tratamiento es agresivo con inmunosupresores. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "SÍNDROME NEFRÓTICO",
+    "difficulty": "media",
+    "case": "Niño de 5 años es traído por edema bipalpebral y en extremidades inferiores de inicio reciente. Los laboratorios reportan proteinuria de 4 g en 24 horas, albúmina sérica de 2.0 g/dL e hiperlipidemia. El sedimento urinario es acelular.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa más probable en la edad pediátrica y cuál es el tratamiento inicial recomendado?",
+        "options": [
+          "Glomerulonefritis postestreptocócica; Penicilina.",
+          "Enfermedad de cambios mínimos; Prednisona",
+          "Nefropatía membranosa; Ciclofosfamida.",
+          "Glomeruloesclerosis focal y segmentaria; IECA."
+        ],
+        "answerIndex": 1,
+        "explanation": "El síndrome nefrótico se define por proteinuria en rango masivo, hipoalbuminemia y edema. En niños, la enfermedad de cambios mínimos es responsable del 90% de los casos y tiene una excelente respuesta a los esteroides. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "SÍNDROME NEFRÍTICO",
+    "difficulty": "media",
+    "case": "Masculino de 8 años con antecedente de faringoamigdalitis hace 2 semanas. Acude por presentar orina color \"refresco de cola\" (hematuria macroscópica), edema leve y TA de 130/85 mmHg (elevada para su edad).",
+    "questions": [
+      {
+        "question": "¿Cuál es el hallazgo esperado en el complemento sérico y cuál es el marcador de infección estreptocócica previa más útil?",
+        "options": [
+          "C3 normal, C4 bajo; Anticuerpos antinucleares.",
+          "C3 bajo, C4 normal; Títulos de antiestreptolisina O (ASLO)",
+          "C3 y C4 elevados; Cultivo de faringe.",
+          "Complemento total (CH50) normal; Biopsia renal inmediata."
+        ],
+        "answerIndex": 1,
+        "explanation": "La glomerulonefritis postestreptocócica es el prototipo de síndrome nefrítico (hematuria, hipertensión, edema). Característicamente cursa con consumo de la vía alterna del complemento (C3 bajo) que se normaliza en 6-8 semanas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "LESIÓN RENAL AGUDA (LRA)",
+    "difficulty": "media",
+    "case": "Masculino de 70 años con deshidratación severa por cuadro diarreico. Presenta elevación de creatinina de 0.8 a 2.1 mg/dL en 24 horas y oliguria. La fracción excretada de sodio (FeNa) es del 0.5% y la relación BUN/Creatinina es >20.",
+    "questions": [
+      {
+        "question": "¿A qué categoría de lesión renal aguda corresponde este cuadro y cuál es la medida terapéutica inicial?",
+        "options": [
+          "LRA Intrínseca (Necrosis Tubular Aguda); Diuréticos de asa.",
+          "LRA Prerrenal; Reposición de volumen con cristaloides",
+          "LRA Posrenal (Obstructiva); Sonda Foley.",
+          "Nefritis intersticial; Retiro de fármacos."
+        ],
+        "answerIndex": 1,
+        "explanation": "La LRA prerrenal es la causa más común. La baja perfusión estimula la reabsorción máxima de sodio y agua (FeNa <1%), lo que eleva el BUN proporcionalmente más que la creatinina. La hidratación revierte el cuadro rápidamente. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "ENFERMEDAD RENAL CRÓNICA (ERC)",
+    "difficulty": "alta",
+    "case": "Paciente con ERC estadio 4 (Tasa de Filtración Glomerular de 20 ml/min/1.73m²). Acude a consulta de seguimiento. Presenta anemia (Hb 9.2 g/dL) con cinetica de hierro normal.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa principal de la anemia en este paciente y a partir de qué valor de Hemoglobina se recomienda iniciar agentes estimulantes de la eritropoyesis (AEE)?",
+        "options": [
+          "Deficiencia de hierro; Hb < 12 g/dL.",
+          "Déficit de producción de eritropoyetina; Hb < 10 g/dL",
+          "Hemólisis por toxinas urémicas; Hb < 8 g/dL.",
+          "Pérdidas gastrointestinales; Hb < 11 g/dL."
+        ],
+        "answerIndex": 1,
+        "explanation": "La anemia en ERC es normocítica normocrómica por falta de eritropoyetina. Según guías KDIGO, se debe iniciar AEE cuando la Hb es <10 g/dL para mantener un rango meta de 10-11.5 g/dL (evitando >13 por riesgo cardiovascular). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "TRASTORNOS ELECTROLÍTICOS (HIPERKALEMIA)",
+    "difficulty": "alta",
+    "case": "Masculino de 60 años con ERC presenta potasio sérico de 7.2 mEq/L. El electrocardiograma muestra ondas T picudas, simétricas y estrechas, seguidas de un ensanchamiento del complejo QRS.",
+    "questions": [
+      {
+        "question": "¿Cuál es la medida de emergencia prioritaria para estabilizar la membrana del miocito y prevenir arritmias letales?",
+        "options": [
+          "Administración de Gluconato de Calcio IV",
+          "Infusión de Insulina con Glucosa.",
+          "Nebulización con Salbutamol.",
+          "Resinas de intercambio iónico (Kayexalate)."
+        ],
+        "answerIndex": 0,
+        "explanation": "Ante cambios electrocardiográficos por hiperkalemia, la prioridad es el Gluconato de Calcio. Este no baja el potasio, pero antagoniza el efecto de la hiperpotasemia en el potencial de membrana del corazón. Posteriormente se usan medidas para introducir el potasio a la célula (insulina/glucosa) o eliminarlo (diálisis/resinas).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "DERMATOLOGÍA",
+    "subtema": "CÁNCER DE PIEL (MELANOMA)",
+    "difficulty": "alta",
+    "case": "Femenina de 40 años acude por cambio en un lunar en la espalda. A la exploración se observa una lesión pigmentada asimétrica, de bordes irregulares, con varios tonos de marrón y negro, y un diámetro de 8 mm.",
+    "questions": [
+      {
+        "question": "¿Cuál es el criterio histopatológico pronóstico más importante para decidir el manejo y predecir la supervivencia?",
+        "options": [
+          "Índice de Breslow (profundidad de la invasión en milímetros)",
+          "Niveles de Clark (invasión por capas anatómicas).",
+          "Presencia de ulceración clínica.",
+          "Número de mitosis por campo."
+        ],
+        "answerIndex": 0,
+        "explanation": "En el melanoma, el espesor tumoral medido en milímetros (Índice de Breslow) es el factor pronóstico más importante y el que determina la amplitud de los márgenes quirúrgicos y la necesidad de ganglio centinela. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "DERMATOLOGÍA",
+    "subtema": "PSORIASIS",
+    "difficulty": "media",
+    "case": "Masculino de 35 años presenta placas eritematosas con escama blanquecina (\"micácea\") de distribución simétrica en codos, rodillas y región sacra. Al raspar la lesión, se observan pequeñas gotas de sangre (Signo de Auspitz).",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento inicial de elección para formas leves-moderadas y qué fenómeno explica la aparición de lesiones en sitios de trauma?",
+        "options": [
+          "Antibióticos sistémicos; Fenómeno de Raynaud.",
+          "Corticoides tópicos y análogos de Vitamina D; Fenómeno de Koebner",
+          "Antihistamínicos; Signo de Nikolsky.",
+          "Retinoides orales; Signo de Darier."
+        ],
+        "answerIndex": 1,
+        "explanation": "La psoriasis es una enfermedad inflamatoria crónica. El signo de Auspitz es característico. El fenómeno de Koebner (lesiones tras traumatismos) se presenta también en vitíligo y liquen plano. El manejo inicial es tópico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "DERMATOLOGÍA",
+    "subtema": "FARMACODERMIAS (SX STEVENS -JOHNSON / NET)",
+    "difficulty": "alta",
+    "case": "Paciente de 25 años que inició tratamiento con carbamazepina hace 10 días. Acude por fiebre, malestar general y aparición súbita de ampollas y erosiones que afectan piel y mucosas (oral y conjuntival). Presenta desprendimiento de la epidermis en el 25% de la superficie corporal. El signo de Nikolsky es positivo.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable considerando la extensión de la superficie corporal afectada?",
+        "options": [
+          "Síndrome de Stevens-Johnson (<10%).",
+          "Traslape SSJ / Necrólisis Epidérmica Tóxica (10-30%)",
+          "Necrólisis Epidérmica Tóxica (>30%).",
+          "Síndrome de piel escaldada estafilocócica."
+        ],
+        "answerIndex": 1,
+        "explanation": "Estas farmacodermias graves se diferencian por el porcentaje de desprendimiento dérmico. El signo de Nikolsky (desprendimiento de la epidermis al frotar la piel sana) es positivo. El manejo es similar al de un gran quemado. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "CIRROSIS HEPÁTICA (COMPLICACIONES)",
+    "difficulty": "alta",
+    "case": "Masculino de 55 años con antecedente de alcoholismo crónico. Acude por aumento del perímetro abdominal y edema de miembros inferiores. A la exploración: ictericia, telangiectasias en tórax y ascitis evidente. Los laboratorios muestran Albúmina 2.5 g/dL, Bilirrubina 3.5 mg/dL, e INR 1.8. Tiene encefalopatía grado I.",
+    "questions": [
+      {
+        "question": "¿Cuál es el puntaje en la escala de Child-Pugh y qué grado de severidad representa?",
+        "options": [
+          "7 puntos (Child-Pugh A).",
+          "10 puntos (Child-Pugh C)",
+          "5 puntos (Child-Pugh A).",
+          "12 puntos (Child-Pugh C)."
+        ],
+        "answerIndex": 1,
+        "explanation": "La escala Child-Pugh utiliza: Bilirrubina, Albúmina, INR, Ascitis y Encefalopatía (BAIRE). Este paciente suma puntos por todos los parámetros, cayendo en Clase C (puntaje 10-15), lo que indica una supervivencia al año muy baja y necesidad de considerar trasplante. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "HEMORRAGIA DIGESTIVA ALTA (VARICEAL)",
+    "difficulty": "media",
+    "case": "Paciente cirrótico conocido es traído por hematemesis masiva. TA 90/60 mmHg, FC 115 lpm.",
+    "questions": [
+      {
+        "question": "Tras la estabilización hemodinámica y el uso de fármacos vasoactivos (terlipresina u octreótido), ¿cuál es el procedimiento diagnóstico y terapéutico de elección?",
+        "options": [
+          "Sonda de Sengstaken-Blakemore.",
+          "Endoscopia digestiva alta con ligadura de varices con banda elástica",
+          "Colocación de TIPS (derivación portosistémica).",
+          "Cirugía de derivación."
+        ],
+        "answerIndex": 1,
+        "explanation": "La ligadura con banda es superior a la escleroterapia en el control de la hemorragia por varices esofágicas. Se debe realizar en las primeras 12 horas tras la admisión. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "ENCEFALOPATÍA HEPÁTICA",
+    "difficulty": "media",
+    "case": "Familiar de paciente con cirrosis refiere que el paciente está confuso, invierte el ciclo sueño-vigilia y presenta un temblor aleteante en las manos (asterixis). Refiere que el paciente no ha evacuado en 3 días.",
+    "questions": [
+      {
+        "question": "¿Cuál es el pilar del tratamiento médico para disminuir los niveles de amoníaco y cuál es el antibiótico no absorbible que se puede agregar?",
+        "options": [
+          "Neomicina; Metronidazol.",
+          "Lactulosa; Rifaximina",
+          "Enemas de agua salada; Ciprofloxacino.",
+          "Propanolol; Ceftriaxona."
+        ],
+        "answerIndex": 1,
+        "explanation": "La lactulosa es un disacárido no absorbible que acidifica el colon, atrapando el amoníaco (NH3) en forma de amonio (NH4+) para su excreción. La Rifaximina ayuda a eliminar la microbiota productora de ureasa. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "ENFERMEDAD INFLAMATORIA INTESTINAL (CUCI)",
+    "difficulty": "alta",
+    "case": "Masculino de 30 años presenta diarrea crónica con sangre y moco (disentería), tenesmo y dolor abdominal. La colonoscopia muestra inflamación continua de la mucosa que inicia en el recto y se extiende proximalmente, con pérdida de las haustras (\"tubo de plomo\").",
+    "questions": [
+      {
+        "question": "¿Cuál es el hallazgo histopatológico característico y qué marcador serológico suele ser positivo?",
+        "options": [
+          "Granulomas no caseificantes; ASCA positivos.",
+          "Abscesos cripticos e inflamación limitada a mucosa; p-ANCA positivos",
+          "Invasión de toda la pared (transmural); Anticuerpos anti-endomisio.",
+          "Trofozoítos con eritrocitos fagocitados; Coprocultivo positivo."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Colitis Ulcerosa Crónica Idiopática (CUCI) afecta solo mucosa y submucosa de forma continua. La Enfermedad de Crohn, en cambio, es transmural, parcheada (lesiones \"en empedrado\") y puede afectar cualquier parte del tubo digestivo.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "SÍNDROME DE FRAGILIDAD",
+    "difficulty": "media",
+    "case": "Masculino de 82 años acude a valoración. Su hija refiere que \"se ha vuelto más lento\", ha perdido 6 kg de peso en los últimos 6 meses sin causa aparente y se cansa con facilidad. A la exploración: fuerza de prensión disminuida y velocidad de la marcha lenta (0.6 m/s).",
+    "questions": [
+      {
+        "question": "De acuerdo con los criterios de Fried, ¿cuál es el diagnóstico de este paciente y cuántos criterios debe cumplir para categorizarse como frágil?",
+        "options": [
+          "Prefraile; 1 a 2 criterios.",
+          "Síndrome de Fragilidad; 3 o más criterios",
+          "Sarcopenia; Solo pérdida de peso.",
+          "Envejecimiento normal; 0 criterios."
+        ],
+        "answerIndex": 1,
+        "explanation": "Los criterios de Fried para fragilidad son: 1) Pérdida de peso no intencionada, 2) Agotamiento (exhaustion), 3) Debilidad (fuerza de prensión), 4) Lentitud en la marcha y 5) Baja actividad física. El paciente cumple al menos 4, por lo que es frágil. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "DELIRIUM (SÍNDROME CONFUSIONAL AGUDO)",
+    "difficulty": "baja",
+    "case": "Femenina de 85 años, hospitalizada por fractura de cadera. Durante la noche presenta agitación psicomotriz, desorientación, alucinaciones visuales y lenguaje incoherente. El cuadro inició de forma súbita y fluctúa durante el día.",
+    "questions": [
+      {
+        "question": "¿Cuál es la herramienta clínica recomendada por la GPC para el diagnóstico de Delirium al pie de la cama y cuál es el tratamiento farmacológico de elección si hay riesgo de autolesión?",
+        "options": [
+          "Mini-Mental State Examination (MMSE); Diazepam.",
+          "Confusion Assessment Method (CAM); Haloperidol a dosis bajas",
+          "Escala de Yesavage; Fluoxetina.",
+          "Cuestionario Pfeiffer; Risperidona a dosis altas."
+        ],
+        "answerIndex": 1,
+        "explanation": "El CAM es el estándar de oro clínico para detectar delirium (inicio agudo, fluctuante, inatención y pensamiento desorganizado). El manejo inicial es ambiental, pero si requiere fármacos, los antipsicóticos típicos (haloperidol) son de elección. Se deben evitar las benzodiacepinas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "CAÍDAS EN EL ANCIANO",
+    "difficulty": "media",
+    "case": "Masculino de 78 años que ha presentado 3 caídas en el último año. Utiliza polifarmacia (7 fármacos). Se desea evaluar su equilibrio y riesgo de futuras caídas.",
+    "questions": [
+      {
+        "question": "¿Cuál es la prueba diagnóstica funcional de elección para evaluar la movilidad y el equilibrio en el primer nivel de atención?",
+        "options": [
+          "Prueba de \"Levántate y anda\" (Get up and Go)",
+          "Escala de Norton.",
+          "Índice de Katz.",
+          "Escala de Lawton-Brody."
+        ],
+        "answerIndex": 0,
+        "explanation": "La prueba \"Get up and Go\" mide el tiempo que tarda el paciente en levantarse de una silla, caminar 3 metros, girar y volver a sentarse. Un tiempo >12-15 segundos indica un alto riesgo de caídas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "ÚLCERAS POR PRESIÓN",
+    "difficulty": "baja",
+    "case": "Paciente de 88 años, encamado por secuelas de EVC. Presenta en la región sacra una lesión con pérdida del espesor total de la piel, donde se observa tejido adiposo, pero no se visualiza hueso, tendón ni músculo.",
+    "questions": [
+      {
+        "question": "¿A qué categoría o estadio de úlcera por presión corresponde esta lesión?",
+        "options": [
+          "Estadio I (Eritema que no palidece).",
+          "Estadio II (Pérdida parcial del espesor, ampolla).",
+          "Estadio III (Pérdida total del espesor cutáneo, grasa visible)",
+          "Estadio IV (Exposición de hueso o músculo)."
+        ],
+        "answerIndex": 2,
+        "explanation": "Las úlceras estadio III llegan hasta el tejido celular subcutáneo. El manejo preventivo incluye cambios de posición cada 2 horas y uso de colchones de presión alterna. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PSIQUIATRÍA",
+    "subtema": "TRASTORNO DEPRESIVO MAYOR",
+    "difficulty": "baja",
+    "case": "Femenina de 34 años refiere tristeza profunda, anhedonia (pérdida de interés), insomnio de tercera fase, pérdida de apetito y sentimientos de culpa de 3 semanas de duración. Ha comenzado a tener ideas de muerte.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento farmacológico de primera línea según la GPC y cuánto tiempo debe mantenerse tras alcanzar la remisión del primer episodio?",
+        "options": [
+          "Inhibidores Selectivos de la Recaptura de Serotonina (ISRS); 6 a 12 meses",
+          "Benzodiacepinas; 2 años.",
+          "Antidepresivos tricíclicos; 3 meses.",
+          "Carbonato de Litio; De por vida."
+        ],
+        "answerIndex": 0,
+        "explanation": "Los ISRS (Sertralina, Fluoxetina) son de primera elección por su perfil de seguridad. El tratamiento debe continuarse al menos 6-12 meses tras la remisión del primer episodio para evitar recaídas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PSIQUIATRÍA",
+    "subtema": "TRASTORNO BIPOLAR",
+    "difficulty": "media",
+    "case": "Masculino de 28 años es traído por presentar desde hace una semana verborrea, fuga de ideas, disminución de la necesidad de dormir (duerme 2 horas y se siente con energía), gastos excesivos e hipersexualidad. Presenta un episodio depresivo previo documentado.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico actual y cuál es el tratamiento estabilizador del estado de ánimo de elección?",
+        "options": [
+          "Trastorno de Ansiedad; Alprazolam.",
+          "Episodio Maníaco (Trastorno Bipolar tipo I); Carbonato de Litio",
+          "Distimia; Imipramina.",
+          "Ciclotimia; Quetiapina únicamente."
+        ],
+        "answerIndex": 1,
+        "explanation": "La manía se define por síntomas de exaltación del ánimo por al menos 1 semana que interfieren con la funcionalidad. El litio es el estándar de oro, requiriendo monitorización de niveles séricos (litemia) para evitar toxicidad. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PSIQUIATRÍA",
+    "subtema": "ESQUIZOFRENIA",
+    "difficulty": "media",
+    "case": "Masculino de 22 años refiere que \"el FBI le ha implantado un chip\" y que escucha voces que comentan sus actos. Su familia nota que está retraído, no se baña y tiene un afecto plano. Los síntomas han persistido por 8 meses.",
+    "questions": [
+      {
+        "question": "¿Cómo se clasifican los síntomas de alucinaciones/delirios y cuál es el tratamiento de elección para los síntomas negativos?",
+        "options": [
+          "Síntomas Positivos; Antipsicóticos atípicos (Risperidona, Olanzapina)",
+          "Síntomas Negativos; Haloperidol.",
+          "Síntomas Cognitivos; Valproato.",
+          "Síntomas Afectivos; Fluoxetina."
+        ],
+        "answerIndex": 0,
+        "explanation": "Los síntomas positivos (delirios, alucinaciones) responden bien a antipsicóticos típicos y atípicos. Sin embargo, los atípicos tienen mejor perfil para los síntomas negativos (apatía, alogía, anhedonia) y menores efectos extrapiramidales. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PSIQUIATRÍA",
+    "subtema": "TRASTORNO DE ANSIEDAD GENERALIZADA (TAG)",
+    "difficulty": "baja",
+    "case": "Femenina de 40 años refiere preocupación excesiva por diversos temas (trabajo, salud de hijos, economía) la mayor parte de los días durante los últimos 7 meses. Presenta tensión muscular, irritabilidad y dificultad para concentrarse.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento farmacológico de elección a largo plazo y qué fármaco se puede usar solo de forma temporal para el control de crisis?",
+        "options": [
+          "ISRS (Paroxetina/Escitalopram); Benzodiacepinas (corto plazo)",
+          "Propanolol; Fenobarbital.",
+          "Buspirona; Litio.",
+          "Haloperidol; Midazolam."
+        ],
+        "answerIndex": 0,
+        "explanation": "El TAG requiere manejo crónico con ISRS o IRSN (Venlafaxina). Las benzodiacepinas solo se recomiendan al inicio (2-4 semanas) mientras el antidepresivo hace efecto, para evitar dependencia. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PSIQUIATRÍA",
+    "subtema": "TRASTORNO POR CONSUMO DE ALCOHOL (WERNICKE -KORSAKOFF)",
+    "difficulty": "alta",
+    "case": "Masculino de 50 años con alcoholismo crónico grave. Presenta confusión, ataxia de la marcha y nistagmus (oftalmoplejía).",
+    "questions": [
+      {
+        "question": "¿Cuál es la deficiencia vitamínica subyacente y cuál es la tríada de la Encefalopatía de Wernicke?",
+        "options": [
+          "Vitamina B12; Anemia, glositis, demencia.",
+          "Vitamina B1 (Tiamina); Confusión, ataxia y alteraciones oculomotoras",
+          "Vitamina B6; Convulsiones, dermatitis, anemia.",
+          "Vitamina B3; Dermatitis, diarrea, demencia."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Encefalopatía de Wernicke es una urgencia médica reversible con la administración de Tiamina. Si no se trata, puede progresar al Síndrome de Korsakoff (amnesia anterógrada y confabulación), que suele ser irreversible. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PSIQUIATRÍA",
+    "subtema": "TRASTORNO DE PÁNICO",
+    "difficulty": "media",
+    "case": "Paciente de 25 años acude a urgencias por sensación de muerte inminente, palpitaciones, falta de aire y dolor precordial de inicio súbito que duró 10 minutos. Los estudios cardíacos y laboratorios son normales. Es el tercer episodio similar en un mes.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico y cuál es el manejo agudo de la crisis en urgencias?",
+        "options": [
+          "Infarto agudo al miocardio; Angioplastia.",
+          "Trastorno de Pánico; Benzodiacepina de acción rápida (Lorazepam/Diazepam)",
+          "Feocromocitoma; Bloqueadores alfa.",
+          "Hipertiroidismo; Metimazol."
+        ],
+        "answerIndex": 1,
+        "explanation": "Las crisis de pánico se presentan con síntomas autonómicos intensos. Una vez descartada la patología orgánica (especialmente cardíaca), el manejo agudo es con benzodiacepinas y el preventivo con ISRS.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "TOXICOLOGÍA",
+    "subtema": "INTOXICACIÓN POR PARACETAMOL",
+    "difficulty": "media",
+    "case": "Masculino de 19 años es traído tras ingerir 20 gramos de paracetamol en un intento autolítico hace 4 horas. Actualmente se encuentra asintomático.",
+    "questions": [
+      {
+        "question": "¿Cuál es el metabolito hepatotóxico responsable del daño y cuál es el antídoto de elección que debe administrarse idealmente antes de las 8 horas?",
+        "options": [
+          "N-acetil-p-benzoquinonaimina (NAPQI); N-acetilcisteína",
+          "Ácido homogentísico; Carbón activado únicamente.",
+          "Glutatión; Flumazenil.",
+          "Ácido glucurónico; Atropina."
+        ],
+        "answerIndex": 0,
+        "explanation": "El paracetamol se metaboliza en el hígado. Al saturarse las vías normales, se produce NAPQI, un metabolito altamente reactivo que agota el glutatión. La N-acetilcisteína actúa como precursor del glutatión y debe administrarse según el nomograma de Rumack -Matthew. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "TOXICOLOGÍA",
+    "subtema": "SÍNDROME COLINÉRGICO (ORGANOFOSFORADOS)",
+    "difficulty": "media",
+    "case": "Paciente campesino de 40 años es traído por presentar miosis, bradicardia, sialorrea (salivación excesiva), lagrimeo, broncorrea y fasciculaciones musculares tras fumigar su campo sin protección.",
+    "questions": [
+      {
+        "question": "¿Cuál es el mecanismo de acción de estos tóxicos y qué fármaco se utiliza para revertir los síntomas muscarínicos (secreciones y bradicardia)?",
+        "options": [
+          "Inhibición irreversible de la acetilcolinesterasa; Atropina",
+          "Bloqueo de receptores adrenérgicos; Adrenalina.",
+          "Activación de la bomba Na/K; Gluconato de calcio.",
+          "Inhibición de la recaptura de dopamina; Biperideno."
+        ],
+        "answerIndex": 0,
+        "explanation": "Los organofosforados causan una crisis colinérgica por acumulación de acetilcolina. La mnemotecnia DUMBELS (Diarrea, Urination, Miosis, Broncorrea, Emesis, Lagrimeo, Salivación) resume el cuadro. El manejo inicial es con atropina hasta lograr la \"atropinización\" (secado de secreciones). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "TOXICOLOGÍA",
+    "subtema": "SÍNDROME ANTICOLINÉRGICO",
+    "difficulty": "baja",
+    "case": "Femenina de 22 años es traída tras ingerir una cantidad desconocida de antidepresivos tricíclicos. Presenta piel roja y seca, midriasis, taquicardia, retención urinaria y agitación. \"Loca como una cabra, roja como un betabel y seca como un hueso\".",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico sindromático y cuál es el antídoto específico (aunque de uso restringido)?",
+        "options": [
+          "Síndrome Simpaticomimético; Propanolol.",
+          "Síndrome Anticolinérgico; Fisostigmina",
+          "Síndrome Serotoninérgico; Ciproheptadina.",
+          "Síndrome Opioide; Naloxona."
+        ],
+        "answerIndex": 1,
+        "explanation": "El síndrome anticolinérgico se debe al bloqueo de receptores muscarínicos. Los tricíclicos, antihistamínicos y la atropina pueden causarlo. La fisostigmina es el antídoto (inhibidor de la colinesterasa que cruza la barrera hematoencefálica). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "TOXICOLOGÍA",
+    "subtema": "INTOXICACIÓN POR OPIOIDES",
+    "difficulty": "baja",
+    "case": "Masculino de 28 años con antecedente de toxicomanías es encontrado inconsciente con frecuencia respiratoria de 6 rpm y pupilas puntiformes (miosis extrema).",
+    "questions": [
+      {
+        "question": "¿Cuál es la tríada clínica de la intoxicación por opioides y cuál es el antídoto de elección?",
+        "options": [
+          "Coma, midriasis, taquipnea; Flumazenil.",
+          "Depresión respiratoria, miosis y depresión del SNC; Naloxona",
+          "Hipertermia, rigidez, diarrea; Dantroleno.",
+          "Convulsiones, arritmias, hipotensión; Bicarbonato de sodio."
+        ],
+        "answerIndex": 1,
+        "explanation": "La naloxona es un antagonista puro de los receptores opioides y debe administrarse de forma prioritaria para revertir la depresión respiratoria, que es la causa de muerte en estos pacientes. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "TOXICOLOGÍA",
+    "subtema": "INTOXICACIÓN POR BENZODIACEPINAS",
+    "difficulty": "baja",
+    "case": "Femenina de 45 años ingiere 30 tabletas de Clonazepam. Presenta somnolencia profunda, disartria y ataxia, pero con signos vitales estables y pupilas normales.",
+    "questions": [
+      {
+        "question": "¿Cuál es el antídoto específico para revertir el efecto de las benzodiacepinas?",
+        "options": [
+          "Naloxona.",
+          "Flumazenil",
+          "Vitamina K.",
+          "Azul de metileno."
+        ],
+        "answerIndex": 1,
+        "explanation": "El flumazenil es un antagonista competitivo del receptor GABA-A. Debe usarse con precaución en usuarios crónicos de benzodiacepinas porque puede desencadenar crisis convulsivas por abstinencia. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "TOXICOLOGÍA",
+    "subtema": "MORDEDURA DE SERPIENTE (VIPERIDAE)",
+    "difficulty": "media",
+    "case": "Masculino de 30 años mordido por una cascabel (Crotalus) en la pierna hace 2 horas. Presenta edema importante, equimosis, dolor intenso y prolongación de los tiempos de coagulación.",
+    "questions": [
+      {
+        "question": "De acuerdo con la clasificación de Christopher-Rodning, ¿qué grado de envenenamiento presenta y cuál es el tratamiento específico?",
+        "options": [
+          "Grado 0; Observación.",
+          "Grado II o III (Moderado-Grave); Faboterápico polivalente antiviperino",
+          "Leve; Antibiótico y toxoide tetánico únicamente.",
+          "Grave; Fasciotomía inmediata."
+        ],
+        "answerIndex": 1,
+        "explanation": "En México, la mayoría de las mordeduras son por Viperidae (cascabel, nauyaca). El veneno es proteolítico y coagulante. El tratamiento se basa en la administración de viales de faboterápico según el grado de severidad clínica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INMUNOLOGÍA",
+    "subtema": "REACCIONES DE HIPERSENSIBILIDAD",
+    "difficulty": "media",
+    "case": "Paciente que tras la administración de penicilina presenta de forma inmediata prurito, urticaria generalizada, estridor laríngeo e hipotensión severa.",
+    "questions": [
+      {
+        "question": "¿A qué tipo de reacción de hipersensibilidad (Gell y Coombs) corresponde este cuadro y cuál es el fármaco de elección para el manejo de la anafilaxia?",
+        "options": [
+          "Tipo II (Citotóxica); Antihistamínicos IV.",
+          "Tipo III (Inmunocomplejos); Glucocorticoides.",
+          "Tipo I (Inmediata mediada por IgE); Adrenalina IM",
+          "Tipo IV (Celular); Ciclosporina."
+        ],
+        "answerIndex": 2,
+        "explanation": "La anafilaxia es una reacción tipo I mediada por la unión del antígeno a la IgE en la superficie de mastocitos y basófilos. La adrenalina intramuscular es el único fármaco que salva la vida al revertir la vasodilatación y el edema de vía aérea. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INMUNOLOGÍA",
+    "subtema": "INMUNODEFICIENCIA COMÚN VARIABLE",
+    "difficulty": "alta",
+    "case": "Masculino de 20 años con antecedente de múltiples episodios de neumonía y sinusitis desde la adolescencia. Se detectan niveles muy bajos de IgG, IgA e IgM, con linfocitos B presentes pero incapaces de diferenciarse en células plasmáticas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable y cuál es el tratamiento de soporte?",
+        "options": [
+          "Agammaglobulinemia de Bruton; Antibióticos profilácticos.",
+          "Inmunodeficiencia Común Variable (IDCV); Sustitución con Inmunoglobulina IV",
+          "Síndrome de DiGeorge; Trasplante de timo.",
+          "VIH/SIDA; TARAA."
+        ],
+        "answerIndex": 1,
+        "explanation": "La IDCV es la inmunodeficiencia primaria sintomática más frecuente en el adulto. A diferencia de la enfermedad de Bruton (que es ligada al X y se ve en niños pequeños), en la IDCV sí hay linfocitos B, pero son disfuncionales. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INMUNOLOGÍA",
+    "subtema": "ANGIOEDEMA HEREDITARIO",
+    "difficulty": "alta",
+    "case": "Paciente de 18 años con episodios recurrentes de edema de cara, labios y extremidades, además de dolor abdominal intenso, sin presencia de urticaria ni prurito. Refiere que su padre tenía síntomas similares.",
+    "questions": [
+      {
+        "question": "¿Cuál es la deficiencia enzimática subyacente y qué mediador es el responsable del aumento de la permeabilidad vascular?",
+        "options": [
+          "Deficiencia del Inhibidor de C1 esterasa (C1-INH); Bradicinina",
+          "Deficiencia de C3; Histamina.",
+          "Déficit de NADPH oxidasa; Peróxido de hidrógeno.",
+          "Deficiencia de mieloperoxidasa; Óxido nítrico."
+        ],
+        "answerIndex": 0,
+        "explanation": "El angioedema hereditario es una enfermedad autosómica dominante. La falta de C1- INH provoca una producción descontrolada de bradicinina. Es clave recordar que NO responde a antihistamínicos ni corticoides. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "TOXICOLOGÍA",
+    "subtema": "ALCOHOLES (METANOL)",
+    "difficulty": "media",
+    "case": "Paciente indigente que tras consumir bebidas de fabricación casera presenta embriaguez, dolor abdominal, visión borrosa (\"ver a través de una tormenta de nieve\") y acidosis metabólica con anión gap elevado.",
+    "questions": [
+      {
+        "question": "¿Cuál es el metabolito tóxico del metanol y qué alcohol se puede usar como antídoto competitivo?",
+        "options": [
+          "Ácido fórmico; Etanol (o Fomepizol)",
+          "Ácido acético; Isopropanol.",
+          "Formaldehído; Metanol puro.",
+          "Oxalato; Glicol."
+        ],
+        "answerIndex": 0,
+        "explanation": "El metanol se metaboliza a formaldehído y luego a ácido fórmico, el cual es tóxico para el nervio óptico y la retina. El etanol tiene mayor afinidad por la alcohol deshidrogenasa, impidiendo la formación de los metabolitos tóxicos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "VIH / SIDA (DIAGNÓSTICO Y GENERALIDADES)",
+    "difficulty": "media",
+    "case": "Masculino de 28 años, con antecedente de múltiples parejas sexuales sin protección. Acude por cuadro de 3 semanas de fiebre, pérdida de peso, sudoración nocturna y adenopatías generalizadas. Se realiza prueba de tamizaje (ELISA de 4ta generación) resultando positiva.",
+    "questions": [
+      {
+        "question": "¿Cuál es la prueba confirmatoria de elección según la GPC y cuál es la meta de carga viral a las 24 semanas de haber iniciado el Tratamiento Antirretroviral (TAR)?",
+        "options": [
+          "Western Blot; Carga viral < 5,000 copias/ml.",
+          "Carga Viral (RNA VIH) o Carga Viral Indetectable; < 50 copias/ml",
+          "Inmunofluorescencia; CD4 > 500 células/mm³.",
+          "Prueba rápida de segunda generación; < 200 copias/ml."
+        ],
+        "answerIndex": 1,
+        "explanation": "Actualmente, tras un ELISA de 4ta generación positivo, se prefiere la carga viral como confirmatoria (y para línea base). El éxito del tratamiento se define como alcanzar una carga viral indetectable (<50 copias/ml) antes de las 24 semanas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "VIH (INFECCIONES OPORTUNISTAS - TOXOPLASMOSIS)",
+    "difficulty": "alta",
+    "case": "Paciente con VIH (CD4 50 cél/mm³) que presenta cefalea intensa, fiebre y crisis convulsivas de inicio reciente. En la Resonancia Magnética de cráneo se observan múltiples lesiones que realzan en forma de \"anillo\" en los ganglios basales, rodeadas de edema.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable y cuál es el esquema de tratamiento de primera línea?",
+        "options": [
+          "Linfoma Primario del SNC; Radioterapia.",
+          "Encefalitis por Toxoplasma gondii; Pirimetamina + Sulfadiazina + Ácido folínico",
+          "Leucoencefalopatía Multifocal Progresiva; Reinicio de TAR.",
+          "Meningitis por Criptococo; Fluconazol."
+        ],
+        "answerIndex": 1,
+        "explanation": "La toxoplasmosis cerebral es la causa más común de masa ocupativa en pacientes con SIDA. El realce en anillo es característico. El ácido folínico se añade para prevenir la toxicidad hematológica de la pirimetamina. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "HEPATITIS B (SEROLOGÍA)",
+    "difficulty": "alta",
+    "case": "Paciente masculino de 35 años, personal de salud, se realiza un perfil de hepatitis de control. Los resultados son: HBsAg (Negativo), Anti-HBs (Positivo), Anti-HBc (Negativo).",
+    "questions": [
+      {
+        "question": "¿Cuál es la interpretación correcta de este perfil serológico?",
+        "options": [
+          "Infección aguda por Virus de Hepatitis B.",
+          "Infección crónica activa.",
+          "Inmunidad secundaria a vacunación",
+          "Inmunidad secundaria a infección curada."
+        ],
+        "answerIndex": 2,
+        "explanation": "La presencia aislada de Anti-HBs (Anticuerpo contra el antígeno de superficie) indica protección por vacuna. Si el paciente hubiera tenido la enfermedad y se hubiera curado, también tendría positivo el Anti-HBc (Anticuerpo contra el core). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "HEPATITIS C",
+    "difficulty": "media",
+    "case": "Femenina de 50 años con antecedente de transfusión sanguínea en 1988. Acude por fatiga crónica. Se detectan anticuerpos Anti-VHC positivos. La carga viral (RNA-VHC) es reportada como detectable.",
+    "questions": [
+      {
+        "question": "¿Cuál es el objetivo actual del tratamiento con Antivirales de Acción Directa (AAD) y qué porcentaje de pacientes cronifican tras una infección aguda?",
+        "options": [
+          "Lograr Respuesta Viral Sostenida (RVS); 80% cronifican",
+          "Controlar la replicación; 20% cronifican.",
+          "Curación bacteriológica; 50% cronifican.",
+          "Prevención de cirrosis; 100% cronifican."
+        ],
+        "answerIndex": 0,
+        "explanation": "A diferencia del VHB, la Hepatitis C cronifica en la gran mayoría de los casos (80%). Actualmente, los esquemas libres de interferón (AAD) logran la curación (Respuesta Viral Sostenida) en más del 95% de los pacientes. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "TUBERCULOSIS MENÍNGEA",
+    "difficulty": "alta",
+    "case": "Masculino de 40 años con fiebre, cefalea crónica de 2 semanas y parálisis del VI par craneal. Se realiza punción lumbar que reporta: Aspecto xantocrómico, Pleocitosis linfocitaria (300 células), Proteínas muy elevadas (200 mg/dl) y Glucosa baja (20 mg/dl).",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable y qué fármaco se debe añadir al esquema antifímico (DOTS) para reducir la mortalidad y secuelas?",
+        "options": [
+          "Meningitis bacteriana aguda; Dexametasona.",
+          "Tuberculosis meníngea; Corticosteroides (Dexametasona/Prednisona)",
+          "Meningitis viral; Aciclovir.",
+          "Criptococosis; Anfotericina B."
+        ],
+        "answerIndex": 1,
+        "explanation": "La meningitis tuberculosa afecta típicamente la base del cráneo (pares craneales). El LCR muestra disociación con glucosa muy baja. El uso de esteroides es obligatorio en TBC meníngea y pericárdica según la GPC para mejorar el pronóstico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "BRUCELOSIS (FIEBRE DE MALTA)",
+    "difficulty": "media",
+    "case": "Masculino de 32 años, veterinario de zona rural. Presenta fiebre ondulante (vespertina), diaforesis con olor a \"paja mojada\", artralgias y esplenomegalia. Refiere consumo frecuente de quesos no pasteurizados.",
+    "questions": [
+      {
+        "question": "¿Cuál es la prueba de tamizaje inicial y cuál es el esquema de tratamiento de elección (Esquema A) en adultos?",
+        "options": [
+          "Reacción de Widal; Ciprofloxacino.",
+          "Rosa de Bengala; Tetraciclina (Doxiciclina) + Estreptomicina",
+          "Hemocultivo; Amoxicilina.",
+          "Elisa; TMP/SMX + Rifampicina."
+        ],
+        "answerIndex": 1,
+        "explanation": "La brucelosis es una zoonosis común en México. El Rosa de Bengala es muy sensible para tamizaje. El esquema A de la NOM es el más efectivo para evitar recaídas (Doxiciclina/Estreptomicina). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "FIEBRE TIFOIDEA",
+    "difficulty": "baja",
+    "case": "Paciente de 15 años con fiebre persistente de 39-40°C, dolor abdominal, estreñimiento seguido de diarrea \"en puré de guisantes\" y aparición de manchas rosadas en el tronco (roseola tifoídica).",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico y cuál es el estándar de oro para el diagnóstico en la primera semana de síntomas?",
+        "options": [
+          "Rickettsia prowazekii; Weil-Felix.",
+          "Salmonella typhi; Mielocultivo (o Hemocultivo)",
+          "Shigella dysenteriae; Coprocultivo.",
+          "Vibrio cholerae; Campo oscuro."
+        ],
+        "answerIndex": 1,
+        "explanation": "La fiebre tifoidea es sistémica. El mielocultivo es la prueba más sensible en cualquier etapa, pero el hemocultivo es útil la primera semana. Las reacciones febriles (Widal) tienen baja especificidad y ya no se recomiendan como diagnóstico definitivo. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "INFECTO -PERLAS (MALARIA / PALUDISMO)",
+    "difficulty": "media",
+    "case": "Viajero que regresa de Chiapas con fiebre cada 48 horas (fiebre terciana), escalofríos intensos y anemia. A la exploración presenta esplenomegalia.",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio diagnóstico de elección y cuál es el fármaco utilizado en México para eliminar los hipnozoitos hepáticos (evitar recaídas) de P. vivax?",
+        "options": [
+          "Frotis de sangre periférica; Cloroquina.",
+          "Gota gruesa; Primaquina",
+          "PCR; Artesunato.",
+          "Serología; Quinina."
+        ],
+        "answerIndex": 1,
+        "explanation": "La gota gruesa permite observar el parásito. En México predomina *Plasmodium vivax*. La cloroquina mata las formas eritrocíticas, pero se requiere primaquina para eliminar los hipnozoitos durmientes en el hígado. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "DENGUE",
+    "difficulty": "baja",
+    "case": "Paciente de 24 años con fiebre alta súbita, dolor retroocular, mialgias y artralgias intensas (\"fiebre quebrantahuesos\"). Presenta exantema maculopapular y prueba de torniquete positiva. Plaquetas 120,000/mm³.",
+    "questions": [
+      {
+        "question": "¿Cuál es el marcador diagnóstico de elección en los primeros 5 días (fase febril) y cuál es el manejo de elección?",
+        "options": [
+          "Anticuerpos IgM; Antibióticos.",
+          "Antígeno NS1; Reposición de líquidos por vía oral y paracetamol",
+          "Aislamiento viral; Aspirina.",
+          "IgG; Transfusión de plaquetas inmediata."
+        ],
+        "answerIndex": 1,
+        "explanation": "El antígeno NS1 es positivo desde el primer día. El manejo es sintomático. Está estrictamente contraindicado el uso de AINEs (Aspirina, Metamizol, Naproxeno) por el riesgo de hemorragia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "COMPLICACIONES MECÁNICAS DEL IAM",
+    "difficulty": "alta",
+    "case": "Masculino de 65 años, al cuarto día post-infarto agudo al miocardio de cara anterior, presenta de forma súbita disnea grave, hipotensión y un soplo holosistólico nuevo, rudo, en borde esternal izquierdo inferior, acompañado de frémito.",
+    "questions": [
+      {
+        "question": "¿Cuál es la complicación mecánica más probable y qué estudio es el estándar de oro para confirmar el diagnóstico?",
+        "options": [
+          "Ruptura de pared libre; Pericardiocentesis.",
+          "Ruptura de septum interventricular; Ecocardiograma Doppler color",
+          "Insuficiencia mitral aguda por ruptura de músculo papilar; Cateterismo derecho.",
+          "Aneurisma ventricular; Resonancia magnética."
+        ],
+        "answerIndex": 1,
+        "explanation": "La ruptura del tabique interventricular ocurre típicamente entre el día 3 y 5 post-IAM. Se diferencia de la ruptura de músculo papilar porque el soplo se escucha mejor en el borde esternal y no en el ápex. El ecocardiograma muestra el paso de sangre de izquierda a derecha. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "BLOQUEOS DE RAMA (ELECTROCARDIOGRAFÍA)",
+    "difficulty": "baja",
+    "case": "Se presenta un EKG con ritmo sinusal, QRS de 140 ms, con morfología de \"orejas de conejo\" (rsR') en V1 y V2, y onda S ancha en V5 y V6.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico electrocardiográfico?",
+        "options": [
+          "Bloqueo de rama izquierda del haz de His (BRIHH).",
+          "Bloqueo de rama derecha del haz de His (BRDHH)",
+          "Hemibloqueo anterior izquierdo.",
+          "Crecimiento de ventrículo izquierdo."
+        ],
+        "answerIndex": 1,
+        "explanation": "El BRDHH se identifica por QRS ancho (>120 ms) y el complejo rSR' en las derivaciones derechas (V1-V2). El BRIHH, por el contrario, muestra una R ancha y mellada en V5-V6. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "FARMACOLOGÍA (ANTIARRÍTMICOS)",
+    "difficulty": "alta",
+    "case": "Un fármaco antiarrítmico es conocido por su capacidad de bloquear canales de potasio (Clase III), pero también tiene efectos de Clase I, II y IV. Puede causar fibrosis pulmonar, hipotiroidismo o hipertiroidismo.",
+    "questions": [
+      {
+        "question": "¿De qué fármaco se trata y qué estudio de seguimiento es indispensable?",
+        "options": [
+          "Verapamilo; Pruebas de función renal.",
+          "Amiodarona; Pruebas de función tiroidea y radiografía de tórax anual",
+          "Lidocaína; Niveles séricos cada mes.",
+          "Propafenona; Ecocardiograma trimestral."
+        ],
+        "answerIndex": 1,
+        "explanation": "La amiodarona es un antiarrítmico de amplio espectro pero con múltiples efectos secundarios debido a su alto contenido de yodo y su depósito en tejidos. Es el fármaco de elección en falla cardíaca con arritmias ventriculares. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "CRITERIOS DE VOLTAJE (HIPERTROFIA)",
+    "difficulty": "media",
+    "case": "Se analiza el EKG de un paciente hipertenso de larga evolución. Se observa que la suma de la onda S en V1 y la onda R en V5 es de 42 mm. El QRS dura 100 ms.",
+    "questions": [
+      {
+        "question": "¿Cómo se llama este índice y qué diagnóstico sugiere?",
+        "options": [
+          "Índice de Sokolow-Lyon; Hipertrofia de Ventrículo Izquierdo (HVI)",
+          "Índice de Cornell; Bloqueo de rama.",
+          "Criterios de Jones; Fiebre reumática.",
+          "Eje desviado a la derecha; Hipertrofia de Ventrículo Derecho."
+        ],
+        "answerIndex": 0,
+        "explanation": "El índice de Sokolow-Lyon (S en V1 + R en V5 o V6 > 35 mm) es un criterio de voltaje clásico para HVI. Es un marcador de daño a órgano blanco por HAS. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "PERICARDITIS CONSTRICTIVA",
+    "difficulty": "alta",
+    "case": "Masculino de 45 años con antecedente de tuberculosis pulmonar. Presenta edema de miembros inferiores, ascitis y distensión venosa yugular que aumenta durante la inspiración (Signo de Kussmaul). Al auscultar el corazón se escucha un sonido agudo tras el segundo ruido (golpe pericárdico).",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable y cuál es el hallazgo esperado en la TC de tórax?",
+        "options": [
+          "Miocardiopatía restrictiva; Corazón ensanchado.",
+          "Pericarditis constrictiva; Engrosamiento y calcificación pericárdica",
+          "Taponamiento cardíaco; Imagen en \"garrafa\".",
+          "Cor pulmonale; Arteria pulmonar dilatada."
+        ],
+        "answerIndex": 1,
+        "explanation": "La pericarditis constrictiva es a menudo una secuela de TB o radioterapia. El signo de Kussmaul es clave (falla del llenado diastólico). El tratamiento definitivo es la pericardiectomía. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "SÍNDROMES DE PREEXCITACIÓN (WPW)",
+    "difficulty": "media",
+    "case": "Paciente joven con palpitaciones paroxísticas. Su EKG en ritmo sinusal muestra un intervalo PR corto (<120 ms), un complejo QRS discretamente ancho y una empuñadura inicial denominada \"onda Delta\".",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico y cuál es el mecanismo fisiopatológico?",
+        "options": [
+          "Síndrome de Brugada; Mutación de canales de Na.",
+          "Síndrome de Wolff-Parkinson-White; Presencia de una vía accesoria (haz de Kent)",
+          "Bloqueo AV de primer grado; Retraso en el nodo AV.",
+          "Síndrome de QT largo; Repolarización tardía."
+        ],
+        "answerIndex": 1,
+        "explanation": "El WPW es la preexcitación más común. La vía accesoria permite que el impulso llegue al ventrículo antes de pasar por el nodo AV, acortando el PR y creando la onda delta. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "EPOC (DIAGNÓSTICO Y CLASIFICACIÓN GOLD)",
+    "difficulty": "media",
+    "case": "Masculino de 65 años, fumador (Índice tabáquico de 45 paquetes/año). Presenta tos crónica productiva y disnea de esfuerzos. La espirometría post-broncodilatador muestra un FEV1/FVC de 0.62 y un FEV1 del 55% del predicho.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico espirométrico y qué grado de limitación al flujo aéreo (GOLD) presenta?",
+        "options": [
+          "Patrón restrictivo; Grado 1.",
+          "EPOC; Grado GOLD 2 (Moderado)",
+          "Asma bronquial; Grado GOLD 3.",
+          "Bronquitis crónica; Grado GOLD 4."
+        ],
+        "answerIndex": 1,
+        "explanation": "El diagnóstico de EPOC se establece con una relación FEV1/FVC < 0.70 persistente tras broncodilatador. La gravedad se basa en el FEV1: GOLD 1 (≥80%), GOLD 2 (50- 79%), GOLD 3 (30-49%) y GOLD 4 (<30%). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "EPOC (TRATAMIENTO Y OXIGENOTERAPIA)",
+    "difficulty": "alta",
+    "case": "Paciente con EPOC grave y cor pulmonale. En gasometría de aire ambiente presenta una PaO2 de 52 mmHg y SaO2 de 87%.",
+    "questions": [
+      {
+        "question": "¿Cuál es el criterio para iniciar Oxigenoterapia Domiciliaria Prolongada (ODP) y cuál es el único beneficio demostrado que modifica la historia natural de la enfermedad?",
+        "options": [
+          "PaO2 < 55 mmHg; Aumenta la supervivencia",
+          "SaO2 < 92%; Mejora la capacidad de ejercicio.",
+          "PaO2 < 60 mmHg; Disminuye las exacerbaciones.",
+          "SaO2 < 90%; Mejora la calidad del sueño."
+        ],
+        "answerIndex": 0,
+        "explanation": "La ODP está indicada si PaO2 ≤ 55 mmHg o SaO2 ≤ 88%. Si hay cor pulmonale o poliglobulia, el punto de corte sube a 59 mmHg. El oxígeno (>15 horas al día) y el abandono del tabaco son las únicas medidas que aumentan la supervivencia en EPOC. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "TROMBOEMBOLIA PULMONAR (TEP) - DIAGNÓSTICO",
+    "difficulty": "alta",
+    "case": "Femenina de 60 años, postoperada de prótesis de cadera hace 10 días. Presenta súbitamente disnea, dolor torácico pleurítico y taquicardia. TA 120/80 mmHg. La Escala de Wells arroja una probabilidad alta.",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio de imagen de elección para confirmar el diagnóstico y cuál es el hallazgo electrocardiográfico clásico (aunque infrecuente)?",
+        "options": [
+          "Radiografía de tórax; Ondas T picudas.",
+          "Angiotomografía computarizada (Angio-TC) de tórax; Patrón S1Q3T3",
+          "Gammagrafía V/Q; Bloqueo AV.",
+          "Ecocardiograma; Hipertrofia ventricular."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Angio-TC es el estándar de oro actual por su alta sensibilidad y especificidad. El patrón S1Q3T3 (onda S en D1, Q profunda en D3 y T invertida en D3) indica sobrecarga aguda del ventrículo derecho. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "TROMBOEMBOLIA PULMONAR (MANEJO)",
+    "difficulty": "alta",
+    "case": "Paciente con TEP confirmado. Presenta TA 80/40 mmHg, mala perfusión tisular y datos de choque obstructivo.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta terapéutica de elección ante una TEP de alto riesgo (hemodinámicamente inestable)?",
+        "options": [
+          "Anticoagulación con Heparina de Bajo Peso Molecular solamente.",
+          "Fibrinolisis sistémica (rtPA)",
+          "Colocación de filtro de vena cava.",
+          "Aspirina y Clopidogrel."
+        ],
+        "answerIndex": 1,
+        "explanation": "En TEP con inestabilidad hemodinámica (choque o hipotensión), la prioridad es la reperfusión mecánica o farmacológica (trombolisis) para liberar la obstrucción de la arteria pulmonar y reducir la postcarga del ventrículo derecho. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "DERRAME PLEURAL (CRITERIOS DE LIGHT)",
+    "difficulty": "media",
+    "case": "Masculino de 55 años con fiebre y tos productiva. La radiografía muestra derrame pleural derecho. Se realiza toracocentesis: Proteínas pleurales/séricas 0.7, LDH pleural/sérica 0.8.",
+    "questions": [
+      {
+        "question": "¿Cómo se clasifica este líquido según los criterios de Light y cuál es la causa más probable?",
+        "options": [
+          "Trasudado; Insuficiencia cardíaca.",
+          "Exudado; Neumonía (Derrame paraneumónico)",
+          "Exudado; Cirrosis hepática.",
+          "Trasudado; Síndrome nefrótico."
+        ],
+        "answerIndex": 1,
+        "explanation": "Un solo criterio de Light positivo define un exudado: 1) Relación proteínas >0.5, 2) Relación LDH >0.6 o 3) LDH pleural >2/3 del límite superior normal. Los exudados sugieren inflamación local (infección, cáncer, TEP). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "CÁNCER DE PULMÓN",
+    "difficulty": "media",
+    "case": "Masculino de 62 años, fumador intenso, presenta hemoptisis y pérdida de peso. La radiografía muestra una masa central hiliar. La biopsia reporta células pequeñas con escaso citoplasma (\"en grano de avena\").",
+    "questions": [
+      {
+        "question": "¿Cuál es el tipo de cáncer de pulmón con peor pronóstico y mayor asociación a síndromes paraneoplásicos (como el SIADH)?",
+        "options": [
+          "Adenocarcinoma.",
+          "Carcinoma de células grandes.",
+          "Carcinoma microcítico (de células pequeñas)",
+          "Carcinoma epidermoide."
+        ],
+        "answerIndex": 2,
+        "explanation": "El carcinoma microcítico es muy agresivo, de localización central y suele diagnosticarse en estadios diseminados. Es el tumor que más frecuentemente produce hormonas ectópicas (ACTH, ADH). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "SÍNDROME DE APNEA OBSTRUCTIVA DEL SUEÑO (SAOS)",
+    "difficulty": "baja",
+    "case": "Masculino de 45 años con obesidad grado II e hipertensión. Su pareja refiere ronquidos intensos y pausas respiratorias mientras duerme. El paciente presenta somnolencia diurna excesiva.",
+    "questions": [
+      {
+        "question": "¿Cuál es el estándar de oro para el diagnóstico de SAOS y cuál es el tratamiento de elección?",
+        "options": [
+          "Oximetría nocturna; Pérdida de peso.",
+          "Polisomnografía; Presión positiva continua en la vía aérea (CPAP)",
+          "Espirometría; Teofilina.",
+          "TC de cuello; Cirugía de úvula."
+        ],
+        "answerIndex": 1,
+        "explanation": "La polisomnografía documenta el índice de apnea-hipopnea (IAH). Un IAH >5 con síntomas o >15 asintomático confirma el diagnóstico. El CPAP es el tratamiento más efectivo para mantener permeable la vía aérea superior. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "NEUMOTÓRAX",
+    "difficulty": "media",
+    "case": "Masculino de 20 años, alto y delgado, presenta dolor torácico súbito y disnea tras realizar un esfuerzo leve. A la exploración: ausencia de ruidos respiratorios y timpanismo a la percusión en hemitórax izquierdo. TA estable.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable y el manejo inicial si el neumotórax es mayor al 20%?",
+        "options": [
+          "Neumotórax a tensión; Descompresión con aguja.",
+          "Neumotórax espontáneo primario; Sonda endopleural (tubo de tórax)",
+          "Neumonía lobar; Antibióticos.",
+          "Enfisema bulloso; Cirugía inmediata."
+        ],
+        "answerIndex": 1,
+        "explanation": "El neumotórax espontáneo primario es común en hombres jóvenes con hábito asténico por rotura de bulbas subpleurales. Si es pequeño y el paciente está estable, puede observarse; si es grande o sintomático, requiere drenaje con sello de agua.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "ENDOCRINOLOGÍA",
+    "subtema": "HIPERTIROIDISMO (ENFERMEDAD DE GRAVES)",
+    "difficulty": "media",
+    "case": "Femenina de 30 años presenta nerviosismo, palpitaciones, pérdida de peso a pesar de aumento de apetito e intolerancia al calor. A la exploración: bocio difuso, exoftalmos (oftalmopatía) y mixedema pretibial.",
+    "questions": [
+      {
+        "question": "¿Cuál es el mecanismo fisiopatológico de esta enfermedad y cuál es el tratamiento farmacológico inicial recomendado por la GPC mexicana?",
+        "options": [
+          "Destrucción folicular por linfocitos T; Levotiroxina.",
+          "Anticuerpos estimulantes del receptor de TSH (TRAb); Metimazol (Tiamazol)",
+          "Mutación del receptor de yodo; Yodo radiactivo de primera línea.",
+          "Adenoma hiperfuncionante; Propranolol únicamente."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Enfermedad de Graves-Basedow es una patología autoinmune. Los TRAb mimetizan la acción de la TSH. El Tiamazol es de elección, excepto en el primer trimestre del embarazo donde se prefiere el propiltiouracilo (PTU) por menor teratogenicidad. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "ENDOCRINOLOGÍA",
+    "subtema": "TORMENTA TIROIDEA",
+    "difficulty": "alta",
+    "case": "Paciente con antecedente de hipertiroidismo mal controlado es llevada a urgencias por fiebre de 40°C, taquicardia extrema (160 lpm), agitación psicomotriz e ictericia. Se sospecha tormenta tiroidea.",
+    "questions": [
+      {
+        "question": "¿Qué escala se utiliza para el diagnóstico clínico de tormenta tiroidea y qué fármaco debe administrarse para inhibir la conversión periférica de T4 a T3?",
+        "options": [
+          "Escala de Alvarado; Metimazol.",
+          "Criterios de Burch-Wartofsky; Propiltiouracilo (o glucocorticoides)",
+          "Criterios de Jones; Propranolol.",
+          "Escala de Glasgow; Yodo inorgánico inicial."
+        ],
+        "answerIndex": 1,
+        "explanation": "La tormenta tiroidea es una urgencia vital. Los criterios de Burch-Wartofsky evalúan disfunción termorreguladora, CV, gastrointestinal y del SNC. El PTU y los glucocorticoides (dexametasona) son clave porque inhiben la enzima desiodinasa periférica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "ENDOCRINOLOGÍA",
+    "subtema": "NÓDULO TIROIDEO Y CÁNCER",
+    "difficulty": "media",
+    "case": "Masculino de 50 años presenta un nódulo palpable en la región anterior del cuello, firme y fijo. El ultrasonido reporta nódulo sólido de 1.5 cm con microcalcificaciones y márgenes irregulares. TSH normal.",
+    "questions": [
+      {
+        "question": "¿Cuál es el siguiente paso en el abordaje y cuál es el tipo histológico de cáncer de tiroides más frecuente y de mejor pronóstico?",
+        "options": [
+          "Gammagrama tiroideo; Carcinoma folicular.",
+          "Biopsia por Aspiración con Aguja Fina (BAAF); Carcinoma papilar",
+          "Tomografía de cuello; Carcinoma medular.",
+          "Cirugía inmediata; Carcinoma anaplásico."
+        ],
+        "answerIndex": 1,
+        "explanation": "Ante un nódulo con características sospechosas por USG y TSH normal, la BAAF es el estándar de oro. El carcinoma papilar representa el 80% de los casos y tiene una supervivencia excelente a 10 años. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "ENDOCRINOLOGÍA",
+    "subtema": "HIPERPARATIROIDISMO PRIMARIO",
+    "difficulty": "media",
+    "case": "Paciente con historia de litiasis renal recurrente, dolor óseo y estreñimiento crónico. Laboratorios: Calcio sérico 11.5 mg/dl (elevado), Fósforo 2.0 mg/dl (bajo).",
+    "questions": [
+      {
+        "question": "¿Qué hallazgo en los niveles de Hormona Paratiroidea (PTH) confirma el origen primario y cuál es la causa más frecuente?",
+        "options": [
+          "PTH elevada; Adenoma paratiroideo único",
+          "PTH baja; Metástasis óseas.",
+          "PTH normal-alta; Insuficiencia renal crónica.",
+          "PTH indetectable; Intoxicación por Vitamina D."
+        ],
+        "answerIndex": 0,
+        "explanation": "El hiperparatiroidismo primario se caracteriza por \"huesos, piedras y quejas abdominales\". La PTH elevada en presencia de hipercalcemia confirma el diagnóstico (en condiciones normales, el calcio alto debería suprimir la PTH). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "LINFOMA DE HODGKIN",
+    "difficulty": "media",
+    "case": "Masculino de 24 años acude por presencia de una masa cervical indolora, de consistencia elástica, de 2 meses de evolución. Refiere fiebre vespertina, sudoración nocturna profusa y pérdida de peso del 10% en los últimos meses (Síntomas B). En la biopsia de ganglio se reportan células de Reed-Sternberg.",
+    "questions": [
+      {
+        "question": "¿Cuál es la variante histológica más frecuente de este linfoma y cuál es el esquema de quimioterapia estándar de primera línea?",
+        "options": [
+          "Celularidad mixta; CHOP.",
+          "Esclerosis nodular; ABVD (Adriamicina, Bleomicina, Vinblastina, Dacarbazina)",
+          "Predominio linfocítico; R-CHOP.",
+          "Depleción linfocítica; MOPP."
+        ],
+        "answerIndex": 1,
+        "explanation": "El Linfoma de Hodgkin tiene una distribución bimodal de edad. La variante esclerosis nodular es la más común (especialmente en mujeres jóvenes). El esquema ABVD es el estándar de oro actual por su eficacia y menor toxicidad gonadal comparado con esquemas a ntiguos. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "LINFOMA NO HODGKIN (LNH)",
+    "difficulty": "alta",
+    "case": "Masculino de 60 años con linfadenopatías generalizadas, esplenomegalia y afectación extraganglionar (médula ósea). La biopsia reporta un Linfoma Difuso de Células B Grandes.",
+    "questions": [
+      {
+        "question": "¿Cuál es el esquema de tratamiento de elección y qué anticuerpo monoclonal se añade para mejorar la supervivencia en tumores CD20 positivos?",
+        "options": [
+          "ABVD; Trastuzumab.",
+          "R-CHOP (Rituximab, Ciclofosfamida, Doxorrubicina, Vincristina, Prednisona)",
+          "Mielosu ब्राउन; Imatinib.",
+          "Fludarabina; Alemtuzumab."
+        ],
+        "answerIndex": 1,
+        "explanation": "A diferencia del Hodgkin, el LNH suele ser de predominio en edades avanzadas y con mayor diseminación extraganglionar. El Rituximab (anti-CD20) revolucionó el tratamiento del LNH de células B al unirse específicamente a los linfocitos neoplásicos. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "MIELOMA MÚLTIPLE (MM)",
+    "difficulty": "media",
+    "case": "Masculino de 68 años acude por dolor óseo lumbar persistente. Laboratorios: Hemoglobina 9 g/dL, Calcio 11.5 mg/dL, Creatinina 2.1 mg/dL. La radiografía de cráneo muestra lesiones osteolíticas \"en sacabocado\".",
+    "questions": [
+      {
+        "question": "¿Cuál es la mnemotecnia para las manifestaciones clínicas del MM y qué hallazgo se espera encontrar en la electroforesis de proteínas?",
+        "options": [
+          "CRAB (Calcio, Renal, Anemia, Bone/Hueso); Pico monoclonal de Ig G o A",
+          "LUIS (Linfocitos, Úlcera, Ictericia, Sangrado); Hipogammaglobulinemia.",
+          "VIRCHOW; Proteína C reactiva elevada.",
+          "HELLP; Hemólisis."
+        ],
+        "answerIndex": 0,
+        "explanation": "El MM es una neoplasia de células plasmáticas. La mnemotecnia CRAB resume los criterios de daño a órgano blanco. El \"pico monoclonal\" (componente M) en la electroforesis refleja la producción excesiva de una sola inmunoglobulina. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "MIELOMA MÚLTIPLE (DIAGNÓSTICO)",
+    "difficulty": "alta",
+    "case": "Se sospecha MM en un paciente. Se solicita orina de 24 horas para estudio.",
+    "questions": [
+      {
+        "question": "¿Cómo se llaman las cadenas ligeras de inmunoglobulinas que se filtran por el riñón y pueden detectarse en orina, y qué hallazgo en frotis de sangre periférica es clásico?",
+        "options": [
+          "Proteínas de Bence-Jones; Fenómeno de Rouleaux (pilas de monedas)",
+          "Cuerpos de Heinz; Esquistocitos.",
+          "Cuerpos de Howell-Jolly; Células en diana.",
+          "Proteína G; Neutrófilos hipersegmentados."
+        ],
+        "answerIndex": 0,
+        "explanation": "Las proteínas de Bence-Jones son nefrotóxicas. El fenómeno de Rouleaux ocurre porque el exceso de proteínas plasmáticas altera la carga de los eritrocitos, haciendo que se agrupen como columnas de monedas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "PÚRPURA TROMBOCITOPÉNICA TROMBÓTICA (PTT)",
+    "difficulty": "alta",
+    "case": "Femenina de 30 años con fiebre, confusión, anemia hemolítica microangiopática (esquistocitos en frotis), trombocitopenia y falla renal leve.",
+    "questions": [
+      {
+        "question": "¿Qué enzima se encuentra deficiente en esta patología y cuál es el tratamiento de urgencia que NO debe retrasarse?",
+        "options": [
+          "ADAMTS13; Recambio plasmático (Plasmaféresis)",
+          "G6PD; Vitamina B12.",
+          "Glucuroniltransferasa; Fototerapia.",
+          "Factor VIII; Crioprecipitados."
+        ],
+        "answerIndex": 0,
+        "explanation": "La PTT es una urgencia hematológica. La deficiencia de ADAMTS13 impide el corte de multímeros de Factor von Willebrand, causando microtrombos. La plasmaféresis es vital para retirar los autoanticuerpos y reponer la enzima. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "HEMOFILIAS",
+    "difficulty": "baja",
+    "case": "Niño de 2 años con hemartrosis (sangrado en articulaciones) recurrente tras traumatismos mínimos. El TTPa está prolongado, mientras que el TP y el tiempo de sangrado son normales.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable si se confirma deficiencia del Factor VIII y cuál es el patrón de herencia?",
+        "options": [
+          "Hemofilia B; Autosómica dominante.",
+          "Hemofilia A; Recesiva ligada al cromosoma X",
+          "Enfermedad de Von Willebrand; Codominante.",
+          "Deficiencia de Vitamina K; Adquirida."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Hemofilia A (deficiencia de Factor VIII) es mucho más común que la B (Factor IX). Al ser ligada al X, afecta casi exclusivamente a varones, mientras que las mujeres son portadoras. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "ENFERMEDAD DE VON WILLEBRAND (EvW)",
+    "difficulty": "media",
+    "case": "Femenina de 18 años con historia de epistaxis frecuentes, gingivorragia y menorragia (sangrado menstrual abundante) desde la menarca. Su tiempo de sangrado está prolongado y la agregación plaquetaria con ristocetina es anormal.",
+    "questions": [
+      {
+        "question": "¿Cuál es el trastorno de la coagulación hereditario más frecuente y qué fármaco se usa para liberar los depósitos de este factor en casos leves?",
+        "options": [
+          "Hemofilia A; Concentrado de factor.",
+          "Enfermedad de Von Willebrand; Desmopresina (DDAVP)",
+          "Trombastenia de Glanzmann; Vitamina K.",
+          "Deficiencia de Factor XI; Plasma fresco congelado."
+        ],
+        "answerIndex": 1,
+        "explanation": "La EvW afecta la adhesión plaquetaria (fase primaria de la hemostasia). La desmopresina estimula la liberación del factor almacenado en los cuerpos de Weibel-Palade de las células endoteliales. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "POLICITEMIA VERA",
+    "difficulty": "media",
+    "case": "Masculino de 55 años con plétora facial, cefalea, prurito acuagénico (tras bañarse con agua caliente) y esplenomegalia. Laboratorios: Hemoglobina 19 g/dL, Hematocrito 58%, Eritropoyetina (EPO) sérica baja.",
+    "questions": [
+      {
+        "question": "¿Cuál es la mutación genética presente en >95% de estos pacientes y cuál es el tratamiento inicial para reducir el riesgo de trombosis?",
+        "options": [
+          "Mutación JAK2 V617F; Flebotomías (sangrías) y Aspirina",
+          "BCR-ABL; Imatinib.",
+          "Cromosoma Filadelfia; Trasplante.",
+          "Mutación de la EPO; Suplemento de hierro."
+        ],
+        "answerIndex": 0,
+        "explanation": "La Policitemia Vera es un síndrome mieloproliferativo crónico. La mutación en JAK2 hace que los precursores eritroides sean hipersensibles a las señales de crecimiento, independientemente de la EPO (que por eso se encuentra baja por retroalimentación).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA / URGENCIAS",
+    "subtema": "SEPSIS (MANEJO INICIAL)",
+    "difficulty": "media",
+    "case": "Paciente en choque séptico que no responde a la carga inicial de cristaloides (30 ml/kg).",
+    "questions": [
+      {
+        "question": "¿Cuál es el vasopresor de primera elección recomendado por la GPC y la campaña sobreviviendo a la sepsis?",
+        "options": [
+          "Dopamina.",
+          "Norepinefrina (Noradrenalina)",
+          "Vasopresina aislada.",
+          "Dobutamina."
+        ],
+        "answerIndex": 1,
+        "explanation": "La Norepinefrina es el vasopresor de primera línea por su potente efecto alfa-1 (vasoconstricción) y moderado beta-1, con menor riesgo de arritmias en comparación con la dopamina. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA / GASTROENTEROLOGÍA",
+    "subtema": "PERITONITIS BACTERIANA ESPONTÁNEA (PBE)",
+    "difficulty": "alta",
+    "case": "Paciente con cirrosis y ascitis presenta dolor abdominal difuso, fiebre y deterioro de la función renal. Se realiza paracentesis diagnóstica.",
+    "questions": [
+      {
+        "question": "¿Cuál es el hallazgo en el líquido de ascitis que confirma el diagnóstico de PBE y cuál es el antibiótico de elección?",
+        "options": [
+          "> 250 polimorfonucleares (PMN)/mm³; Cefotaxima (Cefalosporina de 3ra gen)",
+          "> 500 eritrocitos; Amoxicilina.",
+          "Presencia de bacterias en el Gram; Vancomicina.",
+          "Glucosa < 50 mg/dl; Metronidazol."
+        ],
+        "answerIndex": 0,
+        "explanation": "La PBE es causada frecuentemente por traslocación bacteriana (E. coli es el más común). El conteo de PMN ≥ 250 es el estándar de oro. Se debe añadir Albúmina IV al tratamiento para prevenir el síndrome hepatorrenal si se cumplen criterios (Creatinina > 1 mg/dl o Bilirrubina > 4 mg/dl). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "OSTEOMIELITIS",
+    "difficulty": "media",
+    "case": "Masculino de 12 años presenta dolor intenso en la metáfisis del fémur distal, fiebre y limitación funcional tras un traumatismo leve.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico más común y cuál es el estudio de imagen con mayor sensibilidad en etapas tempranas?",
+        "options": [
+          "Streptococcus pyogenes; Radiografía simple.",
+          "Staphylococcus aureus; Resonancia Magnética",
+          "Salmonella; Gammagrafía ósea.",
+          "Pseudomonas; Tomografía."
+        ],
+        "answerIndex": 1,
+        "explanation": "S. aureus es el responsable de la mayoría de los casos de osteomielitis hematógena. La radiografía puede tardar hasta 10-14 días en mostrar cambios (reacción perióstica, lisis), mientras que la RM detecta el edema óseo casi de inmediato. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "ENDOCARDITIS INFECCIOSA (CRITERIOS DE DUKE)",
+    "difficulty": "alta",
+    "case": "Paciente con antecedente de uso de drogas parenterales presenta fiebre, soplo de insuficiencia tricuspídea y lesiones hemorrágicas en lechos ungueales.",
+    "questions": [
+      {
+        "question": "¿Cómo se clasifican los Criterios de Duke para el diagnóstico y cuál es el agente más común en usuarios de drogas por vía intravenosa (UDVP)?",
+        "options": [
+          "Ecocardiograma y Hemocultivos (Mayores); S. aureus",
+          "Fiebre y Fenómenos vasculares (Mayores); S. viridans.",
+          "Antecedente de cardiopatía (Mayor); Enterococcus.",
+          "Radiografía de tórax (Mayor); S. epidermidis."
+        ],
+        "answerIndex": 0,
+        "explanation": "En UDVP, el lado derecho del corazón es el más afectado (válvula tricúspide). S. aureus es el patógeno predominante por su capacidad de invadir válvulas sanas. Los criterios de Duke combinan microbiología, imagen y clínica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "MENINGITIS BACTERIANA AGUDA",
+    "difficulty": "media",
+    "case": "Masculino de 19 años acude por cefalea, fiebre, rigidez de nuca y aparición de petequias y púrpuras en extremidades.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal más probable dada la presencia de lesiones cutáneas y qué hallazgo en el LCR es típico de origen bacteriano?",
+        "options": [
+          "Streptococcus pneumoniae; Predominio linfocitario.",
+          "Neisseria meningitidis; Hipoglucorraquia y pleocitosis neutrofílica",
+          "Haemophilus influenzae; Proteínas bajas.",
+          "Listeria monocytogenes; Glucosa normal."
+        ],
+        "answerIndex": 1,
+        "explanation": "El meningococo (N. meningitidis) suele presentarse en brotes en adultos jóvenes y se asocia a exantema purpúrico. El LCR bacteriano \"clásico\" es turbio, con leucocitos a expensas de PMN, glucosa baja (< 40 mg/dl) y proteínas elevadas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "ABSCESO HEPÁTICO",
+    "difficulty": "media",
+    "case": "Masculino de 35 años con dolor en hipocondrio derecho, fiebre y hepatomegalia. El USG muestra una lesión única en el lóbulo derecho con aspecto de \"pasta de anchoas\".",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable y cuál es el tratamiento de elección?",
+        "options": [
+          "Absceso hepático piógeno; Ceftriaxona.",
+          "Absceso hepático amebiano (Entamoeba histolytica); Metronidazol",
+          "Quiste hidatídico; Albendazol.",
+          "Hepatocarcinoma; Quimioterapia."
+        ],
+        "answerIndex": 1,
+        "explanation": "El absceso amebiano es mucho más frecuente en hombres jóvenes en áreas endémicas. El lóbulo derecho es el sitio predilecto. El drenaje percutáneo solo se indica si hay riesgo de ruptura, falta de respuesta al tratamiento o abscesos muy grandes en el lóbulo izquierdo. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA / GASTROENTEROLOGÍA",
+    "subtema": "DIARREA POR CLOSTRIDIOIDES DIFFICILE",
+    "difficulty": "media",
+    "case": "Paciente hospitalizado hace 10 días por neumonía, tratado con clindamicina. Inicia con diarrea acuosa abundante (10 deposiciones al día), dolor abdominal y leucocitosis. La colonoscopia muestra placas blanquecinas/amarillentas en la mucosa (pseudomembranas ).",
+    "questions": [
+      {
+        "question": "¿Cuál es el paso diagnóstico inicial y cuál es el tratamiento de elección según las guías actuales?",
+        "options": [
+          "Cultivo de heces; Metronidazol oral.",
+          "Toxinas A y B en heces o GDH; Vancomicina oral o Fidaxomicina",
+          "Coprocultivo estándar; Ciprofloxacino.",
+          "Biopsia de colon; Colectomía inmediata."
+        ],
+        "answerIndex": 1,
+        "explanation": "El uso de antibióticos de amplio espectro barre la microbiota normal, permitiendo el sobrecrecimiento de C. difficile. Actualmente, la Vancomicina oral es superior al metronidazol para el primer episodio, independientemente de la gravedad. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "ARTRITIS SÉPTICA",
+    "difficulty": "media",
+    "case": "Paciente masculino de 25 años acude por dolor, eritema e incapacidad para la movilización de la rodilla derecha de forma aguda. Niega traumatismos, pero refiere uretritis hace 1 semana.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal más probable en adultos jóvenes sexualmente activos y qué hallazgo en el líquido sinovial confirma el proceso séptico?",
+        "options": [
+          "Staphylococcus aureus; > 2,000 leucocitos.",
+          "Neisseria gonorrhoeae; > 50,000 leucocitos (predominio PMN)",
+          "Borrelia burgdorferi; Presencia de cristales.",
+          "Mycobacterium tuberculosis; Glucosa elevada."
+        ],
+        "answerIndex": 1,
+        "explanation": "La artritis gonocócica es una causa frecuente en jóvenes; a menudo se acompaña de lesiones cutáneas (pústulas) o tenosinovitis. El líquido sinovial séptico es turbio, purulento y con una cuenta leucocitaria muy elevada.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "GLOMERULOPATÍA MEMBRANOSA",
+    "difficulty": "alta",
+    "case": "Paciente con antecedente de insuficiencia renal crónica que presenta náuseas, vómitos y respiración profunda y rápida (Kussmaul). Gasometría: pH 7.25, HCO3 12 mEq/L, PaCO2 28 mmHg. Na 140, Cl 105. Masculino de 50 años con síndrome nefrótico franco. La biopsia renal muestra engrosamiento de la membrana basal con presencia de \"spikes\" (espículas) en la tinción de plata y depósitos granulares de IgG y C3.",
+    "questions": [
+      {
+        "question": "¿Qué trastorno ácido-base presenta y cuánto es el Anión Gap (Brecha aniónica)? ¿Cuál es el anticuerpo específico asociado a la forma primaria de esta enfermedad y con qué patologías se asocia su forma secundaria?",
+        "options": [
+          "Acidosis respiratoria; 15.",
+          "Acidosis metabólica de Anión Gap elevado; 23",
+          "Alcalosis metabólica; 10.",
+          "Acidosis metabólica de Anión Gap normal; 12.",
+          "Anti-MBG; Diabetes Mellitus.",
+          "Anti-receptor de fosfolipasa A2 (PLA2R); Neoplasias de órgano sólido, Lupus o Hepatitis B *",
+          "c-ANCA; Granulomatosis.",
+          "Anti-DNA; Hipertensión arterial."
+        ],
+        "answerIndex": 1,
+        "explanation": "El pH bajo con bicarbonato bajo indica acidosis metabólica. El Anión Gap se calcula: $Na - (Cl + HCO3)$. En este caso: $140 - (105 + 12) = 23$. Un valor >12 indica acumulación de ácidos no medibles (en este caso, toxinas urémicas). --- Tema : NEFROLOGÍA La nefropatía membranosa es la causa más común de síndrome nefrótico en el adulto no diabético. El hallazgo de anticuerpos anti-PLA2R confirma la forma idiopática. Siempre se debe buscar una neoplasia oculta en adultos mayores con este diagnóstico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "NEFROPATÍA POR IgA (ENFERMEDAD DE BERGER)",
+    "difficulty": "media",
+    "case": "Masculino de 20 años presenta hematuria macroscópica coincidiendo con un cuadro de infección de vías respiratorias superiores (\"hematuria sinquística\"). La función renal y el complemento están normales.",
+    "questions": [
+      {
+        "question": "¿Cuál es la glomerulonefritis más frecuente a nivel mundial y cuál es su característica en la inmunofluorescencia?",
+        "options": [
+          "Postestreptocócica; Depósitos en \"cielo estrellado\".",
+          "Nefropatía por IgA; Depósitos granulares de IgA en el mesangio",
+          "Mesangiocapilar; Depósitos en \"vías de tren\".",
+          "Cambios mínimos; Fusión de podocitos."
+        ],
+        "answerIndex": 1,
+        "explanation": "A diferencia de la postestreptocócica (que ocurre 1-3 semanas después de la infección), la enfermedad de Berger ocurre al mismo tiempo que la faringitis. Tiene un curso crónico con brotes de hematuria. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "NEFRITIS INTERSTICIAL AGUDA (NIA)",
+    "difficulty": "media",
+    "case": "Paciente que tras 5 días de tratamiento con penicilina presenta fiebre, exantema cutáneo y elevación súbita de creatinina. En el examen de orina se reporta proteinuria leve y eosinofilia.",
+    "questions": [
+      {
+        "question": "¿Cuál es la tríada clásica de la NIA y cuál es el fármaco más frecuentemente implicado según la GPC?",
+        "options": [
+          "Fiebre, exantema y eosinofilia; Antibióticos beta-lactámicos o AINEs",
+          "Dolor lumbar, hematuria y piuria; Diuréticos.",
+          "Edema, HAS y proteinuria; Estatinas.",
+          "Ictericia, dolor y fiebre; Paracetamol."
+        ],
+        "answerIndex": 0,
+        "explanation": "La NIA es una reacción de hipersensibilidad tipo IV en el intersticio renal. El diagnóstico es clínico y se confirma con la resolución tras suspender el fármaco ofensor. Los esteroides pueden acelerar la recuperación. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "ESTENOSIS DE LA ARTERIA RENAL",
+    "difficulty": "media",
+    "case": "Femenina de 25 años con hipertensión arterial de reciente diagnóstico (160/100 mmHg). A la exploración se ausculta un soplo abdominal periumbilical.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa más probable en mujeres jóvenes y qué sucede con la función renal si se inicia un IECA?",
+        "options": [
+          "Displasia fibromuscular; Deterioro agudo de la función renal",
+          "Aterosclerosis; Mejora de la perfusión.",
+          "Feocromocitoma; Crisis hipertensiva.",
+          "Vasculitis de Takayasu; Normalización de la creatinina."
+        ],
+        "answerIndex": 0,
+        "explanation": "La displasia fibromuscular afecta a mujeres jóvenes. En la estenosis de la arteria renal, el riñón depende de la angiotensina II para mantener la filtración; al bloquearla con un IECA/ARAII, la tasa de filtración glomerular cae bruscamente. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "ENFERMEDAD RENAL POLIQUÍSTICA AUTOSÓMICA DOMINANTE (ERPAD)",
+    "difficulty": "baja",
+    "case": "Masculino de 40 años con historia familiar de enfermedad renal. Acude por dolor en flanco y hematuria. Al palpar el abdomen se encuentran masas bilaterales. Presenta TA 150/90.",
+    "questions": [
+      {
+        "question": "¿Cuál es la manifestación extrarenal más grave asociada a esta patología?",
+        "options": [
+          "Quistes hepáticos.",
+          "Aneurismas intracraneales (del círculo de Willis)",
+          "Diverticulosis colónica.",
+          "Prolapso de la válvula mitral."
+        ],
+        "answerIndex": 1,
+        "explanation": "La ERPAD es la enfermedad renal hereditaria más común. Los quistes hepáticos son la asociación más frecuente, pero la ruptura de un aneurisma cerebral es la complicación extrarenal más letal. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "RTA (ACIDOSIS TUBULAR RENAL)",
+    "difficulty": "alta",
+    "case": "Niño de 2 años con retraso en el crecimiento, raquitismo y poliuria. Los laboratorios muestran acidosis metabólica de anión gap normal, hipopotasemia y glucosuria con niveles de glucosa en sangre normales (Síndrome de Fanconi).",
+    "questions": [
+      {
+        "question": "¿A qué tipo de ATR corresponde esta falla en la reabsorción de bicarbonato y otros solutos en el túbulo proximal?",
+        "options": [
+          "ATR Tipo 1 (Distal).",
+          "ATR Tipo 2 (Proximal)",
+          "ATR Tipo 4 (Hiporeninémica).",
+          "ATR Tipo 3 (Mixta)."
+        ],
+        "answerIndex": 1,
+        "explanation": "La ATR tipo 2 se caracteriza por la incapacidad del túbulo proximal para reabsorber HCO3. Si se asocia a pérdida de glucosa, aminoácidos y fosfato, se denomina Síndrome de Fanconi. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "MIELOMA Y RIÑÓN",
+    "difficulty": "media",
+    "case": "Paciente con Mieloma Múltiple presenta falla renal aguda. La orina es negativa para proteínas en la tira reactiva, pero positiva en la prueba de ácido sulfosalicílico.",
+    "questions": [
+      {
+        "question": "¿Cuál es el mecanismo de daño renal más común en el mieloma?",
+        "options": [
+          "Amiloidosis.",
+          "Riñón de mieloma (Nefropatía por cilindros de cadenas ligeras)",
+          "Hipercalcemia.",
+          "Infecciones recurrentes."
+        ],
+        "answerIndex": 1,
+        "explanation": "La tira reactiva de orina solo detecta albúmina. En el mieloma, las cadenas ligeras (Bence-Jones) precipitan en los túbulos formando cilindros que causan obstrucción e inflamación intersticial. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "DIÁLISIS (INDICACIONES DE URGENCIA)",
+    "difficulty": "baja",
+    "case": "Paciente con LRA y anuria. Presenta potasio de 6.8 mEq/L con cambios en el EKG, edema agudo de pulmón que no responde a diuréticos y pH de 7.1.",
+    "questions": [
+      {
+        "question": "¿Cuál es la mnemotecnia de las indicaciones absolutas de diálisis de urgencia?",
+        "options": [
+          "AEIOU (Acidosis, Electrolitos, Intoxicación, Overload/Sobrecarga, Uremia)",
+          "ABCD (Arritmia, Broncoespasmo, Cianosis, Disnea).",
+          "CRAB (Calcio, Renal, Anemia, Bone).",
+          "MUDPILES."
+        ],
+        "answerIndex": 0,
+        "explanation": "La mnemotecnia AEIOU es fundamental: **A**cidosis refractaria, **E**lectrolitos (Hiperkalemia refractaria), **I**ntoxicaciones (Litio, Etilenglicol), **O**verload (Edema pulmonar refractario), **U**remia (Pericarditis o encefalopatía urémica).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "EVC HEMORRÁGICO (HEMORRAGIA INTRACEREBRAL)",
+    "difficulty": "media",
+    "case": "Masculino de 68 años con antecedente de hipertensión arterial mal controlada. Presenta de forma súbita cefalea intensa, vómito en proyectil, hemiplejía derecha y desviación de la mirada hacia la izquierda. TA 210/110 mmHg.",
+    "questions": [
+      {
+        "question": "¿Cuál es la localización más frecuente de la hemorragia intracerebral hipertensiva y cuál es el estudio de imagen inicial de elección?",
+        "options": [
+          "Tálamo; Resonancia Magnética.",
+          "Putamen (Ganglios basales); TC de cráneo simple",
+          "Cerebelo; Angiografía.",
+          "Puente; Punción lumbar."
+        ],
+        "answerIndex": 1,
+        "explanation": "El putamen es el sitio más común de hemorragia hipertensiva. La TC simple es el estándar de oro inicial para diferenciar entre EVC isquémico y hemorrágico, ya que la sangre se observa hiperdensa (blanca) de inmediato. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "HEMORRAGIA SUBARACNOIDEA (HSA)",
+    "difficulty": "alta",
+    "case": "Femenina de 45 años presenta súbitamente \"la peor cefalea de su vida\", seguida de pérdida transitoria del estado de alerta y rigidez de nuca. No hay antecedentes de trauma.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa no traumática más frecuente y qué fármaco se utiliza para prevenir el vasoespasmo, una de sus principales complicaciones?",
+        "options": [
+          "Ruptura de aneurisma sacular; Nimodipino",
+          "Malformación arteriovenosa; Aspirina.",
+          "Hipertensión arterial; Manitol.",
+          "Angiopatía amiloide; Heparina."
+        ],
+        "answerIndex": 0,
+        "explanation": "La ruptura de un aneurisma en el polígono de Willis causa la HSA espontánea. El nimodipino (antagonista de calcio) es mandatorio por 21 días para reducir el riesgo de isquemia cerebral secundaria por vasoespasmo. [Image of the Circle of Willis and common aneurysm sites] ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "ESCLEROSIS MÚLTIPLE (EM)",
+    "difficulty": "media",
+    "case": "Femenina de 28 años presenta pérdida de la agudeza visual en el ojo derecho y dolor al moverlo (neuritis óptica). Refiere que hace un año tuvo un episodio de debilidad en la pierna izquierda que resolvió solo.",
+    "questions": [
+      {
+        "question": "¿Cuál es el hallazgo característico en el LCR y qué nombre recibe el fenómeno de empeoramiento de síntomas con el calor?",
+        "options": [
+          "Bandas oligoclonales de IgG; Fenómeno de Uhthoff",
+          "Disociación albúmino-citológica; Signo de Lhermitte.",
+          "Pleocitosis neutrofílica; Fenómeno de Raynaud.",
+          "Hiperproteinorraquia; Reflejo de Cushing."
+        ],
+        "answerIndex": 0,
+        "explanation": "La EM se define por diseminación en \"tiempo y espacio\". Las bandas oligoclonales indican síntesis intratecal de anticuerpos. El fenómeno de Uhthoff es la exacerbación de síntomas con el aumento de la temperatura corporal (baño caliente, ejercicio). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "MIASTENIA GRAVIS (MG)",
+    "difficulty": "media",
+    "case": "Femenina de 32 años presenta ptosis palpebral y diplopía que empeoran al final del día. Refiere dificultad para masticar tras periodos prolongados de comida.",
+    "questions": [
+      {
+        "question": "¿Contra qué receptor se dirigen los anticuerpos en la mayoría de los casos y con qué patología de mediastino se asocia frecuentemente?",
+        "options": [
+          "Receptor de Acetilcolina (AChR); Timoma (Hiperplasia de timo)",
+          "Canales de Calcio; Cáncer de pulmón.",
+          "Receptor de Dopamina; Adenoma hipofisario.",
+          "Mielina; Teratoma."
+        ],
+        "answerIndex": 0,
+        "explanation": "La MG es un trastorno de la unión neuromuscular (postsináptico). La debilidad es fluctuante y mejora con el reposo. Se debe solicitar siempre una TC de tórax para descartar alteraciones en el timo. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "ENFERMEDAD DE PARKINSON",
+    "difficulty": "baja",
+    "case": "Masculino de 65 años con temblor de reposo en \"cuenta de monedas\", bradicinesia (lentitud de movimientos), rigidez en \"rueda dentada\" e inestabilidad postural.",
+    "questions": [
+      {
+        "question": "¿Cuál es el hallazgo histopatológico característico y cuál es el fármaco de primera elección más eficaz?",
+        "options": [
+          "Cuerpos de Lewy (alfa-sinucleína); Levodopa/Carbidopa",
+          "Placas seniles; Donepezilo.",
+          "Ovillos neurofibrilares; Memantina.",
+          "Proteína Tau; Selegilina."
+        ],
+        "answerIndex": 0,
+        "explanation": "El Parkinson es causado por la pérdida de neuronas dopaminérgicas en la sustancia negra pars compacta. Los Cuerpos de Lewy son inclusiones citoplasmáticas eosinofílicas. La carbidopa se añade para inhibir la degradación periférica de la levodopa. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "EPILEPSIA (AUSENCIAS)",
+    "difficulty": "baja",
+    "case": "Escolar de 7 años es llevado porque \"se queda ido\" por 10-15 segundos varias veces al día, interrumpiendo su actividad y recuperándose de inmediato sin confusión post- ictal.",
+    "questions": [
+      {
+        "question": "¿Cuál es el hallazgo en el EEG y cuál es el tratamiento de elección?",
+        "options": [
+          "Punta-onda lenta de 3 Hz; Etosuximida o Valproato de magnesio",
+          "Actividad polipunta; Fenitoína.",
+          "Complejos de onda aguda; Carbamazepina.",
+          "Hipsarritmia; Vigabatrina."
+        ],
+        "answerIndex": 0,
+        "explanation": "Las crisis de ausencia son típicas de la infancia. La etosuximida es el fármaco más específico, aunque el valproato es una excelente alternativa por su amplio espectro. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "ESTRADO EPILÉPTICO",
+    "difficulty": "media",
+    "case": "Paciente es traído a urgencias con crisis convulsivas tónico-clónicas continuas de 10 minutos de duración sin recuperación de la consciencia.",
+    "questions": [
+      {
+        "question": "¿Cuál es la definición actual de estado epiléptico y cuál es el manejo farmacológico de primera línea?",
+        "options": [
+          "> 5 minutos de actividad continua; Benzodiacepinas (Diazepam/Lorazepam)",
+          "> 30 minutos; Fenobarbital.",
+          "> 1 hora; Propofol.",
+          "2 crisis en un día; Ácido valproico."
+        ],
+        "answerIndex": 0,
+        "explanation": "El tiempo \"T1\" (5 min) es cuando se debe iniciar tratamiento agresivo para evitar daño neuronal. Si las benzodiacepinas fallan, se procede a fármacos de segunda línea como Fenitoína o Levetiracetam. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "DEMENCIA VASCULAR",
+    "difficulty": "media",
+    "case": "Masculino de 75 años con HAS, DM2 y tabaquismo. Presenta deterioro cognitivo de inicio súbito, con progresión \"en escalones\" (periodos de estabilidad seguidos de declive brusco tras pequeños eventos isquémicos).",
+    "questions": [
+      {
+        "question": "¿Cuál es la característica clínica que la diferencia de la enfermedad de Alzheimer?",
+        "options": [
+          "Presencia de focalidad neurológica y progresión escalonada",
+          "Pérdida de memoria episódica inicial.",
+          "Alucinaciones visuales precoces.",
+          "Desorientación temporal únicamente."
+        ],
+        "answerIndex": 0,
+        "explanation": "La demencia vascular se asocia a factores de riesgo cardiovascular. La escala de Hachinski se utiliza para diferenciarla de otras demencias (un puntaje alto sugiere origen vascular). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "SÍNDROME DE WERNICKE -KORSAKOFF",
+    "difficulty": "media",
+    "case": "Paciente alcohólico con ataxia, confusión y oftalmoplejía. Se le administra solución glucosada sin suplementos vitamínicos, lo que empeora el cuadro.",
+    "questions": [
+      {
+        "question": "¿Por qué la administración de glucosa precipitó el cuadro y qué vitamina debe reponerse?",
+        "options": [
+          "La glucosa consume las reservas de Tiamina (B1); Vitamina B1",
+          "Causa edema cerebral; Vitamina B6.",
+          "Genera acidosis láctica; Vitamina B12.",
+          "Provoca hipopotasemia; Ácido fólico."
+        ],
+        "answerIndex": 0,
+        "explanation": "La tiamina es un cofactor para el metabolismo de la glucosa. En pacientes con déficit de B1, una carga de carbohidratos agota lo poco que queda, desencadenando la encefalopatía. Siempre se debe dar tiamina ANTES que la glucosa.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "ESPONDILITIS ANQUILOSANTE",
+    "difficulty": "media",
+    "case": "Masculino de 25 años con dolor lumbar crónico que mejora con el ejercicio y empeora con el reposo, de predominio nocturno. Presenta limitación de la flexión lumbar (Prueba de Schober positiva).",
+    "questions": [
+      {
+        "question": "¿Qué antígeno HLA está presente en >90% de los casos y cuál es el hallazgo radiográfico clásico en etapas avanzadas de la columna?",
+        "options": [
+          "HLA-DR4; Imagen en \"sacabocado\".",
+          "HLA-B27; Columna en \"caña de bambú\" (sindesmofitos)",
+          "HLA-B51; Imagen en \"sal y pimienta\".",
+          "HLA-DQ8; Vértebras en \"mariposa\"."
+        ],
+        "answerIndex": 1,
+        "explanation": "La espondilitis anquilosante pertenece a las espondiloartropatías seronegativas. El daño inicia en las articulaciones sacroilíacas (sacroilitis) y progresa a la fusión de los cuerpos vertebrales por la osificación de los ligamentos (sindesmofitos). [Image of bamboo spine in ankylosing spondylitis] ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "VASCULITIS DE GRANDES VASOS (ARTERITIS DE TEMPORAL)",
+    "difficulty": "media",
+    "case": "Femenina de 72 años con cefalea hemicraneal intensa, claudicación mandibular al comer y pérdida súbita de la visión en ojo izquierdo (amaurosis fugax). Presenta VSG de 110 mm/h.",
+    "questions": [
+      {
+        "question": "¿Cuál es la complicación más temida y cuál es el estándar de oro diagnóstico?",
+        "options": [
+          "EVC isquémico; Angiotomografía.",
+          "Ceguera irreversible; Biopsia de la arteria temporal",
+          "Aneurisma de aorta; Ecocardiograma.",
+          "Glomerulonefritis; Sedimento urinario."
+        ],
+        "answerIndex": 1,
+        "explanation": "La arteritis de células gigantes afecta a pacientes >50 años. Ante la sospecha clínica, se deben iniciar glucocorticoides a dosis altas de inmediato para salvar la visión, incluso antes de obtener el resultado de la biopsia. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "GRANULOMATOSIS CON POLIANGEITIS (WEGENER)",
+    "difficulty": "alta",
+    "case": "Masculino de 40 años con sinusitis crónica, rinitis costrosa, nariz en \"silla de montar\", nódulos pulmonares cavitados y falla renal aguda (síndrome reno-pulmonar).",
+    "questions": [
+      {
+        "question": "¿Qué marcador inmunológico es característico de esta vasculitis de pequeños vasos?",
+        "options": [
+          "p-ANCA (anti-mieloperoxidasa).",
+          "c-ANCA (anti-proteinasa 3)",
+          "Anti-Sm.",
+          "Anti-Scl70."
+        ],
+        "answerIndex": 1,
+        "explanation": "La granulomatosis de Wegener se caracteriza por inflamación granulomatosa del tracto respiratorio superior e inferior y glomerulonefritis. El c-ANCA tiene una alta sensibilidad y especificidad para esta entidad. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "POLIARTERITIS NODOSA (PAN)",
+    "difficulty": "alta",
+    "case": "Masculino de 45 años con dolor abdominal postprandial (angina mesentérica), livedo reticularis, mononeuritis múltiple e hipertensión de reciente inicio. Se asocia a infección por Hepatitis B.",
+    "questions": [
+      {
+        "question": "¿Cuál es la característica histopatológica de las lesiones y qué vasos afecta predominantemente?",
+        "options": [
+          "Inflamación granulomatosa; Capilares.",
+          "Necrosis fibrinoide; Arterias de mediano y pequeño calibre",
+          "Depósitos de amiloide; Venas.",
+          "Proliferación íntima; Arteriolas."
+        ],
+        "answerIndex": 1,
+        "explanation": "La PAN clásica no afecta capilares (no da glomerulonefritis), lo que la distingue de la poliangeitis microscópica. El diagnóstico suele apoyarse en la angiografía que muestra microaneurismas en arterias renales o mesentéricas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "DERMATOMIOSITIS",
+    "difficulty": "media",
+    "case": "Femenina de 50 años con debilidad muscular proximal y simétrica (dificultad para peinarse o subir escaleras). Presenta eritema violáceo en párpados superiores (helitropo) y pápulas de Gottron en nudillos.",
+    "questions": [
+      {
+        "question": "¿Qué enzima muscular se eleva característicamente y qué tamizaje es obligatorio realizar en estos pacientes por su asociación paraneoplásica?",
+        "options": [
+          "Creatina quinasa (CK); Búsqueda de neoplasias ocultas (mama, ovario, pulmón)",
+          "DHL; Colonoscopia.",
+          "Alanino aminotransferasa; Perfil tiroideo.",
+          "Fosfatasa alcalina; Mastografía únicamente."
+        ],
+        "answerIndex": 0,
+        "explanation": "La dermatomiositis en adultos se asocia a cáncer hasta en un 20-30% de los casos. Las pápulas de Gottron (eritema descamativo sobre las articulaciones) son patognomónicas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "ESCLEROSIS SISTÉMICA (ESCLERODERMIA)",
+    "difficulty": "media",
+    "case": "Paciente femenina con fenómeno de Raynaud, engrosamiento cutáneo distal a codos y rodillas, y presencia de telangiectasias.",
+    "questions": [
+      {
+        "question": "¿Qué anticuerpo se asocia a la variante limitada (Síndrome de CREST) y cuál es la principal causa de mortalidad en la variante difusa?",
+        "options": [
+          "Anticuerpos anticentrómero; Fibrosis pulmonar o crisis renal esclerodérmica",
+          "Anti-Scl70 (antitopoisomerasa I); Hipertensión portal.",
+          "Anti-Jo1; Miocarditis.",
+          "Anti-histona; Pericarditis."
+        ],
+        "answerIndex": 0,
+        "explanation": "El síndrome de CREST (Calcinosis, Raynaud, Esofagopatía, Esclerodactilia, Telangiectasias) tiene mejor pronóstico cutáneo pero se asocia a hipertensión pulmonar. La variante difusa afecta órganos internos de forma temprana, especialmente pulmón y riñón. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "SÍNDROME DE SJÖGREN",
+    "difficulty": "baja",
+    "case": "Femenina de 55 años con sensación de \"arena en los ojos\" (xeroftalmia) y boca seca (xerostomía) que le obliga a beber agua para deglutir alimentos secos.",
+    "questions": [
+      {
+        "question": "¿Cuál es la prueba diagnóstica para medir la producción de lágrimas y qué riesgo de neoplasia tienen estos pacientes a largo plazo?",
+        "options": [
+          "Prueba de Schirmer; Linfoma de células B",
+          "Prueba de Rose-Bengal; Adenocarcinoma gástrico.",
+          "Biopsia de piel; Melanoma.",
+          "Prueba de Papanicolaou; Cáncer de cérvix."
+        ],
+        "answerIndex": 0,
+        "explanation": "El Sjögren es una exocrinopatía autoinmune. Los anticuerpos característicos son Anti-Ro (SSA) y Anti-La (SSB). El riesgo de linfoma es hasta 40 veces mayor que en la población general debido a la estimulación crónica de los linfocitos B. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "COLECISTITIS AGUDA",
+    "difficulty": "baja",
+    "case": "Femenina de 42 años, con obesidad, acude por dolor intenso en hipocondrio derecho irradiado a escápula ipsilateral, náuseas y vómito tras ingesta de comida colecistoquinética. A la exploración: signo de Murphy positivo.",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio de imagen inicial de elección y cuál es el estándar de oro según las Guías de Tokio?",
+        "options": [
+          "Radiografía de abdomen; Tomografía.",
+          "Ultrasonido de cuadrante superior derecho; Gammagrafía de vías biliares (HIDA)",
+          "Resonancia Magnética; CPRE.",
+          "Marcadores tumorales; Laparoscopia diagnóstica."
+        ],
+        "answerIndex": 1,
+        "explanation": "El USG es el estudio inicial por su disponibilidad y alta sensibilidad para ver litos y engrosamiento de pared (>4mm). La gammagrafía HIDA es el estándar de oro al demostrar la obstrucción del conducto cístico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "COLEDOCOLITIASIS Y COLANGITIS",
+    "difficulty": "alta",
+    "case": "Paciente con antecedente de litiasis biliar presenta ictericia, dolor en hipocondrio derecho y fiebre (Tríada de Charcot). Se añade hipotensión y alteración del estado de alerta.",
+    "questions": [
+      {
+        "question": "¿Cómo se denomina la presencia de los 5 síntomas y cuál es el tratamiento definitivo de urgencia?",
+        "options": [
+          "Pentalogía de Reynolds; Descompresión biliar por CPRE",
+          "Tríada de Beck; Pericardiocentesis.",
+          "Signo de Courvoisier-Terrier; Colecistectomía.",
+          "Pentalogía de Cantrell; Cirugía abierta."
+        ],
+        "answerIndex": 0,
+        "explanation": "La colangitis aguda es una urgencia médica. La Pentalogía de Reynolds indica choque séptico de origen biliar. El manejo requiere antibióticos y, fundamentalmente, el drenaje de la vía biliar mediante Colangiopancreatografía Retrógrada Endoscópica (CPRE). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "PANCREATITIS AGUDA (DIAGNÓSTICO)",
+    "difficulty": "media",
+    "case": "Masculino de 45 años con dolor abdominal transfictivo en \"cinturón\", náuseas y elevación de lipasa sérica 4 veces por encima del valor normal.",
+    "questions": [
+      {
+        "question": "¿Cuál de las enzimas pancreáticas es más específica para el diagnóstico y en qué momento se recomienda realizar una TC contrastada para evaluar necrosis?",
+        "options": [
+          "Amilasa; Al ingreso.",
+          "Lipasa; Entre las 72 y 96 horas del inicio de los síntomas",
+          "Tripsina; A la semana.",
+          "Elastasa; A las 24 horas."
+        ],
+        "answerIndex": 1,
+        "explanation": "La lipasa es más específica y permanece elevada más tiempo que la amilasa. Realizar una TC de forma muy temprana puede subestimar la extensión de la necrosis pancreática, por lo que se prefiere esperar al tercer o cuarto día. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "PANCREATITIS AGUDA (PRONÓSTICO)",
+    "difficulty": "media",
+    "case": "Se evalúa a un paciente con pancreatitis para predecir severidad. Se utiliza una escala que mide: BUN, deterioro mental, SIRS, edad >60 años y derrame pleural.",
+    "questions": [
+      {
+        "question": "¿Cuál es el nombre de esta escala y qué marcador de laboratorio simple es un predictor temprano de severidad al ingreso?",
+        "options": [
+          "Escala de Ranson; Glucosa.",
+          "Escala de BISAP; Hematocrito (hemoconcentración)",
+          "Escala de Glasgow; Calcio.",
+          "Escala de Alvarado; Leucocitocis."
+        ],
+        "answerIndex": 1,
+        "explanation": "BISAP es una escala sencilla y validada para predecir mortalidad al ingreso. El hematocrito elevado (>44%) sugiere una reanimación hídrica inadecuada y mayor riesgo de necrosis. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "CIRROSIS HEPÁTICA (CHILD-PUGH)",
+    "difficulty": "baja",
+    "case": "Se evalúa la reserva funcional hepática de un paciente cirrótico que presenta: Bilirrubina 2.5 mg/dl, Albúmina 3.0 g/dl, INR 1.8, Ascitis leve y Encefalopatía grado I.",
+    "questions": [
+      {
+        "question": "¿Cuáles son los 5 parámetros que integran la clasificación de Child-Pugh?",
+        "options": [
+          "Bilirrubina, Albúmina, INR/Tiempos, Ascitis y Encefalopatía",
+          "ALT, AST, GGT, Plaquetas y Glucosa.",
+          "Creatinina, Sodio, Bilirrubina, INR y Potasio.",
+          "Amonio, Urea, pH, Lactato y Plaquetas."
+        ],
+        "answerIndex": 0,
+        "explanation": "La clasificación de Child-Pugh (clases A, B y C) estima la supervivencia a 1 y 2 años. Para priorizar trasplantes se utiliza el MELD, que utiliza parámetros más objetivos (Creatinina, Bilirrubina e INR). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "ENCEFALOPATÍA HEPÁTICA",
+    "difficulty": "media",
+    "case": "Paciente cirrótico presenta asterixis (flapping tremor), desorientación y alteración del ciclo sueño-vigilia tras un cuadro de estreñimiento.",
+    "questions": [
+      {
+        "question": "¿Cuál es la toxina principal implicada y cuál es el tratamiento de primera línea para favorecer su eliminación?",
+        "options": [
+          "Amoníaco; Lactulosa",
+          "Bilirrubina indirecta; Fototerapia.",
+          "Ácidos biliares; Colestiramina.",
+          "Urea; Hemodiálisis."
+        ],
+        "answerIndex": 0,
+        "explanation": "La lactulosa es un disacárido no absorbible que acidifica el contenido del colon, convirtiendo el amoníaco (NH3) en amonio (NH4+), el cual no se absorbe y se excreta, además de actuar como laxante osmótico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "VARICES ESOFÁGICAS",
+    "difficulty": "alta",
+    "case": "Paciente con cirrosis presenta hematemesis masiva. Se sospecha ruptura de várices esofágicas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo farmacológico inicial para reducir la presión portal y cuál es el procedimiento endoscópico de elección?",
+        "options": [
+          "Terlipresina o Octreótida; Ligadura con banda elástica",
+          "Propranolol; Escleroterapia.",
+          "Adrenalina; Cauterización.",
+          "Vitamina K; Sonda de Sengstaken-Blakemore inicial."
+        ],
+        "answerIndex": 0,
+        "explanation": "La terlipresina reduce el flujo esplácnico. La ligadura es superior a la escleroterapia en control de sangrado y menor tasa de complicaciones. El propranolol se usa para profilaxis primaria y secundaria, NO en el evento agudo. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "ENFERMEDAD DE CELIAQUÍA",
+    "difficulty": "media",
+    "case": "Paciente con diarrea crónica, esteatorrea, pérdida de peso y dermatitis herpetiforme. Refiere mejoría al suspender el consumo de trigo, cebada y centeno.",
+    "questions": [
+      {
+        "question": "¿Cuál es el anticuerpo más sensible y específico para el tamizaje inicial?",
+        "options": [
+          "Anticuerpos antitransglutaminasa tisular IgA",
+          "Anticuerpos antinucleares.",
+          "Anticuerpos contra la gliadina únicamente.",
+          "Factor Reumatoide."
+        ],
+        "answerIndex": 0,
+        "explanation": "La enfermedad celíaca es una enteropatía autoinmune por intolerancia al gluten. El estándar de oro es la biopsia duodenal (atrofia de vellosidades), pero los anticuerpos antitransglutaminasa son la prueba inicial de elección. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA CRÍTICA / URGENCIAS",
+    "subtema": "ESTADO DE CHOQUE (FISIOPATOLOGÍA)",
+    "difficulty": "alta",
+    "case": "Paciente de 60 años traído a urgencias por hipotensión (70/40 mmHg). A la exploración: piel fría, cianosis periférica, ingurgitación yugular y estertores crepitantes bilaterales. El catéter de Swan-Ganz reporta: Presión de Cuña Pulmonar (PCP) elevada, Gasto Cardíaco (GC) bajo y Resistencias Vasculares Sistémicas (RVS) elevadas.",
+    "questions": [
+      {
+        "question": "¿Qué tipo de choque presenta el paciente y cuál es el manejo farmacológico de soporte inotrópico de elección?",
+        "options": [
+          "Choque Hipovolémico; Solución Salina 0.9%.",
+          "Choque Cardiogénico; Dobutamina",
+          "Choque Distributivo (Séptico); Norepinefrina.",
+          "Choque Obstructivo; Heparina."
+        ],
+        "answerIndex": 1,
+        "explanation": "El choque cardiogénico se caracteriza por la falla de bomba. La PCP elevada (>18 mmHg) indica congestión pulmonar por falla izquierda, y el cuerpo compensa la caída del GC aumentando las RVS (vasoconstricción). La dobutamina mejora la contractilidad (agonista Beta-1). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA CRÍTICA",
+    "subtema": "SÍNDROME DE DISTRÉS RESPIRATORIO AGUDO (SDRA)",
+    "difficulty": "alta",
+    "case": "Paciente con sepsis abdominal desarrolla disnea súbita. La radiografía de tórax muestra infiltrados alveolares bilaterales. La relación PaO2/FiO2 (Kirby) es de 150 mmHg con un PEEP de 5 cmH2O. No hay evidencia de falla cardíaca izquierda.",
+    "questions": [
+      {
+        "question": "De acuerdo con la definición de Berlín, ¿qué grado de SDRA presenta y qué estrategia de ventilación mecánica ha demostrado disminuir la mortalidad?",
+        "options": [
+          "SDRA Leve; Volúmenes corrientes altos.",
+          "SDRA Moderado; Ventilación protectora (Volumen tidal 6 ml/kg de peso ideal)",
+          "SDRA Grave; FiO2 al 100% permanente.",
+          "Edema agudo de pulmón; Diuréticos de asa."
+        ],
+        "answerIndex": 1,
+        "explanation": "La definición de Berlín clasifica el SDRA según la PaO2/FiO2: Leve (200-300), Moderado (100-200) y Grave (<100). La ventilación protectora evita el volutrauma y el biotrauma, siendo el pilar del tratamiento. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "URGENCIAS CARDIOVASCULARES",
+    "subtema": "DISECCIÓN AÓRTICA",
+    "difficulty": "alta",
+    "case": "Masculino de 65 años con HAS descontrolada presenta dolor torácico súbito, muy intenso, con sensación de \"desgarro\" que se irradia a la región interescapular. Se detecta una diferencia de TA >20 mmHg entre ambos brazos.",
+    "questions": [
+      {
+        "question": "¿Cuál es la clasificación de Stanford de una disección que afecta la aorta ascendente y cuál es el manejo de presión arterial de primera línea?",
+        "options": [
+          "Stanford B; Hidralazina.",
+          "Stanford A; Betabloqueadores IV (Esmolol/Labetalol) + Nitroprusiato",
+          "DeBakey III; Aspirina.",
+          "Stanford C; Observación."
+        ],
+        "answerIndex": 1,
+        "explanation": "Stanford A (afecta aorta ascendente) es una urgencia quirúrgica. Stanford B (descendente) suele manejarse médicamente. Es vital bajar la frecuencia cardíaca y la TA sistólica (meta 100-120 mmHg) para disminuir el estrés de cizallamiento en la pared aórtica. [Image of Stanford and DeBakey classifications of aortic dissection] ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "URGENCIAS CARDIOVASCULARES",
+    "subtema": "TAPONAMIENTO CARDÍACO",
+    "difficulty": "media",
+    "case": "Paciente con antecedente de cáncer de mama presenta disnea, hipotensión, ruidos cardíacos distantes y distensión venosa yugular.",
+    "questions": [
+      {
+        "question": "¿Cómo se llama esta tríada clínica y qué hallazgo se espera en el EKG?",
+        "options": [
+          "Tríada de Virchow; Onda Delta.",
+          "Tríada de Beck; Alternancia eléctrica y bajos voltajes",
+          "Signo de Kussmaul; Bloqueo de rama.",
+          "Tríada de Charcot; Inversión de la onda T."
+        ],
+        "answerIndex": 1,
+        "explanation": "La tríada de Beck es clásica del taponamiento. La alternancia eléctrica ocurre porque el corazón \"balancea\" u oscila dentro del saco pericárdico lleno de líquido, cambiando el eje del QRS latido tras latido. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA CRÍTICA",
+    "subtema": "MUERTE ENCEFÁLICA",
+    "difficulty": "media",
+    "case": "Paciente con traumatismo craneoencefálico severo. Se sospecha muerte encefálica. Presenta coma arreactivo, ausencia de reflejos de tallo (fotomotor, corneal, oculocefálicos) y ausencia de esfuerzo respiratorio tras desconexión del ventilador.",
+    "questions": [
+      {
+        "question": "¿Cómo se llama la prueba que evalúa la respuesta del centro respiratorio al aumento de PaCO2 y qué estudio de gabinete confirma la ausencia de flujo cerebral?",
+        "options": [
+          "Prueba de apnea; Angiografía cerebral o Doppler transcraneal",
+          "Test de atropina; TC de cráneo.",
+          "Escala de Glasgow; EEG únicamente.",
+          "Prueba de frío; Potenciales evocados."
+        ],
+        "answerIndex": 0,
+        "explanation": "La prueba de apnea es positiva si el paciente no respira tras alcanzar una PaCO2 >60 mmHg. En México, la Ley General de Salud requiere confirmar con estudios que demuestren ausencia de flujo sanguíneo cerebral o actividad eléctrica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "TOXICOLOGÍA",
+    "subtema": "PICADURA DE ALACRÁN (Centruroides)",
+    "difficulty": "baja",
+    "case": "Niño de 5 años con sialorrea, nistagmus, sensación de cuerpo extraño en la garganta y fasciculaciones linguales tras picadura de alacrán.",
+    "questions": [
+      {
+        "question": "¿Cuál es el grado de envenenamiento según la clínica y cuál es el tratamiento específico?",
+        "options": [
+          "Grado I; Observación.",
+          "Grado III (Severo); Faboterápico específico (Alacramyn)",
+          "Grado II; Antihistamínicos y gluconato de calcio.",
+          "Leve; Paracetamol y hielo local."
+        ],
+        "answerIndex": 1,
+        "explanation": "En México, el veneno de alacrán es neurotóxico. Los síntomas autonómicos (sialorrea) y neuromusculares (fasciculaciones, nistagmus) indican severidad grave. El tratamiento definitivo es el faboterápico polivalente IV. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA CRÍTICA",
+    "subtema": "DESEQUILIBRIO HIDROELECTROLÍTICO (HIPERKALEMIA)",
+    "difficulty": "media",
+    "case": "Paciente con falla renal presenta K de 7.2 mEq/L. El EKG muestra ondas T picudas, desaparición de la onda P y ensanchamiento del complejo QRS (imagen en \"onda senoidal\").",
+    "questions": [
+      {
+        "question": "¿Cuál es el primer fármaco que debe administrarse para estabilizar la membrana del miocito y prevenir arritmias letales?",
+        "options": [
+          "Insulina + Glucosa.",
+          "Gluconato de calcio IV",
+          "Furosemida.",
+          "Poliestireno sulfonato de sodio (Kayexalate)."
+        ],
+        "answerIndex": 1,
+        "explanation": "El gluconato de calcio no baja el potasio, pero antagoniza sus efectos en el potencial de acción cardíaco, \"comprando tiempo\" para usar medidas que metan el potasio a la célula (insulina, salbutamol) o lo eliminen (diuréticos, diálisis).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "ENDOCRINOLOGÍA / URGENCIAS",
+    "subtema": "CETOACIDOSIS DIABÉTICA (CAD)",
+    "difficulty": "media",
+    "case": "Femenina de 19 años con DM1 acude por náuseas, vómito y dolor abdominal. Presenta respiración de Kussmaul y aliento cetónico. Laboratorios: Glucosa 350 mg/dl, pH 7.20, HCO3 12 mEq/L, cetonas en orina (+++).",
+    "questions": [
+      {
+        "question": "¿Cuál es el pilar del tratamiento inicial y qué nivel de potasio es el límite mínimo para poder iniciar la infusión de insulina?",
+        "options": [
+          "Insulina en bolo; K > 4.5 mEq/L.",
+          "Rehidratación con solución salina 0.9% (1-1.5 L en la primera hora); K > 3.3 mEq/L",
+          "Bicarbonato de sodio; K > 5.0 mEq/L.",
+          "Ayuno prolongado; K > 2.5 mEq/L."
+        ],
+        "answerIndex": 1,
+        "explanation": "La prioridad en CAD es restaurar el volumen circulante. Nunca se debe iniciar insulina si el potasio es <3.3 mEq/L, ya que la insulina mete potasio a la célula y puede causar una hipopotasemia letal. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "ENDOCRINOLOGÍA / URGENCIAS",
+    "subtema": "CRISIS SUPRARRENAL AGUDA",
+    "difficulty": "alta",
+    "case": "Paciente con diagnóstico de Enfermedad de Addison que suspende su tratamiento por presentar gastroenteritis. Acude con hipotensión profunda que no responde a volumen, fiebre y dolor abdominal. Laboratorios: Na 128, K 5.8, Glucosa 60.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento inmediato de elección y cuál es el hallazgo clásico en el EKG por la alteración electrolítica?",
+        "options": [
+          "Hidrocortisona 100 mg IV cada 8 horas; Ondas T picudas por hiperkalemia",
+          "Adrenalina; Prolongación del segmento ST.",
+          "Dexametasona y restricción hídrica; Ondas U.",
+          "Fludrocortisona únicamente; Acortamiento del QT."
+        ],
+        "answerIndex": 0,
+        "explanation": "La crisis suprarrenal es una urgencia vital. La hidrocortisona es el glucocorticoide de elección porque posee también actividad mineralocorticoide. La tríada de hipotensión, hiponatremia e hiperkalemia en un paciente bajo estrés es altamente sugestiva. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "TOXICOLOGÍA",
+    "subtema": "INTOXICACIÓN POR PARACETAMOL",
+    "difficulty": "media",
+    "case": "Paciente de 25 años ingiere 20 gramos de paracetamol en un intento suicida hace 4 horas. Actualmente está asintomático.",
+    "questions": [
+      {
+        "question": "¿Qué metabolito tóxico es el responsable del daño hepático y qué herramienta se usa para decidir el inicio de N-acetilcisteína (NAC)?",
+        "options": [
+          "NAPQI; Nomograma de Rumack-Matthew",
+          "Ácido glucurónico; Escala de Child-Pugh.",
+          "Glutatión; Niveles de ALT/AST.",
+          "Sulfato de paracetamol; pH arterial."
+        ],
+        "answerIndex": 0,
+        "explanation": "El paracetamol se satura y se desvía a la vía del citocromo P450 produciendo NAPQI, que agota el glutatión. El nomograma utiliza el nivel sérico de paracetamol en relación con las horas post-ingesta (a partir de las 4 horas) para determinar el riesgo de hepatotoxicidad. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "TOXICOLOGÍA",
+    "subtema": "SÍNDROME COLINÉRGICO (ORGANOFOSFORADOS)",
+    "difficulty": "baja",
+    "case": "Agricultor es traído por presentar miosis, sialorrea, lagrimeo, diarrea, broncorrea y fasciculaciones tras fumigar un campo.",
+    "questions": [
+      {
+        "question": "¿Cuál es el mecanismo de acción de estos venenos y cuál es el fármaco de elección para tratar los síntomas muscarínicos (secreciones)?",
+        "options": [
+          "Inhibición irreversible de la acetilcolinesterasa; Atropina",
+          "Bloqueo de receptores de dopamina; Biperideno.",
+          "Activación de la cascada de coagulación; Vitamina K.",
+          "Inhibición de la bomba sodio-potasio; Digoxina."
+        ],
+        "answerIndex": 0,
+        "explanation": "Los organofosforados causan un exceso de acetilcolina. El manejo requiere atropina (antagonista muscarínico) hasta lograr la \"atropinización\" (secado de secreciones bronquiales) y oximas (Pralidoxima) para reactivar la enzima. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "TOXICOLOGÍA",
+    "subtema": "SÍNDROME ANTICOLINÉRGICO",
+    "difficulty": "media",
+    "case": "Paciente joven acude por agitación, piel seca y caliente, midriasis, taquicardia y retención urinaria. \"Loco como una cabra, rojo como un betabel, seco como un hueso\".",
+    "questions": [
+      {
+        "question": "¿Qué sustancia es la causa más común y qué fármaco es el antídoto específico en casos graves con delirio?",
+        "options": [
+          "Atropina o Antihistamínicos; Fisostigmina",
+          "Cocaína; Benzodiacepinas.",
+          "Alcohol; Tiamina.",
+          "Opioides; Naloxona."
+        ],
+        "answerIndex": 0,
+        "explanation": "El síndrome anticolinérgico ocurre por bloqueo de receptores muscarínicos. La fisostigmina es un inhibidor de la colinesterasa que atraviesa la barrera hematoencefálica, revirtiendo los síntomas centrales. [Image comparing Mydriasis vs Miosis in toxidromes] ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "URGENCIAS CARDIOVASCULARES",
+    "subtema": "INFARTO AL MIOCARDIO CON ELEVACIÓN DEL ST (IAMCEST)",
+    "difficulty": "media",
+    "case": "Masculino de 55 años con dolor precordial de 2 horas de evolución. El EKG muestra elevación del ST de 3 mm en V1-V4. El hospital no cuenta con sala de hemodinamia. El centro más cercano con capacidad de angioplastia está a 3 horas de distancia.",
+    "questions": [
+      {
+        "question": "¿Cuál es la conducta a seguir según la GPC y cuál es la meta de tiempo \"puerta- aguja\"?",
+        "options": [
+          "Iniciar fibrinolisis inmediata; < 30 minutos",
+          "Traslado para angioplastia primaria; < 90 minutos.",
+          "Administrar solo aspirina y observar.",
+          "Realizar prueba de esfuerzo."
+        ],
+        "answerIndex": 0,
+        "explanation": "Si el tiempo estimado para realizar una ICP (angioplastia) es >120 minutos, se debe proceder a la fibrinolisis farmacológica de inmediato (meta <30 min). Si la fibrinolisis falla, se realiza una ICP de rescate. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "URGENCIAS CARDIOVASCULARES",
+    "subtema": "TORMENTA ARRÍTMICA / TV SIN PULSO",
+    "difficulty": "baja",
+    "case": "Paciente hospitalizado presenta súbitamente pérdida de la consciencia. El monitor muestra Taquicardia Ventricular monomórfica. Al evaluar al paciente, no se palpa pulso carotídeo.",
+    "questions": [
+      {
+        "question": "¿Cuál es la acción inmediata que debe realizarse y cuál es la dosis de energía inicial en un desfibrilador bifásico?",
+        "options": [
+          "Desfibrilación inmediata; 120-200 Joules",
+          "Cardioversión sincronizada; 50 Joules.",
+          "Maniobra de Valsalva.",
+          "Amiodarona 300 mg en bolo."
+        ],
+        "answerIndex": 0,
+        "explanation": "La TV sin pulso se maneja igual que la Fibrilación Ventricular: desfibrilación eléctrica no sincronizada. La cardioversión sincronizada se reserva para pacientes CON pulso que presentan inestabilidad hemodinámica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA / NEUROLOGÍA",
+    "subtema": "ENCEFALITIS HERPÉTICA",
+    "difficulty": "alta",
+    "case": "Masculino de 35 años presenta fiebre, cefalea y alteración del comportamiento (alucinaciones olfatorias y agresividad). La RM muestra edema y hemorragia en los lóbulos temporales.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico más común y cuál es el tratamiento que debe iniciarse ante la sospecha clínica?",
+        "options": [
+          "Virus Varicela-Zóster; Ganciclovir.",
+          "Virus del Herpes Simple tipo 1 (VHS-1); Aciclovir IV",
+          "Citomegalovirus; Foscarnet.",
+          "Enterovirus; Soporte únicamente."
+        ],
+        "answerIndex": 1,
+        "explanation": "La encefalitis por VHS-1 tiene predilección por los lóbulos temporales. El diagnóstico se apoya en la PCR en LCR. El tratamiento con aciclovir debe ser precoz para evitar secuelas neurológicas permanentes o la muerte. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "VIH / SIDA (INFECCIONES OPORTUNISTAS)",
+    "difficulty": "media",
+    "case": "Paciente con diagnóstico de VIH y conteo de CD4 de 80 células/μL. Presenta disnea progresiva de 2 semanas, tos seca y fiebre. La radiografía muestra infiltrados intersticiales bilaterales \"en vidrio despulido\".",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal más probable y cuál es el tratamiento de elección?",
+        "options": [
+          "Mycobacterium tuberculosis; Rifampicina.",
+          "Pneumocystis jirovecii; Trimetoprim/Sulfametoxazol (TMP/SMX)",
+          "Cryptococcus neoformans; Anfotericina B.",
+          "Toxoplasma gondii; Pirimetamina."
+        ],
+        "answerIndex": 1,
+        "explanation": "La neumonía por Pneumocystis es la infección oportunista definitoria de SIDA más frecuente. El TMP/SMX es el tratamiento de elección y también se usa como profilaxis cuando los CD4 son <200. Si existe hipoxemia grave (PaO2 <70), se deben añadir esteroides. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "NEUROCISTICERCOSIS",
+    "difficulty": "media",
+    "case": "Femenina de 30 años originaria de zona rural. Acude por presentar su primera crisis convulsiva tónico-clónica. La TC de cráneo muestra múltiples lesiones quísticas pequeñas con un punto hiperdense en su interior (escólex).",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal y cuál es el tratamiento médico de elección según la GPC?",
+        "options": [
+          "Taenia solium (fase larvaria); Albendazol + Dexametasona",
+          "Entamoeba histolytica; Metronidazol.",
+          "Toxocara canis; Ivermectina.",
+          "Ascaris lumbricoides; Mebendazol."
+        ],
+        "answerIndex": 0,
+        "explanation": "La neurocisticercosis es la causa más común de epilepsia adquirida en países en desarrollo. El albendazol es el antiparasitario de elección. Es fundamental dar esteroides (dexametasona) para disminuir la respuesta inflamatoria que ocurre cuando los quistes mueren. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA / URGENCIAS",
+    "subtema": "MALARIA (PALUDISMO)",
+    "difficulty": "alta",
+    "case": "Viajero que regresa de África subsahariana presenta fiebre intermitente cada 48 horas, escalofríos intensos, anemia y esplenomegalia. El frotis de sangre periférica (gota gruesa) muestra eritrocitos parasitados con formas en anillo.",
+    "questions": [
+      {
+        "question": "¿Cuál es la especie de Plasmodium que causa la forma más grave (malaria cerebral) y cuál es el tratamiento de elección para casos complicados?",
+        "options": [
+          "P. vivax; Cloroquina.",
+          "P. falciparum; Artesunato IV (o derivados de artemisinina)",
+          "P. malariae; Quinina oral.",
+          "P. ovale; Primaquina únicamente."
+        ],
+        "answerIndex": 1,
+        "explanation": "P. falciparum es el más letal debido a que causa citoadherencia de los eritrocitos en la microvasculatura. El artesunato IV es el estándar de oro actual para malaria grave. La primaquina se usa para eliminar los hipnozoitos hepáticos en P. vivax/ovale para evitar recaídas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "FIEBRE TIFOIDEA",
+    "difficulty": "baja",
+    "case": "Paciente con fiebre prolongada (39-40°C), dolor abdominal, estreñimiento inicial seguido de \"diarrea en puré de guisantes\" y manchas rosadas en el tronco (roséola tifoídica).",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal y cuál es el estudio diagnóstico con mayor sensibilidad en la primera semana?",
+        "options": [
+          "Salmonella typhi; Mielocultivo (o hemocultivo)",
+          "Shigella sonnei; Coprocultivo.",
+          "Rickettsia rickettsii; Serología.",
+          "Brucella melitensis; Rosa de Bengala."
+        ],
+        "answerIndex": 0,
+        "explanation": "El mielocultivo es la prueba más sensible (>90%) independientemente del tiempo de evolución o uso previo de antibióticos. Las reacciones febriles (Widal) tienen baja especificidad y ya no se recomiendan como diagnóstico definitivo. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "BRUCELOSIS (FIEBRE DE MALTA)",
+    "difficulty": "media",
+    "case": "Ganadero con fiebre ondulante, sudoración profusa con olor a \"paja mojada\", artralgias y orquiepididimitis.",
+    "questions": [
+      {
+        "question": "¿Cuál es la vía de transmisión más común y cuál es el esquema de tratamiento de primera elección (Esquema A) según la NOM?",
+        "options": [
+          "Ingesta de lácteos no pasteurizados; Tetraciclina (Doxiciclina) + Estreptomicina",
+          "Picadura de garrapata; Ceftriaxona.",
+          "Inhalación de esporas; Penicilina.",
+          "Mordedura de perro; Amoxicilina/Clavulanato."
+        ],
+        "answerIndex": 0,
+        "explanation": "La brucelosis es una zoonosis clásica. El tratamiento debe ser prolongado (21 días a 6 semanas) para evitar recaídas, ya que la bacteria es intracelular facultativa. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "TUBERCULOSIS MENÍNGEA",
+    "difficulty": "alta",
+    "case": "Paciente con diagnóstico de TB pulmonar inicia con cefalea crónica, parálisis de pares craneales (VI par) y signos meníngeos. El LCR muestra: Pleocitosis linfocitaria, glucosa muy baja (<20 mg/dl) y proteínas muy elevadas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el hallazgo patognomónico en la base del cerebro en estudios de imagen y qué fármaco debe añadirse al esquema TAES para reducir secuelas?",
+        "options": [
+          "Realce meníngeo basal; Dexametasona",
+          "Hidrocefalia únicamente; Manitol.",
+          "Infartos corticales; Aspirina.",
+          "Abscesos múltiples; Vancomicina."
+        ],
+        "answerIndex": 0,
+        "explanation": "La TB meníngea suele afectar la base del encéfalo, causando atrapamiento de pares craneales y vasculitis. El uso de esteroides es mandatorio porque disminuye la mortalidad y la presión intracraneal al reducir la inflamación del exudado basal. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "DENGUE (SIGNOS DE ALARMA)",
+    "difficulty": "media",
+    "case": "Paciente en zona endémica con fiebre, mialgias y dolor retroocular. Al tercer día la fiebre cede, pero presenta dolor abdominal intenso, vómitos persistentes y descenso brusco de plaquetas con aumento del hematocrito.",
+    "questions": [
+      {
+        "question": "¿Cómo se clasifica este cuadro según la OMS y cuál es el manejo inmediato?",
+        "options": [
+          "Dengue no grave; Manejo ambulatorio con Paracetamol.",
+          "Dengue con signos de alarma; Hospitalización y reanimación con cristaloides IV",
+          "Dengue grave (choque); Trasfusión de plaquetas inmediata.",
+          "Fiebre hemorrágica; Antibióticos de amplio espectro."
+        ],
+        "answerIndex": 1,
+        "explanation": "La etapa crítica del dengue ocurre cuando cae la fiebre (defervescencia). Los signos de alarma indican fuga de plasma. La meta es mantener la perfusión sin sobrecargar al paciente. Las plaquetas NO se trasfunden de rutina a menos que haya hemorragia grave. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "SÍNDROME DE CAÍDAS Y FRAGILIDAD",
+    "difficulty": "media",
+    "case": "Femenina de 78 años que vive sola. Refiere dos caídas en el último mes sin pérdida del conocimiento. A la exploración presenta marcha lenta y debilidad en extremidades inferiores.",
+    "questions": [
+      {
+        "question": "¿Qué prueba de ejecución física es la más recomendada para evaluar el riesgo de caídas y qué escala mide los criterios de fragilidad (pérdida de peso, agotamiento, lentitud, debilidad y baja actividad)?",
+        "options": [
+          "Prueba \"Get Up and Go\" (Levántate y anda); Criterios de Fried",
+          "Escala de Tinetti; Escala de Barthel.",
+          "Prueba de Romberg; Escala de Lawton-Brody.",
+          "Índice de Katz; Escala de Yesavage."
+        ],
+        "answerIndex": 0,
+        "explanation": "La fragilidad es un estado de vulnerabilidad. La prueba \"Get Up and Go\" (cronometrar el tiempo para levantarse, caminar 3m y volver) es altamente predictiva. Los criterios de Fried definen el fenotipo del anciano frágil. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "ÚLCERAS POR PRESIÓN (UPP)",
+    "difficulty": "baja",
+    "case": "Paciente de 88 años con demencia avanzada, postrado en cama. Presenta una lesión en región sacra con pérdida total del grosor de la piel, visualizándose el tejido adiposo, pero sin exposición de músculo ni hueso.",
+    "questions": [
+      {
+        "question": "¿A qué estadio corresponde esta lesión y cuál es la medida preventiva más eficaz?",
+        "options": [
+          "Estadio I; Uso de polvos.",
+          "Estadio II; Limpieza con alcohol.",
+          "Estadio III; Cambios de posición cada 2 horas y superficies de apoyo adecuadas",
+          "Estadio IV; Antibióticos sistémicos de rutina."
+        ],
+        "answerIndex": 2,
+        "explanation": "Estadio I (eritema que no blanquea), II (pérdida parcial, ampolla), III (grasa visible) y IV (músculo/hueso expuesto). La prevención es la clave del manejo geriátrico en pacientes con movilidad limitada. [Image of the four stages of pressure ulcers] ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "DEPRESIÓN EN EL ANCIANO",
+    "difficulty": "media",
+    "case": "Paciente de 70 años con pérdida de interés en sus actividades, irritabilidad, quejas somáticas persistentes y olvidos frecuentes. Los familiares creen que tiene Alzheimer.",
+    "questions": [
+      {
+        "question": "¿Cómo se denomina este cuadro que simula demencia y qué escala de tamizaje es la validada para depresión en geriatría?",
+        "options": [
+          "Pseudodemencia depresiva; Escala de Yesavage (Geriatric Depression Scale)",
+          "Demencia por cuerpos de Lewy; MMSE.",
+          "Afasia motora; Test del dibujo del reloj.",
+          "Trastorno adaptativo; Criterios de DSM-5 únicamente."
+        ],
+        "answerIndex": 0,
+        "explanation": "La depresión en el anciano a menudo se presenta con síntomas cognitivos (pseudodemencia). A diferencia de la demencia real, en la pseudodemencia el inicio es más preciso y el paciente suele responder \"no sé\" ante las pruebas de memoria por falta de esfuerzo. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CUIDADOS PALIATIVOS",
+    "subtema": "MANEJO DEL DOLOR (ESCALERA DE LA OMS)",
+    "difficulty": "media",
+    "case": "Paciente con cáncer de páncreas terminal presenta dolor intenso (EVA 9/10) que no cede con paracetamol ni tramadol a dosis máximas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el siguiente escalón terapéutico y cuál es el efecto secundario más común de los opioides que nunca desarrolla tolerancia?",
+        "options": [
+          "Opioides potentes (Morfina, Fentanilo); Estreñimiento",
+          "AINEs a dosis altas; Náuseas.",
+          "Coadyuvantes únicamente; Sedación.",
+          "Placebo; Miosis."
+        ],
+        "answerIndex": 0,
+        "explanation": "El tercer escalón de la OMS incluye opioides potentes. Mientras que la náusea y la sedación suelen mejorar tras unos días (tolerancia), el estreñimiento persiste durante todo el tratamiento y requiere manejo preventivo con laxantes. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CUIDADOS PALIATIVOS",
+    "subtema": "AGONÍA Y DISNEA",
+    "difficulty": "media",
+    "case": "Paciente en fase terminal presenta disnea de reposo y ansiedad importante. La saturación de oxígeno es de 88%.",
+    "questions": [
+      {
+        "question": "¿Cuál es el fármaco de elección para el alivio de la disnea en cuidados paliativos y cuál es el manejo de los \"estertores del estertor\" (secreciones)?",
+        "options": [
+          "Morfina (opioides); Anticolinérgicos (Butilhioscina o Escopolamina)",
+          "Salbutamol; Aspiración continua de secreciones.",
+          "Furosemida; Antibióticos.",
+          "Oxígeno a altos flujos; Intubación."
+        ],
+        "answerIndex": 0,
+        "explanation": "Los opioides reducen la sensación de falta de aire y la ansiedad asociada. Los anticolinérgicos ayudan a secar las secreciones bronquiales al final de la vida, disminuyendo el ruido respiratorio que genera angustia en la familia. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "VALORACIÓN GERIÁTRICA INTEGRAL (VGI)",
+    "difficulty": "baja",
+    "case": "Se desea evaluar la capacidad de un anciano para realizar actividades como cocinar, usar el teléfono, lavar ropa y manejar sus finanzas.",
+    "questions": [
+      {
+        "question": "¿Cómo se clasifican estas actividades y qué escala las evalúa?",
+        "options": [
+          "Actividades Básicas (ABVD); Índice de Katz.",
+          "Actividades Instrumentales (AIVD); Índice de Lawton y Brody",
+          "Actividades Avanzadas; Escala de Tinetti.",
+          "Funciones Mentales; MMSE."
+        ],
+        "answerIndex": 1,
+        "explanation": "Las ABVD (baño, vestido, uso de retrete) miden supervivencia básica. Las AIVD (Lawton-Brody) miden la capacidad de interactuar con el entorno y vivir de forma independiente. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "ABUSO Y MALTRATO EN EL ANCIANO",
+    "difficulty": "media",
+    "case": "Femenina de 85 años con demencia severa acude a consulta. Se observa higiene deficiente, pérdida de peso no explicada y hematomas en diferentes estadios de resolución en tronco. El cuidador se muestra evasivo.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tipo de maltrato más frecuente en el anciano y cuál es la primera acción del médico?",
+        "options": [
+          "Negligencia; Entrevistar al paciente a solas y reportar sospecha",
+          "Abuso físico; Confrontar al cuidador inmediatamente.",
+          "Abuso financiero; Llamar a la policía desde la consulta.",
+          "Maltrato psicológico; Recetar ansiolíticos al cuidador."
+        ],
+        "answerIndex": 0,
+        "explanation": "La negligencia (u omisión de cuidados) es la forma más común. Ante sospecha de maltrato, el médico debe garantizar la seguridad del paciente y seguir los protocolos legales de notificación. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "VACUNACIÓN EN EL ADULTO MAYOR",
+    "difficulty": "baja",
+    "case": "Hombre de 65 años acude a su unidad de medicina familiar para actualización de esquema vacunal.",
+    "questions": [
+      {
+        "question": "¿Cuáles son las vacunas indispensables en este grupo de edad según la Cartilla Nacional de Salud de México?",
+        "options": [
+          "Influenza estacional (anual), Neumococo (23 serotipos) y Td (Tétanos/Difteria)",
+          "Sarampión y Rubéola.",
+          "VPH y Hepatitis B.",
+          "BCG y Pentavalente."
+        ],
+        "answerIndex": 0,
+        "explanation": "La vacunación es una de las intervenciones más costo-efectivas en geriatría para prevenir complicaciones graves como neumonía y hospitalizaciones.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "ESCLEROSIS LATERAL AMIOTRÓFICA (ELA)",
+    "difficulty": "alta",
+    "case": "Masculino de 55 años presenta debilidad progresiva en la mano derecha (dificultad para abotonarse), que se ha extendido a la pierna ipsilateral. A la exploración: atrofia muscular y fasciculaciones (neurona motora inferior) combinadas con hiperreflexia y signo de Babinski (neurona motora superior). No hay alteraciones sensitivas.",
+    "questions": [
+      {
+        "question": "¿Cuál es la característica fisiopatológica que define a la ELA y qué fármaco ha demostrado prolongar la supervivencia unos meses?",
+        "options": [
+          "Afectación exclusiva de la placa neuromuscular; Piridostigmina.",
+          "Degeneración de neuronas motoras superiores e inferiores; Riluzol",
+          "Desmielinización segmentaria; Interferón beta.",
+          "Pérdida de neuronas dopaminérgicas; Levodopa."
+        ],
+        "answerIndex": 1,
+        "explanation": "La ELA es la enfermedad de neurona motora más común. Su diagnóstico es clínico (Criterios de El Escorial) al demostrar daño de ambas neuronas motoras en múltiples regiones. El Riluzol actúa modulando la liberación de glutamato. [Image of upper and lower motor neuron signs comparison] ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "NEUROMIELITIS ÓPTICA (ENFERMEDAD DE DEVIC)",
+    "difficulty": "alta",
+    "case": "Femenina de 34 años con pérdida visual bilateral severa y debilidad en ambas piernas con nivel sensitivo en T4 (mielitis transversa longitudinalmente extensa). La RM cerebral es normal.",
+    "questions": [
+      {
+        "question": "¿Qué anticuerpo es altamente específico para esta entidad y qué proteína de transporte celular ataca?",
+        "options": [
+          "Anti-MBP; Mielina.",
+          "Anti-Acuaforina 4 (NMO-IgG); Canales de agua en astrocitos",
+          "Anti-MuSK; Receptores de tirosina quinasa.",
+          "Anti-Yo; Células de Purkinje."
+        ],
+        "answerIndex": 1,
+        "explanation": "La enfermedad de Devic se diferenciaba antes de la Esclerosis Múltiple por la gravedad de la afección medular y el respeto al cerebro en etapas iniciales. Los anticuerpos anti-AQP4 son la clave diagnóstica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "PARÁLISIS DE BELL (VII PAR)",
+    "difficulty": "baja",
+    "case": "Paciente de 25 años que despierta con desviación de la comisura bucal a la derecha, imposibilidad para cerrar el ojo izquierdo y borramiento de las arrugas frontales del lado izquierdo.",
+    "questions": [
+      {
+        "question": "¿Cómo se diferencia esta parálisis periférica de una central (EVC) y cuál es el tratamiento según la GPC?",
+        "options": [
+          "La periférica afecta la frente; Prednisona (dentro de las primeras 72h)",
+          "La central afecta la frente; Aciclovir únicamente.",
+          "La periférica respeta la frente; Fisioterapia inmediata.",
+          "No hay diferencia clínica; TC de cráneo de urgencia."
+        ],
+        "answerIndex": 0,
+        "explanation": "Debido a la decusación de las fibras, una lesión central respeta la musculatura de la frente (inervación bilateral), mientras que la periférica afecta toda la hemicara. El uso temprano de esteroides mejora drásticamente el pronóstico de recuperación. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "CEFALEA EN RACIMOS (CLUSTER)",
+    "difficulty": "media",
+    "case": "Masculino de 30 años con episodios de dolor periorbitario derecho extremadamente intenso, de 30 minutos de duración, que ocurren varias veces al día, acompañados de lagrimeo, rinorrea y ptosis ipsilateral.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento de elección para el ataque agudo y cuál es el fármaco profiláctico de primera línea?",
+        "options": [
+          "Sumatriptán SC u Oxígeno al 100%; Verapamilo",
+          "Paracetamol; Propranolol.",
+          "Indometacina; Topiramato.",
+          "Ergotamina; Amitriptilina."
+        ],
+        "answerIndex": 0,
+        "explanation": "La cefalea en racimos es una cefalalgia autonómica trigeminal. Es más común en hombres fumadores. La indometacina es el tratamiento de elección para la hemicrania paroxística, no para el cluster. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "NEU RALGIA DEL TRIGÉMINO",
+    "difficulty": "media",
+    "case": "Femenina de 60 años con paroxismos de dolor tipo \"descarga eléctrica\" en la región mandibular derecha, desencadenados al masticar o cepillarse los dientes.",
+    "questions": [
+      {
+        "question": "¿Qué rama del trigémino se afecta con más frecuencia y cuál es el tratamiento farmacológico de elección?",
+        "options": [
+          "Rama V1 (Oftálmica); Pregabalina.",
+          "Ramas V2 (Maxilar) y V3 (Mandibular); Carbamazepina",
+          "Todas las ramas; Gabapentina.",
+          "Nervio Facial; Toxina botulínica."
+        ],
+        "answerIndex": 1,
+        "explanation": "La neuralgia del trigémino es una de las condiciones más dolorosas. La carbamazepina es el estándar de oro. Si falla el tratamiento médico, se considera la descompresión microvascular (operación de Jannetta). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "SÍNDROME DE TOLOSA -HUNT",
+    "difficulty": "alta",
+    "case": "Paciente con dolor orbitario intenso acompañado de parálisis de los pares craneales III, IV y VI (oftalmoplejía). La RM muestra inflamación en el seno cavernoso.",
+    "questions": [
+      {
+        "question": "¿Cuál es la etiología de este síndrome y cuál es su respuesta terapéutica característica?",
+        "options": [
+          "Inflamación granulomatosa idiopática; Respuesta dramática a esteroides",
+          "Trombosis venosa; Anticoagulación.",
+          "Infección micótica; Anfotericina B.",
+          "Aneurisma carotídeo; Cirugía."
+        ],
+        "answerIndex": 0,
+        "explanation": "El Tolosa-Hunt es un diagnóstico de exclusión. La clave es la afectación de los nervios que pasan por el seno cavernoso y la mejoría casi inmediata al administrar glucocorticoides. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "ENFERMEDAD DE HUNTINGTON",
+    "difficulty": "media",
+    "case": "Masculino de 40 años presenta movimientos involuntarios bruscos y breves (corea), junto con cambios en la personalidad y deterioro cognitivo progresivo. Su padre falleció con síntomas similares.",
+    "questions": [
+      {
+        "question": "¿Cuál es la alteración genética característica y qué estructura cerebral presenta atrofia en la neuroimagen?",
+        "options": [
+          "Expansión de tripletes CAG; Atrofia del núcleo caudado",
+          "Mutación en el gen de la miosina; Atrofia del cerebelo.",
+          "Deleción del cromosoma 5; Atrofia del hipocampo.",
+          "Trisomía 21; Atrofia cortical difusa."
+        ],
+        "answerIndex": 0,
+        "explanation": "Es una enfermedad autosómica dominante con el fenómeno de anticipación (aparece antes en generaciones sucesivas). La atrofia del caudado produce la dilatación característica de los cuernos frontales de los ventrículos laterales. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "NARCOLEPSIA",
+    "difficulty": "media",
+    "case": "Paciente joven con somnolencia diurna excesiva, ataques de sueño incontrolables y pérdida súbita del tono muscular ante emociones fuertes (cataplejía).",
+    "questions": [
+      {
+        "question": "¿Qué neurotransmisor se encuentra disminuido en el LCR y cuál es el hallazgo típico en la polisomnografía?",
+        "options": [
+          "Hipocretina (Orexina); Inicio de sueño en fase REM (SOREMP)",
+          "Serotonina; Ausencia de fase 4.",
+          "GABA; Microdespertares.",
+          "Acetilcolina; Prolongación de la latencia REM."
+        ],
+        "answerIndex": 0,
+        "explanation": "La narcolepsia es un trastorno de la regulación del sueño-vigilia. El modafinilo es el tratamiento de elección para la somnolencia, mientras que los antidepresivos (ISRS) pueden ayudar con la cataplejía. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "EPOC (CLASIFICACIÓN Y MANEJO)",
+    "difficulty": "media",
+    "case": "Masculino de 65 años, tabaquismo de 40 paquetes/año. Presenta disnea mMRC grado 2 y ha tenido 2 exacerbaciones en el último año que requirieron antibiótico, pero ninguna hospitalización. La espirometría post-broncodilatador muestra FEV1/FVC 0.65 y FEV1 55%.",
+    "questions": [
+      {
+        "question": "Según la clasificación GOLD (integrada en la GPC), ¿en qué grupo se encuentra el paciente y cuál es el tratamiento de elección?",
+        "options": [
+          "Grupo A; Salbutamol PRN.",
+          "Grupo B; LAMA o LABA.",
+          "Grupo E (anteriormente C/D); LAMA + LABA",
+          "Grupo D; Corticosteroides orales crónicos."
+        ],
+        "answerIndex": 2,
+        "explanation": "La actualización de GOLD (y GPC) unificó los grupos C y D en el grupo E (Exacerbadores). Para pacientes con ≥2 exacerbaciones moderadas o ≥1 hospitalización, se prefiere la terapia combinada con broncodilatadores de larga acción (LAMA+LABA). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "TROMBOEMBOLIA PULMONAR (TEP) - DIAGNÓSTICO",
+    "difficulty": "media",
+    "case": "Femenina de 45 años, postoperada de cirugía ortopédica, presenta disnea súbita y taquicardia. Escala de Wells con probabilidad intermedia.",
+    "questions": [
+      {
+        "question": "¿Cuál es el primer paso diagnóstico ante una sospecha intermedia y cuál es el estándar de oro para confirmar el diagnóstico según la GPC?",
+        "options": [
+          "Dímero D; Angio-TC de tórax (Angiotomografía)",
+          "Electrocardiograma; Ecocardiograma.",
+          "Gasometría arterial; Gammagrafía V/Q.",
+          "Radiografía de tórax; Arteriografía pulmonar."
+        ],
+        "answerIndex": 0,
+        "explanation": "En probabilidad baja/intermedia, el Dímero D ayuda a descartar. Si es positivo o la probabilidad es alta, la Angio-TC es el estudio de elección por su alta sensibilidad y especificidad. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "DERRAME PLEURAL (CRITERIOS DE LIGHT)",
+    "difficulty": "media",
+    "case": "Masculino de 50 años con derrame pleural derecho. Se realiza toracocentesis: Proteínas pleurales/séricas 0.7, DHL pleural/sérica 0.8.",
+    "questions": [
+      {
+        "question": "De acuerdo con los Criterios de Light, ¿qué tipo de líquido es y cuál es la causa más probable si el pH es < 7.20 y la glucosa es baja?",
+        "options": [
+          "Trasudado; Insuficiencia cardíaca.",
+          "Exudado; Derrame paraneumónico complicado o empiema",
+          "Quilotórax; Ruptura del conducto torácico.",
+          "Trasudado; Cirrosis hepática."
+        ],
+        "answerIndex": 1,
+        "explanation": "Un solo criterio de Light positivo define al exudado. El pH bajo y glucosa baja en un exudado sugieren alta actividad bacteriana o inflamación intensa (empiema, AR, neoplasia). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "SÍNDROME DE APNEA OBSTRUCTIVA DEL SUEÑO (SAOS)",
+    "difficulty": "baja",
+    "case": "Masculino con obesidad grado II, refiere somnolencia diurna excesiva, ronquidos intensos y pausas respiratorias durante el sueño presenciadas por su esposa.",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio estándar de oro para el diagnóstico de SAOS y cuál es el tratamiento de primera línea?",
+        "options": [
+          "Oximetría nocturna; Pérdida de peso.",
+          "Polisomnografía (PSG); Presión positiva continua en la vía aérea (CPAP)",
+          "Escala de Epworth; Benzodiacepinas.",
+          "TC de cuello; Cirugía de úvula (UPPP)."
+        ],
+        "answerIndex": 1,
+        "explanation": "El Índice de Apnea-Hipopnea (IAH) ≥ 5 asociado a síntomas confirma el diagnóstico. El CPAP es el tratamiento más efectivo para mantener la vía aérea permeable durante el sueño. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "SILICOSIS",
+    "difficulty": "media",
+    "case": "Paciente con antecedente de trabajar en minas de arena y granito por 20 años. Presenta radiografía con opacidades redondeadas en campos superiores y calcificación de ganglios hiliares en \"cáscara de huevo\".",
+    "questions": [
+      {
+        "question": "¿A qué patología infecciosa predispone clásicamente la silicosis y cuál es el manejo principal?",
+        "options": [
+          "Tuberculosis (Silicotuberculosis); Evitar exposición y vigilancia",
+          "Aspergilosis; Voriconazol.",
+          "Neumonía por Legionella; Levofloxacino.",
+          "Histoplasmosis; Itraconazol."
+        ],
+        "answerIndex": 0,
+        "explanation": "El sílice altera la función de los macrófagos alveolares, facilitando la infección por Mycobacterium tuberculosis. No existe tratamiento curativo para la fibrosis por sílice, solo soporte.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "LEUCEMIA MIELOIDE AGUDA (LMA)",
+    "difficulty": "alta",
+    "case": "Masculino de 45 años con astenia, adinamia y equimosis espontáneas. Laboratorios: Hb 8.0, Plaquetas 20,000, Leucocitos 45,000 con 40% de blastos. En el frotis de sangre periférica se observan bastones de Auer.",
+    "questions": [
+      {
+        "question": "De acuerdo con la GPC, ¿cuál es el porcentaje mínimo de blastos en médula ósea para el diagnóstico y cuál es la translocación asociada a la variante M3 (Promielocítica) que causa CID?",
+        "options": [
+          ">10%; t(9;22).",
+          ">20%; t(15;17)",
+          ">30%; t(8;21).",
+          ">50%; t(12;21)."
+        ],
+        "answerIndex": 1,
+        "explanation": "La presencia de bastones de Auer es patognomónica de linaje mieloide. La variante promielocítica (M3) es una urgencia médica por el riesgo de coagulación intravascular diseminada (CID); el tratamiento incluye Ácido trans-retinoico (ATRA). [Imagen: Bastones de Auer en frotis de sangre periférica] ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "LEUCEMIA LINFOCÍTICA AGUDA (LLA)",
+    "difficulty": "media",
+    "case": "Niño de 4 años con fiebre, dolor óseo, linfadenopatías y hepatoesplenomegalia. El aspirado de médula ósea muestra hipercelularidad de linaje linfoide.",
+    "questions": [
+      {
+        "question": "¿Cuál es la variante citogenética de \"buen pronóstico\" más frecuente en niños según la GPC y cuál es el sitio de santuario que requiere profilaxis obligatoria?",
+        "options": [
+          "t(12;21) (TEL-AML1); Sistema Nervioso Central",
+          "Cromosoma Filadelfia; Testículos.",
+          "Trisomía 21; Hígado.",
+          "Deleción 17p; Pulmón."
+        ],
+        "answerIndex": 0,
+        "explanation": "La LLA es el cáncer más frecuente en la edad pediátrica. La GPC enfatiza que todos los pacientes deben recibir tratamiento profiláctico al SNC (quimioterapia intratelcal) para evitar recaídas en este sitio. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "LEUCEMIA MIELOIDE CRÓNICA (LMC)",
+    "difficulty": "media",
+    "case": "Masculino de 50 años, asintomático, acude por hallazgo casual de leucocitosis de 100,000 con predominio de formas maduras (mielocitos, metamielocitos) y esplenomegalia gigante.",
+    "questions": [
+      {
+        "question": "¿Cuál es el marcador citogenético característico (Cromosoma Filadelfia) y cuál es el tratamiento de primera línea según la GPC?",
+        "options": [
+          "t(15;17); ATRA.",
+          "t(9;22) (BCR-ABL); Inhibidores de tirosina quinasa (Imatinib)",
+          "t(14;18); Rituximab.",
+          "t(11;14); Ciclofosfamida."
+        ],
+        "answerIndex": 1,
+        "explanation": "La LMC se caracteriza por la proliferación de la serie mieloide. El Imatinib revolucionó el tratamiento, logrando respuestas citogenéticas completas en la mayoría de los pacientes en fase crónica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "LINFOMA DE HODGKIN",
+    "difficulty": "media",
+    "case": "Joven de 22 años con adenopatía cervical indolora, de consistencia \"elástica\". Refiere fiebre nocturna, pérdida de peso y diaforesis profusa (Síntomas B).",
+    "questions": [
+      {
+        "question": "¿Cuál es la célula característica en la biopsia de ganglio y cuál es la variedad histológica más frecuente según la GPC mexicana?",
+        "options": [
+          "Célula de Reed-Sternberg (ojos de búho); Esclerosis Nodular",
+          "Célula de Burkitt; Celularidad mixta.",
+          "Célula de Sézary; Predominio linfocítico.",
+          "Célula de Centrocito; Depleción linfocítica."
+        ],
+        "answerIndex": 0,
+        "explanation": "El Linfoma de Hodgkin tiene una distribución bimodal (jóvenes y adultos mayores). La esclerosis nodular es típica en mujeres jóvenes y suele afectar el mediastino. [Imagen: Célula de Reed-Sternberg en estudio histopatológico] ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "LINFOMA NO HODGKIN (LNH)",
+    "difficulty": "media",
+    "case": "Masculino de 65 años con linfadenopatías generalizadas y afectación extraganglionar (médula ósea). La biopsia reporta Linfoma Difuso de Células B Grandes.",
+    "questions": [
+      {
+        "question": "¿Cuál es el esquema de quimioterapia estándar de primera línea recomendado por la GPC?",
+        "options": [
+          "ABVD.",
+          "R-CHOP (Rituximab, Ciclofosfamida, Doxorrubicina, Vincristina, Prednisona)",
+          "MOPP.",
+          "Esquema 7+3."
+        ],
+        "answerIndex": 1,
+        "explanation": "El LNH difuso de células B grandes es agresivo pero potencialmente curable. La adición de Rituximab (anti-CD20) ha mejorado significativamente la supervivencia. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "MIELOMA MÚLTIPLE (MM)",
+    "difficulty": "alta",
+    "case": "Masculino de 70 años con dolor óseo en columna lumbar, anemia y falla renal. Laboratorios: Calcio 11.5, Creatinina 2.1, Hb 9.0.",
+    "questions": [
+      {
+        "question": "¿Cuál es la mnemotecnia de las manifestaciones clínicas y cuál es el hallazgo característico en la electroforesis de proteínas?",
+        "options": [
+          "CRAB (Calcio, Renal, Anemia, Bone/Hueso); Pico monoclonal de IgG o IgA",
+          "BANS; Disminución de albúmina.",
+          "CREST; Aumento de IgM.",
+          "LEAD; Cadenas ligeras disminuidas."
+        ],
+        "answerIndex": 0,
+        "explanation": "El MM es una neoplasia de células plasmáticas. La presencia de lesiones líticas (\"en sacabocado\") en la serie ósea es muy característica. En orina se pueden encontrar las proteínas de Bence-Jones. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "PÚRPURA TROMBOCITOPÉNICA INMUNITARIA (PTI)",
+    "difficulty": "media",
+    "case": "Femenina de 28 años con petequias y gingivorragia. Plaquetas de 15,000. Resto de las líneas celulares normales. No hay esplenomegalia.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento de primera línea según la GPC y cuál es la meta de plaquetas para considerar respuesta?",
+        "options": [
+          "Transfusión de plaquetas; >100,000.",
+          "Corticosteroides (Prednisona o Dexametasona); >30,000 y ausencia de sangrado",
+          "Esplenectomía; >150,000.",
+          "Danazol; >50,000."
+        ],
+        "answerIndex": 1,
+        "explanation": "La PTI es un diagnóstico de exclusión. La GPC indica que la transfusión de plaquetas solo se reserva para hemorragias graves (SNC o digestiva) debido a que los anticuerpos destruirán las plaquetas transfundidas rápidamente. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "PÚRPURA TROMBOCITOPÉNICA TROMBÓTICA (PTT)",
+    "difficulty": "alta",
+    "case": "Paciente con fiebre, anemia hemolítica microangiopática (esquistocitos en frotis), trombocitopenia, falla renal y síntomas neurológicos fluctuantes.",
+    "questions": [
+      {
+        "question": "¿Cuál es la deficiencia enzimática subyacente y cuál es el tratamiento de elección que no debe retrasarse?",
+        "options": [
+          "ADAMTS13; Plasmaféresis (Recambio plasmático)",
+          "G6PD; Esplenectomía.",
+          "Factor VIII; Crioprecipitados.",
+          "Vitamina B12; Metilcobalamina."
+        ],
+        "answerIndex": 0,
+        "explanation": "La PTT es una urgencia hematológica. El déficit de ADAMTS13 impide el corte de los multímeros del factor von Willebrand, causando microtrombos. La plasmaféresis retira los anticuerpos y aporta la enzima faltante. [Imagen: Esquistocitos en frotis de sangre periférica] ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "ANEMIA APLÁSICA",
+    "difficulty": "media",
+    "case": "Paciente joven con pancitopenia severa. El aspirado de médula ósea muestra una celularidad <25% con sustitución por tejido adiposo.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento de elección en pacientes jóvenes (<40 años) con un donador compatible según la GPC?",
+        "options": [
+          "Trasplante de células progenitoras hematopoyéticas (TCPH)",
+          "Globulina antitimocito (ATG) + Ciclosporina.",
+          "Eritropoyetina.",
+          "Andrógenos."
+        ],
+        "answerIndex": 0,
+        "explanation": "La anemia aplásica es el fallo de la médula ósea. En pacientes mayores o sin donador, la inmunosupresión es la alternativa, pero el trasplante ofrece la única posibilidad curativa definitiva en jóvenes. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "POLICITEMIA VERA",
+    "difficulty": "media",
+    "case": "Masculino con plétora facial, prurito tras el baño con agua caliente y hematocrito de 60%. Eritropoyetina sérica baja.",
+    "questions": [
+      {
+        "question": "¿Cuál es la mutación genética presente en >95% de los casos y cuál es el tratamiento inicial para reducir el riesgo de trombosis?",
+        "options": [
+          "JAK2 V617F; Flebotomías terapéuticas + Aspirina",
+          "BCR-ABL; Hidroxiurea únicamente.",
+          "BRAF; Warfarina.",
+          "EGFR; Clopidogrel."
+        ],
+        "answerIndex": 0,
+        "explanation": "La policitemia vera es un trastorno mieloproliferativo crónico. El objetivo es mantener el hematocrito <45% para evitar eventos trombóticos, que son la principal causa de morbilidad.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "ENFERMEDAD INFLAMATORIA INTESTINAL (CUCI)",
+    "difficulty": "media",
+    "case": "Femenina de 30 años con cuadros recurrentes de diarrea con sangre (disentería), tenesmo y dolor abdominal tipo cólico. La colonoscopia muestra inflamación continua que inicia en el recto y se extiende proximalmente, con pérdida del patrón vascular y presencia de pseudopólipos.",
+    "questions": [
+      {
+        "question": "¿Cuál es la extensión más frecuente de la colitis ulcerosa crónica idiopática (CUCI) y qué hallazgo histopatológico es característico?",
+        "options": [
+          "Rectosigmoiditis; Abscesos en las criptas",
+          "Ileon terminal; Granulomas no caseificantes.",
+          "Colon transverso; Parches de mucosa sana (\"skip lesions\").",
+          "Colon ascendente; Infiltrado eosinofílico."
+        ],
+        "answerIndex": 0,
+        "explanation": "La CUCI afecta exclusivamente la mucosa y submucosa de forma continua. La presencia de abscesos en las criptas de Lieberkühn es el sello histológico, a diferencia de la Enfermedad de Crohn que es transmural. [Image of ulcerative colitis vs Crohn's disease pathology] ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "SÍNDROME DE INTESTINO IRRITABLE (SII)",
+    "difficulty": "baja",
+    "case": "Mujer de 28 años con dolor abdominal que mejora al evacuar, asociado a cambios en la frecuencia y consistencia de las heces de 6 meses de evolución. No presenta pérdida de peso ni sangre en heces.",
+    "questions": [
+      {
+        "question": "¿Cuáles son los criterios diagnósticos actuales utilizados según la GPC mexicana?",
+        "options": [
+          "Criterios de Roma IV",
+          "Criterios de Duke.",
+          "Criterios de Jones.",
+          "Criterios de Centor."
+        ],
+        "answerIndex": 0,
+        "explanation": "El SII es un trastorno funcional. Los criterios de Roma IV requieren dolor abdominal recurrente al menos 1 día a la semana en los últimos 3 meses, asociado a dos o más de: relación con la defecación, cambio en frecuencia o cambio en forma de las heces. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "DIVERTICULITIS AGUDA",
+    "difficulty": "media",
+    "case": "Masculino de 65 años con dolor en fosa ilíaca izquierda, fiebre y leucocitosis.",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio de imagen de elección y qué escala se utiliza para clasificar la severidad radiológica?",
+        "options": [
+          "TC de abdomen con contraste; Escala de Hinchey",
+          "Colonoscopia de urgencia; Escala de Forrest.",
+          "Ultrasonido; Escala de Alvarado.",
+          "Radiografía simple; Criterios de Ranson."
+        ],
+        "answerIndex": 0,
+        "explanation": "La TC es el estándar de oro. La escala de Hinchey divide la enfermedad en: I (absceso pericólico), II (absceso pélvico), III (peritonitis purulenta) y IV (peritonitis fecaloide). La colonoscopia está contraindicada en la fase aguda por riesgo de perforación. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "POLIPOSIS ADENOMATOSA FAMILIAR (PAF)",
+    "difficulty": "alta",
+    "case": "Paciente joven con antecedente de padre fallecido por cáncer de colon a los 35 años. La endoscopia revela >100 pólipos en todo el colon.",
+    "questions": [
+      {
+        "question": "¿Cuál es el gen mutado en esta patología y cuál es la conducta terapéutica recomendada?",
+        "options": [
+          "Gen APC; Colectomía total profiláctica",
+          "Gen BRCA1; Colonoscopias anuales.",
+          "Gen p53; Dieta rica en fibra.",
+          "Gen KRAS; Quimioterapia preventiva."
+        ],
+        "answerIndex": 0,
+        "explanation": "La PAF es autosómica dominante. El riesgo de desarrollar cáncer de colon es del 100% hacia los 40 años si no se realiza la cirugía. También se asocia a tumores desmoides y osteomas (Síndrome de Gardner). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "ISQUEMIA MESENTÉRICA AGUDA",
+    "difficulty": "alta",
+    "case": "Masculino de 75 años con antecedente de fibrilación auricular. Presenta dolor abdominal súbito, desproporcionado a los hallazgos en la exploración física (abdomen blando y depresible).",
+    "questions": [
+      {
+        "question": "¿Cuál es el mecanismo más probable y cuál es el estudio diagnóstico de elección?",
+        "options": [
+          "Embolia de la arteria mesentérica superior; Angio-TC de abdomen",
+          "Trombosis venosa; Ultrasonido Doppler.",
+          "Vólvulo de sigmoides; Radiografía simple.",
+          "Bajo gasto cardíaco; Colonoscopia."
+        ],
+        "answerIndex": 0,
+        "explanation": "La tríada de dolor súbito, vaciamiento intestinal y factor de riesgo embólico (FA) es clásica. La disociación entre el dolor intenso del paciente y la exploración física normal al inicio es la clave diagnóstica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "COLITIS SEUDOMEMBRANOSA",
+    "difficulty": "media",
+    "case": "Paciente hospitalizado que tras 10 días de tratamiento con clindamicina presenta diarrea acuosa profusa, fiebre y dolor abdominal. La endoscopia muestra placas amarillentas adheridas a la mucosa.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal y cuál es el tratamiento de primera línea según las guías actuales?",
+        "options": [
+          "Clostridioides difficile; Vancomicina oral o Fidaxomicina",
+          "Escherichia coli; Ciprofloxacino.",
+          "Entamoeba histolytica; Metronidazol.",
+          "Shigella; Ceftriaxona."
+        ],
+        "answerIndex": 0,
+        "explanation": "Aunque el metronidazol se usó mucho tiempo, las guías actuales prefieren vancomicina oral por mejores tasas de curación y menores recurrencias en cuadros moderados-graves. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "SÍNDROME DE MALABSORCIÓN (ENFERMEDAD DE WHIPPLE)",
+    "difficulty": "alta",
+    "case": "Masculino con artralgias, diarrea con esteatorrea, pérdida de peso y linfadenopatías. La biopsia de intestino delgado muestra macrófagos con inclusiones PAS positivas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal y cuánto tiempo debe durar el tratamiento antibiótico?",
+        "options": [
+          "Tropheryma whipplei; 1 año (generalmente con TMP/SMX)",
+          "Giardia lamblia; 7 días.",
+          "Tropheryma whipplei; 10 días.",
+          "Mycobacterium avium; 6 meses."
+        ],
+        "answerIndex": 0,
+        "explanation": "La enfermedad de Whipple es una infección sistémica rara. El diagnóstico se confirma por la presencia de bacilos dentro de los macrófagos en la lámina propia. Requiere tratamiento prolongado para evitar recaídas en el sistema nervioso central. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "SEUDOOBSTRUCCIÓN COLÓNICA AGUDA (SÍNDROME DE OGILVIE)",
+    "difficulty": "media",
+    "case": "Paciente anciano hospitalizado por neumonía, presenta distensión abdominal masiva. La radiografía muestra dilatación importante del colon (ciego >10 cm) sin evidencia de obstrucción mecánica.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo inicial y qué fármaco se puede utilizar si no hay mejoría tras 24-48 horas?",
+        "options": [
+          "Descompresión con sonda rectal y ayuno; Neostigmina",
+          "Cirugía inmediata; Adrenalina.",
+          "Colonoscopia diagnóstica; Metoclopramida.",
+          "Laxantes estimulantes; Eritromicina."
+        ],
+        "answerIndex": 0,
+        "explanation": "El síndrome de Ogilvie es un trastorno de la motilidad colónica. La neostigmina (inhibidor de la acetilcolinesterasa) ayuda a la evacuación del aire, pero requiere monitoreo cardíaco por riesgo de bradicardia.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "DERMATOLOGÍA",
+    "subtema": "CÁNCER DE PIEL (BASOCELULAR)",
+    "difficulty": "media",
+    "case": "Masculino de 65 años, trabajador del campo, con una lesión en el ala nasal de crecimiento lento. Es una pápula \"perlada\" con telangiectasias superficiales y un centro ulcerado (ulcus rodens).",
+    "questions": [
+      {
+        "question": "¿Cuál es el tipo de cáncer de piel más frecuente y cuál es su comportamiento biológico habitual?",
+        "options": [
+          "Carcinoma Basocelular; Localmente invasivo, raramente da metástasis",
+          "Carcinoma Epidermoide; Alta capacidad metastásica.",
+          "Melanoma; Maligno desde el inicio.",
+          "Queratosis actínica; Premaligno."
+        ],
+        "answerIndex": 0,
+        "explanation": "El basocelular es el cáncer más común en humanos. Su factor de riesgo principal es la exposición solar crónica. El tratamiento de elección es la escisión quirúrgica con márgenes. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "DERMATOLOGÍA",
+    "subtema": "MELANOMA MALIGNO",
+    "difficulty": "alta",
+    "case": "Paciente con una lesión pigmentada en la espalda que ha cambiado de forma. Aplicamos la regla ABCDE: Asimetría, Bordes irregulares, Color variado, Diámetro >6mm y Evolución.",
+    "questions": [
+      {
+        "question": "¿Cuál es el factor pronóstico histológico más importante para la supervivencia y qué nombre recibe la escala que mide la profundidad en milímetros?",
+        "options": [
+          "Índice de Breslow; Profundidad en milímetros desde la granulosa",
+          "Niveles de Clark; Invasión por capas anatómicas.",
+          "Recuento mitótico; Escala de Gleason.",
+          "Presencia de ulceración; Escala de TNM únicamente."
+        ],
+        "answerIndex": 0,
+        "explanation": "Aunque los niveles de Clark se usaron mucho, el Índice de Breslow es hoy el predictor más fiable de supervivencia y metástasis ganglionares. Determina la necesidad de realizar biopsia de ganglio centinela. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "DERMATOLOGÍA",
+    "subtema": "PSORIASIS EN PLACAS",
+    "difficulty": "media",
+    "case": "Paciente con placas eritematosas, bien delimitadas, cubiertas por una escama blanquecina/plateada en codos, rodillas y región sacra. Al raspar la lesión, presenta el signo de la \"mancha de cera\" y posteriormente un punteado hemorrágico.",
+    "questions": [
+      {
+        "question": "¿Cómo se llama el signo del punteado hemorrágico y qué fenómeno explica la aparición de lesiones tras un traumatismo?",
+        "options": [
+          "Signo de Auspitz; Fenómeno de Koebner",
+          "Signo de Nikolsky; Fenómeno de Raynaud.",
+          "Signo de Darier; Reacción de Arthus.",
+          "Signo de la picadura; Fenómeno de Arndt-Schulz."
+        ],
+        "answerIndex": 0,
+        "explanation": "La psoriasis es una enfermedad inflamatoria crónica mediada por linfocitos T (eje IL- 17/23). El signo de Auspitz refleja la rotura de los capilares de las papilas dérmicas elongadas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "DERMATOLOGÍA",
+    "subtema": "PÉNFIGO VULGAR",
+    "difficulty": "alta",
+    "case": "Paciente con ampollas flácidas que aparecen sobre piel sana y se rompen fácilmente dejando erosiones dolorosas. Inició con lesiones en la mucosa oral. La histopatología muestra acantólisis (células separadas) y depósitos de IgG en \"red de pescar\".",
+    "questions": [
+      {
+        "question": "¿Contra qué estructuras se dirigen los autoanticuerpos en esta enfermedad?",
+        "options": [
+          "Desmogleínas 1 y 3 (desmosomas)",
+          "Proteínas de la placa (hemidesmosomas).",
+          "Colágeno tipo IV.",
+          "Elastina."
+        ],
+        "answerIndex": 0,
+        "explanation": "El pénfigo vulgar es una enfermedad autoinmune intraepidérmica. A diferencia del penfigoide ampolloso (que es subepidérmico y tiene ampollas tensas), el pénfigo suele afectar mucosas y es potencialmente letal si no se trata con inmunosupresores. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "DERMATOLOGÍA",
+    "subtema": "ERITREMA NODOSO",
+    "difficulty": "media",
+    "case": "Femenina de 25 años con nódulos eritematosos, calientes y muy dolorosos en la cara anterior de ambas tibias. Presenta además fiebre y artralgias.",
+    "questions": [
+      {
+        "question": "¿Cuál es la causa infecciosa más común asociada en México y cuál es su característica histopatológica?",
+        "options": [
+          "Infección por Estreptococo (Faringoamigdalitis); Paniculitis septal sin vasculitis",
+          "Tuberculosis; Paniculitis lobulillar.",
+          "Lepra; Granulomas necrotizantes.",
+          "Giardiasis; Vasculitis de pequeños vasos."
+        ],
+        "answerIndex": 0,
+        "explanation": "El eritema nodoso es una reacción de hipersensibilidad retardada. Es la paniculitis más frecuente. Aunque suele ser idiopático, siempre debe buscarse infección estreptocócica, sarcoidosis o enfermedad inflamatoria intestinal. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "DERMATOLOGÍA",
+    "subtema": "ROSÁCEA",
+    "difficulty": "baja",
+    "case": "Femenina de 40 años con eritema persistente en mejillas y nariz, telangiectasias y episodios de \"flushing\" (ruborización) desencadenados por el calor, alcohol o comidas picantes.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento tópico de elección para las lesiones papulopustulosas y qué complicación crónica es común en varones (nariz bulbosa)?",
+        "options": [
+          "Metronidazol tópico; Rinofima",
+          "Hidrocortisona; Acné conglobata.",
+          "Ácido retinoico; Queilitis.",
+          "Ketoconazol; Dermatitis seborreica."
+        ],
+        "answerIndex": 0,
+        "explanation": "La rosácea carece de comedones (diferencia con acné). El metronidazol o el ácido azelaico son efectivos. El rinofima es la hipertrofia de las glándulas sebáceas de la nariz. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "DERMATOLOGÍA",
+    "subtema": "ESCABIASIS (SARNA)",
+    "difficulty": "baja",
+    "case": "Paciente con prurito intenso de predominio nocturno. Presenta pápulas y surcos en espacios interdigitales, muñecas y genitales. Otros miembros de la familia tienen síntomas similares.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal y cuál es el tratamiento de elección según la GPC?",
+        "options": [
+          "Sarcoptes scabiei; Permetrina al 5% tópica (o Ivermectina oral)",
+          "Pediculus humanus; Lindano.",
+          "Pulex irritans; Benzoato de bencilo.",
+          "Cimex lectularius; Corticoides."
+        ],
+        "answerIndex": 0,
+        "explanation": "La clave diagnóstica es el prurito familiar y los surcos acarinos. El tratamiento debe aplicarse a todo el cuerpo (del cuello para abajo) y debe tratarse a todos los contactos convivientes simultáneamente. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "DERMATOLOGÍA",
+    "subtema": "LEPRA (ENFERMEDAD DE HANSEN)",
+    "difficulty": "media",
+    "case": "Paciente con una mancha hipocrómica, anestésica (sin sensibilidad), con bordes definidos y pérdida de vello en la zona.",
+    "questions": [
+      {
+        "question": "¿Cómo se clasifica esta forma de lepra y qué estudio se utiliza para confirmar la presencia de bacilos ácido-alcohol resistentes?",
+        "options": [
+          "Lepra Tuberculoide; Baciloscopia (de lóbulo de oreja o mucosa nasal)",
+          "Lepra Lepromatosa; Cultivo en agar sangre.",
+          "Lepra Dimorfa; Reacción de Mitsuda únicamente.",
+          "Reacción tipo 1; Biopsia de ganglio."
+        ],
+        "answerIndex": 0,
+        "explanation": "La lepra tuberculoide es la forma paucibacilar (pocos bacilos, respuesta inmune fuerte), mientras que la lepromatosa es multibacilar (muchos bacilos, respuesta inmune débil, lesiones nodulares). El tratamiento en México sigue los esquemas de la OMS (Dapsona, Rifampicina y Clofazimina).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "SÍFILIS (Treponema pallidum)",
+    "difficulty": "media",
+    "case": "Masculino de 28 años presenta una úlcera única en el glande, de bordes limpios, fondo limpio, e indolora (chancro duro), acompañada de adenopatía inguinal bilateral no supurativa.",
+    "questions": [
+      {
+        "question": "¿Cuál es el método diagnóstico de elección en esta etapa primaria y cuál es el tratamiento de elección según la GPC?",
+        "options": [
+          "Campo oscuro; Penicilina G benzatínica 2.4 millones UI (dosis única)",
+          "VDRL; Doxiciclina por 14 días.",
+          "Cultivo en medios especiales; Ceftriaxona.",
+          "PCR; Azitromicina."
+        ],
+        "answerIndex": 0,
+        "explanation": "En la sífilis primaria, las pruebas serológicas (VDRL/FTA-ABS) pueden ser negativas hasta en un 30% de los casos. El campo oscuro permite ver las espiroquetas directamente. La penicilina sigue siendo el estándar de oro. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "SÍFILIS SECUNDARIA",
+    "difficulty": "media",
+    "case": "Paciente con antecedente de conducta sexual de riesgo presenta fiebre, malestar general y un exantema maculopapular generalizado que afecta palmas de las manos y plantas de los pies. Presenta además \"parches mucosos\" en faringe.",
+    "questions": [
+      {
+        "question": "¿Cómo se denomina este cuadro clínico y cuál es la prueba no treponémica utilizada para seguimiento de la respuesta al tratamiento?",
+        "options": [
+          "Sífilis secundaria; VDRL (o RPR)",
+          "Sífilis latente; FTA-ABS.",
+          "Reacción de Jarisch-Herxheimer; MHA-TP.",
+          "Condiloma plano; Biopsia de piel."
+        ],
+        "answerIndex": 0,
+        "explanation": "La sífilis secundaria es la fase de mayor contagiosidad sistémica. El VDRL es útil para el seguimiento; un descenso de 4 veces en los títulos (2 diluciones) indica éxito terapéutico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "LINFOGRANULOMA VENÉREO",
+    "difficulty": "alta",
+    "case": "Masculino con proctitis y adenopatías inguinales dolorosas que forman una masa inflamatoria (bubón) con el \"signo de la hendidura\" (separación por el ligamento inguinal).",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal (serotipos) y cuál es el tratamiento de elección según la GPC?",
+        "options": [
+          "Chlamydia trachomatis (L1, L2, L3); Doxiciclina por 21 días",
+          "Haemophilus ducreyi; Azitromicina dosis única.",
+          "Calymmatobacterium granulomatis; Eritromicina.",
+          "VHS-2; Aciclovir."
+        ],
+        "answerIndex": 0,
+        "explanation": "El linfogranuloma venéreo es causado por serotipos invasivos de Chlamydia. A diferencia del chancroide (H. ducreyi), el tratamiento es más prolongado. El bubón puede requerir aspiración por aguja para evitar la formación de fístulas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "CHANCRO BLANDO (CHANCROIDE)",
+    "difficulty": "media",
+    "case": "Paciente con múltiples úlceras genitales muy dolorosas, de bordes irregulares y fondo sucio/necrótico. Presenta una adenopatía inguinal unilateral que tiende a la fluctuación.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal y cuál es el tratamiento recomendado por la GPC?",
+        "options": [
+          "Haemophilus ducreyi; Azitromicina 1g VO (dosis única) o Ceftriaxona 250mg IM",
+          "Klebsiella granulomatis; Ciprofloxacino.",
+          "Treponema pallidum; Penicilina procaínica.",
+          "Neisseria gonorrhoeae; Espectinomicina."
+        ],
+        "answerIndex": 0,
+        "explanation": "Mnemotecnia: \"Ducreyi hace doler\" (Do-cry). Son úlceras \"sucias\" y dolorosas, a diferencia del chancro sifilítico que es \"limpio\" e indoloro. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "GONORREA (Uretritis Gonocócica)",
+    "difficulty": "baja",
+    "case": "Masculino con descarga uretral purulenta (amarillenta/verdosa) abundante y disuria intensa tras contacto sexual reciente.",
+    "questions": [
+      {
+        "question": "¿Cuál es el hallazgo típico en la tinción de Gram y cuál es el esquema de tratamiento actual debido a las resistencias?",
+        "options": [
+          "Diplococos gramnegativos intracelulares; Ceftriaxona (IM) + Azitromicina (VO)",
+          "Cocos grampositivos en racimos; Vancomicina.",
+          "Bacilos gramnegativos; Levofloxacino.",
+          "Espiroquetas; Penicilina."
+        ],
+        "answerIndex": 0,
+        "explanation": "La GPC recomienda el tratamiento dual (Ceftriaxona + Azitromicina) para cubrir Neisseria gonorrhoeae y la coinfección frecuente con Chlamydia trachomatis, además de retrasar la aparición de resistencias. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "COCCIDIOIDOMICOSIS (Fiebre del Valle)",
+    "difficulty": "alta",
+    "case": "Paciente procedente de zona desértica (Sonora/Baja California) con fiebre, dolor torácico, tos y aparición de eritema nodoso. La radiografía muestra un infiltrado alveolar y adenopatía hiliar.",
+    "questions": [
+      {
+        "question": "¿Cómo se adquiere esta infección y cuál es la forma fúngica característica observada en el examen microscópico de tejidos?",
+        "options": [
+          "Inhalación de artroconidios; Esférulas llenas de endosporas",
+          "Ingestión de esporas; Levaduras en gemación.",
+          "Contacto cutáneo; Hifas cenocíticas.",
+          "Picadura de insecto; Cuerpos asteroides."
+        ],
+        "answerIndex": 0,
+        "explanation": "La coccidioidomicosis es una micosis endémica del norte de México. El eritema nodoso se considera un signo de buen pronóstico inmunológico. El tratamiento de elección para formas graves o persistentes es el Fluconazol o Anfotericina B. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "HISTOPLASMOSIS",
+    "difficulty": "media",
+    "case": "Paciente con antecedente de haber visitado cuevas o limpiado gallineros. Presenta cuadro respiratorio agudo, fiebre y hepatoesplenomegalia. En el frotis de médula ósea se observan pequeñas levaduras intracelulares dentro de macrófagos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el hábitat natural de este hongo y cuál es el tratamiento para la forma diseminada grave?",
+        "options": [
+          "Suelo rico en guano de murciélago o aves; Anfotericina B seguida de Itraconazol",
+          "Madera en descomposición; Caspofungina.",
+          "Agua estancada; Penicilina.",
+          "Aire acondicionado; Voriconazol."
+        ],
+        "answerIndex": 0,
+        "explanation": "Histoplasma capsulatum es un hongo dimórfico. La forma diseminada es común en pacientes con inmunosupresión (VIH con CD4 <150). El diagnóstico puede apoyarse en la detección de antígeno en orina. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "CRIPTOCOCOSIS",
+    "difficulty": "media",
+    "case": "Paciente con VIH acude por cefalea subaguda, fiebre y signos de hipertensión intracraneal. La punción lumbar muestra presión de apertura elevada y el líquido teñido con Tinta China revela levaduras con cápsula prominente.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento de inducción de elección según la GPC?",
+        "options": [
+          "Anfotericina B liposomal + Flucitosina por 2 semanas",
+          "Fluconazol oral únicamente.",
+          "Cotrimoxazol a dosis altas.",
+          "Sulfadiazina + Pirimetamina."
+        ],
+        "answerIndex": 0,
+        "explanation": "La meningitis criptocócica es una complicación grave del SIDA. Es vital manejar la hipertensión intracraneal con punciones lumbares evacuadoras repetidas si es necesario. No se debe iniciar el tratamiento antirretroviral inmediatamente para evitar el Síndrome de Reconstitución Inmune (SRI). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "CANDIDIASIS ORAL (Muguet)",
+    "difficulty": "baja",
+    "case": "Lactante o paciente inmunocomprometido con placas blanquecinas en la mucosa oral y lengua que se desprenden al raspado dejando una superficie eritematosa.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal más común y qué nombre reciben las estructuras que forma al germinar en suero a 37°C?",
+        "options": [
+          "Candida albicans; Tubos germinales",
+          "Candida glabrata; Artroconidios.",
+          "Candida tropicalis; Esporangios.",
+          "Candida krusei; Conidias."
+        ],
+        "answerIndex": 0,
+        "explanation": "Candida albicans es parte de la microbiota normal, pero se vuelve patógena ante cambios en el huésped. La prueba del tubo germinal es un método rápido de identificación en el laboratorio. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INMUNOLOGÍA CLÍNICA",
+    "subtema": "ANGIOEDEMA HEREDITARIO",
+    "difficulty": "alta",
+    "case": "Paciente de 15 años acude por edema súbito de cara y labios, sin urticaria ni prurito. Refiere cuadros previos de dolor abdominal intenso inexplicable. Su padre presenta cuadros similares.",
+    "questions": [
+      {
+        "question": "¿Cuál es la proteína deficiente y qué mediador es el responsable de la permeabilidad vascular aumentada?",
+        "options": [
+          "Inhibidor de C1 (C1-INH); Bradicinina",
+          "C4; Histamina.",
+          "Factor H; Serotonina.",
+          "Proteína C reactiva; Prostaglandinas."
+        ],
+        "answerIndex": 0,
+        "explanation": "El angioedema hereditario no está mediado por histamina, por lo que NO responde a adrenalina, antihistamínicos ni esteroides. El diagnóstico se sospecha con niveles bajos de C4 y se confirma midiendo la función/niveles de C1-INH. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GENÉTICA MÉDICA",
+    "subtema": "SÍNDROME DE MARFAN",
+    "difficulty": "media",
+    "case": "Masculino de 19 años, talla alta, extremidades muy largas (dolicoestenomelia), aracnodactilia y escoliosis. A la exploración se detecta un soplo diastólico en foco aórtico.",
+    "questions": [
+      {
+        "question": "¿Cuál es el gen mutado y cuál es la principal causa de mortalidad que debe vigilarse con ecocardiografía anual?",
+        "options": [
+          "FBN1 (Fibrilina-1); Dilatación y disección de la raíz aórtica",
+          "COL1A1; Osteogénesis imperfecta.",
+          "DMD; Distrofia muscular.",
+          "FGFR3; Acondroplasia."
+        ],
+        "answerIndex": 0,
+        "explanation": "El Síndrome de Marfan es una enfermedad del tejido conectivo con herencia autosómica dominante. La subluxación del cristalino (ectopia lentis) hacia arriba es otra característica clásica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GENÉTICA MÉDICA",
+    "subtema": "FIBROSIS QUÍSTICA",
+    "difficulty": "media",
+    "case": "Niño con infecciones respiratorias recurrentes, esteatorrea y retraso en el crecimiento. Se realiza prueba de cloruros en sudor que resulta positiva (65 mmol/L).",
+    "questions": [
+      {
+        "question": "¿Cuál es la mutación más frecuente a nivel mundial (y en México) y qué órgano suele estar afectado desde el nacimiento (íleo meconial)?",
+        "options": [
+          "∆F508 en el gen CFTR; Páncreas e Intestino",
+          "Mutación en gen de Hemoglobina; Bazo.",
+          "Repetición de CGG; Cerebro.",
+          "Mutación en el gen RB1; Ojo."
+        ],
+        "answerIndex": 0,
+        "explanation": "La fibrosis quística causa un transporte defectuoso de cloruro y sodio, resultando en secreciones viscosas. La GPC mexicana recomienda el tamizaje neonatal para su detección oportuna. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PSIQUIATRÍA / MEDICINA INTERNA",
+    "subtema": "TRASTORNO DE DEPRESIÓN MAYOR",
+    "difficulty": "baja",
+    "case": "Femenina de 45 años con tristeza profunda, anhedonia, pérdida de apetito, insomnio y sentimientos de culpa de 3 semanas de evolución.",
+    "questions": [
+      {
+        "question": "Según la GPC, ¿cuál es el grupo farmacológico de primera elección y cuánto tiempo debe mantenerse el tratamiento tras la remisión del primer episodio?",
+        "options": [
+          "ISRS (Sertralina/Fluoxetina); 6 a 12 meses",
+          "Benzodiacepinas; 1 mes.",
+          "Antipsicóticos; De por vida.",
+          "Tricíclicos; Solo durante la fase aguda."
+        ],
+        "answerIndex": 0,
+        "explanation": "Los Inhibidores Selectivos de la Recaptura de Serotonina (ISRS) son la primera línea por su perfil de seguridad. Suspender el fármaco antes de los 6 meses aumenta drásticamente el riesgo de recaída. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PSIQUIATRÍA / MEDICINA INTERNA",
+    "subtema": "ESQUIZOFRENIA",
+    "difficulty": "media",
+    "case": "Varón de 22 años con ideas delirantes de persecución, alucinaciones auditivas comentadoras y lenguaje desorganizado de 7 meses de duración. Ha descuidado su higiene y se ha aislado socialmente.",
+    "questions": [
+      {
+        "question": "¿Cuál es la vía dopaminérgica relacionada con los síntomas positivos y qué efecto secundario motor es común con el uso de antipsicóticos típicos (Haloperidol)?",
+        "options": [
+          "Vía mesolímbica; Síntomas extrapiramidales (distonía, acatisia)",
+          "Vía nigroestriada; Hiperprolactinemia.",
+          "Vía mesocortical; Sedación.",
+          "Vía tuberoinfundibular; Aumento de peso."
+        ],
+        "answerIndex": 0,
+        "explanation": "El exceso de dopamina en la vía mesolímbica causa las alucinaciones. Los antipsicóticos de segunda generación (risperidona, quetiapina) se prefieren actualmente por tener menor riesgo de efectos extrapiramidales. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "URGENCIAS PSIQUIÁTRICAS",
+    "subtema": "SÍNDROME NEUROLÉPTICO MALIGNO (SNM)",
+    "difficulty": "alta",
+    "case": "Paciente en tratamiento con antipsicóticos potentes presenta fiebre alta (40°C), rigidez muscular extrema (\"en tubo de plomo\"), alteración del estado mental e inestabilidad autonómica. CPK de 15,000.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento inicial y qué fármaco agonista dopaminérgico se puede emplear?",
+        "options": [
+          "Suspensión del antipsicótico + Enfriamiento; Bromocriptina o Dantroleno",
+          "Aumento de la dosis de antipsicótico; Lorazepam.",
+          "Antibióticos; Vancomicina.",
+          "Hidratación únicamente; Vitamina K."
+        ],
+        "answerIndex": 0,
+        "explanation": "El SNM es una urgencia vital por bloqueo masivo de receptores D2. Se diferencia del síndrome serotoninérgico en que este último presenta hiperreflexia y mioclonías, mientras que el SNM presenta rigidez extrema. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA PREVENTIVA / NOM",
+    "subtema": "HIPERTENSIÓN ARTERIAL (NOM-030-SSA2 -2009)",
+    "difficulty": "baja",
+    "case": "Paciente de 50 años acude a detección. Se encuentra una TA de 145/95 mmHg. Está asintomático.",
+    "questions": [
+      {
+        "question": "De acuerdo con la NOM-030, ¿cuál es el procedimiento para confirmar el diagnóstico de Hipertensión Arterial?",
+        "options": [
+          "Promedio de 3 mediciones en 2 visitas distintas con cifras ≥140/90",
+          "Una sola toma elevada en urgencias.",
+          "Monitoreo en casa por 24 horas obligatorio.",
+          "Prueba de esfuerzo."
+        ],
+        "answerIndex": 0,
+        "explanation": "La NOM -030 establece que para el diagnóstico se requieren al menos dos mediciones elevadas en días diferentes, a menos que el paciente presente una crisis hipertensiva o daño a órgano blanco evidente desde la primera consulta. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA PREVENTIVA / NOM",
+    "subtema": "DISLIPIDEMIAS (NOM-037-SSA2 -2012)",
+    "difficulty": "media",
+    "case": "Se realiza perfil de lípidos a paciente de 55 años con riesgo cardiovascular alto. Resultados: Colesterol total 250, LDL 180, HDL 35, Triglicéridos 450.",
+    "questions": [
+      {
+        "question": "Según la NOM, ¿qué meta de cLDL es prioritaria y cuál es el manejo inicial de los triglicéridos si fueran >500 mg/dl?",
+        "options": [
+          "cLDL < 70 mg/dl; Fibratos para prevenir pancreatitis",
+          "cLDL < 130 mg/dl; Estatinas.",
+          "Colesterol total < 200; Dieta únicamente.",
+          "HDL > 60; Ejercicio."
+        ],
+        "answerIndex": 0,
+        "explanation": "Aunque el LDL es la meta principal para reducir riesgo aterogénico, si los triglicéridos superan los 500 mg/dl (y especialmente 1000), el tratamiento se enfoca primero en bajarlos con fibratos y dieta estricta para evitar una pancreatitis aguda.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA DEL TRABAJO / TOXICOLOGÍA INDUSTRIAL",
+    "subtema": "SATURNISMO (INTOXICACIÓN POR PLOMO)",
+    "difficulty": "media",
+    "case": "Trabajador de una fábrica de acumuladores (baterías) presenta dolor abdominal tipo cólico, estreñimiento, fatiga y una línea azulada en la unión entre dientes y encías.",
+    "questions": [
+      {
+        "question": "¿Cómo se llama el signo gingival mencionado y qué hallazgo es característico en el frotis de sangre periférica?",
+        "options": [
+          "Línea de Burton; Punteado basófilo en los eritrocitos",
+          "Signo de Koplik; Cuerpos de Howell-Jolly.",
+          "Línea de Mees; Anemia ferropénica.",
+          "Estomatitis; Acantocitos."
+        ],
+        "answerIndex": 0,
+        "explanation": "El plomo inhibe enzimas clave en la síntesis del grupo hemo (ferroquelatasa y ALA- deshidratasa). La acumulación de ribosomas degradados produce el punteado basófilo. El tratamiento de elección en casos severos es el Quelante (EDTA o Succímero). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA DEL TRABAJO",
+    "subtema": "NEUMOCONIOSIS (ASBESTOSIS)",
+    "difficulty": "alta",
+    "case": "Trabajador de la industria de demolición y frenos presenta disnea de esfuerzo progresiva. La radiografía de tórax muestra placas pleurales calcificadas y fibrosis en bases pulmonares.",
+    "questions": [
+      {
+        "question": "¿Qué cuerpo microscópico confirma la exposición y qué neoplasia maligna de la pleura tiene una relación casi exclusiva con el asbesto?",
+        "options": [
+          "Cuerpo de ferruginoso (o de asbesto); Mesotelioma pleural",
+          "Cuerpo de Psammoma; Adenocarcinoma.",
+          "Cuerpo de Negri; Carcinoma epidermoide.",
+          "Célula de Reed-Sternberg; Linfoma."
+        ],
+        "answerIndex": 0,
+        "explanation": "El asbesto es altamente fibrogénico y carcinogénico. A diferencia de la silicosis, la asbestosis predomina en los lóbulos inferiores. El mesotelioma puede aparecer hasta 30-40 años después de la exposición. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "BIOÉTICA CLÍNICA",
+    "subtema": "PRINCIPIOS DE LA BIOÉTICA",
+    "difficulty": "baja",
+    "case": "Un paciente se niega a recibir una transfusión sanguínea necesaria para salvar su vida debido a sus creencias religiosas, a pesar de estar plenamente consciente y orientado.",
+    "questions": [
+      {
+        "question": "¿Qué principio bioético prevalece en esta situación y cuál es la obligación del médico?",
+        "options": [
+          "Autonomía; Respetar la decisión del paciente tras informar riesgos y beneficios",
+          "Beneficencia; Realizar la transfusión forzada para salvar la vida.",
+          "Justicia; Trasladar al paciente a otra institución.",
+          "No maleficencia; No hacer nada y dar de alta al paciente."
+        ],
+        "answerIndex": 0,
+        "explanation": "El principio de autonomía establece que el paciente competente tiene derecho a decidir sobre su propio cuerpo. La labor del médico es asegurar que la decisión sea libre e informada (Consentimiento Informado). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "BIOÉTICA CLÍNICA",
+    "subtema": "VOLUNTAD ANTICIPADA",
+    "difficulty": "media",
+    "case": "Paciente con diagnóstico de enfermedad terminal firma un documento donde estipula que, en caso de paro cardiorrespiratorio o falla orgánica, no desea maniobras de reanimación ni soporte vital invasivo.",
+    "questions": [
+      {
+        "question": "¿Cómo se denomina este documento legal en México y qué nombre recibe la práctica de omitir tratamientos que prolonguen la agonía innecesariamente?",
+        "options": [
+          "Documento de Voluntad Anticipada; Ortotanasia",
+          "Testamento Vital; Eutanasia activa.",
+          "Carta de derechos; Distanasia.",
+          "Poder notarial; Suicidio asistido."
+        ],
+        "answerIndex": 0,
+        "explanation": "La ortotanasia es la muerte digna, evitando el encarnizamiento terapéutico (distanasia). En México, la Ley de Voluntad Anticipada permite a los pacientes decidir sobre los cuidados paliativos y el rechazo a medidas desproporcionadas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA PREVENTIVA",
+    "subtema": "CADENA EPIDEMIOLÓGICA",
+    "difficulty": "baja",
+    "case": "Se presenta un brote de intoxicación alimentaria en una escuela. Se identifica que el patógeno fue Salmonella y el vehículo fue una ensalada de pollo contaminada.",
+    "questions": [
+      {
+        "question": "En la cadena epidemiológica, ¿cómo se clasifica a la ensalada de pollo y cuál es la medida de prevención primaria más efectiva?",
+        "options": [
+          "Vehículo (Fómite/Medio); Lavado de manos y manejo higiénico de alimentos",
+          "Reservorio; Tratamiento con antibióticos a los niños.",
+          "Huésped; Vacunación masiva.",
+          "Puerta de salida; Cuarentena."
+        ],
+        "answerIndex": 0,
+        "explanation": "La prevención primaria actúa antes de que aparezca la enfermedad. El control de los vehículos y la educación para la salud son pilares de la salud pública para romper la cadena de transmisión. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA DEL TRABAJO",
+    "subtema": "BENCENISMO",
+    "difficulty": "alta",
+    "case": "Trabajador de una refinería de petróleo con exposición crónica a solventes presenta astenia marcada y sangrados frecuentes. El hemograma muestra pancitopenia.",
+    "questions": [
+      {
+        "question": "¿Qué patología hematológica es la complicación crónica más grave de la exposición al benceno?",
+        "options": [
+          "Leucemia Mieloide Aguda (LMA) o Anemia Aplásica",
+          "Policitemia Vera.",
+          "Linfoma de Hodgkin.",
+          "Mielofibrosis."
+        ],
+        "answerIndex": 0,
+        "explanation": "El benceno es un potente mielotóxico. La NOM-010-STPS vigila los límites de exposición a sustancias químicas. El monitoreo biológico se realiza midiendo fenol en orina. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "TOXICOLOGÍA",
+    "subtema": "INTOXICACIÓN POR METANOL",
+    "difficulty": "media",
+    "case": "Paciente acude a urgencias tras ingerir alcohol adulterado. Presenta visión borrosa (\"como ver en una tormenta de nieve\"), dolor abdominal y acidosis metabólica con brecha aniónica elevada.",
+    "questions": [
+      {
+        "question": "¿Cuál es el metabolito tóxico responsable del daño al nervio óptico y cuál es el antídoto específico?",
+        "options": [
+          "Ácido fórmico; Etanol o Fomepizol",
+          "Acetaldehído; Disulfiram.",
+          "Ácido oxálico; Gluconato de calcio.",
+          "Formaldehído; N-acetilcisteína."
+        ],
+        "answerIndex": 0,
+        "explanation": "La alcohol deshidrogenasa metaboliza el metanol en formaldehído y luego en ácido fórmico. El antídoto (etanol) compite por la enzima, evitando la formación del metabolito tóxico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA PREVENTIVA",
+    "subtema": "NIVELES DE PREVENCIÓN (LEAVELL Y CLARK)",
+    "difficulty": "baja",
+    "case": "Un médico realiza una mastografía de tamizaje a una mujer de 50 años asintomática.",
+    "questions": [
+      {
+        "question": "¿A qué nivel de prevención corresponde esta acción?",
+        "options": [
+          "Prevención Secundaria (Diagnóstico precoz y tratamiento oportuno)",
+          "Prevención Primaria.",
+          "Prevención Terciaria.",
+          "Prevención Cuaternaria."
+        ],
+        "answerIndex": 0,
+        "explanation": "Primaria: Evita la enfermedad (Vacunas). Secundaria: Detecta la enfermedad en fase preclínica (Tamizaje). Terciaria: Rehabilitación. Cuaternaria: Evita el daño por exceso de intervencionismo médico.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA / GERIATRÍA",
+    "subtema": "DEMENCIA POR CUERPOS DE LEWY",
+    "difficulty": "alta",
+    "case": "Masculino de 72 años con deterioro cognitivo fluctuante, alucinaciones visuales detalladas (ve animales pequeños en la habitación) y signos de parkinsonismo leve (rigidez y bradicinesia). El paciente presenta una sensibilidad extrema a los neurolépticos, desarrollando un síndrome extrapiramidal severo tras una dosis de haloperidol.",
+    "questions": [
+      {
+        "question": "¿Cuál es la característica clínica que la diferencia de la enfermedad de Parkinson y qué proteína se acumula en los Cuerpos de Lewy?",
+        "options": [
+          "El deterioro cognitivo inicia antes o simultáneo al parkinsonismo; Alfa-sinucleína",
+          "El temblor es el síntoma inicial; Beta-amiloide.",
+          "No hay alucinaciones; Proteína Tau.",
+          "Es de inicio súbito tras un EVC; Ubiquitina."
+        ],
+        "answerIndex": 0,
+        "explanation": "En la demencia por Cuerpos de Lewy, el deterioro cognitivo ocurre antes o dentro del primer año del inicio de los síntomas motores (\"Regla de un año\"). Las alucinaciones visuales y la fluctuación del estado de alerta son pilares diagnósticos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA / PSIQUIATRÍA",
+    "subtema": "INSOMNIO EN EL ANCIANO",
+    "difficulty": "media",
+    "case": "Paciente de 82 años con dificultad para conciliar el sueño y múltiples despertares nocturnos. El familiar solicita benzodiacepinas.",
+    "questions": [
+      {
+        "question": "De acuerdo con la GPC y los criterios de Beers, ¿cuál es el manejo inicial recomendado y por qué deben evitarse las benzodiacepinas?",
+        "options": [
+          "Higiene del sueño; Riesgo de caídas, fracturas y delirium",
+          "Alprazolam; Riesgo de hipertensión.",
+          "Clonazepam; Riesgo de diabetes.",
+          "Zolpidem; No hay contraindicación en ancianos."
+        ],
+        "answerIndex": 0,
+        "explanation": "El insomnio en el anciano a menudo se debe a cambios fisiológicos (fragmentación del sueño). El manejo no farmacológico es la prioridad. Si se requiere fármaco, se prefieren dosis bajas de melatonina o antidepresivos sedantes, evitando fármacos con efectos anticolinérgicos o sedación profunda.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA / GERIATRÍA",
+    "subtema": "ENFERMEDAD DE PARKINSON (TRATAMIENTO)",
+    "difficulty": "media",
+    "case": "Paciente de 68 años con diagnóstico reciente de Parkinson. Presenta temblor de reposo, rigidez \"en rueda dentada\" y bradicinesia. Refiere que los síntomas interfieren con sus actividades diarias.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento de elección inicial en pacientes >65 años según la GPC y cuál es la combinación enzimática necesaria para evitar efectos periféricos?",
+        "options": [
+          "Levodopa + Carbidopa",
+          "Pramipexol; Selegilina.",
+          "Amantadina; Biperideno.",
+          "Rasagilina; Entacapona."
+        ],
+        "answerIndex": 0,
+        "explanation": "En >65 años la Levodopa es el estándar de oro. La carbidopa inhibe la descarboxilasa periférica, permitiendo que más levodopa llegue al cerebro y disminuyendo náuseas y vómitos.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA / GERIATRÍA",
+    "subtema": "TEMBLOR ESENCIAL",
+    "difficulty": "baja",
+    "case": "Masculino de 60 años con temblor bilateral en manos que aparece al intentar tomar una taza de café o escribir (temblor de acción/postural). Mejora notablemente tras la ingesta de pequeñas cantidades de alcohol. No hay rigidez ni bradicinesia.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable y cuál es el tratamiento farmacológico de primera línea?",
+        "options": [
+          "Temblor esencial; Propranolol o Primidona",
+          "Enfermedad de Parkinson; Levodopa.",
+          "Corea de Sydenham; Penicilina.",
+          "Ataxia cerebelosa; Vitamina B12. Retroalimentación : El temblor esencial es el trastorno del movimiento más frecuente. A diferencia del Parkinson (temblor de reposo), este es un temblor postural o cinético y suele tener una fuerte carga hereditaria."
+        ],
+        "answerIndex": 0,
+        "explanation": "",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA / GERIATRÍA",
+    "subtema": "ENFERMEDAD DE CREUTZFELDT -JAKOB",
+    "difficulty": "alta",
+    "case": "Paciente de 62 años con demencia de progresión extremadamente rápida (semanas), acompañada de mioclonías provocadas por el ruido y ataxia. El EEG muestra complejos de ondas agudas trifásicas periódicas.",
+    "questions": [
+      {
+        "question": "¿Cuál es la etiología y qué proteína se busca en el LCR para apoyar el diagnóstico?",
+        "options": [
+          "Prión (proteína mal plegada); Proteína 14-3-3",
+          "Virus JC; Carga viral.",
+          "Bacteriana; Cultivo.",
+          "Autoinmune; Anticuerpos anti-NMDA. Retroalimentación : Es la encefalopatía espongiforme humana más común. Se caracteriza por un curso letal en menos de un año. La proteína 14-3-3 es un marcador de daño neuronal agudo y masivo en este contexto."
+        ],
+        "answerIndex": 0,
+        "explanation": "",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "ARTERITIS DE TAKAYASU",
+    "difficulty": "alta",
+    "case": "Mujer de 25 años con astenia, fiebre y diferencia de presión arterial >10 mmHg entre ambos brazos. A la exploración se auscultan soplos sobre las arterias subclavias y carótidas. Los pulsos radiales son débiles.",
+    "questions": [
+      {
+        "question": "¿Cómo se denomina comúnmente esta patología y cuál es el estudio de imagen inicial para evaluar la extensión de la enfermedad?",
+        "options": [
+          "Enfermedad sin pulsos; Angiorresonancia o Angio-TC de aorta y sus ramas",
+          "Arteritis de la juventud; Ecografía Doppler únicamente.",
+          "Síndrome de Raynaud; Arteriografía periférica.",
+          "Vasculitis de Wegener; Radiografía de tórax. Retroalimentación : La arteritis de Takayasu afecta la aorta y sus ramas principales. Es más común en mujeres jóvenes. El tratamiento consiste en esteroides e inmunosupresores (metotrexato). ---"
+        ],
+        "answerIndex": 0,
+        "explanation": "",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "POLIARTERITIS NODOSA (PAN)",
+    "difficulty": "alta",
+    "case": "Masculino de 45 años con fiebre, pérdida de peso, dolor abdominal postprandial (angina mesentérica), mononeuritis múltiple (pie caído) y nódulos cutáneos. Presenta antecedente de Hepatitis B crónica.",
+    "questions": [
+      {
+        "question": "¿Qué hallazgo angiográfico es característico en las arterias renales o mesentéricas y qué vasos respeta clásicamente esta vasculitis?",
+        "options": [
+          "Microaneurismas; Respeta los vasos pulmonares",
+          "Estenosis en \"cuentas de rosario\"; Respeta las arterias coronarias.",
+          "Oclusiones trombóticas; Respeta el riñón.",
+          "Calificaciones; Respeta el tracto gastrointestinal. Retroalimentación : La PAN clásica afecta vasos de mediano calibre. Su asociación con el virus de la Hepatitis B (VHB) es un dato clave para el ENARM. A diferencia de las vasculitis de pequeño calibre, no suele cursar con glomerulonefritis. ---"
+        ],
+        "answerIndex": 0,
+        "explanation": "",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "POLIANGEÍTIS MICROSCÓPICA (PAM)",
+    "difficulty": "media",
+    "case": "Paciente con púrpura palpable en extremidades inferiores, fiebre y falla renal rápidamente progresiva. No tiene síntomas de vías aéreas superiores.",
+    "questions": [
+      {
+        "question": "¿Cuál es el marcador inmunológico asociado y cuál es la diferencia principal con la Granulomatosis de Wegener?",
+        "options": [
+          "p-ANCA (Anti-MPO); Ausencia de inflamación granulomatosa",
+          "c-ANCA; Presencia de asma.",
+          "Factor Reumatoide; Afectación de vasos grandes.",
+          "Anti-Scl70; Presencia de fibrosis pulmonar. Retroalimentación : La PAM es la causa más común de síndrome riñón-pulmón. A diferencia del Wegener, no forma granulomas y afecta predominantemente capilares, vénulas y arteriolas. ---"
+        ],
+        "answerIndex": 0,
+        "explanation": "",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "GRANULOMATOSIS EOSINOFÍLICA CON POLIANGEÍTIS (CHURG -STRAUSS)",
+    "difficulty": "alta",
+    "case": "Paciente de 40 años con antecedente de asma grave de difícil control y rinitis alérgica. Presenta ahora mononeuritis múltiple y eosinofilia periférica marcada (>1500/mm³).",
+    "questions": [
+      {
+        "question": "¿Cuál es el hallazgo anatomopatológico definitorio y qué anticuerpo está presente en el 40-50% de los casos?",
+        "options": [
+          "Infiltrados eosinofílicos y granulomas extravasculares; p-ANCA",
+          "Necrosis fibrinoide; c-ANCA.",
+          "Infiltrado neutrofílico; ANA.",
+          "Cuerpos de inclusión; Anti-Jo1. Retroalimentación : El Churg-Strauss se sospecha en pacientes asmáticos que desarrollan vasculitis sistémica. La eosinofilia es el dato de laboratorio más llamativo. ---"
+        ],
+        "answerIndex": 0,
+        "explanation": "",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "PÚRPURA DE HENOCH -SCHÖNLEIN",
+    "difficulty": "baja",
+    "case": "Niño de 7 años con antecedente de infección respiratoria hace 2 semanas. Presenta púrpura palpable en glúteos y piernas, dolor abdominal y artralgias.",
+    "questions": [
+      {
+        "question": "¿Qué tipo de depósito de inmunoglobulina es el responsable de la patogenia y cuál es la complicación gastrointestinal más frecuente?",
+        "options": [
+          "IgA; Intususcepción (invaginación intestinal)",
+          "IgG; Vólvulo.",
+          "IgM; Apendicitis.",
+          "IgE; Perforación."
+        ],
+        "answerIndex": 0,
+        "explanation": "Es la vasculitis más común en la infancia. El diagnóstico es clínico. El pronóstico suele ser excelente, aunque se debe vigilar la función renal por el riesgo de nefropatía por IgA. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "DERMATOMIOSITIS",
+    "difficulty": "media",
+    "case": "Femenina de 50 años con debilidad muscular proximal simétrica (dificultad para peinarse o subir escaleras). Presenta pápulas eritematosas en los nudillos (pápulas de Gottron) y coloración violácea en párpados (edema en heliotropo).",
+    "questions": [
+      {
+        "question": "¿Cuál es el marcador enzimático más sensible y con qué condición sistémica se asocia frecuentemente en adultos?",
+        "options": [
+          "Creatina Cinasa (CPK); Neoplasias ocultas (síndrome paraneoplásico)",
+          "Alanino aminotransferasa (ALT); Hepatitis.",
+          "Deshidrogenasa láctica (DHL); Linfoma.",
+          "Fosfatasa alcalina; Osteoporosis. Retroalimentación : La dermatomiositis requiere tamizaje de cáncer (mama, pulmón, ovario, colon) al momento del diagnóstico en adultos. El diagnóstico definitivo se realiza con biopsia muscular y electromiografía. ---"
+        ],
+        "answerIndex": 0,
+        "explanation": "",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "POLIMIOSITIS / SÍNDROME ANTISINTETASA",
+    "difficulty": "alta",
+    "case": "Paciente con debilidad muscular proximal y enfermedad pulmonar intersticial. Presenta además \"manos de mecánico\" (hiperqueratosis y fisuras en las caras laterales de los dedos).",
+    "questions": [
+      {
+        "question": "¿Cuál es el anticuerpo más específico asociado a esta variante de miopatía inflamatoria?",
+        "options": [
+          "Anti-Jo-1",
+          "Anti-Mi-2.",
+          "Anti-SRP.",
+          "Anti-Ro. Retroalimentación : El anticuerpo anti-histidil-tRNA sintetasa (Anti-Jo-1) define al síndrome antisintetasa, que se caracteriza por miositis, enfermedad pulmonar, manos de mecánico, artritis y fenómeno de Raynaud. ---"
+        ],
+        "answerIndex": 0,
+        "explanation": "",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "ENFERMEDAD DE BEHÇET",
+    "difficulty": "alta",
+    "case": "Masculino de 30 años con úlceras orales recurrentes dolorosas, úlceras genitales y uveítis posterior. Presenta una pústula en el sitio donde se le realizó una extracción de sangre hace 24 horas.",
+    "questions": [
+      {
+        "question": "¿Cómo se llama la prueba de hipersensibilidad cutánea positiva descrita y cuál es la asociación genética más fuerte?",
+        "options": [
+          "Prueba de Patergia; HLA-B51",
+          "Fenómeno de Koebner; HLA-DR4.",
+          "Signo de Nikolsky; HLA-B27.",
+          "Prueba de Mantoux; HLA-DQ8."
+        ],
+        "answerIndex": 0,
+        "explanation": "El Behçet es una vasculitis de vasos de cualquier calibre. La tríada de úlceras orales, genitales y afección ocular es clásica. La prueba de patergia es altamente específica.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA CRÍTICA",
+    "subtema": "SEPSIS Y CHOQUE SÉPTICO (SEPSIS-3)",
+    "difficulty": "alta",
+    "case": "Masculino de 68 años con antecedente de infección urinaria. Presenta desorientación, TA 85/50 mmHg, frecuencia respiratoria de 24 lpm y lactato de 4.0 mmol/L. A pesar de la reanimación hídrica con 30 ml/kg, persiste hipotenso y requiere norepinefrina.",
+    "questions": [
+      {
+        "question": "De acuerdo con las definiciones de Sepsis-3, ¿cuál es el diagnóstico del paciente y qué escala se utiliza para la detección rápida fuera de la UCI?",
+        "options": [
+          "Choque Séptico; qSOFA (quick SOFA)",
+          "Sepsis; Escala de Glasgow.",
+          "Síndrome de Respuesta Inflamatoria Sistémica (SRIS); Criterios de Jones.",
+          "Infección urinaria complicada; Escala de Alvarado."
+        ],
+        "answerIndex": 0,
+        "explanation": "El choque séptico se define por la necesidad de vasopresores para mantener una PAM ≥65 mmHg y un lactato >2 mmol/L pese a una reanimación adecuada. El qSOFA evalúa: Alteración del estado mental, FR ≥22 y TAS ≤100. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA CRÍTICA",
+    "subtema": "NEUMONÍA ASOCIADA A VENTILACIÓN MECÁNICA (NAVM)",
+    "difficulty": "alta",
+    "case": "Paciente en la UCI intubado desde hace 6 días. Presenta fiebre, secreciones purulentas por el tubo endotraqueal y nueva opacidad en la radiografía de tórax. El cultivo reporta Pseudomonas aeruginosa productora de carbapenemasas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el criterio temporal para definir la NAVM y qué antibiótico de reserva es una opción terapéutica según las guías actuales?",
+        "options": [
+          ">48 horas tras la intubación; Ceftazidima-Avibactam",
+          ">12 horas tras la intubación; Amoxicilina.",
+          "Durante la primera hora de ingreso; Vancomicina.",
+          "Solo si ocurre en el primer día; Ceftriaxona."
+        ],
+        "answerIndex": 0,
+        "explanation": "La NAVM es una de las principales infecciones nosocomiales. Para patógenos multirresistentes (MDR) como Pseudomonas o Klebsiella productoras de carbapenemasas, se requieren fármacos como Ceftazidima-Avibactam o combinaciones con Polimixinas. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA CRÍTICA",
+    "subtema": "CHOQUE SÉPTICO - METAS DE REANIMACIÓN",
+    "difficulty": "media",
+    "case": "Se inicia manejo en un paciente con choque séptico. La GPC mexicana sigue las recomendaciones de la campaña \"Sobreviviendo a la Sepsis\".",
+    "questions": [
+      {
+        "question": "¿Cuál es la meta de Presión Arterial Media (PAM) y en cuánto tiempo se recomienda iniciar la administración de antibióticos de amplio espectro?",
+        "options": [
+          "PAM ≥65 mmHg; Dentro de la primera hora",
+          "PAM ≥80 mmHg; En las primeras 6 horas.",
+          "PAM ≥60 mmHg; Después de obtener los cultivos (sin importar el tiempo).",
+          "PAM ≥90 mmHg; Solo si hay fiebre."
+        ],
+        "answerIndex": 0,
+        "explanation": "Cada hora de retraso en la administración de antibióticos en choque séptico aumenta la mortalidad significativamente. La reanimación inicial debe ser agresiva con cristaloides (preferentemente soluciones balanceadas). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA CRÍTICA",
+    "subtema": "INFECCIÓN POR CLOSTRIDIOIDES DIFFICILE (ICD) GRAVE",
+    "difficulty": "media",
+    "case": "Paciente con 15 evacuaciones líquidas al día, leucocitosis de 25,000 y creatinina de 2.0 mg/dl tras uso prolongado de antibióticos.",
+    "questions": [
+      {
+        "question": "¿Cómo se clasifica esta severidad y cuál es el tratamiento de elección según la GPC?",
+        "options": [
+          "ICD Grave; Vancomicina oral 125 mg cada 6 horas",
+          "ICD Leve; Metronidazol oral.",
+          "Colitis fulminante; Colectomía inmediata.",
+          "Portador asintomático; Observación."
+        ],
+        "answerIndex": 0,
+        "explanation": "Los criterios de gravedad incluyen leucocitos >15,000 y creatinina >1.5 mg/dl. La Fidaxomicina o la Vancomicina oral son superiores al metronidazol en estos casos. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA CRÍTICA",
+    "subtema": "FASCITIS NECROTIZANTE",
+    "difficulty": "media",
+    "case": "Masculino diabético con dolor desproporcionado en miembro inferior, edema, bulas hemorrágicas y crepitación a la palpación. La radiografía muestra gas en tejidos blandos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo definitivo y más urgente?",
+        "options": [
+          "Desbridamiento quirúrgico extenso y urgente + Antibióticos de amplio espectro",
+          "Curaciones diarias con antiséptico.",
+          "Oxígeno hiperbárico únicamente.",
+          "Amputación supracondílea inmediata sin antibióticos."
+        ],
+        "answerIndex": 0,
+        "explanation": "La fascitis necrotizante (ej. Gangrena de Fournier en periné) es una emergencia quirúrgica. El retraso en el desbridamiento aumenta la mortalidad al 100%. Los antibióticos deben cubrir Gram positivos, Gram negativos y anaerobios. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA CRÍTICA",
+    "subtema": "ENDOCARDITIS INFECCIOSA EN USUARIOS DE DROGAS IV",
+    "difficulty": "media",
+    "case": "Paciente usuario de drogas IV presenta fiebre y soplos cardíacos. El ecocardiograma muestra vegetaciones en la válvula tricúspide.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal más frecuente y qué hallazgo radiológico pulmonar es común en esta presentación derecha?",
+        "options": [
+          "Staphylococcus aureus; Émbolos sépticos pulmonares (nódulos cavitados)",
+          "Streptococcus viridans; Derrame pleural bilateral.",
+          "Candida albicans; Neumotórax.",
+          "Enterococcus; Edema agudo de pulmón."
+        ],
+        "answerIndex": 0,
+        "explanation": "La endocarditis derecha (tricúspide) es típica de usuarios de drogas IV. A diferencia de la izquierda, los fragmentos de la vegetación viajan a la circulación pulmonar, no a la sistémica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA CRÍTICA",
+    "subtema": "MENINGITIS BACTERIANA AGUDA",
+    "difficulty": "media",
+    "case": "Masculino de 20 años con fiebre, rigidez de nuca y púrpuras palpables. El LCR muestra pleocitosis neutrofílica, glucosa baja y proteínas elevadas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico más probable dado el exantema y qué fármaco debe administrarse idealmente antes o junto con la primera dosis de antibiótico?",
+        "options": [
+          "Neisseria meningitidis; Dexametasona",
+          "Streptococcus pneumoniae; Manitol.",
+          "Listeria monocytogenes; Ampicilina.",
+          "Haemophilus influenzae; Fenitoína."
+        ],
+        "answerIndex": 0,
+        "explanation": "La dexametasona reduce la inflamación meníngea y las secuelas (como la sordera). La presencia de petequias/púrpura orienta fuertemente a meningococo. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA CRÍTICA",
+    "subtema": "CANDIDEMIA EN UCI",
+    "difficulty": "alta",
+    "case": "Paciente con estancia prolongada en UCI, nutrición parenteral total y múltiples antibióticos, que persiste febril pese a cobertura bacteriana de amplio espectro.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento empírico de elección según las guías actuales para candidemia en pacientes inestables?",
+        "options": [
+          "Equinocandinas (Caspofungina o Micafungina)",
+          "Fluconazol.",
+          "Anfotericina B desoxicolato.",
+          "Nistatina oral."
+        ],
+        "answerIndex": 0,
+        "explanation": "Las equinocandinas son ahora la primera línea para candidemia sistémica debido a su excelente perfil de seguridad y actividad contra especies no-albicans que suelen ser resistentes al fluconazol. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "POLIFARMACIA Y CRITERIOS DE BEERS / STOPP-START",
+    "difficulty": "media",
+    "case": "Masculino de 82 años con hipertensión, DM2, osteoartritis y depresión. Consume 9 fármacos distintos. Acude por mareos, confusión y una caída reciente.",
+    "questions": [
+      {
+        "question": "¿A partir de cuántos fármacos se define \"Polifarmacia\" según la GPC y qué herramienta se prefiere para identificar fármacos potencialmente inapropiados en el anciano?",
+        "options": [
+          "≥5 fármacos; Criterios de Beers o STOPP/START",
+          "≥3 fármacos; Índice de Katz.",
+          "≥10 fármacos; Escala de Lawton-Brody.",
+          "Solo si hay interacciones; Escala de Gijón."
+        ],
+        "answerIndex": 0,
+        "explanation": "La polifarmacia aumenta exponencialmente el riesgo de interacciones y reacciones adversas. Los criterios de Beers y STOPP/START ayudan a detectar medicamentos que causan más daño que beneficio (como benzodiacepinas o anticolinérgicos).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "SÍNDROME DE FRAGILIDAD",
+    "difficulty": "media",
+    "case": "Paciente de 78 años que presenta pérdida de peso no intencionada de 5 kg en el último año, velocidad de la marcha lenta y refiere sentirse \"agotado\" todo el tiempo.",
+    "questions": [
+      {
+        "question": "¿Cuál es el modelo fenotípico más utilizado para el diagnóstico de fragilidad y cuántos criterios de Fried deben cumplirse para el diagnóstico?",
+        "options": [
+          "Fenotipo de Fried; ≥3 criterios",
+          "Escala de FRAIL; 1 criterio.",
+          "Índice de Barthel; Puntaje <60.",
+          "Escala de Yesavage; ≥5 puntos."
+        ],
+        "answerIndex": 0,
+        "explanation": "Los 5 criterios de Fried son: 1) Pérdida de peso involuntaria, 2) Baja resistencia (exhaustion), 3) Lentitud en la marcha, 4) Debilidad (fuerza de prensión) y 5) Baja actividad física. 1-2 criterios definen \"Pre-frágil\".",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "MALTRATO EN EL ADULTO MAYOR",
+    "difficulty": "alta",
+    "case": "Paciente femenina de 85 años con demencia avanzada es traída por su cuidador. Se observan equimosis en diferentes estadios de evolución en tórax, higiene deficiente y una úlcera por presión grado III no tratada.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tipo de maltrato más frecuente según las estadísticas en México y cuál es la conducta inicial obligatoria ante la sospecha?",
+        "options": [
+          "Negligencia; Reportar a las autoridades competentes y realizar valoración integral",
+          "Abuso físico; Dar de alta con cita a psicología.",
+          "Abuso financiero; Llamar a la policía inmediatamente.",
+          "Abuso sexual; Hospitalización forzosa."
+        ],
+        "answerIndex": 0,
+        "explanation": "La negligencia (abandono de necesidades básicas) es la forma más común. El médico tiene la obligación legal de documentar y reportar sospechas de maltrato para proteger la integridad del paciente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CUIDADOS PALIATIVOS",
+    "subtema": "MANEJO DE LA DISNEA EN EL PACIENTE TERMINAL",
+    "difficulty": "media",
+    "case": "Paciente con cáncer de pulmón en fase terminal presenta disnea intensa de reposo y ansiedad. La saturación de oxígeno es de 88% con puntas nasales.",
+    "questions": [
+      {
+        "question": "¿Cuál es el fármaco de elección para el alivio de la disnea en este escenario según la GPC de Cuidados Paliativos?",
+        "options": [
+          "Opioides (Morfina) a dosis bajas",
+          "Salbutamol nebulizado.",
+          "Furosemida IV.",
+          "Oxígeno a altos flujos (Mascarilla reservorio)."
+        ],
+        "answerIndex": 0,
+        "explanation": "La morfina reduce la percepción de disnea y la ansiedad asociada al esfuerzo respiratorio sin necesariamente deprimir el centro respiratorio a dosis paliativas. El oxígeno solo es útil si hay hipoxia documentada, pero no sustituye al opioide.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "INCONTINENCIA URINARIA",
+    "difficulty": "media",
+    "case": "Femenina de 75 años refiere pérdida de orina al toser, reír o cargar objetos pesados. No refiere urgencia miccional.",
+    "questions": [
+      {
+        "question": "¿Qué tipo de incontinencia presenta y cuál es el manejo inicial según la GPC?",
+        "options": [
+          "Incontinencia de esfuerzo; Ejercicios de fortalecimiento del piso pélvico (Kegel)",
+          "Incontinencia de urgencia; Oxibutinina.",
+          "Incontinencia por rebosamiento; Sonda Foley permanente.",
+          "Incontinencia funcional; Pañal desechable."
+        ],
+        "answerIndex": 0,
+        "explanation": "La incontinencia de esfuerzo es común por debilidad del esfínter o soporte pélvico. El manejo conservador (ejercicios) es la primera línea antes de considerar cirugía (mallas).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CUIDADOS PALIATIVOS",
+    "subtema": "DOLOR POR CÁNCER (ESCALERA DE LA OMS)",
+    "difficulty": "baja",
+    "case": "Paciente con metástasis óseas que no controla el dolor con Paracetamol y Naproxeno. Refiere una intensidad de 7/10 en la escala EVA.",
+    "questions": [
+      {
+        "question": "¿Cuál es el siguiente paso en la escalera analgésica de la OMS?",
+        "options": [
+          "Opioides potentes (Morfina, Oxicodona, Fentanilo)",
+          "Opioides débiles (Tramadol, Codeína).",
+          "Aumentar la dosis de Naproxeno.",
+          "Infiltración local."
+        ],
+        "answerIndex": 0,
+        "explanation": "Para dolor moderado-severo (EVA >6), se puede saltar directamente al tercer escalón (opioides potentes). Es fundamental recordar que los opioides no tienen \"techo analgésico\", a diferencia de los AINES.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GERIATRÍA",
+    "subtema": "ESCALAS DE VALORACIÓN GERIÁTRICA INTEGRAL (VGI)",
+    "difficulty": "baja",
+    "case": "Se desea evaluar la capacidad de un anciano para realizar actividades como usar el teléfono, ir de compras y cocinar.",
+    "questions": [
+      {
+        "question": "¿Qué escala es la indicada para evaluar las Actividades Instrumentales de la Vida Diaria (AIVD)?",
+        "options": [
+          "Índice de Lawton-Brody",
+          "Índice de Katz.",
+          "Escala de Tinetti.",
+          "Mini Nutritional Assessment (MNA)."
+        ],
+        "answerIndex": 0,
+        "explanation": "Katz evalúa actividades básicas (baño, vestido, alimentación). Lawton-Brody evalúa actividades más complejas (instrumentales) que permiten la independencia en la comunidad.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA / ELECTROLITOS",
+    "subtema": "HIPONATREMIA (SIADH)",
+    "difficulty": "media",
+    "case": "Masculino de 65 años con antecedente de cáncer de pulmón de células pequeñas. Presenta confusión y letargia. Laboratorios: Sodio sérico 122 mEq/L, Osmolalidad plasmática baja (<275 mOsm/kg), Osmolalidad urinaria elevada (>100 mOsm/kg) y Sodio urinario >40 mEq/L. Está normovolémico.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable y cuál es el riesgo de corregir el sodio demasiado rápido (>12 mEq en 24h)?",
+        "options": [
+          "SIADH (Síndrome de Secreción Inapropiada de ADH); Mielinolisis pontina craneal",
+          "Diabetes insípida; Edema cerebral.",
+          "Deshidratación isotónica; Insuficiencia renal.",
+          "Polidipsia psicógena; Convulsiones."
+        ],
+        "answerIndex": 0,
+        "explanation": "El SIADH en cáncer de pulmón es un síndrome paraneoplásico clásico. La corrección rápida de una hiponatremia crónica provoca la salida de agua de las neuronas, causando desmielinización osmótica. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "URGENCIAS / TOXICOLOGÍA",
+    "subtema": "INTOXICACIÓN POR PARACETAMOL",
+    "difficulty": "media",
+    "case": "Mujer de 19 años es traída por ingesta de 20 gramos de paracetamol hace 4 horas con fines suicidas. Se encuentra asintomática en este momento.",
+    "questions": [
+      {
+        "question": "¿Qué herramienta se utiliza para evaluar la toxicidad hepática según los niveles séricos y cuál es el antídoto de elección?",
+        "options": [
+          "Nomograma de Rumack -Matthew; N-acetilcisteína",
+          "Escala de Glasgow; Carbón activado únicamente.",
+          "Criterios de King's College; Flumazenil.",
+          "Nomograma de Done; Atropina."
+        ],
+        "answerIndex": 0,
+        "explanation": "La N-acetilcisteína es más efectiva si se administra dentro de las primeras 8 horas post-ingesta al restaurar los depósitos de glutatión. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA CRÍTICA / EQUILIBRIO ÁCIDO-BASE",
+    "subtema": "ACIDOSIS METABÓLICA",
+    "difficulty": "alta",
+    "case": "Paciente con pH 7.25, pCO2 30 mmHg, HCO3 12 mEq/L, Na 140, Cl 105.",
+    "questions": [
+      {
+        "question": "¿Cómo se encuentra la brecha aniónica (Anion Gap) y cuál es la causa más probable si el paciente presenta cetonuria?",
+        "options": [
+          "Elevada (>12); Cetoacidosis diabética",
+          "Normal (8-12); Diarrea profusa.",
+          "Baja (<8); Mieloma múltiple.",
+          "Elevada; Acidosis tubular renal."
+        ],
+        "answerIndex": 0,
+        "explanation": "Fórmula: Na - (Cl + HCO3). En este caso: 140 - (105 + 12) = 23. Una brecha elevada indica la presencia de ácidos no medidos (lactato, cetonas, fosfatos). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUROLOGÍA",
+    "subtema": "ESCLEROSIS MÚLTIPLE",
+    "difficulty": "media",
+    "case": "Femenina de 28 años presenta pérdida súbita de la visión en ojo izquierdo y dolor al movimiento ocular. Refiere que hace un año tuvo un episodio de debilidad en pierna derecha que resolvió solo.",
+    "questions": [
+      {
+        "question": "¿Cuál es el estudio de imagen inicial de elección y qué hallazgo en LCR apoya el diagnóstico?",
+        "options": [
+          "RM de cráneo y columna; Bandas oligoclonales de IgG",
+          "TC de cráneo; Pleocitosis neutrofílica.",
+          "Electromiografía; Bloqueo de la conducción.",
+          "Potenciales evocados; Hiperproteinorraquia severa."
+        ],
+        "answerIndex": 0,
+        "explanation": "La Esclerosis Múltiple se caracteriza por diseminación en \"tiempo y espacio\". La neuritis óptica es a menudo la manifestación inicial. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA / INFECTOLOGÍA",
+    "subtema": "ABSCESO HEPÁTICO",
+    "difficulty": "media",
+    "case": "Masculino con dolor en hipocondrio derecho, fiebre y hepatomegalia. El USG muestra una lesión única en lóbulo derecho de 6 cm. Antecedente de diarrea con moco y sangre hace 1 mes.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente causal más probable y cuál es el tratamiento de elección según la GPC?",
+        "options": [
+          "Entamoeba histolytica; Metronidazol",
+          "Staphylococcus aureus; Dicloxacilina.",
+          "Escherichia coli; Ceftriaxona.",
+          "Echinococcus granulosus; Albendazol."
+        ],
+        "answerIndex": 0,
+        "explanation": "El absceso amebiano suele ser único y en lóbulo derecho. El piógeno suele ser múltiple y en pacientes con patología biliar previa. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "ESTENOSIS AÓRTICA",
+    "difficulty": "baja",
+    "case": "Paciente de 75 años con tríada de: Disnea, Angina y Síncope. A la exploración: soplo sistólico crescendo-decrescendo en foco aórtico irradiado a carótidas.",
+    "questions": [
+      {
+        "question": "¿Cuál es el signo del pulso arterial característico y cuál es el tratamiento definitivo?",
+        "options": [
+          "Pulso parvus et tardus; Sustitución valvular aórtica",
+          "Pulso celer et altus; Digoxina.",
+          "Pulso bífido; IECA.",
+          "Pulso alternante; Diuréticos."
+        ],
+        "answerIndex": 0,
+        "explanation": "La aparición de síntomas en la estenosis aórtica marca un pronóstico sombrío sin cirugía. El ecocardiograma Doppler es el estándar para medir el área valvular. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "TROMBOEMBOLIA PULMONAR (TEP)",
+    "difficulty": "media",
+    "case": "Paciente de 70 años con dolor óseo, anemia, falla renal e hipercalcemia. La radiografía de cráneo muestra lesiones líticas en \"sacabocado\". Masculino de 50 años despierta con dolor exquisito, eritema y edema en la primera articulación metatarsofalángica (podagra). Femenina postoperada de cadera presenta disnea súbita y taquicardia. Escala de Wells de 7 puntos.",
+    "questions": [
+      {
+        "question": "¿Cuál es el hallazgo característico en el electroforesis de proteínas y qué se observa en el frotis de sangre periférica? ¿Qué se observa en el análisis del líquido sinovial bajo luz polarizada y cuál es el manejo de elección en la fase aguda? ¿Cuál es el estudio de imagen de elección para confirmar el diagnóstico y cuál es el hallazgo electrocardiográfico clásico (aunque infrecuente)?",
+        "options": [
+          "Pico monoclonal (Proteína M); Fenómeno de Rouleaux",
+          "Ausencia de gammaglobulinas; Dianocitos.",
+          "Elevación de albúmina; Esquistocitos.",
+          "Pancitopenia; Blastos.",
+          "Cristales de urato monosódico con birrefringencia negativa; AINES o Colchicina",
+          "Cristales de pirofosfato de calcio; Alopurinol.",
+          "Cristales romboidales; Esteroides intraarticulares únicamente.",
+          "Bacterias; Antibióticos.",
+          "Angiotomografía computarizada pulmonar; Patrón S1Q3T3",
+          "Dímero D; Taquicardia sinusal.",
+          "Gammagrafía V/Q; Bloqueo de rama izquierda.",
+          "Radiografía de tórax; Signo de Westermark únicamente."
+        ],
+        "answerIndex": 8,
+        "explanation": "El fenómeno de Rouleaux (pilas de monedas) ocurre por la alta carga de proteínas que altera la carga electrostática de los eritrocitos. --- ### Tema: REUMATOLOGÍA El alopurinol NO se inicia durante el ataque agudo, ya que los cambios bruscos en los niveles de ácido úrico pueden prolongar o empeorar la crisis. --- ### Tema: NEUMOLOGÍA El patrón de McGinn-White (S1Q3T3) indica sobrecarga aguda del ventrículo derecho. La taquicardia sinusal es, de hecho, el hallazgo más común en el EKG.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "REUMATOLOGÍA",
+    "subtema": "OSTEOPOROSIS",
+    "difficulty": "media",
+    "case": "Femenina de 65 años en protocolo de tamizaje. La densitometría ósea (DEXA) reporta un T-score de -2.7 en cuello femoral.",
+    "questions": [
+      {
+        "question": "De acuerdo con la OMS y la GPC, ¿cómo se clasifica el resultado y cuál es el tratamiento farmacológico de primera elección?",
+        "options": [
+          "Osteoporosis; Bifosfonatos (Alendronato o Risedronato)",
+          "Osteopenia; Calcio y Vitamina D únicamente.",
+          "Normal; Repetir en 5 años.",
+          "Osteoporosis severa; Teriparatida inicial."
+        ],
+        "answerIndex": 0,
+        "explanation": "T-score > -1.0 es normal; entre -1.0 y -2.5 es osteopenia; ≤ -2.5 es osteoporosis. Los bifosfonatos requieren que la paciente permanezca en bipedestación por 30 minutos tras la toma para evitar esofagitis.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "VIH / SIDA (PROFILAXIS)",
+    "difficulty": "media",
+    "case": "Paciente con VIH recién diagnosticado cuenta con un conteo de linfocitos CD4 de 80 células/μL.",
+    "questions": [
+      {
+        "question": "¿Qué microorganismos requieren profilaxis primaria obligatoria en este paciente y con qué fármaco?",
+        "options": [
+          "Pneumocystis jirovecii y Toxoplasma gondii; Trimetoprima/Sulfametoxazol",
+          "Mycobacterium avium; Azitromicina.",
+          "Citomegalovirus; Ganciclovir.",
+          "Candida albicans; Fluconazol."
+        ],
+        "answerIndex": 0,
+        "explanation": "La profilaxis para P. jirovecii inicia con CD4 <200. Si los CD4 son <100 y el paciente es IgG positivo para Toxoplasma, el TMP/SMX a dosis diaria también cubre esta última.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "CARDIOLOGÍA",
+    "subtema": "PERICARDITIS AGUDA",
+    "difficulty": "baja",
+    "case": "Masculino de 30 años con dolor torácico que aumenta con la inspiración profunda y mejora al inclinarse hacia adelante (posición mahometana). El EKG muestra elevación difusa del segmento ST de concavidad superior en casi todas las derivaciones.",
+    "questions": [
+      {
+        "question": "¿Cuál es el hallazgo electrocardiográfico más específico en la fase inicial y cuál es el tratamiento de primera línea para prevenir recurrencias?",
+        "options": [
+          "Depresión del segmento PR; AINES + Colchicina",
+          "Inversión de la onda T; Aspirina únicamente.",
+          "Presencia de ondas Q; Betabloqueadores.",
+          "Alternancia eléctrica; Pericardiocentesis."
+        ],
+        "answerIndex": 0,
+        "explanation": "La pericarditis suele ser viral o idiopática. La colchicina se añade a los AINES para reducir el riesgo de pericarditis recurrente, que es la complicación más frecuente.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEUMOLOGÍA",
+    "subtema": "DERRAME PLEURAL (CRITERIOS DE LIGHT)",
+    "difficulty": "media",
+    "case": "Se realiza toracocentesis a un paciente con insuficiencia cardíaca descompensada. El líquido pleural reporta: Proteínas L.P. / Proteínas séricas = 0.3; DHL L.P. / DHL sérica = 0.4.",
+    "questions": [
+      {
+        "question": "¿Cómo se clasifica el líquido pleural y cuál es la causa más probable?",
+        "options": [
+          "Trasudado; Insuficiencia Cardíaca Congestiva",
+          "Exudado; Neumonía bacteriana.",
+          "Exudado; Tuberculosis.",
+          "Trasudado; Empiema."
+        ],
+        "answerIndex": 0,
+        "explanation": "Se considera Exudado si cumple al menos uno de los criterios de Light: 1. Proteínas L.P. / séricas >0.5 2. DHL L.P. / sérica >0.6 3. DHL L.P. > 2/3 del límite superior normal sérico. Si no cumple ninguno (como en este caso), es un Trasudado.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "HEMATOLOGÍA",
+    "subtema": "ANEMIA MEGALOBLÁSTICA",
+    "difficulty": "media",
+    "case": "Paciente con alcoholismo crónico presenta anemia macrocítica (VCM 115 fL) y neutrófilos hipersegmentados en el frotis. Refiere parestesias en extremidades y pérdida de la sensibilidad vibratoria.",
+    "questions": [
+      {
+        "question": "¿Cuál es la deficiencia vitamínica más probable y qué metabolito se encuentra elevado en suero?",
+        "options": [
+          "Vitamina $B_{12}$ (Cianocobalamina); Ácido metilmalónico",
+          "Vitamina $B_9$ (Ácido fólico); Homocisteína únicamente.",
+          "Vitamina $B_1$ (Tiamina); Lactato.",
+          "Hierro; Ferritina."
+        ],
+        "answerIndex": 0,
+        "explanation": "Tanto la deficiencia de $B_9$ como la de $B_{12}$ elevan la homocisteína, pero solo la deficiencia de $B_{12}$ eleva el ácido metilmalónico y causa síntomas neurológicos (Degeneración Combinada Subaguda).",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "GASTROENTEROLOGÍA",
+    "subtema": "CIRROSIS HEPÁTICA (ESCALAS)",
+    "difficulty": "media",
+    "case": "Se evalúa a un paciente cirrótico con: Albúmina 2.8, Bilirrubina 3.5, INR 2.0, Ascitis moderada y sin encefalopatía.",
+    "questions": [
+      {
+        "question": "¿Qué escala se utiliza para evaluar el pronóstico funcional/quirúrgico y qué escala se usa para priorizar el trasplante hepático?",
+        "options": [
+          "Child-Pugh; MELD (Model for End-Stage Liver Disease)",
+          "Escala de Glasgow; Ranson.",
+          "Escala de Fine; CURB-65.",
+          "Escala de Hinchey; APACHE II."
+        ],
+        "answerIndex": 0,
+        "explanation": "Child-Pugh evalúa 5 parámetros (Bilirrubina, Albúmina, INR, Ascitis, Encefalopatía). MELD utiliza una fórmula matemática basada en Creatinina, Bilirrubina e INR.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "NEFROLOGÍA",
+    "subtema": "LESIÓN RENAL AGUDA (LRA)",
+    "difficulty": "media",
+    "case": "Paciente deshidratado por diarrea profusa. Creatinina de 2.1 mg/dl, FeNa (Excreción fraccionada de sodio) <1% y cilindros hialinos en el sedimento.",
+    "questions": [
+      {
+        "question": "¿Cuál es la clasificación fisiopatológica de esta LRA y cuál es la medida terapéutica inicial?",
+        "options": [
+          "LRA Prerrenal; Reposición de volumen con cristaloides",
+          "Necrosis Tubular Aguda (NTA); Furosemida.",
+          "LRA Posrenal; Sonda Foley.",
+          "Nefritis Intersticial; Esteroides."
+        ],
+        "answerIndex": 0,
+        "explanation": "La LRA prerrenal es una respuesta funcional a la hipoperfusión. Un FeNa <1% indica que el túbulo está intacto y reabsorbe sodio ávidamente para intentar expandir el volumen.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "DERMATOLOGÍA",
+    "subtema": "ERITRODERMIA",
+    "difficulty": "alta",
+    "case": "Paciente con antecedente de psoriasis que tras la suspensión súbita de esteroides sistémicos presenta eritema y descamación en el 95% de la superficie corporal.",
+    "questions": [
+      {
+        "question": "¿Cómo se define esta entidad y cuál es la complicación hidroelectrolítica más peligrosa?",
+        "options": [
+          "Eritrodermia; Hipoproteinemia y trastornos de la termorregulación",
+          "Síndrome de Sweet; Hipernatremia.",
+          "Penfigoide; Hipocalcemia.",
+          "Pitiriasis rosada; Deshidratación únicamente."
+        ],
+        "answerIndex": 0,
+        "explanation": "La eritrodermia (afectación >90% de la SCT) es una urgencia dermatológica. El paciente pierde la barrera cutánea, lo que lleva a pérdida de calor, proteínas y líquidos, además de alto riesgo de sepsis.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "INFECTOLOGÍA",
+    "subtema": "BRUCELOSIS",
+    "difficulty": "media",
+    "case": "Ganadero con fiebre ondulante, diaforesis nocturna con olor a \"paja mojada\" y artralgias.",
+    "questions": [
+      {
+        "question": "¿Cuál es la prueba de tamizaje inicial y cuál es el esquema de tratamiento de primera línea (Esquema A) según la NOM-022?",
+        "options": [
+          "Rosa de Bengala; Tetraciclina + Estreptomicina",
+          "Reacción de Widal; Ciprofloxacino.",
+          "Hemocultivo; Ceftriaxona.",
+          "Prueba de Coombs; Rifampicina sola."
+        ],
+        "answerIndex": 0,
+        "explanation": "Esquema A de la NOM es el estándar, aunque existen Esquemas B (Rifampicina + TMP/SMX) para niños, embarazadas o casos con falla al Esquema A.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA INTERNA INTEGRADORA",
+    "subtema": "URGENCIAS METABÓLICAS (ELECTROLITOS)",
+    "difficulty": "alta",
+    "case": "Paciente con insuficiencia renal crónica que presenta debilidad muscular y cambios en el EKG: ondas T picudas, ensanchamiento del complejo QRS y desaparición de la onda P.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico electrolítico y cuál es el fármaco indicado para estabilizar la membrana del miocito (cardioprotección)?",
+        "options": [
+          "Hiperpotasemia severa; Gluconato de Calcio",
+          "Hipocalcemia; Sulfato de Magnesio.",
+          "Hipernatremia; Solución salina 0.9%.",
+          "Hipopotasemia; Cloruro de potasio."
+        ],
+        "answerIndex": 0,
+        "explanation": "El gluconato de calcio no baja el potasio, pero evita que el corazón entre en arritmia letal (fibrilación ventricular). Posterior a la estabilización, se usan medidas para introducir el potasio a la célula (insulina/glucosa, salbutamol). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA INTERNA INTEGRADORA",
+    "subtema": "SÍNDROME DE LISIS TUMORAL",
+    "difficulty": "alta",
+    "case": "Paciente de 14 años con Leucemia Linfoblástica Aguda que inicia quimioterapia. A las 24 horas presenta oliguria, hiperuricemia, hiperpotasemia, hiperfosfatemis e hipocalcemia.",
+    "questions": [
+      {
+        "question": "¿Cuál es el manejo preventivo de elección y qué fármaco se usa para el control de la hiperuricemia severa establecida?",
+        "options": [
+          "Hidratación agresiva; Rasburicasa",
+          "Diuréticos de asa; Alopurinol únicamente.",
+          "Diálisis inmediata; Bicarbonato de sodio.",
+          "Restricción de líquidos; Quelantes de fósforo."
+        ],
+        "answerIndex": 0,
+        "explanation": "El alopurinol previene la formación de nuevo ácido úrico, pero solo la rasburicasa degrada el ácido úrico ya formado en alantoína, que es mucho más soluble. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA INTERNA INTEGRADORA",
+    "subtema": "VASCULITIS Y NEFROLOGÍA",
+    "difficulty": "media",
+    "case": "Masculino de 60 años con antecedente de asma, presenta ahora púrpura palpable, hematuria y dolor abdominal. La biopsia de piel reporta vasculitis leucocitoclástica con depósitos de IgA.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable en este adulto y qué órgano determina el pronóstico a largo plazo?",
+        "options": [
+          "Púrpura de Henoch-Schönlein; Riñón",
+          "Granulomatosis de Wegener; Pulmón.",
+          "Panarteritis nodosa; Corazón.",
+          "Poliangeítis microscópica; Intestino."
+        ],
+        "answerIndex": 0,
+        "explanation": "Aunque es más común en niños, el Henoch-Schönlein en adultos suele tener un curso más agresivo, siendo la nefropatía por IgA la complicación que marca la morbilidad. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA INTERNA INTEGRADORA",
+    "subtema": "INFECTO LOGÍA Y CARDIOLOGÍA",
+    "difficulty": "media",
+    "case": "Paciente con fiebre de 2 semanas, esplenomegalia y lesiones eritematosas no dolorosas en las palmas (Manchas de Janeway). Antecedente de prótesis valvular hace 6 meses.",
+    "questions": [
+      {
+        "question": "¿Cuál es el agente etiológico más probable según el tiempo de la cirugía y qué criterio de Duke cumple la presencia de vegetaciones en el ecocardiograma?",
+        "options": [
+          "Staphylococcus epidermidis; Criterio Mayor",
+          "Streptococcus viridans; Criterio Menor.",
+          "Coxiella burnetii; Fenómeno vascular.",
+          "Staphylococcus aureus; Criterio inmunológico."
+        ],
+        "answerIndex": 0,
+        "explanation": "En endocarditis protésica temprana (<1 año), los estafilococos coagulasa negativos son los líderes. Los criterios de Duke se dividen en Mayores (hemocultivos positivos y evidencia ecocardiográfica) y Menores (fiebre, fenómenos vasculares, etc.). ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA INTERNA INTEGRADORA",
+    "subtema": "NEUROLOGÍA Y DERMATOLOGÍA",
+    "difficulty": "baja",
+    "case": "Paciente joven con múltiples manchas \"café con leche\" en tronco, pecas axilares (signo de Crowe) y pequeños tumores cutáneos blandos y sésiles.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico y cuál es el tumor del sistema nervioso central más frecuentemente asociado?",
+        "options": [
+          "Neurofibromatosis Tipo 1; Glioma de la vía óptica",
+          "Neurofibromatosis Tipo 2; Neurinoma del acústico bilateral.",
+          "Esclerosis tuberosa; Astrocitoma gigantocelular.",
+          "Síndrome de Sturge-Weber; Hemangioma leptomeníngeo."
+        ],
+        "answerIndex": 0,
+        "explanation": "La NF1 es autosómica dominante. El diagnóstico es clínico. Los nódulos de Lisch (hamartomas en el iris) son otro hallazgo patognomónico. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA INTERNA INTEGRADORA",
+    "subtema": "GASTRO / DERMA (ENFERMEDAD CELÍACA)",
+    "difficulty": "media",
+    "case": "Paciente con diarrea crónica, pérdida de peso y una erupción cutánea pruriginosa con vesículas en codos y rodillas (dermatitis herpetiforme).",
+    "questions": [
+      {
+        "question": "¿Cuál es el anticuerpo más útil para el tamizaje inicial y qué hallazgo se espera en la biopsia de duodeno?",
+        "options": [
+          "Anti-transglutaminasa tisular IgA; Atrofia de vellosidades e hiperplasia de criptas",
+          "Anti-sacaromicetos (ASCA); Granulomas.",
+          "Anticuerpos antinucleares; Infiltrado eosinofílico.",
+          "Anti-LKM1; Necrosis en sacabocado."
+        ],
+        "answerIndex": 0,
+        "explanation": "La enfermedad celíaca es una enteropatía autoinmune activada por el gluten. La dermatitis herpetiforme es la manifestación cutánea clásica y responde a la dieta sin gluten. [Image of small intestine villous atrophy in Celiac Disease] ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "MEDICINA INTERNA INTEGRADORA",
+    "subtema": "INTOXICACIONES (SÍNDROME COLINÉRGICO)",
+    "difficulty": "media",
+    "case": "Paciente agricultor que es traído por miosis, sialorrea, bradicardia, fasciculaciones musculares y dificultad respiratoria tras fumigar su campo.",
+    "questions": [
+      {
+        "question": "¿Cuál es el mecanismo de acción del tóxico y qué fármaco se usa para revertir los síntomas nicotínicos (debilidad muscular)?",
+        "options": [
+          "Inhibición irreversible de la acetilcolinesterasa; Pralidoxima",
+          "Bloqueo de receptores muscarínicos; Atropina.",
+          "Estimulación de la dopamina; Biperideno.",
+          "Bloqueo de canales de sodio; Bicarbonato."
+        ],
+        "answerIndex": 0,
+        "explanation": "Los organofosforados causan una crisis colinérgica. La atropina revierte los síntomas muscarínicos (secreciones, bradicardia), pero solo las oximas (pralidoxima) pueden reactivar la enzima y mejorar la debilidad muscular si se dan antes de que ocurra el \"envejecimiento\" de la unión enzimática.",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PEDIATRÍA",
+    "subtema": "ESCALA DE SILVERMAN -ANDERSON",
+    "difficulty": "media",
+    "case": "Neonato prematuro de 34 semanas presenta aleteo nasal discreto, quejido espiratorio audible con estetoscopio y tiraje intercostal leve. No presenta disociación toraco-abdominal.",
+    "questions": [
+      {
+        "question": "¿Cuál es el puntaje en la escala de Silverman-Anderson y cuál es la interpretación clínica?",
+        "options": [
+          "3 puntos; Dificultad respiratoria leve",
+          "0 puntos; Sin dificultad respiratoria.",
+          "7 puntos; Dificultad respiratoria severa.",
+          "5 puntos; Dificultad moderada."
+        ],
+        "answerIndex": 0,
+        "explanation": "A diferencia del Apgar, en Silverman-Anderson un puntaje MENOR es mejor. Evalúa: Disociación, Tiraje, Retracción xifoidea, Aleteo y Quejido. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PEDIATRÍA",
+    "subtema": "TAMIZ NEONATAL (NOM -007)",
+    "difficulty": "media",
+    "case": "Acude madre con neonato de 4 días de vida a su clínica para realización de tamizaje metabólico.",
+    "questions": [
+      {
+        "question": "¿Cuál es el periodo ideal para la toma de muestra según la GPC y cuál es la patología que se busca detectar con mayor prioridad para prevenir retraso mental?",
+        "options": [
+          "Entre el 3er y 5to día de vida; Hipotiroidismo Congénito",
+          "Al nacer (cordón umbilical); Fibrosis Quística.",
+          "Al mes de vida; Hiperplasia suprarrenal.",
+          "A las 24 horas; Fenilcetonuria."
+        ],
+        "answerIndex": 0,
+        "explanation": "El hipotiroidismo congénito es la causa más frecuente de retraso mental prevenible. El tamiz metabólico básico en México incluye también fenilcetonuria, hiperplasia suprarrenal, fibrosis quística y deficiencia de G6PD. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PEDIATRÍA",
+    "subtema": "PROFILAXIS NEONATAL",
+    "difficulty": "baja",
+    "case": "Como parte de los cuidados de rutina en el recién nacido, se aplican medidas preventivas para evitar complicaciones hemorrágicas y oculares.",
+    "questions": [
+      {
+        "question": "¿Qué fármacos se administran para la profilaxis de la enfermedad hemorrágica del recién nacido y la oftalmía neonatorum por gonococo?",
+        "options": [
+          "Vitamina K (1 mg IM) y Cloranfenicol o Eritromicina oftálmica",
+          "Vitamina D y Nitrato de plata.",
+          "Vitamina B12 y Neomicina.",
+          "Factor VII y Aciclovir."
+        ],
+        "answerIndex": 0,
+        "explanation": "La vitamina K es esencial debido a que los neonatos tienen niveles bajos de factores dependientes de vitamina K (II, VII, IX, X). La profilaxis ocular previene la conjuntivitis química y bacteriana grave. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PEDIATRÍA",
+    "subtema": "CAPUT SUCCEDANEUM VS CEFALOHEMATOMA",
+    "difficulty": "media",
+    "case": "Recién nacido por parto instrumentado presenta una colección de partes blandas en el cuero cabelludo que cruza las líneas de sutura y es de consistencia edematosa.",
+    "questions": [
+      {
+        "question": "¿Cuál es el diagnóstico más probable y cuál es el manejo recomendado?",
+        "options": [
+          "Caput succedaneum; Observación (resuelve en días)",
+          "Cefalohematoma; Aspiración con aguja.",
+          "Hemorragia subgaleal; Transfusión inmediata.",
+          "Fractura de cráneo; Cirugía."
+        ],
+        "answerIndex": 0,
+        "explanation": "El Caput succedaneum es edema del tejido celular subcutáneo y cruza suturas. El Cefalohematoma es una hemorragia subperióstica, por lo que NO cruza suturas y aparece horas después del parto. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PEDIATRÍA",
+    "subtema": "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)",
+    "difficulty": "media",
+    "case": "Neonato pretérmino de 30 semanas presenta soplo continuo en \"maquinaria\" (Gibson) en región infraclavicular izquierda, pulsos saltones y precordio hiperdinámico.",
+    "questions": [
+      {
+        "question": "¿Cuál es el tratamiento farmacológico de primera elección para el cierre de la PCA y qué fármaco se usaría si se deseara mantenerlo abierto?",
+        "options": [
+          "Indometacina o Ibuprofeno; Prostaglandina E1 (Alprostadil)",
+          "Digoxina; Aspirina.",
+          "Furosemida; Dopamina.",
+          "Paracetamol IV; Epinefrina."
+        ],
+        "answerIndex": 0,
+        "explanation": "Los inhibidores de la COX (indometacina/ibuprofeno) cierran el conducto al inhibir las prostaglandinas. En cardiopatías ducto-dependientes, necesitamos mantenerlo abierto con PGE1. ---",
+        "gpcReference": ""
+      }
+    ]
+  },
+  {
+    "specialty": "mi",
+    "tema": "PEDIATRÍA",
+    "subtema": "ENTEROCOLITIS NECROTIZANTE (ECN)",
+    "difficulty": "alta",
+    "case": "Recién nacido pretérmino en su 10° día de vida inicia con distensión abdominal, intolerancia a la vía oral y evacuaciones con sangre fresca. La radiografía muestra pneumatosis intestinal.",
+    "questions": [
+      {
+        "question": "¿A qué estadio de Bell corresponde el hallazgo radiológico de pneumatosis y cuál es la patogenia principal?",
+        "options": [
+          "Estadio II (Definida); Isquemia intestinal y proliferación bacteriana",
+          "Estadio I (Sospecha); Perforación gástrica.",
+          "Estadio III (Avanzada); Atresia duodenal.",
+          "Estadio IV; Invaginación."
+        ],
+        "answerIndex": 0,
+        "explanation": "La pneumatosis intestinal (gas en la pared del intestino) es el signo radiológico patognomónico. El estadio III se caracteriza por neumoperitoneo (perforación) y requiere manejo quirúrgico. ---",
+        "gpcReference": ""
+      }
+    ]
   }
 ];
 
