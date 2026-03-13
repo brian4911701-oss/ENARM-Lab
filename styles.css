@@ -2717,6 +2717,21 @@ body.light-mode .premium-slider {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 24px;
+  align-items: start;
+}
+
+.calc-inputs {
+  min-width: 0; /* prevent grid overflow on small screens */
+}
+
+#view-calculadora .text-input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+#view-calculadora .input-group p {
+  overflow-wrap: anywhere;
 }
 
 .calc-input-group {
