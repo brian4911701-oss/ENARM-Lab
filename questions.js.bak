@@ -1,4 +1,4 @@
-﻿// questions.js – Banco de reactivos para ENARMlab
+// questions.js – Banco de reactivos para ENARMlab
 const QUESTIONS = [
   {
     "specialty": "mi",
@@ -331,7 +331,7 @@ const QUESTIONS = [
     "tema": "Embarazo ectópico (Hemorragias del Primer Trimestre)"
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "case": "Femenino de 20 años que acude a su primer tamizaje de cáncer cervicouterino. La citología cervical (Papanicolaou) reporta Lesión Intraepitelial Escamosa de Bajo Grado (LEIBG).",
     "question": "¿Cuál es la conducta a seguir según la norma oficial?",
     "options": [
@@ -1241,7 +1241,7 @@ const QUESTIONS = [
     "answerIndex": 1,
     "explanation": "Es el cuadro típico del Glomerulonefritis Postestreptocócica (GNPE) tras una infección cutánea (impétigo, por las lesiones mielicéricas). Como es una glomerulonefritis mediada por inmunocomplejos, hay consumo de la vía alterna del complemento (C3 disminuido y C4 normal), además de evidencia serológica de infección previa.",
     "gpcReference": "GPC Diagnóstico y tratamiento de la Glomerulonefritis Aguda en Pediatría.",
-    "tema": "Crecimiento y Desarrollo"
+    "tema": "Sx nefríticos (Nefrología)"
   },
   {
     "specialty": "gyo",
@@ -1484,7 +1484,7 @@ const QUESTIONS = [
     "gpcReference": "GPC Protocolo Nacional Clínico Quirúrgico de la detección, y prevención general de alteraciones nodulares y de las etapas incipientes de tejido mamario."
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "case": "Recién nacido a término (39 semanas de gestación), obtenido por parto vaginal eutócico. Líquido amniótico claro. Al nacimiento, no respira y presenta flacidez marcada. Se coloca bajo fuente de calor radiante, se posiciona la vía aérea, se secan secreciones, y se estimula táctilmente, sin obtener respuesta. La frecuencia cardíaca evaluada por auscultación en la base del cordón umbilical es de 80 latidos por minuto. Presenta cianosis central.",
     "question": "¿Cuál es el paso inmediato más apropiado y de mayor impacto en la reanimación de este paciente según los lineamientos actuales de reanimación neonatal (NRP)?",
@@ -1499,7 +1499,7 @@ const QUESTIONS = [
     "gpcReference": "Programa de Reanimación Neonatal (NRP) 8va Edición / GPC Reanimación Neonatal."
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "RPM (Parto Prematuro y Patología Coriónica)",
     "case": "Neonato primigesto de 5 días de vida, nacido a las 38 semanas de gestación por parto vaginal. Madre con antecedente de ruptura prematura de membranas de 22 horas y fiebre intraparto de 38.5°C. El paciente no recibió profilaxis antibiótica intraparto. Acude al servicio de urgencias porque la madre lo nota 'apagado', rechaza el seno materno, y ha presentado un episodio de hipotermia (35.8°C en casa). A la exploración: letárgico, taquicardia de 170 lpm, polipnea de 65 rpm y llenado capilar de 4 segundos. La biometría hemática reporta leucopenia de 4,000/mm3, neutrófilos inmaduros/totales (índice I/T) de 0.25 y PCR de 45 mg/L.",
     "question": "¿Cuál es el esquema antibiótico empírico de primera elección más apropiado mientras se esperan los resultados de los hemocultivos y cultivos de LCR en este paciente?",
@@ -1514,7 +1514,7 @@ const QUESTIONS = [
     "gpcReference": "GPC Prevención, Diagnóstico y Tratamiento de la Sepsis Neonatal."
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "case": "Recién nacido postérmino de 41.5 semanas de gestación. Parto complicado por distocia de hombros y líquido amniótico teñido de meconio espeso (puré de chícharos). Al nacer se encuentra deprimido, sin tono muscular y con esfuerzo respiratorio ausente, requiriendo reanimación avanzada. A las 2 horas de vida, ingresa a UCIN por insuficiencia respiratoria severa, requiriendo FiO2 del 80% para mantener saturación >90%. La radiografía de tórax muestra hiperinsuflación bilateral severa, infiltrados algodonosos gruesos asimétricos parcheados y aplanamiento de los hemidiafragmas.",
     "question": "¿Cuál de los siguientes mecanismos fisiopatológicos explica PRINCIPALMENTE el patrón radiológico de hiperinsuflación en este paciente?",
@@ -1952,7 +1952,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Crecimiento y Desarrollo",
+    "tema": "Sx nefrótico (Nefrología)",
     "case": "Niño de 5 años con edema generalizado palpebral. Proteinuria >50 mg/kg/día, hipoalbuminemia 2.1 g/dL, hipercolesterolemia 300 mg/dL.",
     "question": "Complicación trombótica más frecuente:",
     "options": [
@@ -2232,7 +2232,7 @@ const QUESTIONS = [
   },
   {
     "specialty": "ped",
-    "tema": "Crecimiento y Desarrollo",
+    "tema": "Sx nefríticos (Nefrología)",
     "difficulty": "alta",
     "case": "Niño de 8 años con antecedente de faringitis hace 3 semanas, presenta edema palpebral, hematuria macroscópica y oliguria. TA 135/85 mmHg. Laboratorio: creatinina ligeramente elevada, C3 disminuido.",
     "question": "Diagnóstico más probable:",
@@ -2724,7 +2724,7 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Cesárea (Patología de Trabajo de Parto)",
     "difficulty": "alta",
     "case": "Recién nacido de 38 semanas, madre con ruptura prolongada de membranas 22 horas y fiebre intraparto. A las 12 horas de vida presenta dificultad respiratoria, letargia y mala perfusión.",
@@ -7160,7 +7160,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Atonía uterina con choque hipovolémico",
     "difficulty": "Alta",
@@ -8531,7 +8531,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Atonía uterina en el puerperio inmediato",
     "difficulty": "Alta",
@@ -10535,7 +10535,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Atonía uterina",
     "difficulty": "Alta",
@@ -13988,7 +13988,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "RETINOPATÍA DEL PREMATURO",
     "difficulty": "media",
@@ -16370,7 +16370,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TENOSINOVITIS DE DE QUERVAIN",
     "difficulty": "baja",
@@ -16547,7 +16547,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Hemorragia Obstétrica",
     "subtema": "DISPLASIA DEL DESARROLLO DE LA CADERA (DDC)",
     "difficulty": "media",
@@ -19022,7 +19022,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Diabetes Gestacional",
     "subtema": "Diabetes gestacional",
     "difficulty": "baja",
@@ -19088,7 +19088,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Diabetes Gestacional",
     "subtema": "Hipoglucemia neonatal en hijos de madre diabética",
     "difficulty": "alta",
@@ -21041,7 +21041,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "RPM (Parto Prematuro y Patología Coriónica)",
     "subtema": "SEPSIS NEONATAL TEMPRANA",
     "difficulty": "media",
@@ -21146,7 +21146,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Trabajo de Parto",
     "subtema": "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (SDR TIPO II)",
     "difficulty": "baja",
@@ -21356,7 +21356,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "ISOINMUNIZACIÓN MATERNO  -FETAL (Rh)",
     "difficulty": "alta",
@@ -22238,7 +22238,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "DEFECTOS DEL TUBO NEURAL",
     "difficulty": "baja",
@@ -22406,7 +22406,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "RPM (Parto Prematuro y Patología Coriónica)",
     "subtema": "SEPSIS NEONATAL TEMPRANA",
     "difficulty": "alta",
@@ -22832,7 +22832,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)",
     "difficulty": "media",
@@ -23090,7 +23090,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "RETINOPATÍA DEL PREMATURO (ROP)",
     "difficulty": "alta",
@@ -23789,7 +23789,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)",
     "difficulty": "media",
@@ -24230,7 +24230,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "VIRUS SINCITIAL RESPIRATORIO (PROFILAXIS EN BRONQUIOLITIS)",
     "difficulty": "alta",
@@ -24437,7 +24437,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Diabetes Gestacional",
     "subtema": "HIPOGLUCEMIA NEONATAL",
     "difficulty": "media",
@@ -24608,7 +24608,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "SÍFILIS CONGÉNITA",
     "difficulty": "alta",
@@ -24761,7 +24761,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "SÍNDROME DE ASPIRACIÓN DE MECONIO (SAM)",
     "difficulty": "alta",
@@ -24794,7 +24794,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Trabajo de Parto",
     "subtema": "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (TTRN)",
     "difficulty": "media",
@@ -24827,7 +24827,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Patología del Embarazo: Estados Hipertensivos",
     "subtema": "ENFERMEDAD DE MEMBRANA HIALINA (SDR TIPO 1)",
     "difficulty": "alta",
@@ -24860,7 +24860,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "ENTEROCOLITIS NECROTIZANTE (ECN)",
     "difficulty": "alta",
@@ -24947,7 +24947,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "PARÁLISIS CEREBRAL INFANTIL (PCI)",
     "difficulty": "alta",
@@ -25589,7 +25589,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "GASTROSQUISIS",
     "difficulty": "media",
@@ -26090,7 +26090,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Cesárea (Patología de Trabajo de Parto)",
     "subtema": "DISPLASIA EN EL DESARROLLO DE LA CADERA (DDC)",
     "difficulty": "media",
@@ -26732,7 +26732,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "DEFECTOS DEL TUBO NEURAL (MIELOMENINGOCELE)",
     "difficulty": "media",
@@ -27218,7 +27218,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)",
     "difficulty": "media",
@@ -27314,7 +27314,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Diabetes Gestacional",
     "subtema": "TRANSPOSICIÓN DE GRANDES VASOS (TGV)",
     "difficulty": "alta",
@@ -27401,7 +27401,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (TTRN)",
     "difficulty": "media",
@@ -27518,7 +27518,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "ENCEFALOPATÍA BILIRRUBÍNICA (KERNICTERUS)",
     "difficulty": "media",
@@ -27539,7 +27539,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "RPM (Parto Prematuro y Patología Coriónica)",
     "subtema": "SEPSIS NEONATAL TEMPRANA",
     "difficulty": "media",
@@ -27560,7 +27560,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "SÍFILIS CONGÉNITA",
     "difficulty": "alta",
@@ -27602,7 +27602,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "REANIMACIÓN NEONATAL (NRP)",
     "difficulty": "media",
@@ -27938,7 +27938,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "SEPSIS NEONATAL TARDÍA (ASOCIADA A CATÉTER)",
     "difficulty": "media",
@@ -27980,7 +27980,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "DIFICULTAD RESPIRATORIA EN EL PREMATURO TARDÍO",
     "difficulty": "media",
@@ -28001,7 +28001,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "DISPLASIA BRONCOPULMONAR (DBP)",
     "difficulty": "alta",
@@ -28127,7 +28127,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HIPERPLASIA SUPRARRENAL CONGÉNITA (HSC)",
     "difficulty": "alta",

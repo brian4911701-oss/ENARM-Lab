@@ -1,4 +1,4 @@
-// app.js – Core logic for ENARMlab
+﻿﻿// app.js – Core logic for ENARMlab
 (() => {
     // ---------------------------------------------------------------------------
     // State Management
@@ -113,10 +113,10 @@
         const toast = document.createElement('div');
         toast.className = `toast toast-${type}`;
 
-        let icon = 'ℹ️';
-        if (type === 'success') icon = '✅';
-        if (type === 'error') icon = '🚨';
-        if (type === 'warning') icon = '⚠️';
+        let icon = 'â„¹ï¸';
+        if (type === 'success') icon = 'âœ…';
+        if (type === 'error') icon = 'ðŸš¨';
+        if (type === 'warning') icon = 'âš ï¸';
 
         toast.innerHTML = `<span style="font-size: 18px;">${icon}</span><span style="flex:1;">${msg}</span>`;
         container.appendChild(toast);
@@ -186,7 +186,7 @@
         }
     };
 
-    const showBanner = (title, msg, icon = '🔔', onClickCallback = null) => {
+    const showBanner = (title, msg, icon = 'ðŸ””', onClickCallback = null) => {
         let banner = $('global-notif-banner');
         if (!banner) {
             banner = document.createElement('div');
@@ -201,7 +201,7 @@
                 <span class="notif-banner-title">${title}</span>
                 <span class="notif-banner-desc">${msg}</span>
             </div>
-            <button class="notif-banner-close" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:16px;">✕</button>
+            <button class="notif-banner-close" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:16px;">âœ•</button>
         `;
 
         banner.style.cursor = onClickCallback ? 'pointer' : 'default';
@@ -950,7 +950,7 @@
         "Sx de Morris (Amenorreas Primarias y Secundarias)",
         "Sx de Prader Willi (Amenorreas Primarias y Secundarias)",
         "Sx de Sheehan (Amenorreas Primarias y Secundarias)",
-        "Sx de Sjögren (Reumatología)",
+        "Sx de SjÃ¶gren (Reumatología)",
         "Sx de Stevens Johnson (Patología Dermatológica)",
         "Sx de Swyer (Amenorreas Primarias y Secundarias)",
         "Sx de Turner (Amenorreas Primarias y Secundarias)",
@@ -3040,7 +3040,7 @@
             "LES",
             "Vasculitis",
             "Granulomatosis",
-            "Sx de Sjögren"
+            "Sx de SjÃ¶gren"
         ],
         "Rickettsiosis (Enfermedades por Zoonosis)": [
             "Rickettsiosis"
@@ -3188,9 +3188,9 @@
             "Sx de Sheehan",
             "síndrome de sheehan"
         ],
-        "Sx de Sjögren (Reumatología)": [
-            "Sx de Sjögren",
-            "síndrome de sjögren"
+        "Sx de SjÃ¶gren (Reumatología)": [
+            "Sx de SjÃ¶gren",
+            "síndrome de sjÃ¶gren"
         ],
         "Sx de Stevens Johnson (Patología Dermatológica)": [
             "Sx de Stevens Johnson",
@@ -3568,7 +3568,7 @@
                 tag.className = "topic-tag";
                 tag.innerHTML = `
                     <span>${topic}</span>
-                    <span class="remove-tag">✕</span>
+                    <span class="remove-tag">âœ•</span>
                 `;
                 tag.querySelector(".remove-tag").onclick = () => {
                     State.selectedTopics.splice(index, 1);
@@ -3585,8 +3585,11 @@
                 return;
             }
 
-            // Solo usar temario oficial para evitar duplicados y confusion
-            const combinedTopics = [...new Set([...OFFICIAL_TEMARIO])].sort();
+            // Combinar temario oficial + temas reales del banco de preguntas
+            const realTemas = typeof QUESTIONS !== 'undefined'
+                ? [...new Set(QUESTIONS.map(q => q.tema).filter(Boolean))]
+                : [];
+            const combinedTopics = [...new Set([...OFFICIAL_TEMARIO, ...realTemas])].sort();
 
             const removeAccents = (str) => {
                 return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -3597,7 +3600,7 @@
             const filtered = combinedTopics.filter(t => {
                 const normalizedTopic = removeAccents(t.toLowerCase());
                 return normalizedTopic.includes(searchVal) && !State.selectedTopics.includes(t);
-            }).slice(0, 10);
+            }).slice(0, 12);
 
             if (filtered.length === 0) {
                 suggestionsCont.classList.remove("active");
@@ -3607,10 +3610,18 @@
             suggestionsCont.innerHTML = "";
             activeIndex = -1;
 
+            // Contar preguntas por tema para mostrar badge
+            const temaCounts = {};
+            if (typeof QUESTIONS !== 'undefined') {
+                QUESTIONS.forEach(q => { if (q.tema) temaCounts[q.tema] = (temaCounts[q.tema] || 0) + 1; });
+            }
+
             filtered.forEach((topic, idx) => {
                 const item = document.createElement("div");
                 item.className = "suggestion-item";
-                item.textContent = topic;
+                item.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:8px;";
+                const count = temaCounts[topic] || 0;
+                item.innerHTML = `<span>${topic}</span>${count > 0 ? `<span style="font-size:10px;color:var(--accent-green);font-weight:700;background:rgba(5,192,127,0.12);padding:1px 6px;border-radius:10px;flex-shrink:0;">${count}</span>` : ''}`;
                 item.dataset.index = idx;
                 item.onclick = () => {
                     addTopic(topic);
@@ -4027,7 +4038,7 @@
 
                 const btnFlag = document.createElement("button");
                 btnFlag.className = `btn-flag ${ans.flagged ? 'active' : ''}`;
-                btnFlag.innerHTML = "⚑ Marcar";
+                btnFlag.innerHTML = "âš‘ Marcar";
                 btnFlag.addEventListener("click", () => {
                     State.answers[qIndex].flagged = !State.answers[qIndex].flagged;
                     renderExamQuestion();
@@ -4076,7 +4087,7 @@
                     fb.innerHTML = `
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                             <h3 style="margin: 0;">${ans.isCorrect ? "¡Respuesta Correcta!" : "Respuesta Incorrecta"}</h3>
-                            <button class="btn-ghost" id="${reportBtnId}" style="font-size: 12px; padding: 4px 8px; border-radius: 6px; color: var(--accent-red); border-color: rgba(239, 68, 68, 0.2);">🚩 Reportar Error</button>
+                            <button class="btn-ghost" id="${reportBtnId}" style="font-size: 12px; padding: 4px 8px; border-radius: 6px; color: var(--accent-red); border-color: rgba(239, 68, 68, 0.2);">ðŸš© Reportar Error</button>
                         </div>
                         <p>${q.explanation || ""}</p>
                         <div class="feedback-gpc">${q.gpcReference || ""}</div>
@@ -4103,11 +4114,11 @@
         const bn = $("btn-next");
         if (bn) {
             if (lastIdxOfCase >= total - 1) {
-                bn.textContent = "✔ Terminar";
+                bn.textContent = "âœ” Terminar";
                 bn.classList.add("btn-danger");
                 bn.classList.remove("primary");
             } else {
-                bn.textContent = "Siguiente →";
+                bn.textContent = "Siguiente â†’";
                 bn.classList.remove("btn-danger");
                 bn.classList.add("primary");
             }
@@ -4278,19 +4289,65 @@
         const cont = $("temario-list");
         if (!cont) return;
 
-        const normalizedFilter = filter.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const removeAccentsT = str => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const normalizedFilter = removeAccentsT(filter);
+
+        // Contar preguntas por tema (usa el campo tema corregido)
+        const temaCountsT = {};
+        if (typeof QUESTIONS !== 'undefined') {
+            QUESTIONS.forEach(q => { if (q.tema) temaCountsT[q.tema] = (temaCountsT[q.tema] || 0) + 1; });
+        }
+
+        // Filtrar temario oficial
         const filtered = OFFICIAL_TEMARIO.filter(t => {
-            const normalizedTopic = t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            return normalizedTopic.includes(normalizedFilter);
+            return !normalizedFilter || removeAccentsT(t).includes(normalizedFilter);
         });
 
-        cont.innerHTML = filtered.map(tema => `
-            <div class="list-item" style="padding: 15px; background: rgba(255,255,255,0.02); border: 1px solid var(--border);">
-                <div class="list-item-content">
-                    <h3 style="font-size: 14px; margin-bottom: 0;">${tema}</h3>
+        // También buscar en temas reales del banco si hay filtro
+        let extraTopics = [];
+        if (normalizedFilter && typeof QUESTIONS !== 'undefined') {
+            const allRealTemas = [...new Set(QUESTIONS.map(q => q.tema).filter(Boolean))];
+            extraTopics = allRealTemas.filter(t =>
+                removeAccentsT(t).includes(normalizedFilter) && !filtered.includes(t)
+            ).slice(0, 10);
+        }
+
+        if (filtered.length === 0 && extraTopics.length === 0) {
+            cont.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-muted);grid-column:1/-1;">
+                <div style="font-size:40px;margin-bottom:12px;">&#128269;</div>
+                <p>No se encontraron temas para "<strong>${filter}</strong>".</p>
+                <p style="font-size:12px;margin-top:8px;">Intenta con: diabetes, preeclampsia, apendicitis...</p>
+            </div>`;
+            return;
+        }
+
+        const renderTemarioCard = (tema, isExtra) => {
+            const count = temaCountsT[tema] || 0;
+            const countBadge = count > 0
+                ? `<span style="font-size:11px;color:var(--accent-green);font-weight:700;background:rgba(5,192,127,0.1);padding:2px 8px;border-radius:20px;margin-left:6px;">${count} preg.</span>`
+                : '';
+            const extraBadge = isExtra
+                ? `<span style="font-size:10px;color:var(--accent-blue);font-weight:600;background:rgba(59,130,246,0.1);padding:1px 6px;border-radius:12px;margin-left:6px;">banco</span>`
+                : '';
+            const safeT = tema.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+            return `<div class="list-item" style="padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid var(--border);cursor:pointer;transition:border-color 0.2s,background 0.2s;"
+                onclick="document.getElementById('nav-new-exam').click();setTimeout(()=>{const i=document.getElementById('setup-topic-filter');if(i){i.value='${safeT}';i.dispatchEvent(new Event('input'));}},300);"
+                onmouseover="this.style.borderColor='var(--accent-green)';this.style.background='rgba(5,192,127,0.03)';"
+                onmouseout="this.style.borderColor='var(--border)';this.style.background='rgba(255,255,255,0.02)';">
+                <div class="list-item-content" style="width:100%;">
+                    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;">
+                        <h3 style="font-size:13px;margin-bottom:0;line-height:1.3;">${tema}</h3>
+                        ${countBadge}${extraBadge}
+                    </div>
+                    ${count > 0 ? '<p style="font-size:11px;color:var(--text-muted);margin-top:4px;">Toca para agregar al simulacro &#8594;</p>' : ''}
                 </div>
-            </div>
-        `).join("");
+            </div>`;
+        };
+
+        cont.innerHTML = [
+            ...filtered.map(t => renderTemarioCard(t, false)),
+            ...extraTopics.map(t => renderTemarioCard(t, true))
+        ].join("");
     };
 
     window.filterOfficialTemario = () => {
@@ -4502,7 +4559,7 @@
         if (allTemas.length === 0) {
             failList.innerHTML = `
                 <div style="text-align: center; padding: 40px 20px; color: var(--text-muted);">
-                    <div style="font-size: 40px; margin-bottom: 15px; opacity: 0.5;">✨</div>
+                    <div style="font-size: 40px; margin-bottom: 15px; opacity: 0.5;">âœ¨</div>
                     <h3 style="color: var(--text-secondary); margin-bottom: 10px;">¡Aún no hay puntos de falla!</h3>
                     <p style="font-size: 13px;">Realiza simulacros y la IA comenzará a analizar tus áreas de oportunidad aquí.</p>
                 </div>
@@ -5261,7 +5318,7 @@
         initReportLogic();
         initPomodoro();
 
-        // ── PWA Install Logic ──
+        // â”€â”€ PWA Install Logic â”€â”€
         const pwaBanner = $("mobile-pwa-banner");
         const pwaModal = $("pwa-modal");
         if (pwaBanner && pwaModal) {
@@ -5710,8 +5767,8 @@
                                             ${badgeSpec ? `<div style="margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:flex;">${badgeSpec}</div>` : ''}
                                         </div>
                                         <div class="lb-actions" style="display:flex; align-items:center; gap:6px;">
-                                           <div class="lb-flame" style="font-size:10px;">🔥 ${data.flame || 0}</div>
-                                           ${!isMe ? `<button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 4px 8px; font-size: 10px; border-radius: 6px; background: var(--accent-orange); border:none; white-space:nowrap;">⚔️ Retar</button>` : ''}
+                                           <div class="lb-flame" style="font-size:10px;">ðŸ”¥ ${data.flame || 0}</div>
+                                           ${!isMe ? `<button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 4px 8px; font-size: 10px; border-radius: 6px; background: var(--accent-orange); border:none; white-space:nowrap;">âš”ï¸ Retar</button>` : ''}
                                         </div>
                                      </div>
                                      `;
@@ -5734,7 +5791,7 @@
                                                     <div style="font-size: 11px; color: var(--text-muted);">Promedio: ${data.score || 0}%</div>
                                                 </div>
                                             </div>
-                                            <button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="width:100%; padding: 7px; font-size: 12px; border-radius: 8px; background: var(--accent-orange); text-align:center;">⚔️ Retar</button>
+                                            <button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="width:100%; padding: 7px; font-size: 12px; border-radius: 8px; background: var(--accent-orange); text-align:center;">âš”ï¸ Retar</button>
                                         </div>`;
                                     }
                                     rank++;
@@ -5746,7 +5803,7 @@
                                 window._pendingChallengeUid = uid;
                                 // Navigate to setup so the user can configure the exam first
                                 if (typeof showView === "function") showView("view-setup");
-                                showNotification("🎯 ¡Amigo pre-seleccionado! Configura tu examen y luego pulsa 'Retar a un Amigo ⚔️'.", "info");
+                                showNotification("ðŸŽ¯ ¡Amigo pre-seleccionado! Configura tu examen y luego pulsa 'Retar a un Amigo âš”ï¸'.", "info");
                             };
 
                             const lbList = document.querySelector(".leaderboard-list");
@@ -5915,7 +5972,7 @@
                             </div>
                             <div style="display:flex; gap:8px;">
                                 <button class="btn-primary btn-accept-friend" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--accent-green); border-radius: 6px;">Aceptar</button>
-                                <button class="btn-primary btn-reject-friend" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); border-radius: 6px;">✕</button>
+                                <button class="btn-primary btn-reject-friend" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); border-radius: 6px;">âœ•</button>
                             </div>
                         </div>`;
                     });
@@ -5925,13 +5982,13 @@
                         html += `
                         <div style="background:rgba(243,122,32,0.08); padding:14px; border-radius:14px; border: 1px solid rgba(243,122,32,0.3); margin-bottom: 8px;">
                             <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-                                <span style="font-size:24px;">⚔️</span>
+                                <span style="font-size:24px;">âš”ï¸</span>
                                 <div>
                                     <div style="font-weight:bold; font-size:14px; color: var(--accent-orange);">Reto de ${data.challengerName}</div>
                                     <div style="font-size:11px; color: var(--text-muted);">${data.specialty} &bull; ${data.numQuestions} preguntas</div>
                                 </div>
                             </div>
-                            <button class="btn-primary btn-play-chal" data-id="${data.id}" style="width:100%; padding:10px; font-size:13px; background:var(--accent-orange); border-radius: 10px; font-weight:bold;">⚔️ ¡Aceptar y Jugar Ahora!</button>
+                            <button class="btn-primary btn-play-chal" data-id="${data.id}" style="width:100%; padding:10px; font-size:13px; background:var(--accent-orange); border-radius: 10px; font-weight:bold;">âš”ï¸ ¡Aceptar y Jugar Ahora!</button>
                         </div>`;
                     });
 
@@ -6269,24 +6326,24 @@
 
                     if (!isFinished) {
                         if (myEntry && myEntry.status === "pending") {
-                            statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(243,122,32,0.15); color:var(--accent-orange); border:1px solid rgba(243,122,32,0.3); font-weight:bold;">⏳ Tu turno</span>`;
+                            statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(243,122,32,0.15); color:var(--accent-orange); border:1px solid rgba(243,122,32,0.3); font-weight:bold;">â³ Tu turno</span>`;
                             actionBtn = `
                                 <div style="display:flex; gap:8px; margin-top:10px;">
-                                    <button class="btn-primary" style="flex:1; border-radius:8px; background:var(--accent-orange); font-size:13px; padding:10px;" onclick="event.stopPropagation(); window.acceptChallenge('${ch.id}')">⚔️ ¡Jugar Reto!</button>
-                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">📊</button>
+                                    <button class="btn-primary" style="flex:1; border-radius:8px; background:var(--accent-orange); font-size:13px; padding:10px;" onclick="event.stopPropagation(); window.acceptChallenge('${ch.id}')">âš”ï¸ ¡Jugar Reto!</button>
+                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">ðŸ“Š</button>
                                 </div>`;
                         } else {
-                            statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(59,130,246,0.15); color:var(--accent-blue); border:1px solid rgba(59,130,246,0.3); font-weight:bold;">✅ Ya jugaste</span>`;
+                            statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(59,130,246,0.15); color:var(--accent-blue); border:1px solid rgba(59,130,246,0.3); font-weight:bold;">âœ… Ya jugaste</span>`;
                             actionBtn = `
                                 <div style="display:flex; gap:8px; margin-top:10px;">
                                     <div style="flex:1; font-size:12px; color:var(--text-muted); padding:10px; background:rgba(255,255,255,0.05); border-radius:8px; text-align:center;">Esperando a los demás...</div>
-                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">📊</button>
+                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">ðŸ“Š</button>
                                 </div>`;
                         }
                     } else {
-                        statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(16,185,129,0.15); color:var(--accent-green); border:1px solid rgba(16,185,129,0.3); font-weight:bold;">🏁 Finalizado</span>`;
+                        statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(16,185,129,0.15); color:var(--accent-green); border:1px solid rgba(16,185,129,0.3); font-weight:bold;">ðŸ Finalizado</span>`;
                         actionBtn = `
-                            <button class="btn-primary" style="width:100%; border-radius:8px; font-size:13px; padding:10px; margin-top:10px; background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.4); color:#60a5fa;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')">📊 Ver Ranking Final</button>`;
+                            <button class="btn-primary" style="width:100%; border-radius:8px; font-size:13px; padding:10px; margin-top:10px; background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.4); color:#60a5fa;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')">ðŸ“Š Ver Ranking Final</button>`;
                     }
 
                     return `
@@ -6310,21 +6367,21 @@
                 let pastHtml = displayPast.map(ch => renderCard(ch)).join("");
 
                 if (activeOnes.length > 3) {
-                    activeHtml += `<button class="btn-ghost" style="width:100%; font-size:12px; margin-top:5px; color:var(--accent-orange);" onclick="window.toggleAllChallenges('active')">${showAllActive ? 'Ver menos ↑' : 'Ver todos (' + activeOnes.length + ') ↓'}</button>`;
+                    activeHtml += `<button class="btn-ghost" style="width:100%; font-size:12px; margin-top:5px; color:var(--accent-orange);" onclick="window.toggleAllChallenges('active')">${showAllActive ? 'Ver menos â†‘' : 'Ver todos (' + activeOnes.length + ') â†“'}</button>`;
                 }
                 if (pastOnes.length > 2) {
-                    pastHtml += `<button class="btn-ghost" style="width:100%; font-size:12px; margin-top:5px; color:var(--text-muted);" onclick="window.toggleAllChallenges('past')">${showAllPast ? 'Ver menos ↑' : 'Ver historial (' + pastOnes.length + ') ↓'}</button>`;
+                    pastHtml += `<button class="btn-ghost" style="width:100%; font-size:12px; margin-top:5px; color:var(--text-muted);" onclick="window.toggleAllChallenges('past')">${showAllPast ? 'Ver menos â†‘' : 'Ver historial (' + pastOnes.length + ') â†“'}</button>`;
                 }
 
                 let finalHtml = `
                     <div style="text-align: left; margin-bottom: 15px;">
-                        <h3 style="font-size: 14px; color: var(--text-primary); margin-bottom: 10px;">🔥 Retos Activos</h3>
+                        <h3 style="font-size: 14px; color: var(--text-primary); margin-bottom: 10px;">ðŸ”¥ Retos Activos</h3>
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                             ${activeHtml || '<p style="font-size: 12px; color: var(--text-muted); padding: 10px; text-align: center;">No hay retos activos.</p>'}
                         </div>
                     </div>
                     <div style="text-align: left; margin-top: 25px;">
-                        <h3 style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">📅 Retos Pasados</h3>
+                        <h3 style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">ðŸ“… Retos Pasados</h3>
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                             ${pastHtml || '<p style="font-size: 12px; color: var(--text-muted); padding: 10px; text-align: center;">No hay retos terminados.</p>'}
                         </div>
@@ -6343,7 +6400,7 @@
                 const list = $("ranking-list-details");
                 if (!modal || !list) return;
 
-                title.textContent = `📊 Ranking: ${ch.specialty}`;
+                title.textContent = `ðŸ“Š Ranking: ${ch.specialty}`;
                 modal.style.display = "flex";
 
                 const pts = Object.values(ch.participants || {}).sort((a, b) => (b.score || 0) - (a.score || 0));
@@ -6505,7 +6562,7 @@
                 showView("view-exam");
                 if ($("timer-display")) $("timer-display").style.display = "none";
 
-                showNotification("¡Reto iniciado! Buena suerte. ⚔️", "info");
+                showNotification("¡Reto iniciado! Buena suerte. âš”ï¸", "info");
             };
 
             // Exponer internamente para que acceptChallenge pueda llamarlo
