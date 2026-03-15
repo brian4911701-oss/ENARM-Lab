@@ -44,6 +44,7 @@
         myFriends: [],
         activeChallenges: [],
         quarantineKeys: new Set(),
+        deletedCaseKeys: new Set(),
         reclassSelectedKey: null,
         reclassCases: [],
         reclassMap: {},
@@ -247,12 +248,74 @@
         State.quarantineKeys = keys;
     };
 
+    const DELETED_CASES_KEY = "enarm_deleted_cases";
+
+    const loadDeletedCases = () => {
+        try {
+            const raw = localStorage.getItem(DELETED_CASES_KEY);
+            const arr = raw ? JSON.parse(raw) : [];
+            State.deletedCaseKeys = new Set(Array.isArray(arr) ? arr : []);
+        } catch (e) {
+            State.deletedCaseKeys = new Set();
+        }
+    };
+
+    const saveDeletedCases = () => {
+        const arr = Array.from(State.deletedCaseKeys || []);
+        localStorage.setItem(DELETED_CASES_KEY, JSON.stringify(arr));
+    };
+
+    const removeCaseFromCurrentExam = (caseKey) => {
+        if (!caseKey || !Array.isArray(State.questionSet) || State.questionSet.length === 0) return false;
+        const indicesToRemove = [];
+        State.questionSet.forEach((q, idx) => {
+            if (getCaseKey(q) === caseKey) indicesToRemove.push(idx);
+        });
+        if (indicesToRemove.length === 0) return false;
+
+        const originalSet = State.questionSet;
+        State.questionSet = originalSet.filter(q => getCaseKey(q) !== caseKey);
+        if (Array.isArray(State.answers)) {
+            State.answers = State.answers.filter((_, idx) => getCaseKey(originalSet[idx]) !== caseKey);
+        }
+
+        const removedBefore = indicesToRemove.filter(i => i < State.currentIndex).length;
+        State.currentIndex = Math.max(0, State.currentIndex - removedBefore);
+        if (State.currentIndex >= State.questionSet.length) {
+            State.currentIndex = Math.max(0, State.questionSet.length - 1);
+        }
+        return true;
+    };
+
+    const deleteCaseKey = (caseKey, options = {}) => {
+        if (!caseKey) return false;
+        const { removeFromCurrentExam = false } = options;
+        if (!State.deletedCaseKeys) State.deletedCaseKeys = new Set();
+        if (!State.deletedCaseKeys.has(caseKey)) {
+            State.deletedCaseKeys.add(caseKey);
+            saveDeletedCases();
+        }
+        const map = loadCaseReclassMap();
+        if (map && map[caseKey]) {
+            delete map[caseKey];
+            saveCaseReclassMap(map);
+        }
+        State.reclassMap = applyCaseReclassifications();
+        if (State.questionSet) applyCaseReclassificationsToSet(State.questionSet, State.reclassMap);
+        if (removeFromCurrentExam) removeCaseFromCurrentExam(caseKey);
+        return true;
+    };
+
     const filterQuarantinedPool = (pool) => {
-        if (!State.quarantineKeys || State.quarantineKeys.size === 0) return pool;
+        const hasQuarantine = State.quarantineKeys && State.quarantineKeys.size > 0;
+        const hasDeleted = State.deletedCaseKeys && State.deletedCaseKeys.size > 0;
+        if (!hasQuarantine && !hasDeleted) return pool;
         return pool.filter(q => {
             const key = getCaseKey(q);
             if (!key) return true;
-            return !State.quarantineKeys.has(key);
+            if (hasQuarantine && State.quarantineKeys.has(key)) return false;
+            if (hasDeleted && State.deletedCaseKeys.has(key)) return false;
+            return true;
         });
     };
 
@@ -391,6 +454,7 @@
         const specSelect = $("reclass-spec-select");
         const removeBtn = $("btn-reclass-remove");
         const applyBtn = $("btn-reclass-apply");
+        const deleteBtn = $("btn-reclass-delete");
 
         if (!selectedEl || !metaEl || !temaSelect || !specSelect) return;
 
@@ -400,6 +464,7 @@
             metaEl.textContent = "";
             if (removeBtn) removeBtn.disabled = true;
             if (applyBtn) applyBtn.disabled = true;
+            if (deleteBtn) deleteBtn.disabled = true;
             return;
         }
 
@@ -409,6 +474,7 @@
         const mapEntry = State.reclassMap ? State.reclassMap[key] : null;
         const currentSpec = State.reclassSpecialtyByKey[key] || "";
         const originalSpec = State.reclassOriginalSpecialtyByKey[key] || "";
+        const isDeleted = State.deletedCaseKeys && State.deletedCaseKeys.has(key);
 
         selectedEl.textContent = entry ? getCaseSnippet(entry.caseText, 600) : "Caso no encontrado.";
 
@@ -418,12 +484,14 @@
         meta += ` | Especialidad actual: ${getSpecialtyLabel(currentSpec)}`;
         if (originalSpec && originalSpec !== currentSpec) meta += ` | Especialidad original: ${getSpecialtyLabel(originalSpec)}`;
         if (mapEntry && mapEntry.specialty) meta += ` | Especialidad reclasificada: ${getSpecialtyLabel(mapEntry.specialty)}`;
+        if (isDeleted) meta += " | Eliminado del banco";
         metaEl.textContent = meta;
 
         if (temaSelect) temaSelect.value = mapEntry?.tema || "";
         if (specSelect) specSelect.value = mapEntry?.specialty || currentSpec || "";
-        if (removeBtn) removeBtn.disabled = !mapEntry;
-        if (applyBtn) applyBtn.disabled = false;
+        if (removeBtn) removeBtn.disabled = isDeleted || !mapEntry;
+        if (applyBtn) applyBtn.disabled = isDeleted ? true : false;
+        if (deleteBtn) deleteBtn.disabled = !!isDeleted;
     };
 
     const renderReclassifyList = () => {
@@ -439,6 +507,7 @@
 
         let cases = State.reclassCases || [];
         const filtered = cases.filter(c => {
+            if (State.deletedCaseKeys && State.deletedCaseKeys.has(c.key)) return false;
             const currentTema = State.reclassTemaByKey[c.key] || "";
             if (temaVal === "__reclass__" && !map[c.key]) return false;
             if (temaVal !== "__all__" && temaVal !== "__reclass__" && currentTema !== temaVal) return false;
@@ -506,6 +575,7 @@
         const clearBtn = $("btn-reclass-clear-filter");
         const applyBtn = $("btn-reclass-apply");
         const removeBtn = $("btn-reclass-remove");
+        const deleteBtn = $("btn-reclass-delete");
         const temaSelect = $("reclass-tema-select");
         const specSelect = $("reclass-spec-select");
 
@@ -571,6 +641,27 @@
                 renderReclassifyList();
                 updateReclassSelection();
                 showNotification("Reclasificacion eliminada.", "success");
+            });
+        }
+
+        if (deleteBtn) {
+            deleteBtn.addEventListener("click", () => {
+                if (!State.reclassSelectedKey) {
+                    showNotification("Selecciona un caso primero.", "warning");
+                    return;
+                }
+                const key = State.reclassSelectedKey;
+                if (State.deletedCaseKeys && State.deletedCaseKeys.has(key)) {
+                    showNotification("Este caso ya esta eliminado.", "info");
+                    return;
+                }
+                if (!confirm("¿Eliminar este caso del banco de preguntas? Esta accion no se puede deshacer.")) return;
+                deleteCaseKey(key);
+                State.reclassSelectedKey = null;
+                refreshReclassData();
+                renderReclassifyList();
+                updateReclassSelection();
+                showNotification("Caso eliminado del banco.", "success");
             });
         }
     };
@@ -4485,6 +4576,7 @@
         const badge = $("case-area-badge"); if (badge) badge.textContent = (State.globalStats.bySpecialty[qFirst.specialty]?.name || qFirst.specialty).toUpperCase();
         const caseText = $("case-text"); if (caseText) caseText.textContent = qFirst.case;
         const reclassBtn = $("btn-reclass-case");
+        const deleteBtn = $("btn-delete-case");
         if (reclassBtn) {
             if (canReclassifyUser()) {
                 reclassBtn.style.display = "inline-flex";
@@ -4502,6 +4594,29 @@
             } else {
                 reclassBtn.style.display = "none";
                 reclassBtn.onclick = null;
+            }
+        }
+        if (deleteBtn) {
+            if (canReclassifyUser()) {
+                deleteBtn.style.display = "inline-flex";
+                deleteBtn.onclick = () => {
+                    const key = getCaseKey(qFirst);
+                    if (!key) {
+                        showNotification("No se pudo identificar el caso para eliminar.", "warning");
+                        return;
+                    }
+                    if (State.deletedCaseKeys && State.deletedCaseKeys.has(key)) {
+                        showNotification("Este caso ya esta eliminado.", "info");
+                        return;
+                    }
+                    if (!confirm("¿Eliminar este caso del banco de preguntas? Esta accion no se puede deshacer.")) return;
+                    deleteCaseKey(key, { removeFromCurrentExam: true });
+                    renderExamQuestion();
+                    showNotification("Caso eliminado del banco.", "success");
+                };
+            } else {
+                deleteBtn.style.display = "none";
+                deleteBtn.onclick = null;
             }
         }
 
@@ -5928,6 +6043,7 @@
     // ---------------------------------------------------------------------------
     document.addEventListener("DOMContentLoaded", () => {
         loadGlobalStats();
+        loadDeletedCases();
         State.reclassMap = applyCaseReclassifications();
         initReclassifyLogic();
         syncReclassAccessUI();

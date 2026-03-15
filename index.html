@@ -656,8 +656,12 @@
                         <div class="case-card">
                             <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
                                 <span class="case-badge" id="case-area-badge">Medicina Interna</span>
-                                <button class="btn-ghost" id="btn-reclass-case"
-                                    style="display: none; font-size: 12px; padding: 4px 8px;">Reclasificar caso</button>
+                                <div style="display: flex; gap: 8px; align-items: center;">
+                                    <button class="btn-ghost" id="btn-reclass-case"
+                                        style="display: none; font-size: 12px; padding: 4px 8px;">Reclasificar caso</button>
+                                    <button class="btn-danger" id="btn-delete-case"
+                                        style="display: none; font-size: 12px; padding: 4px 8px;">Eliminar caso</button>
+                                </div>
                             </div>
                             <p id="case-text" class="case-text">Cargando caso clínico...</p>
                         </div>
@@ -1047,6 +1051,7 @@
                                     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                                         <button class="btn-primary" id="btn-reclass-apply" type="button">Aplicar reclasificacion</button>
                                         <button class="btn-ghost" id="btn-reclass-remove" type="button">Quitar reclasificacion</button>
+                                        <button class="btn-danger" id="btn-reclass-delete" type="button">Eliminar caso</button>
                                     </div>
                                 </div>
                             </div>
