@@ -362,7 +362,7 @@
                         </div>
                         <div
                             style="display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: flex-end;">
-                            <button class="action-btn" id="btn-quick-start">
+                                                                                    <button class="action-btn" id="btn-quick-start">
                                 <div class="action-btn-left">
                                     <span class="action-btn-icon">🚀</span>
                                     <span>Simulacro Aleatorio</span>
@@ -506,10 +506,10 @@
                                     <span class="btn-icon">📖</span>
                                     <span>CASOS CLÍNICOS</span>
                                 </button>
-                                <button class="mode-toggle-btn" data-exam-mode="rapidas">
-                                    <span class="btn-icon">⚡</span>
-                                    <span>PREGUNTAS RÁPIDAS <span style="font-size: 8px; opacity: 0.8; background: rgba(255,255,255,0.1); padding: 1px 4px; border-radius: 4px; margin-left: 4px; vertical-align: middle;">BETA</span></span>
-                                </button>
+                                <button class="mode-toggle-btn" data-exam-mode="rapidas" disabled style="opacity: 0.5; cursor: not-allowed;">
+    <span class="btn-icon">⚡</span>
+    <span>PREGUNTAS RAPIDAS <span style="font-size: 8px; opacity: 0.8; background: rgba(255,255,255,0.1); padding: 1px 4px; border-radius: 4px; margin-left: 4px; vertical-align: middle;">PROXIMAMENTE</span></span>
+</button>
                             </div>
                             <p class="section-hint">Formato estándar ENARM con casos clínicos extensos y múltiples
                                 reactivos.</p>
@@ -766,7 +766,7 @@
                             style="padding: 12px 24px;">Escapar al Dashboard</button>
                     </header>
 
-                    <div style="display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start;">
+                    <div class="refuerzos-grid" style="display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start;">
                         <!-- Columna Izquierda: Temas débiles -->
                         <div class="panel" style="padding: 24px;">
                             <div
@@ -780,7 +780,7 @@
                         </div>
 
                         <!-- Columna Derecha: Acciones Rápidas -->
-                        <div class="panel" style="padding: 24px; position: sticky; top: 100px;">
+                        <div class="panel refuerzos-sticky" style="padding: 24px; position: sticky; top: 100px;">
                             <h2 class="panel-title" style="margin-bottom: 20px;"><span
                                     class="title-icon blue-text">⚡</span> Acceso Rápido</h2>
                             <div style="display: flex; flex-direction: column; gap: 15px;">
@@ -1875,3 +1875,9 @@
 </body>
 
 </html>
+
+
+
+
+
+

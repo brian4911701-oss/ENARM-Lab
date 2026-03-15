@@ -3114,6 +3114,25 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
     margin-bottom: 20px;
   }
 
+  #view-refuerzos .dashboard-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  #view-refuerzos .dashboard-header .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #view-refuerzos .refuerzos-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  #view-refuerzos .refuerzos-sticky {
+    position: static !important;
+    top: auto !important;
+  }
+
   .flame-widget {
     align-self: flex-start;
     width: 100%;

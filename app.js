@@ -52,7 +52,9 @@
         reclassOriginalTemaByKey: {},
         reclassSpecialtyByKey: {},
         reclassOriginalSpecialtyByKey: {},
-        reclassInitialized: false
+        reclassInitialized: false,
+        selectedPresetId: null,
+        currentExamIsReal: false
     };
 
     const $ = (id) => document.getElementById(id);
@@ -87,7 +89,8 @@
         if (lower.includes('vih') || lower.includes('sida')) return 'VIH / SIDA';
         if (lower.includes('tuberculosis')) return 'Tuberculosis';
         if (lower.includes('neumonia')) return 'Neumonías';
-        if (lower.includes('lupus') || lower.includes('les')) return 'Lupus Eritematoso Sistémico';
+        const lupusKey = lower.replace(/[^a-z0-9]+/g, ' ').trim();
+        if (lupusKey.includes('lupus') || /\bles\b/.test(lupusKey)) return 'Lupus Eritematoso Sistémico';
         if (lower.includes('artritis reumatoide')) return 'Artritis Reumatoide';
         if (lower.includes('covid') || lower.includes('sars-cov-2')) return 'COVID-19';
         if (lower.includes('endometriosis')) return 'Endometriosis';
@@ -385,6 +388,8 @@
         const locked = $("reclassify-locked");
         if (content) content.style.display = allowed ? "block" : "none";
         if (locked) locked.style.display = allowed ? "none" : "block";
+        const deleteBtn = $("btn-reclass-delete");
+        if (deleteBtn) deleteBtn.style.display = allowed ? "inline-flex" : "none";
     };
 
     const refreshReclassData = () => {
@@ -771,6 +776,148 @@
     };
 
     const shuffleArray = (arr) => arr.slice().sort(() => Math.random() - 0.5);
+
+    const REAL_SIM_CONFIG = {
+        total: 280,
+        timeMin: 450,
+        specs: {
+            ped: 85,
+            mi: 84,
+            cir: 56,
+            gyo: 55
+        },
+        difficulty: {
+            easy: 70,
+            medium: 140,
+            hard: 70
+        }
+    };
+
+    const normalizeDifficultyBucket = (raw) => {
+        if (!raw) return "medium";
+        const base = raw.toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const compact = base.replace(/\s+/g, "");
+        if (compact.includes("media-alta") || compact.includes("media–alta") || compact.includes("mediaalta")) return "hard";
+        if (compact.includes("muyalta") || compact.includes("alta")) return "hard";
+        if (compact.includes("baja") || compact.includes("facil")) return "easy";
+        if (compact.includes("media")) return "medium";
+        return "medium";
+    };
+
+    const calcSpecDifficultyTargets = (count) => {
+        const easy = Math.round(count * 0.25);
+        const medium = Math.round(count * 0.5);
+        const hard = Math.max(0, count - easy - medium);
+        return { easy, medium, hard };
+    };
+
+    const buildRealSimulacroQuestionSet = () => {
+        const allowedSpecs = Object.keys(REAL_SIM_CONFIG.specs);
+        const flat = [];
+        let groupId = 1;
+        let qid = 1;
+
+        if (typeof QUESTIONS === "undefined" || !Array.isArray(QUESTIONS)) {
+            return { questionSet: [], warnings: ["No se encontro banco de preguntas."] };
+        }
+
+        QUESTIONS.forEach(c => {
+            if (!allowedSpecs.includes(c.specialty)) return;
+            const key = getCaseKey(c);
+            if (key) {
+                if (State.quarantineKeys && State.quarantineKeys.has(key)) return;
+                if (State.deletedCaseKeys && State.deletedCaseKeys.has(key)) return;
+            }
+            const subs = (c.questions && Array.isArray(c.questions))
+                ? c.questions
+                : [{ question: c.question, options: c.options, answerIndex: c.answerIndex, explanation: c.explanation }];
+            subs.forEach((sq) => {
+                flat.push({
+                    ...c,
+                    question: sq.question,
+                    options: sq.options,
+                    answerIndex: sq.answerIndex,
+                    explanation: sq.explanation,
+                    caseGroupId: groupId,
+                    subQuestionIndex: 1,
+                    totalSubQuestions: 1,
+                    _qid: qid++,
+                    _difficultyBucket: normalizeDifficultyBucket(c.difficulty)
+                });
+                groupId++;
+            });
+        });
+
+        const bySpec = {
+            ped: [],
+            mi: [],
+            cir: [],
+            gyo: []
+        };
+        flat.forEach(q => {
+            if (bySpec[q.specialty]) bySpec[q.specialty].push(q);
+        });
+
+        const selected = [];
+        const used = new Set();
+        const warnings = [];
+
+        const takeRandom = (arr, n) => {
+            const picks = shuffleArray(arr).slice(0, n);
+            picks.forEach(p => {
+                used.add(p._qid);
+                selected.push(p);
+            });
+            return n - picks.length;
+        };
+
+        const pickForSpec = (specKey, targetCount) => {
+            const pool = bySpec[specKey] || [];
+            const targets = calcSpecDifficultyTargets(targetCount);
+            const easy = pool.filter(q => q._difficultyBucket === "easy");
+            const medium = pool.filter(q => q._difficultyBucket === "medium");
+            const hard = pool.filter(q => q._difficultyBucket === "hard");
+
+            let missingEasy = takeRandom(easy, targets.easy);
+            let missingMed = takeRandom(medium, targets.medium);
+            let missingHard = takeRandom(hard, targets.hard);
+
+            let remaining = missingEasy + missingMed + missingHard;
+            if (remaining > 0) {
+                const leftovers = pool.filter(q => !used.has(q._qid));
+                remaining -= takeRandom(leftovers, remaining);
+            }
+
+            if (missingEasy || missingMed || missingHard || remaining > 0) {
+                warnings.push(`No hubo suficientes preguntas para ${specKey.toUpperCase()} con la distribucion exacta. Se completo con disponibles.`);
+            }
+        };
+
+        Object.entries(REAL_SIM_CONFIG.specs).forEach(([specKey, count]) => {
+            pickForSpec(specKey, count);
+        });
+
+        if (selected.length < REAL_SIM_CONFIG.total) {
+            const remaining = flat.filter(q => !used.has(q._qid));
+            const missing = REAL_SIM_CONFIG.total - selected.length;
+            takeRandom(remaining, missing);
+            if (missing > 0) warnings.push("No se pudo completar el total de 280 preguntas con el banco actual.");
+        } else if (selected.length > REAL_SIM_CONFIG.total) {
+            const trimmed = shuffleArray(selected).slice(0, REAL_SIM_CONFIG.total);
+            selected.length = 0;
+            trimmed.forEach(q => selected.push(q));
+            warnings.push("Se ajusto el total de preguntas a 280.");
+        }
+
+        const finalSet = shuffleArray(selected).map((q, idx) => ({
+            ...q,
+            caseGroupId: idx + 1,
+            subQuestionIndex: 1,
+            totalSubQuestions: 1
+        }));
+
+        return { questionSet: finalSet, warnings };
+    };
 
     const processAndFlattenPool = (rawPool, maxQty) => {
         const shuffledCases = shuffleArray([...rawPool]);
@@ -4251,6 +4398,7 @@
             card.addEventListener("click", () => {
                 $$(".preset-card").forEach(c => c.classList.remove("active"));
                 card.classList.add("active");
+                State.selectedPresetId = card.id || null;
                 const q = card.dataset.qty;
                 const t = card.dataset.time;
                 if (qtySlider) {
@@ -4262,8 +4410,20 @@
                     timeLabel.textContent = `${t} MIN`;
                     if (libBtn) libBtn.classList.remove("active");
                 }
+
+                if (card.id === "preset-real") {
+                    $$(".spec-item").forEach(i => i.classList.add("checked"));
+                    State.selectedSpecialties = $$(".spec-item.checked").map(i => i.dataset.spec);
+                    State.difficulty = "cualquiera";
+                    $$(".diff-btn").forEach(b => b.classList.toggle("active", b.dataset.diff === "cualquiera"));
+                }
             });
         });
+
+        if (!State.selectedPresetId) {
+            const activePreset = document.querySelector(".preset-card.active");
+            State.selectedPresetId = activePreset ? activePreset.id : null;
+        }
 
         $$(".spec-item").forEach(item => {
             item.addEventListener("click", () => {
@@ -4283,6 +4443,7 @@
 
         $$(".mode-toggle-btn").forEach(btn => {
             btn.addEventListener("click", () => {
+                if (btn.disabled) return;
                 $$(".mode-toggle-btn").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
             });
@@ -4325,9 +4486,9 @@
         if (btnStart) {
             btnStart.addEventListener("click", () => {
 
-
+                const isRealSim = State.selectedPresetId === "preset-real";
                 const selectedSpecs = $$(".spec-item.checked").map(i => i.dataset.spec);
-                if (selectedSpecs.length === 0 && State.selectedTopics.length === 0) {
+                if (!isRealSim && selectedSpecs.length === 0 && State.selectedTopics.length === 0) {
                     return showNotification("Selecciona al menos una especialidad o un tema personalizado.");
                 }
 
@@ -4339,6 +4500,36 @@
                 const qty = parseInt(qtySlider.value, 10);
                 const timerVal = parseInt(timeInput ? timeInput.value : 0, 10);
                 const isLibre = libBtn ? libBtn.classList.contains("active") : true;
+
+                if (isRealSim) {
+                    const realSet = buildRealSimulacroQuestionSet();
+                    if (!realSet.questionSet || realSet.questionSet.length === 0) {
+                        return showNotification("No hay suficientes preguntas para generar el simulacro real.", "warning");
+                    }
+
+                    State.questionSet = realSet.questionSet;
+                    State.mode = "simulacro";
+                    State.currentExamIsReal = true;
+                    State.currentExamType = "Simulacro Real";
+
+                    if (realSet.warnings.length > 0) {
+                        showNotification(realSet.warnings[0], "warning");
+                    }
+
+                    State.durationSec = isLibre ? 0 : (timerVal || REAL_SIM_CONFIG.timeMin) * 60;
+                    State.currentIndex = 0;
+                    State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
+                    State.startTime = Date.now();
+                    State.pausedElapsedTime = 0;
+                    State.examActive = true;
+                    isFinishing = false;
+                    renderExamQuestion();
+                    showView("view-exam");
+
+                    if (!isLibre && State.durationSec > 0) startTimer();
+                    else if ($("timer-display")) $("timer-display").style.display = "none";
+                    return;
+                }
 
                 let pool = [];
                 if (selectedSpecs.length > 0) {
@@ -4419,6 +4610,7 @@
                 State.durationSec = isLibre ? 0 : (timerVal || 60) * 60;
                 State.currentIndex = 0;
                 State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
+                State.currentExamIsReal = false;
                 State.currentExamType = isLibre ? "Estudio Libre" : "Examen Cronometrado";
                 State.startTime = Date.now();
                 State.pausedElapsedTime = 0;
@@ -4448,7 +4640,7 @@
         // Dashboard quick action buttons (inside view-refuerzos now, but keep bindings)
         const bindStartBtn = (id, handler) => {
             const el = document.getElementById(id);
-            if (el) el.addEventListener("click", handler);
+            if (el && !el.disabled) el.addEventListener("click", handler);
         };
 
         const handleInteligente = () => {
@@ -4513,6 +4705,7 @@
 
         State.questionSet = processAndFlattenPool(pool, finalQty);
         State.mode = "simulacro";
+        State.currentExamIsReal = false;
         State.durationSec = 0;
         State.currentIndex = 0;
         State.startTime = Date.now();
@@ -4536,6 +4729,7 @@
 
         State.questionSet = processAndFlattenPool(pool, finalQty);
         State.mode = "simulacro";
+        State.currentExamIsReal = false;
         State.durationSec = 0;
         State.currentIndex = 0;
         State.startTime = Date.now();
@@ -5106,8 +5300,22 @@
             });
 
             const total = State.questionSet.length;
-            const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+            let pct = total > 0 ? Math.round((correct / total) * 100) : 0;
             const elapsed = State.startTime ? Math.floor((Date.now() - State.startTime) / 1000) : 0;
+
+            if (State.currentExamIsReal) {
+                let maxPts = 0;
+                let earnedPts = 0;
+                State.questionSet.forEach((q, i) => {
+                    const bucket = normalizeDifficultyBucket(q.difficulty);
+                    const weight = bucket === "hard" ? 3 : (bucket === "medium" ? 2 : 1);
+                    maxPts += weight;
+                    if (State.answers[i].selected !== null && State.answers[i].isCorrect) {
+                        earnedPts += weight;
+                    }
+                });
+                pct = maxPts > 0 ? Math.round((earnedPts / maxPts) * 100) : pct;
+            }
 
             const sp = $("score-pct"); if (sp) sp.textContent = `${pct}%`;
             const mc = $("meta-correct"); if (mc) mc.textContent = correct;
@@ -7293,6 +7501,7 @@
 
                 State.questionSet = trimmedSet;
                 State.mode = "simulacro";
+                State.currentExamIsReal = false;
                 State.durationSec = 0;
                 State.currentIndex = 0;
                 State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
