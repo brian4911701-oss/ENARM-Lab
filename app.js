@@ -54,11 +54,18 @@
         reclassOriginalSpecialtyByKey: {},
         reclassInitialized: false,
         selectedPresetId: null,
-        currentExamIsReal: false
+        currentExamIsReal: false,
+        currentUid: "",
+        entitlement: null,
+        entitlementUnsub: null
     };
 
     const $ = (id) => document.getElementById(id);
     const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+    const ADMIN_UIDS = ["PUT_ADMIN_UID_HERE"];
+    const DEMO_MAX_QTY = 30;
+    const FIXED_CODE_EXPIRY = new Date(2026, 9, 1, 23, 59, 59);
 
     // ---------------------------------------------------------------------------
     // Topic Normalization (Unificación de subtemas y GPCs)
@@ -139,6 +146,114 @@
             toast.classList.add('hiding');
             toast.addEventListener('animationend', () => toast.remove());
         }, 3500);
+    };
+
+    const normalizeTimestamp = (value) => {
+        if (!value) return null;
+        if (value instanceof Date) return value;
+        if (typeof value.toDate === "function") return value.toDate();
+        const parsed = new Date(value);
+        return isNaN(parsed.getTime()) ? null : parsed;
+    };
+
+    const isAdminUser = () => {
+        return !!(State.currentUid && ADMIN_UIDS.includes(State.currentUid));
+    };
+
+    const isPremiumActive = () => {
+        if (isAdminUser()) return true;
+        const ent = State.entitlement;
+        if (!ent || ent.status !== "active") return false;
+        if (!ent.expiresAt) return true;
+        return ent.expiresAt.getTime() > Date.now();
+    };
+
+    const formatDate = (d) => {
+        if (!d) return "Sin fecha";
+        return d.toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "2-digit" });
+    };
+
+    const updatePremiumStatusLabel = () => {
+        const el = $("profile-premium-status");
+        if (!el) return;
+        if (isAdminUser()) {
+            el.value = "Admin";
+            return;
+        }
+        if (!State.entitlement || !isPremiumActive()) {
+            el.value = "Demo";
+            return;
+        }
+        if (!State.entitlement.expiresAt) {
+            el.value = "Premium activo";
+            return;
+        }
+        el.value = `Premium activo hasta ${formatDate(State.entitlement.expiresAt)}`;
+    };
+
+    const syncPremiumUI = () => {
+        updatePremiumStatusLabel();
+        const qtySlider = $("setup-qty-slider");
+        const qtyVal = $("setup-qty-val");
+        if (qtySlider) {
+            const max = isPremiumActive() ? 280 : DEMO_MAX_QTY;
+            qtySlider.max = String(max);
+            if (parseInt(qtySlider.value, 10) > max) {
+                qtySlider.value = String(max);
+                if (qtyVal) qtyVal.textContent = String(max);
+            }
+        }
+        if (!isPremiumActive()) {
+            const activePreset = document.querySelector(".preset-card.active");
+            if (activePreset && activePreset.dataset.premium === "1") {
+                const flash = $("preset-flash");
+                if (flash) {
+                    $$(".preset-card").forEach(c => c.classList.remove("active"));
+                    flash.classList.add("active");
+                    State.selectedPresetId = flash.id || null;
+                    const q = flash.dataset.qty;
+                    const t = flash.dataset.time;
+                    if (qtySlider && q) {
+                        qtySlider.value = q;
+                        if (qtyVal) qtyVal.textContent = q;
+                    }
+                    const timeInput = $("setup-time-minutes");
+                    const timeLabel = $("setup-time-label");
+                    const libBtn = $("time-libre-btn");
+                    if (timeInput && t) {
+                        timeInput.value = t;
+                        if (timeLabel) timeLabel.textContent = `${t} MIN`;
+                        if (libBtn) libBtn.classList.remove("active");
+                    }
+                }
+            }
+        }
+        const btnCreate = $("btn-create-challenge");
+        if (btnCreate) {
+            const enabled = isPremiumActive();
+            btnCreate.disabled = !enabled;
+            btnCreate.style.opacity = enabled ? "1" : "0.6";
+            btnCreate.style.cursor = enabled ? "pointer" : "not-allowed";
+        }
+        if (!isPremiumActive() && State.theme === "premium") {
+            State.theme = "dark";
+            localStorage.setItem("enarm_theme", "dark");
+            applyTheme("dark");
+        }
+        const adminPanel = $("admin-codes-panel");
+        if (adminPanel) adminPanel.style.display = isAdminUser() ? "block" : "none";
+    };
+
+    const openRedeemModal = (reason) => {
+        const modal = $("redeem-modal");
+        const reasonEl = $("redeem-reason");
+        if (reasonEl && reason) reasonEl.textContent = reason;
+        if (modal) modal.style.display = "flex";
+    };
+
+    const closeRedeemModal = () => {
+        const modal = $("redeem-modal");
+        if (modal) modal.style.display = "none";
     };
 
     const REPORT_CATEGORY_LABELS = {
@@ -377,7 +492,7 @@
     };
 
     const canReclassifyUser = () => {
-        return (State.userName || "").trim().toLowerCase() === "isaac rivera";
+        return isAdminUser();
     };
 
     const syncReclassAccessUI = () => {
@@ -944,12 +1059,25 @@
         return flat.slice(0, maxQty);
     };
 
+    const PREMIUM_VIEWS = new Set(["view-comunidad", "view-reportes", "view-refuerzos"]);
+
+    const ensurePremiumAccess = (reason) => {
+        if (isPremiumActive()) return true;
+        openRedeemModal(reason || "Esta funciÃ³n requiere premium.");
+        return false;
+    };
+
     const showView = (viewId) => {
         if (State.view === "view-exam" && viewId !== "view-exam" && State.examActive) {
             if (typeof pauseTimer === 'function') {
                 pauseTimer();
                 showNotification("Examen pausado automáticamente.", "info");
             }
+        }
+        if (PREMIUM_VIEWS.has(viewId) && !isPremiumActive()) {
+            showNotification("Acceso premium requerido.", "warning");
+            openRedeemModal("Para entrar a esta secciÃ³n necesitas un cÃ³digo premium.");
+            return;
         }
         if (viewId === "view-reclassify" && !canReclassifyUser()) {
             showNotification("Acceso restringido a esta seccion.", "warning");
@@ -1072,6 +1200,7 @@
         const statusEl = document.querySelector(".user-status");
         if (statusEl) statusEl.textContent = "EN LÍNEA";
         syncReclassAccessUI();
+        syncPremiumUI();
     };
 
     const applyTheme = (theme) => {
@@ -1134,6 +1263,11 @@
             const el = $(nav.id);
             if (el) {
                 el.addEventListener("click", () => {
+                    if (PREMIUM_VIEWS.has(nav.view) && !isPremiumActive()) {
+                        showNotification("Acceso premium requerido.", "warning");
+                        openRedeemModal("Esta secciÃ³n es premium.");
+                        return;
+                    }
                     $$(".nav-item").forEach(n => n.classList.remove("active"));
                     el.classList.add("active");
 
@@ -1152,6 +1286,11 @@
         $$(".mobile-nav-item").forEach(btn => {
             btn.addEventListener("click", () => {
                 const targetView = btn.dataset.view;
+                if (PREMIUM_VIEWS.has(targetView) && !isPremiumActive()) {
+                    showNotification("Acceso premium requerido.", "warning");
+                    openRedeemModal("Esta secciÃ³n es premium.");
+                    return;
+                }
 
                 // Limpiar activos
                 $$(".mobile-nav-item").forEach(n => n.classList.remove("active"));
@@ -4396,6 +4535,11 @@
         // Preset cards
         $$(".preset-card").forEach(card => {
             card.addEventListener("click", () => {
+                if (card.dataset.premium === "1" && !isPremiumActive()) {
+                    showNotification("Preset premium bloqueado.", "warning");
+                    openRedeemModal("Este preset es premium. Ingresa tu cÃ³digo para desbloquearlo.");
+                    return;
+                }
                 $$(".preset-card").forEach(c => c.classList.remove("active"));
                 card.classList.add("active");
                 State.selectedPresetId = card.id || null;
@@ -4497,9 +4641,32 @@
                     return;
                 }
 
-                const qty = parseInt(qtySlider.value, 10);
+                let qty = parseInt(qtySlider.value, 10);
                 const timerVal = parseInt(timeInput ? timeInput.value : 0, 10);
-                const isLibre = libBtn ? libBtn.classList.contains("active") : true;
+                let isLibre = libBtn ? libBtn.classList.contains("active") : true;
+                const hasPremium = isPremiumActive();
+
+                if (isRealSim && !hasPremium) {
+                    showNotification("El simulacro real es premium.", "warning");
+                    openRedeemModal("El simulacro real estÃ¡ disponible solo en premium.");
+                    return;
+                }
+
+                if (!hasPremium) {
+                    if (qty > DEMO_MAX_QTY) {
+                        qty = DEMO_MAX_QTY;
+                        if (qtySlider) qtySlider.value = String(DEMO_MAX_QTY);
+                        if (qtyVal) qtyVal.textContent = String(DEMO_MAX_QTY);
+                        showNotification(`Demo limitada a ${DEMO_MAX_QTY} preguntas.`, "info");
+                    }
+                    if (!isLibre) {
+                        if (timeInput) timeInput.value = "";
+                        if (libBtn) libBtn.classList.add("active");
+                        if (timeLabel) timeLabel.textContent = "LIBRE";
+                        isLibre = true;
+                        showNotification("En demo, el tiempo es libre.", "info");
+                    }
+                }
 
                 if (isRealSim) {
                     const realSet = buildRealSimulacroQuestionSet();
@@ -4605,13 +4772,13 @@
 
                 const selectedModeBtn = document.querySelector(".mode-toggle-btn.active");
                 const modeVal = selectedModeBtn ? selectedModeBtn.dataset.examMode : "casos";
-                State.mode = modeVal === "casos" ? "simulacro" : "estudio";
+                State.mode = !hasPremium ? "estudio" : (modeVal === "casos" ? "simulacro" : "estudio");
 
-                State.durationSec = isLibre ? 0 : (timerVal || 60) * 60;
+                State.durationSec = !hasPremium ? 0 : (isLibre ? 0 : (timerVal || 60) * 60);
                 State.currentIndex = 0;
                 State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
                 State.currentExamIsReal = false;
-                State.currentExamType = isLibre ? "Estudio Libre" : "Examen Cronometrado";
+                State.currentExamType = !hasPremium ? "Demo Estudio" : (isLibre ? "Estudio Libre" : "Examen Cronometrado");
                 State.startTime = Date.now();
                 State.pausedElapsedTime = 0;
                 State.examActive = true;
@@ -4632,15 +4799,21 @@
         const btnRefuerzosView = $("btn-refuerzos-view");
         if (btnRefuerzosView) {
             btnRefuerzosView.addEventListener("click", () => {
+                if (!ensurePremiumAccess("Las zonas de refuerzo son una funciÃ³n premium.")) return;
                 renderRefuerzosView();
                 showView("view-refuerzos");
             });
         }
 
         // Dashboard quick action buttons (inside view-refuerzos now, but keep bindings)
-        const bindStartBtn = (id, handler) => {
+        const bindStartBtn = (id, handler, requiresPremium = false) => {
             const el = document.getElementById(id);
-            if (el && !el.disabled) el.addEventListener("click", handler);
+            if (el && !el.disabled) {
+                el.addEventListener("click", () => {
+                    if (requiresPremium && !ensurePremiumAccess("Esta acciÃ³n es premium.")) return;
+                    handler();
+                });
+            }
         };
 
         const handleInteligente = () => {
@@ -4651,14 +4824,14 @@
             }
         };
 
-        bindStartBtn("btn-refuerzo-ia", handleInteligente);
-        bindStartBtn("btn-refuerzo-ia-dash", handleInteligente); // New Dash Button
-        bindStartBtn("btn-refuerzo-rapido", () => startQuickSession(['mi', 'ped', 'gyo', 'cir', 'urg', 'sp'], 5, "Refuerzo Rápido General"));
-        bindStartBtn("btn-quick-start", () => startQuickSession(['mi', 'ped', 'gyo', 'cir', 'urg', 'sp'], 10, "Sesión Rápida (10)"));
-        bindStartBtn("btn-refuerzo-casos", () => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 3, "Casos Rápidos Aleatorios"));
-        bindStartBtn("btn-curva-olvido", startSpacedRepetition);
-        bindStartBtn("btn-curva-olvido-dash", startSpacedRepetition); // New Dash Button
-        bindStartBtn("btn-curva-olvido-ref", startSpacedRepetition);
+        bindStartBtn("btn-refuerzo-ia", handleInteligente, true);
+        bindStartBtn("btn-refuerzo-ia-dash", handleInteligente, true); // New Dash Button
+        bindStartBtn("btn-refuerzo-rapido", () => startQuickSession(['mi', 'ped', 'gyo', 'cir', 'urg', 'sp'], 5, "Refuerzo Rápido General"), true);
+        bindStartBtn("btn-quick-start", () => startQuickSession(['mi', 'ped', 'gyo', 'cir', 'urg', 'sp'], 10, "Sesión Rápida (10)"), true);
+        bindStartBtn("btn-refuerzo-casos", () => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 3, "Casos Rápidos Aleatorios"), true);
+        bindStartBtn("btn-curva-olvido", startSpacedRepetition, true);
+        bindStartBtn("btn-curva-olvido-dash", startSpacedRepetition, true); // New Dash Button
+        bindStartBtn("btn-curva-olvido-ref", startSpacedRepetition, true);
     };
 
     const startSpacedRepetition = () => {
@@ -6341,6 +6514,9 @@
 
         const openProfileModal = () => {
             profileModal.style.display = "flex";
+            const uidInput = $("profile-uid");
+            if (uidInput) uidInput.value = State.currentUid || "";
+            updatePremiumStatusLabel();
         };
 
         const openNotifModal = () => {
@@ -6389,6 +6565,46 @@
                     });
                 }
             });
+        }
+
+        const btnCopyUid = $("btn-copy-uid");
+        if (btnCopyUid) {
+            btnCopyUid.addEventListener("click", () => {
+                const uidInput = $("profile-uid");
+                const uidVal = uidInput ? uidInput.value : State.currentUid;
+                if (uidVal) {
+                    navigator.clipboard.writeText(uidVal).then(() => {
+                        showNotification("¡UID copiado al portapapeles!", "success");
+                    }).catch(err => {
+                        showNotification("No se pudo copiar el UID", "error");
+                    });
+                }
+            });
+        }
+
+        const btnOpenRedeem = $("btn-open-redeem");
+        if (btnOpenRedeem) {
+            btnOpenRedeem.addEventListener("click", () => openRedeemModal("Ingresa tu cÃ³digo para desbloquear premium."));
+        }
+
+        const btnRedeem = $("btn-redeem-submit");
+        if (btnRedeem) {
+            btnRedeem.addEventListener("click", redeemCode);
+        }
+        const btnCloseRedeem = $("btn-close-redeem");
+        if (btnCloseRedeem) {
+            btnCloseRedeem.addEventListener("click", closeRedeemModal);
+        }
+        const redeemInput = $("redeem-code-input");
+        if (redeemInput) {
+            redeemInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") redeemCode();
+            });
+        }
+
+        const btnAdminUpload = $("btn-admin-upload-codes");
+        if (btnAdminUpload) {
+            btnAdminUpload.addEventListener("click", uploadAdminCodes);
         }
 
         const bd = $("btn-back-dash"); if (bd) bd.addEventListener("click", () => $("nav-dashboard").click());
@@ -6554,6 +6770,11 @@
         $$(".theme-circle").forEach(circle => {
             circle.addEventListener("click", () => {
                 const selectedTheme = circle.dataset.theme;
+                if (selectedTheme === "premium" && !isPremiumActive()) {
+                    showNotification("Tema premium bloqueado.", "warning");
+                    openRedeemModal("El tema premium requiere un cÃ³digo.");
+                    return;
+                }
                 State.theme = selectedTheme;
                 localStorage.setItem("enarm_theme", selectedTheme);
                 applyTheme(selectedTheme);
@@ -7049,6 +7270,7 @@
 
             if (btnCreate) {
                 btnCreate.addEventListener("click", () => {
+                    if (!ensurePremiumAccess("Retos y amigos son funciones premium.")) return;
                     if (!checkboxesContainer) return;
                     checkboxesContainer.innerHTML = "";
                     if (State.myFriends.length === 0) {
@@ -7608,6 +7830,143 @@
             }
         };
 
+        const getCodeTypeFromText = (code) => {
+            if (!code) return null;
+            if (code.startsWith("ENARM-M1-")) return "month";
+            if (code.startsWith("ENARM-FX-")) return "fixed";
+            return null;
+        };
+
+        const computeExpiryForType = (type) => {
+            if (type === "fixed") return new Date(FIXED_CODE_EXPIRY.getTime());
+            const now = Date.now();
+            return new Date(now + (30 * 24 * 60 * 60 * 1000));
+        };
+
+        const bindEntitlementListener = (uid) => {
+            if (!window.FB || !window.FB.db || !window.FB.onSnapshot) return;
+            if (State.entitlementUnsub) {
+                State.entitlementUnsub();
+                State.entitlementUnsub = null;
+            }
+            const ref = window.FB.doc(window.FB.db, "entitlements", uid);
+            State.entitlementUnsub = window.FB.onSnapshot(ref, (snap) => {
+                if (!snap.exists()) {
+                    State.entitlement = null;
+                    syncPremiumUI();
+                    return;
+                }
+                const data = snap.data() || {};
+                State.entitlement = {
+                    status: data.status || "inactive",
+                    source: data.source || "",
+                    expiresAt: normalizeTimestamp(data.expiresAt),
+                    updatedAt: normalizeTimestamp(data.updatedAt)
+                };
+                syncPremiumUI();
+            });
+        };
+
+        const redeemCode = async () => {
+            const input = $("redeem-code-input");
+            const codeRaw = input ? input.value.trim().toUpperCase() : "";
+            if (!codeRaw) return showNotification("Ingresa un cÃ³digo.", "warning");
+            if (!window.FB || !window.FB.auth || !window.FB.auth.currentUser) {
+                return showNotification("Inicia sesiÃ³n para canjear tu cÃ³digo.", "warning");
+            }
+            if (!window.FB.runTransaction) {
+                return showNotification("Firebase no estÃ¡ listo. Intenta de nuevo.", "error");
+            }
+            const uid = window.FB.auth.currentUser.uid;
+            const code = codeRaw.replace(/\s+/g, "");
+            try {
+                let redeemed = null;
+                await window.FB.runTransaction(window.FB.db, async (tx) => {
+                    const codeRef = window.FB.doc(window.FB.db, "redeem_codes", code);
+                    const codeSnap = await tx.get(codeRef);
+                    if (!codeSnap.exists()) throw new Error("invalid");
+                    const data = codeSnap.data() || {};
+                    if (data.redeemedBy) throw new Error("used");
+                    const type = data.type || getCodeTypeFromText(code) || "month";
+                    const now = new Date();
+                    const expiresAt = computeExpiryForType(type);
+                    tx.set(codeRef, {
+                        code,
+                        type,
+                        redeemedBy: uid,
+                        redeemedAt: now,
+                        expiresAt
+                    }, { merge: true });
+                    redeemed = { expiresAt, now };
+                });
+                if (redeemed) {
+                    const entRef = window.FB.doc(window.FB.db, "entitlements", uid);
+                    await window.FB.setDoc(entRef, {
+                        status: "active",
+                        expiresAt: redeemed.expiresAt,
+                        source: "code",
+                        updatedAt: redeemed.now,
+                        code
+                    }, { merge: true });
+                }
+                showNotification("CÃ³digo canjeado. Acceso premium activado.", "success");
+                if (input) input.value = "";
+                closeRedeemModal();
+            } catch (err) {
+                const msg = (err && err.message) || "";
+                if (msg.includes("invalid")) {
+                    showNotification("CÃ³digo invÃ¡lido.", "error");
+                } else if (msg.includes("used")) {
+                    showNotification("Este cÃ³digo ya fue usado.", "warning");
+                } else {
+                    console.error(err);
+                    showNotification("No se pudo canjear el cÃ³digo.", "error");
+                }
+            }
+        };
+
+        const uploadAdminCodes = async () => {
+            const input = $("admin-codes-input");
+            if (!input) return;
+            const raw = input.value || "";
+            const codes = raw.split(/\r?\n/).map(l => l.trim().toUpperCase()).filter(Boolean);
+            if (codes.length === 0) return showNotification("Pega al menos un cÃ³digo.", "warning");
+            if (!isAdminUser()) return showNotification("Solo admin puede cargar cÃ³digos.", "error");
+            if (!window.FB || !window.FB.db) return showNotification("Firebase no estÃ¡ listo.", "error");
+
+            const now = new Date();
+            const writes = [];
+            const invalid = [];
+            codes.forEach(code => {
+                const type = getCodeTypeFromText(code);
+                if (!type) {
+                    invalid.push(code);
+                    return;
+                }
+                const ref = window.FB.doc(window.FB.db, "redeem_codes", code);
+                writes.push(window.FB.setDoc(ref, {
+                    code,
+                    type,
+                    createdAt: now,
+                    createdBy: State.currentUid || "",
+                    redeemedBy: "",
+                    redeemedAt: null,
+                    expiresAt: null
+                }, { merge: false }));
+            });
+            if (invalid.length > 0) {
+                showNotification(`CÃ³digos invÃ¡lidos: ${invalid.length}`, "warning");
+            }
+            try {
+                await Promise.all(writes);
+                showNotification(`CÃ³digos cargados: ${writes.length}`, "success");
+                input.value = "";
+            } catch (e) {
+                console.error(e);
+                showNotification("Error al cargar cÃ³digos.", "error");
+            }
+        };
+
         const setupFirebaseAuthAndUI = () => {
             if (authOverlay && loginForm) {
                 // If user doesn't exist locally, show overlay
@@ -7623,6 +7982,11 @@
                 if (window.FB && window.FB.onAuthStateChanged) {
                     window.FB.onAuthStateChanged(window.FB.auth, async (user) => {
                         if (user) {
+                            State.currentUid = user.uid;
+                            const uidInput = $("profile-uid");
+                            if (uidInput) uidInput.value = user.uid;
+                            bindEntitlementListener(user.uid);
+                            syncPremiumUI();
                             initCloudFeatures();
                             setupChallengeLogic();
                             if (typeof window.loadPendingRequests === "function") {
@@ -7669,6 +8033,16 @@
                             } catch (e) {
                                 console.error("Error fetching cloud data on Auth Change:", e);
                             }
+                        } else {
+                            State.currentUid = "";
+                            State.entitlement = null;
+                            if (State.entitlementUnsub) {
+                                State.entitlementUnsub();
+                                State.entitlementUnsub = null;
+                            }
+                            const uidInput = $("profile-uid");
+                            if (uidInput) uidInput.value = "";
+                            syncPremiumUI();
                         }
                     });
                 }

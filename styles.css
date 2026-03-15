@@ -2180,6 +2180,19 @@ body.theme-premium .ov-dotted {
   font-weight: 600;
 }
 
+.premium-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: #f8d477;
+  background: rgba(248, 212, 119, 0.12);
+  border: 1px solid rgba(248, 212, 119, 0.35);
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+
 .setup-panel-main {
   background: var(--bg-card);
   border: 1px solid var(--border);

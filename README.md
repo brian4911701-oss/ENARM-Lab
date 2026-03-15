@@ -47,6 +47,45 @@ ENARM Lab/
 - **Cambiar colores o tipografía**: modifica las variables CSS en `styles.css` bajo `:root`.
 - **Extender funcionalidades**: puedes crear nuevos módulos JS y conectarlos desde `app.js`.
 
----
+## Sistema de códigos Premium
 
+- Los códigos están en `redeem_codes.txt`.
+- Formato:
+  - `ENARM-M1-XXXXXXX` = 1 mes desde el canje
+  - `ENARM-FX-XXXXXXX` = acceso hasta 1 Oct 2026
+- El canje se hace en la app (modal "Canjear código").
+
+### Configuración admin (una sola vez)
+
+1. Inicia sesión en la app con tu cuenta admin.
+2. Abre el perfil y copia tu UID.
+3. En `app.js`, reemplaza `ADMIN_UIDS` con tu UID.
+4. En la consola de Firebase, actualiza las reglas de Firestore. Ejemplo:
+
+```js
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /redeem_codes/{code} {
+      allow read: if request.auth != null;
+      allow create: if request.auth.uid in ["TU_ADMIN_UID"];
+      allow update: if request.auth != null
+        && resource.data.redeemedBy == ""
+        && request.resource.data.redeemedBy == request.auth.uid;
+    }
+    match /entitlements/{uid} {
+      allow read: if request.auth.uid == uid;
+      allow create, update: if request.auth.uid == uid
+        && request.resource.data.source == "code"
+        && get(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.redeemedBy == request.auth.uid;
+    }
+  }
+}
+```
+
+5. Abre el perfil y verás la sección **Admin - Cargar codigos**. Pega los códigos y presiona **Subir codigos**.
+---
 ¡Disfruta del simulador y mucho éxito en tu preparación para el ENARM!
+
+
+

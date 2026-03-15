@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENARMlab | Simulador ENARM</title>
-    <meta name="description" content="Simulador de examen ENARM con casos clínicos, estadísticas y retos entre amigos.">
+    <meta name="description" content="Simulador de examen ENARM con casos clÃ­nicos, estadÃ­sticas y retos entre amigos.">
     <meta name="theme-color" content="#05c07f">
 
     <!-- PWA Manifest -->
@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <!-- ── AUTH OVERLAY ── -->
+    <!-- â”€â”€ AUTH OVERLAY â”€â”€ -->
     <div id="auth-overlay" class="auth-overlay active">
         <div class="auth-container">
             <div class="auth-logo">
@@ -39,13 +39,13 @@
                 </svg>
             </div>
             <h1 class="auth-title">Bienvenido a ENARM<span class="logo-accent">lab</span></h1>
-            <p class="auth-subtitle">Ingresa para sincronizar tu progreso y competir con miles de médicos.</p>
+            <p class="auth-subtitle">Ingresa para sincronizar tu progreso y competir con miles de mÃ©dicos.</p>
 
             <div class="auth-tabs"
                 style="display: flex; width: 100%; margin-bottom: 24px; border-bottom: 1px solid var(--border);">
                 <button id="tab-login" class="auth-tab active"
                     style="flex: 1; padding: 12px; background: none; border: none; color: var(--accent-green); border-bottom: 2px solid var(--accent-green); font-weight: 600; cursor: pointer; font-size: 15px; transition: all 0.3s;">Iniciar
-                    Sesión</button>
+                    SesiÃ³n</button>
                 <button id="tab-register" class="auth-tab"
                     style="flex: 1; padding: 12px; background: none; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); font-weight: 500; cursor: pointer; font-size: 15px; transition: all 0.3s;">Crear
                     Cuenta Nueva</button>
@@ -53,14 +53,14 @@
 
             <form id="login-form" class="auth-form">
                 <div class="input-group">
-                    <label>Correo Electrónico</label>
+                    <label>Correo ElectrÃ³nico</label>
                     <input type="email" id="auth-email" required placeholder="medico@hospital.com" class="text-input"
                         style="width: 100%;">
                 </div>
 
                 <div class="input-group" style="margin-top: 15px;">
-                    <label>Contraseña</label>
-                    <input type="password" id="auth-password" required placeholder="Mínimo 6 caracteres"
+                    <label>ContraseÃ±a</label>
+                    <input type="password" id="auth-password" required placeholder="MÃ­nimo 6 caracteres"
                         class="text-input" style="width: 100%;">
                 </div>
 
@@ -71,7 +71,7 @@
                 </div>
 
                 <button type="submit" class="btn-primary auth-submit" id="btn-auth-submit"
-                    style="width: 100%; margin-top: 25px;">Iniciar Sesión</button>
+                    style="width: 100%; margin-top: 25px;">Iniciar SesiÃ³n</button>
             </form>
 
 
@@ -97,8 +97,8 @@
                 Continuar con Google
             </button>
 
-            <p class="auth-footer">¿No tienes cuenta? <a href="#"
-                    style="color: var(--accent-green); text-decoration: none;">Regístrate gratis</a></p>
+            <p class="auth-footer">Â¿No tienes cuenta? <a href="#"
+                    style="color: var(--accent-green); text-decoration: none;">RegÃ­strate gratis</a></p>
         </div>
     </div>
 
@@ -113,7 +113,7 @@
                         <!-- Vara principal y punto superior -->
                         <path d="M16 5 v23" />
                         <circle cx="16" cy="4" r="1.5" fill="var(--accent-green)" />
-                        <!-- Doble hélice cruzada, elegante -->
+                        <!-- Doble hÃ©lice cruzada, elegante -->
                         <path d="M10 10 C8 13 8 16 12 18 L20 22 C24 24 24 27 22 29" opacity="0.8" />
                         <path d="M22 10 C24 13 24 16 20 18 L12 22 C8 24 8 27 10 29" opacity="0.3" />
                     </svg>
@@ -167,7 +167,7 @@
                                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
                             </svg>
                         </span>
-                        <span>Más</span>
+                        <span>MÃ¡s</span>
                     </button>
                     <button class="nav-item" id="nav-estadisticas">
                         <span class="nav-icon">
@@ -175,7 +175,7 @@
                                 <path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z" />
                             </svg>
                         </span>
-                        <span>Estadísticas</span>
+                        <span>EstadÃ­sticas</span>
                     </button>
                     <button class="nav-item" id="nav-historial">
                         <span class="nav-icon">
@@ -206,12 +206,12 @@
         <!-- POMODORO FLOATING WIDGET -->
         <div class="pomodoro-floating-widget">
             <div class="pomo-mini-header">
-                <span class="pomo-icon">🍅</span>
+                <span class="pomo-icon">ðŸ…</span>
                 <span class="pomo-time-mini" id="pomo-time">25:00</span>
             </div>
             <div class="pomo-actions">
                 <button class="btn-pomo-mini" id="btn-pomo-toggle">INICIAR</button>
-                <button class="btn-pomo-mini" id="btn-pomo-reset">↺</button>
+                <button class="btn-pomo-mini" id="btn-pomo-reset">â†º</button>
             </div>
             <div class="pomo-sessions-mini" id="pomo-sessions">Hoy: 0</div>
         </div>
@@ -252,7 +252,7 @@
         <!-- MAIN CONTENT -->
         <main class="main-content">
 
-            <!-- ─── VIEW: DASHBOARD ────────────────────────────── -->
+            <!-- â”€â”€â”€ VIEW: DASHBOARD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
             <div id="view-dashboard" class="view active">
 
                 <!-- MOBILE PWA INSTALL BANNER -->
@@ -278,7 +278,7 @@
                     <div class="header-left" style="position: relative; display: flex; align-items: center; gap: 20px;">
                         <div>
                             <h1 class="header-title">Hola, <span class="user-name">Aspirante</span></h1>
-                            <p class="header-subtitle" id="dynamic-quote">Cargando inspiración...</p>
+                            <p class="header-subtitle" id="dynamic-quote">Cargando inspiraciÃ³n...</p>
                         </div>
                         <button id="btn-open-notif"
                             style="background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); cursor: pointer; position: relative; transition: all 0.2s;">
@@ -294,7 +294,7 @@
                     <div class="countdown-widget" id="exam-countdown">
                         <div class="countdown-label">FALTAN PARA EL ENARM 2026</div>
                         <div class="countdown-timer">
-                            <div class="cd-item"><span id="cd-days">000</span><label>DÍAS</label></div>
+                            <div class="cd-item"><span id="cd-days">000</span><label>DÃAS</label></div>
                             <div class="cd-sep">:</div>
                             <div class="cd-item"><span id="cd-hours">00</span><label>HORAS</label></div>
                             <div class="cd-sep">:</div>
@@ -304,10 +304,10 @@
                         </div>
                     </div>
                     <div class="flame-widget" id="streak-btn" style="cursor: pointer; transition: transform 0.2s;">
-                        <div class="flame-icon">🔥</div>
+                        <div class="flame-icon">ðŸ”¥</div>
                         <div class="flame-info">
                             <span class="flame-lbl">ESTUDIO DIARIO</span>
-                            <span class="flame-val" id="streak-val">1 Día</span>
+                            <span class="flame-val" id="streak-val">1 DÃ­a</span>
                         </div>
                     </div>
                 </header>
@@ -318,12 +318,12 @@
                     <div style="display: flex; align-items: center; gap: 16px;">
                         <div
                             style="width: 48px; height: 48px; background: rgba(59, 130, 246, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                            ⏱️</div>
+                            â±ï¸</div>
                         <div>
                             <h3 style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">Examen en Progreso
                             </h3>
                             <p style="margin: 4px 0 0 0; color: var(--text-secondary); font-size: 0.9rem;">Tienes un
-                                simulacro o estudio activo. Retómalo para no perder tu progreso.</p>
+                                simulacro o estudio activo. RetÃ³malo para no perder tu progreso.</p>
                         </div>
                     </div>
                     <div style="display: flex; gap: 12px; margin-top: 0;">
@@ -336,12 +336,12 @@
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-icon green-icon">📈</div>
+                        <div class="stat-icon green-icon">ðŸ“ˆ</div>
                         <div class="stat-label">PROMEDIO GENERAL</div>
                         <div class="stat-value" id="dash-promedio-gral">0.0%</div>
                     </div>
                     <div class="stat-card" id="card-rango" style="cursor: pointer;">
-                        <div class="stat-icon purple-icon">🏅</div>
+                        <div class="stat-icon purple-icon">ðŸ…</div>
                         <div class="stat-label">PROMEDIO / RANGO</div>
                         <div class="stat-value-sub" id="dash-rango">Aspirante Inicial</div>
                         <div class="stat-progress-val" id="dash-promedio">0.00%</div>
@@ -350,31 +350,31 @@
                         </div>
                     </div>
                     <div class="stat-card" id="card-sesiones" style="cursor: pointer;">
-                        <div class="stat-icon orange-icon">📅</div>
+                        <div class="stat-icon orange-icon">ðŸ“…</div>
                         <div class="stat-label">SESIONES</div>
                         <div class="stat-value" id="dash-sesiones">0</div>
                     </div>
                     <div class="stat-card action-card">
                         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
                             <div class="stat-icon blue-icon"
-                                style="margin: 0; width: 32px; height: 32px; font-size: 16px;">⚡</div>
-                            <div class="stat-label" style="margin: 0;">ENTRENAMIENTO RÁPIDO</div>
+                                style="margin: 0; width: 32px; height: 32px; font-size: 16px;">âš¡</div>
+                            <div class="stat-label" style="margin: 0;">ENTRENAMIENTO RÃPIDO</div>
                         </div>
                         <div
                             style="display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: flex-end;">
                                                                                     <button class="action-btn" id="btn-quick-start">
                                 <div class="action-btn-left">
-                                    <span class="action-btn-icon">🚀</span>
+                                    <span class="action-btn-icon">ðŸš€</span>
                                     <span>Simulacro Aleatorio</span>
                                 </div>
-                                <span class="action-btn-arrow">→</span>
+                                <span class="action-btn-arrow">â†’</span>
                             </button>
                             <button class="action-btn" id="btn-curva-olvido">
                                 <div class="action-btn-left">
-                                    <span class="action-btn-icon">🧠</span>
+                                    <span class="action-btn-icon">ðŸ§ </span>
                                     <span>Curva del Olvido</span>
                                 </div>
-                                <span class="action-btn-arrow">→</span>
+                                <span class="action-btn-arrow">â†’</span>
                             </button>
                         </div>
                     </div>
@@ -387,11 +387,11 @@
                             <h2 class="panel-title"
                                 style="font-size: 18px; margin: 0; display: flex; align-items: center; gap: 8px;"><span
                                     class="title-icon blue-text"
-                                    style="background: rgba(59,130,246,0.1); padding: 4px; border-radius: 8px; font-size:14px;">📊</span>
+                                    style="background: rgba(59,130,246,0.1); padding: 4px; border-radius: 8px; font-size:14px;">ðŸ“Š</span>
                                 Desglose de Rendimiento</h2>
                             <div
                                 style="background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 20px; font-size: 11px; color: var(--text-secondary); cursor: pointer; border: 1px solid var(--border);">
-                                Histórico <span style="font-size:8px; margin-left:4px;">▼</span>
+                                HistÃ³rico <span style="font-size:8px; margin-left:4px;">â–¼</span>
                             </div>
                         </div>
 
@@ -424,7 +424,7 @@
 
                             <div
                                 style="position: absolute; top: 100px; left: 0; width: 100%; display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); padding-top: 5px;">
-                                <span style="color: var(--text-secondary);">Precisión Actual</span>
+                                <span style="color: var(--text-secondary);">PrecisiÃ³n Actual</span>
                                 <span style="color: var(--text-muted);">Desde el inicio</span>
                             </div>
                         </div>
@@ -432,33 +432,33 @@
 
                     <div class="fail-points-section panel">
                         <div class="panel-header" style="margin-bottom: 5px;">
-                            <h2 class="panel-title"><span class="title-icon orange-text">🚩</span> Refuerzos y Curva del
+                            <h2 class="panel-title"><span class="title-icon orange-text">ðŸš©</span> Refuerzos y Curva del
                                 Olvido</h2>
                         </div>
-                        <p style="color:var(--text-secondary); font-size: 13px; margin: 0 0 15px 0;">Entrena tus áreas
-                            débiles y asegura tu conocimiento a largo plazo.</p>
+                        <p style="color:var(--text-secondary); font-size: 13px; margin: 0 0 15px 0;">Entrena tus Ã¡reas
+                            dÃ©biles y asegura tu conocimiento a largo plazo.</p>
 
                         <!-- Mini acciones de refuerzo directas en el Dashboard -->
                         <div class="fail-actions">
-                            <button class="btn-fail-action blue-bg" id="btn-refuerzo-ia-dash">⚡ INTELIGENTE</button>
+                            <button class="btn-fail-action blue-bg" id="btn-refuerzo-ia-dash">âš¡ INTELIGENTE</button>
                         </div>
 
                         <!-- Lista corta de los peores 3 temas -->
                         <div class="fail-list" id="dash-fail-list" style="margin-bottom: 20px;">
-                            <!-- Inyectado dinámicamente -->
+                            <!-- Inyectado dinÃ¡micamente -->
                         </div>
 
                         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                             <button class="action-btn" id="btn-refuerzos-view"
                                 style="width: 100%; border-color: rgba(255,255,255,0.1); color: var(--text-primary); background: rgba(255,255,255,0.05); justify-content: center; font-weight: 700;">
-                                <span style="margin-right:8px;">🎯</span> VER MIS ZONAS COMPLETAS
+                                <span style="margin-right:8px;">ðŸŽ¯</span> VER MIS ZONAS COMPLETAS
                             </button>
                         </div>
                     </div>
                 </div>
 
                 <div class="chart-section panel" style="margin-top: 24px;">
-                    <h2 class="panel-title"><span class="title-icon green-text">📈</span> Rendimiento Especialidad
+                    <h2 class="panel-title"><span class="title-icon green-text">ðŸ“ˆ</span> Rendimiento Especialidad
                     </h2>
                     <div style="height: 250px; width: 100%; position: relative; margin-top: 20px;">
                         <canvas id="chart-specialties-line"></canvas>
@@ -466,92 +466,94 @@
                 </div>
             </div>
 
-            <!-- ─── VIEW: SETUP EXAM ───────────────────────────── -->
+            <!-- â”€â”€â”€ VIEW: SETUP EXAM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
             <div id="view-setup" class="view">
                 <div class="setup-container">
                     <header class="setup-header">
-                        <h1 class="setup-title">Configuración de Simulacro</h1>
-                        <p class="setup-subtitle">Personaliza tu sesión de entrenamiento de élite.</p>
+                        <h1 class="setup-title">ConfiguraciÃ³n de Simulacro</h1>
+                        <p class="setup-subtitle">Personaliza tu sesiÃ³n de entrenamiento de Ã©lite.</p>
                     </header>
 
                     <div class="presets-grid">
-                        <div class="preset-card" id="preset-real" data-qty="280" data-time="450">
-                            <div class="preset-icon trophy">🏆</div>
+                        <div class="preset-card" id="preset-real" data-qty="280" data-time="450" data-premium="1">
+                            <div class="preset-icon trophy">ðŸ†</div>
                             <div class="preset-info">
                                 <span class="preset-name">Simulacro Real</span>
-                                <span class="preset-meta">280 Preguntas • 7.5h</span>
+                                <span class="premium-badge">PREMIUM</span>
+                                <span class="preset-meta">280 Preguntas â€¢ 7.5h</span>
                             </div>
                         </div>
-                        <div class="preset-card active green-p" id="preset-mini" data-qty="50" data-time="75">
-                            <div class="preset-icon bolt">⚡</div>
+                        <div class="preset-card active green-p" id="preset-mini" data-qty="50" data-time="75" data-premium="1">
+                            <div class="preset-icon bolt">âš¡</div>
                             <div class="preset-info">
                                 <span class="preset-name">Mini Simulacro</span>
-                                <span class="preset-meta">50 Preguntas • 75m</span>
+                                <span class="premium-badge">PREMIUM</span>
+                                <span class="preset-meta">50 Preguntas â€¢ 75m</span>
                             </div>
                         </div>
                         <div class="preset-card blue-p" id="preset-flash" data-qty="20" data-time="15">
-                            <div class="preset-icon flame">🔥</div>
+                            <div class="preset-icon flame">ðŸ”¥</div>
                             <div class="preset-info">
                                 <span class="preset-name">Repaso Flash</span>
-                                <span class="preset-meta">20 Preguntas • 15m</span>
+                                <span class="preset-meta">20 Preguntas â€¢ 15m</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="setup-panel-main">
                         <section class="setup-section">
-                            <h3 class="section-label"><span class="label-icon">⚡</span> MODO DE EXAMEN</h3>
+                            <h3 class="section-label"><span class="label-icon">âš¡</span> MODO DE EXAMEN</h3>
                             <div class="mode-toggle-grid">
                                 <button class="mode-toggle-btn active" data-exam-mode="casos">
-                                    <span class="btn-icon">📖</span>
-                                    <span>CASOS CLÍNICOS</span>
+                                    <span class="btn-icon">ðŸ“–</span>
+                                    <span>CASOS CLÃNICOS</span>
                                 </button>
                                 <button class="mode-toggle-btn" data-exam-mode="rapidas" disabled style="opacity: 0.5; cursor: not-allowed;">
-    <span class="btn-icon">⚡</span>
+    <span class="btn-icon">âš¡</span>
     <span>PREGUNTAS RAPIDAS <span style="font-size: 8px; opacity: 0.8; background: rgba(255,255,255,0.1); padding: 1px 4px; border-radius: 4px; margin-left: 4px; vertical-align: middle;">PROXIMAMENTE</span></span>
 </button>
                             </div>
-                            <p class="section-hint">Formato estándar ENARM con casos clínicos extensos y múltiples
+                            <p class="section-hint">Formato estÃ¡ndar ENARM con casos clÃ­nicos extensos y mÃºltiples
                                 reactivos.</p>
                         </section>
 
                         <section class="setup-section">
-                            <h3 class="section-label"><span class="label-icon">≡</span> ESPECIALIDADES A EVALUAR</h3>
+                            <h3 class="section-label"><span class="label-icon">â‰¡</span> ESPECIALIDADES A EVALUAR</h3>
                             <div class="spec-selection-grid">
                                 <div class="spec-item" data-spec="mi">
                                     <span>Medicina Interna</span>
-                                    <span class="check-mark">✓</span>
+                                    <span class="check-mark">âœ“</span>
                                 </div>
                                 <div class="spec-item" data-spec="ped">
-                                    <span>Pediatría</span>
-                                    <span class="check-mark">✓</span>
+                                    <span>PediatrÃ­a</span>
+                                    <span class="check-mark">âœ“</span>
                                 </div>
                                 <div class="spec-item" data-spec="gyo">
-                                    <span>Ginecología y Obstetricia</span>
-                                    <span class="check-mark">✓</span>
+                                    <span>GinecologÃ­a y Obstetricia</span>
+                                    <span class="check-mark">âœ“</span>
                                 </div>
                                 <div class="spec-item" data-spec="cir">
-                                    <span>Cirugía General</span>
-                                    <span class="check-mark">✓</span>
+                                    <span>CirugÃ­a General</span>
+                                    <span class="check-mark">âœ“</span>
                                 </div>
                                 <div class="spec-item" data-spec="sp">
-                                    <span>Salud Pública</span>
-                                    <span class="check-mark">✓</span>
+                                    <span>Salud PÃºblica</span>
+                                    <span class="check-mark">âœ“</span>
                                 </div>
                                 <div class="spec-item" data-spec="urg">
                                     <span>Urgencias</span>
-                                    <span class="check-mark">✓</span>
+                                    <span class="check-mark">âœ“</span>
                                 </div>
                             </div>
                         </section>
 
                         <section class="setup-section">
-                            <h3 class="section-label"><span class="label-icon">📖</span> TEMAS ESPECÍFICOS O GPC (OPCIONAL) <span style="background: var(--accent-orange); color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 6px; margin-left: 8px; vertical-align: middle; font-weight: 800;">BETA</span></h3>
+                            <h3 class="section-label"><span class="label-icon">ðŸ“–</span> TEMAS ESPECÃFICOS O GPC (OPCIONAL) <span style="background: var(--accent-orange); color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 6px; margin-left: 8px; vertical-align: middle; font-weight: 800;">BETA</span></h3>
                             <div class="search-box-wrapper">
                                 <div class="search-box-container">
-                                    <span class="search-icon">🔍</span>
+                                    <span class="search-icon">ðŸ”</span>
                                     <input type="text" id="setup-topic-filter"
-                                        placeholder="Ej: Cetoacidosis Diabética, GPC de Preeclampsia, Tratamiento de IAM...">
+                                        placeholder="Ej: Cetoacidosis DiabÃ©tica, GPC de Preeclampsia, Tratamiento de IAM...">
                                 </div>
                                 <div id="topic-suggestions" class="suggestions-dropdown"></div>
                             </div>
@@ -559,23 +561,23 @@
                             <!-- Removed IA generation hint -->
                         </section>
                         <section class="setup-section">
-                            <h3 class="section-label"><span class="label-icon">⚙</span> NIVEL DE EXIGENCIA</h3>
+                            <h3 class="section-label"><span class="label-icon">âš™</span> NIVEL DE EXIGENCIA</h3>
                             <div class="difficulty-grid"
                                 style="grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
                                 <button class="diff-btn" data-diff="facil">
-                                    <span class="btn-icon">😊</span>
-                                    <span>Fácil</span>
+                                    <span class="btn-icon">ðŸ˜Š</span>
+                                    <span>FÃ¡cil</span>
                                 </button>
                                 <button class="diff-btn" data-diff="media">
-                                    <span class="btn-icon">⚖️</span>
+                                    <span class="btn-icon">âš–ï¸</span>
                                     <span>Media</span>
                                 </button>
                                 <button class="diff-btn" data-diff="alta">
-                                    <span class="btn-icon">⚡</span>
-                                    <span>Difícil</span>
+                                    <span class="btn-icon">âš¡</span>
+                                    <span>DifÃ­cil</span>
                                 </button>
                                 <button class="diff-btn active" data-diff="cualquiera">
-                                    <span class="btn-icon">🎲</span>
+                                    <span class="btn-icon">ðŸŽ²</span>
                                     <span>Cualquiera</span>
                                 </button>
                             </div>
@@ -593,11 +595,11 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <h3 class="section-label">TIEMPO LÍMITE: <span id="setup-time-label"
+                                <h3 class="section-label">TIEMPO LÃMITE: <span id="setup-time-label"
                                         class="green-text">LIBRE</span></h3>
                                 <div class="time-selection-row">
                                     <button class="time-toggle-btn active" id="time-libre-btn" data-time-mode="libre">
-                                        <span class="btn-icon">∞</span>
+                                        <span class="btn-icon">âˆž</span>
                                         <span>Libre</span>
                                     </button>
                                     <div class="time-input-wrapper">
@@ -611,26 +613,26 @@
                         </div>
 
                         <div class="setup-actions-row">
-                            <button class="btn-panel-back">Atrás</button>
+                            <button class="btn-panel-back">AtrÃ¡s</button>
                             <div style="display: flex; gap: 10px;">
                                 <button class="btn-finish-setup" id="btn-create-challenge"
                                     style="background: var(--accent-orange); border-color: rgba(243,122,32,0.3); color: white;">
-                                    Retar a un Amigo ⚔️
+                                    Retar a un Amigo âš”ï¸
                                 </button>
                                 <button class="btn-finish-setup" id="btn-start-final-exam">Iniciar Simulacro <span
-                                        class="arrow-icon">›</span></button>
+                                        class="arrow-icon">â€º</span></button>
                             </div>
                         </div>
                         <p class="section-hint" style="text-align:center; margin-top: 10px;">
-                            *Nota: Si seleccionas más preguntas de las que hay disponibles para ese tema, el examen se
-                            adaptará al máximo posible. De igual forma, si no hay suficientes preguntas de la dificultad
-                            elegida, se completará con otras dificultades.
+                            *Nota: Si seleccionas mÃ¡s preguntas de las que hay disponibles para ese tema, el examen se
+                            adaptarÃ¡ al mÃ¡ximo posible. De igual forma, si no hay suficientes preguntas de la dificultad
+                            elegida, se completarÃ¡ con otras dificultades.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- ─── VIEW: EXAM ACTIVE ──────────────────────────── -->
+            <!-- â”€â”€â”€ VIEW: EXAM ACTIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
             <div id="view-exam" class="view">
                 <div class="exam-header-bar">
                     <div class="exam-progress-info">
@@ -639,7 +641,7 @@
                             <div class="progress-fill" id="progress-fill" style="width:0%"></div>
                         </div>
                     </div>
-                    <div class="exam-timer" id="timer-display">⏱ <span id="timer-text">04:00:00</span></div>
+                    <div class="exam-timer" id="timer-display">â± <span id="timer-text">04:00:00</span></div>
                     <div style="display: flex; gap: 12px;">
                         <button class="btn-secondary" id="btn-pause-exam"
                             style="background: rgba(255,255,255,0.05); border-color: var(--border);">Pausar</button>
@@ -663,7 +665,7 @@
                                         style="display: none; font-size: 12px; padding: 4px 8px;">Eliminar caso</button>
                                 </div>
                             </div>
-                            <p id="case-text" class="case-text">Cargando caso clínico...</p>
+                            <p id="case-text" class="case-text">Cargando caso clÃ­nico...</p>
                         </div>
 
                         <div id="questions-container">
@@ -671,17 +673,17 @@
                         </div>
 
                         <div class="exam-actions" style="margin-top: 20px; padding-bottom: 80px;">
-                            <button class="btn-nav" id="btn-prev">← Anterior</button>
-                            <button class="btn-nav primary" id="btn-next">Siguiente →</button>
+                            <button class="btn-nav" id="btn-prev">â† Anterior</button>
+                            <button class="btn-nav primary" id="btn-next">Siguiente â†’</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ─── VIEW: RESULTS ────────────────────────────── -->
+            <!-- â”€â”€â”€ VIEW: RESULTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
             <div id="view-results" class="view">
                 <div class="panel results-panel">
-                    <h2 class="panel-title">Resultados de la Sesión</h2>
+                    <h2 class="panel-title">Resultados de la SesiÃ³n</h2>
 
                     <div class="results-score-row">
                         <div class="score-circle">
@@ -707,19 +709,19 @@
                 </div>
             </div>
 
-            <!-- ─── VIEW: REVIEW ────────────────────────────── -->
+            <!-- â”€â”€â”€ VIEW: REVIEW â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
             <div id="view-review" class="view">
                 <div class="panel review-panel">
                     <div class="panel-header">
-                        <h2 class="panel-title">Revisión de Respuestas</h2>
-                        <button class="btn-secondary" id="btn-exit-review">Salir de Revisión</button>
+                        <h2 class="panel-title">RevisiÃ³n de Respuestas</h2>
+                        <button class="btn-secondary" id="btn-exit-review">Salir de RevisiÃ³n</button>
                     </div>
 
                     <div class="review-layout">
                         <div class="review-main">
                             <div class="exam-card">
                                 <div class="case-header">
-                                    <span class="badge" id="rev-case-area-badge">ÁREA</span>
+                                    <span class="badge" id="rev-case-area-badge">ÃREA</span>
                                     <span class="q-num" id="rev-q-num-display">Pregunta X</span>
                                 </div>
                                 <div class="case-box">
@@ -732,9 +734,9 @@
                         </div>
 
                         <div class="review-sidebar">
-                            <h3>Navegación</h3>
+                            <h3>NavegaciÃ³n</h3>
                             <div class="question-navigator" id="rev-question-navigator">
-                                <!-- Puntos de navegación -->
+                                <!-- Puntos de navegaciÃ³n -->
                             </div>
                         </div>
                     </div>
@@ -747,10 +749,10 @@
                 </div>
             </div>
 
-            <!-- ─── VIEW: MÁS ───────────────────────────── -->
+            <!-- â”€â”€â”€ VIEW: MÃS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
             <!-- ... (se mantiene igual, solo agrego la vista nueva abajo) -->
 
-            <!-- ─── VIEW: REFUERZOS Y REPASOS ─────────────────────── -->
+            <!-- â”€â”€â”€ VIEW: REFUERZOS Y REPASOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
             <div id="view-refuerzos" class="view">
                 <div class="panel" style="background: transparent; border: none; padding: 0;">
                     <header class="dashboard-header"
@@ -758,36 +760,36 @@
                         <div class="header-left">
                             <h1 class="header-title" style="font-size: 28px;">Zonas de <span class="user-name"
                                     style="color: var(--accent-orange);">Refuerzo</span></h1>
-                            <p class="header-subtitle" style="font-size: 14px; max-width: 600px;">Basado en tu precisión
-                                histórica, la IA ha detectado los siguientes temas como tus puntos de falla principales.
-                                Entrénalos para dominar el ENARM.</p>
+                            <p class="header-subtitle" style="font-size: 14px; max-width: 600px;">Basado en tu precisiÃ³n
+                                histÃ³rica, la IA ha detectado los siguientes temas como tus puntos de falla principales.
+                                EntrÃ©nalos para dominar el ENARM.</p>
                         </div>
                         <button class="btn-secondary" onclick="document.getElementById('nav-dashboard').click()"
                             style="padding: 12px 24px;">Escapar al Dashboard</button>
                     </header>
 
                     <div class="refuerzos-grid" style="display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start;">
-                        <!-- Columna Izquierda: Temas débiles -->
+                        <!-- Columna Izquierda: Temas dÃ©biles -->
                         <div class="panel refuerzos-left" style="padding: 24px;">
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                                <h2 class="panel-title"><span class="title-icon red-text">🎯</span> Temas Críticos a
+                                <h2 class="panel-title"><span class="title-icon red-text">ðŸŽ¯</span> Temas CrÃ­ticos a
                                     Reforzar</h2>
                             </div>
-                            <!-- Fail List Dinámica inyectada por app.js -->
+                            <!-- Fail List DinÃ¡mica inyectada por app.js -->
                             <div class="fail-list" id="refuerzos-fail-list"
                                 style="display: flex; flex-direction: column; gap: 12px;"></div>
                         </div>
 
-                        <!-- Columna Derecha: Acciones Rápidas -->
+                        <!-- Columna Derecha: Acciones RÃ¡pidas -->
                         <div class="panel refuerzos-right refuerzos-sticky" style="padding: 24px; position: sticky; top: 100px;">
                             <h2 class="panel-title" style="margin-bottom: 20px;"><span
-                                    class="title-icon blue-text">⚡</span> Acceso Rápido</h2>
+                                    class="title-icon blue-text">âš¡</span> Acceso RÃ¡pido</h2>
                             <div style="display: flex; flex-direction: column; gap: 15px;">
                                 <button class="action-btn" id="btn-refuerzo-ia"
                                     style="width: 100%; border-color: rgba(239, 68, 68, 0.4); color: var(--accent-red); background: rgba(239, 68, 68, 0.05);">
                                     <div class="action-btn-left">
-                                        <span class="action-btn-icon">🎯</span>
+                                        <span class="action-btn-icon">ðŸŽ¯</span>
                                         <div
                                             style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
                                             <span style="font-size:14px; font-weight:800;">Refuerzo Inteligente</span>
@@ -795,44 +797,44 @@
                                                 solo de tus peores temas</span>
                                         </div>
                                     </div>
-                                    <span class="action-btn-arrow">→</span>
+                                    <span class="action-btn-arrow">â†’</span>
                                 </button>
 
                                 <button class="action-btn" id="btn-refuerzo-rapido"
                                     style="width: 100%; border-color: rgba(59, 130, 246, 0.4); color: var(--accent-blue); background: rgba(59, 130, 246, 0.05);">
                                     <div class="action-btn-left">
-                                        <span class="action-btn-icon">⚡</span>
+                                        <span class="action-btn-icon">âš¡</span>
                                         <div
                                             style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
                                             <span style="font-size:14px; font-weight:800;">Refuerzo General
-                                                Rápido</span>
+                                                RÃ¡pido</span>
                                             <span
-                                                style="font-size:11px; color:var(--text-muted); font-weight:600;">Sesión
-                                                rápida 5 preguntas</span>
+                                                style="font-size:11px; color:var(--text-muted); font-weight:600;">SesiÃ³n
+                                                rÃ¡pida 5 preguntas</span>
                                         </div>
                                     </div>
-                                    <span class="action-btn-arrow">→</span>
+                                    <span class="action-btn-arrow">â†’</span>
                                 </button>
 
                                 <button class="action-btn" id="btn-refuerzo-casos"
                                     style="width: 100%; border-color: rgba(168, 85, 247, 0.4); color: var(--accent-purple); background: rgba(168, 85, 247, 0.05);">
                                     <div class="action-btn-left">
-                                        <span class="action-btn-icon">🩻</span>
+                                        <span class="action-btn-icon">ðŸ©»</span>
                                         <div
                                             style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
                                             <span style="font-size:14px; font-weight:800;">Refuerzo de Casos</span>
                                             <span
                                                 style="font-size:11px; color:var(--text-muted); font-weight:600;">Casos
-                                                clínicos aleatorios</span>
+                                                clÃ­nicos aleatorios</span>
                                         </div>
                                     </div>
-                                    <span class="action-btn-arrow">→</span>
+                                    <span class="action-btn-arrow">â†’</span>
                                 </button>
 
                                 <button class="action-btn" id="btn-curva-olvido-ref"
                                     style="width: 100%; border-color: rgba(5, 192, 127, 0.4); color: var(--accent-green); background: rgba(5, 192, 127, 0.05);">
                                     <div class="action-btn-left">
-                                        <span class="action-btn-icon">🧠</span>
+                                        <span class="action-btn-icon">ðŸ§ </span>
                                         <div
                                             style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
                                             <span style="font-size:14px; font-weight:800;">Curva del Olvido</span>
@@ -841,7 +843,7 @@
                                                 espaciado</span>
                                         </div>
                                     </div>
-                                    <span class="action-btn-arrow">→</span>
+                                    <span class="action-btn-arrow">â†’</span>
                                 </button>
                             </div>
                         </div>
@@ -849,13 +851,13 @@
                 </div>
             </div>
 
-            <!-- ─── VIEW: REPORTES ───────────────────────────── -->
+            <!-- â”€â”€â”€ VIEW: REPORTES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
             <div id="view-reportes" class="view">
                 <div class="panel">
                     <div class="panel-header"
                         style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                         <div>
-                            <h2 class="panel-title"><span class="title-icon red-text">🚩</span> Preguntas Reportadas
+                            <h2 class="panel-title"><span class="title-icon red-text">ðŸš©</span> Preguntas Reportadas
                             </h2>
                             <p class="panel-subtitle">Lista de reactivos con observaciones enviadas por los usuarios.
                             </p>
@@ -863,19 +865,19 @@
                         <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
                     </div>
                     <div id="reports-list" class="list-grid">
-                        <!-- Dinámico -->
+                        <!-- DinÃ¡mico -->
                     </div>
                 </div>
             </div>
 
-            <!-- ─── VIEW: COMUNIDAD ───────────────────────────── -->
+            <!-- â”€â”€â”€ VIEW: COMUNIDAD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
             <div id="view-comunidad" class="view">
                 <div class="comunidad-header"
                     style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px;">
                     <div>
                         <h1 class="header-title"
                             style="font-size: 32px; display: flex; align-items: center; gap: 12px;">
-                            <span style="font-size: 36px;">🌍</span> Ranking de Amigos
+                            <span style="font-size: 36px;">ðŸŒ</span> Ranking de Amigos
                         </h1>
                         <p class="header-subtitle">Compite con tus colegas agregados y sube de rango.</p>
                     </div>
@@ -886,7 +888,7 @@
                             <path
                                 d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                         </svg>
-                        Añadir Amigo
+                        AÃ±adir Amigo
                     </button>
                 </div>
 
@@ -899,7 +901,7 @@
                         </div>
 
                         <div class="leaderboard-list">
-                            <!-- Dinámico -->
+                            <!-- DinÃ¡mico -->
                         </div>
                     </div>
 
@@ -907,14 +909,14 @@
                     <div style="display: flex; flex-direction: column; gap: 24px;">
                         <div class="panel"
                             style="background: linear-gradient(180deg, rgba(243, 122, 32, 0.1) 0%, rgba(0,0,0,0) 100%); border-color: rgba(243, 122, 32, 0.2);">
-                            <h2 class="panel-title"><span class="title-icon orange-text">⚔️</span> Retos Pendientes</h2>
+                            <h2 class="panel-title"><span class="title-icon orange-text">âš”ï¸</span> Retos Pendientes</h2>
                             <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">Acepta un duelo
-                                contra tus amigos y demuestra quién sabe más.</p>
+                                contra tus amigos y demuestra quiÃ©n sabe mÃ¡s.</p>
 
                             <div id="challenges-list-container"
                                 style="margin-top: 20px; text-align: center; padding: 20px 0; display: flex; flex-direction: column; gap: 10px;">
                                 <div id="no-challenges-msg">
-                                    <div style="font-size: 40px; margin-bottom: 10px; opacity: 0.5;">😴</div>
+                                    <div style="font-size: 40px; margin-bottom: 10px; opacity: 0.5;">ðŸ˜´</div>
                                     <div style="color: var(--text-muted); font-size: 14px;">No tienes retos activos
                                     </div>
                                 </div>
@@ -923,18 +925,18 @@
                             <button class="action-btn" id="btn-goto-challenge-setup"
                                 style="width: 100%; justify-content: center; background: rgba(243, 122, 32, 0.1); color: var(--accent-orange); border-color: rgba(243,122,32,0.3); margin-top: 10px;"
                                 onclick="showView('view-setup')">
-                                Configurar Nuevo Reto →
+                                Configurar Nuevo Reto â†’
                             </button>
                         </div>
 
                         <div class="panel">
-                            <h2 class="panel-title"><span class="title-icon blue-text">👥</span> Mis Amigos</h2>
+                            <h2 class="panel-title"><span class="title-icon blue-text">ðŸ‘¥</span> Mis Amigos</h2>
 
                             <div id="friends-list"
                                 style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
                                 <div
                                     style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">
-                                    Aún no tienes amigos añadidos.</div>
+                                    AÃºn no tienes amigos aÃ±adidos.</div>
                             </div>
                         </div>
                     </div>
@@ -943,41 +945,41 @@
 
             <div id="view-mas" class="view">
                 <div class="panel">
-                    <h2 class="panel-title"><span class="title-icon green-text">💡</span> Más Funciones e Integraciones
+                    <h2 class="panel-title"><span class="title-icon green-text">ðŸ’¡</span> MÃ¡s Funciones e Integraciones
                     </h2>
-                    <p class="panel-subtitle">Este espacio está reservado para futuras actualizaciones y módulos.</p>
+                    <p class="panel-subtitle">Este espacio estÃ¡ reservado para futuras actualizaciones y mÃ³dulos.</p>
                     <div class="list-grid" id="mas-container">
                         <div class="list-item mobile-only-mas"
                             onclick="document.getElementById('nav-historial').click(); if(document.querySelector('.mobile-nav-item[data-view=\'view-historial\']')) { document.querySelector('.mobile-nav-item[data-view=\'view-historial\']').click(); } else { showView('view-historial'); document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active')); }"
                             style="cursor: pointer;">
                             <div class="list-item-content">
-                                <h3>🕒 Historial de Sesiones</h3>
-                                <p>Revisa tus exámenes pasados y tu progreso.</p>
+                                <h3>ðŸ•’ Historial de Sesiones</h3>
+                                <p>Revisa tus exÃ¡menes pasados y tu progreso.</p>
                             </div>
                         </div>
                         <div class="list-item mobile-only-mas"
                             onclick="document.getElementById('nav-ajustes').click(); showView('view-ajustes'); document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));"
                             style="cursor: pointer;">
                             <div class="list-item-content">
-                                <h3>⚙️ Configuración</h3>
+                                <h3>âš™ï¸ ConfiguraciÃ³n</h3>
                                 <p>Ajustes de la cuenta, cambiar tema visual y opciones de perfil.</p>
                             </div>
                         </div>
                         <div class="list-item" onclick="showView('view-calculadora')" style="cursor: pointer;">
                             <div class="list-item-content">
-                                <h3>🧮 Calculadora de Puntaje</h3>
-                                <p>Compara tu promedio actual con los puntajes de corte históricos.</p>
+                                <h3>ðŸ§® Calculadora de Puntaje</h3>
+                                <p>Compara tu promedio actual con los puntajes de corte histÃ³ricos.</p>
                             </div>
                         </div>
                         <div class="list-item" onclick="showView('view-temario')" style="cursor: pointer;">
                             <div class="list-item-content">
-                                <h3>📖 Temario Oficial ENARM</h3>
+                                <h3>ðŸ“– Temario Oficial ENARM</h3>
                                 <p>Consulta los temas y subtemas que componen el banco de preguntas actual.</p>
                             </div>
                         </div>
                         <div class="list-item" onclick="showView('view-reportes')" style="cursor: pointer;">
                             <div class="list-item-content">
-                                <h3>🚩 Preguntas Reportadas</h3>
+                                <h3>ðŸš© Preguntas Reportadas</h3>
                                 <p>Revisa las preguntas que los usuarios han marcado con posibles errores.</p>
                             </div>
                         </div>
@@ -990,7 +992,7 @@
                         </div>
                         <div class="list-item" onclick="showView('view-feedback')" style="cursor: pointer;">
                             <div class="list-item-content">
-                                <h3>💬 Enviar Feedback</h3>
+                                <h3>ðŸ’¬ Enviar Feedback</h3>
                                 <p>Comparte sugerencias, errores o ideas para mejorar la app.</p>
                             </div>
                         </div>
@@ -1066,7 +1068,7 @@
                     <div class="panel-header"
                         style="display: flex; justify-content: space-between; align-items: center;">
                         <div>
-                            <h2 class="panel-title"><span class="title-icon green-text">💬</span> Feedback</h2>
+                            <h2 class="panel-title"><span class="title-icon green-text">ðŸ’¬</span> Feedback</h2>
                             <p class="panel-subtitle">Cuentanos que mejorar o que errores encontraste.</p>
                         </div>
                         <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
@@ -1104,74 +1106,74 @@
                 </div>
             </div>
 
-            <!-- ─── VIEW: TEMARIO ────────────────────────────── -->
+            <!-- â”€â”€â”€ VIEW: TEMARIO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
             <div id="view-temario" class="view">
                 <div class="panel">
                     <div class="panel-header"
                         style="display: flex; justify-content: space-between; align-items: center;">
                         <div>
-                            <h2 class="panel-title"><span class="title-icon green-text">📖</span> Temario Oficial ENARM
+                            <h2 class="panel-title"><span class="title-icon green-text">ðŸ“–</span> Temario Oficial ENARM
                             </h2>
-                            <p class="panel-subtitle">Todos los temas y subtemas integrados en la aplicación.</p>
+                            <p class="panel-subtitle">Todos los temas y subtemas integrados en la aplicaciÃ³n.</p>
                         </div>
                         <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
                     </div>
 
                     <div class="search-box-container" style="margin: 20px 0;">
-                        <span class="search-icon">🔍</span>
-                        <input type="text" id="temario-search" placeholder="Buscar un tema específico..."
+                        <span class="search-icon">ðŸ”</span>
+                        <input type="text" id="temario-search" placeholder="Buscar un tema especÃ­fico..."
                             oninput="filterOfficialTemario()">
                     </div>
 
                     <div id="temario-list" class="temario-grid"
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 20px;">
-                        <!-- Se llena dinámicamente desde app.js -->
+                        <!-- Se llena dinÃ¡micamente desde app.js -->
                     </div>
                 </div>
             </div>
 
-            <!-- ─── VIEW: CALCULADORA ─────────────────────────── -->
+            <!-- â”€â”€â”€ VIEW: CALCULADORA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
             <div id="view-calculadora" class="view">
                 <div class="panel">
                     <div class="panel-header">
-                        <h2 class="panel-title"><span class="title-icon green-text">🧮</span> Calculadora de Puntaje
+                        <h2 class="panel-title"><span class="title-icon green-text">ðŸ§®</span> Calculadora de Puntaje
                         </h2>
                     </div>
-                    <p class="panel-subtitle">Calcula tus probabilidades de ingreso basándote en los puntajes de corte
-                        históricos (ENARM 2024).</p>
+                    <p class="panel-subtitle">Calcula tus probabilidades de ingreso basÃ¡ndote en los puntajes de corte
+                        histÃ³ricos (ENARM 2024).</p>
 
                     <div class="calc-grid" style="margin-top: 30px;">
                         <div class="calc-inputs">
                             <div class="input-group">
                                 <label>Especialidad</label>
                                 <select class="text-input" id="calc-specialty">
-                                    <option value="57.67">Anatomía Patológica (57.67)</option>
-                                    <option value="58.39">Anestesiología (58.39)</option>
-                                    <option value="59.46">Audiología, Otoneurología y Foniatría (59.46)</option>
-                                    <option value="51.07">Calidad de la Atención Clínica (51.07)</option>
-                                    <option value="63.21">Cirugía General (63.21)</option>
-                                    <option value="46.25">Epidemiología (46.25)</option>
-                                    <option value="61.60">Genética Médica (61.60)</option>
-                                    <option value="57.14">Geriatría (57.14)</option>
-                                    <option value="60.35">Ginecología y Obstetricia (60.35)</option>
-                                    <option value="58.03">Imagenología Diagnóstica y Terapéutica (58.03)</option>
-                                    <option value="68.21">Medicina de la Actividad Física y Deportiva (68.21)</option>
-                                    <option value="58.75">Medicina de Rehabilitación (58.75)</option>
+                                    <option value="57.67">AnatomÃ­a PatolÃ³gica (57.67)</option>
+                                    <option value="58.39">AnestesiologÃ­a (58.39)</option>
+                                    <option value="59.46">AudiologÃ­a, OtoneurologÃ­a y FoniatrÃ­a (59.46)</option>
+                                    <option value="51.07">Calidad de la AtenciÃ³n ClÃ­nica (51.07)</option>
+                                    <option value="63.21">CirugÃ­a General (63.21)</option>
+                                    <option value="46.25">EpidemiologÃ­a (46.25)</option>
+                                    <option value="61.60">GenÃ©tica MÃ©dica (61.60)</option>
+                                    <option value="57.14">GeriatrÃ­a (57.14)</option>
+                                    <option value="60.35">GinecologÃ­a y Obstetricia (60.35)</option>
+                                    <option value="58.03">ImagenologÃ­a DiagnÃ³stica y TerapÃ©utica (58.03)</option>
+                                    <option value="68.21">Medicina de la Actividad FÃ­sica y Deportiva (68.21)</option>
+                                    <option value="58.75">Medicina de RehabilitaciÃ³n (58.75)</option>
                                     <option value="47.67">Medicina de Urgencias (47.67)</option>
                                     <option value="55.71">Medicina del Trabajo y Ambiental (55.71)</option>
                                     <option value="45.17">Medicina Familiar (45.17)</option>
                                     <option value="59.46">Medicina Interna (59.46)</option>
-                                    <option value="59.64">Medicina Nuclear e Imagenología Molecular (59.64)</option>
+                                    <option value="59.64">Medicina Nuclear e ImagenologÃ­a Molecular (59.64)</option>
                                     <option value="67.50">Medicina Paliativa (67.50)</option>
                                     <option value="58.21">Medicina Preventiva (58.21)</option>
-                                    <option value="60.17">Neumología (60.17)</option>
-                                    <option value="68.92">Oftalmología (68.92)</option>
-                                    <option value="70.00">Otorrinolaringología y C. de Cabeza y Cuello (70.00)</option>
-                                    <option value="55.35">Patología Clínica (55.35)</option>
-                                    <option value="58.57">Pediatría (58.57)</option>
-                                    <option value="62.14">Psiquiatría (62.14)</option>
-                                    <option value="57.85">Radio Oncología (57.85)</option>
-                                    <option value="62.14">Traumatología y Ortopedia (62.14)</option>
+                                    <option value="60.17">NeumologÃ­a (60.17)</option>
+                                    <option value="68.92">OftalmologÃ­a (68.92)</option>
+                                    <option value="70.00">OtorrinolaringologÃ­a y C. de Cabeza y Cuello (70.00)</option>
+                                    <option value="55.35">PatologÃ­a ClÃ­nica (55.35)</option>
+                                    <option value="58.57">PediatrÃ­a (58.57)</option>
+                                    <option value="62.14">PsiquiatrÃ­a (62.14)</option>
+                                    <option value="57.85">Radio OncologÃ­a (57.85)</option>
+                                    <option value="62.14">TraumatologÃ­a y Ortopedia (62.14)</option>
                                 </select>
                             </div>
                             <div class="input-group">
@@ -1179,19 +1181,19 @@
                                 <input type="number" class="text-input" id="calc-user-score" value="0.0" step="0.1"
                                     min="0" max="100">
                                 <p style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">* Este valor se
-                                    toma automáticamente de tu promedio global si no lo modificas.</p>
+                                    toma automÃ¡ticamente de tu promedio global si no lo modificas.</p>
                             </div>
                         </div>
 
                         <div class="calc-result-card" id="calc-card">
                             <span class="calc-status" id="calc-status">NIVEL DE RIESGO</span>
                             <span class="calc-score-val" id="calc-diff">+0.0</span>
-                            <p id="calc-msg">Ingresa tus datos para ver el análisis.</p>
+                            <p id="calc-msg">Ingresa tus datos para ver el anÃ¡lisis.</p>
                         </div>
                     </div>
 
                     <div style="margin-top: 40px; overflow: hidden;">
-                        <h3 style="font-size: 16px; margin-bottom: 15px;">Puntajes de Referencia (Promedios Históricos)
+                        <h3 style="font-size: 16px; margin-bottom: 15px;">Puntajes de Referencia (Promedios HistÃ³ricos)
                         </h3>
                         <div class="table-container"
                             style="width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;">
@@ -1199,8 +1201,8 @@
                                 <thead>
                                     <tr>
                                         <th>Especialidad</th>
-                                        <th>Mínimo (2024)</th>
-                                        <th>Máximo (2024)</th>
+                                        <th>MÃ­nimo (2024)</th>
+                                        <th>MÃ¡ximo (2024)</th>
                                         <th>Tu Estatus</th>
                                     </tr>
                                 </thead>
@@ -1215,31 +1217,31 @@
             <div id="view-estadisticas" class="view">
                 <div class="panel">
                     <div class="panel-header">
-                        <h2 class="panel-title"><span class="title-icon blue-text">📊</span> Estadísticas Detalladas
+                        <h2 class="panel-title"><span class="title-icon blue-text">ðŸ“Š</span> EstadÃ­sticas Detalladas
                         </h2>
                     </div>
-                    <p class="panel-subtitle">Analiza tu rendimiento y evolución histórica. Todas las métricas se
-                        actualizan de acuerdo a tu desempeño en simulacros y repasos.</p>
+                    <p class="panel-subtitle">Analiza tu rendimiento y evoluciÃ³n histÃ³rica. Todas las mÃ©tricas se
+                        actualizan de acuerdo a tu desempeÃ±o en simulacros y repasos.</p>
 
                     <div class="stats-overview"
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; margin-bottom: 25px;">
                         <div class="stat-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                            <div class="stat-icon purple-icon" style="font-size: 1.8rem; margin-bottom: 5px;">🎯</div>
-                            <div class="stat-label">Precisión Global</div>
+                            <div class="stat-icon purple-icon" style="font-size: 1.8rem; margin-bottom: 5px;">ðŸŽ¯</div>
+                            <div class="stat-label">PrecisiÃ³n Global</div>
                             <div class="stat-value" id="stats-global-precision"
                                 style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">0%</div>
                         </div>
                         <div class="stat-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                            <div class="stat-icon orange-icon" style="font-size: 1.8rem; margin-bottom: 5px;">⏱️</div>
+                            <div class="stat-icon orange-icon" style="font-size: 1.8rem; margin-bottom: 5px;">â±ï¸</div>
                             <div class="stat-label">Tiempo / Pregunta</div>
                             <div class="stat-value" id="stats-avg-time"
                                 style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">0s</div>
                         </div>
                         <div class="stat-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                            <div class="stat-icon green-icon" style="font-size: 1.8rem; margin-bottom: 5px;">📚</div>
+                            <div class="stat-icon green-icon" style="font-size: 1.8rem; margin-bottom: 5px;">ðŸ“š</div>
                             <div class="stat-label">Preguntas Totales</div>
                             <div class="stat-value" id="stats-total-questions"
                                 style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">0</div>
@@ -1248,15 +1250,15 @@
 
                     <div class="charts-grid"
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; align-items: start;">
-                        <!-- Carta Rendimiento Histórico (Línea) -->
+                        <!-- Carta Rendimiento HistÃ³rico (LÃ­nea) -->
                         <div class="chart-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); grid-column: 1 / -1;">
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                                <h3 style="margin: 0; color: var(--text-primary); font-size: 1.2rem;">📈 Curva de
+                                <h3 style="margin: 0; color: var(--text-primary); font-size: 1.2rem;">ðŸ“ˆ Curva de
                                     Aprendizaje</h3>
                                 <span
-                                    style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Últimas
+                                    style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Ãšltimas
                                     10 sesiones</span>
                             </div>
                             <div style="position: relative; height: 320px; width: 100%;">
@@ -1269,19 +1271,19 @@
                             style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
                             <h3
                                 style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">
-                                🕸️ Dominio por Especialidad</h3>
+                                ðŸ•¸ï¸ Dominio por Especialidad</h3>
                             <div
                                 style="position: relative; height: 300px; width: 100%; display: flex; justify-content: center;">
                                 <canvas id="chart-specialties"></canvas>
                             </div>
                         </div>
 
-                        <!-- Carta Distribución Global (Doughnut) -->
+                        <!-- Carta DistribuciÃ³n Global (Doughnut) -->
                         <div class="chart-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
                             <h3
                                 style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">
-                                🍩 Balance de Respuestas</h3>
+                                ðŸ© Balance de Respuestas</h3>
                             <div
                                 style="position: relative; height: 300px; width: 100%; display: flex; justify-content: center; align-items: center;">
                                 <canvas id="chart-doughnut"></canvas>
@@ -1296,41 +1298,41 @@
                 </div>
             </div>
 
-            <!-- ─── VIEW: HISTORIAL ───────────────────────────── -->
+            <!-- â”€â”€â”€ VIEW: HISTORIAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
             <div id="view-historial" class="view">
                 <div class="panel">
-                    <h2 class="panel-title"><span class="title-icon orange-text">🕒</span> Historial de Sesiones</h2>
-                    <p class="panel-subtitle">Registro de exámenes y sesiones de repaso inteligente.</p>
+                    <h2 class="panel-title"><span class="title-icon orange-text">ðŸ•’</span> Historial de Sesiones</h2>
+                    <p class="panel-subtitle">Registro de exÃ¡menes y sesiones de repaso inteligente.</p>
 
                     <div class="list-grid" id="history-list">
-                        <!-- Se llena dinámicamente con app.js -->
+                        <!-- Se llena dinÃ¡micamente con app.js -->
                         <div class="list-item empty-history">
-                            <p style="color:var(--text-muted); padding: 20px;">Aún no hay sesiones registradas.</p>
+                            <p style="color:var(--text-muted); padding: 20px;">AÃºn no hay sesiones registradas.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ─── VIEW: AJUSTES ───────────────────────────── -->
+            <!-- â”€â”€â”€ VIEW: AJUSTES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
             <div id="view-ajustes" class="view">
                 <div class="settings-container" style="max-width: 900px; margin: 0 auto; width: 100%;">
                     <div class="dashboard-header" style="margin-bottom: 40px; text-align: center;">
                         <div style="width: 100%;">
-                            <h1 class="header-title" style="font-size: 34px;">Configuración</h1>
+                            <h1 class="header-title" style="font-size: 34px;">ConfiguraciÃ³n</h1>
                             <p class="header-subtitle">Personaliza tu perfil, interfaz y objetivos de estudio para
-                                optimizar tu preparación.</p>
+                                optimizar tu preparaciÃ³n.</p>
                         </div>
                     </div>
 
                     <div class="settings-grid"
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
 
-                        <!-- Sección: Preferencias movida al primer lugar -->
+                        <!-- SecciÃ³n: Preferencias movida al primer lugar -->
 
-                        <!-- Sección: Preferencias -->
+                        <!-- SecciÃ³n: Preferencias -->
                         <div class="panel settings-panel" style="border-top-color: var(--accent-blue);">
                             <h3 class="panel-title" style="margin-bottom: 24px; font-size: 1.1rem;">
-                                <span class="title-icon blue-text">🎨</span> Interfaz y Métricas
+                                <span class="title-icon blue-text">ðŸŽ¨</span> Interfaz y MÃ©tricas
                             </h3>
                             <div class="settings-form">
                                 <div class="input-group">
@@ -1339,14 +1341,14 @@
                                         <div class="theme-circle active" data-theme="dark"
                                             title="Modo Oscuro (Obsidiana)"></div>
                                         <div class="theme-circle" data-theme="light" title="Modo Claro (Nieve)"></div>
-                                        <div class="theme-circle" data-theme="forest" title="Tema Bosque (Verde Limón)">
+                                        <div class="theme-circle" data-theme="forest" title="Tema Bosque (Verde LimÃ³n)">
                                         </div>
                                         <div class="theme-circle" data-theme="ocean"
-                                            title="Tema Océano (Azul Profundo)"></div>
-                                        <div class="theme-circle" data-theme="sunset" title="Tema Atardecer (Rubí)">
+                                            title="Tema OcÃ©ano (Azul Profundo)"></div>
+                                        <div class="theme-circle" data-theme="sunset" title="Tema Atardecer (RubÃ­)">
                                         </div>
                                         <div class="theme-circle" data-theme="premium"
-                                            title="Tema Premium (Nebulosa Púrpura)">
+                                            title="Tema Premium (Nebulosa PÃºrpura)">
                                         </div>
                                     </div>
                                 </div>
@@ -1356,17 +1358,17 @@
 
                     </div>
 
-                    <!-- Sección: Zona de Peligro -->
+                    <!-- SecciÃ³n: Zona de Peligro -->
                     <div class="panel settings-panel" style="border-top-color: var(--accent-red); margin-top: 24px;">
                         <h3 class="panel-title"
                             style="margin-bottom: 16px; font-size: 1.1rem; color: var(--accent-red);">
-                            <span class="title-icon red-text">⚠️</span> Zona de Peligro
+                            <span class="title-icon red-text">âš ï¸</span> Zona de Peligro
                         </h3>
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <div>
                                 <h4 style="font-size: 14px; margin-bottom: 4px;">Reiniciar Progreso</h4>
                                 <p style="font-size: 12px; color: var(--text-muted);">Elimina permanentemente todo tu
-                                    historial y estadísticas.</p>
+                                    historial y estadÃ­sticas.</p>
                             </div>
                             <button class="btn-danger" id="btn-reset-stats"
                                 style="padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; background: rgba(239, 68, 68, 0.1); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.2); cursor: pointer; transition: 0.2s;">
@@ -1377,9 +1379,9 @@
                         <div
                             style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
                             <div>
-                                <h4 style="font-size: 14px; margin-bottom: 4px;">Cerrar Sesión</h4>
+                                <h4 style="font-size: 14px; margin-bottom: 4px;">Cerrar SesiÃ³n</h4>
                                 <p style="font-size: 12px; color: var(--text-muted);">Desvincula tu cuenta de este
-                                    dispositivo y pausa tu sesión activa.</p>
+                                    dispositivo y pausa tu sesiÃ³n activa.</p>
                             </div>
                             <button class="btn-secondary" id="btn-logout"
                                 style="padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s;">
@@ -1394,7 +1396,7 @@
 
         </main>
 
-        <!-- ─── MODAL REPORTAR PREGUNTA ───────────────────── -->
+        <!-- â”€â”€â”€ MODAL REPORTAR PREGUNTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
         <div class="modal-overlay" id="report-modal"
             style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
             <div class="modal-content"
@@ -1437,15 +1439,15 @@
             </div>
         </div>
 
-        <!-- ─── MODAL CONFIRMACIÓN TERMINAR EXAMEN ────────────────── -->
+        <!-- â”€â”€â”€ MODAL CONFIRMACIÃ“N TERMINAR EXAMEN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
         <div class="modal-overlay" id="finish-modal"
             style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
             <div class="modal-content"
                 style="background: var(--bg-card); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; max-width: 400px;">
-                <div style="font-size: 40px; margin-bottom: 20px;">⚠️</div>
-                <h2 style="font-size: 22px; margin-bottom: 15px;">¿Finalizar Sesión?</h2>
-                <p style="color: var(--text-secondary); margin-bottom: 25px; font-size: 14px;">Aún no respondes todas
-                    las preguntas. Las no respondidas se calificarán como incorrectas.</p>
+                <div style="font-size: 40px; margin-bottom: 20px;">âš ï¸</div>
+                <h2 style="font-size: 22px; margin-bottom: 15px;">Â¿Finalizar SesiÃ³n?</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 25px; font-size: 14px;">AÃºn no respondes todas
+                    las preguntas. Las no respondidas se calificarÃ¡n como incorrectas.</p>
                 <div style="display: flex; gap: 15px; justify-content: center;">
                     <button class="btn-ghost" id="btn-cancel-finish" style="flex: 1;">Seguir</button>
                     <button class="btn-primary" id="btn-confirm-finish"
@@ -1459,15 +1461,15 @@
             style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
             <div class="modal-content"
                 style="background: var(--bg-card); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); text-align: left; max-width: 450px;">
-                <h2 style="font-size: 24px; color: var(--accent-orange); margin-bottom: 5px;">🔥 Rachas Plus</h2>
-                <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">Mantén tu racha diaria
-                    para aumentar tus probabilidades estadísticas de aprobar.</p>
+                <h2 style="font-size: 24px; color: var(--accent-orange); margin-bottom: 5px;">ðŸ”¥ Rachas Plus</h2>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">MantÃ©n tu racha diaria
+                    para aumentar tus probabilidades estadÃ­sticas de aprobar.</p>
 
                 <div
                     style="background: rgba(243, 122, 32, 0.1); border: 1px solid rgba(243, 122, 32, 0.3); padding: 20px; border-radius: var(--radius-lg); text-align: center; margin-bottom: 20px;">
                     <span id="modal-streak-days" style="font-size: 48px; font-weight: 900; color: #fff;">0</span>
                     <span
-                        style="font-size: 14px; color: var(--accent-orange); font-weight: 700; display: block; text-transform: uppercase;">Días
+                        style="font-size: 14px; color: var(--accent-orange); font-weight: 700; display: block; text-transform: uppercase;">DÃ­as
                         de Racha Activa</span>
                 </div>
 
@@ -1484,24 +1486,24 @@
                             style="width: 20%; background: var(--accent-blue);"></div>
                     </div>
                     <p style="font-size: 12px; color: var(--text-secondary); margin-top: 10px; line-height: 1.5;">El
-                        algoritmo calcula esta probabilidad basándose en la constancia y consolidación neural. Faltar 1
-                        día reduce penaliza tu racha perdiendo 2 días progresivos. ¡Sé constante para llegar al %
-                        máximo!</p>
+                        algoritmo calcula esta probabilidad basÃ¡ndose en la constancia y consolidaciÃ³n neural. Faltar 1
+                        dÃ­a reduce penaliza tu racha perdiendo 2 dÃ­as progresivos. Â¡SÃ© constante para llegar al %
+                        mÃ¡ximo!</p>
                 </div>
 
-                <button class="btn-primary" id="btn-close-streak" style="width: 100%; border-radius: 8px;">¡A Seguir
+                <button class="btn-primary" id="btn-close-streak" style="width: 100%; border-radius: 8px;">Â¡A Seguir
                     Estudiando!</button>
             </div>
         </div>
 
-        <!-- ─── MODAL EXPLICACIÓN RANGOS ────────────────────────── -->
+        <!-- â”€â”€â”€ MODAL EXPLICACIÃ“N RANGOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
         <div id="range-modal" class="modal-overlay"
             style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(8px);">
             <div class="modal-content"
                 style="background: var(--bg-card); padding: 30px; border-radius: 20px; border: 1px solid var(--border); text-align: left; max-width: 500px; width: 90%; position: relative; animation: modalFadeIn 0.3s ease;">
                 <button id="btn-close-range"
-                    style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
-                <h2 class="panel-title" style="margin-bottom: 20px;"><span class="title-icon purple-text">🏅</span>
+                    style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">âœ•</button>
+                <h2 class="panel-title" style="margin-bottom: 20px;"><span class="title-icon purple-text">ðŸ…</span>
                     Niveles de Rendimiento</h2>
 
                 <div class="range-info-list" style="display: flex; flex-direction: column; gap: 15px;">
@@ -1514,26 +1516,26 @@
                     <div
                         style="padding: 12px; border-radius: 12px; border-left: 4px solid #3b82f6; background: rgba(59, 130, 246, 0.05);">
                         <strong style="color: #3b82f6; font-size: 16px;">Residente (60% - 69.9%)</strong>
-                        <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">Nivel sólido. Estás
-                            en el rango de selección para la mayoría de las especialidades troncales.</p>
+                        <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">Nivel sÃ³lido. EstÃ¡s
+                            en el rango de selecciÃ³n para la mayorÃ­a de las especialidades troncales.</p>
                     </div>
                     <div
                         style="padding: 12px; border-radius: 12px; border-left: 4px solid #8FA6CA; background: rgba(143, 166, 202, 0.05);">
-                        <strong style="color: #8FA6CA; font-size: 16px;">Médico General (50% - 59.9%)</strong>
+                        <strong style="color: #8FA6CA; font-size: 16px;">MÃ©dico General (50% - 59.9%)</strong>
                         <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">Conocimientos base
-                            completos. Requiere mayor enfoque en temas específicos para asegurar selección.</p>
+                            completos. Requiere mayor enfoque en temas especÃ­ficos para asegurar selecciÃ³n.</p>
                     </div>
                     <div
                         style="padding: 12px; border-radius: 12px; border-left: 4px solid #F37A20; background: rgba(243, 122, 32, 0.05);">
                         <strong style="color: #F37A20; font-size: 16px;">MPSS (30% - 49.9%)</strong>
                         <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">Etapa de aprendizaje
-                            activo. Es momento de reforzar las guías de práctica clínica (GPC).</p>
+                            activo. Es momento de reforzar las guÃ­as de prÃ¡ctica clÃ­nica (GPC).</p>
                     </div>
                     <div
                         style="padding: 12px; border-radius: 12px; border-left: 4px solid #64748B; background: rgba(100, 116, 139, 0.05);">
                         <strong style="color: #64748B; font-size: 16px;">MIP (0% - 29.9%)</strong>
                         <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">Nivel inicial.
-                            Recomendamos iniciar con repasos de ciencias básicas y fundamentos clínicos.</p>
+                            Recomendamos iniciar con repasos de ciencias bÃ¡sicas y fundamentos clÃ­nicos.</p>
                     </div>
                 </div>
 
@@ -1577,7 +1579,7 @@
                     <path
                         d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
                 </svg>
-                <span>Más</span>
+                <span>MÃ¡s</span>
             </button>
         </nav>
 
@@ -1585,15 +1587,15 @@
 
     </div>
 
-    <!-- ─── MODAL CREAR RETO ────────────────────── -->
+    <!-- â”€â”€â”€ MODAL CREAR RETO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <div class="modal-overlay" id="challenge-modal"
         style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px);"
         onclick="if(event.target===this) this.style.display='none'">
         <div class="modal-content"
             style="background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--border); max-width: 400px; width: 90%; position: relative;">
             <button id="btn-close-challenge-modal"
-                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
-            <h2 style="font-size: 20px; margin-bottom: 20px; color: var(--accent-orange); text-align: center;">⚔️ Enviar
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">âœ•</button>
+            <h2 style="font-size: 20px; margin-bottom: 20px; color: var(--accent-orange); text-align: center;">âš”ï¸ Enviar
                 Reto</h2>
 
             <div class="input-group" style="margin-bottom: 20px;">
@@ -1607,26 +1609,26 @@
             </div>
 
             <div class="input-group" style="margin-bottom: 24px;">
-                <label style="font-size: 13px; color: var(--text-secondary);">El reto se enviará usando la configuración
+                <label style="font-size: 13px; color: var(--text-secondary);">El reto se enviarÃ¡ usando la configuraciÃ³n
                     actual de tu simulacro (especialidad, preguntas y dificultad).</label>
             </div>
 
             <button id="btn-send-challenge" class="btn-primary"
                 style="width: 100%; justify-content: center; background: var(--accent-orange); color: #fff; box-shadow: 0 4px 15px rgba(243, 122, 32, 0.4);">
-                ¡Desafiar Ahora!
+                Â¡Desafiar Ahora!
             </button>
         </div>
     </div>
 
-    <!-- ─── MODAL RANKING DE RETO ──────────────── -->
+    <!-- â”€â”€â”€ MODAL RANKING DE RETO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <div class="modal-overlay" id="challenge-ranking-modal"
         style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 3500; justify-content: center; align-items: center; backdrop-filter: blur(8px);">
         <div class="modal-content"
             style="background: var(--bg-card); padding: 30px; border-radius: 20px; border: 1px solid var(--border); max-width: 500px; width: 95%; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.5);">
             <button onclick="document.getElementById('challenge-ranking-modal').style.display='none'"
-                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">âœ•</button>
             <h2 id="ranking-modal-title"
-                style="font-size: 18px; color: var(--accent-orange); text-align: center; margin-bottom: 5px;">📊 Ranking
+                style="font-size: 18px; color: var(--accent-orange); text-align: center; margin-bottom: 5px;">ðŸ“Š Ranking
                 del Reto</h2>
             <p id="ranking-modal-subtitle"
                 style="text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">Resultados
@@ -1643,14 +1645,14 @@
         </div>
     </div>
 
-    <!-- ─── MODAL PERFIL Y AMIGOS ──────────────── -->
+    <!-- â”€â”€â”€ MODAL PERFIL Y AMIGOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <div class="modal-overlay" id="profile-modal"
         style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
         <div class="modal-content"
             style="background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--border); max-width: 450px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative; scrollbar-width: none;">
             <button id="btn-close-profile"
-                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
-            <h2 style="font-size: 20px; margin-bottom: 20px; color: var(--text-primary); text-align: center;">👤 Mi
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">âœ•</button>
+            <h2 style="font-size: 20px; margin-bottom: 20px; color: var(--text-primary); text-align: center;">ðŸ‘¤ Mi
                 Perfil y Red</h2>
 
             <!-- MI PERFIL -->
@@ -1660,7 +1662,7 @@
                     style="font-size: 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 15px; color: var(--text-primary);">
                     Tus Datos</h3>
                 <div class="input-group" style="margin-bottom: 15px;">
-                    <label>Usuario (Compártelo para que te agreguen)</label>
+                    <label>Usuario (CompÃ¡rtelo para que te agreguen)</label>
                     <div style="display:flex; gap:10px;">
                         <input type="text" id="profile-name" class="text-input" style="flex:1;"
                             placeholder="Tu nombre de usuario" maxlength="20">
@@ -1674,17 +1676,38 @@
                     </div>
                 </div>
                 <div class="input-group" style="margin-bottom: 15px;">
+                    <label>Tu UID (para soporte/admin)</label>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="profile-uid" class="text-input" style="flex:1;" readonly>
+                        <button class="btn-secondary" id="btn-copy-uid" title="Copiar tu UID"
+                            style="padding: 10px;">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                <path
+                                    d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="input-group" style="margin-bottom: 15px;">
+                    <label>Estado Premium</label>
+                    <input type="text" id="profile-premium-status" class="text-input" style="width: 100%;" readonly
+                        value="Demo">
+                    <button class="btn-secondary" id="btn-open-redeem" style="width: 100%; margin-top: 8px;">
+                        Canjear cÃƒÂ³digo
+                    </button>
+                </div>
+                <div class="input-group" style="margin-bottom: 15px;">
                     <label>Especialidad Objetivo</label>
                     <select id="profile-specialty" class="text-input" style="width: 100%; cursor: pointer;">
-                        <option value="">Aún sin decidir</option>
+                        <option value="">AÃºn sin decidir</option>
                         <option value="Medicina Interna">Medicina Interna</option>
-                        <option value="Cirugía General">Cirugía General</option>
-                        <option value="Ginecología y Obstetricia">Ginecología y Obstetricia</option>
-                        <option value="Pediatría">Pediatría</option>
-                        <option value="Traumatología y Ortopedia">Traumatología y Ortopedia</option>
-                        <option value="Anestesiología">Anestesiología</option>
-                        <option value="Oftalmología">Oftalmología</option>
-                        <option value="Otorrinolaringología">Otorrinolaringología</option>
+                        <option value="CirugÃ­a General">CirugÃ­a General</option>
+                        <option value="GinecologÃ­a y Obstetricia">GinecologÃ­a y Obstetricia</option>
+                        <option value="PediatrÃ­a">PediatrÃ­a</option>
+                        <option value="TraumatologÃ­a y Ortopedia">TraumatologÃ­a y Ortopedia</option>
+                        <option value="AnestesiologÃ­a">AnestesiologÃ­a</option>
+                        <option value="OftalmologÃ­a">OftalmologÃ­a</option>
+                        <option value="OtorrinolaringologÃ­a">OtorrinolaringologÃ­a</option>
                     </select>
                 </div>
                 <div class="input-group" style="margin-bottom: 15px;">
@@ -1700,7 +1723,7 @@
                 style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 10px; border: 1px solid var(--border);">
                 <h3
                     style="font-size: 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 15px; color: var(--text-primary);">
-                    👥 Agregar a un Colega</h3>
+                    ðŸ‘¥ Agregar a un Colega</h3>
 
                 <div class="input-group" style="display: flex; gap: 10px; margin-bottom: 15px;">
                     <input type="text" id="friend-search-input" placeholder="Ej. DraSofia99" class="text-input"
@@ -1711,40 +1734,79 @@
 
                 <div id="friend-search-results"
                     style="margin-bottom: 20px; padding: 15px; background: var(--bg-main); border-radius: 8px; border: 1px solid var(--border); display: none;">
-                    <!-- Dinámico: Resultados de búsqueda -->
+                    <!-- DinÃ¡mico: Resultados de bÃºsqueda -->
                 </div>
 
                 <h3
                     style="font-size: 14px; color: var(--text-primary); margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
-                    🔔 Solicitudes Recibidas</h3>
+                    ðŸ”” Solicitudes Recibidas</h3>
                 <div id="pending-requests-list"
                     style="display: flex; flex-direction: column; gap: 10px; min-height: 50px;">
-                    <!-- Dinámico: Solicitudes pendientes -->
+                    <!-- DinÃ¡mico: Solicitudes pendientes -->
                     <div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">No
                         tienes solicitudes nuevas.</div>
                 </div>
             </div>
+            <div id="admin-codes-panel"
+                style="display: none; background: rgba(255,255,255,0.02); padding: 15px; border-radius: 10px; border: 1px solid var(--border); margin-top: 20px;">
+                <h3
+                    style="font-size: 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 12px; color: var(--text-primary);">
+                    Admin - Cargar codigos</h3>
+                <div class="input-group" style="margin-bottom: 10px;">
+                    <label>Pega los codigos (uno por linea)</label>
+                    <textarea id="admin-codes-input" class="text-input" rows="6"
+                        placeholder="ENARM-M1-XXXXXXX&#10;ENARM-FX-XXXXXXX"></textarea>
+                </div>
+                <button class="btn-primary" id="btn-admin-upload-codes" style="width: 100%;">Subir codigos</button>
+                <p style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">
+                    Prefijo ENARM-M1- = 1 mes, ENARM-FX- = acceso hasta 1 Oct 2026.
+                </p>
+            </div>
+            </div>
         </div>
     </div>
 
-    <!-- ─── MODAL NOTIFICACIONES ──────────────── -->
+    <!-- MODAL CANJEAR CODIGO -->
+    <div class="modal-overlay" id="redeem-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+        <div class="modal-content"
+            style="background: var(--bg-card); padding: 28px; border-radius: 16px; border: 1px solid var(--border); max-width: 420px; width: 90%; position: relative;">
+            <button id="btn-close-redeem"
+                style="position: absolute; top: 12px; right: 12px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">Ã¢Å“â€¢</button>
+            <h2 style="font-size: 18px; margin-bottom: 10px; color: var(--text-primary); text-align: center;">
+                Canjear cÃƒÂ³digo premium</h2>
+            <p id="redeem-reason" style="font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 16px;">
+                Esta funciÃƒÂ³n requiere premium. Ingresa tu cÃƒÂ³digo.
+            </p>
+            <div class="input-group" style="margin-bottom: 12px;">
+                <label>CÃƒÂ³digo</label>
+                <input type="text" id="redeem-code-input" class="text-input" placeholder="ENARM-M1-XXXXXXX">
+            </div>
+            <button class="btn-primary" id="btn-redeem-submit" style="width: 100%;">Canjear y desbloquear</button>
+            <p style="margin-top: 10px; font-size: 11px; color: var(--text-muted); text-align: center;">
+                Los cÃƒÂ³digos son de un solo uso.
+            </p>
+        </div>
+    </div>
+
+    <!-- â”€â”€â”€ MODAL NOTIFICACIONES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <div class="modal-overlay" id="notif-modal"
         style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
         <div class="modal-content"
             style="background: var(--bg-card); padding: 25px; border-radius: 16px; border: 1px solid var(--border); max-width: 400px; width: 90%; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
             <button id="btn-close-notif"
-                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">âœ•</button>
             <h2
                 style="font-size: 18px; margin-bottom: 20px; color: var(--text-primary); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                🔔 Notificaciones
+                ðŸ”” Notificaciones
             </h2>
             <button onclick="clearAllNotifications()"
                 style="width: 100%; margin-bottom: 15px; padding: 10px; border-radius: 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: var(--accent-red); font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s;">
-                🗑️ Limpiar Todo
+                ðŸ—‘ï¸ Limpiar Todo
             </button>
             <div id="notif-list-container"
                 style="display: flex; flex-direction: column; gap: 12px; max-height: 400px; overflow-y: auto; padding-right: 5px;">
-                <!-- Dinámico: Solicitudes de amistad -->
+                <!-- DinÃ¡mico: Solicitudes de amistad -->
                 <div style="text-align: center; color: var(--text-muted); padding: 30px;">
                     Cargando notificaciones...
                 </div>
@@ -1752,25 +1814,25 @@
         </div>
     </div>
 
-    <!-- ─── MODAL INSTALACIÓN PWA ──────────────── -->
+    <!-- â”€â”€â”€ MODAL INSTALACIÃ“N PWA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <div class="modal-overlay" id="pwa-modal"
         style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
         <div class="modal-content"
             style="background: var(--bg-card); padding: 25px; border-radius: 16px; border: 1px solid var(--border); max-width: 400px; width: 90%; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.4); text-align: center;">
             <button id="btn-close-pwa"
-                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">âœ•</button>
 
             <div id="pwa-step-1">
                 <h2 style="font-size: 18px; margin-bottom: 20px; color: var(--text-primary);">Selecciona tu celular</h2>
                 <div style="display: flex; gap: 15px; margin-bottom: 10px;">
                     <button id="btn-pwa-android"
                         style="flex: 1; padding: 20px 10px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; color: var(--text-primary); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: all 0.2s;">
-                        <span style="font-size: 32px;">🤖</span>
+                        <span style="font-size: 32px;">ðŸ¤–</span>
                         <span style="font-size: 14px; font-weight: 600;">Android</span>
                     </button>
                     <button id="btn-pwa-ios"
                         style="flex: 1; padding: 20px 10px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; color: var(--text-primary); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: all 0.2s;">
-                        <span style="font-size: 32px;">🍎</span>
+                        <span style="font-size: 32px;">ðŸŽ</span>
                         <span style="font-size: 14px; font-weight: 600;">iPhone</span>
                     </button>
                 </div>
@@ -1781,17 +1843,17 @@
                     Instalar en Android</h2>
                 <ol
                     style="color: var(--text-secondary); font-size: 14px; padding-left: 20px; line-height: 1.6; margin-bottom: 20px;">
-                    <li>Toca el menú <strong>(⋮)</strong> arriba a la derecha en Chrome.</li>
-                    <li>Busca y toca <strong>"Añadir a la pantalla de inicio"</strong> o <strong>"Instalar
-                            aplicación"</strong>.</li>
-                    <li>Confirma y listo. ✨</li>
+                    <li>Toca el menÃº <strong>(â‹®)</strong> arriba a la derecha en Chrome.</li>
+                    <li>Busca y toca <strong>"AÃ±adir a la pantalla de inicio"</strong> o <strong>"Instalar
+                            aplicaciÃ³n"</strong>.</li>
+                    <li>Confirma y listo. âœ¨</li>
                 </ol>
                 <div
                     style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 12px; color: var(--text-muted); text-align: center;">
-                    <em>Si viste un banner de instalación abajo, también puedes tocarlo directamente.</em>
+                    <em>Si viste un banner de instalaciÃ³n abajo, tambiÃ©n puedes tocarlo directamente.</em>
                 </div>
                 <button class="btn-primary" onclick="document.getElementById('pwa-modal').style.display='none'"
-                    style="width: 100%;">¡Entendido!</button>
+                    style="width: 100%;">Â¡Entendido!</button>
             </div>
 
             <div id="pwa-step-ios" style="display: none; text-align: left;">
@@ -1799,23 +1861,23 @@
                     Instalar en iPhone</h2>
                 <ol
                     style="color: var(--text-secondary); font-size: 14px; padding-left: 20px; line-height: 1.6; margin-bottom: 20px;">
-                    <li>Abre el menú de compartir <strong>(cuadro con flecha hacia arriba)</strong> en la barra inferior
+                    <li>Abre el menÃº de compartir <strong>(cuadro con flecha hacia arriba)</strong> en la barra inferior
                         de Safari.</li>
-                    <li>Desliza hacia abajo o al lado y toca <strong>"Agregar a inicio"</strong> (con un ícono gris de
+                    <li>Desliza hacia abajo o al lado y toca <strong>"Agregar a inicio"</strong> (con un Ã­cono gris de
                         +).</li>
-                    <li>Toca "Agregar" arriba a la derecha. ✨</li>
+                    <li>Toca "Agregar" arriba a la derecha. âœ¨</li>
                 </ol>
                 <button class="btn-primary" onclick="document.getElementById('pwa-modal').style.display='none'"
-                    style="width: 100%;">¡Entendido!</button>
+                    style="width: 100%;">Â¡Entendido!</button>
             </div>
         </div>
     </div>
 
-    <!-- ── FIREBASE ── -->
+    <!-- â”€â”€ FIREBASE â”€â”€ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, getDocs, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, addDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, getDoc, getDocs, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, addDoc, updateDoc, runTransaction } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyA-ALVpht1Za682OUGvH6QWaudCJZYihFU",
@@ -1840,6 +1902,7 @@
             getDoc,
             addDoc,
             updateDoc,
+            runTransaction,
             where,
             onSnapshot,
             collection,
@@ -1875,6 +1938,16 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 
