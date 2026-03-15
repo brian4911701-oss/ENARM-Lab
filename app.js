@@ -1,4 +1,4 @@
-﻿﻿// app.js – Core logic for ENARMlab
+﻿﻿// app.js  Core logic for ENARMlab
 (() => {
     // ---------------------------------------------------------------------------
     // State Management
@@ -193,17 +193,18 @@
 
     const syncPremiumUI = () => {
         updatePremiumStatusLabel();
+        const premium = isPremiumActive();
         const qtySlider = $("setup-qty-slider");
         const qtyVal = $("setup-qty-val");
         if (qtySlider) {
-            const max = isPremiumActive() ? 280 : DEMO_MAX_QTY;
+            const max = premium ? 280 : DEMO_MAX_QTY;
             qtySlider.max = String(max);
             if (parseInt(qtySlider.value, 10) > max) {
                 qtySlider.value = String(max);
                 if (qtyVal) qtyVal.textContent = String(max);
             }
         }
-        if (!isPremiumActive()) {
+        if (!premium) {
             const activePreset = document.querySelector(".preset-card.active");
             if (activePreset && activePreset.dataset.premium === "1") {
                 const flash = $("preset-flash");
@@ -228,14 +229,89 @@
                 }
             }
         }
+
+        const lockMap = [
+            { selector: "#nav-comunidad", reason: "Comunidad es premium." },
+            { selector: ".mobile-nav-item[data-view='view-comunidad']", reason: "Comunidad es premium." },
+            { selector: "#preset-real", reason: "Simulacro completo es premium." },
+            { selector: "#preset-mini", reason: "Preset mini es premium." },
+            { selector: "#btn-create-challenge", reason: "Retar amigos es premium." },
+            { selector: "#btn-refuerzo-ia-dash", reason: "Refuerzos inteligentes son premium." },
+            { selector: "#btn-refuerzos-view", reason: "Zonas de refuerzo son premium." },
+            { selector: "#btn-refuerzo-ia", reason: "Refuerzo IA es premium." },
+            { selector: "#btn-refuerzo-rapido", reason: "Refuerzos son premium." },
+            { selector: "#btn-refuerzo-casos", reason: "Refuerzo de casos es premium." },
+            { selector: "#mas-reportes-item", reason: "Reportes es premium." },
+            { selector: ".theme-circle[data-theme='premium']", reason: "Tema premium bloqueado." }
+        ];
+        lockMap.forEach(({ selector, reason }) => {
+            const el = document.querySelector(selector);
+            if (!el) return;
+            const locked = !premium;
+            el.classList.toggle("demo-locked", locked);
+            if (locked) {
+                el.dataset.lockReason = reason;
+                el.title = reason;
+            } else {
+                delete el.dataset.lockReason;
+                el.removeAttribute("title");
+            }
+        });
+
+        $$(".diff-btn").forEach(btn => {
+            const locked = !premium && btn.dataset.diff !== "cualquiera";
+            btn.classList.toggle("demo-locked", locked);
+            if (locked) {
+                btn.dataset.lockReason = "En demo solo puedes usar dificultad Cualquiera.";
+                btn.title = btn.dataset.lockReason;
+            } else {
+                delete btn.dataset.lockReason;
+                btn.removeAttribute("title");
+            }
+        });
+        if (!premium && State.difficulty !== "cualquiera") {
+            State.difficulty = "cualquiera";
+            $$(".diff-btn").forEach(b => b.classList.toggle("active", b.dataset.diff === "cualquiera"));
+        }
+
+        const topicInput = $("setup-topic-filter");
+        const topicCont = $("selected-topics-container");
+        if (topicInput) {
+            if (!topicInput.dataset.defaultPlaceholder) {
+                topicInput.dataset.defaultPlaceholder = topicInput.placeholder || "";
+            }
+            const lockReason = "Los temas/GPC específicos son premium.";
+            topicInput.classList.toggle("demo-locked", !premium);
+            topicInput.readOnly = !premium;
+            topicInput.title = !premium ? lockReason : "";
+            topicInput.placeholder = !premium
+                ? "Disponible en premium"
+                : (topicInput.dataset.defaultPlaceholder || "Buscar tema");
+            if (!premium && !topicInput.dataset.lockBound) {
+                const redirectToPremium = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openRedeemModal(lockReason);
+                };
+                topicInput.addEventListener("focus", redirectToPremium);
+                topicInput.addEventListener("click", redirectToPremium);
+                topicInput.dataset.lockBound = "1";
+            }
+        }
+        if (topicCont) topicCont.classList.toggle("demo-locked", !premium);
+        if (!premium && State.selectedTopics.length > 0) {
+            State.selectedTopics = [];
+            if (topicCont) topicCont.innerHTML = "";
+        }
+
         const btnCreate = $("btn-create-challenge");
         if (btnCreate) {
-            const enabled = isPremiumActive();
+            const enabled = premium;
             btnCreate.disabled = !enabled;
             btnCreate.style.opacity = enabled ? "1" : "0.6";
             btnCreate.style.cursor = enabled ? "pointer" : "not-allowed";
         }
-        if (!isPremiumActive() && State.theme === "premium") {
+        if (!premium && State.theme === "premium") {
             State.theme = "dark";
             localStorage.setItem("enarm_theme", "dark");
             applyTheme("dark");
@@ -912,7 +988,7 @@
         if (!raw) return "medium";
         const base = raw.toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         const compact = base.replace(/\s+/g, "");
-        if (compact.includes("media-alta") || compact.includes("media–alta") || compact.includes("mediaalta")) return "hard";
+        if (compact.includes("media-alta") || compact.includes("mediaalta") || compact.includes("mediaalta")) return "hard";
         if (compact.includes("muyalta") || compact.includes("alta")) return "hard";
         if (compact.includes("baja") || compact.includes("facil")) return "easy";
         if (compact.includes("media")) return "medium";
@@ -1063,7 +1139,7 @@
 
     const ensurePremiumAccess = (reason) => {
         if (isPremiumActive()) return true;
-        openRedeemModal(reason || "Esta funciÃ³n requiere premium.");
+        openRedeemModal(reason || "Esta funci\u00f3n requiere premium.");
         return false;
     };
 
@@ -1076,7 +1152,7 @@
         }
         if (PREMIUM_VIEWS.has(viewId) && !isPremiumActive()) {
             showNotification("Acceso premium requerido.", "warning");
-            openRedeemModal("Para entrar a esta secciÃ³n necesitas un cÃ³digo premium.");
+            openRedeemModal("Para entrar a esta secci\u00f3n necesitas un c\u00f3digo premium.");
             return;
         }
         if (viewId === "view-reclassify" && !canReclassifyUser()) {
@@ -1265,7 +1341,7 @@
                 el.addEventListener("click", () => {
                     if (PREMIUM_VIEWS.has(nav.view) && !isPremiumActive()) {
                         showNotification("Acceso premium requerido.", "warning");
-                        openRedeemModal("Esta secciÃ³n es premium.");
+                        openRedeemModal("Esta secci\u00f3n es premium.");
                         return;
                     }
                     $$(".nav-item").forEach(n => n.classList.remove("active"));
@@ -1288,7 +1364,7 @@
                 const targetView = btn.dataset.view;
                 if (PREMIUM_VIEWS.has(targetView) && !isPremiumActive()) {
                     showNotification("Acceso premium requerido.", "warning");
-                    openRedeemModal("Esta secciÃ³n es premium.");
+                    openRedeemModal("Esta secci\u00f3n es premium.");
                     return;
                 }
 
@@ -1786,7 +1862,7 @@
         "Sx de Morris (Amenorreas Primarias y Secundarias)",
         "Sx de Prader Willi (Amenorreas Primarias y Secundarias)",
         "Sx de Sheehan (Amenorreas Primarias y Secundarias)",
-        "Sx de SjÃ¶gren (Reumatología)",
+        "Sx de Sjögren (Reumatología)",
         "Sx de Stevens Johnson (Patología Dermatológica)",
         "Sx de Swyer (Amenorreas Primarias y Secundarias)",
         "Sx de Turner (Amenorreas Primarias y Secundarias)",
@@ -3876,7 +3952,7 @@
             "LES",
             "Vasculitis",
             "Granulomatosis",
-            "Sx de SjÃ¶gren"
+            "Sx de Sjögren"
         ],
         "Rickettsiosis (Enfermedades por Zoonosis)": [
             "Rickettsiosis"
@@ -4024,9 +4100,9 @@
             "Sx de Sheehan",
             "síndrome de sheehan"
         ],
-        "Sx de SjÃ¶gren (Reumatología)": [
-            "Sx de SjÃ¶gren",
-            "síndrome de sjÃ¶gren"
+        "Sx de Sjögren (Reumatología)": [
+            "Sx de Sjögren",
+            "síndrome de sjögren"
         ],
         "Sx de Stevens Johnson (Patología Dermatológica)": [
             "Sx de Stevens Johnson",
@@ -4415,6 +4491,10 @@
         };
 
         const showSuggestions = (val) => {
+            if (!isPremiumActive()) {
+                suggestionsCont.classList.remove("active");
+                return;
+            }
             const normalizedVal = val.toLowerCase().trim();
             if (!normalizedVal) {
                 suggestionsCont.classList.remove("active");
@@ -4468,6 +4548,11 @@
         };
 
         const addTopic = (topic) => {
+            if (!isPremiumActive()) {
+                showNotification("Temas específicos disponibles solo en premium.", "warning");
+                openRedeemModal("Desbloquea premium para usar filtros por tema/GPC.");
+                return;
+            }
             const cleanTopic = getUnifiedTopicName(topic);
             if (!State.selectedTopics.includes(cleanTopic)) {
                 State.selectedTopics.push(cleanTopic);
@@ -4537,7 +4622,7 @@
             card.addEventListener("click", () => {
                 if (card.dataset.premium === "1" && !isPremiumActive()) {
                     showNotification("Preset premium bloqueado.", "warning");
-                    openRedeemModal("Este preset es premium. Ingresa tu cÃ³digo para desbloquearlo.");
+                    openRedeemModal("Este preset es premium. Ingresa tu c\u00f3digo para desbloquearlo.");
                     return;
                 }
                 $$(".preset-card").forEach(c => c.classList.remove("active"));
@@ -4594,6 +4679,11 @@
         });
         $$(".diff-btn").forEach(btn => {
             btn.addEventListener("click", () => {
+                if (!isPremiumActive() && btn.dataset.diff !== "cualquiera") {
+                    showNotification("En demo solo puedes usar dificultad Cualquiera.", "warning");
+                    openRedeemModal("Desbloquea premium para elegir dificultad.");
+                    return;
+                }
                 $$(".diff-btn").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
                 State.difficulty = btn.dataset.diff;
@@ -4648,11 +4738,21 @@
 
                 if (isRealSim && !hasPremium) {
                     showNotification("El simulacro real es premium.", "warning");
-                    openRedeemModal("El simulacro real estÃ¡ disponible solo en premium.");
+                    openRedeemModal("El simulacro real est\u00e1 disponible solo en premium.");
                     return;
                 }
 
                 if (!hasPremium) {
+                    if (State.selectedTopics.length > 0) {
+                        State.selectedTopics = [];
+                        const selectedCont = $("selected-topics-container");
+                        if (selectedCont) selectedCont.innerHTML = "";
+                    }
+                    if (State.difficulty !== "cualquiera") {
+                        State.difficulty = "cualquiera";
+                        $$(".diff-btn").forEach(b => b.classList.toggle("active", b.dataset.diff === "cualquiera"));
+                        showNotification("En demo la dificultad está fija en Cualquiera.", "info");
+                    }
                     if (qty > DEMO_MAX_QTY) {
                         qty = DEMO_MAX_QTY;
                         if (qtySlider) qtySlider.value = String(DEMO_MAX_QTY);
@@ -4799,7 +4899,7 @@
         const btnRefuerzosView = $("btn-refuerzos-view");
         if (btnRefuerzosView) {
             btnRefuerzosView.addEventListener("click", () => {
-                if (!ensurePremiumAccess("Las zonas de refuerzo son una funciÃ³n premium.")) return;
+                if (!ensurePremiumAccess("Las zonas de refuerzo son una funci\u00f3n premium.")) return;
                 renderRefuerzosView();
                 showView("view-refuerzos");
             });
@@ -4810,7 +4910,7 @@
             const el = document.getElementById(id);
             if (el && !el.disabled) {
                 el.addEventListener("click", () => {
-                    if (requiresPremium && !ensurePremiumAccess("Esta acciÃ³n es premium.")) return;
+                    if (requiresPremium && !ensurePremiumAccess("Esta acci\u00f3n es premium.")) return;
                     handler();
                 });
             }
@@ -5603,7 +5703,7 @@
         return Math.min(prob, 99.9).toFixed(1);
     };
 
-    // OPTIM #4: Debounced save for study mode — avoids one Firestore write per answer.
+    // OPTIM #4: Debounced save for study mode  avoids one Firestore write per answer.
     // Instead, we wait 3s after the last answer before persisting.
     let _estudioSaveTimer = null;
     const debouncedSave = () => {
@@ -6435,7 +6535,7 @@
         initReportLogic();
         initPomodoro();
 
-        // â”€â”€ PWA Install Logic â”€â”€
+        // ── PWA Install Logic ──
         const pwaBanner = $("mobile-pwa-banner");
         const pwaModal = $("pwa-modal");
         if (pwaBanner && pwaModal) {
@@ -6584,12 +6684,12 @@
 
         const btnOpenRedeem = $("btn-open-redeem");
         if (btnOpenRedeem) {
-            btnOpenRedeem.addEventListener("click", () => openRedeemModal("Ingresa tu cÃ³digo para desbloquear premium."));
+            btnOpenRedeem.addEventListener("click", () => openRedeemModal("Ingresa tu c\u00f3digo para desbloquear premium."));
         }
 
         const btnRedeem = $("btn-redeem-submit");
         if (btnRedeem) {
-            btnRedeem.addEventListener("click", redeemCode);
+            btnRedeem.addEventListener("click", () => redeemCode());
         }
         const btnCloseRedeem = $("btn-close-redeem");
         if (btnCloseRedeem) {
@@ -6604,7 +6704,7 @@
 
         const btnAdminUpload = $("btn-admin-upload-codes");
         if (btnAdminUpload) {
-            btnAdminUpload.addEventListener("click", uploadAdminCodes);
+            btnAdminUpload.addEventListener("click", () => uploadAdminCodes());
         }
 
         const bd = $("btn-back-dash"); if (bd) bd.addEventListener("click", () => $("nav-dashboard").click());
@@ -6772,7 +6872,7 @@
                 const selectedTheme = circle.dataset.theme;
                 if (selectedTheme === "premium" && !isPremiumActive()) {
                     showNotification("Tema premium bloqueado.", "warning");
-                    openRedeemModal("El tema premium requiere un cÃ³digo.");
+                    openRedeemModal("El tema premium requiere un c\u00f3digo.");
                     return;
                 }
                 State.theme = selectedTheme;
@@ -7500,7 +7600,7 @@
 
                     if (!isFinished) {
                         if (myEntry && myEntry.status === "pending") {
-                            statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(243,122,32,0.15); color:var(--accent-orange); border:1px solid rgba(243,122,32,0.3); font-weight:bold;">â³ Tu turno</span>`;
+                            statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(243,122,32,0.15); color:var(--accent-orange); border:1px solid rgba(243,122,32,0.3); font-weight:bold;">⏳ Tu turno</span>`;
                             actionBtn = `
                                 <div style="display:flex; gap:8px; margin-top:10px;">
                                     <button class="btn-primary" style="flex:1; border-radius:8px; background:var(--accent-orange); font-size:13px; padding:10px;" onclick="event.stopPropagation(); window.acceptChallenge('${ch.id}')">&#x2694;&#xFE0F; ¡Jugar Reto!</button>
@@ -7870,12 +7970,12 @@
         const redeemCode = async () => {
             const input = $("redeem-code-input");
             const codeRaw = input ? input.value.trim().toUpperCase() : "";
-            if (!codeRaw) return showNotification("Ingresa un cÃ³digo.", "warning");
+            if (!codeRaw) return showNotification("Ingresa un c\u00f3digo.", "warning");
             if (!window.FB || !window.FB.auth || !window.FB.auth.currentUser) {
-                return showNotification("Inicia sesiÃ³n para canjear tu cÃ³digo.", "warning");
+                return showNotification("Inicia sesi\u00f3n para canjear tu c\u00f3digo.", "warning");
             }
             if (!window.FB.runTransaction) {
-                return showNotification("Firebase no estÃ¡ listo. Intenta de nuevo.", "error");
+                return showNotification("Firebase no est\u00e1 listo. Intenta de nuevo.", "error");
             }
             const uid = window.FB.auth.currentUser.uid;
             const code = codeRaw.replace(/\s+/g, "");
@@ -7909,18 +8009,18 @@
                         code
                     }, { merge: true });
                 }
-                showNotification("CÃ³digo canjeado. Acceso premium activado.", "success");
+                showNotification("Código canjeado. Acceso premium activado.", "success");
                 if (input) input.value = "";
                 closeRedeemModal();
             } catch (err) {
                 const msg = (err && err.message) || "";
                 if (msg.includes("invalid")) {
-                    showNotification("CÃ³digo invÃ¡lido.", "error");
+                    showNotification("Código inválido.", "error");
                 } else if (msg.includes("used")) {
-                    showNotification("Este cÃ³digo ya fue usado.", "warning");
+                    showNotification("Este c\u00f3digo ya fue usado.", "warning");
                 } else {
                     console.error(err);
-                    showNotification("No se pudo canjear el cÃ³digo.", "error");
+                    showNotification("No se pudo canjear el c\u00f3digo.", "error");
                 }
             }
         };
@@ -7930,9 +8030,9 @@
             if (!input) return;
             const raw = input.value || "";
             const codes = raw.split(/\r?\n/).map(l => l.trim().toUpperCase()).filter(Boolean);
-            if (codes.length === 0) return showNotification("Pega al menos un cÃ³digo.", "warning");
-            if (!isAdminUser()) return showNotification("Solo admin puede cargar cÃ³digos.", "error");
-            if (!window.FB || !window.FB.db) return showNotification("Firebase no estÃ¡ listo.", "error");
+            if (codes.length === 0) return showNotification("Pega al menos un c\u00f3digo.", "warning");
+            if (!isAdminUser()) return showNotification("Solo admin puede cargar c\u00f3digos.", "error");
+            if (!window.FB || !window.FB.db) return showNotification("Firebase no est\u00e1 listo.", "error");
 
             const now = new Date();
             const writes = [];
@@ -7955,15 +8055,15 @@
                 }, { merge: false }));
             });
             if (invalid.length > 0) {
-                showNotification(`CÃ³digos invÃ¡lidos: ${invalid.length}`, "warning");
+                showNotification(`Códigos inválidos: ${invalid.length}`, "warning");
             }
             try {
                 await Promise.all(writes);
-                showNotification(`CÃ³digos cargados: ${writes.length}`, "success");
+                showNotification(`Códigos cargados: ${writes.length}`, "success");
                 input.value = "";
             } catch (e) {
                 console.error(e);
-                showNotification("Error al cargar cÃ³digos.", "error");
+                showNotification("Error al cargar c\u00f3digos.", "error");
             }
         };
 
@@ -8219,22 +8319,66 @@
 
                 const providerBtn = document.querySelector(".auth-provider-btn");
                 if (providerBtn) {
-                    providerBtn.addEventListener("click", () => {
-                        if (window.FB) {
-                            window.FB.signInWithPopup(window.FB.auth, window.FB.googleProvider)
-                                .then(async (result) => {
-                                    const userObj = result.user;
-                                    let displayName = userObj.displayName;
-
-                                    if (!displayName) displayName = "Aspirante_" + Math.floor(Math.random() * 9999);
-                                    handleSuccessLogin(displayName);
-
-                                }).catch((error) => {
-                                    showNotification("Error interno al conectar con Google: " + error.message, "error");
-                                    console.error(error);
-                                });
-                        } else {
+                    providerBtn.addEventListener("click", async () => {
+                        if (!window.FB) {
                             showNotification("Firebase no terminó de cargar. Reintenta.", "warning");
+                            return;
+                        }
+
+                        const originalText = providerBtn.innerHTML;
+                        providerBtn.disabled = true;
+                        providerBtn.style.opacity = "0.7";
+                        providerBtn.innerHTML = "Conectando con Google...";
+
+                        const useRedirect = () => {
+                            if (!window.FB.signInWithRedirect) {
+                                throw new Error("Google redirect no disponible.");
+                            }
+                            showNotification("Redirigiendo a Google para iniciar sesión...", "info");
+                            return window.FB.signInWithRedirect(window.FB.auth, window.FB.googleProvider);
+                        };
+
+                        try {
+                            const prefersRedirect = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+                                || window.matchMedia("(display-mode: standalone)").matches;
+
+                            if (prefersRedirect) {
+                                await useRedirect();
+                                return;
+                            }
+
+                            const result = await window.FB.signInWithPopup(window.FB.auth, window.FB.googleProvider);
+                            const userObj = result.user;
+                            let displayName = userObj.displayName;
+
+                            if (!displayName) displayName = "Aspirante_" + Math.floor(Math.random() * 9999);
+                            handleSuccessLogin(displayName);
+                        } catch (error) {
+                            const code = error && error.code ? String(error.code) : "";
+                            const canFallbackToRedirect = [
+                                "auth/popup-blocked",
+                                "auth/popup-closed-by-user",
+                                "auth/cancelled-popup-request",
+                                "auth/operation-not-supported-in-this-environment"
+                            ].includes(code);
+
+                            if (canFallbackToRedirect) {
+                                try {
+                                    await useRedirect();
+                                    return;
+                                } catch (redirectError) {
+                                    console.error(redirectError);
+                                    showNotification("No se pudo abrir Google. Revisa popups y vuelve a intentar.", "error");
+                                    return;
+                                }
+                            }
+
+                            showNotification("Error interno al conectar con Google: " + error.message, "error");
+                            console.error(error);
+                        } finally {
+                            providerBtn.disabled = false;
+                            providerBtn.style.opacity = "1";
+                            providerBtn.innerHTML = originalText;
                         }
                     });
                 }

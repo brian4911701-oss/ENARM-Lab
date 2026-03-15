@@ -2193,6 +2193,48 @@ body.theme-premium .ov-dotted {
   border-radius: 999px;
 }
 
+.pomo-icon,
+.flame-icon,
+.title-icon,
+.action-btn-icon,
+.preset-icon,
+.btn-icon,
+.search-icon,
+.stat-icon,
+.label-icon,
+.check-mark {
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.demo-locked {
+  opacity: 0.55 !important;
+  position: relative;
+}
+
+.demo-locked::after {
+  content: "\1F512";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  background: rgba(12, 18, 30, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f8d477;
+  pointer-events: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+input.demo-locked,
+textarea.demo-locked {
+  cursor: not-allowed;
+}
+
 .setup-panel-main {
   background: var(--bg-card);
   border: 1px solid var(--border);
