@@ -3126,6 +3126,16 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
 
   #view-refuerzos .refuerzos-grid {
     grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  #view-refuerzos .refuerzos-right {
+    order: 1;
+  }
+
+  #view-refuerzos .refuerzos-left {
+    order: 2;
   }
 
   #view-refuerzos .refuerzos-sticky {
