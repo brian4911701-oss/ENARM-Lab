@@ -1,4 +1,4 @@
-// questions.js – Banco de reactivos para ENARMlab
+// questions.js â€“ Banco de reactivos para ENARMlab
 const QUESTIONS = [
   {
     "specialty": "mi",
@@ -451,7 +451,7 @@ const QUESTIONS = [
     "tema": "Hernias diafragmáticas (Patología Neonatal)"
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "case": "Masculino de 50 años con dolor epigástrico intenso 'en cinturón' irradiado a espalda, tras ingesta copiosa de alcohol. Presenta náuseas y vómito. Exploración: Dolor a la palpación profunda en epigastrio, ruidos hidroaéreos disminuidos.",
     "question": "¿Cuál es el estudio de laboratorio con mayor especificidad para el diagnóstico de Pancreatitis Aguda?",
     "options": [
@@ -721,7 +721,7 @@ const QUESTIONS = [
     "tema": "Intoxicaciones"
   },
   {
-    "specialty": "gyo",
+    "specialty": "urg",
     "case": "Masculino de 18 años es traído tras ingesta masiva de paracetamol hace 2 horas con fines suicidas. Se desconoce la dosis exacta.",
     "question": "¿Qué fármaco se debe administrar para prevenir la hepatotoxicidad?",
     "options": [
@@ -886,7 +886,7 @@ const QUESTIONS = [
     "tema": "Cirrosis y sus Complicaciones / Trasplante Hepático"
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "case": "Masculino de 45 años, obeso, con dolor intenso en hipocondrio derecho tras ingesta de alimentos colecistoquinéticos. El dolor dura más de 6 horas, tiene fiebre de 38.3°C y Signo de Murphy (+).",
     "question": "¿Cuál es el diagnóstico más probable y el estudio estándar de oro?",
     "options": [
@@ -2146,7 +2146,7 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hipotiroidismo",
     "difficulty": "alta",
     "case": "Mujer de 23 años con antecedente de pérdida de peso importante en los últimos 6 meses por dieta restrictiva y ejercicio excesivo. Refiere ausencia de menstruación desde hace 5 meses. β-hCG negativa. TSH y prolactina normales. FSH y LH bajas.",
@@ -2231,7 +2231,7 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "ped",
+    "specialty": "mi",
     "tema": "Crecimiento y Desarrollo",
     "difficulty": "alta",
     "case": "Niño de 8 años con antecedente de faringitis hace 3 semanas, presenta edema palpebral, hematuria macroscópica y oliguria. TA 135/85 mmHg. Laboratorio: creatinina ligeramente elevada, C3 disminuido.",
@@ -2248,7 +2248,7 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "gyo",
+    "specialty": "urg",
     "tema": "CACU (Oncología Ginecológica)",
     "difficulty": "muy-alta",
     "case": "Hombre de 25 años sufre accidente automovilístico. Llega consciente pero agitado, con estridor audible y hematoma cervical expansivo. TA 100/60 mmHg, FC 120 lpm.",
@@ -2503,7 +2503,7 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
+    "specialty": "urg",
     "tema": "Diabetes",
     "difficulty": "muy-alta",
     "case": "Hombre de 22 años con DM1 que suspendió insulina. Presenta polidipsia, vómito y respiración profunda. Glucosa 420 mg/dL, pH 7.15, bicarbonato 10 mEq/L, cetonas positivas.",
@@ -2537,7 +2537,7 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "ped",
+    "specialty": "mi",
     "tema": "Sx nefríticos (Nefrología)",
     "difficulty": "muy-alta",
     "case": "Hombre de 45 años con edema en miembros inferiores y párpados. Proteinuria 4.5 g/24h, albúmina 2.3 g/dL, colesterol elevado. Creatinina normal.",
@@ -2588,7 +2588,7 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "gyo",
+    "specialty": "urg",
     "tema": "Enfermedad Hipertensiva del Embarazo",
     "difficulty": "muy-alta",
     "case": "Hombre de 66 años con DM2 e hipertensión acude por fiebre, disuria y deterioro del estado de alerta. TA 82/50 mmHg, FC 120 lpm, FR 28 rpm, Temp 39°C. Lactato 4.8 mmol/L. Leucocitosis con neutrofilia. EGO con piuria abundante.",
@@ -2605,7 +2605,7 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "Control Prenatal",
     "difficulty": "muy-alta",
     "case": "Hombre de 48 años con dolor epigástrico intenso irradiado a espalda posterior a ingesta alcohólica. Lipasa 5 veces el límite superior. A las 48 horas presenta hipotensión, creatinina elevada y PaO2 55 mmHg.",
@@ -2690,7 +2690,7 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "difficulty": "alta",
     "case": "Mujer de 48 años con sangrado uterino abundante e irregular desde hace 6 meses. IMC 33 kg/m², nuligesta. USG transvaginal: endometrio de 16 mm. Hb 10 g/dL.",
@@ -2724,7 +2724,7 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Cesárea (Patología de Trabajo de Parto)",
     "difficulty": "alta",
     "case": "Recién nacido de 38 semanas, madre con ruptura prolongada de membranas 22 horas y fiebre intraparto. A las 12 horas de vida presenta dificultad respiratoria, letargia y mala perfusión.",
@@ -2996,7 +2996,7 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "ped",
+    "specialty": "mi",
     "tema": "Sx nefríticos (Nefrología)",
     "difficulty": "muy-alta",
     "case": "Hombre de 18 años con antecedente de faringitis hace 2 semanas presenta edema facial, hematuria y TA 150/95 mmHg. Creatinina ligeramente elevada.",
@@ -3013,7 +3013,7 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "gyo",
+    "specialty": "urg",
     "tema": "RPM (Parto Prematuro y Patología Coriónica)",
     "difficulty": "muy-alta",
     "case": "Hombre de 54 años, antecedente de DM2 e hipertensión, ingresa por neumonía adquirida en la comunidad confirmada por infiltrado lobar derecho y leucocitosis. A las 48 horas presenta deterioro respiratorio progresivo con disnea intensa, taquipnea de 34 rpm y saturación 82% con mascarilla reservorio a 15 L/min. Se decide intubación orotraqueal. Gasometría con FiO₂ 100% muestra PaO₂ 60 mmHg. Rx de tórax con infiltrados bilaterales difusos no explicados por falla cardiaca. Ecocardiograma sin datos de disfunción ventricular significativa.",
@@ -3081,7 +3081,7 @@ const QUESTIONS = [
     "gpcReference": ""
   },
   {
-    "specialty": "cir",
+    "specialty": "urg",
     "tema": "Trauma torácico Neumotórax a tensión, taponamiento cardíaco, hemotórax masivo, neumotórax abierto, tórax inestable (ATLS)",
     "difficulty": "muy-alta",
     "case": "Hombre de 62 años con antecedente de hipertensión y tabaquismo acude por dolor torácico opresivo de 3 horas de evolución. ECG con elevación del ST en V1–V4. Se realiza angioplastia primaria con reperfusión exitosa. A las 6 horas evoluciona con hipotensión (TA 78/50 mmHg), piel fría, oliguria y estertores bibasales. FC 120 lpm. Lactato elevado. Ecocardiograma muestra FEVI 25% con hipocinesia anterior extensa.",
@@ -3215,7 +3215,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "Trauma torácico (Neumotórax a tensión)",
     "difficulty": "Media",
@@ -3314,7 +3314,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Litiasis renal",
     "difficulty": "Media",
@@ -3347,7 +3347,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "Glaucoma de ángulo cerrado agudo",
     "difficulty": "Alta",
@@ -3380,7 +3380,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Patología de extremidad inferior",
     "subtema": "Fractura de cadera",
     "difficulty": "Baja",
@@ -3470,7 +3470,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "Úlcera péptica perforada",
     "difficulty": "Media",
@@ -3536,7 +3536,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Crecimiento y Desarrollo",
     "subtema": "Alacranismo (Intoxicación por veneno de escorpión)",
     "difficulty": "Alta",
@@ -3569,7 +3569,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "Vértigo Postural Paroxístico Benigno (VPPB)",
     "difficulty": "Baja",
@@ -3635,7 +3635,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "Insuficiencia Venosa Crónica",
     "difficulty": "Media",
@@ -3668,7 +3668,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Anemia ferropénica (Anemias Introducción y Anemias Carenciales)",
     "subtema": "Cáncer de colon y recto",
     "difficulty": "Media",
@@ -3701,7 +3701,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Cáncer de Mama",
     "subtema": "Cáncer de próstata",
     "difficulty": "Alta",
@@ -3734,7 +3734,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Colitis Ulcerosa Crónica Idiopática (CUCI)",
     "difficulty": "Media",
@@ -3767,7 +3767,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Sangrado de tubo digestivo alto (STDA) por várices esofágicas",
     "difficulty": "Alta",
@@ -3800,7 +3800,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Síndrome Compartimental",
     "difficulty": "Media",
@@ -3833,7 +3833,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Patología de extremidad superior",
     "subtema": "Fracturas de antebrazo y mano (Fractura de Colles)",
     "difficulty": "Baja",
@@ -3866,7 +3866,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Diabetes",
     "subtema": "Otitis media maligna (Otitis externa maligna)",
     "difficulty": "Alta",
@@ -3899,7 +3899,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Sífilis primaria",
     "difficulty": "Baja",
@@ -3932,7 +3932,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Patología de anexos (Chalazión)",
     "difficulty": "Media",
@@ -3965,7 +3965,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Hipoacusia y vértigo",
     "subtema": "Enfermedad de Ménière",
     "difficulty": "Alta",
@@ -3998,7 +3998,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Cáncer gástrico",
     "difficulty": "Media",
@@ -4031,7 +4031,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Trastornos del Ritmo",
     "subtema": "Insuficiencia arterial aguda",
     "difficulty": "Alta",
@@ -4064,7 +4064,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Estenosis Hipertrófica del Píloro",
     "subtema": "Traumatismo Craneoencefálico (TCE) - Hematoma Epidural",
     "difficulty": "Alta",
@@ -4097,7 +4097,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Patología esofágica",
     "subtema": "Acalasia",
     "difficulty": "Media",
@@ -4130,7 +4130,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Trastornos del Ritmo",
     "subtema": "Isquemia mesentérica aguda",
     "difficulty": "Alta",
@@ -4163,7 +4163,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Fisura anal crónica",
     "difficulty": "Media",
@@ -4196,7 +4196,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Patología de extremidad inferior",
     "subtema": "Esguince de tobillo",
     "difficulty": "Baja",
@@ -4229,7 +4229,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Enfermedad por Reflujo Gastroesofágico (ERGE)",
     "difficulty": "Media",
@@ -4262,7 +4262,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Síndrome de embolia grasa",
     "difficulty": "Alta",
@@ -4295,7 +4295,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Desprendimiento de retina",
     "difficulty": "Media",
@@ -4328,7 +4328,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Absceso periamigdalino",
     "difficulty": "Baja",
@@ -4361,7 +4361,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "Miomatosis (Sangrados Uterinos Anormales: Origen Anatómico No Maligno)",
     "subtema": "Trombosis Venosa Profunda (TVP)",
     "difficulty": "Media",
@@ -4394,7 +4394,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Trauma Abdominal Cerrado",
     "difficulty": "Media",
@@ -4427,7 +4427,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Patología de extremidad superior",
     "subtema": "Patología de hombro doloroso (Síndrome del Manguito Rotador)",
     "difficulty": "Baja",
@@ -4493,7 +4493,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Pterigión",
     "difficulty": "Baja",
@@ -4526,7 +4526,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "urg",
+    "specialty": "cir",
     "tema": "Intoxicaciones",
     "subtema": "Toxíndromes (Colinérgico / Organofosforados)",
     "difficulty": "Media",
@@ -4592,7 +4592,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Hipertensión Arterial",
     "subtema": "Enfermedad Arterial Periférica (EAP)",
     "difficulty": "Media",
@@ -4625,7 +4625,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "Pielonefritis aguda",
     "difficulty": "Baja",
@@ -4658,7 +4658,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Conjuntivitis alérgica",
     "difficulty": "Media",
@@ -4691,7 +4691,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Patología de extremidad superior",
     "subtema": "Luxación glenohumeral anterior",
     "difficulty": "Baja",
@@ -4724,7 +4724,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Cáncer Renal",
     "difficulty": "Alta",
@@ -4757,7 +4757,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Diabetes",
     "subtema": "Catarata",
     "difficulty": "Baja",
@@ -4790,7 +4790,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Infección de vías urinarias bajas (Cistitis aguda)",
     "difficulty": "Baja",
@@ -4823,7 +4823,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Hipertensión Arterial",
     "subtema": "Síndrome de Apnea Obstructiva del Sueño (SAOS)",
     "difficulty": "Media",
@@ -4856,7 +4856,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "Colelitiasis sintomática",
     "difficulty": "Media",
@@ -4889,7 +4889,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Loxoscelismo (Araña violinista)",
     "difficulty": "Alta",
@@ -4922,7 +4922,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "",
     "difficulty": "Media",
@@ -4955,7 +4955,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Diabetes",
     "subtema": "Retinopatía Diabética",
     "difficulty": "Alta",
@@ -4988,7 +4988,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "OMA (Otitis Media Aguda)",
     "difficulty": "Baja",
@@ -5054,7 +5054,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Absceso Hepático Amebiano",
     "difficulty": "Media",
@@ -5087,7 +5087,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Trauma Genitourinario (Trauma uretral)",
     "difficulty": "Alta",
@@ -5120,7 +5120,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Golpe de Calor (Heat Stroke)",
     "difficulty": "Media",
@@ -5153,7 +5153,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "EPOC / Asma",
     "subtema": "Cáncer de Esófago",
     "difficulty": "Alta",
@@ -5186,7 +5186,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Patología de Extremidad Inferior",
     "subtema": "Lesión de Ligamento Cruzado Anterior",
     "difficulty": "Baja",
@@ -5252,7 +5252,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Hipertensión Arterial",
     "subtema": "Hemorragia diverticular",
     "difficulty": "Media",
@@ -5285,7 +5285,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Trauma Pélvico",
     "difficulty": "Alta",
@@ -5318,7 +5318,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Úlcera Corneal (Queratitis microbiana)",
     "difficulty": "Media",
@@ -5498,7 +5498,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "gyo",
     "tema": "Apendicitis Aguda",
     "subtema": "",
     "difficulty": "alta",
@@ -5519,7 +5519,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "",
     "difficulty": "alta",
@@ -5573,7 +5573,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "",
     "difficulty": "alta",
@@ -5615,7 +5615,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "",
     "difficulty": "alta",
@@ -5798,7 +5798,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto incompleto",
     "difficulty": "Media–Alta",
@@ -5831,7 +5831,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Patología Biliar",
     "subtema": "Enfermedad trofoblástica gestacional",
     "difficulty": "Alta",
@@ -5885,7 +5885,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Colestasis intrahepática del embarazo",
     "difficulty": "Media–Alta",
@@ -5939,7 +5939,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Hemorragia obstétrica secundaria",
     "difficulty": "Media–Alta",
@@ -6191,7 +6191,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Choque hipovolémico secundario a hemorragia obstétrica primaria",
     "difficulty": "Alta",
@@ -6443,7 +6443,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "gyo",
     "tema": "Hernias de la Pared Abdominal",
     "subtema": "Inversión uterina",
     "difficulty": "Alta",
@@ -6497,7 +6497,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Insuficiencia Cardíaca Aguda y Crónica",
     "subtema": "Miocardiopatía periparto",
     "difficulty": "Alta",
@@ -6692,7 +6692,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hepatitis agudas y crónicas (Patología Hepática)",
     "subtema": "Hígado graso agudo del embarazo",
     "difficulty": "Alta",
@@ -6725,7 +6725,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Atonía uterina refractaria",
     "difficulty": "Alta",
@@ -6746,7 +6746,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Colestasis intrahepática del embarazo",
     "difficulty": "Media–Alta",
@@ -6779,7 +6779,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Inducción fallida",
     "difficulty": "Media–Alta",
@@ -6833,7 +6833,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Corioamnionitis clínica",
     "difficulty": "Media–Alta",
@@ -6896,7 +6896,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Vasa previa",
     "difficulty": "Alta",
@@ -6938,7 +6938,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Ruptura prematura de membranas pretérmino (RPMPT)",
     "difficulty": "Alta",
@@ -7001,7 +7001,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Hipertensión gestacional vs preeclampsia",
     "difficulty": "Media–Alta",
@@ -7064,7 +7064,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Retención placentaria",
     "difficulty": "Media–Alta",
@@ -7085,7 +7085,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Pielonefritis aguda",
     "difficulty": "Alta",
@@ -7106,7 +7106,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Oligohidramnios severo a término",
     "difficulty": "Media–Alta",
@@ -7160,7 +7160,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Atonía uterina con choque hipovolémico",
     "difficulty": "Alta",
@@ -7226,7 +7226,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Sufrimiento fetal agudo intraparto",
     "difficulty": "Alta",
@@ -7259,7 +7259,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Cetoacidosis diabética en embarazo",
     "difficulty": "Alta",
@@ -7292,7 +7292,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto diferido (retenido)",
     "difficulty": "Media–Alta",
@@ -7391,7 +7391,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "VIH en embarazo",
     "difficulty": "Alta",
@@ -7424,7 +7424,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Tromboembolia pulmonar en embarazo",
     "difficulty": "Alta",
@@ -7457,7 +7457,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Restricción del crecimiento intrauterino (RCIU) temprana con Doppler",
     "difficulty": "Alta",
@@ -7589,7 +7589,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Laceración cervical posparto",
     "difficulty": "Media–Alta",
@@ -7622,7 +7622,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Colestasis intrahepática con criterios de interrupción",
     "difficulty": "Alta",
@@ -7721,7 +7721,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Diabetes",
     "subtema": "Diabetes pregestacional y malformaciones",
     "difficulty": "Alta",
@@ -7787,7 +7787,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Embarazo molar completo",
     "difficulty": "Alta",
@@ -7832,7 +7832,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Presentación pélvica a término",
     "difficulty": "Media–Alta",
@@ -7931,7 +7931,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Mastitis puerperal",
     "difficulty": "Media",
@@ -7964,7 +7964,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Neoplasia trofoblástica gestacional postmolar",
     "difficulty": "Alta",
@@ -7997,7 +7997,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "Distocia por hipodinamia uterina",
     "difficulty": "Media–Alta",
@@ -8030,7 +8030,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Placenta previa diagnosticada antes de 28 semanas",
     "difficulty": "Media–Alta",
@@ -8063,7 +8063,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hipotiroidismo",
     "subtema": "Hipertiroidismo en el primer trimestre",
     "difficulty": "Alta",
@@ -8129,7 +8129,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Preeclampsia antes de las 34 semanas sin datos de severidad",
     "difficulty": "Alta",
@@ -8162,7 +8162,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Parto pretérmino espontáneo",
     "difficulty": "Alta",
@@ -8240,7 +8240,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Toxoplasmosis en embarazo",
     "difficulty": "Alta",
@@ -8273,7 +8273,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Depresión posparto",
     "difficulty": "Media–Alta",
@@ -8351,7 +8351,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Desprendimiento prematuro de placenta normoinserta (DPPNI)",
     "difficulty": "Alta",
@@ -8396,7 +8396,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Síndrome de ovario poliquístico (SOP) y criterios diagnósticos",
     "difficulty": "Media–Alta",
@@ -8441,7 +8441,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Enfermedad pélvica inflamatoria complicada",
     "difficulty": "Alta",
@@ -8486,7 +8486,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "Manejo médico vs quirúrgico",
     "difficulty": "Alta",
@@ -8531,7 +8531,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Atonía uterina en el puerperio inmediato",
     "difficulty": "Alta",
@@ -8621,7 +8621,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Ruptura prematura de membranas pretérmino (RPM pretérmino)",
     "difficulty": "Alta",
@@ -8711,7 +8711,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto séptico",
     "difficulty": "Alta",
@@ -8801,7 +8801,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Restricción del crecimiento intrauterino (RCIU)",
     "difficulty": "Alta",
@@ -8981,7 +8981,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Isoinmunización Rh",
     "difficulty": "Alta",
@@ -9026,7 +9026,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto retenido",
     "difficulty": "Media–Alta",
@@ -9047,7 +9047,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Ectópico roto",
     "difficulty": "Alta",
@@ -9068,7 +9068,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Eclampsia",
     "difficulty": "Muy Alta",
@@ -9089,7 +9089,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Laceración cervical",
     "difficulty": "Media–Alta",
@@ -9194,7 +9194,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Vasa previa",
     "difficulty": "Alta",
@@ -9215,7 +9215,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Hipertensión gestacional",
     "difficulty": "Media",
@@ -9257,7 +9257,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Diabetes gestacional diagnóstico",
     "difficulty": "Media",
@@ -9278,7 +9278,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "gyo",
     "tema": "Cirrosis y sus Complicaciones / Trasplante Hepático",
     "subtema": "Cáncer de ovario epitelial",
     "difficulty": "Alta",
@@ -9341,7 +9341,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Polihidramnios",
     "difficulty": "Media",
@@ -9383,7 +9383,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Preeclampsia con datos neurológicos",
     "difficulty": "Alta",
@@ -9467,7 +9467,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Oligohidramnios",
     "difficulty": "Media",
@@ -9488,7 +9488,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Embarazo anembrionado",
     "difficulty": "Media",
@@ -9521,7 +9521,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hipertensión Arterial",
     "subtema": "Hipertensión crónica con sobreagregación de preeclampsia",
     "difficulty": "Alta",
@@ -9731,7 +9731,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Inversión uterina",
     "difficulty": "Alta",
@@ -9896,7 +9896,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto incompleto",
     "difficulty": "Media",
@@ -9929,7 +9929,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Preeclampsia sin proteinuria (criterios actuales)",
     "difficulty": "Alta",
@@ -9995,7 +9995,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Diabetes",
     "subtema": "Síndrome de ovario poliquístico – complicaciones metabólicas",
     "difficulty": "Media",
@@ -10127,7 +10127,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Desprendimiento prematuro de placenta normoinserta (DPPNI)",
     "difficulty": "Alta",
@@ -10193,7 +10193,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Anticoncepción",
     "subtema": "DIU en nulíparas",
     "difficulty": "Media",
@@ -10259,7 +10259,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Distocia de hombros",
     "difficulty": "Alta",
@@ -10325,7 +10325,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "gyo",
     "tema": "Recién Nacido Sano",
     "subtema": "Beneficios de la lactancia materna exclusiva",
     "difficulty": "Fácil",
@@ -10391,7 +10391,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Anticoncepción",
     "subtema": "Anticoncepción hormonal combinada",
     "difficulty": "Fácil",
@@ -10535,7 +10535,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Atonía uterina",
     "difficulty": "Alta",
@@ -10613,7 +10613,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Enfermedad pélvica inflamatoria",
     "difficulty": "Media",
@@ -10646,7 +10646,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Diabetes Mellitus",
     "subtema": "Tamizaje y diagnóstico",
     "difficulty": "Media",
@@ -10778,7 +10778,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Retención de restos placentarios",
     "difficulty": "Media",
@@ -10811,7 +10811,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Presentación clínica clásica",
     "difficulty": "Media",
@@ -10877,7 +10877,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "gyo",
     "tema": "Cirrosis y sus Complicaciones / Trasplante Hepático",
     "subtema": "Cáncer de ovario – presentación clínica",
     "difficulty": "Alta",
@@ -10910,7 +10910,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Embarazo molar (Mola hidatidiforme completa)",
     "difficulty": "Alta",
@@ -11186,7 +11186,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Anticoncepción",
     "subtema": "Anticoncepción de emergencia",
     "difficulty": "Fácil",
@@ -11219,7 +11219,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Inversión uterina",
     "difficulty": "Alta",
@@ -11252,7 +11252,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Trastornos menstruales",
     "subtema": "Amenorrea secundaria",
     "difficulty": "Media",
@@ -11285,7 +11285,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Vaginosis bacteriana",
     "difficulty": "Fácil",
@@ -11417,7 +11417,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Hipertensión gestacional",
     "difficulty": "Media",
@@ -11450,7 +11450,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Mastitis puerperal",
     "difficulty": "Media",
@@ -11483,7 +11483,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Dismenorrea primaria",
     "difficulty": "Fácil",
@@ -11792,7 +11792,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Fibrilación Auricular",
     "subtema": "Sangrado uterino anormal anovulatorio",
     "difficulty": "Media",
@@ -11990,7 +11990,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Pielonefritis aguda gestacional",
     "difficulty": "Alta",
@@ -12035,7 +12035,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Anticoncepción",
     "subtema": "DIU hormonal (levonorgestrel)",
     "difficulty": "Media",
@@ -12179,7 +12179,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Toxíndromes (Anticolinérgico)",
     "difficulty": "baja",
@@ -12200,7 +12200,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Patología arterial y venosa",
     "subtema": "Tromboembolia Pulmonar (TEP)",
     "difficulty": "alta",
@@ -12233,7 +12233,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Chancroide",
     "difficulty": "media",
@@ -12254,7 +12254,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Celulitis Periorbitaria vs Orbitaria",
     "difficulty": "media",
@@ -12287,7 +12287,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "Trauma Torácico (Hemotórax masivo)",
     "difficulty": "alta",
@@ -12320,7 +12320,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Papilomatosis laríngea (Papilomatosis respiratoria recurrente)",
     "difficulty": "baja",
@@ -12341,7 +12341,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Cáncer de Recto",
     "difficulty": "alta",
@@ -12386,7 +12386,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Uveítis Anterior",
     "difficulty": "media",
@@ -12419,7 +12419,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Mordedura de Serpiente (Viperidae)",
     "difficulty": "alta",
@@ -12464,7 +12464,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Dispepsia Funcional",
     "difficulty": "baja",
@@ -12518,7 +12518,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Diabetes",
     "subtema": "Enfermedad Hepática Grasa",
     "difficulty": "media",
@@ -12551,7 +12551,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Linfogranuloma Venéreo",
     "difficulty": "alta",
@@ -12596,7 +12596,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Blefaritis",
     "difficulty": "baja",
@@ -12617,7 +12617,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "GASTRITIS AGUDA O CRONICA",
     "difficulty": "baja",
@@ -12638,7 +12638,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HEPATITIS AGUDAS Y CRÓNICAS",
     "difficulty": "media",
@@ -12671,7 +12671,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FISTULAS",
     "difficulty": "baja",
@@ -12692,7 +12692,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "TRAUMA TORÁCICO (NEUMOTÓRAX ABIERTO)",
     "difficulty": "alta",
@@ -12737,7 +12737,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TCE HEMORRAGIA SUBDURAL",
     "difficulty": "media",
@@ -12770,7 +12770,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "Control Prenatal",
     "subtema": "ATLS EN LA EMBARAZADA",
     "difficulty": "alta",
@@ -12848,7 +12848,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "LATRODECTISMO",
     "difficulty": "media",
@@ -12869,7 +12869,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Cáncer de Mama",
     "subtema": "ORZUELO",
     "difficulty": "baja",
@@ -12890,7 +12890,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "EPOC / Asma",
     "subtema": "ISQUEMIA MESENTERICA AGUDA Y CRÓNICA",
     "difficulty": "media",
@@ -13004,7 +13004,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Crecimiento y Desarrollo",
     "subtema": "Hernias",
     "difficulty": "baja",
@@ -13025,7 +13025,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Hipotermia",
     "difficulty": "alta",
@@ -13058,7 +13058,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Cáncer de Mama",
     "subtema": "Pinguécula",
     "difficulty": "baja",
@@ -13079,7 +13079,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "Fx de antebrazo y mano",
     "difficulty": "media",
@@ -13124,7 +13124,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Hipoacusia neurosensorial",
     "difficulty": "media",
@@ -13157,7 +13157,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "Control Prenatal",
     "subtema": "COLECISTITIS AGUDA",
     "difficulty": "media",
@@ -13235,7 +13235,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Cáncer de Mama",
     "subtema": "CÁNCER DE PRÓSTATA",
     "difficulty": "media",
@@ -13256,7 +13256,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME COMPARTIMENTAL",
     "difficulty": "alta",
@@ -13289,7 +13289,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "PATOLOGÍA CÁMARA POSTERIOR",
     "subtema": "DESPRENDIMIENTO DE RETINA",
     "difficulty": "media",
@@ -13310,7 +13310,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Patología Biliar",
     "subtema": "CÁNCER DE VESÍCULA BILIAR",
     "difficulty": "alta",
@@ -13343,7 +13343,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "PATOLOGÍA ESOFÁGICA",
     "subtema": "ACALASIA",
     "difficulty": "alta",
@@ -13388,7 +13388,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Cáncer de Mama",
     "subtema": "HIPERPLASIA PROSTÁTICA BENIGNA (HPB)",
     "difficulty": "baja",
@@ -13409,7 +13409,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "Sx climatérico (Patología Menopausia y Climaterio)",
     "subtema": "CÁNCER DE MAMA",
     "difficulty": "media",
@@ -13442,7 +13442,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PROFILAXIS ANTITETÁNICA",
     "difficulty": "baja",
@@ -13508,7 +13508,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "GLAUCOMA",
     "difficulty": "media",
@@ -13541,7 +13541,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "TORSIÓN TESTICULAR",
     "difficulty": "media",
@@ -13595,7 +13595,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
     "subtema": "Fx de clavicula",
     "difficulty": "baja",
@@ -13616,7 +13616,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Hipertiroidismo: Enfermedad de Graves (Patología Tiroidea)",
     "subtema": "CÁNCER DE TIROIDES",
     "difficulty": "media",
@@ -13670,7 +13670,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER UROTELIAL Y TESTICULAR",
     "difficulty": "alta",
@@ -13715,7 +13715,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
     "subtema": "Fx de cadera",
     "difficulty": "media",
@@ -13748,7 +13748,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "OCLUSION INTESTINAL",
     "difficulty": "media",
@@ -13769,7 +13769,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FISURA ANAL",
     "difficulty": "baja",
@@ -13790,7 +13790,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "Control Prenatal",
     "subtema": "CÁNCER GÁSTRICO",
     "difficulty": "alta",
@@ -13835,7 +13835,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CHOQUE HIPOVOLÉMICO HEMORRÁGICO",
     "difficulty": "media",
@@ -13868,7 +13868,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Crecimiento y Desarrollo",
     "subtema": "RETINOBLASTOMA",
     "difficulty": "alta",
@@ -13889,7 +13889,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER DE PENE",
     "difficulty": "baja",
@@ -13910,7 +13910,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Anemia ferropénica (Anemias Introducción y Anemias Carenciales)",
     "subtema": "CÁNCER COLORRECTAL",
     "difficulty": "alta",
@@ -13955,7 +13955,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VÍA AÉREA Y VENTILACIÓN",
     "difficulty": "media",
@@ -13988,7 +13988,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "Control Prenatal",
     "subtema": "RETINOPATÍA DEL PREMATURO",
     "difficulty": "media",
@@ -14021,7 +14021,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
     "subtema": "EPICONDILITIS (CODO DE TENISTA Y GOLFISTA)",
     "difficulty": "baja",
@@ -14042,7 +14042,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "VÉRTIGO POSTURAL PAROXÍSTICO BENIGNO (VPPB)",
     "difficulty": "baja",
@@ -14063,7 +14063,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "PATOLOGÍA INTESTINAL INFLAMATORIA",
     "subtema": "COLITIS ULCEROSA CRÓNICA IDIOPÁTICA (CUCI)",
     "difficulty": "alta",
@@ -14108,7 +14108,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TCE ESCALA DE GLASGOW",
     "difficulty": "media",
@@ -14141,7 +14141,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "HERNIA HIATAL / ERGE",
     "difficulty": "media",
@@ -14174,7 +14174,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Crecimiento y Desarrollo",
     "subtema": "CRIPTORQUIDIA",
     "difficulty": "baja",
@@ -14240,7 +14240,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "sp",
+    "specialty": "cir",
     "tema": "Vacunación",
     "subtema": "EPIGLOTITIS",
     "difficulty": "media",
@@ -14273,7 +14273,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "Control Prenatal",
     "subtema": "LITIASIS RENAL",
     "difficulty": "baja",
@@ -14294,7 +14294,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HEMORROIDES",
     "difficulty": "media",
@@ -14327,7 +14327,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "ATLS P2",
     "subtema": "TCE HEMORRAGIA EPIDURAL",
     "difficulty": "baja",
@@ -14414,7 +14414,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
     "subtema": "ESGUINCE DE TOBILLO",
     "difficulty": "media",
@@ -14447,7 +14447,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Hipotiroidismo (Patología Tiroidea)",
     "subtema": "SÍNDROME DEL TÚNEL CARPIANO",
     "difficulty": "media",
@@ -14480,7 +14480,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "Cesárea (Patología de Trabajo de Parto)",
     "subtema": "CICATRIZACIÓN",
     "difficulty": "baja",
@@ -14501,7 +14501,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INSUFICIENCIA VENOSA CRÓNICA",
     "difficulty": "media",
@@ -14555,7 +14555,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "IVU (INFECCIONES DE VÍAS URINARIAS)",
     "difficulty": "media",
@@ -14588,7 +14588,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE",
     "subtema": "RINOSINUSITIS",
     "difficulty": "alta",
@@ -14633,7 +14633,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESPLENECTOMÍA",
     "difficulty": "baja",
@@ -14654,7 +14654,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "CÁNCER RENAL",
     "difficulty": "alta",
@@ -14699,7 +14699,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER DE ESÓFAGO",
     "difficulty": "media",
@@ -14777,7 +14777,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Hipertensión Arterial",
     "subtema": "CATARATA",
     "difficulty": "media",
@@ -14810,7 +14810,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA PEDIÁTRICO",
     "difficulty": "baja",
@@ -14831,7 +14831,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
     "subtema": "LUXACIÓN DE HOMBRO",
     "difficulty": "media",
@@ -14864,7 +14864,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER UROTELIAL Y TESTICULAR",
     "difficulty": "baja",
@@ -14885,7 +14885,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Diabetes",
     "subtema": "RETINOPATÍA DIABÉTICA",
     "difficulty": "alta",
@@ -14930,7 +14930,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "LESIONES MENISCALES / LIGAMENTOS RODILLA",
     "difficulty": "media",
@@ -14963,7 +14963,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "RPM (Parto Prematuro y Patología Coriónica)",
     "subtema": "COLANGITIS AGUDA",
     "difficulty": "media",
@@ -14996,7 +14996,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "EPOC",
     "subtema": "PERFORACIÓN ESOFÁGICA (SÍNDROME DE BOERHAAVE)",
     "difficulty": "alta",
@@ -15074,7 +15074,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VÓLVULO DE SIGMOIDES",
     "difficulty": "baja",
@@ -15095,7 +15095,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "PATOLOGÍA CÁMARA ANTERIOR",
     "subtema": "ÚLCERA CORNEAL / QUERATITIS INFECCIOSA",
     "difficulty": "media",
@@ -15116,7 +15116,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Mordeduras y Picaduras",
     "subtema": "MORDEDURAS DE MAMÍFEROS Y RABIA",
     "difficulty": "alta",
@@ -15203,7 +15203,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "Sx climatérico (Patología Menopausia y Climaterio)",
     "subtema": "INCONTINENCIA URINARIA",
     "difficulty": "baja",
@@ -15248,7 +15248,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENFERMEDAD DE MENIERE",
     "difficulty": "media",
@@ -15281,7 +15281,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "PATOLOGÍA CÁMARA POSTERIOR",
     "subtema": "DEGENERACIÓN MACULAR RELACIONADA CON LA EDAD (DMAE)",
     "difficulty": "media",
@@ -15314,7 +15314,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ABSCESO HEPÁTICO (AMEBIANO Y PIÓGENO)",
     "difficulty": "media",
@@ -15359,7 +15359,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DESGARRO DE MALLORY  -WEISS",
     "difficulty": "baja",
@@ -15413,7 +15413,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FRACTURA DE ESCAFOIDES",
     "difficulty": "media",
@@ -15446,7 +15446,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "OTITIS MEDIA AGUDA (OMA) / MASTOIDITIS",
     "difficulty": "alta",
@@ -15491,7 +15491,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "FRACTURAS EN NIÑOS (SALTER-HARRIS)",
     "difficulty": "baja",
@@ -15512,7 +15512,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Trastornos del Ritmo",
     "subtema": "OCLUSIÓN VASCULAR RETINIANA",
     "difficulty": "media",
@@ -15545,7 +15545,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Diabetes",
     "subtema": "INFECCIONES DE VÍAS URINARIAS (PIELONEFRITIS)",
     "difficulty": "alta",
@@ -15590,7 +15590,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Crecimiento y Desarrollo",
     "subtema": "PATOLOGÍA BENIGNA DE CUELLO (QUISTE TIROGLOSO)",
     "difficulty": "media",
@@ -15623,7 +15623,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Síndromes Coronarios",
     "subtema": "TRAUMA URETRAL Y VESICAL",
     "difficulty": "media",
@@ -15692,7 +15692,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "ENFERMEDAD ARTERIAL PERIFÉRICA",
     "difficulty": "alta",
@@ -15737,7 +15737,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Hipertensión Arterial",
     "subtema": "RETINOPATÍA HIPERTENSIVA",
     "difficulty": "baja",
@@ -15758,7 +15758,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HERNIA EPIGÁSTRICA",
     "difficulty": "baja",
@@ -15779,7 +15779,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "Miomatosis (Sangrados Uterinos Anormales: Origen Anatómico No Maligno)",
     "subtema": "OBSTRUCCIÓN INTESTINAL (ÍLEO PARALÍTICO)",
     "difficulty": "media",
@@ -15812,7 +15812,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "LOXOSCELISMO",
     "difficulty": "alta",
@@ -15857,7 +15857,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Diabetes",
     "subtema": "PANCREATITIS CRÓNICA",
     "difficulty": "media",
@@ -15890,7 +15890,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "OTOESCLEROSIS",
     "difficulty": "alta",
@@ -15923,7 +15923,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PRIAPISMO",
     "difficulty": "media",
@@ -15956,7 +15956,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Cáncer de Mama",
     "subtema": "CHALAZIÓN",
     "difficulty": "baja",
@@ -15977,7 +15977,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA TORÁCICO (TAPONAMIENTO CARDÍACO)",
     "difficulty": "media",
@@ -16010,7 +16010,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "FX DE ANTEBRAZO Y MANO (FRACTURA DE COLLES)",
     "difficulty": "baja",
@@ -16031,7 +16031,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Hipertensión Arterial",
     "subtema": "ANEURISMA DE AORTA ABDOMINAL (AAA)",
     "difficulty": "alta",
@@ -16076,7 +16076,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "EPIDIDIMITIS",
     "difficulty": "media",
@@ -16109,7 +16109,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Mordeduras y Picaduras",
     "subtema": "TRAUMA OCULAR (QUEMADURAS QUÍMICAS)",
     "difficulty": "baja",
@@ -16130,7 +16130,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FARINGOAMIGDALITIS",
     "difficulty": "media",
@@ -16163,7 +16163,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA TORÁCICO (NEUMOTÓRAX A TENSIÓN)",
     "difficulty": "media",
@@ -16196,7 +16196,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Diabetes",
     "subtema": "ABSCESO ANORRECTAL Y FÍSTULA",
     "difficulty": "baja",
@@ -16274,7 +16274,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "",
     "difficulty": "media",
@@ -16295,7 +16295,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "ÚLCERA PÉPTICA PERFORADA",
     "difficulty": "baja",
@@ -16316,7 +16316,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Cáncer de Mama",
     "subtema": "PATOLOGÍA BENIGNA DE MAMA",
     "difficulty": "baja",
@@ -16337,7 +16337,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Crecimiento y Desarrollo",
     "subtema": "DIVERTÍCULO DE MECKEL",
     "difficulty": "media",
@@ -16370,7 +16370,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TENOSINOVITIS DE DE QUERVAIN",
     "difficulty": "baja",
@@ -16403,7 +16403,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Urología",
     "subtema": "HPB (COMPLICACIONES Y TRATAMIENTO QX)",
     "difficulty": "alta",
@@ -16436,7 +16436,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CELULITIS ORBITARIA",
     "difficulty": "media",
@@ -16469,7 +16469,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA MEDULAR Y CHOQUE NEUROGÉNICO",
     "difficulty": "alta",
@@ -16502,7 +16502,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Crecimiento y Desarrollo",
     "subtema": "INVAGINACIÓN INTESTINAL (INTUSUSCEPCIÓN)",
     "difficulty": "media",
@@ -16547,7 +16547,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Hemorragia Obstétrica",
     "subtema": "DISPLASIA DEL DESARROLLO DE LA CADERA (DDC)",
     "difficulty": "media",
@@ -16592,7 +16592,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "NEURITIS VESTIBULAR",
     "difficulty": "baja",
@@ -16625,7 +16625,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA RENAL",
     "difficulty": "media",
@@ -16658,7 +16658,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Trastornos del Ritmo",
     "subtema": "ISQUEMIA MESENTÉRICA AGUDA",
     "difficulty": "alta",
@@ -16703,7 +16703,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA DE CUELLO",
     "difficulty": "media",
@@ -16736,7 +16736,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FRACTURA DE DIÁFISIS FEMORAL",
     "difficulty": "baja",
@@ -16802,7 +16802,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PTERIGIÓN",
     "difficulty": "baja",
@@ -16823,7 +16823,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Estenosis Hipertrófica del Píloro",
     "subtema": "ESTENOSIS HIPERTRÓFICA DEL PÍLORO",
     "difficulty": "alta",
@@ -16868,7 +16868,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "EPIFISIOLISTESIS FEMORAL CAPITAL",
     "difficulty": "media",
@@ -16901,7 +16901,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "OTITIS EXTERNA (OÍDO DE NADADOR)",
     "difficulty": "baja",
@@ -16922,7 +16922,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Diabetes",
     "subtema": "GLAUCOMA PRIMARIO DE ÁNGULO ABIERTO",
     "difficulty": "media",
@@ -16955,7 +16955,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "TRAUMA TORÁCICO (TÓRAX INESTABLE / VOLET COSTAL)",
     "difficulty": "alta",
@@ -16988,7 +16988,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "PATOLOGÍA GÁSTRICA",
     "subtema": "HEMORRAGIA DE TUBO DIGESTIVO ALTO (ÚLCERA PÉPTICA)",
     "difficulty": "alta",
@@ -17033,7 +17033,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER DE PIEL NO MELANOMA (CARCINOMA BASOCELULAR)",
     "difficulty": "baja",
@@ -17054,7 +17054,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA CRANEOENCEFÁLICO (HEMATOMA SUBDURAL)",
     "difficulty": "media",
@@ -17087,7 +17087,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SIALOLITIASIS",
     "difficulty": "media",
@@ -17120,7 +17120,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "LUXACIÓN ACROMIOCLAVICULAR",
     "difficulty": "baja",
@@ -17141,7 +17141,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ÍLEO BILIAR",
     "difficulty": "alta",
@@ -17186,7 +17186,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "FRACTURAS DE TOBILLO (CLASIFICACIÓN DE WEBER)",
     "difficulty": "media",
@@ -17219,7 +17219,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Crecimiento y Desarrollo",
     "subtema": "ESTRABISMO",
     "difficulty": "baja",
@@ -17252,7 +17252,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PROSTATITIS BACTERIANA AGUDA",
     "difficulty": "media",
@@ -17285,7 +17285,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FÍSTULA ANORRECTAL",
     "difficulty": "baja",
@@ -17306,7 +17306,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA MAXILOFACIAL (LE FORT)",
     "difficulty": "alta",
@@ -17339,7 +17339,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PATOLOGÍA ESCROTAL BENIGNA (VARICOCELE)",
     "difficulty": "baja",
@@ -17393,7 +17393,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Recién Nacido Sano",
     "subtema": "ATRESIA ESOFÁGICA / FÍSTULA TRAQUEOESOFÁGICA",
     "difficulty": "alta",
@@ -17426,7 +17426,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Fibrilación Auricular",
     "subtema": "UVEÍTIS ANTERIOR AGUDA",
     "difficulty": "media",
@@ -17480,7 +17480,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Cáncer de Mama",
     "subtema": "CÁNCER DE PRÓSTATA (ESCALA DE GLEASON)",
     "difficulty": "alta",
@@ -17513,7 +17513,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "CA de endometrio y CA de ovario (Oncología Ginecológica)",
     "subtema": "CÁNCER COLORRECTAL (SÍNDROME DE LYNCH)",
     "difficulty": "alta",
@@ -17546,7 +17546,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "QUEMADURAS ELÉCTRICAS",
     "difficulty": "media",
@@ -17579,7 +17579,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "TENOSINOVITIS INFECCIOSA DE LOS FLEXORES (MANO)",
     "difficulty": "baja",
@@ -17600,7 +17600,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "FRACTURAS ABIERTAS (CLASIFICACIÓN DE GUSTILO-ANDERSON)",
     "difficulty": "media",
@@ -17633,7 +17633,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Recién Nacido Sano",
     "subtema": "ENFERMEDAD DE HIRSCHSPRUNG (AGANGLIONOSIS CONGÉNITA)",
     "difficulty": "alta",
@@ -17678,7 +17678,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "PARAFIMOSIS",
     "difficulty": "baja",
@@ -17711,7 +17711,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ORZUELO",
     "difficulty": "baja",
@@ -17732,7 +17732,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Crecimiento y Desarrollo",
     "subtema": "ASPIRACIÓN DE CUERPO EXTRAÑO EN VÍA AÉREA",
     "difficulty": "media",
@@ -17831,7 +17831,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "ped",
+    "specialty": "cir",
     "tema": "Crecimiento y Desarrollo",
     "subtema": "RETINOBLASTOMA",
     "difficulty": "media",
@@ -17864,7 +17864,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME COMPARTIMENTAL",
     "difficulty": "alta",
@@ -17897,7 +17897,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "UROLOGÍA P2",
     "subtema": "CÁNCER DE PRÓSTATA (DIAGNÓSTICO)",
     "difficulty": "baja",
@@ -17963,7 +17963,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA TORÁCICO (HEMOTÓRAX MASIVO)",
     "difficulty": "alta",
@@ -17996,7 +17996,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DESPRENDIMIENTO DE RETINA REGMATÓGENO",
     "difficulty": "media",
@@ -18017,7 +18017,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "MORDEDURA DE SERPIENTES (ACCIDENTE OFÍDICO)",
     "difficulty": "alta",
@@ -18050,7 +18050,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Fibrilación Auricular",
     "subtema": "COLITIS ULCEROSA (MEGACOLON TÓXICO)",
     "difficulty": "baja",
@@ -18125,7 +18125,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "CIRUGÍA ABDOMINAL DE URGENCIA",
     "subtema": "VÓLVULO DE SIGMOIDES",
     "difficulty": "media",
@@ -18191,7 +18191,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "GLAUCOMA AGUDO DE ÁNGULO CERRADO",
     "difficulty": "media",
@@ -18245,7 +18245,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "NEUMOTÓRAX A TENSIÓN",
     "difficulty": "alta",
@@ -18266,7 +18266,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "Cesárea (Patología de Trabajo de Parto)",
     "subtema": "SÍNDROME ADHERENCIA  L (BRIDAS)",
     "difficulty": "baja",
@@ -18329,7 +18329,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto inevitable",
     "difficulty": "baja",
@@ -18428,7 +18428,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto incompleto",
     "difficulty": "media",
@@ -18494,7 +18494,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "gyo",
     "tema": "Apendicitis Aguda",
     "subtema": "Embarazo ectópico tubárico",
     "difficulty": "alta",
@@ -18527,7 +18527,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Embarazo ectópico no roto",
     "difficulty": "media",
@@ -18593,7 +18593,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto séptico",
     "difficulty": "alta",
@@ -18626,7 +18626,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Aborto completo",
     "difficulty": "baja",
@@ -18659,7 +18659,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Mola hidatidiforme parcial",
     "difficulty": "media",
@@ -18758,7 +18758,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Factores de riesgo para embarazo ectópico",
     "difficulty": "baja",
@@ -18857,7 +18857,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hipertensión Arterial",
     "subtema": "Desprendimiento prematuro de placenta normoinserta (DPPNI)",
     "difficulty": "alta",
@@ -18890,7 +18890,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Vasa previa",
     "difficulty": "alta",
@@ -18989,7 +18989,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Síndrome HELLP",
     "difficulty": "alta",
@@ -19154,7 +19154,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Hemorragia Obstétrica",
     "subtema": "Ruptura prematura de membranas pretérmino (RPM pretérmino)",
     "difficulty": "media",
@@ -19253,7 +19253,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Diabetes",
     "subtema": "Síndrome de ovario poliquístico (SOP)",
     "difficulty": "media",
@@ -19298,7 +19298,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Endometriosis",
     "difficulty": "media",
@@ -19343,7 +19343,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "gyo",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "Enfermedad pélvica inflamatoria (EPI)",
     "difficulty": "media",
@@ -19457,7 +19457,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Cáncer de Mama",
     "subtema": "CÁNCER DE MAMA (TAMIZAJE Y CLASIFICACIÓN)",
     "difficulty": "alta",
@@ -19490,7 +19490,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "LÍQUIDOS Y ELECTROLITOS EN CIRUGÍA",
     "subtema": "REQUERIMIENTOS BASALES (REGLA 4 -2-1)",
     "difficulty": "baja",
@@ -19565,7 +19565,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SARCOMAS DE PARTES BLANDAS",
     "difficulty": "alta",
@@ -19598,7 +19598,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ACALASIA (TRATAMIENTO)",
     "difficulty": "media",
@@ -19619,7 +19619,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Mordeduras y Picaduras",
     "subtema": "QUEMADURAS QUÍMICAS",
     "difficulty": "baja",
@@ -19640,7 +19640,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Trastornos del Ritmo",
     "subtema": "HEMATOMA SUBDURAL",
     "difficulty": "media",
@@ -19661,7 +19661,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "CÁNCER DE ESÓFAGO",
     "difficulty": "alta",
@@ -19694,7 +19694,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DIVERTÍCULO DE MECKEL",
     "difficulty": "media",
@@ -19727,7 +19727,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME COMPARTIMENTAL",
     "difficulty": "alta",
@@ -19760,7 +19760,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "UROLOGÍA QUIRÚRGICA",
     "subtema": "TORSIÓN TESTICULAR",
     "difficulty": "media",
@@ -19781,7 +19781,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "GASTROENTEROLOGÍA QUIRÚRGICA",
     "subtema": "VÓLVULO DE CIEGO",
     "difficulty": "alta",
@@ -19814,7 +19814,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TAPONAMIENTO CARDÍACO",
     "difficulty": "alta",
@@ -19880,7 +19880,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Trastornos del Ritmo",
     "subtema": "INSUFICIENCIA ARTERIAL AGUDA",
     "difficulty": "media",
@@ -19922,7 +19922,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRAUMA RENAL",
     "difficulty": "alta",
@@ -19955,7 +19955,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "UROLOGÍA (ONCOLOGÍA)",
     "subtema": "CÁNCER DE VEJIGA",
     "difficulty": "media",
@@ -20009,7 +20009,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "cir",
     "tema": "Vigilancia y Control Prenatal",
     "subtema": "INSUFICIENCIA VENOSA CRÓNICA (IVC)",
     "difficulty": "baja",
@@ -20030,7 +20030,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "CIRUGÍA DE PARED ABDOMINAL",
     "subtema": "HERNIA DE SPIEGEL",
     "difficulty": "alta",
@@ -20072,7 +20072,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "UROLOGÍA",
     "subtema": "PRIAPISMO",
     "difficulty": "alta",
@@ -20135,7 +20135,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "EPOC / Asma",
     "subtema": "CÁNCER DE PENE",
     "difficulty": "media",
@@ -20156,7 +20156,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "NUTRICIÓN Y CIRUGÍA",
     "subtema": "VALORACIÓN NUTRICIONAL PREOPERATORIA",
     "difficulty": "baja",
@@ -20177,7 +20177,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Cáncer de Mama",
     "subtema": "FIBROADENOMA MAMARIO",
     "difficulty": "baja",
@@ -20219,7 +20219,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Cáncer de Mama",
     "subtema": "CÁNCER DE PRÓSTATA (BIOPSIA)",
     "difficulty": "media",
@@ -20240,7 +20240,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "GASTROENTEROLOGÍA QUIRÚRGICA",
     "subtema": "ENFERMEDAD DE CROHN (COMPLICACIONES)",
     "difficulty": "alta",
@@ -20261,7 +20261,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "HEMORROIDES",
     "difficulty": "baja",
@@ -20282,7 +20282,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "HEMOTÓRAX MASIVO",
     "difficulty": "alta",
@@ -20303,7 +20303,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ORQUIEPIDIDIMITIS",
     "difficulty": "media",
@@ -20345,7 +20345,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "UROLOGÍA",
     "subtema": "LITIASIS VESICAL",
     "difficulty": "media",
@@ -20366,7 +20366,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Fibrilación Auricular",
     "subtema": "CONTUSIÓN PULMONAR",
     "difficulty": "alta",
@@ -20429,7 +20429,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "FISURA ANAL",
     "difficulty": "baja",
@@ -20450,7 +20450,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Nefrología",
     "subtema": "NEUMOTÓRAX SIMPLE",
     "difficulty": "media",
@@ -20471,7 +20471,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "UROLOGÍA (ONCOLOGÍA)",
     "subtema": "CARCINOMA DE CÉLULAS RENALES",
     "difficulty": "alta",
@@ -20546,7 +20546,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "RUPTURA TRAUMÁTICA DE DIAFRAGMA",
     "difficulty": "alta",
@@ -20567,7 +20567,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "UROLOGÍA (INFECTOLOGÍA)",
     "subtema": "GANGRENA DE FOURNIER",
     "difficulty": "media",
@@ -20588,7 +20588,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Hipertensión Arterial",
     "subtema": "ANEURISMA DE AORTA ABDOMINAL (AAA)",
     "difficulty": "media",
@@ -20609,7 +20609,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Cáncer de Mama",
     "subtema": "CÁNCER DE TIROIDES",
     "difficulty": "media",
@@ -20630,7 +20630,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "OFTALMOLOGÍA QUIRÚRGICA (URGENCIAS)",
     "subtema": "DESPRENDIMIENTO DE RETINA",
     "difficulty": "media",
@@ -20672,7 +20672,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "CIRUGÍA GENERAL",
     "subtema": "CONSENTIMIENTO INFORMADO",
     "difficulty": "baja",
@@ -20705,7 +20705,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Patología Biliar",
     "subtema": "COLECISTITIS AGUDA (CRITERIOS DE TOKIO 2018)",
     "difficulty": "alta",
@@ -20747,7 +20747,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "EPOC",
     "subtema": "ZONAS ANATÓMICAS DE MONSON",
     "difficulty": "media",
@@ -20768,7 +20768,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "QUISTES RENALES (CLASIFICACIÓN DE BOSNIAK)",
     "difficulty": "alta",
@@ -20810,7 +20810,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Neumonías",
     "subtema": "CHOQUE SÉPTICO (DEFINICIÓN SEPSIS -3)",
     "difficulty": "alta",
@@ -20831,7 +20831,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Tuberculosis",
     "subtema": "TUBERCULOSIS PULMONAR (EFECTOS ADVERSOS DEL TAES)",
     "difficulty": "media",
@@ -20852,7 +20852,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "VIRUS DE LA INMUNODEFICIENCIA HUMANA (INFECCIONES",
     "difficulty": "media",
@@ -20873,7 +20873,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "MEDICINA INTERNA / INFECTOLOGÍA",
     "subtema": "ENFERMEDADES TRANSMITIDAS POR VECTOR (DENGUE)",
     "difficulty": "baja",
@@ -20894,7 +20894,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "cir",
     "tema": "EPOC / CA de Pulmón",
     "subtema": "ENFERMEDAD PULMONAR OBSTRUCTIVA CRÓNICA (EPOC)",
     "difficulty": "baja",
@@ -21041,7 +21041,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "RPM (Parto Prematuro y Patología Coriónica)",
     "subtema": "SEPSIS NEONATAL TEMPRANA",
     "difficulty": "media",
@@ -21125,7 +21125,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Patología del Embarazo: Estados Hipertensivos",
     "subtema": "ENFERMEDAD DE MEMBRANA HIALINA (SDR TIPO I)",
     "difficulty": "media",
@@ -21146,7 +21146,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Trabajo de Parto",
     "subtema": "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (SDR TIPO II)",
     "difficulty": "baja",
@@ -21356,7 +21356,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "ISOINMUNIZACIÓN MATERNO  -FETAL (Rh)",
     "difficulty": "alta",
@@ -21482,7 +21482,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "PEDIATRÍA / CRECIMIENTO Y DESARROLLO",
     "subtema": "DENTICIÓN INFAN TIL",
     "difficulty": "baja",
@@ -21524,7 +21524,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "PEDIATRÍA / CRECIMIENTO Y DESARROLLO",
     "subtema": "DESARROLLO PUBERAL (ESCALA DE TANNER)",
     "difficulty": "media",
@@ -21545,7 +21545,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "LACTANCIA MATERNA (PROPIEDADES Y TIPOS)",
     "difficulty": "baja",
@@ -21629,7 +21629,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Trastornos del Ritmo",
     "subtema": "SÍNDROME DE REALIMENTACIÓN",
     "difficulty": "alta",
@@ -21713,7 +21713,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "NEUMONÍA ATÍPICA",
     "difficulty": "media",
@@ -21839,7 +21839,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Patología Biliar",
     "subtema": "VARICELA",
     "difficulty": "media",
@@ -22154,7 +22154,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Asma en el Adulto y Pediátrico",
     "subtema": "HEMOFILIA",
     "difficulty": "media",
@@ -22238,7 +22238,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "DEFECTOS DEL TUBO NEURAL",
     "difficulty": "baja",
@@ -22364,7 +22364,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "INTOXICACIÓN POR HIERRO",
     "difficulty": "alta",
@@ -22406,7 +22406,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "RPM (Parto Prematuro y Patología Coriónica)",
     "subtema": "SEPSIS NEONATAL TEMPRANA",
     "difficulty": "alta",
@@ -22448,7 +22448,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "sp",
+    "specialty": "ped",
     "tema": "Vacunación",
     "subtema": "VACUNA SRP (TRIPLE VIRAL)",
     "difficulty": "baja",
@@ -22490,7 +22490,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "ped",
     "tema": "Hernias de la Pared Abdominal",
     "subtema": "ENFERMEDAD DE LEGG -CALVÉ-PERTHES",
     "difficulty": "media",
@@ -22511,7 +22511,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "EPIFISIOLISIS FEMORAL PROXIMAL",
     "difficulty": "media",
@@ -22679,7 +22679,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Cáncer de Mama",
     "subtema": "PUBERTAD PRECOZ",
     "difficulty": "media",
@@ -22832,7 +22832,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)",
     "difficulty": "media",
@@ -23090,7 +23090,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "RETINOPATÍA DEL PREMATURO (ROP)",
     "difficulty": "alta",
@@ -23501,7 +23501,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Cáncer de Mama",
     "subtema": "DESARROLLO PUBERAL (ESCALA DE TANNER)",
     "difficulty": "media",
@@ -23534,7 +23534,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "DESARROLLO PUBERAL MASCULINO",
     "difficulty": "media",
@@ -23555,7 +23555,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "TRASTORNOS DE LA CONDUCTA ALIMENTARIA (ANOREXIA NERVIOSA)",
     "difficulty": "alta",
@@ -23588,7 +23588,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Cáncer de Mama",
     "subtema": "GINECOMASTIA PUBERAL",
     "difficulty": "baja",
@@ -23630,7 +23630,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "PEDIATRÍA / ASPECTOS LEGALES",
     "subtema": "ABUSO SEXUAL INFANTIL",
     "difficulty": "alta",
@@ -23822,7 +23822,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ANEMIA DE CÉLULAS FALCIFORMES (DREPANOCITOSIS)",
     "difficulty": "alta",
@@ -23855,7 +23855,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Neonatología",
     "subtema": "DEFICIENCIA DE GLUCOSA -6-FOSFATO DESHIDROGENASA (G6PD)",
     "difficulty": "media",
@@ -24122,7 +24122,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "VIRUS SINCITIAL RESPIRATORIO (PROFILAXIS EN BRONQUIOLITIS)",
     "difficulty": "alta",
@@ -24329,7 +24329,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Diabetes Gestacional",
     "subtema": "HIPOGLUCEMIA NEONATAL",
     "difficulty": "media",
@@ -24362,7 +24362,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ENFERMEDAD DE GRAVES (HIPERTIROIDISMO PEDIÁTRICO)",
     "difficulty": "media",
@@ -24383,7 +24383,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Fibrilación Auricular",
     "subtema": "HIPOTIROIDISMO ADQUIRIDO (TIROIDITIS DE HASHIMOTO)",
     "difficulty": "baja",
@@ -24437,7 +24437,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Urología",
     "subtema": "REFLUJO VESICOURETERAL (RVU)",
     "difficulty": "alta",
@@ -24479,7 +24479,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Virus de la Inmunodeficiencia Humana",
     "subtema": "TORSIÓN TESTICULAR",
     "difficulty": "baja",
@@ -24500,7 +24500,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "SÍFILIS CONGÉNITA",
     "difficulty": "alta",
@@ -24653,7 +24653,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "SÍNDROME DE ASPIRACIÓN DE MECONIO (SAM)",
     "difficulty": "alta",
@@ -24686,7 +24686,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Trabajo de Parto",
     "subtema": "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (TTRN)",
     "difficulty": "media",
@@ -24719,7 +24719,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Patología del Embarazo: Estados Hipertensivos",
     "subtema": "ENFERMEDAD DE MEMBRANA HIALINA (SDR TIPO 1)",
     "difficulty": "alta",
@@ -24752,7 +24752,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "ENTEROCOLITIS NECROTIZANTE (ECN)",
     "difficulty": "alta",
@@ -24839,7 +24839,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "PARÁLISIS CEREBRAL INFANTIL (PCI)",
     "difficulty": "alta",
@@ -24872,7 +24872,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME DE GUILLAIN-BARRÉ (SGB)",
     "difficulty": "alta",
@@ -24905,7 +24905,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "SÍNDROME NEFRÍTICO (GLOMERULONEFRITIS POSTESTREPTOCÓCICA)",
     "difficulty": "media",
@@ -24992,7 +24992,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "PEDIATRÍA / INFECTOLOGÍA (EXANTEMÁTICAS)",
     "subtema": "ERITEMA INFECCIOSO (QUINTA ENFERMEDAD)",
     "difficulty": "alta",
@@ -25025,7 +25025,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Lupus Eritematoso Sistémico",
     "subtema": "ESCARLATINA",
     "difficulty": "media",
@@ -25145,7 +25145,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "cir",
+    "specialty": "ped",
     "tema": "Quemaduras / Golpe de Calor / Hipotermia",
     "subtema": "SÍNDROME DE CHOQUE TÓXICO ESTAFILOCÓCICO (SCT)",
     "difficulty": "media",
@@ -25178,7 +25178,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "mi",
+    "specialty": "ped",
     "tema": "Nefrología",
     "subtema": "LARINGOTRAQUEÍTIS INFECCIOSA (CRUP)",
     "difficulty": "media",
@@ -25394,7 +25394,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)",
     "difficulty": "alta",
@@ -25481,7 +25481,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "ped",
     "tema": "Control Prenatal",
     "subtema": "GASTROSQUISIS",
     "difficulty": "media",
@@ -28629,7 +28629,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "mi",
     "tema": "CACU (Oncología Ginecológica)",
     "subtema": "ONCOHEMATOLOGÍA (LINFOMA DE HODGKIN)",
     "difficulty": "media",
@@ -29763,7 +29763,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "urg",
     "tema": "RPM (Parto Prematuro y Patología Coriónica)",
     "subtema": "INTOXICACIÓN POR OPIOIDES",
     "difficulty": "baja",
@@ -30477,7 +30477,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "mi",
     "tema": "CACU (Oncología Ginecológica)",
     "subtema": "LINFOMA DE HODGKIN",
     "difficulty": "media",
@@ -33526,7 +33526,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "mi",
     "tema": "Control Prenatal",
     "subtema": "TEMBLOR ESENCIAL",
     "difficulty": "baja",
@@ -33904,7 +33904,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "mi",
     "tema": "Enfermedad Hipertensiva del Embarazo",
     "subtema": "POLIFARMACIA Y CRITERIOS DE BEERS / STOPP-START",
     "difficulty": "media",
@@ -35076,7 +35076,7 @@ const QUESTIONS = [
     ]
   },
   {
-    "specialty": "gyo",
+    "specialty": "mi",
     "tema": "GINECOLOGÍA Y OBSTETRICIA",
     "subtema": "PATOLOGÍA BENIGNA DE MAMA (GINECOMASTIA)",
     "difficulty": "alta",
