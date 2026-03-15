@@ -40,8 +40,18 @@
         history: [],
         selectedTopics: [],
         reportedQuestions: [],
+        reportedQuestionsLocal: [],
         myFriends: [],
-        activeChallenges: []
+        activeChallenges: [],
+        quarantineKeys: new Set(),
+        reclassSelectedKey: null,
+        reclassCases: [],
+        reclassMap: {},
+        reclassTemaByKey: {},
+        reclassOriginalTemaByKey: {},
+        reclassSpecialtyByKey: {},
+        reclassOriginalSpecialtyByKey: {},
+        reclassInitialized: false
     };
 
     const $ = (id) => document.getElementById(id);
@@ -113,10 +123,10 @@
         const toast = document.createElement('div');
         toast.className = `toast toast-${type}`;
 
-        let icon = 'â„¹ï¸';
-        if (type === 'success') icon = 'âœ…';
-        if (type === 'error') icon = 'ðŸš¨';
-        if (type === 'warning') icon = 'âš ï¸';
+        let icon = '&#x2139;&#xFE0F;';
+        if (type === 'success') icon = '&#x2705;';
+        if (type === 'error') icon = '&#x1F6A8;';
+        if (type === 'warning') icon = '&#x26A0;';
 
         toast.innerHTML = `<span style="font-size: 18px;">${icon}</span><span style="flex:1;">${msg}</span>`;
         container.appendChild(toast);
@@ -125,6 +135,444 @@
             toast.classList.add('hiding');
             toast.addEventListener('animationend', () => toast.remove());
         }, 3500);
+    };
+
+    const REPORT_CATEGORY_LABELS = {
+        clasificacion: "Error de clasificacion (tema)",
+        especialidad: "Error de especialidad",
+        respuesta: "Respuesta incorrecta",
+        opciones: "Opciones o redaccion",
+        duplicado: "Pregunta duplicada",
+        caso: "Caso incompleto o inconsistente",
+        otro: "Otro"
+    };
+
+    const getReportCategoryLabel = (key) => {
+        return REPORT_CATEGORY_LABELS[key] || "Otro";
+    };
+
+    // ---------------------------------------------------------------------------
+    // Case Reclassification (manual topic overrides)
+    // ---------------------------------------------------------------------------
+    const RECLASS_STORAGE_KEY = "enarm_case_reclass";
+
+    const normalizeCaseText = (text) => {
+        if (!text) return "";
+        return String(text)
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9]+/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+    };
+
+    const normalizeTopicKey = (text) => {
+        return String(text || "")
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/\s+/g, " ")
+            .trim();
+    };
+
+    const hashString = (str) => {
+        let h = 5381;
+        for (let i = 0; i < str.length; i++) {
+            h = ((h << 5) + h) + str.charCodeAt(i);
+            h |= 0;
+        }
+        return (h >>> 0).toString(36);
+    };
+
+    const getCaseSourceText = (q) => {
+        if (!q) return "";
+        if (q.case && String(q.case).trim()) return String(q.case);
+        if (q.question && String(q.question).trim()) return String(q.question);
+        return "";
+    };
+
+    const getCaseKey = (q) => {
+        if (!q) return "";
+        if (q._caseKey) return q._caseKey;
+        const base = normalizeCaseText(getCaseSourceText(q));
+        if (!base) return "";
+        q._caseKey = hashString(base);
+        return q._caseKey;
+    };
+
+    const escapeHtml = (str) => {
+        return String(str || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/\"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+    };
+
+    const getCaseSnippet = (text, maxLen = 180) => {
+        const clean = String(text || "").replace(/\s+/g, " ").trim();
+        if (clean.length <= maxLen) return clean;
+        return clean.slice(0, Math.max(0, maxLen - 3)) + "...";
+    };
+
+    const getCaseKeyFromText = (caseText, questionText) => {
+        const base = normalizeCaseText(caseText || questionText || "");
+        return base ? hashString(base) : "";
+    };
+
+    const dedupeReports = (reports) => {
+        const seenIds = new Set();
+        const seenSemantic = new Set();
+        const out = [];
+        (reports || []).forEach(r => {
+            if (!r) return;
+            const id = String(r.id || r.reportId || r.cloudId || "");
+            const semantic = r.caseKey ? `${r.caseKey}|${r.category || ""}|${r.userId || r.userName || ""}|${r.timestamp || ""}` : "";
+            if (id && seenIds.has(id)) return;
+            if (semantic && seenSemantic.has(semantic)) return;
+            if (id) seenIds.add(id);
+            if (semantic) seenSemantic.add(semantic);
+            out.push(r);
+        });
+        return out;
+    };
+
+    const refreshQuarantineKeys = () => {
+        const keys = new Set();
+        (State.reportedQuestions || []).forEach(r => {
+            const key = r.caseKey || getCaseKeyFromText(r.caseText, r.questionText);
+            if (key) keys.add(key);
+        });
+        State.quarantineKeys = keys;
+    };
+
+    const filterQuarantinedPool = (pool) => {
+        if (!State.quarantineKeys || State.quarantineKeys.size === 0) return pool;
+        return pool.filter(q => {
+            const key = getCaseKey(q);
+            if (!key) return true;
+            return !State.quarantineKeys.has(key);
+        });
+    };
+
+    const getSpecialtyLabel = (key) => {
+        if (!key) return "Sin especialidad";
+        return State.globalStats?.bySpecialty?.[key]?.name || key;
+    };
+
+    const loadCaseReclassMap = () => {
+        try {
+            const raw = localStorage.getItem(RECLASS_STORAGE_KEY);
+            return raw ? JSON.parse(raw) : {};
+        } catch (e) {
+            console.warn("No se pudo leer reclasificaciones:", e);
+            return {};
+        }
+    };
+
+    const saveCaseReclassMap = (map) => {
+        localStorage.setItem(RECLASS_STORAGE_KEY, JSON.stringify(map || {}));
+    };
+
+    const applyCaseReclassifications = () => {
+        if (typeof QUESTIONS === "undefined" || !Array.isArray(QUESTIONS)) return {};
+        const map = loadCaseReclassMap();
+        QUESTIONS.forEach(q => {
+            if (!q) return;
+            if (q.temaOriginal === undefined) q.temaOriginal = q.tema || "";
+            if (q.specialtyOriginal === undefined) q.specialtyOriginal = q.specialty || "";
+            const key = getCaseKey(q);
+            if (!key) return;
+            const entry = map[key];
+            if (entry && entry.tema) q.tema = entry.tema;
+            else if (q.temaOriginal !== undefined) q.tema = q.temaOriginal;
+            if (entry && entry.specialty) q.specialty = entry.specialty;
+            else if (q.specialtyOriginal !== undefined) q.specialty = q.specialtyOriginal;
+        });
+        return map;
+    };
+
+    const applyCaseReclassificationsToSet = (set, mapOverride) => {
+        if (!Array.isArray(set)) return;
+        const map = mapOverride || loadCaseReclassMap();
+        set.forEach(q => {
+            if (!q) return;
+            if (q.temaOriginal === undefined) q.temaOriginal = q.tema || "";
+            if (q.specialtyOriginal === undefined) q.specialtyOriginal = q.specialty || "";
+            const key = getCaseKey(q);
+            if (!key) return;
+            const entry = map[key];
+            if (entry && entry.tema) q.tema = entry.tema;
+            else if (q.temaOriginal !== undefined) q.tema = q.temaOriginal;
+            if (entry && entry.specialty) q.specialty = entry.specialty;
+            else if (q.specialtyOriginal !== undefined) q.specialty = q.specialtyOriginal;
+        });
+    };
+
+    const canReclassifyUser = () => {
+        return (State.userName || "").trim().toLowerCase() === "isaac rivera";
+    };
+
+    const syncReclassAccessUI = () => {
+        const allowed = canReclassifyUser();
+        const item = $("mas-reclass-item");
+        if (item) item.style.display = allowed ? "flex" : "none";
+        const content = $("reclassify-content");
+        const locked = $("reclassify-locked");
+        if (content) content.style.display = allowed ? "block" : "none";
+        if (locked) locked.style.display = allowed ? "none" : "block";
+    };
+
+    const refreshReclassData = () => {
+        if (typeof QUESTIONS === "undefined" || !Array.isArray(QUESTIONS)) return;
+        const caseMap = new Map();
+        QUESTIONS.forEach(q => {
+            const key = getCaseKey(q);
+            if (!key) return;
+            if (!caseMap.has(key)) {
+                caseMap.set(key, {
+                    key,
+                    caseText: getCaseSourceText(q),
+                    specialty: q.specialty || "",
+                    tema: q.tema || "",
+                    temaOriginal: q.temaOriginal !== undefined ? q.temaOriginal : (q.tema || ""),
+                    specialtyOriginal: q.specialtyOriginal !== undefined ? q.specialtyOriginal : (q.specialty || "")
+                });
+            }
+        });
+        State.reclassCases = Array.from(caseMap.values());
+        State.reclassTemaByKey = {};
+        State.reclassOriginalTemaByKey = {};
+        State.reclassSpecialtyByKey = {};
+        State.reclassOriginalSpecialtyByKey = {};
+        State.reclassCases.forEach(c => {
+            State.reclassTemaByKey[c.key] = c.tema || "";
+            State.reclassOriginalTemaByKey[c.key] = c.temaOriginal !== undefined ? c.temaOriginal : (c.tema || "");
+            State.reclassSpecialtyByKey[c.key] = c.specialty || "";
+            State.reclassOriginalSpecialtyByKey[c.key] = c.specialtyOriginal !== undefined ? c.specialtyOriginal : (c.specialty || "");
+        });
+    };
+
+    const populateReclassSelects = () => {
+        const temaSelect = $("reclass-tema-select");
+        const temaFilter = $("reclass-tema-filter");
+        const specSelect = $("reclass-spec-select");
+        const official = [...new Set(OFFICIAL_TEMARIO || [])].sort();
+        if (temaSelect && !temaSelect.dataset.ready) {
+            temaSelect.innerHTML = `<option value="">Selecciona un tema...</option>` +
+                official.map(t => `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join("");
+            temaSelect.dataset.ready = "1";
+        }
+        if (temaFilter && !temaFilter.dataset.ready) {
+            temaFilter.innerHTML = `<option value="__all__">Todos los temas</option>` +
+                `<option value="__reclass__">Solo reclasificados</option>` +
+                official.map(t => `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join("");
+            temaFilter.dataset.ready = "1";
+        }
+        if (specSelect && !specSelect.dataset.ready) {
+            specSelect.innerHTML = `
+                <option value="">Mantener especialidad</option>
+                <option value="mi">Medicina Interna</option>
+                <option value="ped">Pediatria</option>
+                <option value="gyo">Ginecologia y Obstetricia</option>
+                <option value="cir">Cirugia General</option>
+                <option value="sp">Salud Publica</option>
+                <option value="urg">Urgencias</option>
+            `;
+            specSelect.dataset.ready = "1";
+        }
+    };
+
+    const updateReclassSelection = () => {
+        const selectedEl = $("reclass-selected-case");
+        const metaEl = $("reclass-selected-meta");
+        const temaSelect = $("reclass-tema-select");
+        const specSelect = $("reclass-spec-select");
+        const removeBtn = $("btn-reclass-remove");
+        const applyBtn = $("btn-reclass-apply");
+
+        if (!selectedEl || !metaEl || !temaSelect || !specSelect) return;
+
+        const key = State.reclassSelectedKey;
+        if (!key) {
+            selectedEl.textContent = "Selecciona un caso en la lista.";
+            metaEl.textContent = "";
+            if (removeBtn) removeBtn.disabled = true;
+            if (applyBtn) applyBtn.disabled = true;
+            return;
+        }
+
+        const entry = State.reclassCases.find(c => c.key === key);
+        const currentTema = State.reclassTemaByKey[key] || "";
+        const originalTema = State.reclassOriginalTemaByKey[key] || "";
+        const mapEntry = State.reclassMap ? State.reclassMap[key] : null;
+        const currentSpec = State.reclassSpecialtyByKey[key] || "";
+        const originalSpec = State.reclassOriginalSpecialtyByKey[key] || "";
+
+        selectedEl.textContent = entry ? getCaseSnippet(entry.caseText, 600) : "Caso no encontrado.";
+
+        let meta = `Tema actual: ${currentTema || "Sin tema"}`;
+        if (originalTema && originalTema !== currentTema) meta += ` | Original: ${originalTema}`;
+        if (mapEntry && mapEntry.tema) meta += ` | Reclasificado a: ${mapEntry.tema}`;
+        meta += ` | Especialidad actual: ${getSpecialtyLabel(currentSpec)}`;
+        if (originalSpec && originalSpec !== currentSpec) meta += ` | Especialidad original: ${getSpecialtyLabel(originalSpec)}`;
+        if (mapEntry && mapEntry.specialty) meta += ` | Especialidad reclasificada: ${getSpecialtyLabel(mapEntry.specialty)}`;
+        metaEl.textContent = meta;
+
+        if (temaSelect) temaSelect.value = mapEntry?.tema || "";
+        if (specSelect) specSelect.value = mapEntry?.specialty || currentSpec || "";
+        if (removeBtn) removeBtn.disabled = !mapEntry;
+        if (applyBtn) applyBtn.disabled = false;
+    };
+
+    const renderReclassifyList = () => {
+        const list = $("reclass-list");
+        if (!list) return;
+        const filterInput = $("reclass-filter");
+        const temaFilter = $("reclass-tema-filter");
+        const countEl = $("reclass-count");
+
+        const map = State.reclassMap || {};
+        const search = normalizeCaseText(filterInput ? filterInput.value : "");
+        const temaVal = temaFilter ? temaFilter.value : "__all__";
+
+        let cases = State.reclassCases || [];
+        const filtered = cases.filter(c => {
+            const currentTema = State.reclassTemaByKey[c.key] || "";
+            if (temaVal === "__reclass__" && !map[c.key]) return false;
+            if (temaVal !== "__all__" && temaVal !== "__reclass__" && currentTema !== temaVal) return false;
+            if (search) {
+                const hay = normalizeCaseText(`${c.caseText || ""} ${currentTema || ""}`);
+                if (!hay.includes(search)) return false;
+            }
+            return true;
+        });
+
+        list.innerHTML = "";
+
+        filtered.forEach(c => {
+            const currentTema = State.reclassTemaByKey[c.key] || "Sin tema";
+            const currentSpec = State.reclassSpecialtyByKey[c.key] || "";
+            const isSelected = State.reclassSelectedKey === c.key;
+            const isReclassed = !!map[c.key];
+            const item = document.createElement("div");
+            item.className = "list-item";
+            item.style.cursor = "pointer";
+            if (isSelected) item.style.borderColor = "var(--accent-green)";
+
+            const badgeLabel = isReclassed ? "Reclasificado" : "Original";
+            const badgeStyle = isReclassed
+                ? "background:rgba(5,192,127,0.15); color:var(--accent-green); border:1px solid rgba(5,192,127,0.35);"
+                : "background:rgba(255,255,255,0.06); color:var(--text-muted); border:1px solid rgba(255,255,255,0.08);";
+
+            item.innerHTML = `
+                <div class="list-item-content" style="min-width: 0;">
+                    <h3 style="margin-bottom:4px; font-size:14px;">${escapeHtml(currentTema)}</h3>
+                    <p style="margin:0; color: var(--text-secondary); font-size: 12px;">${escapeHtml(getSpecialtyLabel(currentSpec))}</p>
+                    <p style="margin:0; margin-top:4px;">${escapeHtml(getCaseSnippet(c.caseText, 220))}</p>
+                </div>
+                <span class="badge" style="${badgeStyle}">${badgeLabel}</span>
+            `;
+
+            item.addEventListener("click", () => {
+                State.reclassSelectedKey = c.key;
+                renderReclassifyList();
+                updateReclassSelection();
+            });
+
+            list.appendChild(item);
+        });
+
+        if (countEl) countEl.textContent = `${filtered.length} casos`;
+    };
+
+    const renderReclassifyView = () => {
+        syncReclassAccessUI();
+        if (!canReclassifyUser()) return;
+        State.reclassMap = applyCaseReclassifications();
+        refreshReclassData();
+        populateReclassSelects();
+        renderReclassifyList();
+        updateReclassSelection();
+    };
+
+    const initReclassifyLogic = () => {
+        if (State.reclassInitialized) return;
+        State.reclassInitialized = true;
+
+        const filterInput = $("reclass-filter");
+        const temaFilter = $("reclass-tema-filter");
+        const clearBtn = $("btn-reclass-clear-filter");
+        const applyBtn = $("btn-reclass-apply");
+        const removeBtn = $("btn-reclass-remove");
+        const temaSelect = $("reclass-tema-select");
+        const specSelect = $("reclass-spec-select");
+
+        if (filterInput) filterInput.addEventListener("input", renderReclassifyList);
+        if (temaFilter) temaFilter.addEventListener("change", renderReclassifyList);
+
+        if (clearBtn) {
+            clearBtn.addEventListener("click", () => {
+                if (filterInput) filterInput.value = "";
+                if (temaFilter) temaFilter.value = "__all__";
+                renderReclassifyList();
+            });
+        }
+
+        if (applyBtn) {
+            applyBtn.addEventListener("click", () => {
+                if (!State.reclassSelectedKey) {
+                    showNotification("Selecciona un caso primero.", "warning");
+                    return;
+                }
+                const temaInput = temaSelect ? temaSelect.value.trim() : "";
+                const map = loadCaseReclassMap();
+                const originalTema = State.reclassOriginalTemaByKey[State.reclassSelectedKey] || "";
+                const originalSpec = State.reclassOriginalSpecialtyByKey[State.reclassSelectedKey] || "";
+                const caseEntry = State.reclassCases.find(c => c.key === State.reclassSelectedKey);
+                const selectedSpec = specSelect ? specSelect.value.trim() : "";
+                const resolvedTema = temaInput || State.reclassTemaByKey[State.reclassSelectedKey] || "";
+                if (!resolvedTema && !selectedSpec) {
+                    showNotification("Selecciona un tema o una especialidad valida.", "warning");
+                    return;
+                }
+                map[State.reclassSelectedKey] = {
+                    tema: resolvedTema ? getUnifiedTopicName(resolvedTema) : undefined,
+                    originalTema,
+                    specialty: selectedSpec || undefined,
+                    originalSpec,
+                    label: caseEntry ? getCaseSnippet(caseEntry.caseText, 140) : "",
+                    updatedAt: Date.now()
+                };
+                saveCaseReclassMap(map);
+                State.reclassMap = applyCaseReclassifications();
+                applyCaseReclassificationsToSet(State.questionSet, State.reclassMap);
+                refreshReclassData();
+                renderReclassifyList();
+                updateReclassSelection();
+                showNotification("Caso reclasificado.", "success");
+            });
+        }
+
+        if (removeBtn) {
+            removeBtn.addEventListener("click", () => {
+                if (!State.reclassSelectedKey) return;
+                const map = loadCaseReclassMap();
+                if (!map[State.reclassSelectedKey]) {
+                    showNotification("Este caso no tiene reclasificacion.", "info");
+                    return;
+                }
+                delete map[State.reclassSelectedKey];
+                saveCaseReclassMap(map);
+                State.reclassMap = applyCaseReclassifications();
+                applyCaseReclassificationsToSet(State.questionSet, State.reclassMap);
+                refreshReclassData();
+                renderReclassifyList();
+                updateReclassSelection();
+                showNotification("Reclasificacion eliminada.", "success");
+            });
+        }
     };
 
     // ---------------------------------------------------------------------------
@@ -186,7 +634,7 @@
         }
     };
 
-    const showBanner = (title, msg, icon = 'ðŸ””', onClickCallback = null) => {
+    const showBanner = (title, msg, icon = '&#x1F514;', onClickCallback = null) => {
         let banner = $('global-notif-banner');
         if (!banner) {
             banner = document.createElement('div');
@@ -201,7 +649,7 @@
                 <span class="notif-banner-title">${title}</span>
                 <span class="notif-banner-desc">${msg}</span>
             </div>
-            <button class="notif-banner-close" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:16px;">âœ•</button>
+            <button class="notif-banner-close" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:16px;">&times;</button>
         `;
 
         banner.style.cursor = onClickCallback ? 'pointer' : 'default';
@@ -265,6 +713,10 @@
                 showNotification("Examen pausado automáticamente.", "info");
             }
         }
+        if (viewId === "view-reclassify" && !canReclassifyUser()) {
+            showNotification("Acceso restringido a esta seccion.", "warning");
+            viewId = "view-mas";
+        }
         $$(".view").forEach(v => v.classList.remove("active"));
         const viewEl = $(viewId);
         if (viewEl) {
@@ -286,6 +738,7 @@
         if (viewId === "view-calculadora") initCalculator();
         if (viewId === "view-temario") renderOfficialTemario();
         if (viewId === "view-reportes") renderReportedQuestions();
+        if (viewId === "view-reclassify") renderReclassifyView();
     };
     window.showView = showView; // Hacerla global para onclick de HTML
     window.openFeedbackEmail = openFeedbackEmail;
@@ -297,7 +750,8 @@
         localStorage.setItem("enarm_user", State.userName);
         localStorage.setItem("enarm_specialty", State.userSpecialty || "");
         localStorage.setItem("enarm_university", State.userUniversity || "");
-        localStorage.setItem("enarm_reports", JSON.stringify(State.reportedQuestions));
+        const reportsToSave = State.reportedQuestionsLocal || State.reportedQuestions || [];
+        localStorage.setItem("enarm_reports", JSON.stringify(reportsToSave));
 
         // Sync to cloud -> Leaderboard
         if (window.FB && window.FB.auth.currentUser) {
@@ -315,7 +769,7 @@
                 theme: State.theme || "dark",
                 globalStatsStr: JSON.stringify(State.globalStats),
                 historyStr: JSON.stringify(State.history),
-                reportsStr: JSON.stringify(State.reportedQuestions)
+                reportsStr: JSON.stringify(reportsToSave)
             };
 
             window.FB.setDoc(
@@ -344,7 +798,11 @@
             applyTheme(theme);
         }
         const reports = localStorage.getItem("enarm_reports");
-        if (reports) State.reportedQuestions = JSON.parse(reports);
+        if (reports) {
+            State.reportedQuestionsLocal = JSON.parse(reports);
+            State.reportedQuestions = State.reportedQuestionsLocal;
+        }
+        refreshQuarantineKeys();
 
         if ($("profile-name")) $("profile-name").value = State.userName;
         if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty || "";
@@ -375,6 +833,7 @@
         });
         const statusEl = document.querySelector(".user-status");
         if (statusEl) statusEl.textContent = "EN LÍNEA";
+        syncReclassAccessUI();
     };
 
     const applyTheme = (theme) => {
@@ -3568,7 +4027,7 @@
                 tag.className = "topic-tag";
                 tag.innerHTML = `
                     <span>${topic}</span>
-                    <span class="remove-tag">âœ•</span>
+                    <span class="remove-tag">&times;</span>
                 `;
                 tag.querySelector(".remove-tag").onclick = () => {
                     State.selectedTopics.splice(index, 1);
@@ -3632,8 +4091,9 @@
         };
 
         const addTopic = (topic) => {
-            if (!State.selectedTopics.includes(topic)) {
-                State.selectedTopics.push(topic);
+            const cleanTopic = getUnifiedTopicName(topic);
+            if (!State.selectedTopics.includes(cleanTopic)) {
+                State.selectedTopics.push(cleanTopic);
                 updateSelectedTags();
             }
             input.value = "";
@@ -3804,14 +4264,20 @@
                         else expandedTopics.push(t);
                     });
 
+                    const expandedKeys = expandedTopics
+                        .map(t => normalizeTopicKey(getUnifiedTopicName(t)))
+                        .filter(Boolean);
                     pool = pool.filter(q => {
-                        const qText = `${q.tema || ""} ${q.subtema || ""} ${q.case || ""} ${q.question || ""} ${q.gpcReference || ""}`.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                        return expandedTopics.some(topic => {
-                            const normTopic = topic.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                            return qText.includes(normTopic);
-                        });
+                        const keys = [
+                            normalizeTopicKey(getUnifiedTopicName(q.tema)),
+                            normalizeTopicKey(getUnifiedTopicName(q.subtema)),
+                            normalizeTopicKey(getUnifiedTopicName(q.gpcReference))
+                        ].filter(Boolean);
+                        if (keys.length === 0) return false;
+                        return expandedKeys.some(k => keys.includes(k));
                     });
                 }
+                pool = filterQuarantinedPool(pool);
 
                 // Filtrado por Dificultad
                 let poolPrimary = [...pool];
@@ -3945,8 +4411,8 @@
     };
 
     const startTemaSession = (temas, qty, label) => {
-        let pool = QUESTIONS.filter(q => q.tema && temas.includes(q.tema));
-        if (pool.length === 0) pool = QUESTIONS;
+        let pool = filterQuarantinedPool(QUESTIONS.filter(q => q.tema && temas.includes(q.tema)));
+        if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
 
         let finalQty = qty;
         if (qty > pool.length) {
@@ -3969,8 +4435,8 @@
     };
 
     const startQuickSession = (specs, qty, label) => {
-        let pool = QUESTIONS.filter(q => specs.includes(q.specialty));
-        if (pool.length === 0) pool = QUESTIONS;
+        let pool = filterQuarantinedPool(QUESTIONS.filter(q => specs.includes(q.specialty)));
+        if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
 
         let finalQty = qty;
         if (qty > pool.length) {
@@ -4018,6 +4484,26 @@
 
         const badge = $("case-area-badge"); if (badge) badge.textContent = (State.globalStats.bySpecialty[qFirst.specialty]?.name || qFirst.specialty).toUpperCase();
         const caseText = $("case-text"); if (caseText) caseText.textContent = qFirst.case;
+        const reclassBtn = $("btn-reclass-case");
+        if (reclassBtn) {
+            if (canReclassifyUser()) {
+                reclassBtn.style.display = "inline-flex";
+                reclassBtn.onclick = () => {
+                    const key = getCaseKey(qFirst);
+                    if (!key) {
+                        showNotification("No se pudo identificar el caso para reclasificar.", "warning");
+                        return;
+                    }
+                    State.reclassSelectedKey = key;
+                    showView("view-reclassify");
+                    renderReclassifyView();
+                    updateReclassSelection();
+                };
+            } else {
+                reclassBtn.style.display = "none";
+                reclassBtn.onclick = null;
+            }
+        }
 
         const container = $("questions-container");
         if (container) {
@@ -4036,12 +4522,29 @@
                 const header = document.createElement("div");
                 header.className = "q-header";
 
+                const actions = document.createElement("div");
+                actions.style.display = "flex";
+                actions.style.gap = "8px";
+                actions.style.alignItems = "center";
+
                 const btnFlag = document.createElement("button");
                 btnFlag.className = `btn-flag ${ans.flagged ? 'active' : ''}`;
-                btnFlag.innerHTML = "âš‘ Marcar";
+                btnFlag.innerHTML = "&#x1F6A9; Marcar";
                 btnFlag.addEventListener("click", () => {
                     State.answers[qIndex].flagged = !State.answers[qIndex].flagged;
                     renderExamQuestion();
+                });
+
+                const btnReport = document.createElement("button");
+                btnReport.className = "btn-ghost";
+                btnReport.style.fontSize = "12px";
+                btnReport.style.padding = "4px 8px";
+                btnReport.style.borderRadius = "6px";
+                btnReport.style.color = "var(--accent-red)";
+                btnReport.style.borderColor = "rgba(239, 68, 68, 0.2)";
+                btnReport.textContent = "Reportar";
+                btnReport.addEventListener("click", () => {
+                    triggerReportModal(qIndex);
                 });
 
                 const spanNum = document.createElement("span");
@@ -4049,7 +4552,9 @@
                 spanNum.textContent = qNumStr;
 
                 header.appendChild(spanNum);
-                header.appendChild(btnFlag);
+                actions.appendChild(btnFlag);
+                actions.appendChild(btnReport);
+                header.appendChild(actions);
 
                 const qTextEl = document.createElement("p");
                 qTextEl.className = "question-text";
@@ -4082,24 +4587,14 @@
                     fb.style.display = "block";
                     fb.style.marginTop = "15px";
 
-                    const reportBtnId = `btn-report-${qIndex}`;
-
                     fb.innerHTML = `
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                             <h3 style="margin: 0;">${ans.isCorrect ? "¡Respuesta Correcta!" : "Respuesta Incorrecta"}</h3>
-                            <button class="btn-ghost" id="${reportBtnId}" style="font-size: 12px; padding: 4px 8px; border-radius: 6px; color: var(--accent-red); border-color: rgba(239, 68, 68, 0.2);">ðŸš© Reportar Error</button>
                         </div>
                         <p>${q.explanation || ""}</p>
                         <div class="feedback-gpc">${q.gpcReference || ""}</div>
                     `;
                     card.appendChild(fb);
-
-                    setTimeout(() => {
-                        const rBtn = document.getElementById(reportBtnId);
-                        if (rBtn) rBtn.addEventListener("click", () => {
-                            triggerReportModal(qIndex);
-                        });
-                    }, 0);
                 }
 
                 container.appendChild(card);
@@ -4114,11 +4609,11 @@
         const bn = $("btn-next");
         if (bn) {
             if (lastIdxOfCase >= total - 1) {
-                bn.textContent = "âœ” Terminar";
+                bn.textContent = "\u2714 Terminar";
                 bn.classList.add("btn-danger");
                 bn.classList.remove("primary");
             } else {
-                bn.textContent = "Siguiente â†’";
+                bn.textContent = "Siguiente \u2192";
                 bn.classList.remove("btn-danger");
                 bn.classList.add("primary");
             }
@@ -4130,6 +4625,7 @@
     const triggerReportModal = (globalQIndex) => {
         const modal = $("report-modal");
         const reasonInput = $("report-reason");
+        const categorySelect = $("report-category");
         const preview = $("report-q-preview");
         if (!modal) return;
 
@@ -4138,6 +4634,7 @@
 
         preview.textContent = `Pregunta: ${q.question}`;
         reasonInput.value = "";
+        if (categorySelect) categorySelect.value = "";
         modal.style.display = "flex";
     };
 
@@ -4209,6 +4706,7 @@
         const btnSubmit = $("btn-submit-report");
         const btnCancel = $("btn-cancel-report");
         const reasonInput = $("report-reason");
+        const categorySelect = $("report-category");
 
         if (!modal || !btnSubmit || !btnCancel) return;
 
@@ -4218,25 +4716,99 @@
 
         btnSubmit.addEventListener("click", () => {
             const reason = reasonInput.value.trim();
+            const category = categorySelect ? categorySelect.value.trim() : "";
+            if (!category) return showNotification("Selecciona el tipo de error.", "warning");
             if (!reason) return showNotification("Por favor indica el motivo del reporte.", "warning");
 
             const qIndexToReport = State._reportingIndex !== undefined ? State._reportingIndex : State.currentIndex;
             const q = State.questionSet[qIndexToReport];
+            const caseKey = getCaseKey(q) || getCaseKeyFromText(q.case, q.question);
             const report = {
-                id: Date.now(),
+                id: `local-${Date.now()}-${Math.floor(Math.random() * 100000)}`,
                 timestamp: Date.now(),
                 questionText: q.question,
                 caseText: q.case,
                 specialty: q.specialty,
                 tema: q.tema,
+                category: category,
                 reason: reason,
-                originalQuestion: q
+                caseKey: caseKey,
+                userName: State.userName || "Anonimo",
+                userId: window.FB && window.FB.auth && window.FB.auth.currentUser ? window.FB.auth.currentUser.uid : "",
+                status: "quarantine",
+                source: "local"
             };
 
-            State.reportedQuestions.push(report);
+            State.reportedQuestionsLocal = dedupeReports([...(State.reportedQuestionsLocal || []), report]);
+            State.reportedQuestions = dedupeReports([...(State.reportedQuestions || []), report]);
+            refreshQuarantineKeys();
             saveGlobalStats();
             modal.style.display = "none";
             showNotification("Gracias por tu reporte. Lo revisaremos pronto para mejorar el banco de preguntas.", "success");
+
+            if (window.FB && window.FB.db) {
+                try {
+                    const payload = {
+                        timestamp: report.timestamp,
+                        questionText: report.questionText,
+                        caseText: report.caseText,
+                        specialty: report.specialty,
+                        tema: report.tema,
+                        category: report.category,
+                        reason: report.reason,
+                        caseKey: report.caseKey,
+                        userName: report.userName,
+                        userId: report.userId,
+                        status: report.status
+                    };
+                    window.FB.addDoc(window.FB.collection(window.FB.db, "reports"), payload).catch(err => {
+                        console.error("Error guardando reporte en la nube:", err);
+                    });
+                } catch (err) {
+                    console.error("Error guardando reporte en la nube:", err);
+                }
+            }
+        });
+    };
+
+    const REPORTS_LAST_SEEN_KEY = "enarm_reports_last_seen";
+
+    const initReportsCloud = () => {
+        if (!window.FB || !window.FB.db || !window.FB.auth || !window.FB.auth.currentUser) return;
+        if (window._reportsListener) return;
+        const reportsRef = window.FB.collection(window.FB.db, "reports");
+        const q = window.FB.query(reportsRef, window.FB.orderBy("timestamp", "desc"), window.FB.limit(200));
+        window._reportsListener = window.FB.onSnapshot(q, (snap) => {
+            const cloudReports = [];
+            let newestTs = 0;
+            snap.forEach(docSnap => {
+                const data = docSnap.data() || {};
+                cloudReports.push({ ...data, id: docSnap.id, source: "cloud" });
+                if (data.timestamp && data.timestamp > newestTs) newestTs = data.timestamp;
+            });
+
+            const localReports = (State.reportedQuestionsLocal || []).filter(r => r.source === "local");
+            State.reportedQuestions = dedupeReports([...cloudReports, ...localReports]);
+            refreshQuarantineKeys();
+
+            if (State.view === "view-reportes") renderReportedQuestions();
+
+            if (canReclassifyUser() && newestTs) {
+                const lastSeen = parseInt(localStorage.getItem(REPORTS_LAST_SEEN_KEY) || "0", 10);
+                if (newestTs > lastSeen) {
+                    const latest = cloudReports.find(r => r.timestamp === newestTs) || cloudReports[0];
+                    const reporter = (latest && latest.userName) ? latest.userName.trim().toLowerCase() : "";
+                    if (reporter && reporter !== "isaac rivera") {
+                        showBanner(
+                            "Nuevo reporte",
+                            `Un usuario reporto una pregunta (${getReportCategoryLabel(latest.category)})`,
+                            "&#x1F6A9;",
+                            () => showView("view-reportes")
+                        );
+                    }
+                    localStorage.setItem(REPORTS_LAST_SEEN_KEY, String(newestTs));
+                }
+            }
         });
     };
 
@@ -4244,41 +4816,86 @@
         const cont = $("reports-list");
         if (!cont) return;
 
-        if (State.reportedQuestions.length === 0) {
+        if (!State.reportedQuestions || State.reportedQuestions.length === 0) {
             cont.innerHTML = `<div class="list-item empty-history"><p style="color:var(--text-muted); padding: 20px;">No hay preguntas reportadas aún.</p></div>`;
             return;
         }
 
         cont.innerHTML = "";
-        [...State.reportedQuestions].reverse().forEach((r) => {
-            const div = document.createElement("div");
-            div.className = "list-item";
-            div.style.flexDirection = "column";
-            div.style.alignItems = "flex-start";
-            div.style.gap = "10px";
-            div.innerHTML = `
-                <div style="display:flex; justify-content:space-between; width: 100%; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
-                    <span class="badge red-bg" style="font-size: 10px;">${(r.specialty || "Gral").toUpperCase()}</span>
-                    <span style="font-size: 11px; color: var(--text-muted);">${new Date(r.timestamp).toLocaleDateString()}</span>
-                </div>
-                <div style="width: 100%;">
-                    <h3 style="font-size: 14px; margin-bottom: 6px; color: var(--text-primary);">Pregunta:</h3>
-                    <p style="font-size: 13px; line-height: 1.4; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; margin-bottom: 10px;">${r.questionText}</p>
-                    <h3 style="font-size: 14px; margin-bottom: 6px; color: var(--accent-red);">Motivo del Reporte:</h3>
-                    <p style="font-size: 13px; line-height: 1.4; color: var(--text-secondary); border-left: 2px solid var(--accent-red); padding-left: 10px;">${r.reason}</p>
-                </div>
-                <button class="btn-ghost btn-del-report" data-id="${r.id}" style="align-self: flex-end; font-size: 11px; padding: 4px 8px; color: var(--text-muted);">Eliminar Reporte</button>
-            `;
-            cont.appendChild(div);
+        const reports = [...State.reportedQuestions].sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+        const groups = {};
+        reports.forEach(r => {
+            const key = r.category || "otro";
+            if (!groups[key]) groups[key] = [];
+            groups[key].push(r);
+        });
+
+        const orderedKeys = Object.keys(REPORT_CATEGORY_LABELS);
+        const remainingKeys = Object.keys(groups).filter(k => !orderedKeys.includes(k));
+        const finalKeys = [...orderedKeys, ...remainingKeys];
+
+        finalKeys.forEach((catKey) => {
+            const list = groups[catKey];
+            if (!list || list.length === 0) return;
+
+            const header = document.createElement("div");
+            header.style.margin = "14px 0 8px";
+            header.style.fontWeight = "700";
+            header.style.fontSize = "14px";
+            header.style.color = "var(--text-primary)";
+            header.textContent = `${getReportCategoryLabel(catKey)} (${list.length})`;
+            cont.appendChild(header);
+
+            list.forEach((r) => {
+                const div = document.createElement("div");
+                div.className = "list-item";
+                div.style.flexDirection = "column";
+                div.style.alignItems = "flex-start";
+                div.style.gap = "10px";
+                const specLabel = getSpecialtyLabel(r.specialty || "");
+                const userLabel = r.userName || "Anonimo";
+                const dateLabel = r.timestamp ? new Date(r.timestamp).toLocaleDateString() : "";
+                const temaLabel = r.tema || "Sin tema";
+
+                div.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; width: 100%; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+                            <span class="badge red-bg" style="font-size: 10px;">${specLabel.toUpperCase()}</span>
+                            <span class="badge" style="font-size: 10px; background: rgba(255,255,255,0.06); color: var(--text-muted); border: 1px solid var(--border);">${temaLabel}</span>
+                            <span style="font-size: 11px; color: var(--text-muted);">Usuario: ${userLabel}</span>
+                        </div>
+                        <span style="font-size: 11px; color: var(--text-muted);">${dateLabel}</span>
+                    </div>
+                    <div style="width: 100%;">
+                        <h3 style="font-size: 14px; margin-bottom: 6px; color: var(--text-primary);">Pregunta:</h3>
+                        <p style="font-size: 13px; line-height: 1.4; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; margin-bottom: 10px;">${r.questionText || ""}</p>
+                        ${r.caseText ? `<h3 style="font-size: 14px; margin-bottom: 6px; color: var(--text-primary);">Caso:</h3>
+                        <p style="font-size: 13px; line-height: 1.4; color: var(--text-secondary); border-left: 2px solid var(--border); padding-left: 10px; margin-bottom: 10px;">${r.caseText}</p>` : ""}
+                        <h3 style="font-size: 14px; margin-bottom: 6px; color: var(--accent-red);">Detalle del reporte:</h3>
+                        <p style="font-size: 13px; line-height: 1.4; color: var(--text-secondary); border-left: 2px solid var(--accent-red); padding-left: 10px;">${r.reason || ""}</p>
+                    </div>
+                    ${canReclassifyUser() ? `<button class="btn-ghost btn-del-report" data-id="${r.id}" data-cloud="${r.source === 'cloud' ? '1' : '0'}" style="align-self: flex-end; font-size: 11px; padding: 4px 8px; color: var(--text-muted);">Eliminar Reporte</button>` : ""}
+                `;
+                cont.appendChild(div);
+            });
         });
 
         cont.querySelectorAll(".btn-del-report").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                const id = parseInt(e.target.dataset.id);
-                if (confirm("¿Eliminar este reporte?")) {
-                    State.reportedQuestions = State.reportedQuestions.filter(r => r.id !== id);
-                    saveGlobalStats();
-                    renderReportedQuestions();
+            btn.addEventListener("click", async (e) => {
+                const id = e.target.dataset.id;
+                if (!confirm("¿Eliminar este reporte?")) return;
+                State.reportedQuestions = (State.reportedQuestions || []).filter(r => String(r.id) !== String(id));
+                State.reportedQuestionsLocal = (State.reportedQuestionsLocal || []).filter(r => String(r.id) !== String(id));
+                saveGlobalStats();
+                refreshQuarantineKeys();
+                renderReportedQuestions();
+
+                if (window.FB && window.FB.db && e.target.dataset.cloud === "1") {
+                    try {
+                        await window.FB.deleteDoc(window.FB.doc(window.FB.db, "reports", id));
+                    } catch (err) {
+                        console.error("No se pudo eliminar reporte en la nube:", err);
+                    }
                 }
             });
         });
@@ -4559,7 +5176,7 @@
         if (allTemas.length === 0) {
             failList.innerHTML = `
                 <div style="text-align: center; padding: 40px 20px; color: var(--text-muted);">
-                    <div style="font-size: 40px; margin-bottom: 15px; opacity: 0.5;">âœ¨</div>
+                    <div style="font-size: 40px; margin-bottom: 15px; opacity: 0.5;">&#x2728;</div>
                     <h3 style="color: var(--text-secondary); margin-bottom: 10px;">¡Aún no hay puntos de falla!</h3>
                     <p style="font-size: 13px;">Realiza simulacros y la IA comenzará a analizar tus áreas de oportunidad aquí.</p>
                 </div>
@@ -5311,6 +5928,9 @@
     // ---------------------------------------------------------------------------
     document.addEventListener("DOMContentLoaded", () => {
         loadGlobalStats();
+        State.reclassMap = applyCaseReclassifications();
+        initReclassifyLogic();
+        syncReclassAccessUI();
         bindSidebar();
         initSetupLogic();
         initDashboardShortcuts();
@@ -5375,6 +5995,7 @@
                     el.style.background = "rgba(5, 192, 127, 0.1)";
                     el.style.color = "var(--accent-green)";
                 });
+                syncReclassAccessUI();
 
                 saveGlobalStats();
                 showNotification("Perfil actualizado y sincronizado.", "success");
@@ -5696,6 +6317,7 @@
         const initCloudFeatures = () => {
             if (window.isCloudInit) return;
             window.isCloudInit = true;
+            initReportsCloud();
             // Listener on Friendships (Accepted Requests) to populate Leaderboard / Friends List
             const fetchFriendsAndLeaderboard = () => {
                 const reqsRef1 = window.FB.query(
@@ -5767,8 +6389,8 @@
                                             ${badgeSpec ? `<div style="margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:flex;">${badgeSpec}</div>` : ''}
                                         </div>
                                         <div class="lb-actions" style="display:flex; align-items:center; gap:6px;">
-                                           <div class="lb-flame" style="font-size:10px;">ðŸ”¥ ${data.flame || 0}</div>
-                                           ${!isMe ? `<button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 4px 8px; font-size: 10px; border-radius: 6px; background: var(--accent-orange); border:none; white-space:nowrap;">âš”ï¸ Retar</button>` : ''}
+                                           <div class="lb-flame" style="font-size:10px;">&#x1F525; ${data.flame || 0}</div>
+                                           ${!isMe ? `<button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 4px 8px; font-size: 10px; border-radius: 6px; background: var(--accent-orange); border:none; white-space:nowrap;">&#x2694;&#xFE0F; Retar</button>` : ''}
                                         </div>
                                      </div>
                                      `;
@@ -5791,7 +6413,7 @@
                                                     <div style="font-size: 11px; color: var(--text-muted);">Promedio: ${data.score || 0}%</div>
                                                 </div>
                                             </div>
-                                            <button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="width:100%; padding: 7px; font-size: 12px; border-radius: 8px; background: var(--accent-orange); text-align:center;">âš”ï¸ Retar</button>
+                                            <button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="width:100%; padding: 7px; font-size: 12px; border-radius: 8px; background: var(--accent-orange); text-align:center;">&#x2694;&#xFE0F; Retar</button>
                                         </div>`;
                                     }
                                     rank++;
@@ -5803,7 +6425,7 @@
                                 window._pendingChallengeUid = uid;
                                 // Navigate to setup so the user can configure the exam first
                                 if (typeof showView === "function") showView("view-setup");
-                                showNotification("ðŸŽ¯ ¡Amigo pre-seleccionado! Configura tu examen y luego pulsa 'Retar a un Amigo âš”ï¸'.", "info");
+                                showNotification("&#x1F3AF; ¡Amigo pre-seleccionado! Configura tu examen y luego pulsa 'Retar a un Amigo &#x2694;&#xFE0F;'.", "info");
                             };
 
                             const lbList = document.querySelector(".leaderboard-list");
@@ -5972,7 +6594,7 @@
                             </div>
                             <div style="display:flex; gap:8px;">
                                 <button class="btn-primary btn-accept-friend" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--accent-green); border-radius: 6px;">Aceptar</button>
-                                <button class="btn-primary btn-reject-friend" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); border-radius: 6px;">âœ•</button>
+                                <button class="btn-primary btn-reject-friend" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); border-radius: 6px;">&times;</button>
                             </div>
                         </div>`;
                     });
@@ -5982,13 +6604,13 @@
                         html += `
                         <div style="background:rgba(243,122,32,0.08); padding:14px; border-radius:14px; border: 1px solid rgba(243,122,32,0.3); margin-bottom: 8px;">
                             <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-                                <span style="font-size:24px;">âš”ï¸</span>
+                                <span style="font-size:24px;">&#x2694;&#xFE0F;</span>
                                 <div>
                                     <div style="font-weight:bold; font-size:14px; color: var(--accent-orange);">Reto de ${data.challengerName}</div>
                                     <div style="font-size:11px; color: var(--text-muted);">${data.specialty} &bull; ${data.numQuestions} preguntas</div>
                                 </div>
                             </div>
-                            <button class="btn-primary btn-play-chal" data-id="${data.id}" style="width:100%; padding:10px; font-size:13px; background:var(--accent-orange); border-radius: 10px; font-weight:bold;">âš”ï¸ ¡Aceptar y Jugar Ahora!</button>
+                            <button class="btn-primary btn-play-chal" data-id="${data.id}" style="width:100%; padding:10px; font-size:13px; background:var(--accent-orange); border-radius: 10px; font-weight:bold;">&#x2694;&#xFE0F; ¡Aceptar y Jugar Ahora!</button>
                         </div>`;
                     });
 
@@ -6163,14 +6785,20 @@
                             if (window.TEMARIO_MAPPING && window.TEMARIO_MAPPING[t]) expandedTopics.push(...window.TEMARIO_MAPPING[t]);
                             else expandedTopics.push(t);
                         });
+                        const expandedKeys = expandedTopics
+                            .map(t => normalizeTopicKey(getUnifiedTopicName(t)))
+                            .filter(Boolean);
                         pool = pool.filter(q => {
-                            const qText = `${q.tema || ""} ${q.subtema || ""} ${q.case || ""} ${q.question || ""} ${q.gpcReference || ""}`.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                            return expandedTopics.some(topic => {
-                                const normTopic = topic.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                                return qText.includes(normTopic);
-                            });
+                            const keys = [
+                                normalizeTopicKey(getUnifiedTopicName(q.tema)),
+                                normalizeTopicKey(getUnifiedTopicName(q.subtema)),
+                                normalizeTopicKey(getUnifiedTopicName(q.gpcReference))
+                            ].filter(Boolean);
+                            if (keys.length === 0) return false;
+                            return expandedKeys.some(k => keys.includes(k));
                         });
                     }
+                    pool = filterQuarantinedPool(pool);
 
                     // Filter by difficulty on the RAW pool (before expansion)
                     // This matches the normal exam behavior
@@ -6329,21 +6957,21 @@
                             statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(243,122,32,0.15); color:var(--accent-orange); border:1px solid rgba(243,122,32,0.3); font-weight:bold;">â³ Tu turno</span>`;
                             actionBtn = `
                                 <div style="display:flex; gap:8px; margin-top:10px;">
-                                    <button class="btn-primary" style="flex:1; border-radius:8px; background:var(--accent-orange); font-size:13px; padding:10px;" onclick="event.stopPropagation(); window.acceptChallenge('${ch.id}')">âš”ï¸ ¡Jugar Reto!</button>
-                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">ðŸ“Š</button>
+                                    <button class="btn-primary" style="flex:1; border-radius:8px; background:var(--accent-orange); font-size:13px; padding:10px;" onclick="event.stopPropagation(); window.acceptChallenge('${ch.id}')">&#x2694;&#xFE0F; ¡Jugar Reto!</button>
+                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">&#x1F4CA;</button>
                                 </div>`;
                         } else {
-                            statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(59,130,246,0.15); color:var(--accent-blue); border:1px solid rgba(59,130,246,0.3); font-weight:bold;">âœ… Ya jugaste</span>`;
+                        statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(59,130,246,0.15); color:var(--accent-blue); border:1px solid rgba(59,130,246,0.3); font-weight:bold;">&#x2705; Ya jugaste</span>`;
                             actionBtn = `
                                 <div style="display:flex; gap:8px; margin-top:10px;">
                                     <div style="flex:1; font-size:12px; color:var(--text-muted); padding:10px; background:rgba(255,255,255,0.05); border-radius:8px; text-align:center;">Esperando a los demás...</div>
-                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">ðŸ“Š</button>
+                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">&#x1F4CA;</button>
                                 </div>`;
                         }
                     } else {
-                        statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(16,185,129,0.15); color:var(--accent-green); border:1px solid rgba(16,185,129,0.3); font-weight:bold;">ðŸ Finalizado</span>`;
+                        statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(16,185,129,0.15); color:var(--accent-green); border:1px solid rgba(16,185,129,0.3); font-weight:bold;">&#x1F3C1; Finalizado</span>`;
                         actionBtn = `
-                            <button class="btn-primary" style="width:100%; border-radius:8px; font-size:13px; padding:10px; margin-top:10px; background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.4); color:#60a5fa;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')">ðŸ“Š Ver Ranking Final</button>`;
+                            <button class="btn-primary" style="width:100%; border-radius:8px; font-size:13px; padding:10px; margin-top:10px; background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.4); color:#60a5fa;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')">&#x1F4CA; Ver Ranking Final</button>`;
                     }
 
                     return `
@@ -6367,21 +6995,21 @@
                 let pastHtml = displayPast.map(ch => renderCard(ch)).join("");
 
                 if (activeOnes.length > 3) {
-                    activeHtml += `<button class="btn-ghost" style="width:100%; font-size:12px; margin-top:5px; color:var(--accent-orange);" onclick="window.toggleAllChallenges('active')">${showAllActive ? 'Ver menos â†‘' : 'Ver todos (' + activeOnes.length + ') â†“'}</button>`;
+                    activeHtml += `<button class="btn-ghost" style="width:100%; font-size:12px; margin-top:5px; color:var(--accent-orange);" onclick="window.toggleAllChallenges('active')">${showAllActive ? 'Ver menos &uarr;' : 'Ver todos (' + activeOnes.length + ') &darr;'}</button>`;
                 }
                 if (pastOnes.length > 2) {
-                    pastHtml += `<button class="btn-ghost" style="width:100%; font-size:12px; margin-top:5px; color:var(--text-muted);" onclick="window.toggleAllChallenges('past')">${showAllPast ? 'Ver menos â†‘' : 'Ver historial (' + pastOnes.length + ') â†“'}</button>`;
+                    pastHtml += `<button class="btn-ghost" style="width:100%; font-size:12px; margin-top:5px; color:var(--text-muted);" onclick="window.toggleAllChallenges('past')">${showAllPast ? 'Ver menos &uarr;' : 'Ver historial (' + pastOnes.length + ') &darr;'}</button>`;
                 }
 
                 let finalHtml = `
                     <div style="text-align: left; margin-bottom: 15px;">
-                        <h3 style="font-size: 14px; color: var(--text-primary); margin-bottom: 10px;">ðŸ”¥ Retos Activos</h3>
+                        <h3 style="font-size: 14px; color: var(--text-primary); margin-bottom: 10px;">&#x1F525; Retos Activos</h3>
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                             ${activeHtml || '<p style="font-size: 12px; color: var(--text-muted); padding: 10px; text-align: center;">No hay retos activos.</p>'}
                         </div>
                     </div>
                     <div style="text-align: left; margin-top: 25px;">
-                        <h3 style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">ðŸ“… Retos Pasados</h3>
+                        <h3 style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">&#x1F4CC; Retos Pasados</h3>
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                             ${pastHtml || '<p style="font-size: 12px; color: var(--text-muted); padding: 10px; text-align: center;">No hay retos terminados.</p>'}
                         </div>
@@ -6400,7 +7028,7 @@
                 const list = $("ranking-list-details");
                 if (!modal || !list) return;
 
-                title.textContent = `ðŸ“Š Ranking: ${ch.specialty}`;
+                title.textContent = `Ranking: ${ch.specialty}`;
                 modal.style.display = "flex";
 
                 const pts = Object.values(ch.participants || {}).sort((a, b) => (b.score || 0) - (a.score || 0));
@@ -6562,7 +7190,7 @@
                 showView("view-exam");
                 if ($("timer-display")) $("timer-display").style.display = "none";
 
-                showNotification("¡Reto iniciado! Buena suerte. âš”ï¸", "info");
+                showNotification("¡Reto iniciado! Buena suerte.", "info");
             };
 
             // Exponer internamente para que acceptChallenge pueda llamarlo
@@ -6697,8 +7325,10 @@
                                         needsUpdate = true;
                                     }
                                     if (data.reportsStr) {
-                                        State.reportedQuestions = JSON.parse(data.reportsStr);
+                                        State.reportedQuestionsLocal = JSON.parse(data.reportsStr);
+                                        State.reportedQuestions = State.reportedQuestionsLocal;
                                         localStorage.setItem("enarm_reports", data.reportsStr);
+                                        refreshQuarantineKeys();
                                     }
 
                                     if (needsUpdate) {
@@ -6826,16 +7456,17 @@
                         ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
                         : nameParts[0].substring(0, 2).toUpperCase();
 
-                    $$(".user-avatar").forEach(el => {
-                        el.innerHTML = `<span style="font-size: 14px; font-weight: 700;">${initials}</span>`;
-                        el.style.background = "rgba(5, 192, 127, 0.1)";
-                        el.style.color = "var(--accent-green)";
-                    });
-                    const statusEl = document.querySelector(".user-status");
-                    if (statusEl) statusEl.textContent = "EN LÍNEA";
+        $$(".user-avatar").forEach(el => {
+            el.innerHTML = `<span style="font-size: 14px; font-weight: 700;">${initials}</span>`;
+            el.style.background = "rgba(5, 192, 127, 0.1)";
+            el.style.color = "var(--accent-green)";
+        });
+        const statusEl = document.querySelector(".user-status");
+        if (statusEl) statusEl.textContent = "EN LÍNEA";
+        syncReclassAccessUI();
 
-                    if (window.FB && window.FB.auth.currentUser) {
-                        try {
+        if (window.FB && window.FB.auth.currentUser) {
+            try {
                             const userRef = window.FB.doc(window.FB.db, "leaderboard", window.FB.auth.currentUser.uid);
                             const snap = await window.FB.getDoc(userRef);
                             if (snap.exists()) {
@@ -6864,8 +7495,10 @@
                                     localStorage.setItem("enarm_history", data.historyStr);
                                 }
                                 if (data.reportsStr) {
-                                    State.reportedQuestions = JSON.parse(data.reportsStr);
+                                    State.reportedQuestionsLocal = JSON.parse(data.reportsStr);
+                                    State.reportedQuestions = State.reportedQuestionsLocal;
                                     localStorage.setItem("enarm_reports", data.reportsStr);
+                                    refreshQuarantineKeys();
                                 }
                             }
                             // Asegurar que el nombre (y otros datos locales) se sincronicen con la nube al entrar

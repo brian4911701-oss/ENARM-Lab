@@ -654,7 +654,11 @@
                     <!-- Main Question Area -->
                     <div class="exam-content-area">
                         <div class="case-card">
-                            <span class="case-badge" id="case-area-badge">Medicina Interna</span>
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                                <span class="case-badge" id="case-area-badge">Medicina Interna</span>
+                                <button class="btn-ghost" id="btn-reclass-case"
+                                    style="display: none; font-size: 12px; padding: 4px 8px;">Reclasificar caso</button>
+                            </div>
                             <p id="case-text" class="case-text">Cargando caso clínico...</p>
                         </div>
 
@@ -973,10 +977,78 @@
                                 <p>Revisa las preguntas que los usuarios han marcado con posibles errores.</p>
                             </div>
                         </div>
+                        <div class="list-item" id="mas-reclass-item" onclick="showView('view-reclassify')"
+                            style="cursor: pointer; display: none;">
+                            <div class="list-item-content">
+                                <h3>Reclasificar casos clinicos</h3>
+                                <p>Asignar manualmente el tema correcto a cada caso.</p>
+                            </div>
+                        </div>
                         <div class="list-item" onclick="showView('view-feedback')" style="cursor: pointer;">
                             <div class="list-item-content">
                                 <h3>💬 Enviar Feedback</h3>
                                 <p>Comparte sugerencias, errores o ideas para mejorar la app.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-reclassify" class="view">
+                <div class="panel">
+                    <div class="panel-header"
+                        style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h2 class="panel-title">Reclasificar casos clinicos</h2>
+                            <p class="panel-subtitle">Corrige manualmente el tema de los casos clinicos.</p>
+                        </div>
+                        <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
+                    </div>
+
+                    <div id="reclassify-locked"
+                        style="display: none; margin-top: 16px; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-secondary);">
+                        Acceso restringido.
+                    </div>
+
+                    <div id="reclassify-content" style="margin-top: 20px;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+                            <div>
+                                <div class="input-group">
+                                    <label>Buscar caso</label>
+                                    <input class="text-input" id="reclass-filter" type="text"
+                                        placeholder="Buscar por texto del caso o pregunta">
+                                </div>
+                                <div class="input-group">
+                                    <label>Filtrar por tema actual</label>
+                                    <select class="text-input" id="reclass-tema-filter"></select>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin: 6px 0 10px;">
+                                    <div id="reclass-count" style="font-size: 12px; color: var(--text-muted);">0 casos</div>
+                                    <button class="btn-ghost" id="btn-reclass-clear-filter" type="button">Limpiar</button>
+                                </div>
+                                <div id="reclass-list" class="list-grid"></div>
+                            </div>
+
+                            <div>
+                                <div class="panel" style="padding: 18px;">
+                                    <h3 style="margin-bottom: 8px;">Caso seleccionado</h3>
+                                    <div id="reclass-selected-case" class="text-input"
+                                        style="height: auto; min-height: 120px;">Selecciona un caso en la lista.</div>
+                                    <div id="reclass-selected-meta"
+                                        style="margin-top: 8px; font-size: 12px; color: var(--text-muted);"></div>
+                                    <div class="input-group" style="margin-top: 16px;">
+                                        <label>Nuevo tema</label>
+                                        <select class="text-input" id="reclass-tema-select"></select>
+                                    </div>
+                                    <div class="input-group" style="margin-top: 12px;">
+                                        <label>Nueva especialidad</label>
+                                        <select class="text-input" id="reclass-spec-select"></select>
+                                    </div>
+                                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                        <button class="btn-primary" id="btn-reclass-apply" type="button">Aplicar reclasificacion</button>
+                                        <button class="btn-ghost" id="btn-reclass-remove" type="button">Quitar reclasificacion</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1322,8 +1394,8 @@
             style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
             <div class="modal-content"
                 style="background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--border); max-width: 500px; width: 90%;">
-                <h2 style="font-size: 20px; margin-bottom: 10px; color: var(--accent-red);">🚩 Reportar Pregunta</h2>
-                <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">Indica por qué consideras
+                <h2 style="font-size: 20px; margin-bottom: 10px; color: var(--accent-red);">Reportar pregunta</h2>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">Indica por que consideras
                     que esta pregunta o su respuesta es incorrecta.</p>
 
                 <div
@@ -1333,7 +1405,21 @@
                     </p>
                 </div>
 
-                <textarea id="report-reason" placeholder="Escribe aquí el motivo del error..."
+                <div class="input-group" style="margin-bottom: 16px;">
+                    <label>Tipo de error</label>
+                    <select class="text-input" id="report-category">
+                        <option value="">Selecciona una opcion...</option>
+                        <option value="clasificacion">Error de clasificacion (tema)</option>
+                        <option value="especialidad">Error de especialidad</option>
+                        <option value="respuesta">Respuesta incorrecta</option>
+                        <option value="opciones">Opciones o redaccion</option>
+                        <option value="duplicado">Pregunta duplicada</option>
+                        <option value="caso">Caso incompleto o inconsistente</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+
+                <textarea id="report-reason" placeholder="Escribe aqui el motivo del error..."
                     style="width: 100%; min-height: 120px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); padding: 12px; font-size: 14px; margin-bottom: 20px; outline: none; transition: border-color 0.2s;"
                     onfocus="this.style.borderColor='var(--accent-red)'"
                     onblur="this.style.borderColor='var(--border)'"></textarea>
