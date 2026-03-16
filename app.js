@@ -7943,6 +7943,27 @@
             return new Date(now + (30 * 24 * 60 * 60 * 1000));
         };
 
+        let issuedCodesCatalogPromise = null;
+        const loadIssuedCodesCatalog = async () => {
+            if (issuedCodesCatalogPromise) return issuedCodesCatalogPromise;
+            issuedCodesCatalogPromise = (async () => {
+                try {
+                    const res = await fetch("./redeem_codes.txt", { cache: "no-store" });
+                    if (!res.ok) return new Set();
+                    const txt = await res.text();
+                    return new Set(
+                        txt.split(/\r?\n/)
+                            .map(l => (l || "").trim().toUpperCase())
+                            .filter(Boolean)
+                    );
+                } catch (e) {
+                    console.warn("No se pudo cargar redeem_codes.txt:", e);
+                    return new Set();
+                }
+            })();
+            return issuedCodesCatalogPromise;
+        };
+
         const bindEntitlementListener = (uid) => {
             if (!window.FB || !window.FB.db || !window.FB.onSnapshot) return;
             if (State.entitlementUnsub) {
@@ -7979,13 +8000,24 @@
             }
             const uid = window.FB.auth.currentUser.uid;
             const code = codeRaw.replace(/\s+/g, "");
+            const catalog = await loadIssuedCodesCatalog();
+            const inCatalog = catalog.has(code);
             try {
                 let redeemed = null;
                 await window.FB.runTransaction(window.FB.db, async (tx) => {
                     const codeRef = window.FB.doc(window.FB.db, "redeem_codes", code);
                     const codeSnap = await tx.get(codeRef);
-                    if (!codeSnap.exists()) throw new Error("invalid");
-                    const data = codeSnap.data() || {};
+                    let data = codeSnap.exists() ? (codeSnap.data() || {}) : null;
+                    if (!data) {
+                        if (!inCatalog) throw new Error("invalid");
+                        const inferredType = getCodeTypeFromText(code);
+                        if (!inferredType) throw new Error("invalid");
+                        data = {
+                            code,
+                            type: inferredType,
+                            redeemedBy: ""
+                        };
+                    }
                     if (data.redeemedBy) throw new Error("used");
                     const type = data.type || getCodeTypeFromText(code) || "month";
                     const now = new Date();
@@ -8015,7 +8047,7 @@
             } catch (err) {
                 const msg = (err && err.message) || "";
                 if (msg.includes("invalid")) {
-                    showNotification("Código inválido.", "error");
+                    showNotification("Código inválido o no autorizado.", "error");
                 } else if (msg.includes("used")) {
                     showNotification("Este c\u00f3digo ya fue usado.", "warning");
                 } else {
