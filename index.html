@@ -1006,7 +1006,7 @@
                         style="display: flex; justify-content: space-between; align-items: center;">
                         <div>
                             <h2 class="panel-title">Reclasificar casos clinicos</h2>
-                            <p class="panel-subtitle">Corrige manualmente el tema de los casos clinicos.</p>
+                            <p class="panel-subtitle">Corrige tema, especialidad y texto del caso clinico.</p>
                         </div>
                         <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
                     </div>
@@ -1043,6 +1043,11 @@
                                     <div id="reclass-selected-meta"
                                         style="margin-top: 8px; font-size: 12px; color: var(--text-muted);"></div>
                                     <div class="input-group" style="margin-top: 16px;">
+                                        <label>Editar texto del caso</label>
+                                        <textarea class="text-input" id="reclass-case-text" rows="7"
+                                            placeholder="Texto completo del caso..."></textarea>
+                                    </div>
+                                    <div class="input-group" style="margin-top: 16px;">
                                         <label>Nuevo tema</label>
                                         <select class="text-input" id="reclass-tema-select"></select>
                                     </div>
@@ -1051,8 +1056,8 @@
                                         <select class="text-input" id="reclass-spec-select"></select>
                                     </div>
                                     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                                        <button class="btn-primary" id="btn-reclass-apply" type="button">Aplicar reclasificacion</button>
-                                        <button class="btn-ghost" id="btn-reclass-remove" type="button">Quitar reclasificacion</button>
+                                        <button class="btn-primary" id="btn-reclass-apply" type="button">Guardar cambio global</button>
+                                        <button class="btn-ghost" id="btn-reclass-remove" type="button">Quitar cambio global</button>
                                         <button class="btn-danger" id="btn-reclass-delete" type="button">Eliminar caso</button>
                                     </div>
                                 </div>

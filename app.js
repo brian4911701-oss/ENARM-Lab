@@ -58,7 +58,9 @@
         currentUid: "",
         entitlement: null,
         entitlementUnsub: null,
-        adminPreviewMode: "premium"
+        adminPreviewMode: "premium",
+        caseOverrideMap: null,
+        caseOverridesUnsub: null
     };
 
     const $ = (id) => document.getElementById(id);
@@ -382,6 +384,8 @@
     // Case Reclassification (manual topic overrides)
     // ---------------------------------------------------------------------------
     const RECLASS_STORAGE_KEY = "enarm_case_reclass";
+    const CASE_OVERRIDES_CACHE_KEY = "enarm_case_overrides_cache";
+    const CASE_OVERRIDES_COLLECTION = "case_overrides";
 
     const normalizeCaseText = (text) => {
         if (!text) return "";
@@ -521,11 +525,6 @@
             State.deletedCaseKeys.add(caseKey);
             saveDeletedCases();
         }
-        const map = loadCaseReclassMap();
-        if (map && map[caseKey]) {
-            delete map[caseKey];
-            saveCaseReclassMap(map);
-        }
         State.reclassMap = applyCaseReclassifications();
         if (State.questionSet) applyCaseReclassificationsToSet(State.questionSet, State.reclassMap);
         if (removeFromCurrentExam) removeCaseFromCurrentExam(caseKey);
@@ -551,17 +550,105 @@
     };
 
     const loadCaseReclassMap = () => {
+        if (State.caseOverrideMap && typeof State.caseOverrideMap === "object") {
+            return State.caseOverrideMap;
+        }
         try {
-            const raw = localStorage.getItem(RECLASS_STORAGE_KEY);
-            return raw ? JSON.parse(raw) : {};
+            const rawCache = localStorage.getItem(CASE_OVERRIDES_CACHE_KEY);
+            if (rawCache) {
+                const parsedCache = JSON.parse(rawCache);
+                State.caseOverrideMap = parsedCache && typeof parsedCache === "object" ? parsedCache : {};
+                return State.caseOverrideMap;
+            }
+            const rawLegacy = localStorage.getItem(RECLASS_STORAGE_KEY);
+            const parsedLegacy = rawLegacy ? JSON.parse(rawLegacy) : {};
+            State.caseOverrideMap = parsedLegacy && typeof parsedLegacy === "object" ? parsedLegacy : {};
+            return State.caseOverrideMap;
         } catch (e) {
             console.warn("No se pudo leer reclasificaciones:", e);
-            return {};
+            State.caseOverrideMap = {};
+            return State.caseOverrideMap;
         }
     };
 
     const saveCaseReclassMap = (map) => {
-        localStorage.setItem(RECLASS_STORAGE_KEY, JSON.stringify(map || {}));
+        const safeMap = map && typeof map === "object" ? map : {};
+        State.caseOverrideMap = safeMap;
+        localStorage.setItem(CASE_OVERRIDES_CACHE_KEY, JSON.stringify(safeMap));
+        localStorage.setItem(RECLASS_STORAGE_KEY, JSON.stringify(safeMap));
+    };
+
+    const normalizeCaseOverrideEntry = (entry = {}) => {
+        const out = {};
+        const tema = entry.tema ? String(entry.tema).trim() : "";
+        const specialty = entry.specialty ? String(entry.specialty).trim() : "";
+        const caseText = entry.caseText ? String(entry.caseText).trim() : "";
+        if (tema) out.tema = getUnifiedTopicName(tema);
+        if (specialty) out.specialty = specialty;
+        if (caseText) out.caseText = caseText;
+        if (entry.originalTema) out.originalTema = String(entry.originalTema);
+        if (entry.originalSpec) out.originalSpec = String(entry.originalSpec);
+        if (entry.label) out.label = String(entry.label).slice(0, 220);
+        if (entry.updatedBy) out.updatedBy = String(entry.updatedBy);
+        if (entry.updatedAt) out.updatedAt = entry.updatedAt;
+        return out;
+    };
+
+    const applyCaseOverridesEverywhere = () => {
+        State.reclassMap = applyCaseReclassifications();
+        if (State.questionSet) applyCaseReclassificationsToSet(State.questionSet, State.reclassMap);
+        if (State.view === "view-reclassify") {
+            refreshReclassData();
+            renderReclassifyList();
+            updateReclassSelection();
+        }
+        if (State.examActive && State.view === "view-exam") {
+            renderExamQuestion();
+        }
+    };
+
+    const bindCaseOverridesListener = () => {
+        if (!window.FB || !window.FB.db || !window.FB.onSnapshot || !window.FB.collection) return;
+        if (State.caseOverridesUnsub) {
+            State.caseOverridesUnsub();
+            State.caseOverridesUnsub = null;
+        }
+        const ref = window.FB.collection(window.FB.db, CASE_OVERRIDES_COLLECTION);
+        State.caseOverridesUnsub = window.FB.onSnapshot(ref, (snap) => {
+            const map = {};
+            snap.forEach((docSnap) => {
+                const data = docSnap.data() || {};
+                const key = (data.caseKey || docSnap.id || "").trim();
+                if (!key) return;
+                map[key] = normalizeCaseOverrideEntry(data);
+            });
+            saveCaseReclassMap(map);
+            applyCaseOverridesEverywhere();
+        }, (err) => {
+            console.error("No se pudo sincronizar case_overrides:", err);
+        });
+    };
+
+    const upsertCaseOverrideCloud = async (caseKey, entry) => {
+        if (!caseKey) throw new Error("invalid_case_key");
+        if (!canReclassifyUser()) throw new Error("admin_only");
+        if (!window.FB || !window.FB.db) throw new Error("firebase_not_ready");
+        const payload = {
+            caseKey,
+            ...normalizeCaseOverrideEntry(entry),
+            updatedBy: State.currentUid || "",
+            updatedAt: new Date()
+        };
+        const ref = window.FB.doc(window.FB.db, CASE_OVERRIDES_COLLECTION, caseKey);
+        await window.FB.setDoc(ref, payload, { merge: false });
+    };
+
+    const removeCaseOverrideCloud = async (caseKey) => {
+        if (!caseKey) throw new Error("invalid_case_key");
+        if (!canReclassifyUser()) throw new Error("admin_only");
+        if (!window.FB || !window.FB.db || !window.FB.deleteDoc) throw new Error("firebase_not_ready");
+        const ref = window.FB.doc(window.FB.db, CASE_OVERRIDES_COLLECTION, caseKey);
+        await window.FB.deleteDoc(ref);
     };
 
     const applyCaseReclassifications = () => {
@@ -571,6 +658,7 @@
             if (!q) return;
             if (q.temaOriginal === undefined) q.temaOriginal = q.tema || "";
             if (q.specialtyOriginal === undefined) q.specialtyOriginal = q.specialty || "";
+            if (q.caseOriginal === undefined) q.caseOriginal = q.case || "";
             const key = getCaseKey(q);
             if (!key) return;
             const entry = map[key];
@@ -578,6 +666,8 @@
             else if (q.temaOriginal !== undefined) q.tema = q.temaOriginal;
             if (entry && entry.specialty) q.specialty = entry.specialty;
             else if (q.specialtyOriginal !== undefined) q.specialty = q.specialtyOriginal;
+            if (entry && entry.caseText) q.case = entry.caseText;
+            else if (q.caseOriginal !== undefined) q.case = q.caseOriginal;
         });
         return map;
     };
@@ -589,6 +679,7 @@
             if (!q) return;
             if (q.temaOriginal === undefined) q.temaOriginal = q.tema || "";
             if (q.specialtyOriginal === undefined) q.specialtyOriginal = q.specialty || "";
+            if (q.caseOriginal === undefined) q.caseOriginal = q.case || "";
             const key = getCaseKey(q);
             if (!key) return;
             const entry = map[key];
@@ -596,6 +687,8 @@
             else if (q.temaOriginal !== undefined) q.tema = q.temaOriginal;
             if (entry && entry.specialty) q.specialty = entry.specialty;
             else if (q.specialtyOriginal !== undefined) q.specialty = q.specialtyOriginal;
+            if (entry && entry.caseText) q.case = entry.caseText;
+            else if (q.caseOriginal !== undefined) q.case = q.caseOriginal;
         });
     };
 
@@ -680,16 +773,19 @@
         const metaEl = $("reclass-selected-meta");
         const temaSelect = $("reclass-tema-select");
         const specSelect = $("reclass-spec-select");
+        const caseTextInput = $("reclass-case-text");
         const removeBtn = $("btn-reclass-remove");
         const applyBtn = $("btn-reclass-apply");
         const deleteBtn = $("btn-reclass-delete");
 
-        if (!selectedEl || !metaEl || !temaSelect || !specSelect) return;
+        if (!selectedEl || !metaEl || !temaSelect || !specSelect || !caseTextInput) return;
 
         const key = State.reclassSelectedKey;
         if (!key) {
             selectedEl.textContent = "Selecciona un caso en la lista.";
             metaEl.textContent = "";
+            caseTextInput.value = "";
+            caseTextInput.disabled = true;
             if (removeBtn) removeBtn.disabled = true;
             if (applyBtn) applyBtn.disabled = true;
             if (deleteBtn) deleteBtn.disabled = true;
@@ -703,8 +799,9 @@
         const currentSpec = State.reclassSpecialtyByKey[key] || "";
         const originalSpec = State.reclassOriginalSpecialtyByKey[key] || "";
         const isDeleted = State.deletedCaseKeys && State.deletedCaseKeys.has(key);
+        const effectiveCaseText = mapEntry?.caseText || (entry ? entry.caseText : "");
 
-        selectedEl.textContent = entry ? getCaseSnippet(entry.caseText, 600) : "Caso no encontrado.";
+        selectedEl.textContent = entry ? getCaseSnippet(effectiveCaseText, 600) : "Caso no encontrado.";
 
         let meta = `Tema actual: ${currentTema || "Sin tema"}`;
         if (originalTema && originalTema !== currentTema) meta += ` | Original: ${originalTema}`;
@@ -712,9 +809,12 @@
         meta += ` | Especialidad actual: ${getSpecialtyLabel(currentSpec)}`;
         if (originalSpec && originalSpec !== currentSpec) meta += ` | Especialidad original: ${getSpecialtyLabel(originalSpec)}`;
         if (mapEntry && mapEntry.specialty) meta += ` | Especialidad reclasificada: ${getSpecialtyLabel(mapEntry.specialty)}`;
+        if (mapEntry && mapEntry.caseText) meta += " | Texto del caso editado";
         if (isDeleted) meta += " | Eliminado del banco";
         metaEl.textContent = meta;
 
+        caseTextInput.value = effectiveCaseText || "";
+        caseTextInput.disabled = !!isDeleted;
         if (temaSelect) temaSelect.value = mapEntry?.tema || "";
         if (specSelect) specSelect.value = mapEntry?.specialty || currentSpec || "";
         if (removeBtn) removeBtn.disabled = isDeleted || !mapEntry;
@@ -753,12 +853,13 @@
             const currentSpec = State.reclassSpecialtyByKey[c.key] || "";
             const isSelected = State.reclassSelectedKey === c.key;
             const isReclassed = !!map[c.key];
+            const hasTextEdit = !!(map[c.key] && map[c.key].caseText);
             const item = document.createElement("div");
             item.className = "list-item";
             item.style.cursor = "pointer";
             if (isSelected) item.style.borderColor = "var(--accent-green)";
 
-            const badgeLabel = isReclassed ? "Reclasificado" : "Original";
+            const badgeLabel = isReclassed ? (hasTextEdit ? "Reclasificado + Texto" : "Reclasificado") : "Original";
             const badgeStyle = isReclassed
                 ? "background:rgba(5,192,127,0.15); color:var(--accent-green); border:1px solid rgba(5,192,127,0.35);"
                 : "background:rgba(255,255,255,0.06); color:var(--text-muted); border:1px solid rgba(255,255,255,0.08);";
@@ -806,9 +907,17 @@
         const deleteBtn = $("btn-reclass-delete");
         const temaSelect = $("reclass-tema-select");
         const specSelect = $("reclass-spec-select");
+        const caseTextInput = $("reclass-case-text");
 
         if (filterInput) filterInput.addEventListener("input", renderReclassifyList);
         if (temaFilter) temaFilter.addEventListener("change", renderReclassifyList);
+        if (caseTextInput) {
+            caseTextInput.addEventListener("input", () => {
+                const preview = $("reclass-selected-case");
+                if (!preview) return;
+                preview.textContent = getCaseSnippet(caseTextInput.value || "", 600);
+            });
+        }
 
         if (clearBtn) {
             clearBtn.addEventListener("click", () => {
@@ -819,7 +928,11 @@
         }
 
         if (applyBtn) {
-            applyBtn.addEventListener("click", () => {
+            applyBtn.addEventListener("click", async () => {
+                if (!canReclassifyUser()) {
+                    showNotification("Solo admin puede usar el reclasificador.", "warning");
+                    return;
+                }
                 if (!State.reclassSelectedKey) {
                     showNotification("Selecciona un caso primero.", "warning");
                     return;
@@ -830,50 +943,96 @@
                 const originalSpec = State.reclassOriginalSpecialtyByKey[State.reclassSelectedKey] || "";
                 const caseEntry = State.reclassCases.find(c => c.key === State.reclassSelectedKey);
                 const selectedSpec = specSelect ? specSelect.value.trim() : "";
-                const resolvedTema = temaInput || State.reclassTemaByKey[State.reclassSelectedKey] || "";
-                if (!resolvedTema && !selectedSpec) {
-                    showNotification("Selecciona un tema o una especialidad valida.", "warning");
-                    return;
-                }
-                map[State.reclassSelectedKey] = {
-                    tema: resolvedTema ? getUnifiedTopicName(resolvedTema) : undefined,
+                const editedCaseText = caseTextInput ? caseTextInput.value.trim() : "";
+                const currentTema = State.reclassTemaByKey[State.reclassSelectedKey] || "";
+                const currentSpec = State.reclassSpecialtyByKey[State.reclassSelectedKey] || "";
+                const resolvedTema = temaInput || currentTema;
+                const resolvedSpec = selectedSpec || currentSpec;
+                const baseCaseText = caseEntry ? String(caseEntry.caseText || "").trim() : "";
+                const resolvedCaseText = editedCaseText || baseCaseText;
+                const nextEntry = {
+                    tema: resolvedTema ? getUnifiedTopicName(resolvedTema) : "",
                     originalTema,
-                    specialty: selectedSpec || undefined,
+                    specialty: resolvedSpec || "",
                     originalSpec,
+                    caseText: resolvedCaseText || "",
                     label: caseEntry ? getCaseSnippet(caseEntry.caseText, 140) : "",
                     updatedAt: Date.now()
                 };
-                saveCaseReclassMap(map);
-                State.reclassMap = applyCaseReclassifications();
-                applyCaseReclassificationsToSet(State.questionSet, State.reclassMap);
-                refreshReclassData();
-                renderReclassifyList();
-                updateReclassSelection();
-                showNotification("Caso reclasificado.", "success");
+                const changedTema = !!temaInput && normalizeTopicKey(resolvedTema) !== normalizeTopicKey(currentTema);
+                const changedSpec = !!selectedSpec && resolvedSpec !== currentSpec;
+                const changedCaseText = !!editedCaseText && editedCaseText !== baseCaseText;
+                const currentEntry = normalizeCaseOverrideEntry(map[State.reclassSelectedKey] || {});
+                const comparableNext = normalizeCaseOverrideEntry(nextEntry);
+                const noChanges =
+                    (!map[State.reclassSelectedKey] && !changedTema && !changedSpec && !changedCaseText) ||
+                    (currentEntry.tema || "") === (comparableNext.tema || "") &&
+                    (currentEntry.specialty || "") === (comparableNext.specialty || "") &&
+                    (currentEntry.caseText || "") === (comparableNext.caseText || "");
+                if (noChanges) {
+                    showNotification("No hay cambios para aplicar.", "warning");
+                    return;
+                }
+                try {
+                    applyBtn.disabled = true;
+                    await upsertCaseOverrideCloud(State.reclassSelectedKey, nextEntry);
+                    map[State.reclassSelectedKey] = comparableNext;
+                    saveCaseReclassMap(map);
+                    applyCaseOverridesEverywhere();
+                    showNotification("Caso actualizado para todos los usuarios.", "success");
+                } catch (e) {
+                    console.error(e);
+                    const msg = (e && e.message) || "";
+                    if (msg.includes("permission-denied") || msg.includes("Missing or insufficient permissions")) {
+                        showNotification("Firebase bloqueó el cambio. Revisa reglas de case_overrides.", "error");
+                    } else {
+                        showNotification("No se pudo guardar el cambio global.", "error");
+                    }
+                } finally {
+                    applyBtn.disabled = false;
+                }
             });
         }
 
         if (removeBtn) {
-            removeBtn.addEventListener("click", () => {
+            removeBtn.addEventListener("click", async () => {
+                if (!canReclassifyUser()) {
+                    showNotification("Solo admin puede usar el reclasificador.", "warning");
+                    return;
+                }
                 if (!State.reclassSelectedKey) return;
                 const map = loadCaseReclassMap();
                 if (!map[State.reclassSelectedKey]) {
                     showNotification("Este caso no tiene reclasificacion.", "info");
                     return;
                 }
-                delete map[State.reclassSelectedKey];
-                saveCaseReclassMap(map);
-                State.reclassMap = applyCaseReclassifications();
-                applyCaseReclassificationsToSet(State.questionSet, State.reclassMap);
-                refreshReclassData();
-                renderReclassifyList();
-                updateReclassSelection();
-                showNotification("Reclasificacion eliminada.", "success");
+                try {
+                    removeBtn.disabled = true;
+                    await removeCaseOverrideCloud(State.reclassSelectedKey);
+                    delete map[State.reclassSelectedKey];
+                    saveCaseReclassMap(map);
+                    applyCaseOverridesEverywhere();
+                    showNotification("Cambio global eliminado.", "success");
+                } catch (e) {
+                    console.error(e);
+                    const msg = (e && e.message) || "";
+                    if (msg.includes("permission-denied") || msg.includes("Missing or insufficient permissions")) {
+                        showNotification("Firebase bloqueó el cambio. Revisa reglas de case_overrides.", "error");
+                    } else {
+                        showNotification("No se pudo eliminar el cambio global.", "error");
+                    }
+                } finally {
+                    removeBtn.disabled = false;
+                }
             });
         }
 
         if (deleteBtn) {
             deleteBtn.addEventListener("click", () => {
+                if (!canReclassifyUser()) {
+                    showNotification("Solo admin puede usar el reclasificador.", "warning");
+                    return;
+                }
                 if (!State.reclassSelectedKey) {
                     showNotification("Selecciona un caso primero.", "warning");
                     return;
@@ -1188,7 +1347,7 @@
             return;
         }
         if (viewId === "view-reclassify" && !canReclassifyUser()) {
-            showNotification("Acceso restringido a esta seccion.", "warning");
+            showNotification("Solo admin puede usar el reclasificador.", "warning");
             viewId = "view-mas";
         }
         $$(".view").forEach(v => v.classList.remove("active"));
@@ -5916,7 +6075,32 @@
         }
     };
 
-    const updateDashboardStats = () => {
+    let lastDashboardRenderKey = "";
+    const updateDashboardStats = (force = false) => {
+        const now = new Date();
+        const quoteTickKey = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}-${Math.floor(now.getHours() / 4)}`;
+        const bySpec = State.globalStats?.bySpecialty || {};
+        const specKey = ["mi", "ped", "gyo", "cir", "sp", "urg"]
+            .map(k => `${bySpec[k]?.total || 0}-${bySpec[k]?.correct || 0}`)
+            .join("|");
+        const lastHist = (State.history && State.history.length > 0) ? State.history[State.history.length - 1] : null;
+        const histKey = lastHist ? `${lastHist.pct || 0}-${lastHist.timestamp || 0}` : "none";
+        const renderKey = [
+            State.examActive ? 1 : 0,
+            State.globalStats?.respondidas || 0,
+            State.globalStats?.aciertos || 0,
+            State.globalStats?.sesiones || 0,
+            State.globalStats?.totalBlank || 0,
+            State.history?.length || 0,
+            histKey,
+            State.userName || "",
+            State.theme || "dark",
+            quoteTickKey,
+            specKey
+        ].join("::");
+        if (!force && renderKey === lastDashboardRenderKey) return;
+        lastDashboardRenderKey = renderKey;
+
         if ($("active-exam-banner")) {
             $("active-exam-banner").style.display = State.examActive ? "flex" : "none";
         }
@@ -5999,9 +6183,37 @@
     let chartSpecialties = null;
     let chartDoughnut = null;
     let chartSpecLineInstance = null;
+    let lastChartsRenderKey = "";
 
     const updateCharts = () => {
         if (typeof Chart === 'undefined') return;
+        const viewScope = State.view === "view-estadisticas"
+            ? "stats"
+            : (State.view === "view-dashboard" ? "dashboard" : "other");
+        if (viewScope === "other") return;
+
+        const bySpec = State.globalStats?.bySpecialty || {};
+        const specKey = ["mi", "ped", "gyo", "cir", "sp", "urg"]
+            .map(k => `${bySpec[k]?.total || 0}-${bySpec[k]?.correct || 0}`)
+            .join("|");
+        const lastHist = (State.history && State.history.length > 0) ? State.history[State.history.length - 1] : null;
+        const histKey = lastHist ? `${lastHist.pct || 0}-${lastHist.timestamp || 0}` : "none";
+        const chartKey = [
+            State.theme || "dark",
+            State.history?.length || 0,
+            histKey,
+            State.globalStats?.respondidas || 0,
+            State.globalStats?.aciertos || 0,
+            specKey
+        ].join("::");
+        if (chartKey === lastChartsRenderKey) {
+            if (chartHistory && typeof chartHistory.resize === "function") chartHistory.resize();
+            if (chartSpecLineInstance && typeof chartSpecLineInstance.resize === "function") chartSpecLineInstance.resize();
+            if (chartSpecialties && typeof chartSpecialties.resize === "function") chartSpecialties.resize();
+            if (chartDoughnut && typeof chartDoughnut.resize === "function") chartDoughnut.resize();
+            return;
+        }
+        lastChartsRenderKey = chartKey;
 
         const style = getComputedStyle(document.body);
         const textMuted = style.getPropertyValue('--text-muted').trim() || '#a0aec0';
@@ -8195,6 +8407,8 @@
                             State.currentUid = user.uid;
                             const uidInput = $("profile-uid");
                             if (uidInput) uidInput.value = user.uid;
+                            syncReclassAccessUI();
+                            bindCaseOverridesListener();
                             bindEntitlementListener(user.uid);
                             syncPremiumUI();
                             initCloudFeatures();
@@ -8250,8 +8464,13 @@
                                 State.entitlementUnsub();
                                 State.entitlementUnsub = null;
                             }
+                            if (State.caseOverridesUnsub) {
+                                State.caseOverridesUnsub();
+                                State.caseOverridesUnsub = null;
+                            }
                             const uidInput = $("profile-uid");
                             if (uidInput) uidInput.value = "";
+                            syncReclassAccessUI();
                             syncPremiumUI();
                         }
                     });
