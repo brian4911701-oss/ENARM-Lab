@@ -129,7 +129,7 @@
         });
     }
 
-    const showNotification = (msg, type = 'info') => {
+    const showNotification = (msg, type = 'info', durationMs = 3500) => {
         let container = $('notification-container');
         if (!container) {
             container = document.createElement('div');
@@ -150,7 +150,7 @@
         setTimeout(() => {
             toast.classList.add('hiding');
             toast.addEventListener('animationend', () => toast.remove());
-        }, 3500);
+        }, durationMs);
     };
 
     const normalizeTimestamp = (value) => {
@@ -357,12 +357,26 @@
     const openRedeemModal = (reason) => {
         const modal = $("redeem-modal");
         const reasonEl = $("redeem-reason");
+        const legalCheck = $("redeem-legal-check");
+        const btnRedeem = $("btn-redeem-submit");
         if (reasonEl && reason) reasonEl.textContent = reason;
+        if (legalCheck) legalCheck.checked = false;
+        if (btnRedeem) btnRedeem.disabled = true;
         if (modal) modal.style.display = "flex";
     };
 
     const closeRedeemModal = () => {
         const modal = $("redeem-modal");
+        if (modal) modal.style.display = "none";
+    };
+
+    const openPremiumWelcomeModal = () => {
+        const modal = $("premium-welcome-modal");
+        if (modal) modal.style.display = "flex";
+    };
+
+    const closePremiumWelcomeModal = () => {
+        const modal = $("premium-welcome-modal");
         if (modal) modal.style.display = "none";
     };
 
@@ -1476,7 +1490,7 @@
 
     const applyTheme = (theme) => {
         // Remove all current theme classes
-        document.body.classList.remove("light-mode", "theme-forest", "theme-ocean", "theme-sunset", "theme-premium");
+        document.body.classList.remove("light-mode", "theme-forest", "theme-ocean", "theme-sunset", "theme-premium", "theme-premium-pink");
 
         if (theme === "system") {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
@@ -1492,6 +1506,8 @@
             document.body.classList.add("theme-sunset");
         } else if (theme === "premium") {
             document.body.classList.add("theme-premium");
+        } else if (theme === "premium-pink") {
+            document.body.classList.add("theme-premium-pink");
         }
         // "dark" is the default, no class needed
 
@@ -6957,9 +6973,20 @@
         if (btnRedeem) {
             btnRedeem.addEventListener("click", () => redeemCode());
         }
+        const redeemLegalCheck = $("redeem-legal-check");
+        if (redeemLegalCheck) {
+            redeemLegalCheck.addEventListener("change", () => {
+                const modalRedeemBtn = $("btn-redeem-submit");
+                if (modalRedeemBtn) modalRedeemBtn.disabled = !redeemLegalCheck.checked;
+            });
+        }
         const btnCloseRedeem = $("btn-close-redeem");
         if (btnCloseRedeem) {
             btnCloseRedeem.addEventListener("click", closeRedeemModal);
+        }
+        const btnClosePremiumWelcome = $("btn-close-premium-welcome");
+        if (btnClosePremiumWelcome) {
+            btnClosePremiumWelcome.addEventListener("click", closePremiumWelcomeModal);
         }
         const redeemInput = $("redeem-code-input");
         if (redeemInput) {
@@ -8266,6 +8293,13 @@
             const closeModalOnSuccess = opts.closeModalOnSuccess !== false;
             const input = $(inputId);
             const codeRaw = input ? input.value.trim().toUpperCase() : "";
+            const requireAcceptance = opts.requireAcceptance !== false && inputId === "redeem-code-input";
+            if (requireAcceptance) {
+                const legalCheck = $("redeem-legal-check");
+                if (!legalCheck || !legalCheck.checked) {
+                    return showNotification("Debes aceptar Términos y Aviso de Privacidad para continuar.", "warning");
+                }
+            }
             if (!codeRaw) return showNotification("Ingresa un c\u00f3digo.", "warning");
             if (!window.FB || !window.FB.auth || !window.FB.auth.currentUser) {
                 return showNotification("Inicia sesi\u00f3n para canjear tu c\u00f3digo.", "warning");
@@ -8313,7 +8347,7 @@
                         code
                     }, { merge: true });
                 }
-                showNotification("Código canjeado. Acceso premium activado.", "success");
+                openPremiumWelcomeModal();
                 if (input) input.value = "";
                 if (closeModalOnSuccess) closeRedeemModal();
             } catch (err) {

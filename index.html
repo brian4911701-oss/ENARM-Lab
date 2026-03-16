@@ -99,6 +99,9 @@
 
             <p class="auth-footer">¿No tienes cuenta? <a href="#"
                     style="color: var(--accent-green); text-decoration: none;">Regístrate gratis</a></p>
+            <div style="margin-top: 15px; font-size: 11px; opacity: 0.6;">
+                Al continuar, aceptas nuestros <a href="terminos.html" target="_blank" style="color: inherit; text-decoration: underline;">Términos</a> y <a href="privacidad.html" target="_blank" style="color: inherit; text-decoration: underline;">Aviso de Privacidad</a>.
+            </div>
         </div>
     </div>
 
@@ -977,6 +980,18 @@
                                 <p>Consulta los temas y subtemas que componen el banco de preguntas actual.</p>
                             </div>
                         </div>
+                        <div class="list-item" onclick="window.open('terminos.html', '_blank')" style="cursor: pointer;">
+                            <div class="list-item-content">
+                                <h3>&#x1F4DC; Términos y Condiciones</h3>
+                                <p>Consulta las reglas de uso de la plataforma ENARMlab.</p>
+                            </div>
+                        </div>
+                        <div class="list-item" onclick="window.open('privacidad.html', '_blank')" style="cursor: pointer;">
+                            <div class="list-item-content">
+                                <h3>&#x1F512; Aviso de Privacidad</h3>
+                                <p>Revisa cómo protegemos y tratamos tus datos personales.</p>
+                            </div>
+                        </div>
                         <div class="list-item" id="mas-reportes-item" onclick="showView('view-reportes')" style="cursor: pointer;">
                             <div class="list-item-content">
                                 <h3>&#x1F6A9; Preguntas Reportadas</h3>
@@ -1354,6 +1369,9 @@
                                         </div>
                                         <div class="theme-circle" data-theme="premium"
                                             title="Tema Premium (Nebulosa Púrpura)">
+                                        </div>
+                                        <div class="theme-circle" data-theme="premium-pink"
+                                            title="Tema Premium (Nebulosa Rosa)">
                                         </div>
                                     </div>
                                 </div>
@@ -1830,10 +1848,45 @@
                 <label>C&oacute;digo</label>
                 <input type="text" id="redeem-code-input" class="text-input" placeholder="ENARM-M1-XXXXXXX">
             </div>
-            <button class="btn-primary" id="btn-redeem-submit" style="width: 100%;">Canjear y desbloquear</button>
+            <div
+                style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; padding: 10px; border: 1px solid var(--border); border-radius: 10px; background: rgba(255,255,255,0.02);">
+                <input id="redeem-legal-check" type="checkbox" style="margin-top: 3px; width: 16px; height: 16px; cursor: pointer;">
+                <label for="redeem-legal-check" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; cursor: pointer;">
+                    He le&iacute;do y acepto los
+                    <a href="terminos.html" target="_blank" rel="noopener"
+                        style="color: var(--accent-green); text-decoration: underline;">T&eacute;rminos y Condiciones</a>
+                    y el
+                    <a href="privacidad.html" target="_blank" rel="noopener"
+                        style="color: var(--accent-green); text-decoration: underline;">Aviso de Privacidad</a>.
+                </label>
+            </div>
+            <button class="btn-primary" id="btn-redeem-submit" style="width: 100%;" disabled>Canjear y desbloquear</button>
             <p style="margin-top: 10px; font-size: 11px; color: var(--text-muted); text-align: center;">
                 Los c&oacute;digos son de un solo uso.
             </p>
+        </div>
+    </div>
+    <!-- MODAL BIENVENIDA PREMIUM -->
+    <div class="modal-overlay" id="premium-welcome-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 3100; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+        <div class="modal-content"
+            style="background: var(--bg-card); padding: 28px; border-radius: 16px; border: 1px solid var(--border); max-width: 640px; width: 92%; position: relative; max-height: 85vh; overflow-y: auto;">
+            <h2 style="font-size: 22px; margin-bottom: 14px; color: var(--text-primary); text-align: center;">
+                ✨ ¡Bienvenido a ENARM Lab Premium!
+            </h2>
+            <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.65;">
+                <p style="margin-bottom: 12px;">Gracias por tu confianza. Acabas de desbloquear una plataforma diseñada para ayudarte a estudiar con estrategia, medir tu avance y prepararte con mayor seguridad para el ENARM. 📚✅</p>
+                <p style="margin-bottom: 12px;">🚀 ENARM Lab está en fase de lanzamiento, y eso significa que algunos casos clínicos podrían tener errores de clasificación, por ejemplo:</p>
+                <ul style="margin: 0 0 12px 20px;">
+                    <li>estar asignados a una especialidad incorrecta</li>
+                    <li>aparecer en un tema o subtema que no corresponde</li>
+                    <li>incluir etiquetas clínicas que no reflejan bien el caso</li>
+                </ul>
+                <p style="margin-bottom: 12px;">🔎 Si detectas algo así, repórtalo en <strong>Más → Enviar Feedback</strong> para corregirlo lo más rápido posible.</p>
+                <p style="margin-bottom: 12px;">Tu reporte mejora la precisión del banco para ti y para toda la comunidad médica. 🛠️</p>
+                <p style="margin-bottom: 18px;">Gracias por elegir ENARM Lab. Hiciste una excelente inversión en tu preparación. 💪🩺</p>
+            </div>
+            <button class="btn-primary" id="btn-close-premium-welcome" style="width: 100%;">Aceptar</button>
         </div>
     </div>
 
@@ -1987,6 +2040,8 @@
 </body>
 
 </html>
+
+
 
 
 
