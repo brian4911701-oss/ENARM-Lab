@@ -57,15 +57,18 @@
         currentExamIsReal: false,
         currentUid: "",
         entitlement: null,
-        entitlementUnsub: null
+        entitlementUnsub: null,
+        adminPreviewMode: "premium"
     };
 
     const $ = (id) => document.getElementById(id);
     const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
-    const ADMIN_UIDS = ["PUT_ADMIN_UID_HERE"];
+    const ADMIN_UIDS = ["sZcIUjjhD0fze7FtirwsjsIDzLB2"];
     const DEMO_MAX_QTY = 30;
     const FIXED_CODE_EXPIRY = new Date(2026, 9, 1, 23, 59, 59);
+    const ADMIN_PREVIEW_STORAGE_KEY = "enarm_admin_preview_mode";
+    const DEMO_ALLOWED_THEMES = new Set(["dark", "light"]);
 
     // ---------------------------------------------------------------------------
     // Topic Normalization (Unificación de subtemas y GPCs)
@@ -160,8 +163,19 @@
         return !!(State.currentUid && ADMIN_UIDS.includes(State.currentUid));
     };
 
+    const setAdminPreviewMode = (mode, opts = {}) => {
+        const safeMode = mode === "demo" ? "demo" : "premium";
+        State.adminPreviewMode = safeMode;
+        localStorage.setItem(ADMIN_PREVIEW_STORAGE_KEY, safeMode);
+        syncPremiumUI();
+        if (opts.notify) {
+            const label = safeMode === "demo" ? "demo" : "premium";
+            showNotification(`Vista admin cambiada a ${label}.`, "info");
+        }
+    };
+
     const isPremiumActive = () => {
-        if (isAdminUser()) return true;
+        if (isAdminUser()) return State.adminPreviewMode !== "demo";
         const ent = State.entitlement;
         if (!ent || ent.status !== "active") return false;
         if (!ent.expiresAt) return true;
@@ -177,7 +191,7 @@
         const el = $("profile-premium-status");
         if (!el) return;
         if (isAdminUser()) {
-            el.value = "Admin";
+            el.value = State.adminPreviewMode === "demo" ? "Admin (vista demo)" : "Admin (vista premium)";
             return;
         }
         if (!State.entitlement || !isPremiumActive()) {
@@ -241,8 +255,7 @@
             { selector: "#btn-refuerzo-ia", reason: "Refuerzo IA es premium." },
             { selector: "#btn-refuerzo-rapido", reason: "Refuerzos son premium." },
             { selector: "#btn-refuerzo-casos", reason: "Refuerzo de casos es premium." },
-            { selector: "#mas-reportes-item", reason: "Reportes es premium." },
-            { selector: ".theme-circle[data-theme='premium']", reason: "Tema premium bloqueado." }
+            { selector: "#mas-reportes-item", reason: "Reportes es premium." }
         ];
         lockMap.forEach(({ selector, reason }) => {
             const el = document.querySelector(selector);
@@ -255,6 +268,19 @@
             } else {
                 delete el.dataset.lockReason;
                 el.removeAttribute("title");
+            }
+        });
+
+        $$(".theme-circle").forEach(circle => {
+            const selectedTheme = circle.dataset.theme || "dark";
+            const locked = !premium && !DEMO_ALLOWED_THEMES.has(selectedTheme);
+            circle.classList.toggle("demo-locked", locked);
+            if (locked) {
+                circle.dataset.lockReason = "En demo solo estan disponibles 2 temas visuales.";
+                circle.title = circle.dataset.lockReason;
+            } else {
+                delete circle.dataset.lockReason;
+                circle.removeAttribute("title");
             }
         });
 
@@ -311,13 +337,19 @@
             btnCreate.style.opacity = enabled ? "1" : "0.6";
             btnCreate.style.cursor = enabled ? "pointer" : "not-allowed";
         }
-        if (!premium && State.theme === "premium") {
+        if (!premium && !DEMO_ALLOWED_THEMES.has(State.theme || "dark")) {
             State.theme = "dark";
             localStorage.setItem("enarm_theme", "dark");
             applyTheme("dark");
         }
         const adminPanel = $("admin-codes-panel");
         if (adminPanel) adminPanel.style.display = isAdminUser() ? "block" : "none";
+
+        const adminPreviewPanel = $("admin-preview-panel");
+        if (adminPreviewPanel) adminPreviewPanel.style.display = isAdminUser() ? "block" : "none";
+        $$(".admin-preview-btn").forEach(btn => {
+            btn.classList.toggle("active", btn.dataset.adminPreview === State.adminPreviewMode);
+        });
     };
 
     const openRedeemModal = (reason) => {
@@ -1238,6 +1270,10 @@
         if (theme) {
             State.theme = theme;
             applyTheme(theme);
+        }
+        const adminPreviewMode = localStorage.getItem(ADMIN_PREVIEW_STORAGE_KEY);
+        if (adminPreviewMode === "demo" || adminPreviewMode === "premium") {
+            State.adminPreviewMode = adminPreviewMode;
         }
         const reports = localStorage.getItem("enarm_reports");
         if (reports) {
@@ -6686,6 +6722,24 @@
         if (btnOpenRedeem) {
             btnOpenRedeem.addEventListener("click", () => openRedeemModal("Ingresa tu c\u00f3digo para desbloquear premium."));
         }
+        const btnSettingsRedeem = $("btn-settings-redeem");
+        if (btnSettingsRedeem) {
+            btnSettingsRedeem.addEventListener("click", () => redeemCode({
+                inputId: "settings-redeem-code-input",
+                closeModalOnSuccess: false
+            }));
+        }
+        const settingsRedeemInput = $("settings-redeem-code-input");
+        if (settingsRedeemInput) {
+            settingsRedeemInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") {
+                    redeemCode({
+                        inputId: "settings-redeem-code-input",
+                        closeModalOnSuccess: false
+                    });
+                }
+            });
+        }
 
         const btnRedeem = $("btn-redeem-submit");
         if (btnRedeem) {
@@ -6706,6 +6760,13 @@
         if (btnAdminUpload) {
             btnAdminUpload.addEventListener("click", () => uploadAdminCodes());
         }
+
+        $$(".admin-preview-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                if (!isAdminUser()) return;
+                setAdminPreviewMode(btn.dataset.adminPreview, { notify: true });
+            });
+        });
 
         const bd = $("btn-back-dash"); if (bd) bd.addEventListener("click", () => $("nav-dashboard").click());
         const rv = $("btn-review"); if (rv) rv.addEventListener("click", startReview);
@@ -6870,9 +6931,9 @@
         $$(".theme-circle").forEach(circle => {
             circle.addEventListener("click", () => {
                 const selectedTheme = circle.dataset.theme;
-                if (selectedTheme === "premium" && !isPremiumActive()) {
-                    showNotification("Tema premium bloqueado.", "warning");
-                    openRedeemModal("El tema premium requiere un c\u00f3digo.");
+                if (!isPremiumActive() && !DEMO_ALLOWED_THEMES.has(selectedTheme)) {
+                    showNotification("Este tema est\u00e1 bloqueado en demo.", "warning");
+                    openRedeemModal("Desbloquea premium para usar todos los temas visuales.");
                     return;
                 }
                 State.theme = selectedTheme;
@@ -7988,8 +8049,10 @@
             });
         };
 
-        const redeemCode = async () => {
-            const input = $("redeem-code-input");
+        const redeemCode = async (opts = {}) => {
+            const inputId = opts.inputId || "redeem-code-input";
+            const closeModalOnSuccess = opts.closeModalOnSuccess !== false;
+            const input = $(inputId);
             const codeRaw = input ? input.value.trim().toUpperCase() : "";
             if (!codeRaw) return showNotification("Ingresa un c\u00f3digo.", "warning");
             if (!window.FB || !window.FB.auth || !window.FB.auth.currentUser) {
@@ -8009,14 +8072,11 @@
                     const codeSnap = await tx.get(codeRef);
                     let data = codeSnap.exists() ? (codeSnap.data() || {}) : null;
                     if (!data) {
-                        if (!inCatalog) throw new Error("invalid");
-                        const inferredType = getCodeTypeFromText(code);
-                        if (!inferredType) throw new Error("invalid");
-                        data = {
-                            code,
-                            type: inferredType,
-                            redeemedBy: ""
-                        };
+                        // El código existe en el catálogo local pero no está precargado
+                        // en Firestore. Con reglas seguras, el usuario no-admin no puede
+                        // crearlo durante el canje.
+                        if (inCatalog) throw new Error("not_loaded");
+                        throw new Error("invalid");
                     }
                     if (data.redeemedBy) throw new Error("used");
                     const type = data.type || getCodeTypeFromText(code) || "month";
@@ -8043,13 +8103,17 @@
                 }
                 showNotification("Código canjeado. Acceso premium activado.", "success");
                 if (input) input.value = "";
-                closeRedeemModal();
+                if (closeModalOnSuccess) closeRedeemModal();
             } catch (err) {
                 const msg = (err && err.message) || "";
                 if (msg.includes("invalid")) {
                     showNotification("Código inválido o no autorizado.", "error");
+                } else if (msg.includes("not_loaded")) {
+                    showNotification("Código reconocido, pero aún no está cargado en Firebase. Pide al admin subir códigos.", "warning");
                 } else if (msg.includes("used")) {
                     showNotification("Este c\u00f3digo ya fue usado.", "warning");
+                } else if (msg.includes("permission-denied") || msg.includes("Missing or insufficient permissions")) {
+                    showNotification("Permisos de Firestore insuficientes para canjear. Revisa reglas y UID admin.", "error");
                 } else {
                     console.error(err);
                     showNotification("No se pudo canjear el c\u00f3digo.", "error");
@@ -8069,33 +8133,47 @@
             const now = new Date();
             const writes = [];
             const invalid = [];
+            let skipped = 0;
             codes.forEach(code => {
                 const type = getCodeTypeFromText(code);
                 if (!type) {
                     invalid.push(code);
                     return;
                 }
-                const ref = window.FB.doc(window.FB.db, "redeem_codes", code);
-                writes.push(window.FB.setDoc(ref, {
-                    code,
-                    type,
-                    createdAt: now,
-                    createdBy: State.currentUid || "",
-                    redeemedBy: "",
-                    redeemedAt: null,
-                    expiresAt: null
-                }, { merge: false }));
+                writes.push((async () => {
+                    const ref = window.FB.doc(window.FB.db, "redeem_codes", code);
+                    const snap = await window.FB.getDoc(ref);
+                    if (snap.exists()) {
+                        skipped += 1;
+                        return;
+                    }
+                    await window.FB.setDoc(ref, {
+                        code,
+                        type,
+                        createdAt: now,
+                        createdBy: State.currentUid || "",
+                        redeemedBy: "",
+                        redeemedAt: null,
+                        expiresAt: null
+                    }, { merge: false });
+                })());
             });
             if (invalid.length > 0) {
                 showNotification(`Códigos inválidos: ${invalid.length}`, "warning");
             }
             try {
                 await Promise.all(writes);
-                showNotification(`Códigos cargados: ${writes.length}`, "success");
+                const created = Math.max(0, writes.length - skipped);
+                showNotification(`Códigos cargados: ${created}. Ya existentes: ${skipped}.`, "success");
                 input.value = "";
             } catch (e) {
                 console.error(e);
-                showNotification("Error al cargar c\u00f3digos.", "error");
+                const msg = (e && e.message) || "";
+                if (msg.includes("permission-denied") || msg.includes("Missing or insufficient permissions")) {
+                    showNotification("No tienes permiso en Firebase para cargar códigos. Revisa reglas con tu UID admin.", "error");
+                } else {
+                    showNotification("Error al cargar c\u00f3digos.", "error");
+                }
             }
         };
 
