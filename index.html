@@ -1965,6 +1965,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, getDocs, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, addDoc, updateDoc, runTransaction } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { getMessaging, getToken, isSupported as isMessagingSupported, onMessage } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyA-ALVpht1Za682OUGvH6QWaudCJZYihFU",
@@ -1974,11 +1975,20 @@
             messagingSenderId: "1046465986024",
             appId: "1:1046465986024:web:f76360b91613c12032b85d"
         };
+        const firebaseMessagingConfig = {
+            vapidKey: "BPvCkH6GGy9Bc74UYpiEZnJmLRRMk5EzdhFu73otXQkigM2-edDuoZ2hBkX_7E2gYkd6L9H-i148qEmlbInUVkI"
+        };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
         const googleProvider = new GoogleAuthProvider();
+        const messagingReady = isMessagingSupported()
+            .then((supported) => supported ? getMessaging(app) : null)
+            .catch((err) => {
+                console.warn("[FCM] Messaging no soportado en este navegador:", err);
+                return null;
+            });
 
         // Exponer Firebase al scope global de `app.js`
         window.FB = {
@@ -2005,7 +2015,11 @@
             googleProvider,
             signInWithPopup,
             signInWithRedirect,
-            signOut
+            signOut,
+            getToken,
+            onMessage,
+            messagingReady,
+            pushConfig: firebaseMessagingConfig
         };
 
         window.dispatchEvent(new Event("firebaseLoaded"));

@@ -73,7 +73,10 @@
     const DEMO_ALLOWED_THEMES = new Set(["ocean", "light"]);
     const NOTIFICATION_ICON = "/notification-icon.png";
     const NOTIFICATION_BADGE = "/notification-badge.png";
+    const PUSH_TOKEN_COLLECTION = "user_push_tokens";
     let notificationPermissionRequestedInSession = false;
+    let foregroundPushListenerBound = false;
+    let lastRegisteredPushToken = "";
 
     // ---------------------------------------------------------------------------
     // Topic Normalization (Unificación de subtemas y GPCs)
@@ -363,25 +366,30 @@
         });
     };
 
-    const THEME_CHROME_COLORS = Object.freeze({
-        dark: "#111623",
-        light: "#f1f5f9",
-        forest: "#0a3325",
-        ocean: "#191f78",
-        sunset: "#3d1a3b",
-        "navy-gold": "#152b53",
-        "black-teal": "#000000",
-        premium: "#050505",
-        "premium-pink": "#050505"
-    });
-
-    const syncThemeColorMeta = (theme) => {
-        let resolvedTheme = theme || "ocean";
-        if (resolvedTheme === "system") {
-            const prefersLight = !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches);
-            resolvedTheme = prefersLight ? "light" : "dark";
+    const syncThemeColorMeta = () => {
+        let color = "#111623";
+        let hasUsableTopBarColor = false;
+        const topBar = document.querySelector(".mobile-top-bar");
+        if (topBar && window.getComputedStyle) {
+            const computed = window.getComputedStyle(topBar).backgroundColor;
+            const match = computed && computed.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([0-9.]+))?/i);
+            if (match) {
+                const alpha = match[4] !== undefined ? Number(match[4]) : 1;
+                if (!Number.isNaN(alpha) && alpha > 0) {
+                    const toHex = (value) => Number(value).toString(16).padStart(2, "0");
+                    color = `#${toHex(match[1])}${toHex(match[2])}${toHex(match[3])}`;
+                    hasUsableTopBarColor = true;
+                }
+            }
         }
-        const color = THEME_CHROME_COLORS[resolvedTheme] || THEME_CHROME_COLORS.ocean;
+
+        if (!hasUsableTopBarColor) {
+            const isLightTopBar = document.body.classList.contains("light-mode")
+                || document.body.classList.contains("theme-premium")
+                || document.body.classList.contains("theme-premium-pink");
+            color = isLightTopBar ? "#ffffff" : "#111623";
+        }
+
         let themeMeta = document.querySelector('meta[name="theme-color"]');
         if (!themeMeta) {
             themeMeta = document.createElement("meta");
@@ -1207,9 +1215,94 @@
         if (Notification.permission !== "default") return;
         notificationPermissionRequestedInSession = true;
         try {
-            await Notification.requestPermission();
+            const permission = await Notification.requestPermission();
+            if (permission === "granted") {
+                await registerRemotePushNotifications();
+            }
         } catch (err) {
             console.warn("[Notif] No se pudo solicitar permiso:", err);
+        }
+    };
+
+    const getPushPlatformLabel = () => {
+        const ua = navigator.userAgent || "";
+        if (/iPhone|iPad|iPod/i.test(ua)) return "ios-web";
+        if (/Android/i.test(ua)) return "android-web";
+        return "web";
+    };
+
+    const buildPushTokenDocId = (uid, token) => {
+        let safeToken = "";
+        try {
+            safeToken = btoa(token).replace(/[+/=]/g, "_");
+        } catch (err) {
+            safeToken = token.replace(/[^a-zA-Z0-9_-]/g, "_");
+        }
+        return `${uid}__${safeToken}`.slice(0, 1400);
+    };
+
+    const bindForegroundPushListener = async (messaging) => {
+        if (!window.FB || typeof window.FB.onMessage !== "function") return;
+        if (foregroundPushListenerBound || !messaging) return;
+        window.FB.onMessage(messaging, (payload) => {
+            const title = payload?.notification?.title || payload?.data?.title || "ENARM Lab";
+            const body = payload?.notification?.body || payload?.data?.body || "";
+            showSystemNotification(title, body);
+        });
+        foregroundPushListenerBound = true;
+    };
+
+    const registerRemotePushNotifications = async () => {
+        if (!window.FB || !window.FB.auth || !window.FB.auth.currentUser) return;
+        if (!("Notification" in window) || Notification.permission !== "granted") return;
+        if (!("serviceWorker" in navigator)) return;
+        if (!window.FB.messagingReady || typeof window.FB.getToken !== "function") return;
+
+        const vapidKey = window.FB.pushConfig && window.FB.pushConfig.vapidKey
+            ? String(window.FB.pushConfig.vapidKey).trim()
+            : "";
+
+        if (!vapidKey) {
+            console.warn("[FCM] Falta configurar pushConfig.vapidKey en index.html");
+            return;
+        }
+
+        try {
+            const messaging = await window.FB.messagingReady;
+            if (!messaging) return;
+
+            const swReg = await navigator.serviceWorker.getRegistration() || await navigator.serviceWorker.ready;
+            if (!swReg) return;
+
+            const token = await window.FB.getToken(messaging, {
+                vapidKey,
+                serviceWorkerRegistration: swReg
+            });
+
+            if (!token || token === lastRegisteredPushToken) {
+                await bindForegroundPushListener(messaging);
+                return;
+            }
+
+            const uid = window.FB.auth.currentUser.uid;
+            const tokenDocId = buildPushTokenDocId(uid, token);
+            await window.FB.setDoc(
+                window.FB.doc(window.FB.db, PUSH_TOKEN_COLLECTION, tokenDocId),
+                {
+                    uid,
+                    token,
+                    enabled: true,
+                    platform: getPushPlatformLabel(),
+                    userAgent: navigator.userAgent || "",
+                    updatedAt: Date.now()
+                },
+                { merge: true }
+            );
+
+            lastRegisteredPushToken = token;
+            await bindForegroundPushListener(messaging);
+        } catch (err) {
+            console.warn("[FCM] No se pudo registrar el dispositivo para push:", err);
         }
     };
 
@@ -1617,7 +1710,7 @@
             document.body.classList.add("theme-premium-pink");
         }
         // "dark" is the default, no class needed
-        syncThemeColorMeta(theme);
+        syncThemeColorMeta();
 
         // Update Theme Circles Active State
         $$(".theme-circle").forEach(circle => {
@@ -8579,6 +8672,7 @@
                             if (typeof window.loadPendingRequests === "function") {
                                 window.loadPendingRequests(); // Iniciar notificaciones push automáticas
                             }
+                            registerRemotePushNotifications();
                             try {
                                 const userRef = window.FB.doc(window.FB.db, "leaderboard", user.uid);
                                 const snap = await window.FB.getDoc(userRef);

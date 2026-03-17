@@ -1,3 +1,39 @@
+try {
+    importScripts('https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js');
+    importScripts('https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging-compat.js');
+
+    if (!firebase.apps.length) {
+        firebase.initializeApp({
+            apiKey: "AIzaSyA-ALVpht1Za682OUGvH6QWaudCJZYihFU",
+            authDomain: "enarm-lab-social.firebaseapp.com",
+            projectId: "enarm-lab-social",
+            storageBucket: "enarm-lab-social.firebasestorage.app",
+            messagingSenderId: "1046465986024",
+            appId: "1:1046465986024:web:f76360b91613c12032b85d"
+        });
+    }
+
+    const messaging = firebase.messaging();
+    messaging.onBackgroundMessage((payload) => {
+        const title = (payload.notification && payload.notification.title) || (payload.data && payload.data.title) || 'ENARM Lab';
+        const body = (payload.notification && payload.notification.body) || (payload.data && payload.data.body) || '';
+        const link = (payload.data && payload.data.link) || '/';
+
+        self.registration.showNotification(title, {
+            body,
+            icon: '/notification-icon.png',
+            badge: '/notification-badge.png',
+            tag: (payload.data && payload.data.kind) || 'enarm-push',
+            data: {
+                action: 'open-notifications-modal',
+                link
+            }
+        });
+    });
+} catch (err) {
+    console.warn('[SW] Firebase Messaging no disponible:', err);
+}
+
 // ENARMlab Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
 const CACHE_NAME = 'enarmlab-v6';
@@ -82,6 +118,9 @@ self.addEventListener('notificationclick', event => {
 
     event.waitUntil((async () => {
         const allClients = await clients.matchAll({ type: 'window', includeUncontrolled: true });
+        const targetLink = event.notification && event.notification.data && event.notification.data.link
+            ? event.notification.data.link
+            : '/';
 
         for (const client of allClients) {
             if ('focus' in client) {
@@ -91,6 +130,6 @@ self.addEventListener('notificationclick', event => {
             }
         }
 
-        await clients.openWindow('/');
+        await clients.openWindow(targetLink);
     })());
 });
