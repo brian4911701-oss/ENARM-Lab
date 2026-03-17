@@ -3197,8 +3197,10 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
   }
 
   .mobile-top-bar .logo-mark-sidebar {
-    width: 41px;
-    height: 57px;
+    width: 32px;
+    height: 44px;
+    transform: none !important;
+    animation: none !important;
   }
 
   #theme-selector-container.theme-options {
