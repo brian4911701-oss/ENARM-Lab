@@ -71,6 +71,9 @@
     const FIXED_CODE_EXPIRY = new Date(2026, 9, 1, 23, 59, 59);
     const ADMIN_PREVIEW_STORAGE_KEY = "enarm_admin_preview_mode";
     const DEMO_ALLOWED_THEMES = new Set(["ocean", "light"]);
+    const NOTIFICATION_ICON = "/notification-icon.png";
+    const NOTIFICATION_BADGE = "/notification-badge.png";
+    let notificationPermissionRequestedInSession = false;
 
     // ---------------------------------------------------------------------------
     // Topic Normalization (Unificación de subtemas y GPCs)
@@ -1196,6 +1199,41 @@
 
         if (window._bannerTimer) clearTimeout(window._bannerTimer);
         window._bannerTimer = setTimeout(() => banner.classList.remove('active'), 8000);
+    };
+
+    const requestNotificationPermissionOnOpen = async () => {
+        if (!("Notification" in window)) return;
+        if (notificationPermissionRequestedInSession) return;
+        if (Notification.permission !== "default") return;
+        notificationPermissionRequestedInSession = true;
+        try {
+            await Notification.requestPermission();
+        } catch (err) {
+            console.warn("[Notif] No se pudo solicitar permiso:", err);
+        }
+    };
+
+    const showSystemNotification = async (title, body) => {
+        if (!("Notification" in window)) return;
+        if (Notification.permission !== "granted") return;
+        const options = {
+            body,
+            icon: NOTIFICATION_ICON,
+            badge: NOTIFICATION_BADGE,
+            tag: `enarm-${title}`,
+            renotify: true,
+            data: { action: "open-notifications-modal" }
+        };
+        try {
+            if ("serviceWorker" in navigator) {
+                const reg = await navigator.serviceWorker.ready;
+                await reg.showNotification(title, options);
+                return;
+            }
+            new Notification(title, options);
+        } catch (err) {
+            console.warn("[Notif] No se pudo mostrar notificación del sistema:", err);
+        }
     };
 
     const formatTime = (secs) => {
@@ -6841,6 +6879,9 @@
         startExamCountdown();
         initReportLogic();
         initPomodoro();
+        setTimeout(() => {
+            requestNotificationPermissionOnOpen();
+        }, 900);
 
         // ── PWA Install Logic ──
         const pwaBanner = $("mobile-pwa-banner");
@@ -6934,6 +6975,7 @@
                 }
             }
         };
+        window.openNotificationsModal = openNotifModal;
 
         if (btnOpenProfile && profileModal) {
             btnOpenProfile.addEventListener("click", openProfileModal);
@@ -6957,6 +6999,14 @@
         if (btnCloseNotif && notifModal) {
             btnCloseNotif.addEventListener("click", () => {
                 notifModal.style.display = "none";
+            });
+        }
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.addEventListener("message", (event) => {
+                if (!event || !event.data) return;
+                if (event.data.type === "OPEN_NOTIFICATIONS_MODAL") {
+                    openNotifModal();
+                }
             });
         }
 
@@ -7656,6 +7706,7 @@
                         added.forEach(c => {
                             const d = c.doc.data();
                             showBanner("Nueva solicitud", `${d.fromName} quiere ser tu amigo.`, "\ud83e\udd1d");
+                            showSystemNotification("Nueva solicitud", `${d.fromName} quiere ser tu amigo.`);
                         });
                     }
                     firstLoadFriends = false;
@@ -7680,6 +7731,7 @@
                                     renderMergedNotifications();
                                 }
                             });
+                            showSystemNotification("¡Tienes un Reto!", `${d.challengerName} te desafió en ${d.specialty}.`);
                         });
                     }
                     firstLoadChallenges = false;
