@@ -70,7 +70,7 @@
     const DEMO_MAX_QTY = 30;
     const FIXED_CODE_EXPIRY = new Date(2026, 9, 1, 23, 59, 59);
     const ADMIN_PREVIEW_STORAGE_KEY = "enarm_admin_preview_mode";
-    const DEMO_ALLOWED_THEMES = new Set(["dark", "light"]);
+    const DEMO_ALLOWED_THEMES = new Set(["ocean", "light"]);
 
     // ---------------------------------------------------------------------------
     // Topic Normalization (Unificación de subtemas y GPCs)
@@ -274,7 +274,7 @@
         });
 
         $$(".theme-circle").forEach(circle => {
-            const selectedTheme = circle.dataset.theme || "dark";
+            const selectedTheme = circle.dataset.theme || "ocean";
             const locked = !premium && !DEMO_ALLOWED_THEMES.has(selectedTheme);
             circle.classList.toggle("demo-locked", locked);
             if (locked) {
@@ -309,6 +309,13 @@
                 topicInput.dataset.defaultPlaceholder = topicInput.placeholder || "";
             }
             const lockReason = "Los temas/GPC específicos son premium.";
+            if (!topicInput._premiumLockHandler) {
+                topicInput._premiumLockHandler = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openRedeemModal(lockReason);
+                };
+            }
             topicInput.classList.toggle("demo-locked", !premium);
             topicInput.readOnly = !premium;
             topicInput.title = !premium ? lockReason : "";
@@ -316,14 +323,13 @@
                 ? "Disponible en premium"
                 : (topicInput.dataset.defaultPlaceholder || "Buscar tema");
             if (!premium && !topicInput.dataset.lockBound) {
-                const redirectToPremium = (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    openRedeemModal(lockReason);
-                };
-                topicInput.addEventListener("focus", redirectToPremium);
-                topicInput.addEventListener("click", redirectToPremium);
+                topicInput.addEventListener("focus", topicInput._premiumLockHandler);
+                topicInput.addEventListener("click", topicInput._premiumLockHandler);
                 topicInput.dataset.lockBound = "1";
+            } else if (premium && topicInput.dataset.lockBound) {
+                topicInput.removeEventListener("focus", topicInput._premiumLockHandler);
+                topicInput.removeEventListener("click", topicInput._premiumLockHandler);
+                delete topicInput.dataset.lockBound;
             }
         }
         if (topicCont) topicCont.classList.toggle("demo-locked", !premium);
@@ -339,10 +345,10 @@
             btnCreate.style.opacity = enabled ? "1" : "0.6";
             btnCreate.style.cursor = enabled ? "pointer" : "not-allowed";
         }
-        if (!premium && !DEMO_ALLOWED_THEMES.has(State.theme || "dark")) {
-            State.theme = "dark";
-            localStorage.setItem("enarm_theme", "dark");
-            applyTheme("dark");
+        if (!premium && !DEMO_ALLOWED_THEMES.has(State.theme || "ocean")) {
+            State.theme = "ocean";
+            localStorage.setItem("enarm_theme", "ocean");
+            applyTheme("ocean");
         }
         const adminPanel = $("admin-codes-panel");
         if (adminPanel) adminPanel.style.display = isAdminUser() ? "block" : "none";
@@ -1413,7 +1419,7 @@
                 answered: totalq,
                 flame: State.history.length || 0,
                 lastUpdate: new Date(),
-                theme: State.theme || "dark",
+                theme: State.theme || "ocean",
                 globalStatsStr: JSON.stringify(State.globalStats),
                 historyStr: JSON.stringify(State.history),
                 reportsStr: JSON.stringify(reportsToSave)
@@ -1443,6 +1449,10 @@
         if (theme) {
             State.theme = theme;
             applyTheme(theme);
+        } else {
+            State.theme = "ocean";
+            localStorage.setItem("enarm_theme", "ocean");
+            applyTheme("ocean");
         }
         const adminPreviewMode = localStorage.getItem(ADMIN_PREVIEW_STORAGE_KEY);
         if (adminPreviewMode === "demo" || adminPreviewMode === "premium") {
@@ -1518,7 +1528,7 @@
         // Update Theme Circles Active State
         $$(".theme-circle").forEach(circle => {
             circle.classList.remove("active");
-            if (circle.dataset.theme === theme || (theme === "system" && circle.dataset.theme === "dark")) {
+            if (circle.dataset.theme === theme || (theme === "system" && circle.dataset.theme === "ocean")) {
                 circle.classList.add("active");
             }
         });
@@ -6114,7 +6124,7 @@
             State.history?.length || 0,
             histKey,
             State.userName || "",
-            State.theme || "dark",
+            State.theme || "ocean",
             quoteTickKey,
             specKey
         ].join("::");
@@ -6219,7 +6229,7 @@
         const lastHist = (State.history && State.history.length > 0) ? State.history[State.history.length - 1] : null;
         const histKey = lastHist ? `${lastHist.pct || 0}-${lastHist.timestamp || 0}` : "none";
         const chartKey = [
-            State.theme || "dark",
+            State.theme || "ocean",
             State.history?.length || 0,
             histKey,
             State.globalStats?.respondidas || 0,
@@ -8350,6 +8360,13 @@
                         updatedAt: redeemed.now,
                         code
                     }, { merge: true });
+                    State.entitlement = {
+                        status: "active",
+                        source: "code",
+                        expiresAt: redeemed.expiresAt,
+                        updatedAt: redeemed.now
+                    };
+                    syncPremiumUI();
                 }
                 openPremiumWelcomeModal();
                 if (input) input.value = "";
