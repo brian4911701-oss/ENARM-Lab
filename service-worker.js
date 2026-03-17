@@ -1,6 +1,6 @@
 // ENARMlab Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
-const CACHE_NAME = 'enarmlab-v5';
+const CACHE_NAME = 'enarmlab-v6';
 
 // Archivos esenciales que se cachean al instalar
 const CORE_ASSETS = [
@@ -11,6 +11,8 @@ const CORE_ASSETS = [
     '/questions.js',
     '/manifest.json',
     '/logo-e-mask.png',
+    '/notification-icon.png',
+    '/notification-badge.png',
     '/icon-192.png',
     '/icon-512.png'
 ];
@@ -73,4 +75,22 @@ self.addEventListener('fetch', event => {
                 });
             })
     );
+});
+
+self.addEventListener('notificationclick', event => {
+    event.notification.close();
+
+    event.waitUntil((async () => {
+        const allClients = await clients.matchAll({ type: 'window', includeUncontrolled: true });
+
+        for (const client of allClients) {
+            if ('focus' in client) {
+                client.postMessage({ type: 'OPEN_NOTIFICATIONS_MODAL' });
+                await client.focus();
+                return;
+            }
+        }
+
+        await clients.openWindow('/');
+    })());
 });
