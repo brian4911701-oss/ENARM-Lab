@@ -1224,13 +1224,40 @@
             renotify: true,
             data: { action: "open-notifications-modal" }
         };
+
+        const handleClick = () => {
+            try {
+                window.focus();
+            } catch (e) {
+                console.warn("[Notif] No se pudo enfocar la ventana:", e);
+            }
+            if (typeof window.openNotificationsModal === "function") {
+                window.openNotificationsModal();
+            }
+        };
+
+        try {
+            const browserNotification = new Notification(title, options);
+            browserNotification.onclick = (event) => {
+                if (event && typeof event.preventDefault === "function") {
+                    event.preventDefault();
+                }
+                handleClick();
+                browserNotification.close();
+            };
+            return;
+        } catch (err) {
+            console.warn("[Notif] Fallo la notificacion directa, probando service worker:", err);
+        }
+
         try {
             if ("serviceWorker" in navigator) {
-                const reg = await navigator.serviceWorker.ready;
-                await reg.showNotification(title, options);
-                return;
+                const reg = await navigator.serviceWorker.getRegistration() || await navigator.serviceWorker.ready;
+                if (reg) {
+                    await reg.showNotification(title, options);
+                    return;
+                }
             }
-            new Notification(title, options);
         } catch (err) {
             console.warn("[Notif] No se pudo mostrar notificacion del sistema:", err);
         }
