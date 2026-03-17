@@ -1,6 +1,6 @@
 // ENARMlab Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
-const CACHE_NAME = 'enarmlab-v1';
+const CACHE_NAME = 'enarmlab-v2';
 
 // Archivos esenciales que se cachean al instalar
 const CORE_ASSETS = [
@@ -10,6 +10,7 @@ const CORE_ASSETS = [
     '/app.js',
     '/questions.js',
     '/manifest.json',
+    '/logo-e-mask.png',
     '/icon-192.png',
     '/icon-512.png'
 ];

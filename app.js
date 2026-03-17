@@ -1490,7 +1490,7 @@
 
     const applyTheme = (theme) => {
         // Remove all current theme classes
-        document.body.classList.remove("light-mode", "theme-forest", "theme-ocean", "theme-sunset", "theme-premium", "theme-premium-pink");
+        document.body.classList.remove("light-mode", "theme-forest", "theme-ocean", "theme-sunset", "theme-navy-gold", "theme-black-teal", "theme-premium", "theme-premium-pink");
 
         if (theme === "system") {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
@@ -1504,6 +1504,10 @@
             document.body.classList.add("theme-ocean");
         } else if (theme === "sunset") {
             document.body.classList.add("theme-sunset");
+        } else if (theme === "navy-gold") {
+            document.body.classList.add("theme-navy-gold");
+        } else if (theme === "black-teal") {
+            document.body.classList.add("theme-black-teal");
         } else if (theme === "premium") {
             document.body.classList.add("theme-premium");
         } else if (theme === "premium-pink") {
