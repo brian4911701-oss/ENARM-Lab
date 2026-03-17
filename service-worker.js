@@ -1,6 +1,6 @@
 // ENARMlab Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
-const CACHE_NAME = 'enarmlab-v2';
+const CACHE_NAME = 'enarmlab-v3';
 
 // Archivos esenciales que se cachean al instalar
 const CORE_ASSETS = [
