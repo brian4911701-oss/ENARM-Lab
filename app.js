@@ -360,6 +360,34 @@
         });
     };
 
+    const THEME_CHROME_COLORS = Object.freeze({
+        dark: "#111623",
+        light: "#f1f5f9",
+        forest: "#0a3325",
+        ocean: "#191f78",
+        sunset: "#3d1a3b",
+        "navy-gold": "#152b53",
+        "black-teal": "#000000",
+        premium: "#050505",
+        "premium-pink": "#050505"
+    });
+
+    const syncThemeColorMeta = (theme) => {
+        let resolvedTheme = theme || "ocean";
+        if (resolvedTheme === "system") {
+            const prefersLight = !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches);
+            resolvedTheme = prefersLight ? "light" : "dark";
+        }
+        const color = THEME_CHROME_COLORS[resolvedTheme] || THEME_CHROME_COLORS.ocean;
+        let themeMeta = document.querySelector('meta[name="theme-color"]');
+        if (!themeMeta) {
+            themeMeta = document.createElement("meta");
+            themeMeta.setAttribute("name", "theme-color");
+            document.head.appendChild(themeMeta);
+        }
+        themeMeta.setAttribute("content", color);
+    };
+
     const openRedeemModal = (reason) => {
         const modal = $("redeem-modal");
         const reasonEl = $("redeem-reason");
@@ -1524,6 +1552,7 @@
             document.body.classList.add("theme-premium-pink");
         }
         // "dark" is the default, no class needed
+        syncThemeColorMeta(theme);
 
         // Update Theme Circles Active State
         $$(".theme-circle").forEach(circle => {

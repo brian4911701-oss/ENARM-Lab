@@ -3175,7 +3175,7 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
     z-index: 1000;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 12px;
   }
 
   body.light-mode .mobile-top-bar,
@@ -3190,6 +3190,21 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  .mobile-top-bar .user-actions {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+    gap: 8px !important;
+  }
+
+  .mobile-top-bar #btn-user-profile-mobile {
+    width: 34px !important;
+    height: 34px !important;
+    margin: 0;
   }
 
   .mobile-top-bar .logo-text {
@@ -3243,7 +3258,7 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
     min-width: 0;
     width: 100vw;
     padding: 16px;
-    padding-top: 100px;
+    padding-top: 76px;
     /* Increased space for the top bar */
     height: 100vh;
     padding-bottom: 120px;
@@ -3253,6 +3268,10 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
     /* Momentum scrolling */
     scrollbar-width: none;
     /* Firefox */
+  }
+
+  #view-dashboard .dashboard-header {
+    margin-top: 0 !important;
   }
 
   .main-content::-webkit-scrollbar {
@@ -3276,6 +3295,25 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
     grid-template-columns: 1fr 1fr !important;
   }
 
+  #view-dashboard .stats-grid>.stat-card:first-child {
+    order: 1;
+  }
+
+  #view-dashboard #card-sesiones {
+    order: 2;
+  }
+
+  #view-dashboard #card-rango {
+    order: 3;
+    grid-column: 1 / -1;
+    min-height: 150px;
+  }
+
+  #view-dashboard .stats-grid .stat-card.action-card {
+    order: 4;
+    grid-column: 1 / -1;
+  }
+
   .comunidad-grid {
     grid-template-columns: 1fr !important;
   }
@@ -3289,11 +3327,6 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
   .comunidad-header .btn-primary {
     width: 100%;
     justify-content: center;
-  }
-
-  .stats-grid .stat-card.action-card {
-    grid-column: 1 / -1;
-    /* Make the action card span full width */
   }
 
   .specs-grid,
