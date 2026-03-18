@@ -1,63 +1,841 @@
 {
-  "Sin Tema": {
-    "total": 44,
+  "Síndromes Coronarios": {
+    "total": 6,
     "subtemas": {
-      "Sin Subtema": 44
+      "Sin Subtema": 4,
+      "TRAUMA URETRAL Y VESICAL": 1,
+      "SÍNDROMES CORONARIOS AGUDOS (IAMCEST)": 1
     }
   },
-  "Reumatología: Lupus Eritematoso Sistémico": {
-    "total": 40,
+  "Diabetes": {
+    "total": 22,
     "subtemas": {
-      "Sin Subtema": 40
+      "Sin Subtema": 8,
+      "Otitis media maligna (Otitis externa maligna)": 1,
+      "Catarata": 1,
+      "Retinopatía Diabética": 1,
+      "Diabetes pregestacional y malformaciones": 1,
+      "Síndrome de ovario poliquístico – complicaciones metabólicas": 1,
+      "Enfermedad Hepática Grasa": 1,
+      "RETINOPATÍA DIABÉTICA": 1,
+      "INFECCIONES DE VÍAS URINARIAS (PIELONEFRITIS)": 1,
+      "PANCREATITIS CRÓNICA": 1,
+      "ABSCESO ANORRECTAL Y FÍSTULA": 1,
+      "GLAUCOMA PRIMARIO DE ÁNGULO ABIERTO": 1,
+      "Síndrome de ovario poliquístico (SOP)": 1,
+      "CANDIDIAS IS VULVOVAGINAL": 1,
+      "HIPERTENSIÓN ARTERIAL (TRATAMIENTO)": 1
+    }
+  },
+  "Tuberculosis": {
+    "total": 4,
+    "subtemas": {
+      "Sin Subtema": 2,
+      "TUBERCULOSIS PULMONAR (EFECTOS ADVERSOS DEL TAES)": 1,
+      "TUBERCULOSIS (EFECTOS ADVERSOS DEL TRATAMIENTO)": 1
+    }
+  },
+  "Trastornos del Ritmo": {
+    "total": 15,
+    "subtemas": {
+      "Sin Subtema": 7,
+      "Insuficiencia arterial aguda": 1,
+      "Isquemia mesentérica aguda": 1,
+      "OCLUSIÓN VASCULAR RETINIANA": 1,
+      "ISQUEMIA MESENTÉRICA AGUDA": 2,
+      "HEMATOMA SUBDURAL": 1,
+      "INSUFICIENCIA ARTERIAL AGUDA": 1,
+      "SÍNDROME DE REALIMENTACIÓN": 1
+    }
+  },
+  "Virus de la Inmunodeficiencia Humana": {
+    "total": 29,
+    "subtemas": {
+      "Sin Subtema": 7,
+      "Insuficiencia Venosa Crónica": 1,
+      "Colelitiasis sintomática": 1,
+      "VIH en embarazo": 1,
+      "Distocia por hipodinamia uterina": 1,
+      "Manejo médico vs quirúrgico": 1,
+      "TORSIÓN TESTICULAR": 2,
+      "HERNIA HIATAL / ERGE": 1,
+      "CÁNCER RENAL": 1,
+      "ENFERMEDAD ARTERIAL PERIFÉRICA": 1,
+      "ÚLCERA PÉPTICA PERFORADA": 1,
+      "EPIFISIOLISTESIS FEMORAL CAPITAL": 1,
+      "FRACTURAS ABIERTAS (CLASIFICACIÓN DE GUSTILO-ANDERSON)": 1,
+      "EPIFISIOLISIS FEMORAL PROXIMAL": 1,
+      "CEFALEA MIGRANA": 1,
+      "TRASTORNO BIPOLAR": 1,
+      "SÍNDROME DE APNEA OBSTRUCTIVA DEL SUEÑO (SAOS)": 2,
+      "CRIPTOCOCOSIS": 1,
+      "DOLOR POR CÁNCER (ESCALERA DE LA OMS)": 1,
+      "VIH / SIDA (PROFILAXIS)": 1,
+      "Virus de la Inmunodeficiencia Humana": 1
+    }
+  },
+  "Patología del Embarazo: Estados Hipertensivos": {
+    "total": 13,
+    "subtemas": {
+      "Sin Subtema": 5,
+      "Preeclampsia sin criterios de severidad": 1,
+      "Restricción del crecimiento intrauterino con Doppler severamente alterado": 1,
+      "Eclampsia y manejo de toxicidad por sulfato de magnesio": 1,
+      "Restricción del crecimiento intrauterino severa con Doppler crítico": 1,
+      "Síndrome HELLP": 1,
+      "Profilaxis con ácido acetilsalicílico": 1,
+      "ENFERMEDAD DE MEMBRANA HIALINA (SDR TIPO I)": 1,
+      "ENFERMEDAD DE MEMBRANA HIALINA (SDR TIPO 1)": 1
+    }
+  },
+  "CA de endometrio y CA de ovario (Oncología Ginecológica)": {
+    "total": 7,
+    "subtemas": {
+      "Sin Subtema": 4,
+      "Cáncer de endometrio – factores de riesgo": 1,
+      "Hiperplasia endometrial sin atipia": 1,
+      "CÁNCER COLORRECTAL (SÍNDROME DE LYNCH)": 1
     }
   },
   "Diabetes Gestacional": {
+    "total": 14,
+    "subtemas": {
+      "Sin Subtema": 2,
+      "Diabetes gestacional con falla a manejo nutricional": 1,
+      "Polihidramnios asociado a diabetes": 1,
+      "Macrosomía fetal": 2,
+      "Diabetes gestacional mal controlada intraparto": 1,
+      "Distocia de hombros": 1,
+      "Tratamiento inicial": 1,
+      "Diabetes gestacional": 1,
+      "Complicaciones fetales de diabetes gestacional": 1,
+      "Hipoglucemia neonatal en hijos de madre diabética": 1,
+      "HIPOGLUCEMIA NEONATAL": 1,
+      "TRANSPOSICIÓN DE GRANDES VASOS (TGV)": 1
+    }
+  },
+  "Bronquiolitis (Patología Respiratoria del Lactante y Preescolar)": {
     "total": 1,
     "subtemas": {
       "Sin Subtema": 1
     }
   },
-  "Vacunación": {
-    "total": 4,
+  "Crecimiento y Desarrollo": {
+    "total": 190,
     "subtemas": {
-      "Sin Subtema": 4
+      "Sin Subtema": 26,
+      "Alacranismo (Intoxicación por veneno de escorpión)": 1,
+      "Hernias": 1,
+      "RETINOBLASTOMA": 2,
+      "CRIPTORQUIDIA": 4,
+      "PATOLOGÍA BENIGNA DE CUELLO (QUISTE TIROGLOSO)": 1,
+      "DIVERTÍCULO DE MECKEL": 1,
+      "INVAGINACIÓN INTESTINAL (INTUSUSCEPCIÓN)": 1,
+      "ESTRABISMO": 1,
+      "ASPIRACIÓN DE CUERPO EXTRAÑO EN VÍA AÉREA": 2,
+      "FENILCETONURIA (PKU)": 1,
+      "SOMATOMETRÍA Y FÓRMULAS DE CRECIMIENTO": 1,
+      "HITOS DEL DESARROLLO PSICOMOTOR": 1,
+      "DESNUTRICIÓN PROTEICO  -CALÓRICA (KWASHIORKOR)": 1,
+      "DESNUTRICIÓN PROTEICO  -CALÓRICA (MARASMO)": 1,
+      "EPIGLOTITIS AGUDA": 1,
+      "BRONQUIOLITIS OBLITERANTE": 1,
+      "NEUMONÍA ADQUIRIDA EN LA COMUNIDAD (NAC)": 1,
+      "TOS FERINA (SÍNDROME COQUELUCHOIDE)": 4,
+      "SARAMPIÓN": 2,
+      "ESCARLATINA": 1,
+      "ERITEMA INFECCIOSO (QUINTA ENFERMEDAD)": 2,
+      "EXANTEMA SÚBITO (ROSEOLA / SEXTA ENFERMEDAD)": 1,
+      "ENFERMEDAD DIARREICA AGUDA (ROTAVIRUS)": 1,
+      "DESHIDRATACIÓN Y PLANES DE REHIDRATACIÓN (OMS)": 1,
+      "REFLUJO GASTROESOFÁGICO (RGE) VS ENFERMEDAD (ERGE)": 1,
+      "INFECCIÓN DE VÍAS URINARIAS (IVU)": 4,
+      "REFLUJO VESICOURETERAL (RVU)": 3,
+      "SÍNDROME NEFRÓTICO (CAMBIOS MÍNIMOS)": 1,
+      "SÍNDROME NEFRÍTICO (POSTESTREPTOCÓCICO)": 1,
+      "ANEMIA FERROPÉNICA": 1,
+      "PÚRPURA TROMBOCITOPÉNICA INMUNE (PTI)": 1,
+      "LEUCEMIA LINFOBLÁSTICA AGUDA (LLA)": 2,
+      "TUMOR DE WILMS (NEFROBLASTOMA)": 2,
+      "CRISIS CONVULSIVAS FEBRILES": 1,
+      "EPILEPSIA (AUSENCIAS TÍPICAS)": 2,
+      "HIDROCEFALIA / MALFORMACIÓN DE CHIARI": 1,
+      "INGESTIÓN DE CUERPOS EXTRAÑOS": 1,
+      "INGESTIÓN DE CÁUSTICOS": 2,
+      "INTOXICACIÓN POR PARACETAMOL": 2,
+      "MALTRATO INFANTIL (SÍNDROME DEL NIÑO MALTRATADO)": 1,
+      "CHOQUE SÉPTICO EN PEDIATRÍA": 1,
+      "PÚRPURA DE HENOCH  -SCHÖNLEIN (VASCULITIS POR IgA)": 1,
+      "ENFERMEDAD DE KAWASAKI": 3,
+      "ARTRITIS IDIOPÁTICA JUVENIL (AIJ) SISTÉMICA": 1,
+      "DIABETES MELLITUS TIPO 1 (DM1)": 1,
+      "TALLA BAJA (VARIANTES NORMALES)": 1,
+      "PARASITOSIS INTESTINAL (GIARDIASIS)": 1,
+      "ENTEROBIASIS (OXIUROS)": 1,
+      "TUBERCULOSIS PEDIÁTRICA": 1,
+      "COMUNICACIÓN INTERVENTRICULAR (CIV)": 3,
+      "TETRALOGÍA DE FALLOT": 3,
+      "COARTACIÓN DE LA AORTA": 1,
+      "DERMATITIS ATÓPICA": 1,
+      "DERMATITIS DEL PAÑAL": 1,
+      "IMPÉTIGO": 1,
+      "ESTRABISMO Y LEUCOCORIA": 1,
+      "REANIMACIÓN CARDIOPULMONAR (RCP) PEDIÁTRICA": 1,
+      "QUEMADURAS (EXTENSIÓN Y LÍQUIDOS)": 1,
+      "CHOQUE HIPOVOLÉMICO": 1,
+      "TRASTORNO POR DÉFICIT DE ATENCIÓN E HIPERACTIVIDAD (TDAH)": 1,
+      "TRASTORNO DEL ESPECTRO AUTISTA (TEA)": 1,
+      "TRASTORNO NEGATIVISTA DESAFIANTE (TND)": 1,
+      "FIEBRE REUMÁTICA (FR)": 1,
+      "INMUNODEFICIENCIA COMBINADA GRAVE (IDCG)": 1,
+      "AGAMMAGLOBULINEMIA LIGADA AL X (BRUTON)": 1,
+      "DESNUTRICIÓN PROTEICO  -CALÓRICA (KWASHIORKOR VS MARASMO)": 1,
+      "MARASMO (DESNUTRICIÓN CALÓRICA)": 1,
+      "RAQUITISMO (DEFICIENCIA DE VITAMINA D)": 1,
+      "SÍNDROME DE MUERTE SÚBITA DEL LACTANTE (SMSL)": 1,
+      "SEGURIDAD EN EL AUTOMÓVIL": 1,
+      "INTOXICACIÓN POR PLOMO (SATURNISMO)": 1,
+      "ESQUEMA DE RESCATE (VACUNA HEXAVALENTE)": 1,
+      "REACCIONES ADVERSAS (ESAVI)": 1,
+      "VACUNA CONTRA ROTAVIRUS": 1,
+      "ANEMIA FERROPÉNICA (DIAGNÓSTICO DIFERENCIAL)": 1,
+      "SÍNDROME URÉMICO HEMOLÍTICO (SUH)": 1,
+      "ACIDOSIS TUBULAR RENAL (ATR)": 1,
+      "ENFERMEDAD RENAL CRÓNICA (ERC) EN PEDIATRÍA": 1,
+      "ALERGIA A LA PROTEÍNA DE LA LECHE DE VACA (APLV)": 1,
+      "ENFERMEDAD CELÍACA": 1,
+      "HEPATITIS VIRAL TIPO A": 1,
+      "ATRESIA DE VÍAS BILIARES": 1,
+      "SÍNDROME DE WEST (ESPASMOS INFANTILES)": 2,
+      "SÍNDROME DE LENNOX -GASTAUT": 1,
+      "ENCEFALITIS VIRAL (HERPES SIMPLE)": 1,
+      "CETOACIDOSIS DIABÉTICA (COMPLICACIÓN)": 1,
+      "TOXOPLASMOSIS CONGÉNITA": 1,
+      "TRASTORNOS PAROXÍSTICOS NO EPILÉPTICOS (ESPASMO DEL SOLLOZO)": 1,
+      "RUBÉOLA": 1,
+      "EXANTEMA SÚBITO (ROSÉOLA INFANTIL / SEXTA ENFERMEDAD)": 1,
+      "VARICELA": 1,
+      "LARINGOMALACIA": 1,
+      "BRONQUIOLITIS AGUDA": 1,
+      "ASMA PEDIÁTRICA (CRISIS ASMÁTICA)": 1,
+      "ASPIRACIÓN DE CUERPO EXTRAÑO": 2,
+      "COMUNICACIÓN INTERAURICULAR (CIA)": 2,
+      "ESCROTO AGUDO (TORSIÓN TESTICULAR)": 1,
+      "SÍNDROME NEFRÍTICO (GLOMERULONEFRITIS POSTESTREPTOCÓCICA)": 1,
+      "NEUROBLASTOMA": 1,
+      "ARTRITIS IDIOPÁTICA JUVENIL (AIJ)": 1,
+      "SARAMPIÓN (PRIMERA ENFERMEDAD)": 1,
+      "VARICELA (HERPES VIRUS 3)": 1,
+      "ESCARLATINA (S. PYOGENES)": 1,
+      "PAROTIDITIS (PAPERAS)": 1,
+      "ENFERMEDAD MANO  -PIE-BOCA": 1,
+      "DESNUTRICIÓN PROTEICO  -CALÓRICA (KWASHIORKOR VS. MARASMO)": 1,
+      "VITAMINA D (RAQUITISMO)": 1,
+      "FARINGOAMIGDALITIS ESTREPTOCÓCICA": 1,
+      "OTITIS MEDIA AGUDA (OMA)": 1,
+      "SINUSITIS AGUDA": 1,
+      "CONVULSIONES FEBRILES": 1,
+      "ATROFIA MUSCULAR ESPINAL (AME)": 1,
+      "VACUNA SRP (TRIPLE VIRAL)": 1,
+      "INGESTA DE CUERPOS EXTRAÑOS (PILAS DE BOTÓN Y MONEDAS)": 1,
+      "MALTRATO INFANTIL (SÍNDROME DEL NIÑO SACUDIDO)": 1,
+      "DERMATITIS ATÓPICA (ECCEMA)": 1,
+      "DERMATITIS DEL PAÑAL E INFECCIÓN POR CANDIDA": 1,
+      "IMPÉTIGO (CONTAGIOSO Y AMPOLLOSO)": 1,
+      "ENFERMEDAD POR REFLUJO GASTROESOFÁGICO (ERGE)": 1,
+      "CRISIS ASMÁTICA SEVERA": 1,
+      "LARINGOTRAQUEÍTIS AGUDA (CRUP)": 1,
+      "CRUP (MANEJO DE LA VÍA AÉREA)": 1,
+      "ASCARIASIS (SÍNDROME DE LÖFFLER)": 1,
+      "ESCABIOSIS (SARNA)": 1,
+      "ENFERMEDAD DE KAWASAKI INCOMPLETO": 1,
+      "SARAMPIÓN COMPLICADO": 1,
+      "ESCARLATINA VS KAWASAKI": 1,
+      "SÍNDROME NEFRÓTICO": 1,
+      "HEMOFILIAS": 1,
+      "RTA (ACIDOSIS TUBULAR RENAL)": 1,
+      "EPILEPSIA (AUSENCIAS)": 1,
+      "PICADURA DE ALACRÁN (Centruroides)": 1,
+      "LEUCEMIA LINFOCÍTICA AGUDA (LLA)": 1,
+      "CANDIDIASIS ORAL (Muguet)": 1,
+      "PÚRPURA DE HENOCH -SCHÖNLEIN": 1
     }
   },
-  "Apendicitis Aguda": {
+  "Planes de hidratación (Diarrea en el Pediátrico)": {
     "total": 2,
     "subtemas": {
       "Sin Subtema": 2
     }
   },
-  "Nefrología: Enfermedad Renal Crónica": {
-    "total": 24,
+  "Apendicitis": {
+    "total": 10,
     "subtemas": {
-      "Sin Subtema": 24
+      "Sin Subtema": 4,
+      "Apendicitis aguda": 1,
+      "APENDICITIS AGUDA": 1,
+      "DIVERTICULITIS": 1,
+      "HERNIAS RARAS (AMYAND Y GARENGEOT)": 1,
+      "Apendicitis": 2
     }
   },
-  "Hemorragias del Primer Trimestre": {
+  "Trauma torácico Neumotórax a tensión, taponamiento cardíaco, hemotórax masivo, neumotórax abierto, tórax inestable (ATLS)": {
+    "total": 4,
+    "subtemas": {
+      "Sin Subtema": 4
+    }
+  },
+  "Quemaduras / Golpe de Calor / Hipotermia": {
+    "total": 9,
+    "subtemas": {
+      "Sin Subtema": 2,
+      "Reanimación hídrica en paciente quemado": 1,
+      "Quemaduras eléctricas": 1,
+      "QUEMADURAS TÉRMICAS Y REANIMACIÓN HÍDRICA": 1,
+      "MELANOMA": 1,
+      "REANIMACIÓN HÍDRICA (FÓRMULA DE PARKLAND)": 1,
+      "CRITERIOS DE ENVÍO A UNIDAD DE QUEMADOS": 1,
+      "SÍNDROME DE CHOQUE TÓXICO ESTAFILOCÓCICO (SCT)": 1
+    }
+  },
+  "Hernias / Esplenectomía": {
+    "total": 2,
+    "subtemas": {
+      "Sin Subtema": 2
+    }
+  },
+  "STDA por várices esofágicas (Cirrosis y sus Complicaciones / Trasplante Hepático)": {
     "total": 3,
     "subtemas": {
-      "Sin Subtema": 3
+      "Sin Subtema": 2,
+      "VARICES ESOFÁGICAS": 1
     }
   },
-  "Pancreatitis Aguda": {
+  "Placenta previa (Hemorragias del Segundo Trimestre)": {
     "total": 6,
     "subtemas": {
-      "Sin Subtema": 6
+      "Sin Subtema": 3,
+      "Acretismo placentario": 1,
+      "Placenta previa oclusiva total": 1,
+      "Desprendimiento prematuro de placenta leve": 1
     }
   },
-  "Patología de Extremidad Inferior": {
+  "Embarazo ectópico (Hemorragias del Primer Trimestre)": {
+    "total": 2,
+    "subtemas": {
+      "Sin Subtema": 2
+    }
+  },
+  "CACU (Oncología Ginecológica)": {
+    "total": 22,
+    "subtemas": {
+      "Sin Subtema": 8,
+      "Cáncer cervicouterino etapa temprana": 1,
+      "NIC II–III": 1,
+      "Hiperplasia endometrial": 1,
+      "Cáncer cervicouterino localmente avanzado": 1,
+      "Cáncer cervicouterino – tamizaje": 1,
+      "Manejo médico con metotrexato": 1,
+      "Lesión intraepitelial escamosa de alto grado": 1,
+      "Cáncer invasor estadio temprano": 1,
+      "Índice de Bishop": 1,
+      "Embarazo ectópico roto": 1,
+      "Ruptura prematura de membranas a término": 1,
+      "ONCOHEMATOLOGÍA (LINFOMA DE HODGKIN)": 1,
+      "LINFOMA DE HODGKIN": 2
+    }
+  },
+  "Enf. Trofoblástica (Hemorragias del Primer Trimestre)": {
+    "total": 1,
+    "subtemas": {
+      "Sin Subtema": 1
+    }
+  },
+  "Estenosis Hipertrófica del Píloro": {
+    "total": 10,
+    "subtemas": {
+      "Sin Subtema": 1,
+      "Traumatismo Craneoencefálico (TCE) - Hematoma Epidural": 1,
+      "ESTENOSIS HIPERTRÓFICA DEL PÍLORO": 1,
+      "ESTENOSIS HIPERTRÓFICA DEL PÍLORO (EHP)": 3,
+      "MENINGITIS BACTERIANA AGUDA": 2,
+      "EVC HEMORRÁGICO (HEMORRAGIA SUBARACNOIDEA)": 1,
+      "EVC HEMORRÁGICO (HEMORRAGIA INTRACEREBRAL)": 1
+    }
+  },
+  "Laringotraqueítis (Patología Respiratoria del Lactante y Preescolar)": {
+    "total": 2,
+    "subtemas": {
+      "Sin Subtema": 2
+    }
+  },
+  "Hernias diafragmáticas (Patología Neonatal)": {
+    "total": 3,
+    "subtemas": {
+      "Sin Subtema": 1,
+      "HERNIA DIAFRAGMÁTICA (MANEJO EN SALA DE PARTOS)": 1,
+      "Hernias diafragmáticas (Patología Neonatal)": 1
+    }
+  },
+  "Control Prenatal": {
+    "total": 83,
+    "subtemas": {
+      "Sin Subtema": 10,
+      "Inducción del trabajo de parto": 1,
+      "Vasa previa": 1,
+      "Amenaza de parto pretérmino (<34 semanas)": 1,
+      "Hipertensión crónica con preeclampsia sobreagregada": 1,
+      "Ruptura prematura de membranas pretérmino (<34 semanas)": 1,
+      "Síndrome de transfusión feto-fetal": 1,
+      "Oligohidramnios con restricción del crecimiento intrauterino": 1,
+      "Trabajo de parto fisiológico y análisis con partograma": 1,
+      "Isoinmunización Rh y profilaxis anti-D": 1,
+      "Trombosis venosa profunda": 1,
+      "Desprendimiento prematuro de placenta normoinserta (DPPNI) severo": 1,
+      "Placenta previa oclusiva total": 1,
+      "Eclampsia intraparto": 2,
+      "Preeclampsia con datos de severidad y manejo intrahospitalario": 1,
+      "Síndrome HELLP": 1,
+      "Desproporción cefalopélvica": 2,
+      "Presentación pélvica": 1,
+      "Hipotiroidismo en embarazo": 1,
+      "Arresto de dilatación en fase activa": 1,
+      "Placenta previa": 1,
+      "Corioamnionitis": 1,
+      "Suplementación en embarazo": 1,
+      "Fases del trabajo de parto": 1,
+      "Eclampsia": 1,
+      "Ruptura prematura de membranas a término": 1,
+      "Amenaza de parto pretérmino": 1,
+      "Bacteriuria asintomática": 1,
+      "Cálculo de edad gestacional": 1,
+      "Embarazo ectópico roto": 1,
+      "Pruebas de laboratorio iniciales": 1,
+      "ATLS EN LA EMBARAZADA": 1,
+      "COLECISTITIS AGUDA": 2,
+      "CÁNCER GÁSTRICO": 1,
+      "RETINOPATÍA DEL PREMATURO": 1,
+      "LITIASIS RENAL": 1,
+      "Mola hidatidiforme completa": 1,
+      "Aborto retenido (aborto diferido)": 1,
+      "Embarazo anembrionado (huevo anembrionado)": 1,
+      "Diagnóstico diferencial de sangrado en el primer trimestre": 1,
+      "Preeclampsia": 1,
+      "ISOINMUNIZACIÓN MATERNO  -FETAL (Rh)": 1,
+      "LACTANCIA MATERNA (PROPIEDADES Y TIPOS)": 1,
+      "DEFECTOS DEL TUBO NEURAL": 1,
+      "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)": 3,
+      "RETINOPATÍA DEL PREMATURO (ROP)": 1,
+      "VIRUS SINCITIAL RESPIRATORIO (PROFILAXIS EN BRONQUIOLITIS)": 1,
+      "SÍFILIS CONGÉNITA": 2,
+      "SÍNDROME DE ASPIRACIÓN DE MECONIO (SAM)": 2,
+      "ENTEROCOLITIS NECROTIZANTE (ECN)": 1,
+      "PARÁLISIS CEREBRAL INFANTIL (PCI)": 1,
+      "GASTROSQUISIS": 1,
+      "CAMBIOS FISIOLÓGICOS EN EL EMBARAZO": 1,
+      "CONTROL PRENATAL (GPC)": 1,
+      "ABORTO (TIPOS Y MANEJO)": 1,
+      "ENFERMEDAD TROFOBLÁSTICA GESTACIONAL (MOLA)": 1,
+      "DEFECTOS DEL TUBO NEURAL (MIELOMENINGOCELE)": 1,
+      "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (TTRN)": 1,
+      "SÍNDROME DE DIFICULTAD RESPIRATORIA (SDR / ENFERMEDAD DE": 1,
+      "ENCEFALOPATÍA BILIRRUBÍNICA (KERNICTERUS)": 1,
+      "REANIMACIÓN NEONATAL (NRP)": 1,
+      "ENTEROCOLITIS NECROTIZANTE (CLASIFICACIÓN DE BELL)": 1,
+      "SEPSIS NEONATAL TARDÍA (ASOCIADA A CATÉTER)": 1,
+      "DIFICULTAD RESPIRATORIA EN EL PREMATURO TARDÍO": 1,
+      "DISPLASIA BRONCOPULMONAR (DBP)": 1,
+      "TEMBLOR ESENCIAL": 1,
+      "INTOXICACIÓN POR PARACETAMOL": 1
+    }
+  },
+  "Diverticulitis (Patología Diverticular)": {
     "total": 2,
     "subtemas": {
       "Sin Subtema": 1,
-      "Lesión de Ligamento Cruzado Anterior": 1
+      "DIVERTICULITIS AGUDA (ESCALA DE HINCHEY)": 1
     }
   },
-  "Enfermedades transmitidas por Vector": {
+  "Tromboembolia pulmonar (Patología Arterial y Venosa)": {
     "total": 3,
     "subtemas": {
-      "Sin Subtema": 3
+      "Sin Subtema": 2,
+      "TROMBOEMBOLIA PULMONAR (MANEJO)": 1
+    }
+  },
+  "Lupus Eritematoso Sistémico": {
+    "total": 289,
+    "subtemas": {
+      "Sin Subtema": 20,
+      "Litiasis renal": 1,
+      "Colitis Ulcerosa Crónica Idiopática (CUCI)": 1,
+      "Sangrado de tubo digestivo alto (STDA) por várices esofágicas": 1,
+      "Síndrome Compartimental": 1,
+      "Sífilis primaria": 1,
+      "Patología de anexos (Chalazión)": 1,
+      "Cáncer gástrico": 1,
+      "Fisura anal crónica": 1,
+      "Enfermedad por Reflujo Gastroesofágico (ERGE)": 1,
+      "Síndrome de embolia grasa": 1,
+      "Desprendimiento de retina": 1,
+      "Absceso periamigdalino": 1,
+      "Trauma Abdominal Cerrado": 1,
+      "Pterigión": 1,
+      "Conjuntivitis alérgica": 1,
+      "Cáncer Renal": 1,
+      "Infección de vías urinarias bajas (Cistitis aguda)": 1,
+      "Loxoscelismo (Araña violinista)": 1,
+      "OMA (Otitis Media Aguda)": 1,
+      "Absceso Hepático Amebiano": 1,
+      "Trauma Genitourinario (Trauma uretral)": 1,
+      "Golpe de Calor (Heat Stroke)": 1,
+      "Trauma Pélvico": 1,
+      "Úlcera Corneal (Queratitis microbiana)": 1,
+      "Aborto incompleto": 3,
+      "Colestasis intrahepática del embarazo": 2,
+      "Inducción fallida": 1,
+      "Corioamnionitis clínica": 1,
+      "Vasa previa": 3,
+      "Ruptura prematura de membranas pretérmino (RPMPT)": 1,
+      "Hipertensión gestacional vs preeclampsia": 1,
+      "Retención placentaria": 1,
+      "Pielonefritis aguda": 1,
+      "Oligohidramnios severo a término": 1,
+      "Sufrimiento fetal agudo intraparto": 1,
+      "Cetoacidosis diabética en embarazo": 1,
+      "Aborto diferido (retenido)": 1,
+      "Tromboembolia pulmonar en embarazo": 1,
+      "Restricción del crecimiento intrauterino (RCIU) temprana con Doppler": 1,
+      "Colestasis intrahepática con criterios de interrupción": 1,
+      "Embarazo molar completo": 1,
+      "Presentación pélvica a término": 1,
+      "Neoplasia trofoblástica gestacional postmolar": 1,
+      "Placenta previa diagnosticada antes de 28 semanas": 1,
+      "Preeclampsia antes de las 34 semanas sin datos de severidad": 1,
+      "Parto pretérmino espontáneo": 1,
+      "Toxoplasmosis en embarazo": 1,
+      "Desprendimiento prematuro de placenta normoinserta (DPPNI)": 2,
+      "Síndrome de ovario poliquístico (SOP) y criterios diagnósticos": 1,
+      "Enfermedad pélvica inflamatoria complicada": 1,
+      "Ruptura prematura de membranas pretérmino (RPM pretérmino)": 1,
+      "Aborto séptico": 2,
+      "Restricción del crecimiento intrauterino (RCIU)": 1,
+      "Isoinmunización Rh": 1,
+      "Aborto retenido": 1,
+      "Ectópico roto": 1,
+      "Eclampsia": 1,
+      "Hipertensión gestacional": 2,
+      "Diabetes gestacional diagnóstico": 1,
+      "Preeclampsia con datos neurológicos": 1,
+      "Oligohidramnios": 1,
+      "Embarazo anembrionado": 1,
+      "Preeclampsia sin proteinuria (criterios actuales)": 1,
+      "Enfermedad pélvica inflamatoria": 1,
+      "Embarazo molar (Mola hidatidiforme completa)": 1,
+      "Vaginosis bacteriana": 1,
+      "Mastitis puerperal": 1,
+      "Dismenorrea primaria": 1,
+      "Pielonefritis aguda gestacional": 1,
+      "Toxíndromes (Anticolinérgico)": 1,
+      "Chancroide": 1,
+      "Celulitis Periorbitaria vs Orbitaria": 1,
+      "Papilomatosis laríngea (Papilomatosis respiratoria recurrente)": 1,
+      "Cáncer de Recto": 1,
+      "Uveítis Anterior": 1,
+      "Mordedura de Serpiente (Viperidae)": 1,
+      "Dispepsia Funcional": 1,
+      "Linfogranuloma Venéreo": 1,
+      "Blefaritis": 1,
+      "GASTRITIS AGUDA O CRONICA": 1,
+      "HEPATITIS AGUDAS Y CRÓNICAS": 1,
+      "FISTULAS": 1,
+      "TCE HEMORRAGIA SUBDURAL": 1,
+      "LATRODECTISMO": 1,
+      "Hipotermia": 1,
+      "Hipoacusia neurosensorial": 1,
+      "SÍNDROME COMPARTIMENTAL": 3,
+      "PROFILAXIS ANTITETÁNICA": 1,
+      "GLAUCOMA": 1,
+      "CÁNCER UROTELIAL Y TESTICULAR": 2,
+      "OCLUSION INTESTINAL": 1,
+      "FISURA ANAL": 2,
+      "CHOQUE HIPOVOLÉMICO HEMORRÁGICO": 1,
+      "CÁNCER DE PENE": 1,
+      "VÍA AÉREA Y VENTILACIÓN": 1,
+      "TCE ESCALA DE GLASGOW": 1,
+      "HEMORROIDES": 2,
+      "INSUFICIENCIA VENOSA CRÓNICA": 1,
+      "IVU (INFECCIONES DE VÍAS URINARIAS)": 1,
+      "ESPLENECTOMÍA": 1,
+      "CÁNCER DE ESÓFAGO": 2,
+      "TRAUMA PEDIÁTRICO": 1,
+      "LESIONES MENISCALES / LIGAMENTOS RODILLA": 1,
+      "VÓLVULO DE SIGMOIDES": 1,
+      "ENFERMEDAD DE MENIERE": 1,
+      "ABSCESO HEPÁTICO (AMEBIANO Y PIÓGENO)": 1,
+      "DESGARRO DE MALLORY  -WEISS": 1,
+      "FRACTURA DE ESCAFOIDES": 1,
+      "OTITIS MEDIA AGUDA (OMA) / MASTOIDITIS": 1,
+      "HERNIA EPIGÁSTRICA": 1,
+      "LOXOSCELISMO": 1,
+      "OTOESCLEROSIS": 1,
+      "PRIAPISMO": 1,
+      "TRAUMA TORÁCICO (TAPONAMIENTO CARDÍACO)": 1,
+      "EPIDIDIMITIS": 1,
+      "FARINGOAMIGDALITIS": 1,
+      "TRAUMA TORÁCICO (NEUMOTÓRAX A TENSIÓN)": 1,
+      "TENOSINOVITIS DE DE QUERVAIN": 1,
+      "CELULITIS ORBITARIA": 1,
+      "TRAUMA MEDULAR Y CHOQUE NEUROGÉNICO": 1,
+      "NEURITIS VESTIBULAR": 1,
+      "TRAUMA RENAL": 2,
+      "TRAUMA DE CUELLO": 1,
+      "FRACTURA DE DIÁFISIS FEMORAL": 1,
+      "PTERIGIÓN": 1,
+      "OTITIS EXTERNA (OÍDO DE NADADOR)": 1,
+      "CÁNCER DE PIEL NO MELANOMA (CARCINOMA BASOCELULAR)": 1,
+      "TRAUMA CRANEOENCEFÁLICO (HEMATOMA SUBDURAL)": 1,
+      "SIALOLITIASIS": 1,
+      "LUXACIÓN ACROMIOCLAVICULAR": 1,
+      "ÍLEO BILIAR": 1,
+      "PROSTATITIS BACTERIANA AGUDA": 1,
+      "FÍSTULA ANORRECTAL": 1,
+      "TRAUMA MAXILOFACIAL (LE FORT)": 1,
+      "PATOLOGÍA ESCROTAL BENIGNA (VARICOCELE)": 1,
+      "PARAFIMOSIS": 1,
+      "ORZUELO": 1,
+      "TRAUMA TORÁCICO (HEMOTÓRAX MASIVO)": 1,
+      "DESPRENDIMIENTO DE RETINA REGMATÓGENO": 1,
+      "MORDEDURA DE SERPIENTES (ACCIDENTE OFÍDICO)": 1,
+      "GLAUCOMA AGUDO DE ÁNGULO CERRADO": 1,
+      "NEUMOTÓRAX A TENSIÓN": 1,
+      "Aborto inevitable": 1,
+      "Embarazo ectópico no roto": 1,
+      "Aborto completo": 1,
+      "Mola hidatidiforme parcial": 1,
+      "Factores de riesgo para embarazo ectópico": 1,
+      "Síndrome HELLP": 1,
+      "Endometriosis": 1,
+      "Enfermedad pélvica inflamatoria (EPI)": 1,
+      "SARCOMAS DE PARTES BLANDAS": 1,
+      "ACALASIA (TRATAMIENTO)": 1,
+      "DIVERTÍCULO DE MECKEL": 1,
+      "TAPONAMIENTO CARDÍACO": 1,
+      "ORQUIEPIDIDIMITIS": 1,
+      "RUPTURA TRAUMÁTICA DE DIAFRAGMA": 1,
+      "QUISTES RENALES (CLASIFICACIÓN DE BOSNIAK)": 1,
+      "VIRUS DE LA INMUNODEFICIENCIA HUMANA (INFECCIONES": 2,
+      "NEUMONÍA ATÍPICA": 1,
+      "INTOXICACIÓN POR HIERRO": 1,
+      "DESARROLLO PUBERAL MASCULINO": 1,
+      "TRASTORNOS DE LA CONDUCTA ALIMENTARIA (ANOREXIA NERVIOSA)": 1,
+      "ANEMIA DE CÉLULAS FALCIFORMES (DREPANOCITOSIS)": 1,
+      "ENFERMEDAD DE GRAVES (HIPERTIROIDISMO PEDIÁTRICO)": 1,
+      "SÍNDROME DE GUILLAIN-BARRÉ (SGB)": 1,
+      "SÍNDROME NEFRÍTICO (GLOMERULONEFRITIS POSTESTREPTOCÓCICA)": 1,
+      "ESCARLATINA": 1,
+      "LINFOMA DE HODGKIN VS NO HODGKIN": 1,
+      "MÉTODOS ANTICONCEPTIVOS": 1,
+      "FISIOLOGÍA DEL CICLO MENSTRUAL": 1,
+      "GIARDIASIS INTESTINAL": 1,
+      "AMEBIASIS INTESTINAL (DISENTERÍA)": 1,
+      "OXIURIASIS (ENTEROBIUS VERMICULARIS)": 1,
+      "HIPERPLASIA SUPRARRENAL CONGÉNITA (HSC)": 1,
+      "VASCULITIS POR IgA (PÚRPURA DE HENOCH -SCHÖNLEIN)": 1,
+      "VAGINOSIS BACTERIANA": 1,
+      "TRICOMONIASIS VAGINAL": 1,
+      "ENFERMEDAD PÉLVICA INFLAMATORIA (EPI)": 1,
+      "ENFERMEDAD DE LYME": 1,
+      "BRUCELOSIS": 2,
+      "ENFERMEDAD PULMONAR OBSTRUCTIVA CRÓNICA (EPOC)": 1,
+      "NEUMONÍAS OCUPACIONALES (SILICOSIS)": 1,
+      "ENFERMEDAD DE GRAVES (HIPERTIROIDISMO)": 1,
+      "ANORMALIDADES DE LA HEMOSTASIA (ENFERMEDAD DE VON": 1,
+      "INSUFICIENCIA CARDÍACA AGUDA (EDEMA AGUDO DE PULMÓN)": 1,
+      "MIOCARDIOPATÍA HIPERTRÓFICA": 1,
+      "ACLS (RITMOS NO DESFIBRILABLES)": 1,
+      "CEFALEA EN RACIMOS (CLUSTER)": 2,
+      "ARTRITIS REUMATOIDE (AR)": 1,
+      "ESPONDILITIS ANQUILOSANTE": 1,
+      "SÍNDROME NEFRÍTICO": 1,
+      "CÁNCER DE PIEL (MELANOMA)": 1,
+      "PSORIASIS": 1,
+      "FARMACODERMIAS (SX STEVENS -JOHNSON / NET)": 1,
+      "ÚLCERAS POR PRESIÓN": 1,
+      "TRASTORNO DEPRESIVO MAYOR": 1,
+      "ESQUIZOFRENIA": 1,
+      "TRASTORNO DE PÁNICO": 1,
+      "INTOXICACIÓN POR BENZODIACEPINAS": 1,
+      "INMUNODEFICIENCIA COMÚN VARIABLE": 1,
+      "VIH / SIDA (DIAGNÓSTICO Y GENERALIDADES)": 1,
+      "VIH (INFECCIONES OPORTUNISTAS - TOXOPLASMOSIS)": 1,
+      "TUBERCULOSIS MENÍNGEA": 2,
+      "INFECTO -PERLAS (MALARIA / PALUDISMO)": 1,
+      "COMPLICACIONES MECÁNICAS DEL IAM": 1,
+      "DERRAME PLEURAL (CRITERIOS DE LIGHT)": 2,
+      "MIELOMA MÚLTIPLE (MM)": 1,
+      "POLICITEMIA VERA": 1,
+      "ENDOCARDITIS INFECCIOSA (CRITERIOS DE DUKE)": 1,
+      "ABSCESO HEPÁTICO": 2,
+      "ARTRITIS SÉPTICA": 1,
+      "NEFROPATÍA POR IgA (ENFERMEDAD DE BERGER)": 1,
+      "ENFERMEDAD RENAL POLIQUÍSTICA AUTOSÓMICA DOMINANTE (ERPAD)": 1,
+      "ESTADO DE CHOQUE (FISIOPATOLOGÍA)": 1,
+      "ENCEFALITIS HERPÉTICA": 1,
+      "VIH / SIDA (INFECCIONES OPORTUNISTAS)": 1,
+      "NEUROCISTICERCOSIS": 1,
+      "MALARIA (PALUDISMO)": 1,
+      "BRUCELOSIS (FIEBRE DE MALTA)": 1,
+      "ÚLCERAS POR PRESIÓN (UPP)": 1,
+      "PARÁLISIS DE BELL (VII PAR)": 1,
+      "SÍNDROME DE TOLOSA -HUNT": 1,
+      "NARCOLEPSIA": 1,
+      "PÚRPURA TROMBOCITOPÉNICA INMUNITARIA (PTI)": 1,
+      "CÁNCER DE PIEL (BASOCELULAR)": 1,
+      "MELANOMA MALIGNO": 1,
+      "PSORIASIS EN PLACAS": 1,
+      "PÉNFIGO VULGAR": 1,
+      "ESCABIASIS (SARNA)": 1,
+      "SÍFILIS SECUNDARIA": 1,
+      "LINFOGRANULOMA VENÉREO": 1,
+      "CHANCRO BLANDO (CHANCROIDE)": 1,
+      "TRASTORNO DE DEPRESIÓN MAYOR": 1,
+      "DISLIPIDEMIAS (NOM-037-SSA2 -2012)": 1,
+      "NEUMOCONIOSIS (ASBESTOSIS)": 1,
+      "DEMENCIA POR CUERPOS DE LEWY": 1,
+      "INSOMNIO EN EL ANCIANO": 1,
+      "ENFERMEDAD DE CREUTZFELDT -JAKOB": 1,
+      "ARTERITIS DE TAKAYASU": 1,
+      "POLIMIOSITIS / SÍNDROME ANTISINTETASA": 1,
+      "ENFERMEDAD DE BEHÇET": 1,
+      "CHOQUE SÉPTICO - METAS DE REANIMACIÓN": 1,
+      "CANDIDEMIA EN UCI": 1,
+      "MANEJO DE LA DISNEA EN EL PACIENTE TERMINAL": 1,
+      "TROMBOEMBOLIA PULMONAR (TEP)": 1,
+      "PERICARDITIS AGUDA": 1,
+      "INFECTO LOGÍA Y CARDIOLOGÍA": 1,
+      "NEUROLOGÍA Y DERMATOLOGÍA": 1
+    }
+  },
+  "Epidemiología": {
+    "total": 2,
+    "subtemas": {
+      "Sin Subtema": 2
+    }
+  },
+  "Ictericia Neonatal": {
+    "total": 3,
+    "subtemas": {
+      "Sin Subtema": 2,
+      "ICTERICIA FISIOLÓGICA VS PATOLÓGICA": 1
+    }
+  },
+  "Invaginación intestinal (Patología Gastrointestinal del Pediátrico)": {
+    "total": 8,
+    "subtemas": {
+      "Sin Subtema": 4,
+      "INVAGINACIÓN INTESTINAL (INTUSUSCEPCIÓN)": 2,
+      "LINFOMA NO HODGKIN (BURKITT)": 1,
+      "INTUSUSCEPCIÓN (INVAGINACIÓN INTESTINAL)": 1
+    }
+  },
+  "Cervicovaginitis bacteriana (Patología Infecciosa Cervical)": {
+    "total": 1,
+    "subtemas": {
+      "Sin Subtema": 1
+    }
+  },
+  "RPM (Parto Prematuro y Patología Coriónica)": {
+    "total": 13,
+    "subtemas": {
+      "Sin Subtema": 4,
+      "Cetoacidosis diabética en embarazo": 1,
+      "Corioamnionitis": 2,
+      "COLANGITIS AGUDA": 1,
+      "Hiperemesis gravídica": 1,
+      "SEPSIS NEONATAL TEMPRANA": 3,
+      "INTOXICACIÓN POR OPIOIDES": 1
+    }
+  },
+  "Trauma abdominal, Fx de cadera, trauma genitourinario, ATLS en la embarazada (ATLS)": {
+    "total": 3,
+    "subtemas": {
+      "Sin Subtema": 1,
+      "Obstrucción intestinal": 1,
+      "RESPUESTA METABÓLICA AL TRAUMA": 1
+    }
+  },
+  "Intoxicaciones": {
+    "total": 3,
+    "subtemas": {
+      "Sin Subtema": 1,
+      "Toxíndromes (Colinérgico / Organofosforados)": 1,
+      "CADENA EPIDEMIOLÓGICA": 1
+    }
+  },
+  "Nefrología": {
+    "total": 43,
+    "subtemas": {
+      "Sin Subtema": 6,
+      "Trauma torácico (Neumotórax a tensión)": 1,
+      "Glaucoma de ángulo cerrado agudo": 1,
+      "Úlcera péptica perforada": 1,
+      "Vértigo Postural Paroxístico Benigno (VPPB)": 1,
+      "Pielonefritis aguda": 1,
+      "Trauma Torácico (Hemotórax masivo)": 1,
+      "TRAUMA TORÁCICO (NEUMOTÓRAX ABIERTO)": 1,
+      "Fx de antebrazo y mano": 1,
+      "VÉRTIGO POSTURAL PAROXÍSTICO BENIGNO (VPPB)": 1,
+      "FRACTURAS EN NIÑOS (SALTER-HARRIS)": 1,
+      "FX DE ANTEBRAZO Y MANO (FRACTURA DE COLLES)": 1,
+      "TRAUMA TORÁCICO (TÓRAX INESTABLE / VOLET COSTAL)": 1,
+      "FRACTURAS DE TOBILLO (CLASIFICACIÓN DE WEBER)": 1,
+      "QUEMADURAS ELÉCTRICAS": 1,
+      "TENOSINOVITIS INFECCIOSA DE LOS FLEXORES (MANO)": 1,
+      "HEMOTÓRAX MASIVO": 1,
+      "NEUMOTÓRAX SIMPLE": 1,
+      "LARINGOTRAQUEÍTIS INFECCIOSA (CRUP)": 1,
+      "TALLA BAJA Y RETRASO CONSTITUCIONAL": 1,
+      "SÍNDROME DE TURNER (45, X)": 1,
+      "ASMA (DIAGNÓSTICO INICIAL)": 1,
+      "VALVULOPATÍAS (ESTENOSIS AÓRTICA)": 1,
+      "ENFERMEDAD RENAL CRÓNICA (ERC)": 1,
+      "TRASTORNOS ELECTROLÍTICOS (HIPERKALEMIA)": 1,
+      "NEUMOTÓRAX": 1,
+      "ESPONDILITIS ANQUILOSANTE": 1,
+      "INFARTO AL MIOCARDIO CON ELEVACIÓN DEL ST (IAMCEST)": 1,
+      "DENGUE (SIGNOS DE ALARMA)": 1,
+      "ANEMIA APLÁSICA": 1,
+      "HISTOPLASMOSIS": 1,
+      "FIBROSIS QUÍSTICA": 1,
+      "ESQUIZOFRENIA": 1,
+      "VOLUNTAD ANTICIPADA": 1,
+      "SEPSIS Y CHOQUE SÉPTICO (SEPSIS-3)": 1,
+      "URGENCIAS METABÓLICAS (ELECTROLITOS)": 1,
+      "SÍNDROME DE LISIS TUMORAL": 1,
+      "INTOXICACIONES (SÍNDROME COLINÉRGICO)": 1
+    }
+  },
+  "Oncohematología": {
+    "total": 3,
+    "subtemas": {
+      "Sin Subtema": 2,
+      "MIELOMA Y RIÑÓN": 1
+    }
+  },
+  "Cirrosis y sus Complicaciones / Trasplante Hepático": {
+    "total": 13,
+    "subtemas": {
+      "Sin Subtema": 3,
+      "Peritonitis Bacteriana Espontánea (PBE)": 1,
+      "Cáncer de ovario epitelial": 1,
+      "Cáncer de ovario – presentación clínica": 1,
+      "SX DE DOLOR LOCOREGIONAL": 1,
+      "SÍNDROME NEFRÓTICO (ENFERMEDAD DE CAMBIOS MÍNIMOS)": 1,
+      "CIRROSIS HEPÁTICA (COMPLICACIONES)": 1,
+      "PERICARDITIS CONSTRICTIVA": 1,
+      "PERITONITIS BACTERIANA ESPONTÁNEA (PBE)": 1,
+      "CIRROSIS HEPÁTICA (CHILD-PUGH)": 1,
+      "CIRROSIS HEPÁTICA (ESCALAS)": 1
     }
   },
   "Oftalmología P2": {
@@ -66,166 +844,210 @@
       "Sin Subtema": 1
     }
   },
-  "Infecciones de Vías Respiratorias Superiores": {
+  "Neumonías": {
+    "total": 8,
+    "subtemas": {
+      "Sin Subtema": 3,
+      "CHOQUE SÉPTICO (DEFINICIÓN SEPSIS -3)": 1,
+      "CHOQUE SÉPTICO": 1,
+      "COMPLICACIONES DEL INFARTO (CLASIFICACIÓN DE KILLIP)": 1,
+      "DIARREA POR CLOSTRIDIOIDES DIFFICILE": 1,
+      "SEUDOOBSTRUCCIÓN COLÓNICA AGUDA (SÍNDROME DE OGILVIE)": 1
+    }
+  },
+  "Cáncer de Mama": {
+    "total": 25,
+    "subtemas": {
+      "Sin Subtema": 2,
+      "Cáncer de próstata": 1,
+      "Cáncer de mama  – factores de riesgo": 1,
+      "ORZUELO": 1,
+      "Pinguécula": 1,
+      "CÁNCER DE PRÓSTATA": 1,
+      "HIPERPLASIA PROSTÁTICA BENIGNA (HPB)": 1,
+      "CHALAZIÓN": 1,
+      "PATOLOGÍA BENIGNA DE MAMA": 1,
+      "CÁNCER DE PRÓSTATA (ESCALA DE GLEASON)": 1,
+      "CÁNCER DE MAMA (TAMIZAJE Y CLASIFICACIÓN)": 1,
+      "FIBROADENOMA MAMARIO": 1,
+      "CÁNCER DE PRÓSTATA (BIOPSIA)": 1,
+      "CÁNCER DE TIROIDES": 2,
+      "PUBERTAD PRECOZ": 1,
+      "DESARROLLO PUBERAL (ESCALA DE TANNER)": 1,
+      "GINECOMASTIA PUBERAL": 1,
+      "VASCULITIS (GRANULOMATOSIS CON POLIANGEÍTIS / WEGENER)": 1,
+      "NÓDULO TIROIDEO Y CÁNCER": 1,
+      "GRANULOMATOSIS CON POLIANGEITIS (WEGENER)": 1,
+      "TAPONAMIENTO CARDÍACO": 1,
+      "ERITREMA NODOSO": 1,
+      "NIVELES DE PREVENCIÓN (LEAVELL Y CLARK)": 1
+    }
+  },
+  "Endometriosis (Sangrados Uterinos Anormales: Origen No Anatómico)": {
     "total": 4,
     "subtemas": {
-      "Sin Subtema": 4
+      "Sin Subtema": 3,
+      "Endometriosis (Sangrados Uterinos Anormales: Origen No Anatómico)": 1
     }
   },
-  "Patología Quirúrgica de Esófago": {
+  "Sin Tema": {
     "total": 2,
     "subtemas": {
       "Sin Subtema": 2
     }
   },
-  "Neurología: Enfermedad Vascular Cerebral": {
-    "total": 3,
+  "EPOC / CA de Pulmón": {
+    "total": 5,
     "subtemas": {
-      "Sin Subtema": 3
+      "Sin Subtema": 1,
+      "ENFERMEDAD PULMONAR OBSTRUCTIVA CRÓNICA (EPOC)": 1,
+      "EPOC (DIAGNÓSTICO Y CLASIFICACIÓN GOLD)": 1,
+      "EPOC (TRATAMIENTO Y OXIGENOTERAPIA)": 1,
+      "EPOC (CLASIFICACIÓN Y MANEJO)": 1
     }
   },
-  "Patología Respiratoria Neonatal": {
-    "total": 3,
+  "Hipertensión Arterial": {
+    "total": 13,
     "subtemas": {
-      "Sin Subtema": 3
+      "Sin Subtema": 2,
+      "Enfermedad Arterial Periférica (EAP)": 1,
+      "Síndrome de Apnea Obstructiva del Sueño (SAOS)": 1,
+      "Hemorragia diverticular": 1,
+      "Hipertensión crónica con sobreagregación de preeclampsia": 1,
+      "CATARATA": 1,
+      "RETINOPATÍA HIPERTENSIVA": 1,
+      "ANEURISMA DE AORTA ABDOMINAL (AAA)": 2,
+      "Desprendimiento prematuro de placenta normoinserta (DPPNI)": 1,
+      "CRITERIOS DE VOLTAJE (HIPERTROFIA)": 1,
+      "ESTENOSIS DE LA ARTERIA RENAL": 1
     }
   },
-  "Introducción: Ciclo genital, Esterilidad y Anticonceptivos": {
+  "Pancreatitis aguda y crónica (Patología Pancreática)": {
+    "total": 5,
+    "subtemas": {
+      "Sin Subtema": 3,
+      "PANCREATITIS AGUDA": 1,
+      "PANCREATITIS AGUDA (DIAGNÓSTICO)": 1
+    }
+  },
+  "Recién Nacido Sano": {
+    "total": 59,
+    "subtemas": {
+      "Sin Subtema": 2,
+      "Beneficios de la lactancia materna exclusiva": 1,
+      "ATRESIA ESOFÁGICA / FÍSTULA TRAQUEOESOFÁGICA": 1,
+      "ENFERMEDAD DE HIRSCHSPRUNG (AGANGLIONOSIS CONGÉNITA)": 1,
+      "TRAUMA OBSTÉTRICO (CEFALOHEMATOMA)": 1,
+      "TRAUMA OBSTÉTRICO (PARÁLISIS BRAQUIAL)": 1,
+      "ALTERACIONES DERMATOLÓGICAS AL NACIMIENTO": 1,
+      "PASOS INICIALES (MINUTO DE ORO)": 1,
+      "TAMIZ NEONATAL METABÓLICO": 1,
+      "LÍQUIDO AMNIÓTICO MECONIAL": 1,
+      "ENTEROCOLITIS NECROTIZANTE (ECN)": 2,
+      "ONFALITIS": 1,
+      "MENINGITIS NEONATAL": 1,
+      "SÍNDROME DE ASPIRACIÓN DE MECONIO (SAM)": 1,
+      "DISPLASIA BRONCOPULMONAR (DBP)": 1,
+      "APNEA DEL PREMATURO": 1,
+      "ONFALOCELE VS GASTROSQUISIS": 1,
+      "HERNIA DIAFRAGMÁTICA CONGÉNITA (BOCHDALEK)": 2,
+      "ATRESIA DE ESÓFAGO": 2,
+      "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)": 2,
+      "HIPOGLUCEMIA NEONATAL": 1,
+      "HIPOCALCEMIA NEONATAL": 1,
+      "EVALUACIÓN DE EDAD GESTACIONAL (CAPURRO Y BALLARD)": 1,
+      "CONTRAINDICACIONES DE LA LACTANCIA MATERNA": 1,
+      "HIPOTIROIDISMO CONGÉNITO": 1,
+      "HIPERPLASIA SUPRARRENAL CONGÉNITA (HSC)": 1,
+      "VIH EN PEDIATRÍA": 1,
+      "GASTROSQUISIS VS ONFALOCELE": 1,
+      "VITAMINA A Y K": 1,
+      "VACUNA BCG (TUBERCULOSIS)": 1,
+      "PREVENCIÓN DE HEPATITIS B VERTICAL": 1,
+      "TÉTANOS NEONATAL": 1,
+      "CRISIS NEONATALES": 1,
+      "SÍNDROME DE RUBÉOLA CONGÉNITA": 1,
+      "CITOMEGALOVIRUS (CMV) CONGÉNITO": 1,
+      "SEPSIS NEONATAL TARDÍA": 1,
+      "TRANSPOSICIÓN DE LAS GRANDES ARTERIAS (TGA)": 1,
+      "ONFALOCELE": 1,
+      "ATRESIA ESOFÁGICA": 2,
+      "HIPOSPADIAS": 1,
+      "VACUNA BCG Y HEPATITIS B": 1,
+      "SÍNDROME DE DOWN (TRISOMÍA 21)": 1,
+      "ICTERICIA PATOLÓGICA (INCOMPATIBILIDAD ABO Y Rh)": 1,
+      "ICTERICIA POR LACTANCIA VS. LECHE MATERNA": 1,
+      "CITOMEGALOVIRUS (CMV) CONGÉNITO VS TOXOPLASMOSIS": 1,
+      "ESCALA DE APGAR": 1,
+      "ESCALA DE SILVERMAN -ANDERSEN": 1,
+      "REANIMACIÓN NEONATAL AVANZADA (NRP)": 1,
+      "MEGACOLON AGANGLIÓNICO (ENFERMEDAD DE HIRSCHSPRUNG)": 1,
+      "ESCALA DE SILVERMAN -ANDERSON": 1,
+      "TAMIZ NEONATAL (NOM -007)": 1,
+      "PROFILAXIS NEONATAL": 1,
+      "CAPUT SUCCEDANEUM VS CEFALOHEMATOMA": 1
+    }
+  },
+  "Patología Biliar": {
+    "total": 21,
+    "subtemas": {
+      "Sin Subtema": 5,
+      "Colecistitis aguda": 1,
+      "Hiperplasia Prostática Benigna (HPB)": 1,
+      "Cáncer de Páncreas": 1,
+      "Colangitis aguda": 1,
+      "Enfermedad trofoblástica gestacional": 1,
+      "Íleo biliar": 1,
+      "CÁNCER DE VESÍCULA BILIAR": 1,
+      "ATB EN TRAUMA Y PROFILAXIS QX": 1,
+      "CÁNCER DE PÁNCREAS": 1,
+      "COLEDOCOLITIASIS": 1,
+      "ADENOCARCINOMA DE PÁNCREAS": 1,
+      "COLECISTITIS AGUDA (CRITERIOS DE TOKIO 2018)": 1,
+      "VARICELA": 1,
+      "ANEMIAS HEMOLÍTICAS (ESFEROCITOSIS HEREDITARIA)": 1,
+      "COLEDOCOLITIASIS Y COLANGITIS": 1,
+      "GASTRO / DERMA (ENFERMEDAD CELÍACA)": 1
+    }
+  },
+  "Reanimación (ACLS/BLS)": {
     "total": 1,
     "subtemas": {
       "Sin Subtema": 1
     }
   },
-  "Amenorreas Primarias y Secundarias": {
+  "Parto prematuro (Parto Prematuro y Patología Coriónica)": {
     "total": 1,
     "subtemas": {
       "Sin Subtema": 1
     }
   },
-  "Hemorragia Uterina Anormal": {
-    "total": 3,
+  "Miomatosis (Sangrados Uterinos Anormales: Origen Anatómico No Maligno)": {
+    "total": 6,
     "subtemas": {
-      "Sin Subtema": 3
+      "Sin Subtema": 1,
+      "Trombosis Venosa Profunda (TVP)": 1,
+      "Miomatosis uterina sintomática": 1,
+      "Mioma submucoso y sangrado uterino anormal": 1,
+      "OBSTRUCCIÓN INTESTINAL (ÍLEO PARALÍTICO)": 1,
+      "Miomatosis uterina": 1
     }
   },
-  "Menopausia y Climaterio": {
-    "total": 1,
+  "ATLS / Trauma": {
+    "total": 12,
     "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Patología Mamaria: Benigna y Cáncer de Mama": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Introducción a la Pediatría / Reanimación Neonatal": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Patología Neonatal Infecciosa": {
-    "total": 2,
-    "subtemas": {
-      "Sin Subtema": 2
-    }
-  },
-  "Infecciones TORCH y VIH Pediátrico": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Estenosis Hipertrófica de Píloro": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Crecimiento y Desarrollo P2": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Enfermedad Diarreica Aguda y Planes de Hidratación": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Urgencias Pediátricas": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Cardiología: Cardiopatía Isquémica": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Tuberculosis": {
-    "total": 2,
-    "subtemas": {
-      "Sin Subtema": 2
-    }
-  },
-  "Complicaciones Agudas de Diabetes": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Nefrología: Lesión Renal Aguda": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Gastroenterología: Cirrosis y sus complicaciones": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Reumatología: Artritis Reumatoide": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Cáncer de endometrio": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Patología Gastrointestinal": {
-    "total": 2,
-    "subtemas": {
-      "Sin Subtema": 2
-    }
-  },
-  "Isquemia Mesentérica": {
-    "total": 2,
-    "subtemas": {
-      "Sin Subtema": 2
-    }
-  },
-  "Manejo inicial del trauma (ATLS)": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Estenosis Hipertrófica del Píloro": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 1,
+      "EPISTAXIS": 1,
+      "FRACTURA SUPRACONDÍLEA DE HÚMERO": 1,
+      "LUXACIÓN DE CADERA": 1,
+      "HIPERTENSIÓN INTRACRANEAL (HERNIACIÓN UNCAL)": 1,
+      "TRAUMA ESPLÉNICO": 1,
+      "CÁNCER DE TESTÍCULO": 1,
+      "TÓRAX INESTABLE (VOLET COSTAL)": 1,
+      "LESIÓN DE URETRA": 1,
+      "LESIÓN DE GRANDES VASOS (RUPTURA DE AORTA)": 1,
+      "OSTEOMIELITIS": 1,
+      "MUERTE ENCEFÁLICA": 1
     }
   },
   "Depresión Mayor": {
@@ -234,28 +1056,29 @@
       "Sin Subtema": 1
     }
   },
-  "Choque séptico": {
-    "total": 1,
+  "Introducción MI / Introducción Infectología": {
+    "total": 6,
     "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 2,
+      "MENINGITIS BACTERIANA EN EL ESCOLAR": 1,
+      "MENINGITIS BACTERIANA AGUDA": 2,
+      "HEMORRAGIA SUBARACNOIDEA (HSA)": 1
     }
   },
-  "Meningitis bacteriana aguda": {
-    "total": 1,
+  "Hipertiroidismo: Enfermedad de Graves (Patología Tiroidea)": {
+    "total": 4,
     "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 2,
+      "CÁNCER DE TIROIDES": 1,
+      "TORMENTA TIROIDEA": 1
     }
   },
-  "Tormenta tiroidea": {
-    "total": 1,
+  "Obstrucción intestinal (Patología Intestinal Qx)": {
+    "total": 4,
     "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Colecistitis aguda": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 1,
+      "Fractura de escafoides": 1,
+      "Obstrucción intestinal (Patología Intestinal Qx)": 2
     }
   },
   "Trastornos ácido-base": {
@@ -264,112 +1087,121 @@
       "Sin Subtema": 1
     }
   },
-  "Medicina Interna – Hipotiroidismo primario": {
+  "Hipotiroidismo": {
+    "total": 3,
+    "subtemas": {
+      "Sin Subtema": 1,
+      "Hipertiroidismo en el primer trimestre": 1,
+      "HIPOTIROIDISMO PRIMARIO (TIROIDITIS DE HASHIMOTO)": 1
+    }
+  },
+  "Hipotiroidismo (Patología Tiroidea)": {
+    "total": 4,
+    "subtemas": {
+      "Sin Subtema": 1,
+      "SÍNDROME DEL TÚNEL CARPIANO": 1,
+      "FARMACOLOGÍA (ANTIARRÍTMICOS)": 1,
+      "Hipotiroidismo (Patología Tiroidea)": 1
+    }
+  },
+  "Hemorragia obsétrica Atonía, trauma, tejido, coagulopatías (Patología Puerperal)": {
     "total": 1,
     "subtemas": {
       "Sin Subtema": 1
     }
   },
-  "ATLS P1 – Manejo inicial del trauma": {
-    "total": 1,
+  "Cardiopatía Isquémica": {
+    "total": 4,
     "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 2,
+      "DIVERTÍCULO DE MECKEL": 1,
+      "ESTENOSIS AÓRTICA": 1
     }
   },
-  "Reumatología – Vasculitis (Granulomatosis con poliangitis)": {
-    "total": 1,
+  "EPOC / Asma": {
+    "total": 8,
     "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 2,
+      "Cáncer de Esófago": 1,
+      "ISQUEMIA MESENTERICA AGUDA Y CRÓNICA": 1,
+      "CÁNCER DE PENE": 1,
+      "LEUCEMIAS (LEUCEMIA MIELOIDE AGUDA)": 1,
+      "HIPONATREMIA (SIADH)": 1,
+      "VASCULITIS Y NEFROLOGÍA": 1
     }
   },
-  "Choque Obstétrico y Hemorragia Obstétrica": {
-    "total": 1,
+  "Vacunación": {
+    "total": 6,
     "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 1,
+      "EPIGLOTITIS": 1,
+      "VACUNA SRP (TRIPLE VIRAL)": 1,
+      "VACUNACIÓN EN EL ADULTO MAYOR": 1,
+      "Vacunación": 2
     }
   },
-  "Cardiopatías Congénitas": {
-    "total": 1,
+  "Fibrilación Auricular": {
+    "total": 9,
     "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 1,
+      "Sangrado uterino anormal anovulatorio": 1,
+      "UVEÍTIS ANTERIOR AGUDA": 1,
+      "COLITIS ULCEROSA (MEGACOLON TÓXICO)": 1,
+      "CONTUSIÓN PULMONAR": 1,
+      "HIPOTIROIDISMO ADQUIRIDO (TIROIDITIS DE HASHIMOTO)": 1,
+      "VALVULOPATÍAS (ESTENOSIS MITRAL)": 1,
+      "ACLS (RITMOS DESFIBRILABLES)": 1,
+      "TRASTORNOS DEL RITMO (FIBRILACIÓN AURICULAR)": 1
     }
   },
-  "Urología P2 – Hiperplasia prostática benigna": {
-    "total": 1,
+  "Anemia ferropénica (Anemias Introducción y Anemias Carenciales)": {
+    "total": 4,
     "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 1,
+      "Cáncer de colon y recto": 1,
+      "CÁNCER COLORRECTAL": 1,
+      "Anemia ferropénica (Anemias Introducción y Anemias Carenciales)": 1
     }
   },
-  "Zoonosis": {
-    "total": 1,
+  "Sx nefríticos (Nefrología)": {
+    "total": 3,
     "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 2,
+      "Sx nefríticos (Nefrología)": 1
     }
   },
-  "Psiquiatría – Trastorno depresivo mayor": {
-    "total": 1,
+  "Enfermedad Hipertensiva del Embarazo": {
+    "total": 4,
     "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 1,
+      "Hipertensión crónica con sobreagregación de preeclampsia": 1,
+      "SÍNDROMES CORONARIOS AGUDOS (IAMSEST)": 1,
+      "POLIFARMACIA Y CRITERIOS DE BEERS / STOPP-START": 1
     }
   },
-  "Hematología: Anemias Microcíticas": {
-    "total": 1,
+  "Cesárea (Patología de Trabajo de Parto)": {
+    "total": 15,
     "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 2,
+      "Espectro de acretismo placentario": 1,
+      "Endometritis puerperal": 2,
+      "Sepsis puerperal": 1,
+      "Embolia pulmonar masiva en puerperio": 1,
+      "Acretismo placentario diagnosticado intraparto": 1,
+      "Placenta previa total sintomática": 1,
+      "Trombosis venosa profunda": 2,
+      "CICATRIZACIÓN": 1,
+      "SÍNDROME ADHERENCIA  L (BRIDAS)": 1,
+      "Placenta previa": 1,
+      "DISPLASIA EN EL DESARROLLO DE LA CADERA (DDC)": 1
     }
   },
-  "Urgencias – Cetoacidosis diabética": {
-    "total": 1,
+  "Aborto (Hemorragias del Primer Trimestre)": {
+    "total": 3,
     "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Cardiología – Síndrome coronario agudo con elevación del ST": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Obstetricia – Preeclampsia con criterios de severidad": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Medicina Crítica – Choque séptico": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Endocrinología – Tormenta tiroidea": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Cardiología – Insuficiencia cardiaca con fracción de eyección reducida": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Gastroenterología – Hemorragia digestiva alta": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Cirugía – Colecistitis aguda": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Hemorragias del Tercer Trimestre": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 1,
+      "Síndrome de Asherman": 1,
+      "Amenaza de aborto": 1
     }
   },
   "Infectología – Endocarditis infecciosa": {
@@ -378,90 +1210,44 @@
       "Sin Subtema": 1
     }
   },
-  "Trastornos ácido–base mixtos": {
-    "total": 1,
+  "Diabetes Mellitus": {
+    "total": 6,
     "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 1,
+      "Tamizaje y diagnóstico": 1,
+      "DIABETES MELLITUS (CETOACIDOSIS DIABÉTICA)": 1,
+      "DIABETES MELLITUS (PIE DIABÉTICO)": 1,
+      "DEMENCIA VASCULAR": 1,
+      "CETOACIDOSIS DIABÉTICA (CAD)": 1
     }
   },
-  "Neurología – Evento vascular cerebral isquémico y ventana terapéutica": {
-    "total": 1,
+  "Asma en el Adulto y Pediátrico": {
+    "total": 7,
     "subtemas": {
-      "Sin Subtema": 1
+      "Sin Subtema": 1,
+      "HEMOFILIA": 1,
+      "ASMA (MANEJO DE CONTROL crónico)": 1,
+      "ASMA (CRITERIOS DIAGNÓSTICOS)": 1,
+      "CÁNCER DE PULMÓN": 1,
+      "GRANULOMATOSIS EOSINOFÍLICA CON POLIANGEÍTIS (CHURG -STRAUSS)": 1,
+      "Asma en el Adulto y Pediátrico": 1
     }
   },
-  "Obstetricia – Corioamnionitis": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Gastroenterología – Colangitis aguda": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Neurología – Estado epiléptico convulsivo": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Cirugía abdominal": {
-    "total": 1,
-    "subtemas": {
-      "Apendicitis aguda": 1
-    }
-  },
-  "Patología biliar": {
-    "total": 1,
-    "subtemas": {
-      "Colecistitis aguda": 1
-    }
-  },
-  "ATLS P1": {
-    "total": 8,
-    "subtemas": {
-      "Trauma torácico (Neumotórax a tensión)": 1,
-      "Trauma Torácico (Hemotórax masivo)": 1,
-      "TRAUMA TORÁCICO (NEUMOTÓRAX ABIERTO)": 1,
-      "VÍA AÉREA Y VENTILACIÓN": 1,
-      "TRAUMA TORÁCICO (TAPONAMIENTO CARDÍACO)": 1,
-      "TRAUMA TORÁCICO (NEUMOTÓRAX A TENSIÓN)": 1,
-      "TRAUMA TORÁCICO (TÓRAX INESTABLE / VOLET COSTAL)": 1,
-      "TRAUMA TORÁCICO (HEMOTÓRAX MASIVO)": 1
-    }
-  },
-  "Hernias": {
-    "total": 2,
+  "Hernias de la Pared Abdominal": {
+    "total": 12,
     "subtemas": {
       "Hernia inguinal": 1,
-      "Hernia Femoral (Crural)": 1
-    }
-  },
-  "Quemaduras / Golpe de calor / Hipotermia": {
-    "total": 3,
-    "subtemas": {
-      "Reanimación hídrica en paciente quemado": 1,
-      "Golpe de Calor (Heat Stroke)": 1,
-      "Quemaduras eléctricas": 1
-    }
-  },
-  "Urología P2": {
-    "total": 1,
-    "subtemas": {
-      "Litiasis renal": 1
-    }
-  },
-  "Patología cámara posterior": {
-    "total": 5,
-    "subtemas": {
-      "Glaucoma de ángulo cerrado agudo": 1,
-      "Desprendimiento de retina": 1,
-      "Catarata": 1,
-      "Retinopatía Diabética": 1,
-      "Uveítis Anterior": 1
+      "Hernia Femoral (Crural)": 1,
+      "Inversión uterina": 1,
+      "HERNIA INGUINAL": 1,
+      "HERNIA FEMORAL (CRURAL)": 1,
+      "CÁNCER TESTICULAR (SEMINOMA)": 1,
+      "HERNIA INGUINAL (ANATOMÍA Y TRATAMIENTO)": 1,
+      "HERNIA CRURAL (FEMORAL)": 1,
+      "ENFERMEDAD POR REFLUJO GASTROESOFÁGICO (TRATAMIENTO": 1,
+      "ENFERMEDAD DE LEGG -CALVÉ-PERTHES": 1,
+      "SÍFILIS (Treponema pallidum)": 1,
+      "OSTEOPOROSIS": 1
     }
   },
   "Patología de extremidad inferior": {
@@ -471,90 +1257,18 @@
       "Esguince de tobillo": 1
     }
   },
-  "Patología prostática": {
-    "total": 1,
-    "subtemas": {
-      "Hiperplasia Prostática Benigna (HPB)": 1
-    }
-  },
-  "Patología gástrica": {
-    "total": 1,
-    "subtemas": {
-      "Úlcera péptica perforada": 1
-    }
-  },
-  "Patología diverticular": {
-    "total": 2,
+  "Apendicitis Aguda": {
+    "total": 11,
     "subtemas": {
       "Diverticulitis aguda complicada": 1,
-      "Hemorragia diverticular": 1
-    }
-  },
-  "Mordeduras y picaduras": {
-    "total": 3,
-    "subtemas": {
-      "Alacranismo (Intoxicación por veneno de escorpión)": 1,
-      "Loxoscelismo (Araña violinista)": 1,
-      "Mordedura de Serpiente (Viperidae)": 1
-    }
-  },
-  "Hipoacusia y Vértigo": {
-    "total": 1,
-    "subtemas": {
-      "Vértigo Postural Paroxístico Benigno (VPPB)": 1
-    }
-  },
-  "Patología intestinal QX": {
-    "total": 2,
-    "subtemas": {
-      "Obstrucción intestinal": 1,
-      "Fractura de escafoides": 1
-    }
-  },
-  "Patología arterial y venosa": {
-    "total": 5,
-    "subtemas": {
-      "Insuficiencia Venosa Crónica": 1,
-      "Insuficiencia arterial aguda": 1,
-      "Trombosis Venosa Profunda (TVP)": 1,
-      "Enfermedad Arterial Periférica (EAP)": 1,
-      "Tromboembolia Pulmonar (TEP)": 1
-    }
-  },
-  "Cirugía Oncología": {
-    "total": 5,
-    "subtemas": {
-      "Cáncer de colon y recto": 1,
-      "Cáncer gástrico": 1,
-      "Cáncer de Páncreas": 1,
-      "Cáncer de Esófago": 1,
-      "Cáncer de Recto": 1
-    }
-  },
-  "Tumores testiculares y cáncer de próstata": {
-    "total": 1,
-    "subtemas": {
-      "Cáncer de próstata": 1
-    }
-  },
-  "Patología intestinal inflamatoria": {
-    "total": 1,
-    "subtemas": {
-      "Colitis Ulcerosa Crónica Idiopática (CUCI)": 1
-    }
-  },
-  "Cirrosis y sus complicaciones": {
-    "total": 2,
-    "subtemas": {
-      "Sangrado de tubo digestivo alto (STDA) por várices esofágicas": 1,
-      "Peritonitis Bacteriana Espontánea (PBE)": 1
-    }
-  },
-  "Trauma generalidades y complicaciones": {
-    "total": 2,
-    "subtemas": {
-      "Síndrome Compartimental": 1,
-      "Síndrome de embolia grasa": 1
+      "Sin Subtema": 1,
+      "VÓLVULO DE COLON Y CIEGO": 1,
+      "FRACTURA DE PELVIS": 2,
+      "APENDICITIS AGUDA": 1,
+      "DIVERTICULITIS AGUDA": 2,
+      "Embarazo ectópico tubárico": 1,
+      "DIVERTICULITIS AGUDA (ESCALA DE HINCHEY)": 1,
+      "ESCOLIOSIS IDIOPÁTICA DEL ADOLESCENTE": 1
     }
   },
   "Patología de extremidad superior": {
@@ -565,46 +1279,10 @@
       "Luxación glenohumeral anterior": 1
     }
   },
-  "Patología infecciosa / Rinología y faringe": {
-    "total": 3,
-    "subtemas": {
-      "Otitis media maligna (Otitis externa maligna)": 1,
-      "Absceso periamigdalino": 1,
-      "OMA (Otitis Media Aguda)": 1
-    }
-  },
-  "ETS": {
-    "total": 3,
-    "subtemas": {
-      "Sífilis primaria": 1,
-      "Chancroide": 1,
-      "Linfogranuloma Venéreo": 1
-    }
-  },
-  "Introducción Oftalmología": {
-    "total": 4,
-    "subtemas": {
-      "Patología de anexos (Chalazión)": 1,
-      "Úlcera Corneal (Queratitis microbiana)": 1,
-      "Celulitis Periorbitaria vs Orbitaria": 1,
-      "Blefaritis": 1
-    }
-  },
   "Hipoacusia y vértigo": {
     "total": 1,
     "subtemas": {
       "Enfermedad de Ménière": 1
-    }
-  },
-  "ATLS P2": {
-    "total": 6,
-    "subtemas": {
-      "Traumatismo Craneoencefálico (TCE) - Hematoma Epidural": 1,
-      "TCE HEMORRAGIA SUBDURAL": 1,
-      "TCE ESCALA DE GLASGOW": 1,
-      "TCE HEMORRAGIA EPIDURAL": 1,
-      "TRAUMA MEDULAR Y CHOQUE NEUROGÉNICO": 1,
-      "TRAUMA CRANEOENCEFÁLICO (HEMATOMA SUBDURAL)": 1
     }
   },
   "Patología esofágica": {
@@ -613,603 +1291,129 @@
       "Acalasia": 1
     }
   },
-  "Patología isquémica intestinal": {
+  "Patología de Extremidad Inferior": {
     "total": 1,
     "subtemas": {
-      "Isquemia mesentérica aguda": 1
+      "Lesión de Ligamento Cruzado Anterior": 1
     }
   },
-  "Patología perianal": {
-    "total": 1,
-    "subtemas": {
-      "Fisura anal crónica": 1
-    }
-  },
-  "Patología gástrica y esofágica": {
-    "total": 1,
-    "subtemas": {
-      "Enfermedad por Reflujo Gastroesofágico (ERGE)": 1
-    }
-  },
-  "ATLS P3": {
-    "total": 6,
-    "subtemas": {
-      "Trauma Abdominal Cerrado": 1,
-      "Trauma Genitourinario (Trauma uretral)": 1,
-      "Trauma Pélvico": 1,
-      "ATLS EN LA EMBARAZADA": 1,
-      "TRAUMA PEDIÁTRICO": 1,
-      "TRAUMA DE CUELLO": 1
-    }
-  },
-  "Patología cámara anterior": {
-    "total": 2,
-    "subtemas": {
-      "Pterigión": 1,
-      "Conjuntivitis alérgica": 1
-    }
-  },
-  "Intoxicaciones": {
-    "total": 2,
-    "subtemas": {
-      "Toxíndromes (Colinérgico / Organofosforados)": 1,
-      "Toxíndromes (Anticolinérgico)": 1
-    }
-  },
-  "Patología Biliar": {
-    "total": 3,
-    "subtemas": {
-      "Colangitis aguda": 1,
-      "Colelitiasis sintomática": 1,
-      "Íleo biliar": 1
-    }
-  },
-  "Urología P1": {
-    "total": 2,
-    "subtemas": {
-      "Pielonefritis aguda": 1,
-      "Infección de vías urinarias bajas (Cistitis aguda)": 1
-    }
-  },
-  "Cirugía Oncológica": {
-    "total": 1,
-    "subtemas": {
-      "Cáncer Renal": 1
-    }
-  },
-  "Patología Infecciosa / Rinología y faringe": {
-    "total": 2,
-    "subtemas": {
-      "Síndrome de Apnea Obstructiva del Sueño (SAOS)": 1,
-      "Papilomatosis laríngea (Papilomatosis respiratoria recurrente)": 1
-    }
-  },
-  "Tumores testiculares": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Patología Hepática": {
-    "total": 2,
-    "subtemas": {
-      "Absceso Hepático Amebiano": 1,
-      "Enfermedad Hepática Grasa": 1
-    }
-  },
-  "Preeclampsia con criterios de severidad": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Hemorragia del primer trimestre – Embarazo ectópico": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Hemorragia obstétrica – Atonía uterina": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Diabetes gestacional": {
-    "total": 3,
+  "Hemorragia Obstétrica": {
+    "total": 19,
     "subtemas": {
       "Sin Subtema": 1,
-      "Tamizaje y diagnóstico": 1,
-      "Tratamiento inicial": 1
-    }
-  },
-  "Placenta previa": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Cáncer cervicouterino – Tamizaje": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Ruptura prematura de membranas (RPM)": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Síndrome HELLP": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Desprendimiento prematuro de placenta normoinserta (DPPNI)": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Corioamnionitis": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Eclampsia": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Sepsis puerperal": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Distocia de hombros": {
-    "total": 1,
-    "subtemas": {
-      "Sin Subtema": 1
-    }
-  },
-  "Hemorragias del primer trimestre": {
-    "total": 21,
-    "subtemas": {
-      "Aborto incompleto": 3,
-      "Enfermedad trofoblástica gestacional": 1,
-      "Aborto diferido (retenido)": 2,
-      "Embarazo molar completo": 1,
-      "Aborto séptico": 2,
-      "Aborto retenido": 1,
-      "Embarazo anembrionado": 1,
-      "Embarazo molar (Mola hidatidiforme completa)": 1,
-      "Aborto inevitable": 1,
-      "Amenaza de aborto": 1,
-      "Aborto retenido (aborto diferido)": 1,
-      "Embarazo ectópico tubárico": 1,
-      "Embarazo ectópico no roto": 1,
-      "Embarazo anembrionado (huevo anembrionado)": 1,
-      "Aborto completo": 1,
-      "Diagnóstico diferencial de sangrado en el primer trimestre": 1,
-      "Hematoma subcoriónico": 1
-    }
-  },
-  "Hemorragias del segundo y tercer trimestre": {
-    "total": 4,
-    "subtemas": {
-      "Acretismo placentario": 1,
-      "Vasa previa": 1,
-      "Placenta previa oclusiva total": 1,
-      "Desprendimiento prematuro de placenta normoinserta (DPPNI)": 1
-    }
-  },
-  "Patología del embarazo": {
-    "total": 6,
-    "subtemas": {
-      "Colestasis intrahepática del embarazo": 1,
-      "Diabetes gestacional con falla a manejo nutricional": 1,
-      "Oligohidramnios con restricción del crecimiento intrauterino": 1,
-      "Polihidramnios asociado a diabetes": 1,
-      "Restricción del crecimiento intrauterino con Doppler severamente alterado": 1,
-      "Hiperemesis gravídica": 1
-    }
-  },
-  "Patología del trabajo de parto": {
-    "total": 3,
-    "subtemas": {
-      "Inducción del trabajo de parto": 1,
-      "Ruptura uterina": 1,
-      "Sufrimiento fetal agudo intraparto": 1
-    }
-  },
-  "Patología puerperal": {
-    "total": 3,
-    "subtemas": {
       "Hemorragia obstétrica secundaria": 1,
       "Choque hipovolémico secundario a hemorragia obstétrica primaria": 1,
-      "Inversión uterina": 1
-    }
-  },
-  "Estados hipertensivos del embarazo": {
-    "total": 2,
-    "subtemas": {
-      "Preeclampsia sin criterios de severidad": 1,
-      "Hipertensión crónica con preeclampsia sobreagregada": 1
-    }
-  },
-  "Parto pretérmino": {
-    "total": 3,
-    "subtemas": {
-      "Amenaza de parto pretérmino (<34 semanas)": 1,
-      "Ruptura prematura de membranas pretérmino (<34 semanas)": 1,
-      "Amenaza de parto pretérmino": 1
-    }
-  },
-  "Trabajo de parto": {
-    "total": 22,
-    "subtemas": {
-      "Trabajo de parto prolongado por distocia dinámica (hipodinamia)": 1,
-      "Trabajo de parto fisiológico y análisis con partograma": 1,
-      "Macrosomía fetal": 1,
-      "Inducción fallida": 1,
-      "Prolapso de cordón umbilical": 2,
-      "Sufrimiento fetal agudo intraparto": 1,
-      "Fase activa prolongada": 1,
-      "Desproporción cefalopélvica": 3,
-      "Líquido meconial espeso y manejo intraparto": 1,
-      "Presentación pélvica a término": 1,
-      "Distocia por hipodinamia uterina": 1,
-      "Parto pretérmino espontáneo": 1,
-      "Distocia de hombros": 2,
-      "Presentación pélvica": 1,
-      "Arresto de dilatación en fase activa": 1,
-      "Fases del trabajo de parto": 1,
-      "Ruptura prematura de membranas a término": 1,
-      "Índice de Bishop": 1
-    }
-  },
-  "Embarazo múltiple": {
-    "total": 2,
-    "subtemas": {
-      "Síndrome de transfusión feto-fetal": 2
-    }
-  },
-  "Complicaciones obstétricas graves": {
-    "total": 1,
-    "subtemas": {
-      "Embolia de líquido amniótico": 1
-    }
-  },
-  "Cardiopatías en el embarazo": {
-    "total": 1,
-    "subtemas": {
-      "Miocardiopatía periparto": 1
-    }
-  },
-  "Control prenatal": {
-    "total": 4,
-    "subtemas": {
-      "Isoinmunización Rh y profilaxis anti-D": 1,
-      "Suplementación en embarazo": 1,
-      "Cálculo de edad gestacional": 1,
-      "Pruebas de laboratorio iniciales": 1
-    }
-  },
-  "Patología tromboembólica en el embarazo": {
-    "total": 1,
-    "subtemas": {
-      "Trombosis venosa profunda": 1
-    }
-  },
-  "Marco normativo en atención obstétrica": {
-    "total": 1,
-    "subtemas": {
-      "Violencia obstétrica (NOM-007)": 1
-    }
-  },
-  "Trastornos hipertensivos del embarazo": {
-    "total": 5,
-    "subtemas": {
-      "Eclampsia y manejo de toxicidad por sulfato de magnesio": 1,
-      "Eclampsia intraparto": 1,
-      "Preeclampsia": 1,
-      "Eclampsia": 1,
-      "Síndrome HELLP": 1
-    }
-  },
-  "Complicaciones hepáticas del embarazo": {
-    "total": 1,
-    "subtemas": {
-      "Hígado graso agudo del embarazo": 1
-    }
-  },
-  "Hemorragias obstétricas": {
-    "total": 5,
-    "subtemas": {
       "Atonía uterina refractaria": 1,
       "Atonía uterina con choque hipovolémico": 1,
-      "Coagulación intravascular diseminada secundaria a DPPNI": 1,
-      "Acretismo placentario diagnosticado intraparto": 1,
-      "Desprendimiento prematuro de placenta normoinserta (DPPNI)": 1
-    }
-  },
-  "Patología hepática": {
-    "total": 1,
-    "subtemas": {
-      "Colestasis intrahepática del embarazo": 1
-    }
-  },
-  "Hemorragias del tercer trimestre": {
-    "total": 10,
-    "subtemas": {
-      "Desprendimiento prematuro de placenta normoinserta (DPPNI) severo": 1,
-      "Vasa previa": 3,
-      "Placenta previa oclusiva total": 1,
-      "Desprendimiento prematuro de placenta leve": 1,
-      "Placenta previa total sintomática": 1,
-      "Ruptura uterina": 1,
-      "Placenta previa": 1,
-      "Desprendimiento prematuro de placenta normoinserta (DPPNI)": 1
-    }
-  },
-  "Infecciones en el embarazo": {
-    "total": 5,
-    "subtemas": {
-      "Corioamnionitis clínica": 1,
-      "Pielonefritis aguda": 1,
-      "Corioamnionitis": 1,
-      "Bacteriuria asintomática": 1,
-      "Pielonefritis aguda gestacional": 1
-    }
-  },
-  "Emergencias obstétricas": {
-    "total": 2,
-    "subtemas": {
-      "Ruptura uterina": 1,
-      "Embolia pulmonar masiva en puerperio": 1
-    }
-  },
-  "Anomalías placentarias": {
-    "total": 1,
-    "subtemas": {
-      "Espectro de acretismo placentario": 1
-    }
-  },
-  "Infecciones perinatales": {
-    "total": 3,
-    "subtemas": {
-      "Ruptura prematura de membranas pretérmino (RPMPT)": 1,
-      "Profilaxis para Streptococcus del grupo B (EGB)": 1,
-      "Toxoplasmosis en embarazo": 1
-    }
-  },
-  "Endocrinología obstétrica": {
-    "total": 7,
-    "subtemas": {
-      "Diabetes gestacional mal controlada intraparto": 1,
-      "Cetoacidosis diabética en embarazo": 1,
-      "Hipotiroidismo subclínico en embarazo": 1,
-      "Diabetes pregestacional y malformaciones": 1,
-      "Hipertiroidismo en el primer trimestre": 1,
-      "Diabetes gestacional diagnóstico": 1,
-      "Hipotiroidismo en embarazo": 1
-    }
-  },
-  "Complicaciones del puerperio": {
-    "total": 2,
-    "subtemas": {
-      "Endometritis puerperal": 1,
-      "Absceso mamario": 1
-    }
-  },
-  "Patología hipertensiva": {
-    "total": 5,
-    "subtemas": {
-      "Hipertensión gestacional vs preeclampsia": 1,
-      "Eclampsia": 1,
-      "Hipertensión gestacional": 1,
-      "Preeclampsia con datos neurológicos": 1,
-      "Hipertensión crónica con sobreagregación de preeclampsia": 1
-    }
-  },
-  "Trastornos hipertensivos": {
-    "total": 3,
-    "subtemas": {
-      "Preeclampsia con datos de severidad": 1,
-      "Hipertensión crónica con sobreagregación de preeclampsia": 1,
-      "Hipertensión gestacional": 1
-    }
-  },
-  "Hemorragia obstétrica": {
-    "total": 10,
-    "subtemas": {
-      "Retención placentaria": 1,
       "Laceración cervical posparto": 1,
+      "Mastitis puerperal": 1,
+      "Depresión posparto": 1,
       "Atonía uterina en el puerperio inmediato": 1,
       "Laceración cervical": 1,
+      "Polihidramnios": 1,
       "Inversión uterina": 2,
+      "Distocia de hombros": 1,
       "Atonía uterina": 1,
       "Retención de restos placentarios": 1,
-      "Ruptura uterina": 1,
-      "Coagulación intravascular diseminada (CID) secundaria a DPPNI": 1
+      "Presentación clínica clásica": 1,
+      "DISPLASIA DEL DESARROLLO DE LA CADERA (DDC)": 1,
+      "Ruptura prematura de membranas pretérmino (RPM pretérmino)": 1
     }
   },
-  "Patología fetal": {
-    "total": 2,
+  "Trabajo de Parto": {
+    "total": 20,
     "subtemas": {
-      "Oligohidramnios severo a término": 1,
-      "Restricción del crecimiento intrauterino (RCIU) temprana con Doppler": 1
+      "Ruptura uterina": 4,
+      "Trabajo de parto prolongado por distocia dinámica (hipodinamia)": 1,
+      "Sufrimiento fetal agudo intraparto": 1,
+      "Embolia de líquido amniótico": 2,
+      "Violencia obstétrica (NOM-007)": 1,
+      "Prolapso de cordón umbilical": 3,
+      "Preeclampsia con datos de severidad": 1,
+      "Fase activa prolongada": 1,
+      "Desproporción cefalopélvica": 1,
+      "Líquido meconial espeso y manejo intraparto": 1,
+      "Profilaxis para Streptococcus del grupo B (EGB)": 1,
+      "Vasa previa": 1,
+      "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (SDR TIPO II)": 1,
+      "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (TTRN)": 1
     }
   },
-  "Infecciones obstétricas": {
-    "total": 1,
+  "Insuficiencia Cardíaca Aguda y Crónica": {
+    "total": 6,
     "subtemas": {
-      "Sepsis puerperal": 1
+      "Miocardiopatía periparto": 1,
+      "DERRAME PLEURAL (CRITERIOS DE LIGHT)": 2,
+      "INSUFICIENCIA CARDÍACA CRÓNICA (TRATAMIENTO)": 1,
+      "FARMACOLOGÍA CARDIOVASCULAR (DIGOXINA)": 1,
+      "SÍNDROME DE DISTRÉS RESPIRATORIO AGUDO (SDRA)": 1
     }
   },
-  "Infecciones del embarazo": {
-    "total": 2,
+  "Hepatitis agudas y crónicas (Patología Hepática)": {
+    "total": 5,
     "subtemas": {
-      "VIH en embarazo": 1,
-      "Sífilis gestacional": 1
+      "Hígado graso agudo del embarazo": 1,
+      "VACUNAS (ESQUEMA NACIONAL DE VACUNACIÓN)": 1,
+      "POLIARTERITIS NODOSA (PAN)": 2,
+      "Hepatitis agudas y crónicas (Patología Hepática)": 1
     }
   },
-  "Complicaciones tromboembólicas": {
-    "total": 1,
+  "Vigilancia y Control Prenatal": {
+    "total": 11,
     "subtemas": {
-      "Tromboembolia pulmonar en embarazo": 1
+      "Hipotiroidismo subclínico en embarazo": 1,
+      "Sífilis gestacional": 1,
+      "Hiperprolactinemia y galactorrea": 1,
+      "Síndrome de transfusión feto-fetal": 1,
+      "Aborto diferido (retenido)": 1,
+      "Hematoma subcoriónico": 1,
+      "Eclampsia": 1,
+      "INSUFICIENCIA VENOSA CRÓNICA (IVC)": 1,
+      "DIAGNÓSTICO DE EMBARAZO Y REGLA DE NAEGELE": 1,
+      "ANTICONCEPCIÓN DE EMERGENCIA": 1,
+      "PLANIFICACIÓN FAMILIAR (LARC)": 1
     }
   },
-  "Patología hepática del embarazo": {
-    "total": 1,
-    "subtemas": {
-      "Colestasis intrahepática con criterios de interrupción": 1
-    }
-  },
-  "Patología del puerperio": {
-    "total": 1,
-    "subtemas": {
-      "Mastitis puerperal": 1
-    }
-  },
-  "Patología trofoblástica gestacional": {
-    "total": 1,
-    "subtemas": {
-      "Neoplasia trofoblástica gestacional postmolar": 1
-    }
-  },
-  "Hemorragias del segundo trimestre": {
+  "DPPNI (Hemorragias del Segundo Trimestre)": {
     "total": 3,
     "subtemas": {
-      "Placenta previa diagnosticada antes de 28 semanas": 1,
-      "Vasa previa": 1,
-      "Placenta previa": 1
+      "Coagulación intravascular diseminada secundaria a DPPNI": 1,
+      "Coagulación intravascular diseminada (CID) secundaria a DPPNI": 1,
+      "DPPNI (Hemorragias del Segundo Trimestre)": 1
     }
   },
-  "Patología hipertensiva del embarazo": {
-    "total": 8,
+  "Mastitis puerperal y no puerperal (Patología Mamaria Benigna)": {
+    "total": 2,
     "subtemas": {
-      "Preeclampsia antes de las 34 semanas sin datos de severidad": 1,
-      "Preeclampsia con datos de severidad y manejo intrahospitalario": 1,
-      "Síndrome HELLP": 2,
-      "Eclampsia intraparto": 1,
-      "Preeclampsia sin proteinuria (criterios actuales)": 1,
-      "Eclampsia": 1,
-      "Profilaxis con ácido acetilsalicílico": 1
+      "Absceso mamario": 2
     }
   },
-  "Puerperio": {
-    "total": 4,
+  "Sx climatérico (Patología Menopausia y Climaterio)": {
+    "total": 9,
     "subtemas": {
-      "Depresión posparto": 1,
-      "Trombosis venosa profunda": 2,
-      "Endometritis puerperal": 1
-    }
-  },
-  "Endocrinología ginecológica": {
-    "total": 4,
-    "subtemas": {
-      "Síndrome de ovario poliquístico (SOP) y criterios diagnósticos": 1,
-      "Hiperprolactinemia y galactorrea": 1,
-      "Síndrome de Asherman": 1,
-      "Síndrome de ovario poliquístico – complicaciones metabólicas": 1
+      "Terapia hormonal de reemplazo (THR)": 1,
+      "Amenorrea secundaria – insuficiencia ovárica prematura": 1,
+      "Cáncer de endometrio": 1,
+      "Diagnóstico de menopausia": 1,
+      "Terapia hormonal de reemplazo": 1,
+      "Osteoporosis postmenopáusica": 1,
+      "Cáncer de endometrio – síntoma de alarma": 1,
+      "CÁNCER DE MAMA": 1,
+      "INCONTINENCIA URINARIA": 1
     }
   },
   "Infecciones ginecológicas": {
-    "total": 5,
+    "total": 3,
     "subtemas": {
-      "Enfermedad pélvica inflamatoria complicada": 1,
-      "Vaginosis bacteriana": 2,
+      "Vaginosis bacteriana": 1,
       "Candidiasis vaginal": 1,
       "Tricomoniasis": 1
     }
   },
-  "Embarazo ectópico": {
-    "total": 6,
-    "subtemas": {
-      "Manejo médico vs quirúrgico": 1,
-      "Ectópico roto": 1,
-      "Manejo médico con metotrexato": 1,
-      "Embarazo ectópico roto": 2,
-      "Factores de riesgo para embarazo ectópico": 1
-    }
-  },
   "Oncología ginecológica": {
-    "total": 13,
-    "subtemas": {
-      "Cáncer cervicouterino etapa temprana": 1,
-      "NIC II–III": 1,
-      "Cáncer de ovario epitelial": 1,
-      "Cáncer de endometrio": 1,
-      "Tumor germinal de ovario (Disgerminoma)": 1,
-      "Cáncer cervicouterino localmente avanzado": 1,
-      "Cáncer de endometrio – factores de riesgo": 1,
-      "Cáncer cervicouterino – tamizaje": 1,
-      "Lesión intraepitelial escamosa de alto grado": 1,
-      "Cáncer de ovario – presentación clínica": 1,
-      "Cáncer de mama  – factores de riesgo": 1,
-      "Hiperplasia endometrial sin atipia": 1,
-      "Cáncer de endometrio – síntoma de alarma": 1
-    }
-  },
-  "Obstetricia": {
-    "total": 9,
-    "subtemas": {
-      "Ruptura prematura de membranas pretérmino (RPM pretérmino)": 1,
-      "Restricción del crecimiento intrauterino (RCIU)": 1,
-      "Isoinmunización Rh": 1,
-      "Macrosomía fetal": 1,
-      "Polihidramnios": 1,
-      "Oligohidramnios": 1,
-      "Prolapso de cordón umbilical": 1,
-      "Restricción del crecimiento intrauterino severa con Doppler crítico": 1,
-      "Embolia de líquido amniótico": 1
-    }
-  },
-  "Diabetes en el embarazo": {
-    "total": 4,
-    "subtemas": {
-      "Cetoacidosis diabética en embarazo": 1,
-      "Diabetes gestacional": 1,
-      "Complicaciones fetales de diabetes gestacional": 1,
-      "Hipoglucemia neonatal en hijos de madre diabética": 1
-    }
-  },
-  "Climaterio": {
-    "total": 4,
-    "subtemas": {
-      "Terapia hormonal de reemplazo (THR)": 1,
-      "Diagnóstico de menopausia": 1,
-      "Terapia hormonal de reemplazo": 1,
-      "Osteoporosis postmenopáusica": 1
-    }
-  },
-  "Endocrinología reproductiva": {
-    "total": 2,
-    "subtemas": {
-      "Amenorrea secundaria – insuficiencia ovárica prematura": 1,
-      "Hiperplasia endometrial": 1
-    }
-  },
-  "Infecciones en embarazo": {
     "total": 1,
     "subtemas": {
-      "Corioamnionitis": 1
-    }
-  },
-  "Ginecología": {
-    "total": 5,
-    "subtemas": {
-      "Miomatosis uterina sintomática": 1,
-      "Síndrome de ovario poliquístico (SOP)": 1,
-      "Endometriosis": 1,
-      "Enfermedad pélvica inflamatoria (EPI)": 1,
-      "Miomatosis uterina": 1
+      "Tumor germinal de ovario (Disgerminoma)": 1
     }
   },
   "Anticoncepción": {
@@ -1221,450 +1425,117 @@
       "DIU hormonal (levonorgestrel)": 1
     }
   },
-  "Lactancia": {
-    "total": 1,
-    "subtemas": {
-      "Beneficios de la lactancia materna exclusiva": 1
-    }
-  },
-  "Infecciones de transmisión sexual": {
-    "total": 1,
-    "subtemas": {
-      "Enfermedad pélvica inflamatoria": 1
-    }
-  },
-  "Endometriosis": {
-    "total": 1,
-    "subtemas": {
-      "Presentación clínica clásica": 1
-    }
-  },
-  "Miomatosis uterina": {
-    "total": 1,
-    "subtemas": {
-      "Mioma submucoso y sangrado uterino anormal": 1
-    }
-  },
-  "Cáncer cervicouterino": {
-    "total": 1,
-    "subtemas": {
-      "Cáncer invasor estadio temprano": 1
-    }
-  },
   "Trastornos menstruales": {
-    "total": 3,
-    "subtemas": {
-      "Amenorrea secundaria": 1,
-      "Dismenorrea primaria": 1,
-      "Sangrado uterino anormal anovulatorio": 1
-    }
-  },
-  "Patología mamaria": {
-    "total": 2,
-    "subtemas": {
-      "Mastitis puerperal": 1,
-      "Absceso mamario": 1
-    }
-  },
-  "Patología Gástrica": {
     "total": 1,
     "subtemas": {
-      "Dispepsia Funcional": 1
+      "Amenorrea secundaria": 1
     }
   },
-  "Patología Diverticular": {
+  "Patología arterial y venosa": {
     "total": 1,
     "subtemas": {
-      "Diverticulosis": 1
+      "Tromboembolia Pulmonar (TEP)": 1
     }
   },
-  "PATOLOGÍA GÁSTRICA": {
-    "total": 4,
-    "subtemas": {
-      "GASTRITIS AGUDA O CRONICA": 1,
-      "HERNIA HIATAL / ERGE": 1,
-      "ÚLCERA PÉPTICA PERFORADA": 1,
-      "HEMORRAGIA DE TUBO DIGESTIVO ALTO (ÚLCERA PÉPTICA)": 1
-    }
-  },
-  "PATOLOGÍA HEPÁTICA": {
+  "CA de colon y recto (Cirugía Oncología)": {
     "total": 2,
     "subtemas": {
-      "HEPATITIS AGUDAS Y CRÓNICAS": 1,
-      "ABSCESO HEPÁTICO (AMEBIANO Y PIÓGENO)": 1
-    }
-  },
-  "PATOLOGÍA PERIANAL": {
-    "total": 5,
-    "subtemas": {
-      "FISTULAS": 1,
-      "FISURA ANAL": 1,
-      "HEMORROIDES": 1,
-      "ABSCESO ANORRECTAL Y FÍSTULA": 1,
-      "FÍSTULA ANORRECTAL": 1
-    }
-  },
-  "PATOLOGÍA INTESTINAL QX": {
-    "total": 7,
-    "subtemas": {
-      "VÓLVULO DE COLON Y CIEGO": 1,
-      "APENDICITIS AGUDA": 1,
-      "OCLUSION INTESTINAL": 1,
-      "CÁNCER COLORRECTAL": 1,
-      "VÓLVULO DE SIGMOIDES": 1,
-      "OBSTRUCCIÓN INTESTINAL (ÍLEO PARALÍTICO)": 1,
-      "ISQUEMIA MESENTÉRICA AGUDA": 1
-    }
-  },
-  "MORDEDURAS Y PICADURAS": {
-    "total": 4,
-    "subtemas": {
-      "LATRODECTISMO": 1,
-      "MORDEDURAS DE MAMÍFEROS Y RABIA": 1,
-      "LOXOSCELISMO": 1,
-      "MORDEDURA DE SERPIENTES (ACCIDENTE OFÍDICO)": 1
-    }
-  },
-  "INTRODUCCIÓN OFTALMOLOGÍA": {
-    "total": 13,
-    "subtemas": {
-      "ORZUELO": 2,
-      "GLAUCOMA": 1,
-      "RETINOBLASTOMA": 1,
-      "RETINOPATÍA DEL PREMATURO": 1,
-      "CATARATA": 1,
-      "CHALAZIÓN": 1,
-      "TRAUMA OCULAR (QUEMADURAS QUÍMICAS)": 1,
-      "Sin Subtema": 1,
-      "CELULITIS ORBITARIA": 1,
-      "GLAUCOMA PRIMARIO DE ÁNGULO ABIERTO": 1,
-      "ESTRABISMO": 1,
-      "UVEÍTIS ANTERIOR AGUDA": 1
-    }
-  },
-  "PATOLOGÍA ISQUÉMICA INTESTINAL": {
-    "total": 1,
-    "subtemas": {
-      "ISQUEMIA MESENTERICA AGUDA Y CRÓNICA": 1
-    }
-  },
-  "INTRODUCCIÓN A CIRUGÍA Y CIRUGÍA ABDOMINAL": {
-    "total": 2,
-    "subtemas": {
-      "SX DE DOLOR LOCOREGIONAL": 1,
-      "RESPUESTA METABÓLICA AL TRAUMA": 1
-    }
-  },
-  "HERNIAS / ESPLENECTOMÍA": {
-    "total": 4,
-    "subtemas": {
-      "Hernias": 1,
-      "HERNIA INGUINAL": 1,
-      "HERNIA FEMORAL (CRURAL)": 1,
-      "HERNIA EPIGÁSTRICA": 1
-    }
-  },
-  "QUEMADURAS / GOLPE DE CALOR / HIPOTERMIA": {
-    "total": 3,
-    "subtemas": {
-      "Hipotermia": 1,
-      "QUEMADURAS TÉRMICAS Y REANIMACIÓN HÍDRICA": 1,
-      "GOLPE DE CALOR": 1
-    }
-  },
-  "PATOLOGÍA CÁMARA ANTERIOR": {
-    "total": 3,
-    "subtemas": {
-      "Pinguécula": 1,
-      "ÚLCERA CORNEAL / QUERATITIS INFECCIOSA": 1,
-      "PTERIGIÓN": 1
-    }
-  },
-  "PATOLOGÍA DE EXTREMIDAD SUPERIOR": {
-    "total": 11,
-    "subtemas": {
-      "Fx de antebrazo y mano": 1,
-      "Fx de clavicula": 1,
-      "EPICONDILITIS (CODO DE TENISTA Y GOLFISTA)": 1,
-      "SÍNDROME DEL TÚNEL CARPIANO": 1,
-      "LUXACIÓN DE HOMBRO": 1,
-      "FRACTURA DE ESCAFOIDES": 1,
-      "FX DE ANTEBRAZO Y MANO (FRACTURA DE COLLES)": 1,
-      "FRACTURA SUPRACONDÍLEA DE HÚMERO": 1,
-      "TENOSINOVITIS DE DE QUERVAIN": 1,
-      "LUXACIÓN ACROMIOCLAVICULAR": 1,
-      "TENOSINOVITIS INFECCIOSA DE LOS FLEXORES (MANO)": 1
-    }
-  },
-  "HIPOACUSIA Y VÉRTIGO": {
-    "total": 5,
-    "subtemas": {
-      "Hipoacusia neurosensorial": 1,
-      "VÉRTIGO POSTURAL PAROXÍSTICO BENIGNO (VPPB)": 1,
-      "ENFERMEDAD DE MENIERE": 1,
-      "OTOESCLEROSIS": 1,
-      "NEURITIS VESTIBULAR": 1
-    }
-  },
-  "PATOLOGÍA BILIAR": {
-    "total": 5,
-    "subtemas": {
-      "COLECISTITIS AGUDA": 1,
-      "CÁNCER DE VESÍCULA BILIAR": 1,
-      "COLANGITIS AGUDA": 1,
-      "COLEDOCOLITIASIS": 1,
-      "COLECISTITIS AGUDA (CRITERIOS DE TOKIO 2018)": 1
-    }
-  },
-  "UROLOGÍA P2": {
-    "total": 9,
-    "subtemas": {
-      "CÁNCER DE PRÓSTATA": 1,
-      "CÁNCER UROTELIAL Y TESTICULAR": 2,
-      "CÁNCER DE PENE": 1,
-      "LITIASIS RENAL": 1,
-      "CÁNCER RENAL": 1,
-      "CÁNCER TESTICULAR (SEMINOMA)": 1,
-      "CÁNCER DE PRÓSTATA (ESCALA DE GLEASON)": 1,
-      "CÁNCER DE PRÓSTATA (DIAGNÓSTICO)": 1
-    }
-  },
-  "TRAUMA GENERALIDADES Y COMPLICACIONES": {
-    "total": 7,
-    "subtemas": {
-      "SÍNDROME COMPARTIMENTAL": 1,
-      "PROFILAXIS ANTITETÁNICA": 1,
-      "ATB EN TRAUMA Y PROFILAXIS QX": 1,
-      "CHOQUE HIPOVOLÉMICO HEMORRÁGICO": 1,
-      "CICATRIZACIÓN": 1,
-      "FRACTURAS EN NIÑOS (SALTER-HARRIS)": 1,
-      "FRACTURAS ABIERTAS (CLASIFICACIÓN DE GUSTILO-ANDERSON)": 1
+      "Diverticulosis": 1,
+      "POLIPOSIS ADENOMATOSA FAMILIAR (PAF)": 1
     }
   },
   "PATOLOGÍA CÁMARA POSTERIOR": {
-    "total": 6,
+    "total": 2,
     "subtemas": {
       "DESPRENDIMIENTO DE RETINA": 1,
-      "RETINOPATÍA DIABÉTICA": 1,
-      "DEGENERACIÓN MACULAR RELACIONADA CON LA EDAD (DMAE)": 1,
-      "OCLUSIÓN VASCULAR RETINIANA": 1,
-      "RETINOPATÍA HIPERTENSIVA": 1,
-      "DESPRENDIMIENTO DE RETINA REGMATÓGENO": 1
+      "DEGENERACIÓN MACULAR RELACIONADA CON LA EDAD (DMAE)": 1
     }
   },
   "PATOLOGÍA ESOFÁGICA": {
-    "total": 4,
+    "total": 1,
     "subtemas": {
-      "ACALASIA": 1,
-      "CÁNCER DE ESÓFAGO": 1,
-      "PERFORACIÓN ESOFÁGICA (SÍNDROME DE BOERHAAVE)": 1,
-      "DESGARRO DE MALLORY  -WEISS": 1
+      "ACALASIA": 1
     }
   },
-  "UROLOGÍA P1": {
-    "total": 12,
+  "PATOLOGÍA DE EXTREMIDAD SUPERIOR": {
+    "total": 3,
     "subtemas": {
-      "HIPERPLASIA PROSTÁTICA BENIGNA (HPB)": 1,
-      "TORSIÓN TESTICULAR": 1,
-      "CRIPTORQUIDIA": 1,
-      "IVU (INFECCIONES DE VÍAS URINARIAS)": 1,
-      "INCONTINENCIA URINARIA": 1,
-      "INFECCIONES DE VÍAS URINARIAS (PIELONEFRITIS)": 1,
-      "PRIAPISMO": 1,
-      "EPIDIDIMITIS": 1,
-      "HPB (COMPLICACIONES Y TRATAMIENTO QX)": 1,
-      "PROSTATITIS BACTERIANA AGUDA": 1,
-      "PATOLOGÍA ESCROTAL BENIGNA (VARICOCELE)": 1,
-      "PARAFIMOSIS": 1
-    }
-  },
-  "CIRUGÍA ONCOLOGÍA": {
-    "total": 7,
-    "subtemas": {
-      "CÁNCER DE MAMA": 1,
-      "CÁNCER DE TIROIDES": 1,
-      "CÁNCER GÁSTRICO": 1,
-      "MELANOMA": 1,
-      "CÁNCER DE PÁNCREAS": 1,
-      "PATOLOGÍA BENIGNA DE MAMA": 1,
-      "CÁNCER COLORRECTAL (SÍNDROME DE LYNCH)": 1
-    }
-  },
-  "PATOLOGÍA DIVERTICULAR": {
-    "total": 2,
-    "subtemas": {
-      "DIVERTICULITIS": 1,
-      "DIVERTICULITIS AGUDA": 1
+      "Fx de clavicula": 1,
+      "EPICONDILITIS (CODO DE TENISTA Y GOLFISTA)": 1,
+      "LUXACIÓN DE HOMBRO": 1
     }
   },
   "PATOLOGÍA DE EXTREMIDAD INFERIOR": {
-    "total": 7,
+    "total": 2,
     "subtemas": {
       "Fx de cadera": 1,
-      "ESGUINCE DE TOBILLO": 1,
-      "LESIONES MENISCALES / LIGAMENTOS RODILLA": 1,
-      "FRACTURA DE PELVIS": 1,
-      "FRACTURA DE DIÁFISIS FEMORAL": 1,
-      "FRACTURAS DE TOBILLO (CLASIFICACIÓN DE WEBER)": 1,
-      "LUXACIÓN DE CADERA": 1
+      "ESGUINCE DE TOBILLO": 1
     }
   },
   "PATOLOGÍA INTESTINAL INFLAMATORIA": {
-    "total": 2,
+    "total": 1,
     "subtemas": {
-      "COLITIS ULCEROSA CRÓNICA IDIOPÁTICA (CUCI)": 1,
-      "COLITIS ULCEROSA (MEGACOLON TÓXICO)": 1
+      "COLITIS ULCEROSA CRÓNICA IDIOPÁTICA (CUCI)": 1
     }
   },
-  "PATOLOGÍA PANCREÁTICA": {
-    "total": 2,
+  "ATLS P2": {
+    "total": 1,
     "subtemas": {
-      "PANCREATITIS AGUDA": 1,
-      "PANCREATITIS CRÓNICA": 1
+      "TCE HEMORRAGIA EPIDURAL": 1
     }
   },
   "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE": {
-    "total": 6,
-    "subtemas": {
-      "EPIGLOTITIS": 1,
-      "EPISTAXIS": 1,
-      "RINOSINUSITIS": 1,
-      "OTITIS MEDIA AGUDA (OMA) / MASTOIDITIS": 1,
-      "FARINGOAMIGDALITIS": 1,
-      "OTITIS EXTERNA (OÍDO DE NADADOR)": 1
-    }
-  },
-  "PATOLOGÍA ARTERIAL Y VENOSA": {
-    "total": 4,
-    "subtemas": {
-      "INSUFICIENCIA VENOSA CRÓNICA": 1,
-      "TRAUMA URETRAL Y VESICAL": 1,
-      "ENFERMEDAD ARTERIAL PERIFÉRICA": 1,
-      "ANEURISMA DE AORTA ABDOMINAL (AAA)": 1
-    }
-  },
-  "HERNIAS / ESPLENECTOMÍA (TRAUMA GENERALIDADES)": {
     "total": 1,
     "subtemas": {
-      "ESPLENECTOMÍA": 1
+      "RINOSINUSITIS": 1
     }
   },
-  "CIRUGÍA GENERAL PEDIÁTRICA / CUELLO": {
-    "total": 1,
-    "subtemas": {
-      "PATOLOGÍA BENIGNA DE CUELLO (QUISTE TIROGLOSO)": 1
-    }
-  },
-  "PATOLOGÍA INTESTINAL QX / PEDIATRÍA": {
-    "total": 1,
-    "subtemas": {
-      "DIVERTÍCULO DE MECKEL": 1
-    }
-  },
-  "PATOLOGÍA INTESTINAL QX / CIRUGÍA PEDIÁTRICA": {
-    "total": 1,
-    "subtemas": {
-      "INVAGINACIÓN INTESTINAL (INTUSUSCEPCIÓN)": 1
-    }
-  },
-  "PATOLOGÍA DE EXTREMIDAD INFERIOR / ORTOPEDIA PEDIÁTRICA": {
+  "EPOC": {
     "total": 2,
     "subtemas": {
-      "DISPLASIA DEL DESARROLLO DE LA CADERA (DDC)": 1,
-      "EPIFISIOLISTESIS FEMORAL CAPITAL": 1
+      "PERFORACIÓN ESOFÁGICA (SÍNDROME DE BOERHAAVE)": 1,
+      "ZONAS ANATÓMICAS DE MONSON": 1
     }
   },
-  "UROLOGÍA P2 / ATLS P2": {
+  "PATOLOGÍA CÁMARA ANTERIOR": {
     "total": 1,
     "subtemas": {
-      "TRAUMA RENAL": 1
+      "ÚLCERA CORNEAL / QUERATITIS INFECCIOSA": 1
     }
   },
-  "CIRUGÍA GENERAL PEDIÁTRICA": {
+  "Mordeduras y Picaduras": {
     "total": 3,
     "subtemas": {
-      "ESTENOSIS HIPERTRÓFICA DEL PÍLORO": 1,
-      "ATRESIA ESOFÁGICA / FÍSTULA TRAQUEOESOFÁGICA": 1,
-      "ENFERMEDAD DE HIRSCHSPRUNG (AGANGLIONOSIS CONGÉNITA)": 1
+      "MORDEDURAS DE MAMÍFEROS Y RABIA": 1,
+      "TRAUMA OCULAR (QUEMADURAS QUÍMICAS)": 1,
+      "QUEMADURAS QUÍMICAS": 1
     }
   },
-  "CIRUGÍA ONCOLOGÍA / DERMATOLOGÍA": {
+  "Quemaduras": {
+    "total": 3,
+    "subtemas": {
+      "GOLPE DE CALOR": 1,
+      "QUEMADURA ELÉCTRICA Y RABDOMIOLISIS": 1,
+      "QUEMADURA ELÉCTRICA Y MIOGLOBINURIA": 1
+    }
+  },
+  "Urología": {
+    "total": 2,
+    "subtemas": {
+      "HPB (COMPLICACIONES Y TRATAMIENTO QX)": 1,
+      "REFLUJO VESICOURETERAL (RVU)": 1
+    }
+  },
+  "PATOLOGÍA GÁSTRICA": {
     "total": 1,
     "subtemas": {
-      "CÁNCER DE PIEL NO MELANOMA (CARCINOMA BASOCELULAR)": 1
+      "HEMORRAGIA DE TUBO DIGESTIVO ALTO (ÚLCERA PÉPTICA)": 1
     }
   },
-  "PATOLOGÍA DE GLÁNDULA SALIVAL / CUELLO": {
+  "UROLOGÍA P2": {
     "total": 1,
     "subtemas": {
-      "SIALOLITIASIS": 1
-    }
-  },
-  "PATOLOGÍA BILIAR / PATOLOGÍA INTESTINAL QX": {
-    "total": 1,
-    "subtemas": {
-      "ÍLEO BILIAR": 1
-    }
-  },
-  "ATLS P3 / RINOLOGÍA Y FARINGE": {
-    "total": 1,
-    "subtemas": {
-      "TRAUMA MAXILOFACIAL (LE FORT)": 1
-    }
-  },
-  "TRAUMA GENER ALIDADES Y COMPLICACIONES": {
-    "total": 1,
-    "subtemas": {
-      "QUEMADURAS ELÉCTRICAS": 1
-    }
-  },
-  "PATOLOGÍA INFECCIOSA / RINOLOGÍA Y FARINGE (PEDIATRÍA)": {
-    "total": 1,
-    "subtemas": {
-      "ASPIRACIÓN DE CUERPO EXTRAÑO EN VÍA AÉREA": 1
-    }
-  },
-  "NEUROCIRUGÍA / ATLS P2": {
-    "total": 1,
-    "subtemas": {
-      "HIPERTENSIÓN INTRACRANEAL (HERNIACIÓN UNCAL)": 1
-    }
-  },
-  "CIRUGÍA GENERAL PEDIÁTRICA / ADULTOS": {
-    "total": 1,
-    "subtemas": {
-      "APENDICITIS AGUDA": 1
-    }
-  },
-  "OFTALMOLOGÍA PEDIÁTRICA / ONCOLOGÍA": {
-    "total": 1,
-    "subtemas": {
-      "RETINOBLASTOMA": 1
-    }
-  },
-  "ORTOPEDIA Y TRAUMATOLOGÍA": {
-    "total": 5,
-    "subtemas": {
-      "SÍNDROME COMPARTIMENTAL": 1,
-      "FRACTURA DE COLLES": 1,
-      "FRACTURA DE TOBILLO (WEBER)": 1,
-      "FRACTURA DE LA CÚPULA RADIAL (ESCALA DE MASON)": 1,
-      "LUXACIÓN ANTERIOR DE HOMBRO": 1
-    }
-  },
-  "CIRUGÍA DE PARED ABDOMINAL": {
-    "total": 4,
-    "subtemas": {
-      "HERNIA INGUINAL (ANATOMÍA Y TRATAMIENTO)": 1,
-      "HERNIA CRURAL (FEMORAL)": 1,
-      "HERNIA DE SPIEGEL": 1,
-      "HERNIAS RARAS (AMYAND Y GARENGEOT)": 1
-    }
-  },
-  "QUEMADURAS (ATLS / GPC)": {
-    "total": 1,
-    "subtemas": {
-      "REANIMACIÓN HÍDRICA (FÓRMULA DE PARKLAND)": 1
+      "CÁNCER DE PRÓSTATA (DIAGNÓSTICO)": 1
     }
   },
   "CIRUGÍA ABDOMINAL DE URGENCIA": {
@@ -1673,70 +1544,10 @@
       "VÓLVULO DE SIGMOIDES": 1
     }
   },
-  "TRAUMA ABDOMINAL (ATLS)": {
-    "total": 1,
-    "subtemas": {
-      "TRAUMA ESPLÉNICO": 1
-    }
-  },
-  "OFTALMOLOGÍA (CÁMARA ANTERIOR)": {
-    "total": 1,
-    "subtemas": {
-      "GLAUCOMA AGUDO DE ÁNGULO CERRADO": 1
-    }
-  },
-  "ATLS / TRAUMA DE TÓRAX": {
-    "total": 8,
-    "subtemas": {
-      "NEUMOTÓRAX A TENSIÓN": 1,
-      "TAPONAMIENTO CARDÍACO": 1,
-      "TÓRAX INESTABLE (VOLET COSTAL)": 1,
-      "HEMOTÓRAX MASIVO": 1,
-      "CONTUSIÓN PULMONAR": 1,
-      "NEUMOTÓRAX SIMPLE": 1,
-      "RUPTURA TRAUMÁTICA DE DIAFRAGMA": 1,
-      "LESIÓN DE GRANDES VASOS (RUPTURA DE AORTA)": 1
-    }
-  },
-  "CIRUGÍA ABDOMINAL / OBSTRUCCIÓN INTESTINAL": {
-    "total": 1,
-    "subtemas": {
-      "SÍNDROME ADHERENCIA  L (BRIDAS)": 1
-    }
-  },
-  "QUEMADURAS": {
-    "total": 3,
-    "subtemas": {
-      "QUEMADURA ELÉCTRICA Y RABDOMIOLISIS": 1,
-      "CRITERIOS DE ENVÍO A UNIDAD DE QUEMADOS": 1,
-      "QUEMADURA ELÉCTRICA Y MIOGLOBINURIA": 1
-    }
-  },
   "CIRUGÍA GENERAL / TRAUMA": {
     "total": 1,
     "subtemas": {
       "MANEJO DE HERIDA POR ARMA BLANCA EN ABDOMEN": 1
-    }
-  },
-  "Enfermedad trofoblástica gestacional": {
-    "total": 2,
-    "subtemas": {
-      "Mola hidatidiforme completa": 1,
-      "Mola hidatidiforme parcial": 1
-    }
-  },
-  "Ruptura prematura de membranas": {
-    "total": 3,
-    "subtemas": {
-      "Ruptura prematura de membranas a término": 1,
-      "Ruptura prematura de membranas pretérmino (RPM pretérmino)": 1,
-      "Corioamnionitis": 1
-    }
-  },
-  "PATOLOGÍA MAMARIA": {
-    "total": 1,
-    "subtemas": {
-      "CÁNCER DE MAMA (TAMIZAJE Y CLASIFICACIÓN)": 1
     }
   },
   "LÍQUIDOS Y ELECTROLITOS EN CIRUGÍA": {
@@ -1751,86 +1562,39 @@
       "HERNIA DE DISCO LUMBAR": 1
     }
   },
-  "GASTROENTEROLOGÍA QUIRÚRGICA (ONCOLOGÍA)": {
-    "total": 2,
-    "subtemas": {
-      "ADENOCARCINOMA DE PÁNCREAS": 1,
-      "CÁNCER DE ESÓFAGO": 1
-    }
-  },
-  "ONCOLOGÍA QUIRÚRGICA": {
-    "total": 1,
-    "subtemas": {
-      "SARCOMAS DE PARTES BLANDAS": 1
-    }
-  },
-  "GASTROENTEROLOGÍA QUIRÚRGICA": {
-    "total": 4,
-    "subtemas": {
-      "ACALASIA (TRATAMIENTO)": 1,
-      "VÓLVULO DE CIEGO": 1,
-      "ENFERMEDAD POR REFLUJO GASTROESOFÁGICO (TRATAMIENTO": 1,
-      "ENFERMEDAD DE CROHN (COMPLICACIONES)": 1
-    }
-  },
-  "ATLS / QUEMADURAS": {
-    "total": 1,
-    "subtemas": {
-      "QUEMADURAS QUÍMICAS": 1
-    }
-  },
-  "ATLS / TRAUMA CRANEOENCEFÁLICO": {
-    "total": 1,
-    "subtemas": {
-      "HEMATOMA SUBDURAL": 1
-    }
-  },
-  "CIRUGÍA PEDIÁTRICA / INTESTINO DELGADO": {
-    "total": 1,
-    "subtemas": {
-      "DIVERTÍCULO DE MECKEL": 1
-    }
-  },
-  "ATLS / TRAUMA DE EXTREMIDADES": {
-    "total": 1,
-    "subtemas": {
-      "SÍNDROME COMPARTIMENTAL": 1
-    }
-  },
   "UROLOGÍA QUIRÚRGICA": {
     "total": 1,
     "subtemas": {
       "TORSIÓN TESTICULAR": 1
     }
   },
-  "UROLOGÍA (ONCOLOGÍA)": {
-    "total": 6,
-    "subtemas": {
-      "CÁNCER DE TESTÍCULO": 1,
-      "CÁNCER DE VEJIGA": 1,
-      "CÁNCER DE PENE": 1,
-      "CÁNCER DE PRÓSTATA (BIOPSIA)": 1,
-      "CARCINOMA DE CÉLULAS RENALES": 1,
-      "QUISTES RENALES (CLASIFICACIÓN DE BOSNIAK)": 1
-    }
-  },
-  "CIRUGÍA VASCULAR": {
+  "GASTROENTEROLOGÍA QUIRÚRGICA": {
     "total": 2,
     "subtemas": {
-      "INSUFICIENCIA ARTERIAL AGUDA": 1,
-      "ANEURISMA DE AORTA ABDOMINAL (AAA)": 1
+      "VÓLVULO DE CIEGO": 1,
+      "ENFERMEDAD DE CROHN (COMPLICACIONES)": 1
     }
   },
-  "ATLS / TRAUMA ABDOMINAL": {
-    "total": 1,
+  "UROLOGÍA (ONCOLOGÍA)": {
+    "total": 2,
     "subtemas": {
-      "TRAUMA RENAL": 1
+      "CÁNCER DE VEJIGA": 1,
+      "CARCINOMA DE CÉLULAS RENALES": 1
     }
   },
-  "ANGIOLOGÍA Y CIRUGÍA VASCULAR": {
+  "ORTOPEDIA Y TRAUMATOLOGÍA": {
+    "total": 4,
+    "subtemas": {
+      "FRACTURA DE COLLES": 1,
+      "FRACTURA DE TOBILLO (WEBER)": 1,
+      "FRACTURA DE LA CÚPULA RADIAL (ESCALA DE MASON)": 1,
+      "LUXACIÓN ANTERIOR DE HOMBRO": 1
+    }
+  },
+  "CIRUGÍA DE PARED ABDOMINAL": {
     "total": 1,
     "subtemas": {
-      "INSUFICIENCIA VENOSA CRÓNICA (IVC)": 1
+      "HERNIA DE SPIEGEL": 1
     }
   },
   "UROLOGÍA": {
@@ -1840,54 +1604,16 @@
       "LITIASIS VESICAL": 1
     }
   },
-  "ATLS / TRAUMA MÚSCULO-ESQUELÉTICO": {
-    "total": 1,
-    "subtemas": {
-      "FRACTURA DE PELVIS": 1
-    }
-  },
   "NUTRICIÓN Y CIRUGÍA": {
     "total": 1,
     "subtemas": {
       "VALORACIÓN NUTRICIONAL PREOPERATORIA": 1
     }
   },
-  "GINECOLOGÍA Y CIRUGÍA DE MAMA": {
-    "total": 1,
-    "subtemas": {
-      "FIBROADENOMA MAMARIO": 1
-    }
-  },
-  "ATLS / TRAUMA UROLÓGICO": {
-    "total": 1,
-    "subtemas": {
-      "LESIÓN DE URETRA": 1
-    }
-  },
-  "PROCTOLOGÍA": {
-    "total": 2,
-    "subtemas": {
-      "HEMORROIDES": 1,
-      "FISURA ANAL": 1
-    }
-  },
   "UROLOGÍA (INFECTOLOGÍA)": {
-    "total": 2,
+    "total": 1,
     "subtemas": {
-      "ORQUIEPIDIDIMITIS": 1,
       "GANGRENA DE FOURNIER": 1
-    }
-  },
-  "CIRUGÍA DE COLON Y RECTO": {
-    "total": 1,
-    "subtemas": {
-      "DIVERTICULITIS AGUDA (ESCALA DE HINCHEY)": 1
-    }
-  },
-  "CIRUGÍA DE CABEZA Y CUELLO": {
-    "total": 1,
-    "subtemas": {
-      "CÁNCER DE TIROIDES": 1
     }
   },
   "OFTALMOLOGÍA QUIRÚRGICA (URGENCIAS)": {
@@ -1897,301 +1623,34 @@
     }
   },
   "CIRUGÍA GENERAL": {
-    "total": 1,
+    "total": 13,
     "subtemas": {
-      "CONSENTIMIENTO INFORMADO": 1
-    }
-  },
-  "ENFERMEDAD DIVERTICULAR": {
-    "total": 1,
-    "subtemas": {
-      "DIVERTICULITIS AGUDA (ESCALA DE HINCHEY)": 1
-    }
-  },
-  "ATLS / TRAUMA DE CUELLO": {
-    "total": 1,
-    "subtemas": {
-      "ZONAS ANATÓMICAS DE MONSON": 1
+      "CONSENTIMIENTO INFORMADO": 1,
+      "PATOLOGÍA VESICULAR (COLECITITIS AGUDA)": 2,
+      "OCLUSIÓN INTESTINAL (INTESTINO DELGADO)": 2,
+      "ENFERMEDAD DIVERTICULAR (DIVERTICULITIS AGUDA)": 2,
+      "PATOLOGÍA ESOFÁGICA (ACALASIA)": 2,
+      "PARED ABDOMINAL (HERNIAS VENTRALES Y EPIGÁSTRICAS)": 2,
+      "ESÓFAGO (ERGE Y HERNIA HIATAL)": 2
     }
   },
   "MEDICINA INTERNA / INFECTOLOGÍA": {
-    "total": 4,
+    "total": 1,
     "subtemas": {
-      "CHOQUE SÉPTICO (DEFINICIÓN SEPSIS -3)": 1,
-      "TUBERCULOSIS PULMONAR (EFECTOS ADVERSOS DEL TAES)": 1,
-      "VIRUS DE LA INMUNODEFICIENCIA HUMANA (INFECCIONES": 1,
       "ENFERMEDADES TRANSMITIDAS POR VECTOR (DENGUE)": 1
     }
   },
-  "MEDICINA INTERNA / NEUMOLOGÍA": {
+  "A. duodenal (Patología Neonatal)": {
     "total": 1,
     "subtemas": {
-      "ENFERMEDAD PULMONAR OBSTRUCTIVA CRÓNICA (EPOC)": 1
-    }
-  },
-  "PEDIATRÍA / RECIÉN NACIDO SANO": {
-    "total": 5,
-    "subtemas": {
-      "TRAUMA OBSTÉTRICO (CEFALOHEMATOMA)": 1,
-      "TRAUMA OBSTÉTRICO (PARÁLISIS BRAQUIAL)": 1,
-      "ALTERACIONES DERMATOLÓGICAS AL NACIMIENTO": 1,
-      "TAMIZ NEONATAL METABÓLICO": 1,
-      "EVALUACIÓN DE EDAD GESTACIONAL (CAPURRO Y BALLARD)": 1
-    }
-  },
-  "PEDIATRÍA / REANIMACIÓN NEONATAL": {
-    "total": 2,
-    "subtemas": {
-      "PASOS INICIALES (MINUTO DE ORO)": 1,
-      "LÍQUIDO AMNIÓTICO MECONIAL": 1
-    }
-  },
-  "PEDIATRÍA / PATOLOGÍA NEONATAL INFECCIOSA": {
-    "total": 4,
-    "subtemas": {
-      "SEPSIS NEONATAL TEMPRANA": 1,
-      "ENTEROCOLITIS NECROTIZANTE (ECN)": 1,
-      "ONFALITIS": 1,
-      "MENINGITIS NEONATAL": 1
-    }
-  },
-  "PEDIATRÍA / PATOLOGÍA RESPIRATORIA NEONATAL": {
-    "total": 4,
-    "subtemas": {
-      "ENFERMEDAD DE MEMBRANA HIALINA (SDR TIPO I)": 1,
-      "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (SDR TIPO II)": 1,
-      "SÍNDROME DE ASPIRACIÓN DE MECONIO (SAM)": 1,
-      "DISPLASIA BRONCOPULMONAR (DBP)": 1
-    }
-  },
-  "PEDIATRÍA / PATOLOGÍA NEONATAL": {
-    "total": 2,
-    "subtemas": {
-      "APNEA DEL PREMATURO": 1,
-      "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)": 1
-    }
-  },
-  "PEDIATRÍA / DEFECTOS DE PARED ABDOMINAL": {
-    "total": 1,
-    "subtemas": {
-      "ONFALOCELE VS GASTROSQUISIS": 1
-    }
-  },
-  "PEDIATRÍA / PATOLOGÍA QUIRÚRGICA NEONATAL": {
-    "total": 3,
-    "subtemas": {
-      "HERNIA DIAFRAGMÁTICA CONGÉNITA (BOCHDALEK)": 1,
-      "ATRESIA DE ESÓFAGO": 1,
       "ATRESIA DUODENAL": 1
     }
   },
-  "PEDIATRÍA / GASTROENTEROLOGÍA NEONATAL": {
-    "total": 1,
-    "subtemas": {
-      "ICTERICIA FISIOLÓGICA VS PATOLÓGICA": 1
-    }
-  },
-  "PEDIATRÍA / HEMATOLOGÍA NEONATAL": {
-    "total": 1,
-    "subtemas": {
-      "ISOINMUNIZACIÓN MATERNO  -FETAL (Rh)": 1
-    }
-  },
-  "PEDIATRÍA / TRASTORNOS METABÓLICOS NEONATALES": {
+  "PEDIATRÍA / CRECIMIENTO Y DESARROLLO": {
     "total": 2,
     "subtemas": {
-      "HIPOGLUCEMIA NEONATAL": 1,
-      "HIPOCALCEMIA NEONATAL": 1
-    }
-  },
-  "PEDIATRÍA / ERRORES INNATOS DEL METABOLISMO": {
-    "total": 1,
-    "subtemas": {
-      "FENILCETONURIA (PKU)": 1
-    }
-  },
-  "PEDIATRÍA / CRECIMIENTO Y DESARROLLO": {
-    "total": 4,
-    "subtemas": {
-      "SOMATOMETRÍA Y FÓRMULAS DE CRECIMIENTO": 1,
-      "HITOS DEL DESARROLLO PSICOMOTOR": 1,
       "DENTICIÓN INFAN TIL": 1,
       "DESARROLLO PUBERAL (ESCALA DE TANNER)": 1
-    }
-  },
-  "PEDIATRÍA / NUTRICIÓN": {
-    "total": 11,
-    "subtemas": {
-      "LACTANCIA MATERNA (PROPIEDADES Y TIPOS)": 1,
-      "CONTRAINDICACIONES DE LA LACTANCIA MATERNA": 1,
-      "DESNUTRICIÓN PROTEICO  -CALÓRICA (KWASHIORKOR)": 1,
-      "DESNUTRICIÓN PROTEICO  -CALÓRICA (MARASMO)": 1,
-      "SÍNDROME DE REALIMENTACIÓN": 1,
-      "DESNUTRICIÓN PROTEICO  -CALÓRICA (KWASHIORKOR VS MARASMO)": 1,
-      "MARASMO (DESNUTRICIÓN CALÓRICA)": 1,
-      "RAQUITISMO (DEFICIENCIA DE VITAMINA D)": 1,
-      "VITAMINA A Y K": 1,
-      "DESNUTRICIÓN PROTEICO  -CALÓRICA (KWASHIORKOR VS. MARASMO)": 1,
-      "VITAMINA D (RAQUITISMO)": 1
-    }
-  },
-  "PEDIATRÍA / PATOLOGÍA RESPIRATORIA": {
-    "total": 4,
-    "subtemas": {
-      "EPIGLOTITIS AGUDA": 1,
-      "BRONQUIOLITIS OBLITERANTE": 1,
-      "NEUMONÍA ADQUIRIDA EN LA COMUNIDAD (NAC)": 1,
-      "NEUMONÍA ATÍPICA": 1
-    }
-  },
-  "PEDIATRÍA / INFECCIOSAS": {
-    "total": 1,
-    "subtemas": {
-      "TOS FERINA (SÍNDROME COQUELUCHOIDE)": 1
-    }
-  },
-  "PEDIATRÍA / INFECTOLOGÍA": {
-    "total": 28,
-    "subtemas": {
-      "SARAMPIÓN": 1,
-      "ESCARLATINA": 1,
-      "ERITEMA INFECCIOSO (QUINTA ENFERMEDAD)": 2,
-      "EXANTEMA SÚBITO (ROSEOLA / SEXTA ENFERMEDAD)": 1,
-      "VARICELA": 1,
-      "CHOQUE SÉPTICO EN PEDIATRÍA": 1,
-      "PARASITOSIS INTESTINAL (GIARDIASIS)": 1,
-      "ENTEROBIASIS (OXIUROS)": 1,
-      "TUBERCULOSIS PEDIÁTRICA": 1,
-      "VIH EN PEDIATRÍA": 1,
-      "TOS FERINA (SÍNDROME COQUELUCHOIDE)": 3,
-      "TÉTANOS NEONATAL": 1,
-      "SARAMPIÓN (PRIMERA ENFERMEDAD)": 1,
-      "VARICELA (HERPES VIRUS 3)": 1,
-      "ESCARLATINA (S. PYOGENES)": 1,
-      "PAROTIDITIS (PAPERAS)": 1,
-      "ENFERMEDAD MANO  -PIE-BOCA": 1,
-      "FARINGOAMIGDALITIS ESTREPTOCÓCICA": 1,
-      "OTITIS MEDIA AGUDA (OMA)": 1,
-      "SINUSITIS AGUDA": 1,
-      "MENINGITIS BACTERIANA AGUDA": 1,
-      "ENFERMEDAD DE KAWASAKI INCOMPLETO": 1,
-      "MENINGITIS BACTERIANA EN EL ESCOLAR": 1,
-      "SARAMPIÓN COMPLICADO": 1,
-      "ESCARLATINA VS KAWASAKI": 1
-    }
-  },
-  "PEDIATRÍA / GASTROENTEROLOGÍA": {
-    "total": 10,
-    "subtemas": {
-      "ENFERMEDAD DIARREICA AGUDA (ROTAVIRUS)": 1,
-      "DESHIDRATACIÓN Y PLANES DE REHIDRATACIÓN (OMS)": 1,
-      "ESTENOSIS HIPERTRÓFICA DEL PÍLORO (EHP)": 2,
-      "INVAGINACIÓN INTESTINAL (INTUSUSCEPCIÓN)": 1,
-      "REFLUJO GASTROESOFÁGICO (RGE) VS ENFERMEDAD (ERGE)": 1,
-      "ALERGIA A LA PROTEÍNA DE LA LECHE DE VACA (APLV)": 1,
-      "ENFERMEDAD CELÍACA": 1,
-      "INTUSUSCEPCIÓN (INVAGINACIÓN INTESTINAL)": 1,
-      "ENFERMEDAD POR REFLUJO GASTROESOFÁGICO (ERGE)": 1
-    }
-  },
-  "PEDIATRÍA / NEFROLOGÍA": {
-    "total": 14,
-    "subtemas": {
-      "INFECCIÓN DE VÍAS URINARIAS (IVU)": 4,
-      "SÍNDROME NEFRÓTICO (CAMBIOS MÍNIMOS)": 1,
-      "SÍNDROME NEFRÍTICO (POSTESTREPTOCÓCICO)": 1,
-      "SÍNDROME URÉMICO HEMOLÍTICO (SUH)": 1,
-      "ACIDOSIS TUBULAR RENAL (ATR)": 1,
-      "ENFERMEDAD RENAL CRÓNICA (ERC) EN PEDIATRÍA": 1,
-      "SÍNDROME NEFRÍTICO (GLOMERULONEFRITIS POSTESTREPTOCÓCICA)": 2,
-      "REFLUJO VESICOURETERAL (RVU)": 2,
-      "SÍNDROME NEFRÓTICO (ENFERMEDAD DE CAMBIOS MÍNIMOS)": 1
-    }
-  },
-  "PEDIATRÍA / UROLOGÍA": {
-    "total": 6,
-    "subtemas": {
-      "REFLUJO VESICOURETERAL (RVU)": 2,
-      "CRIPTORQUIDIA": 3,
-      "HIPOSPADIAS": 1
-    }
-  },
-  "PEDIATRÍA / HEMATOLOGÍA": {
-    "total": 6,
-    "subtemas": {
-      "ANEMIA FERROPÉNICA": 1,
-      "PÚRPURA TROMBOCITOPÉNICA INMUNE (PTI)": 1,
-      "HEMOFILIA": 1,
-      "ANEMIA FERROPÉNICA (DIAGNÓSTICO DIFERENCIAL)": 1,
-      "ANEMIA DE CÉLULAS FALCIFORMES (DREPANOCITOSIS)": 1,
-      "DEFICIENCIA DE GLUCOSA -6-FOSFATO DESHIDROGENASA (G6PD)": 1
-    }
-  },
-  "PEDIATRÍA / ONCOLOGÍA": {
-    "total": 7,
-    "subtemas": {
-      "LEUCEMIA LINFOBLÁSTICA AGUDA (LLA)": 2,
-      "TUMOR DE WILMS (NEFROBLASTOMA)": 2,
-      "LINFOMA NO HODGKIN (BURKITT)": 1,
-      "LINFOMA DE HODGKIN VS NO HODGKIN": 1,
-      "NEUROBLASTOMA": 1
-    }
-  },
-  "PEDIATRÍA / NEUROLOGÍA": {
-    "total": 13,
-    "subtemas": {
-      "CRISIS CONVULSIVAS FEBRILES": 1,
-      "MENINGITIS BACTERIANA AGUDA": 1,
-      "EPILEPSIA (AUSENCIAS TÍPICAS)": 2,
-      "DEFECTOS DEL TUBO NEURAL": 1,
-      "HIDROCEFALIA / MALFORMACIÓN DE CHIARI": 1,
-      "SÍNDROME DE WEST (ESPASMOS INFANTILES)": 2,
-      "SÍNDROME DE LENNOX -GASTAUT": 1,
-      "TRASTORNOS PAROXÍSTICOS NO EPILÉPTICOS (ESPASMO DEL SOLLOZO)": 1,
-      "PARÁLISIS CEREBRAL INFANTIL (PCI)": 1,
-      "SÍNDROME DE GUILLAIN-BARRÉ (SGB)": 1,
-      "CONVULSIONES FEBRILES": 1
-    }
-  },
-  "PEDIATRÍA / URGENCIAS": {
-    "total": 12,
-    "subtemas": {
-      "INGESTIÓN DE CUERPOS EXTRAÑOS": 1,
-      "INGESTIÓN DE CÁUSTICOS": 2,
-      "INTOXICACIÓN POR PARACETAMOL": 1,
-      "INTOXICACIÓN POR HIERRO": 1,
-      "REANIMACIÓN CARDIOPULMONAR (RCP) PEDIÁTRICA": 1,
-      "QUEMADURAS (EXTENSIÓN Y LÍQUIDOS)": 1,
-      "CHOQUE HIPOVOLÉMICO": 1,
-      "INGESTA DE CUERPOS EXTRAÑOS (PILAS DE BOTÓN Y MONEDAS)": 1,
-      "ASPIRACIÓN DE CUERPO EXTRAÑO": 1,
-      "CRISIS ASMÁTICA SEVERA": 1,
-      "CRUP (MANEJO DE LA VÍA AÉREA)": 1
-    }
-  },
-  "PEDIATRÍA / ACCIDENTES": {
-    "total": 1,
-    "subtemas": {
-      "ASPIRACIÓN DE CUERPO EXTRAÑO EN VÍA AÉREA": 1
-    }
-  },
-  "PEDIATRÍA / ASPECTOS LEGALES Y SOCIALES": {
-    "total": 1,
-    "subtemas": {
-      "MALTRATO INFANTIL (SÍNDROME DEL NIÑO MALTRATADO)": 1
-    }
-  },
-  "PEDIATRÍA / INFECTOLOGÍA NEONATAL": {
-    "total": 2,
-    "subtemas": {
-      "SEPSIS NEONATAL TEMPRANA": 1,
-      "SEPSIS NEONATAL TARDÍA": 1
-    }
-  },
-  "PEDIATRÍA / VACUNACIÓN": {
-    "total": 1,
-    "subtemas": {
-      "VACUNA SRP (TRIPLE VIRAL)": 1
     }
   },
   "PEDIATRÍA / ORTOPEDIA PEDIÁTRICA": {
@@ -2200,282 +1659,28 @@
       "DISPLASIA DEL DESARROLLO DE LA CADERA (DDC)": 1
     }
   },
-  "PEDIATRÍA / ORTOPEDIA": {
-    "total": 4,
-    "subtemas": {
-      "ENFERMEDAD DE LEGG -CALVÉ-PERTHES": 1,
-      "EPIFISIOLISIS FEMORAL PROXIMAL": 1,
-      "DISPLASIA EN EL DESARROLLO DE LA CADERA (DDC)": 1,
-      "ESCOLIOSIS IDIOPÁTICA DEL ADOLESCENTE": 1
-    }
-  },
-  "PEDIATRÍA / REUMATOLOGÍA": {
-    "total": 5,
-    "subtemas": {
-      "PÚRPURA DE HENOCH  -SCHÖNLEIN (VASCULITIS POR IgA)": 1,
-      "ENFERMEDAD DE KAWASAKI": 1,
-      "ARTRITIS IDIOPÁTICA JUVENIL (AIJ) SISTÉMICA": 1,
-      "FIEBRE REUMÁTICA (FR)": 1,
-      "ARTRITIS IDIOPÁTICA JUVENIL (AIJ)": 1
-    }
-  },
-  "PEDIATRÍA / ENDOCRINOLOGÍA": {
-    "total": 8,
-    "subtemas": {
-      "HIPOTIROIDISMO CONGÉNITO": 1,
-      "DIABETES MELLITUS TIPO 1 (DM1)": 1,
-      "TALLA BAJA (VARIANTES NORMALES)": 1,
-      "HIPERPLASIA SUPRARRENAL CONGÉNITA (HSC)": 1,
-      "PUBERTAD PRECOZ": 1,
-      "ENFERMEDAD DE GRAVES (HIPERTIROIDISMO PEDIÁTRICO)": 1,
-      "HIPOTIROIDISMO ADQUIRIDO (TIROIDITIS DE HASHIMOTO)": 1,
-      "TALLA BAJA Y RETRASO CONSTITUCIONAL": 1
-    }
-  },
-  "PEDIATRÍA / CARDIOLOGÍA": {
-    "total": 18,
-    "subtemas": {
-      "PERSISTENCIA DEL CONDUCTO ARTERIOSO (PCA)": 4,
-      "COMUNICACIÓN INTERVENTRICULAR (CIV)": 4,
-      "TETRALOGÍA DE FALLOT": 4,
-      "COARTACIÓN DE LA AORTA": 2,
-      "COMUNICACIÓN INTERAURICULAR (CIA)": 2,
-      "TRANSPOSICIÓN DE LAS GRANDES ARTERIAS (TGA)": 1,
-      "TRANSPOSICIÓN DE GRANDES VASOS (TGV)": 1
-    }
-  },
-  "PEDIATRÍA / CIRUGÍA NEONATAL": {
-    "total": 4,
-    "subtemas": {
-      "ATRESIA DE ESÓFAGO": 1,
-      "HERNIA DIAFRAGMÁTICA CONGÉNITA (BOCHDALEK)": 1,
-      "GASTROSQUISIS VS ONFALOCELE": 1,
-      "ATRESIA ESOFÁGICA": 1
-    }
-  },
-  "PEDIATRÍA / DERMATOLOGÍA": {
-    "total": 5,
-    "subtemas": {
-      "DERMATITIS ATÓPICA": 1,
-      "DERMATITIS DEL PAÑAL": 1,
-      "DERMATITIS ATÓPICA (ECCEMA)": 1,
-      "DERMATITIS DEL PAÑAL E INFECCIÓN POR CANDIDA": 1,
-      "IMPÉTIGO (CONTAGIOSO Y AMPOLLOSO)": 1
-    }
-  },
-  "PEDIATRÍA / INFECTOLOGÍA DERMATOLÓGICA": {
-    "total": 1,
-    "subtemas": {
-      "IMPÉTIGO": 1
-    }
-  },
-  "PEDIATRÍA / OFTALMOLOGÍA": {
-    "total": 2,
-    "subtemas": {
-      "RETINOPATÍA DEL PREMATURO (ROP)": 1,
-      "ESTRABISMO Y LEUCOCORIA": 1
-    }
-  },
-  "PEDIATRÍA / PSIQUIATRÍA INFANTIL": {
-    "total": 3,
-    "subtemas": {
-      "TRASTORNO POR DÉFICIT DE ATENCIÓN E HIPERACTIVIDAD (TDAH)": 1,
-      "TRASTORNO DEL ESPECTRO AUTISTA (TEA)": 1,
-      "TRASTORNO NEGATIVISTA DESAFIANTE (TND)": 1
-    }
-  },
-  "PEDIATRÍA / INMUNOLOGÍA": {
-    "total": 2,
-    "subtemas": {
-      "INMUNODEFICIENCIA COMBINADA GRAVE (IDCG)": 1,
-      "AGAMMAGLOBULINEMIA LIGADA AL X (BRUTON)": 1
-    }
-  },
-  "PEDIATRÍA / ADOLESCENCIA": {
-    "total": 4,
-    "subtemas": {
-      "DESARROLLO PUBERAL (ESCALA DE TANNER)": 1,
-      "DESARROLLO PUBERAL MASCULINO": 1,
-      "TRASTORNOS DE LA CONDUCTA ALIMENTARIA (ANOREXIA NERVIOSA)": 1,
-      "GINECOMASTIA PUBERAL": 1
-    }
-  },
-  "PEDIATRÍA / SEGURIDAD": {
-    "total": 1,
-    "subtemas": {
-      "SÍNDROME DE MUERTE SÚBITA DEL LACTANTE (SMSL)": 1
-    }
-  },
   "PEDIATRÍA / ASPECTOS LEGALES": {
     "total": 1,
     "subtemas": {
       "ABUSO SEXUAL INFANTIL": 1
     }
   },
-  "PEDIATRÍA / PREVENCIÓN": {
+  "Neonatología": {
     "total": 1,
     "subtemas": {
-      "SEGURIDAD EN EL AUTOMÓVIL": 1
-    }
-  },
-  "PEDIATRÍA / INTOXICACIONES": {
-    "total": 1,
-    "subtemas": {
-      "INTOXICACIÓN POR PLOMO (SATURNISMO)": 1
-    }
-  },
-  "PEDIATRÍA / INMUNIZACIONES": {
-    "total": 4,
-    "subtemas": {
-      "ESQUEMA DE RESCATE (VACUNA HEXAVALENTE)": 1,
-      "REACCIONES ADVERSAS (ESAVI)": 1,
-      "VACUNA CONTRA ROTAVIRUS": 1,
-      "VACUNA BCG (TUBERCULOSIS)": 1
-    }
-  },
-  "PEDIATRÍA / INFECTOLOGÍA GASTROINTESTINAL": {
-    "total": 2,
-    "subtemas": {
-      "HEPATITIS VIRAL TIPO A": 1,
-      "PREVENCIÓN DE HEPATITIS B VERTICAL": 1
-    }
-  },
-  "PEDIATRÍA / CIRUGÍA PEDIÁTRICA": {
-    "total": 4,
-    "subtemas": {
-      "ATRESIA DE VÍAS BILIARES": 1,
-      "GASTROSQUISIS": 1,
-      "ONFALOCELE": 1,
-      "ATRESIA ESOFÁGICA": 1
-    }
-  },
-  "PEDIATRÍA / INFECTOLOGÍA RESPIRATORIA": {
-    "total": 1,
-    "subtemas": {
-      "VIRUS SINCITIAL RESPIRATORIO (PROFILAXIS EN BRONQUIOLITIS)": 1
-    }
-  },
-  "PEDIATRÍA / NEUROLOGÍA E INFECTOLOGÍA": {
-    "total": 1,
-    "subtemas": {
-      "ENCEFALITIS VIRAL (HERPES SIMPLE)": 1
-    }
-  },
-  "PEDIATRÍA / NEONATOLOGÍA Y NEUROLOGÍA": {
-    "total": 1,
-    "subtemas": {
-      "CRISIS NEONATALES": 1
-    }
-  },
-  "PEDIATRÍA / ENDOCRINOLOGÍA Y URGENCIAS": {
-    "total": 1,
-    "subtemas": {
-      "CETOACIDOSIS DIABÉTICA (COMPLICACIÓN)": 1
-    }
-  },
-  "PEDIATRÍA / NEONATOLOGÍA Y ENDOCRINOLOGÍA": {
-    "total": 1,
-    "subtemas": {
-      "HIPOGLUCEMIA NEONATAL": 1
-    }
-  },
-  "PEDIATRÍA / UROLOGÍA (URGENCIAS)": {
-    "total": 2,
-    "subtemas": {
-      "TORSIÓN TESTICULAR": 1,
-      "ESCROTO AGUDO (TORSIÓN TESTICULAR)": 1
-    }
-  },
-  "PEDIATRÍA / NEONATOLOGÍA": {
-    "total": 19,
-    "subtemas": {
-      "SÍFILIS CONGÉNITA": 1,
-      "SÍNDROME DE RUBÉOLA CONGÉNITA": 1,
-      "CITOMEGALOVIRUS (CMV) CONGÉNITO": 1,
-      "TOXOPLASMOSIS CONGÉNITA": 1,
-      "SÍNDROME DE ASPIRACIÓN DE MECONIO (SAM)": 2,
-      "TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO (TTRN)": 2,
-      "ENFERMEDAD DE MEMBRANA HIALINA (SDR TIPO 1)": 1,
-      "SÍNDROME DE DIFICULTAD RESPIRATORIA (SDR / ENFERMEDAD DE": 1,
-      "ICTERICIA PATOLÓGICA (INCOMPATIBILIDAD ABO Y Rh)": 1,
-      "ICTERICIA POR LACTANCIA VS. LECHE MATERNA": 1,
-      "ENCEFALOPATÍA BILIRRUBÍNICA (KERNICTERUS)": 1,
-      "REANIMACIÓN NEONATAL (NRP)": 1,
-      "ESCALA DE APGAR": 1,
-      "ESCALA DE SILVERMAN -ANDERSEN": 1,
-      "REANIMACIÓN NEONATAL AVANZADA (NRP)": 1,
-      "DIFICULTAD RESPIRATORIA EN EL PREMATURO TARDÍO": 1,
-      "DISPLASIA BRONCOPULMONAR (DBP)": 1
-    }
-  },
-  "PEDIATRÍA / NEONATOLOGÍA (REANIMACIÓN)": {
-    "total": 1,
-    "subtemas": {
-      "HERNIA DIAFRAGMÁTICA (MANEJO EN SALA DE PARTOS)": 1
-    }
-  },
-  "PEDIATRÍA / NEONATOLOGÍA (GASTROENTEROLOGÍA CIRUGÍA)": {
-    "total": 1,
-    "subtemas": {
-      "ENTEROCOLITIS NECROTIZANTE (ECN)": 1
+      "DEFICIENCIA DE GLUCOSA -6-FOSFATO DESHIDROGENASA (G6PD)": 1
     }
   },
   "PEDIATRÍA / INFECTOLOGÍA (EXANTEMÁTICAS)": {
-    "total": 6,
-    "subtemas": {
-      "SARAMPIÓN": 1,
-      "RUBÉOLA": 1,
-      "ERITEMA INFECCIOSO (QUINTA ENFERMEDAD)": 1,
-      "ESCARLATINA": 1,
-      "EXANTEMA SÚBITO (ROSÉOLA INFANTIL / SEXTA ENFERMEDAD)": 1,
-      "VARICELA": 1
-    }
-  },
-  "PEDIATRÍA / INFECTOLOGÍA Y REUMATOLOGÍA": {
     "total": 1,
     "subtemas": {
-      "ENFERMEDAD DE KAWASAKI": 1
+      "ERITEMA INFECCIOSO (QUINTA ENFERMEDAD)": 1
     }
   },
-  "PEDIATRÍA / INFECTOLOGÍA (URGENCIAS)": {
+  "Epiglotitis (Patología Respiratoria del Lactante y Preescolar)": {
     "total": 1,
     "subtemas": {
-      "SÍNDROME DE CHOQUE TÓXICO ESTAFILOCÓCICO (SCT)": 1
-    }
-  },
-  "PEDIATRÍA / NEUMOLOGÍA (URGENCIAS)": {
-    "total": 3,
-    "subtemas": {
-      "LARINGOTRAQUEÍTIS INFECCIOSA (CRUP)": 1,
-      "EPIGLOTITIS AGUDA": 1,
-      "ASPIRACIÓN DE CUERPO EXTRAÑO": 1
-    }
-  },
-  "PEDIATRÍA / NEUMOLOGÍA (ANATOMÍA)": {
-    "total": 1,
-    "subtemas": {
-      "LARINGOMALACIA": 1
-    }
-  },
-  "PEDIATRÍA / NEUMOLOGÍA": {
-    "total": 4,
-    "subtemas": {
-      "BRONQUIOLITIS AGUDA": 1,
-      "ASMA PEDIÁTRICA (CRISIS ASMÁTICA)": 1,
-      "ASMA (DIAGNÓSTICO INICIAL)": 1,
-      "ASMA (MANEJO DE CONTROL crónico)": 1
-    }
-  },
-  "CIRUGÍA PEDIÁTRICA / GASTROENTEROLOGÍA": {
-    "total": 1,
-    "subtemas": {
-      "ESTENOSIS HIPERTRÓFICA DEL PÍLORO (EHP)": 1
-    }
-  },
-  "CIRUGÍA PEDIÁTRICA / URGENCIAS": {
-    "total": 1,
-    "subtemas": {
-      "INVAGINACIÓN INTESTINAL (INTUSUSCEPCIÓN)": 1
+      "EPIGLOTITIS AGUDA": 1
     }
   },
   "CIRUGÍA PEDIÁTRICA": {
@@ -2484,134 +1689,906 @@
       "DIVERTÍCULO DE MECKEL": 1
     }
   },
-  "GINECOLOGÍA Y OBSTETRICIA": {
-    "total": 6,
-    "subtemas": {
-      "DIAGNÓSTICO DE EMBARAZO Y REGLA DE NAEGELE": 1,
-      "CAMBIOS FISIOLÓGICOS EN EL EMBARAZO": 1,
-      "CONTROL PRENATAL (GPC)": 1,
-      "ABORTO (TIPOS Y MANEJO)": 1,
-      "EMBARAZO ECTÓPICO": 1,
-      "ENFERMEDAD TROFOBLÁSTICA GESTACIONAL (MOLA)": 1
-    }
-  },
-  "PEDIATRÍA / REUMATOLOGÍA - INFECTOLOGÍA": {
-    "total": 1,
-    "subtemas": {
-      "ENFERMEDAD DE KAWASAKI": 1
-    }
-  },
-  "PEDIATRÍA / NEUROLOGÍA - NEUROCIRUGÍA": {
-    "total": 1,
-    "subtemas": {
-      "DEFECTOS DEL TUBO NEURAL (MIELOMENINGOCELE)": 1
-    }
-  },
-  "PEDIATRÍA / GENÉTICA - NEUROLOGÍA": {
-    "total": 1,
-    "subtemas": {
-      "ATROFIA MUSCULAR ESPINAL (AME)": 1
-    }
-  },
-  "PEDIATRÍA / MEDICINA PREVENTIVA": {
-    "total": 3,
-    "subtemas": {
-      "VACUNAS (ESQUEMA NACIONAL DE VACUNACIÓN)": 1,
-      "VACUNA BCG Y HEPATITIS B": 1,
-      "VACUNA SRP (TRIPLE VIRAL)": 1
-    }
-  },
-  "PEDIATRÍA / TOXICOLOGÍA": {
-    "total": 1,
-    "subtemas": {
-      "INTOXICACIÓN POR PARACETAMOL": 1
-    }
-  },
-  "PEDIATRÍA / URGENCIAS - SOCIAL": {
-    "total": 1,
-    "subtemas": {
-      "MALTRATO INFANTIL (SÍNDROME DEL NIÑO SACUDIDO)": 1
-    }
-  },
-  "PEDIATRÍA / GENÉTICA": {
+  "Enfermedad pélvica inflamatoria (Patología Infecciosa Cervical)": {
     "total": 2,
     "subtemas": {
-      "SÍNDROME DE DOWN (TRISOMÍA 21)": 1,
-      "SÍNDROME DE TURNER (45, X)": 1
+      "EMBARAZO ECTÓPICO": 1,
+      "Enfermedad pélvica inflamatoria (Patología Infecciosa Cervical)": 1
     }
   },
   "GINECOLOGÍA": {
+    "total": 1,
+    "subtemas": {
+      "SÍNDROME DE OVARIO POLIQUÍSTICO (SOP)": 1
+    }
+  },
+  "ENDOCRINOLOGÍA": {
+    "total": 3,
+    "subtemas": {
+      "HIPERPROLACTINEMIA": 1,
+      "SÍNDROME METABÓLICO (CRITERIOS ATP III)": 1,
+      "HIPERTIROIDISMO (ENFERMEDAD DE GRAVES)": 1
+    }
+  },
+  "HEMATOLOGÍA": {
+    "total": 12,
+    "subtemas": {
+      "ANEMIAS CARENCIALES (MEGALOBLÁSTICA)": 1,
+      "LEUCEMIAS (LEUCEMIA MIELOIDE CRÓNICA)": 1,
+      "LINFOMA NO HODGKIN (LNH)": 2,
+      "MIELOMA MÚLTIPLE (DIAGNÓSTICO)": 1,
+      "PÚRPURA TROMBOCITOPÉNICA TROMBÓTICA (PTT)": 2,
+      "ENFERMEDAD DE VON WILLEBRAND (EvW)": 1,
+      "LEUCEMIA MIELOIDE AGUDA (LMA)": 1,
+      "LEUCEMIA MIELOIDE CRÓNICA (LMC)": 1,
+      "MIELOMA MÚLTIPLE (MM)": 1,
+      "POLICITEMIA VERA": 1
+    }
+  },
+  "CARDIOLOGÍA": {
+    "total": 5,
+    "subtemas": {
+      "VALVULOPATÍAS (INSUFICIENCIA AÓRTICA)": 1,
+      "TRASTORNOS DEL RITMO (BRADICARDIAS)": 1,
+      "PERLAS (TUMORES CARDÍACOS)": 1,
+      "BLOQUEOS DE RAMA (ELECTROCARDIOGRAFÍA)": 1,
+      "SÍNDROMES DE PREEXCITACIÓN (WPW)": 1
+    }
+  },
+  "NEUROLOGÍA": {
+    "total": 14,
+    "subtemas": {
+      "EVC ISQUÉMICO (MANEJO AGUDO)": 1,
+      "ENFERMEDAD DE PARKINSON": 2,
+      "ESCLEROSIS MÚLTIPLE": 2,
+      "EPILEPSIA (CRISIS TÓNICO-CLÓNICAS)": 1,
+      "ESCLEROSIS MÚLTIPLE (EM)": 1,
+      "MIASTENIA GRAVIS (MG)": 1,
+      "ESTRADO EPILÉPTICO": 1,
+      "SÍNDROME DE WERNICKE -KORSAKOFF": 1,
+      "ESCLEROSIS LATERAL AMIOTRÓFICA (ELA)": 1,
+      "NEUROMIELITIS ÓPTICA (ENFERMEDAD DE DEVIC)": 1,
+      "NEU RALGIA DEL TRIGÉMINO": 1,
+      "ENFERMEDAD DE HUNTINGTON": 1
+    }
+  },
+  "REUMATOLOGÍA": {
+    "total": 7,
+    "subtemas": {
+      "LUPUS ERITEMATOSO SISTÉMICO (LES)": 1,
+      "VASCULITIS DE GRANDES VASOS (ARTERITIS DE TEMPORAL)": 1,
+      "DERMATOMIOSITIS": 2,
+      "ESCLEROSIS SISTÉMICA (ESCLERODERMIA)": 1,
+      "SÍNDROME DE SJÖGREN": 1,
+      "POLIANGEÍTIS MICROSCÓPICA (PAM)": 1
+    }
+  },
+  "NEFROLOGÍA": {
+    "total": 4,
+    "subtemas": {
+      "LESIÓN RENAL AGUDA (LRA)": 2,
+      "NEFRITIS INTERSTICIAL AGUDA (NIA)": 1,
+      "DIÁLISIS (INDICACIONES DE URGENCIA)": 1
+    }
+  },
+  "GASTROENTEROLOGÍA": {
+    "total": 10,
+    "subtemas": {
+      "HEMORRAGIA DIGESTIVA ALTA (VARICEAL)": 1,
+      "ENCEFALOPATÍA HEPÁTICA": 2,
+      "ENFERMEDAD INFLAMATORIA INTESTINAL (CUCI)": 2,
+      "PANCREATITIS AGUDA (PRONÓSTICO)": 1,
+      "ENFERMEDAD DE CELIAQUÍA": 1,
+      "SÍNDROME DE INTESTINO IRRITABLE (SII)": 1,
+      "COLITIS SEUDOMEMBRANOSA": 1,
+      "SÍNDROME DE MALABSORCIÓN (ENFERMEDAD DE WHIPPLE)": 1
+    }
+  },
+  "GERIATRÍA": {
+    "total": 10,
+    "subtemas": {
+      "SÍNDROME DE FRAGILIDAD": 2,
+      "CAÍDAS EN EL ANCIANO": 1,
+      "SÍNDROME DE CAÍDAS Y FRAGILIDAD": 1,
+      "DEPRESIÓN EN EL ANCIANO": 1,
+      "VALORACIÓN GERIÁTRICA INTEGRAL (VGI)": 1,
+      "ABUSO Y MALTRATO EN EL ANCIANO": 1,
+      "MALTRATO EN EL ADULTO MAYOR": 1,
+      "INCONTINENCIA URINARIA": 1,
+      "ESCALAS DE VALORACIÓN GERIÁTRICA INTEGRAL (VGI)": 1
+    }
+  },
+  "Fx de cadera (Patología de Extremidad Inferior)": {
+    "total": 2,
+    "subtemas": {
+      "DELIRIUM (SÍNDROME CONFUSIONAL AGUDO)": 1,
+      "Fx de cadera (Patología de Extremidad Inferior)": 1
+    }
+  },
+  "PSIQUIATRÍA": {
+    "total": 2,
+    "subtemas": {
+      "TRASTORNO DE ANSIEDAD GENERALIZADA (TAG)": 1,
+      "TRASTORNO POR CONSUMO DE ALCOHOL (WERNICKE -KORSAKOFF)": 1
+    }
+  },
+  "TOXICOLOGÍA": {
     "total": 9,
     "subtemas": {
-      "MÉTODOS ANTICONCEPTIVOS": 1,
-      "ANTICONCEPCIÓN DE EMERGENCIA": 1,
-      "SÍNDROME DE OVARIO POLIQUÍSTICO (SOP)": 1,
-      "FISIOLOGÍA DEL CICLO MENSTRUAL": 1,
-      "PLANIFICACIÓN FAMILIAR (LARC)": 1,
-      "VAGINOSIS BACTERIANA": 1,
-      "CANDIDIAS IS VULVOVAGINAL": 1,
-      "TRICOMONIASIS VAGINAL": 1,
-      "ENFERMEDAD PÉLVICA INFLAMATORIA (EPI)": 1
+      "INTOXICACIÓN POR PARACETAMOL": 2,
+      "SÍNDROME COLINÉRGICO (ORGANOFOSFORADOS)": 2,
+      "SÍNDROME ANTICOLINÉRGICO": 2,
+      "MORDEDURA DE SERPIENTE (VIPERIDAE)": 1,
+      "ALCOHOLES (METANOL)": 1,
+      "INTOXICACIÓN POR METANOL": 1
     }
   },
-  "PEDIATRÍA / NEONATOLOGÍA - INFECTOLOGÍA": {
+  "INMUNOLOGÍA": {
+    "total": 2,
+    "subtemas": {
+      "REACCIONES DE HIPERSENSIBILIDAD": 1,
+      "ANGIOEDEMA HEREDITARIO": 1
+    }
+  },
+  "INFECTOLOGÍA": {
+    "total": 5,
+    "subtemas": {
+      "HEPATITIS B (SEROLOGÍA)": 1,
+      "BRUCELOSIS (FIEBRE DE MALTA)": 1,
+      "DENGUE": 1,
+      "GONORREA (Uretritis Gonocócica)": 1,
+      "COCCIDIOIDOMICOSIS (Fiebre del Valle)": 1
+    }
+  },
+  "VIH / SIDA": {
+    "total": 1,
+    "subtemas": {
+      "HEPATITIS C": 1
+    }
+  },
+  "Enfermedades Exantemáticas": {
+    "total": 2,
+    "subtemas": {
+      "FIEBRE TIFOIDEA": 2
+    }
+  },
+  "NEUMOLOGÍA": {
+    "total": 3,
+    "subtemas": {
+      "TROMBOEMBOLIA PULMONAR (TEP) - DIAGNÓSTICO": 2,
+      "SILICOSIS": 1
+    }
+  },
+  "Litiasis renal (Urología)": {
+    "total": 1,
+    "subtemas": {
+      "HIPERPARATIROIDISMO PRIMARIO": 1
+    }
+  },
+  "INFECTOLOGÍA / URGENCIAS": {
+    "total": 1,
+    "subtemas": {
+      "SEPSIS (MANEJO INICIAL)": 1
+    }
+  },
+  "Sx nefrótico (Nefrología)": {
+    "total": 2,
+    "subtemas": {
+      "GLOMERULOPATÍA MEMBRANOSA": 1,
+      "Sx nefrótico (Nefrología)": 1
+    }
+  },
+  "URGENCIAS CARDIOVASCULARES": {
+    "total": 2,
+    "subtemas": {
+      "DISECCIÓN AÓRTICA": 1,
+      "TORMENTA ARRÍTMICA / TV SIN PULSO": 1
+    }
+  },
+  "MEDICINA CRÍTICA": {
+    "total": 1,
+    "subtemas": {
+      "DESEQUILIBRIO HIDROELECTROLÍTICO (HIPERKALEMIA)": 1
+    }
+  },
+  "ENDOCRINOLOGÍA / URGENCIAS": {
+    "total": 1,
+    "subtemas": {
+      "CRISIS SUPRARRENAL AGUDA": 1
+    }
+  },
+  "CUIDADOS PALIATIVOS": {
+    "total": 2,
+    "subtemas": {
+      "MANEJO DEL DOLOR (ESCALERA DE LA OMS)": 1,
+      "AGONÍA Y DISNEA": 1
+    }
+  },
+  "DERMATOLOGÍA": {
+    "total": 3,
+    "subtemas": {
+      "ROSÁCEA": 1,
+      "LEPRA (ENFERMEDAD DE HANSEN)": 1,
+      "ERITRODERMIA": 1
+    }
+  },
+  "INMUNOLOGÍA CLÍNICA": {
+    "total": 1,
+    "subtemas": {
+      "ANGIOEDEMA HEREDITARIO": 1
+    }
+  },
+  "GENÉTICA MÉDICA": {
+    "total": 1,
+    "subtemas": {
+      "SÍNDROME DE MARFAN": 1
+    }
+  },
+  "URGENCIAS PSIQUIÁTRICAS": {
+    "total": 1,
+    "subtemas": {
+      "SÍNDROME NEUROLÉPTICO MALIGNO (SNM)": 1
+    }
+  },
+  "MEDICINA PREVENTIVA / NOM": {
+    "total": 1,
+    "subtemas": {
+      "HIPERTENSIÓN ARTERIAL (NOM-030-SSA2 -2009)": 1
+    }
+  },
+  "MEDICINA DEL TRABAJO / TOXICOLOGÍA INDUSTRIAL": {
+    "total": 1,
+    "subtemas": {
+      "SATURNISMO (INTOXICACIÓN POR PLOMO)": 1
+    }
+  },
+  "BIOÉTICA CLÍNICA": {
+    "total": 1,
+    "subtemas": {
+      "PRINCIPIOS DE LA BIOÉTICA": 1
+    }
+  },
+  "MEDICINA DEL TRABAJO": {
+    "total": 1,
+    "subtemas": {
+      "BENCENISMO": 1
+    }
+  },
+  "NEUROLOGÍA / GERIATRÍA": {
+    "total": 1,
+    "subtemas": {
+      "ENFERMEDAD DE PARKINSON (TRATAMIENTO)": 1
+    }
+  },
+  "INFECTOLOGÍA CRÍTICA": {
     "total": 4,
     "subtemas": {
-      "SEPSIS NEONATAL TEMPRANA": 1,
-      "SÍFILIS CONGÉNITA": 1,
-      "CITOMEGALOVIRUS (CMV) CONGÉNITO VS TOXOPLASMOSIS": 1,
-      "SEPSIS NEONATAL TARDÍA (ASOCIADA A CATÉTER)": 1
+      "NEUMONÍA ASOCIADA A VENTILACIÓN MECÁNICA (NAVM)": 1,
+      "INFECCIÓN POR CLOSTRIDIOIDES DIFFICILE (ICD) GRAVE": 1,
+      "FASCITIS NECROTIZANTE": 1,
+      "ENDOCARDITIS INFECCIOSA EN USUARIOS DE DROGAS IV": 1
     }
   },
-  "PEDIATRÍA / URGENCIAS  - INFECTOLOGÍA": {
+  "MEDICINA CRÍTICA / EQUILIBRIO ÁCIDO-BASE": {
     "total": 1,
     "subtemas": {
-      "LARINGOTRAQUEÍTIS AGUDA (CRUP)": 1
+      "ACIDOSIS METABÓLICA": 1
     }
   },
-  "PEDIATRÍA / INFECTOLOGÍA - PARASITOLOGÍA": {
-    "total": 4,
+  "Anemia megaloblástica (Anemias Introducción y Anemias Carenciales)": {
+    "total": 2,
     "subtemas": {
-      "GIARDIASIS INTESTINAL": 1,
-      "AMEBIASIS INTESTINAL (DISENTERÍA)": 1,
-      "OXIURIASIS (ENTEROBIUS VERMICULARIS)": 1,
-      "ASCARIASIS (SÍNDROME DE LÖFFLER)": 1
+      "ANEMIA MEGALOBLÁSTICA": 1,
+      "Anemia megaloblástica (Anemias Introducción y Anemias Carenciales)": 1
     }
   },
-  "PEDIATRÍA / INFECTOLOGÍA - DERMATOLOGÍA": {
+  "GINECOLOGÍA Y OBSTETRICIA": {
+    "total": 138,
+    "subtemas": {
+      "ENDOMETRIOSIS (LOCALIZACIÓN EXTRAPÉLVICA)": 1,
+      "ENDOMETRIOSIS (INFERTILIDAD Y MANEJO)": 1,
+      "SÍNDROME DE OVARIO POLIQUÍSTICO (RESISTENCIA A LA INSULINA)": 1,
+      "SOP (DIAGNÓSTICO DIFERENCIAL)": 1,
+      "MENOPAUSIA Y CLIMATERIO": 1,
+      "OSTEOPOROSIS POSTMENOPÁUSICA": 1,
+      "PATOLOGÍA BENIGNA DE MAMA (MASTOPATÍA FIBROQUÍSTICA)": 3,
+      "PATOLOGÍA BENIGNA DE MAMA (FIBROADENOMA)": 1,
+      "PATOLOGÍA BENIGNA DE MAMA (PAPILOMA INTRADUCTAL)": 1,
+      "PATOLOGÍA BENIGNA DE MAMA (CONDICIONES INFLAMATORIAS)": 1,
+      "MENOPAUSIA Y RIESGO CARDIOVASCULAR": 1,
+      "OSTEOPOROSIS (MANEJO INTEGRAL)": 1,
+      "PATOLOGÍA BENIGNA DE MAMA (ABSCESO MAMARIO)": 1,
+      "PATOLOGÍA BENIGNA DE MAMA (ECTASIA DUCTAL)": 1,
+      "PATOLOGÍA BENIGNA DE MAMA (CONDICIONES ESPECIALES)": 1,
+      "PATOLOGÍA BENIGNA DE MAMA (ESTEATONECROSIS)": 1,
+      "PATOLOGÍA BENIGNA DE MAMA (GINECOMASTIA)": 1,
+      "PATOLOGÍA BENIGNA DE MAMA (MASTALGIA)": 1,
+      "CLIMATERIO (FISIOPATOLOGÍA)": 1,
+      "ATROFIA VULVOVAGINAL": 1,
+      "INFECCIONES VAGINALES (VAGINOSIS POR MOBILUNCUS/ATOPOBIUM)": 1,
+      "INFECCIONES VAGINALES (CANDIDIASIS COMPLICADA)": 1,
+      "VIRUS DEL PAPILOMA HUMANO (VACUNACIÓN)": 1,
+      "VPH (LESIONES CLINICAS - CONDILOMAS)": 1,
+      "EMBARAZO ECTÓPICO (DIAGNÓSTICO)": 1,
+      "EMBARAZO ECTÓPICO (MANEJO MÉDICO)": 1,
+      "EMBARAZO ECTÓPICO ROTO (URGENCIA)": 1,
+      "EMBARAZO ECTÓPICO (TIPOS RAROS)": 1,
+      "ENFERMEDAD PELVICA INFLAMATORIA (SECUELAS)": 1,
+      "VPH (CRITERIOS DE REFERENCIA)": 1,
+      "EMBARAZO ECTÓPICO (SEGUIMIENTO POS -METOTREXATO)": 1,
+      "EMBARAZO ECTÓPICO (LOCALIZACIÓN CERVICAL)": 1,
+      "EMBARAZO ECTÓPICO (DIAGNÓSTICO DIFERENCIAL)": 1,
+      "ENFERMEDAD  TROFOBLÁSTICA GESTACIONAL (MOLA COMPLETA)": 1,
+      "ENFERMEDAD TROFOBLÁSTICA (MOLA PARCIAL)": 1,
+      "ENFERMEDAD TROFOBLÁSTICA (SEGUIMIENTO)": 1,
+      "ABORTO (DEFINICIONES)": 1,
+      "ABORTO DIFERIDO (HUEVO MUERTO RETENIDO)": 1,
+      "ABORTO INCOMPLETO VS COMPLETO": 1,
+      "ABORTO SÉPTICO": 1,
+      "NEOPLASIA TROFOBLÁSTICA GESTACIONAL (CORIOCARCINOMA)": 1,
+      "ENFERMEDAD TROFOBLÁSTICA (MOLA INVASORA)": 1,
+      "ABORTO RECURRENTE (SÍNDROME ANTIFOSFOLÍPIDO)": 1,
+      "ABORTO (ISOINMUNIZACIÓN RH)": 1,
+      "ABORTO (ETIOLOGÍA GENÉTICA)": 1,
+      "ABORTO (FACTORES ANATÓMICOS)": 1,
+      "ABORTO (SÍNDROME DE ASHERMAN)": 1,
+      "ABORTO (MANEJO MÉDICO  - COMPLICACIONES)": 1,
+      "ABORTO (PSICOLOGÍA Y CONSEJERÍA)": 1,
+      "ABORTO (LEGRADO VS AMEU)": 1,
+      "ABORTO (COMPLICACIONES POST  -LEGRADO)": 1,
+      "PARTO PREMATURO (PREDICCIÓN)": 1,
+      "RUPTURA PREMATURA DE MEMBRANAS (RPM)": 1,
+      "DIABETES GESTACIONAL (TAMIZAJE)": 1,
+      "DIABETES GESTACIONAL (MANEJO)": 1,
+      "DIABETES PREGESTACIONAL (COMPLICACIONES)": 1,
+      "ESTADOS HIPERTENSIVOS (CLASIFICACIÓN)": 1,
+      "PREECLAMPSIA (CRITERIOS DE SEVERIDAD)": 1,
+      "SÍNDROME DE HELLP": 1,
+      "ECLAMPSIA (MANEJO DE URGENGENCIA)": 1,
+      "DIABETES GESTACIONAL (METAS Y COMPLICACIONES)": 1,
+      "DIABETES GESTACIONAL (SEGUIMIENTO POSPARTO)": 1,
+      "DIABETES GESTACIONAL (CRITERIOS DE HOSPITALIZACIÓN)": 1,
+      "PREECLAMPSIA (PROFILAXIS)": 1,
+      "PREECLAMPSIA (MANEJO ANTIHIPERTENSIVO)": 1,
+      "TOXICIDAD POR SULFATO DE MAGNESIO": 1,
+      "PREECLAMPSIA (CRITERIOS DE NACIMIENTO)": 1,
+      "HIPERTENSIÓN CRÓNICA + PREECLAMPSIA SOBREAGREGADA": 1,
+      "PREECLAMPSIA (MANEJO POSPARTO)": 1,
+      "PREECLAMPSIA (TEORÍAS ETIOLÓGICAS)": 1,
+      "DIABETES GESTACIONAL (MALFORMACIONES Y PRONÓSTICO)": 1,
+      "DIABETES GESTACIONAL (INDUCCIÓN DEL PARTO)": 1,
+      "PREECLAMPSIA (MANEJO AMBULATORIO VS HOSPITALARIO)": 1,
+      "ECLAMPSIA (DIAGNÓSTICO DIFERENCIAL)": 1,
+      "DESPRENDIMIENTO PREMATURO DE PLACENTA (DPPNI)": 1,
+      "PLACENTA PREVIA": 1,
+      "ACRETISMO PLACENTARIO": 1,
+      "RUPTURA UTERINA": 1,
+      "VASA PREVIA": 1,
+      "EVALUACIÓN DE BIENESTAR FETAL (PERFIL BIOFÍSICO)": 1,
+      "HEMORRAGIA POSPARTO (ATONÍA UTERINA)": 1,
+      "HEMORRAGIA POSPARTO (MANEJO QUIRÚRGICO)": 1,
+      "INVERSIÓN UTERINA": 1,
+      "COAGULACIÓN INTRAVASCULAR DISEMINADA (CID) EN OBSTETRICIA": 1,
+      "EMBOLISMO DE LÍQUIDO AMNIÓTICO": 1,
+      "CÁNCER DE MAMA (TAMIZAJE Y BIRADS)": 1,
+      "CÁNCER DE MAMA (FACTORES DE RIESGO Y GENÉTICA)": 1,
+      "CÁNCER DE MAMA (TIPOS HISTOLÓGICOS)": 1,
+      "CÁNCER DE MAMA (TRATAMIENTO Y GANGLIO CENTINELA)": 1,
+      "INFECCIONES VAGINALES (TRICOMONIASIS)": 1,
+      "CÁNCER DE MAMA (INMUNOHISTOQUÍMICA)": 1,
+      "CÁNCER DE MAMA (PERFIL HER2 POSITIVO)": 1,
+      "CÁNCER DE MAMA (ENFERMEDAD DE PAGET)": 1,
+      "CÁNCER DE MAMA (ESTADIFICACIÓN TNM)": 1,
+      "CÁNCER DE MAMA (LUMINAL A VS B)": 1,
+      "CÁNCER DE MAMA (SEGUIMIENTO)": 1,
+      "ESTERILIDAD (ABORDAJE INICIAL)": 1,
+      "ESTERILIDAD (FACTOR OVÁRICO)": 1,
+      "REPRODUCCIÓN ASISTIDA (INSEMINACIÓN VS FIV)": 1,
+      "SÍNDROME DE HIPERESTIMULACIÓN OVÁRICA (SHEO)": 1,
+      "ESTERILIDAD (FACTOR MASCULINO - VARICOCELE)": 1,
+      "INDUCCIÓN DEL TRABAJO DE PARTO (SCORE DE BISHOP)": 1,
+      "TRABAJO DE PARTO (PARTOGRAMA Y FASES)": 1,
+      "INDUCCIÓN DEL PARTO (MISOPROSTOL VS OXITOCINA)": 1,
+      "GINECOLOGÍA INFANTO -JUVENIL (VULVOVAGINITIS)": 1,
+      "GINECOLOGÍA INFANTO -JUVENIL (CUERPO EXTRAÑO)": 1,
+      "PUBERTAD PRECOZ": 1,
+      "MALFORMACIONES HIMENEALES (HIMEN IMPERFORADO)": 1,
+      "AMENORREA PRIMARIA (SÍNDROME DE ROKITANSKY)": 1,
+      "SÍNDROME DE MORRIS (INSENSIBILIDAD A ANDRÓGENOS)": 1,
+      "TRABAJO DE PARTO (DISTOCIAS DINÁMICAS)": 1,
+      "TRABAJO DE PARTO (MONITOREO FETAL INTRA -PARTO)": 1,
+      "CONTROL PRENATAL (SUPLEMENTACIÓN)": 1,
+      "CONTROL PRENATAL (VACUNACIÓN)": 1,
+      "EVALUACIÓN DE SALUD FETAL (MOVIMIENTOS FETALES)": 1,
+      "CONTROL PRENATAL (TAMIZAJE DE ESTREPTOCOCO GRUPO B)": 1,
+      "OBSTETRICIA SOCIAL (VIOLENCIA OBSTÉTRICA)": 1,
+      "ANTICONCEPCIÓN POST  -EVENTO OBSTÉTRICO (APEO)": 1,
+      "CONTROL PRENATAL (ALTURA UTERINA)": 1,
+      "CONTROL PRENATAL (GANANCIA DE PESO)": 1,
+      "CONTROL PRENATAL (CRITERIOS DE REFERENCIA)": 1,
+      "EVALUACIÓN DE SALUD FETAL (DOPPLER FETAL)": 1,
+      "CONTROL PRENATAL (INFECCIÓN URINARIA)": 1,
+      "CONTROL PRENATAL (ULTRASONIDO)": 1,
+      "OBSTETRICIA SOCIAL (MUERTE MATERNA)": 1,
+      "ANTICONCEPCIÓN (S ALPINGOCLASIA)": 1,
+      "PUERPERIO (INFECCIÓN  - ENDOMETRITIS)": 1,
+      "PUERPERIO (MASTITIS)": 1,
+      "PUERPERIO (COMPLICACIONES PSIQUIÁTRICAS)": 1,
+      "PUERPERIO (FISIOLOGÍA)": 1,
+      "CONTROL PRENATAL (TAMIZAJE DE SÍFILIS)": 1,
+      "CONTROL PRENATAL (VIH EN EL EMBARAZO)": 1,
+      "CONTROL PRENATAL (INFECCIÓN POR TORCH  - TOXOPLASMOSIS)": 1,
+      "CONTROL PRENATAL (RESUMEN DE CONSULTAS)": 1,
+      "PATOLOGÍA CERVICAL (VPH Y DISPLASIAS)": 2
+    }
+  },
+  "PEDIATRÍA": {
+    "total": 61,
+    "subtemas": {
+      "EXANTEMÁTICAS (SÍNDROME DE CHOQUE TÓXICO)": 1,
+      "EXANTEMÁTICAS (SÍNDROME DE PIEL ESCALDADA)": 1,
+      "INFECTOPEDIATRÍA (LARINGOTRAQUEITIS / CRUP)": 1,
+      "INFECTOPEDIATRÍA (EPIGLOTITIS)": 1,
+      "INFECTOPEDIATRÍA (BRONQUIOLITIS)": 1,
+      "NEONATOLOGÍA (REANIMACIÓN NEONATAL)": 1,
+      "NEONATOLOGÍA (TEST DE APGAR Y SILVERMAN -ANDERSON)": 1,
+      "NEONATOLOGÍA (TAMIZ NEONATAL)": 1,
+      "NEONATOLOGÍA (ENFERMEDAD DE MEMBRANA HIALINA)": 1,
+      "NEONATOLOGÍA (TAQUIPNEA TRANSITORIA DEL RN)": 1,
+      "NEONATOLOGÍA (SÍNDROME DE ASPIRACIÓN DE MECONIO   - SAM)": 1,
+      "CIRUGÍA PEDIÁTRICA (ONFALOCELE VS GASTROSQUISIS)": 1,
+      "CIRUGÍA PEDIÁTRICA (HERNIA INGUINAL)": 1,
+      "INFECTOPEDIATRÍA (MENINGITIS BACTERIANA)": 1,
+      "INFECTOPEDIATRÍA (ARTRITIS SÉPTICA)": 1,
+      "INFECTOPEDIATRÍA (OSTEOMIELITIS)": 1,
+      "INFECTOPEDIATRÍA (TOS FERINA)": 1,
+      "INFECTOPEDIATRÍA (HELMINTIASIS - ENTEROBIASIS)": 1,
+      "NEFROPEDIATRÍA (SÍNDROME NEFRÍTICO)": 1,
+      "NEFROPEDIATRÍA (SÍNDROME NEFRÓTICO)": 1,
+      "HEMATOPEDIATRÍA (LE UCEMIA LINFOBLÁSTICA AGUDA  - LLA)": 1,
+      "HEMATOPEDIATRÍA (PÚRPURA DE HENOCH  -SCHÖNLEIN)": 1,
+      "INFECTOPEDIATRÍA (MONONUCLEOSIS INFECCIOSA)": 1,
+      "INFECTOPEDIATRÍA (SÍNDROME DE TORCH  - CITOMEGALOVIRUS)": 1,
+      "HEMATOPEDIATRÍA (PÚRPURA TROMBOCITOPÉNICA INMUNE    - PTI)": 1,
+      "NEFROPEDIATRÍA (TUMOR DE WILMS / NEFROBLASTOMA)": 1,
+      "NEFROPEDIATRÍA (REFLUJO VESICOURETERAL  - RVU)": 1,
+      "ENDOCRINOPEDIATRÍA (CETOACIDOSIS DIABÉTICA  - CAD)": 1,
+      "ENDOCRINOPEDIATRÍA (TALLA BAJA)": 1,
+      "INFECTOPEDIATRÍA (HERPES SIMPLE - GINGIVOESTOMATITIS)": 1,
+      "NEFROPEDIATRÍA (SÍNDROME HEMOLÍTICO URÉMICO   - SHU)": 1,
+      "HEMATOPEDIATRÍA (HEMOFILIA)": 1,
+      "ENDOCRINOPEDIATRÍA (HIPOTIROIDISMO CONGÉNITO)": 1,
+      "URGENCIAS PEDIÁTRICAS (INTOXICACIÓN POR PARACETAMOL)": 1,
+      "URGENCIAS PEDIÁTRICAS (INTOXICACIÓN POR HIERRO)": 1,
+      "ENDOCRINOPEDIATRÍA (PUBERTAD PRECOZ)": 1,
+      "ENDOCRINOPEDIATRÍA (HIPERPLASIA SUPRARRENAL CONGÉNITA   - HSC)": 1,
+      "HEMATOPEDIATRÍA (ANEMIA APLÁSICA  - ANEMIA DE FANCONI)": 1,
+      "URGENCIAS (ASPIRACIÓN DE CUERPO EXTRAÑO)": 1,
+      "URGENCIAS (INGESTA DE CUERPO EXTRAÑO   - MONEDAS Y BATERÍAS)": 1,
+      "INFECTOPEDIATRÍA (PARASITOSIS - GIARDIASIS)": 1,
+      "INFECTOPEDIATRÍA (PARASITOSIS - AMIBIASIS)": 1,
+      "URGENCIAS (QUEMADURAS EN PEDIATRÍA)": 1,
+      "INFECTOPEDIATRÍA (ASCARIASIS)": 1,
+      "INFECTOPEDIATRÍA (TUBERCULOSIS PEDIÁTRICA)": 1,
+      "ORTOPEDIA PEDIÁTRICA (DISPLASIA DEL DESARROLLO DE LA CADERA -": 1,
+      "ORTOPEDIA PEDIÁTRICA (ENFERMEDAD DE LEGG -CALVÉ-PERTHES)": 1,
+      "ORTOPEDIA PEDIÁTRICA (EPIFISIOLISTESIS FEMORAL PROXIMAL)": 1,
+      "INFECTOPEDIATRÍA (BRUCELOSIS)": 1,
+      "INFECTOPEDIATRÍA (RICKETTSIOSIS / FIEBRE MANCHADA)": 1,
+      "ORTOPEDIA PEDIÁTRICA (FRACTURA SUPRACONDÍLEA DE HÚMERO)": 1,
+      "ORTOPEDIA PEDIÁTRICA (FRACTURA EN TALLO VERDE Y RODETE)": 1,
+      "NEUROPEDIATRÍA (CRISIS DE AUSENCIA)": 1,
+      "PATOLOGÍA RESPIRATORIA (LARINGOTRAQUEOBRONQUITIS   - CRUP)": 2,
+      "PATOLOGÍA RESPIRATORIA (ASPIRACIÓN DE CUERPO EXTRAÑO)": 2,
+      "NEONATOLOGÍA (TAQUIPNEA TRANSITORIA DEL RECIÉN NACIDO  - RN)": 2,
+      "PATOLOGÍA RESPIRATORIA (HERNIA DIAFRAGMÁTICA CONGÉNITA)": 2
+    }
+  },
+  "MEDICINA INTERNA": {
+    "total": 65,
+    "subtemas": {
+      "NEUROLOGÍA (EVC ISQUÉMICO)": 1,
+      "NEUROLOGÍA (CEFALEAS)": 1,
+      "NEUROLOGÍA (ENFERMEDAD DE PARKINSON)": 1,
+      "DERMATOLOGÍA (CÁNCER DE PIEL  - BASOCELULAR)": 1,
+      "INFECTOLOGÍA / DERMATOLOGÍA (ERIPESELA VS CELULITIS)": 1,
+      "PSIQUIATRÍA (TRASTORNO DEPRESIVO MAYOR)": 1,
+      "NEUROLOGÍA (TÉTANOS)": 1,
+      "NEUROLOGÍA (EPILEPSIA EN ADULTOS)": 1,
+      "GERIATRÍA (SÍNDROME DE CAÍDAS Y FRAGILIDAD)": 1,
+      "PSIQUIATRÍA (TRASTORNO DE ANSIEDAD GENERALIZADA  - TAG)": 1,
+      "INFECTOLOGÍA (VIH / SIDA)": 1,
+      "NEFROLOGÍA (LESIÓN RENAL AGUDA  - LRA)": 1,
+      "NEUMOLOGÍA (EPOC  - EXACERBACIÓN AGUDA)": 1,
+      "GASTROENTEROLOGÍA (CIRROSIS HEPÁTICA  - PERITONITIS BACTERIANA": 1,
+      "CARDIOLOGÍA (INSUFICIENCIA CARDIACA AGUDA  - EDEMA AGUDO DE": 1,
+      "REUMATOLOGÍA (ARTRITIS REUMATOIDE)": 1,
+      "REUMATOLOGÍA (LUPUS ERITEMATOSO SISTÉMICO  - LES)": 1,
+      "ENDOCRINOLOGÍA (HIPOTIROIDISMO PRIMARIO)": 1,
+      "ENDOCRINOLOGÍA (SÍNDROME DE CUSHING)": 1,
+      "HEMATOLOGÍA (ANEMIA MEGALOBLÁSTICA)": 1,
+      "CARDIOLOGÍA (HIPERTENSIÓN ARTERIAL SISTÉMICA  - HAS)": 1,
+      "INFECTOLOGÍA (TUBERCULOSIS PULMONAR)": 1,
+      "INFECTOLOGÍA (TUBERCULOSIS EXTRAPULMONAR)": 1,
+      "NEFROLOGÍA (TRASTORNOS ELEC  TROLÍTICOS - HIPONATREMIA)": 1,
+      "GASTROENTEROLOGÍA (ENFERMEDAD ÁCIDO   -PÉPTICA)": 1,
+      "INFECTOLOGÍA (NEUMONÍA POR PNEUMOCYSTIS JIROVECII)": 1,
+      "HEMATOLOGÍA (LINFOMA DE HODGKIN)": 1,
+      "CARDIOLOGÍA (ESTENOSIS MITRAL)": 1,
+      "NEUMOLOGÍA (DERRAME PLEURAL)": 1,
+      "NEUROLOGÍA (ESCLEROSIS MÚLTIPLE)": 2,
+      "INFECTOLOGÍA (ENFERMEDAD DE LYME)": 2,
+      "GASTROENTEROLOGÍA (ENFERMEDAD INFLAMATORIA INTESTINAL   - CUCI)": 2,
+      "INFECTOLOGÍA (LEPRA)": 2,
+      "GASTROENTEROLOGÍA (ENFERMEDAD DE CROHN)": 2,
+      "REUMATOLOGÍA (ESPONDILITIS ANQUILOSANTE)": 2,
+      "REUMATOLOGÍA (GOTA / ARTRITIS POR MICROCRISTALES)": 2,
+      "ENDOCRINOLOGÍA (FEOCROMOCITOMA)": 2,
+      "INFECTOLOGÍA (FIEBRE TIFOIDEA)": 2,
+      "INFECTOLOGÍA (CÓLERA)": 2,
+      "HEMATOLOGÍA (LEUCEMIA MIELOIDE AGUDA   - LMA)": 2,
+      "NEUROLOGÍA (MIASTENIA GRAVIS)": 2,
+      "NEUMOLOGÍA (SARCOIDOSIS)": 2,
+      "ENDOCRINOLOGÍA (INSUFICIENCIA SUPRARRENAL / ADDISON)": 2,
+      "NEUMOLOGÍA (FIBROSIS PULMONAR IDIOPÁTICA  - FPI)": 2,
+      "CARDIOLOGÍA (PERICARDITIS AGUDA)": 2,
+      "HEMATOLOGÍA (MIELOMA MÚLTIPLE)": 2,
+      "HEMATOLOGÍA (ANEMIA HEMOLÍTICA AUTOINMUNE)": 2
+    }
+  },
+  "GINECOLOGÍA Y OBSTETRICIA (ELIMINANDO CEROS)": {
+    "total": 2,
+    "subtemas": {
+      "CICLO GENITAL Y ANTICONCEPCIÓN": 1,
+      "FISIOLOGÍA DEL CICLO GENITAL": 1
+    }
+  },
+  "CIRUGÍA GENERAL / UROLOGÍA": {
+    "total": 2,
+    "subtemas": {
+      "LITIASIS RENAL (CÓLICO NEFRÍTICO)": 2
+    }
+  },
+  "Fx de brazo (Patología de Extremidad Superior)": {
     "total": 1,
     "subtemas": {
-      "ESCABIOSIS (SARNA)": 1
+      "Fx de brazo (Patología de Extremidad Superior)": 1
     }
   },
-  "PEDIATRÍA / NEONATOLOGÍA - CIRUGÍA": {
+  "Esquizofrenia (Psiquiatría)": {
     "total": 1,
     "subtemas": {
-      "ENTEROCOLITIS NECROTIZANTE (CLASIFICACIÓN DE BELL)": 1
+      "Esquizofrenia (Psiquiatría)": 1
     }
   },
-  "PEDIATRÍA / ENDOCRINOLOGÍA - GENÉTICA": {
+  "Reflujo vesicoureteral (Uropedia)": {
     "total": 1,
     "subtemas": {
-      "HIPERPLASIA SUPRARRENAL CONGÉNITA (HSC)": 1
+      "Reflujo vesicoureteral (Uropedia)": 1
     }
   },
-  "PEDIATRÍA / REUMATOLOGÍA - NEFROLOGÍA": {
+  "Consultas prenatales (Control Prenatal)": {
     "total": 1,
     "subtemas": {
-      "VASCULITIS POR IgA (PÚRPURA DE HENOCH -SCHÖNLEIN)": 1
+      "Consultas prenatales (Control Prenatal)": 1
     }
   },
-  "PEDIATRÍA / CIRUGÍA": {
+  "Quemaduras (Quemaduras / Golpe de Calor / Hipotermia)": {
     "total": 1,
     "subtemas": {
-      "MEGACOLON AGANGLIÓNICO (ENFERMEDAD DE HIRSCHSPRUNG)": 1
+      "Quemaduras (Quemaduras / Golpe de Calor / Hipotermia)": 1
     }
   },
-  "PEDIATRÍA / CIRUGÍA - GASTROENTEROLOGÍA": {
+  "EPOC (EPOC/CA de Pulmón)": {
     "total": 1,
     "subtemas": {
-      "DIVERTÍCULO DE MECKEL": 1
+      "EPOC (EPOC/CA de Pulmón)": 1
+    }
+  },
+  "Trauma abdominal (ATLS)": {
+    "total": 1,
+    "subtemas": {
+      "Trauma abdominal (ATLS)": 1
+    }
+  },
+  "Enterocolitis necrotizante (Patología Neonatal Infecciosa)": {
+    "total": 1,
+    "subtemas": {
+      "Enterocolitis necrotizante (Patología Neonatal Infecciosa)": 1
+    }
+  },
+  "Litiasis renal (Urologia)": {
+    "total": 1,
+    "subtemas": {
+      "Litiasis renal (Urologia)": 1
+    }
+  },
+  "EVC Isquémico y Hemorrágico (EVC Isquémico y Hemorrágico) [cite: 119]": {
+    "total": 1,
+    "subtemas": {
+      "EVC Isquémico y Hemorrágico (EVC Isquémico y Hemorrágico) [cite: 119]": 1
+    }
+  },
+  "Incompatibilidad grupo Rh (Control Prenatal) [cite: 13]": {
+    "total": 1,
+    "subtemas": {
+      "Incompatibilidad grupo Rh (Control Prenatal) [cite: 13]": 1
+    }
+  },
+  "Cetoacidosis (Complicaciones Diabetes)": {
+    "total": 1,
+    "subtemas": {
+      "Cetoacidosis (Complicaciones Diabetes)": 1
+    }
+  },
+  "Displasia de cadera (Especialidades Pedia)": {
+    "total": 1,
+    "subtemas": {
+      "Displasia de cadera (Especialidades Pedia)": 1
+    }
+  },
+  "Paludismo/Malaria (Enfermedades Transmitidas por Vector)": {
+    "total": 2,
+    "subtemas": {
+      "Paludismo/Malaria (Enfermedades Transmitidas por Vector)": 2
+    }
+  },
+  "Menopausia (Patologia Menopausia y Climaterio)": {
+    "total": 2,
+    "subtemas": {
+      "Menopausia (Patologia Menopausia y Climaterio)": 2
+    }
+  },
+  "Chalazión (Introducción Oftalmología)": {
+    "total": 1,
+    "subtemas": {
+      "Chalazión (Introducción Oftalmología)": 1
+    }
+  },
+  "Esguince de tobillo (Patología de Extremidad Inferior)": {
+    "total": 1,
+    "subtemas": {
+      "Esguince de tobillo (Patología de Extremidad Inferior)": 1
+    }
+  },
+  "Sx de Down (Alteraciones Cromosómicas y Perlas)": {
+    "total": 1,
+    "subtemas": {
+      "Sx de Down (Alteraciones Cromosómicas y Perlas)": 1
+    }
+  },
+  "OMA (Patología Infecciosa / Rinología y Faringe)": {
+    "total": 1,
+    "subtemas": {
+      "OMA (Patología Infecciosa / Rinología y Faringe)": 1
+    }
+  },
+  "Sepsis (Patología Neonatal Infecciosa)": {
+    "total": 1,
+    "subtemas": {
+      "Sepsis (Patología Neonatal Infecciosa)": 1
+    }
+  },
+  "Delirium tremens (Psiquiatría)": {
+    "total": 1,
+    "subtemas": {
+      "Delirium tremens (Psiquiatría)": 1
+    }
+  },
+  "Choque (ATLS)": {
+    "total": 1,
+    "subtemas": {
+      "Choque (ATLS)": 1
+    }
+  },
+  "Brucelosis (Enfermedades por Zoonosis)": {
+    "total": 1,
+    "subtemas": {
+      "Brucelosis (Enfermedades por Zoonosis)": 1
+    }
+  },
+  "Úlcera péptica complicada y perforada (Patología Gástrica)": {
+    "total": 1,
+    "subtemas": {
+      "Úlcera péptica complicada y perforada (Patología Gástrica)": 1
+    }
+  },
+  "Bacterianas (Neumonías)": {
+    "total": 1,
+    "subtemas": {
+      "Bacterianas (Neumonías)": 1
+    }
+  },
+  "Pancreatitis crónica (Patología Pancreática)": {
+    "total": 1,
+    "subtemas": {
+      "Pancreatitis crónica (Patología Pancreática)": 1
+    }
+  },
+  "Intoxicaciones por paracetamol (Urgencias Pediátricas)": {
+    "total": 1,
+    "subtemas": {
+      "Intoxicaciones por paracetamol (Urgencias Pediátricas)": 1
+    }
+  },
+  "Edo Hiperosmolar (Complicaciones Diabetes)": {
+    "total": 1,
+    "subtemas": {
+      "Edo Hiperosmolar (Complicaciones Diabetes)": 1
+    }
+  },
+  "Púrpura de Henoch Schonlein (Especialidades Pedia)": {
+    "total": 1,
+    "subtemas": {
+      "Púrpura de Henoch Schonlein (Especialidades Pedia)": 1
+    }
+  },
+  "Artritis reumatoide (Reumatología)": {
+    "total": 2,
+    "subtemas": {
+      "Artritis reumatoide (Reumatología)": 2
+    }
+  },
+  "Hernias (Hernias/Esplenectomía)": {
+    "total": 1,
+    "subtemas": {
+      "Hernias (Hernias/Esplenectomía)": 1
+    }
+  },
+  "EMH (Patología Respiratoria del Pediátrico)": {
+    "total": 1,
+    "subtemas": {
+      "EMH (Patología Respiratoria del Pediátrico)": 1
+    }
+  },
+  "Cándida (Patología Infecciosa Cervical)": {
+    "total": 1,
+    "subtemas": {
+      "Cándida (Patología Infecciosa Cervical)": 1
+    }
+  },
+  "Fibrilación auricular (Arritmias)": {
+    "total": 1,
+    "subtemas": {
+      "Fibrilación auricular (Arritmias)": 1
+    }
+  },
+  "Fx de clavícula (Patología de Extremidad Superior)": {
+    "total": 1,
+    "subtemas": {
+      "Fx de clavícula (Patología de Extremidad Superior)": 1
+    }
+  },
+  "Escabiosis (Dermatología Pediátrica)": {
+    "total": 1,
+    "subtemas": {
+      "Escabiosis (Dermatología Pediátrica)": 1
+    }
+  },
+  "Crisis febriles (Neurología Pediátrica)": {
+    "total": 1,
+    "subtemas": {
+      "Crisis febriles (Neurología Pediátrica)": 1
+    }
+  },
+  "Tromboembolia Pulmonar (Neumología)": {
+    "total": 1,
+    "subtemas": {
+      "Tromboembolia Pulmonar (Neumología)": 1
+    }
+  },
+  "Diverticulitis (Patología Intestinal Qx)": {
+    "total": 1,
+    "subtemas": {
+      "Diverticulitis (Patología Intestinal Qx)": 1
+    }
+  },
+  "Glaucoma de ángulo cerrado (Oftalmología)": {
+    "total": 1,
+    "subtemas": {
+      "Glaucoma de ángulo cerrado (Oftalmología)": 1
+    }
+  },
+  "Trastorno Depresivo Mayor (Psiquiatría)": {
+    "total": 1,
+    "subtemas": {
+      "Trastorno Depresivo Mayor (Psiquiatría)": 1
+    }
+  },
+  "Pólipos endometriales (Sangrados Uterinos Anormales: Origen Anatómico": {
+    "total": 1,
+    "subtemas": {
+      "Pólipos endometriales (Sangrados Uterinos Anormales: Origen Anatómico": 1
+    }
+  },
+  "Laringotraqueítis (Patología Respiratoria del Pediátrico)": {
+    "total": 1,
+    "subtemas": {
+      "Laringotraqueítis (Patología Respiratoria del Pediátrico)": 1
+    }
+  },
+  "Gota (Reumatología)": {
+    "total": 1,
+    "subtemas": {
+      "Gota (Reumatología)": 1
+    }
+  },
+  "Lesión Renal Aguda (Nefrología)": {
+    "total": 1,
+    "subtemas": {
+      "Lesión Renal Aguda (Nefrología)": 1
+    }
+  },
+  "Epilepsia (Neurología)": {
+    "total": 1,
+    "subtemas": {
+      "Epilepsia (Neurología)": 1
+    }
+  },
+  "Criterios diagnósticos (Diabetes Mellitus)": {
+    "total": 1,
+    "subtemas": {
+      "Criterios diagnósticos (Diabetes Mellitus)": 1
+    }
+  },
+  "Hemorragia posparto (Hemorragias del Puerperio)": {
+    "total": 1,
+    "subtemas": {
+      "Hemorragia posparto (Hemorragias del Puerperio)": 1
+    }
+  },
+  "Invaginación intestinal (Gastroenterología Pediátrica)": {
+    "total": 1,
+    "subtemas": {
+      "Invaginación intestinal (Gastroenterología Pediátrica)": 1
+    }
+  },
+  "Endocarditis Infecciosa (Infectología)": {
+    "total": 1,
+    "subtemas": {
+      "Endocarditis Infecciosa (Infectología)": 1
+    }
+  },
+  "Trauma craneoencefálico (ATLS)": {
+    "total": 1,
+    "subtemas": {
+      "Trauma craneoencefálico (ATLS)": 1
+    }
+  },
+  "Enfermedad diarreica aguda (Gastroenterología Pediátrica)": {
+    "total": 1,
+    "subtemas": {
+      "Enfermedad diarreica aguda (Gastroenterología Pediátrica)": 1
+    }
+  },
+  "Tuberculosis (Infectología)": {
+    "total": 1,
+    "subtemas": {
+      "Tuberculosis (Infectología)": 1
+    }
+  },
+  "Nefropatía diabética (Complicaciones Diabetes)": {
+    "total": 1,
+    "subtemas": {
+      "Nefropatía diabética (Complicaciones Diabetes)": 1
+    }
+  },
+  "LLA (Oncología Pediátrica)": {
+    "total": 1,
+    "subtemas": {
+      "LLA (Oncología Pediátrica)": 1
+    }
+  },
+  "Quemaduras eléctricas (Quemaduras)": {
+    "total": 1,
+    "subtemas": {
+      "Quemaduras eléctricas (Quemaduras)": 1
+    }
+  },
+  "Amenorrea (Endocrinología Ginecológica)": {
+    "total": 1,
+    "subtemas": {
+      "Amenorrea (Endocrinología Ginecológica)": 1
     }
   }
 }

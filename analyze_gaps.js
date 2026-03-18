@@ -76,5 +76,5 @@ few.forEach(f => {
 out += `\n## 💡 Conclusión y Recomendación\n`;
 out += `Para que la aplicación se considere un banco de preguntas **completo y competitivo** para el ENARM, se requiere la creación de **aproximadamente ${totalRecommended - totalAvailable} casos clínicos nuevos**, enfocándose primeramente en la sección de **Medicina Interna** y completando los huecos importantes en **Pediatría**, **Ginecología** y las subespecialidades de **Cirugía**.\n`;
 
-fs.writeFileSync('C:\\Users\\brian\\.gemini\\antigravity\\brain\\de17825b-1d3f-461c-8878-c0444a1420d4\\informe_faltantes.md', out);
+fs.writeFileSync('D:\\ENARM Lab\\informe_faltantes.md', out);
 console.log("Informe faltantes generated!");

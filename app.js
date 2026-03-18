@@ -6210,8 +6210,8 @@
                             parts[uid].timestamp = new Date();
                         }
 
-                        // Check if all are finished
-                        const allFinished = Object.values(parts).every(p => p.status === "completed");
+                        // Consider completed and dismissed as terminal states.
+                        const allFinished = Object.values(parts).every(p => p.status === "completed" || p.status === "dismissed");
 
                         window.FB.updateDoc(chalRef, {
                             participants: parts,
@@ -8587,15 +8587,30 @@
                     .filter(d => (d.data() || {}).status === "pending")
                     .map(d => window.FB.deleteDoc(d.ref));
 
-                // Query by challengerId only, then filter status locally.
+                // Query by participantIds only, then clear my pending challenge notifications.
                 const qChal = window.FB.query(
                     window.FB.collection(window.FB.db, "challenges"),
-                    window.FB.where("challengerId", "==", uid)
+                    window.FB.where("participantIds", "array-contains", uid)
                 );
                 const snapChal = await window.FB.getDocs(qChal);
                 const p2 = snapChal.docs
-                    .filter(d => (d.data() || {}).status === "active")
-                    .map(d => window.FB.deleteDoc(d.ref));
+                    .map(d => {
+                        const data = d.data() || {};
+                        if (data.status !== "active") return null;
+                        const participants = data.participants || {};
+                        const myEntry = participants[uid];
+                        if (!myEntry || myEntry.status !== "pending") return null;
+                        const nextParticipants = {
+                            ...participants,
+                            [uid]: {
+                                ...myEntry,
+                                status: "dismissed",
+                                timestamp: new Date()
+                            }
+                        };
+                        return window.FB.updateDoc(d.ref, { participants: nextParticipants });
+                    })
+                    .filter(Boolean);
 
                 await Promise.all([...p1, ...p2]);
                 showNotification("Notificaciones limpiadas.", "success");
