@@ -1,8 +1,7 @@
 # Informe de Casos Faltantes y Recomendados para Completar la App
 
-**Situación Actual:**
-- Total de casos en la base de datos mapeados o registrados: 2102
-- Total de casos mínimos recomendados para que la aplicación sea robusta: **1740**
+- Total de casos en la base de datos (Ground Truth): **1737**
+- Total de casos mínimos recomendados: **1740**
 
 A continuación se desglosan los temas donde **no hay ningún caso** cargado, así como aquellos donde hay **muy pocos casos** en proporción a la recomendación estimada.
 

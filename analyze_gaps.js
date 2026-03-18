@@ -44,9 +44,9 @@ for (let i = 0; i < lines.length; i++) {
 }
 
 let out = `# Informe de Casos Faltantes y Recomendados para Completar la App\n\n`;
-out += `**Situación Actual:**\n`;
-out += `- Total de casos en la base de datos mapeados o registrados: ${totalAvailable}\n`;
-out += `- Total de casos mínimos recomendados para que la aplicación sea robusta: **${totalRecommended}**\n\n`;
+const QUESTIONS = require('D:\\ENARM Lab\\questions.js');
+out += `- Total de casos en la base de datos (Ground Truth): **${QUESTIONS.length}**\n`;
+out += `- Total de casos mínimos recomendados: **${totalRecommended}**\n\n`;
 out += `A continuación se desglosan los temas donde **no hay ningún caso** cargado, así como aquellos donde hay **muy pocos casos** en proporción a la recomendación estimada.\n\n`;
 
 out += `## 🚨 Temas Faltantes (0 casos actualmente)\n`;
