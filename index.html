@@ -985,6 +985,12 @@
                                 <p>Asignar manualmente el tema correcto a cada caso.</p>
                             </div>
                         </div>
+                        <div class="list-item" id="mas-community-broadcast-item" style="cursor: pointer; display: none;">
+                            <div class="list-item-content">
+                                <h3>&#x1F4E2; Aviso a la comunidad</h3>
+                                <p>Enviar un mensaje global con notificación push a todos los usuarios.</p>
+                            </div>
+                        </div>
                         <div class="list-item" onclick="showView('view-feedback')" style="cursor: pointer;">
                             <div class="list-item-content">
                                 <h3>&#x1F4AC; Enviar Feedback</h3>
@@ -1810,6 +1816,36 @@
                     Prefijo ENARM-M1- = 1 mes, ENARM-FX- = acceso hasta 1 Oct 2026.
                 </p>
             </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL AVISO A LA COMUNIDAD (ADMIN) -->
+    <div class="modal-overlay" id="community-broadcast-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 3200; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+        <div class="modal-content"
+            style="background: var(--bg-card); padding: 28px; border-radius: 16px; border: 1px solid var(--border); max-width: 560px; width: 92%; position: relative;">
+            <button id="btn-close-community-broadcast"
+                style="position: absolute; top: 12px; right: 12px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">&#x2715;</button>
+            <h2 style="font-size: 20px; margin-bottom: 8px; color: var(--text-primary);">Aviso a la comunidad</h2>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+                Este mensaje se enviará a todos los usuarios con notificaciones activas.
+            </p>
+
+            <div class="input-group" style="margin-bottom: 12px;">
+                <label>Titulo del aviso</label>
+                <input class="text-input" id="community-broadcast-title" type="text" maxlength="70"
+                    placeholder="Ejemplo: Actualizacion ENARM Lab">
+            </div>
+            <div class="input-group" style="margin-bottom: 14px;">
+                <label>Mensaje</label>
+                <textarea class="text-input" id="community-broadcast-message" rows="5" maxlength="280"
+                    placeholder="Escribe el aviso para toda la comunidad..."></textarea>
+            </div>
+
+            <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                <button class="btn-ghost" id="btn-cancel-community-broadcast">Cancelar</button>
+                <button class="btn-primary" id="btn-send-community-broadcast">Enviar aviso</button>
             </div>
         </div>
     </div>

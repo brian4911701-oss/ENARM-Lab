@@ -838,6 +838,8 @@
         const allowed = canReclassifyUser();
         const item = $("mas-reclass-item");
         if (item) item.style.display = allowed ? "flex" : "none";
+        const broadcastItem = $("mas-community-broadcast-item");
+        if (broadcastItem) broadcastItem.style.display = allowed ? "flex" : "none";
         const content = $("reclassify-content");
         const locked = $("reclassify-locked");
         if (content) content.style.display = allowed ? "block" : "none";
@@ -1248,6 +1250,85 @@
             }
             document.body.removeChild(temp);
         }
+    };
+
+    const initCommunityBroadcastLogic = () => {
+        const item = $("mas-community-broadcast-item");
+        const modal = $("community-broadcast-modal");
+        const btnClose = $("btn-close-community-broadcast");
+        const btnCancel = $("btn-cancel-community-broadcast");
+        const btnSend = $("btn-send-community-broadcast");
+        const titleInput = $("community-broadcast-title");
+        const messageInput = $("community-broadcast-message");
+
+        if (!item || !modal || !btnSend || !titleInput || !messageInput) return;
+
+        const closeModal = () => {
+            modal.style.display = "none";
+        };
+
+        const openModal = () => {
+            if (!isAdminUser()) {
+                showNotification("Solo admin puede enviar avisos globales.", "warning");
+                return;
+            }
+            titleInput.value = "";
+            messageInput.value = "";
+            modal.style.display = "flex";
+            setTimeout(() => titleInput.focus(), 30);
+        };
+
+        item.addEventListener("click", openModal);
+        if (btnClose) btnClose.addEventListener("click", closeModal);
+        if (btnCancel) btnCancel.addEventListener("click", closeModal);
+
+        btnSend.addEventListener("click", async () => {
+            if (!isAdminUser()) {
+                showNotification("Solo admin puede enviar avisos globales.", "warning");
+                return;
+            }
+            if (!window.FB || !window.FB.db || !window.FB.auth || !window.FB.auth.currentUser) {
+                showNotification("Inicia sesion para enviar avisos.", "warning");
+                return;
+            }
+
+            const title = (titleInput.value || "").trim() || "Aviso ENARM Lab";
+            const message = (messageInput.value || "").trim();
+            if (!message) {
+                showNotification("Escribe el mensaje del aviso.", "warning");
+                return;
+            }
+
+            btnSend.disabled = true;
+            const previousText = btnSend.textContent;
+            btnSend.textContent = "Enviando...";
+            try {
+                const payload = {
+                    title: title.slice(0, 70),
+                    message: message.slice(0, 280),
+                    createdAt: Date.now(),
+                    createdBy: State.currentUid || window.FB.auth.currentUser.uid,
+                    createdByName: State.userName || "Admin"
+                };
+                await window.FB.addDoc(
+                    window.FB.collection(window.FB.db, "community_announcements"),
+                    payload
+                );
+                closeModal();
+                showNotification("Aviso enviado. Se notificara a la comunidad en breve.", "success");
+            } catch (err) {
+                console.error("Error enviando aviso global:", err);
+                const msg = String((err && (err.code || err.message)) || "").toLowerCase();
+                if (msg.includes("permission-denied") || msg.includes("missing or insufficient permissions")) {
+                    showNotification("No tienes permiso para enviar avisos globales.", "error");
+                } else {
+                    showNotification("No se pudo enviar el aviso global.", "error");
+                }
+            } finally {
+                btnSend.disabled = false;
+                btnSend.textContent = previousText;
+            }
+        });
     };
 
     const showBanner = (title, msg, icon = '&#x1F514;', onClickCallback = null) => {
@@ -7073,6 +7154,7 @@
         initDashboardShortcuts();
         startExamCountdown();
         initReportLogic();
+        initCommunityBroadcastLogic();
         initPomodoro();
         setTimeout(() => {
             requestNotificationPermissionOnOpen();
@@ -8484,7 +8566,10 @@
         };
 
         window.clearAllNotifications = async () => {
-            if (!window.FB || !window.FB.db || !window.FB.auth.currentUser) return;
+            if (!window.FB || !window.FB.db || !window.FB.auth.currentUser) {
+                showNotification("Inicia sesion para limpiar notificaciones.", "warning");
+                return;
+            }
             const uid = window.FB.auth.currentUser.uid;
 
             if (!confirm("¿Seguro que quieres eliminar todas las notificaciones?")) return;
@@ -8492,31 +8577,38 @@
             try {
                 showNotification("Limpiando notificaciones...", "info");
 
-                // 1. Limpiar solicitudes de amistad (pasarlas a rechazadas o eliminarlas)
+                // Query by a single field to avoid composite-index dependency.
                 const qReqs = window.FB.query(
                     window.FB.collection(window.FB.db, "friendRequests"),
-                    window.FB.where("toId", "==", uid),
-                    window.FB.where("status", "==", "pending")
+                    window.FB.where("toId", "==", uid)
                 );
                 const snapReqs = await window.FB.getDocs(qReqs);
-                const p1 = snapReqs.docs.map(d => window.FB.deleteDoc(d.ref));
+                const p1 = snapReqs.docs
+                    .filter(d => (d.data() || {}).status === "pending")
+                    .map(d => window.FB.deleteDoc(d.ref));
 
-                // BUG FIX #5: Only delete challenges where I am the challenger.
-                // Previously this deleted ALL active challenges the user was part of,
-                // which could destroy challenges initiated by other users.
+                // Query by challengerId only, then filter status locally.
                 const qChal = window.FB.query(
                     window.FB.collection(window.FB.db, "challenges"),
-                    window.FB.where("challengerId", "==", uid),
-                    window.FB.where("status", "==", "active")
+                    window.FB.where("challengerId", "==", uid)
                 );
                 const snapChal = await window.FB.getDocs(qChal);
-                const p2 = snapChal.docs.map(d => window.FB.deleteDoc(d.ref));
+                const p2 = snapChal.docs
+                    .filter(d => (d.data() || {}).status === "active")
+                    .map(d => window.FB.deleteDoc(d.ref));
 
                 await Promise.all([...p1, ...p2]);
                 showNotification("Notificaciones limpiadas.", "success");
             } catch (e) {
                 console.error(e);
-                showNotification("Error al limpiar notificaciones.", "error");
+                const msg = String((e && (e.code || e.message)) || "").toLowerCase();
+                if (msg.includes("permission-denied") || msg.includes("missing or insufficient permissions")) {
+                    showNotification("No tienes permisos para limpiar notificaciones en la nube.", "error");
+                } else if (msg.includes("index")) {
+                    showNotification("Falta un indice en Firestore para limpiar notificaciones.", "error");
+                } else {
+                    showNotification("Error al limpiar notificaciones.", "error");
+                }
             }
         };
 
