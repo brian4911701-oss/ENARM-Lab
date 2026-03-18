@@ -1,0 +1,2082 @@
+[
+  {
+    "index": 28,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Escolar de 8 años con edema bipalpebral, hipertensión arterial y hematuria (orina color refresco de cola) tras haber padecido una faringoamigdalitis hace 2 semanas."
+  },
+  {
+    "index": 84,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Trauma y ATLS",
+    "casePreview": "Hombre de 22 años que recibe herida por arma blanca en hemitórax izquierdo, a nivel del 4º espacio intercostal línea paraesternal. Acude sudoroso, pálido, confuso. Exploración: TA "
+  },
+  {
+    "index": 101,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido postérmino de 41.5 semanas de gestación. Parto complicado por distocia de hombros y líquido amniótico teñido de meconio espeso (puré de chícharos). Al nacer se encuen"
+  },
+  {
+    "index": 115,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "CACU",
+    "casePreview": "Varón de 50 años con enfermedad hepática en estadío avanzado documentada por etilismo de tres décadas. La familia llama a las emergencias al presenciarlo con múltiples crisis eméti"
+  },
+  {
+    "index": 129,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Niño de 5 años con edema generalizado palpebral. Proteinuria >50 mg/kg/día, hipoalbuminemia 2.1 g/dL, hipercolesterolemia 300 mg/dL."
+  },
+  {
+    "index": 146,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Niño de 8 años con antecedente de faringitis hace 3 semanas, presenta edema palpebral, hematuria macroscópica y oliguria. TA 135/85 mmHg. Laboratorio: creatinina ligeramente elevad"
+  },
+  {
+    "index": 151,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Lactante de 3 meses con diaforesis al alimentarse, pobre ganancia ponderal y taquipnea. A la auscultación presenta soplo holosistólico en borde esternal izquierdo inferior. Rx mues"
+  },
+  {
+    "index": 164,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Sx nefríticos (Nefrología)",
+    "casePreview": "Hombre de 45 años con edema en miembros inferiores y párpados. Proteinuria 4.5 g/24h, albúmina 2.3 g/dL, colesterol elevado. Creatinina normal."
+  },
+  {
+    "index": 166,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Primigesta de 34 semanas con cefalea intensa, fosfenos y edema. TA 170/110 mmHg en dos mediciones. Proteinuria 3+. Plaquetas 95,000."
+  },
+  {
+    "index": 167,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "CACU",
+    "casePreview": "Hombre de 66 años con DM2 e hipertensión acude por fiebre, disuria y deterioro del estado de alerta. TA 82/50 mmHg, FC 120 lpm, FR 28 rpm, Temp 39°C. Lactato 4.8 mmol/L. Leucocitos"
+  },
+  {
+    "index": 191,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Sx nefríticos (Nefrología)",
+    "casePreview": "Hombre de 18 años con antecedente de faringitis hace 2 semanas presenta edema facial, hematuria y TA 150/95 mmHg. Creatinina ligeramente elevada."
+  },
+  {
+    "index": 192,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "CACU",
+    "casePreview": "Hombre de 54 años, antecedente de DM2 e hipertensión, ingresa por neumonía adquirida en la comunidad confirmada por infiltrado lobar derecho y leucocitosis. A las 48 horas presenta"
+  },
+  {
+    "index": 196,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Trauma y ATLS",
+    "casePreview": "Hombre de 62 años con antecedente de hipertensión y tabaquismo acude por dolor torácico opresivo de 3 horas de evolución. ECG con elevación del ST en V1–V4. Se realiza angioplastia"
+  },
+  {
+    "index": 199,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Gestante de 35 semanas con antecedente de preeclampsia presenta dolor en epigastrio intenso, náusea y malestar general. TA 165/105 mmHg. Laboratorio: AST y ALT elevadas, plaquetas "
+  },
+  {
+    "index": 256,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Abdomen Agudo Quirurgico",
+    "casePreview": "Masculino de 62 años, conocido con cirrosis hepática de etiología alcohólica (Child-Pugh C) y ascitis crónica. Es traído a urgencias por sus familiares debido a que notan alteracio"
+  },
+  {
+    "index": 266,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Abdomen Agudo Quirurgico",
+    "casePreview": "Masculino de 35 años, trabajador de la CFE, sufre un accidente laboral al tocar un cable de alta tensión (10,000 voltios). Es proyectado a 3 metros de distancia. A su ingreso, el p"
+  },
+  {
+    "index": 267,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 4,
+      "mi": 5
+    },
+    "targetScore": 5,
+    "otherMax": 4,
+    "temaCanonical": "Abdomen Agudo Quirurgico",
+    "casePreview": "Masculino de 78 años, residente de un asilo de ancianos, con historia de estreñimiento crónico severo y postración. Es traído a urgencias por presentar dolor abdominal tipo cólico "
+  },
+  {
+    "index": 268,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Mujer de 27 años, G1P0, 33 semanas de gestación por FUM confiable. Acude por cefalea intensa persistente, fosfenos y dolor en epigastrio desde hace 8 horas. TA 168/112 mmHg en dos "
+  },
+  {
+    "index": 275,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 4,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 4,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Mujer de 29 años, G2P1, 35 semanas de gestación. Antecedente de preeclampsia en embarazo previo. Acude por cefalea intensa, náusea, vómito y dolor en hipocondrio derecho de 24 hora"
+  },
+  {
+    "index": 287,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Mujer de 31 años, G2P1, 34 semanas de gestación por FUM confiable y corroborada por ultrasonido del primer trimestre. Antecedente de obesidad grado I (IMC 32 kg/m²) y madre con ant"
+  },
+  {
+    "index": 303,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Trabajo de Parto",
+    "casePreview": "Paciente de 33 años, G2P1, 34 semanas, con diagnóstico de diabetes gestacional en tratamiento irregular. Refiere disnea progresiva y sensación de distensión abdominal excesiva. USG"
+  },
+  {
+    "index": 305,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 5,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Mujer de 27 años, G2P1, 28 semanas de gestación. Grupo sanguíneo O Rh negativo. Su primer embarazo terminó en parto eutócico hace 3 años; el recién nacido fue Rh positivo. La pacie"
+  },
+  {
+    "index": 349,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Hemorragia Obstetrica",
+    "casePreview": "Paciente de 36 años, G3P2, 34 semanas, con DPPNI severo. Sangrado abundante, útero hipertónico. Laboratorios: plaquetas 60,000, fibrinógeno bajo, TP prolongado, sangrado por sitios"
+  },
+  {
+    "index": 365,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 7,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 7,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Paciente de 32 años, G2P1, 35 semanas de gestación, acude por cefalea intensa holocraneana de 12 horas de evolución, fosfenos y dolor en epigastrio irradiado a hipocondrio derecho."
+  },
+  {
+    "index": 366,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 9,
+      "cir": 0,
+      "mi": 4
+    },
+    "targetScore": 4,
+    "otherMax": 9,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente de 28 años, G3P2, 37 semanas, con antecedente de hipertensión gestacional en embarazo previo. Acude por dolor abdominal súbito, intenso y constante, acompañado de sangrado"
+  },
+  {
+    "index": 373,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente de 27 años, G2P1, 28 semanas de gestación, antecedente de diabetes tipo 1 desde los 14 años. Acude por 24 horas de náuseas intensas, vómito y dolor abdominal difuso. Refie"
+  },
+  {
+    "index": 375,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Cancer de Mama",
+    "casePreview": "Paciente de 52 años, menopausia desde hace 1 año. Presenta bochornos intensos, sudoración nocturna y trastorno del sueño que afecta su calidad de vida. IMC 24. No antecedentes de c"
+  },
+  {
+    "index": 377,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 7,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 7,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Paciente de 34 años, G3P2, 33 semanas de gestación. Acude por dolor intenso en epigastrio irradiado a hipocondrio derecho desde hace 8 horas, náusea y malestar general. Refiere cef"
+  },
+  {
+    "index": 379,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Paciente de 28 años consulta por amenorrea de 6 meses y salida espontánea de secreción láctea bilateral. Niega embarazo. No usa anticonceptivos. Refiere cefalea leve ocasional. Lab"
+  },
+  {
+    "index": 404,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 6,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 6,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente de 36 años con antecedente de hipertensión arterial crónica desde hace 5 años. Cursa 32 semanas. Habitualmente TA 135/85 mmHg con tratamiento. Consulta por edema súbito, c"
+  },
+  {
+    "index": 411,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Paciente de 30 años, 10 semanas de gestación, antecedente de tiroiditis autoinmune. Consulta por fatiga marcada y aumento leve de peso. TSH 6.5 mUI/L, T4 libre baja. No presenta bo"
+  },
+  {
+    "index": 413,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente de 32 años, 32 semanas, antecedente de preeclampsia leve. USG muestra peso fetal < percentil 3, oligohidramnios y Doppler con ausencia de flujo diastólico en arteria umbil"
+  },
+  {
+    "index": 420,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Trabajo de Parto",
+    "casePreview": "Paciente de 35 años durante trabajo de parto presenta súbitamente disnea intensa, cianosis, hipotensión severa y pérdida de la conciencia. Posteriormente desarrolla sangrado incoer"
+  },
+  {
+    "index": 446,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente de 30 años, 34 semanas, con antecedente de preeclampsia diagnosticada hace 1 semana, acude por dolor intenso en epigastrio irradiado a hipocondrio derecho, náusea y malest"
+  },
+  {
+    "index": 469,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 7,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 7,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente de 32 años, 36 semanas, antecedente de hipertensión gestacional, acude por dolor abdominal súbito intenso y sangrado transvaginal oscuro moderado. Se documenta DPPNI clíni"
+  },
+  {
+    "index": 506,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 4,
+      "gyo": 0,
+      "cir": 4,
+      "mi": 5
+    },
+    "targetScore": 5,
+    "otherMax": 4,
+    "temaCanonical": "Abdomen Agudo Quirurgico",
+    "casePreview": "Masculino de 45 años, sin antecedentes crónicos de importancia, acude al servicio de urgencias por presentar dolor abdominal de inicio súbito y muy intenso, de 4 horas de evolución"
+  },
+  {
+    "index": 570,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "CACU",
+    "casePreview": "Femenina de 65 años, con antecedente de coledocolitiasis manejada de forma conservadora. Ingresa a la sala de choque en ambulancia por presentar un cuadro de franco deterioro neuro"
+  },
+  {
+    "index": 590,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 4,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Trauma y ATLS",
+    "casePreview": "Masculino de 70 años, con antecedente de infarto agudo de miocardio antiguo y diagnóstico de fibrilación auricular crónica sin tratamiento anticoagulante por abandono médico. Acude"
+  },
+  {
+    "index": 669,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Trauma y ATLS",
+    "casePreview": "Masculino de 19 años, ingresa tras accidente en motocicleta. Presenta dolor intenso en el hipocondrio izquierdo y dolor referido al hombro izquierdo (signo de Kehr). TA 90/60 mmHg "
+  },
+  {
+    "index": 694,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 7,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 7,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Mujer de 23 años, G1P0, con embarazo de 30 semanas acude a consulta prenatal por cefalea persistente desde hace dos días y sensación de hinchazón en manos y cara. Refiere que previ"
+  },
+  {
+    "index": 696,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Mujer de 35 años, G2P1, con embarazo de 33 semanas acude al servicio de urgencias por dolor intenso en epigastrio y en el cuadrante superior derecho del abdomen desde hace varias h"
+  },
+  {
+    "index": 697,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Mujer de 27 años, G2P1, con embarazo de 26 semanas acude a consulta prenatal de rutina. Refiere que su embarazo ha evolucionado sin complicaciones hasta el momento. Como antecedent"
+  },
+  {
+    "index": 699,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 5,
+    "temaCanonical": "CACU",
+    "casePreview": "Mujer de 35 años con diabetes gestacional tratada con insulina durante el embarazo da a luz a un recién nacido de 4,100 g mediante parto vaginal a las 39 semanas. El parto transcur"
+  },
+  {
+    "index": 702,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 7,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 7,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Mujer de 30 años, G1P0, con embarazo de 31 semanas se encuentra hospitalizada por ruptura prematura de membranas desde hace 48 horas. Durante las últimas horas comienza a presentar"
+  },
+  {
+    "index": 782,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido postérmino (41 SDG), con antecedente de sufrimiento fetal agudo (bradicardia fetal sostenida) y líquido amniótico teñido de meconio espeso (\"puré de chícharos\"). Nace"
+  },
+  {
+    "index": 784,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido prematuro de 30 SDG, cursando su cuarto día de vida en la UCIN. Las enfermeras reportan que el neonato presenta múltiples episodios diarios en los que deja de respira"
+  },
+  {
+    "index": 821,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "Uropedia",
+    "casePreview": "Lactante masculino de 10 meses con antecedente de dos episodios de IVU febriles confirmadas por cultivo. El ultrasonido renal reporta dilatación de los uréteres y de la pelvis rena"
+  },
+  {
+    "index": 822,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 4,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Escolar de 4 años acude por presentar edema bipalpebral y de extremidades inferiores que ha progresado a anasarca en una semana. El niño no tiene antecedentes de faringitis previa."
+  },
+  {
+    "index": 823,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Escolar de 8 años acude por presentar orina color \"refresco de cola\" (hematuria macroscópica), edema leve en párpados y disminución del volumen urinario (oliguria). La madre refier"
+  },
+  {
+    "index": 828,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 4,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Lactante de 3 años es llevado a consulta porque la madre notó una masa en el abdomen mientras lo bañaba. El niño se encuentra asintomático. A la palpación se detecta una masa firme"
+  },
+  {
+    "index": 847,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Preescolar de 5 años presenta exantema papular eritematoso que progresa a púrpura palpable, localizado simétricamente en glúteos y extremidades inferiores. Se acompaña de dolor abd"
+  },
+  {
+    "index": 850,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Recién Nacido Sano",
+    "casePreview": "Recién nacido de 15 días de vida es traído a consulta tras reporte de tamiz neonatal metabólico sospechoso. A la exploración física destaca fontanela posterior amplia (>1 cm), icte"
+  },
+  {
+    "index": 860,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Lactante de 3 meses presenta un soplo holosistólico grado III/IV, rudo, de alta frecuencia, mejor escuchado en el tercer o cuarto espacio intercostal izquierdo, con irradiación en "
+  },
+  {
+    "index": 864,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido de 38 semanas presenta dificultad respiratoria severa inmediata al nacer, cianosis y abdomen excavado (escafoide). A la auscultación, los ruidos cardiacos están despl"
+  },
+  {
+    "index": 900,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 5,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Ictericia Neonatal",
+    "casePreview": "Preescolar de 3 años es traído a urgencias por palidez generalizada, fatiga extrema y disminución drástica de la orina (oliguria) en las últimas 12 horas. La madre refiere que hace"
+  },
+  {
+    "index": 901,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Lactante de 10 meses de edad acude a consulta por \"falla para medrar\" (peso y talla en percentil 1). No presenta diarrea ni vómitos. A la exploración física se documenta poliuria c"
+  },
+  {
+    "index": 902,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "Uropedia",
+    "casePreview": "Escolar de 10 años, con antecedente de reflujo vesicoureteral grado V bilateral diagnosticado tardíamente. Actualmente se encuentra asintomático, pero sus laboratorios de rutina mu"
+  },
+  {
+    "index": 917,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 5,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Adolescente femenina de 14 años acude por pérdida de peso importante a pesar de tener un apetito aumentado (polifagia), palpitaciones, intolerancia al calor y caída en su rendimien"
+  },
+  {
+    "index": 924,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 4,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido prematuro con peso de 1,800 g. A la exploración física inicial se detecta ausencia del reflejo rojo bilateral, y la evaluación oftalmológica confirma cataratas bilate"
+  },
+  {
+    "index": 925,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Recién Nacido Sano",
+    "casePreview": "Recién nacido a término, pequeño para la edad gestacional, que ingresa a la UCIN por presentar microcefalia severa, hepatoesplenomegalia profunda e ictericia. Se observan múltiples"
+  },
+  {
+    "index": 933,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Neurologia Pediatrica",
+    "casePreview": "Lactante de 18 meses de edad es traído a consulta porque hace un par de horas, tras ser regañado por su madre al quitarle un juguete, comenzó a llorar vigorosamente. De repente, de"
+  },
+  {
+    "index": 934,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Lactante masculino de 18 meses, con antecedente de prematurez extrema (28 semanas de gestación). La madre lo trae porque \"aún no camina ni se sienta solo\". A la exploración física,"
+  },
+  {
+    "index": 951,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Lactante de 2 meses de edad es llevado a su revisión de niño sano. La madre refiere que el bebé se fatiga y suda mucho en la frente al tomar el pecho, y nota que respira muy rápido"
+  },
+  {
+    "index": 955,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 1,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Reanimacion Neonatal",
+    "casePreview": "Recién nacido de término, macrosómico, hijo de madre con diabetes pregestacional mal controlada. A los pocos minutos del nacimiento, presenta cianosis central profunda que no mejor"
+  },
+  {
+    "index": 967,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 5,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 5,
+    "temaCanonical": "Cirrosis y sus Complicaciones / Trasplante Hepático",
+    "casePreview": "Preescolar masculino de 4 años es traído por su madre debido a \"hinchazón\" de párpados que empeora por las mañanas y edema en extremidades inferiores desde hace 5 días. No refiere "
+  },
+  {
+    "index": 968,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Escolar de 7 años acude por presentar orina color \"té\" o \"refresco de cola\", edema facial leve y cefalea. La madre refiere que hace 2 semanas el niño tuvo un cuadro de faringoamigd"
+  },
+  {
+    "index": 971,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 5,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Preescolar femenino de 3 años es traída por su madre quien, al bañarla, notó una \"masa\" en el lado derecho del abdomen. La niña se encuentra asintomática, sin dolor ni fiebre. A la"
+  },
+  {
+    "index": 980,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Escolar de 8 años presenta fiebre, malestar general y dolor al masticar. A la exploración física se observa borramiento del ángulo mandibular debido a una tumefacción de la glándul"
+  },
+  {
+    "index": 986,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Primigesta de 24 semanas acude a control prenatal. Se encuentra asintomática. En sus laboratorios destaca: Hemoglobina 11.2 g/dL, Hematocrito 33%, Leucocitos 12,500/mm3 sin bandemi"
+  },
+  {
+    "index": 1003,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido de término con peso de 1,800 gramos al nacer, hijo de madre sana. El interno de pregrado se dispone a aplicar las vacunas del nacimiento."
+  },
+  {
+    "index": 1023,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Lactante de 2 meses presenta pobre ganancia ponderal, sudoración excesiva con las tomas (disnea de esfuerzo) y taquipnea. A la exploración se ausculta un soplo holosistólico, rudo,"
+  },
+  {
+    "index": 1025,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 2,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "CACU",
+    "casePreview": "Recién nacido de término, macrosómico (4.2 kg), hijo de madre con diabetes gestacional. A las pocas horas de nacido presenta cianosis severa y generalizada que NO responde a la adm"
+  },
+  {
+    "index": 1030,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 3,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido postérmino (42 semanas de gestación). Presenta sufrimiento fetal agudo durante el trabajo de parto. Al nacer, se observa líquido amniótico espeso con grumos verdes. E"
+  },
+  {
+    "index": 1036,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "Recién Nacido Sano",
+    "casePreview": "Recién nacido de 38 semanas, pequeño para la edad gestacional (peso < percentil 10). Presenta ictericia generalizada desde el primer día, petequias difusas (\"blueberry muffin baby\""
+  },
+  {
+    "index": 1101,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Enfermedad Hipertensiva del Embarazo",
+    "casePreview": "Femenina de 65 años con antecedente de hipertensión. Presenta dolor torácico opresivo de 30 minutos que cedió parcialmente con el reposo. El EKG muestra inversión de la onda T en c"
+  },
+  {
+    "index": 1342,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Enfermedad Hipertensiva del Embarazo",
+    "casePreview": "Masculino de 82 años con hipertensión, DM2, osteoartritis y depresión. Consume 9 fármacos distintos. Acude por mareos, confusión y una caída reciente."
+  },
+  {
+    "index": 1398,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 6,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 6,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente de 30 años con diagnóstico recurrente de vaginosis bacteriana. Ha recibido múltiples ciclos de metronidazol con mejoría parcial. Reporta persistencia de flujo con olor a p"
+  },
+  {
+    "index": 1408,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "GINECOLOGÍA Y OBSTETRICIA",
+    "casePreview": "Paciente de 25 años en el 7° día post-administración de Metotrexato por embarazo ectópico no roto. La hCG del día 4 fue de 4,000 mUI/ml y la del día 7 es de 3,800 mUI/ml."
+  },
+  {
+    "index": 1411,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 7,
+      "cir": 0,
+      "mi": 4
+    },
+    "targetScore": 4,
+    "otherMax": 7,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente de 19 años con embarazo de 10 semanas. Acude por vómitos incoercibles (hiperemesis gravídica) y sangrado vaginal \"en agua de lavar carne\" con expulsión de vesículas. A la "
+  },
+  {
+    "index": 1420,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 4,
+    "temaCanonical": "GINECOLOGÍA Y OBSTETRICIA",
+    "casePreview": "Mujer de 32 años con antecedente de 3 abortos espontáneos consecutivos antes de la semana 10. No tiene hijos. Refiere antecedente de una trombosis venosa profunda hace 2 años. Prue"
+  },
+  {
+    "index": 1441,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 6,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 6,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente de 12 semanas de gestación con antecedentes de preeclampsia en su embarazo anterior, IMC de 32 kg/m² y diagnóstico de Lupus Eritematoso Sistémico."
+  },
+  {
+    "index": 1445,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente de 32 años con hipertensión crónica conocida. Acude a las 28 semanas de embarazo por presentar cefalea y edema marcado. Sus laboratorios previos no tenían proteinuria; el "
+  },
+  {
+    "index": 1451,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente de 30 semanas con preeclampsia severa que presenta una crisis convulsiva. Tras la administración de 4g de Sulfato de Magnesio, la paciente presenta una segunda convulsión "
+  },
+  {
+    "index": 1452,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 7,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 7,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente de 36 semanas, con antecedente de preeclampsia, acude por dolor abdominal súbito, intenso, \"en tabla\", y sangrado transvaginal obscuro escaso. El registro cardiotocográfic"
+  },
+  {
+    "index": 1462,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 4,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente en trabajo de parto avanzado presenta de forma súbita disnea, cianosis, colapso cardiovascular y convulsiones, seguido de hemorragia masiva por coagulopatía."
+  },
+  {
+    "index": 1481,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 7,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 7,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Paciente de 39 semanas con indicación de inducción por preeclampsia sin datos de severidad. Presenta un Bishop de 3."
+  },
+  {
+    "index": 1486,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Sangrado Uterino Anormal",
+    "casePreview": "Paciente de 16 años con amenorrea primaria. A la exploración física tiene un desarrollo mamario normal (Tanner IV), vello púbico normal, pero se observa una vagina corta (fondode s"
+  },
+  {
+    "index": 1489,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Trabajo de Parto",
+    "casePreview": "Durante la conducción del trabajo de parto con oxitocina, se observa en el registro cardiotocográfico la presencia de desaceleraciones periódicas que inician después del pico de la"
+  },
+  {
+    "index": 1498,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 6,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 6,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Paciente de 19 años, primigesta, con 24 semanas de gestación. En la consulta de primer nivel se detecta por primera vez una cifra tensional de 145/95 mmHg y presencia de edema en e"
+  },
+  {
+    "index": 1502,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Se realiza un análisis de las estadísticas de mortalidad materna en una región de México."
+  },
+  {
+    "index": 1510,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Paciente de 14 semanas con reporte de IgG positivo y IgM positivo para Toxoplasma gondii. Se realiza prueba de avidez de IgG, la cual resulta \"Alta\"."
+  },
+  {
+    "index": 1530,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 7 años presenta hematuria (orina color \"refresco de cola\"), edema palpebral y pretibial, e hipertensión arterial (130/90 mmHg). La madre refiere que el niño tuvo una infecc"
+  },
+  {
+    "index": 1531,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 4 años acude por edema generalizado (anasarca) que inició en párpados y progresó a extremidades y escroto. Los laboratorios reportan: proteinuria de 24 horas >40 mg/m²/h, a"
+  },
+  {
+    "index": 1537,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 3 años es traído por su madre porque notó una masa en el abdomen mientras lo bañaba. El niño está asintomático. A la exploración se palpa masa abdominal firme, lisa, que no"
+  },
+  {
+    "index": 1538,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 4
+    },
+    "targetScore": 4,
+    "otherMax": 1,
+    "temaCanonical": "Uropedia",
+    "casePreview": "Lactante de 8 meses con antecedente de dos episodios de infección de vías urinarias febriles. El ultrasonido reporta hidronefrosis leve bilateral."
+  },
+  {
+    "index": 1539,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Paciente de 8 años con diagnóstico reciente de Diabetes Mellitus tipo 1. Acude a urgencias por náuseas, vómito, dolor abdominal y somnolencia. Presenta respiración profunda y rápid"
+  },
+  {
+    "index": 1544,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 4,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Lactante de 2 meses que no recibió tamiz neonatal. Presenta ictericia prolongada, estreñimiento, macroglosia (lengua grande), piel seca y fontanela posterior amplia (>1 cm). Se obs"
+  },
+  {
+    "index": 1630,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 4
+    },
+    "targetScore": 4,
+    "otherMax": 5,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Hombre de 65 años es traído a consulta por presentar lentitud progresiva para realizar sus actividades diarias, dificultad para levantarse de la silla y una marcha a pasos cortos s"
+  },
+  {
+    "index": 1652,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 7,
+      "gyo": 11,
+      "cir": 7,
+      "mi": 9
+    },
+    "targetScore": 9,
+    "otherMax": 11,
+    "temaCanonical": "Ictericia Neonatal",
+    "casePreview": "Mujer de 68 años de edad, postmenopáusica desde hace 18 años, de complexión delgada y con antecedente de tabaquismo positivo. Acude a consulta externa para una revisión de rutina. "
+  },
+  {
+    "index": 1661,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 4,
+      "gyo": 10,
+      "cir": 8,
+      "mi": 9
+    },
+    "targetScore": 9,
+    "otherMax": 10,
+    "temaCanonical": "Abdomen Agudo Quirurgico",
+    "casePreview": "Paciente de 38 años, multípara, cursa embarazo de 39 semanas de gestación. Se encuentra en periodo expulsivo del trabajo de parto, con un feto macrosómico estimado por ultrasonido "
+  },
+  {
+    "index": 1665,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 10,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 10,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Mujer de 32 años, cursando su segunda gestación a las 36 semanas. Cuenta con diagnóstico reciente de preeclampsia. Ingresa a urgencias por presentar dolor abdominal intenso y de in"
+  },
+  {
+    "index": 1667,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 3,
+      "gyo": 9,
+      "cir": 4,
+      "mi": 9
+    },
+    "targetScore": 9,
+    "otherMax": 9,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Mujer de 32 años acude por pérdida de peso de 6 kg en los últimos dos meses a pesar de tener el apetito conservado. Refiere palpitaciones frecuentes, nerviosismo, insomnio y diarre"
+  },
+  {
+    "index": 1670,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 7,
+      "gyo": 8,
+      "cir": 4,
+      "mi": 6
+    },
+    "targetScore": 6,
+    "otherMax": 8,
+    "temaCanonical": "Ictericia Neonatal",
+    "casePreview": "Mujer de 58 años de edad, asintomática, acude a su chequeo anual con los resultados de su mastografía de tamizaje. No tiene antecedentes familiares de neoplasias. El reporte radiol"
+  },
+  {
+    "index": 1680,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 5,
+      "gyo": 7,
+      "cir": 4,
+      "mi": 11
+    },
+    "targetScore": 11,
+    "otherMax": 7,
+    "temaCanonical": "Vacunacion",
+    "casePreview": "Mujer de 45 años, con inicio de vida sexual activa a los 16 años y antecedente de tabaquismo, acude a consulta por presentar sangrado transvaginal intermitente, predominantemente p"
+  },
+  {
+    "index": 1686,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 5,
+      "gyo": 8,
+      "cir": 6,
+      "mi": 9
+    },
+    "targetScore": 9,
+    "otherMax": 8,
+    "temaCanonical": "Hemorragia Obstetrica",
+    "casePreview": "Hombre de 68 años de edad acude a consulta por sintomatología urinaria de 2 años de evolución, la cual se ha exacerbado recientemente. Refiere que tiene que levantarse hasta 4 vece"
+  },
+  {
+    "index": 1692,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 5,
+      "gyo": 10,
+      "cir": 5,
+      "mi": 8
+    },
+    "targetScore": 8,
+    "otherMax": 10,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Lactante femenino de 4 semanas de vida es traída a la consulta pediátrica porque los padres notan que \"sigue amarilla\". La niña nació de término sin complicaciones, fue dada de alt"
+  },
+  {
+    "index": 1700,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 4,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Trauma y ATLS",
+    "casePreview": "Varón de 35 años de edad, de oficio electricista, ingresa a urgencias traído por paramédicos tras sufrir una descarga eléctrica accidental de alta tensión (10,000 voltios). Present"
+  },
+  {
+    "index": 1703,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 5,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Mujer de 25 años, primigesta, acude a su primera consulta de control prenatal cursando un embarazo de 8 semanas de gestación por fecha de última menstruación. Es una paciente sana,"
+  },
+  {
+    "index": 1717,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Sangrado Uterino Anormal",
+    "casePreview": "Mujer de 29 años con antecedente de legrado uterino instrumentado hace 8 meses por aborto retenido. Desde entonces presenta amenorrea secundaria y dolor tipo cólico cíclico cada me"
+  },
+  {
+    "index": 1730,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "CACU",
+    "casePreview": "Hombre de 68 años, fumador crónico, con diagnóstico de EPOC. Acude por aumento de la disnea, incremento del volumen de esputo y cambio a expectoración purulenta. Saturación de oxíg"
+  },
+  {
+    "index": 1748,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 4
+    },
+    "targetScore": 4,
+    "otherMax": 1,
+    "temaCanonical": "CACU",
+    "casePreview": "Masculino de 56 años con antecedente de alcoholismo crónico consulta por aumento del perímetro abdominal, edema en miembros inferiores y episodios de somnolencia. A la exploración "
+  },
+  {
+    "index": 1749,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "CACU",
+    "casePreview": "Hombre de 61 años, hipertenso y fumador, presenta dolor opresivo retroesternal de 40 minutos de duración, irradiado a brazo izquierdo y mandíbula, acompañado de diaforesis y náusea"
+  },
+  {
+    "index": 1751,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Patologia Biliar y Pancreatica",
+    "casePreview": "Hombre de 55 años con antecedente de tabaquismo intenso y alcoholismo crónico de 20 años de evolución. Acude a consulta externa por presentar dolor abdominal epigástrico sordo, int"
+  },
+  {
+    "index": 1773,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "CACU",
+    "casePreview": "Niño de 8 años con antecedente reciente de infección respiratoria alta, que inicia con dolor abdominal, artralgias en tobillos y rodillas, y lesiones purpúricas palpables en extrem"
+  },
+  {
+    "index": 1777,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "MEDICINA INTERNA",
+    "casePreview": "Hombre de 39 años con antecedente de valvulopatía consulta por fiebre persistente, pérdida de peso y aparición de un nuevo soplo cardiaco. Refiere antecedente reciente de procedimi"
+  },
+  {
+    "index": 1778,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "MEDICINA INTERNA",
+    "casePreview": "Mujer de 31 años consulta por pérdida de peso, palpitaciones, intolerancia al calor, nerviosismo y aumento en la frecuencia de evacuaciones. A la exploración presenta temblor fino "
+  },
+  {
+    "index": 1784,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Infecciones Ginecologicas",
+    "casePreview": "Mujer de 23 años consulta por dolor pélvico bilateral, fiebre y leucorrea purulenta. Refiere vida sexual activa sin uso consistente de preservativo. A la exploración presenta dolor"
+  },
+  {
+    "index": 1790,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "CACU",
+    "casePreview": "Paciente de 17 años acude por edema facial matutino, oliguria y orina color “coca- cola” una semana después de una faringitis. A la exploración presenta hipertensión arterial leve."
+  },
+  {
+    "index": 1799,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Sangrado Uterino Anormal",
+    "casePreview": "Mujer de 22 años consulta por menstruaciones irregulares desde la adolescencia, acné e incremento de vello en mentón y abdomen. Tiene sobrepeso. Refiere dificultad para embarazarse"
+  },
+  {
+    "index": 1802,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "CACU",
+    "casePreview": "Niño de 10 años es llevado por pérdida de peso, poliuria, polidipsia y fatiga de varias semanas de evolución. En los últimos dos días presenta náusea y dolor abdominal. La glucosa "
+  },
+  {
+    "index": 1807,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 1,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 5
+    },
+    "targetScore": 5,
+    "otherMax": 1,
+    "temaCanonical": "CACU",
+    "casePreview": "Paciente de 63 años con diabetes mellitus e hipertensión de larga evolución consulta por fatiga, prurito y edema leve. En laboratorios presenta creatinina elevada persistente desde"
+  },
+  {
+    "index": 1808,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "MEDICINA INTERNA",
+    "casePreview": "Mujer de 49 años presenta dolor y rigidez matutina en ambas manos, de más de una hora de duración, con afección simétrica de articulaciones metacarpofalángicas e interfalángicas pr"
+  },
+  {
+    "index": 1818,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Escolar de 9 años presenta edema palpebral, hipertensión y orina oscura dos semanas después de un episodio de faringoamigdalitis. Refiere disminución del volumen urinario."
+  },
+  {
+    "index": 1821,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 5
+    },
+    "targetScore": 5,
+    "otherMax": 2,
+    "temaCanonical": "Trauma y ATLS",
+    "casePreview": "Paciente de 68 años con antecedente de hipertensión y fibrilación auricular presenta inicio súbito de hemiparesia derecha y dificultad para hablar desde hace 45 minutos. Se encuent"
+  },
+  {
+    "index": 1823,
+    "currentSpec": "cir",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Patologia Biliar y Pancreatica",
+    "casePreview": "Paciente de 41 años con antecedente de uso crónico de esteroides suspendidos abruptamente acude por debilidad intensa, náusea, vómito, hipotensión y dolor abdominal. Se observa som"
+  },
+  {
+    "index": 1828,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 4,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Ictericia Neonatal",
+    "casePreview": "Lactante femenino de 4 semanas de vida es traída a la consulta pediátrica porque los padres notan que \"sigue amarilla\". La niña nació de término sin complicaciones, fue dada de alt"
+  },
+  {
+    "index": 1833,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Patologia Respiratoria del Pediatrico",
+    "casePreview": "Lactante de 2 meses presenta estridor inspiratorio desde las primeras semanas de vida, más evidente al alimentarse o cuando está en decúbito. Se alimenta adecuadamente y gana peso."
+  },
+  {
+    "index": 1836,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "CIRUGÍA",
+    "casePreview": "Varón de 69 años con antecedente de fibrilación auricular presenta inicio súbito de dolor intenso en pierna izquierda. A la exploración la extremidad está pálida, fría, con ausenci"
+  },
+  {
+    "index": 1837,
+    "currentSpec": "ped",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "MEDICINA INTERNA",
+    "casePreview": "Paciente de 58 años con diabetes mellitus en tratamiento farmacológico presenta sudoración, temblor, palpitaciones y confusión. La glucosa capilar al momento de la valoración es de"
+  },
+  {
+    "index": 1853,
+    "currentSpec": "gyo",
+    "suggestedSpec": "mi",
+    "reason": "ambiguous_mi",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "CACU",
+    "casePreview": "Mujer de 59 años con obesidad y antecedente de trabajo prolongado de pie presenta edema vespertino de ambas piernas, pesadez y cambios hiperpigmentados en región maleolar medial."
+  }
+]

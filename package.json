@@ -12,7 +12,16 @@
   "description": "Este proyecto es un simulador web del **Examen Nacional de Aspirantes a Residencias Médicas (ENARM)** basado en las Guías de Práctica Clínica (GPC) más recientes de México.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sanitize:cases": "node scripts/sanitize_case_bank.js",
+    "verify:cases": "node verify_topics.js",
+    "block:ped": "node scripts/run_block_cleanup.js --block ped",
+    "block:gyo": "node scripts/run_block_cleanup.js --block gyo",
+    "block:cir": "node scripts/run_block_cleanup.js --block cir",
+    "block:mi": "node scripts/run_block_cleanup.js --block mi",
+    "blocks:phase1": "node scripts/run_phase1_blocks.js",
+    "blocks:phase1:dry": "node scripts/run_phase1_blocks.js --dry",
+    "verify:topic-search": "node scripts/test_topic_search_integrity.js"
   },
   "keywords": [],
   "author": "",

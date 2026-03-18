@@ -1,0 +1,158 @@
+{
+  "startedAt": "2026-03-18T06:09:07.380Z",
+  "endedAt": "2026-03-18T06:09:10.231Z",
+  "dryRun": true,
+  "fromBlock": "ped",
+  "blocksExecuted": [
+    "ped",
+    "gyo",
+    "cir",
+    "mi"
+  ],
+  "results": [
+    {
+      "block": "ped",
+      "run": {
+        "block": "ped",
+        "totals": {
+          "totalCases": 1702,
+          "movedToBlock": 2,
+          "topicReassigned": 145,
+          "reviewQueue": 58
+        },
+        "movedByOriginSpecialty": {
+          "mi": 1,
+          "ped": 0,
+          "gyo": 1,
+          "cir": 0,
+          "other": 0
+        },
+        "reportPath": "D:\\ENARM Lab\\reports\\block1_pediatria_report.json",
+        "reviewPath": "D:\\ENARM Lab\\reports\\block1_pediatria_review_queue.json",
+        "outputUpdated": false
+      },
+      "verify": {
+        "total": 1702,
+        "bySpec": {
+          "mi": 773,
+          "gyo": 389,
+          "ped": 402,
+          "cir": 138
+        },
+        "checks": {
+          "outOfTroncal": 0,
+          "missingTemaCanonical": 0,
+          "duplicateCaseCount": 0
+        }
+      }
+    },
+    {
+      "block": "gyo",
+      "run": {
+        "block": "gyo",
+        "totals": {
+          "totalCases": 1702,
+          "movedToBlock": 56,
+          "topicReassigned": 328,
+          "reviewQueue": 68
+        },
+        "movedByOriginSpecialty": {
+          "mi": 54,
+          "ped": 0,
+          "gyo": 0,
+          "cir": 2,
+          "other": 0
+        },
+        "reportPath": "D:\\ENARM Lab\\reports\\block2_gyo_report.json",
+        "reviewPath": "D:\\ENARM Lab\\reports\\block2_gyo_review_queue.json",
+        "outputUpdated": false
+      },
+      "verify": {
+        "total": 1702,
+        "bySpec": {
+          "mi": 773,
+          "gyo": 389,
+          "ped": 402,
+          "cir": 138
+        },
+        "checks": {
+          "outOfTroncal": 0,
+          "missingTemaCanonical": 0,
+          "duplicateCaseCount": 0
+        }
+      }
+    },
+    {
+      "block": "cir",
+      "run": {
+        "block": "cir",
+        "totals": {
+          "totalCases": 1702,
+          "movedToBlock": 23,
+          "topicReassigned": 133,
+          "reviewQueue": 118
+        },
+        "movedByOriginSpecialty": {
+          "mi": 20,
+          "ped": 2,
+          "gyo": 1,
+          "cir": 0,
+          "other": 0
+        },
+        "reportPath": "D:\\ENARM Lab\\reports\\block3_cirugia_report.json",
+        "reviewPath": "D:\\ENARM Lab\\reports\\block3_cirugia_review_queue.json",
+        "outputUpdated": false
+      },
+      "verify": {
+        "total": 1702,
+        "bySpec": {
+          "mi": 773,
+          "gyo": 389,
+          "ped": 402,
+          "cir": 138
+        },
+        "checks": {
+          "outOfTroncal": 0,
+          "missingTemaCanonical": 0,
+          "duplicateCaseCount": 0
+        }
+      }
+    },
+    {
+      "block": "mi",
+      "run": {
+        "block": "mi",
+        "totals": {
+          "totalCases": 1702,
+          "movedToBlock": 2,
+          "topicReassigned": 632,
+          "reviewQueue": 94
+        },
+        "movedByOriginSpecialty": {
+          "mi": 0,
+          "ped": 1,
+          "gyo": 0,
+          "cir": 1,
+          "other": 0
+        },
+        "reportPath": "D:\\ENARM Lab\\reports\\block4_mi_report.json",
+        "reviewPath": "D:\\ENARM Lab\\reports\\block4_mi_review_queue.json",
+        "outputUpdated": false
+      },
+      "verify": {
+        "total": 1702,
+        "bySpec": {
+          "mi": 773,
+          "gyo": 389,
+          "ped": 402,
+          "cir": 138
+        },
+        "checks": {
+          "outOfTroncal": 0,
+          "missingTemaCanonical": 0,
+          "duplicateCaseCount": 0
+        }
+      }
+    }
+  ]
+}

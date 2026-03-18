@@ -1,0 +1,1106 @@
+[
+  {
+    "index": 173,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "Virus de la Inmunodeficiencia Humana",
+    "casePreview": "Mujer de 48 años con sangrado uterino abundante e irregular desde hace 6 meses. IMC 33 kg/m², nuligesta. USG transvaginal: endometrio de 16 mm. Hb 10 g/dL."
+  },
+  {
+    "index": 304,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Insuficiencia Cardíaca Aguda y Crónica",
+    "casePreview": "Paciente de 30 años, G3P3, 2 semanas postparto. Acude por disnea progresiva, ortopnea y edema en extremidades inferiores. Niega fiebre. TA 100/60 mmHg, FC 115 lpm. Estertores crepi"
+  },
+  {
+    "index": 311,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Hepatitis agudas y crónicas (Patología Hepática)",
+    "casePreview": "Paciente de 29 años, G2P1, 35 semanas. Refiere náusea persistente, vómitos, malestar general y dolor en hipocondrio derecho desde hace 4 días. TA 140/90 mmHg. No proteinuria signif"
+  },
+  {
+    "index": 313,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 31 años, G2P1, 33 semanas. Refiere prurito intenso predominante en palmas y plantas, peor por la noche, sin lesiones cutáneas primarias. Niega fiebre. Laboratorios: bil"
+  },
+  {
+    "index": 319,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 29 años, G2P1, 36 semanas. Diagnóstico prenatal de inserción velamentosa del cordón con vasos fetales atravesando el orificio cervical interno. Acude por ruptura espont"
+  },
+  {
+    "index": 328,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 24 años, G1, 26 semanas. Refiere fiebre 39°C, dolor lumbar derecho y náusea. TA 100/60 mmHg, FC 115 lpm. Dolor a la puñopercusión lumbar derecha. EGO con leucocituria y"
+  },
+  {
+    "index": 333,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 30 años, G2P1, 40 semanas, en fase activa con 8 cm de dilatación. Monitor muestra desaceleraciones tardías repetitivas, variabilidad mínima y taquicardia fetal 170 lpm."
+  },
+  {
+    "index": 340,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 32 años, G1, 30 semanas. Antecedente de hipertensión crónica. Refiere disminución de movimientos fetales. USG: peso fetal estimado en percentil 5, líquido amniótico en "
+  },
+  {
+    "index": 350,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 19 años, G1, 12 semanas por FUM. Refiere náusea y vómito severos, sangrado transvaginal oscuro intermitente y crecimiento uterino mayor al esperado. Exploración: TA 150"
+  },
+  {
+    "index": 354,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 3,
+      "cir": 1,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "Hemorragia Obstétrica",
+    "casePreview": "Paciente de 22 años, 3 semanas postparto. Refiere dolor en mama derecha, eritema localizado y fiebre 38.2°C. Lactancia activa. Sin fluctuación."
+  },
+  {
+    "index": 356,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "Virus de la Inmunodeficiencia Humana",
+    "casePreview": "Paciente de 26 años, G1, 39 semanas, en fase activa con 5 cm de dilatación. Tras 4 horas solo progresa a 6 cm. Dinámica uterina: 2 contracciones en 10 minutos, de intensidad leve. "
+  },
+  {
+    "index": 361,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 23 años, G2P1, 32 semanas. Contracciones regulares cada 5 minutos desde hace 2 horas. Dilatación 3 cm, borramiento 70%. Membranas íntegras. FCF reactiva."
+  },
+  {
+    "index": 367,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 24 años con ciclos menstruales irregulares desde la adolescencia. Presenta aumento progresivo de vello facial y acné. IMC 31 kg/m². Refiere dificultad para embarazarse "
+  },
+  {
+    "index": 368,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 27 años con antecedente de múltiples parejas sexuales y uso irregular de preservativo. Consulta por dolor pélvico de 5 días de evolución, fiebre 38.5°C y flujo vaginal "
+  },
+  {
+    "index": 372,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 5,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 25 años, G1, 30 semanas. Refiere salida súbita de líquido claro abundante hace 6 horas. No contracciones. TA normal. Temperatura 37.8°C. FCF reactiva. Especuloscopía: l"
+  },
+  {
+    "index": 374,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 0,
+      "mi": 5
+    },
+    "targetScore": 4,
+    "otherMax": 5,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 22 años, 10 semanas por FUM, acude por fiebre de 39°C, dolor abdominal bajo intenso y sangrado vaginal fétido. Refiere intento de interrupción del embarazo con instrume"
+  },
+  {
+    "index": 376,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 0,
+      "mi": 5
+    },
+    "targetScore": 4,
+    "otherMax": 5,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 33 años, G1, 34 semanas. Antecedente de hipertensión crónica. Refiere disminución de movimientos fetales. Altura uterina menor a la esperada para edad gestacional. USG:"
+  },
+  {
+    "index": 380,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 4
+    },
+    "targetScore": 5,
+    "otherMax": 4,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 26 años, G2P1, 28 semanas. Grupo O Rh negativo. Primer embarazo terminó en parto vaginal sin aplicación documentada de inmunoglobulina anti-D. En control actual se dete"
+  },
+  {
+    "index": 393,
+    "currentSpec": "cir",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Cirrosis y sus Complicaciones / Trasplante Hepático",
+    "casePreview": "Paciente de 58 años, distensión abdominal progresiva, pérdida de peso y sensación de saciedad temprana. USG muestra masa anexial compleja bilateral con ascitis. CA-125 elevado."
+  },
+  {
+    "index": 396,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Hemorragia Obstétrica",
+    "casePreview": "Paciente de 34 semanas con aumento excesivo de altura uterina. USG reporta índice de líquido amniótico de 28 cm. Feto con sospecha de atresia esofágica."
+  },
+  {
+    "index": 402,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 4
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 36 semanas con antecedente de hipertensión crónica. Refiere disminución de movimientos fetales. USG muestra índice de líquido amniótico de 4 cm. Doppler con aumento de "
+  },
+  {
+    "index": 428,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 2,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Vacunacion",
+    "casePreview": "Puérpera de 26 años, 24 horas postparto eutócico, pregunta si puede complementar con fórmula porque “siente que no produce suficiente leche”. El recién nacido pesa 3,200 g, succión"
+  },
+  {
+    "index": 444,
+    "currentSpec": "cir",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "Cirrosis y sus Complicaciones / Trasplante Hepático",
+    "casePreview": "Paciente de 60 años, multipara, refiere distensión abdominal progresiva, saciedad temprana y pérdida de peso no intencionada desde hace 4 meses. Exploración: ascitis moderada, masa"
+  },
+  {
+    "index": 453,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "Anticoncepción",
+    "casePreview": "Paciente de 19 años acude 24 horas después de relación sexual sin protección. Ciclos regulares. No antecedentes trombóticos."
+  },
+  {
+    "index": 455,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Trastornos menstruales",
+    "casePreview": "Paciente de 25 años con ausencia de menstruación desde hace 4 meses. Ciclos previos regulares. Vida sexual activa sin anticoncepción. Niega galactorrea o síntomas tiroideos. Explor"
+  },
+  {
+    "index": 487,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 3,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Preescolar masculino de 3 años es llevado a la consulta de otorrinolaringología por su madre, quien refiere que el niño ha presentado cambios en su voz (disfonía) de varios meses d"
+  },
+  {
+    "index": 583,
+    "currentSpec": "cir",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 2,
+      "cir": 3,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Hernias de la Pared Abdominal",
+    "casePreview": "Femenina de 68 años, multípara (5 partos vaginales), delgada. Acude a urgencias quejándose de dolor abdominal tipo cólico, náuseas y vómito de características biliares de 12 horas "
+  },
+  {
+    "index": 618,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 4,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 4,
+    "temaCanonical": "Hemorragia Obstétrica",
+    "casePreview": "Recién nacida femenina, obtenida por parto vaginal en presentación de nalgas (pélvica). Como antecedente familiar, la madre refiere haber utilizado aparatos ortopédicos en las pier"
+  },
+  {
+    "index": 652,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 4,
+      "gyo": 2,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Recién nacido masculino de término (40 SDG), obtenido por parto eutócico, con peso al nacer de 3.2 kg. El pediatra es interconsultado en el cunero porque el neonato no ha presentad"
+  },
+  {
+    "index": 679,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Una mujer de 30 años, G3P1A1, con 10 semanas de amenorrea acude al servicio de urgencias por sangrado vaginal abundante desde hace aproximadamente 12 horas acompañado de dolor tipo"
+  },
+  {
+    "index": 681,
+    "currentSpec": "cir",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 3,
+      "mi": 0
+    },
+    "targetScore": 4,
+    "otherMax": 3,
+    "temaCanonical": "Apendicitis Aguda",
+    "casePreview": "Mujer de 28 años, G1P0, acude al servicio de urgencias por dolor abdominal intenso en fosa iliaca derecha de inicio súbito desde hace 4 horas. Refiere retraso menstrual de aproxima"
+  },
+  {
+    "index": 704,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 1,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Diabetes",
+    "casePreview": "Paciente de 25 años acude a consulta por irregularidad menstrual desde la adolescencia. Refiere ciclos cada 45–60 días. También menciona aumento progresivo de vello en mentón y abd"
+  },
+  {
+    "index": 705,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 1,
+      "mi": 1
+    },
+    "targetScore": 4,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Mujer de 29 años acude a consulta por dolor pélvico crónico que ha aumentado progresivamente en los últimos dos años. Refiere menstruaciones dolorosas desde la adolescencia, pero e"
+  },
+  {
+    "index": 706,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 3,
+      "cir": 1,
+      "mi": 1
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Mujer de 23 años acude a urgencias por dolor abdominal bajo de tres días de evolución que ha aumentado progresivamente. Refiere fiebre, malestar general y flujo vaginal anormal con"
+  },
+  {
+    "index": 770,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 3,
+      "gyo": 2,
+      "cir": 1,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Recién Nacido Sano",
+    "casePreview": "Recién nacido de término (39 SDG), producto de un parto vaginal prolongado e instrumentado con fórceps. A las 24 horas de vida, el pediatra nota aumento de volumen en la región par"
+  },
+  {
+    "index": 771,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "Recién Nacido Sano",
+    "casePreview": "Recién nacido macrosómico (4,200 g) tras parto vaginal complicado por distocia de hombros. A la exploración física inicial, se observa que el brazo derecho se encuentra en aducción"
+  },
+  {
+    "index": 785,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 2,
+      "cir": 1,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Recién Nacido Sano",
+    "casePreview": "Recién nacido de término, obtenido por parto vaginal. A la exploración física inmediata se observa un defecto en la pared abdominal de 4 cm, localizado a la derecha del cordón umbi"
+  },
+  {
+    "index": 798,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 3,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Se atiende parto de neonato de quien se desconoce la fecha de última regla (FUM). Tras la estabilización, el pediatra evalúa: formación de la oreja (pabellón totalmente incurvado),"
+  },
+  {
+    "index": 858,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 3,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Recién Nacido Sano",
+    "casePreview": "Recién nacido de madre con diagnóstico de VIH realizado durante el parto (sin tratamiento previo). Se desea descartar la transmisión vertical en el neonato."
+  },
+  {
+    "index": 879,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Lactante masculino de 8 meses inicia con cuadros repetitivos de otitis media y neumonía por bacterias encapsuladas (S. pneumoniae, H. influenzae). Los síntomas iniciaron después de"
+  },
+  {
+    "index": 889,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 3,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "PEDIATRÍA / ASPECTOS LEGALES",
+    "casePreview": "Niña de 6 años es traída por su tía debido a que la menor presenta disuria, secreción vaginal amarillenta y cambios bruscos de comportamiento (pesadillas y regresión en el control "
+  },
+  {
+    "index": 924,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 4,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 4,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido prematuro con peso de 1,800 g. A la exploración física inicial se detecta ausencia del reflejo rojo bilateral, y la evaluación oftalmológica confirma cataratas bilate"
+  },
+  {
+    "index": 927,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 2,
+      "cir": 1,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Reanimacion Neonatal",
+    "casePreview": "Recién nacido de 38 semanas, obtenido por parto vaginal. Al nacimiento, se observa cianótico, con esfuerzo respiratorio débil y un abdomen característicamente excavado (escafoide)."
+  },
+  {
+    "index": 1011,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Nefrología",
+    "casePreview": "Niña de 10 años evaluada por talla baja (debajo del percentil 3). A la exploración: Cuello alado (pterygium colli), tórax en escudo con teletelia (pezones separados), cúbito valgo "
+  },
+  {
+    "index": 1068,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Diabetes",
+    "casePreview": "Paciente de 32 años con antecedente de diabetes mellitus tipo 2 en descontrol. Acude por presentar prurito vulvar intenso, ardor y disuria. A la exploración física con espejo vagin"
+  },
+  {
+    "index": 1069,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Mujer de 24 años con múltiples parejas sexuales, acude por presentar leucorrea muy abundante, de color amarillo-verdoso y aspecto espumoso. Refiere disuria y dispareunia. A la expl"
+  },
+  {
+    "index": 1070,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 27 años, nuligesta, usuaria de DIU de cobre desde hace 3 meses. Acude a urgencias por dolor abdominal bajo progresivo de 5 días de evolución, que se ha vuelto intenso, "
+  },
+  {
+    "index": 1521,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido de término, nacido por cesárea sin trabajo de parto. Inicia con taquipnea (FR 80 lpm) poco después del nacimiento. La radiografía muestra marcas vasculares prominente"
+  },
+  {
+    "index": 1522,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 2,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido de 42 semanas de gestación (postérmino) con antecedente de líquido amniótico teñido de meconio espeso. Al nacer presenta dificultad respiratoria grave, cianosis y tór"
+  },
+  {
+    "index": 1621,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido a término (38 semanas) obtenido mediante cesárea electiva sin trabajo de parto previo. Presenta taquipnea (FR 85 rpm) y cianosis leve que resuelve con oxígeno al 40%."
+  },
+  {
+    "index": 1636,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 1,
+      "mi": 4
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Virus de la Inmunodeficiencia Humana",
+    "casePreview": "Mujer de 42 años acude por menorragia (sangrado abundante y prolongado) de 6 meses de evolución, que le ha condicionado anemia microcítica hipocrómica. A la exploración bimanual se"
+  },
+  {
+    "index": 1642,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 5
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Sx nefrótico (Nefrología)",
+    "casePreview": "Mujer de 24 años, con índice de masa corporal de 32 (obesidad). Acude por presentar ciclos menstruales de 45 a 60 días (oligomenorrea), aparición de vello grueso en el mentón y tór"
+  },
+  {
+    "index": 1648,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 2,
+      "gyo": 4,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 4,
+    "otherMax": 2,
+    "temaCanonical": "Paludismo/Malaria (Enfermedades Transmitidas por Vector)",
+    "casePreview": "Recién nacido de 38 semanas de gestación, obtenido mediante cesárea electiva sin trabajo de parto previo. Al nacimiento, presenta de forma casi inmediata polipnea con frecuencia re"
+  },
+  {
+    "index": 1649,
+    "currentSpec": "cir",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 2,
+      "gyo": 4,
+      "cir": 1,
+      "mi": 0
+    },
+    "targetScore": 4,
+    "otherMax": 2,
+    "temaCanonical": "Chalazión (Introducción Oftalmología)",
+    "casePreview": "Recién nacido de 38 semanas de gestación, obtenido mediante cesárea electiva sin trabajo de parto previo. Al nacimiento, presenta de forma casi inmediata polipnea con frecuencia re"
+  },
+  {
+    "index": 1652,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 7,
+      "gyo": 11,
+      "cir": 7,
+      "mi": 9
+    },
+    "targetScore": 11,
+    "otherMax": 9,
+    "temaCanonical": "Ictericia Neonatal",
+    "casePreview": "Mujer de 68 años de edad, postmenopáusica desde hace 18 años, de complexión delgada y con antecedente de tabaquismo positivo. Acude a consulta externa para una revisión de rutina. "
+  },
+  {
+    "index": 1655,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 3,
+      "gyo": 2,
+      "cir": 1,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Mujer de 65 años de edad acude a urgencias tras sufrir una caída en la calle. Refiere haberse apoyado sobre la mano derecha en extensión (dorsiflexión) al momento del impacto. A la"
+  },
+  {
+    "index": 1661,
+    "currentSpec": "cir",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 4,
+      "gyo": 10,
+      "cir": 8,
+      "mi": 9
+    },
+    "targetScore": 10,
+    "otherMax": 9,
+    "temaCanonical": "Pancreatitis crónica (Patología Pancreática)",
+    "casePreview": "Paciente de 38 años, multípara, cursa embarazo de 39 semanas de gestación. Se encuentra en periodo expulsivo del trabajo de parto, con un feto macrosómico estimado por ultrasonido "
+  },
+  {
+    "index": 1664,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 1,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Púrpura de Henoch Schonlein (Especialidades Pedia)",
+    "casePreview": "Mujer de 26 años acude a consulta por presentar flujo vaginal abundante de aparición reciente, el cual describe como amarillento-verdoso, espumoso y con mal olor. Refiere también a"
+  },
+  {
+    "index": 1667,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 3,
+      "gyo": 9,
+      "cir": 4,
+      "mi": 9
+    },
+    "targetScore": 9,
+    "otherMax": 9,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Mujer de 32 años acude por pérdida de peso de 6 kg en los últimos dos meses a pesar de tener el apetito conservado. Refiere palpitaciones frecuentes, nerviosismo, insomnio y diarre"
+  },
+  {
+    "index": 1669,
+    "currentSpec": "cir",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Apendicitis",
+    "casePreview": "Mujer de 24 años, cursando un embarazo de 20 semanas de gestación. Acude a urgencias por dolor abdominal de 12 horas de evolución que inició en epigastrio y posteriormente migró al"
+  },
+  {
+    "index": 1670,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 7,
+      "gyo": 8,
+      "cir": 4,
+      "mi": 6
+    },
+    "targetScore": 8,
+    "otherMax": 7,
+    "temaCanonical": "Ictericia Neonatal",
+    "casePreview": "Mujer de 58 años de edad, asintomática, acude a su chequeo anual con los resultados de su mastografía de tamizaje. No tiene antecedentes familiares de neoplasias. El reporte radiol"
+  },
+  {
+    "index": 1674,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 4,
+      "gyo": 8,
+      "cir": 7,
+      "mi": 8
+    },
+    "targetScore": 8,
+    "otherMax": 8,
+    "temaCanonical": "Anemia megaloblástica (Anemias Introducción y Anemias Carenciales)",
+    "casePreview": "Primigesta de 10 semanas de gestación acude a urgencias por presentar vómitos incoercibles (más de 10 episodios al día) desde hace dos semanas, con imposibilidad absoluta para tole"
+  },
+  {
+    "index": 1675,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 2,
+      "gyo": 6,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 6,
+    "otherMax": 2,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido prematuro de 28 semanas de gestación, obtenido por cesárea de urgencia debido a preeclampsia materna severa. La madre no recibió esquema de maduración pulmonar. A los"
+  },
+  {
+    "index": 1680,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 5,
+      "gyo": 7,
+      "cir": 4,
+      "mi": 11
+    },
+    "targetScore": 7,
+    "otherMax": 11,
+    "temaCanonical": "Vacunacion",
+    "casePreview": "Mujer de 45 años, con inicio de vida sexual activa a los 16 años y antecedente de tabaquismo, acude a consulta por presentar sangrado transvaginal intermitente, predominantemente p"
+  },
+  {
+    "index": 1698,
+    "currentSpec": "mi",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 4,
+      "gyo": 11,
+      "cir": 6,
+      "mi": 7
+    },
+    "targetScore": 11,
+    "otherMax": 7,
+    "temaCanonical": "Nefropatía diabética (Complicaciones Diabetes)",
+    "casePreview": "Mujer de 24 años, cursando embarazo de 20 semanas de gestación, acude a su primera consulta de control prenatal. Refiere ser alérgica a la penicilina (presentó un exantema generali"
+  },
+  {
+    "index": 1714,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 2,
+      "gyo": 4,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 4,
+    "otherMax": 2,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido de 38 semanas de gestación, obtenido mediante cesárea electiva sin trabajo de parto previo. Al nacimiento, presenta de forma casi inmediata polipnea con frecuencia re"
+  },
+  {
+    "index": 1734,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 3,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido de 14 horas de vida, producto de madre adolescente con control prenatal irregular y antecedente de ruptura prematura de membranas de 22 horas de evolución sin profila"
+  },
+  {
+    "index": 1830,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "GINECOLOGÍA Y OBSTETRICIA",
+    "casePreview": "Mujer de 28 años consulta por flujo vaginal homogéneo grisáceo y mal olor que incrementa después de las relaciones sexuales. Niega prurito intenso y disuria. A la exploración no ha"
+  },
+  {
+    "index": 1831,
+    "currentSpec": "ped",
+    "suggestedSpec": "gyo",
+    "reason": "ambiguous_gyo",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "GINECOLOGÍA Y OBSTETRICIA",
+    "casePreview": "Paciente de 25 años en la segunda semana del puerperio presenta dolor en mama izquierda, enrojecimiento localizado, fiebre y malestar general. Refiere lactancia materna y grietas e"
+  }
+]

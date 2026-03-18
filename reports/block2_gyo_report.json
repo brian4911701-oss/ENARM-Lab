@@ -1,0 +1,993 @@
+{
+  "generatedAt": "2026-03-18T06:23:32.997Z",
+  "block": "gyo",
+  "blockLabel": "Ginecologia y Obstetricia",
+  "dryRun": false,
+  "totals": {
+    "totalCases": 1858,
+    "movedToBlock": 63,
+    "topicReassigned": 403,
+    "reviewQueue": 69
+  },
+  "movedByOriginSpecialty": {
+    "mi": 57,
+    "ped": 1,
+    "gyo": 0,
+    "cir": 5,
+    "other": 0
+  },
+  "topTopics": [
+    {
+      "topic": "CACU",
+      "count": 139
+    },
+    {
+      "topic": "Control Prenatal",
+      "count": 117
+    },
+    {
+      "topic": "Trabajo de Parto",
+      "count": 56
+    },
+    {
+      "topic": "Hemorragia Obstetrica",
+      "count": 55
+    },
+    {
+      "topic": "Preeclampsia e Hipertension en el Embarazo",
+      "count": 48
+    },
+    {
+      "topic": "Sangrado Uterino Anormal",
+      "count": 35
+    },
+    {
+      "topic": "GINECOLOGÍA Y OBSTETRICIA",
+      "count": 21
+    },
+    {
+      "topic": "Infecciones Ginecologicas",
+      "count": 16
+    },
+    {
+      "topic": "Planificacion Familiar y Anticoncepcion",
+      "count": 13
+    },
+    {
+      "topic": "Puerperio",
+      "count": 9
+    },
+    {
+      "topic": "Climaterio y Menopausia",
+      "count": 6
+    },
+    {
+      "topic": "MEDICINA INTERNA",
+      "count": 6
+    },
+    {
+      "topic": "Cancer de Mama",
+      "count": 4
+    },
+    {
+      "topic": "PEDIATRÍA",
+      "count": 3
+    },
+    {
+      "topic": "CIRUGÍA",
+      "count": 3
+    },
+    {
+      "topic": "Lupus Eritematoso Sistémico",
+      "count": 2
+    },
+    {
+      "topic": "Enfermedad Hipertensiva del Embarazo",
+      "count": 2
+    }
+  ],
+  "movedSample": [
+    {
+      "index": 269,
+      "from": "cir",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Mujer de 30 años, G2P1, 7 semanas de amenorrea. Dolor abdominal tipo cólico en fosa iliaca derecha y sangrado transvaginal escaso. TA 100/60 mmHg, FC 108 lpm. USG transvaginal: úte"
+    },
+    {
+      "index": 270,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 24 años, G1P1, parto eutócico hace 30 minutos. Presenta sangrado abundante. TA 90/50 mmHg, FC 120 lpm. Útero flácido a la palpación."
+    },
+    {
+      "index": 272,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 35 años, G3P2, 34 semanas. Sangrado rojo brillante indoloro. Útero relajado, FCF normal."
+    },
+    {
+      "index": 274,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente 29 años, 35 semanas, salida de líquido claro transvaginal. Sin fiebre. FCF normal."
+    },
+    {
+      "index": 281,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Mujer de 26 años, G2P0A1, 10 semanas por FUM confiable. Acude por sangrado transvaginal abundante de 12 horas de evolución, acompañado de cólico hipogástrico intenso y expulsión de"
+    },
+    {
+      "index": 282,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 19 años, G1, 12 semanas de amenorrea. Presenta sangrado transvaginal intermitente, náusea y vómito incoercible. Refiere expulsión de vesículas. TA 140/90 mmHg. Útero au"
+    },
+    {
+      "index": 284,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 30 años, G2P1, 33 semanas. Refiere prurito intenso predominante en palmas y plantas, sin lesiones cutáneas visibles. No dolor abdominal ni fiebre. TA normal. Laboratori"
+    },
+    {
+      "index": 286,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 6,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Mujer de 22 años, 10 días post parto eutócico. Acude por sangrado transvaginal abundante súbito, acompañado de mareo. TA 95/60 mmHg. USG muestra restos retenidos intrauterinos."
+    },
+    {
+      "index": 294,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 28 años, G2P2, parto eutócico hace 20 minutos. Presenta sangrado abundante continuo estimado en 1,200 mL. Se encuentra pálida, diaforética, con TA 80/50 mmHg, FC 130 lp"
+    },
+    {
+      "index": 302,
+      "from": "cir",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 20 años, G1P1, parto eutócico hace 10 minutos. Durante el alumbramiento se realiza tracción excesiva del cordón umbilical sin signos claros de desprendimiento placentar"
+    },
+    {
+      "index": 312,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 32 años, G3P3, parto vaginal hace 30 minutos. Producto macrosómico de 4,200 g. Presenta sangrado abundante estimado en 1,200 mL. Útero blando a la palpación. Se adminis"
+    },
+    {
+      "index": 314,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 40 años, G2P1, 41 semanas. Bishop inicial 3 puntos. Se realiza maduración cervical con misoprostol y posteriormente oxitocina durante 18 horas con adecuada dinámica ute"
+    },
+    {
+      "index": 316,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 22 años, G1, 39 semanas. Ruptura de membranas desde hace 20 horas. Refiere fiebre y malestar general. Exploración: TA 110/70 mmHg, FC 115 lpm, temperatura 38.7°C. Útero"
+    },
+    {
+      "index": 321,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 26 años, G1, 32 semanas. Refiere salida de líquido claro abundante desde hace 4 horas. Sin fiebre ni dolor abdominal. Exploración: TA 100/65 mmHg, T 36.8°C. Especulosco"
+    },
+    {
+      "index": 327,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 22 años, G1P1, parto eutócico hace 40 minutos. Persistencia de placenta intrauterina sin signos claros de desprendimiento. Sangrado moderado continuo. Útero contraído p"
+    },
+    {
+      "index": 331,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 35 años, G4P4, parto vaginal hace 20 minutos. Producto de 4,300 g. Presenta sangrado masivo estimado en 1,800 mL. Útero flácido. TA 80/40 mmHg, FC 135 lpm, piel fría. S"
+    },
+    {
+      "index": 334,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 26 años, G1, 30 semanas, DM1. Refiere vómito, poliuria y malestar. TA 100/60 mmHg, FC 120 lpm. Glucosa 380 mg/dL, pH 7.18, bicarbonato bajo, cetonas positivas. FCF 165 "
+    },
+    {
+      "index": 335,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 30 años, G2P1, 11 semanas por FUM. Acude por manchado escaso oscuro desde hace 3 días, sin dolor tipo cólico intenso. Refiere disminución de síntomas gestacionales (náu"
+    },
+    {
+      "index": 338,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 27 años, G1, 32 semanas. Diagnóstico reciente de VIH. Carga viral 15,000 copias/mL. No tratamiento previo. Sin complicaciones obstétricas."
+    },
+    {
+      "index": 344,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 26 años, G2P2, parto vaginal instrumentado con fórceps. Posterior al alumbramiento presenta sangrado abundante. Útero firme y contraído. TA 95/60 mmHg. Al revisar canal"
+    },
+    {
+      "index": 345,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 2,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 34 años, G2P1, 35 semanas. Refiere prurito intenso generalizado predominante en palmas y plantas, peor por la noche. Sin lesiones primarias. Laboratorios: ácidos biliar"
+    },
+    {
+      "index": 348,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 25 años con DM1 desde la adolescencia. Embarazo no planeado. HbA1c al inicio 10%. USG estructural a las 20 semanas muestra defecto del tubo neural."
+    },
+    {
+      "index": 351,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 28 años, G1, 39 semanas. USG confirma presentación pélvica franca. Peso fetal estimado 3,200 g. Pelvis clínica adecuada. Sin comorbilidades."
+    },
+    {
+      "index": 355,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 22 años con antecedente de embarazo molar completo evacuado hace 8 semanas. Seguimiento con β-hCG semanal mostró descenso inicial, pero en las últimas 3 determinaciones"
+    },
+    {
+      "index": 357,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 30 años, G2P1, 24 semanas. USG muestra placenta parcialmente cubriendo OCI. Asintomática."
+    },
+    {
+      "index": 364,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 30 años, 6 semanas postparto. Refiere tristeza persistente, insomnio, anhedonia y sentimientos de culpa. Niega ideación suicida. Funcionalidad disminuida."
+    },
+    {
+      "index": 366,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 7,
+      "otherMax": 5,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 28 años, G3P2, 37 semanas, con antecedente de hipertensión gestacional en embarazo previo. Acude por dolor abdominal súbito, intenso y constante, acompañado de sangrado"
+    },
+    {
+      "index": 369,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 30 años, G2P0A1, acude por dolor pélvico unilateral izquierdo de 48 horas de evolución, tipo punzante, intensidad progresiva. Refiere amenorrea de 7 semanas y manchado "
+    },
+    {
+      "index": 370,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 6,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 34 años, G4P4, parto vaginal eutócico hace 20 minutos. Producto de 3,900 g. Placenta completa. Presenta sangrado abundante transvaginal que empapa compresas rápidamente"
+    },
+    {
+      "index": 381,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 29 años, G1, 9 semanas por FUM. Refiere desaparición de náuseas y mastalgia desde hace una semana. Niega sangrado abundante. Solo manchado marrón escaso. Sin dolor sign"
+    },
+    {
+      "index": 384,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente con parto vaginal instrumentado. Presenta sangrado abundante, pero útero firme y bien contraído."
+    },
+    {
+      "index": 389,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 31 años, G2P1, 35 semanas, acude por ruptura espontánea de membranas en domicilio seguida de sangrado vaginal rojo brillante moderado. Refiere disminución brusca de mov"
+    },
+    {
+      "index": 403,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 27 años, G1, 8 semanas por FUM, acude para ultrasonido de control. Refiere náuseas leves y mastalgia. Niega dolor o sangrado abundante, solo manchado escaso marrón en d"
+    },
+    {
+      "index": 404,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 2,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 36 años con antecedente de hipertensión arterial crónica desde hace 5 años. Cursa 32 semanas. Habitualmente TA 135/85 mmHg con tratamiento. Consulta por edema súbito, c"
+    },
+    {
+      "index": 410,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 29 años, parto vaginal eutócico hace 15 minutos. Tras tracción excesiva del cordón durante el alumbramiento presenta dolor súbito intenso y hemorragia profusa. Se obser"
+    },
+    {
+      "index": 415,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 32 años, G3P1A1, con amenorrea de 11 semanas, acude por sangrado vaginal abundante desde hace 8 horas acompañado de cólico hipogástrico intenso tipo contracción. Refier"
+    },
+    {
+      "index": 422,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 2,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 29 años, 37 semanas, con antecedente de hipertensión gestacional, consulta por dolor abdominal intenso súbito acompañado de sangrado oscuro escaso. Refiere disminución "
+    },
+    {
+      "index": 426,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 28 años, G2P1, embarazo de 40 semanas con producto estimado de 4,200 g. Durante expulsivo, tras salida de la cabeza fetal, se observa retracción del mentón contra el pe"
+    },
+    {
+      "index": 434,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 30 años, G3P3, inmediatamente posterior a parto eutócico de producto de 4,100 g. Placenta íntegra expulsada. A los pocos minutos presenta sangrado vaginal abundante que"
+    },
+    {
+      "index": 441,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 34 años, 2 horas postparto eutócico, presenta sangrado persistente moderado pese a útero contraído y firme. Placenta aparentemente completa al momento de la expulsión. "
+    },
+    {
+      "index": 442,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 30 años, nulípara, refiere dismenorrea progresiva desde hace 3 años, dolor pélvico crónico y dispareunia profunda. Desea embarazo desde hace 2 años sin éxito. Exploraci"
+    },
+    {
+      "index": 445,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 19 años, G1P0, 11 semanas por FUM, acude por sangrado vaginal intermitente oscuro desde hace 5 días, acompañado de náusea y vómito intensos incapacitantes. Refiere sens"
+    },
+    {
+      "index": 454,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 27 años, inmediatamente posterior al alumbramiento, presenta dolor intenso súbito, hemorragia abundante y colapso hemodinámico. Se observa masa rojiza protruyendo por v"
+    },
+    {
+      "index": 460,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 2,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 28 años, 37 semanas, sin antecedentes, presenta TA 145/95 mmHg en dos ocasiones separadas por 4 horas. Niega cefalea, fosfenos o dolor epigástrico. Proteinuria negativa"
+    },
+    {
+      "index": 477,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 26 años, 24 semanas, acude por fiebre de 39°C, dolor lumbar derecho intenso y náusea. Refiere disuria previa no tratada. Exploración: dolor a puño-percusión lumbar dere"
+    },
+    {
+      "index": 676,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Una mujer de 22 años, G1P0, con 9 semanas de amenorrea acude al servicio de urgencias por sangrado vaginal de moderada cantidad desde hace 6 horas acompañado de dolor tipo cólico e"
+    },
+    {
+      "index": 682,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Una mujer de 25 años, G1P0, acude a consulta por presentar dolor pélvico leve y sangrado vaginal escaso de color oscuro desde hace dos días. Refiere retraso menstrual de aproximada"
+    },
+    {
+      "index": 684,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Una mujer de 23 años, G2P0A1, acude al servicio de urgencias por fiebre, dolor abdominal intenso y sangrado vaginal fétido desde hace 24 horas. Refiere que hace tres días presentó "
+    },
+    {
+      "index": 685,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Mujer de 26 años, G2P1, con antecedente de embarazo de 8 semanas según fecha de última menstruación, acude al servicio de urgencias por sangrado vaginal que inició hace dos días ac"
+    },
+    {
+      "index": 686,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 32 años, G3P1A1, con 12 semanas de amenorrea acude a consulta por presentar sangrado vaginal intermitente desde hace una semana acompañado de náuseas moderadas. Refiere"
+    },
+    {
+      "index": 689,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 28 años acude a consulta para orientación preconcepcional. Refiere que desea embarazarse en los próximos meses. Como antecedente ginecológico importante menciona que ha"
+    },
+    {
+      "index": 692,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 29 años, G2P1, con embarazo de 32 semanas acude a urgencias por dolor abdominal intenso de inicio súbito acompañado de sangrado vaginal oscuro. Refiere que el dolor es "
+    },
+    {
+      "index": 693,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 7,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Mujer de 30 años, G1P0, con embarazo de 36 semanas en seguimiento prenatal adecuado, acude al hospital por ruptura espontánea de membranas ocurrida hace 30 minutos. Poco después co"
+    },
+    {
+      "index": 696,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 2,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Mujer de 35 años, G2P1, con embarazo de 33 semanas acude al servicio de urgencias por dolor intenso en epigastrio y en el cuadrante superior derecho del abdomen desde hace varias h"
+    },
+    {
+      "index": 701,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 8,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 29 años, G2P1, con embarazo de 32 semanas acude al hospital por salida de líquido vaginal claro desde hace 5 horas. Refiere sensación constante de humedad en ropa inter"
+    },
+    {
+      "index": 1683,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 2,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Mujer de 28 años de edad, nuligesta, con antecedente de Enfermedad Pélvica Inflamatoria hace 3 años. Acude al servicio de urgencias por dolor pélvico intenso de inicio súbito, pred"
+    },
+    {
+      "index": 1755,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 7,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Mujer de 35 años, G2P1, con 36 semanas de gestación, acude por dolor abdominal súbito e intenso, acompañado de sangrado transvaginal oscuro y disminución de movimientos fetales. A "
+    },
+    {
+      "index": 1756,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Primigesta de 19 años con 33 semanas de gestación llega a urgencias tras presentar una convulsión tónico-clónica generalizada. Tiene antecedente de cefalea intensa, fosfenos y edem"
+    },
+    {
+      "index": 1757,
+      "from": "mi",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Paciente de 21 años con amenorrea de 12 semanas, náusea y vómito intensos, además de sangrado transvaginal escaso. El útero se palpa mayor al esperado para edad gestacional y el ul"
+    },
+    {
+      "index": 1813,
+      "from": "cir",
+      "to": "gyo",
+      "targetScore": 5,
+      "otherMax": 0,
+      "reason": "high_confidence_gyo",
+      "casePreview": "Mujer de 20 años con 10 semanas de gestación acude por náusea y vómito incoercibles desde hace 2 semanas, con pérdida de 4 kg de peso, intolerancia a la vía oral y datos de deshidr"
+    }
+  ],
+  "topicSample": [
+    {
+      "index": 5,
+      "oldTopic": "Patología del Embarazo: Estados Hipertensivos",
+      "newTopic": "Preeclampsia e Hipertension en el Embarazo",
+      "casePreview": "Primigesta de 32 semanas de gestación que acude a consulta por cefalea intensa, acúfenos y fosfenos. TA central de 165/115 mmHg en dos tomas separadas por 15 mi"
+    },
+    {
+      "index": 6,
+      "oldTopic": "CA de endometrio y CA de ovario (Oncología Ginecológica)",
+      "newTopic": "CACU",
+      "casePreview": "Mujer de 52 años que acude por presentar sofocos intensos que interrumpen el sueño, sequedad vaginal y labilidad emocional. No ha tenido menstruación en los últ"
+    },
+    {
+      "index": 7,
+      "oldTopic": "Diabetes Gestacional",
+      "newTopic": "Control Prenatal",
+      "casePreview": "Embarazada de 26 semanas acude a su control prenatal. Se le realiza una prueba de tamizaje para Diabetes Gestacional con una carga de 75g de glucosa. Los result"
+    },
+    {
+      "index": 20,
+      "oldTopic": "Placenta previa (Hemorragias del Segundo Trimestre)",
+      "newTopic": "Hemorragia Obstetrica",
+      "casePreview": "Gesta 2 de 39 semanas de gestación en fase activa de trabajo de parto. Presenta sangrado transvaginal oscuro, dolor abdominal súbito y útero hipertónico (leñoso"
+    },
+    {
+      "index": 21,
+      "oldTopic": "Embarazo ectópico (Hemorragias del Primer Trimestre)",
+      "newTopic": "Sangrado Uterino Anormal",
+      "casePreview": "Paciente de 25 años con amenorrea de 7 semanas, dolor anexial derecho intenso y manchado transvaginal. El USG muestra útero vacío y una masa anexial con presenc"
+    },
+    {
+      "index": 22,
+      "oldTopic": "CACU (Oncología Ginecológica)",
+      "newTopic": "CACU",
+      "casePreview": "Femenino de 20 años que acude a su primer tamizaje de cáncer cervicouterino. La citología cervical (Papanicolaou) reporta Lesión Intraepitelial Escamosa de Bajo"
+    },
+    {
+      "index": 23,
+      "oldTopic": "Enf. Trofoblástica (Hemorragias del Primer Trimestre)",
+      "newTopic": "Control Prenatal",
+      "casePreview": "Gesta 1 de 12 semanas que acude por vómitos persistentes (>5 al día), imposibilidad para tolerar la vía oral y pérdida del 6% de su peso corporal. Laboratorios "
+    },
+    {
+      "index": 24,
+      "oldTopic": "CA de endometrio y CA de ovario (Oncología Ginecológica)",
+      "newTopic": "Climaterio y Menopausia",
+      "casePreview": "Paciente de 65 años con sangrado transvaginal postmenopáusico de 2 semanas de evolución. No usa terapia hormonal. Antecedente de obesidad y DM2."
+    },
+    {
+      "index": 43,
+      "oldTopic": "Cervicovaginitis bacteriana (Patología Infecciosa Cervical)",
+      "newTopic": "Infecciones Ginecologicas",
+      "casePreview": "Mujer de 22 años con leucorrea de color blanco-grisáceo, maloliente (olor a pescado) que aumenta tras el coito. Al examen se observa flujo homogéneo y pH de 5.0"
+    },
+    {
+      "index": 44,
+      "oldTopic": "RPM (Parto Prematuro y Patología Coriónica)",
+      "newTopic": "Trabajo de Parto",
+      "casePreview": "Gesta 1 de 34 semanas. Acude por salida de líquido transvaginal de 4 horas de evolución. Se confirma ruptura prematura de membranas (RPM) mediante prueba de nit"
+    },
+    {
+      "index": 63,
+      "oldTopic": "Cáncer de Mama",
+      "newTopic": "CACU",
+      "casePreview": "Mujer de 45 años se palpa nódulo en cuadrante superior externo de mama derecha. El reporte de mastografía es BI-RADS 4."
+    },
+    {
+      "index": 64,
+      "oldTopic": "Endometriosis (Sangrados Uterinos Anormales: Origen No Anatómico)",
+      "newTopic": "Infecciones Ginecologicas",
+      "casePreview": "Mujer de 35 años que presenta dolor pélvico cíclico (dismenorrea), dispareunia e infertilidad."
+    },
+    {
+      "index": 71,
+      "oldTopic": "Patología del Embarazo: Estados Hipertensivos",
+      "newTopic": "Preeclampsia e Hipertension en el Embarazo",
+      "casePreview": "Mujer de 32 años, primigesta de 36 semanas de gestación, acude por cefalea intensa, fotopsias y epigastralgia. A la exploración física TA 165/110 mmHg, hiperref"
+    },
+    {
+      "index": 79,
+      "oldTopic": "Cáncer de Mama",
+      "newTopic": "Planificacion Familiar y Anticoncepcion",
+      "casePreview": "Femenina de 21 años que acude para inicio de vida sexual activa y uso de método de planificación familiar. Refiere tener antecedentes familiares de cáncer de ma"
+    },
+    {
+      "index": 83,
+      "oldTopic": "Parto prematuro (Parto Prematuro y Patología Coriónica)",
+      "newTopic": "Trabajo de Parto",
+      "casePreview": "Gestante de 28 semanas con embarazo gemelar bicorial biamniótico. Acude a triage obstétrico refiriendo contracciones dolorosas cada 5 minutos durante las última"
+    },
+    {
+      "index": 89,
+      "oldTopic": "CACU (Oncología Ginecológica)",
+      "newTopic": "CACU",
+      "casePreview": "Femenina de 62 años que acude a consulta externa refiriendo sangrado transvaginal escaso progresivo de un mes de evolución. Su último período menstrual fue a lo"
+    },
+    {
+      "index": 91,
+      "oldTopic": "Endometriosis (Sangrados Uterinos Anormales: Origen No Anatómico)",
+      "newTopic": "Infecciones Ginecologicas",
+      "casePreview": "Mujer de 28 años, nuligesta, acude a consulta por incapacidad para concebir desde hace 18 meses de relaciones sexuales frecuentes sin uso de métodos anticoncept"
+    },
+    {
+      "index": 92,
+      "oldTopic": "Endometriosis (Sangrados Uterinos Anormales: Origen No Anatómico)",
+      "newTopic": "Sangrado Uterino Anormal",
+      "casePreview": "Mujer de 15 años es traída por su madre a consulta debido a la ausencia de menarquia, refiriendo dolor cíclico abdominal bajo que se ha presentado con periodici"
+    },
+    {
+      "index": 93,
+      "oldTopic": "CA de endometrio y CA de ovario (Oncología Ginecológica)",
+      "newTopic": "Sangrado Uterino Anormal",
+      "casePreview": "Paciente femenina de 24 años con IMC de 31 kg/m2, acude a revisión por oligomenorreas (3 a 4 menstruaciones al año) e incremento en la densidad del vello facial"
+    },
+    {
+      "index": 94,
+      "oldTopic": "CA de endometrio y CA de ovario (Oncología Ginecológica)",
+      "newTopic": "Planificacion Familiar y Anticoncepcion",
+      "casePreview": "Mujer de 54 años, con antecedente de FUM hace 18 meses, asiste a consulta de medicina integral quejándose de bochornos diurnos intensos (más de 10 episodios al "
+    },
+    {
+      "index": 95,
+      "oldTopic": "Miomatosis (Sangrados Uterinos Anormales: Origen Anatómico No Maligno)",
+      "newTopic": "Planificacion Familiar y Anticoncepcion",
+      "casePreview": "Mujer de 44 años con sangrado menstrual abundante desde hace 1 año, usando 6-7 toallas nocturnas al día e impactando su rutina. Hb: 8.8 g/dL. USG: mioma submuco"
+    },
+    {
+      "index": 97,
+      "oldTopic": "CACU (Oncología Ginecológica)",
+      "newTopic": "CACU",
+      "casePreview": "Mujer de 33 años nativa de comunidad rural acude asintomática para revisión cervical tras jornada de salud. Inicio de relaciones sexuales múltiples a los 16 año"
+    },
+    {
+      "index": 100,
+      "oldTopic": "RPM (Parto Prematuro y Patología Coriónica)",
+      "newTopic": "CACU",
+      "casePreview": "Neonato primigesto de 5 días de vida, nacido a las 38 semanas de gestación por parto vaginal. Madre con antecedente de ruptura prematura de membranas de 22 hora"
+    },
+    {
+      "index": 115,
+      "oldTopic": "CACU (Oncología Ginecológica)",
+      "newTopic": "CACU",
+      "casePreview": "Varón de 50 años con enfermedad hepática en estadío avanzado documentada por etilismo de tres décadas. La familia llama a las emergencias al presenciarlo con mú"
+    },
+    {
+      "index": 127,
+      "oldTopic": "Embarazo ectópico (Hemorragias del Primer Trimestre)",
+      "newTopic": "Sangrado Uterino Anormal",
+      "casePreview": "Mujer de 30 años con amenorrea de 7 semanas, dolor pélvico unilateral y manchado transvaginal. β-hCG positiva. USG transvaginal sin saco gestacional intrauterin"
+    },
+    {
+      "index": 138,
+      "oldTopic": "CACU (Oncología Ginecológica)",
+      "newTopic": "CACU",
+      "casePreview": "Mujer de 62 años, menopausia a los 50, obesa y diabética, consulta por sangrado transvaginal escaso indoloro. USG transvaginal muestra grosor endometrial de 16 "
+    },
+    {
+      "index": 144,
+      "oldTopic": "CACU (Oncología Ginecológica)",
+      "newTopic": "CACU",
+      "casePreview": "Mujer de 41 años, G4P4, inicio de vida sexual a los 16 años, múltiples parejas sexuales. Refiere que su última citología fue hace 6 años. Acude para chequeo. Se"
+    },
+    {
+      "index": 147,
+      "oldTopic": "CACU (Oncología Ginecológica)",
+      "newTopic": "CACU",
+      "casePreview": "Hombre de 25 años sufre accidente automovilístico. Llega consciente pero agitado, con estridor audible y hematoma cervical expansivo. TA 100/60 mmHg, FC 120 lpm"
+    },
+    {
+      "index": 150,
+      "oldTopic": "Hemorragia obsétrica Atonía, trauma, tejido, coagulopatías (Patología Puerperal)",
+      "newTopic": "Hemorragia Obstetrica",
+      "casePreview": "Mujer de 24 años, G2P2, 30 minutos posterior a parto vaginal eutócico presenta sangrado abundante. TA 85/50 mmHg, FC 130 lpm. Útero aumentado de tamaño y flácid"
+    },
+    {
+      "index": 166,
+      "oldTopic": "Patología del Embarazo: Estados Hipertensivos",
+      "newTopic": "Preeclampsia e Hipertension en el Embarazo",
+      "casePreview": "Primigesta de 34 semanas con cefalea intensa, fosfenos y edema. TA 170/110 mmHg en dos mediciones. Proteinuria 3+. Plaquetas 95,000."
+    },
+    {
+      "index": 167,
+      "oldTopic": "Enfermedad Hipertensiva del Embarazo",
+      "newTopic": "CACU",
+      "casePreview": "Hombre de 66 años con DM2 e hipertensión acude por fiebre, disuria y deterioro del estado de alerta. TA 82/50 mmHg, FC 120 lpm, FR 28 rpm, Temp 39°C. Lactato 4."
+    },
+    {
+      "index": 175,
+      "oldTopic": "Cesárea (Patología de Trabajo de Parto)",
+      "newTopic": "Trabajo de Parto",
+      "casePreview": "Recién nacido de 38 semanas, madre con ruptura prolongada de membranas 22 horas y fiebre intraparto. A las 12 horas de vida presenta dificultad respiratoria, le"
+    },
+    {
+      "index": 180,
+      "oldTopic": "Aborto (Hemorragias del Primer Trimestre)",
+      "newTopic": "Hemorragia Obstetrica",
+      "casePreview": "Gestante de 32 semanas con contracciones regulares cada 5 minutos y dilatación cervical de 3 cm. Membranas íntegras. Sin datos de infección."
+    },
+    {
+      "index": 185,
+      "oldTopic": "Placenta previa (Hemorragias del Segundo Trimestre)",
+      "newTopic": "Hemorragia Obstetrica",
+      "casePreview": "Gestante de 36 semanas con dolor abdominal súbito, útero hipertónico y sangrado vaginal oscuro. FCF con desaceleraciones tardías."
+    },
+    {
+      "index": 192,
+      "oldTopic": "RPM (Parto Prematuro y Patología Coriónica)",
+      "newTopic": "CACU",
+      "casePreview": "Hombre de 54 años, antecedente de DM2 e hipertensión, ingresa por neumonía adquirida en la comunidad confirmada por infiltrado lobar derecho y leucocitosis. A l"
+    },
+    {
+      "index": 195,
+      "oldTopic": "Placenta previa (Hemorragias del Segundo Trimestre)",
+      "newTopic": "Hemorragia Obstetrica",
+      "casePreview": "Gestante de 30 semanas con ruptura prematura de membranas desde hace 24 horas presenta fiebre 38.8°C, taquicardia materna y fetal, útero doloroso a la palpación"
+    },
+    {
+      "index": 199,
+      "oldTopic": "Patología del Embarazo: Estados Hipertensivos",
+      "newTopic": "Preeclampsia e Hipertension en el Embarazo",
+      "casePreview": "Gestante de 35 semanas con antecedente de preeclampsia presenta dolor en epigastrio intenso, náusea y malestar general. TA 165/105 mmHg. Laboratorio: AST y ALT "
+    },
+    {
+      "index": 236,
+      "oldTopic": "Miomatosis (Sangrados Uterinos Anormales: Origen Anatómico No Maligno)",
+      "newTopic": "CACU",
+      "casePreview": "Femenina de 38 años, usuaria de anticonceptivos orales combinados, se encuentra en su 5° día de postoperatorio de una histerectomía abdominal por miomatosis ute"
+    },
+    {
+      "index": 269,
+      "oldTopic": "Apendicitis Aguda",
+      "newTopic": "Sangrado Uterino Anormal",
+      "casePreview": "Mujer de 30 años, G2P1, 7 semanas de amenorrea. Dolor abdominal tipo cólico en fosa iliaca derecha y sangrado transvaginal escaso. TA 100/60 mmHg, FC 108 lpm. U"
+    },
+    {
+      "index": 270,
+      "oldTopic": "Hemorragia Obstétrica",
+      "newTopic": "Hemorragia Obstetrica",
+      "casePreview": "Paciente de 24 años, G1P1, parto eutócico hace 30 minutos. Presenta sangrado abundante. TA 90/50 mmHg, FC 120 lpm. Útero flácido a la palpación."
+    },
+    {
+      "index": 272,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Hemorragia Obstetrica",
+      "casePreview": "Paciente de 35 años, G3P2, 34 semanas. Sangrado rojo brillante indoloro. Útero relajado, FCF normal."
+    },
+    {
+      "index": 273,
+      "oldTopic": "CACU (Oncología Ginecológica)",
+      "newTopic": "CACU",
+      "casePreview": "Mujer de 32 años, vida sexual activa desde los 18 años. Último Papanicolaou hace 4 años."
+    },
+    {
+      "index": 274,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Trabajo de Parto",
+      "casePreview": "Paciente 29 años, 35 semanas, salida de líquido claro transvaginal. Sin fiebre. FCF normal."
+    },
+    {
+      "index": 275,
+      "oldTopic": "Patología del Embarazo: Estados Hipertensivos",
+      "newTopic": "Preeclampsia e Hipertension en el Embarazo",
+      "casePreview": "Mujer de 29 años, G2P1, 35 semanas de gestación. Antecedente de preeclampsia en embarazo previo. Acude por cefalea intensa, náusea, vómito y dolor en hipocondri"
+    },
+    {
+      "index": 277,
+      "oldTopic": "RPM (Parto Prematuro y Patología Coriónica)",
+      "newTopic": "Trabajo de Parto",
+      "casePreview": "Mujer de 24 años, G1P0, 32 semanas de gestación. Antecedente de ruptura prematura de membranas hace 36 horas. Presenta fiebre de 38.7°C, taquicardia materna (11"
+    },
+    {
+      "index": 279,
+      "oldTopic": "Cesárea (Patología de Trabajo de Parto)",
+      "newTopic": "Trabajo de Parto",
+      "casePreview": "Paciente de 31 años, G2P2, 5 días post cesárea por sufrimiento fetal. Refiere fiebre de 39°C, malestar general y dolor hipogástrico. TA 95/60 mmHg, FC 120 lpm. "
+    },
+    {
+      "index": 280,
+      "oldTopic": "Diabetes Gestacional",
+      "newTopic": "Trabajo de Parto",
+      "casePreview": "Mujer de 34 años, G2P1, antecedente de diabetes gestacional. Producto macrosómico estimado en 4,200 g. Durante el parto vaginal, tras la salida de la cabeza fet"
+    },
+    {
+      "index": 281,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "CACU",
+      "casePreview": "Mujer de 26 años, G2P0A1, 10 semanas por FUM confiable. Acude por sangrado transvaginal abundante de 12 horas de evolución, acompañado de cólico hipogástrico in"
+    },
+    {
+      "index": 282,
+      "oldTopic": "Patología Biliar",
+      "newTopic": "Sangrado Uterino Anormal",
+      "casePreview": "Paciente de 19 años, G1, 12 semanas de amenorrea. Presenta sangrado transvaginal intermitente, náusea y vómito incoercible. Refiere expulsión de vesículas. TA 1"
+    },
+    {
+      "index": 283,
+      "oldTopic": "Placenta previa (Hemorragias del Segundo Trimestre)",
+      "newTopic": "Hemorragia Obstetrica",
+      "casePreview": "Mujer de 37 años, G4P3, antecedente de 3 cesáreas previas. 35 semanas de gestación. USG reporta placenta previa oclusiva total con múltiples lagunas vasculares "
+    },
+    {
+      "index": 284,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "CACU",
+      "casePreview": "Paciente de 30 años, G2P1, 33 semanas. Refiere prurito intenso predominante en palmas y plantas, sin lesiones cutáneas visibles. No dolor abdominal ni fiebre. T"
+    },
+    {
+      "index": 286,
+      "oldTopic": "Hemorragia Obstétrica",
+      "newTopic": "Hemorragia Obstetrica",
+      "casePreview": "Mujer de 22 años, 10 días post parto eutócico. Acude por sangrado transvaginal abundante súbito, acompañado de mareo. TA 95/60 mmHg. USG muestra restos retenido"
+    },
+    {
+      "index": 287,
+      "oldTopic": "Patología del Embarazo: Estados Hipertensivos",
+      "newTopic": "Preeclampsia e Hipertension en el Embarazo",
+      "casePreview": "Mujer de 31 años, G2P1, 34 semanas de gestación por FUM confiable y corroborada por ultrasonido del primer trimestre. Antecedente de obesidad grado I (IMC 32 kg"
+    },
+    {
+      "index": 290,
+      "oldTopic": "Trabajo de Parto",
+      "newTopic": "Hemorragia Obstetrica",
+      "casePreview": "Paciente de 35 años, G4P3, antecedente de cesárea segmentaria hace 2 años. Cursa embarazo de 39 semanas. Se encuentra en trabajo de parto inducido con oxitocina"
+    },
+    {
+      "index": 291,
+      "oldTopic": "Diabetes Gestacional",
+      "newTopic": "CACU",
+      "casePreview": "Mujer de 36 años, G3P1A1, 29 semanas de gestación. Antecedente de macrosomía fetal en embarazo previo (4,250 g). IMC pregestacional 31 kg/m². En tamizaje con CT"
+    },
+    {
+      "index": 292,
+      "oldTopic": "Placenta previa (Hemorragias del Segundo Trimestre)",
+      "newTopic": "Hemorragia Obstetrica",
+      "casePreview": "Paciente de 34 años, G2P1, 32 semanas de gestación. Antecedente de cesárea hace 3 años. Consulta por sangrado transvaginal rojo brillante en moderada cantidad, "
+    },
+    {
+      "index": 294,
+      "oldTopic": "Hemorragia Obstétrica",
+      "newTopic": "Hemorragia Obstetrica",
+      "casePreview": "Paciente de 28 años, G2P2, parto eutócico hace 20 minutos. Presenta sangrado abundante continuo estimado en 1,200 mL. Se encuentra pálida, diaforética, con TA 8"
+    },
+    {
+      "index": 302,
+      "oldTopic": "Hernias de la Pared Abdominal",
+      "newTopic": "CACU",
+      "casePreview": "Paciente de 20 años, G1P1, parto eutócico hace 10 minutos. Durante el alumbramiento se realiza tracción excesiva del cordón umbilical sin signos claros de despr"
+    },
+    {
+      "index": 303,
+      "oldTopic": "Diabetes Gestacional",
+      "newTopic": "Trabajo de Parto",
+      "casePreview": "Paciente de 33 años, G2P1, 34 semanas, con diagnóstico de diabetes gestacional en tratamiento irregular. Refiere disnea progresiva y sensación de distensión abd"
+    },
+    {
+      "index": 306,
+      "oldTopic": "Patología del Embarazo: Estados Hipertensivos",
+      "newTopic": "Preeclampsia e Hipertension en el Embarazo",
+      "casePreview": "Paciente de 35 años, G2P1, 33 semanas de gestación. Antecedente de preeclampsia en embarazo previo. Acude por disminución de movimientos fetales. TA 150/100 mmH"
+    }
+  ]
+}

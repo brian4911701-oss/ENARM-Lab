@@ -1,0 +1,121 @@
+[
+  {
+    "type": "specialty_review",
+    "index": 47,
+    "originalSpecialty": "urg",
+    "suggestedSpecialty": "ped",
+    "confidence": 0.55,
+    "reason": "keyword_inference",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "temaOriginal": "Intoxicaciones",
+    "temaCanonical": "Intoxicaciones",
+    "casePreview": "Paciente es traído por familiares por ingestión accidental de un frasco de insecticida organofosforado. Presenta miosis puntiforme, bradicardia, sialorrea, broncorrea y fasciculaciones."
+  },
+  {
+    "type": "specialty_review",
+    "index": 157,
+    "originalSpecialty": "sp",
+    "suggestedSpecialty": "ped",
+    "confidence": 0.55,
+    "reason": "keyword_inference",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "temaOriginal": "Vacunación",
+    "temaCanonical": "Vacunación",
+    "casePreview": "Hombre de 50 años sufre herida punzante con clavo oxidado. No recuerda última vacuna. A los días presenta trismus, rigidez muscular generalizada y espasmos dolorosos."
+  },
+  {
+    "type": "specialty_review",
+    "index": 241,
+    "originalSpecialty": "urg",
+    "suggestedSpecialty": "ped",
+    "confidence": 0.55,
+    "reason": "keyword_inference",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "temaOriginal": "Intoxicaciones",
+    "temaCanonical": "Intoxicaciones",
+    "casePreview": "Masculino de 35 años es traído a urgencias en estado de confusión mental. Sus compañeros de trabajo refieren que se encontraba fumigando cultivos con un plaguicida sin utilizar equipo de protección pe"
+  },
+  {
+    "type": "specialty_review",
+    "index": 547,
+    "originalSpecialty": "sp",
+    "suggestedSpecialty": "ped",
+    "confidence": 0.82,
+    "reason": "keyword_inference",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "temaOriginal": "Vacunación",
+    "temaCanonical": "Vacunación",
+    "casePreview": "Preescolar masculino de 4 años, no cuenta con cartilla de vacunación actualizada debido a creencias familiares. Es llevado al servicio de urgencias pediátricas por presentar un cuadro de inicio abrupt"
+  },
+  {
+    "type": "specialty_review",
+    "index": 843,
+    "originalSpecialty": "sp",
+    "suggestedSpecialty": "ped",
+    "confidence": 0.55,
+    "reason": "keyword_inference",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "temaOriginal": "Vacunación",
+    "temaCanonical": "Vacunación",
+    "casePreview": "Madre acude con su hijo de 12 meses de edad para la aplicación de las vacunas correspondientes. El niño ya cuenta con el esquema previo completo (Hexavalente, Rotavirus, Neumococo)."
+  },
+  {
+    "type": "specialty_review",
+    "index": 1256,
+    "originalSpecialty": "sp",
+    "suggestedSpecialty": "ped",
+    "confidence": 0.55,
+    "reason": "keyword_inference",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "temaOriginal": "Vacunación",
+    "temaCanonical": "Vacunación",
+    "casePreview": "Hombre de 65 años acude a su unidad de medicina familiar para actualización de esquema vacunal."
+  },
+  {
+    "type": "specialty_review",
+    "index": 1317,
+    "originalSpecialty": "urg",
+    "suggestedSpecialty": "ped",
+    "confidence": 0.55,
+    "reason": "keyword_inference",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "temaOriginal": "Intoxicaciones",
+    "temaCanonical": "Intoxicaciones",
+    "casePreview": "Se presenta un brote de intoxicación alimentaria en una escuela. Se identifica que el patógeno fue Salmonella y el vehículo fue una ensalada de pollo contaminada."
+  }
+]

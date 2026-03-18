@@ -1,0 +1,360 @@
+{
+  "generatedAt": "2026-03-18T06:09:42.497Z",
+  "dryRun": true,
+  "appendSources": [
+    {
+      "path": "D:\\ENARM Lab\\parsed_variados_nuevo_v2.json",
+      "count": 79
+    }
+  ],
+  "totals": {
+    "baseInput": 1702,
+    "appended": 79,
+    "input": 1781,
+    "afterNormalization": 1781,
+    "output": 1702,
+    "duplicatesRemoved": 79,
+    "duplicateGroups": 75,
+    "outOfTroncal": 0,
+    "missingTemaCanonical": 0,
+    "reviewQueue": 7
+  },
+  "acceptance": {
+    "onlyTroncalSpecialties": true,
+    "hasTemaCanonicalEverywhere": true
+  },
+  "blockOrder": [
+    "ped",
+    "gyo",
+    "cir",
+    "mi"
+  ],
+  "blocks": {
+    "ped": {
+      "total": 388,
+      "movedIn": 7,
+      "autoHigh": 381,
+      "needsReview": 7,
+      "topTopics": [
+        {
+          "topic": "Crecimiento y Desarrollo",
+          "count": 190
+        },
+        {
+          "topic": "Recién Nacido Sano",
+          "count": 59
+        },
+        {
+          "topic": "PEDIATRÍA",
+          "count": 57
+        },
+        {
+          "topic": "Estenosis Hipertrófica del Píloro",
+          "count": 10
+        },
+        {
+          "topic": "Invaginación intestinal (Patología Gastrointestinal del Pediátrico)",
+          "count": 8
+        },
+        {
+          "topic": "Vacunación",
+          "count": 6
+        },
+        {
+          "topic": "Hernias diafragmáticas (Patología Neonatal)",
+          "count": 3
+        },
+        {
+          "topic": "Ictericia Neonatal",
+          "count": 3
+        },
+        {
+          "topic": "Intoxicaciones",
+          "count": 3
+        },
+        {
+          "topic": "Planes de hidratación (Diarrea en el Pediátrico)",
+          "count": 2
+        },
+        {
+          "topic": "Laringotraqueítis (Patología Respiratoria del Lactante y Preescolar)",
+          "count": 2
+        },
+        {
+          "topic": "Sx nefríticos (Nefrología)",
+          "count": 2
+        }
+      ]
+    },
+    "gyo": {
+      "total": 408,
+      "movedIn": 0,
+      "autoHigh": 408,
+      "needsReview": 0,
+      "topTopics": [
+        {
+          "topic": "GINECOLOGÍA Y OBSTETRICIA",
+          "count": 136
+        },
+        {
+          "topic": "Control Prenatal",
+          "count": 83
+        },
+        {
+          "topic": "CACU (Oncología Ginecológica)",
+          "count": 22
+        },
+        {
+          "topic": "Trabajo de Parto",
+          "count": 20
+        },
+        {
+          "topic": "Cesárea (Patología de Trabajo de Parto)",
+          "count": 15
+        },
+        {
+          "topic": "Diabetes Gestacional",
+          "count": 14
+        },
+        {
+          "topic": "Patología del Embarazo: Estados Hipertensivos",
+          "count": 13
+        },
+        {
+          "topic": "RPM (Parto Prematuro y Patología Coriónica)",
+          "count": 13
+        },
+        {
+          "topic": "Vigilancia y Control Prenatal",
+          "count": 11
+        },
+        {
+          "topic": "Sx climatérico (Patología Menopausia y Climaterio)",
+          "count": 9
+        },
+        {
+          "topic": "CA de endometrio y CA de ovario (Oncología Ginecológica)",
+          "count": 7
+        },
+        {
+          "topic": "Placenta previa (Hemorragias del Segundo Trimestre)",
+          "count": 6
+        }
+      ]
+    },
+    "cir": {
+      "total": 162,
+      "movedIn": 0,
+      "autoHigh": 162,
+      "needsReview": 0,
+      "topTopics": [
+        {
+          "topic": "Patología Biliar",
+          "count": 16
+        },
+        {
+          "topic": "Cirrosis y sus Complicaciones / Trasplante Hepático",
+          "count": 13
+        },
+        {
+          "topic": "ATLS / Trauma",
+          "count": 12
+        },
+        {
+          "topic": "Hernias de la Pared Abdominal",
+          "count": 12
+        },
+        {
+          "topic": "Apendicitis Aguda",
+          "count": 11
+        },
+        {
+          "topic": "Apendicitis",
+          "count": 9
+        },
+        {
+          "topic": "Quemaduras / Golpe de Calor / Hipotermia",
+          "count": 9
+        },
+        {
+          "topic": "CIRUGÍA GENERAL",
+          "count": 6
+        },
+        {
+          "topic": "Pancreatitis aguda y crónica (Patología Pancreática)",
+          "count": 5
+        },
+        {
+          "topic": "Trauma torácico Neumotórax a tensión, taponamiento cardíaco, hemotórax masivo, neumotórax abierto, tórax inestable (ATLS)",
+          "count": 4
+        },
+        {
+          "topic": "ORTOPEDIA Y TRAUMATOLOGÍA",
+          "count": 4
+        },
+        {
+          "topic": "STDA por várices esofágicas (Cirrosis y sus Complicaciones / Trasplante Hepático)",
+          "count": 3
+        }
+      ]
+    },
+    "mi": {
+      "total": 823,
+      "movedIn": 6,
+      "autoHigh": 823,
+      "needsReview": 0,
+      "topTopics": [
+        {
+          "topic": "Lupus Eritematoso Sistémico",
+          "count": 289
+        },
+        {
+          "topic": "MEDICINA INTERNA",
+          "count": 47
+        },
+        {
+          "topic": "Nefrología",
+          "count": 43
+        },
+        {
+          "topic": "Virus de la Inmunodeficiencia Humana",
+          "count": 29
+        },
+        {
+          "topic": "Diabetes",
+          "count": 22
+        },
+        {
+          "topic": "Cáncer de Mama",
+          "count": 21
+        },
+        {
+          "topic": "Hemorragia Obstétrica",
+          "count": 19
+        },
+        {
+          "topic": "Trastornos del Ritmo",
+          "count": 15
+        },
+        {
+          "topic": "NEUROLOGÍA",
+          "count": 14
+        },
+        {
+          "topic": "Hipertensión Arterial",
+          "count": 13
+        },
+        {
+          "topic": "HEMATOLOGÍA",
+          "count": 12
+        },
+        {
+          "topic": "GASTROENTEROLOGÍA",
+          "count": 10
+        }
+      ]
+    }
+  },
+  "topTopicsGlobal": [
+    {
+      "topic": "Lupus Eritematoso Sistémico",
+      "count": 289
+    },
+    {
+      "topic": "Crecimiento y Desarrollo",
+      "count": 190
+    },
+    {
+      "topic": "GINECOLOGÍA Y OBSTETRICIA",
+      "count": 136
+    },
+    {
+      "topic": "Control Prenatal",
+      "count": 83
+    },
+    {
+      "topic": "Recién Nacido Sano",
+      "count": 59
+    },
+    {
+      "topic": "PEDIATRÍA",
+      "count": 57
+    },
+    {
+      "topic": "MEDICINA INTERNA",
+      "count": 47
+    },
+    {
+      "topic": "Nefrología",
+      "count": 43
+    },
+    {
+      "topic": "Virus de la Inmunodeficiencia Humana",
+      "count": 29
+    },
+    {
+      "topic": "Cáncer de Mama",
+      "count": 25
+    },
+    {
+      "topic": "Diabetes",
+      "count": 22
+    },
+    {
+      "topic": "CACU (Oncología Ginecológica)",
+      "count": 22
+    },
+    {
+      "topic": "Patología Biliar",
+      "count": 21
+    },
+    {
+      "topic": "Trabajo de Parto",
+      "count": 20
+    },
+    {
+      "topic": "Hemorragia Obstétrica",
+      "count": 19
+    },
+    {
+      "topic": "Trastornos del Ritmo",
+      "count": 15
+    },
+    {
+      "topic": "Cesárea (Patología de Trabajo de Parto)",
+      "count": 15
+    },
+    {
+      "topic": "Diabetes Gestacional",
+      "count": 14
+    },
+    {
+      "topic": "NEUROLOGÍA",
+      "count": 14
+    },
+    {
+      "topic": "Patología del Embarazo: Estados Hipertensivos",
+      "count": 13
+    },
+    {
+      "topic": "RPM (Parto Prematuro y Patología Coriónica)",
+      "count": 13
+    },
+    {
+      "topic": "Cirrosis y sus Complicaciones / Trasplante Hepático",
+      "count": 13
+    },
+    {
+      "topic": "Hipertensión Arterial",
+      "count": 13
+    },
+    {
+      "topic": "ATLS / Trauma",
+      "count": 12
+    },
+    {
+      "topic": "Hernias de la Pared Abdominal",
+      "count": 12
+    }
+  ]
+}

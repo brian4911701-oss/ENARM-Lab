@@ -28,9 +28,7 @@
                 mi: { total: 0, correct: 0, name: "Medicina Interna" },
                 ped: { total: 0, correct: 0, name: "Pediatría" },
                 gyo: { total: 0, correct: 0, name: "Ginecología y Obstetricia" },
-                cir: { total: 0, correct: 0, name: "Cirugía General" },
-                sp: { total: 0, correct: 0, name: "Salud Pública" },
-                urg: { total: 0, correct: 0, name: "Urgencias" }
+                cir: { total: 0, correct: 0, name: "Cirugía General" }
             }
         },
 
@@ -74,65 +72,263 @@
     const NOTIFICATION_ICON = "/notification-icon.png";
     const NOTIFICATION_BADGE = "/notification-badge.png";
     const PUSH_TOKEN_COLLECTION = "user_push_tokens";
+    const TRONCAL_SPECIALTIES = ["mi", "ped", "gyo", "cir"];
+    const TRONCAL_LABELS = {
+        mi: "Medicina Interna",
+        ped: "Pediatria",
+        gyo: "Ginecologia y Obstetricia",
+        cir: "Cirugia General"
+    };
     let notificationPermissionRequestedInSession = false;
     let foregroundPushListenerBound = false;
     let lastRegisteredPushToken = "";
 
     // ---------------------------------------------------------------------------
-    // Topic Normalization (Unificación de subtemas y GPCs)
+    // Taxonomy Normalization (4 troncales + tema canónico)
     // ---------------------------------------------------------------------------
-    const getUnifiedTopicName = (text) => {
-        if (!text) return '';
-        let t = text.trim();
-        if (!t) return '';
-
-        let lower = t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
-        if (lower.includes('ictericia') && (lower.includes('neonatal') || lower.includes('fisiologica') || lower.includes('patologica') || lower.includes('hiperbilirrubinemia') || lower.includes('leche materna'))) {
-            return 'Ictericia Neonatal';
-        }
-        if (lower.includes('apendicitis')) return 'Apendicitis Aguda';
-        if (lower.includes('colecistitis') || lower.includes('colelitiasis') || lower.includes('patologia biliar')) return 'Patología Biliar';
-        if (lower.includes('hernia') && (lower.includes('inguinal') || lower.includes('umbilical') || lower.includes('pared abdominal') || lower.includes('crural'))) return 'Hernias de la Pared Abdominal';
-        if (lower.includes('preeclampsia') || lower.includes('eclampsia') || lower.includes('hipertensivos del embarazo')) return 'Enfermedad Hipertensiva del Embarazo';
-        if (lower.includes('infarto agudo') || lower.includes('iam') || lower.includes('cardiopatia isquemica')) return 'Cardiopatía Isquémica';
-        if (lower.includes('diabetes mellitus') && !lower.includes('embarazo') && !lower.includes('gestacional')) return 'Diabetes Mellitus';
-        if (lower.includes('diabetes gestacional') || (lower.includes('diabetes') && lower.includes('embarazo'))) return 'Diabetes Gestacional';
-        if (lower.includes('hipotiroidismo')) return 'Hipotiroidismo';
-        if (lower.includes('hipertiroidismo')) return 'Hipertiroidismo';
-        if (lower.includes('fractura')) return 'Fracturas';
-        if (lower.includes('quemadura')) return 'Quemaduras';
-        if (lower.includes('asma')) return 'Asma';
-        if (lower.includes('epoc') || lower.includes('enfermedad pulmonar obstructiva')) return 'EPOC';
-        if (lower.includes('vih') || lower.includes('sida')) return 'VIH / SIDA';
-        if (lower.includes('tuberculosis')) return 'Tuberculosis';
-        if (lower.includes('neumonia')) return 'Neumonías';
-        const lupusKey = lower.replace(/[^a-z0-9]+/g, ' ').trim();
-        if (lupusKey.includes('lupus') || /\bles\b/.test(lupusKey)) return 'Lupus Eritematoso Sistémico';
-        if (lower.includes('artritis reumatoide')) return 'Artritis Reumatoide';
-        if (lower.includes('covid') || lower.includes('sars-cov-2')) return 'COVID-19';
-        if (lower.includes('endometriosis')) return 'Endometriosis';
-        if (lower.includes('hemorragia') && lower.includes('obstetrica')) return 'Hemorragia Obstétrica';
-
-        // Eliminar prefijos de GPC, NOM y palabras de relleno
-        let cleaned = t.replace(/^(GPC|NOM-[\w\-]+([,\s]*(Para\s*la|Para\s*el))?)\s*(?:Diagn[oó]stico[,\s]*|Tratamiento[,\s]*|Manejo[,\s]*|Prevenci[oó]n[,\s]*|Control[,\s]*|Atenci[oó]n[,\s]*|y\s*)*\s*(de\s*la\s*|del\s*|de\s*el\s*|de\s*las\s*|de\s*los\s*|de\s*|en\s*la\s*|en\s*el\s*|en\s*)?/i, '')
-            .replace(/\.$/, '').trim();
-
-        if (cleaned !== t && cleaned.length > 3) {
-            cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
-            return cleaned;
-        }
-
-        return t;
+    const normalizeTextKey = (value) => {
+        return String(value || "")
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9]+/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
     };
 
-    // Normalizar la base de datos de preguntas cargada en questions.js globalmente
-    if (typeof QUESTIONS !== 'undefined' && Array.isArray(QUESTIONS)) {
-        QUESTIONS.forEach(q => {
-            if (q.tema) q.tema = getUnifiedTopicName(q.tema);
-            if (q.subtema) q.subtema = getUnifiedTopicName(q.subtema);
-            if (q.gpcReference) q.gpcReference = getUnifiedTopicName(q.gpcReference);
+    const sanitizeTopicLabel = (text) => {
+        if (!text) return "";
+        return String(text)
+            .replace(/\[cite:\s*\d+\]/gi, "")
+            .replace(/\s+/g, " ")
+            .replace(/\s*[-:;,.]+\s*$/g, "")
+            .trim();
+    };
+
+    const containsAny = (text, keywords) => keywords.some(k => text.includes(k));
+
+    const inferTroncalSpecialtyFromCase = (q) => {
+        const text = normalizeTextKey([
+            q?.specialty || "",
+            q?.temaCanonical || "",
+            q?.tema || "",
+            q?.subtema || "",
+            q?.case || "",
+            q?.question || "",
+            Array.isArray(q?.options) ? q.options.join(" ") : "",
+            q?.explanation || "",
+            q?.gpcReference || ""
+        ].join(" "));
+
+        const scores = { ped: 0, gyo: 0, cir: 0, mi: 0 };
+        const buckets = {
+            ped: ["pediatr", "neonato", "recien nacido", "lactante", "escolar", "preescolar", "adolescente", "apgar", "tamiz neonatal"],
+            gyo: ["embarazo", "gestante", "obstetric", "parto", "preeclamps", "eclamps", "puerper", "cesarea", "transvaginal", "uter", "ovario", "cervix"],
+            cir: ["cirug", "apendicitis", "colecist", "pancreatitis", "hernia", "trauma", "atls", "fractura", "quemadura", "obstruccion intestinal", "peritonitis"],
+            mi: ["medicina interna", "diabetes", "hipertension", "lupus", "epoc", "asma", "tuberculosis", "vih", "insuficiencia", "endocrino", "nefro", "neuro", "cardio"]
+        };
+
+        Object.entries(buckets).forEach(([spec, words]) => {
+            words.forEach(w => {
+                if (text.includes(w)) scores[spec]++;
+            });
         });
+
+        const ordered = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+        const [topSpec, topScore] = ordered[0];
+        const secondScore = ordered[1] ? ordered[1][1] : 0;
+
+        if (topScore >= 2 && topScore >= secondScore + 1) return topSpec;
+
+        if (containsAny(text, buckets.gyo)) return "gyo";
+        if (containsAny(text, buckets.ped)) return "ped";
+        if (containsAny(text, buckets.cir)) return "cir";
+        return "mi";
+    };
+
+    const normalizeSpecialtyToTroncal = (q) => {
+        const raw = normalizeTextKey(q?.specialty || "");
+        if (TRONCAL_SPECIALTIES.includes(raw)) return raw;
+        if (!raw) return inferTroncalSpecialtyFromCase(q);
+        if (raw.includes("pediatr") || raw.includes("neonat")) return "ped";
+        if (raw.includes("ginec") || raw.includes("obstet")) return "gyo";
+        if (raw.includes("cirug") || raw.includes("trauma") || raw.includes("ortoped")) return "cir";
+        if (raw.includes("urgenc") || raw.includes("toxicolog") || raw.includes("salud publica") || raw.includes("epidemiolog")) {
+            return inferTroncalSpecialtyFromCase(q);
+        }
+        if (raw.includes("nefro") || raw.includes("neuro") || raw.includes("endocrino") || raw.includes("reumato") || raw.includes("infecto") || raw.includes("psiqu")) {
+            return "mi";
+        }
+        return inferTroncalSpecialtyFromCase(q);
+    };
+
+    const getCaseCanonicalTopic = (q) => {
+        const direct = sanitizeTopicLabel(q?.temaCanonical || "");
+        if (direct) return direct;
+        const fromTema = sanitizeTopicLabel(q?.tema || "");
+        if (fromTema) return fromTema;
+        const fromSubtema = sanitizeTopicLabel(q?.subtema || "");
+        if (fromSubtema) return fromSubtema;
+        const fromGpc = sanitizeTopicLabel(q?.gpcReference || "");
+        if (fromGpc) return fromGpc;
+        const spec = normalizeSpecialtyToTroncal(q);
+        return `General ${TRONCAL_LABELS[spec] || "Medicina Interna"}`;
+    };
+
+    const getUnifiedTopicName = (text) => sanitizeTopicLabel(text);
+
+    let __topicIndexCache = null;
+    let __temarioTopicCatalogCache = null;
+    const invalidateTopicIndex = () => {
+        __topicIndexCache = null;
+        __temarioTopicCatalogCache = null;
+    };
+    const buildTopicIndex = () => {
+        const idx = new Map();
+        if (typeof QUESTIONS === "undefined" || !Array.isArray(QUESTIONS)) return idx;
+        QUESTIONS.forEach(q => {
+            if (!q) return;
+            const spec = normalizeSpecialtyToTroncal(q);
+            q.specialty = spec;
+            const temaCanonical = getCaseCanonicalTopic(q);
+            q.temaCanonical = temaCanonical;
+            if (!sanitizeTopicLabel(q.tema)) q.tema = temaCanonical;
+            if (!sanitizeTopicLabel(q.subtema)) q.subtema = temaCanonical;
+            if (!TRONCAL_SPECIALTIES.includes(spec)) return;
+            const key = normalizeTextKey(temaCanonical);
+            if (!key) return;
+            if (!idx.has(key)) idx.set(key, { topic: temaCanonical, count: 0, specs: new Set() });
+            const entry = idx.get(key);
+            entry.count++;
+            entry.specs.add(spec);
+        });
+        return idx;
+    };
+    const getTopicIndex = () => {
+        if (!__topicIndexCache) __topicIndexCache = buildTopicIndex();
+        return __topicIndexCache;
+    };
+
+    const tokenizeSearchKey = (value) => normalizeTextKey(value).split(" ").filter(Boolean);
+    const topicKeyMatchesQuery = (topicKey, queryKey) => {
+        const tKey = normalizeTextKey(topicKey);
+        const qKey = normalizeTextKey(queryKey);
+        if (!tKey || !qKey) return false;
+        if (tKey === qKey) return true;
+        if (tKey.includes(qKey)) return true;
+        if (qKey.includes(tKey) && tKey.length >= 5) return true;
+
+        const queryTokens = tokenizeSearchKey(qKey).filter(t => t.length >= 3);
+        if (queryTokens.length === 0) return false;
+        let hits = 0;
+        queryTokens.forEach(token => {
+            if (tKey.includes(token)) hits++;
+        });
+        if (hits === queryTokens.length) return true;
+        if (queryTokens.length >= 3 && hits >= queryTokens.length - 1) return true;
+        return false;
+    };
+    const topicKeyMatchesAnySelection = (topicKey, selectedKeys) => {
+        for (const selectedKey of selectedKeys) {
+            if (topicKeyMatchesQuery(topicKey, selectedKey)) return true;
+        }
+        return false;
+    };
+    const TOPIC_QUERY_PREFIX = "__query__:";
+    const isTopicQueryTag = (value) => String(value || "").startsWith(TOPIC_QUERY_PREFIX);
+    const makeTopicQueryTag = (value) => {
+        const normalized = normalizeTextKey(value);
+        return normalized ? `${TOPIC_QUERY_PREFIX}${normalized}` : "";
+    };
+    const getTopicQueryFromTag = (value) => isTopicQueryTag(value) ? String(value).slice(TOPIC_QUERY_PREFIX.length) : "";
+    const getTopicTagLabel = (value) => isTopicQueryTag(value) ? `Texto: ${getTopicQueryFromTag(value)}` : String(value || "");
+    const buildSelectedTopicState = (selectedTopics = []) => {
+        const topicKeys = new Set();
+        const textQueries = [];
+        selectedTopics.forEach(raw => {
+            if (isTopicQueryTag(raw)) {
+                const query = getTopicQueryFromTag(raw);
+                if (query) textQueries.push(query);
+                return;
+            }
+            const key = normalizeTextKey(raw);
+            if (key) topicKeys.add(key);
+        });
+        return { topicKeys, textQueries };
+    };
+    const getCaseSearchText = (q) => {
+        const nested = Array.isArray(q?.questions)
+            ? q.questions.flatMap(sq => [
+                sq?.question || "",
+                ...(Array.isArray(sq?.options) ? sq.options : []),
+                sq?.explanation || "",
+                sq?.gpcReference || ""
+            ]).join(" ")
+            : "";
+        return normalizeTextKey([
+            getCaseCanonicalTopic(q),
+            q?.tema || "",
+            q?.subtema || "",
+            q?.case || "",
+            q?.question || "",
+            Array.isArray(q?.options) ? q.options.join(" ") : "",
+            q?.explanation || "",
+            q?.gpcReference || "",
+            nested
+        ].join(" "));
+    };
+    const getCaseTopicLabelKeys = (q) => {
+        const keys = new Set();
+        [
+            q?.temaCanonical,
+            q?.tema,
+            q?.subtema,
+            q?.temaOriginal,
+            q?.subtemaOriginal,
+            q?.gpcReference
+        ].forEach(value => {
+            const key = normalizeTextKey(sanitizeTopicLabel(value || ""));
+            if (key) keys.add(key);
+        });
+        return Array.from(keys);
+    };
+    const caseMatchesSelectedTopics = (q, selectedTopicState) => {
+        if (!selectedTopicState) return true;
+        const hasTopicKeys = selectedTopicState.topicKeys && selectedTopicState.topicKeys.size > 0;
+        const hasTextQueries = Array.isArray(selectedTopicState.textQueries) && selectedTopicState.textQueries.length > 0;
+        if (!hasTopicKeys && !hasTextQueries) return true;
+
+        if (hasTopicKeys) {
+            const topicLabelKeys = getCaseTopicLabelKeys(q);
+            const temarioCatalog = getTemarioTopicCatalog();
+            for (const selectedKey of selectedTopicState.topicKeys) {
+                const temarioEntry = temarioCatalog.get(selectedKey);
+                if (temarioEntry && caseMatchesTemarioEntry(q, temarioEntry)) return true;
+            }
+            if (topicLabelKeys.some(labelKey => topicKeyMatchesAnySelection(labelKey, selectedTopicState.topicKeys))) {
+                return true;
+            }
+        }
+
+        if (hasTextQueries) {
+            const searchText = getCaseSearchText(q);
+            if (searchText && selectedTopicState.textQueries.some(query => topicKeyMatchesQuery(searchText, query))) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    if (typeof QUESTIONS !== "undefined" && Array.isArray(QUESTIONS)) {
+        QUESTIONS.forEach(q => {
+            if (!q) return;
+            if (q.specialtyOriginal === undefined) q.specialtyOriginal = q.specialty || "";
+            q.specialty = normalizeSpecialtyToTroncal(q);
+            q.temaCanonical = getCaseCanonicalTopic(q);
+            if (!sanitizeTopicLabel(q.tema)) q.tema = q.temaCanonical;
+            if (!sanitizeTopicLabel(q.subtema)) q.subtema = q.temaCanonical;
+        });
+        invalidateTopicIndex();
     }
 
     const showNotification = (msg, type = 'info', durationMs = 3500) => {
@@ -733,6 +929,7 @@
     };
 
     const applyCaseOverridesEverywhere = () => {
+        invalidateTopicIndex();
         State.reclassMap = applyCaseReclassifications();
         if (State.questionSet) applyCaseReclassificationsToSet(State.questionSet, State.reclassMap);
         if (State.view === "view-reclassify") {
@@ -802,11 +999,15 @@
             const entry = map[key];
             if (entry && entry.tema) q.tema = entry.tema;
             else if (q.temaOriginal !== undefined) q.tema = q.temaOriginal;
-            if (entry && entry.specialty) q.specialty = entry.specialty;
-            else if (q.specialtyOriginal !== undefined) q.specialty = q.specialtyOriginal;
+            if (entry && entry.specialty) q.specialty = normalizeSpecialtyToTroncal({ ...q, specialty: entry.specialty });
+            else if (q.specialtyOriginal !== undefined) q.specialty = normalizeSpecialtyToTroncal({ ...q, specialty: q.specialtyOriginal });
             if (entry && entry.caseText) q.case = entry.caseText;
             else if (q.caseOriginal !== undefined) q.case = q.caseOriginal;
+            q.temaCanonical = getCaseCanonicalTopic(q);
+            if (!sanitizeTopicLabel(q.tema)) q.tema = q.temaCanonical;
+            if (!sanitizeTopicLabel(q.subtema)) q.subtema = q.temaCanonical;
         });
+        invalidateTopicIndex();
         return map;
     };
 
@@ -823,10 +1024,13 @@
             const entry = map[key];
             if (entry && entry.tema) q.tema = entry.tema;
             else if (q.temaOriginal !== undefined) q.tema = q.temaOriginal;
-            if (entry && entry.specialty) q.specialty = entry.specialty;
-            else if (q.specialtyOriginal !== undefined) q.specialty = q.specialtyOriginal;
+            if (entry && entry.specialty) q.specialty = normalizeSpecialtyToTroncal({ ...q, specialty: entry.specialty });
+            else if (q.specialtyOriginal !== undefined) q.specialty = normalizeSpecialtyToTroncal({ ...q, specialty: q.specialtyOriginal });
             if (entry && entry.caseText) q.case = entry.caseText;
             else if (q.caseOriginal !== undefined) q.case = q.caseOriginal;
+            q.temaCanonical = getCaseCanonicalTopic(q);
+            if (!sanitizeTopicLabel(q.tema)) q.tema = q.temaCanonical;
+            if (!sanitizeTopicLabel(q.subtema)) q.subtema = q.temaCanonical;
         });
     };
 
@@ -901,8 +1105,6 @@
                 <option value="ped">Pediatria</option>
                 <option value="gyo">Ginecologia y Obstetricia</option>
                 <option value="cir">Cirugia General</option>
-                <option value="sp">Salud Publica</option>
-                <option value="urg">Urgencias</option>
             `;
             specSelect.dataset.ready = "1";
         }
@@ -5034,6 +5236,79 @@
         ]
     };
 
+    const TEMARIO_ACRONYM_STOPWORDS = new Set(["de", "del", "la", "las", "el", "los", "y", "en", "con", "sin", "por", "para", "al"]);
+    const buildAcronymKey = (value) => {
+        const tokens = normalizeTextKey(value)
+            .split(" ")
+            .filter(token => token && !TEMARIO_ACRONYM_STOPWORDS.has(token));
+        if (tokens.length < 2 || tokens.length > 6) return "";
+        const acronym = tokens.map(token => token[0]).join("");
+        return acronym.length >= 2 && acronym.length <= 6 ? acronym : "";
+    };
+    const buildTemarioEntry = (topic, aliases = []) => {
+        const key = normalizeTextKey(topic);
+        const termKeys = new Set();
+        const searchKeys = new Set();
+        [topic, ...(Array.isArray(aliases) ? aliases : [])].forEach(value => {
+            const cleanValue = sanitizeTopicLabel(value || "");
+            const normalized = normalizeTextKey(cleanValue);
+            if (!normalized) return;
+            termKeys.add(normalized);
+            searchKeys.add(normalized);
+            const acronym = buildAcronymKey(cleanValue);
+            if (acronym) searchKeys.add(acronym);
+        });
+        return {
+            key,
+            topic,
+            aliases: Array.from(new Set([topic, ...(Array.isArray(aliases) ? aliases : [])].map(v => sanitizeTopicLabel(v || "")).filter(Boolean))),
+            termKeys: Array.from(termKeys),
+            searchKeys: Array.from(searchKeys),
+            count: 0,
+            specs: new Set(),
+            source: "temario"
+        };
+    };
+    const caseLabelMatchesTopicTerm = (labelKey, termKey) => {
+        if (!labelKey || !termKey) return false;
+        if (labelKey === termKey) return true;
+        if (termKey.length >= 4 && labelKey.includes(termKey)) return true;
+        return false;
+    };
+    const caseMatchesTemarioEntry = (q, temarioEntry) => {
+        if (!temarioEntry || !Array.isArray(temarioEntry.termKeys) || temarioEntry.termKeys.length === 0) return false;
+        const labelKeys = getCaseTopicLabelKeys(q);
+        if (labelKeys.length === 0) return false;
+        return temarioEntry.termKeys.some(termKey => labelKeys.some(labelKey => caseLabelMatchesTopicTerm(labelKey, termKey)));
+    };
+    const buildTemarioTopicCatalog = () => {
+        const catalog = new Map();
+        Object.entries(TEMARIO_MAPPING).forEach(([topic, aliases]) => {
+            const entry = buildTemarioEntry(topic, aliases);
+            if (entry.key) catalog.set(entry.key, entry);
+        });
+
+        if (typeof QUESTIONS !== "undefined" && Array.isArray(QUESTIONS)) {
+            QUESTIONS.forEach(q => {
+                if (!q) return;
+                const spec = normalizeSpecialtyToTroncal(q);
+                if (!TRONCAL_SPECIALTIES.includes(spec)) return;
+                catalog.forEach(entry => {
+                    if (caseMatchesTemarioEntry(q, entry)) {
+                        entry.count++;
+                        entry.specs.add(spec);
+                    }
+                });
+            });
+        }
+
+        return catalog;
+    };
+    const getTemarioTopicCatalog = () => {
+        if (!__temarioTopicCatalogCache) __temarioTopicCatalogCache = buildTemarioTopicCatalog();
+        return __temarioTopicCatalogCache;
+    };
+
     // ---------------------------------------------------------------------------
     // Advanced Setup Logic: Topic Search & Tags
     // ---------------------------------------------------------------------------
@@ -5050,8 +5325,9 @@
             State.selectedTopics.forEach((topic, index) => {
                 const tag = document.createElement("div");
                 tag.className = "topic-tag";
+                const label = getTopicTagLabel(topic);
                 tag.innerHTML = `
-                    <span>${topic}</span>
+                    <span>${escapeHtml(label)}</span>
                     <span class="remove-tag">&times;</span>
                 `;
                 tag.querySelector(".remove-tag").onclick = () => {
@@ -5073,22 +5349,39 @@
                 return;
             }
 
-            // Combinar temario oficial + temas reales del banco de preguntas
-            const realTemas = typeof QUESTIONS !== 'undefined'
-                ? [...new Set(QUESTIONS.map(q => q.tema).filter(Boolean))]
-                : [];
-            const combinedTopics = [...new Set([...OFFICIAL_TEMARIO, ...realTemas])].sort();
+            const selectedSpecs = $$(".spec-item.checked").map(i => i.dataset.spec).filter(Boolean);
+            const selectedSpecSet = selectedSpecs.length > 0 ? new Set(selectedSpecs) : null;
+            const selectedTopicState = buildSelectedTopicState(State.selectedTopics);
+            const selectedTopicKeys = selectedTopicState.topicKeys;
+            const searchVal = normalizeTextKey(normalizedVal);
+            const indexedTopics = Array.from(getTemarioTopicCatalog().values())
+                .filter(entry => {
+                    if (!entry || !entry.topic) return false;
+                    if (selectedSpecSet) {
+                        let match = false;
+                        entry.specs.forEach(s => { if (selectedSpecSet.has(s)) match = true; });
+                        if (!match && entry.count > 0) return false;
+                    }
+                    const topicKey = entry.key || normalizeTextKey(entry.topic);
+                    if (!topicKey) return false;
+                    if (selectedTopicKeys.has(topicKey)) return false;
+                    return entry.searchKeys.some(searchKey => topicKeyMatchesQuery(searchKey, searchVal));
+                })
+                .sort((a, b) => {
+                    const aExact = a.searchKeys.some(searchKey => searchKey === searchVal) ? 1 : 0;
+                    const bExact = b.searchKeys.some(searchKey => searchKey === searchVal) ? 1 : 0;
+                    if (bExact !== aExact) return bExact - aExact;
+                    const aContains = a.searchKeys.some(searchKey => searchKey.includes(searchVal)) ? 1 : 0;
+                    const bContains = b.searchKeys.some(searchKey => searchKey.includes(searchVal)) ? 1 : 0;
+                    if (bContains !== aContains) return bContains - aContains;
+                    const aHasCases = a.count > 0 ? 1 : 0;
+                    const bHasCases = b.count > 0 ? 1 : 0;
+                    if (bHasCases !== aHasCases) return bHasCases - aHasCases;
+                    if (b.count !== a.count) return b.count - a.count;
+                    return a.topic.localeCompare(b.topic, "es");
+                });
 
-            const removeAccents = (str) => {
-                return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            };
-
-            const searchVal = removeAccents(normalizedVal);
-
-            const filtered = combinedTopics.filter(t => {
-                const normalizedTopic = removeAccents(t.toLowerCase());
-                return normalizedTopic.includes(searchVal) && !State.selectedTopics.includes(t);
-            }).slice(0, 12);
+            const filtered = indexedTopics.slice(0, 30);
 
             if (filtered.length === 0) {
                 suggestionsCont.classList.remove("active");
@@ -5097,26 +5390,32 @@
 
             suggestionsCont.innerHTML = "";
             activeIndex = -1;
-
-            // Contar preguntas por tema para mostrar badge
-            const temaCounts = {};
-            if (typeof QUESTIONS !== 'undefined') {
-                QUESTIONS.forEach(q => { if (q.tema) temaCounts[q.tema] = (temaCounts[q.tema] || 0) + 1; });
-            }
-
-            filtered.forEach((topic, idx) => {
+            filtered.forEach((entry, idx) => {
                 const item = document.createElement("div");
                 item.className = "suggestion-item";
                 item.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:8px;";
-                const count = temaCounts[topic] || 0;
-                item.innerHTML = `<span>${topic}</span>${count > 0 ? `<span style="font-size:10px;color:var(--accent-green);font-weight:700;background:rgba(5,192,127,0.12);padding:1px 6px;border-radius:10px;flex-shrink:0;">${count}</span>` : ''}`;
+                const count = entry.count || 0;
+                item.innerHTML = `<span>${escapeHtml(entry.topic)}</span>${count > 0 ? `<span style="font-size:10px;color:var(--accent-green);font-weight:700;background:rgba(5,192,127,0.12);padding:1px 6px;border-radius:10px;flex-shrink:0;">${count}</span>` : ''}`;
                 item.dataset.index = idx;
+                item.dataset.topic = entry.topic;
                 item.onclick = () => {
-                    addTopic(topic);
+                    addTopic(entry.topic);
                 };
                 suggestionsCont.appendChild(item);
             });
             suggestionsCont.classList.add("active");
+        };
+
+        const addTopicQuery = (rawQuery) => {
+            const queryTag = makeTopicQueryTag(rawQuery);
+            if (!queryTag) return;
+            if (!State.selectedTopics.includes(queryTag)) {
+                State.selectedTopics.push(queryTag);
+                updateSelectedTags();
+            }
+            input.value = "";
+            suggestionsCont.classList.remove("active");
+            activeIndex = -1;
         };
 
         const addTopic = (topic) => {
@@ -5125,8 +5424,17 @@
                 openRedeemModal("Desbloquea premium para usar filtros por tema/GPC.");
                 return;
             }
-            const cleanTopic = getUnifiedTopicName(topic);
-            if (!State.selectedTopics.includes(cleanTopic)) {
+            const topicKey = normalizeTextKey(topic);
+            const temarioMap = getTemarioTopicCatalog();
+            const idxMap = getTopicIndex();
+            const match = temarioMap.get(topicKey) || idxMap.get(topicKey);
+            if (!match || !match.topic) {
+                showNotification("Selecciona un tema existente del banco para asegurar resultados.", "warning");
+                return;
+            }
+            const cleanTopic = match.topic;
+            const selectedTopicState = buildSelectedTopicState(State.selectedTopics);
+            if (!selectedTopicState.topicKeys.has(topicKey)) {
                 State.selectedTopics.push(cleanTopic);
                 updateSelectedTags();
             }
@@ -5148,9 +5456,33 @@
                 e.preventDefault();
             } else if (e.key === "Enter") {
                 if (activeIndex >= 0 && items[activeIndex]) {
-                    addTopic(items[activeIndex].textContent);
+                    addTopic(items[activeIndex].dataset.topic || "");
                 } else if (input.value.trim() !== "") {
-                    addTopic(input.value.trim());
+                    const typedKey = normalizeTextKey(input.value.trim());
+                    const temarioMap = getTemarioTopicCatalog();
+                    const exact = temarioMap.get(typedKey) || getTopicIndex().get(typedKey);
+                    if (exact && exact.topic) addTopic(exact.topic);
+                    else {
+                        const candidates = Array.from(temarioMap.values())
+                            .filter(entry => entry && entry.topic && entry.searchKeys.some(searchKey => topicKeyMatchesQuery(searchKey, typedKey)))
+                            .sort((a, b) => {
+                                const aExact = a.searchKeys.some(searchKey => searchKey === typedKey) ? 1 : 0;
+                                const bExact = b.searchKeys.some(searchKey => searchKey === typedKey) ? 1 : 0;
+                                if (bExact !== aExact) return bExact - aExact;
+                                if ((b.count || 0) !== (a.count || 0)) return (b.count || 0) - (a.count || 0);
+                                return a.topic.localeCompare(b.topic, "es");
+                            });
+                        if (candidates.length >= 1) {
+                            addTopic(candidates[0].topic);
+                            if (candidates.length > 1) {
+                                showNotification(`Se agregó "${candidates[0].topic}". Puedes añadir más coincidencias desde la lista.`, "info");
+                            }
+                        } else {
+                            const rawQuery = input.value.trim();
+                            addTopicQuery(rawQuery);
+                            showNotification(`Se agregó filtro por texto: "${normalizeTextKey(rawQuery)}".`, "info");
+                        }
+                    }
                 }
                 e.preventDefault();
             } else if (e.key === "Escape") {
@@ -5293,7 +5625,9 @@
             btnStart.addEventListener("click", () => {
 
                 const isRealSim = State.selectedPresetId === "preset-real";
-                const selectedSpecs = $$(".spec-item.checked").map(i => i.dataset.spec);
+                const selectedSpecs = $$(".spec-item.checked")
+                    .map(i => i.dataset.spec)
+                    .filter(spec => TRONCAL_SPECIALTIES.includes(spec));
                 if (!isRealSim && selectedSpecs.length === 0 && State.selectedTopics.length === 0) {
                     return showNotification("Selecciona al menos una especialidad o un tema personalizado.");
                 }
@@ -5372,31 +5706,15 @@
 
                 let pool = [];
                 if (selectedSpecs.length > 0) {
-                    pool = QUESTIONS.filter(q => selectedSpecs.includes(q.specialty));
+                    pool = QUESTIONS.filter(q => selectedSpecs.includes(normalizeSpecialtyToTroncal(q)));
                 } else {
-                    pool = [...QUESTIONS];
+                    pool = QUESTIONS.filter(q => TRONCAL_SPECIALTIES.includes(normalizeSpecialtyToTroncal(q)));
                 }
 
                 // Filtrado por Temas Seleccionados
                 if (State.selectedTopics.length > 0) {
-                    let expandedTopics = [];
-                    State.selectedTopics.forEach(t => {
-                        if (TEMARIO_MAPPING && TEMARIO_MAPPING[t]) expandedTopics.push(...TEMARIO_MAPPING[t]);
-                        else expandedTopics.push(t);
-                    });
-
-                    const expandedKeys = expandedTopics
-                        .map(t => normalizeTopicKey(getUnifiedTopicName(t)))
-                        .filter(Boolean);
-                    pool = pool.filter(q => {
-                        const keys = [
-                            normalizeTopicKey(getUnifiedTopicName(q.tema)),
-                            normalizeTopicKey(getUnifiedTopicName(q.subtema)),
-                            normalizeTopicKey(getUnifiedTopicName(q.gpcReference))
-                        ].filter(Boolean);
-                        if (keys.length === 0) return false;
-                        return expandedKeys.some(k => keys.includes(k));
-                    });
+                    const selectedTopicState = buildSelectedTopicState(State.selectedTopics);
+                    pool = pool.filter(q => caseMatchesSelectedTopics(q, selectedTopicState));
                 }
                 pool = filterQuarantinedPool(pool);
 
@@ -5498,8 +5816,8 @@
 
         bindStartBtn("btn-refuerzo-ia", handleInteligente, true);
         bindStartBtn("btn-refuerzo-ia-dash", handleInteligente, true); // New Dash Button
-        bindStartBtn("btn-refuerzo-rapido", () => startQuickSession(['mi', 'ped', 'gyo', 'cir', 'urg', 'sp'], 5, "Refuerzo Rápido General"), true);
-        bindStartBtn("btn-quick-start", () => startQuickSession(['mi', 'ped', 'gyo', 'cir', 'urg', 'sp'], 10, "Sesión Rápida (10)"), true);
+        bindStartBtn("btn-refuerzo-rapido", () => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 5, "Refuerzo Rápido General"), true);
+        bindStartBtn("btn-quick-start", () => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 10, "Sesión Rápida (10)"), true);
         bindStartBtn("btn-refuerzo-casos", () => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 3, "Casos Rápidos Aleatorios"), true);
         bindStartBtn("btn-curva-olvido", startSpacedRepetition, true);
         bindStartBtn("btn-curva-olvido-dash", startSpacedRepetition, true); // New Dash Button
@@ -5524,7 +5842,8 @@
 
             if (matches && session.questionSet) {
                 session.questionSet.forEach(q => {
-                    if (q.tema) themesToReview.add(q.tema);
+                    const t = getCaseCanonicalTopic(q);
+                    if (t) themesToReview.add(t);
                 });
             }
         });
@@ -5539,7 +5858,8 @@
     };
 
     const startTemaSession = (temas, qty, label) => {
-        let pool = filterQuarantinedPool(QUESTIONS.filter(q => q.tema && temas.includes(q.tema)));
+        const selectedTopicState = buildSelectedTopicState(temas || []);
+        let pool = filterQuarantinedPool(QUESTIONS.filter(q => caseMatchesSelectedTopics(q, selectedTopicState)));
         if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
 
         let finalQty = qty;
@@ -5564,7 +5884,8 @@
     };
 
     const startQuickSession = (specs, qty, label) => {
-        let pool = filterQuarantinedPool(QUESTIONS.filter(q => specs.includes(q.specialty)));
+        const safeSpecs = (specs || []).filter(spec => TRONCAL_SPECIALTIES.includes(spec));
+        let pool = filterQuarantinedPool(QUESTIONS.filter(q => safeSpecs.includes(normalizeSpecialtyToTroncal(q))));
         if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
 
         let finalQty = qty;
@@ -5798,7 +6119,7 @@
         if (State.mode === "estudio" && ans.selected !== null) return;
         ans.selected = selectedIdx;
         ans.isCorrect = (selectedIdx === q.answerIndex);
-        if (State.mode === "estudio") recordStat(q.specialty, ans.isCorrect, q.tema);
+        if (State.mode === "estudio") recordStat(q.specialty, ans.isCorrect, getCaseCanonicalTopic(q));
         renderExamQuestion();
     };
 
@@ -5889,7 +6210,7 @@
                 questionText: questionText,
                 caseText: caseText,
                 specialty: sanitizeReportText(q.specialty),
-                tema: sanitizeReportText(q.tema),
+                tema: sanitizeReportText(getCaseCanonicalTopic(q)),
                 category: category,
                 reason: reason,
                 caseKey: caseKey,
@@ -6056,30 +6377,17 @@
         const cont = $("temario-list");
         if (!cont) return;
 
-        const removeAccentsT = str => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        const normalizedFilter = removeAccentsT(filter);
+        const normalizedFilter = normalizeTextKey(filter);
+        const topicEntries = Array.from(getTemarioTopicCatalog().values())
+            .filter(entry => entry && entry.topic)
+            .sort((a, b) => a.topic.localeCompare(b.topic, "es"));
 
-        // Contar preguntas por tema (usa el campo tema corregido)
-        const temaCountsT = {};
-        if (typeof QUESTIONS !== 'undefined') {
-            QUESTIONS.forEach(q => { if (q.tema) temaCountsT[q.tema] = (temaCountsT[q.tema] || 0) + 1; });
-        }
-
-        // Filtrar temario oficial
-        const filtered = OFFICIAL_TEMARIO.filter(t => {
-            return !normalizedFilter || removeAccentsT(t).includes(normalizedFilter);
+        const filteredEntries = topicEntries.filter(entry => {
+            if (!normalizedFilter) return true;
+            return entry.searchKeys.some(searchKey => topicKeyMatchesQuery(searchKey, normalizedFilter));
         });
 
-        // También buscar en temas reales del banco si hay filtro
-        let extraTopics = [];
-        if (normalizedFilter && typeof QUESTIONS !== 'undefined') {
-            const allRealTemas = [...new Set(QUESTIONS.map(q => q.tema).filter(Boolean))];
-            extraTopics = allRealTemas.filter(t =>
-                removeAccentsT(t).includes(normalizedFilter) && !filtered.includes(t)
-            ).slice(0, 10);
-        }
-
-        if (filtered.length === 0 && extraTopics.length === 0) {
+        if (filteredEntries.length === 0) {
             cont.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-muted);grid-column:1/-1;">
                 <div style="font-size:40px;margin-bottom:12px;">&#128269;</div>
                 <p>No se encontraron temas para "<strong>${filter}</strong>".</p>
@@ -6088,15 +6396,13 @@
             return;
         }
 
-        const renderTemarioCard = (tema, isExtra) => {
-            const count = temaCountsT[tema] || 0;
+        const renderTemarioCard = (entry) => {
+            const tema = entry.topic;
+            const count = entry.count || 0;
             const countBadge = count > 0
                 ? `<span style="font-size:11px;color:var(--accent-green);font-weight:700;background:rgba(5,192,127,0.1);padding:2px 8px;border-radius:20px;margin-left:6px;">${count} preg.</span>`
-                : '';
-            const extraBadge = isExtra
-                ? `<span style="font-size:10px;color:var(--accent-blue);font-weight:600;background:rgba(59,130,246,0.1);padding:1px 6px;border-radius:12px;margin-left:6px;">banco</span>`
-                : '';
-            const safeT = tema.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+                : `<span style="font-size:11px;color:var(--text-muted);font-weight:700;background:rgba(255,255,255,0.05);padding:2px 8px;border-radius:20px;margin-left:6px;">0 preg.</span>`;
+            const safeT = tema.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
             return `<div class="list-item" style="padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid var(--border);cursor:pointer;transition:border-color 0.2s,background 0.2s;"
                 onclick="document.getElementById('nav-new-exam').click();setTimeout(()=>{const i=document.getElementById('setup-topic-filter');if(i){i.value='${safeT}';i.dispatchEvent(new Event('input'));}},300);"
                 onmouseover="this.style.borderColor='var(--accent-green)';this.style.background='rgba(5,192,127,0.03)';"
@@ -6104,17 +6410,14 @@
                 <div class="list-item-content" style="width:100%;">
                     <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;">
                         <h3 style="font-size:13px;margin-bottom:0;line-height:1.3;">${tema}</h3>
-                        ${countBadge}${extraBadge}
+                        ${countBadge}
                     </div>
-                    ${count > 0 ? '<p style="font-size:11px;color:var(--text-muted);margin-top:4px;">Toca para agregar al simulacro &#8594;</p>' : ''}
+                    <p style="font-size:11px;color:var(--text-muted);margin-top:4px;">${count > 0 ? 'Toca para agregar al simulacro &#8594;' : 'Tema del temario sin casos activos por ahora.'}</p>
                 </div>
             </div>`;
         };
 
-        cont.innerHTML = [
-            ...filtered.map(t => renderTemarioCard(t, false)),
-            ...extraTopics.map(t => renderTemarioCard(t, true))
-        ].join("");
+        cont.innerHTML = filteredEntries.map(entry => renderTemarioCard(entry)).join("");
     };
 
     window.filterOfficialTemario = () => {
@@ -6136,7 +6439,7 @@
                 if (a.selected === null) blank++;
                 else {
                     if (a.isCorrect) correct++; else wrong++;
-                    if (State.mode === "simulacro") recordStat(State.questionSet[i].specialty, a.isCorrect, State.questionSet[i].tema);
+                    if (State.mode === "simulacro") recordStat(State.questionSet[i].specialty, a.isCorrect, getCaseCanonicalTopic(State.questionSet[i]));
                 }
             });
 
@@ -6384,7 +6687,7 @@
             else { priorityBadge = "background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); border: 1px solid rgba(59, 130, 246, 0.3);"; priorityLabel = "Para Repaso"; }
 
             // Specialty friendly names mapping
-            const specNames = { 'mi': 'Medicina Interna', 'ped': 'Pediatría', 'gyo': 'Ginecología y Obstetricia', 'cir': 'Cirugía General', 'sp': 'Salud Pública', 'urg': 'Urgencias' };
+            const specNames = { 'mi': 'Medicina Interna', 'ped': 'Pediatría', 'gyo': 'Ginecología y Obstetricia', 'cir': 'Cirugía General' };
             const specName = specNames[t.specialty] || t.specialty;
 
             el.innerHTML = `
@@ -6453,7 +6756,7 @@
         const now = new Date();
         const quoteTickKey = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}-${Math.floor(now.getHours() / 4)}`;
         const bySpec = State.globalStats?.bySpecialty || {};
-        const specKey = ["mi", "ped", "gyo", "cir", "sp", "urg"]
+        const specKey = ["mi", "ped", "gyo", "cir"]
             .map(k => `${bySpec[k]?.total || 0}-${bySpec[k]?.correct || 0}`)
             .join("|");
         const lastHist = (State.history && State.history.length > 0) ? State.history[State.history.length - 1] : null;
@@ -6566,7 +6869,7 @@
         if (viewScope === "other") return;
 
         const bySpec = State.globalStats?.bySpecialty || {};
-        const specKey = ["mi", "ped", "gyo", "cir", "sp", "urg"]
+        const specKey = ["mi", "ped", "gyo", "cir"]
             .map(k => `${bySpec[k]?.total || 0}-${bySpec[k]?.correct || 0}`)
             .join("|");
         const lastHist = (State.history && State.history.length > 0) ? State.history[State.history.length - 1] : null;
@@ -6634,7 +6937,7 @@
         if (ctxSpecLine) {
             const labels = [];
             const dataPts = [];
-            const keys = ['mi', 'ped', 'gyo', 'cir', 'sp', 'urg'];
+            const keys = ['mi', 'ped', 'gyo', 'cir'];
             keys.forEach(k => {
                 const s = State.globalStats.bySpecialty[k];
                 if (s) {
@@ -6688,7 +6991,7 @@
         if (ctxSpec) {
             const labels = [];
             const dataPts = [];
-            const keys = ['mi', 'ped', 'gyo', 'cir', 'sp', 'urg'];
+            const keys = ['mi', 'ped', 'gyo', 'cir'];
             keys.forEach(k => {
                 const s = State.globalStats.bySpecialty[k];
                 if (s) {
@@ -7580,9 +7883,7 @@
                         mi: { total: 0, correct: 0, name: "Medicina Interna" },
                         ped: { total: 0, correct: 0, name: "Pediatría" },
                         gyo: { total: 0, correct: 0, name: "Ginecología y Obstetricia" },
-                        cir: { total: 0, correct: 0, name: "Cirugía General" },
-                        sp: { total: 0, correct: 0, name: "Salud Pública" },
-                        urg: { total: 0, correct: 0, name: "Urgencias" }
+                        cir: { total: 0, correct: 0, name: "Cirugía General" }
                     }
                 };
                 State.history = [];
@@ -8085,7 +8386,8 @@
                     // Read config from State (always in sync with DOM via listeners in initSetupLogic)
                     // Fallback to reading DOM directly in case the user hasn't interacted yet
                     const domSpecs = Array.from(document.querySelectorAll(".spec-item.checked")).map(i => i.dataset.spec);
-                    const specsArray = domSpecs.length > 0 ? domSpecs : State.selectedSpecialties;
+                    const specsArray = (domSpecs.length > 0 ? domSpecs : State.selectedSpecialties)
+                        .filter(spec => TRONCAL_SPECIALTIES.includes(spec));
                     const qtySlider = document.getElementById("setup-qty-slider");
                     const qty = qtySlider ? parseInt(qtySlider.value, 10) : (State.setupQty || 10);
 
@@ -8094,27 +8396,12 @@
                     }
 
                     let pool = [];
-                    if (specsArray.length > 0) pool = QUESTIONS.filter(q => specsArray.includes(q.specialty));
-                    else pool = [...QUESTIONS];
+                    if (specsArray.length > 0) pool = QUESTIONS.filter(q => specsArray.includes(normalizeSpecialtyToTroncal(q)));
+                    else pool = QUESTIONS.filter(q => TRONCAL_SPECIALTIES.includes(normalizeSpecialtyToTroncal(q)));
 
                     if (State.selectedTopics.length > 0) {
-                        let expandedTopics = [];
-                        State.selectedTopics.forEach(t => {
-                            if (window.TEMARIO_MAPPING && window.TEMARIO_MAPPING[t]) expandedTopics.push(...window.TEMARIO_MAPPING[t]);
-                            else expandedTopics.push(t);
-                        });
-                        const expandedKeys = expandedTopics
-                            .map(t => normalizeTopicKey(getUnifiedTopicName(t)))
-                            .filter(Boolean);
-                        pool = pool.filter(q => {
-                            const keys = [
-                                normalizeTopicKey(getUnifiedTopicName(q.tema)),
-                                normalizeTopicKey(getUnifiedTopicName(q.subtema)),
-                                normalizeTopicKey(getUnifiedTopicName(q.gpcReference))
-                            ].filter(Boolean);
-                            if (keys.length === 0) return false;
-                            return expandedKeys.some(k => keys.includes(k));
-                        });
+                        const selectedTopicState = buildSelectedTopicState(State.selectedTopics);
+                        pool = pool.filter(q => caseMatchesSelectedTopics(q, selectedTopicState));
                     }
                     pool = filterQuarantinedPool(pool);
 
