@@ -439,6 +439,85 @@
         return REPORT_CATEGORY_LABELS[key] || "Otro";
     };
 
+    const sanitizeReportText = (value, fallback = "") => {
+        if (value === undefined || value === null) return fallback;
+        return String(value);
+    };
+
+    const buildCloudReportPayload = (report = {}) => {
+        const ts = Number(report.timestamp);
+        return {
+            timestamp: Number.isFinite(ts) && ts > 0 ? ts : Date.now(),
+            questionText: sanitizeReportText(report.questionText),
+            caseText: sanitizeReportText(report.caseText),
+            specialty: sanitizeReportText(report.specialty),
+            tema: sanitizeReportText(report.tema),
+            category: sanitizeReportText(report.category),
+            reason: sanitizeReportText(report.reason),
+            caseKey: sanitizeReportText(report.caseKey),
+            userName: sanitizeReportText(report.userName, "Anonimo"),
+            userId: sanitizeReportText(report.userId),
+            status: sanitizeReportText(report.status, "quarantine"),
+            clientReportId: sanitizeReportText(report.id)
+        };
+    };
+
+    const markLocalReportAsCloudSynced = (reportId, cloudId) => {
+        const targetId = String(reportId || "");
+        const applyMark = (list) => (list || []).map((item) => {
+            if (!item || String(item.id || "") !== targetId) return item;
+            return { ...item, cloudSynced: true, cloudId: cloudId || item.cloudId || targetId };
+        });
+        State.reportedQuestionsLocal = applyMark(State.reportedQuestionsLocal);
+        State.reportedQuestions = applyMark(State.reportedQuestions);
+    };
+
+    const uploadReportToCloud = async (report) => {
+        if (!report) throw new Error("invalid_report");
+        if (!window.FB || !window.FB.db || !window.FB.doc || !window.FB.setDoc) {
+            throw new Error("firebase_not_ready");
+        }
+        if (!window.FB.auth || !window.FB.auth.currentUser) {
+            throw new Error("auth_required");
+        }
+        const cloudId = sanitizeReportText(report.id || `report-${Date.now()}-${Math.floor(Math.random() * 100000)}`);
+        const payload = buildCloudReportPayload({ ...report, id: cloudId });
+        await window.FB.setDoc(window.FB.doc(window.FB.db, "reports", cloudId), payload, { merge: true });
+        return cloudId;
+    };
+
+    const syncPendingReportsToCloud = async () => {
+        if (!window.FB || !window.FB.auth || !window.FB.auth.currentUser) return;
+        const pending = (State.reportedQuestionsLocal || []).filter(r => r && r.source === "local" && !r.cloudSynced);
+        if (pending.length === 0) return;
+
+        let syncedAny = false;
+        for (const report of pending) {
+            try {
+                const cloudId = await uploadReportToCloud(report);
+                markLocalReportAsCloudSynced(report.id, cloudId);
+                syncedAny = true;
+            } catch (err) {
+                console.error("Error sincronizando reporte pendiente:", err);
+            }
+        }
+
+        if (syncedAny) {
+            saveGlobalStats();
+            if (State.view === "view-reportes") renderReportedQuestions();
+        }
+    };
+
+    const handleReportCloudError = (err) => {
+        console.error("Error guardando reporte en la nube:", err);
+        const msg = String((err && (err.code || err.message)) || "").toLowerCase();
+        if (msg.includes("permission-denied") || msg.includes("missing or insufficient permissions")) {
+            showNotification("Reporte guardado localmente, pero sin permisos para subirlo a la nube.", "warning");
+            return;
+        }
+        showNotification("Reporte guardado localmente. No se pudo sincronizar con la nube.", "warning");
+    };
+
     // ---------------------------------------------------------------------------
     // Case Reclassification (manual topic overrides)
     // ---------------------------------------------------------------------------
@@ -5716,20 +5795,27 @@
 
             const qIndexToReport = State._reportingIndex !== undefined ? State._reportingIndex : State.currentIndex;
             const q = State.questionSet[qIndexToReport];
-            const caseKey = getCaseKey(q) || getCaseKeyFromText(q.case, q.question);
+            if (!q) {
+                showNotification("No se pudo identificar la pregunta a reportar.", "error");
+                return;
+            }
+            const questionText = sanitizeReportText(q.question);
+            const caseText = sanitizeReportText(q.case);
+            const caseKey = getCaseKey(q) || getCaseKeyFromText(caseText, questionText);
             const report = {
                 id: `local-${Date.now()}-${Math.floor(Math.random() * 100000)}`,
                 timestamp: Date.now(),
-                questionText: q.question,
-                caseText: q.case,
-                specialty: q.specialty,
-                tema: q.tema,
+                questionText: questionText,
+                caseText: caseText,
+                specialty: sanitizeReportText(q.specialty),
+                tema: sanitizeReportText(q.tema),
                 category: category,
                 reason: reason,
                 caseKey: caseKey,
                 userName: State.userName || "Anonimo",
                 userId: window.FB && window.FB.auth && window.FB.auth.currentUser ? window.FB.auth.currentUser.uid : "",
                 status: "quarantine",
+                cloudSynced: false,
                 source: "local"
             };
 
@@ -5740,27 +5826,16 @@
             modal.style.display = "none";
             showNotification("Gracias por tu reporte. Lo revisaremos pronto para mejorar el banco de preguntas.", "success");
 
-            if (window.FB && window.FB.db) {
-                try {
-                    const payload = {
-                        timestamp: report.timestamp,
-                        questionText: report.questionText,
-                        caseText: report.caseText,
-                        specialty: report.specialty,
-                        tema: report.tema,
-                        category: report.category,
-                        reason: report.reason,
-                        caseKey: report.caseKey,
-                        userName: report.userName,
-                        userId: report.userId,
-                        status: report.status
-                    };
-                    window.FB.addDoc(window.FB.collection(window.FB.db, "reports"), payload).catch(err => {
-                        console.error("Error guardando reporte en la nube:", err);
-                    });
-                } catch (err) {
-                    console.error("Error guardando reporte en la nube:", err);
-                }
+            if (window.FB && window.FB.auth && window.FB.auth.currentUser) {
+                uploadReportToCloud(report)
+                    .then((cloudId) => {
+                        markLocalReportAsCloudSynced(report.id, cloudId);
+                        saveGlobalStats();
+                    })
+                    .catch(handleReportCloudError);
+            } else {
+                console.info("Reporte guardado localmente; pendiente de sincronizar por falta de sesion.");
+                showNotification("Reporte guardado en este dispositivo. Inicia sesión para sincronizarlo en la nube.", "info");
             }
         });
     };
@@ -8711,6 +8786,7 @@
                                         saveGlobalStats();
                                     }
                                 }
+                                syncPendingReportsToCloud();
                             } catch (e) {
                                 console.error("Error fetching cloud data on Auth Change:", e);
                             }
