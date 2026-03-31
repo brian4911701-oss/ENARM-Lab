@@ -803,6 +803,14 @@
         return out;
     };
 
+    const mergeCloudAndLocalReports = () => {
+        const cloudReports = (State.reportedQuestions || []).filter(r => r && r.source === "cloud");
+        const localReports = (State.reportedQuestionsLocal || [])
+            .filter(Boolean)
+            .map(r => ({ ...r, source: r.source || "local" }));
+        State.reportedQuestions = dedupeReports([...cloudReports, ...localReports]);
+    };
+
     const refreshQuarantineKeys = () => {
         const keys = new Set();
         (State.reportedQuestions || []).forEach(r => {
@@ -6258,7 +6266,7 @@
                 if (data.timestamp && data.timestamp > newestTs) newestTs = data.timestamp;
             });
 
-            const localReports = (State.reportedQuestionsLocal || []).filter(r => r.source === "local");
+            const localReports = (State.reportedQuestionsLocal || []).filter(r => r && r.source !== "cloud");
             State.reportedQuestions = dedupeReports([...cloudReports, ...localReports]);
             refreshQuarantineKeys();
 
@@ -9165,8 +9173,8 @@
                                     }
                                     if (data.reportsStr) {
                                         State.reportedQuestionsLocal = JSON.parse(data.reportsStr);
-                                        State.reportedQuestions = State.reportedQuestionsLocal;
                                         localStorage.setItem("enarm_reports", data.reportsStr);
+                                        mergeCloudAndLocalReports();
                                         refreshQuarantineKeys();
                                     }
 
@@ -9351,8 +9359,8 @@
                                 }
                                 if (data.reportsStr) {
                                     State.reportedQuestionsLocal = JSON.parse(data.reportsStr);
-                                    State.reportedQuestions = State.reportedQuestionsLocal;
                                     localStorage.setItem("enarm_reports", data.reportsStr);
+                                    mergeCloudAndLocalReports();
                                     refreshQuarantineKeys();
                                 }
                             }
