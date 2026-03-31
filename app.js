@@ -7280,13 +7280,35 @@
     let pomoSeconds = 25 * 60;
     let isPomoRunning = false;
     let pomoMode = "focus"; // "focus" | "break"
+    let isPomodoroCollapsed = false;
 
     const initPomodoro = () => {
+        const widgetShell = $("pomodoro-widget-shell");
+        const revealBtn = $("btn-pomo-reveal");
+        const hideBtn = $("btn-pomo-hide");
         const timeEl = $("pomo-time");
         const toggleBtn = $("btn-pomo-toggle");
         const resetBtn = $("btn-pomo-reset");
         const sessionEl = $("pomo-sessions");
         const iconEl = document.querySelector(".pomo-icon");
+        const collapseStorageKey = "pomodoroCollapsed";
+
+        const syncCollapseUI = () => {
+            if (!widgetShell || !revealBtn || !hideBtn) return;
+            widgetShell.classList.toggle("is-collapsed", isPomodoroCollapsed);
+            revealBtn.setAttribute("aria-expanded", String(!isPomodoroCollapsed));
+            hideBtn.setAttribute("aria-expanded", String(!isPomodoroCollapsed));
+        };
+
+        const setPomodoroCollapsed = (collapsed) => {
+            isPomodoroCollapsed = collapsed;
+            syncCollapseUI();
+            localStorage.setItem(collapseStorageKey, collapsed ? "1" : "0");
+        };
+
+        if (localStorage.getItem(collapseStorageKey) === "1") {
+            isPomodoroCollapsed = true;
+        }
 
         const updateDisplay = () => {
             const m = String(Math.floor(pomoSeconds / 60)).padStart(2, "0");
@@ -7349,8 +7371,17 @@
             if (iconEl) iconEl.classList.remove("running");
         });
 
+        if (hideBtn) {
+            hideBtn.addEventListener("click", () => setPomodoroCollapsed(true));
+        }
+
+        if (revealBtn) {
+            revealBtn.addEventListener("click", () => setPomodoroCollapsed(false));
+        }
+
         updateDisplay();
         updateStats();
+        syncCollapseUI();
     };
 
     // ---------------------------------------------------------------------------

@@ -2810,11 +2810,18 @@ body.light-mode .premium-slider {
 }
 
 /* ── Pomodoro Floating Widget ─────────────────────────── */
-.pomodoro-floating-widget {
+.pomodoro-widget-shell {
   position: fixed;
-  bottom: 20px;
   right: 20px;
+  bottom: 20px;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.pomodoro-floating-widget {
+  position: relative;
   background: rgba(26, 32, 44, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -2825,7 +2832,7 @@ body.light-mode .premium-slider {
   display: flex;
   align-items: center;
   gap: 15px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease, border-color 0.3s ease;
   border-left: 3px solid var(--accent-green);
 }
 
@@ -2833,6 +2840,71 @@ body.light-mode .premium-slider {
   transform: translateY(-2px);
   background: rgba(26, 32, 44, 0.95);
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+.pomodoro-hide-btn,
+.pomodoro-reveal-tab {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(26, 32, 44, 0.92);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.pomodoro-hide-btn:hover,
+.pomodoro-reveal-tab:hover {
+  transform: translateY(-1px);
+  background: rgba(26, 32, 44, 1);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.pomodoro-hide-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.pomodoro-reveal-tab {
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 14px 0 0 14px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(16px);
+}
+
+.pomodoro-reveal-text {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.pomodoro-widget-shell.is-collapsed .pomodoro-floating-widget {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(calc(100% + 20px));
+}
+
+.pomodoro-widget-shell.is-collapsed .pomodoro-reveal-tab {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
 }
 
 .pomo-mini-header {
@@ -2883,6 +2955,31 @@ body.light-mode .premium-slider {
   font-weight: 600;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   padding-left: 12px;
+}
+
+@media (max-width: 768px) {
+  .pomodoro-widget-shell {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .pomodoro-floating-widget {
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .pomo-time-mini {
+    min-width: 58px;
+    font-size: 1.2rem;
+  }
+
+  .pomodoro-reveal-tab {
+    padding: 9px 10px;
+  }
+
+  .pomodoro-reveal-text {
+    display: none;
+  }
 }
 
 /* ── Notification Banner ────────────────────────────── */

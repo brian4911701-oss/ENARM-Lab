@@ -192,16 +192,23 @@
         </aside>
 
         <!-- POMODORO FLOATING WIDGET -->
-        <div class="pomodoro-floating-widget">
-            <div class="pomo-mini-header">
-                <span class="pomo-icon">&#x1F345;</span>
-                <span class="pomo-time-mini" id="pomo-time">25:00</span>
+        <div class="pomodoro-widget-shell" id="pomodoro-widget-shell">
+            <button class="pomodoro-reveal-tab" id="btn-pomo-reveal" type="button" aria-label="Mostrar cronómetro pomodoro" title="Mostrar pomodoro">
+                <span class="pomodoro-reveal-icon">🍅</span>
+                <span class="pomodoro-reveal-text">Pomodoro</span>
+            </button>
+            <div class="pomodoro-floating-widget" id="pomodoro-widget">
+                <button class="pomodoro-hide-btn" id="btn-pomo-hide" type="button" aria-label="Esconder cronómetro pomodoro" title="Esconder pomodoro">›</button>
+                <div class="pomo-mini-header">
+                    <span class="pomo-icon">&#x1F345;</span>
+                    <span class="pomo-time-mini" id="pomo-time">25:00</span>
+                </div>
+                <div class="pomo-actions">
+                    <button class="btn-pomo-mini" id="btn-pomo-toggle">INICIAR</button>
+                    <button class="btn-pomo-mini" id="btn-pomo-reset">↺</button>
+                </div>
+                <div class="pomo-sessions-mini" id="pomo-sessions">Hoy: 0</div>
             </div>
-            <div class="pomo-actions">
-                <button class="btn-pomo-mini" id="btn-pomo-toggle">INICIAR</button>
-                <button class="btn-pomo-mini" id="btn-pomo-reset">↺</button>
-            </div>
-            <div class="pomo-sessions-mini" id="pomo-sessions">Hoy: 0</div>
         </div>
 
         <!-- MOBILE TOP BAR -->
