@@ -6823,10 +6823,50 @@
             $("ov-bar-errores").style.width = `${pE}%`;
             $("ov-bar-omitidas").style.width = `${pO}%`;
 
-            // Move labels dynamically so they stay attached to their sections
-            $("ov-label-1").style.left = `0%`;
-            $("ov-label-2").style.left = `${pA}%`;
-            $("ov-label-3").style.left = `${pA + pE}%`;
+            // Position labels by segment center and enforce minimum spacing to avoid overlap.
+            const ovContainer = $("overview-labels-container");
+            const ovLabel1 = $("ov-label-1");
+            const ovLabel2 = $("ov-label-2");
+            const ovLabel3 = $("ov-label-3");
+
+            if (ovContainer && ovLabel1 && ovLabel2 && ovLabel3) {
+                const containerWidth = ovContainer.clientWidth || 0;
+                const minGapPx = 8;
+
+                const labelNodes = [
+                    { el: ovLabel1, startPct: 0, endPct: pA },
+                    { el: ovLabel2, startPct: pA, endPct: pA + pE },
+                    { el: ovLabel3, startPct: pA + pE, endPct: 100 }
+                ];
+
+                const layout = labelNodes.map((item) => {
+                    const width = item.el.offsetWidth || 0;
+                    const centerPct = (item.startPct + item.endPct) / 2;
+                    const targetPx = (centerPct / 100) * containerWidth;
+                    const maxLeft = Math.max(0, containerWidth - width);
+                    const left = Math.max(0, Math.min(targetPx - (width / 2), maxLeft));
+                    return { ...item, width, maxLeft, left };
+                });
+
+                for (let i = 1; i < layout.length; i++) {
+                    const prev = layout[i - 1];
+                    const curr = layout[i];
+                    const minLeft = prev.left + prev.width + minGapPx;
+                    if (curr.left < minLeft) curr.left = Math.min(minLeft, curr.maxLeft);
+                }
+
+                for (let i = layout.length - 2; i >= 0; i--) {
+                    const curr = layout[i];
+                    const next = layout[i + 1];
+                    const maxLeft = next.left - curr.width - minGapPx;
+                    if (curr.left > maxLeft) curr.left = Math.max(0, maxLeft);
+                }
+
+                layout.forEach((item) => {
+                    item.el.style.left = `${Math.round(item.left)}px`;
+                    item.el.style.transform = "none";
+                });
+            }
         }
 
         // Lógica de Rangos
