@@ -76,6 +76,7 @@
     const PUSH_TOKEN_COLLECTION = "user_push_tokens";
     const FEEDBACK_COLLECTION = "feedback_submissions";
     const ADMIN_INBOX_UID = ADMIN_UIDS[0];
+    const COMMUNITY_NOTIF_LAST_SEEN_KEY = "enarm_community_notif_last_seen";
     const TRONCAL_SPECIALTIES = ["mi", "ped", "gyo", "cir"];
     const TRONCAL_LABELS = {
         mi: "Medicina Interna",
@@ -7775,6 +7776,9 @@
         const openNotifModal = () => {
             if (notifModal) {
                 notifModal.style.display = "flex";
+                if (typeof window.markCommunityAnnouncementsSeen === 'function') {
+                    try { window.markCommunityAnnouncementsSeen(); } catch (e) { console.error(e); }
+                }
                 if (typeof window.loadPendingRequests === 'function') {
                     try { window.loadPendingRequests(); } catch (e) { console.error(e); }
                 }
@@ -8399,18 +8403,33 @@
                 const chalRef = window.FB.collection(window.FB.db, "challenges");
                 const qChal = window.FB.query(chalRef, window.FB.where("participantIds", "array-contains", window.FB.auth.currentUser.uid), window.FB.where("status", "==", "active"));
 
+                const annRef = window.FB.collection(window.FB.db, "community_announcements");
+                const qAnn = window.FB.query(annRef, window.FB.orderBy("createdAt", "desc"), window.FB.limit(25));
+
                 let pendingFriends = [];
                 let pendingChallenges = [];
+                let pendingAnnouncements = [];
+
+                const getCommunityLastSeenTs = () => parseInt(localStorage.getItem(COMMUNITY_NOTIF_LAST_SEEN_KEY) || "0", 10);
+                const getLatestCommunityTs = () => pendingAnnouncements.reduce((max, item) => Math.max(max, Number(item.createdAt || 0)), 0);
+
+                window.markCommunityAnnouncementsSeen = () => {
+                    const latestTs = getLatestCommunityTs();
+                    if (latestTs > 0) {
+                        localStorage.setItem(COMMUNITY_NOTIF_LAST_SEEN_KEY, String(latestTs));
+                    }
+                };
 
                 // Mover renderMergedNotifications al scope exterior para que sea accesible
                 const renderMergedNotifications = () => {
                     const profileListEl = $("pending-requests-list");
                     const modalListEl = $("notif-list-container");
                     const badgeMain = $("notif-badge-main");
+                    const communityUnread = pendingAnnouncements.filter(item => Number(item.createdAt || 0) > getCommunityLastSeenTs()).length;
+                    const unreadTotal = pendingFriends.length + pendingChallenges.length + communityUnread;
+                    const visibleTotal = pendingFriends.length + pendingChallenges.length + pendingAnnouncements.length;
 
-                    const total = pendingFriends.length + pendingChallenges.length;
-
-                    if (total === 0) {
+                    if (visibleTotal === 0) {
                         const emptyMsg = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; padding: 20px;">No tienes notificaciones nuevas.</div>';
                         if (profileListEl) profileListEl.innerHTML = emptyMsg;
                         if (modalListEl) modalListEl.innerHTML = emptyMsg;
@@ -8419,11 +8438,32 @@
                     }
 
                     if (badgeMain) {
-                        badgeMain.style.display = "block";
-                        badgeMain.textContent = total; // Mostrar número de notificaciones
+                        if (unreadTotal > 0) {
+                            badgeMain.style.display = "block";
+                            badgeMain.textContent = unreadTotal;
+                        } else {
+                            badgeMain.style.display = "none";
+                        }
                     }
 
                     let html = "";
+
+                    pendingAnnouncements.forEach(data => {
+                        const ts = Number(data.createdAt || 0);
+                        const isUnread = ts > getCommunityLastSeenTs();
+                        const when = ts > 0 ? new Date(ts).toLocaleString("es-MX") : "Reciente";
+                        html += `
+                        <div style="background:rgba(59,130,246,0.09); padding:14px; border-radius:14px; border: 1px solid rgba(59,130,246,0.28); margin-bottom: 8px;">
+                            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:8px;">
+                                <div>
+                                    <div style="font-weight:bold; font-size:14px; color: var(--accent-blue);">${escapeHtml(data.title || "Aviso ENARM Lab")}</div>
+                                    <div style="font-size:11px; color: var(--text-muted);">${when}</div>
+                                </div>
+                                ${isUnread ? '<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(16,185,129,0.18); color:var(--accent-green); border:1px solid rgba(16,185,129,0.35); font-weight:bold;">Nuevo</span>' : ''}
+                            </div>
+                            <div style="font-size:13px; color:var(--text-primary); line-height:1.45;">${escapeHtml(data.message || "")}</div>
+                        </div>`;
+                    });
 
                     // Render friends
                     pendingFriends.forEach(data => {
@@ -8547,6 +8587,35 @@
                             pendingChallenges.push({ id: doc.id, ...d });
                         }
                     });
+                    renderMergedNotifications();
+                });
+
+                let firstLoadAnnouncements = true;
+                window.FB.onSnapshot(qAnn, (snap) => {
+                    const added = snap.docChanges().filter(c => c.type === 'added');
+                    if (!firstLoadAnnouncements && added.length > 0) {
+                        added.forEach(c => {
+                            const d = c.doc.data() || {};
+                            showBanner(
+                                escapeHtml(d.title || "Aviso ENARM Lab"),
+                                escapeHtml(d.message || ""),
+                                "&#x1F4E2;",
+                                () => {
+                                    const notifModal = $("notif-modal");
+                                    if (notifModal) {
+                                        notifModal.style.display = "flex";
+                                        if (typeof window.markCommunityAnnouncementsSeen === 'function') {
+                                            window.markCommunityAnnouncementsSeen();
+                                        }
+                                        renderMergedNotifications();
+                                    }
+                                }
+                            );
+                        });
+                    }
+                    firstLoadAnnouncements = false;
+                    pendingAnnouncements = [];
+                    snap.forEach(doc => pendingAnnouncements.push({ id: doc.id, ...doc.data() }));
                     renderMergedNotifications();
                 });
             };
