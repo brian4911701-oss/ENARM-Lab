@@ -989,6 +989,13 @@
                                 <p>Enviar un mensaje global con notificación push a todos los usuarios.</p>
                             </div>
                         </div>
+                        <div class="list-item" id="mas-feedback-admin-item" onclick="showView('view-feedback-admin')"
+                            style="cursor: pointer; display: none;">
+                            <div class="list-item-content">
+                                <h3>&#x1F4E5; Feedback recibidos</h3>
+                                <p>Revisa los mensajes enviados por la comunidad.</p>
+                            </div>
+                        </div>
                         <div class="list-item" onclick="showView('view-feedback')" style="cursor: pointer;">
                             <div class="list-item-content">
                                 <h3>&#x1F4AC; Enviar Feedback</h3>
@@ -1103,9 +1110,31 @@
                                 placeholder="Describe el problema o tu idea..."></textarea>
                         </div>
                         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                            <button class="btn-primary" onclick="openFeedbackEmail()">Enviar feedback</button>
+                            <button class="btn-primary" onclick="submitFeedback()">Enviar feedback</button>
                             <button class="btn-ghost" onclick="copyFeedbackToClipboard()">Copiar texto</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-feedback-admin" class="view">
+                <div class="panel">
+                    <div class="panel-header"
+                        style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h2 class="panel-title"><span class="title-icon green-text">&#x1F4E5;</span> Feedback recibidos</h2>
+                            <p class="panel-subtitle">Mensajes enviados por los usuarios de ENARM Lab.</p>
+                        </div>
+                        <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
+                    </div>
+
+                    <div id="feedback-admin-locked"
+                        style="display: none; margin-top: 16px; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-secondary);">
+                        Acceso restringido.
+                    </div>
+
+                    <div id="feedback-admin-content" style="margin-top: 20px;">
+                        <div id="feedback-admin-list" class="list-grid"></div>
                     </div>
                 </div>
             </div>

@@ -58,7 +58,9 @@
         entitlementUnsub: null,
         adminPreviewMode: "premium",
         caseOverrideMap: null,
-        caseOverridesUnsub: null
+        caseOverridesUnsub: null,
+        feedbackInbox: [],
+        feedbackAdminUnsub: null
     };
 
     const $ = (id) => document.getElementById(id);
@@ -72,6 +74,8 @@
     const NOTIFICATION_ICON = "/notification-icon.png";
     const NOTIFICATION_BADGE = "/notification-badge.png";
     const PUSH_TOKEN_COLLECTION = "user_push_tokens";
+    const FEEDBACK_COLLECTION = "feedback_submissions";
+    const ADMIN_INBOX_UID = ADMIN_UIDS[0];
     const TRONCAL_SPECIALTIES = ["mi", "ped", "gyo", "cir"];
     const TRONCAL_LABELS = {
         mi: "Medicina Interna",
@@ -1052,12 +1056,18 @@
         if (item) item.style.display = allowed ? "flex" : "none";
         const broadcastItem = $("mas-community-broadcast-item");
         if (broadcastItem) broadcastItem.style.display = allowed ? "flex" : "none";
+        const feedbackAdminItem = $("mas-feedback-admin-item");
+        if (feedbackAdminItem) feedbackAdminItem.style.display = allowed ? "flex" : "none";
         const content = $("reclassify-content");
         const locked = $("reclassify-locked");
         if (content) content.style.display = allowed ? "block" : "none";
         if (locked) locked.style.display = allowed ? "none" : "block";
         const deleteBtn = $("btn-reclass-delete");
         if (deleteBtn) deleteBtn.style.display = allowed ? "inline-flex" : "none";
+        const feedbackContent = $("feedback-admin-content");
+        const feedbackLocked = $("feedback-admin-locked");
+        if (feedbackContent) feedbackContent.style.display = allowed ? "block" : "none";
+        if (feedbackLocked) feedbackLocked.style.display = allowed ? "none" : "block";
     };
 
     const refreshReclassData = () => {
@@ -1433,6 +1443,137 @@
         const body = buildFeedbackText();
         const mailto = `mailto:${FEEDBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailto;
+    };
+
+    const renderAdminFeedbackInbox = () => {
+        const list = $("feedback-admin-list");
+        if (!list) return;
+        if (!isAdminUser()) {
+            list.innerHTML = "";
+            return;
+        }
+        const rows = Array.isArray(State.feedbackInbox) ? State.feedbackInbox : [];
+        if (rows.length === 0) {
+            list.innerHTML = `<div class="list-item empty-history"><p style="color:var(--text-muted); padding: 20px;">No hay feedback recibido aún.</p></div>`;
+            return;
+        }
+
+        list.innerHTML = rows.map((item) => {
+            const createdAt = Number(item.createdAt || 0);
+            const createdLabel = createdAt > 0
+                ? new Date(createdAt).toLocaleString("es-MX")
+                : "Sin fecha";
+            const fromName = escapeHtml(item.name || item.createdByName || "Anónimo");
+            const fromEmail = escapeHtml(item.email || "Sin email");
+            const type = escapeHtml(item.type || "General");
+            const message = escapeHtml(item.message || "").replace(/\n/g, "<br>");
+
+            return `
+                <div class="list-item" style="border-left: 4px solid var(--accent-green);">
+                    <div class="list-item-content" style="gap:8px; display:flex; flex-direction:column;">
+                        <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+                            <h3 style="margin:0;">${fromName}</h3>
+                            <span style="font-size:12px; color:var(--text-muted);">${createdLabel}</span>
+                        </div>
+                        <p style="margin:0; color:var(--text-muted); font-size:13px;">Tipo: <strong>${type}</strong></p>
+                        <p style="margin:0; color:var(--text-muted); font-size:13px;">Email: ${fromEmail}</p>
+                        <div style="padding:12px; border:1px solid var(--border); border-radius:10px; background:rgba(255,255,255,0.03); line-height:1.45;">
+                            ${message || "(Sin mensaje)"}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join("");
+    };
+
+    const initFeedbackAdminInbox = () => {
+        if (!isAdminUser()) {
+            if (State.feedbackAdminUnsub) {
+                State.feedbackAdminUnsub();
+                State.feedbackAdminUnsub = null;
+            }
+            State.feedbackInbox = [];
+            renderAdminFeedbackInbox();
+            return;
+        }
+        if (State.feedbackAdminUnsub) return;
+        if (!window.FB || !window.FB.db || !window.FB.auth || !window.FB.auth.currentUser) return;
+
+        const ref = window.FB.collection(window.FB.db, FEEDBACK_COLLECTION);
+        const q = window.FB.query(ref, window.FB.orderBy("createdAt", "desc"), window.FB.limit(300));
+        State.feedbackAdminUnsub = window.FB.onSnapshot(q, (snap) => {
+            const rows = [];
+            snap.forEach((doc) => {
+                const data = doc.data() || {};
+                if (String(data.recipientAdminUid || "") !== ADMIN_INBOX_UID) return;
+                rows.push({ id: doc.id, ...data, source: "cloud" });
+            });
+            State.feedbackInbox = rows;
+            renderAdminFeedbackInbox();
+        }, (err) => {
+            console.error("Error cargando feedback admin:", err);
+            const msg = String((err && (err.code || err.message)) || "").toLowerCase();
+            if (msg.includes("permission-denied") || msg.includes("missing or insufficient permissions")) {
+                showNotification("No tienes permisos para ver feedback en Firebase.", "error");
+            }
+        });
+    };
+
+    const submitFeedback = async () => {
+        const name = $("feedback-name")?.value?.trim() || "";
+        const email = $("feedback-email")?.value?.trim() || "";
+        const type = $("feedback-type")?.value?.trim() || "General";
+        const message = $("feedback-message")?.value?.trim() || "";
+
+        if (!message) {
+            showNotification("Escribe un mensaje de feedback.", "warning");
+            return;
+        }
+        if (!window.FB || !window.FB.db || !window.FB.addDoc || !window.FB.collection) {
+            showNotification("Firebase no está listo. Intenta de nuevo.", "error");
+            return;
+        }
+        if (!window.FB.auth || !window.FB.auth.currentUser) {
+            showNotification("Inicia sesión para enviar feedback.", "warning");
+            return;
+        }
+
+        const btn = document.querySelector("#view-feedback .btn-primary");
+        const previousText = btn ? btn.textContent : "";
+        if (btn) {
+            btn.disabled = true;
+            btn.textContent = "Enviando...";
+        }
+
+        try {
+            await window.FB.addDoc(window.FB.collection(window.FB.db, FEEDBACK_COLLECTION), {
+                name,
+                email,
+                type,
+                message: message.slice(0, 2000),
+                createdAt: Date.now(),
+                createdByUid: window.FB.auth.currentUser.uid,
+                createdByName: State.userName || "",
+                recipientAdminUid: ADMIN_INBOX_UID,
+                status: "new",
+                source: "in_app"
+            });
+            if ($("feedback-message")) $("feedback-message").value = "";
+            showNotification("Gracias. Tu feedback fue enviado.", "success");
+        } catch (err) {
+            console.error("Error enviando feedback:", err);
+            const msg = String((err && (err.code || err.message)) || "").toLowerCase();
+            if (msg.includes("permission-denied") || msg.includes("missing or insufficient permissions")) {
+                showNotification("No tienes permiso para enviar feedback.", "error");
+            } else {
+                showNotification("No se pudo enviar el feedback.", "error");
+            }
+        } finally {
+            if (btn) {
+                btn.disabled = false;
+                btn.textContent = previousText || "Enviar feedback";
+            }
+        }
     };
 
     const copyFeedbackToClipboard = async () => {
@@ -1947,10 +2088,15 @@
         if (viewId === "view-calculadora") initCalculator();
         if (viewId === "view-temario") renderOfficialTemario();
         if (viewId === "view-reportes") renderReportedQuestions();
+        if (viewId === "view-feedback-admin") {
+            initFeedbackAdminInbox();
+            renderAdminFeedbackInbox();
+        }
         if (viewId === "view-reclassify") renderReclassifyView();
     };
     window.showView = showView; // Hacerla global para onclick de HTML
     window.openFeedbackEmail = openFeedbackEmail;
+    window.submitFeedback = submitFeedback;
     window.copyFeedbackToClipboard = copyFeedbackToClipboard;
 
     const saveGlobalStats = () => {
@@ -9216,6 +9362,7 @@
                             bindEntitlementListener(user.uid);
                             syncPremiumUI();
                             initCloudFeatures();
+                            initFeedbackAdminInbox();
                             setupChallengeLogic();
                             if (typeof window.loadPendingRequests === "function") {
                                 window.loadPendingRequests(); // Iniciar notificaciones push automáticas
@@ -9274,6 +9421,12 @@
                                 State.caseOverridesUnsub();
                                 State.caseOverridesUnsub = null;
                             }
+                            if (State.feedbackAdminUnsub) {
+                                State.feedbackAdminUnsub();
+                                State.feedbackAdminUnsub = null;
+                            }
+                            State.feedbackInbox = [];
+                            renderAdminFeedbackInbox();
                             const uidInput = $("profile-uid");
                             if (uidInput) uidInput.value = "";
                             syncReclassAccessUI();
