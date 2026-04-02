@@ -5835,27 +5835,17 @@
                         return showNotification("No hay suficientes preguntas para generar el simulacro real.", "warning");
                     }
 
-                    State.questionSet = realSet.questionSet;
-                    State.mode = "simulacro";
-                    State.currentExamIsReal = true;
-                    State.currentExamType = "Simulacro Real";
-
                     if (realSet.warnings.length > 0) {
                         showNotification(realSet.warnings[0], "warning");
                     }
 
-                    State.durationSec = isLibre ? 0 : (timerVal || REAL_SIM_CONFIG.timeMin) * 60;
-                    State.currentIndex = 0;
-                    State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
-                    State.startTime = Date.now();
-                    State.pausedElapsedTime = 0;
-                    State.examActive = true;
-                    isFinishing = false;
-                    renderExamQuestion();
-                    showView("view-exam");
-
-                    if (!isLibre && State.durationSec > 0) startTimer();
-                    else if ($("timer-display")) $("timer-display").style.display = "none";
+                    beginExamSession({
+                        questionSet: realSet.questionSet,
+                        mode: "simulacro",
+                        currentExamIsReal: true,
+                        currentExamType: "Simulacro Real",
+                        durationSec: isLibre ? 0 : (timerVal || REAL_SIM_CONFIG.timeMin) * 60
+                    });
                     return;
                 }
 
@@ -5912,27 +5902,15 @@
                     showNotification(`La base de datos contiene solo ${finalQty} preguntas aplicables a tu filtro actual. Limitando el simulacro a esa cantidad.`);
                 }
 
-
-                State.questionSet = finalQuestionSet;
-
                 const selectedModeBtn = document.querySelector(".mode-toggle-btn.active");
                 const modeVal = selectedModeBtn ? selectedModeBtn.dataset.examMode : "casos";
-                State.mode = !hasPremium ? "estudio" : (modeVal === "casos" ? "simulacro" : "estudio");
-
-                State.durationSec = !hasPremium ? 0 : (isLibre ? 0 : (timerVal || 60) * 60);
-                State.currentIndex = 0;
-                State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
-                State.currentExamIsReal = false;
-                State.currentExamType = !hasPremium ? "Demo Estudio" : (isLibre ? "Estudio Libre" : "Examen Cronometrado");
-                State.startTime = Date.now();
-                State.pausedElapsedTime = 0;
-                State.examActive = true;
-                isFinishing = false;
-                renderExamQuestion();
-                showView("view-exam");
-
-                if (!isLibre && State.durationSec > 0) startTimer();
-                else if ($("timer-display")) $("timer-display").style.display = "none";
+                beginExamSession({
+                    questionSet: finalQuestionSet,
+                    mode: !hasPremium ? "estudio" : (modeVal === "casos" ? "simulacro" : "estudio"),
+                    currentExamIsReal: false,
+                    currentExamType: !hasPremium ? "Demo Estudio" : (isLibre ? "Estudio Libre" : "Examen Cronometrado"),
+                    durationSec: !hasPremium ? 0 : (isLibre ? 0 : (timerVal || 60) * 60)
+                });
             });
         }
     };
@@ -6023,19 +6001,13 @@
             showNotification(`Solo tenemos ${pool.length} preguntas disponibles para este tema.`);
         }
 
-        State.questionSet = processAndFlattenPool(pool, finalQty);
-        State.mode = "simulacro";
-        State.currentExamIsReal = false;
-        State.durationSec = 0;
-        State.currentIndex = 0;
-        State.startTime = Date.now();
-        State.pausedElapsedTime = 0;
-        State.examActive = true;
-        State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
-        State.currentExamType = label;
-        isFinishing = false;
-        renderExamQuestion();
-        showView("view-exam");
+        beginExamSession({
+            questionSet: processAndFlattenPool(pool, finalQty),
+            mode: "simulacro",
+            currentExamIsReal: false,
+            currentExamType: label,
+            durationSec: 0
+        });
     };
 
     const startQuickSession = (specs, qty, label) => {
@@ -6048,19 +6020,13 @@
             finalQty = pool.length;
         }
 
-        State.questionSet = processAndFlattenPool(pool, finalQty);
-        State.mode = "simulacro";
-        State.currentExamIsReal = false;
-        State.durationSec = 0;
-        State.currentIndex = 0;
-        State.startTime = Date.now();
-        State.pausedElapsedTime = 0;
-        State.examActive = true;
-        State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
-        State.currentExamType = label;
-        isFinishing = false;
-        renderExamQuestion();
-        showView("view-exam");
+        beginExamSession({
+            questionSet: processAndFlattenPool(pool, finalQty),
+            mode: "simulacro",
+            currentExamIsReal: false,
+            currentExamType: label,
+            durationSec: 0
+        });
     };
 
     // ---------------------------------------------------------------------------
@@ -6303,31 +6269,104 @@
         });
     };
 
+    const clearExamTimer = () => {
+        if (State.timer) {
+            clearInterval(State.timer);
+            State.timer = null;
+        }
+    };
+
+    const setExamTimerVisibility = (visible, seconds = null) => {
+        const timerDisp = $("timer-display");
+        const timerText = $("timer-text");
+        if (timerDisp) timerDisp.style.display = visible ? "block" : "none";
+        if (timerText && typeof seconds === "number") {
+            timerText.textContent = formatTime(Math.max(seconds, 0));
+        }
+    };
+
+    const getExamElapsedSeconds = () => {
+        if (!State.startTime) return State.pausedElapsedTime || 0;
+        return Math.max(Math.floor((Date.now() - State.startTime) / 1000), 0);
+    };
+
+    const beginExamSession = ({
+        questionSet,
+        mode = "simulacro",
+        currentExamIsReal = false,
+        currentExamType = "Simulacro",
+        durationSec = 0
+    }) => {
+        if (!Array.isArray(questionSet) || questionSet.length === 0) {
+            clearExamTimer();
+            State.questionSet = [];
+            State.currentIndex = 0;
+            State.answers = [];
+            State.startTime = null;
+            State.pausedElapsedTime = 0;
+            State.examActive = false;
+            setExamTimerVisibility(false, 0);
+            showNotification("No hay preguntas disponibles para iniciar este examen.", "warning");
+            return false;
+        }
+
+        clearExamTimer();
+        State.questionSet = questionSet;
+        State.mode = mode;
+        State.currentExamIsReal = currentExamIsReal;
+        State.currentExamType = currentExamType;
+        State.durationSec = Math.max(parseInt(durationSec, 10) || 0, 0);
+        State.currentIndex = 0;
+        State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
+        State.startTime = Date.now();
+        State.pausedElapsedTime = 0;
+        State.examActive = true;
+        isFinishing = false;
+
+        renderExamQuestion();
+        showView("view-exam");
+
+        if (State.durationSec > 0) {
+            startTimer();
+        } else {
+            setExamTimerVisibility(false, 0);
+        }
+        return true;
+    };
+
     const startTimer = (isResume = false) => {
-        const timerDisp = $("timer-display"); if (timerDisp) timerDisp.style.display = "block";
+        if (State.durationSec <= 0) {
+            clearExamTimer();
+            setExamTimerVisibility(false, 0);
+            return;
+        }
+
         if (!isResume) {
             State.startTime = Date.now();
             State.pausedElapsedTime = 0;
         } else {
             State.startTime = Date.now() - (State.pausedElapsedTime * 1000);
         }
-        const timerText = $("timer-text");
-        if (State.timer) clearInterval(State.timer);
-        State.timer = setInterval(() => {
-            const elapsed = Math.floor((Date.now() - State.startTime) / 1000);
-            const remaining = Math.max(State.durationSec - elapsed, 0);
-            if (timerText) timerText.textContent = formatTime(remaining);
+
+        const updateTimerText = () => {
+            const remaining = Math.max(State.durationSec - getExamElapsedSeconds(), 0);
+            setExamTimerVisibility(true, remaining);
             if (remaining <= 0) finishExam();
+        };
+
+        clearExamTimer();
+        updateTimerText();
+        if (!State.examActive) return;
+
+        State.timer = setInterval(() => {
+            updateTimerText();
         }, 1000);
     };
 
     const pauseTimer = () => {
-        if (State.timer) {
-            clearInterval(State.timer);
-            State.timer = null;
-        }
+        clearExamTimer();
         if (State.startTime) {
-            State.pausedElapsedTime = Math.floor((Date.now() - State.startTime) / 1000);
+            State.pausedElapsedTime = getExamElapsedSeconds();
         }
     };
 
@@ -6584,10 +6623,7 @@
         if (isFinishing) return;
         isFinishing = true;
         try {
-            if (State.timer) {
-                clearInterval(State.timer);
-                State.timer = null;
-            }
+            clearExamTimer();
 
             let correct = 0, wrong = 0, blank = 0;
             State.answers.forEach((a, i) => {
@@ -9074,21 +9110,13 @@
                     showNotification(`Se cargaron ${trimmedSet.length} de ${resolvedQty} preguntas.`, "warning");
                 }
 
-                State.questionSet = trimmedSet;
-                State.mode = "simulacro";
-                State.currentExamIsReal = false;
-                State.durationSec = 0;
-                State.currentIndex = 0;
-                State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
-                State.currentExamType = "Reto Amistoso";
-                State.startTime = Date.now();
-                State.pausedElapsedTime = 0;
-                State.examActive = true;
-                isFinishing = false;
-
-                if (typeof renderExamQuestion === "function") renderExamQuestion();
-                showView("view-exam");
-                if ($("timer-display")) $("timer-display").style.display = "none";
+                beginExamSession({
+                    questionSet: trimmedSet,
+                    mode: "simulacro",
+                    currentExamIsReal: false,
+                    currentExamType: "Reto Amistoso",
+                    durationSec: 0
+                });
 
                 showNotification("¡Reto iniciado! Buena suerte.", "info");
             };
