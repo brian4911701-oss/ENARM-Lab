@@ -15,6 +15,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "sanitize:cases": "node scripts/sanitize_case_bank.js",
     "verify:cases": "node verify_topics.js",
+    "import:pdf:structured": "node scripts/import_structured_pdf_cases.js",
     "block:ped": "node scripts/run_block_cleanup.js --block ped",
     "block:gyo": "node scripts/run_block_cleanup.js --block gyo",
     "block:cir": "node scripts/run_block_cleanup.js --block cir",
