@@ -328,18 +328,6 @@
         return false;
     };
 
-    if (typeof QUESTIONS !== "undefined" && Array.isArray(QUESTIONS)) {
-        QUESTIONS.forEach(q => {
-            if (!q) return;
-            if (q.specialtyOriginal === undefined) q.specialtyOriginal = q.specialty || "";
-            q.specialty = normalizeSpecialtyToTroncal(q);
-            q.temaCanonical = getCaseCanonicalTopic(q);
-            if (!sanitizeTopicLabel(q.tema)) q.tema = q.temaCanonical;
-            if (!sanitizeTopicLabel(q.subtema)) q.subtema = q.temaCanonical;
-        });
-        invalidateTopicIndex();
-    }
-
     const showNotification = (msg, type = 'info', durationMs = 3500) => {
         let container = $('notification-container');
         if (!container) {
@@ -363,6 +351,108 @@
             toast.addEventListener('animationend', () => toast.remove());
         }, durationMs);
     };
+
+    let questionsLoadPromise = null;
+    let questionsHydrated = false;
+
+    const hasQuestionsBankLoaded = () => {
+        return typeof QUESTIONS !== "undefined" && Array.isArray(QUESTIONS) && QUESTIONS.length > 0;
+    };
+
+    const withTemporaryButtonLabel = async (button, loadingLabel, task) => {
+        if (!button) return task();
+        const previousHtml = button.innerHTML;
+        const wasDisabled = button.disabled;
+        button.disabled = true;
+        button.textContent = loadingLabel;
+        try {
+            return await task();
+        } finally {
+            button.disabled = wasDisabled;
+            button.innerHTML = previousHtml;
+        }
+    };
+
+    const loadQuestionsScript = () => {
+        if (hasQuestionsBankLoaded()) return Promise.resolve(QUESTIONS);
+        if (questionsLoadPromise) return questionsLoadPromise;
+
+        questionsLoadPromise = new Promise((resolve, reject) => {
+            const resolveReady = () => {
+                if (hasQuestionsBankLoaded()) {
+                    resolve(QUESTIONS);
+                    return;
+                }
+                questionsLoadPromise = null;
+                reject(new Error("questions_missing_after_load"));
+            };
+            const rejectLoad = () => {
+                questionsLoadPromise = null;
+                reject(new Error("questions_load_failed"));
+            };
+
+            const existing = document.querySelector('script[data-questions-bank="1"]');
+            if (existing) {
+                if (existing.dataset.loaded === "1") {
+                    resolveReady();
+                    return;
+                }
+                existing.addEventListener("load", resolveReady, { once: true });
+                existing.addEventListener("error", rejectLoad, { once: true });
+                return;
+            }
+
+            const script = document.createElement("script");
+            script.src = "./questions.js";
+            script.charset = "UTF-8";
+            script.async = true;
+            script.dataset.questionsBank = "1";
+            script.addEventListener("load", () => {
+                script.dataset.loaded = "1";
+                resolveReady();
+            }, { once: true });
+            script.addEventListener("error", () => {
+                script.remove();
+                rejectLoad();
+            }, { once: true });
+            document.body.appendChild(script);
+        });
+
+        return questionsLoadPromise;
+    };
+
+    const hydrateLoadedQuestions = () => {
+        if (questionsHydrated || !hasQuestionsBankLoaded()) return;
+        QUESTIONS.forEach(q => {
+            if (!q) return;
+            if (q.specialtyOriginal === undefined) q.specialtyOriginal = q.specialty || "";
+            q.specialty = normalizeSpecialtyToTroncal(q);
+            q.temaCanonical = getCaseCanonicalTopic(q);
+            if (!sanitizeTopicLabel(q.tema)) q.tema = q.temaCanonical;
+            if (!sanitizeTopicLabel(q.subtema)) q.subtema = q.temaCanonical;
+        });
+        State.reclassMap = applyCaseReclassifications();
+        questionsHydrated = true;
+    };
+
+    const ensureQuestionsReady = async (opts = {}) => {
+        const { silent = false } = opts;
+        try {
+            await loadQuestionsScript();
+            hydrateLoadedQuestions();
+            return QUESTIONS;
+        } catch (err) {
+            console.error("No se pudo cargar el banco de preguntas:", err);
+            if (!silent) {
+                showNotification("No se pudo cargar el banco de preguntas. Recarga la app e intenta de nuevo.", "error");
+            }
+            throw err;
+        }
+    };
+
+    if (hasQuestionsBankLoaded()) {
+        hydrateLoadedQuestions();
+    }
 
     const normalizeTimestamp = (value) => {
         if (!value) return null;
@@ -1250,9 +1340,14 @@
         if (countEl) countEl.textContent = `${filtered.length} casos`;
     };
 
-    const renderReclassifyView = () => {
+    const renderReclassifyView = async () => {
         syncReclassAccessUI();
         if (!canReclassifyUser()) return;
+        try {
+            await ensureQuestionsReady({ silent: false });
+        } catch (err) {
+            return;
+        }
         State.reclassMap = applyCaseReclassifications();
         refreshReclassData();
         populateReclassSelects();
@@ -2097,7 +2192,7 @@
             initFeedbackAdminInbox();
             renderAdminFeedbackInbox();
         }
-        if (viewId === "view-reclassify") renderReclassifyView();
+        if (viewId === "view-reclassify") void renderReclassifyView();
     };
     window.showView = showView; // Hacerla global para onclick de HTML
     window.openFeedbackEmail = openFeedbackEmail;
@@ -5832,7 +5927,7 @@
 
         const btnStart = $("btn-start-final-exam");
         if (btnStart) {
-            btnStart.addEventListener("click", () => {
+            btnStart.addEventListener("click", async () => {
 
                 const isRealSim = State.selectedPresetId === "preset-real";
                 const selectedSpecs = $$(".spec-item.checked")
@@ -5884,87 +5979,95 @@
                     }
                 }
 
-                if (isRealSim) {
-                    const realSet = buildRealSimulacroQuestionSet();
-                    if (!realSet.questionSet || realSet.questionSet.length === 0) {
-                        return showNotification("No hay suficientes preguntas para generar el simulacro real.", "warning");
+                await withTemporaryButtonLabel(btnStart, "Preparando...", async () => {
+                    try {
+                        await ensureQuestionsReady({ silent: false });
+                    } catch (err) {
+                        return;
                     }
 
-                    if (realSet.warnings.length > 0) {
-                        showNotification(realSet.warnings[0], "warning");
-                    }
-
-                    beginExamSession({
-                        questionSet: realSet.questionSet,
-                        mode: "simulacro",
-                        currentExamIsReal: true,
-                        currentExamType: "Simulacro Real",
-                        durationSec: isLibre ? 0 : (timerVal || REAL_SIM_CONFIG.timeMin) * 60
-                    });
-                    return;
-                }
-
-                let pool = [];
-                if (selectedSpecs.length > 0) {
-                    pool = QUESTIONS.filter(q => selectedSpecs.includes(normalizeSpecialtyToTroncal(q)));
-                } else {
-                    pool = QUESTIONS.filter(q => TRONCAL_SPECIALTIES.includes(normalizeSpecialtyToTroncal(q)));
-                }
-
-                // Filtrado por Temas Seleccionados
-                if (State.selectedTopics.length > 0) {
-                    const selectedTopicState = buildSelectedTopicState(State.selectedTopics);
-                    pool = pool.filter(q => caseMatchesSelectedTopics(q, selectedTopicState));
-                }
-                pool = filterQuarantinedPool(pool);
-
-                // Filtrado por Dificultad
-                let poolPrimary = [...pool];
-                let poolSecondary = [];
-
-                if (State.difficulty && State.difficulty !== "cualquiera") {
-                    poolPrimary = pool.filter(q => {
-                        const qDiff = (q.difficulty || "alta").toLowerCase();
-                        if (State.difficulty === "alta") {
-                            return qDiff === "alta" || qDiff === "muy-alta";
+                    if (isRealSim) {
+                        const realSet = buildRealSimulacroQuestionSet();
+                        if (!realSet.questionSet || realSet.questionSet.length === 0) {
+                            return showNotification("No hay suficientes preguntas para generar el simulacro real.", "warning");
                         }
-                        return qDiff === State.difficulty;
-                    });
-                    poolSecondary = pool.filter(q => !poolPrimary.includes(q));
-                }
 
-                if (poolPrimary.length === 0 && poolSecondary.length === 0) {
-                    return showNotification(`No hay preguntas. Revisa tus filtros:\n- Especialidades marcadas: ${selectedSpecs.length}\n- Temas buscados: ${State.selectedTopics.length}\n- Dificultad: ${State.difficulty}\nIntenta poner la dificultad en "Cualquiera".`);
-                }
+                        if (realSet.warnings.length > 0) {
+                            showNotification(realSet.warnings[0], "warning");
+                        }
 
-                let flatPrimary = processAndFlattenPool(poolPrimary, qty);
-                let finalQuestionSet = flatPrimary;
-                let neededOtherDiffs = false;
-
-                if (flatPrimary.length < qty && poolSecondary.length > 0) {
-                    let missing = qty - flatPrimary.length;
-                    let flatSecondary = processAndFlattenPool(poolSecondary, missing);
-                    if (flatSecondary.length > 0) {
-                        finalQuestionSet = flatPrimary.concat(flatSecondary);
-                        neededOtherDiffs = true;
+                        beginExamSession({
+                            questionSet: realSet.questionSet,
+                            mode: "simulacro",
+                            currentExamIsReal: true,
+                            currentExamType: "Simulacro Real",
+                            durationSec: isLibre ? 0 : (timerVal || REAL_SIM_CONFIG.timeMin) * 60
+                        });
+                        return;
                     }
-                }
 
-                let finalQty = finalQuestionSet.length;
-                if (neededOtherDiffs) {
-                    showNotification(`Se utilizaron las preguntas disponibles de dificultad "${State.difficulty}". Se completó el resto con otras dificultades.`);
-                } else if (finalQty < qty) {
-                    showNotification(`La base de datos contiene solo ${finalQty} preguntas aplicables a tu filtro actual. Limitando el simulacro a esa cantidad.`);
-                }
+                    let pool = [];
+                    if (selectedSpecs.length > 0) {
+                        pool = QUESTIONS.filter(q => selectedSpecs.includes(normalizeSpecialtyToTroncal(q)));
+                    } else {
+                        pool = QUESTIONS.filter(q => TRONCAL_SPECIALTIES.includes(normalizeSpecialtyToTroncal(q)));
+                    }
 
-                const selectedModeBtn = document.querySelector(".mode-toggle-btn.active");
-                const modeVal = selectedModeBtn ? selectedModeBtn.dataset.examMode : "casos";
-                beginExamSession({
-                    questionSet: finalQuestionSet,
-                    mode: !hasPremium ? "estudio" : (modeVal === "casos" ? "simulacro" : "estudio"),
-                    currentExamIsReal: false,
-                    currentExamType: !hasPremium ? "Demo Estudio" : (isLibre ? "Estudio Libre" : "Examen Cronometrado"),
-                    durationSec: !hasPremium ? 0 : (isLibre ? 0 : (timerVal || 60) * 60)
+                    // Filtrado por Temas Seleccionados
+                    if (State.selectedTopics.length > 0) {
+                        const selectedTopicState = buildSelectedTopicState(State.selectedTopics);
+                        pool = pool.filter(q => caseMatchesSelectedTopics(q, selectedTopicState));
+                    }
+                    pool = filterQuarantinedPool(pool);
+
+                    // Filtrado por Dificultad
+                    let poolPrimary = [...pool];
+                    let poolSecondary = [];
+
+                    if (State.difficulty && State.difficulty !== "cualquiera") {
+                        poolPrimary = pool.filter(q => {
+                            const qDiff = (q.difficulty || "alta").toLowerCase();
+                            if (State.difficulty === "alta") {
+                                return qDiff === "alta" || qDiff === "muy-alta";
+                            }
+                            return qDiff === State.difficulty;
+                        });
+                        poolSecondary = pool.filter(q => !poolPrimary.includes(q));
+                    }
+
+                    if (poolPrimary.length === 0 && poolSecondary.length === 0) {
+                        return showNotification(`No hay preguntas. Revisa tus filtros:\n- Especialidades marcadas: ${selectedSpecs.length}\n- Temas buscados: ${State.selectedTopics.length}\n- Dificultad: ${State.difficulty}\nIntenta poner la dificultad en "Cualquiera".`);
+                    }
+
+                    let flatPrimary = processAndFlattenPool(poolPrimary, qty);
+                    let finalQuestionSet = flatPrimary;
+                    let neededOtherDiffs = false;
+
+                    if (flatPrimary.length < qty && poolSecondary.length > 0) {
+                        let missing = qty - flatPrimary.length;
+                        let flatSecondary = processAndFlattenPool(poolSecondary, missing);
+                        if (flatSecondary.length > 0) {
+                            finalQuestionSet = flatPrimary.concat(flatSecondary);
+                            neededOtherDiffs = true;
+                        }
+                    }
+
+                    let finalQty = finalQuestionSet.length;
+                    if (neededOtherDiffs) {
+                        showNotification(`Se utilizaron las preguntas disponibles de dificultad "${State.difficulty}". Se completó el resto con otras dificultades.`);
+                    } else if (finalQty < qty) {
+                        showNotification(`La base de datos contiene solo ${finalQty} preguntas aplicables a tu filtro actual. Limitando el simulacro a esa cantidad.`);
+                    }
+
+                    const selectedModeBtn = document.querySelector(".mode-toggle-btn.active");
+                    const modeVal = selectedModeBtn ? selectedModeBtn.dataset.examMode : "casos";
+                    beginExamSession({
+                        questionSet: finalQuestionSet,
+                        mode: !hasPremium ? "estudio" : (modeVal === "casos" ? "simulacro" : "estudio"),
+                        currentExamIsReal: false,
+                        currentExamType: !hasPremium ? "Demo Estudio" : (isLibre ? "Estudio Libre" : "Examen Cronometrado"),
+                        durationSec: !hasPremium ? 0 : (isLibre ? 0 : (timerVal || 60) * 60)
+                    });
                 });
             });
         }
@@ -5987,16 +6090,16 @@
         const bindStartBtn = (id, handler, requiresPremium = false) => {
             const el = document.getElementById(id);
             if (el && !el.disabled) {
-                el.addEventListener("click", () => {
+                el.addEventListener("click", async () => {
                     if (requiresPremium && !ensurePremiumAccess("Esta acci\u00f3n es premium.")) return;
-                    handler();
+                    await handler(el);
                 });
             }
         };
 
-        const handleInteligente = () => {
+        const handleInteligente = async (triggerButton) => {
             if (State.topFailedTemas && State.topFailedTemas.length > 0) {
-                startTemaSession(State.topFailedTemas, 5, "Refuerzo IA por Temas");
+                await startTemaSession(State.topFailedTemas, 5, "Refuerzo IA por Temas", triggerButton);
             } else {
                 showNotification("Aún no tienes puntos de falla registrados. Sigue practicando para que la IA detecte tus áreas de oportunidad.");
             }
@@ -6004,15 +6107,15 @@
 
         bindStartBtn("btn-refuerzo-ia", handleInteligente, true);
         bindStartBtn("btn-refuerzo-ia-dash", handleInteligente, true); // New Dash Button
-        bindStartBtn("btn-refuerzo-rapido", () => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 5, "Refuerzo Rápido General"), true);
-        bindStartBtn("btn-quick-start", () => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 10, "Sesión Rápida (10)"), true);
-        bindStartBtn("btn-refuerzo-casos", () => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 3, "Casos Rápidos Aleatorios"), true);
+        bindStartBtn("btn-refuerzo-rapido", triggerButton => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 5, "Refuerzo Rápido General", triggerButton), true);
+        bindStartBtn("btn-quick-start", triggerButton => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 10, "Sesión Rápida (10)", triggerButton), true);
+        bindStartBtn("btn-refuerzo-casos", triggerButton => startQuickSession(['mi', 'ped', 'gyo', 'cir'], 3, "Casos Rápidos Aleatorios", triggerButton), true);
         bindStartBtn("btn-curva-olvido", startSpacedRepetition, true);
         bindStartBtn("btn-curva-olvido-dash", startSpacedRepetition, true); // New Dash Button
         bindStartBtn("btn-curva-olvido-ref", startSpacedRepetition, true);
     };
 
-    const startSpacedRepetition = () => {
+    const startSpacedRepetition = async (triggerButton) => {
         const now = Date.now();
         const oneDay = 24 * 60 * 60 * 1000;
         const sevenDays = 7 * oneDay;
@@ -6042,45 +6145,61 @@
         }
 
         const themesArr = Array.from(themesToReview);
-        startTemaSession(themesArr, 15, "Repaso: Curva del Olvido");
+        await startTemaSession(themesArr, 15, "Repaso: Curva del Olvido", triggerButton);
     };
 
-    const startTemaSession = (temas, qty, label) => {
-        const selectedTopicState = buildSelectedTopicState(temas || []);
-        let pool = filterQuarantinedPool(QUESTIONS.filter(q => caseMatchesSelectedTopics(q, selectedTopicState)));
-        if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
+    const startTemaSession = async (temas, qty, label, triggerButton = null) => {
+        await withTemporaryButtonLabel(triggerButton, "Preparando...", async () => {
+            try {
+                await ensureQuestionsReady({ silent: false });
+            } catch (err) {
+                return;
+            }
 
-        let finalQty = qty;
-        if (qty > pool.length) {
-            finalQty = pool.length;
-            showNotification(`Solo tenemos ${pool.length} preguntas disponibles para este tema.`);
-        }
+            const selectedTopicState = buildSelectedTopicState(temas || []);
+            let pool = filterQuarantinedPool(QUESTIONS.filter(q => caseMatchesSelectedTopics(q, selectedTopicState)));
+            if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
 
-        beginExamSession({
-            questionSet: processAndFlattenPool(pool, finalQty),
-            mode: "simulacro",
-            currentExamIsReal: false,
-            currentExamType: label,
-            durationSec: 0
+            let finalQty = qty;
+            if (qty > pool.length) {
+                finalQty = pool.length;
+                showNotification(`Solo tenemos ${pool.length} preguntas disponibles para este tema.`);
+            }
+
+            beginExamSession({
+                questionSet: processAndFlattenPool(pool, finalQty),
+                mode: "simulacro",
+                currentExamIsReal: false,
+                currentExamType: label,
+                durationSec: 0
+            });
         });
     };
 
-    const startQuickSession = (specs, qty, label) => {
-        const safeSpecs = (specs || []).filter(spec => TRONCAL_SPECIALTIES.includes(spec));
-        let pool = filterQuarantinedPool(QUESTIONS.filter(q => safeSpecs.includes(normalizeSpecialtyToTroncal(q))));
-        if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
+    const startQuickSession = async (specs, qty, label, triggerButton = null) => {
+        await withTemporaryButtonLabel(triggerButton, "Preparando...", async () => {
+            try {
+                await ensureQuestionsReady({ silent: false });
+            } catch (err) {
+                return;
+            }
 
-        let finalQty = qty;
-        if (qty > pool.length) {
-            finalQty = pool.length;
-        }
+            const safeSpecs = (specs || []).filter(spec => TRONCAL_SPECIALTIES.includes(spec));
+            let pool = filterQuarantinedPool(QUESTIONS.filter(q => safeSpecs.includes(normalizeSpecialtyToTroncal(q))));
+            if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
 
-        beginExamSession({
-            questionSet: processAndFlattenPool(pool, finalQty),
-            mode: "simulacro",
-            currentExamIsReal: false,
-            currentExamType: label,
-            durationSec: 0
+            let finalQty = qty;
+            if (qty > pool.length) {
+                finalQty = pool.length;
+            }
+
+            beginExamSession({
+                questionSet: processAndFlattenPool(pool, finalQty),
+                mode: "simulacro",
+                currentExamIsReal: false,
+                currentExamType: label,
+                durationSec: 0
+            });
         });
     };
 
@@ -6124,8 +6243,6 @@
                     }
                     State.reclassSelectedKey = key;
                     showView("view-reclassify");
-                    renderReclassifyView();
-                    updateReclassSelection();
                 };
             } else {
                 reclassBtn.style.display = "none";
@@ -7766,12 +7883,10 @@
     document.addEventListener("DOMContentLoaded", () => {
         loadGlobalStats();
         loadDeletedCases();
-        State.reclassMap = applyCaseReclassifications();
         initReclassifyLogic();
         syncReclassAccessUI();
         bindSidebar();
         initSetupLogic();
-        prewarmHeavyTopicCatalog();
         initDashboardShortcuts();
         startExamCountdown();
         initReportLogic();
@@ -8781,130 +8896,136 @@
                         return showNotification("Configura especialidad o temas en 'Añadir Materias' primero.", "warning");
                     }
 
-                    let pool = [];
-                    if (specsArray.length > 0) pool = QUESTIONS.filter(q => specsArray.includes(normalizeSpecialtyToTroncal(q)));
-                    else pool = QUESTIONS.filter(q => TRONCAL_SPECIALTIES.includes(normalizeSpecialtyToTroncal(q)));
-
-                    if (State.selectedTopics.length > 0) {
-                        const selectedTopicState = buildSelectedTopicState(State.selectedTopics);
-                        pool = pool.filter(q => caseMatchesSelectedTopics(q, selectedTopicState));
-                    }
-                    pool = filterQuarantinedPool(pool);
-
-                    // Filter by difficulty on the RAW pool (before expansion)
-                    // This matches the normal exam behavior
-                    let poolPrimary = [...pool];
-                    let poolSecondary = [];
-
-                    if (State.difficulty && State.difficulty !== "cualquiera") {
-                        poolPrimary = pool.filter(q => {
-                            const qDiff = (q.difficulty || "alta").toLowerCase();
-                            if (State.difficulty === "alta") return qDiff === "alta" || qDiff === "muy-alta";
-                            return qDiff === State.difficulty;
-                        });
-                        poolSecondary = pool.filter(q => !poolPrimary.includes(q));
-                    }
-
-                    // Use the GLOBAL processAndFlattenPool (defined at line ~121)
-                    // which preserves multi-question clinical case grouping
-                    let flatPrimary = processAndFlattenPool(poolPrimary, qty);
-
-                    if (flatPrimary.length < qty && poolSecondary.length > 0) {
-                        let missing = qty - flatPrimary.length;
-                        let flatSecondary = processAndFlattenPool(poolSecondary, missing);
-                        if (flatSecondary.length > 0) {
-                            flatPrimary = flatPrimary.concat(flatSecondary);
+                    await withTemporaryButtonLabel(btnSend, "Preparando...", async () => {
+                        try {
+                            await ensureQuestionsReady({ silent: false });
+                        } catch (err) {
+                            return;
                         }
-                    }
 
-                    if (flatPrimary.length === 0) return showNotification("No hay suficientes preguntas.", "warning");
+                        let pool = [];
+                        if (specsArray.length > 0) pool = QUESTIONS.filter(q => specsArray.includes(normalizeSpecialtyToTroncal(q)));
+                        else pool = QUESTIONS.filter(q => TRONCAL_SPECIALTIES.includes(normalizeSpecialtyToTroncal(q)));
 
-                    // Final specialty guard: ensure no leak from topic-expansion or secondary pool
-                    if (specsArray.length > 0) {
-                        flatPrimary = flatPrimary.filter(q => specsArray.includes(q.specialty));
-                    }
+                        if (State.selectedTopics.length > 0) {
+                            const selectedTopicState = buildSelectedTopicState(State.selectedTopics);
+                            pool = pool.filter(q => caseMatchesSelectedTopics(q, selectedTopicState));
+                        }
+                        pool = filterQuarantinedPool(pool);
 
-                    if (flatPrimary.length === 0) return showNotification("No hay preguntas de la especialidad seleccionada con esos filtros.", "warning");
+                        // Filter by difficulty on the RAW pool (before expansion)
+                        // This matches the normal exam behavior
+                        let poolPrimary = [...pool];
+                        let poolSecondary = [];
 
-                    // Map each selected question to an EXACT {idx, sub} identifier.
-                    // flatPrimary items come from processAndFlattenPool which expands cases
-                    // into sub-questions with inherited specialty from the parent.
-                    const questionIndices = flatPrimary.map(q => {
-                        // Simple question: exact reference match (same object)
-                        const directIdx = QUESTIONS.indexOf(q);
-                        if (directIdx !== -1) return { idx: directIdx, sub: -1 };
+                        if (State.difficulty && State.difficulty !== "cualquiera") {
+                            poolPrimary = pool.filter(q => {
+                                const qDiff = (q.difficulty || "alta").toLowerCase();
+                                if (State.difficulty === "alta") return qDiff === "alta" || qDiff === "muy-alta";
+                                return qDiff === State.difficulty;
+                            });
+                            poolSecondary = pool.filter(q => !poolPrimary.includes(q));
+                        }
 
-                        // Expanded sub-question (copy): find parent + specific sub-question index
-                        // Match specialty to avoid cross-specialty contamination
-                        for (let i = 0; i < QUESTIONS.length; i++) {
-                            const ref = QUESTIONS[i];
-                            if (!ref) continue;
-                            if (ref.specialty !== q.specialty) continue;
-                            // Simple question with same text
-                            if (ref.question === q.question && Array.isArray(ref.options) && ref.options.length > 0) {
-                                return { idx: i, sub: -1 };
-                            }
-                            // Clinical case: find the exact sub-question index
-                            if (ref.questions && Array.isArray(ref.questions)) {
-                                const subIdx = ref.questions.findIndex(sq => sq && sq.question === q.question);
-                                if (subIdx !== -1) return { idx: i, sub: subIdx };
+                        // Use the GLOBAL processAndFlattenPool (defined at line ~121)
+                        // which preserves multi-question clinical case grouping
+                        let flatPrimary = processAndFlattenPool(poolPrimary, qty);
+
+                        if (flatPrimary.length < qty && poolSecondary.length > 0) {
+                            let missing = qty - flatPrimary.length;
+                            let flatSecondary = processAndFlattenPool(poolSecondary, missing);
+                            if (flatSecondary.length > 0) {
+                                flatPrimary = flatPrimary.concat(flatSecondary);
                             }
                         }
-                        return null;
-                    }).filter(item => item !== null);
 
-                    if (questionIndices.length === 0) return showNotification("Error: No se pudieron mapear las preguntas al banco.", "error");
+                        if (flatPrimary.length === 0) return showNotification("No hay suficientes preguntas.", "warning");
 
+                        // Final specialty guard: ensure no leak from topic-expansion or secondary pool
+                        if (specsArray.length > 0) {
+                            flatPrimary = flatPrimary.filter(q => specsArray.includes(q.specialty));
+                        }
 
-                    const summarySpec = specsArray.length === 1 ? specsArray[0] : (specsArray.length > 1 ? "Mix Especialidades" : "Tema Específico");
+                        if (flatPrimary.length === 0) return showNotification("No hay preguntas de la especialidad seleccionada con esos filtros.", "warning");
 
-                    // Map participants
-                    const participants = {};
-                    // Include the challenger
-                    participants[window.FB.auth.currentUser.uid] = {
-                        name: State.userName,
-                        score: null,
-                        status: "pending",
-                        timestamp: null
-                    };
-                    selectedCbs.forEach(cb => {
-                        participants[cb.value] = {
-                            name: cb.getAttribute("data-name"),
+                        // Map each selected question to an EXACT {idx, sub} identifier.
+                        // flatPrimary items come from processAndFlattenPool which expands cases
+                        // into sub-questions with inherited specialty from the parent.
+                        const questionIndices = flatPrimary.map(q => {
+                            // Simple question: exact reference match (same object)
+                            const directIdx = QUESTIONS.indexOf(q);
+                            if (directIdx !== -1) return { idx: directIdx, sub: -1 };
+
+                            // Expanded sub-question (copy): find parent + specific sub-question index
+                            // Match specialty to avoid cross-specialty contamination
+                            for (let i = 0; i < QUESTIONS.length; i++) {
+                                const ref = QUESTIONS[i];
+                                if (!ref) continue;
+                                if (ref.specialty !== q.specialty) continue;
+                                // Simple question with same text
+                                if (ref.question === q.question && Array.isArray(ref.options) && ref.options.length > 0) {
+                                    return { idx: i, sub: -1 };
+                                }
+                                // Clinical case: find the exact sub-question index
+                                if (ref.questions && Array.isArray(ref.questions)) {
+                                    const subIdx = ref.questions.findIndex(sq => sq && sq.question === q.question);
+                                    if (subIdx !== -1) return { idx: i, sub: subIdx };
+                                }
+                            }
+                            return null;
+                        }).filter(item => item !== null);
+
+                        if (questionIndices.length === 0) return showNotification("Error: No se pudieron mapear las preguntas al banco.", "error");
+
+                        const summarySpec = specsArray.length === 1 ? specsArray[0] : (specsArray.length > 1 ? "Mix Especialidades" : "Tema Específico");
+
+                        // Map participants
+                        const participants = {};
+                        // Include the challenger
+                        participants[window.FB.auth.currentUser.uid] = {
+                            name: State.userName,
                             score: null,
                             status: "pending",
                             timestamp: null
                         };
-                    });
-
-                    const participantIds = [window.FB.auth.currentUser.uid, ...Array.from(selectedCbs).map(cb => cb.value)];
-
-                    btnSend.textContent = "...";
-                    try {
-                        const newDoc = await window.FB.addDoc(window.FB.collection(window.FB.db, "challenges"), {
-                            challengerId: window.FB.auth.currentUser.uid,
-                            challengerName: State.userName,
-                            participants: participants,
-                            participantIds: participantIds,
-                            specialty: summarySpec,
-                            numQuestions: questionIndices.length,
-                            targetQty: questionIndices.length,
-                            questionIndices: questionIndices,   // Array of {idx, sub} pairs
-                            status: "active",
-                            createdAt: Date.now()
+                        selectedCbs.forEach(cb => {
+                            participants[cb.value] = {
+                                name: cb.getAttribute("data-name"),
+                                score: null,
+                                status: "pending",
+                                timestamp: null
+                            };
                         });
-                        showNotification("¡Enviado a " + selectedCbs.length + " amigos!", "success");
-                        modal.style.display = "none";
 
-                        // Automatically start for the challenger
-                        State.activeChallengeId = newDoc.id;
-                        State.activeChallengeRole = "challenger";
-                        if (typeof window._startChallengeInternal === "function") {
-                            window._startChallengeInternal(newDoc.id, questionIndices, questionIndices.length);
+                        const participantIds = [window.FB.auth.currentUser.uid, ...Array.from(selectedCbs).map(cb => cb.value)];
+
+                        btnSend.textContent = "Enviando...";
+                        try {
+                            const newDoc = await window.FB.addDoc(window.FB.collection(window.FB.db, "challenges"), {
+                                challengerId: window.FB.auth.currentUser.uid,
+                                challengerName: State.userName,
+                                participants: participants,
+                                participantIds: participantIds,
+                                specialty: summarySpec,
+                                numQuestions: questionIndices.length,
+                                targetQty: questionIndices.length,
+                                questionIndices: questionIndices,   // Array of {idx, sub} pairs
+                                status: "active",
+                                createdAt: Date.now()
+                            });
+                            showNotification("¡Enviado a " + selectedCbs.length + " amigos!", "success");
+                            modal.style.display = "none";
+
+                            // Automatically start for the challenger
+                            State.activeChallengeId = newDoc.id;
+                            State.activeChallengeRole = "challenger";
+                            if (typeof window._startChallengeInternal === "function") {
+                                window._startChallengeInternal(newDoc.id, questionIndices, questionIndices.length);
+                            }
+                        } catch (err) {
+                            showNotification("Error: " + err.message, "error");
                         }
-                    } catch (err) {
-                        showNotification("Error: " + err.message, "error");
-                    }
-                    btnSend.textContent = "¡Desafiar Ahora!";
+                    });
                 });
             }
 
@@ -9076,9 +9197,15 @@
                 renderChallenges();
             });
 
-            const startChallengeExam = (id, indices, targetQty) => {
+            const startChallengeExam = async (id, indices, targetQty) => {
                 if (!Array.isArray(indices) || indices.length === 0) {
                     return showNotification("Error: Los datos del reto están dañados o vacíos.", "error");
+                }
+
+                try {
+                    await ensureQuestionsReady({ silent: false });
+                } catch (err) {
+                    return;
                 }
 
                 const finalSet = [];
