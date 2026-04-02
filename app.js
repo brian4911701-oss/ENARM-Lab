@@ -184,9 +184,13 @@
 
     let __topicIndexCache = null;
     let __temarioTopicCatalogCache = null;
+    let __temarioSuggestionCatalogCache = null;
+    let __temarioSuggestionEntriesCache = null;
     const invalidateTopicIndex = () => {
         __topicIndexCache = null;
         __temarioTopicCatalogCache = null;
+        __temarioSuggestionCatalogCache = null;
+        __temarioSuggestionEntriesCache = null;
     };
     const buildTopicIndex = () => {
         const idx = new Map();
@@ -5463,6 +5467,47 @@
         if (!__temarioTopicCatalogCache) __temarioTopicCatalogCache = buildTemarioTopicCatalog();
         return __temarioTopicCatalogCache;
     };
+    const buildTemarioSuggestionCatalog = () => {
+        const catalog = new Map();
+        const topicIndex = getTopicIndex();
+        Object.entries(TEMARIO_MAPPING).forEach(([topic, aliases]) => {
+            const entry = buildTemarioEntry(topic, aliases);
+            if (!entry.key) return;
+            const indexedEntry = topicIndex.get(entry.key);
+            if (indexedEntry) {
+                entry.count = indexedEntry.count || 0;
+                entry.specs = new Set(indexedEntry.specs ? Array.from(indexedEntry.specs) : []);
+            }
+            catalog.set(entry.key, entry);
+        });
+        return catalog;
+    };
+    const getTemarioSuggestionCatalog = () => {
+        if (!__temarioSuggestionCatalogCache) {
+            __temarioSuggestionCatalogCache = buildTemarioSuggestionCatalog();
+        }
+        return __temarioSuggestionCatalogCache;
+    };
+    const getTemarioSuggestionEntries = () => {
+        if (!__temarioSuggestionEntriesCache) {
+            __temarioSuggestionEntriesCache = Array.from(getTemarioSuggestionCatalog().values());
+        }
+        return __temarioSuggestionEntriesCache;
+    };
+    const prewarmHeavyTopicCatalog = () => {
+        const run = () => {
+            try {
+                getTemarioTopicCatalog();
+            } catch (err) {
+                console.warn("No se pudo precalentar el catálogo avanzado de temas:", err);
+            }
+        };
+        if (typeof window !== "undefined" && typeof window.requestIdleCallback === "function") {
+            window.requestIdleCallback(() => run(), { timeout: 1200 });
+            return;
+        }
+        setTimeout(run, 300);
+    };
 
     // ---------------------------------------------------------------------------
     // Advanced Setup Logic: Topic Search & Tags
@@ -5472,6 +5517,7 @@
         const suggestionsCont = $("topic-suggestions");
         const selectedCont = $("selected-topics-container");
         let activeIndex = -1;
+        let suggestionTimer = null;
 
         if (!input || !suggestionsCont || !selectedCont) return;
 
@@ -5509,7 +5555,7 @@
             const selectedTopicState = buildSelectedTopicState(State.selectedTopics);
             const selectedTopicKeys = selectedTopicState.topicKeys;
             const searchVal = normalizeTextKey(normalizedVal);
-            const indexedTopics = Array.from(getTemarioTopicCatalog().values())
+            const indexedTopics = getTemarioSuggestionEntries()
                 .filter(entry => {
                     if (!entry || !entry.topic) return false;
                     if (selectedSpecSet) {
@@ -5580,7 +5626,7 @@
                 return;
             }
             const topicKey = normalizeTextKey(topic);
-            const temarioMap = getTemarioTopicCatalog();
+            const temarioMap = getTemarioSuggestionCatalog();
             const idxMap = getTopicIndex();
             const match = temarioMap.get(topicKey) || idxMap.get(topicKey);
             if (!match || !match.topic) {
@@ -5598,15 +5644,24 @@
             activeIndex = -1;
         };
 
-        input.addEventListener("input", (e) => showSuggestions(e.target.value));
+        input.addEventListener("input", (e) => {
+            if (suggestionTimer) clearTimeout(suggestionTimer);
+            const nextValue = e.target.value;
+            suggestionTimer = setTimeout(() => {
+                suggestionTimer = null;
+                showSuggestions(nextValue);
+            }, 60);
+        });
 
         input.addEventListener("keydown", (e) => {
             const items = suggestionsCont.querySelectorAll(".suggestion-item");
 
             if (e.key === "ArrowDown") {
+                if (!items.length) return;
                 activeIndex = (activeIndex + 1) % items.length;
                 e.preventDefault();
             } else if (e.key === "ArrowUp") {
+                if (!items.length) return;
                 activeIndex = (activeIndex - 1 + items.length) % items.length;
                 e.preventDefault();
             } else if (e.key === "Enter") {
@@ -5614,11 +5669,11 @@
                     addTopic(items[activeIndex].dataset.topic || "");
                 } else if (input.value.trim() !== "") {
                     const typedKey = normalizeTextKey(input.value.trim());
-                    const temarioMap = getTemarioTopicCatalog();
+                    const temarioMap = getTemarioSuggestionCatalog();
                     const exact = temarioMap.get(typedKey) || getTopicIndex().get(typedKey);
                     if (exact && exact.topic) addTopic(exact.topic);
                     else {
-                        const candidates = Array.from(temarioMap.values())
+                        const candidates = getTemarioSuggestionEntries()
                             .filter(entry => entry && entry.topic && entry.searchKeys.some(searchKey => topicKeyMatchesQuery(searchKey, typedKey)))
                             .sort((a, b) => {
                                 const aExact = a.searchKeys.some(searchKey => searchKey === typedKey) ? 1 : 0;
@@ -7716,6 +7771,7 @@
         syncReclassAccessUI();
         bindSidebar();
         initSetupLogic();
+        prewarmHeavyTopicCatalog();
         initDashboardShortcuts();
         startExamCountdown();
         initReportLogic();
