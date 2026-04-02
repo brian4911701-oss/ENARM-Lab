@@ -186,11 +186,15 @@
     let __temarioTopicCatalogCache = null;
     let __temarioSuggestionCatalogCache = null;
     let __temarioSuggestionEntriesCache = null;
+    let __questionsBySpecialtyCache = null;
+    let __realSimPoolCache = null;
     const invalidateTopicIndex = () => {
         __topicIndexCache = null;
         __temarioTopicCatalogCache = null;
         __temarioSuggestionCatalogCache = null;
         __temarioSuggestionEntriesCache = null;
+        __questionsBySpecialtyCache = null;
+        __realSimPoolCache = null;
     };
     const buildTopicIndex = () => {
         const idx = new Map();
@@ -508,6 +512,21 @@
         el.value = `Premium activo hasta ${formatDate(State.entitlement.expiresAt)}`;
     };
 
+    const clearSelectedPreset = () => {
+        $$(".preset-card").forEach(card => card.classList.remove("active"));
+        State.selectedPresetId = null;
+    };
+
+    const activatePresetCard = (card) => {
+        if (!card) {
+            clearSelectedPreset();
+            return;
+        }
+        $$(".preset-card").forEach(item => item.classList.remove("active"));
+        card.classList.add("active");
+        State.selectedPresetId = card.id || null;
+    };
+
     const syncPremiumUI = () => {
         updatePremiumStatusLabel();
         const premium = isPremiumActive();
@@ -526,9 +545,7 @@
             if (activePreset && activePreset.dataset.premium === "1") {
                 const flash = $("preset-flash");
                 if (flash) {
-                    $$(".preset-card").forEach(c => c.classList.remove("active"));
-                    flash.classList.add("active");
-                    State.selectedPresetId = flash.id || null;
+                    activatePresetCard(flash);
                     const q = flash.dataset.qty;
                     const t = flash.dataset.time;
                     if (qtySlider && q) {
@@ -1974,7 +1991,25 @@
         return `${h}:${m}:${s}`;
     };
 
-    const shuffleArray = (arr) => arr.slice().sort(() => Math.random() - 0.5);
+    const shuffleArray = (arr) => {
+        const copy = arr.slice();
+        for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+    };
+
+    const takeRandomItems = (arr, count) => {
+        if (!Array.isArray(arr) || arr.length === 0 || count <= 0) return [];
+        const copy = arr.slice();
+        const limit = Math.min(count, copy.length);
+        for (let i = 0; i < limit; i++) {
+            const j = i + Math.floor(Math.random() * (copy.length - i));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy.slice(0, limit);
+    };
 
     const REAL_SIM_CONFIG = {
         total: 280,
@@ -2003,6 +2038,138 @@
         return "medium";
     };
 
+    const getQuestionDifficultyBucket = (q) => {
+        if (!q) return "medium";
+        if (!q._difficultyBucket) {
+            q._difficultyBucket = normalizeDifficultyBucket(q.difficulty);
+        }
+        return q._difficultyBucket;
+    };
+
+    const buildQuestionsBySpecialty = () => {
+        const grouped = {
+            ped: [],
+            mi: [],
+            cir: [],
+            gyo: []
+        };
+        if (typeof QUESTIONS === "undefined" || !Array.isArray(QUESTIONS)) return grouped;
+        QUESTIONS.forEach(q => {
+            if (!q || !grouped[q.specialty]) return;
+            grouped[q.specialty].push(q);
+        });
+        return grouped;
+    };
+
+    const getQuestionsBySpecialty = () => {
+        if (!__questionsBySpecialtyCache) {
+            __questionsBySpecialtyCache = buildQuestionsBySpecialty();
+        }
+        return __questionsBySpecialtyCache;
+    };
+
+    const getQuestionsPoolForSpecs = (specs = []) => {
+        if (typeof QUESTIONS === "undefined" || !Array.isArray(QUESTIONS)) return [];
+        const safeSpecs = Array.from(new Set((specs || []).filter(spec => TRONCAL_SPECIALTIES.includes(spec))));
+        if (safeSpecs.length === 0 || safeSpecs.length >= TRONCAL_SPECIALTIES.length) return QUESTIONS;
+        const grouped = getQuestionsBySpecialty();
+        const merged = [];
+        safeSpecs.forEach(spec => {
+            if (Array.isArray(grouped[spec]) && grouped[spec].length > 0) {
+                merged.push(...grouped[spec]);
+            }
+        });
+        return merged;
+    };
+
+    const splitPoolByDifficultySelection = (pool, difficulty) => {
+        if (!Array.isArray(pool) || pool.length === 0) {
+            return { primary: [], secondary: [] };
+        }
+        if (!difficulty || difficulty === "cualquiera") {
+            return { primary: pool.slice(), secondary: [] };
+        }
+
+        const targetBucket = difficulty === "alta"
+            ? "hard"
+            : normalizeDifficultyBucket(difficulty);
+        const primary = [];
+        const secondary = [];
+
+        pool.forEach(q => {
+            if (getQuestionDifficultyBucket(q) === targetBucket) primary.push(q);
+            else secondary.push(q);
+        });
+
+        return { primary, secondary };
+    };
+
+    const buildFilteredQuestionPools = ({
+        specs = [],
+        selectedTopics = [],
+        difficulty = "cualquiera"
+    } = {}) => {
+        let pool = getQuestionsPoolForSpecs(specs);
+        if (selectedTopics.length > 0) {
+            const selectedTopicState = buildSelectedTopicState(selectedTopics);
+            pool = pool.filter(q => caseMatchesSelectedTopics(q, selectedTopicState));
+        }
+        pool = filterQuarantinedPool(pool);
+        return splitPoolByDifficultySelection(pool, difficulty);
+    };
+
+    const buildRealSimPoolCache = () => {
+        const cache = {
+            all: [],
+            bySpec: {
+                ped: { all: [], easy: [], medium: [], hard: [] },
+                mi: { all: [], easy: [], medium: [], hard: [] },
+                cir: { all: [], easy: [], medium: [], hard: [] },
+                gyo: { all: [], easy: [], medium: [], hard: [] }
+            }
+        };
+
+        if (typeof QUESTIONS === "undefined" || !Array.isArray(QUESTIONS)) return cache;
+
+        let qid = 1;
+        QUESTIONS.forEach(c => {
+            if (!c || !cache.bySpec[c.specialty]) return;
+            const caseKey = getCaseKey(c);
+            const difficultyBucket = getQuestionDifficultyBucket(c);
+            const subs = (c.questions && Array.isArray(c.questions))
+                ? c.questions
+                : [{ question: c.question, options: c.options, answerIndex: c.answerIndex, explanation: c.explanation }];
+
+            subs.forEach((sq) => {
+                const entry = {
+                    ...c,
+                    question: sq.question,
+                    options: sq.options,
+                    answerIndex: sq.answerIndex,
+                    explanation: sq.explanation,
+                    caseGroupId: 0,
+                    subQuestionIndex: 1,
+                    totalSubQuestions: 1,
+                    _qid: qid++,
+                    _difficultyBucket: difficultyBucket,
+                    _caseKey: caseKey
+                };
+                cache.all.push(entry);
+                cache.bySpec[c.specialty].all.push(entry);
+                cache.bySpec[c.specialty][difficultyBucket].push(entry);
+            });
+        });
+
+        return cache;
+    };
+
+    const getRealSimPoolCache = () => {
+        if (!__realSimPoolCache) {
+            __realSimPoolCache = buildRealSimPoolCache();
+        }
+        return __realSimPoolCache;
+    };
+
     const calcSpecDifficultyTargets = (count) => {
         const easy = Math.round(count * 0.25);
         const medium = Math.round(count * 0.5);
@@ -2011,50 +2178,29 @@
     };
 
     const buildRealSimulacroQuestionSet = () => {
-        const allowedSpecs = Object.keys(REAL_SIM_CONFIG.specs);
-        const flat = [];
-        let groupId = 1;
-        let qid = 1;
-
         if (typeof QUESTIONS === "undefined" || !Array.isArray(QUESTIONS)) {
             return { questionSet: [], warnings: ["No se encontro banco de preguntas."] };
         }
 
-        QUESTIONS.forEach(c => {
-            if (!allowedSpecs.includes(c.specialty)) return;
-            const key = getCaseKey(c);
-            if (key) {
-                if (State.quarantineKeys && State.quarantineKeys.has(key)) return;
-                if (State.deletedCaseKeys && State.deletedCaseKeys.has(key)) return;
-            }
-            const subs = (c.questions && Array.isArray(c.questions))
-                ? c.questions
-                : [{ question: c.question, options: c.options, answerIndex: c.answerIndex, explanation: c.explanation }];
-            subs.forEach((sq) => {
-                flat.push({
-                    ...c,
-                    question: sq.question,
-                    options: sq.options,
-                    answerIndex: sq.answerIndex,
-                    explanation: sq.explanation,
-                    caseGroupId: groupId,
-                    subQuestionIndex: 1,
-                    totalSubQuestions: 1,
-                    _qid: qid++,
-                    _difficultyBucket: normalizeDifficultyBucket(c.difficulty)
-                });
-                groupId++;
-            });
-        });
-
+        const cache = getRealSimPoolCache();
         const bySpec = {
-            ped: [],
-            mi: [],
-            cir: [],
-            gyo: []
+            ped: { all: [], easy: [], medium: [], hard: [] },
+            mi: { all: [], easy: [], medium: [], hard: [] },
+            cir: { all: [], easy: [], medium: [], hard: [] },
+            gyo: { all: [], easy: [], medium: [], hard: [] }
         };
-        flat.forEach(q => {
-            if (bySpec[q.specialty]) bySpec[q.specialty].push(q);
+        const isBlocked = (q) => {
+            const key = q && q._caseKey ? q._caseKey : getCaseKey(q);
+            if (!key) return false;
+            if (State.quarantineKeys && State.quarantineKeys.has(key)) return true;
+            if (State.deletedCaseKeys && State.deletedCaseKeys.has(key)) return true;
+            return false;
+        };
+
+        cache.all.forEach(q => {
+            if (!q || !bySpec[q.specialty] || isBlocked(q)) return;
+            bySpec[q.specialty].all.push(q);
+            bySpec[q.specialty][q._difficultyBucket].push(q);
         });
 
         const selected = [];
@@ -2062,7 +2208,7 @@
         const warnings = [];
 
         const takeRandom = (arr, n) => {
-            const picks = shuffleArray(arr).slice(0, n);
+            const picks = takeRandomItems(arr, n);
             picks.forEach(p => {
                 used.add(p._qid);
                 selected.push(p);
@@ -2071,11 +2217,11 @@
         };
 
         const pickForSpec = (specKey, targetCount) => {
-            const pool = bySpec[specKey] || [];
+            const pool = bySpec[specKey] || { all: [], easy: [], medium: [], hard: [] };
             const targets = calcSpecDifficultyTargets(targetCount);
-            const easy = pool.filter(q => q._difficultyBucket === "easy");
-            const medium = pool.filter(q => q._difficultyBucket === "medium");
-            const hard = pool.filter(q => q._difficultyBucket === "hard");
+            const easy = pool.easy || [];
+            const medium = pool.medium || [];
+            const hard = pool.hard || [];
 
             let missingEasy = takeRandom(easy, targets.easy);
             let missingMed = takeRandom(medium, targets.medium);
@@ -2083,7 +2229,7 @@
 
             let remaining = missingEasy + missingMed + missingHard;
             if (remaining > 0) {
-                const leftovers = pool.filter(q => !used.has(q._qid));
+                const leftovers = (pool.all || []).filter(q => !used.has(q._qid));
                 remaining -= takeRandom(leftovers, remaining);
             }
 
@@ -2097,12 +2243,14 @@
         });
 
         if (selected.length < REAL_SIM_CONFIG.total) {
-            const remaining = flat.filter(q => !used.has(q._qid));
+            const remaining = bySpec.ped.all
+                .concat(bySpec.mi.all, bySpec.cir.all, bySpec.gyo.all)
+                .filter(q => !used.has(q._qid));
             const missing = REAL_SIM_CONFIG.total - selected.length;
             takeRandom(remaining, missing);
             if (missing > 0) warnings.push("No se pudo completar el total de 280 preguntas con el banco actual.");
         } else if (selected.length > REAL_SIM_CONFIG.total) {
-            const trimmed = shuffleArray(selected).slice(0, REAL_SIM_CONFIG.total);
+            const trimmed = takeRandomItems(selected, REAL_SIM_CONFIG.total);
             selected.length = 0;
             trimmed.forEach(q => selected.push(q));
             warnings.push("Se ajusto el total de preguntas a 280.");
@@ -2119,10 +2267,18 @@
     };
 
     const processAndFlattenPool = (rawPool, maxQty) => {
-        const shuffledCases = shuffleArray([...rawPool]);
         let flat = [];
         let cId = 1;
-        for (let c of shuffledCases) {
+        if (!Array.isArray(rawPool) || rawPool.length === 0 || maxQty <= 0) return flat;
+
+        const pool = rawPool.slice();
+        let remaining = pool.length;
+        while (remaining > 0 && flat.length < maxQty) {
+            const idx = Math.floor(Math.random() * remaining);
+            const c = pool[idx];
+            pool[idx] = pool[remaining - 1];
+            remaining--;
+            if (!c) continue;
             if (flat.length >= maxQty) break;
             // Support both old format (single question) and new format (questions array)
             let subs = (c.questions && Array.isArray(c.questions)) ? c.questions : [{ question: c.question, options: c.options, answerIndex: c.answerIndex, explanation: c.explanation }];
@@ -5706,6 +5862,7 @@
             const queryTag = makeTopicQueryTag(rawQuery);
             if (!queryTag) return;
             if (!State.selectedTopics.includes(queryTag)) {
+                clearSelectedPreset();
                 State.selectedTopics.push(queryTag);
                 updateSelectedTags();
             }
@@ -5731,6 +5888,7 @@
             const cleanTopic = match.topic;
             const selectedTopicState = buildSelectedTopicState(State.selectedTopics);
             if (!selectedTopicState.topicKeys.has(topicKey)) {
+                clearSelectedPreset();
                 State.selectedTopics.push(cleanTopic);
                 updateSelectedTags();
             }
@@ -5822,7 +5980,7 @@
         if (qtySlider) {
             qtySlider.addEventListener("input", () => {
                 qtyVal.textContent = qtySlider.value;
-                $$(".preset-card").forEach(c => c.classList.remove("active"));
+                clearSelectedPreset();
             });
         }
 
@@ -5834,9 +5992,7 @@
                     openRedeemModal("Este preset es premium. Ingresa tu c\u00f3digo para desbloquearlo.");
                     return;
                 }
-                $$(".preset-card").forEach(c => c.classList.remove("active"));
-                card.classList.add("active");
-                State.selectedPresetId = card.id || null;
+                activatePresetCard(card);
                 const q = card.dataset.qty;
                 const t = card.dataset.time;
                 if (qtySlider) {
@@ -5865,6 +6021,7 @@
 
         $$(".spec-item").forEach(item => {
             item.addEventListener("click", () => {
+                clearSelectedPreset();
                 item.classList.toggle("checked");
                 // Keep State in sync with DOM
                 State.selectedSpecialties = $$(".spec-item.checked").map(i => i.dataset.spec);
@@ -5893,6 +6050,7 @@
                     openRedeemModal("Desbloquea premium para elegir dificultad.");
                     return;
                 }
+                clearSelectedPreset();
                 $$(".diff-btn").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
                 State.difficulty = btn.dataset.diff;
@@ -5901,6 +6059,7 @@
 
         if (libBtn) {
             libBtn.addEventListener("click", () => {
+                clearSelectedPreset();
                 libBtn.classList.toggle("active");
                 if (libBtn.classList.contains("active")) {
                     timeLabel.textContent = "LIBRE";
@@ -5913,6 +6072,7 @@
         setupTopicSearch();
         if (timeInput) {
             timeInput.addEventListener("input", () => {
+                clearSelectedPreset();
                 if (timeInput.value) {
                     if (libBtn) libBtn.classList.remove("active");
                     timeLabel.textContent = `${timeInput.value} MIN`;
@@ -5928,8 +6088,8 @@
         const btnStart = $("btn-start-final-exam");
         if (btnStart) {
             btnStart.addEventListener("click", async () => {
-
-                const isRealSim = State.selectedPresetId === "preset-real";
+                const activePresetId = document.querySelector(".preset-card.active")?.id || null;
+                const isRealSim = State.selectedPresetId === "preset-real" && activePresetId === "preset-real";
                 const selectedSpecs = $$(".spec-item.checked")
                     .map(i => i.dataset.spec)
                     .filter(spec => TRONCAL_SPECIALTIES.includes(spec));
@@ -6006,34 +6166,14 @@
                         return;
                     }
 
-                    let pool = [];
-                    if (selectedSpecs.length > 0) {
-                        pool = QUESTIONS.filter(q => selectedSpecs.includes(normalizeSpecialtyToTroncal(q)));
-                    } else {
-                        pool = QUESTIONS.filter(q => TRONCAL_SPECIALTIES.includes(normalizeSpecialtyToTroncal(q)));
-                    }
-
-                    // Filtrado por Temas Seleccionados
-                    if (State.selectedTopics.length > 0) {
-                        const selectedTopicState = buildSelectedTopicState(State.selectedTopics);
-                        pool = pool.filter(q => caseMatchesSelectedTopics(q, selectedTopicState));
-                    }
-                    pool = filterQuarantinedPool(pool);
-
-                    // Filtrado por Dificultad
-                    let poolPrimary = [...pool];
-                    let poolSecondary = [];
-
-                    if (State.difficulty && State.difficulty !== "cualquiera") {
-                        poolPrimary = pool.filter(q => {
-                            const qDiff = (q.difficulty || "alta").toLowerCase();
-                            if (State.difficulty === "alta") {
-                                return qDiff === "alta" || qDiff === "muy-alta";
-                            }
-                            return qDiff === State.difficulty;
-                        });
-                        poolSecondary = pool.filter(q => !poolPrimary.includes(q));
-                    }
+                    const {
+                        primary: poolPrimary,
+                        secondary: poolSecondary
+                    } = buildFilteredQuestionPools({
+                        specs: selectedSpecs,
+                        selectedTopics: State.selectedTopics,
+                        difficulty: State.difficulty
+                    });
 
                     if (poolPrimary.length === 0 && poolSecondary.length === 0) {
                         return showNotification(`No hay preguntas. Revisa tus filtros:\n- Especialidades marcadas: ${selectedSpecs.length}\n- Temas buscados: ${State.selectedTopics.length}\n- Dificultad: ${State.difficulty}\nIntenta poner la dificultad en "Cualquiera".`);
@@ -6156,8 +6296,9 @@
                 return;
             }
 
-            const selectedTopicState = buildSelectedTopicState(temas || []);
-            let pool = filterQuarantinedPool(QUESTIONS.filter(q => caseMatchesSelectedTopics(q, selectedTopicState)));
+            let pool = buildFilteredQuestionPools({
+                selectedTopics: temas || []
+            }).primary;
             if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
 
             let finalQty = qty;
@@ -6184,8 +6325,7 @@
                 return;
             }
 
-            const safeSpecs = (specs || []).filter(spec => TRONCAL_SPECIALTIES.includes(spec));
-            let pool = filterQuarantinedPool(QUESTIONS.filter(q => safeSpecs.includes(normalizeSpecialtyToTroncal(q))));
+            let pool = filterQuarantinedPool(getQuestionsPoolForSpecs(specs || []));
             if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
 
             let finalQty = qty;
@@ -8903,29 +9043,14 @@
                             return;
                         }
 
-                        let pool = [];
-                        if (specsArray.length > 0) pool = QUESTIONS.filter(q => specsArray.includes(normalizeSpecialtyToTroncal(q)));
-                        else pool = QUESTIONS.filter(q => TRONCAL_SPECIALTIES.includes(normalizeSpecialtyToTroncal(q)));
-
-                        if (State.selectedTopics.length > 0) {
-                            const selectedTopicState = buildSelectedTopicState(State.selectedTopics);
-                            pool = pool.filter(q => caseMatchesSelectedTopics(q, selectedTopicState));
-                        }
-                        pool = filterQuarantinedPool(pool);
-
-                        // Filter by difficulty on the RAW pool (before expansion)
-                        // This matches the normal exam behavior
-                        let poolPrimary = [...pool];
-                        let poolSecondary = [];
-
-                        if (State.difficulty && State.difficulty !== "cualquiera") {
-                            poolPrimary = pool.filter(q => {
-                                const qDiff = (q.difficulty || "alta").toLowerCase();
-                                if (State.difficulty === "alta") return qDiff === "alta" || qDiff === "muy-alta";
-                                return qDiff === State.difficulty;
-                            });
-                            poolSecondary = pool.filter(q => !poolPrimary.includes(q));
-                        }
+                        const {
+                            primary: poolPrimary,
+                            secondary: poolSecondary
+                        } = buildFilteredQuestionPools({
+                            specs: specsArray,
+                            selectedTopics: State.selectedTopics,
+                            difficulty: State.difficulty
+                        });
 
                         // Use the GLOBAL processAndFlattenPool (defined at line ~121)
                         // which preserves multi-question clinical case grouping
