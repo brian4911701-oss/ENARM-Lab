@@ -745,26 +745,20 @@
 
     const syncThemeColorMeta = () => {
         let color = "#111623";
-        let hasUsableTopBarColor = false;
-        const topBar = document.querySelector(".mobile-top-bar");
-        if (topBar && window.getComputedStyle) {
-            const computed = window.getComputedStyle(topBar).backgroundColor;
-            const match = computed && computed.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([0-9.]+))?/i);
-            if (match) {
-                const alpha = match[4] !== undefined ? Number(match[4]) : 1;
-                if (!Number.isNaN(alpha) && alpha > 0) {
+        if (window.getComputedStyle) {
+            const bodyStyles = window.getComputedStyle(document.body);
+            const sidebarColor = (bodyStyles.getPropertyValue("--bg-sidebar") || "").trim();
+            if (sidebarColor) {
+                color = sidebarColor;
+            } else {
+                const topBar = document.querySelector(".mobile-top-bar");
+                const computed = topBar ? window.getComputedStyle(topBar).backgroundColor : "";
+                const match = computed && computed.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([0-9.]+))?/i);
+                if (match) {
                     const toHex = (value) => Number(value).toString(16).padStart(2, "0");
                     color = `#${toHex(match[1])}${toHex(match[2])}${toHex(match[3])}`;
-                    hasUsableTopBarColor = true;
                 }
             }
-        }
-
-        if (!hasUsableTopBarColor) {
-            const isLightTopBar = document.body.classList.contains("light-mode")
-                || document.body.classList.contains("theme-premium")
-                || document.body.classList.contains("theme-premium-pink");
-            color = isLightTopBar ? "#ffffff" : "#111623";
         }
 
         let themeMeta = document.querySelector('meta[name="theme-color"]');
