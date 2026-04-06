@@ -946,6 +946,12 @@
                                 <p>Ajustes de la cuenta, cambiar tema visual y opciones de perfil.</p>
                             </div>
                         </div>
+                        <div class="list-item" onclick="showView('view-profile'); document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(n => n.classList.remove('active'));" style="cursor: pointer;">
+                            <div class="list-item-content">
+                                <h3>&#x1F464; Mi Perfil</h3>
+                                <p>Tu identidad, tus métricas rápidas y el acceso a tu red en un solo lugar.</p>
+                            </div>
+                        </div>
                         <div class="list-item" onclick="showView('view-calculadora')" style="cursor: pointer;">
                             <div class="list-item-content">
                                 <h3>&#x1F9EE; Calculadora de Puntaje</h3>
@@ -1346,6 +1352,176 @@
                 </div>
             </div>
 
+            <div id="view-profile" class="view">
+                <div class="profile-page">
+                    <section class="profile-hero">
+                        <button class="btn-ghost profile-back-btn" id="btn-profile-back" type="button">&#x2190; Volver al inicio</button>
+                        <div class="profile-hero-body">
+                            <div class="profile-hero-avatar" id="profile-hero-avatar">AS</div>
+                            <div class="profile-hero-copy">
+                                <span class="profile-kicker">Tu espacio personal</span>
+                                <h1 class="profile-hero-title" id="profile-hero-name">Aspirante</h1>
+                                <p class="profile-hero-subtitle" id="profile-hero-meta">Configura tu identidad, revisa tu progreso y mantén tu cuenta lista para competir.</p>
+                                <div class="profile-pill-row">
+                                    <span class="profile-pill" id="profile-badge-rank">Aspirante</span>
+                                    <span class="profile-pill" id="profile-badge-premium">Demo</span>
+                                    <span class="profile-pill" id="profile-badge-streak">0 días de racha</span>
+                                </div>
+                            </div>
+                            <div class="profile-hero-actions">
+                                <button class="btn-secondary" id="btn-profile-go-history" type="button">Ver historial</button>
+                                <button class="btn-secondary" id="btn-profile-go-community" type="button">Ir a comunidad</button>
+                                <button class="btn-primary" id="btn-profile-go-settings" type="button">Abrir ajustes</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="profile-stats-grid">
+                        <article class="profile-stat-card">
+                            <span class="profile-stat-label">Promedio global</span>
+                            <strong class="profile-stat-value" id="profile-stat-accuracy">0.0%</strong>
+                            <span class="profile-stat-note">Tu efectividad acumulada en preguntas respondidas.</span>
+                        </article>
+                        <article class="profile-stat-card">
+                            <span class="profile-stat-label">Preguntas respondidas</span>
+                            <strong class="profile-stat-value" id="profile-stat-answered">0</strong>
+                            <span class="profile-stat-note">Volumen total de práctica registrada en la app.</span>
+                        </article>
+                        <article class="profile-stat-card">
+                            <span class="profile-stat-label">Sesiones completadas</span>
+                            <strong class="profile-stat-value" id="profile-stat-sessions">0</strong>
+                            <span class="profile-stat-note">Simulacros o repasos que ya cerraste correctamente.</span>
+                        </article>
+                        <article class="profile-stat-card">
+                            <span class="profile-stat-label">Probabilidad por constancia</span>
+                            <strong class="profile-stat-value" id="profile-stat-probability">20.0%</strong>
+                            <span class="profile-stat-note">Estimación basada en tu racha diaria de estudio.</span>
+                        </article>
+                    </section>
+
+                    <section class="profile-grid">
+                        <div class="panel profile-panel">
+                            <div class="profile-panel-head">
+                                <div>
+                                    <h2 class="panel-title"><span class="title-icon green-text">&#x1F464;</span> Identidad y Cuenta</h2>
+                                    <p class="panel-subtitle">Tus datos visibles dentro de ENARMlab y el estado de tu acceso.</p>
+                                </div>
+                            </div>
+
+                            <div class="profile-form-grid">
+                                <div class="input-group profile-form-span">
+                                    <label>Correo vinculado</label>
+                                    <input type="text" id="profile-email" class="text-input" readonly value="No disponible">
+                                </div>
+                                <div class="input-group profile-form-span">
+                                    <label>Usuario (Compártelo para que te agreguen)</label>
+                                    <div class="profile-inline-action">
+                                        <input type="text" id="profile-name" class="text-input" placeholder="Tu nombre de usuario" maxlength="20">
+                                        <button class="btn-secondary" id="btn-copy-username" title="Copiar tu nombre de usuario" type="button">
+                                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="input-group profile-form-span">
+                                    <label>Tu UID (para soporte o administración)</label>
+                                    <div class="profile-inline-action">
+                                        <input type="text" id="profile-uid" class="text-input" readonly>
+                                        <button class="btn-secondary" id="btn-copy-uid" title="Copiar tu UID" type="button">
+                                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado Premium</label>
+                                    <input type="text" id="profile-premium-status" class="text-input" readonly value="Demo">
+                                </div>
+                                <div class="input-group">
+                                    <label>Especialidad Objetivo</label>
+                                    <select id="profile-specialty" class="text-input" style="cursor: pointer;">
+                                        <option value="">Aún sin decidir</option>
+                                        <option value="Medicina Interna">Medicina Interna</option>
+                                        <option value="Cirugía General">Cirugía General</option>
+                                        <option value="Ginecología y Obstetricia">Ginecología y Obstetricia</option>
+                                        <option value="Pediatría">Pediatría</option>
+                                        <option value="Traumatología y Ortopedia">Traumatología y Ortopedia</option>
+                                        <option value="Anestesiología">Anestesiología</option>
+                                        <option value="Oftalmología">Oftalmología</option>
+                                        <option value="Otorrinolaringología">Otorrinolaringología</option>
+                                    </select>
+                                </div>
+                                <div class="input-group profile-form-span">
+                                    <label>Universidad de Egreso (Opcional)</label>
+                                    <input type="text" id="profile-university" class="text-input" placeholder="Ej. UNAM, IPN, UDG...">
+                                </div>
+                            </div>
+
+                            <div class="profile-action-row">
+                                <button class="btn-secondary" id="btn-open-redeem" type="button">Canjear c&oacute;digo</button>
+                                <button class="btn-primary" id="btn-save-profile" type="button">Actualizar Perfil</button>
+                            </div>
+                        </div>
+
+                        <div class="panel profile-panel">
+                            <div class="profile-panel-head">
+                                <div>
+                                    <h2 class="panel-title"><span class="title-icon blue-text">&#x1F465;</span> Red y Actividad</h2>
+                                    <p class="panel-subtitle">Gestiona colegas, revisa solicitudes y sigue el ritmo de tu preparación.</p>
+                                </div>
+                            </div>
+
+                            <div class="profile-mini-grid">
+                                <div class="profile-mini-card">
+                                    <span class="profile-mini-label">Pomodoros de hoy</span>
+                                    <strong id="profile-stat-pomodoros">0</strong>
+                                </div>
+                                <div class="profile-mini-card">
+                                    <span class="profile-mini-label">Exámenes en historial</span>
+                                    <strong id="profile-stat-history">0</strong>
+                                </div>
+                            </div>
+
+                            <div class="input-group" style="margin-top: 20px;">
+                                <label>Buscar colega por usuario</label>
+                                <div class="profile-inline-search">
+                                    <input type="text" id="friend-search-input" placeholder="Ej. DraSofia99" class="text-input">
+                                    <button class="btn-primary" id="btn-search-friend" type="button">Buscar</button>
+                                </div>
+                            </div>
+
+                            <div id="friend-search-results" class="profile-results-box" style="display: none;">
+                                <!-- Dinámico: Resultados de búsqueda -->
+                            </div>
+
+                            <div class="profile-section-divider"></div>
+
+                            <h3 class="profile-section-title">&#x1F514; Solicitudes Recibidas</h3>
+                            <div id="pending-requests-list" class="profile-requests-list">
+                                <div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">No tienes solicitudes nuevas.</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div id="admin-codes-panel" class="panel profile-panel" style="display: none;">
+                        <div class="profile-panel-head">
+                            <div>
+                                <h2 class="panel-title"><span class="title-icon yellow-text">&#x1F6E0;&#xFE0F;</span> Admin - Cargar C&oacute;digos</h2>
+                                <p class="panel-subtitle">Carga lotes de c&oacute;digos premium desde tu propio perfil administrativo.</p>
+                            </div>
+                        </div>
+                        <div class="input-group" style="margin-bottom: 10px;">
+                            <label>Pega los c&oacute;digos (uno por l&iacute;nea)</label>
+                            <textarea id="admin-codes-input" class="text-input" rows="6" placeholder="ENARM-M1-XXXXXXX&#10;ENARM-FX-XXXXXXX"></textarea>
+                        </div>
+                        <button class="btn-primary" id="btn-admin-upload-codes" style="width: 100%;" type="button">Subir c&oacute;digos</button>
+                        <p style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">Prefijo ENARM-M1- = 1 mes, ENARM-FX- = acceso hasta 1 Oct 2026.</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- ─── VIEW: AJUSTES ───────────────────────────── -->
             <div id="view-ajustes" class="view">
                 <div class="settings-container" style="max-width: 900px; margin: 0 auto; width: 100%;">
@@ -1722,127 +1898,6 @@
             <div id="ranking-list-details"
                 style="display: flex; flex-direction: column; gap: 10px; max-height: 200px; overflow-y: auto;">
                 <!-- Table of scores -->
-            </div>
-        </div>
-    </div>
-
-    <!-- ─── MODAL PERFIL Y AMIGOS ──────────────── -->
-    <div class="modal-overlay" id="profile-modal"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
-        <div class="modal-content"
-            style="background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--border); max-width: 450px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative; scrollbar-width: none;">
-            <button id="btn-close-profile"
-                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
-            <h2 style="font-size: 20px; margin-bottom: 20px; color: var(--text-primary); text-align: center;">&#x1F464; Mi
-                Perfil y Red</h2>
-
-            <!-- MI PERFIL -->
-            <div
-                style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 10px; margin-bottom: 25px; border: 1px solid var(--border);">
-                <h3
-                    style="font-size: 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 15px; color: var(--text-primary);">
-                    Tus Datos</h3>
-                <div class="input-group" style="margin-bottom: 15px;">
-                    <label>Usuario (Compártelo para que te agreguen)</label>
-                    <div style="display:flex; gap:10px;">
-                        <input type="text" id="profile-name" class="text-input" style="flex:1;"
-                            placeholder="Tu nombre de usuario" maxlength="20">
-                        <button class="btn-secondary" id="btn-copy-username" title="Copiar tu nombre de usuario"
-                            style="padding: 10px;">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                                <path
-                                    d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="input-group" style="margin-bottom: 15px;">
-                    <label>Tu UID (para soporte/admin)</label>
-                    <div style="display:flex; gap:10px;">
-                        <input type="text" id="profile-uid" class="text-input" style="flex:1;" readonly>
-                        <button class="btn-secondary" id="btn-copy-uid" title="Copiar tu UID"
-                            style="padding: 10px;">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                                <path
-                                    d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="input-group" style="margin-bottom: 15px;">
-                    <label>Estado Premium</label>
-                    <input type="text" id="profile-premium-status" class="text-input" style="width: 100%;" readonly
-                        value="Demo">
-                    <button class="btn-secondary" id="btn-open-redeem" style="width: 100%; margin-top: 8px;">
-                        Canjear c&oacute;digo
-                    </button>
-                </div>
-                <div class="input-group" style="margin-bottom: 15px;">
-                    <label>Especialidad Objetivo</label>
-                    <select id="profile-specialty" class="text-input" style="width: 100%; cursor: pointer;">
-                        <option value="">Aún sin decidir</option>
-                        <option value="Medicina Interna">Medicina Interna</option>
-                        <option value="Cirugía General">Cirugía General</option>
-                        <option value="Ginecología y Obstetricia">Ginecología y Obstetricia</option>
-                        <option value="Pediatría">Pediatría</option>
-                        <option value="Traumatología y Ortopedia">Traumatología y Ortopedia</option>
-                        <option value="Anestesiología">Anestesiología</option>
-                        <option value="Oftalmología">Oftalmología</option>
-                        <option value="Otorrinolaringología">Otorrinolaringología</option>
-                    </select>
-                </div>
-                <div class="input-group" style="margin-bottom: 15px;">
-                    <label>Universidad de Egreso (Opcional)</label>
-                    <input type="text" id="profile-university" class="text-input" style="width: 100%;"
-                        placeholder="Ej. UNAM, IPN, UDG...">
-                </div>
-                <button class="btn-primary" id="btn-save-profile" style="width: 100%;">Actualizar Perfil</button>
-            </div>
-
-            <!-- RED SOCIAL -->
-            <div
-                style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 10px; border: 1px solid var(--border);">
-                <h3
-                    style="font-size: 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 15px; color: var(--text-primary);">
-                    &#x1F465; Agregar a un Colega</h3>
-
-                <div class="input-group" style="display: flex; gap: 10px; margin-bottom: 15px;">
-                    <input type="text" id="friend-search-input" placeholder="Ej. DraSofia99" class="text-input"
-                        style="flex: 1;">
-                    <button class="btn-primary" id="btn-search-friend"
-                        style="padding: 10px 15px; white-space: nowrap;">Buscar</button>
-                </div>
-
-                <div id="friend-search-results"
-                    style="margin-bottom: 20px; padding: 15px; background: var(--bg-main); border-radius: 8px; border: 1px solid var(--border); display: none;">
-                    <!-- Dinámico: Resultados de búsqueda -->
-                </div>
-
-                <h3
-                    style="font-size: 14px; color: var(--text-primary); margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
-                    &#x1F514; Solicitudes Recibidas</h3>
-                <div id="pending-requests-list"
-                    style="display: flex; flex-direction: column; gap: 10px; min-height: 50px;">
-                    <!-- Dinámico: Solicitudes pendientes -->
-                    <div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">No
-                        tienes solicitudes nuevas.</div>
-                </div>
-            </div>
-            <div id="admin-codes-panel"
-                style="display: none; background: rgba(255,255,255,0.02); padding: 15px; border-radius: 10px; border: 1px solid var(--border); margin-top: 20px;">
-                <h3
-                    style="font-size: 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 12px; color: var(--text-primary);">
-                    Admin - Cargar c&oacute;digos</h3>
-                <div class="input-group" style="margin-bottom: 10px;">
-                    <label>Pega los c&oacute;digos (uno por l&iacute;nea)</label>
-                    <textarea id="admin-codes-input" class="text-input" rows="6"
-                        placeholder="ENARM-M1-XXXXXXX&#10;ENARM-FX-XXXXXXX"></textarea>
-                </div>
-                <button class="btn-primary" id="btn-admin-upload-codes" style="width: 100%;">Subir c&oacute;digos</button>
-                <p style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">
-                    Prefijo ENARM-M1- = 1 mes, ENARM-FX- = acceso hasta 1 Oct 2026.
-                </p>
-            </div>
             </div>
         </div>
     </div>

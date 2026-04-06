@@ -36,7 +36,7 @@ try {
 
 // ENARMlab Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
-const CACHE_NAME = 'enarmlab-v9';
+const CACHE_NAME = 'enarmlab-v10';
 
 // Archivos esenciales que se cachean al instalar
 const CORE_ASSETS = [
@@ -50,7 +50,9 @@ const CORE_ASSETS = [
     '/notification-icon.png',
     '/notification-badge.png',
     '/icon-192.png',
-    '/icon-512.png'
+    '/icon-512.png',
+    '/icon-monochrome-192.png',
+    '/icon-monochrome-512.png'
 ];
 
 // ─── Install: guarda los archivos esenciales en caché ───────────────────────

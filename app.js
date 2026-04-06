@@ -512,6 +512,70 @@
         el.value = `Premium activo hasta ${formatDate(State.entitlement.expiresAt)}`;
     };
 
+    function getGlobalAccuracy() {
+        const responded = State.globalStats.respondidas || 0;
+        if (responded <= 0) return 0;
+        return parseFloat(((State.globalStats.aciertos / responded) * 100).toFixed(1));
+    }
+
+    function getUserRankLabel(precision) {
+        const value = Number(precision) || 0;
+        if (value >= 70) return "Especialista";
+        if (value >= 60) return "Residente";
+        if (value >= 50) return "Médico General";
+        if (value >= 30) return "MPSS";
+        if (value >= 0) return "MIP";
+        return "Aspirante";
+    }
+
+    function renderProfileView() {
+        const heroName = $("profile-hero-name");
+        if (!heroName) return;
+
+        const displayName = State.userName || "Aspirante";
+        const nameParts = displayName.trim().split(/\s+/).filter(Boolean);
+        const initials = nameParts.length > 1
+            ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
+            : (nameParts[0] || "AS").substring(0, 2).toUpperCase();
+        const precision = getGlobalAccuracy();
+        const rank = getUserRankLabel(precision);
+        const streak = getEffectiveStreak();
+        const probability = getProbability(streak);
+        const premiumLabel = isAdminUser()
+            ? (State.adminPreviewMode === "demo" ? "Admin Demo" : "Admin Premium")
+            : (isPremiumActive() ? "Premium" : "Demo");
+        const email = window.FB && window.FB.auth && window.FB.auth.currentUser && window.FB.auth.currentUser.email
+            ? window.FB.auth.currentUser.email
+            : "No disponible";
+        const metaParts = [];
+        if (State.userSpecialty) metaParts.push(State.userSpecialty);
+        if (State.userUniversity) metaParts.push(State.userUniversity);
+        if (metaParts.length === 0) {
+            metaParts.push("Completa tu especialidad y universidad para personalizar mejor tu perfil");
+        }
+
+        if ($("profile-hero-avatar")) $("profile-hero-avatar").textContent = initials;
+        heroName.textContent = displayName;
+        if ($("profile-hero-meta")) $("profile-hero-meta").textContent = metaParts.join(" • ");
+        if ($("profile-badge-rank")) $("profile-badge-rank").textContent = rank;
+        if ($("profile-badge-premium")) $("profile-badge-premium").textContent = premiumLabel;
+        if ($("profile-badge-streak")) $("profile-badge-streak").textContent = `${streak} día${streak !== 1 ? "s" : ""} de racha`;
+
+        if ($("profile-stat-accuracy")) $("profile-stat-accuracy").textContent = `${precision.toFixed(1)}%`;
+        if ($("profile-stat-answered")) $("profile-stat-answered").textContent = (State.globalStats.respondidas || 0).toLocaleString("es-MX");
+        if ($("profile-stat-sessions")) $("profile-stat-sessions").textContent = (State.globalStats.sesiones || 0).toLocaleString("es-MX");
+        if ($("profile-stat-probability")) $("profile-stat-probability").textContent = `${probability}%`;
+        if ($("profile-stat-pomodoros")) $("profile-stat-pomodoros").textContent = String(State.globalStats.pomodoros || 0);
+        if ($("profile-stat-history")) $("profile-stat-history").textContent = String(State.history.length || 0);
+
+        if ($("profile-email")) $("profile-email").value = email;
+        if ($("profile-name")) $("profile-name").value = displayName;
+        if ($("profile-uid")) $("profile-uid").value = State.currentUid || "";
+        if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty || "";
+        if ($("profile-university")) $("profile-university").value = State.userUniversity || "";
+        updatePremiumStatusLabel();
+    }
+
     const clearSelectedPreset = () => {
         $$(".preset-card").forEach(card => card.classList.remove("active"));
         State.selectedPresetId = null;
@@ -529,6 +593,7 @@
 
     const syncPremiumUI = () => {
         updatePremiumStatusLabel();
+        renderProfileView();
         const premium = isPremiumActive();
         const qtySlider = $("setup-qty-slider");
         const qtyVal = $("setup-qty-val");
@@ -2339,6 +2404,12 @@
             updateDashboardStats();
             updateCharts();
         }
+        if (viewId === "view-profile") {
+            renderProfileView();
+            if (typeof window.loadPendingRequests === "function") {
+                try { window.loadPendingRequests(); } catch (e) { console.error(e); }
+            }
+        }
         if (viewId === "view-historial") updateHistoryView();
         if (viewId === "view-estadisticas") updateCharts();
         if (viewId === "view-calculadora") initCalculator();
@@ -2454,6 +2525,7 @@
         if (statusEl) statusEl.textContent = "EN LÍNEA";
         syncReclassAccessUI();
         syncPremiumUI();
+        renderProfileView();
     };
 
     const applyTheme = (theme) => {
@@ -7367,14 +7439,7 @@
         // Lógica de Rangos
         const rangoEl = $("dash-rango");
         if (rangoEl) {
-            const val = parseFloat(pct);
-            let rango = "Aspirante";
-            if (val >= 70) rango = "Especialista";
-            else if (val >= 60) rango = "Residente";
-            else if (val >= 50) rango = "Médico General";
-            else if (val >= 30) rango = "MPSS";
-            else if (val >= 0) rango = "MIP";
-            rangoEl.textContent = rango;
+            rangoEl.textContent = getUserRankLabel(parseFloat(pct));
         }
 
         ['mi', 'ped', 'gyo', 'cir'].forEach(k => {
@@ -7782,7 +7847,8 @@
     };
 
     const startExamCountdown = () => {
-        const targetDate = new Date("September 21, 2026 08:00:00").getTime();
+        // ENARM 2026: 28 de septiembre de 2026 08:00 (hora local del dispositivo)
+        const targetDate = new Date(2026, 8, 28, 8, 0, 0).getTime(); // Mes 0-based: 8 = Septiembre
 
         const update = () => {
             const now = new Date().getTime();
