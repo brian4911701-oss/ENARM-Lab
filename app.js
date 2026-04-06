@@ -2537,6 +2537,7 @@
     const applyTheme = (theme) => {
         // Remove all current theme classes
         document.body.classList.remove("light-mode", "theme-forest", "theme-ocean", "theme-sunset", "theme-navy-gold", "theme-black-teal", "theme-premium", "theme-premium-pink");
+        document.body.style.backgroundColor = "";
 
         if (theme === "system") {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {

@@ -25,16 +25,6 @@
                 premium: "#0a0a0a",
                 "premium-pink": "#0a0a0a"
             };
-            const themeClasses = {
-                light: "light-mode",
-                forest: "theme-forest",
-                ocean: "theme-ocean",
-                sunset: "theme-sunset",
-                "navy-gold": "theme-navy-gold",
-                "black-teal": "theme-black-teal",
-                premium: "theme-premium",
-                "premium-pink": "theme-premium-pink"
-            };
             const chromeColor = chromeColors[resolvedTheme] || chromeColors.default;
             let themeMeta = document.querySelector('meta[name="theme-color"]');
             if (!themeMeta) {
@@ -44,10 +34,6 @@
             }
             themeMeta.setAttribute("content", chromeColor);
             document.documentElement.style.backgroundColor = chromeColor;
-            window.__ENARM_PRELOAD_THEME__ = {
-                bodyClass: themeClasses[resolvedTheme] || "",
-                chromeColor
-            };
         })();
     </script>
 
@@ -69,14 +55,6 @@
 </head>
 
 <body>
-    <script>
-        (() => {
-            const preloadTheme = window.__ENARM_PRELOAD_THEME__;
-            if (!preloadTheme) return;
-            if (preloadTheme.bodyClass) document.body.classList.add(preloadTheme.bodyClass);
-            if (preloadTheme.chromeColor) document.body.style.backgroundColor = preloadTheme.chromeColor;
-        })();
-    </script>
     <!-- ── AUTH OVERLAY ── -->
     <div id="auth-overlay" class="auth-overlay active">
         <div class="auth-container">
