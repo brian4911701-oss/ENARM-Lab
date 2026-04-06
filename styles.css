@@ -10,6 +10,7 @@
     radial-gradient(circle at 50% 85%, #161d2e, transparent 40%), #0a0e17;
   /* Very dark navy */
   --bg-sidebar: #111623;
+  --app-chrome-bg: #111623;
   --bg-card: #171d2e;
   --bg-card-hover: #1f263a;
 
@@ -43,6 +44,7 @@
 body.light-mode {
   --bg-app: #f1f5f9;
   --bg-sidebar: #ffffff;
+  --app-chrome-bg: #ffffff;
   --bg-card: #ffffff;
   --bg-card-hover: #f8fafc;
 
@@ -232,6 +234,7 @@ body.theme-premium-pink .stat-value {
 body.theme-forest {
   --bg-app: #08271d;
   --bg-sidebar: #0a3325;
+  --app-chrome-bg: #0a3325;
   --bg-card: #114030;
   --bg-card-hover: #16523e;
   --accent-green: #b7e140;
@@ -249,6 +252,7 @@ body.theme-forest {
 body.theme-ocean {
   --bg-app: #191f78;
   --bg-sidebar: #1d258d;
+  --app-chrome-bg: #1d258d;
   --bg-card: #252da3;
   --bg-card-hover: #2b35c0;
   --accent-green: #d6deff;
@@ -265,6 +269,7 @@ body.theme-ocean {
 body.theme-sunset {
   --bg-app: #2d142c;
   --bg-sidebar: #3d1a3b;
+  --app-chrome-bg: #3d1a3b;
   --bg-card: #51224f;
   --bg-card-hover: #662c64;
   --accent-green: #ee4540;
@@ -283,6 +288,7 @@ body.theme-sunset {
 body.theme-navy-gold {
   --bg-app: radial-gradient(circle at 10% 0%, #223f71 0%, #152b53 48%, #0f1f3f 100%);
   --bg-sidebar: #102545;
+  --app-chrome-bg: #102545;
   --bg-card: #1a335f;
   --bg-card-hover: #224275;
   --accent-green: #d2caa6;
@@ -298,6 +304,7 @@ body.theme-navy-gold {
 body.theme-black-teal {
   --bg-app: radial-gradient(circle at 18% 0%, #0f2825 0%, #000000 46%, #000000 100%);
   --bg-sidebar: #050505;
+  --app-chrome-bg: #050505;
   --bg-card: #0c0c0c;
   --bg-card-hover: #161616;
   --accent-green: #15b9a6;
@@ -313,6 +320,7 @@ body.theme-black-teal {
 body.theme-premium {
   --bg-app: radial-gradient(circle at 0% 0%, #6a5088 0%, #050505 50%);
   --bg-sidebar: rgba(10, 10, 10, 0.95);
+  --app-chrome-bg: #0a0a0a;
   --bg-card: rgba(20, 20, 25, 0.5);
   --bg-card-hover: rgba(30, 30, 40, 0.7);
   --accent-green: #a78bfa;
@@ -331,6 +339,7 @@ body.theme-premium-pink {
   /* Igual al premium (negro) pero con degradado/acento rosa */
   --bg-app: radial-gradient(circle at 0% 0%, #ec4899 0%, #050505 50%);
   --bg-sidebar: rgba(10, 10, 10, 0.95);
+  --app-chrome-bg: #0a0a0a;
   --bg-card: rgba(20, 20, 25, 0.5);
   --bg-card-hover: rgba(30, 30, 40, 0.7);
   --accent-green: #f472b6;
@@ -3997,12 +4006,22 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
     left: 0;
     width: 100vw;
     height: calc(60px + env(safe-area-inset-top, 0px));
-    background: var(--bg-sidebar);
+    background: var(--app-chrome-bg);
     z-index: 1000;
     justify-content: space-between;
     align-items: center;
     padding: env(safe-area-inset-top, 0px) 12px 0;
     box-shadow: none;
+    border: none;
+    isolation: isolate;
+  }
+
+  .mobile-top-bar::before {
+    content: "";
+    position: absolute;
+    inset: -2px 0 0 0;
+    background: var(--app-chrome-bg);
+    z-index: -1;
   }
 
   .mobile-top-bar .sidebar-logo {

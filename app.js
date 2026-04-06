@@ -747,8 +747,11 @@
         let color = "#111623";
         if (window.getComputedStyle) {
             const bodyStyles = window.getComputedStyle(document.body);
+            const chromeColor = (bodyStyles.getPropertyValue("--app-chrome-bg") || "").trim();
             const sidebarColor = (bodyStyles.getPropertyValue("--bg-sidebar") || "").trim();
-            if (sidebarColor) {
+            if (chromeColor) {
+                color = chromeColor;
+            } else if (sidebarColor) {
                 color = sidebarColor;
             } else {
                 const topBar = document.querySelector(".mobile-top-bar");
