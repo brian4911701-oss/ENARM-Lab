@@ -4,7 +4,7 @@
     "description": "Tu simulador de examen ENARM. Casos clínicos, estadísticas y retos.",
     "start_url": "/",
     "display": "standalone",
-    "orientation": "portrait",
+    "orientation": "any",
     "background_color": "#191f78",
     "theme_color": "#191f78",
     "lang": "es",
