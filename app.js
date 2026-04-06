@@ -2394,6 +2394,7 @@
             window.scrollTo(0, 0);
         }
         State.view = viewId;
+        document.body.classList.toggle("dashboard-mobile-hero-active", viewId === "view-dashboard");
         if (viewId === "view-dashboard") {
             updateDashboardStats();
             updateCharts();
@@ -2415,6 +2416,7 @@
         }
         if (viewId === "view-reclassify") void renderReclassifyView();
     };
+    document.body.classList.toggle("dashboard-mobile-hero-active", State.view === "view-dashboard");
     window.showView = showView; // Hacerla global para onclick de HTML
     window.openFeedbackEmail = openFeedbackEmail;
     window.submitFeedback = submitFeedback;
@@ -2454,6 +2456,20 @@
                 { merge: true }
             ).catch(err => console.error("Error cloud sync:", err));
         }
+    };
+
+    const renderAvatarInitials = (el, initials) => {
+        if (!el) return;
+        const isDashboardHeroAvatar = el.classList.contains("dashboard-hero-avatar");
+        const avatarTextStyle = isDashboardHeroAvatar
+            ? "font-size: 28px; font-weight: 800; line-height: 1; letter-spacing: -0.01em;"
+            : "font-size: 14px; font-weight: 700;";
+        el.innerHTML = `<span style="${avatarTextStyle}">${initials}</span>`;
+        el.style.background = "rgba(5, 192, 127, 0.1)";
+        el.style.color = "var(--accent-green)";
+        el.style.display = "flex";
+        el.style.alignItems = "center";
+        el.style.justifyContent = "center";
     };
 
     const loadGlobalStats = () => {
@@ -2507,14 +2523,7 @@
             ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
             : nameParts[0].substring(0, 2).toUpperCase();
 
-        $$(".user-avatar").forEach(el => {
-            el.innerHTML = `<span style="font-size: 14px; font-weight: 700;">${initials}</span>`;
-            el.style.background = "rgba(5, 192, 127, 0.1)";
-            el.style.color = "var(--accent-green)";
-            el.style.display = "flex";
-            el.style.alignItems = "center";
-            el.style.justifyContent = "center";
-        });
+        $$(".user-avatar").forEach(el => renderAvatarInitials(el, initials));
         const statusEl = document.querySelector(".user-status");
         if (statusEl) statusEl.textContent = "EN LÍNEA";
         syncReclassAccessUI();
@@ -8147,11 +8156,7 @@
                         el.innerHTML = `Hola, <span class="user-name" style="color:var(--accent-green);">${State.userName}</span>`;
                     }
                 });
-                $$(".user-avatar").forEach(el => {
-                    el.innerHTML = `<span style="font-size: 14px; font-weight: 700;">${initials}</span>`;
-                    el.style.background = "rgba(5, 192, 127, 0.1)";
-                    el.style.color = "var(--accent-green)";
-                });
+                $$(".user-avatar").forEach(el => renderAvatarInitials(el, initials));
                 syncReclassAccessUI();
 
                 saveGlobalStats();
@@ -9838,11 +9843,7 @@
                         ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
                         : nameParts[0].substring(0, 2).toUpperCase();
 
-                    $$(".user-avatar").forEach(el => {
-                        el.innerHTML = `<span style="font-size: 14px; font-weight: 700;">${initials}</span>`;
-                        el.style.background = "rgba(5, 192, 127, 0.1)";
-                        el.style.color = "var(--accent-green)";
-                    });
+                    $$(".user-avatar").forEach(el => renderAvatarInitials(el, initials));
 
                     const statusEl = document.querySelector(".user-status");
                     if (statusEl) statusEl.textContent = "EN LÍNEA";
