@@ -4918,3 +4918,28 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
+@media (max-width: 768px) {
+  body.tablet-layout .mobile-top-bar,
+  body.tablet-layout .mobile-nav,
+  body.tablet-layout .mobile-only,
+  body.tablet-layout .mobile-only-mas {
+    display: none !important;
+  }
+
+  body.tablet-layout .sidebar {
+    display: flex !important;
+  }
+
+  body.tablet-layout .sidebar-toggle-floating {
+    display: flex !important;
+  }
+
+  body.tablet-layout .main-content {
+    width: auto;
+    padding: 20px 18px 24px;
+    padding-top: 20px;
+    padding-bottom: 24px;
+    height: 100vh;
+  }
+}

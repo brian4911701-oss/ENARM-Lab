@@ -2574,11 +2574,24 @@
         const toggleBtn = $("btn-sidebar-toggle");
         const sidebar = document.querySelector(".sidebar");
         if (toggleBtn && sidebar) {
+            const detectTabletLayout = () => {
+                const hasMatchMedia = typeof window.matchMedia === "function";
+                const coarsePointer = hasMatchMedia && window.matchMedia("(pointer: coarse)").matches;
+                const noHover = hasMatchMedia && window.matchMedia("(hover: none)").matches;
+                const touchViewport = coarsePointer || ((navigator.maxTouchPoints || 0) > 0 && noHover);
+
+                const innerSmallestSide = Math.min(window.innerWidth, window.innerHeight);
+                const innerLargestSide = Math.max(window.innerWidth, window.innerHeight);
+                const screenSmallestSide = Math.min(window.screen?.width || 0, window.screen?.height || 0);
+                const screenLargestSide = Math.max(window.screen?.width || 0, window.screen?.height || 0);
+                const effectiveSmallestSide = Math.max(innerSmallestSide, screenSmallestSide);
+                const effectiveLargestSide = Math.max(innerLargestSide, screenLargestSide);
+
+                return touchViewport && effectiveSmallestSide >= 600 && effectiveLargestSide >= 900;
+            };
+
             const syncSidebarResponsiveState = (forceCollapseOnTablet = false) => {
-                const coarsePointer = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
-                const smallestSide = Math.min(window.innerWidth, window.innerHeight);
-                const largestSide = Math.max(window.innerWidth, window.innerHeight);
-                const isTabletViewport = coarsePointer && smallestSide >= 700 && largestSide >= 900;
+                const isTabletViewport = detectTabletLayout();
 
                 document.body.classList.toggle("tablet-layout", isTabletViewport);
                 if (isTabletViewport && forceCollapseOnTablet) {
@@ -2591,6 +2604,7 @@
             };
 
             syncSidebarResponsiveState(true);
+            window.addEventListener("load", () => syncSidebarResponsiveState(true));
             window.addEventListener("resize", () => syncSidebarResponsiveState(true));
             window.addEventListener("orientationchange", () => syncSidebarResponsiveState(true));
 
