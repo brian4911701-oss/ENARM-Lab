@@ -8163,6 +8163,7 @@
         // Lógica de acceso al perfil (funciona sin conexión)
         const btnOpenProfile = $("btn-user-profile");
         const btnOpenProfileMobile = $("btn-user-profile-mobile");
+        const btnOpenProfileDashboardHero = $("btn-dashboard-hero-profile");
         const btnOpenFriendsModal = $("btn-open-friends-modal");
         const btnProfileBack = $("btn-profile-back");
         const btnProfileGoHistory = $("btn-profile-go-history");
@@ -8195,6 +8196,7 @@
 
         if (btnOpenProfile) btnOpenProfile.addEventListener("click", openProfileView);
         if (btnOpenProfileMobile) btnOpenProfileMobile.addEventListener("click", openProfileView);
+        if (btnOpenProfileDashboardHero) btnOpenProfileDashboardHero.addEventListener("click", openProfileView);
         if (btnOpenFriendsModal) btnOpenFriendsModal.addEventListener("click", openProfileView);
         if (btnProfileBack) btnProfileBack.addEventListener("click", () => $("nav-dashboard").click());
         if (btnProfileGoHistory) btnProfileGoHistory.addEventListener("click", () => $("nav-historial").click());

@@ -266,14 +266,19 @@
                 </div>
 
                 <header class="dashboard-header">
-                    <div class="header-left" style="position: relative; display: flex; align-items: center; gap: 20px;">
-                        <div>
-                            <h1 class="header-title">Hola, <span class="user-name">Aspirante</span></h1>
-                            <p class="header-subtitle" id="dynamic-quote">Cargando inspiración...</p>
+                    <div class="header-left dashboard-mobile-hero">
+                        <button class="user-avatar dashboard-hero-avatar" id="btn-dashboard-hero-profile" type="button"
+                            aria-label="Abrir perfil">
+                            IS
+                        </button>
+                        <div class="dashboard-hero-copy">
+                            <span class="dashboard-hero-kicker">Hola</span>
+                            <h1 class="dashboard-greeting-title"><span class="user-name">Aspirante</span></h1>
+                            <p class="dashboard-hero-quote" id="dynamic-quote">Cargando inspiración...</p>
                         </div>
-                        <button id="btn-open-notif"
-                            style="background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); cursor: pointer; position: relative; transition: all 0.2s;">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <button id="btn-open-notif" class="dashboard-hero-bell" type="button"
+                            aria-label="Abrir notificaciones">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path
                                     d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
                             </svg>
