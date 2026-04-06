@@ -2320,6 +2320,87 @@ body.theme-premium-pink .ov-dotted {
   background: rgba(59, 130, 246, 0.1);
 }
 
+.premium-contact-box {
+  margin: 0 0 16px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    radial-gradient(circle at top right, rgba(5, 192, 127, 0.12), transparent 45%);
+}
+
+.premium-contact-box--compact {
+  margin-top: -2px;
+}
+
+.premium-contact-title {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.premium-contact-copy {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.premium-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.premium-contact-link {
+  display: inline-flex;
+  flex: 1 1 150px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.premium-contact-link:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.premium-contact-link.is-whatsapp {
+  background: linear-gradient(135deg, #25d366, #149c52);
+  box-shadow: 0 10px 22px rgba(37, 211, 102, 0.24);
+}
+
+.premium-contact-link.is-instagram {
+  background: linear-gradient(135deg, #833ab4, #fd1d1d 55%, #fcb045);
+  box-shadow: 0 10px 22px rgba(225, 48, 108, 0.24);
+}
+
+.premium-contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.premium-contact-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
 /* ── EXAM VIEW ──────────────────── */
 .exam-head.test-stats {
   display: flex;
