@@ -771,6 +771,7 @@
             document.head.appendChild(themeMeta);
         }
         themeMeta.setAttribute("content", color);
+        document.documentElement.style.backgroundColor = color;
     };
 
     const openRedeemModal = (reason) => {
