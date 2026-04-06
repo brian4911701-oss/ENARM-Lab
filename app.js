@@ -2574,8 +2574,23 @@
         const toggleBtn = $("btn-sidebar-toggle");
         const sidebar = document.querySelector(".sidebar");
         if (toggleBtn && sidebar) {
+            const syncSidebarResponsiveState = (forceCollapseOnTablet = false) => {
+                const isTabletViewport = window.innerWidth >= 769 && window.innerWidth <= 1100;
+                if (isTabletViewport && forceCollapseOnTablet) {
+                    sidebar.classList.add("collapsed");
+                }
+                document.body.classList.toggle(
+                    "tablet-sidebar-expanded",
+                    isTabletViewport && !sidebar.classList.contains("collapsed")
+                );
+            };
+
+            syncSidebarResponsiveState(true);
+            window.addEventListener("resize", () => syncSidebarResponsiveState(true));
+
             toggleBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("collapsed");
+                syncSidebarResponsiveState(false);
                 // Trigger chart resizing if sidebar changes
                 setTimeout(() => {
                     if (typeof updateCharts === 'function') updateCharts();

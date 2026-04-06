@@ -1387,6 +1387,29 @@ body.theme-premium-pink .sidebar-capsule {
   color: #fff;
 }
 
+body.tablet-sidebar-expanded .flame-widget {
+  width: auto;
+  min-width: 160px;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 22px;
+}
+
+body.tablet-sidebar-expanded .flame-icon {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+}
+
+body.tablet-sidebar-expanded .flame-lbl {
+  font-size: 9px;
+}
+
+body.tablet-sidebar-expanded .flame-val {
+  font-size: 14px;
+}
+
 /* ── Stats Grid ────────────────────────────────────────── */
 .stats-grid {
   display: grid;
