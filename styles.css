@@ -1387,7 +1387,7 @@ body.theme-premium-pink .sidebar-capsule {
   color: #fff;
 }
 
-body.tablet-sidebar-expanded .flame-widget {
+body.tablet-layout.tablet-sidebar-expanded .flame-widget {
   width: auto;
   min-width: 160px;
   justify-content: center;
@@ -1396,17 +1396,17 @@ body.tablet-sidebar-expanded .flame-widget {
   border-radius: 22px;
 }
 
-body.tablet-sidebar-expanded .flame-icon {
+body.tablet-layout.tablet-sidebar-expanded .flame-icon {
   width: 28px;
   height: 28px;
   font-size: 14px;
 }
 
-body.tablet-sidebar-expanded .flame-lbl {
+body.tablet-layout.tablet-sidebar-expanded .flame-lbl {
   font-size: 9px;
 }
 
-body.tablet-sidebar-expanded .flame-val {
+body.tablet-layout.tablet-sidebar-expanded .flame-val {
   font-size: 14px;
 }
 

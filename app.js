@@ -2575,7 +2575,12 @@
         const sidebar = document.querySelector(".sidebar");
         if (toggleBtn && sidebar) {
             const syncSidebarResponsiveState = (forceCollapseOnTablet = false) => {
-                const isTabletViewport = window.innerWidth >= 769 && window.innerWidth <= 1100;
+                const coarsePointer = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+                const smallestSide = Math.min(window.innerWidth, window.innerHeight);
+                const largestSide = Math.max(window.innerWidth, window.innerHeight);
+                const isTabletViewport = coarsePointer && smallestSide >= 700 && largestSide >= 900;
+
+                document.body.classList.toggle("tablet-layout", isTabletViewport);
                 if (isTabletViewport && forceCollapseOnTablet) {
                     sidebar.classList.add("collapsed");
                 }
@@ -2587,6 +2592,7 @@
 
             syncSidebarResponsiveState(true);
             window.addEventListener("resize", () => syncSidebarResponsiveState(true));
+            window.addEventListener("orientationchange", () => syncSidebarResponsiveState(true));
 
             toggleBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("collapsed");
