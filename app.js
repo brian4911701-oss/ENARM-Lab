@@ -9755,10 +9755,55 @@
                     authOverlay.classList.remove("active");
                 }
 
+                const syncAuthenticatedUI = (displayName, options = {}) => {
+                    const showWelcome = Boolean(options.showWelcome);
+                    const fallbackName = (displayName || "").trim() || State.userName || "Aspirante";
+                    const cleanName = fallbackName.trim().substring(0, 20);
+
+                    State.userName = cleanName;
+                    localStorage.setItem("enarm_user", cleanName);
+
+                    $$(".user-name").forEach(el => el.textContent = cleanName);
+                    $$(".header-title").forEach(el => {
+                        if (el.textContent.includes("Hola,")) {
+                            el.innerHTML = `Hola, <span class="user-name" style="color:var(--accent-green);">${cleanName}</span>`;
+                        }
+                    });
+
+                    authOverlay.classList.remove("active");
+                    const appLayout = document.querySelector(".app-layout");
+                    if (appLayout) appLayout.style.display = "flex";
+
+                    const nameParts = cleanName.trim().split(/\s+/);
+                    const initials = nameParts.length > 1
+                        ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
+                        : nameParts[0].substring(0, 2).toUpperCase();
+
+                    $$(".user-avatar").forEach(el => {
+                        el.innerHTML = `<span style="font-size: 14px; font-weight: 700;">${initials}</span>`;
+                        el.style.background = "rgba(5, 192, 127, 0.1)";
+                        el.style.color = "var(--accent-green)";
+                    });
+
+                    const statusEl = document.querySelector(".user-status");
+                    if (statusEl) statusEl.textContent = "EN LÍNEA";
+
+                    if (showWelcome) {
+                        showNotification(`¡Bienvenido, ${cleanName}!`, "success");
+                    }
+
+                    syncReclassAccessUI();
+                    return cleanName;
+                };
+
                 // Listen for Auth State to restore stats correctly dynamically
                 if (window.FB && window.FB.onAuthStateChanged) {
                     window.FB.onAuthStateChanged(window.FB.auth, async (user) => {
                         if (user) {
+                            const fallbackDisplayName = user.displayName
+                                || (user.email ? user.email.split("@")[0] : "")
+                                || State.userName;
+                            syncAuthenticatedUI(fallbackDisplayName);
                             State.currentUid = user.uid;
                             const uidInput = $("profile-uid");
                             if (uidInput) uidInput.value = user.uid;
@@ -9779,6 +9824,10 @@
                                 if (snap.exists()) {
                                     const data = snap.data();
                                     let needsUpdate = false;
+
+                                    if (typeof data.username === "string" && data.username.trim()) {
+                                        syncAuthenticatedUI(data.username);
+                                    }
 
                                     if (data.theme) { State.theme = data.theme; localStorage.setItem("enarm_theme", State.theme); applyTheme(State.theme); }
                                     if (data.specialty !== undefined) { State.userSpecialty = data.specialty; localStorage.setItem("enarm_specialty", State.userSpecialty); if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty; }
@@ -9925,40 +9974,10 @@
                 });
 
                 async function handleSuccessLogin(displayName) {
-                    const cleanName = displayName.trim().substring(0, 20);
-                    State.userName = cleanName;
-                    localStorage.setItem("enarm_user", cleanName);
+                    const cleanName = syncAuthenticatedUI(displayName, { showWelcome: true });
 
-                    $$(".user-name").forEach(el => el.textContent = cleanName);
-                    $$(".header-title").forEach(el => {
-                        if (el.textContent.includes("Hola,")) {
-                            el.innerHTML = `Hola, <span class="user-name" style="color:var(--accent-green);">${cleanName}</span>`;
-                        }
-                    });
-
-                    authOverlay.classList.remove("active");
-                    const appLayout = document.querySelector(".app-layout");
-                    if (appLayout) appLayout.style.display = "flex";
-
-                    showNotification(`¡Bienvenido, ${cleanName}!`, "success");
-
-                    // Update initials and status
-                    const nameParts = cleanName.trim().split(/\s+/);
-                    const initials = nameParts.length > 1
-                        ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
-                        : nameParts[0].substring(0, 2).toUpperCase();
-
-        $$(".user-avatar").forEach(el => {
-            el.innerHTML = `<span style="font-size: 14px; font-weight: 700;">${initials}</span>`;
-            el.style.background = "rgba(5, 192, 127, 0.1)";
-            el.style.color = "var(--accent-green)";
-        });
-        const statusEl = document.querySelector(".user-status");
-        if (statusEl) statusEl.textContent = "EN LÍNEA";
-        syncReclassAccessUI();
-
-        if (window.FB && window.FB.auth.currentUser) {
-            try {
+                    if (window.FB && window.FB.auth.currentUser) {
+                        try {
                             const userRef = window.FB.doc(window.FB.db, "leaderboard", window.FB.auth.currentUser.uid);
                             const snap = await window.FB.getDoc(userRef);
                             if (snap.exists()) {
