@@ -8850,7 +8850,7 @@
 
                     if (badgeMain) {
                         if (unreadTotal > 0) {
-                            badgeMain.style.display = "block";
+                            badgeMain.style.display = "grid";
                             badgeMain.textContent = unreadTotal;
                         } else {
                             badgeMain.style.display = "none";

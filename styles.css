@@ -1185,6 +1185,42 @@ body.theme-premium-pink .sidebar-capsule {
   transform: translateY(-1px);
 }
 
+.notif-badge {
+  display: none;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ff6b6b, #ef4444);
+  color: #fff;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 6px 12px rgba(239, 68, 68, 0.28);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  transform: translate(35%, -35%);
+  transform-origin: center;
+  place-items: center;
+  white-space: nowrap;
+}
+
+.notif-badge:empty {
+  width: 12px;
+  min-width: 12px;
+  height: 12px;
+  padding: 0;
+  border-width: 2px;
+}
+
+.notif-badge:not(:empty) {
+  min-width: 20px;
+}
+
 @media (min-width: 769px) {
   #view-dashboard .dashboard-mobile-hero {
     width: auto;
@@ -4149,11 +4185,10 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
   }
 
   #view-dashboard #notif-badge-main {
-    top: 12px !important;
-    right: 12px !important;
-    width: 11px !important;
-    height: 11px !important;
-    border: 2px solid var(--bg-card) !important;
+    top: 8px;
+    right: 8px;
+    border-color: var(--bg-card);
+    transform: translate(28%, -28%);
   }
 
   #view-dashboard .countdown-widget {
