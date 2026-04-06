@@ -9796,6 +9796,66 @@
                     return cleanName;
                 };
 
+                const getRedirectSupportState = () => {
+                    const authHost = String(window.FB && window.FB.authDomain ? window.FB.authDomain : "").trim().toLowerCase();
+                    const currentHost = String(window.location.hostname || "").trim().toLowerCase();
+                    const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
+                    const isSameHostAuth = Boolean(authHost && currentHost && authHost === currentHost);
+
+                    return {
+                        authHost,
+                        currentHost,
+                        isStandalone,
+                        isSameHostAuth,
+                        canUseRedirectFallback: isSameHostAuth
+                    };
+                };
+
+                const getGoogleAuthErrorMessage = (error) => {
+                    const code = error && error.code ? String(error.code) : "";
+                    const support = getRedirectSupportState();
+
+                    if (code === "auth/unauthorized-domain") {
+                        return "Google no está autorizado para este dominio en Firebase Auth.";
+                    }
+                    if (code === "auth/web-storage-unsupported") {
+                        return "Este navegador no permite el almacenamiento necesario para iniciar con Google.";
+                    }
+                    if (code === "auth/operation-not-supported-in-this-environment") {
+                        return support.isStandalone
+                            ? "Google no se pudo abrir dentro de la app instalada. Intenta iniciar sesión desde Chrome."
+                            : "Este entorno no permite abrir el flujo de Google.";
+                    }
+                    if (code === "auth/popup-blocked") {
+                        return "El navegador bloqueó la ventana de Google. Intenta desde Chrome o habilita popups.";
+                    }
+                    if (code === "auth/popup-closed-by-user") {
+                        return "Se cerró la ventana de Google antes de completar el acceso.";
+                    }
+                    if (code === "auth/cancelled-popup-request") {
+                        return "Se canceló el intento de acceso con Google.";
+                    }
+                    if (code === "auth/network-request-failed") {
+                        return "No se pudo conectar con Google. Revisa tu conexión e inténtalo de nuevo.";
+                    }
+                    return "Error interno al conectar con Google: " + ((error && error.message) || "desconocido");
+                };
+
+                if (window.FB && window.FB.getRedirectResult) {
+                    window.FB.getRedirectResult(window.FB.auth)
+                        .then((result) => {
+                            if (!result || !result.user) return;
+                            const redirectDisplayName = result.user.displayName
+                                || (result.user.email ? result.user.email.split("@")[0] : "")
+                                || State.userName;
+                            syncAuthenticatedUI(redirectDisplayName);
+                        })
+                        .catch((error) => {
+                            console.error("Error processing Google redirect result:", error);
+                            showNotification(getGoogleAuthErrorMessage(error), "error");
+                        });
+                }
+
                 // Listen for Auth State to restore stats correctly dynamically
                 if (window.FB && window.FB.onAuthStateChanged) {
                     window.FB.onAuthStateChanged(window.FB.auth, async (user) => {
@@ -10051,14 +10111,6 @@
                         };
 
                         try {
-                            const prefersRedirect = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-                                || window.matchMedia("(display-mode: standalone)").matches;
-
-                            if (prefersRedirect) {
-                                await useRedirect();
-                                return;
-                            }
-
                             const result = await window.FB.signInWithPopup(window.FB.auth, window.FB.googleProvider);
                             const userObj = result.user;
                             let displayName = userObj.displayName;
@@ -10067,6 +10119,7 @@
                             handleSuccessLogin(displayName);
                         } catch (error) {
                             const code = error && error.code ? String(error.code) : "";
+                            const redirectSupport = getRedirectSupportState();
                             const canFallbackToRedirect = [
                                 "auth/popup-blocked",
                                 "auth/popup-closed-by-user",
@@ -10074,18 +10127,35 @@
                                 "auth/operation-not-supported-in-this-environment"
                             ].includes(code);
 
-                            if (canFallbackToRedirect) {
+                            if (canFallbackToRedirect && redirectSupport.canUseRedirectFallback) {
                                 try {
                                     await useRedirect();
                                     return;
                                 } catch (redirectError) {
                                     console.error(redirectError);
-                                    showNotification("No se pudo abrir Google. Revisa popups y vuelve a intentar.", "error");
+                                    showNotification(getGoogleAuthErrorMessage(redirectError), "error");
                                     return;
                                 }
                             }
 
-                            showNotification("Error interno al conectar con Google: " + error.message, "error");
+                            if (canFallbackToRedirect && !redirectSupport.canUseRedirectFallback) {
+                                const openInBrowserHint = redirectSupport.isStandalone
+                                    ? " Abre ENARMlab desde Chrome y vuelve a intentar."
+                                    : "";
+                                showNotification(
+                                    "Google no pudo abrirse con seguridad en este entorno porque el flujo redirect no está alineado con el dominio actual." + openInBrowserHint,
+                                    "error"
+                                );
+                                console.error("Unsafe redirect fallback avoided:", {
+                                    authDomain: redirectSupport.authHost,
+                                    currentHost: redirectSupport.currentHost,
+                                    isStandalone: redirectSupport.isStandalone,
+                                    originalError: error
+                                });
+                                return;
+                            }
+
+                            showNotification(getGoogleAuthErrorMessage(error), "error");
                             console.error(error);
                         } finally {
                             providerBtn.disabled = false;

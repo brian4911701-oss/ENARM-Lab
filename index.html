@@ -2026,7 +2026,7 @@
     <!-- ── FIREBASE ── -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, getDocs, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, addDoc, updateDoc, runTransaction } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
         import { getMessaging, getToken, isSupported as isMessagingSupported, onMessage } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging.js";
 
@@ -2078,11 +2078,13 @@
             googleProvider,
             signInWithPopup,
             signInWithRedirect,
+            getRedirectResult,
             signOut,
             getToken,
             onMessage,
             messagingReady,
-            pushConfig: firebaseMessagingConfig
+            pushConfig: firebaseMessagingConfig,
+            authDomain: firebaseConfig.authDomain
         };
 
         window.dispatchEvent(new Event("firebaseLoaded"));
