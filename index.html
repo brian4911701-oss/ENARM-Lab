@@ -891,9 +891,9 @@
                     <div>
                         <h1 class="header-title"
                             style="font-size: 32px; display: flex; align-items: center; gap: 12px;">
-                            <span style="font-size: 36px;">&#x1F30D;</span> Ranking de Amigos
+                            <span style="font-size: 36px;">&#x1F30D;</span> Ranking
                         </h1>
-                        <p class="header-subtitle">Compite con tus colegas agregados y sube de rango.</p>
+                        <p class="header-subtitle">Consulta el ranking general o filtra solo a tus amigos.</p>
                     </div>
 
                     <button class="btn-primary" id="btn-open-friends-modal"
@@ -909,9 +909,13 @@
                 <div class="comunidad-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
                     <!-- Leaderboard -->
                     <div class="panel" style="padding: 0; overflow: hidden;">
-                        <div class="panel-header"
+                        <div class="panel-header panel-header--ranking"
                             style="padding: 24px; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.1);">
-                            <h2 class="panel-title" style="margin: 0; font-size: 18px;">Ranking de Amigos</h2>
+                            <h2 class="panel-title" style="margin: 0; font-size: 18px;">Ranking</h2>
+                            <div class="ranking-filter" id="ranking-filter">
+                                <button class="ranking-filter-btn active" type="button" data-ranking-scope="general">General</button>
+                                <button class="ranking-filter-btn" type="button" data-ranking-scope="friends">Solo amigos</button>
+                            </div>
                         </div>
 
                         <div class="leaderboard-list">
@@ -1489,6 +1493,19 @@
                                 <div class="input-group profile-form-span">
                                     <label>Universidad de Egreso (Opcional)</label>
                                     <input type="text" id="profile-university" class="text-input" placeholder="Ej. UNAM, IPN, UDG...">
+                                </div>
+                                <div class="input-group profile-form-span">
+                                    <label>Privacidad del puntaje</label>
+                                    <div class="profile-privacy-toggle">
+                                        <div>
+                                            <div class="profile-privacy-title">Ocultar mi puntaje al público</div>
+                                            <div class="profile-privacy-note">Otros usuarios verán tu posición en el ranking, pero no tu promedio general.</div>
+                                        </div>
+                                        <label class="profile-switch" for="profile-score-public-toggle">
+                                            <input type="checkbox" id="profile-score-public-toggle">
+                                            <span class="profile-switch-slider"></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
 

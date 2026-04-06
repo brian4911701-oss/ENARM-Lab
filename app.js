@@ -35,11 +35,13 @@
         userName: "Aspirante",
         userSpecialty: "",
         userUniversity: "",
+        isScorePublic: true,
         history: [],
         selectedTopics: [],
         reportedQuestions: [],
         reportedQuestionsLocal: [],
         myFriends: [],
+        communityRankingMode: "general",
         activeChallenges: [],
         quarantineKeys: new Set(),
         deletedCaseKeys: new Set(),
@@ -573,6 +575,7 @@
         if ($("profile-uid")) $("profile-uid").value = State.currentUid || "";
         if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty || "";
         if ($("profile-university")) $("profile-university").value = State.userUniversity || "";
+        if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic;
         updatePremiumStatusLabel();
     }
 
@@ -2432,6 +2435,7 @@
         localStorage.setItem("enarm_user", State.userName);
         localStorage.setItem("enarm_specialty", State.userSpecialty || "");
         localStorage.setItem("enarm_university", State.userUniversity || "");
+        localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0");
         const reportsToSave = State.reportedQuestionsLocal || State.reportedQuestions || [];
         localStorage.setItem("enarm_reports", JSON.stringify(reportsToSave));
 
@@ -2444,6 +2448,7 @@
                 username: State.userName,
                 specialty: State.userSpecialty || "",
                 university: State.userUniversity || "",
+                isScorePublic: State.isScorePublic !== false,
                 score: avg,
                 answered: totalq,
                 flame: State.history.length || 0,
@@ -2487,6 +2492,8 @@
         if (sp) State.userSpecialty = sp;
         const uni = localStorage.getItem("enarm_university");
         if (uni) State.userUniversity = uni;
+        const scorePublic = localStorage.getItem("enarm_score_public");
+        if (scorePublic !== null) State.isScorePublic = scorePublic !== "0";
 
         const theme = localStorage.getItem("enarm_theme");
         if (theme) {
@@ -8183,6 +8190,7 @@
                 State.userName = nameInput;
                 State.userSpecialty = $("profile-specialty").value;
                 State.userUniversity = $("profile-university").value.trim().substring(0, 50);
+                State.isScorePublic = !$("profile-score-public-toggle")?.checked;
 
                 // Update visuals locally
                 const nameParts = State.userName.trim().split(/\s+/);
@@ -8598,6 +8606,7 @@
             localStorage.removeItem("enarm_user");
             localStorage.removeItem("enarm_specialty");
             localStorage.removeItem("enarm_university");
+            localStorage.removeItem("enarm_score_public");
             localStorage.removeItem("enarm_stats");
             localStorage.removeItem("enarm_history");
             localStorage.removeItem("enarm_reports");
@@ -8614,142 +8623,193 @@
             if (window.isCloudInit) return;
             window.isCloudInit = true;
             initReportsCloud();
-            // Listener on Friendships (Accepted Requests) to populate Leaderboard / Friends List
-            const fetchFriendsAndLeaderboard = () => {
+            let communityLeaderboardEntries = [];
+            let communityFriendIds = new Set([window.FB.auth.currentUser.uid]);
+            let leaderboardUnsub = null;
+
+            const formatLeaderboardScore = (value) => {
+                const num = Number(value);
+                if (!Number.isFinite(num)) return "0";
+                return Number.isInteger(num) ? String(num) : num.toFixed(1);
+            };
+
+            const getPublicScoreLabel = (entry, isOwner = false) => {
+                const scoreVisible = isOwner || entry?.isScorePublic !== false;
+                return scoreVisible
+                    ? `Promedio general: ${formatLeaderboardScore(entry?.score)}%`
+                    : "Promedio general oculto";
+            };
+
+            const getLeaderboardInitials = (username) => {
+                const safeName = String(username || "Aspirante").trim();
+                if (!safeName) return "AS";
+                const nameParts = safeName.split(/\s+/).filter(Boolean);
+                if (nameParts.length === 1) return nameParts[0].substring(0, 2).toUpperCase();
+                return (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase();
+            };
+
+            const getLeaderboardRankMarkup = (rank) => {
+                if (rank === 1) return '<span style="color: gold; text-shadow: 0 0 10px rgba(255,215,0,0.5);">#1</span>';
+                if (rank === 2) return '<span style="color: silver; text-shadow: 0 0 10px rgba(192,192,192,0.5);">#2</span>';
+                if (rank === 3) return '<span style="color: #cd7f32; text-shadow: 0 0 10px rgba(205,127,50,0.5);">#3</span>';
+                return `#${rank}`;
+            };
+
+            const syncRankingFilterButtons = () => {
+                const activeScope = State.communityRankingMode === "friends" ? "friends" : "general";
+                $$(".ranking-filter-btn").forEach(btn => {
+                    btn.classList.toggle("active", btn.getAttribute("data-ranking-scope") === activeScope);
+                });
+            };
+
+            const renderCommunityPanels = () => {
+                const currentUid = window.FB.auth.currentUser?.uid;
+                const showFriendsOnly = State.communityRankingMode === "friends";
+                const visibleEntries = showFriendsOnly
+                    ? communityLeaderboardEntries.filter(entry => communityFriendIds.has(entry.id))
+                    : communityLeaderboardEntries;
+
+                const lbList = document.querySelector(".leaderboard-list");
+                if (lbList) {
+                    if (!visibleEntries.length) {
+                        lbList.innerHTML = `<div style="padding: 20px; color: var(--text-muted); font-size: 13px;">${showFriendsOnly ? "Agrega amigos para ver el ranking de amigos." : "Aún no hay usuarios en el ranking general."}</div>`;
+                    } else {
+                        lbList.innerHTML = visibleEntries.map((entry, index) => {
+                            const rank = index + 1;
+                            const isMe = entry.id === currentUid;
+                            const isFriend = communityFriendIds.has(entry.id);
+                            const bgStyle = isMe ? 'background: rgba(5, 192, 127, 0.1); border-bottom: 1px solid rgba(5, 192, 127, 0.2);' : '';
+
+                            let badgeSpec = "";
+                            if (entry.specialty) badgeSpec += `<span style="font-size: 10px; opacity: 0.9; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 1px 5px; background: rgba(255,255,255,0.05); margin-right: 5px;">${escapeHtml(entry.specialty.substring(0, 20))}</span>`;
+                            if (entry.university) badgeSpec += `<span style="font-size: 10px; opacity: 0.6;">${escapeHtml(entry.university.substring(0, 20))}</span>`;
+
+                            return `
+                            <div class="lb-item" style="${bgStyle}">
+                                <div class="lb-rank" style="min-width:30px; font-size:16px;">${getLeaderboardRankMarkup(rank)}</div>
+                                <div class="lb-avatar" style="width:36px; height:36px; min-width:36px; flex-shrink:0; font-size:12px;">${getLeaderboardInitials(entry.username)}</div>
+                                <div class="lb-info" style="flex:1; min-width:0; padding: 0 8px;">
+                                    <div class="lb-name" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:13px; font-weight:700;">${escapeHtml(entry.username)} ${isMe ? '<span class="lb-badge" style="font-size:9px; vertical-align:middle;">Tú</span>' : ''}</div>
+                                    <div class="lb-score">${getPublicScoreLabel(entry, isMe)}</div>
+                                    ${badgeSpec ? `<div style="margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:flex;">${badgeSpec}</div>` : ''}
+                                </div>
+                                <div class="lb-actions" style="display:flex; align-items:center; gap:6px;">
+                                    <div class="lb-flame" style="font-size:10px;">&#x1F525; ${entry.flame || 0}</div>
+                                    ${!isMe && isFriend ? `<button class="btn-primary" onclick="window.quickChallenge('${entry.id}')" style="padding: 4px 8px; font-size: 10px; border-radius: 6px; background: var(--accent-orange); border:none; white-space:nowrap;">&#x2694;&#xFE0F; Retar</button>` : ''}
+                                </div>
+                            </div>`;
+                        }).join("");
+                    }
+                }
+
+                const friendsEntries = communityLeaderboardEntries.filter(entry => communityFriendIds.has(entry.id) && entry.id !== currentUid);
+                State.myFriends = friendsEntries.map(entry => ({
+                    uid: entry.id,
+                    username: entry.username,
+                    score: entry.score
+                }));
+
+                const flList = $("friends-list");
+                if (flList) {
+                    if (!friendsEntries.length) {
+                        flList.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">Aún no tienes amigos añadidos.</div>';
+                    } else {
+                        flList.innerHTML = friendsEntries.map(entry => `
+                        <div style="background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); border: 1px solid var(--border); padding: 10px 12px;">
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                                <div style="width: 32px; height: 32px; min-width:32px; border-radius: 50%; background: var(--accent-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; flex-shrink:0;">
+                                    ${getLeaderboardInitials(entry.username)}</div>
+                                <div style="min-width:0; flex:1;">
+                                    <div style="font-size: 13px; font-weight: 600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(entry.username)}</div>
+                                    <div style="font-size: 11px; color: var(--text-muted);">${getPublicScoreLabel(entry, false)}</div>
+                                </div>
+                            </div>
+                            <button class="btn-primary" onclick="window.quickChallenge('${entry.id}')" style="width:100%; padding: 7px; font-size: 12px; border-radius: 8px; background: var(--accent-orange); text-align:center;">&#x2694;&#xFE0F; Retar</button>
+                        </div>`).join("");
+                    }
+                }
+            };
+
+            const bindRankingFilterButtons = () => {
+                $$(".ranking-filter-btn").forEach(btn => {
+                    if (btn.dataset.bound === "1") return;
+                    btn.dataset.bound = "1";
+                    btn.addEventListener("click", () => {
+                        const nextScope = btn.getAttribute("data-ranking-scope") === "friends" ? "friends" : "general";
+                        if (State.communityRankingMode === nextScope) return;
+                        State.communityRankingMode = nextScope;
+                        syncRankingFilterButtons();
+                        renderCommunityPanels();
+                    });
+                });
+                syncRankingFilterButtons();
+            };
+
+            const subscribeLeaderboard = () => {
+                const lbRef = window.FB.collection(window.FB.db, "leaderboard");
+                const fullQ = window.FB.query(lbRef, window.FB.orderBy("score", "desc"));
+                if (leaderboardUnsub) leaderboardUnsub();
+                leaderboardUnsub = window.FB.onSnapshot(fullQ, (snapshot) => {
+                    communityLeaderboardEntries = [];
+                    snapshot.forEach(docSnap => {
+                        const data = docSnap.data() || {};
+                        communityLeaderboardEntries.push({
+                            id: docSnap.id,
+                            username: String(data.username || "Aspirante"),
+                            specialty: String(data.specialty || ""),
+                            university: String(data.university || ""),
+                            isScorePublic: data.isScorePublic !== false,
+                            score: Number(data.score) || 0,
+                            flame: Number(data.flame) || 0
+                        });
+                    });
+                    renderCommunityPanels();
+                }, err => console.error("Error cargando leaderboard: ", err));
+            };
+
+            const fetchFriendsAndLeaderboard = async () => {
+                const currentUid = window.FB.auth.currentUser?.uid;
+                if (!currentUid) return;
+
                 const reqsRef1 = window.FB.query(
                     window.FB.collection(window.FB.db, "friendRequests"),
-                    window.FB.where("toId", "==", window.FB.auth.currentUser.uid),
+                    window.FB.where("toId", "==", currentUid),
                     window.FB.where("status", "==", "accepted")
                 );
 
                 const reqsRef2 = window.FB.query(
                     window.FB.collection(window.FB.db, "friendRequests"),
-                    window.FB.where("fromId", "==", window.FB.auth.currentUser.uid),
+                    window.FB.where("fromId", "==", currentUid),
                     window.FB.where("status", "==", "accepted")
                 );
 
-                // Función helper para procesar amigos
-                const processFriends = async () => {
-                    try {
-                        let friendIds = new Set();
-                        friendIds.add(window.FB.auth.currentUser.uid); // Siempre incluirme a mi
+                try {
+                    const getSnap = (q) => new Promise((resolve) => {
+                        const un = window.FB.onSnapshot(q, snap => { un(); resolve(snap); }, () => { un(); resolve({ forEach: () => { } }); });
+                    });
 
-                        // Para simular getDocs, utilizamos onSnapshot de una sola vez
-                        const getSnap = (q) => new Promise((resolve) => {
-                            const un = window.FB.onSnapshot(q, snap => { un(); resolve(snap); }, err => { un(); resolve({ forEach: () => { } }); });
-                        });
+                    const friendIds = new Set([currentUid]);
+                    const snap1 = await getSnap(reqsRef1);
+                    const snap2 = await getSnap(reqsRef2);
 
-                        const snap1 = await getSnap(reqsRef1);
-                        const snap2 = await getSnap(reqsRef2);
+                    snap1.forEach(doc => { if (doc.data()) friendIds.add(doc.data().fromId); });
+                    snap2.forEach(doc => { if (doc.data()) friendIds.add(doc.data().toId); });
 
-                        snap1.forEach(doc => { if (doc.data()) friendIds.add(doc.data().fromId) });
-                        snap2.forEach(doc => { if (doc.data()) friendIds.add(doc.data().toId) });
-
-                        // Ahora que tenemos los IDs, busquemos su información en Leaderboard
-                        const lbRef = window.FB.collection(window.FB.db, "leaderboard");
-                        const fullQ = window.FB.query(lbRef, window.FB.orderBy("score", "desc"), window.FB.limit(200));
-
-                        window.FB.onSnapshot(fullQ, (snapshot) => {
-                            let lbHTML = "";
-                            let friendListHTML = "";
-                            let rank = 1;
-                            let hasFriends = false;
-                            State.myFriends = [];
-
-                            snapshot.forEach(docSnap => {
-                                if (friendIds.has(docSnap.id)) {
-                                    const data = docSnap.data();
-                                    const isMe = docSnap.id === window.FB.auth.currentUser.uid;
-                                    const bgStyle = isMe ? 'background: rgba(5, 192, 127, 0.1); border-bottom: 1px solid rgba(5, 192, 127, 0.2);' : '';
-
-                                    let rankStr = `#${rank}`;
-                                    if (rank === 1) rankStr = `<span style="color: gold; text-shadow: 0 0 10px rgba(255,215,0,0.5);">#1</span>`;
-                                    else if (rank === 2) rankStr = `<span style="color: silver; text-shadow: 0 0 10px rgba(192,192,192,0.5);">#2</span>`;
-                                    else if (rank === 3) rankStr = `<span style="color: #cd7f32; text-shadow: 0 0 10px rgba(205,127,50,0.5);">#3</span>`;
-
-                                    const initNameParts = data.username.trim().split(/\s+/);
-                                    const lbInitials = initNameParts.length > 1
-                                        ? (initNameParts[0][0] + initNameParts[initNameParts.length - 1][0]).toUpperCase()
-                                        : initNameParts[0].substring(0, 2).toUpperCase();
-
-                                    let badgeSpec = "";
-                                    if (data.specialty) badgeSpec += `<span style="font-size: 10px; opacity: 0.9; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 1px 5px; background: rgba(255,255,255,0.05); margin-right: 5px;">${data.specialty.substring(0, 20)}</span>`;
-                                    if (data.university) badgeSpec += `<span style="font-size: 10px; opacity: 0.6;">${data.university.substring(0, 20)}</span>`;
-
-                                    lbHTML += `
-                                     <div class="lb-item" style="${bgStyle}">
-                                        <div class="lb-rank" style="min-width:30px; font-size:16px;">${rankStr}</div>
-                                        <div class="lb-avatar" style="width:36px; height:36px; min-width:36px; flex-shrink:0; font-size:12px;">${lbInitials}</div>
-                                        <div class="lb-info" style="flex:1; min-width:0; padding: 0 8px;">
-                                            <div class="lb-name" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:13px; font-weight:700;">${data.username} ${isMe ? '<span class="lb-badge" style="font-size:9px; vertical-align:middle;">Tú</span>' : ''}</div>
-                                            ${badgeSpec ? `<div style="margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:flex;">${badgeSpec}</div>` : ''}
-                                        </div>
-                                        <div class="lb-actions" style="display:flex; align-items:center; gap:6px;">
-                                           <div class="lb-flame" style="font-size:10px;">&#x1F525; ${data.flame || 0}</div>
-                                           ${!isMe ? `<button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="padding: 4px 8px; font-size: 10px; border-radius: 6px; background: var(--accent-orange); border:none; white-space:nowrap;">&#x2694;&#xFE0F; Retar</button>` : ''}
-                                        </div>
-                                     </div>
-                                     `;
-
-                                    if (!isMe) {
-                                        hasFriends = true;
-                                        State.myFriends.push({
-                                            uid: docSnap.id,
-                                            username: data.username,
-                                            score: data.score
-                                        });
-
-                                        friendListHTML += `
-                                        <div style="background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); border: 1px solid var(--border); padding: 10px 12px;">
-                                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                                                <div style="width: 32px; height: 32px; min-width:32px; border-radius: 50%; background: var(--accent-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; flex-shrink:0;">
-                                                    ${data.username.substring(0, 2).toUpperCase()}</div>
-                                                <div style="min-width:0; flex:1;">
-                                                    <div style="font-size: 13px; font-weight: 600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${data.username}</div>
-                                                    <div style="font-size: 11px; color: var(--text-muted);">Promedio: ${data.score || 0}%</div>
-                                                </div>
-                                            </div>
-                                            <button class="btn-primary" onclick="window.quickChallenge('${docSnap.id}')" style="width:100%; padding: 7px; font-size: 12px; border-radius: 8px; background: var(--accent-orange); text-align:center;">&#x2694;&#xFE0F; Retar</button>
-                                        </div>`;
-                                    }
-                                    rank++;
-                                }
-                            });
-
-                            window.quickChallenge = (uid) => {
-                                // Save the pre-selected friend UID; the modal will pick it up when opened
-                                window._pendingChallengeUid = uid;
-                                // Navigate to setup so the user can configure the exam first
-                                if (typeof showView === "function") showView("view-setup");
-                                showNotification("&#x1F3AF; ¡Amigo pre-seleccionado! Configura tu examen y luego pulsa 'Retar a un Amigo &#x2694;&#xFE0F;'.", "info");
-                            };
-
-                            const lbList = document.querySelector(".leaderboard-list");
-                            if (lbList) lbList.innerHTML = lbHTML || '<div style="padding: 20px; color: var(--text-muted); font-size: 13px;">Agrega amigos para ver el ranking.</div>';
-
-                            const flList = document.getElementById("friends-list");
-                            if (flList) {
-                                if (hasFriends) {
-                                    flList.innerHTML = friendListHTML;
-                                } else {
-                                    flList.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">Aún no tienes amigos añadidos.</div>';
-                                }
-                            }
-
-                            // Cambiar el título "Top 100 Aspirantes" a "Ranking de Amigos"
-                            const titleEls = document.querySelectorAll(".panel-title");
-                            titleEls.forEach(t => {
-                                if (t.textContent.includes("Top 100")) {
-                                    t.textContent = "Ranking de Amigos";
-                                }
-                            });
-                        });
-                    } catch (err) { console.error("Error cargando amigos: ", err); }
-                };
-
-                processFriends();
+                    communityFriendIds = friendIds;
+                    renderCommunityPanels();
+                } catch (err) {
+                    console.error("Error cargando amigos: ", err);
+                }
             };
 
+            window.quickChallenge = (uid) => {
+                window._pendingChallengeUid = uid;
+                if (typeof showView === "function") showView("view-setup");
+                showNotification("&#x1F3AF; ¡Amigo pre-seleccionado! Configura tu examen y luego pulsa 'Retar a un Amigo &#x2694;&#xFE0F;'.", "info");
+            };
+
+            bindRankingFilterButtons();
+            subscribeLeaderboard();
             fetchFriendsAndLeaderboard();
 
             // Buscar Amigo
@@ -8790,7 +8850,7 @@
                                     <div style="display:flex; justify-content:space-between; align-items:center;">
                                         <div>
                                             <div style="font-weight:bold">${foundUser.username}</div>
-                                            <div style="font-size:12px; color:var(--text-muted)">Promedio: ${foundUser.score}%</div>
+                                            <div style="font-size:12px; color:var(--text-muted)">${foundUser.isScorePublic === false ? "Promedio general oculto" : `Promedio: ${formatLeaderboardScore(foundUser.score)}%`}</div>
                                         </div>
                                         <button class="btn-primary btn-community-add" data-id="${foundId}" data-name="${foundUser.username}" style="padding: 8px 12px; font-size: 13px;">Añadir</button>
                                     </div>
@@ -9993,6 +10053,7 @@
                                     if (data.theme) { State.theme = data.theme; localStorage.setItem("enarm_theme", State.theme); applyTheme(State.theme); }
                                     if (data.specialty !== undefined) { State.userSpecialty = data.specialty; localStorage.setItem("enarm_specialty", State.userSpecialty); if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty; }
                                     if (data.university !== undefined) { State.userUniversity = data.university; localStorage.setItem("enarm_university", State.userUniversity); if ($("profile-university")) $("profile-university").value = State.userUniversity; }
+                                    if (data.isScorePublic !== undefined) { State.isScorePublic = data.isScorePublic !== false; localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0"); if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic; }
 
                                     if (data.globalStatsStr && data.globalStatsStr !== "{}") {
                                         State.globalStats = JSON.parse(data.globalStatsStr);
@@ -10157,6 +10218,11 @@
                                     State.userUniversity = data.university;
                                     localStorage.setItem("enarm_university", State.userUniversity);
                                     if ($("profile-university")) $("profile-university").value = State.userUniversity;
+                                }
+                                if (data.isScorePublic !== undefined) {
+                                    State.isScorePublic = data.isScorePublic !== false;
+                                    localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0");
+                                    if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic;
                                 }
                                 if (data.globalStatsStr) {
                                     State.globalStats = JSON.parse(data.globalStatsStr);
