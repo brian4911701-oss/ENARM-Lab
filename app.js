@@ -2525,7 +2525,6 @@
         if (statusEl) statusEl.textContent = "EN LÍNEA";
         syncReclassAccessUI();
         syncPremiumUI();
-        renderProfileView();
     };
 
     const applyTheme = (theme) => {
@@ -8162,28 +8161,29 @@
                 syncReclassAccessUI();
 
                 saveGlobalStats();
+                renderProfileView();
                 showNotification("Perfil actualizado y sincronizado.", "success");
-
-                const profileModal = $("profile-modal");
-                if (profileModal) profileModal.style.display = "none";
             });
         }
 
-        // Lógica de Modal Perfil y Amigos fuera de CloudFeatures (funciona sin conexión)
+        // Lógica de acceso al perfil (funciona sin conexión)
         const btnOpenProfile = $("btn-user-profile");
         const btnOpenProfileMobile = $("btn-user-profile-mobile");
-        const btnCloseProfile = $("btn-close-profile");
-        const profileModal = $("profile-modal");
+        const btnOpenFriendsModal = $("btn-open-friends-modal");
+        const btnProfileBack = $("btn-profile-back");
+        const btnProfileGoHistory = $("btn-profile-go-history");
+        const btnProfileGoCommunity = $("btn-profile-go-community");
+        const btnProfileGoSettings = $("btn-profile-go-settings");
 
         const btnOpenNotif = $("btn-open-notif");
         const btnCloseNotif = $("btn-close-notif");
         const notifModal = $("notif-modal");
 
-        const openProfileModal = () => {
-            profileModal.style.display = "flex";
-            const uidInput = $("profile-uid");
-            if (uidInput) uidInput.value = State.currentUid || "";
-            updatePremiumStatusLabel();
+        const openProfileView = () => {
+            $$(".nav-item").forEach(n => n.classList.remove("active"));
+            $$(".mobile-nav-item").forEach(n => n.classList.remove("active"));
+            renderProfileView();
+            showView("view-profile");
         };
 
         const openNotifModal = () => {
@@ -8199,21 +8199,18 @@
         };
         window.openNotificationsModal = openNotifModal;
 
-        if (btnOpenProfile && profileModal) {
-            btnOpenProfile.addEventListener("click", openProfileModal);
-        }
-        if (btnOpenProfileMobile && profileModal) {
-            btnOpenProfileMobile.addEventListener("click", openProfileModal);
-        }
-        const btnOpenFriendsModal = $("btn-open-friends-modal");
-        if (btnOpenFriendsModal && profileModal) {
-            btnOpenFriendsModal.addEventListener("click", openProfileModal);
-        }
-        if (btnCloseProfile && profileModal) {
-            btnCloseProfile.addEventListener("click", () => {
-                profileModal.style.display = "none";
+        if (btnOpenProfile) btnOpenProfile.addEventListener("click", openProfileView);
+        if (btnOpenProfileMobile) btnOpenProfileMobile.addEventListener("click", openProfileView);
+        if (btnOpenFriendsModal) btnOpenFriendsModal.addEventListener("click", openProfileView);
+        if (btnProfileBack) btnProfileBack.addEventListener("click", () => $("nav-dashboard").click());
+        if (btnProfileGoHistory) btnProfileGoHistory.addEventListener("click", () => $("nav-historial").click());
+        if (btnProfileGoCommunity) {
+            btnProfileGoCommunity.addEventListener("click", () => {
+                if (!ensurePremiumAccess("La comunidad forma parte del acceso premium.")) return;
+                $("nav-comunidad").click();
             });
         }
+        if (btnProfileGoSettings) btnProfileGoSettings.addEventListener("click", () => $("nav-ajustes").click());
 
         if (btnOpenNotif) {
             btnOpenNotif.addEventListener("click", openNotifModal);
@@ -9859,6 +9856,7 @@
                     }
 
                     syncReclassAccessUI();
+                    renderProfileView();
                     return cleanName;
                 };
 
