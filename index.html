@@ -965,86 +965,107 @@
                 <div class="panel">
                     <h2 class="panel-title"><span class="title-icon green-text">&#x1F4A1;</span> Más Funciones e Integraciones
                     </h2>
-                    <p class="panel-subtitle">Este espacio está reservado para futuras actualizaciones y módulos.</p>
+                    <p class="panel-subtitle">Accesos, herramientas, soporte y documentos legales en un mismo lugar.</p>
                     <div class="list-grid" id="mas-container">
-                        <div class="list-item mobile-only-mas"
-                            onclick="document.getElementById('nav-historial').click(); if(document.querySelector('.mobile-nav-item[data-view=\'view-historial\']')) { document.querySelector('.mobile-nav-item[data-view=\'view-historial\']').click(); } else { showView('view-historial'); document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active')); }"
-                            style="cursor: pointer;">
-                            <div class="list-item-content">
-                                <h3>&#x1F552; Historial de Sesiones</h3>
-                                <p>Revisa tus exámenes pasados y tu progreso.</p>
+                        <section class="more-section mobile-only-mas" aria-labelledby="mas-section-cuenta">
+                            <div class="more-section-header">
+                                <p class="more-section-eyebrow">Acceso rápido</p>
+                                <h3 class="more-section-title" id="mas-section-cuenta">Atajos móviles</h3>
                             </div>
-                        </div>
-                        <div class="list-item mobile-only-mas"
-                            onclick="document.getElementById('nav-ajustes').click(); showView('view-ajustes'); document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));"
-                            style="cursor: pointer;">
-                            <div class="list-item-content">
-                                <h3>&#x2699;&#xFE0F; Configuración</h3>
-                                <p>Ajustes de la cuenta, cambiar tema visual y opciones de perfil.</p>
+                            <div class="more-section-items">
+                                <div class="list-item mobile-only-mas"
+                                    onclick="document.getElementById('nav-historial').click(); if(document.querySelector('.mobile-nav-item[data-view=\'view-historial\']')) { document.querySelector('.mobile-nav-item[data-view=\'view-historial\']').click(); } else { showView('view-historial'); document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active')); }"
+                                    style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3>&#x1F552; Historial de Sesiones</h3>
+                                        <p>Revisa tus exámenes pasados y tu progreso.</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="list-item" onclick="showView('view-profile'); document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(n => n.classList.remove('active'));" style="cursor: pointer;">
-                            <div class="list-item-content">
-                                <h3>&#x1F464; Mi Perfil</h3>
-                                <p>Tu identidad, tus métricas rápidas y el acceso a tu red en un solo lugar.</p>
+                        </section>
+
+                        <section class="more-section" aria-labelledby="mas-section-estudio">
+                            <div class="more-section-header">
+                                <p class="more-section-eyebrow">Preparación</p>
+                                <h3 class="more-section-title" id="mas-section-estudio">Herramientas de estudio</h3>
                             </div>
-                        </div>
-                        <div class="list-item" onclick="showView('view-calculadora')" style="cursor: pointer;">
-                            <div class="list-item-content">
-                                <h3>&#x1F9EE; Calculadora de Puntaje</h3>
-                                <p>Compara tu promedio actual con los puntajes de corte históricos.</p>
+                            <div class="more-section-items">
+                                <div class="list-item" onclick="showView('view-calculadora')" style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3>&#x1F9EE; Calculadora de Puntaje</h3>
+                                        <p>Compara tu promedio actual con los puntajes de corte históricos.</p>
+                                    </div>
+                                </div>
+                                <div class="list-item" onclick="showView('view-temario')" style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3>&#x1F4D6; Temario Oficial ENARM</h3>
+                                        <p>Consulta los temas y subtemas que componen el banco de preguntas actual.</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="list-item" onclick="showView('view-temario')" style="cursor: pointer;">
-                            <div class="list-item-content">
-                                <h3>&#x1F4D6; Temario Oficial ENARM</h3>
-                                <p>Consulta los temas y subtemas que componen el banco de preguntas actual.</p>
+                        </section>
+
+                        <section class="more-section" aria-labelledby="mas-section-soporte">
+                            <div class="more-section-header">
+                                <p class="more-section-eyebrow">Comunidad</p>
+                                <h3 class="more-section-title" id="mas-section-soporte">Soporte y administración</h3>
                             </div>
-                        </div>
-                        <div class="list-item" onclick="window.open('terminos.html', '_blank')" style="cursor: pointer;">
-                            <div class="list-item-content">
-                                <h3>&#x1F4DC; Términos y Condiciones</h3>
-                                <p>Consulta las reglas de uso de la plataforma ENARMlab.</p>
+                            <div class="more-section-items">
+                                <div class="list-item" onclick="showView('view-feedback')" style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3>&#x1F4AC; Enviar Feedback</h3>
+                                        <p>Comparte sugerencias, errores o ideas para mejorar la app.</p>
+                                    </div>
+                                </div>
+                                <div class="list-item" id="mas-reportes-item" onclick="showView('view-reportes')" style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3>&#x1F6A9; Preguntas Reportadas</h3>
+                                        <p>Revisa las preguntas que los usuarios han marcado con posibles errores.</p>
+                                    </div>
+                                </div>
+                                <div class="list-item" id="mas-feedback-admin-item" onclick="showView('view-feedback-admin')"
+                                    style="cursor: pointer; display: none;">
+                                    <div class="list-item-content">
+                                        <h3>&#x1F4E5; Feedback recibidos</h3>
+                                        <p>Revisa los mensajes enviados por la comunidad.</p>
+                                    </div>
+                                </div>
+                                <div class="list-item" id="mas-reclass-item" onclick="showView('view-reclassify')"
+                                    style="cursor: pointer; display: none;">
+                                    <div class="list-item-content">
+                                        <h3>Reclasificar casos clinicos</h3>
+                                        <p>Asignar manualmente el tema correcto a cada caso.</p>
+                                    </div>
+                                </div>
+                                <div class="list-item" id="mas-community-broadcast-item" style="cursor: pointer; display: none;">
+                                    <div class="list-item-content">
+                                        <h3>&#x1F4E2; Aviso a la comunidad</h3>
+                                        <p>Enviar un mensaje global con notificación push a todos los usuarios.</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="list-item" onclick="window.open('privacidad.html', '_blank')" style="cursor: pointer;">
-                            <div class="list-item-content">
-                                <h3>&#x1F512; Aviso de Privacidad</h3>
-                                <p>Revisa cómo protegemos y tratamos tus datos personales.</p>
+                        </section>
+
+                        <section class="more-section" aria-labelledby="mas-section-legal">
+                            <div class="more-section-header">
+                                <p class="more-section-eyebrow">Legal</p>
+                                <h3 class="more-section-title" id="mas-section-legal">Documentos y condiciones</h3>
                             </div>
-                        </div>
-                        <div class="list-item" id="mas-reportes-item" onclick="showView('view-reportes')" style="cursor: pointer;">
-                            <div class="list-item-content">
-                                <h3>&#x1F6A9; Preguntas Reportadas</h3>
-                                <p>Revisa las preguntas que los usuarios han marcado con posibles errores.</p>
+                            <div class="more-section-items">
+                                <div class="list-item" onclick="window.open('terminos.html', '_blank')" style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3>&#x1F4DC; Términos y Condiciones</h3>
+                                        <p>Consulta las reglas de uso de la plataforma ENARMlab.</p>
+                                    </div>
+                                </div>
+                                <div class="list-item" onclick="window.open('privacidad.html', '_blank')" style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3>&#x1F512; Aviso de Privacidad</h3>
+                                        <p>Revisa cómo protegemos y tratamos tus datos personales.</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="list-item" id="mas-reclass-item" onclick="showView('view-reclassify')"
-                            style="cursor: pointer; display: none;">
-                            <div class="list-item-content">
-                                <h3>Reclasificar casos clinicos</h3>
-                                <p>Asignar manualmente el tema correcto a cada caso.</p>
-                            </div>
-                        </div>
-                        <div class="list-item" id="mas-community-broadcast-item" style="cursor: pointer; display: none;">
-                            <div class="list-item-content">
-                                <h3>&#x1F4E2; Aviso a la comunidad</h3>
-                                <p>Enviar un mensaje global con notificación push a todos los usuarios.</p>
-                            </div>
-                        </div>
-                        <div class="list-item" id="mas-feedback-admin-item" onclick="showView('view-feedback-admin')"
-                            style="cursor: pointer; display: none;">
-                            <div class="list-item-content">
-                                <h3>&#x1F4E5; Feedback recibidos</h3>
-                                <p>Revisa los mensajes enviados por la comunidad.</p>
-                            </div>
-                        </div>
-                        <div class="list-item" onclick="showView('view-feedback')" style="cursor: pointer;">
-                            <div class="list-item-content">
-                                <h3>&#x1F4AC; Enviar Feedback</h3>
-                                <p>Comparte sugerencias, errores o ideas para mejorar la app.</p>
-                            </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
             </div>
@@ -1195,14 +1216,45 @@
                         <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
                     </div>
 
-                    <div class="search-box-container" style="margin: 20px 0;">
-                        <span class="search-icon">&#x1F50D;</span>
-                        <input type="text" id="temario-search" placeholder="Buscar un tema específico..."
-                            oninput="filterOfficialTemario()">
+                    <div class="temario-toolbar">
+                        <div class="temario-search-shell">
+                            <div class="temario-search-top">
+                                <div>
+                                    <p class="temario-search-label">Buscador inteligente</p>
+                                    <h3 class="temario-search-title">Encuentra temas, subtemas o palabras clave</h3>
+                                </div>
+                                <button class="btn-ghost temario-clear-btn" type="button" onclick="clearOfficialTemarioSearch()">Limpiar</button>
+                            </div>
+                            <div class="temario-search-frame">
+                                <span class="temario-search-icon">&#x1F50D;</span>
+                                <input type="text" id="temario-search" class="temario-search-input"
+                                    placeholder="Ej. preeclampsia, bronquiolitis, apendicitis..."
+                                    oninput="filterOfficialTemario()">
+                            </div>
+                            <p class="temario-search-hint">Busca por nombre del tema, subtema o término clínico y úsalo en tu siguiente simulacro.</p>
+                        </div>
+
+                        <div id="temario-stats" class="temario-stats" aria-live="polite">
+                            <div class="temario-stat">
+                                <span class="temario-stat-value">-</span>
+                                <span class="temario-stat-label">Temas oficiales</span>
+                            </div>
+                            <div class="temario-stat">
+                                <span class="temario-stat-value">-</span>
+                                <span class="temario-stat-label">Con preguntas</span>
+                            </div>
+                            <div class="temario-stat">
+                                <span class="temario-stat-value">-</span>
+                                <span class="temario-stat-label">Resultados</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div id="temario-list" class="temario-grid"
-                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 20px;">
+                    <div class="temario-results-head">
+                        <p id="temario-results-summary" class="temario-results-summary">Preparando el temario...</p>
+                    </div>
+
+                    <div id="temario-list" class="temario-grid">
                         <!-- Se llena dinámicamente desde app.js -->
                     </div>
                 </div>

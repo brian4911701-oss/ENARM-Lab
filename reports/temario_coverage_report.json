@@ -1,0 +1,1002 @@
+﻿{
+  "totalCases": 1994,
+  "totalThemes": 81,
+  "missingCount": 2,
+  "lowCount": 4,
+  "missing": [
+    {
+      "name": "Ginecología y Obstetricia",
+      "themes": [
+        {
+          "name": "Introducción a Ginecología",
+          "subtopics": [],
+          "count": 0
+        },
+        {
+          "name": "Sangrados Uterinos Anormales de Origen No Anatómico",
+          "subtopics": [],
+          "count": 0
+        }
+      ]
+    }
+  ],
+  "low": [
+    {
+      "name": "Pediatría",
+      "themes": [
+        {
+          "name": "Alteraciones Cromosómicas",
+          "subtopics": [
+            "Síndrome de Down",
+            "Síndrome de Edwards",
+            "Síndrome de Patau",
+            "Síndrome de Klinefelter"
+          ],
+          "count": 2
+        }
+      ]
+    },
+    {
+      "name": "Cirugía",
+      "themes": [
+        {
+          "name": "Quemaduras, Golpe de Calor e Hipotermia",
+          "subtopics": [],
+          "count": 2
+        }
+      ]
+    },
+    {
+      "name": "Medicina Interna",
+      "themes": [
+        {
+          "name": "Epidemiología",
+          "subtopics": [],
+          "count": 2
+        },
+        {
+          "name": "Geriatría",
+          "subtopics": [
+            "Síndromes y Escalas Geriátricas"
+          ],
+          "count": 2
+        }
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "name": "Ginecología y Obstetricia",
+      "themes": [
+        {
+          "name": "Introducción a Ginecología",
+          "subtopics": [],
+          "count": 0
+        },
+        {
+          "name": "Amenorreas Primarias y Secundarias",
+          "subtopics": [
+            "Síndrome de Turner",
+            "Síndrome de Swyer",
+            "Síndrome de Morris",
+            "Síndrome de Rokitansky",
+            "Síndrome de Asherman",
+            "Síndrome de Sheehan",
+            "Síndrome de Kallman",
+            "Síndrome de Prader-Willi"
+          ],
+          "count": 10
+        },
+        {
+          "name": "Ciclo Genital, Esterilidad y Anticonceptivos",
+          "subtopics": [],
+          "count": 15
+        },
+        {
+          "name": "Sangrados Uterinos Anormales de Origen No Anatómico",
+          "subtopics": [],
+          "count": 0
+        },
+        {
+          "name": "Sangrados Uterinos de Origen Desconocido",
+          "subtopics": [
+            "SOP",
+            "Endometriosis",
+            "Coagulopatías"
+          ],
+          "count": 102
+        },
+        {
+          "name": "Patología, Menopausia y Climaterio",
+          "subtopics": [
+            "Menopausia",
+            "Síndrome Climatérico",
+            "Osteoporosis",
+            "Incontinencia Urinaria",
+            "Trastornos del Piso Pélvico"
+          ],
+          "count": 21
+        },
+        {
+          "name": "Sangrados Uterinos Anormales de Origen Anatómico No Maligno",
+          "subtopics": [
+            "Adenomiosis",
+            "Poliposis",
+            "Miomatosis",
+            "Torsión Ovárica"
+          ],
+          "count": 10
+        },
+        {
+          "name": "Oncología Ginecológica",
+          "subtopics": [
+            "Cáncer de Endometrio",
+            "Cáncer de Ovario",
+            "Prevención y Tamizaje de CACU",
+            "Cáncer Cervicouterino",
+            "Cáncer de Vagina y Vulva",
+            "Patología Vulvar",
+            "Bartolinitis"
+          ],
+          "count": 71
+        },
+        {
+          "name": "Patología Mamaria Benigna",
+          "subtopics": [
+            "Mastopatía Fibroquística",
+            "Fibroadenoma",
+            "Mastitis Puerperal y No Puerperal",
+            "Papiloma Intraductal"
+          ],
+          "count": 11
+        },
+        {
+          "name": "Cáncer de Mama",
+          "subtopics": [],
+          "count": 39
+        },
+        {
+          "name": "Patología Infecciosa Cervical",
+          "subtopics": [
+            "Cervicovaginitis Bacteriana",
+            "Candida",
+            "Trichomonas",
+            "Enfermedad Pélvica Inflamatoria",
+            "Endocervicitis"
+          ],
+          "count": 23
+        },
+        {
+          "name": "Control Prenatal",
+          "subtopics": [
+            "Fisiología del Embarazo",
+            "Consultas Prenatales",
+            "Vacunas",
+            "Maniobras de Leopold",
+            "Incompatibilidad de Grupo RH",
+            "Diagnóstico de Cromosomopatías",
+            "Depresión Materna",
+            "Hiperemesis Gravídica",
+            "Patología Tiroidea en el Embarazo"
+          ],
+          "count": 117
+        },
+        {
+          "name": "Hemorragias del Primer Trimestre",
+          "subtopics": [
+            "Aborto",
+            "Embarazo Ectópico",
+            "Enfermedad Trofoblástica"
+          ],
+          "count": 55
+        },
+        {
+          "name": "Hemorragias del Segundo Trimestre",
+          "subtopics": [
+            "Placenta Previa",
+            "Acretismo Placentario",
+            "DPPNI",
+            "Vasa Previa",
+            "Rotura Uterina"
+          ],
+          "count": 33
+        },
+        {
+          "name": "Patología del Embarazo: Estados Hipertensivos",
+          "subtopics": [
+            "Hipertensión Crónica",
+            "Hipertensión Gestacional",
+            "Preeclampsia",
+            "Eclampsia",
+            "Síndrome de HELLP"
+          ],
+          "count": 52
+        },
+        {
+          "name": "Patología del Embarazo",
+          "subtopics": [
+            "Diabetes Mellitus Gestacional",
+            "Patología Hepática del Embarazo"
+          ],
+          "count": 41
+        },
+        {
+          "name": "Trabajo de Parto",
+          "subtopics": [
+            "Fisiológico",
+            "Violencia Obstétrica"
+          ],
+          "count": 52
+        },
+        {
+          "name": "Patología de Trabajo de Parto",
+          "subtopics": [
+            "Inducción de Trabajo de Parto",
+            "Cesárea",
+            "Distocias",
+            "Embarazo Gemelar"
+          ],
+          "count": 17
+        },
+        {
+          "name": "Parto Prematuro y Patología Coriónica",
+          "subtopics": [
+            "Parto Prematuro",
+            "Ruptura Prematura de Membranas",
+            "Polihidramnios",
+            "Oligohidramnios",
+            "Corioamnionitis"
+          ],
+          "count": 29
+        },
+        {
+          "name": "Patología Puerperal",
+          "subtopics": [
+            "Hemorragia Obstétrica",
+            "Atonía",
+            "Trauma",
+            "Tejido",
+            "Coagulopatías",
+            "Choque en la Paciente Embarazada",
+            "Sepsis Materna"
+          ],
+          "count": 102
+        }
+      ]
+    },
+    {
+      "name": "Pediatría",
+      "themes": [
+        {
+          "name": "Recién Nacido Sano",
+          "subtopics": [
+            "Cuidados del Recién Nacido",
+            "Tamizajes del RN",
+            "Cefalohematoma",
+            "Parálisis Braquial",
+            "Alteraciones Dermatológicas al Nacimiento"
+          ],
+          "count": 59
+        },
+        {
+          "name": "Reanimación Neonatal",
+          "subtopics": [],
+          "count": 3
+        },
+        {
+          "name": "Patología Neonatal Infecciosa",
+          "subtopics": [
+            "Sepsis",
+            "Neumonía",
+            "Meningitis",
+            "Enterocolitis Necrotizante",
+            "Onfalitis"
+          ],
+          "count": 48
+        },
+        {
+          "name": "Patología Respiratoria del Pediátrico",
+          "subtopics": [
+            "Enfermedad de Membrana Hialina",
+            "Taquipnea Transitoria del Recién Nacido",
+            "Síndrome de Aspiración de Meconio",
+            "Displasia Broncopulmonar",
+            "Hipertensión Pulmonar",
+            "Apnea del Prematuro"
+          ],
+          "count": 24
+        },
+        {
+          "name": "Patología Neonatal Malformativa",
+          "subtopics": [
+            "Asfixia",
+            "Encefalopatía Hipóxico-Isquémica",
+            "Hemorragia de Matriz Germinal",
+            "Malformaciones Congénitas",
+            "Hernias Diafragmáticas",
+            "Atresia de las Coanas",
+            "Atresia Pilórica",
+            "Atresia Duodenal",
+            "Atresia Esofágica",
+            "Onfalocele",
+            "Gastrosquisis",
+            "Espina Bífida",
+            "Paladar Hendido",
+            "Malformaciones Anorrectales"
+          ],
+          "count": 13
+        },
+        {
+          "name": "Patología Neonatal Congénita Infecciosa",
+          "subtopics": [
+            "TORCH",
+            "Citomegalovirus",
+            "Toxoplasmosis",
+            "Rubéola",
+            "Varicela",
+            "Sífilis",
+            "Herpes",
+            "Binomio VIH"
+          ],
+          "count": 50
+        },
+        {
+          "name": "Estenosis Hipertrófica del Píloro",
+          "subtopics": [],
+          "count": 12
+        },
+        {
+          "name": "Ictericia Neonatal",
+          "subtopics": [
+            "Fisiológica",
+            "Materna",
+            "Incompatibilidad Sanguínea",
+            "Problemas del Metabolismo Hepático",
+            "Atresia de Vías Biliares"
+          ],
+          "count": 13
+        },
+        {
+          "name": "Tamiz Metabólico",
+          "subtopics": [
+            "Hipotiroidismo",
+            "Fenilcetonuria",
+            "Galactosemia",
+            "Deficiencia de Biotinidasa",
+            "Hiperplasia Suprarrenal",
+            "Fibrosis Quística"
+          ],
+          "count": 21
+        },
+        {
+          "name": "Crecimiento y Desarrollo",
+          "subtopics": [
+            "Hitos del Desarrollo",
+            "Consulta del Niño Sano",
+            "Maltrato Infantil",
+            "Alimentación",
+            "Desnutrición",
+            "Obesidad",
+            "Talla Baja",
+            "Déficits Vitamínicos",
+            "Muerte Súbita"
+          ],
+          "count": 199
+        },
+        {
+          "name": "Vacunación",
+          "subtopics": [],
+          "count": 19
+        },
+        {
+          "name": "Patología Gastrointestinal Pediátrica",
+          "subtopics": [
+            "Invaginación Intestinal",
+            "Divertículo de Meckel",
+            "Enfermedad de Hirschsprung",
+            "ERGE"
+          ],
+          "count": 35
+        },
+        {
+          "name": "Diarrea en el Pediátrico",
+          "subtopics": [
+            "Planes de Hidratación",
+            "Introducción a Diarreas",
+            "Diarreas Agudas y Crónicas",
+            "Diarrea Enteroinvasiva",
+            "Intoxicaciones Alimentarias",
+            "Enfermedad Celíaca"
+          ],
+          "count": 4
+        },
+        {
+          "name": "Enfermedades Parasitarias",
+          "subtopics": [
+            "Giardiasis",
+            "EntamoebaHistolytica",
+            "Áscaris",
+            "Teniasis",
+            "Cisticercosis",
+            "Filariasis",
+            "Oxiuriasis",
+            "Escabiosis"
+          ],
+          "count": 9
+        },
+        {
+          "name": "Patología Respiratoria del Lactante y Preescolar",
+          "subtopics": [
+            "Bronquiolitis",
+            "Laringotraqueítis",
+            "Epiglotitis",
+            "Tos Ferina",
+            "Laringotraqueítis Bacteriana"
+          ],
+          "count": 24
+        },
+        {
+          "name": "Neumonías",
+          "subtopics": [
+            "Bacterianas",
+            "Virales",
+            "Atípicas en Adulto y Pediátrico"
+          ],
+          "count": 10
+        },
+        {
+          "name": "Asma en el Adulto y Pediátrico",
+          "subtopics": [],
+          "count": 9
+        },
+        {
+          "name": "IRAS y Convulsiones",
+          "subtopics": [
+            "Resfriado Común",
+            "Faringoamigdalitis",
+            "Difteria",
+            "Mononucleosis"
+          ],
+          "count": 3
+        },
+        {
+          "name": "Enfermedades Exantemáticas",
+          "subtopics": [
+            "Sarampión",
+            "Rubéola",
+            "Varicela",
+            "Quinta Enfermedad",
+            "Sexta Enfermedad",
+            "Escarlatina",
+            "Enfermedad de Kawasaki",
+            "Mano-Boca-Pie",
+            "Herpangina"
+          ],
+          "count": 46
+        },
+        {
+          "name": "Urgencias Pediátricas",
+          "subtopics": [
+            "Intoxicaciones por ASA y Paracetamol",
+            "Ingesta de Cáusticos",
+            "Ingesta de Metales Pesados",
+            "Obstrucción de la Vía Aérea Superior"
+          ],
+          "count": 11
+        },
+        {
+          "name": "Uropedia",
+          "subtopics": [
+            "Torsión Testicular",
+            "Torsión del Apéndice Testicular",
+            "Epididimitis",
+            "IVU",
+            "Reflujo Vesicoureteral"
+          ],
+          "count": 58
+        },
+        {
+          "name": "Cardiopedia",
+          "subtopics": [
+            "Cardiopatías Acianógenas",
+            "CIV",
+            "CIA",
+            "PCA",
+            "Estenosis Pulmonar",
+            "Cardiopatías Cianógenas",
+            "Tetralogía de Fallot",
+            "Tronco Arterioso Común",
+            "Drenaje Pulmonar Venoso Anómalo",
+            "Anomalía de Ebstein",
+            "Transposición de Grandes Vasos"
+          ],
+          "count": 6
+        },
+        {
+          "name": "Especialidades Pediátricas",
+          "subtopics": [
+            "Oncopedia",
+            "Neuroblastoma",
+            "Nefroblastoma",
+            "Astrocitoma",
+            "Osteosarcoma",
+            "Sarcoma de Ewing",
+            "Dermapedia",
+            "Dermatitis Atópica",
+            "Dermatitis del Pañal",
+            "Molusco Contagioso",
+            "Síndrome de Piel Escaldada",
+            "Síndrome de Shock Tóxico",
+            "Dermatitis Seborreica",
+            "Hematopedia",
+            "Púrpura de Henoch-Schönlein",
+            "Púrpura Trombocitopénica",
+            "Ortopedia",
+            "Displasia de Cadera",
+            "Pie Plano",
+            "Cojera"
+          ],
+          "count": 39
+        },
+        {
+          "name": "Alteraciones Cromosómicas",
+          "subtopics": [
+            "Síndrome de Down",
+            "Síndrome de Edwards",
+            "Síndrome de Patau",
+            "Síndrome de Klinefelter"
+          ],
+          "count": 2
+        }
+      ]
+    },
+    {
+      "name": "Cirugía",
+      "themes": [
+        {
+          "name": "Introducción a Cirugía y Cirugía Abdominal",
+          "subtopics": [
+            "Abdomen Agudo",
+            "Exploración Física",
+            "Tipos de Heridas Quirúrgicas"
+          ],
+          "count": 17
+        },
+        {
+          "name": "Patología Esofágica",
+          "subtopics": [],
+          "count": 3
+        },
+        {
+          "name": "Patología Gástrica",
+          "subtopics": [
+            "Gastritis Aguda o Crónica",
+            "Úlcera Péptica Duodenal y Gástrica",
+            "Úlcera Péptica Complicada y Perforada",
+            "Zollinger-Ellison",
+            "Dispepsia Funcional"
+          ],
+          "count": 4
+        },
+        {
+          "name": "Patología Biliar",
+          "subtopics": [
+            "Colecistitis",
+            "Colelitiasis",
+            "Coledocolitiasis",
+            "Colangitis",
+            "Íleo Biliar"
+          ],
+          "count": 38
+        },
+        {
+          "name": "Patología Pancreática",
+          "subtopics": [
+            "Pancreatitis Aguda y Crónica"
+          ],
+          "count": 7
+        },
+        {
+          "name": "Apendicitis",
+          "subtopics": [],
+          "count": 22
+        },
+        {
+          "name": "Patología Diverticular",
+          "subtopics": [
+            "Diverticulosis",
+            "Diverticulitis",
+            "Enfermedad Diverticular"
+          ],
+          "count": 10
+        },
+        {
+          "name": "Patología Intestinal Quirúrgica",
+          "subtopics": [
+            "Obstrucción Intestinal",
+            "Vólvulo de Colon y Ciego"
+          ],
+          "count": 8
+        },
+        {
+          "name": "Patología Isquémica Intestinal",
+          "subtopics": [
+            "Isquemia Mesentérica Aguda y Crónica"
+          ],
+          "count": 10
+        },
+        {
+          "name": "Hernias y Esplenectomía",
+          "subtopics": [],
+          "count": 3
+        },
+        {
+          "name": "Patología Intestinal Inflamatoria",
+          "subtopics": [
+            "Colitis Ulcerosa",
+            "Enfermedad de Crohn",
+            "Síndrome de Intestino Irritable"
+          ],
+          "count": 8
+        },
+        {
+          "name": "Patología Hepática",
+          "subtopics": [
+            "Hepatitis Agudas y Crónicas",
+            "Enfermedad Hepática Grasa"
+          ],
+          "count": 7
+        },
+        {
+          "name": "Cirrosis y sus Complicaciones",
+          "subtopics": [
+            "STDA por Várices Esofágicas",
+            "Ascitis",
+            "Encefalopatía Hepática",
+            "Peritonitis Bacteriana Espontánea",
+            "Esprue",
+            "Trasplante Hepático"
+          ],
+          "count": 22
+        },
+        {
+          "name": "Patología Arterial y Venosa",
+          "subtopics": [
+            "Insuficiencia Arterial Aguda",
+            "Enfermedad Arterial Periférica",
+            "Trombosis Venosa Profunda",
+            "Tromboembolia Pulmonar"
+          ],
+          "count": 19
+        },
+        {
+          "name": "Patología Perianal",
+          "subtopics": [
+            "Hemorroides",
+            "Abscesos",
+            "Fisuras",
+            "Fístulas"
+          ],
+          "count": 5
+        },
+        {
+          "name": "Urología",
+          "subtopics": [
+            "Infección de Vías Urinarias",
+            "Litiasis Renal",
+            "Hiperplasia Prostática",
+            "Prostatitis",
+            "Cáncer de Próstata",
+            "Tumores Testiculares"
+          ],
+          "count": 44
+        },
+        {
+          "name": "ETS",
+          "subtopics": [
+            "Linfogranuloma Venéreo",
+            "Chancro",
+            "Chancroide",
+            "Sífilis",
+            "Herpes"
+          ],
+          "count": 27
+        },
+        {
+          "name": "ATLS",
+          "subtopics": [
+            "Vía Aérea",
+            "Choque",
+            "Trauma Torácico",
+            "Trauma Craneoencefálico",
+            "Hemorragia Epidural",
+            "Subaracnoidea y Subdural",
+            "Síndromes Medulares",
+            "Trauma Abdominal",
+            "Fractura de Cadera",
+            "Trauma Genitourinario",
+            "ATLS en Embarazada"
+          ],
+          "count": 59
+        },
+        {
+          "name": "Intoxicaciones y Picaduras",
+          "subtopics": [
+            "Toxsíndromes",
+            "Alacranismo",
+            "Loxoscelismo",
+            "Latrodectismo",
+            "Mordedura de Serpientes"
+          ],
+          "count": 9
+        },
+        {
+          "name": "Quemaduras, Golpe de Calor e Hipotermia",
+          "subtopics": [],
+          "count": 2
+        },
+        {
+          "name": "Cirugía Oncológica",
+          "subtopics": [
+            "Cáncer de Esófago",
+            "Gástrico",
+            "Páncreas",
+            "Colon y Recto",
+            "Hepático",
+            "Renal",
+            "Síndrome de Lynch"
+          ],
+          "count": 64
+        },
+        {
+          "name": "Oftalmología",
+          "subtopics": [
+            "Ametropías",
+            "Patología de Anexos",
+            "Síndrome de Ojo Seco",
+            "Blefaritis",
+            "Orzuelo",
+            "Chalazión",
+            "Dacrioadenitis",
+            "Trauma Ocular",
+            "Celulitis Periorbitaria",
+            "Conjuntivitis",
+            "Escleritis",
+            "Epiescleritis",
+            "Queratocono",
+            "Tracoma",
+            "Pterigión",
+            "Pinguécula",
+            "Catarata",
+            "Glaucoma",
+            "Uveítis",
+            "Desprendimiento de Retina",
+            "Retinopatía Diabética e Hipertensiva"
+          ],
+          "count": 35
+        },
+        {
+          "name": "Otorrinolaringología",
+          "subtopics": [
+            "Hipoacusia y Vértigo",
+            "VPPN",
+            "Enfermedad de Meniere",
+            "Neuronitis Vestibular",
+            "OMA",
+            "Otitis Media Maligna",
+            "SAOS",
+            "Cáncer de Laringe",
+            "Absceso Periamigdalino",
+            "Papilomatosis Laríngea"
+          ],
+          "count": 8
+        },
+        {
+          "name": "Traumatología y Ortopedia",
+          "subtopics": [
+            "Fractura en Rama Verde",
+            "Síndrome Compartimental",
+            "Síndrome de Dolor Locorregional",
+            "Embolia Grasa",
+            "Patología de Extremidad Superior e Inferior",
+            "Esguince de Tobillo"
+          ],
+          "count": 10
+        }
+      ]
+    },
+    {
+      "name": "Medicina Interna",
+      "themes": [
+        {
+          "name": "Introducción e Infectología",
+          "subtopics": [
+            "SRIS",
+            "Sepsis",
+            "Choque Séptico",
+            "Antibióticos"
+          ],
+          "count": 48
+        },
+        {
+          "name": "Infecciones Específicas",
+          "subtopics": [
+            "Tuberculosis",
+            "VIH",
+            "Dengue",
+            "Zika",
+            "Chikungunya",
+            "Paludismo",
+            "Malaria",
+            "Chagas",
+            "Brucelosis",
+            "Rickettsiosis",
+            "Lyme",
+            "Carbunco",
+            "Tularemia",
+            "Tétanos",
+            "Botulismo",
+            "Rabia",
+            "Patología Fúngica"
+          ],
+          "count": 39
+        },
+        {
+          "name": "Neumología",
+          "subtopics": [
+            "EPOC",
+            "Cáncer de Pulmón",
+            "Neumonías Ocupacionales",
+            "Derrame Pleural",
+            "Bisinois",
+            "Silicosis",
+            "Asbestosis",
+            "Sarcoidosis"
+          ],
+          "count": 44
+        },
+        {
+          "name": "Endocrinología",
+          "subtopics": [
+            "Patología Tiroidea",
+            "Graves",
+            "Riedel",
+            "Quervain",
+            "Hashimoto",
+            "Cáncer",
+            "Síndrome Metabólico",
+            "Diabetes Mellitus",
+            "Cetoacidosis",
+            "Estado Hiperosmolar",
+            "Diabetes Insípida",
+            "Hiperprolactinemia",
+            "Addison",
+            "Cushing"
+          ],
+          "count": 125
+        },
+        {
+          "name": "Hematología",
+          "subtopics": [
+            "Anemias Carenciales",
+            "Ferropénica",
+            "Megaloblástica",
+            "Hemolíticas",
+            "Talasemias",
+            "Esferocitosis",
+            "Leucemias",
+            "LLA",
+            "LMA",
+            "LMC",
+            "Linfoma Hodgkin y No Hodgkin",
+            "Hemofilia",
+            "Von Willebrand",
+            "Púrpura",
+            "Síndromes Mielodisplásicos"
+          ],
+          "count": 44
+        },
+        {
+          "name": "Cardiología",
+          "subtopics": [
+            "Insuficiencia Cardíaca",
+            "Valvulopatías",
+            "Síndromes Coronarios",
+            "Infarto Agudo al Miocardio",
+            "Angina",
+            "ACLS y BLS",
+            "Trastornos del Ritmo",
+            "Fibrilación Auricular",
+            "Taquicardia Ventricular",
+            "Hipertensión Arterial",
+            "Pericarditis",
+            "Endocarditis",
+            "Miocarditis"
+          ],
+          "count": 86
+        },
+        {
+          "name": "Neurología",
+          "subtopics": [
+            "EVC Isquémico y Hemorrágico",
+            "Parkinson",
+            "ELA",
+            "Esclerosis Múltiple",
+            "Miastenia Gravis",
+            "Guillain-Barré",
+            "Cefaleas",
+            "Migraña",
+            "Tensional",
+            "Demencias",
+            "Alzheimer",
+            "Cuerpos de Lewy"
+          ],
+          "count": 28
+        },
+        {
+          "name": "Dermatología",
+          "subtopics": [
+            "Tiñas",
+            "Lepra",
+            "Acné",
+            "Pitiriasis Versicolor",
+            "Melanoma",
+            "Cáncer Basocelular y Espinocelular",
+            "Liquen Plano",
+            "Vitiligo",
+            "Psoriasis",
+            "Pénfigo Vulgar",
+            "Stevens-Johnson"
+          ],
+          "count": 14
+        },
+        {
+          "name": "Reumatología",
+          "subtopics": [
+            "Artritis Reumatoide",
+            "Osteoartritis",
+            "Espondilopatías",
+            "Fibromialgia",
+            "LES",
+            "Vasculitis",
+            "Síndrome de Sjögren"
+          ],
+          "count": 17
+        },
+        {
+          "name": "Nefrología",
+          "subtopics": [
+            "Síndrome Nefrítico",
+            "Síndrome Nefrótico",
+            "Abscesos Renales"
+          ],
+          "count": 26
+        },
+        {
+          "name": "Psiquiatría",
+          "subtopics": [
+            "Adicciones",
+            "Delirium Tremens",
+            "Autismo",
+            "TDAH",
+            "Esquizofrenia",
+            "Trastornos del Sueño"
+          ],
+          "count": 10
+        },
+        {
+          "name": "Geriatría",
+          "subtopics": [
+            "Síndromes y Escalas Geriátricas"
+          ],
+          "count": 2
+        },
+        {
+          "name": "Epidemiología",
+          "subtopics": [],
+          "count": 2
+        }
+      ]
+    }
+  ]
+}
