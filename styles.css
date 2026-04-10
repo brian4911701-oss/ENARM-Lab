@@ -5535,6 +5535,20 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
   pointer-events: none;
 }
 
+.notif-modal-content {
+  width: 90%;
+  max-width: 400px;
+}
+
+.notif-list-scroll {
+  max-height: 400px;
+}
+
+#community-broadcast-message {
+  min-height: 160px;
+  resize: vertical;
+}
+
 .toast {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -5565,6 +5579,19 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
 
 .toast.toast-warning {
   border-left-color: var(--accent-orange);
+}
+
+@media (min-width: 992px) {
+  .notif-modal-content {
+    width: min(92vw, 640px) !important;
+    max-width: 640px !important;
+    padding: 30px !important;
+  }
+
+  .notif-list-scroll {
+    max-height: min(68vh, 620px) !important;
+    padding-right: 10px !important;
+  }
 }
 
 .toast.hiding {

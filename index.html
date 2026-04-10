@@ -2145,7 +2145,7 @@
             </div>
             <div class="input-group" style="margin-bottom: 14px;">
                 <label>Mensaje</label>
-                <textarea class="text-input" id="community-broadcast-message" rows="5" maxlength="280"
+                <textarea class="text-input" id="community-broadcast-message" rows="8" maxlength="1200"
                     placeholder="Escribe el aviso para toda la comunidad..."></textarea>
             </div>
 
@@ -2333,7 +2333,7 @@
     <!-- ─── MODAL NOTIFICACIONES ──────────────── -->
     <div class="modal-overlay" id="notif-modal"
         style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
-        <div class="modal-content"
+        <div class="modal-content notif-modal-content"
             style="background: var(--bg-card); padding: 25px; border-radius: 16px; border: 1px solid var(--border); max-width: 400px; width: 90%; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
             <button id="btn-close-notif"
                 style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
@@ -2345,7 +2345,7 @@
                 style="width: 100%; margin-bottom: 15px; padding: 10px; border-radius: 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: var(--accent-red); font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s;">
                 &#x1F5D1;&#xFE0F; Limpiar Todo
             </button>
-            <div id="notif-list-container"
+            <div id="notif-list-container" class="notif-list-scroll"
                 style="display: flex; flex-direction: column; gap: 12px; max-height: 400px; overflow-y: auto; padding-right: 5px;">
                 <!-- Dinámico: Solicitudes de amistad -->
                 <div style="text-align: center; color: var(--text-muted); padding: 30px;">

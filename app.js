@@ -81,6 +81,8 @@
     const FEEDBACK_COLLECTION = "feedback_submissions";
     const ADMIN_INBOX_UID = ADMIN_UIDS[0];
     const COMMUNITY_NOTIF_LAST_SEEN_KEY = "enarm_community_notif_last_seen";
+    const COMMUNITY_ANNOUNCEMENT_MAX_LENGTH = 1200;
+    const COMMUNITY_ANNOUNCEMENT_BANNER_PREVIEW_LENGTH = 180;
     const TRONCAL_SPECIALTIES = ["mi", "ped", "gyo", "cir"];
     const TRONCAL_LABELS = {
         mi: "Medicina Interna",
@@ -1944,6 +1946,7 @@
         const messageInput = $("community-broadcast-message");
 
         if (!item || !modal || !btnSend || !titleInput || !messageInput) return;
+        messageInput.maxLength = COMMUNITY_ANNOUNCEMENT_MAX_LENGTH;
 
         const closeModal = () => {
             modal.style.display = "none";
@@ -1987,7 +1990,7 @@
             try {
                 const payload = {
                     title: title.slice(0, 70),
-                    message: message.slice(0, 280),
+                    message: message.slice(0, COMMUNITY_ANNOUNCEMENT_MAX_LENGTH),
                     createdAt: Date.now(),
                     createdBy: State.currentUid || window.FB.auth.currentUser.uid,
                     createdByName: State.userName || "Admin"
@@ -7578,7 +7581,7 @@
                                 </div>
                                 ${isUnread ? '<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(16,185,129,0.18); color:var(--accent-green); border:1px solid rgba(16,185,129,0.35); font-weight:bold;">Nuevo</span>' : ''}
                             </div>
-                            <div style="font-size:13px; color:var(--text-primary); line-height:1.45;">${escapeHtml(data.message || "")}</div>
+                            <div style="font-size:13px; color:var(--text-primary); line-height:1.55; white-space:pre-wrap; overflow-wrap:anywhere;">${escapeHtml(data.message || "")}</div>
                         </div>`;
                     });
 
@@ -7713,9 +7716,15 @@
                     if (!firstLoadAnnouncements && added.length > 0) {
                         added.forEach(c => {
                             const d = c.doc.data() || {};
+                            const rawAnnouncementMessage = String(d.message || "")
+                                .replace(/\s+/g, " ")
+                                .trim();
+                            const bannerMessage = rawAnnouncementMessage.length > COMMUNITY_ANNOUNCEMENT_BANNER_PREVIEW_LENGTH
+                                ? `${rawAnnouncementMessage.slice(0, COMMUNITY_ANNOUNCEMENT_BANNER_PREVIEW_LENGTH - 1)}...`
+                                : rawAnnouncementMessage;
                             showBanner(
                                 escapeHtml(d.title || "Aviso ENARM Lab"),
-                                escapeHtml(d.message || ""),
+                                escapeHtml(bannerMessage),
                                 "&#x1F4E2;",
                                 () => {
                                     const notifModal = $("notif-modal");
