@@ -1,0 +1,256 @@
+{
+  "generatedAt": "2026-04-09T05:47:57.506Z",
+  "batchName": "manual_long_batch_apr2026",
+  "dryRun": true,
+  "requested": 36,
+  "added": 36,
+  "initialBank": 2534,
+  "finalBank": 2534,
+  "duplicatesAgainstExisting": 0,
+  "byTheme": [
+    {
+      "tema": "Patología del Embarazo",
+      "total": 8
+    },
+    {
+      "tema": "Reanimación Neonatal",
+      "total": 6
+    },
+    {
+      "tema": "Tamiz Metabólico",
+      "total": 6
+    },
+    {
+      "tema": "Patología Esofágica",
+      "total": 4
+    },
+    {
+      "tema": "Patología Gástrica",
+      "total": 4
+    },
+    {
+      "tema": "Sangrados Uterinos Anormales de Origen No Anatómico",
+      "total": 4
+    },
+    {
+      "tema": "Sangrados Uterinos de Origen Desconocido",
+      "total": 4
+    }
+  ],
+  "bySubtheme": [
+    {
+      "tema": "Patología del Embarazo",
+      "subtema": "Diabetes Mellitus Gestacional",
+      "total": 8
+    },
+    {
+      "tema": "Sangrados Uterinos de Origen Desconocido",
+      "subtema": "SOP",
+      "total": 2
+    },
+    {
+      "tema": "Patología Esofágica",
+      "subtema": "Complicaciones de ERGE",
+      "total": 1
+    },
+    {
+      "tema": "Patología Esofágica",
+      "subtema": "ERGE típica",
+      "total": 1
+    },
+    {
+      "tema": "Patología Esofágica",
+      "subtema": "Estudios funcionales",
+      "total": 1
+    },
+    {
+      "tema": "Patología Esofágica",
+      "subtema": "Síntomas de alarma",
+      "total": 1
+    },
+    {
+      "tema": "Patología Gástrica",
+      "subtema": "Dispepsia Funcional",
+      "total": 1
+    },
+    {
+      "tema": "Patología Gástrica",
+      "subtema": "Helicobacter pylori",
+      "total": 1
+    },
+    {
+      "tema": "Patología Gástrica",
+      "subtema": "Úlcera Péptica Complicada y Perforada",
+      "total": 1
+    },
+    {
+      "tema": "Patología Gástrica",
+      "subtema": "Úlcera Péptica Duodenal y Gástrica",
+      "total": 1
+    },
+    {
+      "tema": "Reanimación Neonatal",
+      "subtema": "Compresiones torácicas",
+      "total": 1
+    },
+    {
+      "tema": "Reanimación Neonatal",
+      "subtema": "Control térmico",
+      "total": 1
+    },
+    {
+      "tema": "Reanimación Neonatal",
+      "subtema": "Cuidados posreanimación",
+      "total": 1
+    },
+    {
+      "tema": "Reanimación Neonatal",
+      "subtema": "Líquido meconial",
+      "total": 1
+    },
+    {
+      "tema": "Reanimación Neonatal",
+      "subtema": "Medicamentos",
+      "total": 1
+    },
+    {
+      "tema": "Reanimación Neonatal",
+      "subtema": "Ventilación a presión positiva",
+      "total": 1
+    },
+    {
+      "tema": "Sangrados Uterinos Anormales de Origen No Anatómico",
+      "subtema": "Estudio inicial",
+      "total": 1
+    },
+    {
+      "tema": "Sangrados Uterinos Anormales de Origen No Anatómico",
+      "subtema": "Manejo agudo",
+      "total": 1
+    },
+    {
+      "tema": "Sangrados Uterinos Anormales de Origen No Anatómico",
+      "subtema": "Tratamiento médico",
+      "total": 1
+    },
+    {
+      "tema": "Sangrados Uterinos Anormales de Origen No Anatómico",
+      "subtema": "Urgencias",
+      "total": 1
+    },
+    {
+      "tema": "Sangrados Uterinos de Origen Desconocido",
+      "subtema": "Coagulopatías",
+      "total": 1
+    },
+    {
+      "tema": "Sangrados Uterinos de Origen Desconocido",
+      "subtema": "Endometriosis",
+      "total": 1
+    },
+    {
+      "tema": "Tamiz Metabólico",
+      "subtema": "Fenilcetonuria",
+      "total": 1
+    },
+    {
+      "tema": "Tamiz Metabólico",
+      "subtema": "Fibrosis Quística",
+      "total": 1
+    },
+    {
+      "tema": "Tamiz Metabólico",
+      "subtema": "Hiperplasia Suprarrenal",
+      "total": 1
+    },
+    {
+      "tema": "Tamiz Metabólico",
+      "subtema": "Hipotiroidismo",
+      "total": 1
+    },
+    {
+      "tema": "Tamiz Metabólico",
+      "subtema": "Oportunidad de la toma",
+      "total": 1
+    },
+    {
+      "tema": "Tamiz Metabólico",
+      "subtema": "Repetición de muestra",
+      "total": 1
+    }
+  ],
+  "sampleQuestions": [
+    {
+      "index": 1,
+      "tema": "Sangrados Uterinos Anormales de Origen No Anatómico",
+      "subtema": "Manejo agudo",
+      "question": "Con estos datos y estando hemodinámicamente estable, ¿cuál es la conducta inicial más adecuada según guías mexicanas?"
+    },
+    {
+      "index": 2,
+      "tema": "Sangrados Uterinos Anormales de Origen No Anatómico",
+      "subtema": "Tratamiento médico",
+      "question": "Si se busca reducir de forma sostenida el sangrado y además brindar anticoncepción, ¿qué opción es la más adecuada?"
+    },
+    {
+      "index": 3,
+      "tema": "Sangrados Uterinos Anormales de Origen No Anatómico",
+      "subtema": "Estudio inicial",
+      "question": "Antes de asumir que todo corresponde a un trastorno funcional, ¿qué estudio es prioritario para descartar patología endometrial asociada?"
+    },
+    {
+      "index": 4,
+      "tema": "Sangrados Uterinos Anormales de Origen No Anatómico",
+      "subtema": "Urgencias",
+      "question": "¿Cuál debe ser la prioridad inmediata en esta paciente?"
+    },
+    {
+      "index": 5,
+      "tema": "Sangrados Uterinos de Origen Desconocido",
+      "subtema": "SOP",
+      "question": "¿Qué diagnóstico integra mejor el cuadro clínico y cuál criterio diagnóstico lo respalda?"
+    },
+    {
+      "index": 6,
+      "tema": "Sangrados Uterinos de Origen Desconocido",
+      "subtema": "SOP",
+      "question": "Si el objetivo principal es regular el ciclo y mejorar el hiperandrogenismo, ¿cuál es la mejor estrategia inicial?"
+    },
+    {
+      "index": 7,
+      "tema": "Sangrados Uterinos de Origen Desconocido",
+      "subtema": "Endometriosis",
+      "question": "¿Cuál es el diagnóstico más probable y cuál es el método clásico de confirmación definitiva?"
+    },
+    {
+      "index": 8,
+      "tema": "Sangrados Uterinos de Origen Desconocido",
+      "subtema": "Coagulopatías",
+      "question": "¿Qué etiología debe sospecharse con mayor fuerza y orienta el abordaje del sangrado?"
+    },
+    {
+      "index": 9,
+      "tema": "Patología del Embarazo",
+      "subtema": "Diabetes Mellitus Gestacional",
+      "question": "¿Cómo deben interpretarse estos resultados según la guía mexicana de diabetes en el embarazo?"
+    },
+    {
+      "index": 10,
+      "tema": "Patología del Embarazo",
+      "subtema": "Diabetes Mellitus Gestacional",
+      "question": "Ante persistencia de metas glucémicas fuera de rango, ¿cuál es el siguiente paso más adecuado?"
+    },
+    {
+      "index": 11,
+      "tema": "Patología del Embarazo",
+      "subtema": "Diabetes Mellitus Gestacional",
+      "question": "¿Cuál es la recomendación más adecuada en esta paciente de alto riesgo?"
+    },
+    {
+      "index": 12,
+      "tema": "Patología del Embarazo",
+      "subtema": "Diabetes Mellitus Gestacional",
+      "question": "¿Cuál es el manejo inicial de primera línea en esta etapa, si no hay datos de descontrol grave?"
+    }
+  ]
+}

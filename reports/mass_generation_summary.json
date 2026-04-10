@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-04-08T05:12:39.089Z",
+  "model": "gemini-2.0-flash",
+  "dryRun": false,
+  "maxCasesRequested": 250,
+  "acceptedCases": 0,
+  "rawCandidates": 0,
+  "apiCalls": 0,
+  "invalidCount": 0,
+  "duplicateCount": 0,
+  "parseErrorCount": 16,
+  "initialBank": 1994,
+  "finalBank": 1994,
+  "outputPath": "D:\\ENARM Lab\\generated_mass_cases.json",
+  "stoppedByTimeLimit": true
+}

@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-04-08T05:05:07.691Z",
+  "dryRun": false,
+  "requested": 1200,
+  "generated": 1200,
+  "attempts": 4589,
+  "initialBank": 3494,
+  "finalBank": 4694,
+  "bySpecialty": {
+    "mi": 322,
+    "ped": 161,
+    "gyo": 322,
+    "cir": 395
+  }
+}

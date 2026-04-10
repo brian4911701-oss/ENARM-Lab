@@ -156,26 +156,31 @@ const parseContentList = (content) => {
 };
 
 const parseParagraphs = (paragraphs) => {
-    const roots = [];
+    const specialties = [];
+    let currentSpecialty = "General";
 
     paragraphs.forEach(({ numbered, text }) => {
         const clean = toCleanLabel(text);
         if (!clean) return;
 
         if (!numbered) {
-            roots.push({ name: clean, children: [], kind: "specialty" });
+            currentSpecialty = clean;
+            specialties.push({ name: currentSpecialty, topics: [] });
             return;
         }
 
         const { name, inner } = extractOuterParen(clean);
-        roots.push({
+        if (!specialties.length || specialties[specialties.length - 1].name !== currentSpecialty) {
+            specialties.push({ name: currentSpecialty, topics: [] });
+        }
+
+        specialties[specialties.length - 1].topics.push({
             name,
-            children: inner ? parseContentList(inner) : [],
-            kind: "topic"
+            children: inner ? parseContentList(inner) : []
         });
     });
 
-    return roots;
+    return specialties;
 };
 
 const collectRecursiveNames = (node) => {
@@ -207,39 +212,28 @@ const addAlias = (bucket, value) => {
     if (acronym) bucket.add(acronym);
 };
 
-const buildMappingEntries = (roots) => {
+const buildMappingEntries = (specialties) => {
     const official = [];
     const mapping = {};
-    const seen = new Set();
+    const seenTopics = new Set();
 
-    const visit = (node, parent = null) => {
-        if (!node || !node.name) return;
-
-        const display = parent ? `${node.name} (${parent.name})` : node.name;
-        if (!seen.has(display)) {
-            seen.add(display);
-            official.push(display);
+    specialties.forEach((specialty) => {
+        (specialty.topics || []).forEach((topicNode) => {
+            const topic = toCleanLabel(topicNode.name);
+            if (!topic || seenTopics.has(topic)) return;
+            seenTopics.add(topic);
+            official.push(topic);
 
             const aliasSet = new Set();
-            addAlias(aliasSet, node.name);
-            addAlias(aliasSet, display);
-            collectRecursiveNames(node).forEach(name => addAlias(aliasSet, name));
+            addAlias(aliasSet, topic);
+            addAlias(aliasSet, `${topic} (${specialty.name})`);
+            collectRecursiveNames(topicNode).forEach((name) => addAlias(aliasSet, name));
 
-            mapping[display] = Array.from(aliasSet).sort((a, b) => a.localeCompare(b, "es"));
-        }
-
-        node.children.forEach(child => visit(child, node));
-    };
-
-    roots.forEach(root => visit(root, null));
-
-    official.sort((a, b) => a.localeCompare(b, "es"));
-    const sortedMapping = {};
-    official.forEach(topic => {
-        sortedMapping[topic] = mapping[topic];
+            mapping[topic] = Array.from(aliasSet).sort((a, b) => a.localeCompare(b, "es"));
+        });
     });
 
-    return { official, mapping: sortedMapping };
+    return { official, mapping };
 };
 
 const extractParagraphsFromDocx = (docxPath) => {
@@ -358,8 +352,8 @@ const main = () => {
     }
 
     const paragraphs = loadParagraphs(sourcePath);
-    const roots = parseParagraphs(paragraphs);
-    const { official, mapping } = buildMappingEntries(roots);
+    const specialties = parseParagraphs(paragraphs);
+    const { official, mapping } = buildMappingEntries(specialties);
 
     updateAppFile({
         official,

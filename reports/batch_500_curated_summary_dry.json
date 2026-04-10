@@ -1,0 +1,457 @@
+{
+  "generatedAt": "2026-04-08T06:56:39.370Z",
+  "dryRun": true,
+  "requested": 500,
+  "added": 500,
+  "initialBank": 1994,
+  "finalBank": 1994,
+  "totalRawRows": 2951,
+  "sourceReadCounts": {
+    "parsed_variados_nuevo_v3.json": 412,
+    "parsed_variados_nuevo_v2.json": 428,
+    "parsed_casos_chat_random.json": 136,
+    "parsed_questions.json": 149,
+    "generated_questions.json": 57,
+    "mi_text.txt": 364,
+    "ciru_base_text.txt": 198,
+    "variados_base_text.txt": 436,
+    "pedia_text.txt": 145,
+    "pedia2_text.txt": 119,
+    "gine2_text.txt": 60,
+    "ciru2_text.txt": 134,
+    "ciru3_text.txt": 238,
+    "ciru4_text.txt": 75
+  },
+  "curatedPool": 1255,
+  "maxPerThemeStart": 15,
+  "maxPerThemeFinal": 15,
+  "bySpecialty": {
+    "mi": 95,
+    "ped": 130,
+    "cir": 167,
+    "gyo": 108
+  },
+  "bySource": {
+    "mi_text.txt": 44,
+    "pedia2_text.txt": 40,
+    "ciru2_text.txt": 43,
+    "parsed_variados_nuevo_v3.json": 91,
+    "ciru_base_text.txt": 46,
+    "parsed_casos_chat_random.json": 12,
+    "parsed_variados_nuevo_v2.json": 14,
+    "ciru4_text.txt": 18,
+    "ciru3_text.txt": 64,
+    "pedia_text.txt": 49,
+    "generated_questions.json": 17,
+    "variados_base_text.txt": 48,
+    "parsed_questions.json": 5,
+    "gine2_text.txt": 9
+  },
+  "mappingMethods": {
+    "alias": 497,
+    "label_overlap": 3
+  },
+  "quality": {
+    "average": 82.18,
+    "min": 56,
+    "max": 86
+  },
+  "topThemes": [
+    {
+      "tema": "Endocrinología",
+      "total": 8
+    },
+    {
+      "tema": "Cardiología",
+      "total": 8
+    },
+    {
+      "tema": "Cardiopedia",
+      "total": 8
+    },
+    {
+      "tema": "ATLS",
+      "total": 8
+    },
+    {
+      "tema": "Neurología",
+      "total": 8
+    },
+    {
+      "tema": "Urología",
+      "total": 8
+    },
+    {
+      "tema": "Oftalmología",
+      "total": 8
+    },
+    {
+      "tema": "Hematología",
+      "total": 8
+    },
+    {
+      "tema": "Reumatología",
+      "total": 8
+    },
+    {
+      "tema": "Cirugía Oncológica",
+      "total": 8
+    },
+    {
+      "tema": "Infecciones Específicas",
+      "total": 8
+    },
+    {
+      "tema": "Hemorragias del Primer Trimestre",
+      "total": 8
+    },
+    {
+      "tema": "Especialidades Pediátricas",
+      "total": 8
+    },
+    {
+      "tema": "Introducción e Infectología",
+      "total": 8
+    },
+    {
+      "tema": "Otorrinolaringología",
+      "total": 8
+    },
+    {
+      "tema": "Neumología",
+      "total": 8
+    },
+    {
+      "tema": "Nefrología",
+      "total": 7
+    },
+    {
+      "tema": "Patología Intestinal Quirúrgica",
+      "total": 7
+    },
+    {
+      "tema": "Patología Respiratoria del Pediátrico",
+      "total": 7
+    },
+    {
+      "tema": "Crecimiento y Desarrollo",
+      "total": 7
+    },
+    {
+      "tema": "Patología Gastrointestinal Pediátrica",
+      "total": 7
+    },
+    {
+      "tema": "Patología Biliar",
+      "total": 7
+    },
+    {
+      "tema": "Introducción a Cirugía y Cirugía Abdominal",
+      "total": 7
+    },
+    {
+      "tema": "Patología Respiratoria del Lactante y Preescolar",
+      "total": 7
+    },
+    {
+      "tema": "Enfermedades Exantemáticas",
+      "total": 7
+    },
+    {
+      "tema": "Patología Neonatal Infecciosa",
+      "total": 7
+    },
+    {
+      "tema": "Patología Puerperal",
+      "total": 7
+    },
+    {
+      "tema": "Traumatología y Ortopedia",
+      "total": 7
+    },
+    {
+      "tema": "Patología Arterial y Venosa",
+      "total": 7
+    },
+    {
+      "tema": "Geriatría",
+      "total": 7
+    },
+    {
+      "tema": "Psiquiatría",
+      "total": 7
+    },
+    {
+      "tema": "Dermatología",
+      "total": 7
+    },
+    {
+      "tema": "Sangrados Uterinos de Origen Desconocido",
+      "total": 7
+    },
+    {
+      "tema": "Patología del Embarazo: Estados Hipertensivos",
+      "total": 7
+    },
+    {
+      "tema": "Patología Intestinal Inflamatoria",
+      "total": 7
+    },
+    {
+      "tema": "Uropedia",
+      "total": 7
+    },
+    {
+      "tema": "Patología Neonatal Malformativa",
+      "total": 7
+    },
+    {
+      "tema": "Control Prenatal",
+      "total": 7
+    },
+    {
+      "tema": "Patología Infecciosa Cervical",
+      "total": 7
+    },
+    {
+      "tema": "Patología Gástrica",
+      "total": 7
+    }
+  ],
+  "rejectedByReason": {
+    "invalid_options_or_structure": 4,
+    "low_quality_content": 592,
+    "unmapped_topic": 0,
+    "duplicate_existing_signature": 106,
+    "duplicate_within_pool_signature": 61,
+    "duplicate_within_pool_case_opening": 871,
+    "duplicate_within_pool_question_stem": 62
+  },
+  "sampleCases": [
+    {
+      "batchIndex": 1,
+      "specialty": "mi",
+      "tema": "Endocrinología",
+      "question": "De acuerdo con las guías de manejo de crisis hiperglucémicas, ¿cuál es el paso INICIAL y más importante en el tratamiento de este paciente antes de iniciar la infusión de insulina?",
+      "source": "mi_text.txt",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 2,
+      "specialty": "mi",
+      "tema": "Cardiología",
+      "question": "¿Cuál es el diagnóstico definitivo y qué escala se debe utilizar para estratificar el riesgo de mortalidad y decidir una conducta invasiva temprana?",
+      "source": "mi_text.txt",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 3,
+      "specialty": "ped",
+      "tema": "Cardiopedia",
+      "question": "¿Cuál es el mecanismo fisiológico normal que falló en este prematuro impidiendo el cierre del conducto y cuál es el tratamiento farmacológico de primera línea para inducir su cierre médico?",
+      "source": "pedia2_text.txt",
+      "qualityScore": 83,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 4,
+      "specialty": "cir",
+      "tema": "ATLS",
+      "question": "Ante la cinemática del trauma (golpe temporal), la clásica presentación clínica de \"intervalo lúcido\" seguido de deterioro rápido y datos de herniación uncal, ¿cuál será el hallazgo tomográfico y el vaso sanguíneo responsable que confirman este diagnóstico?",
+      "source": "ciru2_text.txt",
+      "qualityScore": 84,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 5,
+      "specialty": "mi",
+      "tema": "Neurología",
+      "question": "¿Cuál es la zona del sistema nervioso central afectada por la pérdida de neuronas dopaminérgicas y cuál es el tratamiento farmacológico \"estándar de oro\"?",
+      "source": "mi_text.txt",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 6,
+      "specialty": "cir",
+      "tema": "Urología",
+      "question": "Anatómicamente, ¿en qué zona de la glándula prostática se desarrolla predominantemente la Hiperplasia Prostática Benigna (HPB), lo que explica la compresión temprana de la uretra?",
+      "source": "parsed_variados_nuevo_v3.json",
+      "qualityScore": 84,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 7,
+      "specialty": "cir",
+      "tema": "Oftalmología",
+      "question": "Dentro de la evaluación clínica inicial, el oftalmólogo coloca unas tiras de papel filtro milimetrado en el fondo de saco conjuntival inferior de ambos ojos, sin usar anestesia previa, y pide a la paciente que cierre los ojos por 5 minutos para medir la longitud de humectación del papel. ¿Qué nombre recibe esta prueba diagnóstica clásica?",
+      "source": "ciru_base_text.txt",
+      "qualityScore": 84,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 8,
+      "specialty": "mi",
+      "tema": "Hematología",
+      "question": "¿Cuál es la causa más probable de su anemia macrocítica y qué hallazgo patognomónico se espera encontrar en el frotis de sangre periférica?",
+      "source": "mi_text.txt",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 9,
+      "specialty": "mi",
+      "tema": "Reumatología",
+      "question": "Para confirmar la sospecha diagnóstica, se solicitan estudios inmunológicos. ¿Cuál es el autoanticuerpo que posee la mayor especificidad diagnóstica y valor pronóstico para esta enfermedad?",
+      "source": "parsed_variados_nuevo_v3.json",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 10,
+      "specialty": "cir",
+      "tema": "Cirugía Oncológica",
+      "question": "De acuerdo con los factores de riesgo descritos (tabaco y alcohol) y su localización anatómica típica (tercio medio o superior del esófago), ¿cuál es el tipo histológico de neoplasia esofágica más probable en este paciente?",
+      "source": "parsed_casos_chat_random.json",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 11,
+      "specialty": "mi",
+      "tema": "Infecciones Específicas",
+      "question": "De acuerdo con el cuadro clínico, ¿cuál es el diagnóstico más probable y el método diagnóstico de elección (estándar de oro) para confirmarlo?",
+      "source": "parsed_variados_nuevo_v3.json",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 12,
+      "specialty": "gyo",
+      "tema": "Hemorragias del Primer Trimestre",
+      "question": "¿Cuál es el diagnóstico clínico más probable y en qué porción anatómica se localiza con mayor frecuencia esta patología?",
+      "source": "parsed_variados_nuevo_v3.json",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 13,
+      "specialty": "ped",
+      "tema": "Especialidades Pediátricas",
+      "question": "El hallazgo a la exploración de las hemorragias puntiformes se conoce como \"cérvix en fresa\". ¿Cuál es el agente etiológico responsable de esta patología?",
+      "source": "parsed_variados_nuevo_v2.json",
+      "qualityScore": 84,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 14,
+      "specialty": "mi",
+      "tema": "Introducción e Infectología",
+      "question": "De acuerdo con el Consenso Internacional Sepsis-3, ¿cuáles son los criterios clínicos y bioquímicos exactos que definen el estado actual de choque séptico en este paciente?",
+      "source": "ciru4_text.txt",
+      "qualityScore": 86,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 15,
+      "specialty": "cir",
+      "tema": "Otorrinolaringología",
+      "question": "La presentación intermitente de la tríada clásica (vértigo episódico prolongado, acúfeno y plenitud ótica, e hipoacusia fluctuante) es patognomónica de la Enfermedad de Ménière. Desde el punto de vista fisiopatológico y anatomopatológico temporal, ¿cuál es la alteración subyacente en el oído interno que desencadena esta sintomatología?",
+      "source": "ciru3_text.txt",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 16,
+      "specialty": "mi",
+      "tema": "Neumología",
+      "question": "¿Cuál es el diagnóstico clínico-radiológico más probable y qué complicación infecciosa grave tiene este paciente un riesgo significativamente mayor de desarrollar?",
+      "source": "mi_text.txt",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 17,
+      "specialty": "mi",
+      "tema": "Nefrología",
+      "question": "De acuerdo con los datos clínicos y de laboratorio, ¿qué síndrome integra este paciente y cuál es la tríada clásica que lo define?",
+      "source": "parsed_variados_nuevo_v3.json",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 18,
+      "specialty": "cir",
+      "tema": "Patología Intestinal Quirúrgica",
+      "question": "De acuerdo con los antecedentes del paciente, ¿cuál es la etiología más frecuente de este cuadro obstructivo a nivel de intestino delgado?",
+      "source": "parsed_variados_nuevo_v3.json",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 19,
+      "specialty": "ped",
+      "tema": "Patología Respiratoria del Pediátrico",
+      "question": "El Síndrome de Aspiración de Meconio causa obstrucción mecánica (\"efecto de válvula\") y neumonitis química. Debido a la hipoxia y acidosis severas y sostenidas, ¿cuál es la complicación cardiovascular más temida y frecuente asociada al SAM que causa hipoxemia refractaria al desviar la sangre de derecha a izquierda?",
+      "source": "pedia_text.txt",
+      "qualityScore": 84,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 20,
+      "specialty": "ped",
+      "tema": "Crecimiento y Desarrollo",
+      "question": "Ante la sospecha de maltrato físico (específicamente Síndrome del Niño Sacudido), ¿cuál es el hallazgo oftalmológico clásico que confirma el mecanismo de aceleración-desaceleración y cuál es la obligación legal del médico según la NOM- 046?",
+      "source": "pedia_text.txt",
+      "qualityScore": 84,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 21,
+      "specialty": "ped",
+      "tema": "Patología Gastrointestinal Pediátrica",
+      "question": "Ante un cuadro de hemorragia digestiva baja masiva e indolora en un niño menor de 2 años, el principal diagnóstico de sospecha es un Divertículo de Meckel sangrante. Desde el punto de vista embriológico, ¿cuál es la estructura anatómica que falló en obliterarse completamente, dando origen a esta anomalía congénita (la más común del tracto gastrointestinal)?",
+      "source": "ciru3_text.txt",
+      "qualityScore": 84,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 22,
+      "specialty": "cir",
+      "tema": "Patología Biliar",
+      "question": "¿Cómo se denomina el signo clínico encontrado a la exploración y cuál es el estudio de imagen inicial de elección para confirmar la patología sospechada?",
+      "source": "parsed_casos_chat_random.json",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 23,
+      "specialty": "cir",
+      "tema": "Introducción a Cirugía y Cirugía Abdominal",
+      "question": "El signo de dolor exacerbado al soltar rápidamente la presión ejercida sobre el abdomen (Signo de rebote) tiene un epónimo clásico. ¿Cuál es su nombre y qué indica patofisiológicamente?",
+      "source": "parsed_variados_nuevo_v3.json",
+      "qualityScore": 86,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 24,
+      "specialty": "ped",
+      "tema": "Patología Respiratoria del Lactante y Preescolar",
+      "question": "¿Cuál es el agente viral más frecuentemente asociado a este cuadro clínico y qué hallazgo radiológico clásico se buscaría en una radiografía anteroposterior del cuello (aunque su diagnóstico es fundamentalmente clínico)?",
+      "source": "parsed_variados_nuevo_v3.json",
+      "qualityScore": 85,
+      "mappingMethod": "alias"
+    },
+    {
+      "batchIndex": 25,
+      "specialty": "ped",
+      "tema": "Enfermedades Exantemáticas",
+      "question": "De acuerdo con el cuadro clínico, ¿cuál es el diagnóstico más probable y cuál es el epónimo del enantema patognomónico encontrado en la mucosa oral?",
+      "source": "parsed_casos_chat_random.json",
+      "qualityScore": 84,
+      "mappingMethod": "alias"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-04-08T05:44:15.388Z",
+  "dryRun": false,
+  "requestedNew": 50,
+  "generatedNew": 50,
+  "attempts": 50,
+  "normalizedOldDiarrhea": 333,
+  "initialBank": 6194,
+  "finalBank": 6244,
+  "officialTopic": "Diarrea en el Pediátrico"
+}
