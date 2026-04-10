@@ -1,9 +1,10 @@
 const fs = require("fs");
 const path = require("path");
-const { PDFParse } = require("pdf-parse");
+const PDFParser = require("pdf2json");
 
 const ROOT = path.join(__dirname, "..");
 const QUESTIONS_PATH = path.join(ROOT, "questions.js");
+const REPORTS_DIR = path.join(ROOT, "reports");
 
 function getArg(flag) {
   const idx = process.argv.indexOf(flag);
@@ -17,38 +18,92 @@ function hasFlag(flag) {
 
 const inputArg = getArg("--input");
 const outputArg = getArg("--output");
+const reportArg = getArg("--report");
 const appendToBank = hasFlag("--append");
+
 const inputPath = inputArg
   ? (path.isAbsolute(inputArg) ? inputArg : path.resolve(process.cwd(), inputArg))
   : "";
 const outputPath = outputArg
   ? (path.isAbsolute(outputArg) ? outputArg : path.resolve(process.cwd(), outputArg))
-  : path.join(ROOT, "parsed_structured_pdf_cases.json");
+  : path.join(REPORTS_DIR, "parsed_structured_pdf_cases.json");
+const reportPath = reportArg
+  ? (path.isAbsolute(reportArg) ? reportArg : path.resolve(process.cwd(), reportArg))
+  : path.join(REPORTS_DIR, "parsed_structured_pdf_cases_report.json");
 
 const SPECIALTY_MAP = {
   "medicina interna": "mi",
   "pediatria": "ped",
-  "pediatría": "ped",
   "ginecologia y obstetricia": "gyo",
-  "ginecología y obstetricia": "gyo",
   "cirugia": "cir",
-  "cirugía": "cir"
+  "urgencias": "mi",
+  "salud publica": "mi"
 };
 
-function normalizeTextKey(value) {
+function maybeRepairMojibake(value) {
+  const text = String(value || "");
+  if (!/[ÃÂâ€€™â€œâ€\uFFFD]/.test(text)) return text;
+
+  try {
+    const repaired = Buffer.from(text, "latin1").toString("utf8");
+    if (repaired && !/\uFFFD/.test(repaired)) return repaired;
+  } catch (_) {
+    // Ignore and keep original text.
+  }
+
+  return text;
+}
+
+function decodeRunText(value) {
+  try {
+    return maybeRepairMojibake(decodeURIComponent(value || ""));
+  } catch (_) {
+    return maybeRepairMojibake(String(value || ""));
+  }
+}
+
+function stripCite(value) {
   return String(value || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^\w\s]/g, " ")
+    .replace(/\[\s*cite[^\]]*?\]/gi, " ")
+    .replace(/\(\s*cite[^)]*?\)/gi, " ")
+    .replace(/\bcite\b\s*:?\s*\d*/gi, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
 
 function sanitizeInline(value) {
-  return String(value || "")
+  return stripCite(maybeRepairMojibake(String(value || "")))
+    .replace(/\u00a0/g, " ")
     .replace(/\s+/g, " ")
     .replace(/\s+([,.;:!?])/g, "$1")
+    .replace(/([¿¡])\s+/g, "$1")
+    .trim();
+}
+
+function joinText(base, addition) {
+  const left = sanitizeInline(base);
+  const right = sanitizeInline(addition);
+
+  if (!left) return right;
+  if (!right) return left;
+  if (/-$/.test(left)) return `${left}${right}`;
+
+  return sanitizeInline(`${left} ${right}`);
+}
+
+function normalizeTextKey(value) {
+  return sanitizeInline(value)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function sanitizeTopicLabel(value) {
+  return sanitizeInline(value)
+    .replace(/\s*[-:;,.]+\s*$/g, "")
     .trim();
 }
 
@@ -59,10 +114,11 @@ function mapSpecialty(value) {
 
 function mapDifficulty(value) {
   const key = normalizeTextKey(value);
-  if (key === "muy alta") return "muy-alta";
-  if (key === "alta") return "alta";
-  if (key === "media") return "media";
-  if (key === "baja") return "baja";
+  if (key.includes("muy alta")) return "muy-alta";
+  if (key.includes("media alta") || key.includes("media-alta")) return "alta";
+  if (key.includes("alta")) return "alta";
+  if (key.includes("media")) return "media";
+  if (key.includes("baja")) return "baja";
   return "media";
 }
 
@@ -84,250 +140,24 @@ function writeQuestionsArray(filePath, questions) {
   fs.writeFileSync(filePath, contents, "utf8");
 }
 
-function splitBlocks(text) {
-  const normalized = text
-    .replace(/\r/g, "")
-    .replace(/\u00a0/g, " ")
-    .replace(/\n--\s+\d+\s+of\s+\d+\s+--\n/g, "\n")
-    .replace(/\n---\n/g, "\n")
-    .trim();
-
-  return normalized
-    .split(/(?=Especialidad:\s*)/g)
-    .map(block => block.trim())
-    .filter(block => block.startsWith("Especialidad:"));
+function summarizeByField(items, field) {
+  const map = new Map();
+  for (const item of items) {
+    const key = String(item[field] || "").trim() || "(sin dato)";
+    map.set(key, (map.get(key) || 0) + 1);
+  }
+  return Object.fromEntries(
+    [...map.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "es"))
+  );
 }
 
-function collectWrappedValue(lines, startIndex, label) {
-  const values = [];
-  let current = String(lines[startIndex] || "").replace(new RegExp(`^${label}:\\s*`), "").trim();
-  if (current) values.push(current);
-
-  let i = startIndex + 1;
-  while (i < lines.length) {
-    const line = String(lines[i] || "").trim();
-    if (!line) {
-      i += 1;
-      continue;
-    }
-    if (/^(Especialidad|Tema|Subtema|Dificultad|Caso Clínico|Pregunta \d+|Retroalimentación Pregunta \d+:|[A-D]\))/.test(line)) {
-      break;
-    }
-    values.push(line);
-    i += 1;
-  }
-
-  return {
-    value: sanitizeInline(values.join(" ")),
-    nextIndex: i
-  };
-}
-
-function parseOptions(lines, startIndex) {
-  const options = [];
-  let answerIndex = -1;
-  let i = startIndex;
-
-  while (i < lines.length) {
-    const line = String(lines[i] || "").trim();
-    if (!line) {
-      i += 1;
-      continue;
-    }
-    if (/^Retroalimentación Pregunta \d+:/.test(line)) break;
-    if (/^Pregunta \d+/.test(line)) break;
-
-    const optionMatch = line.match(/^([A-D])\)\s*(.*)$/);
-    if (optionMatch) {
-      let optionText = optionMatch[2].trim();
-      let correct = false;
-      if (optionText.endsWith("*")) {
-        optionText = optionText.slice(0, -1).trim();
-        correct = true;
-      }
-      options.push(optionText);
-      if (correct) answerIndex = options.length - 1;
-      i += 1;
-      continue;
-    }
-
-    if (options.length > 0) {
-      let continuation = line;
-      let correct = false;
-      if (continuation.endsWith("*")) {
-        continuation = continuation.slice(0, -1).trim();
-        correct = true;
-      }
-      options[options.length - 1] = sanitizeInline(`${options[options.length - 1]} ${continuation}`);
-      if (correct) answerIndex = options.length - 1;
-      i += 1;
-      continue;
-    }
-
-    break;
-  }
-
-  return {
-    options: options.map(sanitizeInline),
-    answerIndex: answerIndex >= 0 ? answerIndex : 0,
-    nextIndex: i
-  };
-}
-
-function parseQuestions(lines, startIndex) {
-  const questions = [];
-  let i = startIndex;
-
-  while (i < lines.length) {
-    const line = String(lines[i] || "").trim();
-    if (!line) {
-      i += 1;
-      continue;
-    }
-
-    const qMatch = line.match(/^Pregunta\s+(\d+)\s*$/);
-    if (!qMatch) {
-      i += 1;
-      continue;
-    }
-
-    const questionParts = [];
-    i += 1;
-    while (i < lines.length) {
-      const current = String(lines[i] || "").trim();
-      if (!current) {
-        i += 1;
-        continue;
-      }
-      if (/^[A-D]\)/.test(current)) break;
-      if (/^Pregunta \d+/.test(current)) break;
-      if (/^Retroalimentación Pregunta \d+:/.test(current)) break;
-      questionParts.push(current);
-      i += 1;
-    }
-
-    const parsedOptions = parseOptions(lines, i);
-    i = parsedOptions.nextIndex;
-
-    let explanation = "";
-    if (i < lines.length && /^Retroalimentación Pregunta \d+:/.test(String(lines[i] || "").trim())) {
-      const explanationParts = [];
-      i += 1;
-      while (i < lines.length) {
-        const current = String(lines[i] || "").trim();
-        if (!current) {
-          i += 1;
-          continue;
-        }
-        if (/^Pregunta \d+/.test(current)) break;
-        explanationParts.push(current);
-        i += 1;
-      }
-      explanation = sanitizeInline(explanationParts.join(" "));
-    }
-
-    questions.push({
-      question: sanitizeInline(questionParts.join(" ")),
-      options: parsedOptions.options,
-      answerIndex: parsedOptions.answerIndex,
-      explanation
-    });
-  }
-
-  return questions;
-}
-
-function parseBlock(block) {
-  const lines = block
-    .split("\n")
-    .map(line => line.trim())
-    .filter(Boolean)
-    .filter(line => !/^--\s+\d+\s+of\s+\d+\s+--$/.test(line))
-    .filter(line => line !== "---");
-
-  let specialtyLabel = "";
-  let tema = "";
-  let subtema = "";
-  let difficulty = "media";
-  let i = 0;
-
-  while (i < lines.length) {
-    const line = lines[i];
-    if (line.startsWith("Especialidad:")) {
-      const parsed = collectWrappedValue(lines, i, "Especialidad");
-      specialtyLabel = parsed.value;
-      i = parsed.nextIndex;
-      continue;
-    }
-    if (line.startsWith("Tema:")) {
-      const parsed = collectWrappedValue(lines, i, "Tema");
-      tema = parsed.value;
-      i = parsed.nextIndex;
-      continue;
-    }
-    if (line.startsWith("Subtema:")) {
-      const parsed = collectWrappedValue(lines, i, "Subtema");
-      subtema = parsed.value;
-      i = parsed.nextIndex;
-      continue;
-    }
-    if (line.startsWith("Dificultad:")) {
-      const parsed = collectWrappedValue(lines, i, "Dificultad");
-      difficulty = mapDifficulty(parsed.value);
-      i = parsed.nextIndex;
-      continue;
-    }
-    if (line === "Caso Clínico") {
-      i += 1;
-      break;
-    }
-    i += 1;
-  }
-
-  const caseParts = [];
-  while (i < lines.length && !/^Pregunta \d+/.test(lines[i])) {
-    caseParts.push(lines[i]);
-    i += 1;
-  }
-
-  const parsedQuestions = parseQuestions(lines, i);
-  const resolvedSubtema = subtema || tema;
-  const clinicalCase = sanitizeInline(caseParts.join(" "));
-
-  return parsedQuestions.map(item => ({
-    specialty: mapSpecialty(specialtyLabel),
-    case: clinicalCase,
-    question: item.question,
-    options: item.options,
-    answerIndex: item.answerIndex,
-    explanation: item.explanation,
-    gpcReference: "",
-    tema,
-    temaCanonical: tema,
-    subtemaCanonical: resolvedSubtema,
-    subtema: resolvedSubtema,
-    specialtyOriginal: mapSpecialty(specialtyLabel),
-    temaOriginal: tema,
-    subtemaOriginal: resolvedSubtema,
-    difficulty
-  }));
-}
-
-function validateQuestions(questions) {
-  const issues = [];
-  questions.forEach((item, index) => {
-    if (!item.case) issues.push(`Caso vacío en índice ${index}`);
-    if (!item.question) issues.push(`Pregunta vacía en índice ${index}`);
-    if (!Array.isArray(item.options) || item.options.length !== 4) {
-      issues.push(`Número de opciones inválido en índice ${index}: ${item.options ? item.options.length : 0}`);
-    }
-    if (item.answerIndex < 0 || item.answerIndex > 3) {
-      issues.push(`Respuesta correcta inválida en índice ${index}: ${item.answerIndex}`);
-    }
-    if (!item.tema) issues.push(`Tema vacío en índice ${index}`);
-    if (!item.subtema) issues.push(`Subtema vacío en índice ${index}`);
-  });
-  return issues;
+function getCaseKey(item) {
+  return normalizeTextKey([
+    item.specialty,
+    item.tema,
+    item.subtema,
+    item.case
+  ].join(" | "));
 }
 
 function uniqueBySignature(existing, incoming) {
@@ -350,6 +180,7 @@ function uniqueBySignature(existing, incoming) {
       item.case,
       item.question
     ].join(" | "));
+
     if (seen.has(signature)) continue;
     seen.add(signature);
     additions.push(item);
@@ -358,15 +189,396 @@ function uniqueBySignature(existing, incoming) {
   return additions;
 }
 
-async function extractTextFromPdf(filePath) {
-  const data = await fs.promises.readFile(filePath);
-  const parser = new PDFParse({ data });
-  try {
-    const result = await parser.getText();
-    return result.text;
-  } finally {
-    await parser.destroy();
+function isMetadataLabel(text) {
+  return /^(Especialidad|Tema|Subtema|Dificultad)\s*:/i.test(text);
+}
+
+function isCaseLabel(text) {
+  return /^Caso\s+cl[ií]nico\s*:?\s*/i.test(text);
+}
+
+function isQuestionStart(text) {
+  return /^Pregunta\s+\d+\s*:?\s*/i.test(text);
+}
+
+function isOptionStart(text) {
+  return /^([A-Da-d])\)\s*(.*)$/.test(text);
+}
+
+function isFeedbackStart(text) {
+  return /^Retroalimentaci[oó]n\s*:?\s*/i.test(text);
+}
+
+function isSourceStart(text) {
+  return /^(Fuentes?\s+base|Fuentes?|Referencias?)\s*:?\s*/i.test(text);
+}
+
+function isBlockStart(text) {
+  return /^Especialidad\s*:/i.test(text);
+}
+
+function isStopForWrappedValue(text) {
+  return (
+    isMetadataLabel(text)
+    || isCaseLabel(text)
+    || isQuestionStart(text)
+    || isOptionStart(text)
+    || isFeedbackStart(text)
+    || isSourceStart(text)
+  );
+}
+
+function collectWrappedValue(lines, startIndex, labelPattern) {
+  let value = sanitizeInline(lines[startIndex].text.replace(labelPattern, ""));
+  let i = startIndex + 1;
+
+  while (i < lines.length) {
+    const text = lines[i].text;
+    if (isStopForWrappedValue(text)) break;
+    value = joinText(value, text);
+    i += 1;
   }
+
+  return { value, nextIndex: i };
+}
+
+function canonicalTema(rawTema) {
+  const clean = sanitizeTopicLabel(rawTema);
+  if (!clean) return "";
+  return sanitizeTopicLabel(clean.split(/\s*:\s*/)[0] || clean);
+}
+
+function canonicalSubtema(rawTema, rawSubtema) {
+  const subtema = sanitizeTopicLabel(rawSubtema);
+  if (subtema) return subtema;
+
+  const temaClean = sanitizeTopicLabel(rawTema);
+  const parts = temaClean.split(/\s*:\s*/).map(part => sanitizeTopicLabel(part)).filter(Boolean);
+  if (parts.length > 1) return parts.slice(1).join(": ");
+  return canonicalTema(rawTema);
+}
+
+function extractPdfLines(filePath) {
+  return new Promise((resolve, reject) => {
+    const pdf = new PDFParser();
+
+    pdf.on("pdfParser_dataError", error => {
+      reject(error.parserError || error);
+    });
+
+    pdf.on("pdfParser_dataReady", data => {
+      const lines = [];
+
+      data.Pages.forEach((page, pageIndex) => {
+        const items = [];
+
+        for (const textNode of page.Texts || []) {
+          for (const run of textNode.R || []) {
+            items.push({
+              x: textNode.x,
+              y: textNode.y,
+              text: decodeRunText(run.T),
+              italic: Array.isArray(run.TS) && run.TS[3] === 1,
+              bold: Array.isArray(run.TS) && run.TS[2] === 1
+            });
+          }
+        }
+
+        items.sort((a, b) => (
+          a.y === b.y ? a.x - b.x : a.y - b.y
+        ));
+
+        const grouped = [];
+        for (const item of items) {
+          const last = grouped[grouped.length - 1];
+          if (!last || Math.abs(last.y - item.y) > 0.12) {
+            grouped.push({
+              page: pageIndex + 1,
+              y: item.y,
+              parts: [item]
+            });
+          } else {
+            last.parts.push(item);
+          }
+        }
+
+        for (const group of grouped) {
+          const rawText = group.parts.map(part => part.text).join("");
+          const text = sanitizeInline(rawText);
+          if (!text) continue;
+
+          lines.push({
+            page: group.page,
+            y: group.y,
+            text,
+            italic: group.parts.some(part => part.italic),
+            bold: group.parts.some(part => part.bold)
+          });
+        }
+      });
+
+      resolve(lines);
+    });
+
+    pdf.loadPDF(filePath);
+  });
+}
+
+function splitBlocks(lines) {
+  const blocks = [];
+  let current = [];
+
+  for (const line of lines) {
+    if (isBlockStart(line.text)) {
+      if (current.length) blocks.push(current);
+      current = [line];
+      continue;
+    }
+
+    if (current.length) current.push(line);
+  }
+
+  if (current.length) blocks.push(current);
+  return blocks;
+}
+
+function parseQuestionItems(lines, startIndex, clinicalCase, meta, issues) {
+  const parsed = [];
+  let i = startIndex;
+
+  while (i < lines.length) {
+    while (i < lines.length && !isQuestionStart(lines[i].text)) i += 1;
+    if (i >= lines.length) break;
+
+    const header = lines[i].text;
+    const headerMatch = header.match(/^Pregunta\s+(\d+)\s*:?\s*(.*)$/i);
+    const questionNumber = headerMatch ? headerMatch[1] : "?";
+    let questionText = headerMatch ? sanitizeInline(headerMatch[2]) : "";
+    i += 1;
+
+    while (i < lines.length) {
+      const text = lines[i].text;
+      if (/^Incisos\s*:?\s*$/i.test(text)) {
+        i += 1;
+        break;
+      }
+      if (isOptionStart(text) || isFeedbackStart(text) || isQuestionStart(text) || isSourceStart(text)) {
+        break;
+      }
+      questionText = joinText(questionText, text);
+      i += 1;
+    }
+
+    const options = [];
+    const markedAnswerIndexes = [];
+
+    while (i < lines.length) {
+      const line = lines[i];
+      const text = line.text;
+
+      if (/^Incisos\s*:?\s*$/i.test(text)) {
+        i += 1;
+        continue;
+      }
+      if (isFeedbackStart(text) || isQuestionStart(text) || isSourceStart(text)) break;
+
+      const optionMatch = text.match(/^([A-Da-d])\)\s*(.*)$/);
+      if (optionMatch) {
+        let optionText = sanitizeInline(optionMatch[2].replace(/\*/g, " "));
+        const markedAsCorrect = text.includes("*") || line.italic;
+        options.push(optionText);
+        if (markedAsCorrect) markedAnswerIndexes.push(options.length - 1);
+        i += 1;
+        continue;
+      }
+
+      if (options.length) {
+        const continuationText = sanitizeInline(text.replace(/\*/g, " "));
+        options[options.length - 1] = joinText(options[options.length - 1], continuationText);
+        if (text.includes("*") || line.italic) {
+          markedAnswerIndexes.push(options.length - 1);
+        }
+        i += 1;
+        continue;
+      }
+
+      questionText = joinText(questionText, text);
+      i += 1;
+    }
+
+    const uniqueMarkedIndexes = [...new Set(markedAnswerIndexes)];
+    let answerIndex = uniqueMarkedIndexes.length === 1 ? uniqueMarkedIndexes[0] : 0;
+
+    if (uniqueMarkedIndexes.length > 1) {
+      issues.push(`Múltiples respuestas marcadas en ${meta.temaOriginal || meta.tema} / pregunta ${questionNumber}. Se usó la primera.`);
+      answerIndex = uniqueMarkedIndexes[0];
+    }
+
+    if (options.length !== 4) {
+      issues.push(`Número de opciones inválido (${options.length}) en ${meta.temaOriginal || meta.tema} / pregunta ${questionNumber}.`);
+    }
+
+    if (!uniqueMarkedIndexes.length) {
+      issues.push(`Sin respuesta marcada en ${meta.temaOriginal || meta.tema} / pregunta ${questionNumber}.`);
+    }
+
+    let explanation = "";
+    let gpcReference = "";
+    let mode = "";
+
+    while (i < lines.length) {
+      const text = lines[i].text;
+      if (isQuestionStart(text)) break;
+
+      if (isFeedbackStart(text)) {
+        mode = "explanation";
+        explanation = joinText(
+          explanation,
+          text.replace(/^Retroalimentaci[oó]n\s*:?\s*/i, "")
+        );
+        i += 1;
+        continue;
+      }
+
+      if (isSourceStart(text)) {
+        mode = "source";
+        gpcReference = joinText(
+          gpcReference,
+          text.replace(/^(Fuentes?\s+base|Fuentes?|Referencias?)\s*:?\s*/i, "")
+        );
+        i += 1;
+        continue;
+      }
+
+      if (/^Incisos\s*:?\s*$/i.test(text)) {
+        i += 1;
+        continue;
+      }
+
+      if (mode === "source") {
+        gpcReference = joinText(gpcReference, text);
+      } else {
+        explanation = joinText(explanation, text);
+      }
+      i += 1;
+    }
+
+    parsed.push({
+      specialty: meta.specialty,
+      case: clinicalCase,
+      question: questionText,
+      options: options.map(option => sanitizeInline(option)),
+      answerIndex,
+      explanation: sanitizeInline(explanation),
+      gpcReference: sanitizeInline(gpcReference),
+      tema: meta.tema,
+      temaCanonical: meta.tema,
+      subtemaCanonical: meta.subtema,
+      subtema: meta.subtema,
+      specialtyOriginal: meta.specialtyOriginal,
+      temaOriginal: meta.temaOriginal,
+      subtemaOriginal: meta.subtemaOriginal,
+      difficulty: meta.difficulty
+    });
+  }
+
+  return parsed;
+}
+
+function parseBlock(blockLines, issues) {
+  let specialtyLabel = "";
+  let temaOriginal = "";
+  let subtemaOriginal = "";
+  let difficultyLabel = "media";
+  let i = 0;
+
+  while (i < blockLines.length) {
+    const text = blockLines[i].text;
+
+    if (/^Especialidad\s*:/i.test(text)) {
+      const parsed = collectWrappedValue(blockLines, i, /^Especialidad\s*:\s*/i);
+      specialtyLabel = parsed.value;
+      i = parsed.nextIndex;
+      continue;
+    }
+
+    if (/^Tema\s*:/i.test(text)) {
+      const parsed = collectWrappedValue(blockLines, i, /^Tema\s*:\s*/i);
+      temaOriginal = parsed.value;
+      i = parsed.nextIndex;
+      continue;
+    }
+
+    if (/^Subtema\s*:/i.test(text)) {
+      const parsed = collectWrappedValue(blockLines, i, /^Subtema\s*:\s*/i);
+      subtemaOriginal = parsed.value;
+      i = parsed.nextIndex;
+      continue;
+    }
+
+    if (/^Dificultad\s*:/i.test(text)) {
+      const parsed = collectWrappedValue(blockLines, i, /^Dificultad\s*:\s*/i);
+      difficultyLabel = parsed.value;
+      i = parsed.nextIndex;
+      continue;
+    }
+
+    if (isCaseLabel(text)) break;
+    i += 1;
+  }
+
+  let clinicalCase = "";
+  if (i < blockLines.length && isCaseLabel(blockLines[i].text)) {
+    clinicalCase = joinText(
+      clinicalCase,
+      blockLines[i].text.replace(/^Caso\s+cl[ií]nico\s*:?\s*/i, "")
+    );
+    i += 1;
+  }
+
+  while (i < blockLines.length && !isQuestionStart(blockLines[i].text)) {
+    if (!isMetadataLabel(blockLines[i].text)) {
+      clinicalCase = joinText(clinicalCase, blockLines[i].text);
+    }
+    i += 1;
+  }
+
+  const tema = canonicalTema(temaOriginal) || sanitizeTopicLabel(temaOriginal);
+  const subtema = canonicalSubtema(temaOriginal, subtemaOriginal) || tema;
+  const meta = {
+    specialty: mapSpecialty(specialtyLabel),
+    specialtyOriginal: sanitizeInline(specialtyLabel) || mapSpecialty(specialtyLabel),
+    tema,
+    temaOriginal: sanitizeTopicLabel(temaOriginal) || tema,
+    subtema,
+    subtemaOriginal: sanitizeTopicLabel(subtemaOriginal) || subtema,
+    difficulty: mapDifficulty(difficultyLabel)
+  };
+
+  if (!clinicalCase) {
+    issues.push(`Caso clínico vacío en tema ${meta.temaOriginal || meta.tema}.`);
+  }
+
+  return parseQuestionItems(blockLines, i, clinicalCase, meta, issues);
+}
+
+function validateQuestions(questions) {
+  const issues = [];
+
+  questions.forEach((item, index) => {
+    if (!item.case) issues.push(`Caso vacío en índice ${index}`);
+    if (!item.question) issues.push(`Pregunta vacía en índice ${index}`);
+    if (!Array.isArray(item.options) || item.options.length !== 4) {
+      issues.push(`Número de opciones inválido en índice ${index}: ${item.options ? item.options.length : 0}`);
+    }
+    if (item.answerIndex < 0 || item.answerIndex > 3) {
+      issues.push(`Respuesta correcta inválida en índice ${index}: ${item.answerIndex}`);
+    }
+    if (!item.tema) issues.push(`Tema vacío en índice ${index}`);
+    if (!item.subtema) issues.push(`Subtema vacío en índice ${index}`);
+  });
+
+  return issues;
 }
 
 async function main() {
@@ -374,21 +586,42 @@ async function main() {
     throw new Error("Debes indicar --input con la ruta del PDF.");
   }
 
-  const text = await extractTextFromPdf(inputPath);
-  const blocks = splitBlocks(text);
-  const parsedQuestions = blocks.flatMap(parseBlock);
-  const issues = validateQuestions(parsedQuestions);
+  const lines = await extractPdfLines(inputPath);
+  const blocks = splitBlocks(lines);
+  const parseIssues = [];
+  const parsedQuestions = blocks.flatMap(block => parseBlock(block, parseIssues));
+  const validationIssues = validateQuestions(parsedQuestions);
+  const allIssues = [...parseIssues, ...validationIssues];
 
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, JSON.stringify(parsedQuestions, null, 2), "utf8");
 
+  const report = {
+    inputPath,
+    outputPath,
+    blockCount: blocks.length,
+    parsedQuestionCount: parsedQuestions.length,
+    distinctCaseCount: new Set(parsedQuestions.map(getCaseKey)).size,
+    byTema: summarizeByField(parsedQuestions, "tema"),
+    bySubtema: summarizeByField(parsedQuestions, "subtema"),
+    bySpecialty: summarizeByField(parsedQuestions, "specialty"),
+    issueCount: allIssues.length,
+    issues: allIssues.slice(0, 300)
+  };
+
+  fs.writeFileSync(reportPath, JSON.stringify(report, null, 2), "utf8");
+
   console.log(`PDF: ${inputPath}`);
+  console.log(`Líneas extraídas: ${lines.length}`);
   console.log(`Bloques detectados: ${blocks.length}`);
   console.log(`Preguntas parseadas: ${parsedQuestions.length}`);
+  console.log(`Casos clínicos detectados: ${report.distinctCaseCount}`);
   console.log(`Salida JSON: ${outputPath}`);
+  console.log(`Reporte: ${reportPath}`);
 
-  if (issues.length) {
-    console.log(`Validaciones con incidencia: ${issues.length}`);
-    issues.slice(0, 20).forEach(issue => console.log(`- ${issue}`));
+  if (allIssues.length) {
+    console.log(`Incidencias detectadas: ${allIssues.length}`);
+    allIssues.slice(0, 20).forEach(issue => console.log(`- ${issue}`));
   } else {
     console.log("Validación básica: OK");
   }
@@ -398,7 +631,9 @@ async function main() {
     const additions = uniqueBySignature(existing, parsedQuestions);
     const combined = existing.concat(additions);
     writeQuestionsArray(QUESTIONS_PATH, combined);
+
     console.log(`questions.js actualizado. Existentes: ${existing.length}, agregados: ${additions.length}, total: ${combined.length}`);
+    console.log(`Casos clínicos nuevos agregados: ${new Set(additions.map(getCaseKey)).size}`);
   }
 }
 
