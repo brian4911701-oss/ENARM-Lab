@@ -13,6 +13,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "codes:generate": "node scripts/generate_redeem_codes.js",
     "sanitize:cases": "node scripts/sanitize_case_bank.js",
     "verify:cases": "node verify_topics.js",
     "import:pdf:structured": "node scripts/import_structured_pdf_cases.js",

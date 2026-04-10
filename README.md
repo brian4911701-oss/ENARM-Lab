@@ -51,9 +51,16 @@ ENARM Lab/
 
 - Los códigos están en `redeem_codes.txt`.
 - Formato:
-  - `ENARM-M1-XXXXXXX` = 1 mes desde el canje
-  - `ENARM-FX-XXXXXXX` = acceso hasta 1 Oct 2026
+  - `ENARM-M1-XXXXXXXX` = 1 mes desde el canje
+  - `ENARM-D3-XXXXXXXX` = 3 días desde el canje
+  - `ENARM-FX-XXXXXXXX` = acceso hasta 1 Oct 2026
 - El canje se hace en la app (modal "Canjear código").
+
+### Generar nuevos códigos
+
+- Usa `npm run codes:generate -- --month 10 --three-day 5 --append` para generar 10 códigos de 1 mes y 5 códigos de 3 días, agregarlos a `redeem_codes.txt` e imprimirlos en consola.
+- Si solo quieres ver el lote sin modificar el archivo, quita `--append`.
+- Después de generarlos, inicia sesión como admin, abre tu perfil, pégalos en **Admin - Cargar Códigos** y presiona **Subir códigos** para que queden disponibles en Firebase.
 
 ### Configuración admin (una sola vez)
 

@@ -1529,6 +1529,10 @@
                                     <input type="text" id="profile-premium-status" class="text-input" readonly value="Demo">
                                 </div>
                                 <div class="input-group">
+                                    <label>Acceso hasta</label>
+                                    <input type="text" id="profile-premium-until" class="text-input" readonly value="Sin acceso activo">
+                                </div>
+                                <div class="input-group">
                                     <label>Especialidad Objetivo</label>
                                     <select id="profile-specialty" class="text-input" style="cursor: pointer;">
                                         <option value="">Aún sin decidir</option>
@@ -1616,10 +1620,10 @@
                         </div>
                         <div class="input-group" style="margin-bottom: 10px;">
                             <label>Pega los c&oacute;digos (uno por l&iacute;nea)</label>
-                            <textarea id="admin-codes-input" class="text-input" rows="6" placeholder="ENARM-M1-XXXXXXX&#10;ENARM-FX-XXXXXXX"></textarea>
+                            <textarea id="admin-codes-input" class="text-input" rows="6" placeholder="ENARM-M1-XXXXXXXX&#10;ENARM-D3-XXXXXXXX&#10;ENARM-FX-XXXXXXXX"></textarea>
                         </div>
                         <button class="btn-primary" id="btn-admin-upload-codes" style="width: 100%;" type="button">Subir c&oacute;digos</button>
-                        <p style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">Prefijo ENARM-M1- = 1 mes, ENARM-FX- = acceso hasta 1 Oct 2026.</p>
+                        <p style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">Prefijo ENARM-M1- = 1 mes, ENARM-D3- = 3 dias, ENARM-FX- = acceso hasta 1 Oct 2026.</p>
                     </div>
                 </div>
             </div>
@@ -1684,7 +1688,7 @@
                                 <div class="input-group">
                                     <label>Ingresar nuevo c&oacute;digo</label>
                                     <input type="text" id="settings-redeem-code-input" class="text-input"
-                                        placeholder="ENARM-M1-XXXXXXX">
+                                        placeholder="ENARM-M1-XXXXXXXX">
                                 </div>
                                 <div class="premium-contact-box premium-contact-box--compact">
                                     <p class="premium-contact-title">&iquest;No tienes c&oacute;digo?</p>
@@ -1715,6 +1719,88 @@
                                             </span>
                                             <span>Instagram</span>
                                         </a>
+                                    </div>
+                                </div>
+                                <button class="btn-secondary premium-pricing-toggle" type="button"
+                                    data-pricing-toggle="settings-premium-plans"
+                                    aria-controls="settings-premium-plans" aria-expanded="false">
+                                    <span>Planes y costos</span>
+                                    <span class="premium-pricing-toggle-icon" aria-hidden="true">&#9662;</span>
+                                </button>
+                                <div class="premium-pricing-panel" id="settings-premium-plans" hidden>
+                                    <div class="premium-pricing-head">
+                                        <span class="premium-pricing-eyebrow">Elige tu acceso</span>
+                                        <h4 class="premium-pricing-title">Compara Premium vs Gratis</h4>
+                                        <p class="premium-pricing-copy">
+                                            Aprovecha la promoci&oacute;n activa del plan premium hasta el
+                                            <strong>1 de mayo de 2026</strong>.
+                                        </p>
+                                    </div>
+                                    <div class="premium-pricing-grid">
+                                        <article class="premium-plan-card premium-plan-card--featured">
+                                            <div class="premium-plan-badge-row">
+                                                <span class="premium-plan-badge premium-plan-badge--promo">PROMOCI&Oacute;N</span>
+                                                <span class="premium-plan-badge premium-plan-badge--accent">Hasta el examen</span>
+                                                <span class="premium-plan-badge premium-plan-badge--accent">Acceso total</span>
+                                            </div>
+                                            <h5 class="premium-plan-name">Plan Premium</h5>
+                                            <p class="premium-plan-caption">
+                                                Todo desbloqueado para estudiar en serio, medir tu avance y entrenar
+                                                como examen real hasta el d&iacute;a del ENARM.
+                                            </p>
+                                            <div class="premium-plan-price-wrap">
+                                                <span class="premium-plan-price-old">$899 MXN</span>
+                                                <div class="premium-plan-price-main-row">
+                                                    <span class="premium-plan-price-main">$599</span>
+                                                    <span class="premium-plan-price-currency">MXN</span>
+                                                </div>
+                                                <p class="premium-plan-price-note">
+                                                    Por promoci&oacute;n est&aacute; en <strong>$599 MXN</strong> hasta
+                                                    el <strong>1 de mayo de 2026</strong>.
+                                                </p>
+                                            </div>
+                                            <ul class="premium-plan-list">
+                                                <li>Acceso total hasta el d&iacute;a del examen, sin l&iacute;mites demo.</li>
+                                                <li>Simulacro real completo de 280 preguntas.</li>
+                                                <li>Mini simulacros premium para practicar m&aacute;s veces.</li>
+                                                <li>Filtros por temas espec&iacute;ficos.</li>
+                                                <li>Filtros por GPC espec&iacute;ficas.</li>
+                                                <li>Todas las dificultades: f&aacute;cil, media, dif&iacute;cil y cualquiera.</li>
+                                                <li>Todos los temas visuales de la app.</li>
+                                                <li>Comunidad desbloqueada.</li>
+                                                <li>Reportes desbloqueados.</li>
+                                                <li>Zonas de refuerzo desbloqueadas.</li>
+                                                <li>Refuerzo IA e inteligente para atacar debilidades.</li>
+                                                <li>Refuerzo r&aacute;pido y refuerzo de casos.</li>
+                                                <li>Retos con amigos y funciones premium completas.</li>
+                                            </ul>
+                                        </article>
+                                        <article class="premium-plan-card premium-plan-card--free">
+                                            <div class="premium-plan-badge-row">
+                                                <span class="premium-plan-badge premium-plan-badge--neutral">DEMO LIMITADA</span>
+                                            </div>
+                                            <h5 class="premium-plan-name">Plan Gratis</h5>
+                                            <p class="premium-plan-caption">
+                                                Solo para explorar la plataforma con funciones recortadas antes de
+                                                desbloquear la experiencia completa.
+                                            </p>
+                                            <div class="premium-plan-price-wrap premium-plan-price-wrap--free">
+                                                <div class="premium-plan-price-main-row">
+                                                    <span class="premium-plan-price-main">Gratis</span>
+                                                </div>
+                                                <p class="premium-plan-price-note">
+                                                    Sirve como prueba inicial, pero varias herramientas clave quedan
+                                                    bloqueadas.
+                                                </p>
+                                            </div>
+                                            <ul class="premium-plan-list">
+                                                <li>Acceso demo b&aacute;sico para conocer la plataforma.</li>
+                                                <li>Solo Repaso Flash, con m&aacute;ximo 30 preguntas por sesi&oacute;n.</li>
+                                                <li>Solo dificultad Cualquiera y solo 2 temas visuales.</li>
+                                                <li>Sin filtros por tema o GPC espec&iacute;ficos.</li>
+                                                <li>Sin comunidad, reportes, refuerzos, IA, mini simulacros ni retos.</li>
+                                            </ul>
+                                        </article>
                                     </div>
                                 </div>
                                 <button class="btn-primary" id="btn-settings-redeem">Canjear c&oacute;digo</button>
@@ -2064,8 +2150,8 @@
     <!-- MODAL CANJEAR CODIGO -->
     <div class="modal-overlay" id="redeem-modal"
         style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
-        <div class="modal-content"
-            style="background: var(--bg-card); padding: 28px; border-radius: 16px; border: 1px solid var(--border); max-width: 420px; width: 90%; position: relative;">
+        <div class="modal-content redeem-modal-content"
+            style="background: var(--bg-card); padding: 28px; border-radius: 16px; border: 1px solid var(--border); max-width: 860px; width: min(94vw, 860px); position: relative; max-height: 88vh; overflow-y: auto;">
             <button id="btn-close-redeem"
                 style="position: absolute; top: 12px; right: 12px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
             <h2 style="font-size: 18px; margin-bottom: 10px; color: var(--text-primary); text-align: center;">
@@ -2103,9 +2189,90 @@
                     </a>
                 </div>
             </div>
+            <button class="btn-secondary premium-pricing-toggle" type="button"
+                data-pricing-toggle="redeem-premium-plans"
+                aria-controls="redeem-premium-plans" aria-expanded="false">
+                <span>Planes y costos</span>
+                <span class="premium-pricing-toggle-icon" aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="premium-pricing-panel premium-pricing-panel--modal" id="redeem-premium-plans" hidden>
+                <div class="premium-pricing-head">
+                    <span class="premium-pricing-eyebrow">Elige tu acceso</span>
+                    <h4 class="premium-pricing-title">Compara Premium vs Gratis</h4>
+                    <p class="premium-pricing-copy">
+                        El plan premium incluye acceso hasta el d&iacute;a del examen y mantiene una promoci&oacute;n
+                        activa hasta el <strong>1 de mayo de 2026</strong>.
+                    </p>
+                </div>
+                <div class="premium-pricing-grid">
+                    <article class="premium-plan-card premium-plan-card--featured">
+                        <div class="premium-plan-badge-row">
+                            <span class="premium-plan-badge premium-plan-badge--promo">PROMOCI&Oacute;N</span>
+                            <span class="premium-plan-badge premium-plan-badge--accent">Hasta el examen</span>
+                            <span class="premium-plan-badge premium-plan-badge--accent">Acceso total</span>
+                        </div>
+                        <h5 class="premium-plan-name">Plan Premium</h5>
+                        <p class="premium-plan-caption">
+                            Todo desbloqueado para estudiar en serio, medir tu avance y entrenar como examen real
+                            hasta el d&iacute;a del ENARM.
+                        </p>
+                        <div class="premium-plan-price-wrap">
+                            <span class="premium-plan-price-old">$899 MXN</span>
+                            <div class="premium-plan-price-main-row">
+                                <span class="premium-plan-price-main">$599</span>
+                                <span class="premium-plan-price-currency">MXN</span>
+                            </div>
+                            <p class="premium-plan-price-note">
+                                Por promoci&oacute;n est&aacute; en <strong>$599 MXN</strong> hasta el
+                                <strong>1 de mayo de 2026</strong>.
+                            </p>
+                        </div>
+                        <ul class="premium-plan-list">
+                            <li>Acceso total hasta el d&iacute;a del examen, sin l&iacute;mites demo.</li>
+                            <li>Simulacro real completo de 280 preguntas.</li>
+                            <li>Mini simulacros premium para practicar m&aacute;s veces.</li>
+                            <li>Filtros por temas espec&iacute;ficos.</li>
+                            <li>Filtros por GPC espec&iacute;ficas.</li>
+                            <li>Todas las dificultades: f&aacute;cil, media, dif&iacute;cil y cualquiera.</li>
+                            <li>Todos los temas visuales de la app.</li>
+                            <li>Comunidad desbloqueada.</li>
+                            <li>Reportes desbloqueados.</li>
+                            <li>Zonas de refuerzo desbloqueadas.</li>
+                            <li>Refuerzo IA e inteligente para atacar debilidades.</li>
+                            <li>Refuerzo r&aacute;pido y refuerzo de casos.</li>
+                            <li>Retos con amigos y funciones premium completas.</li>
+                        </ul>
+                    </article>
+                    <article class="premium-plan-card premium-plan-card--free">
+                        <div class="premium-plan-badge-row">
+                            <span class="premium-plan-badge premium-plan-badge--neutral">DEMO LIMITADA</span>
+                        </div>
+                        <h5 class="premium-plan-name">Plan Gratis</h5>
+                        <p class="premium-plan-caption">
+                            Solo para explorar la plataforma con funciones recortadas antes de desbloquear la
+                            experiencia completa.
+                        </p>
+                        <div class="premium-plan-price-wrap premium-plan-price-wrap--free">
+                            <div class="premium-plan-price-main-row">
+                                <span class="premium-plan-price-main">Gratis</span>
+                            </div>
+                            <p class="premium-plan-price-note">
+                                Sirve como prueba inicial, pero varias herramientas clave quedan bloqueadas.
+                            </p>
+                        </div>
+                        <ul class="premium-plan-list">
+                            <li>Acceso demo b&aacute;sico para conocer la plataforma.</li>
+                            <li>Solo Repaso Flash, con m&aacute;ximo 30 preguntas por sesi&oacute;n.</li>
+                            <li>Solo dificultad Cualquiera y solo 2 temas visuales.</li>
+                            <li>Sin filtros por tema o GPC espec&iacute;ficos.</li>
+                            <li>Sin comunidad, reportes, refuerzos, IA, mini simulacros ni retos.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
             <div class="input-group" style="margin-bottom: 12px;">
                 <label>C&oacute;digo</label>
-                <input type="text" id="redeem-code-input" class="text-input" placeholder="ENARM-M1-XXXXXXX">
+                <input type="text" id="redeem-code-input" class="text-input" placeholder="ENARM-M1-XXXXXXXX">
             </div>
             <div
                 style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; padding: 10px; border: 1px solid var(--border); border-radius: 10px; background: rgba(255,255,255,0.02);">

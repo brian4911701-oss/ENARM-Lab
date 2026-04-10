@@ -71,6 +71,8 @@
     const ADMIN_UIDS = ["sZcIUjjhD0fze7FtirwsjsIDzLB2"];
     const DEMO_MAX_QTY = 30;
     const FIXED_CODE_EXPIRY = new Date(2026, 9, 1, 23, 59, 59);
+    const THREE_DAY_CODE_DURATION_MS = 3 * 24 * 60 * 60 * 1000;
+    const MONTH_CODE_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
     const ADMIN_PREVIEW_STORAGE_KEY = "enarm_admin_preview_mode";
     const DEMO_ALLOWED_THEMES = new Set(["ocean", "light"]);
     const NOTIFICATION_ICON = "/notification-icon.png";
@@ -496,22 +498,52 @@
         return d.toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "2-digit" });
     };
 
+    const formatDateTime = (d) => {
+        if (!d) return "Sin fecha";
+        return d.toLocaleString("es-MX", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    };
+
     const updatePremiumStatusLabel = () => {
-        const el = $("profile-premium-status");
-        if (!el) return;
+        const statusEl = $("profile-premium-status");
+        const untilEl = $("profile-premium-until");
+        if (!statusEl && !untilEl) return;
         if (isAdminUser()) {
-            el.value = State.adminPreviewMode === "demo" ? "Admin (vista demo)" : "Admin (vista premium)";
+            if (statusEl) {
+                statusEl.value = State.adminPreviewMode === "demo" ? "Admin (vista demo)" : "Admin (vista premium)";
+            }
+            if (untilEl) {
+                untilEl.value = State.adminPreviewMode === "demo" ? "No aplica en vista demo" : "No aplica para admin";
+            }
             return;
         }
-        if (!State.entitlement || !isPremiumActive()) {
-            el.value = "Demo";
+
+        const entitlement = State.entitlement;
+        if (!entitlement) {
+            if (statusEl) statusEl.value = "Demo";
+            if (untilEl) untilEl.value = "Sin acceso activo";
             return;
         }
-        if (!State.entitlement.expiresAt) {
-            el.value = "Premium activo";
+
+        const expiresAt = entitlement.expiresAt;
+        const hasExpiry = !!expiresAt;
+        const isExpired = hasExpiry && expiresAt.getTime() <= Date.now();
+
+        if (entitlement.status !== "active" || isExpired) {
+            if (statusEl) statusEl.value = hasExpiry ? "Premium vencido" : "Demo";
+            if (untilEl) untilEl.value = hasExpiry ? formatDateTime(expiresAt) : "Sin acceso activo";
             return;
         }
-        el.value = `Premium activo hasta ${formatDate(State.entitlement.expiresAt)}`;
+
+        if (statusEl) statusEl.value = "Premium activo";
+        if (untilEl) {
+            untilEl.value = hasExpiry ? formatDateTime(expiresAt) : "Sin fecha de vencimiento";
+        }
     };
 
     function getGlobalAccuracy() {
@@ -777,11 +809,24 @@
         document.documentElement.style.backgroundColor = color;
     };
 
+    function setPricingPanelState(panelId, open) {
+        const panel = typeof panelId === "string" ? $(panelId) : panelId;
+        if (!panel) return;
+        const shouldOpen = Boolean(open);
+        panel.hidden = !shouldOpen;
+        panel.classList.toggle("is-open", shouldOpen);
+        document.querySelectorAll(`[data-pricing-toggle="${panel.id}"]`).forEach(btn => {
+            btn.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
+            btn.classList.toggle("is-open", shouldOpen);
+        });
+    }
+
     const openRedeemModal = (reason) => {
         const modal = $("redeem-modal");
         const reasonEl = $("redeem-reason");
         const legalCheck = $("redeem-legal-check");
         const btnRedeem = $("btn-redeem-submit");
+        setPricingPanelState("redeem-premium-plans", false);
         if (reasonEl && reason) reasonEl.textContent = reason;
         if (legalCheck) legalCheck.checked = false;
         if (btnRedeem) btnRedeem.disabled = true;
@@ -790,6 +835,7 @@
 
     const closeRedeemModal = () => {
         const modal = $("redeem-modal");
+        setPricingPanelState("redeem-premium-plans", false);
         if (modal) modal.style.display = "none";
     };
 
@@ -6685,6 +6731,14 @@
         if (btnOpenRedeem) {
             btnOpenRedeem.addEventListener("click", () => openRedeemModal("Ingresa tu c\u00f3digo para desbloquear premium."));
         }
+        $$("[data-pricing-toggle]").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const panelId = btn.dataset.pricingToggle;
+                const panel = panelId ? $(panelId) : null;
+                if (!panel) return;
+                setPricingPanelState(panelId, panel.hidden);
+            });
+        });
         const btnSettingsRedeem = $("btn-settings-redeem");
         if (btnSettingsRedeem) {
             btnSettingsRedeem.addEventListener("click", () => redeemCode({
@@ -8084,6 +8138,7 @@
 
         const getCodeTypeFromText = (code) => {
             if (!code) return null;
+            if (code.startsWith("ENARM-D3-")) return "three_day";
             if (code.startsWith("ENARM-M1-")) return "month";
             if (code.startsWith("ENARM-FX-")) return "fixed";
             return null;
@@ -8091,8 +8146,9 @@
 
         const computeExpiryForType = (type) => {
             if (type === "fixed") return new Date(FIXED_CODE_EXPIRY.getTime());
+            if (type === "three_day") return new Date(Date.now() + THREE_DAY_CODE_DURATION_MS);
             const now = Date.now();
-            return new Date(now + (30 * 24 * 60 * 60 * 1000));
+            return new Date(now + MONTH_CODE_DURATION_MS);
         };
 
         let issuedCodesCatalogPromise = null;
