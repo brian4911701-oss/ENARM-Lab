@@ -381,6 +381,108 @@
         }
     };
 
+    let examLoadingOverlayEl = null;
+    let examLoadingTitleEl = null;
+    let examLoadingDetailEl = null;
+    let examLoadingFillEl = null;
+    let examLoadingPercentEl = null;
+
+    const ensureExamLoadingOverlay = () => {
+        if (examLoadingOverlayEl) return examLoadingOverlayEl;
+        if (!document.body) return null;
+
+        const overlay = document.createElement("div");
+        overlay.id = "exam-loading-overlay";
+        overlay.className = "exam-loading-overlay";
+        overlay.setAttribute("aria-hidden", "true");
+        overlay.innerHTML = `
+            <div class="exam-loading-card" role="status" aria-live="polite" aria-atomic="true">
+                <div class="exam-loading-kicker">ENARM Lab</div>
+                <h3 class="exam-loading-title" id="exam-loading-title">Preparando examen...</h3>
+                <p class="exam-loading-detail" id="exam-loading-detail">Estamos organizando tus preguntas.</p>
+                <div class="exam-loading-bar" aria-hidden="true">
+                    <div class="exam-loading-fill" id="exam-loading-fill"></div>
+                </div>
+                <div class="exam-loading-meta">
+                    <span>Esto puede tardar unos segundos</span>
+                    <span class="exam-loading-percent" id="exam-loading-percent">0%</span>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+        examLoadingOverlayEl = overlay;
+        examLoadingTitleEl = $("exam-loading-title");
+        examLoadingDetailEl = $("exam-loading-detail");
+        examLoadingFillEl = $("exam-loading-fill");
+        examLoadingPercentEl = $("exam-loading-percent");
+        return overlay;
+    };
+
+    const clampLoadingProgress = (value) => {
+        const numeric = Number(value);
+        if (!Number.isFinite(numeric)) return 0;
+        return Math.max(0, Math.min(100, numeric));
+    };
+
+    const setExamLoadingState = ({
+        title,
+        detail,
+        progress
+    } = {}) => {
+        const overlay = ensureExamLoadingOverlay();
+        if (!overlay) return;
+
+        if (typeof title === "string" && examLoadingTitleEl) {
+            examLoadingTitleEl.textContent = title;
+        }
+        if (typeof detail === "string" && examLoadingDetailEl) {
+            examLoadingDetailEl.textContent = detail;
+        }
+        if (typeof progress === "number") {
+            const safeProgress = clampLoadingProgress(progress);
+            if (examLoadingFillEl) examLoadingFillEl.style.width = `${safeProgress}%`;
+            if (examLoadingPercentEl) examLoadingPercentEl.textContent = `${Math.round(safeProgress)}%`;
+        }
+    };
+
+    const showExamLoadingOverlay = (initialState = {}) => {
+        const overlay = ensureExamLoadingOverlay();
+        if (!overlay) return;
+        document.body.classList.add("exam-loading-active");
+        overlay.classList.add("active");
+        overlay.setAttribute("aria-hidden", "false");
+        setExamLoadingState(initialState);
+    };
+
+    const hideExamLoadingOverlay = () => {
+        if (!examLoadingOverlayEl) return;
+        examLoadingOverlayEl.classList.remove("active");
+        examLoadingOverlayEl.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("exam-loading-active");
+    };
+
+    const waitForNextPaint = () => new Promise((resolve) => {
+        const raf = window.requestAnimationFrame || ((cb) => setTimeout(cb, 16));
+        raf(() => raf(resolve));
+    });
+
+    const withExamLoadingOverlay = async (task, initialState = {}) => {
+        showExamLoadingOverlay(initialState);
+        await waitForNextPaint();
+
+        const setStage = async (nextState = {}) => {
+            setExamLoadingState(nextState);
+            await waitForNextPaint();
+        };
+
+        try {
+            return await task(setStage);
+        } finally {
+            hideExamLoadingOverlay();
+        }
+    };
+
     const loadQuestionsScript = () => {
         if (hasQuestionsBankLoaded()) return Promise.resolve(QUESTIONS);
         if (questionsLoadPromise) return questionsLoadPromise;
@@ -2740,7 +2842,6 @@
     // TEMARIO OFICIAL ENARM (Basado en el flujo temático)
     // ---------------------------------------------------------------------------
     const OFFICIAL_TEMARIO = [
-        "Introducción a Ginecología",
         "Amenorreas Primarias y Secundarias",
         "Ciclo Genital, Esterilidad y Anticonceptivos",
         "Sangrados Uterinos Anormales de Origen No Anatómico",
@@ -2824,12 +2925,6 @@
     ];
 
     const TEMARIO_MAPPING = {
-        "Introducción a Ginecología": [
-                "IG",
-                "IGGO",
-                "Introducción a Ginecología",
-                "Introducción a Ginecología (Ginecología y Obstetricia)"
-        ],
         "Amenorreas Primarias y Secundarias": [
                 "Amenorreas Primarias y Secundarias",
                 "Amenorreas Primarias y Secundarias (Ginecología y Obstetricia)",
@@ -4503,73 +4598,110 @@
                 }
 
                 await withTemporaryButtonLabel(btnStart, "Preparando...", async () => {
-                    try {
-                        await ensureQuestionsReady({ silent: false });
-                    } catch (err) {
-                        return;
-                    }
-
-                    if (isRealSim) {
-                        const realSet = buildRealSimulacroQuestionSet();
-                        if (!realSet.questionSet || realSet.questionSet.length === 0) {
-                            return showNotification("No hay suficientes preguntas para generar el simulacro real.", "warning");
-                        }
-
-                        if (realSet.warnings.length > 0) {
-                            showNotification(realSet.warnings[0], "warning");
-                        }
-
-                        beginExamSession({
-                            questionSet: realSet.questionSet,
-                            mode: "simulacro",
-                            currentExamIsReal: true,
-                            currentExamType: "Simulacro Real",
-                            durationSec: isLibre ? 0 : (timerVal || REAL_SIM_CONFIG.timeMin) * 60
+                    await withExamLoadingOverlay(async (setStage) => {
+                        await setStage({
+                            title: isRealSim ? "Preparando simulacro real..." : "Preparando examen...",
+                            detail: "Estamos cargando el banco de preguntas.",
+                            progress: 12
                         });
-                        return;
-                    }
 
-                    const {
-                        primary: poolPrimary,
-                        secondary: poolSecondary
-                    } = buildFilteredQuestionPools({
-                        specs: selectedSpecs,
-                        selectedTopics: State.selectedTopics,
-                        difficulty: State.difficulty
-                    });
-
-                    if (poolPrimary.length === 0 && poolSecondary.length === 0) {
-                        return showNotification(`No hay preguntas. Revisa tus filtros:\n- Especialidades marcadas: ${selectedSpecs.length}\n- Temas buscados: ${State.selectedTopics.length}\n- Dificultad: ${State.difficulty}\nIntenta poner la dificultad en "Cualquiera".`);
-                    }
-
-                    let flatPrimary = processAndFlattenPool(poolPrimary, qty);
-                    let finalQuestionSet = flatPrimary;
-                    let neededOtherDiffs = false;
-
-                    if (flatPrimary.length < qty && poolSecondary.length > 0) {
-                        let missing = qty - flatPrimary.length;
-                        let flatSecondary = processAndFlattenPool(poolSecondary, missing);
-                        if (flatSecondary.length > 0) {
-                            finalQuestionSet = flatPrimary.concat(flatSecondary);
-                            neededOtherDiffs = true;
+                        try {
+                            await ensureQuestionsReady({ silent: false });
+                        } catch (err) {
+                            return;
                         }
-                    }
 
-                    let finalQty = finalQuestionSet.length;
-                    if (neededOtherDiffs) {
-                        showNotification(`Se utilizaron las preguntas disponibles de dificultad "${State.difficulty}". Se completó el resto con otras dificultades.`);
-                    } else if (finalQty < qty) {
-                        showNotification(`La base de datos contiene solo ${finalQty} preguntas aplicables a tu filtro actual. Limitando el simulacro a esa cantidad.`);
-                    }
+                        if (isRealSim) {
+                            await setStage({
+                                detail: "Estamos seleccionando las preguntas del simulacro real.",
+                                progress: 62
+                            });
 
-                    const selectedModeBtn = document.querySelector(".mode-toggle-btn.active");
-                    const modeVal = selectedModeBtn ? selectedModeBtn.dataset.examMode : "casos";
-                    beginExamSession({
-                        questionSet: finalQuestionSet,
-                        mode: !hasPremium ? "estudio" : (modeVal === "casos" ? "simulacro" : "estudio"),
-                        currentExamIsReal: false,
-                        currentExamType: !hasPremium ? "Demo Estudio" : (isLibre ? "Estudio Libre" : "Examen Cronometrado"),
-                        durationSec: !hasPremium ? 0 : (isLibre ? 0 : (timerVal || 60) * 60)
+                            const realSet = buildRealSimulacroQuestionSet();
+                            if (!realSet.questionSet || realSet.questionSet.length === 0) {
+                                return showNotification("No hay suficientes preguntas para generar el simulacro real.", "warning");
+                            }
+
+                            if (realSet.warnings.length > 0) {
+                                showNotification(realSet.warnings[0], "warning");
+                            }
+
+                            await setStage({
+                                detail: "Abriendo tu examen.",
+                                progress: 100
+                            });
+
+                            beginExamSession({
+                                questionSet: realSet.questionSet,
+                                mode: "simulacro",
+                                currentExamIsReal: true,
+                                currentExamType: "Simulacro Real",
+                                durationSec: isLibre ? 0 : (timerVal || REAL_SIM_CONFIG.timeMin) * 60
+                            });
+                            return;
+                        }
+
+                        await setStage({
+                            detail: "Estamos aplicando tus filtros y buscando preguntas.",
+                            progress: 34
+                        });
+
+                        const {
+                            primary: poolPrimary,
+                            secondary: poolSecondary
+                        } = buildFilteredQuestionPools({
+                            specs: selectedSpecs,
+                            selectedTopics: State.selectedTopics,
+                            difficulty: State.difficulty
+                        });
+
+                        if (poolPrimary.length === 0 && poolSecondary.length === 0) {
+                            return showNotification(`No hay preguntas. Revisa tus filtros:\n- Especialidades marcadas: ${selectedSpecs.length}\n- Temas buscados: ${State.selectedTopics.length}\n- Dificultad: ${State.difficulty}\nIntenta poner la dificultad en "Cualquiera".`);
+                        }
+
+                        await setStage({
+                            detail: "Estamos armando el simulacro y ordenando las preguntas.",
+                            progress: 72
+                        });
+
+                        let flatPrimary = processAndFlattenPool(poolPrimary, qty);
+                        let finalQuestionSet = flatPrimary;
+                        let neededOtherDiffs = false;
+
+                        if (flatPrimary.length < qty && poolSecondary.length > 0) {
+                            let missing = qty - flatPrimary.length;
+                            let flatSecondary = processAndFlattenPool(poolSecondary, missing);
+                            if (flatSecondary.length > 0) {
+                                finalQuestionSet = flatPrimary.concat(flatSecondary);
+                                neededOtherDiffs = true;
+                            }
+                        }
+
+                        let finalQty = finalQuestionSet.length;
+                        if (neededOtherDiffs) {
+                            showNotification(`Se utilizaron las preguntas disponibles de dificultad "${State.difficulty}". Se completó el resto con otras dificultades.`);
+                        } else if (finalQty < qty) {
+                            showNotification(`La base de datos contiene solo ${finalQty} preguntas aplicables a tu filtro actual. Limitando el simulacro a esa cantidad.`);
+                        }
+
+                        await setStage({
+                            detail: "Abriendo tu examen.",
+                            progress: 100
+                        });
+
+                        const selectedModeBtn = document.querySelector(".mode-toggle-btn.active");
+                        const modeVal = selectedModeBtn ? selectedModeBtn.dataset.examMode : "casos";
+                        beginExamSession({
+                            questionSet: finalQuestionSet,
+                            mode: !hasPremium ? "estudio" : (modeVal === "casos" ? "simulacro" : "estudio"),
+                            currentExamIsReal: false,
+                            currentExamType: !hasPremium ? "Demo Estudio" : (isLibre ? "Estudio Libre" : "Examen Cronometrado"),
+                            durationSec: !hasPremium ? 0 : (isLibre ? 0 : (timerVal || 60) * 60)
+                        });
+                    }, {
+                        title: isRealSim ? "Preparando simulacro real..." : "Preparando examen...",
+                        detail: "Estamos organizando tus preguntas.",
+                        progress: 8
                     });
                 });
             });
@@ -4653,55 +4785,99 @@
 
     const startTemaSession = async (temas, qty, label, triggerButton = null) => {
         await withTemporaryButtonLabel(triggerButton, "Preparando...", async () => {
-            try {
-                await ensureQuestionsReady({ silent: false });
-            } catch (err) {
-                return;
-            }
+            await withExamLoadingOverlay(async (setStage) => {
+                await setStage({
+                    title: "Preparando sesión...",
+                    detail: "Estamos cargando el banco de preguntas.",
+                    progress: 12
+                });
 
-            let pool = buildFilteredQuestionPools({
-                selectedTopics: temas || []
-            }).primary;
-            if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
+                try {
+                    await ensureQuestionsReady({ silent: false });
+                } catch (err) {
+                    return;
+                }
 
-            let finalQty = qty;
-            if (qty > pool.length) {
-                finalQty = pool.length;
-                showNotification(`Solo tenemos ${pool.length} preguntas disponibles para este tema.`);
-            }
+                await setStage({
+                    detail: "Estamos buscando preguntas del tema seleccionado.",
+                    progress: 48
+                });
 
-            beginExamSession({
-                questionSet: processAndFlattenPool(pool, finalQty),
-                mode: "simulacro",
-                currentExamIsReal: false,
-                currentExamType: label,
-                durationSec: 0
+                let pool = buildFilteredQuestionPools({
+                    selectedTopics: temas || []
+                }).primary;
+                if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
+
+                let finalQty = qty;
+                if (qty > pool.length) {
+                    finalQty = pool.length;
+                    showNotification(`Solo tenemos ${pool.length} preguntas disponibles para este tema.`);
+                }
+
+                await setStage({
+                    detail: "Abriendo tu sesión de práctica.",
+                    progress: 100
+                });
+
+                beginExamSession({
+                    questionSet: processAndFlattenPool(pool, finalQty),
+                    mode: "simulacro",
+                    currentExamIsReal: false,
+                    currentExamType: label,
+                    durationSec: 0
+                });
+            }, {
+                title: "Preparando sesión...",
+                detail: "Estamos organizando tus preguntas.",
+                progress: 8
             });
         });
     };
 
     const startQuickSession = async (specs, qty, label, triggerButton = null) => {
         await withTemporaryButtonLabel(triggerButton, "Preparando...", async () => {
-            try {
-                await ensureQuestionsReady({ silent: false });
-            } catch (err) {
-                return;
-            }
+            await withExamLoadingOverlay(async (setStage) => {
+                await setStage({
+                    title: "Preparando sesión rápida...",
+                    detail: "Estamos cargando el banco de preguntas.",
+                    progress: 12
+                });
 
-            let pool = filterQuarantinedPool(getQuestionsPoolForSpecs(specs || []));
-            if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
+                try {
+                    await ensureQuestionsReady({ silent: false });
+                } catch (err) {
+                    return;
+                }
 
-            let finalQty = qty;
-            if (qty > pool.length) {
-                finalQty = pool.length;
-            }
+                await setStage({
+                    detail: "Estamos seleccionando preguntas para tu sesión rápida.",
+                    progress: 50
+                });
 
-            beginExamSession({
-                questionSet: processAndFlattenPool(pool, finalQty),
-                mode: "simulacro",
-                currentExamIsReal: false,
-                currentExamType: label,
-                durationSec: 0
+                let pool = filterQuarantinedPool(getQuestionsPoolForSpecs(specs || []));
+                if (pool.length === 0) pool = filterQuarantinedPool(QUESTIONS);
+
+                let finalQty = qty;
+                if (qty > pool.length) {
+                    finalQty = pool.length;
+                }
+
+                await setStage({
+                    detail: "Abriendo tu sesión de práctica.",
+                    progress: 100
+                });
+
+                beginExamSession({
+                    questionSet: processAndFlattenPool(pool, finalQty),
+                    mode: "simulacro",
+                    currentExamIsReal: false,
+                    currentExamType: label,
+                    durationSec: 0
+                });
+            }, {
+                title: "Preparando sesión rápida...",
+                detail: "Estamos organizando tus preguntas.",
+                progress: 8
             });
         });
     };
@@ -4981,6 +5157,7 @@
             State.pausedElapsedTime = 0;
             State.examActive = false;
             setExamTimerVisibility(false, 0);
+            hideExamLoadingOverlay();
             showNotification("No hay preguntas disponibles para iniciar este examen.", "warning");
             return false;
         }
@@ -5000,6 +5177,7 @@
 
         renderExamQuestion();
         showView("view-exam");
+        hideExamLoadingOverlay();
 
         if (State.durationSec > 0) {
             startTimer();
@@ -7919,58 +8097,55 @@
                     return showNotification("Error: Los datos del reto están dañados o vacíos.", "error");
                 }
 
-                try {
-                    await ensureQuestionsReady({ silent: false });
-                } catch (err) {
-                    return;
-                }
+                await withExamLoadingOverlay(async (setStage) => {
+                    await setStage({
+                        title: "Preparando reto...",
+                        detail: "Estamos cargando el banco de preguntas.",
+                        progress: 12
+                    });
 
-                const finalSet = [];
-                let groupCounter = 1;
-                let lastParentIdx = -1; // Track to group consecutive sub-questions of the same case
-
-                indices.forEach((item) => {
-                    // Support both NEW format {idx, sub} and LEGACY format (plain number)
-                    const isLegacy = typeof item === 'number';
-                    const parentIdx = isLegacy ? item : item.idx;
-                    const subIdx = isLegacy ? -1 : item.sub;
-
-                    const q = QUESTIONS[parentIdx];
-                    if (!q) return;
-
-                    // Determine if this is a new case group or continuation of the previous one
-                    const isSameCase = (parentIdx === lastParentIdx);
-                    if (!isSameCase) {
-                        if (lastParentIdx !== -1) groupCounter++;
-                        lastParentIdx = parentIdx;
+                    try {
+                        await ensureQuestionsReady({ silent: false });
+                    } catch (err) {
+                        return;
                     }
 
-                    if (Array.isArray(q.options) && q.options.length > 0) {
-                        // Simple question (or legacy simple)
-                        finalSet.push({ ...q, caseGroupId: groupCounter, subQuestionIndex: 1, totalSubQuestions: 1 });
+                    await setStage({
+                        detail: "Estamos armando el reto y agrupando las preguntas.",
+                        progress: 68
+                    });
 
-                    } else if (q.questions && Array.isArray(q.questions) && q.questions.length > 0) {
+                    const finalSet = [];
+                    let groupCounter = 1;
+                    let lastParentIdx = -1; // Track to group consecutive sub-questions of the same case
 
-                        if (!isLegacy && subIdx >= 0) {
-                            // NEW format: load ONLY the specific sub-question indicated by subIdx
-                            const sq = q.questions[subIdx];
-                            // Count how many sub-questions from this same parent are in the indices
-                            const siblingCount = indices.filter(it => (typeof it === 'object' && it.idx === parentIdx)).length;
-                            if (sq && Array.isArray(sq.options) && sq.options.length > 0) {
-                                finalSet.push({
-                                    ...q,
-                                    question: sq.question,
-                                    options: sq.options,
-                                    answerIndex: sq.answerIndex,
-                                    explanation: sq.explanation,
-                                    caseGroupId: groupCounter,
-                                    subQuestionIndex: subIdx + 1,
-                                    totalSubQuestions: siblingCount > 1 ? siblingCount : q.questions.length
-                                });
-                            }
-                        } else {
-                            // LEGACY format: expand all sub-questions of the case (old behavior)
-                            q.questions.forEach((sq, sqIdx) => {
+                    indices.forEach((item) => {
+                        // Support both NEW format {idx, sub} and LEGACY format (plain number)
+                        const isLegacy = typeof item === 'number';
+                        const parentIdx = isLegacy ? item : item.idx;
+                        const subIdx = isLegacy ? -1 : item.sub;
+
+                        const q = QUESTIONS[parentIdx];
+                        if (!q) return;
+
+                        // Determine if this is a new case group or continuation of the previous one
+                        const isSameCase = (parentIdx === lastParentIdx);
+                        if (!isSameCase) {
+                            if (lastParentIdx !== -1) groupCounter++;
+                            lastParentIdx = parentIdx;
+                        }
+
+                        if (Array.isArray(q.options) && q.options.length > 0) {
+                            // Simple question (or legacy simple)
+                            finalSet.push({ ...q, caseGroupId: groupCounter, subQuestionIndex: 1, totalSubQuestions: 1 });
+
+                        } else if (q.questions && Array.isArray(q.questions) && q.questions.length > 0) {
+
+                            if (!isLegacy && subIdx >= 0) {
+                                // NEW format: load ONLY the specific sub-question indicated by subIdx
+                                const sq = q.questions[subIdx];
+                                // Count how many sub-questions from this same parent are in the indices
+                                const siblingCount = indices.filter(it => (typeof it === 'object' && it.idx === parentIdx)).length;
                                 if (sq && Array.isArray(sq.options) && sq.options.length > 0) {
                                     finalSet.push({
                                         ...q,
@@ -7979,46 +8154,71 @@
                                         answerIndex: sq.answerIndex,
                                         explanation: sq.explanation,
                                         caseGroupId: groupCounter,
-                                        subQuestionIndex: sqIdx + 1,
-                                        totalSubQuestions: q.questions.length
+                                        subQuestionIndex: subIdx + 1,
+                                        totalSubQuestions: siblingCount > 1 ? siblingCount : q.questions.length
                                     });
                                 }
-                            });
-                        }
+                            } else {
+                                // LEGACY format: expand all sub-questions of the case (old behavior)
+                                q.questions.forEach((sq, sqIdx) => {
+                                    if (sq && Array.isArray(sq.options) && sq.options.length > 0) {
+                                        finalSet.push({
+                                            ...q,
+                                            question: sq.question,
+                                            options: sq.options,
+                                            answerIndex: sq.answerIndex,
+                                            explanation: sq.explanation,
+                                            caseGroupId: groupCounter,
+                                            subQuestionIndex: sqIdx + 1,
+                                            totalSubQuestions: q.questions.length
+                                        });
+                                    }
+                                });
+                            }
 
-                    } else {
-                        // Fallback: find by question text
-                        const found = QUESTIONS.findIndex(
-                            ref => ref.question && ref.question === q.question && Array.isArray(ref.options)
-                        );
-                        if (found !== -1) {
-                            finalSet.push({ ...QUESTIONS[found], caseGroupId: groupCounter, subQuestionIndex: 1, totalSubQuestions: 1 });
-                            groupCounter++;
+                        } else {
+                            // Fallback: find by question text
+                            const found = QUESTIONS.findIndex(
+                                ref => ref.question && ref.question === q.question && Array.isArray(ref.options)
+                            );
+                            if (found !== -1) {
+                                finalSet.push({ ...QUESTIONS[found], caseGroupId: groupCounter, subQuestionIndex: 1, totalSubQuestions: 1 });
+                                groupCounter++;
+                            }
                         }
+                    });
+
+                    if (finalSet.length === 0) {
+                        return showNotification("Error al cargar preguntas. El banco puede haber sido actualizado. Crea un nuevo reto.", "error");
                     }
+
+                    // Safety trim: legacy challenges may expand more than intended
+                    const resolvedQty = targetQty && targetQty > 0 ? targetQty : finalSet.length;
+                    const trimmedSet = finalSet.slice(0, resolvedQty);
+
+                    if (trimmedSet.length < resolvedQty) {
+                        showNotification(`Se cargaron ${trimmedSet.length} de ${resolvedQty} preguntas.`, "warning");
+                    }
+
+                    await setStage({
+                        detail: "Abriendo tu reto.",
+                        progress: 100
+                    });
+
+                    beginExamSession({
+                        questionSet: trimmedSet,
+                        mode: "simulacro",
+                        currentExamIsReal: false,
+                        currentExamType: "Reto Amistoso",
+                        durationSec: 0
+                    });
+
+                    showNotification("¡Reto iniciado! Buena suerte.", "info");
+                }, {
+                    title: "Preparando reto...",
+                    detail: "Estamos organizando tus preguntas.",
+                    progress: 8
                 });
-
-                if (finalSet.length === 0) {
-                    return showNotification("Error al cargar preguntas. El banco puede haber sido actualizado. Crea un nuevo reto.", "error");
-                }
-
-                // Safety trim: legacy challenges may expand more than intended
-                const resolvedQty = targetQty && targetQty > 0 ? targetQty : finalSet.length;
-                const trimmedSet = finalSet.slice(0, resolvedQty);
-
-                if (trimmedSet.length < resolvedQty) {
-                    showNotification(`Se cargaron ${trimmedSet.length} de ${resolvedQty} preguntas.`, "warning");
-                }
-
-                beginExamSession({
-                    questionSet: trimmedSet,
-                    mode: "simulacro",
-                    currentExamIsReal: false,
-                    currentExamType: "Reto Amistoso",
-                    durationSec: 0
-                });
-
-                showNotification("¡Reto iniciado! Buena suerte.", "info");
             };
 
             // Exponer internamente para que acceptChallenge pueda llamarlo
