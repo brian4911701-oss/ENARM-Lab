@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -1498,7 +1498,7 @@
                     </div>
                     <p class="panel-subtitle">Analiza tu rendimiento y evolución histórica. Todas las métricas se
                         actualizan de acuerdo a tu desempeño en simulacros y repasos.</p>
-                    <div class="stats-demo-banner" id="stats-demo-banner" hidden>
+                    <div class="stats-demo-banner" id="stats-demo-banner" style="display:none">
                         <div class="stats-demo-banner-copy">
                             <strong>Vista previa de estadísticas</strong>
                             <span>En gratis ves tus métricas base y una muestra visual de los paneles avanzados.</span>
@@ -1524,34 +1524,34 @@
                             <div class="stat-value" id="stats-total-questions"
                                 style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">0</div>
                         </div>
+                        <div class="stat-card"
+                            style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                            <div class="stat-icon blue-icon" style="font-size: 1.8rem; margin-bottom: 5px;">&#x23F1;&#xFE0F;</div>
+                            <div class="stat-label">Tiempo por Pregunta</div>
+                            <div class="stat-value" id="stats-avg-time-per-question"
+                                style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">0s</div>
+                        </div>
                     </div>
 
                     <div class="charts-grid"
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; align-items: start;">
-                        <!-- Carta Rendimiento Histórico (Línea) -->
+                        <!-- Curva de Aprendizaje - GRATIS -->
                         <div class="chart-card stats-free-preview-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); grid-column: 1 / -1;">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                                <h3 style="margin: 0; color: var(--text-primary); font-size: 1.2rem;">&#x1F4C8; Curva de
-                                    Aprendizaje</h3>
-                                <span
-                                    style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Últimas
-                                    10 sesiones</span>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <h3 style="margin: 0; color: var(--text-primary); font-size: 1.2rem;">&#x1F4C8; Curva de Aprendizaje</h3>
+                                <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Últimas 10 sesiones</span>
                             </div>
                             <div style="position: relative; height: 320px; width: 100%;">
                                 <canvas id="chart-history"></canvas>
                             </div>
                         </div>
 
-                        <!-- Carta Rendimiento por Especialidad (Radar / Hexagonal) -->
+                        <!-- Dominio por Especialidad - PREMIUM -->
                         <div class="chart-card stats-premium-lock-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
-                            <h3
-                                style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">
-                                &#x1F578;&#xFE0F; Dominio por Especialidad</h3>
-                            <div
-                                style="position: relative; height: 300px; width: 100%; display: flex; justify-content: center;">
+                            <h3 style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">&#x1F578;&#xFE0F; Dominio por Especialidad</h3>
+                            <div style="position: relative; height: 300px; width: 100%; display: flex; justify-content: center;">
                                 <canvas id="chart-specialties"></canvas>
                             </div>
                             <div class="stats-premium-overlay">
@@ -1562,39 +1562,34 @@
                             </div>
                         </div>
 
-                        <!-- Carta Distribución Global (Doughnut) -->
-                        <div class="chart-card stats-free-preview-card"
+                        <!-- Balance de Respuestas (Doughnut) - PREMIUM -->
+                        <div class="chart-card stats-premium-lock-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
-                            <h3
-                                style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">
-                                &#x1F369; Balance de Respuestas</h3>
-                            <div
-                                style="position: relative; height: 300px; width: 100%; display: flex; justify-content: center; align-items: center;">
+                            <h3 style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">&#x1F369; Balance de Respuestas</h3>
+                            <div style="position: relative; height: 300px; width: 100%; display: flex; justify-content: center; align-items: center;">
                                 <canvas id="chart-doughnut"></canvas>
                                 <div style="position: absolute; text-align: center;">
                                     <div style="font-size: 11px; color: var(--text-muted);">EFECTIVIDAD</div>
-                                    <div id="doughnut-center-pct"
-                                        style="font-size: 24px; font-weight: 800; color: var(--text-primary);">0%</div>
+                                    <div id="doughnut-center-pct" style="font-size: 24px; font-weight: 800; color: var(--text-primary);">0%</div>
                                 </div>
+                            </div>
+                            <div class="stats-premium-overlay">
+                                <span class="stats-premium-overlay-badge">Premium</span>
+                                <strong>Desglose completo bloqueado</strong>
+                                <p>Activa premium para ver tu balance detallado de aciertos vs errores y medir tu efectividad real.</p>
+                                <button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Activar premium</button>
                             </div>
                         </div>
 
+                        <!-- Ritmo por Sesión - PREMIUM -->
                         <div class="chart-card stats-premium-lock-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
                                 <div>
-                                    <h3
-                                        style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">
-                                        &#x23F1;&#xFE0F; Ritmo por Sesi&oacute;n</h3>
-                                    <p
-                                        style="margin: 6px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5;">
-                                        Sigue tus segundos por pregunta para detectar si necesitas acelerar, consolidar o
-                                        entrenar bajo cron&oacute;metro.</p>
+                                    <h3 style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">&#x23F1;&#xFE0F; Ritmo por Sesi&oacute;n</h3>
+                                    <p style="margin: 6px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5;">Sigue tus segundos por pregunta para detectar si necesitas acelerar, consolidar o entrenar bajo cron&oacute;metro.</p>
                                 </div>
-                                <span
-                                    style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Ultimas
-                                    10 sesiones</span>
+                                <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Ultimas 10 sesiones</span>
                             </div>
                             <div style="position: relative; height: 300px; width: 100%;">
                                 <canvas id="chart-pace"></canvas>
@@ -1607,22 +1602,15 @@
                             </div>
                         </div>
 
+                        <!-- Cobertura por Especialidad - PREMIUM -->
                         <div class="chart-card stats-premium-lock-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
                                 <div>
-                                    <h3
-                                        style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">
-                                        &#x1F4DA; Cobertura por Especialidad</h3>
-                                    <p
-                                        style="margin: 6px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5;">
-                                        Compara volumen de reactivos respondidos contra tu precisi&oacute;n real para
-                                        encontrar huecos de pr&aacute;ctica.</p>
+                                    <h3 style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">&#x1F4DA; Cobertura por Especialidad</h3>
+                                    <p style="margin: 6px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5;">Compara volumen de reactivos respondidos contra tu precisi&oacute;n real para encontrar huecos de pr&aacute;ctica.</p>
                                 </div>
-                                <span
-                                    style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Volumen
-                                    vs precision</span>
+                                <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Volumen vs precision</span>
                             </div>
                             <div style="position: relative; height: 300px; width: 100%;">
                                 <canvas id="chart-specialty-coverage"></canvas>
@@ -1630,41 +1618,35 @@
                             <div class="stats-premium-overlay">
                                 <span class="stats-premium-overlay-badge">Premium</span>
                                 <strong>Cobertura completa bloqueada</strong>
-                                <p>Premium te muestra volumen vs precisión para encontrar huecos reales de estudio.</p>
+                                <p>Premium te muestra volumen vs precisi&oacute;n para encontrar huecos reales de estudio.</p>
                                 <button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Quiero premium</button>
                             </div>
                         </div>
 
+                        <!-- Temas Más Frágiles - PREMIUM -->
                         <div class="chart-card stats-premium-lock-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); grid-column: 1 / -1;">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
                                 <div>
-                                    <h3
-                                        style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">
-                                        &#x1F6A8; Temas M&aacute;s Fr&aacute;giles</h3>
-                                    <p
-                                        style="margin: 6px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5;">
-                                        Prioriza los temas con peor precisi&oacute;n y suficiente volumen para que tu
-                                        siguiente repaso tenga el mayor impacto.</p>
+                                    <h3 style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">&#x1F6A8; Temas M&aacute;s Fr&aacute;giles</h3>
+                                    <p style="margin: 6px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5;">Prioriza los temas con peor precisi&oacute;n y suficiente volumen para que tu siguiente repaso tenga el mayor impacto.</p>
                                 </div>
-                                <span
-                                    style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Top
-                                    6 accionables</span>
+                                <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Top 6 accionables</span>
                             </div>
                             <div style="position: relative; height: 340px; width: 100%;">
                                 <canvas id="chart-weak-topics"></canvas>
                             </div>
                             <div class="stats-premium-overlay">
                                 <span class="stats-premium-overlay-badge">Premium</span>
-                                <strong>Temas frágiles completos</strong>
-                                <p>En premium ves el panel accionable completo para priorizar tus puntos débiles.</p>
-                                <button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Desbloquear análisis</button>
+                                <strong>Temas fr&aacute;giles completos</strong>
+                                <p>En premium ves el panel accionable completo para priorizar tus puntos d&eacute;biles.</p>
+                                <button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Desbloquear an&aacute;lisis</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <!-- ─── VIEW: HISTORIAL ───────────────────────────── -->
             <div id="view-historial" class="view">

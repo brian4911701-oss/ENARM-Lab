@@ -1,4 +1,4 @@
-﻿﻿// app.js  Core logic for ENARMlab
+// app.js  Core logic for ENARMlab
 (() => {
     // ---------------------------------------------------------------------------
     // State Management
@@ -1487,7 +1487,7 @@
         if (pomodoroShell) pomodoroShell.style.display = premium ? "" : "none";
         document.body.classList.toggle("stats-demo-preview", !premium);
         const statsDemoBanner = $("stats-demo-banner");
-        if (statsDemoBanner) statsDemoBanner.hidden = premium;
+        if (statsDemoBanner) statsDemoBanner.style.display = premium ? "none" : "";
         if (!premium && PREMIUM_VIEWS.has(State.view)) {
             showView("view-dashboard");
             showNotification("Esta función está disponible solo en premium.", "info");
@@ -7293,6 +7293,17 @@
         // Update new stats tab
         if ($("stats-global-precision")) $("stats-global-precision").textContent = `${pct}%`;
         if ($("stats-total-questions")) $("stats-total-questions").textContent = State.globalStats.respondidas;
+        const avgTimeEl = $("stats-avg-time-per-question");
+        if (avgTimeEl) {
+            const recentSessions = (State.history || []).slice(-10);
+            let totalSec = 0, totalQ = 0;
+            recentSessions.forEach(s => {
+                const q = Number(s?.preguntas) || 0;
+                const sec = Number(s?.elapsedSec) || 0;
+                if (q > 0 && sec > 0) { totalSec += sec; totalQ += q; }
+            });
+            avgTimeEl.textContent = totalQ > 0 ? `${Math.round(totalSec / totalQ)}s` : "0s";
+        }
 
         // Update Fail Points (Puntos de Falla) is now handled by the new Refuerzos View
         renderRefuerzosView();
