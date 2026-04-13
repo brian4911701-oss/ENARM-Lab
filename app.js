@@ -58,6 +58,8 @@
         currentUid: "",
         entitlement: null,
         entitlementUnsub: null,
+        globalPremiumPromo: null,
+        globalPremiumUnsub: null,
         adminPreviewMode: "premium",
         caseOverrideMap: null,
         caseOverridesUnsub: null,
@@ -87,6 +89,8 @@
     const THREE_DAY_CODE_DURATION_MS = 3 * 24 * 60 * 60 * 1000;
     const MONTH_CODE_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
     const ADMIN_PREVIEW_STORAGE_KEY = "enarm_admin_preview_mode";
+    const GLOBAL_PREMIUM_COLLECTION = "feature_flags";
+    const GLOBAL_PREMIUM_DOC_ID = "global_premium";
     const DEMO_ALLOWED_THEMES = new Set(["ocean", "light"]);
     const FONT_PRESET_STORAGE_KEY = "enarm_font_preset";
     const NOTIFICATION_ICON = "/notification-icon.png";
@@ -1184,8 +1188,27 @@
         }
     };
 
+    const normalizeGlobalPremiumPromo = (data) => {
+        const payload = data || {};
+        return {
+            active: payload.active === true,
+            note: typeof payload.note === "string" ? payload.note : "",
+            expiresAt: normalizeTimestamp(payload.expiresAt),
+            updatedAt: normalizeTimestamp(payload.updatedAt),
+            updatedByUid: typeof payload.updatedByUid === "string" ? payload.updatedByUid : ""
+        };
+    };
+
+    const isGlobalPremiumPromoActive = () => {
+        const promo = State.globalPremiumPromo;
+        if (!promo || promo.active !== true) return false;
+        if (!promo.expiresAt) return true;
+        return promo.expiresAt.getTime() > Date.now();
+    };
+
     const isPremiumActive = () => {
         if (isAdminUser()) return State.adminPreviewMode !== "demo";
+        if (isGlobalPremiumPromoActive()) return true;
         const ent = State.entitlement;
         if (!ent || ent.status !== "active") return false;
         if (!ent.expiresAt) return true;
@@ -1222,6 +1245,23 @@
             return;
         }
 
+        const promo = State.globalPremiumPromo;
+        if (promo && promo.active === true) {
+            const isExpired = promo.expiresAt && promo.expiresAt.getTime() <= Date.now();
+            if (!isExpired) {
+                if (statusEl) statusEl.value = "Premium global activo";
+                if (untilEl) {
+                    untilEl.value = promo.expiresAt ? formatDateTime(promo.expiresAt) : "Sin fecha de vencimiento";
+                }
+                return;
+            }
+            if (statusEl) statusEl.value = "Promo global vencida";
+            if (untilEl) {
+                untilEl.value = promo.expiresAt ? formatDateTime(promo.expiresAt) : "Sin fecha de vencimiento";
+            }
+            return;
+        }
+
         const entitlement = State.entitlement;
         if (!entitlement) {
             if (statusEl) statusEl.value = "Demo";
@@ -1242,6 +1282,37 @@
         if (statusEl) statusEl.value = "Premium activo";
         if (untilEl) {
             untilEl.value = hasExpiry ? formatDateTime(expiresAt) : "Sin fecha de vencimiento";
+        }
+    };
+
+    const updateGlobalPremiumAdminPanel = () => {
+        const enabledInput = $("global-premium-enabled");
+        const statusEl = $("global-premium-status");
+        const untilEl = $("global-premium-until");
+        const promo = State.globalPremiumPromo;
+
+        if (enabledInput && document.activeElement !== enabledInput) {
+            enabledInput.checked = promo ? promo.active === true : false;
+        }
+
+        if (!statusEl && !untilEl) return;
+
+        if (!promo) {
+            if (statusEl) statusEl.value = "Promo desactivada";
+            if (untilEl) untilEl.value = "Sin promo configurada";
+            return;
+        }
+
+        const active = promo.active === true && (!promo.expiresAt || promo.expiresAt.getTime() > Date.now());
+        const expired = promo.active === true && promo.expiresAt && promo.expiresAt.getTime() <= Date.now();
+
+        if (statusEl) {
+            if (active) statusEl.value = "Promo premium global activa";
+            else if (expired) statusEl.value = "Promo global vencida";
+            else statusEl.value = "Promo desactivada";
+        }
+        if (untilEl) {
+            untilEl.value = promo.expiresAt ? formatDateTime(promo.expiresAt) : "Sin fecha de vencimiento";
         }
     };
 
@@ -1276,7 +1347,7 @@
         const probability = getProbability(streak);
         const premiumLabel = isAdminUser()
             ? (State.adminPreviewMode === "demo" ? "Admin Demo" : "Admin Premium")
-            : (isPremiumActive() ? "Premium" : "Demo");
+            : (isGlobalPremiumPromoActive() ? "Premium global" : (isPremiumActive() ? "Premium" : "Demo"));
         const email = window.FB && window.FB.auth && window.FB.auth.currentUser && window.FB.auth.currentUser.email
             ? window.FB.auth.currentUser.email
             : "No disponible";
@@ -1327,6 +1398,7 @@
 
     const syncPremiumUI = () => {
         updatePremiumStatusLabel();
+        updateGlobalPremiumAdminPanel();
         renderProfileView();
         const premium = isPremiumActive();
         const qtySlider = $("setup-qty-slider");
@@ -1502,6 +1574,8 @@
 
         const adminPreviewPanel = $("admin-preview-panel");
         if (adminPreviewPanel) adminPreviewPanel.style.display = isAdminUser() ? "block" : "none";
+        const globalPremiumPanel = $("admin-global-premium-panel");
+        if (globalPremiumPanel) globalPremiumPanel.style.display = isAdminUser() ? "block" : "none";
         $$(".admin-preview-btn").forEach(btn => {
             btn.classList.toggle("active", btn.dataset.adminPreview === State.adminPreviewMode);
         });
@@ -2005,12 +2079,14 @@
 
     const syncReclassAccessUI = () => {
         const allowed = canReclassifyUser();
+        const adminItem = $("mas-admin-item");
+        if (adminItem) adminItem.style.display = allowed ? "flex" : "none";
         const item = $("mas-reclass-item");
-        if (item) item.style.display = allowed ? "flex" : "none";
+        if (item) item.style.display = "none";
         const broadcastItem = $("mas-community-broadcast-item");
-        if (broadcastItem) broadcastItem.style.display = allowed ? "flex" : "none";
+        if (broadcastItem) broadcastItem.style.display = "none";
         const feedbackAdminItem = $("mas-feedback-admin-item");
-        if (feedbackAdminItem) feedbackAdminItem.style.display = allowed ? "flex" : "none";
+        if (feedbackAdminItem) feedbackAdminItem.style.display = "none";
         const content = $("reclassify-content");
         const locked = $("reclassify-locked");
         if (content) content.style.display = allowed ? "block" : "none";
@@ -2562,7 +2638,7 @@
     };
 
     const initCommunityBroadcastLogic = () => {
-        const item = $("mas-community-broadcast-item");
+        const item = $("admin-community-broadcast-item") || $("mas-community-broadcast-item");
         const modal = $("community-broadcast-modal");
         const btnClose = $("btn-close-community-broadcast");
         const btnCancel = $("btn-cancel-community-broadcast");
@@ -3175,6 +3251,10 @@
         }
         if (viewId === "view-reclassify" && !canReclassifyUser()) {
             showNotification("Solo admin puede usar el reclasificador.", "warning");
+            viewId = "view-mas";
+        }
+        if (viewId === "view-admin" && !isAdminUser()) {
+            showNotification("Solo admin puede abrir esa sección.", "warning");
             viewId = "view-mas";
         }
         $$(".view").forEach(v => v.classList.remove("active"));
@@ -9022,6 +9102,53 @@
             btnAdminUpload.addEventListener("click", () => uploadAdminCodes());
         }
 
+        const btnGlobalPremiumSave = $("btn-global-premium-save");
+        if (btnGlobalPremiumSave) {
+            btnGlobalPremiumSave.addEventListener("click", async () => {
+                try {
+                    const daysInput = $("global-premium-days");
+                    const days = daysInput ? parseInt(daysInput.value, 10) : 5;
+                    await saveGlobalPremiumPromo({ active: true, days });
+                    const safeDays = Number.isFinite(days) ? Math.min(365, Math.max(1, Math.floor(days))) : 5;
+                    showNotification(`Promo premium global activada por ${safeDays} dias.`, "success");
+                } catch (err) {
+                    console.error("Error activando promo premium global:", err);
+                    const msg = String(err && err.message ? err.message : err || "");
+                    if (msg.includes("admin_only")) {
+                        showNotification("Tu UID no coincide con el admin configurado en la app.", "error");
+                    } else if (msg.includes("permission-denied") || msg.includes("Missing or insufficient permissions")) {
+                        showNotification("Firestore rechazó la escritura. Falta desplegar las reglas nuevas o el UID admin no coincide.", "error");
+                    } else if (msg.includes("firebase_not_ready")) {
+                        showNotification("Firebase todavía no está listo. Recarga e intenta otra vez.", "warning");
+                    } else {
+                        showNotification(`No se pudo activar la promo premium global: ${msg || "error desconocido"}`, "error");
+                    }
+                }
+            });
+        }
+
+        const btnGlobalPremiumDisable = $("btn-global-premium-disable");
+        if (btnGlobalPremiumDisable) {
+            btnGlobalPremiumDisable.addEventListener("click", async () => {
+                try {
+                    await saveGlobalPremiumPromo({ active: false });
+                    showNotification("Promo premium global desactivada.", "info");
+                } catch (err) {
+                    console.error("Error desactivando promo premium global:", err);
+                    const msg = String(err && err.message ? err.message : err || "");
+                    if (msg.includes("admin_only")) {
+                        showNotification("Tu UID no coincide con el admin configurado en la app.", "error");
+                    } else if (msg.includes("permission-denied") || msg.includes("Missing or insufficient permissions")) {
+                        showNotification("Firestore rechazó la escritura. Falta desplegar las reglas nuevas o el UID admin no coincide.", "error");
+                    } else if (msg.includes("firebase_not_ready")) {
+                        showNotification("Firebase todavía no está listo. Recarga e intenta otra vez.", "warning");
+                    } else {
+                        showNotification(`No se pudo desactivar la promo premium global: ${msg || "error desconocido"}`, "error");
+                    }
+                }
+            });
+        }
+
         $$(".admin-preview-btn").forEach(btn => {
             btn.addEventListener("click", () => {
                 if (!isAdminUser()) return;
@@ -10504,6 +10631,58 @@
             });
         };
 
+        const bindGlobalPremiumListener = () => {
+            if (!window.FB || !window.FB.db || !window.FB.onSnapshot) return;
+            if (State.globalPremiumUnsub) {
+                State.globalPremiumUnsub();
+                State.globalPremiumUnsub = null;
+            }
+            const ref = window.FB.doc(window.FB.db, GLOBAL_PREMIUM_COLLECTION, GLOBAL_PREMIUM_DOC_ID);
+            State.globalPremiumUnsub = window.FB.onSnapshot(ref, (snap) => {
+                if (!snap.exists()) {
+                    State.globalPremiumPromo = null;
+                    syncPremiumUI();
+                    return;
+                }
+                State.globalPremiumPromo = normalizeGlobalPremiumPromo(snap.data());
+                syncPremiumUI();
+            });
+        };
+
+        const saveGlobalPremiumPromo = async (opts = {}) => {
+            if (!isAdminUser()) {
+                throw new Error("admin_only");
+            }
+            if (!window.FB || !window.FB.db || !window.FB.auth || !window.FB.auth.currentUser) {
+                throw new Error("firebase_not_ready");
+            }
+
+            const active = opts.active === true;
+            const rawDays = Number(opts.days);
+            const safeDays = Number.isFinite(rawDays) ? Math.min(365, Math.max(1, Math.floor(rawDays))) : 5;
+            const note = typeof opts.note === "string" ? opts.note.trim().slice(0, 140) : "";
+            const now = new Date();
+            const expiresAt = active ? new Date(now.getTime() + safeDays * 24 * 60 * 60 * 1000) : null;
+            const ref = window.FB.doc(window.FB.db, GLOBAL_PREMIUM_COLLECTION, GLOBAL_PREMIUM_DOC_ID);
+
+            await window.FB.setDoc(ref, {
+                active,
+                expiresAt,
+                note,
+                updatedAt: now,
+                updatedByUid: window.FB.auth.currentUser.uid
+            }, { merge: true });
+
+            State.globalPremiumPromo = {
+                active,
+                expiresAt,
+                note,
+                updatedAt: now,
+                updatedByUid: window.FB.auth.currentUser.uid
+            };
+            syncPremiumUI();
+        };
+
         const redeemCode = async (opts = {}) => {
             const inputId = opts.inputId || "redeem-code-input";
             const closeModalOnSuccess = opts.closeModalOnSuccess !== false;
@@ -10769,6 +10948,7 @@
                             syncReclassAccessUI();
                             bindCaseOverridesListener();
                             bindEntitlementListener(user.uid);
+                            bindGlobalPremiumListener();
                             syncPremiumUI();
                             initCloudFeatures();
                             initFeedbackAdminInbox();
@@ -10871,9 +11051,14 @@
                         } else {
                             State.currentUid = "";
                             State.entitlement = null;
+                            State.globalPremiumPromo = null;
                             if (State.entitlementUnsub) {
                                 State.entitlementUnsub();
                                 State.entitlementUnsub = null;
+                            }
+                            if (State.globalPremiumUnsub) {
+                                State.globalPremiumUnsub();
+                                State.globalPremiumUnsub = null;
                             }
                             if (State.caseOverridesUnsub) {
                                 State.caseOverridesUnsub();

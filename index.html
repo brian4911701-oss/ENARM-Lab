@@ -1057,6 +1057,13 @@
                                         <p>Revisa las preguntas que los usuarios han marcado con posibles errores.</p>
                                     </div>
                                 </div>
+                                <div class="list-item" id="mas-admin-item" onclick="showView('view-admin')"
+                                    style="cursor: pointer; display: none;">
+                                    <div class="list-item-content">
+                                        <h3>&#x2699;&#xFE0F; Opciones de administrador</h3>
+                                        <p>Abre en un solo lugar todas las herramientas internas de administración.</p>
+                                    </div>
+                                </div>
                                 <div class="list-item" id="mas-feedback-admin-item" onclick="showView('view-feedback-admin')"
                                     style="cursor: pointer; display: none;">
                                     <div class="list-item-content">
@@ -1100,6 +1107,118 @@
                                 </div>
                             </div>
                         </section>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-admin" class="view">
+                <div class="panel">
+                    <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h2 class="panel-title"><span class="title-icon yellow-text">&#x2699;&#xFE0F;</span> Opciones de administrador</h2>
+                            <p class="panel-subtitle">Centraliza aquí todas las herramientas internas de la app.</p>
+                        </div>
+                        <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
+                    </div>
+
+                    <div class="settings-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+                        <div class="panel settings-panel" id="admin-preview-panel" style="border-top-color: var(--accent-orange); display: none;">
+                            <h3 class="panel-title" style="margin-bottom: 16px; font-size: 1.1rem;">
+                                <span class="title-icon yellow-text">&#x1F9EA;</span> Vista Admin (Demo / Premium)
+                            </h3>
+                            <div class="settings-form">
+                                <div class="admin-preview-toggle">
+                                    <button type="button" class="admin-preview-btn active" data-admin-preview="demo">Ver Demo</button>
+                                    <button type="button" class="admin-preview-btn" data-admin-preview="premium">Ver Premium</button>
+                                </div>
+                                <p style="font-size: 12px; color: var(--text-muted);">
+                                    Este interruptor solo cambia la vista en este dispositivo para evaluar la app.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="panel settings-panel" id="admin-codes-panel" style="display: none;">
+                            <div class="profile-panel-head">
+                                <div>
+                                    <h2 class="panel-title"><span class="title-icon yellow-text">&#x1F6E0;&#xFE0F;</span> Admin - Cargar C&oacute;digos</h2>
+                                    <p class="panel-subtitle">Carga lotes de c&oacute;digos premium desde este panel administrativo.</p>
+                                </div>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 10px;">
+                                <label>Pega los c&oacute;digos (uno por l&iacute;nea)</label>
+                                <textarea id="admin-codes-input" class="text-input" rows="6" placeholder="ENARM-M1-XXXXXXXX&#10;ENARM-D3-XXXXXXXX&#10;ENARM-FX-XXXXXXXX"></textarea>
+                            </div>
+                            <button class="btn-primary" id="btn-admin-upload-codes" style="width: 100%;" type="button">Subir c&oacute;digos</button>
+                            <p style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">Prefijo ENARM-M1- = 1 mes, ENARM-D3- = 3 dias, ENARM-FX- = acceso hasta 1 Oct 2026.</p>
+                        </div>
+
+                        <div class="panel settings-panel" id="admin-global-premium-panel" style="border-top-color: var(--accent-blue); display: none;">
+                            <h3 class="panel-title" style="margin-bottom: 16px; font-size: 1.1rem;">
+                                <span class="title-icon blue-text">&#x1F680;</span> Promoci&oacute;n Premium Global
+                            </h3>
+                            <div class="settings-form">
+                                <div class="profile-privacy-toggle">
+                                    <div>
+                                        <div class="profile-privacy-title">Activar premium para todos</div>
+                                        <p class="profile-privacy-note">
+                                            Al encenderlo, cualquier usuario autenticado ver&aacute; la app completa en modo premium hasta la fecha elegida.
+                                        </p>
+                                    </div>
+                                    <label class="profile-switch" for="global-premium-enabled">
+                                        <input type="checkbox" id="global-premium-enabled">
+                                        <span class="profile-switch-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="input-group">
+                                    <label>Duraci&oacute;n en d&iacute;as</label>
+                                    <input type="number" id="global-premium-days" class="text-input" min="1" max="365" value="5">
+                                </div>
+                                <div class="input-group">
+                                    <label>Estado actual</label>
+                                    <input type="text" id="global-premium-status" class="text-input" readonly value="Promo desactivada">
+                                </div>
+                                <div class="input-group">
+                                    <label>Vence el</label>
+                                    <input type="text" id="global-premium-until" class="text-input" readonly value="Sin promo configurada">
+                                </div>
+                                <div class="profile-action-row">
+                                    <button class="btn-primary" id="btn-global-premium-save" type="button">Guardar promoci&oacute;n</button>
+                                    <button class="btn-secondary" id="btn-global-premium-disable" type="button">Desactivar ahora</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel settings-panel" style="border-top-color: var(--accent-green);">
+                            <h3 class="panel-title" style="margin-bottom: 16px; font-size: 1.1rem;">
+                                <span class="title-icon green-text">&#x1F4C2;</span> Accesos directos
+                            </h3>
+                            <div class="more-section-items">
+                                <div class="list-item" onclick="showView('view-feedback-admin')" style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3>&#x1F4E5; Feedback recibidos</h3>
+                                        <p>Revisa los mensajes enviados por la comunidad.</p>
+                                    </div>
+                                </div>
+                                <div class="list-item" onclick="showView('view-reclassify')" style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3>Reclasificar casos clinicos</h3>
+                                        <p>Asignar manualmente el tema correcto a cada caso.</p>
+                                    </div>
+                                </div>
+                                <div class="list-item" id="admin-community-broadcast-item" style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3>&#x1F4E2; Aviso a la comunidad</h3>
+                                        <p>Enviar un mensaje global con notificaciÃ³n push a todos los usuarios.</p>
+                                    </div>
+                                </div>
+                                <div class="list-item" onclick="showView('view-reportes')" style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3>&#x1F6A9; Preguntas Reportadas</h3>
+                                        <p>Revisa las preguntas que los usuarios han marcado con posibles errores.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2018,20 +2137,6 @@
                         </div>
                     </section>
 
-                    <div id="admin-codes-panel" class="panel profile-panel" style="display: none;">
-                        <div class="profile-panel-head">
-                            <div>
-                                <h2 class="panel-title"><span class="title-icon yellow-text">&#x1F6E0;&#xFE0F;</span> Admin - Cargar C&oacute;digos</h2>
-                                <p class="panel-subtitle">Carga lotes de c&oacute;digos premium desde tu propio perfil administrativo.</p>
-                            </div>
-                        </div>
-                        <div class="input-group" style="margin-bottom: 10px;">
-                            <label>Pega los c&oacute;digos (uno por l&iacute;nea)</label>
-                            <textarea id="admin-codes-input" class="text-input" rows="6" placeholder="ENARM-M1-XXXXXXXX&#10;ENARM-D3-XXXXXXXX&#10;ENARM-FX-XXXXXXXX"></textarea>
-                        </div>
-                        <button class="btn-primary" id="btn-admin-upload-codes" style="width: 100%;" type="button">Subir c&oacute;digos</button>
-                        <p style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">Prefijo ENARM-M1- = 1 mes, ENARM-D3- = 3 dias, ENARM-FX- = acceso hasta 1 Oct 2026.</p>
-                    </div>
                 </div>
             </div>
 
@@ -2236,24 +2341,6 @@
                                 <button class="btn-primary" id="btn-settings-redeem">Canjear c&oacute;digo</button>
                                 <p style="font-size: 12px; color: var(--text-muted); margin-top: -8px;">
                                     Si ya tienes premium, puedes ingresar otro c&oacute;digo para actualizar tu acceso.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="panel settings-panel" id="admin-preview-panel"
-                            style="border-top-color: var(--accent-orange); display: none;">
-                            <h3 class="panel-title" style="margin-bottom: 16px; font-size: 1.1rem;">
-                                <span class="title-icon yellow-text">&#x1F9EA;</span> Vista Admin (Demo / Premium)
-                            </h3>
-                            <div class="settings-form">
-                                <div class="admin-preview-toggle">
-                                    <button type="button" class="admin-preview-btn active"
-                                        data-admin-preview="demo">Ver Demo</button>
-                                    <button type="button" class="admin-preview-btn"
-                                        data-admin-preview="premium">Ver Premium</button>
-                                </div>
-                                <p style="font-size: 12px; color: var(--text-muted);">
-                                    Este interruptor solo cambia la vista en este dispositivo para evaluar la app.
                                 </p>
                             </div>
                         </div>

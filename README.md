@@ -73,24 +73,33 @@ ENARM Lab/
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null && request.auth.uid in ["TU_ADMIN_UID"];
+    }
     match /redeem_codes/{code} {
       allow read: if request.auth != null;
-      allow create: if request.auth.uid in ["TU_ADMIN_UID"];
-      allow update: if request.auth != null
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin()
+        || (request.auth != null
         && resource.data.redeemedBy == ""
-        && request.resource.data.redeemedBy == request.auth.uid;
+        && request.resource.data.redeemedBy == request.auth.uid);
     }
     match /entitlements/{uid} {
-      allow read: if request.auth.uid == uid;
+      allow read: if request.auth != null && request.auth.uid == uid;
       allow create, update: if request.auth.uid == uid
         && request.resource.data.source == "code"
         && get(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.redeemedBy == request.auth.uid;
+    }
+    match /feature_flags/{flagId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
     }
   }
 }
 ```
 
 5. Abre el perfil y verás la sección **Admin - Cargar codigos**. Pega los códigos y presiona **Subir codigos**.
+6. En **Configuración** también tendrás la tarjeta **Promoción Premium Global** para activar premium para todos por N días y apagarlo cuando quieras.
 ---
 ¡Disfruta del simulador y mucho éxito en tu preparación para el ENARM!
 
