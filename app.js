@@ -62,19 +62,33 @@
         caseOverrideMap: null,
         caseOverridesUnsub: null,
         feedbackInbox: [],
-        feedbackAdminUnsub: null
+        feedbackAdminUnsub: null,
+        dailyPlan: null,
+        reviewQueue: [],
+        topicMastery: {},
+        caseNotebook: [],
+        studyCalendar: {},
+        lastPostmortem: null,
+        notebookSelectedId: null,
+        fontPreset: "clinical",
+        pomodoroSettings: null,
+        pomodoroState: null,
+        pomodoroLog: [],
+        pomodoroSpecialties: [],
+        pomodoroFocusLabel: ""
     };
 
     const $ = (id) => document.getElementById(id);
     const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
     const ADMIN_UIDS = ["sZcIUjjhD0fze7FtirwsjsIDzLB2"];
-    const DEMO_MAX_QTY = 30;
+    const DEMO_MAX_QTY = 10;
     const FIXED_CODE_EXPIRY = new Date(2026, 9, 1, 23, 59, 59);
     const THREE_DAY_CODE_DURATION_MS = 3 * 24 * 60 * 60 * 1000;
     const MONTH_CODE_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
     const ADMIN_PREVIEW_STORAGE_KEY = "enarm_admin_preview_mode";
     const DEMO_ALLOWED_THEMES = new Set(["ocean", "light"]);
+    const FONT_PRESET_STORAGE_KEY = "enarm_font_preset";
     const NOTIFICATION_ICON = "/notification-icon.png";
     const NOTIFICATION_BADGE = "/notification-badge.png";
     const PUSH_TOKEN_COLLECTION = "user_push_tokens";
@@ -84,12 +98,24 @@
     const COMMUNITY_ANNOUNCEMENT_MAX_LENGTH = 1200;
     const COMMUNITY_ANNOUNCEMENT_BANNER_PREVIEW_LENGTH = 180;
     const TRONCAL_SPECIALTIES = ["mi", "ped", "gyo", "cir"];
+    const POMQUEST_LOGO_SRC = "pomquest-logo.png";
+    const POMODORO_STORAGE_KEYS = {
+        settings: "enarm_pomodoro_settings",
+        state: "enarm_pomodoro_state",
+        log: "enarm_pomodoro_log",
+        specialties: "enarm_pomodoro_specialties",
+        focus: "enarm_pomodoro_focus"
+    };
+    const POMODORO_CYCLE_LENGTH = 4;
+    const POMODORO_MAX_LOG_ENTRIES = 240;
     const TRONCAL_LABELS = {
         mi: "Medicina Interna",
         ped: "Pediatria",
         gyo: "Ginecologia y Obstetricia",
         cir: "Cirugia General"
     };
+    const REVIEW_INTERVALS_DAYS = [1, 3, 7, 14];
+    const EXAM_TARGET_DATE = new Date(2026, 8, 28, 8, 0, 0);
     let notificationPermissionRequestedInSession = false;
     let foregroundPushListenerBound = false;
     let lastRegisteredPushToken = "";
@@ -187,6 +213,575 @@
     };
 
     const getUnifiedTopicName = (text) => sanitizeTopicLabel(text);
+    const formatDateKey = (date = new Date()) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+    };
+    const parseDateKey = (value) => {
+        if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(String(value))) return null;
+        const [year, month, day] = String(value).split("-").map(Number);
+        return new Date(year, month - 1, day);
+    };
+    const addDaysToKey = (dateKey, days) => {
+        const base = parseDateKey(dateKey) || new Date();
+        base.setDate(base.getDate() + days);
+        return formatDateKey(base);
+    };
+    const compareDateKeys = (left, right) => {
+        const a = parseDateKey(left);
+        const b = parseDateKey(right);
+        if (!a || !b) return 0;
+        const aMid = new Date(a.getFullYear(), a.getMonth(), a.getDate()).getTime();
+        const bMid = new Date(b.getFullYear(), b.getMonth(), b.getDate()).getTime();
+        return Math.sign(aMid - bMid);
+    };
+    const getDaysUntilExam = () => {
+        const now = new Date();
+        const diff = EXAM_TARGET_DATE.getTime() - now.getTime();
+        return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+    };
+    const truncateText = (value, max = 110) => {
+        const clean = String(value || "").replace(/\s+/g, " ").trim();
+        if (clean.length <= max) return clean;
+        return `${clean.slice(0, Math.max(0, max - 1)).trim()}…`;
+    };
+    const FONT_PRESET_CONFIG = {
+        clinical: {
+            bodyClass: "font-clinical",
+            ui: "'Plus Jakarta Sans', sans-serif"
+        },
+        sora: {
+            bodyClass: "font-sora",
+            ui: "'Sora', sans-serif"
+        },
+        inter: {
+            bodyClass: "font-inter",
+            ui: "'Inter', sans-serif"
+        }
+    };
+    const normalizeThemeSelection = (theme) => {
+        const cleanTheme = String(theme || "").trim();
+        if (!cleanTheme) return "ocean";
+        if (cleanTheme === "clinical-dark") return "ocean";
+        if (cleanTheme === "clinical-light") return "light";
+        return cleanTheme;
+    };
+    const normalizeFontPreset = (preset) => FONT_PRESET_CONFIG[preset] ? preset : "clinical";
+    const applyFontPreset = (preset, options = {}) => {
+        const normalizedPreset = normalizeFontPreset(preset);
+        State.fontPreset = normalizedPreset;
+        document.body.classList.remove("font-clinical", "font-sora", "font-inter");
+        document.body.classList.add(FONT_PRESET_CONFIG[normalizedPreset].bodyClass);
+        const selector = $("font-preset-selector");
+        if (selector && selector.value !== normalizedPreset) selector.value = normalizedPreset;
+        if (window.Chart?.defaults?.font) {
+            Chart.defaults.font.family = FONT_PRESET_CONFIG[normalizedPreset].ui;
+        }
+        if (options.refreshCharts && typeof updateCharts === "function" && State.view === "view-estadisticas") {
+            updateCharts();
+        }
+    };
+    const getCaseNotebookId = (q) => `case:${getCaseKey(q) || normalizeTextKey(`${q?.case || ""} ${q?.question || ""}`)}`;
+    const formatNotebookTags = (value) => {
+        if (Array.isArray(value)) return value.map(tag => String(tag || "").trim()).filter(Boolean);
+        return String(value || "")
+            .split(",")
+            .map(tag => tag.trim())
+            .filter(Boolean);
+    };
+    const clampPomodoroValue = (value, fallback, min, max) => {
+        const num = Number(value);
+        if (!Number.isFinite(num)) return fallback;
+        return Math.min(max, Math.max(min, Math.round(num)));
+    };
+    const createDefaultPomodoroSettings = () => ({
+        focusMinutes: 25,
+        shortBreakMinutes: 5,
+        longBreakMinutes: 15,
+        dailyGoal: 8,
+        autoStartNext: false,
+        systemNotifications: false
+    });
+    const normalizePomodoroSettings = (value = {}) => {
+        const source = value && typeof value === "object" ? value : {};
+        const defaults = createDefaultPomodoroSettings();
+        return {
+            focusMinutes: clampPomodoroValue(source.focusMinutes, defaults.focusMinutes, 5, 90),
+            shortBreakMinutes: clampPomodoroValue(source.shortBreakMinutes, defaults.shortBreakMinutes, 1, 30),
+            longBreakMinutes: clampPomodoroValue(source.longBreakMinutes, defaults.longBreakMinutes, 5, 45),
+            dailyGoal: clampPomodoroValue(source.dailyGoal, defaults.dailyGoal, 1, 20),
+            autoStartNext: !!source.autoStartNext,
+            systemNotifications: !!source.systemNotifications
+        };
+    };
+    const getPomodoroDurationSecondsForMode = (mode, settings = State.pomodoroSettings || createDefaultPomodoroSettings()) => {
+        const safeSettings = normalizePomodoroSettings(settings);
+        if (mode === "shortBreak") return safeSettings.shortBreakMinutes * 60;
+        if (mode === "longBreak") return safeSettings.longBreakMinutes * 60;
+        return safeSettings.focusMinutes * 60;
+    };
+    const createDefaultPomodoroState = (settings = createDefaultPomodoroSettings()) => ({
+        mode: "focus",
+        secondsLeft: getPomodoroDurationSecondsForMode("focus", settings),
+        isRunning: false,
+        startedAt: 0,
+        endsAt: 0,
+        pomodorosInCycle: 0,
+        lastCompletedAt: 0
+    });
+    const normalizePomodoroState = (value = {}, settings = State.pomodoroSettings || createDefaultPomodoroSettings()) => {
+        const source = value && typeof value === "object" ? value : {};
+        const safeSettings = normalizePomodoroSettings(settings);
+        const mode = source.mode === "shortBreak" || source.mode === "longBreak" ? source.mode : "focus";
+        const fallbackSeconds = getPomodoroDurationSecondsForMode(mode, safeSettings);
+        const secondsLeft = clampPomodoroValue(source.secondsLeft, fallbackSeconds, 0, 12 * 60 * 60);
+        return {
+            mode,
+            secondsLeft,
+            isRunning: !!source.isRunning,
+            startedAt: Number(source.startedAt) > 0 ? Number(source.startedAt) : 0,
+            endsAt: Number(source.endsAt) > 0 ? Number(source.endsAt) : 0,
+            pomodorosInCycle: clampPomodoroValue(source.pomodorosInCycle, 0, 0, POMODORO_CYCLE_LENGTH),
+            lastCompletedAt: Number(source.lastCompletedAt) > 0 ? Number(source.lastCompletedAt) : 0
+        };
+    };
+    const normalizePomodoroSpecialties = (value) => {
+        const source = Array.isArray(value)
+            ? value
+            : String(value || "")
+                .split(",")
+                .map(item => item.trim())
+                .filter(Boolean);
+        return Array.from(new Set(source.map(item => String(item || "").trim().toLowerCase())))
+            .filter(item => TRONCAL_SPECIALTIES.includes(item));
+    };
+    const normalizePomodoroLogEntry = (entry) => {
+        if (!entry || typeof entry !== "object") return null;
+        const mode = entry.mode === "shortBreak" || entry.mode === "longBreak" ? entry.mode : "focus";
+        const completedAt = Number(entry.completedAt || entry.timestamp || 0);
+        if (!Number.isFinite(completedAt) || completedAt <= 0) return null;
+        return {
+            id: String(entry.id || `pomo-${completedAt}`),
+            mode,
+            completedAt,
+            durationSeconds: clampPomodoroValue(entry.durationSeconds, getPomodoroDurationSecondsForMode(mode), 60, 12 * 60 * 60),
+            specialties: normalizePomodoroSpecialties(entry.specialties),
+            focusLabel: String(entry.focusLabel || "").trim()
+        };
+    };
+    const getPomodoroModeMeta = (mode = "focus") => {
+        if (mode === "shortBreak") {
+            return {
+                label: "Descanso corto",
+                shortLabel: "Descanso",
+                accent: "var(--accent-blue)",
+                badgeClass: "is-break"
+            };
+        }
+        if (mode === "longBreak") {
+            return {
+                label: "Descanso largo",
+                shortLabel: "Descanso largo",
+                accent: "var(--accent-orange)",
+                badgeClass: "is-long-break"
+            };
+        }
+        return {
+            label: "Enfoque",
+            shortLabel: "Enfoque",
+            accent: "var(--accent-green)",
+            badgeClass: "is-focus"
+        };
+    };
+    const getPomodoroTodayCount = () => Number(State.studyCalendar?.[formatDateKey()]?.pomodoros || 0);
+    const getPomodoroCurrentStreak = () => {
+        const todayKey = formatDateKey();
+        const todayCount = Number(State.studyCalendar?.[todayKey]?.pomodoros || 0);
+        const yesterdayKey = addDaysToKey(todayKey, -1);
+        const yesterdayCount = Number(State.studyCalendar?.[yesterdayKey]?.pomodoros || 0);
+        if (todayCount <= 0 && yesterdayCount <= 0) return 0;
+        let streak = 0;
+        let currentKey = todayCount > 0 ? todayKey : yesterdayKey;
+        for (let offset = 0; offset < 180; offset += 1) {
+            const entry = State.studyCalendar?.[currentKey];
+            if ((entry?.pomodoros || 0) <= 0) break;
+            streak += 1;
+            currentKey = addDaysToKey(currentKey, -1);
+        }
+        return streak;
+    };
+    const getPomodoroLast7Days = () => {
+        const todayKey = formatDateKey();
+        return Array.from({ length: 7 }, (_, index) => {
+            const key = addDaysToKey(todayKey, -(6 - index));
+            const entry = State.studyCalendar?.[key];
+            const date = parseDateKey(key);
+            return {
+                key,
+                count: Number(entry?.pomodoros || 0),
+                label: date ? date.toLocaleDateString("es-MX", { weekday: "short" }).slice(0, 2).replace(".", "") : "--"
+            };
+        });
+    };
+    const getPomodoroSelectedSpecialtyLabels = (specialties = State.pomodoroSpecialties || []) => {
+        return normalizePomodoroSpecialties(specialties).map(spec => TRONCAL_LABELS[spec] || spec);
+    };
+    const ensurePomodoroRunningState = () => {
+        State.pomodoroSettings = normalizePomodoroSettings(State.pomodoroSettings);
+        State.pomodoroState = normalizePomodoroState(State.pomodoroState, State.pomodoroSettings);
+        if (!Array.isArray(State.pomodoroLog)) State.pomodoroLog = [];
+        State.pomodoroLog = State.pomodoroLog
+            .map(normalizePomodoroLogEntry)
+            .filter(Boolean)
+            .slice(0, POMODORO_MAX_LOG_ENTRIES);
+        State.pomodoroSpecialties = normalizePomodoroSpecialties(State.pomodoroSpecialties);
+        if (typeof State.pomodoroFocusLabel !== "string") State.pomodoroFocusLabel = "";
+    };
+    const ensureStudySystemsState = () => {
+        if (!State.dailyPlan || typeof State.dailyPlan !== "object") State.dailyPlan = null;
+        if (!Array.isArray(State.reviewQueue)) State.reviewQueue = [];
+        if (!State.topicMastery || typeof State.topicMastery !== "object") State.topicMastery = {};
+        if (!Array.isArray(State.caseNotebook)) State.caseNotebook = [];
+        if (!State.studyCalendar || typeof State.studyCalendar !== "object") State.studyCalendar = {};
+        if (!State.globalStats.byTema || typeof State.globalStats.byTema !== "object") State.globalStats.byTema = {};
+        ensurePomodoroRunningState();
+    };
+    const getTopicPerformanceEntries = () => {
+        ensureStudySystemsState();
+        return Object.entries(State.globalStats.byTema || {})
+            .map(([topic, stats]) => {
+                const total = Number(stats?.total) || 0;
+                const correct = Number(stats?.correct) || 0;
+                const wrong = Math.max(0, total - correct);
+                const precision = total > 0 ? (correct / total) * 100 : 0;
+                const mastery = State.topicMastery[topic] || {};
+                return {
+                    topic,
+                    total,
+                    correct,
+                    wrong,
+                    precision,
+                    specialty: mastery.specialty || stats?.specialty || "mi",
+                    lastSeenAt: mastery.lastSeenAt || 0,
+                    status: mastery.status || "sin_tocar",
+                    reviewCount: mastery.reviewCount || 0
+                };
+            })
+            .filter(entry => entry.total > 0)
+            .sort((a, b) => {
+                const riskA = a.status === "en_riesgo" ? 0 : a.status === "en_progreso" ? 1 : a.status === "dominado" ? 2 : 3;
+                const riskB = b.status === "en_riesgo" ? 0 : b.status === "en_progreso" ? 1 : b.status === "dominado" ? 2 : 3;
+                if (riskA !== riskB) return riskA - riskB;
+                if (a.precision !== b.precision) return a.precision - b.precision;
+                return b.total - a.total;
+            });
+    };
+    const deriveTopicMasteryState = (entry, pendingReviews = 0) => {
+        if (!entry || !entry.total) return "sin_tocar";
+        if (pendingReviews > 0 || entry.precision < 58 || entry.wrong >= Math.max(3, entry.correct)) return "en_riesgo";
+        if (entry.precision >= 82 && entry.total >= 6) return "dominado";
+        return "en_progreso";
+    };
+    const rebuildTopicMastery = () => {
+        ensureStudySystemsState();
+        const reviewCounts = {};
+        State.reviewQueue.forEach(item => {
+            if (item?.topic) reviewCounts[item.topic] = (reviewCounts[item.topic] || 0) + (item.status === "completed" ? 0 : 1);
+        });
+        const nextTopicMastery = {};
+        Object.entries(State.globalStats.byTema || {}).forEach(([topic, stats]) => {
+            const total = Number(stats?.total) || 0;
+            const correct = Number(stats?.correct) || 0;
+            const wrong = Math.max(0, total - correct);
+            const precision = total > 0 ? Number(((correct / total) * 100).toFixed(1)) : 0;
+            const previous = State.topicMastery[topic] || {};
+            const entry = {
+                topic,
+                specialty: previous.specialty || stats?.specialty || "mi",
+                total,
+                correct,
+                wrong,
+                precision,
+                lastSeenAt: previous.lastSeenAt || 0,
+                reviewCount: reviewCounts[topic] || 0
+            };
+            entry.status = deriveTopicMasteryState(entry, entry.reviewCount);
+            nextTopicMastery[topic] = entry;
+        });
+        State.topicMastery = nextTopicMastery;
+    };
+    const getTrackedTopicMasteryEntries = () => {
+        ensureStudySystemsState();
+        return Object.values(State.topicMastery || {}).filter(entry => (Number(entry?.total) || 0) > 0);
+    };
+    const getTopicMasteryCounts = () => {
+        ensureStudySystemsState();
+        const counts = { sin_tocar: 0, en_progreso: 0, dominado: 0, en_riesgo: 0, total: 0 };
+        getTrackedTopicMasteryEntries().forEach(mastery => {
+            const status = mastery?.status || deriveTopicMasteryState(mastery, mastery?.reviewCount || 0);
+            counts[status] = (counts[status] || 0) + 1;
+            counts.total += 1;
+        });
+        return counts;
+    };
+    const getReviewQueueBuckets = () => {
+        ensureStudySystemsState();
+        const todayKey = formatDateKey();
+        const today = [];
+        const late = [];
+        const completed = [];
+        State.reviewQueue.forEach(item => {
+            if (!item) return;
+            if (item.lastCompletedDate === todayKey) {
+                completed.push(item);
+                return;
+            }
+            if (item.status === "completed") return;
+            if (compareDateKeys(item.dueDate, todayKey) < 0) late.push(item);
+            else if (compareDateKeys(item.dueDate, todayKey) === 0) today.push(item);
+        });
+        const sortPending = (a, b) => compareDateKeys(a.dueDate, b.dueDate) || String(a.title || a.topic || "").localeCompare(String(b.title || b.topic || ""));
+        today.sort(sortPending);
+        late.sort(sortPending);
+        completed.sort((a, b) => String(b.lastCompletedDate || "").localeCompare(String(a.lastCompletedDate || "")));
+        return { today, late, completed };
+    };
+    const recordStudyCalendarActivity = ({ sessions = 0, pomodoros = 0, topics = [], taskCompleted = false } = {}) => {
+        ensureStudySystemsState();
+        const todayKey = formatDateKey();
+        const entry = State.studyCalendar[todayKey] || { sessions: 0, pomodoros: 0, topics: [], planCompleted: 0 };
+        entry.sessions += sessions;
+        entry.pomodoros += pomodoros;
+        entry.planCompleted += taskCompleted ? 1 : 0;
+        const topicSet = new Set([...(entry.topics || []), ...topics.filter(Boolean)]);
+        entry.topics = Array.from(topicSet).slice(0, 25);
+        State.studyCalendar[todayKey] = entry;
+    };
+    const upsertReviewQueueItem = (item) => {
+        ensureStudySystemsState();
+        if (!item || !item.id) return;
+        const existingIndex = State.reviewQueue.findIndex(entry => entry.id === item.id);
+        if (existingIndex >= 0) {
+            const merged = { ...State.reviewQueue[existingIndex], ...item };
+            if (State.reviewQueue[existingIndex].status === "completed" && item.status === "pending") {
+                merged.completedStages = 0;
+                merged.intervalIndex = item.intervalIndex || 0;
+                merged.completedAt = null;
+                merged.lastCompletedDate = null;
+                merged.dueDate = item.dueDate;
+            }
+            if (merged.status !== "completed" && compareDateKeys(item.dueDate, State.reviewQueue[existingIndex].dueDate || item.dueDate) < 0) {
+                merged.dueDate = item.dueDate;
+            }
+            State.reviewQueue[existingIndex] = merged;
+        } else {
+            State.reviewQueue.push(item);
+        }
+    };
+    const scheduleReviewForQuestion = (q, options = {}) => {
+        const topic = sanitizeTopicLabel(getCaseCanonicalTopic(q));
+        const caseKey = getCaseKey(q) || getCaseNotebookId(q);
+        const title = truncateText(q?.question || topic || "Repaso clínico", 92);
+        const todayKey = formatDateKey();
+        const topicId = `topic:${normalizeTextKey(topic)}`;
+        const caseId = `case:${caseKey}`;
+        upsertReviewQueueItem({
+            id: topicId,
+            kind: "topic",
+            topic,
+            specialty: q?.specialty || "mi",
+            title: topic,
+            detail: `Repasar puntos finos de ${topic.toLowerCase()}.`,
+            dueDate: todayKey,
+            intervalIndex: 0,
+            status: "pending",
+            lastCompletedDate: null
+        });
+        upsertReviewQueueItem({
+            id: caseId,
+            kind: "case",
+            topic,
+            specialty: q?.specialty || "mi",
+            title,
+            detail: truncateText(q?.case || q?.explanation || "", 120),
+            dueDate: addDaysToKey(todayKey, options.delayDays || 1),
+            intervalIndex: 0,
+            status: "pending",
+            lastCompletedDate: null
+        });
+    };
+    const completeReviewQueueItem = (id) => {
+        ensureStudySystemsState();
+        const item = State.reviewQueue.find(entry => entry.id === id);
+        if (!item) return;
+        const todayKey = formatDateKey();
+        item.lastCompletedDate = todayKey;
+        item.completedStages = (item.completedStages || 0) + 1;
+        if (item.completedStages >= REVIEW_INTERVALS_DAYS.length) {
+            item.status = "completed";
+            item.completedAt = Date.now();
+        } else {
+            item.status = "pending";
+            item.intervalIndex = item.completedStages;
+            item.dueDate = addDaysToKey(todayKey, REVIEW_INTERVALS_DAYS[item.intervalIndex]);
+        }
+        recordStudyCalendarActivity({ taskCompleted: true, topics: [item.topic] });
+        ensureDailyPlanFresh(true);
+        saveGlobalStats();
+        if (State.view === "view-dashboard") renderStudyDashboard();
+    };
+    const getFocusedWeakTopics = (limit = 3) => getTopicPerformanceEntries().slice(0, limit);
+    const buildSessionPostmortem = (result) => {
+        const wrongQuestions = [];
+        const blankQuestions = [];
+        (State.answers || []).forEach((answer, index) => {
+            const q = State.questionSet[index];
+            if (!q) return;
+            if (answer.selected === null) blankQuestions.push(q);
+            else if (!answer.isCorrect) wrongQuestions.push(q);
+        });
+        const specCounts = {};
+        const topicCounts = {};
+        wrongQuestions.concat(blankQuestions).forEach(q => {
+            const spec = q.specialty || "mi";
+            const topic = sanitizeTopicLabel(getCaseCanonicalTopic(q));
+            specCounts[spec] = (specCounts[spec] || 0) + 1;
+            topicCounts[topic] = (topicCounts[topic] || 0) + 1;
+        });
+        const dominantSpecialty = Object.entries(specCounts).sort((a, b) => b[1] - a[1])[0];
+        const priorityTopics = Object.entries(topicCounts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 3)
+            .map(([topic, count]) => ({ topic, count }));
+        const patterns = [];
+        if (blankQuestions.length > 0) patterns.push(`Hubo ${blankQuestions.length} reactivos omitidos; conviene practicar cierre de decisiones y control de tiempo.`);
+        if (dominantSpecialty) patterns.push(`La mayor carga de error estuvo en ${TRONCAL_LABELS[dominantSpecialty[0]] || dominantSpecialty[0]}.`);
+        if (result.elapsedSec && result.total > 0) {
+            const secondsPerQuestion = Math.round(result.elapsedSec / result.total);
+            if (secondsPerQuestion > 105) patterns.push(`El ritmo fue de ${secondsPerQuestion}s por pregunta; vale la pena entrenar sesiones más cortas y cronometradas.`);
+        }
+        if (patterns.length < 3) {
+            patterns.push(`Tus fallos se concentraron en ${priorityTopics[0]?.topic || "temas aún inestables"} y necesitan repaso guiado.`);
+        }
+        const nextAction = priorityTopics[0]
+            ? {
+                type: "topic-drill",
+                topic: priorityTopics[0].topic,
+                label: `Lanzar repaso de ${priorityTopics[0].topic}`
+            }
+            : {
+                type: "dashboard",
+                label: "Volver al plan del día"
+            };
+        return {
+            patterns: patterns.slice(0, 3),
+            priorityTopics,
+            nextAction
+        };
+    };
+    const buildDailyPlan = () => {
+        ensureStudySystemsState();
+        rebuildTopicMastery();
+        const todayKey = formatDateKey();
+        const buckets = getReviewQueueBuckets();
+        const weakTopics = getFocusedWeakTopics(3);
+        const daysLeft = getDaysUntilExam();
+        const tasks = [];
+        const primaryReview = buckets.late[0] || buckets.today[0];
+        if (primaryReview) {
+            tasks.push({
+                id: "review-queue-primary",
+                title: primaryReview.kind === "case" ? "Resolver repaso atrasado" : "Cerrar repaso temático",
+                detail: primaryReview.topic ? `${primaryReview.topic}. ${primaryReview.detail || ""}` : (primaryReview.detail || "Atiéndelo antes de seguir sumando contenido nuevo."),
+                action: primaryReview.kind === "case" ? "open-notebook" : "open-temario",
+                actionTarget: primaryReview.topic || ""
+            });
+        }
+        if (weakTopics[0]) {
+            tasks.push({
+                id: `weak-topic:${normalizeTextKey(weakTopics[0].topic)}`,
+                title: "Atacar tu tema más frágil",
+                detail: `${weakTopics[0].topic} con ${weakTopics[0].precision.toFixed(1)}% de precisión. Haz un bloque corto y enfocado.`,
+                action: "topic-drill",
+                actionTarget: weakTopics[0].topic
+            });
+        }
+        tasks.push({
+            id: "mock-session",
+            title: daysLeft <= 120 ? "Simulacro corto con presión real" : "Mini sesión clínica de consolidación",
+            detail: daysLeft <= 120
+                ? `Quedan ${daysLeft} días para el ENARM. Conviene sostener simulacros breves con cronómetro.`
+                : `Quedan ${daysLeft} días para el ENARM. Aprovecha para consolidar precisión antes de aumentar carga.`,
+            action: "open-setup",
+            actionTarget: daysLeft <= 120 ? "mini" : "flash"
+        });
+        if (tasks.length < 3) {
+            tasks.push({
+                id: "temario-scan",
+                title: "Revisar cobertura del temario",
+                detail: "Usa el mapa del temario para detectar huecos y convertirlos en práctica concreta.",
+                action: "open-temario",
+                actionTarget: weakTopics[1]?.topic || ""
+            });
+        }
+        return {
+            date: todayKey,
+            focusTopic: weakTopics[0]?.topic || (primaryReview?.topic || "Constancia clínica"),
+            pressure: daysLeft <= 120 ? "Ventana de alto rendimiento" : "Construcción sostenida",
+            summary: primaryReview
+                ? `Tienes ${buckets.late.length + buckets.today.length} repasos pendientes y ${weakTopics.length} temas sensibles que conviene tocar hoy.`
+                : `Tu foco principal de hoy es ${weakTopics[0]?.topic || "mantener la constancia"} con un bloque corto y claro.`,
+            tasks: tasks.slice(0, 3),
+            completedTaskIds: []
+        };
+    };
+    const ensureDailyPlanFresh = (force = false) => {
+        ensureStudySystemsState();
+        const todayKey = formatDateKey();
+        if (!force && State.dailyPlan && State.dailyPlan.date === todayKey) return;
+        const previousCompleted = State.dailyPlan && State.dailyPlan.date === todayKey ? State.dailyPlan.completedTaskIds || [] : [];
+        State.dailyPlan = buildDailyPlan();
+        State.dailyPlan.completedTaskIds = previousCompleted.filter(id => State.dailyPlan.tasks.some(task => task.id === id));
+    };
+    const markDailyPlanTaskDone = (taskId) => {
+        ensureDailyPlanFresh();
+        if (!State.dailyPlan.completedTaskIds.includes(taskId)) {
+            State.dailyPlan.completedTaskIds.push(taskId);
+            recordStudyCalendarActivity({ taskCompleted: true });
+        }
+    };
+    const getNextRecommendedAction = () => {
+        ensureDailyPlanFresh();
+        const pendingTask = (State.dailyPlan?.tasks || []).find(task => !(State.dailyPlan.completedTaskIds || []).includes(task.id));
+        return pendingTask || null;
+    };
+    const upsertCaseNotebookEntry = (q, extra = {}) => {
+        ensureStudySystemsState();
+        if (!q) return null;
+        const notebookId = getCaseNotebookId(q);
+        const existingIndex = State.caseNotebook.findIndex(entry => entry.id === notebookId);
+        const entry = {
+            id: notebookId,
+            caseKey: getCaseKey(q) || notebookId,
+            topic: sanitizeTopicLabel(getCaseCanonicalTopic(q)),
+            specialty: q.specialty || "mi",
+            title: truncateText(q.question || q.case || "Caso clínico", 100),
+            caseText: truncateText(q.case || "", 220),
+            note: "",
+            tags: [],
+            savedAt: Date.now(),
+            ...extra
+        };
+        if (existingIndex >= 0) {
+            State.caseNotebook[existingIndex] = { ...State.caseNotebook[existingIndex], ...entry, savedAt: State.caseNotebook[existingIndex].savedAt || entry.savedAt };
+            return State.caseNotebook[existingIndex];
+        }
+        State.caseNotebook.unshift(entry);
+        State.caseNotebook = State.caseNotebook.slice(0, 120);
+        return entry;
+    };
 
     let __topicIndexCache = null;
     let __temarioTopicCatalogCache = null;
@@ -736,29 +1331,46 @@
         const premium = isPremiumActive();
         const qtySlider = $("setup-qty-slider");
         const qtyVal = $("setup-qty-val");
+        const qtyMaxLabel = $("setup-qty-max-label");
+        const timeInput = $("setup-time-minutes");
+        const timeLabel = $("setup-time-label");
+        const libBtn = $("time-libre-btn");
         if (qtySlider) {
             const max = premium ? 280 : DEMO_MAX_QTY;
             qtySlider.max = String(max);
+            if (qtyMaxLabel) qtyMaxLabel.textContent = String(max);
             if (parseInt(qtySlider.value, 10) > max) {
                 qtySlider.value = String(max);
                 if (qtyVal) qtyVal.textContent = String(max);
             }
         }
+        const flashPreset = $("preset-flash");
+        const flashPresetMeta = $("preset-flash-meta");
+        if (flashPreset) {
+            const flashQty = premium ? "20" : String(DEMO_MAX_QTY);
+            flashPreset.dataset.qty = flashQty;
+            if (flashPresetMeta) flashPresetMeta.textContent = `${flashQty} Preguntas • 15m`;
+            if (flashPreset.classList.contains("active")) {
+                if (qtySlider) {
+                    qtySlider.value = flashQty;
+                    if (qtyVal) qtyVal.textContent = flashQty;
+                }
+                if (timeInput) timeInput.value = "15";
+                if (timeLabel) timeLabel.textContent = "15 MIN";
+                if (libBtn) libBtn.classList.remove("active");
+            }
+        }
         if (!premium) {
             const activePreset = document.querySelector(".preset-card.active");
             if (activePreset && activePreset.dataset.premium === "1") {
-                const flash = $("preset-flash");
-                if (flash) {
-                    activatePresetCard(flash);
-                    const q = flash.dataset.qty;
-                    const t = flash.dataset.time;
+                if (flashPreset) {
+                    activatePresetCard(flashPreset);
+                    const q = flashPreset.dataset.qty;
+                    const t = flashPreset.dataset.time;
                     if (qtySlider && q) {
                         qtySlider.value = q;
                         if (qtyVal) qtyVal.textContent = q;
                     }
-                    const timeInput = $("setup-time-minutes");
-                    const timeLabel = $("setup-time-label");
-                    const libBtn = $("time-libre-btn");
                     if (timeInput && t) {
                         timeInput.value = t;
                         if (timeLabel) timeLabel.textContent = `${t} MIN`;
@@ -774,6 +1386,8 @@
             { selector: "#preset-real", reason: "Simulacro completo es premium." },
             { selector: "#preset-mini", reason: "Preset mini es premium." },
             { selector: "#btn-create-challenge", reason: "Retar amigos es premium." },
+            { selector: "#mas-pomodoro-item", reason: "Centro Pomodoro es premium." },
+            { selector: "#mas-estudio-plus-item", reason: "Estudio Plus es premium." },
             { selector: "#btn-refuerzo-ia-dash", reason: "Refuerzos inteligentes son premium." },
             { selector: "#btn-refuerzos-view", reason: "Zonas de refuerzo son premium." },
             { selector: "#btn-refuerzo-ia", reason: "Refuerzo IA es premium." },
@@ -830,34 +1444,36 @@
             if (!topicInput.dataset.defaultPlaceholder) {
                 topicInput.dataset.defaultPlaceholder = topicInput.placeholder || "";
             }
-            const lockReason = "Los temas/GPC específicos son premium.";
-            if (!topicInput._premiumLockHandler) {
-                topicInput._premiumLockHandler = (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    openRedeemModal(lockReason);
-                };
-            }
-            topicInput.classList.toggle("demo-locked", !premium);
-            topicInput.readOnly = !premium;
-            topicInput.title = !premium ? lockReason : "";
-            topicInput.placeholder = !premium
-                ? "Disponible en premium"
+            const topicLocked = !premium;
+            topicInput.classList.toggle("demo-locked", topicLocked);
+            topicInput.readOnly = topicLocked;
+            topicInput.title = topicLocked ? "Filtro por tema/GPC disponible solo en premium." : "";
+            topicInput.placeholder = topicLocked
+                ? "Disponible solo en premium"
                 : (topicInput.dataset.defaultPlaceholder || "Buscar tema");
-            if (!premium && !topicInput.dataset.lockBound) {
-                topicInput.addEventListener("focus", topicInput._premiumLockHandler);
-                topicInput.addEventListener("click", topicInput._premiumLockHandler);
-                topicInput.dataset.lockBound = "1";
-            } else if (premium && topicInput.dataset.lockBound) {
-                topicInput.removeEventListener("focus", topicInput._premiumLockHandler);
-                topicInput.removeEventListener("click", topicInput._premiumLockHandler);
-                delete topicInput.dataset.lockBound;
-            }
         }
         if (topicCont) topicCont.classList.toggle("demo-locked", !premium);
-        if (!premium && State.selectedTopics.length > 0) {
-            State.selectedTopics = [];
-            if (topicCont) topicCont.innerHTML = "";
+
+        const randomSpecItem = document.querySelector('.spec-item[data-spec="random"]');
+        const setupSpecItems = $$(".spec-item");
+        setupSpecItems.forEach(item => {
+            const isRandom = item.dataset.spec === "random";
+            const locked = !premium && !isRandom;
+            item.classList.toggle("demo-locked", locked);
+            if (locked) {
+                item.dataset.lockReason = "En gratis solo puedes usar la especialidad Aleatorio.";
+                item.title = item.dataset.lockReason;
+                item.classList.remove("checked");
+            } else {
+                delete item.dataset.lockReason;
+                item.removeAttribute("title");
+            }
+        });
+        if (!premium && randomSpecItem) {
+            randomSpecItem.classList.add("checked");
+            State.selectedSpecialties = ["random"];
+        } else if (premium) {
+            State.selectedSpecialties = $$(".spec-item.checked").map(i => i.dataset.spec).filter(Boolean);
         }
 
         const btnCreate = $("btn-create-challenge");
@@ -866,6 +1482,15 @@
             btnCreate.disabled = !enabled;
             btnCreate.style.opacity = enabled ? "1" : "0.6";
             btnCreate.style.cursor = enabled ? "pointer" : "not-allowed";
+        }
+        const pomodoroShell = $("pomodoro-widget-shell");
+        if (pomodoroShell) pomodoroShell.style.display = premium ? "" : "none";
+        document.body.classList.toggle("stats-demo-preview", !premium);
+        const statsDemoBanner = $("stats-demo-banner");
+        if (statsDemoBanner) statsDemoBanner.hidden = premium;
+        if (!premium && PREMIUM_VIEWS.has(State.view)) {
+            showView("view-dashboard");
+            showNotification("Esta función está disponible solo en premium.", "info");
         }
         if (!premium && !DEMO_ALLOWED_THEMES.has(State.theme || "ocean")) {
             State.theme = "ocean";
@@ -2207,6 +2832,12 @@
         const s = String(secs % 60).padStart(2, "0");
         return `${h}:${m}:${s}`;
     };
+    const formatPomodoroClockLabel = (secs) => {
+        const safeSecs = Math.max(0, Number(secs) || 0);
+        const minutes = String(Math.floor(safeSecs / 60)).padStart(2, "0");
+        const seconds = String(safeSecs % 60).padStart(2, "0");
+        return `${minutes}:${seconds}`;
+    };
 
     const shuffleArray = (arr) => {
         const copy = arr.slice();
@@ -2516,7 +3147,13 @@
         return flat.slice(0, maxQty);
     };
 
-    const PREMIUM_VIEWS = new Set(["view-comunidad", "view-reportes", "view-refuerzos"]);
+    const PREMIUM_VIEWS = new Set([
+        "view-comunidad",
+        "view-reportes",
+        "view-refuerzos",
+        "view-estudio-plus",
+        "view-pomodoro"
+    ]);
 
     const ensurePremiumAccess = (reason) => {
         if (isPremiumActive()) return true;
@@ -2557,6 +3194,14 @@
             updateDashboardStats();
             updateCharts();
         }
+        if (viewId === "view-estudio-plus") {
+            renderStudyDashboard();
+            renderResultsPostmortem();
+            renderNotebookView();
+        }
+        if (viewId === "view-pomodoro") {
+            renderPomodoroHub();
+        }
         if (viewId === "view-profile") {
             renderProfileView();
             if (typeof window.loadPendingRequests === "function") {
@@ -2573,6 +3218,7 @@
             renderAdminFeedbackInbox();
         }
         if (viewId === "view-reclassify") void renderReclassifyView();
+        syncPomodoroPlacement();
     };
     document.body.classList.toggle("dashboard-mobile-hero-active", State.view === "view-dashboard");
     window.showView = showView; // Hacerla global para onclick de HTML
@@ -2581,12 +3227,22 @@
     window.copyFeedbackToClipboard = copyFeedbackToClipboard;
 
     const saveGlobalStats = () => {
+        ensureStudySystemsState();
+        ensureDailyPlanFresh();
         localStorage.setItem("enarm_stats", JSON.stringify(State.globalStats));
         localStorage.setItem("enarm_history", JSON.stringify(State.history));
         localStorage.setItem("enarm_user", State.userName);
         localStorage.setItem("enarm_specialty", State.userSpecialty || "");
         localStorage.setItem("enarm_university", State.userUniversity || "");
         localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0");
+        localStorage.setItem("enarm_daily_plan", JSON.stringify(State.dailyPlan || null));
+        localStorage.setItem("enarm_review_queue", JSON.stringify(State.reviewQueue || []));
+        localStorage.setItem("enarm_topic_mastery", JSON.stringify(State.topicMastery || {}));
+        localStorage.setItem("enarm_case_notebook", JSON.stringify(State.caseNotebook || []));
+        localStorage.setItem("enarm_study_calendar", JSON.stringify(State.studyCalendar || {}));
+        localStorage.setItem("enarm_last_postmortem", JSON.stringify(State.lastPostmortem || null));
+        localStorage.setItem(FONT_PRESET_STORAGE_KEY, normalizeFontPreset(State.fontPreset));
+        persistPomodoroLocalState();
         const reportsToSave = State.reportedQuestionsLocal || State.reportedQuestions || [];
         localStorage.setItem("enarm_reports", JSON.stringify(reportsToSave));
 
@@ -2605,6 +3261,17 @@
                 flame: State.history.length || 0,
                 lastUpdate: new Date(),
                 theme: State.theme || "ocean",
+                fontPreset: normalizeFontPreset(State.fontPreset),
+                dailyPlanStr: JSON.stringify(State.dailyPlan || null),
+                reviewQueueStr: JSON.stringify(State.reviewQueue || []),
+                topicMasteryStr: JSON.stringify(State.topicMastery || {}),
+                caseNotebookStr: JSON.stringify(State.caseNotebook || []),
+                studyCalendarStr: JSON.stringify(State.studyCalendar || {}),
+                lastPostmortemStr: JSON.stringify(State.lastPostmortem || null),
+                pomodoroSettingsStr: JSON.stringify(State.pomodoroSettings || createDefaultPomodoroSettings()),
+                pomodoroLogStr: JSON.stringify(State.pomodoroLog || []),
+                pomodoroSpecialtiesStr: JSON.stringify(State.pomodoroSpecialties || []),
+                pomodoroFocusLabel: String(State.pomodoroFocusLabel || ""),
                 globalStatsStr: JSON.stringify(State.globalStats),
                 historyStr: JSON.stringify(State.history),
                 reportsStr: JSON.stringify(reportsToSave)
@@ -2645,11 +3312,38 @@
         if (uni) State.userUniversity = uni;
         const scorePublic = localStorage.getItem("enarm_score_public");
         if (scorePublic !== null) State.isScorePublic = scorePublic !== "0";
+        const dailyPlan = localStorage.getItem("enarm_daily_plan");
+        if (dailyPlan) State.dailyPlan = JSON.parse(dailyPlan);
+        const reviewQueue = localStorage.getItem("enarm_review_queue");
+        if (reviewQueue) State.reviewQueue = JSON.parse(reviewQueue);
+        const topicMastery = localStorage.getItem("enarm_topic_mastery");
+        if (topicMastery) State.topicMastery = JSON.parse(topicMastery);
+        const caseNotebook = localStorage.getItem("enarm_case_notebook");
+        if (caseNotebook) State.caseNotebook = JSON.parse(caseNotebook);
+        const studyCalendar = localStorage.getItem("enarm_study_calendar");
+        if (studyCalendar) State.studyCalendar = JSON.parse(studyCalendar);
+        const lastPostmortem = localStorage.getItem("enarm_last_postmortem");
+        if (lastPostmortem) State.lastPostmortem = JSON.parse(lastPostmortem);
+        const pomodoroSettings = localStorage.getItem(POMODORO_STORAGE_KEYS.settings);
+        if (pomodoroSettings) State.pomodoroSettings = JSON.parse(pomodoroSettings);
+        const pomodoroState = localStorage.getItem(POMODORO_STORAGE_KEYS.state);
+        if (pomodoroState) State.pomodoroState = JSON.parse(pomodoroState);
+        const pomodoroLog = localStorage.getItem(POMODORO_STORAGE_KEYS.log);
+        if (pomodoroLog) State.pomodoroLog = JSON.parse(pomodoroLog);
+        const pomodoroSpecialties = localStorage.getItem(POMODORO_STORAGE_KEYS.specialties);
+        if (pomodoroSpecialties) State.pomodoroSpecialties = JSON.parse(pomodoroSpecialties);
+        const pomodoroFocus = localStorage.getItem(POMODORO_STORAGE_KEYS.focus);
+        if (pomodoroFocus !== null) State.pomodoroFocusLabel = pomodoroFocus;
+        const fontPreset = localStorage.getItem(FONT_PRESET_STORAGE_KEY);
+        State.fontPreset = normalizeFontPreset(fontPreset || "clinical");
+        localStorage.setItem(FONT_PRESET_STORAGE_KEY, State.fontPreset);
+        applyFontPreset(State.fontPreset);
 
         const theme = localStorage.getItem("enarm_theme");
         if (theme) {
-            State.theme = theme;
-            applyTheme(theme);
+            State.theme = normalizeThemeSelection(theme);
+            localStorage.setItem("enarm_theme", State.theme);
+            applyTheme(State.theme);
         } else {
             State.theme = "ocean";
             localStorage.setItem("enarm_theme", "ocean");
@@ -2664,6 +3358,9 @@
             State.reportedQuestionsLocal = JSON.parse(reports);
             State.reportedQuestions = State.reportedQuestionsLocal;
         }
+        ensureStudySystemsState();
+        rebuildTopicMastery();
+        ensureDailyPlanFresh();
         refreshQuarantineKeys();
 
         if ($("profile-name")) $("profile-name").value = State.userName;
@@ -2693,29 +3390,30 @@
     };
 
     const applyTheme = (theme) => {
+        const normalizedTheme = normalizeThemeSelection(theme);
         // Remove all current theme classes
-        document.body.classList.remove("light-mode", "theme-forest", "theme-ocean", "theme-sunset", "theme-navy-gold", "theme-black-teal", "theme-premium", "theme-premium-pink");
+        document.body.classList.remove("light-mode", "theme-forest", "theme-ocean", "theme-sunset", "theme-navy-gold", "theme-black-teal", "theme-premium", "theme-premium-pink", "theme-clinical-dark", "theme-clinical-light");
         document.body.style.backgroundColor = "";
 
-        if (theme === "system") {
+        if (normalizedTheme === "system") {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
                 document.body.classList.add("light-mode");
             }
-        } else if (theme === "light") {
+        } else if (normalizedTheme === "light") {
             document.body.classList.add("light-mode");
-        } else if (theme === "forest") {
+        } else if (normalizedTheme === "forest") {
             document.body.classList.add("theme-forest");
-        } else if (theme === "ocean") {
+        } else if (normalizedTheme === "ocean") {
             document.body.classList.add("theme-ocean");
-        } else if (theme === "sunset") {
+        } else if (normalizedTheme === "sunset") {
             document.body.classList.add("theme-sunset");
-        } else if (theme === "navy-gold") {
+        } else if (normalizedTheme === "navy-gold") {
             document.body.classList.add("theme-navy-gold");
-        } else if (theme === "black-teal") {
+        } else if (normalizedTheme === "black-teal") {
             document.body.classList.add("theme-black-teal");
-        } else if (theme === "premium") {
+        } else if (normalizedTheme === "premium") {
             document.body.classList.add("theme-premium");
-        } else if (theme === "premium-pink") {
+        } else if (normalizedTheme === "premium-pink") {
             document.body.classList.add("theme-premium-pink");
         }
         // "dark" is the default, no class needed
@@ -2724,7 +3422,7 @@
         // Update Theme Circles Active State
         $$(".theme-circle").forEach(circle => {
             circle.classList.remove("active");
-            if (circle.dataset.theme === theme || (theme === "system" && circle.dataset.theme === "ocean")) {
+            if (circle.dataset.theme === normalizedTheme || (normalizedTheme === "system" && circle.dataset.theme === "ocean")) {
                 circle.classList.add("active");
             }
         });
@@ -4436,6 +5134,15 @@
         const timeInput = $("setup-time-minutes");
         const timeLabel = $("setup-time-label");
         const libBtn = $("time-libre-btn");
+        const getSelectedSetupSpecsRaw = () => $$(".spec-item.checked").map(i => i.dataset.spec).filter(Boolean);
+        const getEffectiveSelectedSetupSpecs = () => {
+            const selected = getSelectedSetupSpecsRaw();
+            if (selected.includes("random")) return [];
+            return selected.filter(spec => TRONCAL_SPECIALTIES.includes(spec));
+        };
+        const syncSetupSpecialtiesState = () => {
+            State.selectedSpecialties = getSelectedSetupSpecsRaw();
+        };
 
         // Slider interaction
         if (qtySlider) {
@@ -4467,8 +5174,11 @@
                 }
 
                 if (card.id === "preset-real") {
-                    $$(".spec-item").forEach(i => i.classList.add("checked"));
-                    State.selectedSpecialties = $$(".spec-item.checked").map(i => i.dataset.spec);
+                    $$(".spec-item").forEach(i => {
+                        if (i.dataset.spec === "random") i.classList.remove("checked");
+                        else i.classList.add("checked");
+                    });
+                    syncSetupSpecialtiesState();
                     State.difficulty = "cualquiera";
                     $$(".diff-btn").forEach(b => b.classList.toggle("active", b.dataset.diff === "cualquiera"));
                 }
@@ -4482,10 +5192,22 @@
 
         $$(".spec-item").forEach(item => {
             item.addEventListener("click", () => {
+                const spec = item.dataset.spec || "";
+                if (!isPremiumActive() && spec !== "random") {
+                    showNotification("En gratis solo puedes usar la especialidad Aleatorio.", "warning");
+                    openRedeemModal("Desbloquea premium para elegir especialidades específicas.");
+                    return;
+                }
                 clearSelectedPreset();
+                if (spec === "random") {
+                    $$(".spec-item").forEach(i => i.classList.toggle("checked", i.dataset.spec === "random"));
+                    syncSetupSpecialtiesState();
+                    return;
+                }
+                const randomItem = document.querySelector('.spec-item[data-spec="random"]');
+                if (randomItem) randomItem.classList.remove("checked");
                 item.classList.toggle("checked");
-                // Keep State in sync with DOM
-                State.selectedSpecialties = $$(".spec-item.checked").map(i => i.dataset.spec);
+                syncSetupSpecialtiesState();
             });
         });
 
@@ -4551,10 +5273,9 @@
             btnStart.addEventListener("click", async () => {
                 const activePresetId = document.querySelector(".preset-card.active")?.id || null;
                 const isRealSim = State.selectedPresetId === "preset-real" && activePresetId === "preset-real";
-                const selectedSpecs = $$(".spec-item.checked")
-                    .map(i => i.dataset.spec)
-                    .filter(spec => TRONCAL_SPECIALTIES.includes(spec));
-                if (!isRealSim && selectedSpecs.length === 0 && State.selectedTopics.length === 0) {
+                const selectedSpecs = getEffectiveSelectedSetupSpecs();
+                const hasRandomSpecialty = getSelectedSetupSpecsRaw().includes("random");
+                if (!isRealSim && selectedSpecs.length === 0 && State.selectedTopics.length === 0 && !hasRandomSpecialty) {
                     return showNotification("Selecciona al menos una especialidad o un tema personalizado.");
                 }
 
@@ -4976,6 +5697,28 @@
                 actions.style.display = "flex";
                 actions.style.gap = "8px";
                 actions.style.alignItems = "center";
+                const notebookId = getCaseNotebookId(q);
+                const notebookEntry = (State.caseNotebook || []).find(entry => entry.id === notebookId);
+
+                const btnNotebook = document.createElement("button");
+                btnNotebook.className = "btn-ghost";
+                btnNotebook.style.fontSize = "12px";
+                btnNotebook.style.padding = "4px 8px";
+                btnNotebook.style.borderRadius = "6px";
+                btnNotebook.textContent = notebookEntry ? "Cuaderno" : "Guardar caso";
+                btnNotebook.addEventListener("click", () => {
+                    const entry = notebookEntry || upsertCaseNotebookEntry(q);
+                    State.notebookSelectedId = entry.id;
+                    saveGlobalStats();
+                    if (notebookEntry) {
+                        showView("view-estudio-plus");
+                        renderNotebookView();
+                        setTimeout(() => $("study-plus-notebook")?.scrollIntoView({ behavior: "smooth", block: "start" }), 30);
+                    } else {
+                        showNotification("Caso guardado en tu cuaderno.", "success");
+                        renderExamQuestion();
+                    }
+                });
 
                 const btnFlag = document.createElement("button");
                 btnFlag.className = `btn-flag ${ans.flagged ? 'active' : ''}`;
@@ -5002,6 +5745,7 @@
                 spanNum.textContent = qNumStr;
 
                 header.appendChild(spanNum);
+                actions.appendChild(btnNotebook);
                 actions.appendChild(btnFlag);
                 actions.appendChild(btnReport);
                 header.appendChild(actions);
@@ -5030,6 +5774,13 @@
                 card.appendChild(header);
                 card.appendChild(qTextEl);
                 card.appendChild(optGrid);
+
+                if (notebookEntry && notebookEntry.note) {
+                    const notePreview = document.createElement("div");
+                    notePreview.className = "results-postmortem-item";
+                    notePreview.textContent = `Nota guardada: ${truncateText(notebookEntry.note, 140)}`;
+                    card.appendChild(notePreview);
+                }
 
                 if (State.mode === "estudio" && ans.selected !== null) {
                     const fb = document.createElement("div");
@@ -5671,6 +6422,7 @@
             const total = State.questionSet.length;
             let pct = total > 0 ? Math.round((correct / total) * 100) : 0;
             const elapsed = State.startTime ? Math.floor((Date.now() - State.startTime) / 1000) : 0;
+            const topicsTouched = Array.from(new Set(State.questionSet.map(q => sanitizeTopicLabel(getCaseCanonicalTopic(q))).filter(Boolean))).slice(0, 12);
 
             if (State.currentExamIsReal) {
                 let maxPts = 0;
@@ -5691,6 +6443,8 @@
             const mw = $("meta-wrong"); if (mw) mw.textContent = wrong;
             const mb = $("meta-blank"); if (mb) mb.textContent = blank;
             const mt = $("meta-time"); if (mt) mt.textContent = formatTime(elapsed);
+            const postmortem = buildSessionPostmortem({ correct, wrong, blank, total, elapsedSec: elapsed });
+            State.lastPostmortem = postmortem;
 
             State.globalStats.sesiones++;
             // Track actual blank count for accurate dashboard stats
@@ -5698,10 +6452,14 @@
             State.history.push({
                 timestamp: Date.now(),
                 tipo: State.currentExamType,
+                sessionKind: State.mode,
                 preguntas: total,
                 pct: pct,
                 blank: blank,
                 elapsedSec: elapsed,
+                topicsStudied: topicsTouched,
+                dominantErrors: postmortem.priorityTopics.map(item => item.topic),
+                nextRecommendation: postmortem.nextAction?.label || "",
                 questionSet: [...State.questionSet],
                 answers: State.answers.map(a => ({ ...a }))
             });
@@ -5766,7 +6524,22 @@
                 State.globalStats.streakData.lastStudyDate = todayStr;
             }
 
+            State.answers.forEach((answer, index) => {
+                const q = State.questionSet[index];
+                if (!q) return;
+                if (answer.selected === null || !answer.isCorrect) {
+                    scheduleReviewForQuestion(q, { delayDays: answer.selected === null ? 0 : 1 });
+                }
+            });
+            recordStudyCalendarActivity({
+                sessions: 1,
+                topics: topicsTouched
+            });
+            rebuildTopicMastery();
+            ensureDailyPlanFresh(true);
+
             saveGlobalStats();
+            renderResultsPostmortem();
             showView("view-results");
         } catch (err) {
             console.error("Error crítico en finishExam:", err);
@@ -5821,7 +6594,11 @@
             if (!State.globalStats.byTema[tema]) State.globalStats.byTema[tema] = { total: 0, correct: 0, specialty: specialtyKey };
             State.globalStats.byTema[tema].total++;
             if (isCorrect) State.globalStats.byTema[tema].correct++;
+            State.topicMastery[tema] = State.topicMastery[tema] || { topic: tema, specialty: specialtyKey };
+            State.topicMastery[tema].lastSeenAt = Date.now();
+            State.topicMastery[tema].specialty = specialtyKey;
         }
+        rebuildTopicMastery();
         // Use debounced save in estudio mode to avoid excessive writes.
         if (State.mode === "estudio") debouncedSave();
     };
@@ -5848,6 +6625,420 @@
         if (quoteEl) {
             quoteEl.textContent = quotes[quoteIndex];
         }
+    };
+
+    const runStudyAction = (action, actionTarget = "") => {
+        let decodedTarget = actionTarget;
+        if (typeof actionTarget === "string") {
+            try {
+                decodedTarget = decodeURIComponent(actionTarget);
+            } catch (_) {
+                decodedTarget = actionTarget;
+            }
+        }
+        const target = sanitizeTopicLabel(decodedTarget);
+        if (action === "open-temario") {
+            showView("view-temario");
+            if ($("temario-search") && target) {
+                $("temario-search").value = target;
+                void renderOfficialTemario(target);
+            }
+            return;
+        }
+        if (action === "open-notebook") {
+            showView("view-estudio-plus");
+            setTimeout(() => $("study-plus-notebook")?.scrollIntoView({ behavior: "smooth", block: "start" }), 30);
+            return;
+        }
+        if (action === "open-setup") {
+            const nav = $("nav-new-exam");
+            if (nav) nav.click();
+            const presetId = actionTarget === "mini" ? "preset-mini" : "preset-flash";
+            const preset = $(presetId);
+            if (preset) preset.click();
+            return;
+        }
+        if (action === "topic-drill") {
+            const nav = $("nav-new-exam");
+            if (nav) nav.click();
+            setTimeout(() => {
+                const input = $("setup-topic-filter");
+                const preset = $("preset-flash");
+                if (preset) preset.click();
+                if (input && target) {
+                    input.value = target;
+                    input.dispatchEvent(new Event("input"));
+                    input.focus();
+                }
+            }, 120);
+            return;
+        }
+        showView("view-dashboard");
+    };
+
+    window.runDailyPlanTask = (taskId) => {
+        ensureDailyPlanFresh();
+        const task = (State.dailyPlan?.tasks || []).find(entry => entry.id === taskId);
+        if (!task) return;
+        markDailyPlanTaskDone(task.id);
+        saveGlobalStats();
+        runStudyAction(task.action, task.actionTarget);
+        renderStudyDashboard();
+    };
+
+    window.runStudyAction = runStudyAction;
+    window.completeStudyReviewItem = (id) => {
+        let decoded = id;
+        if (typeof id === "string") {
+            try { decoded = decodeURIComponent(id); } catch (_) { decoded = id; }
+        }
+        completeReviewQueueItem(decoded);
+    };
+    window.openNotebookEntry = (id) => {
+        let decoded = id;
+        if (typeof id === "string") {
+            try { decoded = decodeURIComponent(id); } catch (_) { decoded = id; }
+        }
+        State.notebookSelectedId = decoded;
+        showView("view-estudio-plus");
+        renderNotebookView();
+        setTimeout(() => $("study-plus-notebook")?.scrollIntoView({ behavior: "smooth", block: "start" }), 30);
+    };
+
+    const renderCalendarHeatmap = (containerId, days = 35, options = {}) => {
+        const container = $(containerId);
+        if (!container) return;
+        ensureStudySystemsState();
+        const cells = [];
+        const today = new Date();
+        const startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - (days - 1));
+        if (options.alignToWeekStart) {
+            const leadingBlanks = (startDate.getDay() + 6) % 7;
+            for (let blank = 0; blank < leadingBlanks; blank += 1) {
+                cells.push(`<div class="calendar-cell calendar-cell--placeholder" aria-hidden="true"></div>`);
+            }
+        }
+        for (let offset = days - 1; offset >= 0; offset--) {
+            const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() - offset);
+            const key = formatDateKey(date);
+            const entry = State.studyCalendar[key] || { sessions: 0, pomodoros: 0, topics: [] };
+            const intensity = Math.min(0.95, ((entry.sessions || 0) * 0.32) + ((entry.pomodoros || 0) * 0.18) + ((entry.topics || []).length * 0.06));
+            cells.push(`
+                <div class="calendar-cell" style="--heat:${Math.max(0.08, intensity)}" title="${key}: ${entry.sessions || 0} sesiones, ${entry.pomodoros || 0} pomodoros">
+                    <span class="calendar-cell-label">${String(date.getDate()).padStart(2, "0")}</span>
+                </div>
+            `);
+        }
+        container.innerHTML = cells.join("");
+    };
+
+    const renderStudyDashboard = () => {
+        ensureStudySystemsState();
+        rebuildTopicMastery();
+        ensureDailyPlanFresh();
+
+        const plan = State.dailyPlan || buildDailyPlan();
+        if ($("today-plan-summary")) $("today-plan-summary").textContent = plan.summary || "Sin plan aún.";
+        if ($("today-plan-focus")) $("today-plan-focus").textContent = plan.focusTopic || "Sin foco principal";
+        if ($("today-plan-pressure")) $("today-plan-pressure").textContent = plan.pressure || "Sin presión";
+
+        const planList = $("today-plan-list");
+        if (planList) {
+            if (!plan.tasks || plan.tasks.length === 0) {
+                planList.innerHTML = `<div class="today-empty">No hay tareas generadas por ahora.</div>`;
+            } else {
+                planList.innerHTML = plan.tasks.map((task, index) => {
+                    const done = (plan.completedTaskIds || []).includes(task.id);
+                    return `
+                        <article class="today-plan-task">
+                            <span class="today-task-index">${index + 1}</span>
+                            <div>
+                                <h3 class="today-task-title">${escapeHtml(task.title)}</h3>
+                                <p class="today-task-detail">${escapeHtml(task.detail)}</p>
+                            </div>
+                            <div class="today-task-actions">
+                                <button class="btn-${done ? "secondary" : "primary"}" type="button" onclick="window.runDailyPlanTask('${escapeHtml(task.id)}')">${done ? "Repetir" : "Hacer ahora"}</button>
+                            </div>
+                        </article>
+                    `;
+                }).join("");
+            }
+        }
+
+        const nextAction = getNextRecommendedAction();
+        const nextActionCont = $("today-next-action");
+        if (nextActionCont) {
+            nextActionCont.innerHTML = nextAction
+                ? `
+                    <article class="review-queue-item">
+                        <div class="review-item-top">
+                            <div>
+                                <h3 class="review-item-title">${escapeHtml(nextAction.title)}</h3>
+                                <p class="review-item-meta">${escapeHtml(nextAction.detail)}</p>
+                            </div>
+                            <span class="review-item-tag">Sigue</span>
+                        </div>
+                        <div class="today-task-actions">
+                            <button class="btn-primary" type="button" onclick="window.runDailyPlanTask('${escapeHtml(nextAction.id)}')">Continuar</button>
+                        </div>
+                    </article>
+                `
+                : `<div class="today-empty">Ya cerraste las tareas esenciales de hoy.</div>`;
+        }
+
+        const reviewBuckets = getReviewQueueBuckets();
+        if ($("review-count-today")) $("review-count-today").textContent = `${reviewBuckets.today.length} hoy`;
+        if ($("review-count-late")) $("review-count-late").textContent = `${reviewBuckets.late.length} atrasadas`;
+        if ($("review-count-done")) $("review-count-done").textContent = `${reviewBuckets.completed.length} completadas`;
+
+        const reviewQueue = $("dashboard-review-queue");
+        if (reviewQueue) {
+            const reviewItems = [...reviewBuckets.late.slice(0, 2), ...reviewBuckets.today.slice(0, 3)].slice(0, 4);
+            if (!reviewItems.length) {
+                reviewQueue.innerHTML = `<div class="today-empty">Tu bandeja está limpia. Aprovecha para un mini simulacro o un tema débil.</div>`;
+            } else {
+                reviewQueue.innerHTML = reviewItems.map(item => `
+                    <article class="review-queue-item">
+                        <div class="review-item-top">
+                            <div>
+                                <h3 class="review-item-title">${escapeHtml(item.title || item.topic || "Repaso")}</h3>
+                                <p class="review-item-meta">${escapeHtml(item.detail || item.topic || "")}</p>
+                            </div>
+                            <span class="review-item-tag">${compareDateKeys(item.dueDate, formatDateKey()) < 0 ? "Atrasada" : "Hoy"}</span>
+                        </div>
+                        <div class="today-task-actions">
+                            ${item.topic ? `<button class="btn-secondary" type="button" onclick="window.runStudyAction('topic-drill','${encodeURIComponent(item.topic)}')">Ir al tema</button>` : ""}
+                            <button class="btn-primary" type="button" onclick="window.completeStudyReviewItem('${encodeURIComponent(item.id)}')">Marcar hecho</button>
+                        </div>
+                    </article>
+                `).join("");
+            }
+        }
+
+        const notebookPreview = $("dashboard-notebook-preview");
+        if (notebookPreview) {
+            const notes = (State.caseNotebook || []).slice(0, 3);
+            notebookPreview.innerHTML = notes.length
+                ? notes.map(entry => `
+                    <article class="dashboard-notebook-item">
+                        <div class="dashboard-notebook-top">
+                            <div>
+                                <h3 class="dashboard-notebook-title">${escapeHtml(entry.title || "Caso clínico")}</h3>
+                                <p class="dashboard-notebook-meta">${escapeHtml(entry.topic || "")}</p>
+                            </div>
+                            <button class="btn-ghost" type="button" onclick="window.openNotebookEntry('${encodeURIComponent(entry.id)}')">Abrir</button>
+                        </div>
+                        <p class="dashboard-notebook-meta">${escapeHtml(truncateText(entry.note || entry.caseText || "Sin nota clínica aún.", 95))}</p>
+                    </article>
+                `).join("")
+                : `<div class="today-empty">Aún no has guardado casos en tu cuaderno.</div>`;
+        }
+
+        const masteryCounts = getTopicMasteryCounts();
+        if ($("dashboard-coverage-summary")) {
+            $("dashboard-coverage-summary").textContent = masteryCounts.total
+                ? `${masteryCounts.dominado} dominados, ${masteryCounts.en_progreso} en progreso y ${masteryCounts.en_riesgo} en riesgo sobre ${masteryCounts.total} temas que ya has trabajado.`
+                : "Completa algunos exámenes para activar el mapa de cobertura con temas reales.";
+        }
+        const coverageBars = $("dashboard-coverage-bars");
+        if (coverageBars) {
+            if (!masteryCounts.total) {
+                coverageBars.innerHTML = `<div class="today-empty">Estudio Plus mostrará cobertura en cuanto acumules temas respondidos en tus exámenes.</div>`;
+            } else {
+                const total = masteryCounts.total;
+                const entries = [
+                    { label: "Dominado", count: masteryCounts.dominado, risk: false },
+                    { label: "En progreso", count: masteryCounts.en_progreso, risk: false },
+                    { label: "En riesgo", count: masteryCounts.en_riesgo, risk: true }
+                ];
+                coverageBars.innerHTML = entries.map(entry => {
+                    const width = entry.count > 0 ? Math.max(8, (entry.count / total) * 100) : 0;
+                    return `
+                        <div class="coverage-meter">
+                            <span class="coverage-meter-label">${entry.label}</span>
+                            <div class="coverage-meter-track">
+                                <div class="coverage-meter-fill ${entry.risk ? "is-risk" : ""}" style="width:${width}%"></div>
+                            </div>
+                            <span class="coverage-meter-value">${entry.count}</span>
+                        </div>
+                    `;
+                }).join("");
+            }
+        }
+
+        const calendarSummary = $("dashboard-calendar-summary");
+        if (calendarSummary) {
+            const last7 = Array.from({ length: 7 }, (_, index) => addDaysToKey(formatDateKey(), -(6 - index)));
+            let sessions = 0;
+            let pomodoros = 0;
+            last7.forEach(key => {
+                const entry = State.studyCalendar[key];
+                if (!entry) return;
+                sessions += entry.sessions || 0;
+                pomodoros += entry.pomodoros || 0;
+            });
+            calendarSummary.textContent = `Últimos 7 días: ${sessions} sesiones cerradas y ${pomodoros} pomodoros completados.`;
+        }
+        renderCalendarHeatmap("dashboard-calendar-heatmap", 35);
+    };
+
+    const renderResultsPostmortem = () => {
+        const postmortem = State.lastPostmortem;
+        const patterns = $("results-patterns");
+        const topics = $("results-priority-topics");
+        const nextAction = $("results-next-action");
+        if (!patterns || !topics || !nextAction) return;
+        if (!postmortem) {
+            patterns.innerHTML = `<div class="today-empty">Aún no hay postmortem disponible.</div>`;
+            topics.innerHTML = "";
+            nextAction.textContent = "Completa una sesión para ver recomendaciones.";
+            return;
+        }
+        patterns.innerHTML = (postmortem.patterns || []).map(item => `<div class="results-postmortem-item">${escapeHtml(item)}</div>`).join("");
+        topics.innerHTML = (postmortem.priorityTopics || []).length
+            ? postmortem.priorityTopics.map(item => `<div class="results-postmortem-item">${escapeHtml(item.topic)} · ${item.count} reactivos</div>`).join("")
+            : `<div class="results-postmortem-item">No hubo temas prioritarios detectables.</div>`;
+        nextAction.textContent = postmortem.nextAction?.label || "Vuelve al dashboard para seguir estudiando.";
+        const btn = $("btn-results-next-action");
+        if (btn) {
+            btn.onclick = () => runStudyAction(postmortem.nextAction?.type, postmortem.nextAction?.topic || "");
+        }
+    };
+
+    const renderHistoryStudySummary = () => {
+        const cont = $("history-study-summary");
+        if (!cont) return;
+        const todayKey = formatDateKey();
+        const last7 = Array.from({ length: 7 }, (_, index) => addDaysToKey(todayKey, -(6 - index)));
+        const last28 = Array.from({ length: 28 }, (_, index) => addDaysToKey(todayKey, -(27 - index)));
+        let sessions = 0;
+        let pomodoros = 0;
+        let touchedTopics = 0;
+        let activeDays = 0;
+        let bestDayKey = "";
+        let bestDayScore = -1;
+        last7.forEach(key => {
+            const entry = State.studyCalendar[key];
+            if (!entry) return;
+            sessions += entry.sessions || 0;
+            pomodoros += entry.pomodoros || 0;
+            touchedTopics += (entry.topics || []).length;
+        });
+        last28.forEach(key => {
+            const entry = State.studyCalendar[key];
+            const daySessions = entry?.sessions || 0;
+            const dayPomodoros = entry?.pomodoros || 0;
+            const dayTopics = (entry?.topics || []).length;
+            const activityScore = (daySessions * 3) + (dayPomodoros * 2) + dayTopics;
+            if (activityScore > 0) activeDays += 1;
+            if (activityScore > bestDayScore) {
+                bestDayScore = activityScore;
+                bestDayKey = key;
+            }
+        });
+        let currentStreak = 0;
+        for (let offset = 0; offset < 120; offset += 1) {
+            const key = addDaysToKey(todayKey, -offset);
+            const entry = State.studyCalendar[key];
+            const hasActivity = !!entry && ((entry.sessions || 0) > 0 || (entry.pomodoros || 0) > 0 || (entry.topics || []).length > 0);
+            if (!hasActivity) break;
+            currentStreak += 1;
+        }
+        const bestDayLabel = bestDayScore > 0 && bestDayKey
+            ? parseDateKey(bestDayKey).toLocaleDateString("es-MX", { day: "numeric", month: "short" })
+            : "Sin actividad";
+        cont.innerHTML = `
+            <div class="history-study-summary-layout">
+                <div class="history-study-summary-head">
+                    <div>
+                        <span class="dashboard-section-kicker">Panorama reciente</span>
+                        <h3 class="dashboard-section-title">Ritmo de estudio</h3>
+                        <p class="history-study-summary-copy">${sessions} sesiones, ${pomodoros} pomodoros y ${touchedTopics} temas tocados en los últimos 7 días.</p>
+                    </div>
+                    <div class="history-study-summary-stats">
+                        <article class="history-summary-stat">
+                            <span class="history-summary-stat-label">Racha</span>
+                            <strong class="history-summary-stat-value">${currentStreak}</strong>
+                            <span class="history-summary-stat-note">días seguidos</span>
+                        </article>
+                        <article class="history-summary-stat">
+                            <span class="history-summary-stat-label">Días activos</span>
+                            <strong class="history-summary-stat-value">${activeDays}</strong>
+                            <span class="history-summary-stat-note">de los últimos 28</span>
+                        </article>
+                        <article class="history-summary-stat">
+                            <span class="history-summary-stat-label">Mejor día</span>
+                            <strong class="history-summary-stat-value">${escapeHtml(bestDayLabel)}</strong>
+                            <span class="history-summary-stat-note">más carga reciente</span>
+                        </article>
+                    </div>
+                </div>
+                <div class="history-study-summary-calendar">
+                    <div class="history-study-summary-weekdays">
+                        <span>L</span>
+                        <span>M</span>
+                        <span>M</span>
+                        <span>J</span>
+                        <span>V</span>
+                        <span>S</span>
+                        <span>D</span>
+                    </div>
+                    <div id="history-calendar-grid" class="history-study-summary-grid"></div>
+                </div>
+                <div class="history-study-summary-legend">
+                    <span>Poca actividad</span>
+                    <span class="history-study-summary-legend-scale">
+                        <i></i><i></i><i></i><i></i>
+                    </span>
+                    <span>Mayor intensidad</span>
+                </div>
+            </div>
+        `;
+        renderCalendarHeatmap("history-calendar-grid", 28, { alignToWeekStart: true });
+    };
+
+    const renderNotebookView = () => {
+        ensureStudySystemsState();
+        const list = $("notebook-list");
+        const searchTerm = normalizeTextKey($("notebook-search")?.value || "");
+        const tagFilter = normalizeTextKey($("notebook-tags-filter")?.value || "");
+        const filtered = (State.caseNotebook || []).filter(entry => {
+            const haystack = normalizeTextKey([entry.title, entry.topic, entry.caseText, entry.note, (entry.tags || []).join(" ")].join(" "));
+            const matchesSearch = !searchTerm || haystack.includes(searchTerm);
+            const matchesTag = !tagFilter || (entry.tags || []).some(tag => normalizeTextKey(tag).includes(tagFilter));
+            return matchesSearch && matchesTag;
+        });
+        if (list) {
+            list.innerHTML = filtered.length
+                ? filtered.map(entry => `
+                    <button class="notebook-list-item ${State.notebookSelectedId === entry.id ? "is-active" : ""}" type="button" onclick="window.openNotebookEntry('${encodeURIComponent(entry.id)}')">
+                        <div class="notebook-list-top">
+                            <div>
+                                <h3 class="notebook-list-title">${escapeHtml(entry.title || "Caso clínico")}</h3>
+                                <p class="notebook-list-meta">${escapeHtml(entry.topic || "")}</p>
+                            </div>
+                            <span class="review-item-tag">${escapeHtml((entry.tags || [])[0] || "Caso")}</span>
+                        </div>
+                        <p class="notebook-list-meta">${escapeHtml(truncateText(entry.note || entry.caseText || "", 120))}</p>
+                    </button>
+                `).join("")
+                : `<div class="today-empty">No hay casos que coincidan con tu búsqueda.</div>`;
+        }
+        const selected = (State.caseNotebook || []).find(entry => entry.id === State.notebookSelectedId) || filtered[0] || null;
+        if (!State.notebookSelectedId && selected) State.notebookSelectedId = selected.id;
+        const empty = $("notebook-empty");
+        const editor = $("notebook-editor");
+        if (!selected) {
+            if (empty) empty.style.display = "block";
+            if (editor) editor.style.display = "none";
+            return;
+        }
+        if (empty) empty.style.display = "none";
+        if (editor) editor.style.display = "block";
+        if ($("notebook-editor-title")) $("notebook-editor-title").textContent = selected.title || "Caso clínico";
+        if ($("notebook-editor-meta")) $("notebook-editor-meta").textContent = `${selected.topic || "Sin tema"} · ${TRONCAL_LABELS[selected.specialty] || selected.specialty || "General"}`;
+        if ($("notebook-note-input")) $("notebook-note-input").value = selected.note || "";
+        if ($("notebook-tags-input")) $("notebook-tags-input").value = (selected.tags || []).join(", ");
     };
 
     const renderRefuerzosView = () => {
@@ -5996,6 +7187,7 @@
             histKey,
             State.userName || "",
             State.theme || "ocean",
+            State.fontPreset || "clinical",
             quoteTickKey,
             specKey
         ].join("::");
@@ -6102,21 +7294,19 @@
         if ($("stats-global-precision")) $("stats-global-precision").textContent = `${pct}%`;
         if ($("stats-total-questions")) $("stats-total-questions").textContent = State.globalStats.respondidas;
 
-        let totalSec = 0, totalPreg = 0;
-        State.history.forEach(h => {
-            totalSec += h.elapsedSec || 0;
-            totalPreg += h.preguntas || 0;
-        });
-        if ($("stats-avg-time")) $("stats-avg-time").textContent = totalPreg > 0 ? `${Math.round(totalSec / totalPreg)}s` : "0s";
-
         // Update Fail Points (Puntos de Falla) is now handled by the new Refuerzos View
         renderRefuerzosView();
+        renderStudyDashboard();
+        renderResultsPostmortem();
     };
 
     let chartHistory = null;
     let chartSpecialties = null;
     let chartDoughnut = null;
     let chartSpecLineInstance = null;
+    let chartPace = null;
+    let chartSpecialtyCoverage = null;
+    let chartWeakTopics = null;
     let lastChartsRenderKey = "";
 
     const updateCharts = () => {
@@ -6131,38 +7321,68 @@
             .map(k => `${bySpec[k]?.total || 0}-${bySpec[k]?.correct || 0}`)
             .join("|");
         const lastHist = (State.history && State.history.length > 0) ? State.history[State.history.length - 1] : null;
-        const histKey = lastHist ? `${lastHist.pct || 0}-${lastHist.timestamp || 0}` : "none";
+        const histKey = lastHist
+            ? `${lastHist.pct || 0}-${lastHist.timestamp || 0}-${lastHist.elapsedSec || 0}-${lastHist.blank || 0}-${lastHist.preguntas || 0}`
+            : "none";
+        const weakTopicKey = getTopicPerformanceEntries()
+            .slice(0, 8)
+            .map(entry => `${entry.topic}:${entry.total}-${entry.correct}-${entry.status || "sin_tocar"}`)
+            .join("|");
         const chartKey = [
             State.theme || "ocean",
+            State.fontPreset || "clinical",
             State.history?.length || 0,
             histKey,
             State.globalStats?.respondidas || 0,
             State.globalStats?.aciertos || 0,
-            specKey
+            State.globalStats?.totalBlank || 0,
+            specKey,
+            weakTopicKey
         ].join("::");
         if (chartKey === lastChartsRenderKey) {
             if (chartHistory && typeof chartHistory.resize === "function") chartHistory.resize();
             if (chartSpecLineInstance && typeof chartSpecLineInstance.resize === "function") chartSpecLineInstance.resize();
             if (chartSpecialties && typeof chartSpecialties.resize === "function") chartSpecialties.resize();
             if (chartDoughnut && typeof chartDoughnut.resize === "function") chartDoughnut.resize();
+            if (chartPace && typeof chartPace.resize === "function") chartPace.resize();
+            if (chartSpecialtyCoverage && typeof chartSpecialtyCoverage.resize === "function") chartSpecialtyCoverage.resize();
+            if (chartWeakTopics && typeof chartWeakTopics.resize === "function") chartWeakTopics.resize();
             return;
         }
         lastChartsRenderKey = chartKey;
 
         const style = getComputedStyle(document.body);
         const textMuted = style.getPropertyValue('--text-muted').trim() || '#a0aec0';
+        const textPrimary = style.getPropertyValue('--text-primary').trim() || '#ffffff';
         const accentGreen = style.getPropertyValue('--accent-green').trim() || '#05C07F';
         const accentBlue = style.getPropertyValue('--accent-blue').trim() || '#3b82f6';
+        const accentOrange = style.getPropertyValue('--accent-orange').trim() || '#f37a20';
+        const accentRed = style.getPropertyValue('--accent-red').trim() || '#ef4444';
+        const fontFamily = style.getPropertyValue('--font-ui').trim() || FONT_PRESET_CONFIG[normalizeFontPreset(State.fontPreset)].ui;
+        const formatSessionLabel = (session, index) => {
+            if (!session || !session.timestamp) return `Sesion ${index + 1}`;
+            try {
+                return new Date(session.timestamp).toLocaleDateString('es-MX', {
+                    month: 'short',
+                    day: 'numeric'
+                });
+            } catch (_) {
+                return `Sesion ${index + 1}`;
+            }
+        };
 
         Chart.defaults.color = textMuted;
-        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.font.family = fontFamily;
 
         // Chart 1: Evolución de Aciertos en el tiempo (Line)
         const ctxHist = document.getElementById('chart-history');
         if (ctxHist) {
             const histData = [...State.history].slice(-10); // Últimos 10
-            const labels = histData.map((_, i) => `Examen ${i + 1}`);
+            const labels = histData.map((session, i) => formatSessionLabel(session, i));
             const dataPts = histData.map(h => h.pct);
+            const histGradient = ctxHist.getContext('2d').createLinearGradient(0, 0, 0, 320);
+            histGradient.addColorStop(0, accentGreen + '55');
+            histGradient.addColorStop(1, accentGreen + '00');
 
             if (chartHistory) chartHistory.destroy();
             chartHistory = new Chart(ctxHist, {
@@ -6173,17 +7393,43 @@
                         label: '% Aciertos',
                         data: dataPts.length ? dataPts : [0],
                         borderColor: accentGreen,
-                        backgroundColor: accentGreen + '33', // 20% alpha
+                        backgroundColor: histGradient,
                         borderWidth: 3,
                         tension: 0.4,
                         fill: true,
                         pointBackgroundColor: accentGreen,
+                        pointRadius: dataPts.length ? 4 : 0,
+                        pointHoverRadius: 6
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                title: (items) => {
+                                    const session = histData[items[0]?.dataIndex];
+                                    if (!session) return 'Sin sesiones';
+                                    const kind = session.sessionKind === 'estudio' ? 'Estudio' : 'Simulacro';
+                                    return `${formatSessionLabel(session, items[0].dataIndex)} · ${kind}`;
+                                },
+                                afterLabel: (context) => {
+                                    const session = histData[context.dataIndex];
+                                    if (!session) return [];
+                                    const pace = session.preguntas > 0
+                                        ? `${Math.round((session.elapsedSec || 0) / session.preguntas)}s/pregunta`
+                                        : 'Sin ritmo registrado';
+                                    return [
+                                        `${session.preguntas || 0} preguntas`,
+                                        `${session.blank || 0} omitidas`,
+                                        pace
+                                    ];
+                                }
+                            }
+                        }
+                    },
                     scales: { y: { beginAtZero: true, max: 100 } }
                 }
             });
@@ -6277,7 +7523,18 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { display: false }
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => {
+                                    const key = ['mi', 'ped', 'gyo', 'cir'][context.dataIndex];
+                                    const stats = State.globalStats.bySpecialty[key];
+                                    const total = stats?.total || 0;
+                                    const correct = stats?.correct || 0;
+                                    return `${context.formattedValue}% (${correct}/${total})`;
+                                }
+                            }
+                        }
                     },
                     scales: {
                         r: {
@@ -6344,10 +7601,251 @@
                 centerPct.textContent = `${pctValue}%`;
             }
         }
+
+        // Chart 4: Ritmo por sesión (segundos por pregunta)
+        const ctxPace = document.getElementById('chart-pace');
+        if (ctxPace) {
+            const histData = [...State.history].slice(-10);
+            const labels = histData.map((session, i) => formatSessionLabel(session, i));
+            const paceData = histData.map(session => {
+                const preguntas = Number(session?.preguntas) || 0;
+                if (preguntas <= 0) return 0;
+                return Math.round((Number(session?.elapsedSec) || 0) / preguntas);
+            });
+            const paceGradient = ctxPace.getContext('2d').createLinearGradient(0, 0, 0, 300);
+            paceGradient.addColorStop(0, accentBlue + '55');
+            paceGradient.addColorStop(1, accentBlue + '05');
+            const maxPace = paceData.length ? Math.max(...paceData, 90) : 90;
+
+            if (chartPace) chartPace.destroy();
+            chartPace = new Chart(ctxPace, {
+                type: 'line',
+                data: {
+                    labels: labels.length ? labels : ['Sin datos'],
+                    datasets: [{
+                        label: 'Segundos por pregunta',
+                        data: paceData.length ? paceData : [0],
+                        borderColor: accentBlue,
+                        backgroundColor: paceGradient,
+                        borderWidth: 3,
+                        tension: 0.35,
+                        fill: true,
+                        pointBackgroundColor: accentBlue,
+                        pointRadius: paceData.length ? 4 : 0,
+                        pointHoverRadius: 6
+                    }, {
+                        label: 'Objetivo 90s',
+                        data: (labels.length ? labels : ['Sin datos']).map(() => 90),
+                        borderColor: accentOrange,
+                        borderDash: [6, 6],
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        pointHoverRadius: 0,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { usePointStyle: true, padding: 18 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                afterBody: (items) => {
+                                    const session = histData[items[0]?.dataIndex];
+                                    if (!session) return [];
+                                    return [
+                                        `${session.pct || 0}% de aciertos`,
+                                        `${session.preguntas || 0} preguntas`,
+                                        `${session.blank || 0} omitidas`
+                                    ];
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            suggestedMax: Math.ceil((maxPace + 20) / 10) * 10,
+                            ticks: {
+                                callback: (value) => `${value}s`
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart 5: Cobertura por especialidad (volumen vs precisión)
+        const ctxCoverage = document.getElementById('chart-specialty-coverage');
+        if (ctxCoverage) {
+            const specRows = ['mi', 'ped', 'gyo', 'cir'].map(key => {
+                const stats = State.globalStats.bySpecialty[key] || {};
+                const total = Number(stats.total) || 0;
+                const correct = Number(stats.correct) || 0;
+                const precision = total > 0 ? Number(((correct / total) * 100).toFixed(1)) : 0;
+                return {
+                    key,
+                    label: (stats.name || TRONCAL_LABELS[key] || key).replace(' y Obstetricia', ''),
+                    total,
+                    correct,
+                    precision
+                };
+            });
+
+            if (chartSpecialtyCoverage) chartSpecialtyCoverage.destroy();
+            chartSpecialtyCoverage = new Chart(ctxCoverage, {
+                data: {
+                    labels: specRows.map(row => row.label),
+                    datasets: [{
+                        type: 'bar',
+                        label: 'Reactivos respondidos',
+                        data: specRows.map(row => row.total),
+                        backgroundColor: [
+                            accentBlue + 'cc',
+                            accentGreen + 'cc',
+                            accentOrange + 'cc',
+                            accentRed + 'cc'
+                        ],
+                        borderRadius: 10,
+                        maxBarThickness: 44,
+                        yAxisID: 'y'
+                    }, {
+                        type: 'line',
+                        label: 'Precisión %',
+                        data: specRows.map(row => row.precision),
+                        borderColor: textPrimary,
+                        backgroundColor: textPrimary,
+                        pointBackgroundColor: textPrimary,
+                        pointBorderColor: accentBlue,
+                        pointBorderWidth: 2,
+                        pointRadius: 5,
+                        tension: 0.3,
+                        yAxisID: 'y1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { usePointStyle: true, padding: 18 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: (context) => {
+                                    const row = specRows[context.dataIndex];
+                                    if (!row) return [];
+                                    if (context.dataset.yAxisID === 'y') {
+                                        return `Precisión: ${row.precision}%`;
+                                    }
+                                    return `${row.correct}/${row.total} correctas`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Reactivos'
+                            }
+                        },
+                        y1: {
+                            beginAtZero: true,
+                            max: 100,
+                            position: 'right',
+                            grid: { drawOnChartArea: false },
+                            ticks: {
+                                callback: (value) => `${value}%`
+                            },
+                            title: {
+                                display: true,
+                                text: 'Precisión'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart 6: Temas más frágiles
+        const ctxWeakTopics = document.getElementById('chart-weak-topics');
+        if (ctxWeakTopics) {
+            const weakTopics = getTopicPerformanceEntries()
+                .filter(entry => entry.total >= 2)
+                .slice(0, 6);
+            const topicLabels = weakTopics.map(entry => truncateText(entry.topic, 52));
+            const precisions = weakTopics.map(entry => Number(entry.precision.toFixed(1)));
+            const colors = weakTopics.map(entry => {
+                if (entry.precision < 58) return accentRed + 'cc';
+                if (entry.precision < 75) return accentOrange + 'cc';
+                return accentGreen + 'cc';
+            });
+
+            if (chartWeakTopics) chartWeakTopics.destroy();
+            chartWeakTopics = new Chart(ctxWeakTopics, {
+                type: 'bar',
+                data: {
+                    labels: topicLabels.length ? topicLabels : ['Aun no hay temas con suficiente historial'],
+                    datasets: [{
+                        label: 'Precisión %',
+                        data: precisions.length ? precisions : [0],
+                        backgroundColor: colors.length ? colors : [accentBlue + '66'],
+                        borderRadius: 10,
+                        borderSkipped: false,
+                        maxBarThickness: 26
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => {
+                                    const entry = weakTopics[context.dataIndex];
+                                    if (!entry) return 'Sin historial suficiente';
+                                    return `Precisión: ${entry.precision.toFixed(1)}%`;
+                                },
+                                afterLabel: (context) => {
+                                    const entry = weakTopics[context.dataIndex];
+                                    if (!entry) return [];
+                                    return [
+                                        `${entry.correct}/${entry.total} correctas`,
+                                        `Especialidad: ${TRONCAL_LABELS[entry.specialty] || entry.specialty}`
+                                    ];
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: (value) => `${value}%`
+                            }
+                        },
+                        y: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
     };
 
     const updateHistoryView = () => {
         const cont = $("history-list"); if (!cont) return;
+        renderHistoryStudySummary();
         if (State.history.length === 0) {
             cont.innerHTML = `<div class="list-item empty-history"><p style="color:var(--text-muted); padding: 20px;">Aún no hay sesiones registradas.</p></div>`;
             return;
@@ -6356,11 +7854,20 @@
         [...State.history].reverse().forEach((h, i) => {
             const realIdx = State.history.length - 1 - i;
             const div = document.createElement("div"); div.className = "list-item";
-            div.innerHTML = `<div class="list-item-content"><h3>${h.tipo || 'Examen'} - ${h.preguntas} preguntas</h3><p>${h.pct}% Aciertos | ${formatTime(h.elapsedSec || 0)}</p></div>
-                             <div style="display:flex; align-items:center; gap: 10px;">
-                                 <span class="badge ${h.pct > 70 ? 'green-bg' : 'orange-bg'}">${h.pct}%</span>
-                                 <button class="btn-ghost btn-rev-history" data-index="${realIdx}">Revisar</button>
-                             </div>`;
+            const studiedTopics = Array.isArray(h.topicsStudied) ? h.topicsStudied.slice(0, 3) : [];
+            div.innerHTML = `
+                <div class="history-list-item-rich">
+                    <div class="list-item-content">
+                        <h3>${h.tipo || 'Examen'} - ${h.preguntas} preguntas</h3>
+                        <p>${h.pct}% Aciertos | ${formatTime(h.elapsedSec || 0)} | ${h.sessionKind || "simulacro"}</p>
+                    </div>
+                    ${studiedTopics.length ? `<div class="history-list-tags">${studiedTopics.map(topic => `<span class="review-item-tag">${escapeHtml(topic)}</span>`).join("")}</div>` : ""}
+                    ${h.nextRecommendation ? `<p class="history-study-summary-copy">${escapeHtml(h.nextRecommendation)}</p>` : ""}
+                </div>
+                <div style="display:flex; align-items:center; gap: 10px;">
+                    <span class="badge ${h.pct > 70 ? 'green-bg' : 'orange-bg'}">${h.pct}%</span>
+                    <button class="btn-ghost btn-rev-history" data-index="${realIdx}">Revisar</button>
+                </div>`;
             cont.appendChild(div);
         });
 
@@ -6528,20 +8035,444 @@
     // Pomodoro Logic
     // ---------------------------------------------------------------------------
     let pomoTimer = null;
-    let pomoSeconds = 25 * 60;
-    let isPomoRunning = false;
-    let pomoMode = "focus"; // "focus" | "break"
     let isPomodoroCollapsed = false;
+    const persistPomodoroLocalState = () => {
+        ensureStudySystemsState();
+        localStorage.setItem(POMODORO_STORAGE_KEYS.settings, JSON.stringify(State.pomodoroSettings));
+        localStorage.setItem(POMODORO_STORAGE_KEYS.state, JSON.stringify(State.pomodoroState));
+        localStorage.setItem(POMODORO_STORAGE_KEYS.log, JSON.stringify((State.pomodoroLog || []).slice(0, POMODORO_MAX_LOG_ENTRIES)));
+        localStorage.setItem(POMODORO_STORAGE_KEYS.specialties, JSON.stringify(State.pomodoroSpecialties || []));
+        localStorage.setItem(POMODORO_STORAGE_KEYS.focus, String(State.pomodoroFocusLabel || ""));
+    };
+    const stopPomodoroTicker = () => {
+        if (pomoTimer) {
+            clearInterval(pomoTimer);
+            pomoTimer = null;
+        }
+    };
+    const getPomodoroProgress = () => {
+        ensureStudySystemsState();
+        const duration = getPomodoroDurationSecondsForMode(State.pomodoroState.mode);
+        if (duration <= 0) return 0;
+        return Math.max(0, Math.min(1, 1 - (State.pomodoroState.secondsLeft / duration)));
+    };
+    const getPomodoroLogoHtml = (className = "pomodoro-logo-badge", alt = "PomQuest") => {
+        return `<img src="${POMQUEST_LOGO_SRC}" alt="${escapeHtml(alt)}" class="${escapeHtml(className)}">`;
+    };
+    const showPomodoroBrowserNotification = (title, body) => {
+        if (!("Notification" in window) || Notification.permission !== "granted") return;
+        try {
+            const notification = new Notification(title, {
+                body,
+                icon: NOTIFICATION_ICON,
+                badge: NOTIFICATION_BADGE,
+                tag: "enarm-pomodoro",
+                renotify: true
+            });
+            notification.onclick = (event) => {
+                if (event && typeof event.preventDefault === "function") event.preventDefault();
+                try {
+                    window.focus();
+                    showView("view-pomodoro");
+                } catch (err) {
+                    console.warn("[Pomodoro] No se pudo enfocar la ventana al abrir notificación:", err);
+                }
+                notification.close();
+            };
+            return;
+        } catch (err) {
+            console.warn("[Pomodoro] Falló la notificación directa, usando fallback:", err);
+        }
+        void showSystemNotification(title, body);
+    };
+    const notifyPomodoroCycle = (title, body) => {
+        showNotification(body, "success");
+        if (State.pomodoroSettings.systemNotifications && ("Notification" in window) && Notification.permission === "granted") {
+            showPomodoroBrowserNotification(title, body);
+        }
+        try {
+            window.alert(body);
+        } catch (err) {
+            console.warn("[Pomodoro] No se pudo mostrar la alerta final:", err);
+        }
+    };
+    const updatePomodoroLinkedViews = () => {
+        if ($("profile-stat-pomodoros")) $("profile-stat-pomodoros").textContent = String(State.globalStats.pomodoros || 0);
+        if (State.view === "view-estudio-plus") renderStudyDashboard();
+        if (State.view === "view-historial") renderHistoryStudySummary();
+        if (State.view === "view-profile") renderProfileView();
+        if (State.view === "view-pomodoro") renderPomodoroHub();
+    };
+    const transitionPomodoroState = (completedMode) => {
+        const pState = State.pomodoroState;
+        if (completedMode === "focus") {
+            pState.pomodorosInCycle = Math.min(POMODORO_CYCLE_LENGTH, (pState.pomodorosInCycle || 0) + 1);
+            pState.mode = (pState.pomodorosInCycle % POMODORO_CYCLE_LENGTH === 0) ? "longBreak" : "shortBreak";
+        } else if (completedMode === "longBreak") {
+            pState.pomodorosInCycle = 0;
+            pState.mode = "focus";
+        } else {
+            pState.mode = "focus";
+        }
+        pState.secondsLeft = getPomodoroDurationSecondsForMode(pState.mode);
+        pState.startedAt = 0;
+        pState.endsAt = 0;
+    };
+    const createPomodoroLogEntry = (mode, completedAt) => ({
+        id: `pomo-${completedAt}-${Math.random().toString(36).slice(2, 8)}`,
+        mode,
+        completedAt,
+        durationSeconds: getPomodoroDurationSecondsForMode(mode),
+        specialties: normalizePomodoroSpecialties(State.pomodoroSpecialties),
+        focusLabel: ""
+    });
+    const startPomodoroTimer = (baseTime = Date.now()) => {
+        ensureStudySystemsState();
+        const pState = State.pomodoroState;
+        if (pState.secondsLeft <= 0) {
+            pState.secondsLeft = getPomodoroDurationSecondsForMode(pState.mode);
+        }
+        pState.isRunning = true;
+        pState.startedAt = baseTime;
+        pState.endsAt = baseTime + (pState.secondsLeft * 1000);
+        persistPomodoroLocalState();
+        renderPomodoroHub();
+        stopPomodoroTicker();
+        pomoTimer = setInterval(() => syncPomodoroClock(), 1000);
+        syncPomodoroClock(true);
+    };
+    const pausePomodoroTimer = () => {
+        ensureStudySystemsState();
+        const pState = State.pomodoroState;
+        if (!pState.isRunning) return;
+        const remaining = Math.max(0, Math.ceil((pState.endsAt - Date.now()) / 1000));
+        pState.secondsLeft = remaining;
+        pState.isRunning = false;
+        pState.startedAt = 0;
+        pState.endsAt = 0;
+        stopPomodoroTicker();
+        persistPomodoroLocalState();
+        renderPomodoroHub();
+    };
+    const resetPomodoroTimer = () => {
+        ensureStudySystemsState();
+        stopPomodoroTicker();
+        State.pomodoroState = createDefaultPomodoroState(State.pomodoroSettings);
+        persistPomodoroLocalState();
+        renderPomodoroHub();
+    };
+    const skipPomodoroBreak = () => {
+        ensureStudySystemsState();
+        if (State.pomodoroState.mode === "focus") {
+            showNotification("Solo puedes saltar un descanso.", "info");
+            return;
+        }
+        stopPomodoroTicker();
+        if (State.pomodoroState.mode === "longBreak") {
+            State.pomodoroState.pomodorosInCycle = 0;
+        }
+        State.pomodoroState.mode = "focus";
+        State.pomodoroState.secondsLeft = getPomodoroDurationSecondsForMode("focus");
+        State.pomodoroState.isRunning = false;
+        State.pomodoroState.startedAt = 0;
+        State.pomodoroState.endsAt = 0;
+        persistPomodoroLocalState();
+        renderPomodoroHub();
+        showNotification("Descanso omitido. Volvemos a enfoque.", "info");
+    };
+    const completePomodoroCycle = (completedAt = Date.now()) => {
+        ensureStudySystemsState();
+        stopPomodoroTicker();
+        const completedMode = State.pomodoroState.mode;
+        State.pomodoroState.isRunning = false;
+        State.pomodoroState.secondsLeft = 0;
+        State.pomodoroState.startedAt = 0;
+        State.pomodoroState.endsAt = 0;
+        State.pomodoroState.lastCompletedAt = completedAt;
+        State.pomodoroLog.unshift(createPomodoroLogEntry(completedMode, completedAt));
+        State.pomodoroLog = State.pomodoroLog.slice(0, POMODORO_MAX_LOG_ENTRIES);
 
-    const initPomodoro = () => {
+        if (completedMode === "focus") {
+            State.globalStats.pomodoros = (State.globalStats.pomodoros || 0) + 1;
+            recordStudyCalendarActivity({ pomodoros: 1 });
+            ensureDailyPlanFresh(true);
+            notifyPomodoroCycle("Pomodoro completado", "¡Buen bloque! Toca un descanso breve.");
+        } else if (completedMode === "longBreak") {
+            notifyPomodoroCycle("Descanso largo terminado", "Listo para empezar un nuevo ciclo de enfoque.");
+        } else {
+            notifyPomodoroCycle("Descanso terminado", "Hora de volver a estudiar.");
+        }
+
+        transitionPomodoroState(completedMode);
+        persistPomodoroLocalState();
+        saveGlobalStats();
+        updatePomodoroLinkedViews();
+
+        if (State.pomodoroSettings.autoStartNext) {
+            startPomodoroTimer(completedAt);
+        } else {
+            renderPomodoroHub();
+        }
+    };
+    const syncPomodoroClock = (forceRender = false) => {
+        ensureStudySystemsState();
+        const pState = State.pomodoroState;
+        if (!pState.isRunning || !pState.endsAt) {
+            if (forceRender) renderPomodoroHub();
+            return;
+        }
+        const now = Date.now();
+        const remaining = Math.max(0, Math.ceil((pState.endsAt - now) / 1000));
+        if (remaining <= 0) {
+            completePomodoroCycle(now);
+            return;
+        }
+        if (remaining !== pState.secondsLeft || forceRender) {
+            pState.secondsLeft = remaining;
+            if (forceRender) persistPomodoroLocalState();
+            renderPomodoroHub();
+        }
+    };
+    const reconcilePomodoroState = () => {
+        ensureStudySystemsState();
+        let safety = 0;
+        while (State.pomodoroState.isRunning && State.pomodoroState.endsAt && Date.now() >= State.pomodoroState.endsAt && safety < 8) {
+            completePomodoroCycle(State.pomodoroState.endsAt || Date.now());
+            safety += 1;
+            if (!State.pomodoroState.isRunning) break;
+        }
+        if (State.pomodoroState.isRunning) {
+            stopPomodoroTicker();
+            pomoTimer = setInterval(() => syncPomodoroClock(), 1000);
+        }
+        syncPomodoroClock(true);
+    };
+    const requestPomodoroNotificationPermission = async () => {
+        if (!("Notification" in window)) {
+            showNotification("Tu navegador no soporta notificaciones del sistema.", "warning");
+            return false;
+        }
+        if (Notification.permission === "granted") return true;
+        if (Notification.permission === "denied") {
+            showNotification("Las notificaciones están bloqueadas en este navegador.", "warning");
+            return false;
+        }
+        try {
+            const result = await Notification.requestPermission();
+            return result === "granted";
+        } catch (err) {
+            console.warn("[Pomodoro] No se pudo solicitar permiso de notificaciones:", err);
+            return false;
+        }
+    };
+    const getPomodoroSettingsControls = () => ([
+        $("pomo-setting-focus"),
+        $("pomo-setting-short"),
+        $("pomo-setting-long"),
+        $("pomo-setting-goal"),
+        $("pomo-setting-autostart"),
+        $("pomo-setting-notifs")
+    ].filter(Boolean));
+    const isPomodoroSettingsDirty = () => getPomodoroSettingsControls().some(control => control.dataset.dirty === "1");
+    const markPomodoroSettingsDirty = () => {
+        getPomodoroSettingsControls().forEach(control => {
+            control.dataset.dirty = "1";
+        });
+    };
+    const clearPomodoroSettingsDirty = () => {
+        getPomodoroSettingsControls().forEach(control => {
+            control.dataset.dirty = "0";
+        });
+    };
+    const syncPomodoroPlacement = () => {
+        const widgetShell = $("pomodoro-widget-shell");
+        if (widgetShell) widgetShell.style.display = (!isPremiumActive() || State.view === "view-pomodoro") ? "none" : "";
+    };
+    const renderPomodoroHub = () => {
+        ensureStudySystemsState();
         const widgetShell = $("pomodoro-widget-shell");
         const revealBtn = $("btn-pomo-reveal");
         const hideBtn = $("btn-pomo-hide");
         const timeEl = $("pomo-time");
         const toggleBtn = $("btn-pomo-toggle");
-        const resetBtn = $("btn-pomo-reset");
         const sessionEl = $("pomo-sessions");
         const iconEl = document.querySelector(".pomo-icon");
+        const widget = $("pomodoro-widget");
+        const pState = State.pomodoroState;
+        const settings = State.pomodoroSettings;
+        const meta = getPomodoroModeMeta(pState.mode);
+        const timeLabel = formatPomodoroClockLabel(pState.secondsLeft);
+        const todayPomodoros = getPomodoroTodayCount();
+        const streak = getPomodoroCurrentStreak();
+        const weeklySeries = getPomodoroLast7Days();
+        const weeklyBest = Math.max(1, ...weeklySeries.map(item => item.count));
+        const totalFocusSessions = (State.globalStats.pomodoros || 0);
+        const selectedSpecialtyLabels = getPomodoroSelectedSpecialtyLabels();
+        const recentLog = (State.pomodoroLog || []).slice(0, 6);
+
+        if (widgetShell) widgetShell.style.setProperty("--pomodoro-accent", meta.accent);
+        if (widget) widget.dataset.mode = pState.mode;
+        if (timeEl) {
+            timeEl.textContent = timeLabel;
+            timeEl.style.color = meta.accent;
+        }
+        if (sessionEl) {
+            sessionEl.textContent = `${meta.shortLabel} · Hoy ${todayPomodoros}/${settings.dailyGoal}`;
+            sessionEl.title = "Abrir centro Pomodoro";
+        }
+        if (iconEl) {
+            if (iconEl.getAttribute("src") !== POMQUEST_LOGO_SRC) iconEl.setAttribute("src", POMQUEST_LOGO_SRC);
+            iconEl.setAttribute("alt", meta.label);
+            iconEl.classList.toggle("running", !!pState.isRunning);
+        }
+        if (toggleBtn) {
+            toggleBtn.textContent = pState.isRunning ? "PAUSAR" : "INICIAR";
+            toggleBtn.classList.toggle("active", !!pState.isRunning);
+        }
+        if (revealBtn) revealBtn.style.borderColor = meta.accent;
+        if (hideBtn) hideBtn.style.color = meta.accent;
+
+        const hubTime = $("pomo-hub-time");
+        const hubLabel = $("pomo-hub-label");
+        const hubCycle = $("pomo-hub-cycle");
+        const hubBadge = $("pomo-hub-mode-badge");
+        const hubProgressLabel = $("pomo-hub-progress-label");
+        const ring = $("pomo-hub-ring-progress");
+        const ringCirc = 722.566;
+        const progress = getPomodoroProgress();
+        if (hubTime) hubTime.textContent = timeLabel;
+        if (hubLabel) hubLabel.textContent = meta.label;
+        if (hubCycle) {
+            const cycleStep = Math.min(POMODORO_CYCLE_LENGTH, (pState.pomodorosInCycle || 0) + (pState.mode === "focus" ? 1 : 0));
+            hubCycle.textContent = `Bloque ${Math.max(1, cycleStep)} de ${POMODORO_CYCLE_LENGTH}`;
+        }
+        if (hubBadge) {
+            hubBadge.className = `pomodoro-mode-badge ${meta.badgeClass}`;
+            hubBadge.innerHTML = `${getPomodoroLogoHtml("pomodoro-logo-badge", meta.label)}<strong>${meta.label}</strong>`;
+        }
+        if (hubProgressLabel) hubProgressLabel.textContent = `${Math.round(progress * 100)}% del bloque actual`;
+        if (ring) {
+            ring.style.stroke = meta.accent;
+            ring.style.strokeDasharray = String(ringCirc);
+            ring.style.strokeDashoffset = String(ringCirc * (1 - progress));
+        }
+
+        const hubToggleBtn = $("btn-pomo-hub-toggle");
+        const hubSkipBtn = $("btn-pomo-hub-skip");
+        if (hubToggleBtn) hubToggleBtn.textContent = pState.isRunning ? "Pausar" : "Iniciar";
+        if (hubSkipBtn) hubSkipBtn.disabled = pState.mode === "focus";
+
+        if ($("pomo-hub-today")) $("pomo-hub-today").textContent = String(todayPomodoros);
+        if ($("pomo-hub-goal")) $("pomo-hub-goal").textContent = `${todayPomodoros}/${settings.dailyGoal}`;
+        if ($("pomo-hub-streak")) $("pomo-hub-streak").textContent = `${streak} día${streak === 1 ? "" : "s"}`;
+        if ($("pomo-hub-total")) $("pomo-hub-total").textContent = String(totalFocusSessions);
+        const specialtiesContainer = $("pomo-specialties-grid");
+        if (specialtiesContainer) {
+            specialtiesContainer.innerHTML = TRONCAL_SPECIALTIES.map(spec => `
+                <button
+                    class="pomodoro-specialty-chip ${State.pomodoroSpecialties.includes(spec) ? "is-active" : ""}"
+                    type="button"
+                    data-spec="${escapeHtml(spec)}"
+                    aria-pressed="${State.pomodoroSpecialties.includes(spec) ? "true" : "false"}"
+                >
+                    <span>${escapeHtml(TRONCAL_LABELS[spec] || spec)}</span>
+                </button>
+            `).join("");
+        }
+        if ($("pomo-specialties-summary")) {
+            $("pomo-specialties-summary").textContent = selectedSpecialtyLabels.length
+                ? `Hoy te vas a enfocar en ${selectedSpecialtyLabels.join(", ")}. Puedes combinar varias sin problema.`
+                : "Elige una o varias especialidades para orientar tus bloques de hoy. Si no eliges ninguna, el Pomodoro queda libre.";
+        }
+        if ($("pomo-specialties-counter")) {
+            $("pomo-specialties-counter").textContent = selectedSpecialtyLabels.length
+                ? `${selectedSpecialtyLabels.length} seleccionada${selectedSpecialtyLabels.length === 1 ? "" : "s"}`
+                : "Sin selección";
+        }
+
+        const weeklyBars = $("pomo-hub-week-bars");
+        if (weeklyBars) {
+            weeklyBars.innerHTML = weeklySeries.map(item => `
+                <div class="pomodoro-week-bar">
+                    <div class="pomodoro-week-bar-track">
+                        <div class="pomodoro-week-bar-fill" style="height:${item.count > 0 ? Math.max(10, (item.count / weeklyBest) * 100) : 0}%"></div>
+                    </div>
+                    <strong>${item.count}</strong>
+                    <span>${escapeHtml(item.label)}</span>
+                </div>
+            `).join("");
+        }
+
+        const recentEl = $("pomo-hub-recent-log");
+        if (recentEl) {
+            recentEl.innerHTML = recentLog.length
+                ? recentLog.map(entry => {
+                    const logMeta = getPomodoroModeMeta(entry.mode);
+                    const dateLabel = new Date(entry.completedAt).toLocaleString("es-MX", {
+                        day: "numeric",
+                        month: "short",
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    });
+                    const specialtyDetail = getPomodoroSelectedSpecialtyLabels(entry.specialties);
+                    const detail = specialtyDetail.length
+                        ? `${logMeta.label} · ${specialtyDetail.join(", ")}`
+                        : entry.focusLabel
+                            ? `${logMeta.label} · ${entry.focusLabel}`
+                            : logMeta.label;
+                    return `
+                        <article class="pomodoro-log-item">
+                            <div>
+                                <h4>${getPomodoroLogoHtml("pomodoro-logo-inline", logMeta.label)} ${escapeHtml(detail)}</h4>
+                                <p>${escapeHtml(dateLabel)}</p>
+                            </div>
+                            <span>${Math.round((entry.durationSeconds || 0) / 60)} min</span>
+                        </article>
+                    `;
+                }).join("")
+                : `<div class="today-empty">Aún no hay ciclos recientes guardados. Tus pomodoros históricos siguen contando para la racha y el calendario.</div>`;
+        }
+
+        const focusMinutesInput = $("pomo-setting-focus");
+        const shortBreakInput = $("pomo-setting-short");
+        const longBreakInput = $("pomo-setting-long");
+        const goalInput = $("pomo-setting-goal");
+        const autostartInput = $("pomo-setting-autostart");
+        const notifsInput = $("pomo-setting-notifs");
+        if (!isPomodoroSettingsDirty()) {
+            if (focusMinutesInput && document.activeElement !== focusMinutesInput) focusMinutesInput.value = String(settings.focusMinutes);
+            if (shortBreakInput && document.activeElement !== shortBreakInput) shortBreakInput.value = String(settings.shortBreakMinutes);
+            if (longBreakInput && document.activeElement !== longBreakInput) longBreakInput.value = String(settings.longBreakMinutes);
+            if (goalInput && document.activeElement !== goalInput) goalInput.value = String(settings.dailyGoal);
+            if (autostartInput) autostartInput.checked = !!settings.autoStartNext;
+            if (notifsInput) notifsInput.checked = !!settings.systemNotifications;
+        }
+        if ($("pomo-notif-status")) {
+            const permission = ("Notification" in window) ? Notification.permission : "unsupported";
+            $("pomo-notif-status").textContent = permission === "granted"
+                ? "Notificaciones listas"
+                : permission === "denied"
+                    ? "Notificaciones bloqueadas"
+                    : permission === "unsupported"
+                        ? "No compatibles en este navegador"
+                        : "Pendientes de activar";
+        }
+    };
+
+    const initPomodoro = () => {
+        const widgetShell = $("pomodoro-widget-shell");
+        const revealBtn = $("btn-pomo-reveal");
+        const hideBtn = $("btn-pomo-hide");
+        const toggleBtn = $("btn-pomo-toggle");
+        const resetBtn = $("btn-pomo-reset");
+        const widget = $("pomodoro-widget");
+        const hubToggleBtn = $("btn-pomo-hub-toggle");
+        const hubResetBtn = $("btn-pomo-hub-reset");
+        const hubSkipBtn = $("btn-pomo-hub-skip");
+        const saveSettingsBtn = $("btn-pomo-save-settings");
+        const specialtiesContainer = $("pomo-specialties-grid");
+        const openStudyPlusBtn = $("btn-pomo-open-study");
+        const openTemarioBtn = $("btn-pomo-open-temario");
         const collapseStorageKey = "pomodoroCollapsed";
 
         const syncCollapseUI = () => {
@@ -6560,67 +8491,43 @@
         if (localStorage.getItem(collapseStorageKey) === "1") {
             isPomodoroCollapsed = true;
         }
-
-        const updateDisplay = () => {
-            const m = String(Math.floor(pomoSeconds / 60)).padStart(2, "0");
-            const s = String(pomoSeconds % 60).padStart(2, "0");
-            timeEl.textContent = `${m}:${s}`;
-            timeEl.style.color = pomoMode === "focus" ? "var(--accent-green)" : "var(--accent-blue)";
-        };
-
-        const updateStats = () => {
-            if (sessionEl) sessionEl.textContent = `Hoy: ${State.globalStats.pomodoros || 0}`;
-        };
-
-        toggleBtn.addEventListener("click", () => {
-            if (isPomoRunning) {
-                clearInterval(pomoTimer);
-                toggleBtn.textContent = "INICIAR";
-                toggleBtn.classList.remove("active");
-                if (iconEl) iconEl.classList.remove("running");
+        const handleToggle = () => {
+            if (State.pomodoroState.isRunning) {
+                pausePomodoroTimer();
             } else {
-                if (iconEl) iconEl.classList.add("running");
-                pomoTimer = setInterval(() => {
-                    if (pomoSeconds > 0) {
-                        pomoSeconds--;
-                        updateDisplay();
-                    } else {
-                        clearInterval(pomoTimer);
-                        isPomoRunning = false;
-                        if (pomoMode === "focus") {
-                            State.globalStats.pomodoros = (State.globalStats.pomodoros || 0) + 1;
-                            saveGlobalStats();
-                            updateStats();
-                            showNotification("¡Pomodoro terminado! Tiempo de un breve descanso.");
-                            pomoMode = "break";
-                            pomoSeconds = 5 * 60;
-                        } else {
-                            showNotification("¡Descanso terminado! A darle con todo.");
-                            pomoMode = "focus";
-                            pomoSeconds = 25 * 60;
-                        }
-                        updateDisplay();
-                        toggleBtn.textContent = "INICIAR";
-                        toggleBtn.classList.remove("active");
-                        if (iconEl) iconEl.classList.remove("running");
-                    }
-                }, 1000);
-                toggleBtn.textContent = "PAUSAR";
-                toggleBtn.classList.add("active");
+                startPomodoroTimer();
             }
-            isPomoRunning = !isPomoRunning;
-        });
+        };
 
-        resetBtn.addEventListener("click", () => {
-            clearInterval(pomoTimer);
-            isPomoRunning = false;
-            pomoMode = "focus";
-            pomoSeconds = 25 * 60;
-            updateDisplay();
-            toggleBtn.textContent = "INICIAR";
-            toggleBtn.classList.remove("active");
-            if (iconEl) iconEl.classList.remove("running");
-        });
+        const handleSaveSettings = async () => {
+            ensureStudySystemsState();
+            const nextSettings = normalizePomodoroSettings({
+                focusMinutes: $("pomo-setting-focus")?.value,
+                shortBreakMinutes: $("pomo-setting-short")?.value,
+                longBreakMinutes: $("pomo-setting-long")?.value,
+                dailyGoal: $("pomo-setting-goal")?.value,
+                autoStartNext: $("pomo-setting-autostart")?.checked,
+                systemNotifications: $("pomo-setting-notifs")?.checked
+            });
+
+            if (nextSettings.systemNotifications) {
+                const granted = await requestPomodoroNotificationPermission();
+                nextSettings.systemNotifications = granted;
+                if (!granted) showNotification("Activa manualmente las notificaciones del navegador para recibir alertas.", "warning");
+            }
+
+            const wasRunning = !!State.pomodoroState.isRunning;
+            State.pomodoroSettings = nextSettings;
+            if (!wasRunning) {
+                State.pomodoroState.secondsLeft = getPomodoroDurationSecondsForMode(State.pomodoroState.mode, nextSettings);
+            }
+            State.pomodoroState = normalizePomodoroState(State.pomodoroState, nextSettings);
+            persistPomodoroLocalState();
+            saveGlobalStats();
+            clearPomodoroSettingsDirty();
+            renderPomodoroHub();
+            showNotification(wasRunning ? "Ajustes guardados. Se aplicarán por completo en el siguiente ciclo." : "Ajustes Pomodoro guardados.", "success");
+        };
 
         if (hideBtn) {
             hideBtn.addEventListener("click", () => setPomodoroCollapsed(true));
@@ -6630,9 +8537,51 @@
             revealBtn.addEventListener("click", () => setPomodoroCollapsed(false));
         }
 
-        updateDisplay();
-        updateStats();
+        if (toggleBtn) toggleBtn.addEventListener("click", handleToggle);
+        if (hubToggleBtn) hubToggleBtn.addEventListener("click", handleToggle);
+        if (resetBtn) resetBtn.addEventListener("click", resetPomodoroTimer);
+        if (hubResetBtn) hubResetBtn.addEventListener("click", resetPomodoroTimer);
+        if (hubSkipBtn) hubSkipBtn.addEventListener("click", skipPomodoroBreak);
+        if (saveSettingsBtn) saveSettingsBtn.addEventListener("click", () => { void handleSaveSettings(); });
+        getPomodoroSettingsControls().forEach(control => {
+            const eventName = control.type === "checkbox" ? "change" : "input";
+            control.addEventListener(eventName, markPomodoroSettingsDirty);
+        });
+        if (specialtiesContainer) {
+            specialtiesContainer.addEventListener("click", (event) => {
+                const chip = event.target.closest("[data-spec]");
+                if (!chip) return;
+                const spec = String(chip.dataset.spec || "").trim();
+                if (!TRONCAL_SPECIALTIES.includes(spec)) return;
+                if (State.pomodoroSpecialties.includes(spec)) {
+                    State.pomodoroSpecialties = State.pomodoroSpecialties.filter(item => item !== spec);
+                } else {
+                    State.pomodoroSpecialties = [...State.pomodoroSpecialties, spec];
+                }
+                persistPomodoroLocalState();
+                saveGlobalStats();
+                renderPomodoroHub();
+            });
+        }
+        if (openStudyPlusBtn) openStudyPlusBtn.addEventListener("click", () => showView("view-estudio-plus"));
+        if (openTemarioBtn) openTemarioBtn.addEventListener("click", () => showView("view-temario"));
+        if (widget) {
+            widget.addEventListener("click", (event) => {
+                if (event.target.closest("button")) return;
+                showView("view-pomodoro");
+            });
+        }
+
+        document.addEventListener("visibilitychange", () => {
+            if (!document.hidden) reconcilePomodoroState();
+        });
+        window.addEventListener("focus", reconcilePomodoroState);
+
+        clearPomodoroSettingsDirty();
         syncCollapseUI();
+        syncPomodoroPlacement();
+        renderPomodoroHub();
+        reconcilePomodoroState();
     };
 
     // ---------------------------------------------------------------------------
@@ -6831,6 +8780,8 @@
         const openProfileView = () => {
             $$(".nav-item").forEach(n => n.classList.remove("active"));
             $$(".mobile-nav-item").forEach(n => n.classList.remove("active"));
+            const mobileProfile = document.querySelector(".mobile-nav-item[data-view='view-profile']");
+            if (mobileProfile) mobileProfile.classList.add("active");
             renderProfileView();
             showView("view-profile");
         };
@@ -6861,6 +8812,32 @@
             });
         }
         if (btnProfileGoSettings) btnProfileGoSettings.addEventListener("click", () => $("nav-ajustes").click());
+
+        const btnRunNextAction = $("btn-run-next-action");
+        if (btnRunNextAction) {
+            btnRunNextAction.addEventListener("click", () => {
+                const nextAction = getNextRecommendedAction();
+                if (!nextAction) {
+                    showNotification("Tu plan de hoy ya quedó cubierto. Puedes abrir el temario o hacer un mini simulacro.", "info");
+                    return;
+                }
+                window.runDailyPlanTask(nextAction.id);
+            });
+        }
+        const btnOpenTemarioFocus = $("btn-open-temario-focus");
+        if (btnOpenTemarioFocus) btnOpenTemarioFocus.addEventListener("click", () => showView("view-temario"));
+        const btnOpenTemarioMap = $("btn-open-temario-map");
+        if (btnOpenTemarioMap) btnOpenTemarioMap.addEventListener("click", () => showView("view-temario"));
+        const btnOpenNotebookDashboard = $("btn-open-notebook-dashboard");
+        if (btnOpenNotebookDashboard) btnOpenNotebookDashboard.addEventListener("click", () => {
+            showView("view-estudio-plus");
+            setTimeout(() => $("study-plus-notebook")?.scrollIntoView({ behavior: "smooth", block: "start" }), 30);
+        });
+        const btnOpenNotebookSecondary = $("btn-open-notebook-secondary");
+        if (btnOpenNotebookSecondary) btnOpenNotebookSecondary.addEventListener("click", () => {
+            showView("view-estudio-plus");
+            setTimeout(() => $("study-plus-notebook")?.scrollIntoView({ behavior: "smooth", block: "start" }), 30);
+        });
 
         if (btnOpenNotif) {
             btnOpenNotif.addEventListener("click", openNotifModal);
@@ -6912,6 +8889,9 @@
         if (btnOpenRedeem) {
             btnOpenRedeem.addEventListener("click", () => openRedeemModal("Ingresa tu c\u00f3digo para desbloquear premium."));
         }
+        $$("[data-open-redeem]").forEach(btn => {
+            btn.addEventListener("click", () => openRedeemModal("Desbloquea premium para ver todas las estadísticas y herramientas avanzadas."));
+        });
         $$("[data-pricing-toggle]").forEach(btn => {
             btn.addEventListener("click", () => {
                 const panelId = btn.dataset.pricingToggle;
@@ -6942,6 +8922,35 @@
         const btnRedeem = $("btn-redeem-submit");
         if (btnRedeem) {
             btnRedeem.addEventListener("click", () => redeemCode());
+        }
+        const notebookSearch = $("notebook-search");
+        if (notebookSearch) notebookSearch.addEventListener("input", () => renderNotebookView());
+        const notebookTagsFilter = $("notebook-tags-filter");
+        if (notebookTagsFilter) notebookTagsFilter.addEventListener("input", () => renderNotebookView());
+        const btnNotebookSave = $("btn-notebook-save");
+        if (btnNotebookSave) {
+            btnNotebookSave.addEventListener("click", () => {
+                const selected = (State.caseNotebook || []).find(entry => entry.id === State.notebookSelectedId);
+                if (!selected) return;
+                selected.note = $("notebook-note-input")?.value?.trim() || "";
+                selected.tags = formatNotebookTags($("notebook-tags-input")?.value || "");
+                saveGlobalStats();
+                renderNotebookView();
+                renderStudyDashboard();
+                showNotification("Cuaderno actualizado.", "success");
+            });
+        }
+        const btnNotebookRemove = $("btn-notebook-remove");
+        if (btnNotebookRemove) {
+            btnNotebookRemove.addEventListener("click", () => {
+                if (!State.notebookSelectedId) return;
+                State.caseNotebook = (State.caseNotebook || []).filter(entry => entry.id !== State.notebookSelectedId);
+                State.notebookSelectedId = State.caseNotebook[0]?.id || null;
+                saveGlobalStats();
+                renderNotebookView();
+                renderStudyDashboard();
+                showNotification("Caso retirado del cuaderno.", "success");
+            });
         }
         const redeemLegalCheck = $("redeem-legal-check");
         if (redeemLegalCheck) {
@@ -7139,7 +9148,7 @@
         // Theme Circle Click Event for Instant Apply
         $$(".theme-circle").forEach(circle => {
             circle.addEventListener("click", () => {
-                const selectedTheme = circle.dataset.theme;
+                const selectedTheme = normalizeThemeSelection(circle.dataset.theme);
                 if (!isPremiumActive() && !DEMO_ALLOWED_THEMES.has(selectedTheme)) {
                     showNotification("Este tema est\u00e1 bloqueado en demo.", "warning");
                     openRedeemModal("Desbloquea premium para usar todos los temas visuales.");
@@ -7152,6 +9161,16 @@
                 if (typeof updateCharts === 'function' && State.view === 'view-estadisticas') updateCharts();
             });
         });
+        const fontPresetSelector = $("font-preset-selector");
+        if (fontPresetSelector) {
+            fontPresetSelector.value = normalizeFontPreset(State.fontPreset || "clinical");
+            fontPresetSelector.addEventListener("change", () => {
+                const selectedPreset = normalizeFontPreset(fontPresetSelector.value);
+                localStorage.setItem(FONT_PRESET_STORAGE_KEY, selectedPreset);
+                applyFontPreset(selectedPreset, { refreshCharts: true });
+                saveGlobalStats();
+            });
+        }
 
         // Click en Tarjeta Sesiones -> Historial
         const cardSes = $("card-sesiones");
@@ -7170,6 +9189,17 @@
             if (confirm("¿Estás 100% seguro? Esta acción borrará TODO tu progreso y no se puede deshacer.")) {
                 localStorage.removeItem("enarm_stats");
                 localStorage.removeItem("enarm_history");
+                localStorage.removeItem("enarm_daily_plan");
+                localStorage.removeItem("enarm_review_queue");
+                localStorage.removeItem("enarm_topic_mastery");
+                localStorage.removeItem("enarm_case_notebook");
+                localStorage.removeItem("enarm_study_calendar");
+                localStorage.removeItem("enarm_last_postmortem");
+                localStorage.removeItem(POMODORO_STORAGE_KEYS.settings);
+                localStorage.removeItem(POMODORO_STORAGE_KEYS.state);
+                localStorage.removeItem(POMODORO_STORAGE_KEYS.log);
+                localStorage.removeItem(POMODORO_STORAGE_KEYS.specialties);
+                localStorage.removeItem(POMODORO_STORAGE_KEYS.focus);
 
                 State.globalStats = {
                     respondidas: 0,
@@ -7184,6 +9214,19 @@
                     }
                 };
                 State.history = [];
+                State.dailyPlan = null;
+                State.reviewQueue = [];
+                State.topicMastery = {};
+                State.caseNotebook = [];
+                State.studyCalendar = {};
+                State.lastPostmortem = null;
+                State.notebookSelectedId = null;
+                State.pomodoroSettings = createDefaultPomodoroSettings();
+                State.pomodoroState = createDefaultPomodoroState(State.pomodoroSettings);
+                State.pomodoroLog = [];
+                State.pomodoroSpecialties = [];
+                State.pomodoroFocusLabel = "";
+                stopPomodoroTicker();
 
                 saveGlobalStats();
                 updateDashboardStats();
@@ -7212,6 +9255,7 @@
         }
 
         function clearAccountLocalData() {
+            stopPomodoroTicker();
             localStorage.removeItem("enarm_user");
             localStorage.removeItem("enarm_specialty");
             localStorage.removeItem("enarm_university");
@@ -7219,6 +9263,17 @@
             localStorage.removeItem("enarm_stats");
             localStorage.removeItem("enarm_history");
             localStorage.removeItem("enarm_reports");
+            localStorage.removeItem("enarm_daily_plan");
+            localStorage.removeItem("enarm_review_queue");
+            localStorage.removeItem("enarm_topic_mastery");
+            localStorage.removeItem("enarm_case_notebook");
+            localStorage.removeItem("enarm_study_calendar");
+            localStorage.removeItem("enarm_last_postmortem");
+            localStorage.removeItem(POMODORO_STORAGE_KEYS.settings);
+            localStorage.removeItem(POMODORO_STORAGE_KEYS.state);
+            localStorage.removeItem(POMODORO_STORAGE_KEYS.log);
+            localStorage.removeItem(POMODORO_STORAGE_KEYS.specialties);
+            localStorage.removeItem(POMODORO_STORAGE_KEYS.focus);
             // No removemos enarm_theme para que se guarde la personalización
             window.location.reload();
         }
@@ -7806,12 +9861,13 @@
                     // Read config from State (always in sync with DOM via listeners in initSetupLogic)
                     // Fallback to reading DOM directly in case the user hasn't interacted yet
                     const domSpecs = Array.from(document.querySelectorAll(".spec-item.checked")).map(i => i.dataset.spec);
+                    const hasRandomSpecialty = domSpecs.includes("random") || (State.selectedSpecialties || []).includes("random");
                     const specsArray = (domSpecs.length > 0 ? domSpecs : State.selectedSpecialties)
                         .filter(spec => TRONCAL_SPECIALTIES.includes(spec));
                     const qtySlider = document.getElementById("setup-qty-slider");
                     const qty = qtySlider ? parseInt(qtySlider.value, 10) : (State.setupQty || 10);
 
-                    if (specsArray.length === 0 && State.selectedTopics.length === 0) {
+                    if (specsArray.length === 0 && State.selectedTopics.length === 0 && !hasRandomSpecialty) {
                         return showNotification("Configura especialidad o temas en 'Añadir Materias' primero.", "warning");
                     }
 
@@ -8689,7 +10745,8 @@
                                         syncAuthenticatedUI(data.username);
                                     }
 
-                                    if (data.theme) { State.theme = data.theme; localStorage.setItem("enarm_theme", State.theme); applyTheme(State.theme); }
+                                    if (data.theme) { State.theme = normalizeThemeSelection(data.theme); localStorage.setItem("enarm_theme", State.theme); applyTheme(State.theme); }
+                                    if (data.fontPreset) { State.fontPreset = normalizeFontPreset(data.fontPreset); localStorage.setItem(FONT_PRESET_STORAGE_KEY, State.fontPreset); applyFontPreset(State.fontPreset); }
                                     if (data.specialty !== undefined) { State.userSpecialty = data.specialty; localStorage.setItem("enarm_specialty", State.userSpecialty); if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty; }
                                     if (data.university !== undefined) { State.userUniversity = data.university; localStorage.setItem("enarm_university", State.userUniversity); if ($("profile-university")) $("profile-university").value = State.userUniversity; }
                                     if (data.isScorePublic !== undefined) { State.isScorePublic = data.isScorePublic !== false; localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0"); if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic; }
@@ -8710,6 +10767,49 @@
                                         mergeCloudAndLocalReports();
                                         refreshQuarantineKeys();
                                     }
+                                    if (data.dailyPlanStr) {
+                                        State.dailyPlan = JSON.parse(data.dailyPlanStr);
+                                        localStorage.setItem("enarm_daily_plan", data.dailyPlanStr);
+                                    }
+                                    if (data.reviewQueueStr) {
+                                        State.reviewQueue = JSON.parse(data.reviewQueueStr);
+                                        localStorage.setItem("enarm_review_queue", data.reviewQueueStr);
+                                    }
+                                    if (data.topicMasteryStr) {
+                                        State.topicMastery = JSON.parse(data.topicMasteryStr);
+                                        localStorage.setItem("enarm_topic_mastery", data.topicMasteryStr);
+                                    }
+                                    if (data.caseNotebookStr) {
+                                        State.caseNotebook = JSON.parse(data.caseNotebookStr);
+                                        localStorage.setItem("enarm_case_notebook", data.caseNotebookStr);
+                                    }
+                                    if (data.studyCalendarStr) {
+                                        State.studyCalendar = JSON.parse(data.studyCalendarStr);
+                                        localStorage.setItem("enarm_study_calendar", data.studyCalendarStr);
+                                    }
+                                    if (data.lastPostmortemStr) {
+                                        State.lastPostmortem = JSON.parse(data.lastPostmortemStr);
+                                        localStorage.setItem("enarm_last_postmortem", data.lastPostmortemStr);
+                                    }
+                                    if (data.pomodoroSettingsStr) {
+                                        State.pomodoroSettings = JSON.parse(data.pomodoroSettingsStr);
+                                        localStorage.setItem(POMODORO_STORAGE_KEYS.settings, data.pomodoroSettingsStr);
+                                    }
+                                    if (data.pomodoroLogStr) {
+                                        State.pomodoroLog = JSON.parse(data.pomodoroLogStr);
+                                        localStorage.setItem(POMODORO_STORAGE_KEYS.log, data.pomodoroLogStr);
+                                    }
+                                    if (data.pomodoroSpecialtiesStr) {
+                                        State.pomodoroSpecialties = JSON.parse(data.pomodoroSpecialtiesStr);
+                                        localStorage.setItem(POMODORO_STORAGE_KEYS.specialties, data.pomodoroSpecialtiesStr);
+                                    }
+                                    if (typeof data.pomodoroFocusLabel === "string") {
+                                        State.pomodoroFocusLabel = data.pomodoroFocusLabel;
+                                        localStorage.setItem(POMODORO_STORAGE_KEYS.focus, data.pomodoroFocusLabel);
+                                    }
+                                    ensureStudySystemsState();
+                                    rebuildTopicMastery();
+                                    ensureDailyPlanFresh();
 
                                     if (needsUpdate) {
                                         updateDashboardStats();
@@ -8844,9 +10944,14 @@
                             if (snap.exists()) {
                                 const data = snap.data();
                                 if (data.theme) {
-                                    State.theme = data.theme;
+                                    State.theme = normalizeThemeSelection(data.theme);
                                     localStorage.setItem("enarm_theme", State.theme);
                                     applyTheme(State.theme);
+                                }
+                                if (data.fontPreset) {
+                                    State.fontPreset = normalizeFontPreset(data.fontPreset);
+                                    localStorage.setItem(FONT_PRESET_STORAGE_KEY, State.fontPreset);
+                                    applyFontPreset(State.fontPreset);
                                 }
                                 if (data.specialty !== undefined) {
                                     State.userSpecialty = data.specialty;
@@ -8877,7 +10982,50 @@
                                     mergeCloudAndLocalReports();
                                     refreshQuarantineKeys();
                                 }
+                                if (data.dailyPlanStr) {
+                                    State.dailyPlan = JSON.parse(data.dailyPlanStr);
+                                    localStorage.setItem("enarm_daily_plan", data.dailyPlanStr);
+                                }
+                                if (data.reviewQueueStr) {
+                                    State.reviewQueue = JSON.parse(data.reviewQueueStr);
+                                    localStorage.setItem("enarm_review_queue", data.reviewQueueStr);
+                                }
+                                if (data.topicMasteryStr) {
+                                    State.topicMastery = JSON.parse(data.topicMasteryStr);
+                                    localStorage.setItem("enarm_topic_mastery", data.topicMasteryStr);
+                                }
+                                if (data.caseNotebookStr) {
+                                    State.caseNotebook = JSON.parse(data.caseNotebookStr);
+                                    localStorage.setItem("enarm_case_notebook", data.caseNotebookStr);
+                                }
+                                if (data.studyCalendarStr) {
+                                    State.studyCalendar = JSON.parse(data.studyCalendarStr);
+                                    localStorage.setItem("enarm_study_calendar", data.studyCalendarStr);
+                                }
+                                if (data.lastPostmortemStr) {
+                                    State.lastPostmortem = JSON.parse(data.lastPostmortemStr);
+                                    localStorage.setItem("enarm_last_postmortem", data.lastPostmortemStr);
+                                }
+                                if (data.pomodoroSettingsStr) {
+                                    State.pomodoroSettings = JSON.parse(data.pomodoroSettingsStr);
+                                    localStorage.setItem(POMODORO_STORAGE_KEYS.settings, data.pomodoroSettingsStr);
+                                }
+                                if (data.pomodoroLogStr) {
+                                    State.pomodoroLog = JSON.parse(data.pomodoroLogStr);
+                                    localStorage.setItem(POMODORO_STORAGE_KEYS.log, data.pomodoroLogStr);
+                                }
+                                if (data.pomodoroSpecialtiesStr) {
+                                    State.pomodoroSpecialties = JSON.parse(data.pomodoroSpecialtiesStr);
+                                    localStorage.setItem(POMODORO_STORAGE_KEYS.specialties, data.pomodoroSpecialtiesStr);
+                                }
+                                if (typeof data.pomodoroFocusLabel === "string") {
+                                    State.pomodoroFocusLabel = data.pomodoroFocusLabel;
+                                    localStorage.setItem(POMODORO_STORAGE_KEYS.focus, data.pomodoroFocusLabel);
+                                }
                             }
+                            ensureStudySystemsState();
+                            rebuildTopicMastery();
+                            ensureDailyPlanFresh();
                             // Asegurar que el nombre (y otros datos locales) se sincronicen con la nube al entrar
                             saveGlobalStats();
 

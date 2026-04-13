@@ -9,7 +9,12 @@
     <meta name="mobile-web-app-capable" content="yes">
     <script>
         (() => {
-            const storedTheme = localStorage.getItem("enarm_theme") || "ocean";
+            const rawTheme = localStorage.getItem("enarm_theme") || "ocean";
+            const legacyThemeMap = {
+                "clinical-dark": "ocean",
+                "clinical-light": "light"
+            };
+            const storedTheme = legacyThemeMap[rawTheme] || rawTheme;
             const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
             const resolvedTheme = storedTheme === "system"
                 ? (prefersLight ? "light" : "default")
@@ -52,7 +57,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
@@ -227,13 +232,13 @@
         <!-- POMODORO FLOATING WIDGET -->
         <div class="pomodoro-widget-shell" id="pomodoro-widget-shell">
             <button class="pomodoro-reveal-tab" id="btn-pomo-reveal" type="button" aria-label="Mostrar cronómetro pomodoro" title="Mostrar pomodoro">
-                <span class="pomodoro-reveal-icon">🍅</span>
+                <img class="pomodoro-reveal-icon" src="pomquest-logo.png" alt="PomQuest">
                 <span class="pomodoro-reveal-text">Pomodoro</span>
             </button>
             <div class="pomodoro-floating-widget" id="pomodoro-widget">
                 <button class="pomodoro-hide-btn" id="btn-pomo-hide" type="button" aria-label="Esconder cronómetro pomodoro" title="Esconder pomodoro">›</button>
                 <div class="pomo-mini-header">
-                    <span class="pomo-icon">&#x1F345;</span>
+                    <img class="pomo-icon" src="pomquest-logo.png" alt="PomQuest">
                     <span class="pomo-time-mini" id="pomo-time">25:00</span>
                 </div>
                 <div class="pomo-actions">
@@ -518,11 +523,11 @@
                                 <span class="preset-meta">50 Preguntas • 75m</span>
                             </div>
                         </div>
-                        <div class="preset-card blue-p" id="preset-flash" data-qty="20" data-time="15">
+                        <div class="preset-card blue-p" id="preset-flash" data-qty="10" data-time="15">
                             <div class="preset-icon flame">&#x1F525;</div>
                             <div class="preset-info">
                                 <span class="preset-name">Repaso Flash</span>
-                                <span class="preset-meta">20 Preguntas • 15m</span>
+                                <span class="preset-meta" id="preset-flash-meta">10 Preguntas • 15m</span>
                             </div>
                         </div>
                     </div>
@@ -547,6 +552,10 @@
                         <section class="setup-section">
                             <h3 class="section-label"><span class="label-icon">≡</span> ESPECIALIDADES A EVALUAR</h3>
                             <div class="spec-selection-grid">
+                                <div class="spec-item checked spec-item-random" data-spec="random">
+                                    <span>Aleatorio</span>
+                                    <span class="check-mark">✓</span>
+                                </div>
                                 <div class="spec-item" data-spec="mi">
                                     <span>Medicina Interna</span>
                                     <span class="check-mark">✓</span>
@@ -609,8 +618,8 @@
                                 <input type="range" id="setup-qty-slider" min="1" max="280" value="10"
                                     class="premium-slider">
                                 <div class="slider-labels">
-                                    <span>1</span>
-                                    <span>280</span>
+                                    <span id="setup-qty-min-label">1</span>
+                                    <span id="setup-qty-max-label">280</span>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -724,6 +733,7 @@
                         <button class="btn-primary" id="btn-review">Revisar Respuestas</button>
                         <button class="btn-secondary" id="btn-back-dash">Volver al Dashboard</button>
                     </div>
+
                 </div>
             </div>
 
@@ -1000,10 +1010,22 @@
                                         <p>Compara tu promedio actual con los puntajes de corte históricos.</p>
                                     </div>
                                 </div>
+                                <div class="list-item" id="mas-pomodoro-item" onclick="showView('view-pomodoro')" style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3><img class="pomodoro-logo-inline" src="pomquest-logo.png" alt="PomQuest"> Centro Pomodoro</h3>
+                                        <p>Activa bloques de enfoque con descansos, meta diaria, racha, historial y ajustes avanzados.</p>
+                                    </div>
+                                </div>
                                 <div class="list-item" onclick="showView('view-temario')" style="cursor: pointer;">
                                     <div class="list-item-content">
                                         <h3>&#x1F4D6; Temario Oficial ENARM</h3>
                                         <p>Consulta los temas y subtemas que componen el banco de preguntas actual.</p>
+                                    </div>
+                                </div>
+                                <div class="list-item" id="mas-estudio-plus-item" onclick="showView('view-estudio-plus')" style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3>&#x2728; Estudio Plus</h3>
+                                        <p>Abre tu plan diario, repasos, calendario de constancia, postmortem y cuaderno de casos.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1069,6 +1091,128 @@
                                     </div>
                                 </div>
                             </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-pomodoro" class="view">
+                <div class="panel pomodoro-hub-panel">
+                    <div class="panel-header pomodoro-hub-header">
+                        <div>
+                            <span class="dashboard-section-kicker">Enfoque profundo</span>
+                            <h2 class="panel-title"><img class="pomodoro-logo-title" src="pomquest-logo.png" alt="PomQuest"> Centro Pomodoro</h2>
+                            <p class="panel-subtitle">Inspirado en tu PomQuest, pero integrado al ritmo de estudio de ENARM Lab.</p>
+                        </div>
+                        <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
+                    </div>
+
+                    <div class="pomodoro-hub-grid">
+                        <section class="pomodoro-card pomodoro-hero-card">
+                            <div class="pomodoro-mode-badge is-focus" id="pomo-hub-mode-badge">
+                                <img class="pomodoro-logo-badge" src="pomquest-logo.png" alt="PomQuest">
+                                <strong>Enfoque</strong>
+                            </div>
+                            <div class="pomodoro-ring-wrap">
+                                <svg class="pomodoro-ring" viewBox="0 0 260 260" aria-hidden="true">
+                                    <circle class="pomodoro-ring-track" cx="130" cy="130" r="115"></circle>
+                                    <circle class="pomodoro-ring-progress" id="pomo-hub-ring-progress" cx="130" cy="130" r="115"></circle>
+                                </svg>
+                                <div class="pomodoro-ring-center">
+                                    <strong id="pomo-hub-time">25:00</strong>
+                                    <span id="pomo-hub-label">Enfoque</span>
+                                    <small id="pomo-hub-cycle">Bloque 1 de 4</small>
+                                </div>
+                            </div>
+                            <div class="pomodoro-progress-copy" id="pomo-hub-progress-label">0% del bloque actual</div>
+                            <div class="pomodoro-hero-actions">
+                                <button class="btn-primary" id="btn-pomo-hub-toggle" type="button">Iniciar</button>
+                                <button class="btn-secondary" id="btn-pomo-hub-reset" type="button">Reiniciar</button>
+                                <button class="btn-ghost" id="btn-pomo-hub-skip" type="button">Saltar descanso</button>
+                            </div>
+                            <div class="pomodoro-metrics-grid">
+                                <article class="pomodoro-metric">
+                                    <span>Pomodoros hoy</span>
+                                    <strong id="pomo-hub-today">0</strong>
+                                </article>
+                                <article class="pomodoro-metric">
+                                    <span>Meta diaria</span>
+                                    <strong id="pomo-hub-goal">0/8</strong>
+                                </article>
+                                <article class="pomodoro-metric">
+                                    <span>Racha</span>
+                                    <strong id="pomo-hub-streak">0 días</strong>
+                                </article>
+                                <article class="pomodoro-metric">
+                                    <span>Total acumulado</span>
+                                    <strong id="pomo-hub-total">0</strong>
+                                </article>
+                            </div>
+                        </section>
+
+                        <section class="pomodoro-card">
+                            <span class="dashboard-section-kicker">Especialidades</span>
+                            <h3 class="pomodoro-card-title">¿Qué especialidades vas a estudiar hoy?</h3>
+                            <p class="pomodoro-specialty-copy">Puedes elegir una o varias para orientar tus bloques de Pomodoro.</p>
+                            <div class="pomodoro-specialties-grid" id="pomo-specialties-grid"></div>
+                            <div class="pomodoro-inline-summary">
+                                <span>Selección actual</span>
+                                <strong id="pomo-specialties-counter">Sin selección</strong>
+                            </div>
+                            <p class="pomodoro-specialty-summary" id="pomo-specialties-summary">Elige una o varias especialidades para orientar tus bloques de hoy.</p>
+                            <div class="pomodoro-inline-actions">
+                                <button class="btn-secondary" id="btn-pomo-open-study" type="button">Abrir Estudio Plus</button>
+                                <button class="btn-ghost" id="btn-pomo-open-temario" type="button">Ir al Temario</button>
+                            </div>
+                        </section>
+
+                        <section class="pomodoro-card">
+                            <span class="dashboard-section-kicker">Configuración</span>
+                            <h3 class="pomodoro-card-title">Duraciones y automatización</h3>
+                            <div class="pomodoro-settings-grid">
+                                <div class="input-group">
+                                    <label for="pomo-setting-focus">Trabajo (min)</label>
+                                    <input class="text-input" id="pomo-setting-focus" type="number" min="5" max="90" step="1" value="25">
+                                </div>
+                                <div class="input-group">
+                                    <label for="pomo-setting-short">Descanso corto</label>
+                                    <input class="text-input" id="pomo-setting-short" type="number" min="1" max="30" step="1" value="5">
+                                </div>
+                                <div class="input-group">
+                                    <label for="pomo-setting-long">Descanso largo</label>
+                                    <input class="text-input" id="pomo-setting-long" type="number" min="5" max="45" step="1" value="15">
+                                </div>
+                                <div class="input-group">
+                                    <label for="pomo-setting-goal">Meta diaria</label>
+                                    <input class="text-input" id="pomo-setting-goal" type="number" min="1" max="20" step="1" value="8">
+                                </div>
+                            </div>
+                            <div class="pomodoro-toggles">
+                                <label class="pomodoro-toggle">
+                                    <input id="pomo-setting-autostart" type="checkbox">
+                                    <span>Iniciar automáticamente el siguiente ciclo</span>
+                                </label>
+                                <label class="pomodoro-toggle">
+                                    <input id="pomo-setting-notifs" type="checkbox">
+                                    <span>Mostrar notificaciones del navegador al terminar</span>
+                                </label>
+                            </div>
+                            <div class="pomodoro-settings-footer">
+                                <span id="pomo-notif-status">Pendientes de activar</span>
+                                <button class="btn-primary" id="btn-pomo-save-settings" type="button">Guardar ajustes</button>
+                            </div>
+                        </section>
+
+                        <section class="pomodoro-card">
+                            <span class="dashboard-section-kicker">Constancia</span>
+                            <h3 class="pomodoro-card-title">Últimos 7 días</h3>
+                            <div class="pomodoro-week-bars" id="pomo-hub-week-bars"></div>
+                        </section>
+
+                        <section class="pomodoro-card pomodoro-log-card">
+                            <span class="dashboard-section-kicker">Bitácora</span>
+                            <h3 class="pomodoro-card-title">Actividad reciente</h3>
+                            <div class="pomodoro-log-list" id="pomo-hub-recent-log"></div>
                         </section>
                     </div>
                 </div>
@@ -1354,6 +1498,15 @@
                     </div>
                     <p class="panel-subtitle">Analiza tu rendimiento y evolución histórica. Todas las métricas se
                         actualizan de acuerdo a tu desempeño en simulacros y repasos.</p>
+                    <div class="stats-demo-banner" id="stats-demo-banner" hidden>
+                        <div class="stats-demo-banner-copy">
+                            <strong>Vista previa de estadísticas</strong>
+                            <span>En gratis ves tus métricas base y una muestra visual de los paneles avanzados.</span>
+                        </div>
+                        <button class="btn-secondary stats-demo-banner-btn" type="button" data-open-redeem>
+                            Desbloquear premium
+                        </button>
+                    </div>
 
                     <div class="stats-overview"
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; margin-bottom: 25px;">
@@ -1363,13 +1516,6 @@
                             <div class="stat-label">Precisión Global</div>
                             <div class="stat-value" id="stats-global-precision"
                                 style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">0%</div>
-                        </div>
-                        <div class="stat-card"
-                            style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                            <div class="stat-icon orange-icon" style="font-size: 1.8rem; margin-bottom: 5px;">&#x23F1;&#xFE0F;</div>
-                            <div class="stat-label">Tiempo / Pregunta</div>
-                            <div class="stat-value" id="stats-avg-time"
-                                style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">0s</div>
                         </div>
                         <div class="stat-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
@@ -1383,7 +1529,7 @@
                     <div class="charts-grid"
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; align-items: start;">
                         <!-- Carta Rendimiento Histórico (Línea) -->
-                        <div class="chart-card"
+                        <div class="chart-card stats-free-preview-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); grid-column: 1 / -1;">
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
@@ -1399,7 +1545,7 @@
                         </div>
 
                         <!-- Carta Rendimiento por Especialidad (Radar / Hexagonal) -->
-                        <div class="chart-card"
+                        <div class="chart-card stats-premium-lock-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
                             <h3
                                 style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">
@@ -1408,10 +1554,16 @@
                                 style="position: relative; height: 300px; width: 100%; display: flex; justify-content: center;">
                                 <canvas id="chart-specialties"></canvas>
                             </div>
+                            <div class="stats-premium-overlay">
+                                <span class="stats-premium-overlay-badge">Premium</span>
+                                <strong>Vista parcial desbloqueable</strong>
+                                <p>En gratis solo ves una muestra. Activa premium para analizar dominio completo por especialidad.</p>
+                                <button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Ver completo</button>
+                            </div>
                         </div>
 
                         <!-- Carta Distribución Global (Doughnut) -->
-                        <div class="chart-card"
+                        <div class="chart-card stats-free-preview-card"
                             style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
                             <h3
                                 style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">
@@ -1426,6 +1578,90 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="chart-card stats-premium-lock-card"
+                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+                                <div>
+                                    <h3
+                                        style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">
+                                        &#x23F1;&#xFE0F; Ritmo por Sesi&oacute;n</h3>
+                                    <p
+                                        style="margin: 6px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5;">
+                                        Sigue tus segundos por pregunta para detectar si necesitas acelerar, consolidar o
+                                        entrenar bajo cron&oacute;metro.</p>
+                                </div>
+                                <span
+                                    style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Ultimas
+                                    10 sesiones</span>
+                            </div>
+                            <div style="position: relative; height: 300px; width: 100%;">
+                                <canvas id="chart-pace"></canvas>
+                            </div>
+                            <div class="stats-premium-overlay">
+                                <span class="stats-premium-overlay-badge">Premium</span>
+                                <strong>Ritmo avanzado bloqueado</strong>
+                                <p>Detecta tendencias de velocidad y constancia con acceso premium.</p>
+                                <button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Desbloquear</button>
+                            </div>
+                        </div>
+
+                        <div class="chart-card stats-premium-lock-card"
+                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+                                <div>
+                                    <h3
+                                        style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">
+                                        &#x1F4DA; Cobertura por Especialidad</h3>
+                                    <p
+                                        style="margin: 6px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5;">
+                                        Compara volumen de reactivos respondidos contra tu precisi&oacute;n real para
+                                        encontrar huecos de pr&aacute;ctica.</p>
+                                </div>
+                                <span
+                                    style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Volumen
+                                    vs precision</span>
+                            </div>
+                            <div style="position: relative; height: 300px; width: 100%;">
+                                <canvas id="chart-specialty-coverage"></canvas>
+                            </div>
+                            <div class="stats-premium-overlay">
+                                <span class="stats-premium-overlay-badge">Premium</span>
+                                <strong>Cobertura completa bloqueada</strong>
+                                <p>Premium te muestra volumen vs precisión para encontrar huecos reales de estudio.</p>
+                                <button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Quiero premium</button>
+                            </div>
+                        </div>
+
+                        <div class="chart-card stats-premium-lock-card"
+                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); grid-column: 1 / -1;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+                                <div>
+                                    <h3
+                                        style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">
+                                        &#x1F6A8; Temas M&aacute;s Fr&aacute;giles</h3>
+                                    <p
+                                        style="margin: 6px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5;">
+                                        Prioriza los temas con peor precisi&oacute;n y suficiente volumen para que tu
+                                        siguiente repaso tenga el mayor impacto.</p>
+                                </div>
+                                <span
+                                    style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Top
+                                    6 accionables</span>
+                            </div>
+                            <div style="position: relative; height: 340px; width: 100%;">
+                                <canvas id="chart-weak-topics"></canvas>
+                            </div>
+                            <div class="stats-premium-overlay">
+                                <span class="stats-premium-overlay-badge">Premium</span>
+                                <strong>Temas frágiles completos</strong>
+                                <p>En premium ves el panel accionable completo para priorizar tus puntos débiles.</p>
+                                <button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Desbloquear análisis</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1436,11 +1672,188 @@
                     <h2 class="panel-title"><span class="title-icon orange-text">&#x1F552;</span> Historial de Sesiones</h2>
                     <p class="panel-subtitle">Registro de exámenes y sesiones de repaso inteligente.</p>
 
+                    <div class="history-study-summary" id="history-study-summary">
+                        <div class="today-empty">Preparando resumen de constancia.</div>
+                    </div>
+
                     <div class="list-grid" id="history-list">
                         <!-- Se llena dinámicamente con app.js -->
                         <div class="list-item empty-history">
                             <p style="color:var(--text-muted); padding: 20px;">Aún no hay sesiones registradas.</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-estudio-plus" class="view">
+                <div class="study-plus-shell">
+                    <div class="panel study-plus-intro">
+                        <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+                            <div>
+                                <h2 class="panel-title"><span class="title-icon green-text">&#x2728;</span> Estudio Plus</h2>
+                                <p class="panel-subtitle">Tu espacio avanzado para organizar el día, repasar con intención y guardar los casos que vale la pena volver a ver.</p>
+                            </div>
+                            <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
+                        </div>
+                    </div>
+
+                    <section class="today-shell">
+                        <article class="panel today-main-card">
+                            <div class="today-main-head">
+                                <div>
+                                    <span class="today-eyebrow">Plan clínico del día</span>
+                                    <h2 class="today-title">Hoy</h2>
+                                    <p class="today-subtitle" id="today-plan-summary">Preparando tu siguiente bloque de estudio.</p>
+                                </div>
+                                <div class="today-chip-row">
+                                    <span class="today-chip" id="today-plan-focus">Sin foco principal</span>
+                                    <span class="today-chip today-chip--muted" id="today-plan-pressure">Sin presión</span>
+                                </div>
+                            </div>
+                            <div id="today-plan-list" class="today-plan-list">
+                                <div class="today-empty">Cargando plan diario...</div>
+                            </div>
+                            <div class="today-main-actions">
+                                <button class="btn-primary" id="btn-run-next-action" type="button">Continuar plan de hoy</button>
+                                <button class="btn-secondary" id="btn-open-temario-focus" type="button">Abrir temario</button>
+                                <button class="btn-ghost" id="btn-open-notebook-dashboard" type="button">Cuaderno de casos</button>
+                            </div>
+                        </article>
+
+                        <div class="today-side-stack">
+                            <article class="panel today-focus-card">
+                                <div class="dashboard-section-head">
+                                    <div>
+                                        <span class="dashboard-section-kicker">Siguiente acción</span>
+                                        <h3 class="dashboard-section-title">Prioridad inmediata</h3>
+                                    </div>
+                                </div>
+                                <div id="today-next-action" class="today-next-action">
+                                    <div class="today-empty">Detectando qué conviene estudiar primero.</div>
+                                </div>
+                            </article>
+
+                            <article class="panel today-coverage-card">
+                                <div class="dashboard-section-head">
+                                    <div>
+                                        <span class="dashboard-section-kicker">Cobertura</span>
+                                        <h3 class="dashboard-section-title">Mapa del temario</h3>
+                                    </div>
+                                    <button class="btn-ghost" id="btn-open-temario-map" type="button">Ver todo</button>
+                                </div>
+                                <div id="dashboard-coverage-summary" class="dashboard-coverage-summary">Analizando temas trabajados y pendientes.</div>
+                                <div id="dashboard-coverage-bars" class="dashboard-coverage-bars"></div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="dashboard-study-grid">
+                        <article class="panel dashboard-review-card">
+                            <div class="dashboard-section-head">
+                                <div>
+                                    <span class="dashboard-section-kicker">Repaso espaciado</span>
+                                    <h3 class="dashboard-section-title">Bandeja de repasos</h3>
+                                </div>
+                                <div class="review-tray-counts">
+                                    <span class="review-pill" id="review-count-today">0 hoy</span>
+                                    <span class="review-pill review-pill--late" id="review-count-late">0 atrasadas</span>
+                                    <span class="review-pill review-pill--done" id="review-count-done">0 completadas</span>
+                                </div>
+                            </div>
+                            <div id="dashboard-review-queue" class="dashboard-review-queue">
+                                <div class="today-empty">Todavía no hay repasos programados.</div>
+                            </div>
+                        </article>
+
+                        <article class="panel dashboard-notebook-card">
+                            <div class="dashboard-section-head">
+                                <div>
+                                    <span class="dashboard-section-kicker">Memoria activa</span>
+                                    <h3 class="dashboard-section-title">Cuaderno de casos</h3>
+                                </div>
+                                <button class="btn-ghost" id="btn-open-notebook-secondary" type="button">Abrir</button>
+                            </div>
+                            <div id="dashboard-notebook-preview" class="dashboard-notebook-preview">
+                                <div class="today-empty">Aún no has guardado casos en tu cuaderno.</div>
+                            </div>
+                        </article>
+
+                        <article class="panel dashboard-calendar-card">
+                            <div class="dashboard-section-head">
+                                <div>
+                                    <span class="dashboard-section-kicker">Constancia</span>
+                                    <h3 class="dashboard-section-title">Calendario de estudio</h3>
+                                </div>
+                            </div>
+                            <div id="dashboard-calendar-summary" class="dashboard-calendar-summary">Sin actividad registrada aún.</div>
+                            <div id="dashboard-calendar-heatmap" class="dashboard-calendar-heatmap"></div>
+                        </article>
+                    </section>
+
+                    <div class="panel results-postmortem" id="results-postmortem">
+                        <div class="dashboard-section-head">
+                            <div>
+                                <span class="dashboard-section-kicker">Postmortem clínico</span>
+                                <h3 class="dashboard-section-title">Lo que tu última sesión te deja</h3>
+                            </div>
+                        </div>
+                        <div class="results-postmortem-grid">
+                            <div class="results-postmortem-card">
+                                <h3>Errores patrón</h3>
+                                <div id="results-patterns" class="results-postmortem-list"></div>
+                            </div>
+                            <div class="results-postmortem-card">
+                                <h3>Temas prioritarios</h3>
+                                <div id="results-priority-topics" class="results-postmortem-list"></div>
+                            </div>
+                            <div class="results-postmortem-card results-postmortem-card--action">
+                                <h3>Siguiente acción</h3>
+                                <p id="results-next-action" class="results-next-action">Calculando la mejor continuación para tu estudio.</p>
+                                <button class="btn-primary" id="btn-results-next-action" type="button">Seguir recomendación</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel notebook-page" id="study-plus-notebook">
+                        <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+                            <div>
+                                <h2 class="panel-title"><span class="title-icon green-text">&#x1F4D3;</span> Cuaderno de Casos</h2>
+                                <p class="panel-subtitle">Guarda casos importantes, anota perlas clínicas y recupéralos por tema o etiqueta.</p>
+                            </div>
+                        </div>
+
+                        <div class="notebook-toolbar">
+                            <input id="notebook-search" class="text-input" type="text" placeholder="Buscar por caso, tema o nota">
+                            <input id="notebook-tags-filter" class="text-input" type="text" placeholder="Filtrar por etiqueta">
+                        </div>
+
+                        <div class="notebook-layout">
+                            <div id="notebook-list" class="notebook-list">
+                                <div class="today-empty">Todavía no guardas casos.</div>
+                            </div>
+
+                            <div class="panel notebook-editor-panel">
+                                <div id="notebook-empty" class="today-empty">Selecciona un caso guardado para editar notas y etiquetas.</div>
+                                <div id="notebook-editor" style="display: none;">
+                                    <span class="dashboard-section-kicker">Caso guardado</span>
+                                    <h3 id="notebook-editor-title" class="notebook-editor-title">Caso</h3>
+                                    <p id="notebook-editor-meta" class="notebook-editor-meta"></p>
+                                    <div class="input-group">
+                                        <label>Nota clínica</label>
+                                        <textarea id="notebook-note-input" class="text-input" rows="8" placeholder="Escribe tu razonamiento, puntos finos o lo que no quieres volver a olvidar."></textarea>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Etiquetas</label>
+                                        <input id="notebook-tags-input" class="text-input" type="text" placeholder="Ej. urgencias, pediatría, sepsis">
+                                    </div>
+                                    <div class="notebook-editor-actions">
+                                        <button class="btn-primary" id="btn-notebook-save" type="button">Guardar cambios</button>
+                                        <button class="btn-danger" id="btn-notebook-remove" type="button">Quitar del cuaderno</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -1680,6 +2093,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="input-group">
+                                    <label>Tipografía</label>
+                                    <select id="font-preset-selector" class="text-input">
+                                        <option value="clinical">Clínica Premium</option>
+                                        <option value="sora">Sora</option>
+                                        <option value="inter">Inter Clásica</option>
+                                    </select>
+                                    <p class="panel-subtitle" style="margin-top: 10px;">Cambia el estilo tipográfico sin afectar tus datos ni tu progreso.</p>
+                                </div>
 
                             </div>
                         </div>
@@ -1767,13 +2189,19 @@
                                                 <li>Acceso total hasta el d&iacute;a del examen, sin l&iacute;mites demo.</li>
                                                 <li>Simulacro real completo de 280 preguntas.</li>
                                                 <li>Mini simulacros premium para practicar m&aacute;s veces.</li>
+                                                <li>Hasta 280 preguntas por simulacro.</li>
+                                                <li>Elecci&oacute;n manual de especialidades o mezcla aleatoria.</li>
                                                 <li>Filtros por temas espec&iacute;ficos.</li>
                                                 <li>Filtros por GPC espec&iacute;ficas.</li>
                                                 <li>Todas las dificultades: f&aacute;cil, media, dif&iacute;cil y cualquiera.</li>
+                                                <li>Estad&iacute;sticas detalladas y paneles avanzados.</li>
+                                                <li>Gr&aacute;ficas de progreso, ritmo, cobertura y temas fr&aacute;giles.</li>
                                                 <li>Todos los temas visuales de la app.</li>
                                                 <li>Comunidad desbloqueada.</li>
                                                 <li>Reportes desbloqueados.</li>
                                                 <li>Zonas de refuerzo desbloqueadas.</li>
+                                                <li>Estudio Plus con plan diario, calendario, postmortem y cuaderno.</li>
+                                                <li>Centro Pomodoro con metas, racha, historial y automatizaciones.</li>
                                                 <li>Refuerzo IA e inteligente para atacar debilidades.</li>
                                                 <li>Refuerzo r&aacute;pido y refuerzo de casos.</li>
                                                 <li>Retos con amigos y funciones premium completas.</li>
@@ -1799,9 +2227,12 @@
                                             </div>
                                             <ul class="premium-plan-list">
                                                 <li>Acceso demo b&aacute;sico para conocer la plataforma.</li>
-                                                <li>Solo Repaso Flash, con m&aacute;ximo 30 preguntas por sesi&oacute;n.</li>
-                                                <li>Solo dificultad Cualquiera y solo 2 temas visuales.</li>
+                                                <li>Solo Repaso Flash, con m&aacute;ximo 10 preguntas por sesi&oacute;n.</li>
+                                                <li>Solo especialidad Aleatorio en crear examen.</li>
+                                                <li>Solo dificultad Cualquiera, 2 temas visuales y vista previa de estad&iacute;sticas b&aacute;sicas.</li>
                                                 <li>Sin filtros por tema o GPC espec&iacute;ficos.</li>
+                                                <li>Las gr&aacute;ficas avanzadas solo se muestran como muestra visual en gratis.</li>
+                                                <li>Sin estad&iacute;sticas avanzadas completas, sin Estudio Plus y sin Centro Pomodoro.</li>
                                                 <li>Sin comunidad, reportes, refuerzos, IA, mini simulacros ni retos.</li>
                                             </ul>
                                             <a class="premium-plan-cta"
@@ -2240,13 +2671,19 @@
                             <li>Acceso total hasta el d&iacute;a del examen, sin l&iacute;mites demo.</li>
                             <li>Simulacro real completo de 280 preguntas.</li>
                             <li>Mini simulacros premium para practicar m&aacute;s veces.</li>
+                            <li>Hasta 280 preguntas por simulacro.</li>
+                            <li>Elecci&oacute;n manual de especialidades o mezcla aleatoria.</li>
                             <li>Filtros por temas espec&iacute;ficos.</li>
                             <li>Filtros por GPC espec&iacute;ficas.</li>
                             <li>Todas las dificultades: f&aacute;cil, media, dif&iacute;cil y cualquiera.</li>
+                            <li>Estad&iacute;sticas detalladas y paneles avanzados.</li>
+                            <li>Gr&aacute;ficas de progreso, ritmo, cobertura y temas fr&aacute;giles.</li>
                             <li>Todos los temas visuales de la app.</li>
                             <li>Comunidad desbloqueada.</li>
                             <li>Reportes desbloqueados.</li>
                             <li>Zonas de refuerzo desbloqueadas.</li>
+                            <li>Estudio Plus con plan diario, calendario, postmortem y cuaderno.</li>
+                            <li>Centro Pomodoro con metas, racha, historial y automatizaciones.</li>
                             <li>Refuerzo IA e inteligente para atacar debilidades.</li>
                             <li>Refuerzo r&aacute;pido y refuerzo de casos.</li>
                             <li>Retos con amigos y funciones premium completas.</li>
@@ -2271,9 +2708,12 @@
                         </div>
                         <ul class="premium-plan-list">
                             <li>Acceso demo b&aacute;sico para conocer la plataforma.</li>
-                            <li>Solo Repaso Flash, con m&aacute;ximo 30 preguntas por sesi&oacute;n.</li>
-                            <li>Solo dificultad Cualquiera y solo 2 temas visuales.</li>
+                            <li>Solo Repaso Flash, con m&aacute;ximo 10 preguntas por sesi&oacute;n.</li>
+                            <li>Solo especialidad Aleatorio en crear examen.</li>
+                            <li>Solo dificultad Cualquiera, 2 temas visuales y vista previa de estad&iacute;sticas b&aacute;sicas.</li>
                             <li>Sin filtros por tema o GPC espec&iacute;ficos.</li>
+                            <li>Las gr&aacute;ficas avanzadas solo se muestran como muestra visual en gratis.</li>
+                            <li>Sin estad&iacute;sticas avanzadas completas, sin Estudio Plus y sin Centro Pomodoro.</li>
                             <li>Sin comunidad, reportes, refuerzos, IA, mini simulacros ni retos.</li>
                         </ul>
                         <a class="premium-plan-cta"
