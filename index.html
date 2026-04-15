@@ -1030,6 +1030,12 @@
                                         <p>Consulta los temas y subtemas que componen el banco de preguntas actual.</p>
                                     </div>
                                 </div>
+                                <div class="list-item" onclick="showView('view-escalas')" style="cursor: pointer;">
+                                    <div class="list-item-content">
+                                        <h3>&#x1F9E0; Escalas ENARM</h3>
+                                        <p>Memoriza componentes, cortes y conducta de las escalas m&aacute;s preguntables con repaso activo.</p>
+                                    </div>
+                                </div>
                                 <div class="list-item" id="mas-estudio-plus-item" onclick="showView('view-estudio-plus')" style="cursor: pointer;">
                                     <div class="list-item-content">
                                         <h3>&#x2728; Estudio Plus</h3>
@@ -1536,6 +1542,68 @@
             </div>
 
             <!-- ─── VIEW: CALCULADORA ─────────────────────────── -->
+            <div id="view-escalas" class="view">
+                <div class="panel scale-lab-panel">
+                    <div class="panel-header"
+                        style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
+                        <div>
+                            <h2 class="panel-title"><span class="title-icon green-text">&#x1F9E0;</span> Escalas ENARM</h2>
+                            <p class="panel-subtitle">Banco curado para fijar disparador cl&iacute;nico, componentes, cortes y conducta de las escalas que m&aacute;s suelen aparecer en preguntas tipo ENARM.</p>
+                        </div>
+                        <div class="today-main-actions">
+                            <button class="btn-ghost" type="button" onclick="resetScaleStudyFilters()">Reiniciar</button>
+                            <button class="btn-ghost" type="button" onclick="showView('view-mas')">Volver</button>
+                        </div>
+                    </div>
+
+                    <div class="scale-lab-shell">
+                        <section class="scale-simple-intro">
+                            <div>
+                                <span class="today-eyebrow">C&oacute;mo usarlo</span>
+                                <h3 class="scale-simple-title">Primero ves la escala y luego la entiendes</h3>
+                                <p id="scale-lab-summary" class="today-subtitle">Estoy preparando tu siguiente escala pendiente.</p>
+                            </div>
+                            <div class="scale-guide-list">
+                                <div class="scale-guide-item"><span class="scale-guide-step">1</span><span>Abre una escala arriba o exp&aacute;ndela en la lista.</span></div>
+                                <div class="scale-guide-item"><span class="scale-guide-step">2</span><span>Revisa primero criterios, puntaje e interpretaci&oacute;n.</span></div>
+                                <div class="scale-guide-item"><span class="scale-guide-step">3</span><span>Usa la explicaci&oacute;n y marca si ya la dominas.</span></div>
+                            </div>
+                            <div class="today-main-actions">
+                                <button class="btn-primary" type="button" onclick="focusDueScale()">Empezar con la siguiente</button>
+                                <button class="btn-secondary" type="button" onclick="focusRandomScale()">Quiero una al azar</button>
+                            </div>
+                            <div id="scale-lab-chips" class="today-chip-row"></div>
+                        </section>
+
+                        <div class="temario-search-shell scale-search-shell">
+                            <div class="temario-search-top">
+                                <div>
+                                    <p class="temario-search-label">Buscador</p>
+                                    <h3 class="temario-search-title">Encuentra una escala por nombre o patolog&iacute;a</h3>
+                                </div>
+                                <button class="btn-ghost temario-clear-btn" type="button" onclick="clearScaleSearch()">Limpiar</button>
+                            </div>
+                            <div class="temario-search-frame">
+                                <span class="temario-search-icon">&#x1F50D;</span>
+                                <input type="text" id="scale-search" class="temario-search-input"
+                                    placeholder="Ej. alvarado, bishop, TEP, pancreatitis..."
+                                    oninput="filterScaleStudyCatalog()">
+                            </div>
+                        </div>
+
+                        <section id="scale-focus-card" class="scale-focus-card" aria-live="polite"></section>
+
+                        <div class="temario-results-head">
+                            <p id="scale-results-summary" class="temario-results-summary">Cargando escalas...</p>
+                        </div>
+
+                        <div id="scale-results-grid" class="scale-grid">
+                            <!-- Se llena dinÃ¡micamente desde app.js -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div id="view-calculadora" class="view">
                 <div class="panel">
                     <div class="panel-header">
@@ -2997,6 +3065,7 @@
 
         window.dispatchEvent(new Event("firebaseLoaded"));
     </script>
+    <script src="scales-data.js" charset="UTF-8"></script>
     <script src="app.js" charset="UTF-8"></script>
 
     <!-- PWA: Register Service Worker -->

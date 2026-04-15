@@ -77,7 +77,16 @@
         pomodoroState: null,
         pomodoroLog: [],
         pomodoroSpecialties: [],
-        pomodoroFocusLabel: ""
+        pomodoroFocusLabel: "",
+        scaleStudy: {},
+        scaleFilters: {
+            specialty: "all",
+            status: "all",
+            query: ""
+        },
+        scaleExpanded: {},
+        scaleFocusId: "",
+        scaleAnswerVisible: false
     };
 
     const $ = (id) => document.getElementById(id);
@@ -102,6 +111,7 @@
     const COMMUNITY_ANNOUNCEMENT_MAX_LENGTH = 1200;
     const COMMUNITY_ANNOUNCEMENT_BANNER_PREVIEW_LENGTH = 180;
     const TRONCAL_SPECIALTIES = ["mi", "ped", "gyo", "cir"];
+    const SCALE_STUDY_STORAGE_KEY = "enarm_scale_study";
     const POMQUEST_LOGO_SRC = "pomquest-logo.png";
     const POMODORO_STORAGE_KEYS = {
         settings: "enarm_pomodoro_settings",
@@ -120,6 +130,22 @@
     };
     const REVIEW_INTERVALS_DAYS = [1, 3, 7, 14];
     const EXAM_TARGET_DATE = new Date(2026, 8, 28, 8, 0, 0);
+    const SCALE_REVIEW_INTERVALS_DAYS = [0, 1, 3, 7, 14, 30];
+    const SCALE_SPECIALTY_OPTIONS = [
+        { id: "all", label: "Todas" },
+        { id: "cirugia", label: "Cirugia/Urg" },
+        { id: "medicina", label: "Medicina" },
+        { id: "pedia", label: "Pediatria" },
+        { id: "gyo", label: "GYO" },
+        { id: "geria", label: "Geriatria" }
+    ];
+    const SCALE_STATUS_OPTIONS = [
+        { id: "all", label: "Todas" },
+        { id: "due", label: "Pendientes" },
+        { id: "progress", label: "En progreso" },
+        { id: "mastered", label: "Dominadas" },
+        { id: "new", label: "Nuevas" }
+    ];
     let notificationPermissionRequestedInSession = false;
     let foregroundPushListenerBound = false;
     let lastRegisteredPushToken = "";
@@ -3292,6 +3318,7 @@
         if (viewId === "view-estadisticas") updateCharts();
         if (viewId === "view-calculadora") initCalculator();
         if (viewId === "view-temario") void renderOfficialTemario($("temario-search")?.value || "");
+        if (viewId === "view-escalas") renderScaleStudyView();
         if (viewId === "view-reportes") renderReportedQuestions();
         if (viewId === "view-feedback-admin") {
             initFeedbackAdminInbox();
@@ -3321,6 +3348,7 @@
         localStorage.setItem("enarm_case_notebook", JSON.stringify(State.caseNotebook || []));
         localStorage.setItem("enarm_study_calendar", JSON.stringify(State.studyCalendar || {}));
         localStorage.setItem("enarm_last_postmortem", JSON.stringify(State.lastPostmortem || null));
+        localStorage.setItem(SCALE_STUDY_STORAGE_KEY, JSON.stringify(State.scaleStudy || {}));
         localStorage.setItem(FONT_PRESET_STORAGE_KEY, normalizeFontPreset(State.fontPreset));
         persistPomodoroLocalState();
         const reportsToSave = State.reportedQuestionsLocal || State.reportedQuestions || [];
@@ -3404,6 +3432,8 @@
         if (studyCalendar) State.studyCalendar = JSON.parse(studyCalendar);
         const lastPostmortem = localStorage.getItem("enarm_last_postmortem");
         if (lastPostmortem) State.lastPostmortem = JSON.parse(lastPostmortem);
+        const scaleStudy = localStorage.getItem(SCALE_STUDY_STORAGE_KEY);
+        if (scaleStudy) State.scaleStudy = JSON.parse(scaleStudy);
         const pomodoroSettings = localStorage.getItem(POMODORO_STORAGE_KEYS.settings);
         if (pomodoroSettings) State.pomodoroSettings = JSON.parse(pomodoroSettings);
         const pomodoroState = localStorage.getItem(POMODORO_STORAGE_KEYS.state);
@@ -6484,6 +6514,526 @@
         void renderOfficialTemario($("temario-search") ? $("temario-search").value : "");
     };
 
+    // ---------------------------------------------------------------------------
+    // ESCALAS ENARM
+    // ---------------------------------------------------------------------------
+    const ENARM_SCALE_CATALOG = Array.isArray(window.ENARM_SCALE_CATALOG_DATA) ? window.ENARM_SCALE_CATALOG_DATA : [];
+    const SCALE_TRACK_LABELS = {
+        cirugia: "Cirugia/Urgencias",
+        medicina: "Medicina Interna",
+        pedia: "Pediatria/Neonatologia",
+        gyo: "Gineco-Obstetricia",
+        geria: "Geriatria"
+    };
+
+    const ensureScaleStudyState = () => {
+        if (!State.scaleStudy || typeof State.scaleStudy !== "object" || Array.isArray(State.scaleStudy)) State.scaleStudy = {};
+        if (!State.scaleFilters || typeof State.scaleFilters !== "object") {
+            State.scaleFilters = { specialty: "all", status: "all", query: "" };
+        }
+        if (!State.scaleExpanded || typeof State.scaleExpanded !== "object" || Array.isArray(State.scaleExpanded)) State.scaleExpanded = {};
+        if (!State.scaleFocusId) State.scaleFocusId = "";
+        if (typeof State.scaleAnswerVisible !== "boolean") State.scaleAnswerVisible = false;
+    };
+
+    const createScaleStudyEntry = () => ({
+        level: 0,
+        reviews: 0,
+        correct: 0,
+        wrong: 0,
+        lastResult: "new",
+        lastReviewedAt: 0,
+        nextReviewKey: formatDateKey()
+    });
+
+    const getScaleById = (scaleId) => ENARM_SCALE_CATALOG.find(scale => scale.id === scaleId) || null;
+
+    const getScaleStudyEntry = (scaleId) => {
+        ensureScaleStudyState();
+        if (!State.scaleStudy[scaleId] || typeof State.scaleStudy[scaleId] !== "object") {
+            State.scaleStudy[scaleId] = createScaleStudyEntry();
+        }
+        return State.scaleStudy[scaleId];
+    };
+
+    const getScaleSearchBlob = (scale) => normalizeTextKey([
+        scale.name,
+        scale.subtitle,
+        scale.trigger,
+        scale.hook,
+        scale.pearl,
+        scale.trap,
+        scale.prompt,
+        scale.answer,
+        (scale.components || []).join(" "),
+        (scale.cutoffs || []).join(" "),
+        (scale.searchTerms || []).join(" "),
+        (scale.tracks || []).map(track => SCALE_TRACK_LABELS[track] || track).join(" ")
+    ].join(" "));
+
+    const isScaleDue = (scaleId, todayKey = formatDateKey()) => {
+        const entry = State.scaleStudy?.[scaleId];
+        if (!entry || !Number(entry.reviews)) return true;
+        if (!entry.nextReviewKey) return true;
+        return compareDateKeys(entry.nextReviewKey, todayKey) <= 0;
+    };
+
+    const getScaleStatusMeta = (scale) => {
+        const entry = State.scaleStudy?.[scale.id];
+        if (!entry || !Number(entry.reviews)) return { id: "new", label: "Nueva", className: "is-new" };
+        if (isScaleDue(scale.id)) return { id: "due", label: "Hoy", className: "is-due" };
+        if (Number(entry.level || 0) >= 4) return { id: "mastered", label: "Dominada", className: "is-mastered" };
+        return { id: "progress", label: "En progreso", className: "is-progress" };
+    };
+
+    const formatScaleNextReview = (scaleId) => {
+        const entry = State.scaleStudy?.[scaleId];
+        if (!entry || !Number(entry.reviews)) return "Primer repaso pendiente";
+        const nextKey = entry.nextReviewKey || formatDateKey();
+        const today = parseDateKey(formatDateKey());
+        const nextDate = parseDateKey(nextKey);
+        if (!today || !nextDate) return "Revisar pronto";
+        const diffDays = Math.round((nextDate.getTime() - today.getTime()) / (24 * 60 * 60 * 1000));
+        if (diffDays <= 0) return "Repaso hoy";
+        if (diffDays === 1) return "Repaso manana";
+        return `Repaso en ${diffDays} dias`;
+    };
+
+    const matchesScaleFilters = (scale, filters) => {
+        const specialty = filters?.specialty || "all";
+        const status = filters?.status || "all";
+        const query = normalizeTextKey(filters?.query || "");
+        if (specialty !== "all" && !(scale.tracks || []).includes(specialty)) return false;
+        const statusMeta = getScaleStatusMeta(scale);
+        if (status === "due" && !isScaleDue(scale.id)) return false;
+        if (status === "progress" && statusMeta.id !== "progress") return false;
+        if (status === "mastered" && statusMeta.id !== "mastered") return false;
+        if (status === "new" && statusMeta.id !== "new") return false;
+        if (query) {
+            const blob = getScaleSearchBlob(scale);
+            const queryTokens = query.split(" ").filter(Boolean);
+            if (!queryTokens.every(token => blob.includes(token))) return false;
+        }
+        return true;
+    };
+
+    const getFilteredScaleCatalog = (filters = State.scaleFilters) => {
+        return ENARM_SCALE_CATALOG
+            .filter(scale => matchesScaleFilters(scale, filters))
+            .sort((a, b) => {
+                const aDue = isScaleDue(a.id) ? 0 : 1;
+                const bDue = isScaleDue(b.id) ? 0 : 1;
+                if (aDue !== bDue) return aDue - bDue;
+                const rank = { new: 0, due: 1, progress: 2, mastered: 3 };
+                const aRank = rank[getScaleStatusMeta(a).id] ?? 9;
+                const bRank = rank[getScaleStatusMeta(b).id] ?? 9;
+                if (aRank !== bRank) return aRank - bRank;
+                return a.name.localeCompare(b.name, "es");
+            });
+    };
+
+    const getScaleMetrics = () => {
+        let due = 0;
+        let mastered = 0;
+        let inProgress = 0;
+        let fresh = 0;
+        ENARM_SCALE_CATALOG.forEach(scale => {
+            const statusMeta = getScaleStatusMeta(scale);
+            if (isScaleDue(scale.id)) due++;
+            if (statusMeta.id === "mastered") mastered++;
+            if (statusMeta.id === "progress") inProgress++;
+            if (statusMeta.id === "new") fresh++;
+        });
+        return {
+            total: ENARM_SCALE_CATALOG.length,
+            due,
+            mastered,
+            inProgress,
+            fresh
+        };
+    };
+
+    const renderScaleList = (items) => `<ul>${(items || []).map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+    const splitScaleCriterion = (item) => {
+        const text = String(item || "").trim();
+        const match = text.match(/^(.*?)(?:\s+)(-?\d+(?:\.\d+)?)$/);
+        if (!match) return { label: text, points: "" };
+        return {
+            label: String(match[1] || "").trim(),
+            points: String(match[2] || "").trim()
+        };
+    };
+    const renderScaleCriteriaRows = (items, { limit = 0 } = {}) => {
+        const list = Array.isArray(items) ? items : [];
+        const visible = limit > 0 ? list.slice(0, limit) : list;
+        return `
+            <div class="scale-criteria-list">
+                ${visible.map((item) => {
+                    const parts = splitScaleCriterion(item);
+                    return `
+                        <div class="scale-criteria-row">
+                            <span class="scale-criteria-text">${escapeHtml(parts.label)}</span>
+                            ${parts.points ? `<span class="scale-criteria-points">${escapeHtml(parts.points)} pt</span>` : ""}
+                        </div>
+                    `;
+                }).join("")}
+            </div>
+        `;
+    };
+    const renderScaleExplanation = (scale) => {
+        const interpretation = Array.isArray(scale?.cutoffs) && scale.cutoffs.length
+            ? scale.cutoffs.join(" · ")
+            : "Interpretala siempre junto con el contexto clinico.";
+        const assembly = scale?.hook
+            ? `Piensala con esta idea guia: ${scale.hook}.`
+            : "Ubica primero los rubros que la componen y luego su corte.";
+        return `
+            <div class="scale-explanation-list">
+                <div class="scale-explanation-item">
+                    <strong>Para que sirve</strong>
+                    <p>${escapeHtml(scale?.trigger || "Sin descripcion cargada.")}</p>
+                </div>
+                <div class="scale-explanation-item">
+                    <strong>Como entenderla</strong>
+                    <p>${escapeHtml(assembly)}</p>
+                </div>
+                <div class="scale-explanation-item">
+                    <strong>Como interpretarla</strong>
+                    <p>${escapeHtml(interpretation)}</p>
+                </div>
+                <div class="scale-explanation-item">
+                    <strong>Que no se te vaya</strong>
+                    <p>${escapeHtml(scale?.pearl || "")}</p>
+                    <p class="scale-explanation-warning">${escapeHtml(scale?.trap || "")}</p>
+                </div>
+            </div>
+        `;
+    };
+
+    const renderScaleFilterChips = () => {
+        const specialtyCont = $("scale-specialty-filters");
+        const statusCont = $("scale-status-filters");
+        if (specialtyCont) {
+            specialtyCont.innerHTML = SCALE_SPECIALTY_OPTIONS.map(option => `
+                <button type="button" class="scale-filter-chip ${State.scaleFilters.specialty === option.id ? "is-active" : ""}"
+                    onclick="setScaleSpecialtyFilter('${option.id}')">${escapeHtml(option.label)}</button>
+            `).join("");
+        }
+        if (statusCont) {
+            statusCont.innerHTML = SCALE_STATUS_OPTIONS.map(option => `
+                <button type="button" class="scale-filter-chip ${State.scaleFilters.status === option.id ? "is-active" : ""}"
+                    onclick="setScaleStatusFilter('${option.id}')">${escapeHtml(option.label)}</button>
+            `).join("");
+        }
+    };
+
+    const renderScaleStats = () => {
+        const cont = $("scale-lab-stats");
+        if (!cont) return;
+        const metrics = getScaleMetrics();
+        cont.innerHTML = [
+            { value: metrics.total, label: "Escalas curadas" },
+            { value: metrics.due, label: "Pendientes hoy" },
+            { value: metrics.inProgress, label: "En progreso" },
+            { value: metrics.mastered, label: "Dominadas" }
+        ].map(item => `
+            <div class="temario-stat scale-lab-stat">
+                <span class="temario-stat-value">${Number(item.value || 0).toLocaleString("es-MX")}</span>
+                <span class="temario-stat-label">${escapeHtml(item.label)}</span>
+            </div>
+        `).join("");
+    };
+
+    const renderScaleHeroCopy = () => {
+        const summary = $("scale-lab-summary");
+        const chips = $("scale-lab-chips");
+        const metrics = getScaleMetrics();
+        if (summary) {
+            summary.textContent = metrics.due > 0
+                ? `Hoy tienes ${metrics.due} escala(s) pendientes. Abre una, revisa criterios y corte, y luego marca si ya la dominas.`
+                : "Hoy no traes escalas pendientes. Puedes reforzar una al azar o buscar una en la lista.";
+        }
+        if (chips) {
+            chips.innerHTML = [
+                `${metrics.total} escalas`,
+                `${metrics.due} pendientes`,
+                `${metrics.mastered} dominadas`
+            ].map(label => `<span class="today-chip">${escapeHtml(label)}</span>`).join("");
+        }
+    };
+
+    const getScalePrimaryCutoff = (scale) => String(scale?.cutoffs?.[0] || "Sin corte clave cargado.");
+
+    const pickFocusedScale = (filteredScales) => {
+        if (!filteredScales || !filteredScales.length) return null;
+        const selected = filteredScales.find(scale => scale.id === State.scaleFocusId);
+        if (selected) return selected;
+        return filteredScales.find(scale => isScaleDue(scale.id)) || filteredScales[0];
+    };
+
+    const renderScaleFocus = (scale) => {
+        const cont = $("scale-focus-card");
+        if (!cont) return;
+        if (!scale) {
+            cont.innerHTML = `
+                <div class="scale-focus-empty">
+                    <div class="scale-focus-empty-icon">/</div>
+                    <h3>No hay escalas con esos filtros</h3>
+                    <p>Prueba limpiar la busqueda o cambiar el termino.</p>
+                </div>
+            `;
+            return;
+        }
+        State.scaleFocusId = scale.id;
+        const statusMeta = getScaleStatusMeta(scale);
+        const tracks = (scale.tracks || []).map(track => SCALE_TRACK_LABELS[track] || track).join(" · ");
+        const subtitleLine = [scale.subtitle, tracks].filter(Boolean).join(" · ");
+        cont.innerHTML = `
+            <div class="scale-focus-head">
+                <div>
+                    <p class="scale-focus-kicker">Escala para estudiar</p>
+                    <h3 class="scale-focus-title">${escapeHtml(scale.name)}</h3>
+                    <p class="scale-focus-subtitle">${escapeHtml(subtitleLine)}</p>
+                </div>
+                <span class="scale-status-badge ${statusMeta.className}">${escapeHtml(statusMeta.label)}</span>
+            </div>
+            <div class="scale-focus-primary">
+                <div class="scale-focus-section-head">
+                    <span class="scale-focus-label">La escala completa</span>
+                    <p class="scale-focus-mini-note"><strong>Cuándo usarla:</strong> ${escapeHtml(scale.trigger)}</p>
+                </div>
+                ${renderScaleCriteriaRows(scale.components)}
+            </div>
+            <div class="scale-focus-grid">
+                <div class="scale-focus-block">
+                    <span class="scale-focus-label">Interpretacion y corte</span>
+                    ${renderScaleList(scale.cutoffs)}
+                </div>
+                <div class="scale-focus-block scale-focus-explanation">
+                    <span class="scale-focus-label">Explicacion de la escala</span>
+                    ${renderScaleExplanation(scale)}
+                </div>
+            </div>
+            <div class="scale-focus-actions">
+                <button type="button" class="btn-ghost" onclick="toggleScaleAnswer()">${State.scaleAnswerVisible ? "Ocultar puntos clave" : "Ver puntos clave"}</button>
+                <button type="button" class="btn-secondary" onclick="gradeScale('${scale.id}','again')">Aun no la domino</button>
+                <button type="button" class="btn-primary" onclick="gradeScale('${scale.id}','easy')">Ya la domino</button>
+            </div>
+            <div class="scale-focus-answer ${State.scaleAnswerVisible ? "is-visible" : ""}">
+                <div class="scale-focus-notes">
+                    <p><strong>Resumen rapido:</strong> ${escapeHtml(scale.answer)}</p>
+                    <p><strong>Perla ENARM:</strong> ${escapeHtml(scale.pearl)}</p>
+                    <p><strong>Error frecuente:</strong> ${escapeHtml(scale.trap)}</p>
+                    <p><strong>Siguiente repaso:</strong> ${escapeHtml(formatScaleNextReview(scale.id))}</p>
+                </div>
+            </div>
+        `;
+    };
+
+    const renderScaleCard = (scale) => {
+        const statusMeta = getScaleStatusMeta(scale);
+        const tracks = (scale.tracks || []).map(track => SCALE_TRACK_LABELS[track] || track).join(" · ");
+        const isExpanded = Boolean(State.scaleExpanded?.[scale.id]);
+        return `
+            <article class="scale-card ${statusMeta.className}">
+                <div class="scale-card-head">
+                    <div>
+                        <h3 class="scale-card-title">${escapeHtml(scale.name)}</h3>
+                        <p class="scale-card-subtitle">${escapeHtml(scale.subtitle)}</p>
+                    </div>
+                    <span class="scale-status-badge ${statusMeta.className}">${escapeHtml(statusMeta.label)}</span>
+                </div>
+                <p class="scale-card-track">${escapeHtml(tracks)}</p>
+                <p class="scale-card-trigger"><strong>Uso:</strong> ${escapeHtml(scale.trigger)}</p>
+                <div class="scale-card-meta-row">
+                    <span class="scale-card-hook"><strong>Corte:</strong> ${escapeHtml(getScalePrimaryCutoff(scale))}</span>
+                    <span class="scale-card-next">${escapeHtml(formatScaleNextReview(scale.id))}</span>
+                </div>
+                ${isExpanded ? `
+                    <div class="scale-card-expanded">
+                        <div class="scale-card-section">
+                            <p class="scale-card-label">La escala</p>
+                            ${renderScaleCriteriaRows(scale.components)}
+                        </div>
+                        <div class="scale-card-section">
+                            <p class="scale-card-label">Interpretacion</p>
+                            ${renderScaleList(scale.cutoffs)}
+                        </div>
+                        <div class="scale-card-section">
+                            <p class="scale-card-label">Explicacion rapida</p>
+                            ${renderScaleExplanation(scale)}
+                        </div>
+                    </div>
+                ` : ""}
+                <div class="scale-card-actions">
+                    <button type="button" class="btn-ghost" onclick="toggleScaleExpanded('${scale.id}')">${isExpanded ? "Contraer" : "Expandir"}</button>
+                    <button type="button" class="btn-primary" onclick="focusScaleById('${scale.id}')">Abrir arriba</button>
+                </div>
+            </article>
+        `;
+    };
+
+    const renderScaleResults = (filteredScales) => {
+        const summary = $("scale-results-summary");
+        const grid = $("scale-results-grid");
+        if (!summary || !grid) return;
+        if (!filteredScales || !filteredScales.length) {
+            summary.textContent = "0 resultados con los filtros actuales.";
+            grid.innerHTML = `
+                <div class="temario-empty">
+                    <div class="temario-empty-icon">!</div>
+                    <h3>Sin coincidencias</h3>
+                    <p>Prueba buscar por patologia, nombre de la escala o limpia los filtros.</p>
+                </div>
+            `;
+            return;
+        }
+        summary.textContent = `${filteredScales.length} escala(s). Puedes expandirlas aqui o abrir una arriba.`;
+        grid.innerHTML = filteredScales.map(scale => renderScaleCard(scale)).join("");
+    };
+
+    const renderScaleStudyView = () => {
+        ensureScaleStudyState();
+        const searchInput = $("scale-search");
+        if (searchInput && searchInput.value !== (State.scaleFilters.query || "")) {
+            searchInput.value = State.scaleFilters.query || "";
+        }
+        renderScaleHeroCopy();
+        const filteredScales = getFilteredScaleCatalog();
+        renderScaleFocus(pickFocusedScale(filteredScales));
+        renderScaleResults(filteredScales);
+    };
+
+    const setScaleFocus = (scaleId, { reveal = false, smooth = true } = {}) => {
+        const scale = getScaleById(scaleId);
+        if (!scale) return;
+        State.scaleFocusId = scale.id;
+        State.scaleAnswerVisible = reveal;
+        renderScaleStudyView();
+        if (smooth) {
+            const focusCard = $("scale-focus-card");
+            if (focusCard) focusCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    };
+
+    const chooseNextScaleFocus = (currentId = "") => {
+        const filtered = getFilteredScaleCatalog();
+        const due = filtered.filter(scale => isScaleDue(scale.id) && scale.id !== currentId);
+        return due[0] || filtered.find(scale => scale.id !== currentId) || filtered[0] || null;
+    };
+
+    window.setScaleSpecialtyFilter = (specialtyId) => {
+        ensureScaleStudyState();
+        State.scaleFilters.specialty = specialtyId || "all";
+        State.scaleAnswerVisible = false;
+        renderScaleStudyView();
+    };
+
+    window.setScaleStatusFilter = (statusId) => {
+        ensureScaleStudyState();
+        State.scaleFilters.status = statusId || "all";
+        State.scaleAnswerVisible = false;
+        renderScaleStudyView();
+    };
+
+    window.filterScaleStudyCatalog = () => {
+        ensureScaleStudyState();
+        State.scaleFilters.query = $("scale-search") ? $("scale-search").value.trim() : "";
+        State.scaleAnswerVisible = false;
+        renderScaleStudyView();
+    };
+
+    window.clearScaleSearch = () => {
+        ensureScaleStudyState();
+        State.scaleFilters.query = "";
+        State.scaleAnswerVisible = false;
+        if ($("scale-search")) {
+            $("scale-search").value = "";
+            $("scale-search").focus();
+        }
+        renderScaleStudyView();
+    };
+
+    window.resetScaleStudyFilters = () => {
+        ensureScaleStudyState();
+        State.scaleFilters = { specialty: "all", status: "all", query: "" };
+        State.scaleExpanded = {};
+        State.scaleFocusId = "";
+        State.scaleAnswerVisible = false;
+        if ($("scale-search")) $("scale-search").value = "";
+        renderScaleStudyView();
+    };
+
+    window.focusScaleById = (scaleId) => {
+        setScaleFocus(scaleId, { reveal: false, smooth: true });
+    };
+
+    window.focusDueScale = () => {
+        const filtered = getFilteredScaleCatalog();
+        const dueScale = filtered.find(scale => isScaleDue(scale.id));
+        if (dueScale) return setScaleFocus(dueScale.id, { reveal: false, smooth: true });
+        if (filtered[0]) setScaleFocus(filtered[0].id, { reveal: false, smooth: true });
+    };
+
+    window.focusRandomScale = () => {
+        const filtered = getFilteredScaleCatalog();
+        if (!filtered.length) return;
+        const random = filtered[Math.floor(Math.random() * filtered.length)];
+        setScaleFocus(random.id, { reveal: false, smooth: true });
+    };
+
+    window.toggleScaleExpanded = (scaleId) => {
+        ensureScaleStudyState();
+        State.scaleExpanded[scaleId] = !State.scaleExpanded[scaleId];
+        renderScaleStudyView();
+    };
+
+    window.toggleScaleAnswer = () => {
+        State.scaleAnswerVisible = !State.scaleAnswerVisible;
+        renderScaleStudyView();
+    };
+
+    window.gradeScale = (scaleId, rating) => {
+        ensureScaleStudyState();
+        const scale = getScaleById(scaleId);
+        if (!scale) return;
+        const entry = getScaleStudyEntry(scaleId);
+        const todayKey = formatDateKey();
+        entry.reviews = Number(entry.reviews || 0) + 1;
+        entry.lastReviewedAt = Date.now();
+
+        if (rating === "again") {
+            entry.level = 0;
+            entry.wrong = Number(entry.wrong || 0) + 1;
+            entry.lastResult = "again";
+            entry.nextReviewKey = todayKey;
+        } else if (rating === "hard") {
+            entry.level = Math.max(1, Number(entry.level || 0));
+            entry.correct = Number(entry.correct || 0) + 1;
+            entry.lastResult = "hard";
+            entry.nextReviewKey = addDaysToKey(todayKey, Number(entry.level || 0) >= 2 ? 3 : 1);
+        } else {
+            entry.level = Math.min(Number(entry.level || 0) + 1, SCALE_REVIEW_INTERVALS_DAYS.length - 1);
+            entry.correct = Number(entry.correct || 0) + 1;
+            entry.lastResult = "easy";
+            entry.nextReviewKey = addDaysToKey(todayKey, SCALE_REVIEW_INTERVALS_DAYS[entry.level] || 30);
+        }
+
+        State.scaleStudy[scaleId] = entry;
+        State.scaleAnswerVisible = false;
+        saveGlobalStats();
+
+        const nextScale = chooseNextScaleFocus(scaleId);
+        State.scaleFocusId = nextScale ? nextScale.id : scaleId;
+        renderScaleStudyView();
+
+        if (rating === "again") {
+            showNotification(`${scale.name}: la dejamos para repasar hoy otra vez.`, "info");
+        } else {
+            showNotification(`${scale.name}: muy bien, ${formatScaleNextReview(scaleId).toLowerCase()}.`, "success");
+        }
+    };
+
     const finishExam = () => {
         if (isFinishing) return;
         isFinishing = true;
@@ -9365,6 +9915,7 @@
                 localStorage.removeItem("enarm_case_notebook");
                 localStorage.removeItem("enarm_study_calendar");
                 localStorage.removeItem("enarm_last_postmortem");
+                localStorage.removeItem(SCALE_STUDY_STORAGE_KEY);
                 localStorage.removeItem(POMODORO_STORAGE_KEYS.settings);
                 localStorage.removeItem(POMODORO_STORAGE_KEYS.state);
                 localStorage.removeItem(POMODORO_STORAGE_KEYS.log);
@@ -9390,6 +9941,11 @@
                 State.caseNotebook = [];
                 State.studyCalendar = {};
                 State.lastPostmortem = null;
+                State.scaleStudy = {};
+                State.scaleFilters = { specialty: "all", status: "all", query: "" };
+                State.scaleExpanded = {};
+                State.scaleFocusId = "";
+                State.scaleAnswerVisible = false;
                 State.notebookSelectedId = null;
                 State.pomodoroSettings = createDefaultPomodoroSettings();
                 State.pomodoroState = createDefaultPomodoroState(State.pomodoroSettings);
