@@ -5310,7 +5310,12 @@
                 }
                 clearSelectedPreset();
                 if (spec === "random") {
-                    $$(".spec-item").forEach(i => i.classList.toggle("checked", i.dataset.spec === "random"));
+                    const isChecked = item.classList.contains("checked");
+                    if (isPremiumActive() && isChecked) {
+                        item.classList.remove("checked");
+                    } else {
+                        $$(".spec-item").forEach(i => i.classList.toggle("checked", i.dataset.spec === "random"));
+                    }
                     syncSetupSpecialtiesState();
                     return;
                 }
