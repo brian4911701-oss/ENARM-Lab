@@ -453,6 +453,8 @@
         if (!cleanTheme) return "ocean";
         if (cleanTheme === "clinical-dark") return "ocean";
         if (cleanTheme === "clinical-light") return "light";
+        // El antiguo tema naranja se sustituyó por el monocromático.
+        if (cleanTheme === "ember") return "black-white";
         return cleanTheme;
     };
     const normalizeFontPreset = (preset) => FONT_PRESET_CONFIG[preset] ? preset : "clinical";
@@ -4908,7 +4910,7 @@
     const applyTheme = (theme) => {
         const normalizedTheme = normalizeThemeSelection(theme);
         // Remove all current theme classes
-        document.body.classList.remove("light-mode", "theme-forest", "theme-ocean", "theme-sunset", "theme-navy-gold", "theme-black-teal", "theme-aurora", "theme-ember", "theme-premium", "theme-premium-pink", "theme-clinical-dark", "theme-clinical-light");
+        document.body.classList.remove("light-mode", "theme-forest", "theme-ocean", "theme-sunset", "theme-navy-gold", "theme-black-teal", "theme-aurora", "theme-ember", "theme-black-white", "theme-premium", "theme-premium-pink", "theme-clinical-dark", "theme-clinical-light");
         document.body.style.backgroundColor = "";
 
         if (normalizedTheme === "system") {
@@ -4929,8 +4931,8 @@
             document.body.classList.add("theme-black-teal");
         } else if (normalizedTheme === "aurora") {
             document.body.classList.add("theme-aurora");
-        } else if (normalizedTheme === "ember") {
-            document.body.classList.add("theme-ember");
+        } else if (normalizedTheme === "black-white") {
+            document.body.classList.add("theme-black-white");
         } else if (normalizedTheme === "premium") {
             document.body.classList.add("theme-premium");
         } else if (normalizedTheme === "premium-pink") {
