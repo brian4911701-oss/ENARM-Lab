@@ -142,6 +142,13 @@
             name: "Plan ENARM 2027",
             amount: 1999,
             expiresAt: "2027-10-01T23:59:59-06:00"
+        }),
+        squad_2027: Object.freeze({
+            id: "squad_2027",
+            name: "Plan Squad 2027 · 4 personas",
+            amount: 4999,
+            seats: 4,
+            expiresAt: "2027-10-01T23:59:59-06:00"
         })
     });
     const GLOBAL_PREMIUM_COLLECTION = "feature_flags";
@@ -3304,13 +3311,14 @@
             const createdAt = getWithdrawalDate(item.notifiedAt || item.createdAt);
             const dateLabel = createdAt ? formatDateTime(createdAt) : "Sin fecha";
             const amount = Number(item.amount || 0).toLocaleString("es-MX");
-            const planLabel = item.planId === "enarm_2027" ? "Plan ENARM 2027" : "Plan ENARM 2026";
+            const planLabel = TRANSFER_PLANS[item.planId]?.name || "Plan no reconocido";
+            const seats = Math.max(1, Number(item.seats || TRANSFER_PLANS[item.planId]?.seats || 1));
             return `
                 <article class="withdrawal-admin-card ${pending ? "is-pending" : "is-paid"}">
                     <div class="withdrawal-admin-head">
                         <div>
                             <span class="withdrawal-status">${formatManualPaymentStatus(status)}</span>
-                            <h3>$${amount} MXN · ${planLabel}</h3>
+                            <h3>$${amount} MXN · ${planLabel} · ${seats} ${seats === 1 ? "acceso" : "accesos"}</h3>
                             <p>${escapeHtml(item.email || "Sin correo")} · ${dateLabel}</p>
                         </div>
                         ${pending ? `
@@ -3325,6 +3333,7 @@
                         <span><strong>UID:</strong> ${escapeHtml(item.uid || "")}</span>
                         <span><strong>Plan:</strong> ${escapeHtml(item.planId || "")}</span>
                         <span><strong>Importe esperado:</strong> $${amount} MXN</span>
+                        <span><strong>Accesos a activar:</strong> ${seats}</span>
                         <span><strong>Referido:</strong> ${escapeHtml(item.referralCode || "Sin código")}</span>
                     </div>
                 </article>
@@ -3471,7 +3480,7 @@
             const createdAt = getAdminUserDate(directory) || getAdminUserDate(user);
             const paidLabel = getAdminPaymentLabel(payment, entitlement);
             const accessLabel = hasPremium ? "Premium activo" : "Acceso Gratis";
-            const planLabel = entitlement && entitlement.planId === "enarm_2027" ? "Plan 2027" : "Plan 2026";
+            const planLabel = entitlement ? (TRANSFER_PLANS[entitlement.planId]?.name || "Plan Premium") : "Gratis";
             const email = directory.email || payment?.email || "Correo disponible cuando inicie sesi\u00f3n";
             const displayName = directory.username || user.username || "Aspirante";
             const isOwnAccount = user.id === State.currentUid;
@@ -3578,10 +3587,14 @@
         const banner = $("payment-pending-banner");
         const copy = $("payment-pending-copy");
         if (!banner) return;
+        if (isAdminUser()) {
+            banner.hidden = true;
+            return;
+        }
         const pending = (State.myManualPaymentRequests || []).find((item) => String(item.status || "") === "pending");
         banner.hidden = !pending;
         if (!pending || !copy) return;
-        const planLabel = pending.planId === "enarm_2027" ? "Plan ENARM 2027" : "Plan ENARM 2026";
+        const planLabel = TRANSFER_PLANS[pending.planId]?.name || "Plan Premium";
         copy.textContent = `Recibimos tu aviso para ${planLabel}. Continúas con la versión Gratis mientras comprobamos tu transferencia.`;
     };
 
@@ -13626,7 +13639,7 @@
                 };
 
                 const setPlanButtonsBusy = (busy, activePlan = "") => {
-                    ["enarm_2026", "enarm_2027"].forEach(planId => {
+                    Object.keys(TRANSFER_PLANS).forEach(planId => {
                         document.querySelectorAll(`[data-plan-id="${planId}"]`).forEach(btn => {
                             btn.disabled = busy;
                             if (!btn.dataset.defaultLabel) btn.dataset.defaultLabel = btn.innerHTML;
@@ -13846,6 +13859,7 @@
                             email: String(currentUser.email || "").slice(0, 160),
                             planId: plan.id,
                             amount: plan.amount,
+                            seats: plan.seats || 1,
                             currency: "MXN",
                             transferReference: profile.transferReference,
                             referralCode,
