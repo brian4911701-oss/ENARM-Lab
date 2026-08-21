@@ -77,7 +77,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
 
-<body>
+<body class="app-starting">
+    <!-- Se muestra mientras Firebase restaura la sesión para evitar que la bienvenida aparezca brevemente. -->
+    <div id="app-startup-screen" class="app-startup-screen" role="status" aria-live="polite">
+        <span class="logo-mark app-startup-logo" aria-hidden="true"></span>
+        <span class="app-startup-name">ENAR<span>Max</span></span>
+        <span class="app-startup-loader" aria-hidden="true"></span>
+        <span class="sr-only">Cargando ENARMax</span>
+    </div>
+
     <!-- ── LANDING PAGE ── -->
     <div id="landing-page" class="landing-page">
 
@@ -547,13 +555,13 @@
             </div>
 
             <form id="login-form" class="auth-form">
-                <div class="input-group">
+                <div class="input-group" id="group-auth-email">
                     <label>Correo Electrónico</label>
                     <input type="email" id="auth-email" required placeholder="medico@hospital.com" class="text-input"
                         style="width: 100%;">
                 </div>
 
-                <div class="input-group" style="margin-top: 10px;">
+                <div class="input-group" id="group-auth-password" style="margin-top: 10px;">
                     <label>Contraseña</label>
                     <input type="password" id="auth-password" required placeholder="Mínimo 6 caracteres"
                         class="text-input" style="width: 100%;">
@@ -611,7 +619,7 @@
                         d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                         fill="#EA4335" />
                 </svg>
-                Continuar con Google
+                <span id="auth-google-label">Continuar con Google</span>
             </button>
 
             <p class="auth-footer">¿No tienes cuenta? <a href="#"
@@ -679,6 +687,14 @@
                             </svg>
                         </span>
                         <span>Más</span>
+                    </button>
+                    <button class="nav-item admin-sidebar-nav" id="nav-admin" style="display: none;">
+                        <span class="nav-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2a2.5 2.5 0 0 1 2.45 2l.05.5a7.9 7.9 0 0 1 1.66.96l.47-.2a2.5 2.5 0 0 1 3.12 1.04l.9 1.56a2.5 2.5 0 0 1-.66 3.25l-.41.3c.04.31.06.62.06.93s-.02.62-.06.93l.41.3a2.5 2.5 0 0 1 .66 3.25l-.9 1.56a2.5 2.5 0 0 1-3.12 1.04l-.47-.2a7.9 7.9 0 0 1-1.66.96l-.05.5A2.5 2.5 0 0 1 12 22h-1.8a2.5 2.5 0 0 1-2.45-2l-.05-.5a7.9 7.9 0 0 1-1.66-.96l-.47.2a2.5 2.5 0 0 1-3.12-1.04l-.9-1.56a2.5 2.5 0 0 1 .66-3.25l.41-.3A7.5 7.5 0 0 1 2.6 12c0-.31.02-.62.06-.93l-.41-.3a2.5 2.5 0 0 1-.66-3.25l.9-1.56a2.5 2.5 0 0 1 3.12-1.04l.47.2a7.9 7.9 0 0 1 1.66-.96l.05-.5a2.5 2.5 0 0 1 2.45-2H12Zm-.9 6.5A3.5 3.5 0 1 0 11.1 15a3.5 3.5 0 0 0 0-6.5Z" />
+                            </svg>
+                        </span>
+                        <span>Administrador</span>
                     </button>
                     <button class="nav-item" id="nav-estadisticas">
                         <span class="nav-icon">
@@ -836,6 +852,15 @@
                         </div>
                     </div>
                 </header>
+
+                <button id="dashboard-upgrade-cta" class="dashboard-upgrade-cta" type="button" data-open-redeem hidden>
+                    <span class="dashboard-upgrade-crown" aria-hidden="true">👑</span>
+                    <span class="dashboard-upgrade-copy">
+                        <small>ENARMax PREMIUM</small>
+                        <strong>Desbloquea todas las herramientas</strong>
+                    </span>
+                    <span class="dashboard-upgrade-arrow" aria-hidden="true">→</span>
+                </button>
 
                 <!-- Active Exam Banner (Hidden by default) -->
                 <div id="active-exam-banner"
@@ -1579,6 +1604,7 @@
                         </div>
                         <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
                     </div>
+
                     <div id="reports-list" class="list-grid">
                         <!-- Dinámico -->
                     </div>
@@ -1905,6 +1931,11 @@
                         <button class="btn-ghost" onclick="showView('view-mas')">Volver</button>
                     </div>
 
+                    <div class="admin-section-tabs" role="tablist" aria-label="Secciones de administrador">
+                        <button class="admin-section-tab active" type="button" role="tab" aria-selected="true">Herramientas</button>
+                        <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-users')">Usuarios y accesos</button>
+                    </div>
+
                     <div class="settings-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
                         <div class="panel settings-panel" id="admin-preview-panel" style="border-top-color: var(--accent-orange); display: none;">
                             <h3 class="panel-title" style="margin-bottom: 16px; font-size: 1.1rem;">
@@ -1960,20 +1991,6 @@
                             <div id="admin-manual-payments-list" class="withdrawal-admin-list">
                                 <div class="list-item empty-history">
                                     <p style="color:var(--text-muted); padding: 20px;">Cargando avisos de transferencia...</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel settings-panel" id="admin-users-panel" style="border-top-color: var(--accent-blue); display: none;">
-                            <div class="profile-panel-head">
-                                <div>
-                                    <h2 class="panel-title"><span class="title-icon blue-text">&#128101;</span> Usuarios y acceso Premium</h2>
-                                    <p class="panel-subtitle">Usuarios ordenados del m&aacute;s reciente al m&aacute;s antiguo. El acceso se controla desde el interruptor.</p>
-                                </div>
-                            </div>
-                            <div id="admin-users-list" class="withdrawal-admin-list">
-                                <div class="list-item empty-history">
-                                    <p style="color:var(--text-muted); padding: 20px;">Cargando usuarios...</p>
                                 </div>
                             </div>
                         </div>
@@ -2043,6 +2060,30 @@
                                         <p>Revisa las preguntas que los usuarios han marcado con posibles errores.</p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-admin-users" class="view">
+                <div class="panel">
+                    <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h2 class="panel-title"><span class="title-icon blue-text">&#128101;</span> Usuarios y acceso Premium</h2>
+                            <p class="panel-subtitle">Gestiona el acceso de cada cuenta sin mezclarlo con pagos, códigos y demás herramientas.</p>
+                        </div>
+                        <button class="btn-ghost" onclick="showView('view-admin')">Volver a herramientas</button>
+                    </div>
+                    <div class="admin-section-tabs" role="tablist" aria-label="Secciones de administrador">
+                        <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin')">Herramientas</button>
+                        <button class="admin-section-tab active" type="button" role="tab" aria-selected="true">Usuarios y accesos</button>
+                    </div>
+                    <div class="panel settings-panel admin-users-page-panel" id="admin-users-panel" style="border-top-color: var(--accent-blue); display: none;">
+                        <p class="panel-subtitle">Usuarios ordenados del más reciente al más antiguo. El acceso se controla desde el interruptor.</p>
+                        <div id="admin-users-list" class="withdrawal-admin-list">
+                            <div class="list-item empty-history">
+                                <p style="color:var(--text-muted); padding: 20px;">Cargando usuarios...</p>
                             </div>
                         </div>
                     </div>
@@ -3647,22 +3688,20 @@
     </div>
 
     <!-- MODAL CANJEAR CODIGO -->
-    <div class="modal-overlay" id="redeem-modal"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
-        <div class="modal-content redeem-modal-content"
-            style="background: var(--bg-card); padding: 28px; border-radius: 16px; border: 1px solid var(--border); max-width: 860px; width: min(94vw, 860px); position: relative; max-height: 88vh; overflow-y: auto;">
-            <button id="btn-close-redeem"
-                style="position: absolute; top: 12px; right: 12px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
-            <h2 style="font-size: 18px; margin-bottom: 10px; color: var(--text-primary); text-align: center;">
-                Elige tu acceso Premium</h2>
-            <p id="redeem-reason" style="font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 16px;">
+    <div class="modal-overlay redeem-modal-overlay" id="redeem-modal" style="display: none;">
+        <div class="modal-content redeem-modal-content">
+            <button id="btn-close-redeem" class="redeem-modal-close" aria-label="Cerrar">✕</button>
+            <div class="redeem-modal-header">
+                <span class="redeem-modal-kicker">ENARMax Premium</span>
+                <h2>Desbloquea tu preparación</h2>
+            </div>
+            <p id="redeem-reason" class="redeem-modal-reason">
                 Elige un plan para continuar con la transferencia o canjea un código si ya tienes uno.
             </p>
-            <div class="premium-contact-box">
-                <p class="premium-contact-title">Compra Premium por transferencia</p>
+            <div class="premium-contact-box redeem-transfer-intro">
+                <p class="premium-contact-title">Pago único por transferencia</p>
                 <p class="premium-contact-copy">
-                    Al elegir un plan verás los datos de transferencia, el campo de referido y los términos
-                    que debes aceptar antes de confirmar tu pago.
+                    Elige tu vigencia. Después verás una referencia personal y los datos de pago.
                 </p>
                 <div class="premium-contact-actions" hidden>
                     <a class="premium-contact-link is-whatsapp" href="https://wa.me/message/NFAFPC752TNWP1"
@@ -3688,15 +3727,21 @@
                     </a>
                 </div>
             </div>
-            <div class="premium-contact-actions" style="margin-bottom: 14px;">
-                <button class="premium-plan-cta" type="button" data-plan-id="enarm_2026">Elegir plan 2026 · $399</button>
-                <button class="premium-plan-cta" type="button" data-plan-id="enarm_2027">Elegir plan 2027 · $1,999</button>
-                <button class="premium-plan-cta" type="button" data-plan-id="squad_2027">Plan Squad · 4 personas · $4,999</button>
+            <div class="redeem-plan-grid">
+                <button class="premium-plan-cta redeem-plan-card redeem-plan-card--2026" type="button" data-plan-id="enarm_2026">
+                    <span class="redeem-plan-tag">INDIVIDUAL</span><strong>ENARM 2026</strong><span class="redeem-plan-price">$399 MXN</span>
+                </button>
+                <button class="premium-plan-cta redeem-plan-card redeem-plan-card--2027" type="button" data-plan-id="enarm_2027">
+                    <span class="redeem-plan-tag">INDIVIDUAL</span><strong>ENARM 2027</strong><span class="redeem-plan-price">$1,999 MXN</span>
+                </button>
+                <button class="premium-plan-cta redeem-plan-card redeem-plan-card--squad" type="button" data-plan-id="squad_2027">
+                    <span class="redeem-plan-tag">4 PERSONAS · AHORRA $2,997</span><strong>Plan Squad 2027</strong><span class="redeem-plan-price">$4,999 MXN</span>
+                </button>
             </div>
             <button class="btn-secondary premium-pricing-toggle" type="button"
                 data-pricing-toggle="redeem-premium-plans"
                 aria-controls="redeem-premium-plans" aria-expanded="false">
-                <span>Planes y costos</span>
+                <span>Ver qué incluye Premium</span>
                 <span class="premium-pricing-toggle-icon" aria-hidden="true">&#9662;</span>
             </button>
             <div class="premium-pricing-panel premium-pricing-panel--modal" id="redeem-premium-plans" hidden>
@@ -3917,7 +3962,7 @@
     <!-- ── FIREBASE ── -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, GoogleAuthProvider, getAdditionalUserInfo, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, getDocs, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, addDoc, updateDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
         import { getAnalytics, logEvent, isSupported as isAnalyticsSupported } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
         import { getMessaging, getToken, isSupported as isMessagingSupported, onMessage } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging.js";
@@ -3980,6 +4025,7 @@
             updateProfile,
             onAuthStateChanged,
             googleProvider,
+            getAdditionalUserInfo,
             signInWithPopup,
             signInWithRedirect,
             getRedirectResult,

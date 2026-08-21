@@ -1808,6 +1808,10 @@
         updateGlobalPremiumAdminPanel();
         renderProfileView();
         const premium = isPremiumActive() || isPremiumResolutionPending();
+        const dashboardUpgradeCta = $("dashboard-upgrade-cta");
+        if (dashboardUpgradeCta) {
+            dashboardUpgradeCta.hidden = isAdminUser() || premium;
+        }
         const qtySlider = $("setup-qty-slider");
         const qtyVal = $("setup-qty-val");
         const qtyMaxLabel = $("setup-qty-max-label");
@@ -1989,6 +1993,8 @@
         if (adminManualPaymentsPanel) adminManualPaymentsPanel.style.display = isAdminUser() ? "block" : "none";
         const adminUsersPanel = $("admin-users-panel");
         if (adminUsersPanel) adminUsersPanel.style.display = isAdminUser() ? "block" : "none";
+        const adminSidebarNav = $("nav-admin");
+        if (adminSidebarNav) adminSidebarNav.style.display = isAdminUser() ? "flex" : "none";
         $$(".admin-preview-btn").forEach(btn => {
             btn.classList.toggle("active", btn.dataset.adminPreview === State.adminPreviewMode);
         });
@@ -2713,6 +2719,8 @@
         const allowed = canReclassifyUser();
         const adminItem = $("mas-admin-item");
         if (adminItem) adminItem.style.display = allowed ? "flex" : "none";
+        const adminSidebarNav = $("nav-admin");
+        if (adminSidebarNav) adminSidebarNav.style.display = isAdminUser() ? "flex" : "none";
         const item = $("mas-reclass-item");
         if (item) item.style.display = "none";
         const broadcastItem = $("mas-community-broadcast-item");
@@ -3591,7 +3599,11 @@
             banner.hidden = true;
             return;
         }
-        const pending = (State.myManualPaymentRequests || []).find((item) => String(item.status || "") === "pending");
+        const pending = (State.myManualPaymentRequests || []).find((item) =>
+            String(item.status || "") === "pending"
+            && item.uid === State.currentUid
+            && Boolean(item.notifiedAt)
+        );
         banner.hidden = !pending;
         if (!pending || !copy) return;
         const planLabel = TRANSFER_PLANS[pending.planId]?.name || "Plan Premium";
@@ -4525,7 +4537,7 @@
             showNotification("Solo admin puede usar el reclasificador.", "warning");
             viewId = "view-mas";
         }
-        if (viewId === "view-admin" && !isAdminUser()) {
+        if (["view-admin", "view-admin-users"].includes(viewId) && !isAdminUser()) {
             showNotification("Solo admin puede abrir esa sección.", "warning");
             viewId = "view-mas";
         }
@@ -4578,7 +4590,7 @@
             initFeedbackAdminInbox();
             renderAdminFeedbackInbox();
         }
-        if (viewId === "view-admin") {
+        if (viewId === "view-admin" || viewId === "view-admin-users") {
             initWithdrawalAdminInbox();
             renderAdminWithdrawalRequests();
             initAdminUsersInbox();
@@ -4877,6 +4889,7 @@
             { id: "nav-new-exam", view: "view-setup" },
             { id: "nav-comunidad", view: "view-comunidad" },
             { id: "nav-mas", view: "view-mas" },
+            { id: "nav-admin", view: "view-admin" },
             { id: "nav-estadisticas", view: "view-estadisticas" },
             { id: "nav-historial", view: "view-historial" },
             { id: "nav-ajustes", view: "view-ajustes" },
@@ -13631,6 +13644,18 @@
             if (authOverlay && loginForm) {
                 const landingPage = $("landing-page");
                 let checkoutStarting = false;
+                let startupScreenDismissed = false;
+                const dismissStartupScreen = () => {
+                    if (startupScreenDismissed) return;
+                    startupScreenDismissed = true;
+                    document.body.classList.remove("app-starting");
+                    const startupScreen = $("app-startup-screen");
+                    if (!startupScreen) return;
+                    startupScreen.classList.add("is-hidden");
+                    window.setTimeout(() => startupScreen.remove(), 300);
+                };
+                // Si la red no permite resolver Firebase, la app no debe quedarse bloqueada indefinidamente.
+                const startupSafetyTimeout = window.setTimeout(dismissStartupScreen, 8000);
 
                 const showAuthFromLanding = (options = {}) => {
                     if (landingPage) landingPage.classList.add("hidden");
@@ -14113,6 +14138,7 @@
                 if (window.FB && window.FB.onAuthStateChanged) {
                     window.FB.onAuthStateChanged(window.FB.auth, async (user) => {
                         State.authStateResolved = true;
+                        window.clearTimeout(startupSafetyTimeout);
                         if (user) {
                             State.entitlementLoaded = false;
                             State.globalPremiumLoaded = false;
@@ -14318,6 +14344,7 @@
                             syncReclassAccessUI();
                             syncPremiumUI();
                         }
+                        dismissStartupScreen();
                     });
                 }
 
@@ -14339,13 +14366,26 @@
                 const requiredRegisterInputs = [authUsername, authSpecialty, authUniversity, authPhone, authTargetYear].filter(Boolean);
 
                 let isRegisterMode = false;
+                let googleProfileCompletion = false;
 
                 const setAuthMode = (mode) => {
                     isRegisterMode = mode;
                     authContainer?.classList.toggle("auth-register-mode", isRegisterMode);
+                    authContainer?.classList.toggle("auth-google-profile-mode", googleProfileCompletion && isRegisterMode);
+                    const completingGoogleProfile = googleProfileCompletion && isRegisterMode;
+                    if (authEmail) {
+                        authEmail.disabled = completingGoogleProfile;
+                        authEmail.required = !completingGoogleProfile;
+                    }
+                    if (authPassword) {
+                        authPassword.disabled = completingGoogleProfile;
+                        authPassword.required = !completingGoogleProfile;
+                    }
                     loginForm?.classList.toggle("auth-form-register", isRegisterMode);
-                    if (authDivider) authDivider.style.display = isRegisterMode ? "none" : "flex";
-                    if (authProviderBtn) authProviderBtn.style.display = isRegisterMode ? "none" : "flex";
+                    if (authDivider) authDivider.style.display = "flex";
+                    if (authProviderBtn) authProviderBtn.style.display = "flex";
+                    const googleLabel = $("auth-google-label");
+                    if (googleLabel) googleLabel.textContent = isRegisterMode ? "Crear cuenta con Google" : "Continuar con Google";
                     if (isRegisterMode) {
                         if (groupUsername) groupUsername.style.display = "flex";
                         authRegisterFields.forEach(field => { field.style.display = "flex"; });
@@ -14414,6 +14454,30 @@
                             showNotification("El telefono debe tener entre 10 y 15 digitos.", "error");
                             return;
                         }
+                    }
+
+                    if (googleProfileCompletion && window.FB?.auth?.currentUser) {
+                        const submitBtn = document.querySelector(".auth-submit");
+                        if (submitBtn) submitBtn.textContent = "Guardando perfil...";
+                        const googleUser = window.FB.auth.currentUser;
+                        window.FB.updateProfile(googleUser, { displayName: userName })
+                            .then(async () => {
+                                State.userSpecialty = registrationProfile.specialty;
+                                State.userUniversity = registrationProfile.university;
+                                State.userPhone = registrationProfile.phone;
+                                State.userTargetYear = registrationProfile.targetYear;
+                                await ensureReferralWallet(googleUser.uid, userName).catch(handleReferralWalletError);
+                                bindReferralWalletListener(googleUser.uid);
+                                saveGlobalStats();
+                                googleProfileCompletion = false;
+                                authContainer?.classList.remove("auth-google-profile-mode");
+                                handleSuccessLogin(userName);
+                            })
+                            .catch(err => {
+                                showNotification("No se pudo guardar tu perfil: " + err.message, "error");
+                                if (submitBtn) submitBtn.textContent = "Guardar y continuar";
+                            });
+                        return;
                     }
 
                     if (email && password && window.FB) {
@@ -14598,8 +14662,18 @@
                         try {
                             const result = await window.FB.signInWithPopup(window.FB.auth, window.FB.googleProvider);
                             const userObj = result.user;
+                            const additionalInfo = window.FB.getAdditionalUserInfo
+                                ? window.FB.getAdditionalUserInfo(result)
+                                : null;
+                            if (additionalInfo && additionalInfo.isNewUser) {
+                                googleProfileCompletion = true;
+                                setAuthMode(true);
+                                if (authOverlay) authOverlay.classList.add("active");
+                                if (authSubmitBtn) authSubmitBtn.textContent = "Guardar y continuar";
+                                showNotification("Completa tu perfil para terminar de crear tu cuenta.", "info");
+                                return;
+                            }
                             let displayName = userObj.displayName;
-
                             if (!displayName) displayName = "Aspirante_" + Math.floor(Math.random() * 9999);
                             handleSuccessLogin(displayName);
                         } catch (error) {
