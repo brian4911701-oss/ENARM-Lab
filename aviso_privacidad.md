@@ -4,7 +4,7 @@ ENARMax trata sus datos personales conforme a la **Ley Federal de Protección de
 
 ## 1. Responsable y contacto
 
-**ENARMax** es responsable del tratamiento de los datos recabados a través de la plataforma. Para dudas de privacidad, derechos ARCO, revocación de consentimiento o eliminación de cuenta, escribe a [soporte@enarm-lab.com](mailto:soporte@enarm-lab.com) desde el correo vinculado a tu cuenta.
+**ENARMax** es responsable del tratamiento de los datos recabados a través de la plataforma. Para dudas de privacidad, derechos ARCO, revocación de consentimiento o eliminación de cuenta, escribe a [enarmaxapp@gmail.com](mailto:enarmaxapp@gmail.com) desde el correo vinculado a tu cuenta.
 
 ## 2. Datos personales que podemos tratar
 
@@ -46,7 +46,7 @@ Conservamos la información mientras mantengas una cuenta, sea necesaria para la
 
 ## 8. Derechos ARCO y revocación
 
-Puedes solicitar Acceso, Rectificación, Cancelación u Oposición, así como revocar consentimiento cuando sea procedente, enviando un correo a [soporte@enarm-lab.com](mailto:soporte@enarm-lab.com) con tu nombre, correo vinculado, derecho que deseas ejercer y la información necesaria para localizar tu cuenta. Responderemos conforme a los plazos legales aplicables. La cancelación puede requerir conservar datos mínimos cuando exista una obligación legal o una transacción pendiente.
+Puedes solicitar Acceso, Rectificación, Cancelación u Oposición, así como revocar consentimiento cuando sea procedente, enviando un correo a [enarmaxapp@gmail.com](mailto:enarmaxapp@gmail.com) con tu nombre, correo vinculado, derecho que deseas ejercer y la información necesaria para localizar tu cuenta. Responderemos conforme a los plazos legales aplicables. La cancelación puede requerir conservar datos mínimos cuando exista una obligación legal o una transacción pendiente.
 
 ## 9. Cookies, almacenamiento local y notificaciones
 

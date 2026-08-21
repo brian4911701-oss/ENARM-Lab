@@ -47,7 +47,7 @@ El uso de sus datos personales se rige por nuestro **Aviso de Privacidad**, disp
 Nos reservamos el derecho de modificar estos términos en cualquier momento. El uso continuado de la plataforma tras dichos cambios implica la aceptación de los nuevos términos.
 
 ## 10. Contacto, jurisdicción y ley aplicable
-Para soporte relacionado con estos términos, pagos o acceso, contáctanos en [soporte@enarm-lab.com](mailto:soporte@enarm-lab.com).
+Para soporte relacionado con estos términos, pagos o acceso, contáctanos en [enarmaxapp@gmail.com](mailto:enarmaxapp@gmail.com).
 
 Para cualquier controversia legal relacionada con ENARMax, las partes se someten a la legislación vigente en los Estados Unidos Mexicanos y a la jurisdicción de los tribunales competentes de la Ciudad de México, renunciando a cualquier otro fuero.
 

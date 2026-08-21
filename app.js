@@ -3099,7 +3099,7 @@
     // ---------------------------------------------------------------------------
     // Feedback helpers
     // ---------------------------------------------------------------------------
-    const FEEDBACK_EMAIL = "soporte@enarm-lab.com";
+    const FEEDBACK_EMAIL = "enarmaxapp@gmail.com";
 
     const buildFeedbackText = () => {
         const name = $("feedback-name")?.value?.trim() || "";
