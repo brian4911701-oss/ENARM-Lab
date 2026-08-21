@@ -416,35 +416,6 @@ body {
   width: 100vw;
 }
 
-/* PWA de escritorio: marco interior suave inspirado en One UI, sin alterar el navegador. */
-@media (display-mode: standalone) and (min-width: 769px) {
-  html { background: #060a13; }
-  body {
-    min-height: 100dvh;
-    padding: 12px;
-    background: #060a13;
-  }
-  .app-layout {
-    width: 100%;
-    height: calc(100dvh - 24px);
-    min-height: 0;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 30px;
-    background: var(--bg-app);
-    box-shadow: 0 18px 55px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.05);
-  }
-  .sidebar { border-radius: 30px 0 0 30px; }
-  .main-content { border-radius: 0 30px 30px 0; }
-}
-
-@media (display-mode: standalone) and (min-width: 769px) and (max-width: 980px) {
-  body { padding: 8px; }
-  .app-layout { height: calc(100dvh - 16px); border-radius: 24px; }
-  .sidebar { border-radius: 24px 0 0 24px; }
-  .main-content { border-radius: 0 24px 24px 0; }
-}
-
 /* Responsive */
 @media (min-width: 769px) {
   .mobile-only-mas,

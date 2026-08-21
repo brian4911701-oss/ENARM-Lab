@@ -36,7 +36,7 @@ try {
 
 // ENARMax Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
-const CACHE_NAME = 'enarmax-v15';
+const CACHE_NAME = 'enarmax-v17';
 
 // Archivos esenciales que se cachean al instalar
 const CORE_ASSETS = [
@@ -51,6 +51,9 @@ const CORE_ASSETS = [
     '/notification-badge.png',
     '/icon-192.png',
     '/icon-512.png',
+    '/icon-liquid-192.png',
+    '/icon-liquid-512.png',
+    '/apple-touch-icon.png',
     '/icon-monochrome-192.png',
     '/icon-monochrome-512.png'
 ];
