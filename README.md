@@ -14,7 +14,7 @@ Este proyecto es un simulador web del **Examen Nacional de Aspirantes a Residenc
 ## Estructura del proyecto
 
 ```
-ENARM Lab/
+ENARMax/
 ├─ index.html      # página principal y estructura de pantallas
 ├─ styles.css      # estilos premium (dark mode, animaciones)
 ├─ questions.js    # base de datos de preguntas (ejemplo)

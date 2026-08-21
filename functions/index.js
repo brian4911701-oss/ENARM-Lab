@@ -230,7 +230,7 @@ exports.sendCommunityAnnouncementPush = onDocumentCreated("community_announcemen
     const rawMessage = String(data.message || "").trim();
     if (!rawMessage) return;
 
-    const title = String(data.title || "Aviso ENARM Lab").slice(0, 70);
+    const title = String(data.title || "Aviso ENARMax").slice(0, 70);
     const body = rawMessage.replace(/\s+/g, " ").slice(0, 240);
 
     const summary = await sendPushToAllUsers({

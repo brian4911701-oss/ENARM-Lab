@@ -81,7 +81,7 @@
     <!-- Se muestra mientras Firebase restaura la sesión para evitar que la bienvenida aparezca brevemente. -->
     <div id="app-startup-screen" class="app-startup-screen" role="status" aria-live="polite">
         <span class="logo-mark app-startup-logo" aria-hidden="true"></span>
-        <span class="app-startup-name">ENAR<span>Max</span></span>
+        <span class="app-startup-name">ENARM<span>ax</span></span>
         <span class="app-startup-loader" aria-hidden="true"></span>
         <span class="sr-only">Cargando ENARMax</span>
     </div>
@@ -103,7 +103,7 @@
             <nav class="landing-nav">
                 <div class="landing-logo">
                     <span class="logo-mark landing-logo-img"></span>
-                    <span class="landing-logo-text">ENAR<span class="landing-logo-accent">Max</span></span>
+                    <span class="landing-logo-text">ENARM<span class="landing-logo-accent">ax</span></span>
                 </div>
                 <div class="landing-nav-links" id="landing-nav-links">
                     <a href="#landing-features" class="landing-nav-link">Características</a>
@@ -511,7 +511,7 @@
             <div class="landing-footer-inner">
                 <div class="landing-footer-brand">
                     <span class="logo-mark landing-footer-logo"></span>
-                    <span class="landing-logo-text" style="font-size:1.1rem;">ENAR<span class="landing-logo-accent">Max</span></span>
+                    <span class="landing-logo-text" style="font-size:1.1rem;">ENARM<span class="landing-logo-accent">ax</span></span>
                     <p class="landing-footer-tagline">Práctica clínica, simulacros y seguimiento para tu preparación ENARM.</p>
                 </div>
                 <div class="landing-footer-links-grid">
@@ -2031,6 +2031,17 @@
                             </div>
                         </div>
 
+                        <div class="panel settings-panel" id="admin-ratings-panel" style="border-top-color: #f4c542; display: none;">
+                            <div class="profile-panel-head">
+                                <div>
+                                    <h2 class="panel-title"><span class="title-icon yellow-text">★</span> Valoraciones de la app</h2>
+                                    <p class="panel-subtitle">Opiniones enviadas por la comunidad.</p>
+                                </div>
+                            </div>
+                            <div id="admin-ratings-summary" class="admin-ratings-summary">Cargando valoraciones...</div>
+                            <div id="admin-ratings-list" class="withdrawal-admin-list"></div>
+                        </div>
+
                         <div class="panel settings-panel" style="border-top-color: var(--accent-green);">
                             <h3 class="panel-title" style="margin-bottom: 16px; font-size: 1.1rem;">
                                 <span class="title-icon green-text">&#x1F4C2;</span> Accesos directos
@@ -2073,6 +2084,7 @@
                             <h2 class="panel-title"><span class="title-icon blue-text">&#128101;</span> Usuarios y acceso Premium</h2>
                             <p class="panel-subtitle">Gestiona el acceso de cada cuenta sin mezclarlo con pagos, códigos y demás herramientas.</p>
                         </div>
+
                         <button class="btn-ghost" onclick="showView('view-admin')">Volver a herramientas</button>
                     </div>
                     <div class="admin-section-tabs" role="tablist" aria-label="Secciones de administrador">
@@ -3955,6 +3967,30 @@
                 </ol>
                 <button class="btn-primary" onclick="document.getElementById('pwa-modal').style.display='none'"
                     style="width: 100%;">¡Entendido!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── VALORACIÓN DE LA APP ── -->
+    <div id="rating-modal" class="rating-modal" hidden aria-hidden="true">
+        <div class="rating-card" role="dialog" aria-modal="true" aria-labelledby="rating-title">
+            <button id="rating-close" class="rating-close" type="button" aria-label="Cerrar">×</button>
+            <span class="rating-kicker">TU OPINIÓN NOS AYUDA</span>
+            <h2 id="rating-title">¿Qué tal va tu experiencia?</h2>
+            <p>Califica ENARMax y cuéntanos qué podemos mejorar.</p>
+            <div id="rating-stars" class="rating-stars" role="radiogroup" aria-label="Calificación de 1 a 5 estrellas">
+                <button type="button" class="rating-star" data-rating-star="1" aria-label="1 estrella">★</button>
+                <button type="button" class="rating-star" data-rating-star="2" aria-label="2 estrellas">★</button>
+                <button type="button" class="rating-star" data-rating-star="3" aria-label="3 estrellas">★</button>
+                <button type="button" class="rating-star" data-rating-star="4" aria-label="4 estrellas">★</button>
+                <button type="button" class="rating-star" data-rating-star="5" aria-label="5 estrellas">★</button>
+            </div>
+            <div id="rating-value-label" class="rating-value-label">Elige una calificación</div>
+            <textarea id="rating-comment" class="text-input" rows="4" maxlength="800" placeholder="Escribe un comentario opcional..."></textarea>
+            <div class="rating-actions">
+                <button id="rating-later" class="btn-ghost" type="button">Preguntarme más tarde</button>
+                <button id="rating-cancel" class="btn-ghost" type="button">Cancelar</button>
+                <button id="rating-submit" class="btn-primary" type="button" disabled>Enviar valoración</button>
             </div>
         </div>
     </div>

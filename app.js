@@ -75,6 +75,9 @@
         caseOverridesUnsub: null,
         feedbackInbox: [],
         feedbackAdminUnsub: null,
+        ratingsInbox: [],
+        ratingsAdminUnsub: null,
+        ratingPromptLoaded: false,
         withdrawalRequests: [],
         withdrawalAdminUnsub: null,
         withdrawalSubmitting: false,
@@ -159,6 +162,7 @@
     const NOTIFICATION_BADGE = "/notification-badge.png";
     const PUSH_TOKEN_COLLECTION = "user_push_tokens";
     const FEEDBACK_COLLECTION = "feedback_submissions";
+    const RATINGS_COLLECTION = "app_ratings";
     const ADMIN_INBOX_UID = ADMIN_UIDS[0];
     const REFERRAL_REWARD_COINS = 50;
     const WITHDRAWAL_REQUESTS_COLLECTION = "withdrawal_requests";
@@ -1993,6 +1997,8 @@
         if (adminManualPaymentsPanel) adminManualPaymentsPanel.style.display = isAdminUser() ? "block" : "none";
         const adminUsersPanel = $("admin-users-panel");
         if (adminUsersPanel) adminUsersPanel.style.display = isAdminUser() ? "block" : "none";
+        const adminRatingsPanel = $("admin-ratings-panel");
+        if (adminRatingsPanel) adminRatingsPanel.style.display = isAdminUser() ? "block" : "none";
         const adminSidebarNav = $("nav-admin");
         if (adminSidebarNav) adminSidebarNav.style.display = isAdminUser() ? "flex" : "none";
         $$(".admin-preview-btn").forEach(btn => {
@@ -3118,6 +3124,112 @@
         const body = buildFeedbackText();
         const mailto = `mailto:${FEEDBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailto;
+    };
+
+    const RATING_LATER_KEY = "enarmax_rating_prompt_after";
+    const RATING_CANCEL_KEY = "enarmax_rating_prompt_cancelled";
+    const RATING_PROMPT_DELAY_MS = 15000;
+    const RATING_LATER_DELAY_MS = 3 * 24 * 60 * 60 * 1000;
+    const RATING_CANCEL_DELAY_MS = 30 * 24 * 60 * 60 * 1000;
+    let selectedRatingValue = 0;
+
+    const ratingLabel = (value) => `${String(value).replace(".5", ",5")} de 5 estrellas`;
+    const hideRatingModal = () => {
+        const modal = $("rating-modal");
+        if (!modal) return;
+        modal.hidden = true;
+        modal.setAttribute("aria-hidden", "true");
+    };
+    const paintRatingStars = () => {
+        $$("#rating-stars .rating-star").forEach((star) => {
+            const starValue = Number(star.dataset.ratingStar || 0);
+            star.classList.toggle("is-full", selectedRatingValue >= starValue);
+            star.classList.toggle("is-half", selectedRatingValue === starValue - .5);
+            star.setAttribute("aria-checked", String(selectedRatingValue === starValue || selectedRatingValue === starValue - .5));
+        });
+        const label = $("rating-value-label");
+        if (label) label.textContent = selectedRatingValue ? ratingLabel(selectedRatingValue) : "Elige una calificación";
+        const submit = $("rating-submit");
+        if (submit) submit.disabled = !selectedRatingValue;
+    };
+    const openRatingModal = () => {
+        const modal = $("rating-modal");
+        if (!modal) return;
+        selectedRatingValue = 0;
+        const comment = $("rating-comment");
+        if (comment) comment.value = "";
+        paintRatingStars();
+        modal.hidden = false;
+        modal.setAttribute("aria-hidden", "false");
+    };
+    const scheduleRatingPrompt = async (user) => {
+        if (!user || isAdminUser() || State.ratingPromptLoaded) return;
+        State.ratingPromptLoaded = true;
+        const deferUntil = Number(localStorage.getItem(RATING_LATER_KEY) || localStorage.getItem(RATING_CANCEL_KEY) || 0);
+        if (deferUntil > Date.now()) return;
+        try {
+            const ratingRef = window.FB.doc(window.FB.db, RATINGS_COLLECTION, user.uid);
+            const existing = await window.FB.getDoc(ratingRef);
+            if (existing.exists()) return;
+            window.setTimeout(openRatingModal, RATING_PROMPT_DELAY_MS);
+        } catch (error) {
+            console.warn("No se pudo comprobar la valoración previa:", error);
+        }
+    };
+    const submitAppRating = async () => {
+        const user = window.FB?.auth?.currentUser;
+        if (!user || !selectedRatingValue) return;
+        const submit = $("rating-submit");
+        const comment = String($("rating-comment")?.value || "").trim();
+        try {
+            if (submit) { submit.disabled = true; submit.textContent = "Enviando..."; }
+            await window.FB.setDoc(window.FB.doc(window.FB.db, RATINGS_COLLECTION, user.uid), {
+                uid: user.uid,
+                name: (user.displayName || State.userName || "Usuario").slice(0, 120),
+                email: (user.email || "").slice(0, 180),
+                stars: selectedRatingValue,
+                comment: comment.slice(0, 800),
+                createdAt: window.FB.serverTimestamp(),
+                updatedAt: window.FB.serverTimestamp()
+            });
+            localStorage.removeItem(RATING_LATER_KEY);
+            localStorage.removeItem(RATING_CANCEL_KEY);
+            hideRatingModal();
+            showNotification("¡Gracias por tu valoración!", "success");
+        } catch (error) {
+            console.error("No se pudo guardar la valoración:", error);
+            showNotification("No se pudo enviar la valoración. Revisa las reglas de Firebase.", "error");
+        } finally {
+            if (submit) { submit.textContent = "Enviar valoración"; submit.disabled = !selectedRatingValue; }
+        }
+    };
+    const renderAdminRatings = () => {
+        const summary = $("admin-ratings-summary");
+        const list = $("admin-ratings-list");
+        if (!summary || !list || !isAdminUser()) return;
+        const rows = Array.isArray(State.ratingsInbox) ? State.ratingsInbox : [];
+        const average = rows.length ? rows.reduce((sum, item) => sum + Number(item.stars || 0), 0) / rows.length : 0;
+        summary.innerHTML = rows.length
+            ? `<span class="admin-ratings-average">${average.toFixed(1)} ★</span> <strong>Promedio de ${rows.length} valoración${rows.length === 1 ? "" : "es"}</strong>`
+            : "Aún no hay valoraciones enviadas.";
+        list.innerHTML = rows.length ? rows.map((item) => {
+            const date = item.updatedAt?.toDate?.() || item.createdAt?.toDate?.() || null;
+            const label = date ? date.toLocaleString("es-MX") : "Sin fecha";
+            const stars = Number(item.stars || 0);
+            return `<div class="list-item" style="border-left:4px solid #f4c542;"><div class="list-item-content" style="gap:7px;display:flex;flex-direction:column;"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;"><h3 style="margin:0;">${escapeHtml(item.name || "Usuario")}</h3><span style="color:var(--text-muted);font-size:12px;">${label}</span></div><div class="admin-rating-stars">★ ${stars.toFixed(1)} / 5</div><p style="margin:0;color:var(--text-muted);font-size:13px;">${escapeHtml(item.email || "Sin correo")}</p>${item.comment ? `<div style="padding:11px;border:1px solid var(--border);border-radius:10px;line-height:1.45;">${escapeHtml(item.comment).replace(/\n/g, "<br>")}</div>` : "<p style=\"margin:0;color:var(--text-muted);font-size:13px;\">Sin comentario.</p>"}</div></div>`;
+        }).join("") : "";
+    };
+    const initAdminRatingsInbox = () => {
+        if (!isAdminUser()) return;
+        if (State.ratingsAdminUnsub || !window.FB?.db) return;
+        const ratingQuery = window.FB.query(window.FB.collection(window.FB.db, RATINGS_COLLECTION), window.FB.orderBy("updatedAt", "desc"), window.FB.limit(300));
+        State.ratingsAdminUnsub = window.FB.onSnapshot(ratingQuery, (snap) => {
+            State.ratingsInbox = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            renderAdminRatings();
+        }, (error) => {
+            console.error("No se pudieron cargar las valoraciones:", error);
+            showNotification("No se pudieron cargar las valoraciones. Revisa las reglas de Firebase.", "error");
+        });
     };
 
     const renderAdminFeedbackInbox = () => {
@@ -4595,6 +4707,8 @@
             renderAdminWithdrawalRequests();
             initAdminUsersInbox();
             renderAdminUsers();
+            initAdminRatingsInbox();
+            renderAdminRatings();
         }
         if (viewId === "view-reclassify") void renderReclassifyView();
         syncPomodoroPlacement();
@@ -11742,6 +11856,25 @@
         $$("[data-open-redeem]").forEach(btn => {
             btn.addEventListener("click", () => openRedeemModal("Desbloquea premium para ver todas las estadísticas y herramientas avanzadas."));
         });
+        $$("#rating-stars .rating-star").forEach((star) => {
+            star.addEventListener("click", (event) => {
+                const whole = Number(star.dataset.ratingStar || 0);
+                const bounds = star.getBoundingClientRect();
+                selectedRatingValue = event.clientX - bounds.left < bounds.width / 2 ? whole - .5 : whole;
+                paintRatingStars();
+            });
+        });
+        $("rating-submit")?.addEventListener("click", () => void submitAppRating());
+        $("rating-later")?.addEventListener("click", () => {
+            localStorage.setItem(RATING_LATER_KEY, String(Date.now() + RATING_LATER_DELAY_MS));
+            hideRatingModal();
+        });
+        const cancelRating = () => {
+            localStorage.setItem(RATING_CANCEL_KEY, String(Date.now() + RATING_CANCEL_DELAY_MS));
+            hideRatingModal();
+        };
+        $("rating-cancel")?.addEventListener("click", cancelRating);
+        $("rating-close")?.addEventListener("click", cancelRating);
         $$("[data-pricing-toggle]").forEach(btn => {
             btn.addEventListener("click", () => {
                 const panelId = btn.dataset.pricingToggle;
@@ -14169,6 +14302,8 @@
                             initWithdrawalAdminInbox();
                             initManualPaymentAdminInbox();
                             initAdminUsersInbox();
+                            initAdminRatingsInbox();
+                            void scheduleRatingPrompt(user);
                             bindMyManualPaymentRequests(user.uid);
                             setupChallengeLogic();
                             if (typeof window.loadPendingRequests === "function") {
@@ -14293,6 +14428,10 @@
                                 State.feedbackAdminUnsub();
                                 State.feedbackAdminUnsub = null;
                             }
+                            if (State.ratingsAdminUnsub) {
+                                State.ratingsAdminUnsub();
+                                State.ratingsAdminUnsub = null;
+                            }
                             if (State.withdrawalAdminUnsub) {
                                 State.withdrawalAdminUnsub();
                                 State.withdrawalAdminUnsub = null;
@@ -14332,6 +14471,8 @@
                             State.referralWalletLoaded = true;
                             updateReferralUI();
                             State.feedbackInbox = [];
+                            State.ratingsInbox = [];
+                            State.ratingPromptLoaded = false;
                             State.withdrawalRequests = [];
                             State.adminUsers = [];
                             State.adminDirectoryByUid = {};

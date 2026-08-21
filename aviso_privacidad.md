@@ -1,9 +1,9 @@
-# Aviso de Privacidad Integral - ENARMlab
+# Aviso de Privacidad Integral - ENARMax
 
-En cumplimiento con la **Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)** en México, **ENARMlab** hace de su conocimiento la siguiente política de privacidad:
+En cumplimiento con la **Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)** en México, **ENARMax** hace de su conocimiento la siguiente política de privacidad:
 
 ## 1. Identidad y Domicilio del Responsable
-ENARMlab es el responsable del tratamiento de sus datos personales recolectados a través de nuestra plataforma web.
+ENARMax es el responsable del tratamiento de sus datos personales recolectados a través de nuestra plataforma web.
 
 ## 2. Datos Personales que Recabamos
 Para las finalidades señaladas en este aviso, podemos recabar los siguientes datos:
@@ -22,7 +22,7 @@ Sus datos serán utilizados para:
 *   Envío de notificaciones técnicas y actualizaciones del servicio.
 
 ## 4. Transferencia de Datos
-ENARMlab utiliza los servicios de **Google Firebase** para el almacenamiento y procesamiento de datos. Al utilizar la plataforma, usted acepta la transferencia de sus datos a los servidores de Google para los fines antes mencionados. No vendemos ni compartimos sus datos con terceras partes para fines publicitarios.
+ENARMax utiliza los servicios de **Google Firebase** para el almacenamiento y procesamiento de datos. Al utilizar la plataforma, usted acepta la transferencia de sus datos a los servidores de Google para los fines antes mencionados. No vendemos ni compartimos sus datos con terceras partes para fines publicitarios.
 
 ## 5. Derechos ARCO
 Usted tiene derecho a conocer qué datos tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (**Acceso**). Asimismo, es su derecho solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (**Rectificación**); que la eliminemos de nuestros registros o bases de datos cuando considere que la misma no está siendo utilizada adecuadamente (**Cancelación**); así como oponerse al uso de sus datos personales para fines específicos (**Oposición**).

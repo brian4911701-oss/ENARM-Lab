@@ -40,7 +40,7 @@ No ejecutes `firebase deploy --only functions`: no se necesita para este sistema
 
 1. En BBVA revisa que el depósito ya se haya reflejado.
 2. Comprueba que el importe sea correcto y el concepto coincida con la referencia de 10 dígitos.
-3. Entra a ENARMLab con tu cuenta administradora.
+3. Entra a ENARMax con tu cuenta administradora.
 4. Abre **Más → Opciones de administrador → Transferencias Premium**.
 5. Localiza la referencia, revisa el correo, plan e importe.
 6. Pulsa **Aprobar**. Premium se activará en la cuenta del usuario.

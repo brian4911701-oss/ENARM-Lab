@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   ENARMlab — Dashboard Premium Theme
+   ENARMax — Dashboard Premium Theme
    ═══════════════════════════════════════════════════════════ */
 
 :root {
@@ -3959,6 +3959,50 @@ body.stats-demo-preview .stats-free-preview-card {
   transition: transform .2s ease, border-color .2s ease, background .2s ease;
 }
 .dashboard-upgrade-cta[hidden] { display: none !important; }
+
+/* Valoración de la aplicación */
+.rating-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 4600;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(3, 8, 18, .76);
+  backdrop-filter: blur(10px);
+}
+.rating-modal[hidden] { display: none; }
+.rating-card {
+  position: relative;
+  width: min(100%, 500px);
+  padding: 34px;
+  border: 1px solid rgba(250, 204, 21, .3);
+  border-radius: 24px;
+  background: radial-gradient(circle at 92% 0, rgba(250,204,21,.15), transparent 34%), var(--bg-card);
+  box-shadow: 0 28px 80px rgba(0,0,0,.45);
+}
+.rating-kicker { color: #fde68a; font-size: .7rem; font-weight: 800; letter-spacing: .12em; }
+.rating-card h2 { margin: 9px 0 8px; font-size: 1.45rem; }
+.rating-card > p { margin: 0 0 20px; color: var(--text-secondary); line-height: 1.5; }
+.rating-close { position: absolute; top: 14px; right: 16px; border: 0; background: transparent; color: var(--text-secondary); font-size: 28px; cursor: pointer; }
+.rating-stars { display: flex; justify-content: center; gap: 5px; margin: 8px 0; }
+.rating-star { position: relative; width: 43px; border: 0; padding: 0; background: transparent; color: #475569; font-size: 2.5rem; line-height: 1; cursor: pointer; transition: transform .15s ease; }
+.rating-star:hover { transform: translateY(-3px) scale(1.08); }
+.rating-star.is-full { color: #fbbf24; }
+.rating-star.is-half { color: transparent; background: linear-gradient(90deg, #fbbf24 50%, #475569 50%); -webkit-background-clip: text; background-clip: text; }
+.rating-value-label { min-height: 20px; margin: 4px 0 16px; text-align: center; color: #fde68a; font-size: .85rem; font-weight: 700; }
+.rating-card textarea { width: 100%; resize: vertical; }
+.rating-actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 18px; flex-wrap: wrap; }
+.admin-ratings-summary { margin: 14px 0; padding: 16px; border-radius: 12px; background: rgba(250,204,21,.08); color: var(--text-secondary); }
+.admin-ratings-average { color: #fde047; font-size: 1.65rem; font-weight: 800; }
+.admin-rating-stars { color: #fbbf24; letter-spacing: 1px; }
+@media (max-width: 560px) {
+  .rating-modal { align-items: end; padding: 0; }
+  .rating-card { width: 100%; border-radius: 24px 24px 0 0; padding: 30px 20px calc(24px + env(safe-area-inset-bottom)); }
+  .rating-star { width: 40px; font-size: 2.3rem; }
+  .rating-actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .rating-actions #rating-submit { grid-column: 1 / -1; }
+}
 
 .dashboard-upgrade-cta:hover {
   transform: translateY(-2px);
