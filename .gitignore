@@ -7,3 +7,5 @@ firebase-admin.json
 
 # Firebase Hosting build output
 public/
+
+.vercel
