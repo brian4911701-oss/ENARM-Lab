@@ -3260,11 +3260,10 @@
                                             </p>
                                             <div class="premium-plan-price-wrap">
                                                 <div class="premium-plan-price-main-row">
-                                                    <span class="premium-plan-price-main">$399</span>
-                                                    <span class="premium-plan-price-currency">MXN</span>
+                                                    <span class="premium-plan-price-main">Premium</span>
                                                 </div>
                                                 <p class="premium-plan-price-note">
-                                                    Plan 2026: pago &uacute;nico con vigencia hasta el 1 de octubre de 2026.
+                                                    Acceso completo según el plan que elijas arriba.
                                                 </p>
                                             </div>
                                             <ul class="premium-plan-list">
@@ -3692,6 +3691,18 @@
                 <label for="transfer-referral-code">C&oacute;digo de referido <span>(opcional)</span></label>
                 <input id="transfer-referral-code" class="text-input" type="text" maxlength="14" placeholder="Ej. ELABC123" autocomplete="off">
             </div>
+            <section id="transfer-squad-members" class="transfer-squad-members" hidden aria-labelledby="transfer-squad-members-title">
+                <div class="transfer-squad-members-head">
+                    <span class="transfer-squad-members-kicker">PLAN SQUAD · 4 ACCESOS</span>
+                    <h3 id="transfer-squad-members-title">Agrega a tus 3 compañeros</h3>
+                    <p>Tu cuenta ya está incluida. Escribe el nombre de usuario exacto de las otras tres cuentas. Deben estar registradas en ENARMax antes de que apruebes el pago.</p>
+                </div>
+                <div class="transfer-squad-members-grid">
+                    <label>Compañero 1<input id="transfer-squad-member-1" class="text-input" type="text" maxlength="60" autocomplete="off" placeholder="Nombre de usuario"></label>
+                    <label>Compañero 2<input id="transfer-squad-member-2" class="text-input" type="text" maxlength="60" autocomplete="off" placeholder="Nombre de usuario"></label>
+                    <label>Compañero 3<input id="transfer-squad-member-3" class="text-input" type="text" maxlength="60" autocomplete="off" placeholder="Nombre de usuario"></label>
+                </div>
+            </section>
             <label class="transfer-confirmation-check" for="transfer-payment-confirm">
                 <input id="transfer-payment-confirm" type="checkbox">
                 <span>Confirmo que ya realic&eacute; la transferencia con el importe y concepto indicados.</span>
@@ -3711,19 +3722,24 @@
 
     <!-- MODAL CANJEAR CODIGO -->
     <div class="modal-overlay redeem-modal-overlay" id="redeem-modal" style="display: none;">
-        <div class="modal-content redeem-modal-content">
+        <div class="modal-content redeem-modal-content" role="dialog" aria-modal="true" aria-labelledby="redeem-title">
             <button id="btn-close-redeem" class="redeem-modal-close" aria-label="Cerrar">✕</button>
             <div class="redeem-modal-header">
                 <span class="redeem-modal-kicker">ENARMax Premium</span>
-                <h2>Desbloquea tu preparación</h2>
+                <h2 id="redeem-title">Elige tu acceso Premium</h2>
             </div>
             <p id="redeem-reason" class="redeem-modal-reason">
                 Elige un plan para continuar con la transferencia o canjea un código si ya tienes uno.
             </p>
+            <div class="redeem-hero-proof" aria-label="Beneficios del pago Premium">
+                <span>✓ Pago único</span>
+                <span>✓ Sin renovación automática</span>
+                <span>✓ Activación tras validar tu transferencia</span>
+            </div>
             <div class="premium-contact-box redeem-transfer-intro">
-                <p class="premium-contact-title">Pago único por transferencia</p>
+                <p class="premium-contact-title">Compra segura por transferencia</p>
                 <p class="premium-contact-copy">
-                    Elige tu vigencia. Después verás una referencia personal y los datos de pago.
+                    Elige tu vigencia. Te mostraremos una referencia personal única y los datos de pago antes de que confirmes nada.
                 </p>
                 <div class="premium-contact-actions" hidden>
                     <a class="premium-contact-link is-whatsapp" href="https://wa.me/message/NFAFPC752TNWP1"
@@ -3751,14 +3767,19 @@
             </div>
             <div class="redeem-plan-grid">
                 <button class="premium-plan-cta redeem-plan-card redeem-plan-card--2026" type="button" data-plan-id="enarm_2026">
-                    <span class="redeem-plan-tag">INDIVIDUAL</span><strong>ENARM 2026</strong><span class="redeem-plan-price">$399 MXN</span>
+                    <span class="redeem-plan-tag">PREPARACIÓN INTENSIVA · HASTA OCTUBRE 2026</span><strong>ENARM 2026</strong><span class="redeem-plan-card-copy">Para quien presentará el ENARM este año y necesita entrenar sin límites desde hoy.</span><span class="redeem-plan-benefits">Simulacro de 280 preguntas · Estadísticas completas · Estudio Plus</span><span class="redeem-plan-price">$399 MXN</span><span class="redeem-plan-select">Quiero preparar mi ENARM 2026 →</span>
                 </button>
                 <button class="premium-plan-cta redeem-plan-card redeem-plan-card--2027" type="button" data-plan-id="enarm_2027">
-                    <span class="redeem-plan-tag">INDIVIDUAL</span><strong>ENARM 2027</strong><span class="redeem-plan-price">$1,999 MXN</span>
+                    <span class="redeem-plan-tag">MÁS TIEMPO PARA DOMINARLO · HASTA OCTUBRE 2027</span><strong>ENARM 2027</strong><span class="redeem-plan-card-copy">Para construir un progreso sólido durante más tiempo, con todo Premium incluido.</span><span class="redeem-plan-benefits">Plan diario · Pomodoro · Refuerzo de debilidades</span><span class="redeem-plan-price">$1,999 MXN</span><span class="redeem-plan-select">Quiero preparar mi ENARM 2027 →</span>
                 </button>
                 <button class="premium-plan-cta redeem-plan-card redeem-plan-card--squad" type="button" data-plan-id="squad_2027">
-                    <span class="redeem-plan-tag">4 PERSONAS · AHORRA $2,997</span><strong>Plan Squad 2027</strong><span class="redeem-plan-price">$4,999 MXN</span>
+                    <span class="redeem-plan-tag">MEJOR PRECIO POR PERSONA · AHORRA $2,997</span><strong>Plan Squad 2027</strong><span class="redeem-plan-card-copy">Para estudiar con tres amigos: cuatro accesos Premium individuales hasta octubre de 2027.</span><span class="redeem-plan-benefits">4 cuentas · $1,249.75 por persona · Retos entre amigos</span><span class="redeem-plan-original-price">$7,996 MXN por 4 cuentas</span><span class="redeem-plan-price">$4,999 MXN</span><span class="redeem-plan-select">Quiero el plan para mi Squad →</span>
                 </button>
+            </div>
+            <div class="redeem-confidence-strip">
+                <div><strong>01</strong><span>Elige el plan</span></div>
+                <div><strong>02</strong><span>Transfiere con tu referencia única</span></div>
+                <div><strong>03</strong><span>Confirmamos el acceso al validar</span></div>
             </div>
             <button class="btn-secondary premium-pricing-toggle" type="button"
                 data-pricing-toggle="redeem-premium-plans"
@@ -3788,11 +3809,10 @@
                         </p>
                         <div class="premium-plan-price-wrap">
                             <div class="premium-plan-price-main-row">
-                                <span class="premium-plan-price-main">$399</span>
-                                <span class="premium-plan-price-currency">MXN</span>
+                                <span class="premium-plan-price-main">Premium</span>
                             </div>
                             <p class="premium-plan-price-note">
-                                Plan 2026: pago &uacute;nico con vigencia hasta el 1 de octubre de 2026.
+                                Acceso completo según el plan que elijas arriba.
                             </p>
                         </div>
                         <ul class="premium-plan-list">

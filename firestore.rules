@@ -96,10 +96,15 @@ service cloud.firestore {
         && request.resource.data.termsAccepted == true
         && request.resource.data.referralCode is string
         && request.resource.data.seats is int
+        && request.resource.data.squadMembers is list
         && request.resource.data.transferReference == get(/databases/$(database)/documents/payment_profiles/$(request.auth.uid)).data.transferReference
-        && ((request.resource.data.planId == "enarm_2026" && request.resource.data.amount == 399 && request.resource.data.seats == 1)
-          || (request.resource.data.planId == "enarm_2027" && request.resource.data.amount == 1999 && request.resource.data.seats == 1)
-          || (request.resource.data.planId == "squad_2027" && request.resource.data.amount == 4999 && request.resource.data.seats == 4));
+        && ((request.resource.data.planId == "enarm_2026" && request.resource.data.amount == 399 && request.resource.data.seats == 1 && request.resource.data.squadMembers.size() == 0)
+          || (request.resource.data.planId == "enarm_2027" && request.resource.data.amount == 1999 && request.resource.data.seats == 1 && request.resource.data.squadMembers.size() == 0)
+          || (request.resource.data.planId == "squad_2027" && request.resource.data.amount == 4999 && request.resource.data.seats == 4
+            && request.resource.data.squadMembers.size() == 3
+            && request.resource.data.squadMembers[0] is string && request.resource.data.squadMembers[0].size() > 0 && request.resource.data.squadMembers[0].size() <= 60
+            && request.resource.data.squadMembers[1] is string && request.resource.data.squadMembers[1].size() > 0 && request.resource.data.squadMembers[1].size() <= 60
+            && request.resource.data.squadMembers[2] is string && request.resource.data.squadMembers[2].size() > 0 && request.resource.data.squadMembers[2].size() <= 60));
       allow update: if isAdmin()
         || (isSignedIn()
           && resource.data.uid == request.auth.uid
@@ -116,7 +121,13 @@ service cloud.firestore {
           && request.resource.data.currency == resource.data.currency
           && request.resource.data.transferReference == resource.data.transferReference
           && request.resource.data.termsAccepted == true
-          && request.resource.data.referralCode is string);
+          && request.resource.data.referralCode is string
+          && request.resource.data.squadMembers is list
+          && ((request.resource.data.planId in ["enarm_2026", "enarm_2027"] && request.resource.data.squadMembers.size() == 0)
+            || (request.resource.data.planId == "squad_2027" && request.resource.data.squadMembers.size() == 3
+              && request.resource.data.squadMembers[0] is string && request.resource.data.squadMembers[0].size() > 0 && request.resource.data.squadMembers[0].size() <= 60
+              && request.resource.data.squadMembers[1] is string && request.resource.data.squadMembers[1].size() > 0 && request.resource.data.squadMembers[1].size() <= 60
+              && request.resource.data.squadMembers[2] is string && request.resource.data.squadMembers[2].size() > 0 && request.resource.data.squadMembers[2].size() <= 60)));
       allow delete: if isAdmin();
     }
 

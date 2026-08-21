@@ -3454,6 +3454,7 @@
                         <span><strong>Plan:</strong> ${escapeHtml(item.planId || "")}</span>
                         <span><strong>Importe esperado:</strong> $${amount} MXN</span>
                         <span><strong>Accesos a activar:</strong> ${seats}</span>
+                        ${Array.isArray(item.squadMembers) && item.squadMembers.length ? `<span class="withdrawal-admin-grid-wide"><strong>Usuarios extra del Squad:</strong> ${item.squadMembers.map(member => escapeHtml(member)).join(", ")}</span>` : ""}
                         <span><strong>Referido:</strong> ${escapeHtml(item.referralCode || "Sin código")}</span>
                     </div>
                 </article>
@@ -13872,6 +13873,17 @@
                 };
 
                 const getTransferPlan = (planId) => TRANSFER_PLANS[planId] || null;
+                const getSquadMemberInputs = () => [
+                    $("transfer-squad-member-1"),
+                    $("transfer-squad-member-2"),
+                    $("transfer-squad-member-3")
+                ];
+                const syncTransferSquadFields = (planId, clear = true) => {
+                    const isSquad = planId === "squad_2027";
+                    const section = $("transfer-squad-members");
+                    if (section) section.hidden = !isSquad;
+                    if (clear) getSquadMemberInputs().forEach((input) => { if (input) input.value = ""; });
+                };
 
                 const beginPlanTransfer = async (planId, options = {}) => {
                     const plan = getTransferPlan(planId);
@@ -13917,6 +13929,7 @@
                         if (nameEl) nameEl.textContent = plan.name;
                         if (amountEl) amountEl.textContent = "$" + plan.amount.toLocaleString("es-MX") + " MXN";
                         if (referenceEl) referenceEl.textContent = profile.transferReference;
+                        syncTransferSquadFields(plan.id);
                         if (statusEl) {
                             statusEl.textContent = "Haz la transferencia y confirma cuando aparezca como enviada en tu banca.";
                             statusEl.classList.remove("is-success");
@@ -13999,6 +14012,21 @@
                         return;
                     }
 
+                    let squadMembers = [];
+                    if (plan.id === "squad_2027") {
+                        squadMembers = getSquadMemberInputs().map((input) => String(input?.value || "").trim()).filter(Boolean);
+                        if (squadMembers.length !== 3) {
+                            showNotification("Agrega los 3 nombres de usuario de tu Plan Squad.", "warning");
+                            return;
+                        }
+                        const normalizedMembers = squadMembers.map((name) => name.toLocaleLowerCase("es-MX"));
+                        const ownName = String(State.userName || currentUser.displayName || "").trim().toLocaleLowerCase("es-MX");
+                        if (new Set(normalizedMembers).size !== 3 || (ownName && normalizedMembers.includes(ownName))) {
+                            showNotification("Los 3 compañeros deben ser usuarios distintos y no incluir tu propia cuenta.", "warning");
+                            return;
+                        }
+                    }
+
                     State.transferSubmitting = true;
                     transferSentBtn.disabled = true;
                     transferSentBtn.textContent = "Enviando confirmación…";
@@ -14018,6 +14046,7 @@
                             planId: plan.id,
                             amount: plan.amount,
                             seats: plan.seats || 1,
+                            squadMembers,
                             currency: "MXN",
                             transferReference: profile.transferReference,
                             referralCode,
