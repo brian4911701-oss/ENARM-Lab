@@ -15,7 +15,7 @@ try {
 
     const messaging = firebase.messaging();
     messaging.onBackgroundMessage((payload) => {
-        const title = (payload.notification && payload.notification.title) || (payload.data && payload.data.title) || 'ENARM Lab';
+        const title = (payload.notification && payload.notification.title) || (payload.data && payload.data.title) || 'ENARMax';
         const body = (payload.notification && payload.notification.body) || (payload.data && payload.data.body) || '';
         const link = (payload.data && payload.data.link) || '/';
 
@@ -34,9 +34,9 @@ try {
     console.warn('[SW] Firebase Messaging no disponible:', err);
 }
 
-// ENARMlab Service Worker
+// ENARMax Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
-const CACHE_NAME = 'enarmlab-v14';
+const CACHE_NAME = 'enarmax-v15';
 
 // Archivos esenciales que se cachean al instalar
 const CORE_ASSETS = [

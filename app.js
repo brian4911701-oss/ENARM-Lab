@@ -1,4 +1,4 @@
-// app.js  Core logic for ENARMlab
+// app.js  Core logic for ENARMax
 (() => {
     // ---------------------------------------------------------------------------
     // State Management
@@ -1170,7 +1170,7 @@
         overlay.setAttribute("aria-hidden", "true");
         overlay.innerHTML = `
             <div class="exam-loading-card" role="status" aria-live="polite" aria-atomic="true">
-                <div class="exam-loading-kicker">ENARM Lab</div>
+                <div class="exam-loading-kicker">ENARMax</div>
                 <h3 class="exam-loading-title" id="exam-loading-title">Preparando examen...</h3>
                 <p class="exam-loading-detail" id="exam-loading-detail">Estamos organizando tus preguntas.</p>
                 <div class="exam-loading-bar" aria-hidden="true">
@@ -1444,7 +1444,7 @@
         if ($("referrals-coin-balance")) $("referrals-coin-balance").textContent = coins.toLocaleString("es-MX");
         if ($("referrals-card-code")) $("referrals-card-code").textContent = code || "GENERANDO";
         if ($("referrals-card-balance")) $("referrals-card-balance").textContent = coins.toLocaleString("es-MX");
-        if ($("referrals-card-holder")) $("referrals-card-holder").textContent = State.userName || "Usuario ENARM Lab";
+        if ($("referrals-card-holder")) $("referrals-card-holder").textContent = State.userName || "Usuario ENARMax";
     };
 
     const renderReferralsView = () => {
@@ -1457,7 +1457,7 @@
         if ($("referrals-coin-balance")) $("referrals-coin-balance").textContent = coins.toLocaleString("es-MX");
         if ($("referrals-card-code")) $("referrals-card-code").textContent = State.referralCode || "GENERANDO";
         if ($("referrals-card-balance")) $("referrals-card-balance").textContent = coins.toLocaleString("es-MX");
-        if ($("referrals-card-holder")) $("referrals-card-holder").textContent = State.userName || "Usuario ENARM Lab";
+        if ($("referrals-card-holder")) $("referrals-card-holder").textContent = State.userName || "Usuario ENARMax";
         if ($("referrals-withdraw-progress")) $("referrals-withdraw-progress").style.width = `${progress}%`;
         if ($("referrals-withdraw-status")) {
             $("referrals-withdraw-status").textContent = remaining > 0
@@ -3099,7 +3099,7 @@
             showNotification("Escribe un mensaje de feedback.", "warning");
             return;
         }
-        const subject = `Feedback ENARM Lab - ${type}`;
+        const subject = `Feedback ENARMax - ${type}`;
         const body = buildFeedbackText();
         const mailto = `mailto:${FEEDBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailto;
@@ -3937,7 +3937,7 @@
                 return;
             }
 
-            const title = (titleInput.value || "").trim() || "Aviso ENARM Lab";
+            const title = (titleInput.value || "").trim() || "Aviso ENARMax";
             const message = (messageInput.value || "").trim();
             if (!message) {
                 showNotification("Escribe el mensaje del aviso.", "warning");
@@ -4050,7 +4050,7 @@
         if (!window.FB || typeof window.FB.onMessage !== "function") return;
         if (foregroundPushListenerBound || !messaging) return;
         window.FB.onMessage(messaging, (payload) => {
-            const title = payload?.notification?.title || payload?.data?.title || "ENARM Lab";
+            const title = payload?.notification?.title || payload?.data?.title || "ENARMax";
             const body = payload?.notification?.body || payload?.data?.body || "";
             showSystemNotification(title, body);
         });
@@ -9374,7 +9374,7 @@
             .replace(/^-+|-+$/g, "") || "aspirante";
 
         return {
-            fileName: `enarmlab-estadisticas-${reportSlug}.pdf`,
+            fileName: `enarmax-estadisticas-${reportSlug}.pdf`,
             generatedAt: formatDateTime(reportDate),
             generatedShort: reportDate.toLocaleDateString("es-MX", { year: "numeric", month: "long", day: "numeric" }),
             userName: State.userName || "Aspirante",
@@ -9807,7 +9807,7 @@
         <section class="hero">
             <div class="hero-top">
                 <div>
-                    <div class="brand"><span class="brand-dot"></span> ENARMlab · Reporte clinico</div>
+                    <div class="brand"><span class="brand-dot"></span> ENARMax · Reporte clinico</div>
                     <h1>Estadisticas de ${escapeHtml(report.userName)}</h1>
                     <p>Resumen exportable de rendimiento, constancia y focos de estudio para seguir afinando tu preparacion con el lenguaje visual del simulador.</p>
                     <div class="hero-pills">
@@ -9897,7 +9897,7 @@
                     <tbody>${sessionsMarkup}</tbody>
                 </table>
                 <div class="footer-note">
-                    <div>Reporte generado el ${escapeHtml(report.generatedAt)} desde ENARMlab.</div>
+                    <div>Reporte generado el ${escapeHtml(report.generatedAt)} desde ENARMax.</div>
                     <div>Si imprimes con fondos activos, el PDF conserva mejor el estilo visual del simulador.</div>
                 </div>
             </section>
@@ -12533,7 +12533,7 @@
                         <div style="background:rgba(59,130,246,0.09); padding:14px; border-radius:14px; border: 1px solid rgba(59,130,246,0.28); margin-bottom: 8px;">
                             <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:8px;">
                                 <div>
-                                    <div style="font-weight:bold; font-size:14px; color: var(--accent-blue);">${escapeHtml(data.title || "Aviso ENARM Lab")}</div>
+                                    <div style="font-weight:bold; font-size:14px; color: var(--accent-blue);">${escapeHtml(data.title || "Aviso ENARMax")}</div>
                                     <div style="font-size:11px; color: var(--text-muted);">${when}</div>
                                 </div>
                                 ${isUnread ? '<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(16,185,129,0.18); color:var(--accent-green); border:1px solid rgba(16,185,129,0.35); font-weight:bold;">Nuevo</span>' : ''}
@@ -12680,7 +12680,7 @@
                                 ? `${rawAnnouncementMessage.slice(0, COMMUNITY_ANNOUNCEMENT_BANNER_PREVIEW_LENGTH - 1)}...`
                                 : rawAnnouncementMessage;
                             showBanner(
-                                escapeHtml(d.title || "Aviso ENARM Lab"),
+                                escapeHtml(d.title || "Aviso ENARMax"),
                                 escapeHtml(bannerMessage),
                                 "&#x1F4E2;",
                                 () => {
@@ -14611,7 +14611,7 @@
 
                             if (canFallbackToRedirect && !redirectSupport.canUseRedirectFallback) {
                                 const openInBrowserHint = redirectSupport.isStandalone
-                                    ? " Abre ENARMlab desde Chrome y vuelve a intentar."
+                                    ? " Abre ENARMax desde Chrome y vuelve a intentar."
                                     : "";
                                 showNotification(
                                     "Google no pudo abrirse con seguridad en este entorno porque el flujo redirect no está alineado con el dominio actual." + openInBrowserHint,

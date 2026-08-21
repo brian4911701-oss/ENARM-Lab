@@ -1,6 +1,6 @@
 {
-    "name": "ENARMlab",
-    "short_name": "ENARMlab",
+    "name": "ENARMax",
+    "short_name": "ENARMax",
     "description": "Tu simulador de examen ENARM. Casos clínicos, estadísticas y retos.",
     "start_url": "/",
     "display": "standalone",
