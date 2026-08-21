@@ -4649,7 +4649,7 @@
             showNotification("Solo admin puede usar el reclasificador.", "warning");
             viewId = "view-mas";
         }
-        if (["view-admin", "view-admin-users"].includes(viewId) && !isAdminUser()) {
+        if (["view-admin", "view-admin-users", "view-admin-ratings"].includes(viewId) && !isAdminUser()) {
             showNotification("Solo admin puede abrir esa sección.", "warning");
             viewId = "view-mas";
         }
@@ -4702,7 +4702,7 @@
             initFeedbackAdminInbox();
             renderAdminFeedbackInbox();
         }
-        if (viewId === "view-admin" || viewId === "view-admin-users") {
+        if (["view-admin", "view-admin-users", "view-admin-ratings"].includes(viewId)) {
             initWithdrawalAdminInbox();
             renderAdminWithdrawalRequests();
             initAdminUsersInbox();

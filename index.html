@@ -1934,6 +1934,7 @@
                     <div class="admin-section-tabs" role="tablist" aria-label="Secciones de administrador">
                         <button class="admin-section-tab active" type="button" role="tab" aria-selected="true">Herramientas</button>
                         <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-users')">Usuarios y accesos</button>
+                        <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-ratings')">Valoraciones</button>
                     </div>
 
                     <div class="settings-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
@@ -2031,17 +2032,6 @@
                             </div>
                         </div>
 
-                        <div class="panel settings-panel" id="admin-ratings-panel" style="border-top-color: #f4c542; display: none;">
-                            <div class="profile-panel-head">
-                                <div>
-                                    <h2 class="panel-title"><span class="title-icon yellow-text">★</span> Valoraciones de la app</h2>
-                                    <p class="panel-subtitle">Opiniones enviadas por la comunidad.</p>
-                                </div>
-                            </div>
-                            <div id="admin-ratings-summary" class="admin-ratings-summary">Cargando valoraciones...</div>
-                            <div id="admin-ratings-list" class="withdrawal-admin-list"></div>
-                        </div>
-
                         <div class="panel settings-panel" style="border-top-color: var(--accent-green);">
                             <h3 class="panel-title" style="margin-bottom: 16px; font-size: 1.1rem;">
                                 <span class="title-icon green-text">&#x1F4C2;</span> Accesos directos
@@ -2090,6 +2080,7 @@
                     <div class="admin-section-tabs" role="tablist" aria-label="Secciones de administrador">
                         <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin')">Herramientas</button>
                         <button class="admin-section-tab active" type="button" role="tab" aria-selected="true">Usuarios y accesos</button>
+                        <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-ratings')">Valoraciones</button>
                     </div>
                     <div class="panel settings-panel admin-users-page-panel" id="admin-users-panel" style="border-top-color: var(--accent-blue); display: none;">
                         <p class="panel-subtitle">Usuarios ordenados del más reciente al más antiguo. El acceso se controla desde el interruptor.</p>
@@ -2099,6 +2090,25 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div id="view-admin-ratings" class="view">
+                <div class="panel admin-users-page-panel">
+                    <div class="panel-header" style="display:flex; justify-content:space-between; align-items:center; gap:14px;">
+                        <div>
+                            <h2 class="panel-title"><span class="title-icon yellow-text">★</span> Valoraciones de la app</h2>
+                            <p class="panel-subtitle">Promedio y opiniones enviadas por la comunidad.</p>
+                        </div>
+                        <button class="btn-ghost" onclick="showView('view-admin')">Volver</button>
+                    </div>
+                    <div class="admin-section-tabs" role="tablist" aria-label="Secciones de administrador">
+                        <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin')">Herramientas</button>
+                        <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-users')">Usuarios y accesos</button>
+                        <button class="admin-section-tab active" type="button" role="tab" aria-selected="true">Valoraciones</button>
+                    </div>
+                    <div id="admin-ratings-summary" class="admin-ratings-summary">Cargando valoraciones...</div>
+                    <div id="admin-ratings-list" class="withdrawal-admin-list"></div>
                 </div>
             </div>
 
