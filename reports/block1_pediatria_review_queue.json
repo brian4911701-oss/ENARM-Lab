@@ -1,0 +1,1314 @@
+[
+  {
+    "index": 22,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "CACU (Oncología Ginecológica)",
+    "casePreview": "Femenino de 20 años que acude a su primer tamizaje de cáncer cervicouterino. La citología cervical (Papanicolaou) reporta Lesión Intraepitelial Escamosa de Bajo Grado (LEIBG)."
+  },
+  {
+    "index": 79,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Cáncer de Mama",
+    "casePreview": "Femenina de 21 años que acude para inicio de vida sexual activa y uso de método de planificación familiar. Refiere tener antecedentes familiares de cáncer de mama (madre) y cursar "
+  },
+  {
+    "index": 255,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Preescolar masculino de 4 años, llevado a consulta por su madre debido a que presenta llanto constante, irritabilidad y se lleva la mano a la oreja derecha repetidamente. La madre "
+  },
+  {
+    "index": 487,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Preescolar masculino de 3 años es llevado a la consulta de otorrinolaringología por su madre, quien refiere que el niño ha presentado cambios en su voz (disfonía) de varios meses d"
+  },
+  {
+    "index": 506,
+    "currentSpec": "cir",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 4,
+      "gyo": 0,
+      "cir": 4,
+      "mi": 5
+    },
+    "targetScore": 4,
+    "otherMax": 5,
+    "temaCanonical": "Cirrosis y sus Complicaciones / Trasplante Hepático",
+    "casePreview": "Masculino de 45 años, sin antecedentes crónicos de importancia, acude al servicio de urgencias por presentar dolor abdominal de inicio súbito y muy intenso, de 4 horas de evolución"
+  },
+  {
+    "index": 539,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 4,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 4,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Neonato prematuro nacido a las 27 semanas de gestación, con peso al nacer de 900 gramos. Durante su estancia en la Unidad de Cuidados Intensivos Neonatales (UCIN), cursó con Síndro"
+  },
+  {
+    "index": 565,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 1
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Escolar masculino de 8 años es traído a la sala de urgencias tras caer de un árbol desde aproximadamente 3 metros de altura, golpeándose el abdomen contra una rama gruesa. A su ing"
+  },
+  {
+    "index": 608,
+    "currentSpec": "cir",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 1
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "ATLS / Trauma",
+    "casePreview": "Escolar masculino de 6 años es llevado a urgencias traumatológicas tras caer de un \"brincolín\", apoyando su brazo izquierdo contra el piso con el codo en hiperextensión. A su ingre"
+  },
+  {
+    "index": 697,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Diabetes Gestacional",
+    "casePreview": "Mujer de 27 años, G2P1, con embarazo de 26 semanas acude a consulta prenatal de rutina. Refiere que su embarazo ha evolucionado sin complicaciones hasta el momento. Como antecedent"
+  },
+  {
+    "index": 717,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente masculino de 4 años de edad es traído a urgencias por presentar evacuaciones con sangre fresca (hematoquecia) en abundante cantidad, sin dolor abdominal ni fiebre. A la ex"
+  },
+  {
+    "index": 781,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Trabajo de Parto",
+    "casePreview": "Recién nacido de término (38 SDG), obtenido por cesárea electiva sin trabajo de parto previo. A las 2 horas de vida, el neonato presenta taquipnea de 75 respiraciones por minuto y "
+  },
+  {
+    "index": 797,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "PEDIATRÍA / CRECIMIENTO Y DESARROLLO",
+    "casePreview": "Madre acude a consulta preocupada porque su hijo de 7 meses aún no presenta ninguna pieza dentaria visible. El niño está sano y no presenta otras alteraciones."
+  },
+  {
+    "index": 800,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Madre primigesta acude a consulta de puerperio a los 4 días del parto. Refiere que la leche que le sale es de color amarillento, espesa y en poca cantidad, y le preocupa que no sea"
+  },
+  {
+    "index": 808,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Adolescente de 14 años con cuadro de 2 semanas de evolución caracterizado por tos seca persistente, febrícula, cefalea y malestar general. En la radiografía de tórax se observan in"
+  },
+  {
+    "index": 839,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Preescolar que ingiere suplementos de sulfato ferroso de su madre. Presenta vómitos hemáticos y dolor abdominal (Fase 1). Tras una mejoría aparente (Fase 2), desarrolla choque, aci"
+  },
+  {
+    "index": 854,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "Cáncer de Mama",
+    "casePreview": "Niña de 7 años presenta aparición de vello púbico y telarquia (botón mamario) Tanner II. La madre refiere que la niña ha crecido mucho en el último año. La edad ósea está adelantad"
+  },
+  {
+    "index": 869,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido de 29 semanas de gestación, con peso de 1,100 g al nacer. Requirió ventilación mecánica y oxígeno suplementario por 15 días. Actualmente tiene 4 semanas de vida extra"
+  },
+  {
+    "index": 884,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "Cáncer de Mama",
+    "casePreview": "Niña de 11 años acude a revisión. A la exploración física se observa: elevación de la mama y el pezón como un pequeño montículo con aumento del diámetro de la aureola (Botón mamari"
+  },
+  {
+    "index": 889,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "PEDIATRÍA / ASPECTOS LEGALES",
+    "casePreview": "Niña de 6 años es traída por su tía debido a que la menor presenta disuria, secreción vaginal amarillenta y cambios bruscos de comportamiento (pesadillas y regresión en el control "
+  },
+  {
+    "index": 897,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Escolar masculino de 6 años, originario de la costa de Veracruz, acude a urgencias por presentar dolor óseo súbito y muy intenso en ambas piernas y brazos, acompañado de fiebre de "
+  },
+  {
+    "index": 909,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido de 28 semanas de gestación, actualmente con 3 meses de vida extrauterina. Fue dado de alta hace 2 semanas tras cursar con displasia broncopulmonar que requirió oxígen"
+  },
+  {
+    "index": 923,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 3,
+      "cir": 1,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido de término, producto de madre sin control prenatal. A la exploración física de ingreso destaca un neonato con bajo peso, presencia de secreción nasal serosanguinolent"
+  },
+  {
+    "index": 928,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido de 41 semanas de gestación (postérmino). Durante el trabajo de parto se detectó bradicardia fetal y líquido amniótico espeso teñido de meconio (\"puré de chícharos\"). "
+  },
+  {
+    "index": 929,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Trabajo de Parto",
+    "casePreview": "Recién nacido de 38 semanas, obtenido por cesárea electiva (sin trabajo de parto) debido a presentación pélvica. A la hora de vida inicia con taquipnea (FC 75 rpm), aleteo nasal y "
+  },
+  {
+    "index": 930,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 6,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 6,
+    "temaCanonical": "Patología del Embarazo: Estados Hipertensivos",
+    "casePreview": "Recién nacido de 28 semanas de gestación, obtenido por cesárea de urgencia por preeclampsia severa. La madre no recibió esquema de maduración pulmonar. A los pocos minutos de nacer"
+  },
+  {
+    "index": 934,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Lactante masculino de 18 meses, con antecedente de prematurez extrema (28 semanas de gestación). La madre lo trae porque \"aún no camina ni se sienta solo\". A la exploración física,"
+  },
+  {
+    "index": 935,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 4
+    },
+    "targetScore": 3,
+    "otherMax": 4,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Escolar masculino de 8 años acude a urgencias por debilidad muscular progresiva y dificultad para caminar. Hace 2 semanas presentó un cuadro de gastroenteritis aguda que se autolim"
+  },
+  {
+    "index": 936,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Escolar masculino de 7 años acude a urgencias por presentar edema facial de predominio matutino (párpados hinchados) y orina oscura \"color refresco de cola\" desde hace 24 horas. La"
+  },
+  {
+    "index": 944,
+    "currentSpec": "cir",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Quemaduras / Golpe de Calor / Hipotermia",
+    "casePreview": "Adolescente femenina de 14 años, previamente sana, se presenta a urgencias con inicio súbito de fiebre de 40°C, vómitos, diarrea acuosa profusa, mialgias severas y confusión mental"
+  },
+  {
+    "index": 953,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 2,
+      "cir": 1,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido prematuro de 28 semanas de gestación, que en su tercer día de vida en la UCIN desarrolla taquicardia, pulsos saltones (hiperdinámicos) y aumento de los requerimientos"
+  },
+  {
+    "index": 970,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Adolescente masculino de 15 años presenta una masa supraclavicular derecha, de crecimiento lento, no dolorosa, de consistencia \"gomosa\", de 2 meses de evolución. Refiere que en el "
+  },
+  {
+    "index": 973,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 4,
+      "cir": 1,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 4,
+    "temaCanonical": "Cesárea (Patología de Trabajo de Parto)",
+    "casePreview": "Lactante femenino de 2 meses de edad, nacida por cesárea debido a presentación de nalgas (pélvica). La madre refiere que nota una \"asimetría\" en las piernas. A la exploración físic"
+  },
+  {
+    "index": 983,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Nefrología",
+    "casePreview": "Escolar masculino de 11 años es traído por sus padres por ser el más bajo de su clase. A la exploración: Talla en percentil 3, velocidad de crecimiento normal (5 cm/año). No tiene "
+  },
+  {
+    "index": 999,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 2,
+      "cir": 3,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido de término, hijo de madre de 19 años sin control prenatal ni ingesta de suplementos. Al nacimiento se observa una tumoración quística en la región lumbosacra de 5 cm "
+  },
+  {
+    "index": 1002,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Hepatitis agudas y crónicas (Patología Hepática)",
+    "casePreview": "Madre acude a la unidad de medicina familiar con su hijo de 6 meses para aplicación de vacunas correspondientes. El niño cuenta con esquema completo para su edad (BCG, Hepatitis B,"
+  },
+  {
+    "index": 1028,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido de 38 semanas de gestación, obtenido por cesárea electiva sin trabajo de parto previo. A las 2 horas de vida inicia con taquipnea de 80 rpm, aleteo nasal y tiraje int"
+  },
+  {
+    "index": 1030,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 3,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido postérmino (42 semanas de gestación). Presenta sufrimiento fetal agudo durante el trabajo de parto. Al nacer, se observa líquido amniótico espeso con grumos verdes. E"
+  },
+  {
+    "index": 1034,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 2,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "RPM (Parto Prematuro y Patología Coriónica)",
+    "casePreview": "Recién nacido de 35 semanas de gestación. La madre acudió con ruptura prematura de membranas de 24 horas de evolución y fiebre intraparto de 38.5°C; no recibió profilaxis antibióti"
+  },
+  {
+    "index": 1037,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 4,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 4,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido de 39 semanas de gestación, obtenido por parto vaginal. El líquido amniótico presenta meconio espeso. Al nacer, el neonato se observa flácido (hipotónico) y no respir"
+  },
+  {
+    "index": 1042,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Nefrología",
+    "casePreview": "Escolar masculino de 7 años es traído a consulta externa por presentar cuadros recurrentes de tos seca (predominio nocturno) y \"silbido en el pecho\". La madre refiere que estos epi"
+  },
+  {
+    "index": 1043,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Asma en el Adulto y Pediátrico",
+    "casePreview": "Niña de 9 años con diagnóstico confirmado de asma. Acude a cita de seguimiento. La madre refiere que en el último mes la niña ha presentado síntomas diurnos (tos y sibilancias) 3 d"
+  },
+  {
+    "index": 1048,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Escolar femenina de 8 años, residente de una comunidad rural sin acceso a agua potable. Inicia hace 5 días con dolor abdominal tipo cólico severo, pujo, tenesmo rectal y múltiples "
+  },
+  {
+    "index": 1049,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Escolar masculino de 6 años es traído por su madre debido a que el niño presenta irritabilidad, alteraciones del sueño y refiere \"mucha comezón en la colita\" (prurito anal) de pred"
+  },
+  {
+    "index": 1052,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 2,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido prematuro de 29 semanas de gestación. Al 10° día de vida, encontrándose con alimentación enteral a base de fórmula, presenta residuo gástrico biliar, distensión abdom"
+  },
+  {
+    "index": 1055,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 5,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido de 35 semanas de gestación (prematuro tardío), obtenido por cesárea electiva. A las 2 horas de vida inicia con taquipnea (75 rpm) y quejido. La radiografía de tórax m"
+  },
+  {
+    "index": 1059,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Introducción MI / Introducción Infectología",
+    "casePreview": "Escolar masculino de 6 años es llevado a urgencias por deterioro del estado neurológico, fiebre de 40°C y cefalea intensa de inicio súbito. A la exploración física destaca rigidez "
+  },
+  {
+    "index": 1062,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Recién nacida de 15 días de vida es traída a urgencias por letargo, vómitos persistentes y deshidratación severa. A la exploración física destaca la presencia de genitales ambiguos"
+  },
+  {
+    "index": 1065,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Cardiopatía Isquémica",
+    "casePreview": "Preescolar masculino de 2 años de edad, previamente sano. Es llevado a urgencias por presentar evacuaciones con abundante sangre fresca y coágulos (hematoquecia) sin moco. El pacie"
+  },
+  {
+    "index": 1077,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Asma en el Adulto y Pediátrico",
+    "casePreview": "Femenina de 22 años con antecedente de rinitis alérgica. Refiere episodios de sibilancias, opresión torácica y tos seca de predominio nocturno desde hace 6 meses. Se sospecha asma "
+  },
+  {
+    "index": 1117,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "REUMATOLOGÍA",
+    "casePreview": "Femenina de 22 años presenta fiebre, artralgias, fotosensibilidad y un exantema eritematoso en mejillas y puente nasal que respeta los surcos nasogenianos. Los laboratorios reporta"
+  },
+  {
+    "index": 1307,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Nefrología",
+    "casePreview": "Niño con infecciones respiratorias recurrentes, esteatorrea y retraso en el crecimiento. Se realiza prueba de cloruros en sudor que resulta positiva (65 mmol/L)."
+  },
+  {
+    "index": 1356,
+    "currentSpec": "cir",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Hernias de la Pared Abdominal",
+    "casePreview": "Femenina de 65 años en protocolo de tamizaje. La densitometría ósea (DEXA) reporta un T-score de -2.7 en cuello femoral."
+  },
+  {
+    "index": 1364,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Ganadero con fiebre ondulante, diaforesis nocturna con olor a \"paja mojada\" y artralgias."
+  },
+  {
+    "index": 1483,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 2,
+      "cir": 1,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "GINECOLOGÍA Y OBSTETRICIA",
+    "casePreview": "Niña de 4 años presenta flujo vaginal fétido, crónico, sanguinolento y rebelde a tratamientos antibióticos previos."
+  },
+  {
+    "index": 1491,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 4,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "GINECOLOGÍA Y OBSTETRICIA",
+    "casePreview": "Paciente de 24 semanas de gestación acude para seguimiento. Su esquema de vacunación previo es desconocido."
+  },
+  {
+    "index": 1628,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "Esquizofrenia (Psiquiatría)",
+    "casePreview": "Homb re de 22 años es llevado a consulta por sus familiares, quienes refieren que desde hace 8 meses el paciente se ha aislado socialmente, ha dejado la universidad y presenta un a"
+  },
+  {
+    "index": 1633,
+    "currentSpec": "cir",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 3,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Trauma abdominal (ATLS)",
+    "casePreview": "Recién nacido de 14 horas de vida, producto de una segunda gestación de madre con grupo sanguíneo O negativo (O-) y padre A positivo (A+). La madre no llevó control prenatal adecua"
+  },
+  {
+    "index": 1648,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 4,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Paludismo/Malaria (Enfermedades Transmitidas por Vector)",
+    "casePreview": "Recién nacido de 38 semanas de gestación, obtenido mediante cesárea electiva sin trabajo de parto previo. Al nacimiento, presenta de forma casi inmediata polipnea con frecuencia re"
+  },
+  {
+    "index": 1649,
+    "currentSpec": "cir",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 4,
+      "cir": 1,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Chalazión (Introducción Oftalmología)",
+    "casePreview": "Recién nacido de 38 semanas de gestación, obtenido mediante cesárea electiva sin trabajo de parto previo. Al nacimiento, presenta de forma casi inmediata polipnea con frecuencia re"
+  },
+  {
+    "index": 1661,
+    "currentSpec": "cir",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 4,
+      "gyo": 10,
+      "cir": 8,
+      "mi": 9
+    },
+    "targetScore": 4,
+    "otherMax": 10,
+    "temaCanonical": "Pancreatitis crónica (Patología Pancreática)",
+    "casePreview": "Paciente de 38 años, multípara, cursa embarazo de 39 semanas de gestación. Se encuentra en periodo expulsivo del trabajo de parto, con un feto macrosómico estimado por ultrasonido "
+  },
+  {
+    "index": 1672,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Sx nefríticos (Nefrología)",
+    "casePreview": "Niño de 8 años de edad es llevado a consulta por presentar orina de color \"café oscuro\" (coluria) y edema periorbitario de predominio matutino. La madre refiere que hace 2 semanas "
+  },
+  {
+    "index": 1674,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 4,
+      "gyo": 8,
+      "cir": 7,
+      "mi": 8
+    },
+    "targetScore": 4,
+    "otherMax": 8,
+    "temaCanonical": "Anemia megaloblástica (Anemias Introducción y Anemias Carenciales)",
+    "casePreview": "Primigesta de 10 semanas de gestación acude a urgencias por presentar vómitos incoercibles (más de 10 episodios al día) desde hace dos semanas, con imposibilidad absoluta para tole"
+  },
+  {
+    "index": 1686,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 5,
+      "gyo": 8,
+      "cir": 6,
+      "mi": 9
+    },
+    "targetScore": 5,
+    "otherMax": 9,
+    "temaCanonical": "Pólipos endometriales (Sangrados Uterinos Anormales: Origen Anatómico",
+    "casePreview": "Hombre de 68 años de edad acude a consulta por sintomatología urinaria de 2 años de evolución, la cual se ha exacerbado recientemente. Refiere que tiene que levantarse hasta 4 vece"
+  },
+  {
+    "index": 1692,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 5,
+      "gyo": 10,
+      "cir": 5,
+      "mi": 8
+    },
+    "targetScore": 5,
+    "otherMax": 10,
+    "temaCanonical": "Hemorragia posparto (Hemorragias del Puerperio)",
+    "casePreview": "Lactante femenino de 4 semanas de vida es traída a la consulta pediátrica porque los padres notan que \"sigue amarilla\". La niña nació de término sin complicaciones, fue dada de alt"
+  },
+  {
+    "index": 1698,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 4,
+      "gyo": 11,
+      "cir": 6,
+      "mi": 7
+    },
+    "targetScore": 4,
+    "otherMax": 11,
+    "temaCanonical": "Nefropatía diabética (Complicaciones Diabetes)",
+    "casePreview": "Mujer de 24 años, cursando embarazo de 20 semanas de gestación, acude a su primera consulta de control prenatal. Refiere ser alérgica a la penicilina (presentó un exantema generali"
+  },
+  {
+    "index": 1724,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 4 años con fiebre de 6 días de evolución, conjuntivitis bilateral no purulenta, labios fisurados, lengua en fresa, exantema polimorfo y edema de manos y pies. Presenta aden"
+  },
+  {
+    "index": 1725,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Escolar de 8 años es llevado a urgencias 4 horas después de ingerir múltiples tabletas de paracetamol de forma accidental. Se encuentra consciente, con náusea y vómito. No tiene al"
+  },
+  {
+    "index": 1726,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Adolescente de 14 años presenta dolor súbito e intenso en testículo izquierdo, acompañado de náusea y vómito. A la exploración se observa testículo elevado, horizontalizado y con r"
+  },
+  {
+    "index": 1741,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 2 años con cuadro de rinorrea y febrícula de 2 días, que evoluciona con tos perruna, disfonía y estridor inspiratorio. Se observa retracción supraesternal leve, pero buena "
+  },
+  {
+    "index": 1742,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Lactante de 9 meses presenta episodios súbitos de llanto intenso con flexión de piernas sobre el abdomen, vómitos y periodos de aparente mejoría. Horas después evacúa heces con moc"
+  },
+  {
+    "index": 1743,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Escolar de 6 años con fiebre alta, cefalea intensa, vómito y rigidez de nuca. Se observa irritable y somnoliento. A la exploración presenta signos meníngeos positivos."
+  },
+  {
+    "index": 1759,
+    "currentSpec": "mi",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 2 años previamente sano presenta una convulsión generalizada de 3 minutos de duración durante un episodio febril por infección respiratoria alta. Después del evento se recu"
+  },
+  {
+    "index": 1772,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Escolar de 7 años presenta ojo rojo bilateral, sensación de cuerpo extraño y secreción abundante amarillenta desde hace 2 días. Refiere que al despertar tiene los párpados pegados."
+  },
+  {
+    "index": 1773,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 8 años con antecedente reciente de infección respiratoria alta, que inicia con dolor abdominal, artralgias en tobillos y rodillas, y lesiones purpúricas palpables en extrem"
+  },
+  {
+    "index": 1774,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 9 años presenta fiebre, malestar general y aumento de volumen doloroso en región parotídea bilateral. Refiere dolor al masticar y al ingerir alimentos ácidos."
+  },
+  {
+    "index": 1787,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 1,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 5 años llega a urgencias convulsionando desde hace 8 minutos, sin recuperación del estado de alerta entre episodios. Los familiares niegan antecedente traumático reciente y"
+  },
+  {
+    "index": 1800,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Escolar de 7 años presenta fiebre, odinofagia y exantema eritematoso difuso áspero al tacto, de predominio en tronco. A la exploración tiene lengua en fresa y eritema faríngeo."
+  },
+  {
+    "index": 1801,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niña de 6 años presenta exantema en ambas mejillas con aspecto de “bofetada”, seguido por erupción reticulada en tronco y extremidades. Se encuentra en buen estado general."
+  },
+  {
+    "index": 1802,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 3
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 10 años es llevado por pérdida de peso, poliuria, polidipsia y fatiga de varias semanas de evolución. En los últimos dos días presenta náusea y dolor abdominal. La glucosa "
+  },
+  {
+    "index": 1817,
+    "currentSpec": "cir",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 3 años es llevado por despertar nocturno súbito con tos metálica, voz ronca y estridor inspiratorio. Se encuentra ansioso, pero afebril y sin aspecto tóxico."
+  },
+  {
+    "index": 1818,
+    "currentSpec": "cir",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 0,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Escolar de 9 años presenta edema palpebral, hipertensión y orina oscura dos semanas después de un episodio de faringoamigdalitis. Refiere disminución del volumen urinario."
+  },
+  {
+    "index": 1849,
+    "currentSpec": "gyo",
+    "suggestedSpec": "ped",
+    "reason": "ambiguous_ped",
+    "scores": {
+      "ped": 3,
+      "gyo": 1,
+      "cir": 0,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 1,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niña de 6 años presenta fiebre baja, adenopatías retroauriculares y occipitales, además de exantema rosado fino que inicia en la cara y se disemina rápidamente al tronco. Se encuen"
+  }
+]

@@ -1,0 +1,1613 @@
+[
+{
+"specialty": "gyo",
+"case": "Paciente de 16 años acude por ausencia de menstruación. Refiere
+bochornos ocasionales, cefalea y preocupación porque sus compañeras
+menstruaron desde hace varios años. A la exploración presenta talla baja, cuello
+alado, implantación baja del cabello y tórax en escudo. Las mamas son Tanner I y el
+vello púbico Tanner II.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Síndrome de Rokitansky",
+"Síndrome de Turner",
+"Síndrome de Morris",
+"Síndrome de Asherman"
+],
+"answerIndex": 1,
+"explanation": "La amenorrea primaria con falta de desarrollo sexual secundario, talla
+baja y estigmas somáticos clásicos orienta a síndrome de Turner. En Rokitansky hay
+desarrollo mamario normal; en Morris hay feminización con escaso vello pubiano y
+testículos; en Asherman la amenorrea es secundaria y suele existir antecedente
+uterino.",
+"gpcReference": "",
+"tema": "Amenorreas Primarias y Secundarias",
+"temaCanonical": "Amenorreas Primarias y Secundarias",
+"subtemaCanonical": "Síndrome de Turner",
+"subtema": "Síndrome de Turner",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Amenorreas Primarias y Secundarias",
+"subtemaOriginal": "Síndrome de Turner",
+"difficulty": "media"
+},
+{
+"specialty": "gyo",
+"case": "Mujer de 24 años consulta por infertilidad primaria de 18 meses. Tiene ciclos
+menstruales irregulares cada 40 a 60 días, acné inflamatorio y aumento de vello en
+mentón y línea alba. El índice de masa corporal es de 31 kg/m2. La glucosa en ayuno
+está en límite alto y la prueba de embarazo es negativa.",
+"question": "¿Cuál es el diagnóstico más probable?",
+
+-- 1 of 40 --
+
+"options": [
+"Insuficiencia ovárica primaria",
+"Síndrome de ovario poliquístico",
+"Endometriosis profunda infiltrante",
+"Síndrome de Sheehan"
+],
+"answerIndex": 1,
+"explanation": "La combinación de oligomenorrea, hiperandrogenismo clínico e
+infertilidad en una paciente con sobrepeso u obesidad es compatible con síndrome
+de ovario poliquístico. La insuficiencia ovárica primaria suele acompañarse de
+hipoestrogenismo; la endometriosis se asocia más a dolor pélvico; el síndrome de
+Sheehan ocurre tras hemorragia obstétrica.",
+"gpcReference": "",
+"tema": "Sangrados Uterinos de Origen Desconocido",
+"temaCanonical": "Sangrados Uterinos de Origen Desconocido",
+"subtemaCanonical": "SOP",
+"subtema": "SOP",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Sangrados Uterinos de Origen Desconocido",
+"subtemaOriginal": "SOP",
+"difficulty": "media"
+},
+{
+"specialty": "gyo",
+"case": "Mujer de 33 años consulta por dismenorrea intensa, dolor pélvico crónico y
+dispareunia profunda desde hace 2 años. Refiere además infertilidad primaria de un
+año. La exploración bimanual muestra dolor en fondos de saco y discreta nodularidad
+en ligamentos uterosacros. El ultrasonido transvaginal no revela masas uterinas
+significativas.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Endometriosis",
+"Miomatosis uterina",
+"Vaginosis bacteriana",
+"Adenocarcinoma endometrial"
+],
+"answerIndex": 0,
+"explanation": "La triada de dismenorrea progresiva, dispareunia profunda e
+
+-- 2 of 40 --
+
+infertilidad, con hallazgos sugestivos en ligamentos uterosacros, es clásica de
+endometriosis. La miomatosis suele asociarse más a sangrado y efecto de masa; la
+vaginosis bacteriana no produce este patrón doloroso; el cáncer endometrial es
+improbable en este contexto clínico.",
+"gpcReference": "",
+"tema": "Sangrados Uterinos de Origen Desconocido",
+"temaCanonical": "Sangrados Uterinos de Origen Desconocido",
+"subtemaCanonical": "Endometriosis",
+"subtema": "Endometriosis",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Sangrados Uterinos de Origen Desconocido",
+"subtemaOriginal": "Endometriosis",
+"difficulty": "media"
+},
+{
+"specialty": "gyo",
+"case": "Mujer de 46 años consulta por sangrado menstrual abundante de varios
+meses de evolución. Refiere sensación de peso pélvico y aumento del volumen
+abdominal. A la exploración se palpa útero aumentado de tamaño, irregular, móvil y
+no doloroso. La prueba de embarazo es negativa.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Adenomiosis",
+"Miomatosis uterina",
+"Embarazo molar",
+"Enfermedad pélvica inflamatoria"
+],
+"answerIndex": 1,
+"explanation": "El útero aumentado de tamaño, irregular y móvil en una paciente con
+sangrado abundante sugiere miomatosis uterina. En adenomiosis suele palparse un
+útero globoso y doloroso. El embarazo molar requiere contexto gestacional; la
+enfermedad pélvica inflamatoria cursa con dolor, fiebre o secreción.",
+"gpcReference": "",
+"tema": "Sangrados Uterinos Anormales de Origen Anatómico No Maligno",
+"temaCanonical": "Sangrados Uterinos Anormales de Origen Anatómico No Maligno",
+"subtemaCanonical": "Miomatosis",
+"subtema": "Miomatosis",
+"specialtyOriginal": "gyo",
+
+-- 3 of 40 --
+
+"temaOriginal": "Sangrados Uterinos Anormales de Origen Anatómico No Maligno",
+"subtemaOriginal": "Miomatosis",
+"difficulty": "media"
+},
+{
+"specialty": "gyo",
+"case": "Paciente de 27 años consulta por fuga involuntaria de orina desde hace 8
+meses. Ocurre al toser, reír y cargar objetos pesados. No refiere urgencia intensa ni
+polaquiuria. Tuvo dos partos vaginales. A la exploración no hay dolor suprapúbico ni
+datos de infección urinaria.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Incontinencia urinaria de esfuerzo",
+"Incontinencia urinaria de urgencia",
+"Fístula vesicovaginal",
+"Cistitis aguda"
+],
+"answerIndex": 0,
+"explanation": "La pérdida involuntaria de orina asociada a incremento de la presión
+intraabdominal sin síntomas irritativos es típica de incontinencia urinaria de esfuerzo.
+La incontinencia de urgencia se acompaña de deseo imperioso miccional; la fístula
+genera salida continua; la cistitis produce disuria y polaquiuria.",
+"gpcReference": "",
+"tema": "Patología, Menopausia y Climaterio",
+"temaCanonical": "Patología, Menopausia y Climaterio",
+"subtemaCanonical": "Incontinencia Urinaria",
+"subtema": "Incontinencia Urinaria",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Patología, Menopausia y Climaterio",
+"subtemaOriginal": "Incontinencia Urinaria",
+"difficulty": "baja"
+},
+{
+"specialty": "gyo",
+"case": "Mujer de 61 años, posmenopáusica desde hace 10 años, consulta por
+sangrado transvaginal escaso intermitente de 3 semanas. Tiene antecedente de
+obesidad, hipertensión y diabetes mellitus tipo 2. No usa terapia hormonal. A la
+exploración no hay lesiones vulvovaginales visibles.",
+
+-- 4 of 40 --
+
+"question": "¿Cuál es el diagnóstico que debe sospecharse prioritariamente?",
+"options": [
+"Pólipo endocervical",
+"Cáncer de ovario epitelial",
+"Cáncer de endometrio",
+"Bartolinitis"
+],
+"answerIndex": 2,
+"explanation": "En una mujer posmenopáusica con sangrado uterino debe
+descartarse de forma prioritaria cáncer de endometrio, especialmente si presenta
+factores de riesgo como obesidad, diabetes e hipertensión. Las otras opciones no
+explican tan bien el síntoma cardinal en este contexto.",
+"gpcReference": "",
+"tema": "Oncología Ginecológica",
+"temaCanonical": "Oncología Ginecológica",
+"subtemaCanonical": "Cáncer de Endometrio",
+"subtema": "Cáncer de Endometrio",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Oncología Ginecológica",
+"subtemaOriginal": "Cáncer de Endometrio",
+"difficulty": "media"
+},
+{
+"specialty": "gyo",
+"case": "Mujer de 35 años acude por masa dolorosa en labio mayor izquierdo de 48
+horas de evolución. Refiere dificultad para caminar y sentarse. A la exploración se
+observa aumento de volumen unilateral de 4 cm en la porción posterolateral del
+introito, eritematoso y muy doloroso a la palpación.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Condiloma acuminado",
+"Bartolinitis",
+"Líquen escleroso vulvar",
+"Herpes genital recurrente"
+],
+"answerIndex": 1,
+"explanation": "La masa dolorosa unilateral en región posterolateral del introito con
+datos inflamatorios sugiere bartolinitis o absceso de glándula de Bartholin. Los
+
+-- 5 of 40 --
+
+condilomas son verrugosos; el liquen escleroso no produce este cuadro agudo; el
+herpes produce vesículas o úlceras dolorosas.",
+"gpcReference": "",
+"tema": "Oncología Ginecológica",
+"temaCanonical": "Oncología Ginecológica",
+"subtemaCanonical": "Bartolinitis",
+"subtema": "Bartolinitis",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Oncología Ginecológica",
+"subtemaOriginal": "Bartolinitis",
+"difficulty": "baja"
+},
+{
+"specialty": "gyo",
+"case": "Primigesta de 9 semanas acude a consulta por náusea y vómito persistentes
+durante una semana. Ha tolerado muy poco alimento, refiere mareo y pérdida de 3 kg.
+A la exploración se encuentra con mucosas secas, taquicardia leve y sin dolor
+abdominal ni fiebre.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Gastroenteritis viral",
+"Hiperemesis gravídica",
+"Preeclampsia temprana",
+"Colecistitis aguda"
+],
+"answerIndex": 1,
+"explanation": "La presencia de vómito persistente en el primer trimestre con pérdida
+ponderal y deshidratación es compatible con hiperemesis gravídica. La preeclampsia
+no es el diagnóstico esperado a esta edad gestacional; la gastroenteritis suele
+acompañarse de diarrea o fiebre; la colecistitis da dolor en hipocondrio derecho.",
+"gpcReference": "",
+"tema": "Control Prenatal",
+"temaCanonical": "Control Prenatal",
+"subtemaCanonical": "Hiperemesis Gravídica",
+"subtema": "Hiperemesis Gravídica",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Control Prenatal",
+"subtemaOriginal": "Hiperemesis Gravídica",
+
+-- 6 of 40 --
+
+"difficulty": "media"
+},
+{
+"specialty": "gyo",
+"case": "Mujer de 29 años, G2P1, con embarazo de 30 semanas, acude para control
+prenatal. Es grupo O Rh negativo. Su primer embarazo terminó en parto de producto
+Rh positivo y no recuerda haber recibido profilaxis. En el embarazo actual la prueba
+de Coombs indirecta es negativa.",
+"question": "¿Cuál es la conducta preventiva indicada en este momento si no hay
+sensibilización?",
+"options": [
+"Aplicar inmunoglobulina anti-D durante el tercer trimestre",
+"Indicar hierro oral solamente",
+"Solicitar perfil tiroideo seriado",
+"Programar cesárea a las 34 semanas"
+],
+"answerIndex": 0,
+"explanation": "En una gestante Rh negativo no sensibilizada, la profilaxis con
+inmunoglobulina anti-D durante el embarazo y en situaciones de riesgo disminuye la
+aloinmunización materna. El hierro y el perfil tiroideo no resuelven este problema y la
+cesárea programada no es una medida preventiva para incompatibilidad Rh.",
+"gpcReference": "",
+"tema": "Control Prenatal",
+"temaCanonical": "Control Prenatal",
+"subtemaCanonical": "Incompatibilidad de Grupo RH",
+"subtema": "Incompatibilidad de Grupo RH",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Control Prenatal",
+"subtemaOriginal": "Incompatibilidad de Grupo RH",
+"difficulty": "alta"
+},
+{
+"specialty": "gyo",
+"case": "Paciente de 28 años con 7 semanas de amenorrea acude por dolor en fosa
+iliaca derecha y sangrado transvaginal escaso. Refiere retraso menstrual y prueba de
+embarazo positiva realizada en casa. A la exploración tiene dolor a la movilización
+cervical y sensibilidad anexial derecha. En ultrasonido transvaginal no se identifica
+saco gestacional intrauterino y se observa masa anexial heterogénea.",
+
+-- 7 of 40 --
+
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Amenaza de aborto",
+"Embarazo ectópico",
+"Quiste lúteo hemorrágico sin embarazo",
+"Enfermedad trofoblástica gestacional"
+],
+"answerIndex": 1,
+"explanation": "El dolor abdominal unilateral, sangrado y ausencia de saco
+intrauterino con prueba de embarazo positiva orientan a embarazo ectópico. La
+amenaza de aborto requiere gestación intrauterina. El quiste hemorrágico no explica
+por sí mismo la prueba positiva. La enfermedad trofoblástica suele asociarse a útero
+mayor que la edad gestacional y beta-hCG muy elevada.",
+"gpcReference": "",
+"tema": "Hemorragias del Primer Trimestre",
+"temaCanonical": "Hemorragias del Primer Trimestre",
+"subtemaCanonical": "Embarazo Ectópico",
+"subtema": "Embarazo Ectópico",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Hemorragias del Primer Trimestre",
+"subtemaOriginal": "Embarazo Ectópico",
+"difficulty": "media"
+},
+{
+"specialty": "gyo",
+"case": "Mujer de 24 años con embarazo de 12 semanas refiere expulsión de material
+hemático con cólicos intensos. A la exploración presenta cuello uterino dilatado y
+restos tisulares en canal cervical. El ultrasonido confirma cavidad uterina con
+material residual.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Aborto retenido",
+"Aborto séptico",
+"Aborto incompleto",
+"Amenaza de aborto"
+],
+"answerIndex": 2,
+"explanation": "La expulsión parcial de tejido gestacional, con sangrado, dolor y cérvix
+
+-- 8 of 40 --
+
+dilatado, corresponde a aborto incompleto. En el aborto retenido no hay expulsión ni
+viabilidad; en el séptico hay datos infecciosos; en la amenaza el cuello permanece
+cerrado.",
+"gpcReference": "",
+"tema": "Hemorragias del Primer Trimestre",
+"temaCanonical": "Hemorragias del Primer Trimestre",
+"subtemaCanonical": "Aborto",
+"subtema": "Aborto",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Hemorragias del Primer Trimestre",
+"subtemaOriginal": "Aborto",
+"difficulty": "media"
+},
+{
+"specialty": "gyo",
+"case": "Gestante de 34 semanas acude a urgencias por sangrado transvaginal rojo
+brillante de inicio súbito. Niega dolor abdominal y refiere movimientos fetales
+presentes. La exploración abdominal muestra útero relajado, sin hipertonía ni dolor a
+la palpación.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Placenta previa",
+"Desprendimiento prematuro de placenta normoinserta",
+"Rotura uterina",
+"Trabajo de parto pretérmino con sangrado cervical"
+],
+"answerIndex": 0,
+"explanation": "El sangrado rojo brillante, indoloro, en el tercer trimestre con útero
+relajado es característico de placenta previa. El DPPNI suele cursar con dolor,
+hipertonía y sufrimiento fetal. La rotura uterina se asocia a dolor súbito intenso y
+compromiso materno-fetal.",
+"gpcReference": "",
+"tema": "Hemorragias del Segundo Trimestre",
+"temaCanonical": "Hemorragias del Segundo Trimestre",
+"subtemaCanonical": "Placenta Previa",
+"subtema": "Placenta Previa",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Hemorragias del Segundo Trimestre",
+
+-- 9 of 40 --
+
+"subtemaOriginal": "Placenta Previa",
+"difficulty": "media"
+},
+{
+"specialty": "gyo",
+"case": "Gestante de 36 semanas con antecedente de hipertensión gestacional
+consulta por dolor en epigastrio, cefalea y náusea. La TA es de 164/108 mmHg. Los
+laboratorios muestran AST y ALT elevadas, plaquetas de 85,000/mm3 y datos de
+hemólisis en frotis periférico.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Hígado graso agudo del embarazo",
+"Preeclampsia sin criterios de severidad",
+"Síndrome de HELLP",
+"Colelitiasis no complicada"
+],
+"answerIndex": 2,
+"explanation": "La hemólisis, elevación de enzimas hepáticas y trombocitopenia en
+una embarazada con hipertensión son diagnósticos de síndrome de HELLP. No
+corresponde a preeclampsia sin severidad. El hígado graso puede parecerse, pero
+este patrón integrado con trombocitopenia e hipertensión orienta a HELLP.",
+"gpcReference": "",
+"tema": "Patología del Embarazo: Estados Hipertensivos",
+"temaCanonical": "Patología del Embarazo: Estados Hipertensivos",
+"subtemaCanonical": "Síndrome de HELLP",
+"subtema": "Síndrome de HELLP",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Patología del Embarazo: Estados Hipertensivos",
+"subtemaOriginal": "Síndrome de HELLP",
+"difficulty": "alta"
+},
+{
+"specialty": "gyo",
+"case": "Gestante de 29 años, con 27 semanas de embarazo, acude con resultado de
+curva de tolerancia a la glucosa alterada realizada como tamiz. No tiene
+antecedentes de diabetes mellitus previos al embarazo. Refiera aumento de peso
+mayor al esperado. El ultrasonido muestra feto con biometría en percentil alto para la
+edad gestacional.",
+
+-- 10 of 40 --
+
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Diabetes mellitus tipo 1 descontrolada",
+"Diabetes mellitus gestacional",
+"Síndrome metabólico sin repercusión obstétrica",
+"Preeclampsia"
+],
+"answerIndex": 1,
+"explanation": "La alteración del tamiz o de la prueba diagnóstica de glucosa
+detectada durante el embarazo, sin antecedente previo conocido de diabetes,
+corresponde a diabetes mellitus gestacional. La preeclampsia se define por
+hipertensión y daño orgánico, y el síndrome metabólico no sustituye este diagnóstico
+obstétrico.",
+"gpcReference": "",
+"tema": "Patología del Embarazo",
+"temaCanonical": "Patología del Embarazo",
+"subtemaCanonical": "Diabetes Mellitus Gestacional",
+"subtema": "Diabetes Mellitus Gestacional",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Patología del Embarazo",
+"subtemaOriginal": "Diabetes Mellitus Gestacional",
+"difficulty": "media"
+},
+{
+"specialty": "gyo",
+"case": "Primigesta de 39 semanas cursa trabajo de parto. A la exploración obstétrica
+presenta cuello borrado al 100%, dilatación de 6 cm, presentación cefálica en
+estación 0, membranas íntegras y tres contracciones en 10 minutos de intensidad
+adecuada. La frecuencia cardiaca fetal es normal.",
+"question": "¿En qué fase del trabajo de parto se encuentra la paciente?",
+"options": [
+"Fase latente",
+"Expulsivo",
+"Alumbramiento",
+"Fase activa"
+],
+"answerIndex": 3,
+"explanation": "La dilatación cervical de 6 cm con dinámica uterina efectiva
+
+-- 11 of 40 --
+
+corresponde a fase activa del trabajo de parto. El expulsivo inicia con dilatación
+completa. El alumbramiento ocurre tras la salida fetal y la fase latente corresponde a
+etapas más tempranas de dilatación.",
+"gpcReference": "",
+"tema": "Trabajo de Parto",
+"temaCanonical": "Trabajo de Parto",
+"subtemaCanonical": "Fisiológico",
+"subtema": "Fisiológico",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Trabajo de Parto",
+"subtemaOriginal": "Fisiológico",
+"difficulty": "baja"
+},
+{
+"specialty": "gyo",
+"case": "Gestante de 31 semanas refiere salida súbita de líquido transvaginal claro
+desde hace 4 horas. No presenta contracciones ni fiebre. En la exploración con
+espejo se observa salida de líquido a través del orificio cervical. La frecuencia
+cardiaca fetal es normal.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Corioamnionitis",
+"Ruptura prematura de membranas pretérmino",
+"Incontinencia urinaria del embarazo",
+"Amenaza de parto pretérmino"
+],
+"answerIndex": 1,
+"explanation": "La pérdida de líquido amniótico antes del inicio del trabajo de parto y
+antes de las 37 semanas orienta a ruptura prematura de membranas pretérmino. La
+corioamnionitis requeriría datos infecciosos. La incontinencia urinaria no se confirma
+así en la exploración con espejo.",
+"gpcReference": "",
+"tema": "Parto Prematuro y Patología Coriónica",
+"temaCanonical": "Parto Prematuro y Patología Coriónica",
+"subtemaCanonical": "Ruptura Prematura de Membranas",
+"subtema": "Ruptura Prematura de Membranas",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Parto Prematuro y Patología Coriónica",
+
+-- 12 of 40 --
+
+"subtemaOriginal": "Ruptura Prematura de Membranas",
+"difficulty": "media"
+},
+{
+"specialty": "gyo",
+"case": "Puerpera de 3 días, posterior a cesárea, acude por fiebre de 38.8 °C, dolor
+abdominal bajo y loquios fétidos. A la exploración presenta sensibilidad uterina a la
+palpación y mal estado general. La herida quirúrgica no muestra secreción
+purulenta.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Sepsis materna de probable origen endometrial",
+"Mastitis puerperal",
+"Preeclampsia posparto",
+"Atonía uterina"
+],
+"answerIndex": 0,
+"explanation": "La fiebre puerperal con dolor uterino y loquios fétidos sugiere
+infección uterina posparto y puede constituir sepsis materna si existe respuesta
+sistémica. La mastitis se localiza en mama; la atonía causa hemorragia; la
+preeclampsia posparto no explica loquios fétidos ni dolor uterino.",
+"gpcReference": "",
+"tema": "Patología Puerperal",
+"temaCanonical": "Patología Puerperal",
+"subtemaCanonical": "Sepsis Materna",
+"subtema": "Sepsis Materna",
+"specialtyOriginal": "gyo",
+"temaOriginal": "Patología Puerperal",
+"subtemaOriginal": "Sepsis Materna",
+"difficulty": "alta"
+},
+{
+"specialty": "ped",
+"case": "Recién nacido de término, vigoroso, con peso adecuado para edad
+gestacional, es llevado a revisión a las 36 horas de vida. La madre pregunta qué
+estudio de tamizaje debe realizarse antes del egreso hospitalario o en los primeros
+días de vida para detectar alteraciones auditivas de manera oportuna.",
+"question": "¿Qué tamizaje corresponde en este caso?",
+
+-- 13 of 40 --
+
+"options": [
+"Tamiz auditivo neonatal",
+"Tomografía de cráneo de rutina",
+"Electroencefalograma neonatal",
+"Endoscopia digestiva alta"
+],
+"answerIndex": 0,
+"explanation": "El tamiz auditivo neonatal permite la detección temprana de
+hipoacusia, lo que favorece intervención oportuna y mejor desarrollo del lenguaje.
+Los otros estudios no se realizan como tamizaje rutinario en recién nacidos sanos.",
+"gpcReference": "",
+"tema": "Recién Nacido Sano",
+"temaCanonical": "Recién Nacido Sano",
+"subtemaCanonical": "Tamizajes del RN",
+"subtema": "Tamizajes del RN",
+"specialtyOriginal": "ped",
+"temaOriginal": "Recién Nacido Sano",
+"subtemaOriginal": "Tamizajes del RN",
+"difficulty": "baja"
+},
+{
+"specialty": "ped",
+"case": "Recién nacido prematuro de 30 semanas, hijo de madre sin aplicación
+prenatal de esteroides, presenta dificultad respiratoria desde los primeros minutos de
+vida. Tiene quejido espiratorio, tiraje intercostal y retracciones subcostales. La
+radiografía de tórax muestra patrón reticulogranular difuso con broncograma aéreo.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Taquipnea transitoria del recién nacido",
+"Enfermedad de membrana hialina",
+"Síndrome de aspiración de meconio",
+"Hernia diafragmática congénita"
+],
+"answerIndex": 1,
+"explanation": "La dificultad respiratoria temprana en un prematuro con radiografía
+reticulogranular y broncograma aéreo es clásica de enfermedad de membrana hialina
+por déficit de surfactante. La taquipnea transitoria se ve más en recién nacidos de
+término o casi término; el síndrome de aspiración de meconio suele afectar a
+
+-- 14 of 40 --
+
+productos más maduros.",
+"gpcReference": "",
+"tema": "Patología Respiratoria del Pediátrico",
+"temaCanonical": "Patología Respiratoria del Pediátrico",
+"subtemaCanonical": "Enfermedad de Membrana Hialina",
+"subtema": "Enfermedad de Membrana Hialina",
+"specialtyOriginal": "ped",
+"temaOriginal": "Patología Respiratoria del Pediátrico",
+"subtemaOriginal": "Enfermedad de Membrana Hialina",
+"difficulty": "media"
+},
+{
+"specialty": "ped",
+"case": "Recién nacido de 3 días presenta distensión abdominal, vómito biliar y
+sangrado escaso en evacuaciones. Nació prematuro de 32 semanas y ha recibido
+alimentación enteral. A la exploración se encuentra irritable, con abdomen doloroso y
+residuo gástrico aumentado.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Enterocolitis necrotizante",
+"Atresia esofágica",
+"Estenosis hipertrófica del píloro",
+"Ictericia por lactancia materna"
+],
+"answerIndex": 0,
+"explanation": "En el prematuro con distensión abdominal, intolerancia alimentaria,
+residuo gástrico, vómito y sangre en heces debe sospecharse enterocolitis
+necrotizante. La estenosis hipertrófica del píloro aparece semanas después y no
+produce evacuaciones sanguinolentas; la atresia esofágica se manifiesta desde el
+nacimiento con sialorrea y dificultad para pasar sonda.",
+"gpcReference": "",
+"tema": "Patología Neonatal Infecciosa",
+"temaCanonical": "Patología Neonatal Infecciosa",
+"subtemaCanonical": "Enterocolitis Necrotizante",
+"subtema": "Enterocolitis Necrotizante",
+"specialtyOriginal": "ped",
+"temaOriginal": "Patología Neonatal Infecciosa",
+"subtemaOriginal": "Enterocolitis Necrotizante",
+
+-- 15 of 40 --
+
+"difficulty": "alta"
+},
+{
+"specialty": "ped",
+"case": "Recién nacido de término presenta cianosis intensa y dificultad respiratoria
+inmediata al nacimiento. Al intentar pasar una sonda nasogástrica por ambas fosas
+nasales, esta no progresa. La cianosis mejora cuando el lactante llora y empeora
+durante la alimentación o en reposo.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Atresia de coanas",
+"Laringomalacia",
+"Cardiopatía congénita cianógena",
+"Sepsis neonatal temprana"
+],
+"answerIndex": 0,
+"explanation": "La cianosis cíclica que mejora con el llanto y la imposibilidad para
+pasar sonda por fosas nasales son hallazgos clásicos de atresia de coanas. La
+laringomalacia produce estridor, no este patrón. La cardiopatía cianógena no mejora
+típicamente con el llanto.",
+"gpcReference": "",
+"tema": "Patología Neonatal Malformativa",
+"temaCanonical": "Patología Neonatal Malformativa",
+"subtemaCanonical": "Atresia de las Coanas",
+"subtema": "Atresia de las Coanas",
+"specialtyOriginal": "ped",
+"temaOriginal": "Patología Neonatal Malformativa",
+"subtemaOriginal": "Atresia de las Coanas",
+"difficulty": "alta"
+},
+{
+"specialty": "ped",
+"case": "Lactante de 6 semanas presenta ictericia desde el quinto día de vida, pero se
+encuentra activo, con buena succión y adecuada ganancia ponderal. No tiene coluria
+ni acolia. El examen físico es normal, salvo la coloración amarillenta de piel y
+escleróticas. Se alimenta exclusivamente con leche materna.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+
+-- 16 of 40 --
+
+"Atresia de vías biliares",
+"Ictericia fisiológica prolongada por lactancia materna",
+"Sepsis neonatal tardía",
+"Incompatibilidad Rh severa"
+],
+"answerIndex": 1,
+"explanation": "La ictericia en un lactante clínicamente sano, con adecuada
+alimentación y sin datos de colestasis, es compatible con ictericia asociada a
+lactancia materna. La atresia biliar debe sospecharse si hay coluria o acolia. La
+incompatibilidad Rh suele manifestarse más tempranamente y con mayor gravedad.",
+"gpcReference": "",
+"tema": "Ictericia Neonatal",
+"temaCanonical": "Ictericia Neonatal",
+"subtemaCanonical": "Materna",
+"subtema": "Materna",
+"specialtyOriginal": "ped",
+"temaOriginal": "Ictericia Neonatal",
+"subtemaOriginal": "Materna",
+"difficulty": "media"
+},
+{
+"specialty": "ped",
+"case": "Lactante de 2 meses acude a consulta de seguimiento. La madre comenta
+que el niño fija la mirada, sonríe cuando lo estimulan y emite algunos sonidos
+guturales. Tolera bien la alimentación y no presenta datos de enfermedad aguda.",
+"question": "¿Cuál de los siguientes hallazgos corresponde a un hito del desarrollo
+esperado para esta edad?",
+"options": [
+"Sostén completo de la cabeza sentado sin apoyo",
+"Marcha con apoyo",
+"Sonrisa social",
+"Pinza fina madura"
+],
+"answerIndex": 2,
+"explanation": "La sonrisa social es un hito esperado hacia los 2 meses. El sostén
+completo de la cabeza aparece más adelante; la marcha con apoyo y la pinza fina
+madura corresponden a etapas mucho posteriores del desarrollo.",
+"gpcReference": "",
+
+-- 17 of 40 --
+
+"tema": "Crecimiento y Desarrollo",
+"temaCanonical": "Crecimiento y Desarrollo",
+"subtemaCanonical": "Hitos del Desarrollo",
+"subtema": "Hitos del Desarrollo",
+"specialtyOriginal": "ped",
+"temaOriginal": "Crecimiento y Desarrollo",
+"subtemaOriginal": "Hitos del Desarrollo",
+"difficulty": "baja"
+},
+{
+"specialty": "ped",
+"case": "Niño de 8 meses es llevado a consulta de niño sano. Ha recibido sus vacunas
+previas conforme a cartilla, no tiene fiebre ni datos de enfermedad aguda. Los padres
+desean saber si puede continuar con el esquema correspondiente a su edad aun
+cuando está en tratamiento tópico por dermatitis del pañal.",
+"question": "¿Cuál es la conducta correcta respecto a la vacunación?",
+"options": [
+"Posponer todas las vacunas hasta después del primer año",
+"Aplicar las vacunas indicadas para su edad si no hay contraindicación específica",
+"Suspender el esquema porque usa medicamento tópico",
+"Aplicar solo vacunas inactivadas y omitir el resto de manera permanente"
+],
+"answerIndex": 1,
+"explanation": "La vacunación debe continuarse de acuerdo con el esquema nacional
+cuando no existan contraindicaciones específicas. Dermatitis del pañal o tratamiento
+tópico no son motivos para suspender la inmunización rutinaria.",
+"gpcReference": "",
+"tema": "Vacunación",
+"temaCanonical": "Vacunación",
+"subtemaCanonical": "Vacunación",
+"subtema": "Vacunación",
+"specialtyOriginal": "ped",
+"temaOriginal": "Vacunación",
+"subtemaOriginal": "Vacunación",
+"difficulty": "baja"
+},
+{
+"specialty": "ped",
+
+-- 18 of 40 --
+
+"case": "Lactante de 10 meses previamente sano presenta episodios de llanto intenso
+intermitente con flexión de piernas sobre abdomen, vómitos y un episodio de
+evacuación mucosanguinolenta. Entre los episodios se muestra decaído. A la
+palpación abdominal se identifica una masa alargada en hemiabdomen derecho.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Enfermedad de Hirschsprung",
+"Invaginación intestinal",
+"Apendicitis aguda",
+"Gastroenteritis viral simple"
+],
+"answerIndex": 1,
+"explanation": "La tríada de dolor cólico intermitente, vómito y evacuación tipo jalea
+de grosella, junto con masa abdominal, orienta a invaginación intestinal. La
+enfermedad de Hirschsprung causa estreñimiento crónico; la apendicitis es menos
+frecuente en este grupo etario y no tiene este patrón clásico.",
+"gpcReference": "",
+"tema": "Patología Gastrointestinal Pediátrica",
+"temaCanonical": "Patología Gastrointestinal Pediátrica",
+"subtemaCanonical": "Invaginación Intestinal",
+"subtema": "Invaginación Intestinal",
+"specialtyOriginal": "ped",
+"temaOriginal": "Patología Gastrointestinal Pediátrica",
+"subtemaOriginal": "Invaginación Intestinal",
+"difficulty": "media"
+},
+{
+"specialty": "ped",
+"case": "Escolar de 6 años presenta diarrea con fiebre, dolor abdominal tipo cólico y
+evacuaciones con moco y sangre desde hace 24 horas. En la exploración está
+irritable, con mucosas ligeramente secas y dolor difuso a la palpación abdominal, sin
+datos de irritación peritoneal.",
+"question": "¿Qué tipo de diarrea es la más probable?",
+"options": [
+"Diarrea osmótica por intolerancia a lactosa",
+"Diarrea enteroinvasiva",
+"Diarrea secretora por cólera",
+"Diarrea funcional del lactante"
+
+-- 19 of 40 --
+
+],
+"answerIndex": 1,
+"explanation": "La presencia de fiebre, dolor abdominal y evacuaciones con sangre o
+moco orienta a diarrea enteroinvasiva. Las diarreas osmóticas y funcionales no
+suelen cursar con sangre. El cólera provoca diarrea acuosa profusa sin este
+componente inflamatorio.",
+"gpcReference": "",
+"tema": "Diarrea en el Pediátrico",
+"temaCanonical": "Diarrea en el Pediátrico",
+"subtemaCanonical": "Diarrea Enteroinvasiva",
+"subtema": "Diarrea Enteroinvasiva",
+"specialtyOriginal": "ped",
+"temaOriginal": "Diarrea en el Pediátrico",
+"subtemaOriginal": "Diarrea Enteroinvasiva",
+"difficulty": "media"
+},
+{
+"specialty": "ped",
+"case": "Niño de 5 años es llevado por prurito anal nocturno intenso desde hace dos
+semanas. La madre refiere que duerme inquieto y se rasca principalmente por las
+noches. No tiene fiebre ni pérdida de peso. El resto de la exploración es normal.",
+"question": "¿Cuál es la parasitosis más probable?",
+"options": [
+"Giardiasis",
+"Oxiuriasis",
+"Ascariasis",
+"Teniasis"
+],
+"answerIndex": 1,
+"explanation": "El prurito anal nocturno es característico de oxiuriasis por Enterobius
+vermicularis. La giardiasis causa diarrea y mala absorción; la ascariasis suele ser
+asintomática o gastrointestinal; la teniasis no se presenta así de forma típica.",
+"gpcReference": "",
+"tema": "Enfermedades Parasitarias",
+"temaCanonical": "Enfermedades Parasitarias",
+"subtemaCanonical": "Oxiuriasis",
+"subtema": "Oxiuriasis",
+"specialtyOriginal": "ped",
+
+-- 20 of 40 --
+
+"temaOriginal": "Enfermedades Parasitarias",
+"subtemaOriginal": "Oxiuriasis",
+"difficulty": "baja"
+},
+{
+"specialty": "ped",
+"case": "Escolar de 7 años presenta fiebre, odinofagia y exantema de inicio en cuello
+que posteriormente se generaliza. Tiene lengua aframbuesada y exudado amigdalar.
+En la exploración destaca un exantema eritematoso fino con textura áspera que
+predomina en pliegues.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Escarlatina",
+"Sarampión",
+"Rubéola",
+"Quinta enfermedad"
+],
+"answerIndex": 0,
+"explanation": "La combinación de faringoamigdalitis, lengua aframbuesada y
+exantema áspero generalizado es típica de escarlatina. Sarampión presenta tos,
+coriza y conjuntivitis; rubéola da adenopatías retroauriculares; la quinta enfermedad
+se caracteriza por eritema malar.",
+"gpcReference": "",
+"tema": "Enfermedades Exantemáticas",
+"temaCanonical": "Enfermedades Exantemáticas",
+"subtemaCanonical": "Escarlatina",
+"subtema": "Escarlatina",
+"specialtyOriginal": "ped",
+"temaOriginal": "Enfermedades Exantemáticas",
+"subtemaOriginal": "Escarlatina",
+"difficulty": "media"
+},
+{
+"specialty": "ped",
+"case": "Niño de 3 años ingiere accidentalmente un líquido destapacaños que estaba
+en una botella de refresco. Llega a urgencias con sialorrea, dolor al deglutir y llanto
+persistente. No hay estridor ni datos de choque.",
+"question": "¿Cuál es la conducta inicial más adecuada?",
+
+-- 21 of 40 --
+
+"options": [
+"Inducir el vómito de inmediato",
+"Administrar neutralizantes ácidos por vía oral",
+"Valorar vía aérea y mantener en ayuno para manejo hospitalario",
+"Enviar a casa con protector gástrico oral"
+],
+"answerIndex": 2,
+"explanation": "En la ingesta de cáusticos se prioriza la evaluación de la vía aérea, el
+estado hemodinámico y el manejo hospitalario, evitando emesis o neutralización
+porque aumentan el daño. Dar de alta o manejar ambulatoriamente es inapropiado si
+hay síntomas.",
+"gpcReference": "",
+"tema": "Urgencias Pediátricas",
+"temaCanonical": "Urgencias Pediátricas",
+"subtemaCanonical": "Ingesta de Cáusticos",
+"subtema": "Ingesta de Cáusticos",
+"specialtyOriginal": "ped",
+"temaOriginal": "Urgencias Pediátricas",
+"subtemaOriginal": "Ingesta de Cáusticos",
+"difficulty": "alta"
+},
+{
+"specialty": "ped",
+"case": "Recién nacido de 2 semanas presenta soplo holosistólico intenso en borde
+esternal inferior izquierdo. Tiene buena saturación, sin cianosis, pero con dificultad
+para ganar peso. La radiografía muestra cardiomegalia leve y aumento de flujo
+pulmonar.",
+"question": "¿Cuál es la cardiopatía congénita más probable?",
+"options": [
+"Comunicación interventricular",
+"Tetralogía de Fallot",
+"Transposición de grandes vasos",
+"Estenosis pulmonar severa"
+],
+"answerIndex": 0,
+"explanation": "La comunicación interventricular es una cardiopatía acianógena
+frecuente que produce soplo holosistólico en borde esternal inferior izquierdo y
+puede generar sobrecarga pulmonar. Tetralogía y transposición son cianógenas; la
+
+-- 22 of 40 --
+
+estenosis pulmonar tiene otro patrón auscultatorio.",
+"gpcReference": "",
+"tema": "Cardiopedia",
+"temaCanonical": "Cardiopedia",
+"subtemaCanonical": "CIV",
+"subtema": "CIV",
+"specialtyOriginal": "ped",
+"temaOriginal": "Cardiopedia",
+"subtemaOriginal": "CIV",
+"difficulty": "media"
+},
+{
+"specialty": "ped",
+"case": "Niño de 8 años consulta por púrpura palpable en piernas, dolor abdominal
+tipo cólico y artralgias en tobillos. Hace una semana tuvo una infección de vías
+respiratorias superiores. La biometría hemática reporta plaquetas dentro de rango
+normal.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Púrpura trombocitopénica inmune",
+"Púrpura de Henoch-Schönlein",
+"Hemofilia A",
+"Sepsis meningocócica"
+],
+"answerIndex": 1,
+"explanation": "La púrpura palpable en extremidades inferiores con dolor abdominal,
+artralgias y plaquetas normales orienta a púrpura de Henoch-Schönlein. La
+trombocitopénica inmune cursa con plaquetas bajas; hemofilia no provoca púrpura
+palpable; la sepsis meningocócica suele acompañarse de toxicidad sistémica
+importante.",
+"gpcReference": "",
+"tema": "Especialidades Pediátricas",
+"temaCanonical": "Especialidades Pediátricas",
+"subtemaCanonical": "Púrpura de Henoch-Schönlein",
+"subtema": "Púrpura de Henoch-Schönlein",
+"specialtyOriginal": "ped",
+"temaOriginal": "Especialidades Pediátricas",
+"subtemaOriginal": "Púrpura de Henoch-Schönlein",
+
+-- 23 of 40 --
+
+"difficulty": "media"
+},
+{
+"specialty": "cir",
+"case": "Hombre de 27 años acude a urgencias por dolor abdominal súbito en
+epigastrio que se generaliza rápidamente. Tiene antecedente de consumo crónico de
+AINE por dolor lumbar. A la exploración presenta abdomen rígido, dolor intenso a la
+descompresión y facies de dolor. La radiografía de tórax en bipedestación muestra
+aire libre subdiafragmático.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Úlcera péptica perforada",
+"Colecistitis aguda",
+"Pancreatitis aguda leve",
+"Apendicitis retrocecal"
+],
+"answerIndex": 0,
+"explanation": "El dolor abdominal súbito con datos de irritación peritoneal y
+neumoperitoneo es altamente sugestivo de perforación de víscera hueca, en este
+caso probablemente úlcera péptica perforada por antecedente de AINE. Las otras
+opciones no explican aire libre subdiafragmático.",
+"gpcReference": "",
+"tema": "Patología Gástrica",
+"temaCanonical": "Patología Gástrica",
+"subtemaCanonical": "Úlcera Péptica Complicada y Perforada",
+"subtema": "Úlcera Péptica Complicada y Perforada",
+"specialtyOriginal": "cir",
+"temaOriginal": "Patología Gástrica",
+"subtemaOriginal": "Úlcera Péptica Complicada y Perforada",
+"difficulty": "alta"
+},
+{
+"specialty": "cir",
+"case": "Hombre de 58 años con antecedente de colelitiasis presenta ictericia, fiebre
+y dolor en hipocondrio derecho de 24 horas de evolución. A la exploración se
+encuentra febril, con taquicardia e ictericia en escleras. Los laboratorios muestran
+bilirrubina elevada con predominio directo.",
+"question": "¿Cuál es el diagnóstico más probable?",
+
+-- 24 of 40 --
+
+"options": [
+"Colelitiasis no complicada",
+"Colangitis",
+"Pancreatitis crónica",
+"Hepatitis viral aguda"
+],
+"answerIndex": 1,
+"explanation": "La triada de dolor en hipocondrio derecho, fiebre e ictericia es clásica
+de colangitis. La colelitiasis no complicada no produce ictericia ni síndrome
+infeccioso. La hepatitis puede dar ictericia, pero no suele cursar con este dolor biliar
+típico.",
+"gpcReference": "",
+"tema": "Patología Biliar",
+"temaCanonical": "Patología Biliar",
+"subtemaCanonical": "Colangitis",
+"subtema": "Colangitis",
+"specialtyOriginal": "cir",
+"temaOriginal": "Patología Biliar",
+"subtemaOriginal": "Colangitis",
+"difficulty": "media"
+},
+{
+"specialty": "cir",
+"case": "Varón de 45 años con antecedente de ingesta importante de alcohol
+presenta dolor epigástrico intenso irradiado a espalda, acompañado de vómito
+persistente. El dolor inició después de una comida abundante. A la exploración tiene
+abdomen doloroso en epigastrio sin defensa involuntaria marcada.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Pancreatitis aguda",
+"Colangitis ascendente",
+"Diverticulitis aguda",
+"Obstrucción intestinal alta"
+],
+"answerIndex": 0,
+"explanation": "El dolor epigástrico irradiado a espalda, posterior a ingesta o alcohol,
+asociado a vómito, es típico de pancreatitis aguda. La colangitis agrega fiebre e
+ictericia; la diverticulitis suele ser en fosa iliaca izquierda; la obstrucción intestinal
+
+-- 25 of 40 --
+
+tiene distensión y datos obstructivos marcados.",
+"gpcReference": "",
+"tema": "Patología Pancreática",
+"temaCanonical": "Patología Pancreática",
+"subtemaCanonical": "Pancreatitis Aguda y Crónica",
+"subtema": "Pancreatitis Aguda",
+"specialtyOriginal": "cir",
+"temaOriginal": "Patología Pancreática",
+"subtemaOriginal": "Pancreatitis Aguda",
+"difficulty": "media"
+},
+{
+"specialty": "cir",
+"case": "Mujer de 72 años acude por dolor en fosa iliaca izquierda, fiebre y cambio
+reciente en hábito intestinal. A la exploración presenta dolor localizado con defensa
+voluntaria en cuadrante inferior izquierdo. La biometría muestra leucocitosis.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Diverticulitis aguda",
+"Colecistitis alitiásica",
+"Apendicitis aguda",
+"Isquemia mesentérica crónica"
+],
+"answerIndex": 0,
+"explanation": "En un adulto mayor, el dolor en fosa iliaca izquierda con fiebre y
+leucocitosis orienta a diverticulitis aguda. La apendicitis predomina en fosa iliaca
+derecha y las otras opciones no corresponden a la localización ni al contexto típico.",
+"gpcReference": "",
+"tema": "Patología Diverticular",
+"temaCanonical": "Patología Diverticular",
+"subtemaCanonical": "Diverticulitis",
+"subtema": "Diverticulitis",
+"specialtyOriginal": "cir",
+"temaOriginal": "Patología Diverticular",
+"subtemaOriginal": "Diverticulitis",
+"difficulty": "media"
+},
+{
+
+-- 26 of 40 --
+
+"specialty": "cir",
+"case": "Hombre de 63 años consulta por dolor abdominal desproporcionado a la
+exploración física, de inicio súbito, acompañado de náusea y evacuaciones diarreicas
+en las últimas horas. Tiene antecedente de fibrilación auricular sin anticoagulación.
+El abdomen es poco doloroso a la palpación pese a la intensidad del síntoma
+referido.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Oclusión intestinal por adherencias",
+"Pancreatitis necrotizante",
+"Isquemia mesentérica aguda",
+"Síndrome de intestino irritable"
+],
+"answerIndex": 2,
+"explanation": "El dolor abdominal intenso desproporcionado a la exploración, junto
+con fibrilación auricular, es altamente sugestivo de isquemia mesentérica aguda. La
+oclusión y la pancreatitis suelen mostrar otros datos clínicos más evidentes en la
+exploración abdominal.",
+"gpcReference": "",
+"tema": "Patología Isquémica Intestinal",
+"temaCanonical": "Patología Isquémica Intestinal",
+"subtemaCanonical": "Isquemia Mesentérica Aguda y Crónica",
+"subtema": "Isquemia Mesentérica Aguda",
+"specialtyOriginal": "cir",
+"temaOriginal": "Patología Isquémica Intestinal",
+"subtemaOriginal": "Isquemia Mesentérica Aguda",
+"difficulty": "alta"
+},
+{
+"specialty": "cir",
+"case": "Hombre de 56 años con cirrosis hepática conocida llega por hematemesis
+abundante y melena. Se encuentra taquicárdico, con palidez y presión arterial
+limítrofe. Refiere episodios previos de distensión abdominal y edema de miembros
+inferiores.",
+"question": "¿Cuál es la causa más probable de la hemorragia digestiva alta en este
+paciente?",
+"options": [
+"Gastritis erosiva por AINE",
+
+-- 27 of 40 --
+
+"Várices esofágicas",
+"Cáncer gástrico sangrante",
+"Diverticulosis colónica"
+],
+"answerIndex": 1,
+"explanation": "En un paciente con cirrosis y signos de hipertensión portal, la
+hematemesis masiva debe hacer sospechar sangrado por várices esofágicas. La
+diverticulosis produce hemorragia digestiva baja y las otras opciones son posibles,
+pero menos probables en este contexto clínico.",
+"gpcReference": "",
+"tema": "Cirrosis y sus Complicaciones",
+"temaCanonical": "Cirrosis y sus Complicaciones",
+"subtemaCanonical": "STDA por Várices Esofágicas",
+"subtema": "STDA por Várices Esofágicas",
+"specialtyOriginal": "cir",
+"temaOriginal": "Cirrosis y sus Complicaciones",
+"subtemaOriginal": "STDA por Várices Esofágicas",
+"difficulty": "media"
+},
+{
+"specialty": "cir",
+"case": "Mujer de 49 años refiere dolor y aumento de volumen en pierna izquierda
+desde hace 2 días. Tiene antecedente de viaje prolongado en autobús y obesidad. A la
+exploración presenta edema unilateral, dolor a la palpación de pantorrilla y aumento
+de temperatura local, sin datos de isquemia arterial.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Insuficiencia arterial aguda",
+"Trombosis venosa profunda",
+"Celulitis necrotizante",
+"Fascitis plantar"
+],
+"answerIndex": 1,
+"explanation": "El edema unilateral doloroso posterior a inmovilización relativa es
+sugestivo de trombosis venosa profunda. La insuficiencia arterial produce frialdad y
+ausencia de pulsos. La fascitis plantar no genera edema de toda la pierna y la celulitis
+necrotizante tendría otro cuadro sistémico y local.",
+"gpcReference": "",
+
+-- 28 of 40 --
+
+"tema": "Patología Arterial y Venosa",
+"temaCanonical": "Patología Arterial y Venosa",
+"subtemaCanonical": "Trombosis Venosa Profunda",
+"subtema": "Trombosis Venosa Profunda",
+"specialtyOriginal": "cir",
+"temaOriginal": "Patología Arterial y Venosa",
+"subtemaOriginal": "Trombosis Venosa Profunda",
+"difficulty": "media"
+},
+{
+"specialty": "cir",
+"case": "Varón de 34 años acude por dolor anal intenso durante la evacuación, con
+sangrado rojo escaso al limpiarse. Refiere estreñimiento crónico. A la inspección se
+observa una lesión lineal dolorosa en el anodermo posterior.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Fístula perianal",
+"Absceso perianal",
+"Fisura anal",
+"Hemorroides internas grado I"
+],
+"answerIndex": 2,
+"explanation": "El dolor intenso a la evacuación con sangrado rojo escaso y
+visualización de una lesión lineal en anodermo es típico de fisura anal. Las
+hemorroides internas suelen sangrar sin dolor intenso. El absceso da tumoración
+dolorosa y fiebre; la fístula produce salida de material por orificio secundario.",
+"gpcReference": "",
+"tema": "Patología Perianal",
+"temaCanonical": "Patología Perianal",
+"subtemaCanonical": "Fisuras",
+"subtema": "Fisuras",
+"specialtyOriginal": "cir",
+"temaOriginal": "Patología Perianal",
+"subtemaOriginal": "Fisuras",
+"difficulty": "baja"
+},
+{
+"specialty": "cir",
+
+-- 29 of 40 --
+
+"case": "Hombre de 26 años presenta dolor súbito en flanco derecho que irradia a
+región inguinal, acompañado de náusea e inquietud importante. Refiere dificultad
+para permanecer quieto por el dolor. No hay fiebre. El examen abdominal no muestra
+rebote ni rigidez.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Litiasis renal",
+"Apendicitis aguda",
+"Pancreatitis aguda",
+"Epididimitis"
+],
+"answerIndex": 0,
+"explanation": "El dolor cólico intenso en flanco con irradiación a ingle y gran
+inquietud del paciente es característico de litiasis renal. La apendicitis y la
+pancreatitis tienen otro patrón doloroso. La epididimitis se localiza en escroto y no en
+flanco.",
+"gpcReference": "",
+"tema": "Urología",
+"temaCanonical": "Urología",
+"subtemaCanonical": "Litiasis Renal",
+"subtema": "Litiasis Renal",
+"specialtyOriginal": "cir",
+"temaOriginal": "Urología",
+"subtemaOriginal": "Litiasis Renal",
+"difficulty": "media"
+},
+{
+"specialty": "cir",
+"case": "Paciente masculino de 22 años sufrió traumatismo craneal al caer de
+motocicleta. Perdió el estado de alerta por unos minutos, posteriormente estuvo
+despierto y conversando, pero dos horas después desarrolla cefalea intensa, vómito y
+deterioro del estado de conciencia. La tomografía muestra colección biconvexa
+hiperdensa.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Hemorragia subaracnoidea",
+"Hematoma epidural",
+"Hematoma subdural crónico",
+
+-- 30 of 40 --
+
+"Contusión cerebelosa"
+],
+"answerIndex": 1,
+"explanation": "El intervalo lúcido posterior a trauma y la colección biconvexa
+hiperdensa en tomografía son clásicos de hematoma epidural. El subdural suele ser
+semilunar; la subaracnoidea tiene otro patrón tomográfico y clínico.",
+"gpcReference": "",
+"tema": "ATLS",
+"temaCanonical": "ATLS",
+"subtemaCanonical": "Hemorragia Epidural",
+"subtema": "Hemorragia Epidural",
+"specialtyOriginal": "cir",
+"temaOriginal": "ATLS",
+"subtemaOriginal": "Hemorragia Epidural",
+"difficulty": "alta"
+},
+{
+"specialty": "cir",
+"case": "Trabajador del campo de 30 años es llevado a urgencias tras mordedura de
+serpiente en tobillo. Presenta dolor intenso, edema progresivo de la extremidad,
+equimosis alrededor del sitio y sangrado por encías. La presión arterial es normal al
+ingreso.",
+"question": "¿Cuál es el tratamiento específico indicado?",
+"options": [
+"Faboterápico antiviperino",
+"Faboterápico antialacrán",
+"Vacuna antirrábica intramuscular",
+"Solo analgésicos y observación domiciliaria"
+],
+"answerIndex": 0,
+"explanation": "El cuadro de envenenamiento por serpiente con manifestaciones
+locales progresivas y datos hemorrágicos requiere faboterápico antiviperino. El
+antialacrán no es útil y la sola observación es insuficiente ante signos de
+envenenamiento sistémico o local importante.",
+"gpcReference": "",
+"tema": "Intoxicaciones y Picaduras",
+"temaCanonical": "Intoxicaciones y Picaduras",
+"subtemaCanonical": "Mordedura de Serpientes",
+
+-- 31 of 40 --
+
+"subtema": "Mordedura de Serpientes",
+"specialtyOriginal": "cir",
+"temaOriginal": "Intoxicaciones y Picaduras",
+"subtemaOriginal": "Mordedura de Serpientes",
+"difficulty": "alta"
+},
+{
+"specialty": "mi",
+"case": "Hombre de 70 años acude por fiebre, tos con expectoración purulenta,
+taquipnea y confusión. La TA es 86/54 mmHg, FC 118 lpm, FR 32 rpm y temperatura
+38.9 °C. La radiografía muestra infiltrado lobar derecho. Presenta llenado capilar lento
+y extremidades frías.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Choque séptico",
+"Embolia pulmonar submasiva",
+"Insuficiencia cardiaca congestiva",
+"Crisis hipertensiva"
+],
+"answerIndex": 0,
+"explanation": "La presencia de infección probable, hipotensión, alteración del estado
+mental y datos de hipoperfusión es compatible con choque séptico. La embolia
+pulmonar puede simular disnea, pero aquí el contexto infeccioso pulmonar es claro.
+La insuficiencia cardiaca no explica tan bien la fiebre y el cuadro séptico.",
+"gpcReference": "",
+"tema": "Introducción e Infectología",
+"temaCanonical": "Introducción e Infectología",
+"subtemaCanonical": "Choque Séptico",
+"subtema": "Choque Séptico",
+"specialtyOriginal": "mi",
+"temaOriginal": "Introducción e Infectología",
+"subtemaOriginal": "Choque Séptico",
+"difficulty": "alta"
+},
+{
+"specialty": "mi",
+"case": "Mujer de 25 años consulta por fiebre, artralgias intensas, cefalea y exantema
+maculopapular pruriginoso. Refiere múltiples picaduras de mosco en los últimos días
+
+-- 32 of 40 --
+
+en zona tropical. Presenta hiperemia conjuntival no purulenta. No hay datos de
+sangrado.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Dengue grave",
+"Paludismo",
+"Zika",
+"Brucelosis"
+],
+"answerIndex": 2,
+"explanation": "La infección por Zika suele cursar con exantema pruriginoso,
+conjuntivitis no purulenta, fiebre y artralgias. El dengue se asocia más a mialgias
+intensas, dolor retroocular y, en casos graves, extravasación o sangrado. El paludismo
+no produce este exantema típico.",
+"gpcReference": "",
+"tema": "Infecciones Específicas",
+"temaCanonical": "Infecciones Específicas",
+"subtemaCanonical": "Zika",
+"subtema": "Zika",
+"specialtyOriginal": "mi",
+"temaOriginal": "Infecciones Específicas",
+"subtemaOriginal": "Zika",
+"difficulty": "media"
+},
+{
+"specialty": "mi",
+"case": "Hombre de 67 años, fumador de 40 paquetes-año, consulta por tos crónica,
+expectoración matutina y disnea progresiva de varios años. Refiere dos
+exacerbaciones en el último año. A la exploración presenta espiración prolongada y
+roncus dispersos.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Asma eosinofílica de inicio tardío",
+"EPOC",
+"Neumonía atípica",
+"Derrame pleural maligno"
+],
+"answerIndex": 1,
+
+-- 33 of 40 --
+
+"explanation": "El tabaquismo importante, la tos crónica productiva y la disnea
+progresiva son hallazgos compatibles con EPOC. La neumonía es aguda; el derrame
+pleural tendría otros datos físicos; el asma de inicio tardío no es el diagnóstico más
+probable con este perfil clínico.",
+"gpcReference": "",
+"tema": "Neumología",
+"temaCanonical": "Neumología",
+"subtemaCanonical": "EPOC",
+"subtema": "EPOC",
+"specialtyOriginal": "mi",
+"temaOriginal": "Neumología",
+"subtemaOriginal": "EPOC",
+"difficulty": "baja"
+},
+{
+"specialty": "mi",
+"case": "Mujer de 32 años consulta por pérdida de peso, palpitaciones, intolerancia al
+calor y nerviosismo. A la exploración presenta bocio difuso, temblor fino distal y
+exoftalmos bilateral. La frecuencia cardiaca es de 112 lpm.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Tiroiditis de Hashimoto",
+"Enfermedad de Graves",
+"Tiroiditis de Quervain",
+"Bocio multinodular no tóxico"
+],
+"answerIndex": 1,
+"explanation": "El hipertiroidismo con bocio difuso y oftalmopatía es característico de
+enfermedad de Graves. Hashimoto suele asociarse a hipotiroidismo; Quervain cursa
+con dolor cervical; el bocio multinodular no tóxico no da este cuadro clínico
+sistémico típico.",
+"gpcReference": "",
+"tema": "Endocrinología",
+"temaCanonical": "Endocrinología",
+"subtemaCanonical": "Patología Tiroidea: Graves, Riedel, Quervain, Hashimoto,
+Cáncer",
+"subtema": "Graves",
+"specialtyOriginal": "mi",
+
+-- 34 of 40 --
+
+"temaOriginal": "Endocrinología",
+"subtemaOriginal": "Graves",
+"difficulty": "media"
+},
+{
+"specialty": "mi",
+"case": "Mujer de 58 años con diabetes mellitus tipo 2 llega por somnolencia, poliuria
+y deshidratación. Los familiares refieren varios días de mal control glucémico por
+infección urinaria. La glucosa sérica es de 780 mg/dL, el sodio corregido está elevado
+y no hay cetonas significativas en orina. La respiración es superficial, sin patrón de
+Kussmaul.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Cetoacidosis diabética",
+"Estado hiperosmolar hiperglucémico",
+"Hipoglucemia severa",
+"Síndrome de secreción inadecuada de ADH"
+],
+"answerIndex": 1,
+"explanation": "La hiperglucemia marcada, deshidratación intensa, alteración del
+estado mental y ausencia de cetosis significativa orientan a estado hiperosmolar
+hiperglucémico. En cetoacidosis predomina acidosis metabólica con cetonas y
+respiración de Kussmaul.",
+"gpcReference": "",
+"tema": "Endocrinología",
+"temaCanonical": "Endocrinología",
+"subtemaCanonical": "Estado Hiperosmolar",
+"subtema": "Estado Hiperosmolar",
+"specialtyOriginal": "mi",
+"temaOriginal": "Endocrinología",
+"subtemaOriginal": "Estado Hiperosmolar",
+"difficulty": "alta"
+},
+{
+"specialty": "mi",
+"case": "Mujer de 48 años consulta por fatiga, glositis y parestesias en manos y pies.
+La biometría hemática reporta hemoglobina baja con VCM aumentado. En la
+exploración presenta palidez y marcha ligeramente inestable.",
+
+-- 35 of 40 --
+
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Anemia megaloblástica",
+"Anemia ferropénica",
+"Anemia por enfermedad crónica",
+"Talasemia menor"
+],
+"answerIndex": 0,
+"explanation": "La macrocitosis acompañada de glositis y síntomas neurológicos es
+altamente sugestiva de anemia megaloblástica, comúnmente por deficiencia de
+vitamina B12. La ferropenia y la talasemia son microcíticas, mientras que la anemia
+por enfermedad crónica suele ser normocítica o microcítica.",
+"gpcReference": "",
+"tema": "Hematología",
+"temaCanonical": "Hematología",
+"subtemaCanonical": "Anemias Carenciales",
+"subtema": "Megaloblástica",
+"specialtyOriginal": "mi",
+"temaOriginal": "Hematología",
+"subtemaOriginal": "Megaloblástica",
+"difficulty": "media"
+},
+{
+"specialty": "mi",
+"case": "Hombre de 61 años presenta dolor opresivo retroesternal de 40 minutos de
+duración, irradiado a brazo izquierdo, acompañado de diaforesis y náusea. Tiene
+antecedente de hipertensión y tabaquismo. El electrocardiograma muestra elevación
+del segmento ST en derivaciones inferiores.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Pericarditis aguda",
+"Infarto agudo al miocardio con elevación del ST",
+"Angina estable",
+"Embolia pulmonar"
+],
+"answerIndex": 1,
+"explanation": "El dolor torácico isquémico típico con elevación del ST en un territorio
+anatómico específico es compatible con infarto agudo al miocardio con elevación del
+
+-- 36 of 40 --
+
+ST. La pericarditis suele tener elevación difusa del ST y dolor pleurítico que mejora al
+inclinarse.",
+"gpcReference": "",
+"tema": "Cardiología",
+"temaCanonical": "Cardiología",
+"subtemaCanonical": "Síndromes Coronarios: Infarto Agudo al Miocardio, Angina",
+"subtema": "Infarto Agudo al Miocardio",
+"specialtyOriginal": "mi",
+"temaOriginal": "Cardiología",
+"subtemaOriginal": "Infarto Agudo al Miocardio",
+"difficulty": "media"
+},
+{
+"specialty": "mi",
+"case": "Mujer de 29 años consulta por visión borrosa intermitente, parestesias en
+hemicuerpo izquierdo y un episodio previo de debilidad que se resolvió casi por
+completo meses atrás. Refiere que los síntomas empeoran con el calor. En la
+exploración neurológica presenta hiperreflexia y discreta ataxia.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Esclerosis múltiple",
+"Guillain-Barré",
+"Miastenia gravis",
+"Parkinson de inicio temprano"
+],
+"answerIndex": 0,
+"explanation": "La afección neurológica en brotes, con síntomas diseminados en
+tiempo y espacio y empeoramiento con calor, es sugestiva de esclerosis múltiple.
+Guillain-Barré suele ser ascendente y arrefléxico; miastenia afecta la unión
+neuromuscular; Parkinson tiene un patrón motor diferente.",
+"gpcReference": "",
+"tema": "Neurología",
+"temaCanonical": "Neurología",
+"subtemaCanonical": "Esclerosis Múltiple",
+"subtema": "Esclerosis Múltiple",
+"specialtyOriginal": "mi",
+"temaOriginal": "Neurología",
+"subtemaOriginal": "Esclerosis Múltiple",
+
+-- 37 of 40 --
+
+"difficulty": "media"
+},
+{
+"specialty": "mi",
+"case": "Hombre de 66 años con antecedente de tabaquismo intenso consulta por
+hematuria microscópica, edema periorbitario matutino y edema en miembros
+inferiores. En estudios de laboratorio presenta proteinuria masiva, hipoalbuminemia
+e hiperlipidemia.",
+"question": "¿Qué síndrome renal presenta este paciente?",
+"options": [
+"Síndrome nefrótico",
+"Síndrome nefrítico",
+"Lesión renal aguda prerrenal",
+"Absceso renal"
+],
+"answerIndex": 0,
+"explanation": "La proteinuria importante con hipoalbuminemia, edema e
+hiperlipidemia define síndrome nefrótico. El síndrome nefrítico se caracteriza por
+hematuria, hipertensión y deterioro del filtrado con proteinuria no tan intensa. Un
+absceso renal suele causar fiebre y dolor lumbar.",
+"gpcReference": "",
+"tema": "Nefrología",
+"temaCanonical": "Nefrología",
+"subtemaCanonical": "Síndrome Nefrótico",
+"subtema": "Síndrome Nefrótico",
+"specialtyOriginal": "mi",
+"temaOriginal": "Nefrología",
+"subtemaOriginal": "Síndrome Nefrótico",
+"difficulty": "media"
+},
+{
+"specialty": "mi",
+"case": "Paciente masculino de 40 años, con antecedente de consumo intenso de
+alcohol desde hace años, suspendió bruscamente la ingesta hace 2 días. Acude por
+temblor, ansiedad, diaforesis, taquicardia y alucinaciones visuales. Está
+desorientado en tiempo y lugar.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+
+-- 38 of 40 --
+
+"Esquizofrenia paranoide",
+"Delirium tremens",
+"Trastorno de pánico",
+"Intoxicación aguda por alcohol"
+],
+"answerIndex": 1,
+"explanation": "La alteración autonómica, el temblor, la desorientación y las
+alucinaciones después de suspensión brusca del alcohol son típicos de delirium
+tremens. La intoxicación aguda no corresponde por el antecedente temporal de
+abstinencia. La esquizofrenia no da este síndrome autonómico agudo.",
+"gpcReference": "",
+"tema": "Psiquiatría",
+"temaCanonical": "Psiquiatría",
+"subtemaCanonical": "Delirium Tremens",
+"subtema": "Delirium Tremens",
+"specialtyOriginal": "mi",
+"temaOriginal": "Psiquiatría",
+"subtemaOriginal": "Delirium Tremens",
+"difficulty": "alta"
+},
+{
+"specialty": "mi",
+"case": "Mujer de 78 años acude con su hija por olvidos progresivos desde hace 3
+años. Inicialmente extraviaba objetos y repetía preguntas; ahora tiene dificultad para
+manejar dinero y preparar alimentos. Niega alucinaciones visuales. En la exploración
+no hay temblor ni rigidez predominantes.",
+"question": "¿Cuál es el diagnóstico más probable?",
+"options": [
+"Demencia por cuerpos de Lewy",
+"Enfermedad de Alzheimer",
+"Delirium hipoactivo",
+"Depresión mayor pseudodemencial"
+],
+"answerIndex": 1,
+"explanation": "El deterioro progresivo de memoria episódica y funciones
+instrumentales, sin fluctuaciones prominentes ni alucinaciones visuales, orienta a
+enfermedad de Alzheimer. La demencia por cuerpos de Lewy suele acompañarse de
+alucinaciones visuales, parkinsonismo y fluctuaciones cognitivas.",
+
+-- 39 of 40 --
+
+"gpcReference": "",
+"tema": "Neurología",
+"temaCanonical": "Neurología",
+"subtemaCanonical": "Demencias: Alzheimer, Cuerpos de Lewy",
+"subtema": "Alzheimer",
+"specialtyOriginal": "mi",
+"temaOriginal": "Neurología",
+"subtemaOriginal": "Alzheimer",
+"difficulty": "media"
+}
+]
+
+-- 40 of 40 --
+

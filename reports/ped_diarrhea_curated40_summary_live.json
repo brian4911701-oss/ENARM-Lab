@@ -1,0 +1,156 @@
+{
+  "generatedAt": "2026-04-08T07:18:17.963Z",
+  "dryRun": false,
+  "requested": 40,
+  "added": 40,
+  "initialBank": 2494,
+  "finalBank": 2534,
+  "topic": "Diarrea en el Pediátrico",
+  "totalRawRows": 2246,
+  "sourceReadCounts": {
+    "parsed_variados_nuevo_v3.json": 412,
+    "parsed_variados_nuevo_v2.json": 428,
+    "parsed_casos_chat_random.json": 136,
+    "parsed_questions.json": 149,
+    "generated_questions.json": 57,
+    "pedia_text.txt": 145,
+    "pedia2_text.txt": 119,
+    "variados_base_text.txt": 436,
+    "mi_text.txt": 364
+  },
+  "curatedPool": 68,
+  "bySubtopic": [
+    {
+      "subtema": "Planes de Hidratación",
+      "total": 10
+    },
+    {
+      "subtema": "Diarreas Agudas y Crónicas",
+      "total": 10
+    },
+    {
+      "subtema": "Diarrea Enteroinvasiva",
+      "total": 9
+    },
+    {
+      "subtema": "Intoxicaciones Alimentarias",
+      "total": 4
+    },
+    {
+      "subtema": "Introducción a Diarreas",
+      "total": 4
+    },
+    {
+      "subtema": "Enfermedad Celíaca",
+      "total": 3
+    }
+  ],
+  "bySource": [
+    {
+      "source": "synthetic_ped_diarrhea",
+      "total": 40
+    }
+  ],
+  "rejectedByReason": {
+    "not_diarrhea_context": 2202,
+    "not_pediatric_context": 6,
+    "invalid_options_or_structure": 0,
+    "low_quality_content": 1,
+    "duplicate_existing_core_signature": 6,
+    "duplicate_pool_signature": 3,
+    "duplicate_pool_case_opening": 9,
+    "duplicate_pool_question_stem": 1,
+    "supplement_duplicate_or_low_quality": 11
+  },
+  "quality": {
+    "average": 53.58,
+    "min": 50,
+    "max": 66
+  },
+  "sampleCases": [
+    {
+      "index": 1,
+      "source": "synthetic_ped_diarrhea",
+      "subtopic": "Diarrea Enteroinvasiva",
+      "question": "Que criterio apoya ingreso para manejo intrahospitalario?",
+      "qualityScore": 50
+    },
+    {
+      "index": 2,
+      "source": "synthetic_ped_diarrhea",
+      "subtopic": "Planes de Hidratación",
+      "question": "En mayores de 2 anos dentro de Plan A, cual pauta es adecuada despues de cada evacuacion?",
+      "qualityScore": 57
+    },
+    {
+      "index": 3,
+      "source": "synthetic_ped_diarrhea",
+      "subtopic": "Planes de Hidratación",
+      "question": "Cual es el esquema de rehidratacion recomendado para deshidratacion leve a moderada?",
+      "qualityScore": 60
+    },
+    {
+      "index": 4,
+      "source": "synthetic_ped_diarrhea",
+      "subtopic": "Planes de Hidratación",
+      "question": "Que estrategia mejora la tolerancia de la SRO en este escenario?",
+      "qualityScore": 56
+    },
+    {
+      "index": 5,
+      "source": "synthetic_ped_diarrhea",
+      "subtopic": "Diarreas Agudas y Crónicas",
+      "question": "Cual es la prioridad en las primeras horas de manejo?",
+      "qualityScore": 54
+    },
+    {
+      "index": 6,
+      "source": "synthetic_ped_diarrhea",
+      "subtopic": "Planes de Hidratación",
+      "question": "Que decision es correcta despues de la reevaluacion al terminar Plan B?",
+      "qualityScore": 59
+    },
+    {
+      "index": 7,
+      "source": "synthetic_ped_diarrhea",
+      "subtopic": "Diarrea Enteroinvasiva",
+      "question": "Ademas de hidratacion, cual enfoque terapeutico es el mas adecuado?",
+      "qualityScore": 58
+    },
+    {
+      "index": 8,
+      "source": "synthetic_ped_diarrhea",
+      "subtopic": "Intoxicaciones Alimentarias",
+      "question": "Cual criterio obliga a valoracion hospitalaria en lugar de manejo domiciliario?",
+      "qualityScore": 53
+    },
+    {
+      "index": 9,
+      "source": "synthetic_ped_diarrhea",
+      "subtopic": "Enfermedad Celíaca",
+      "question": "Que hallazgo clinico adicional fortaleceria la sospecha de enfermedad celiaca?",
+      "qualityScore": 52
+    },
+    {
+      "index": 10,
+      "source": "synthetic_ped_diarrhea",
+      "subtopic": "Planes de Hidratación",
+      "question": "Cual es el siguiente paso mas adecuado?",
+      "qualityScore": 51
+    },
+    {
+      "index": 11,
+      "source": "synthetic_ped_diarrhea",
+      "subtopic": "Planes de Hidratación",
+      "question": "En este contexto de EDA sin deshidratacion, cual es la conducta inicial correcta segun guias?",
+      "qualityScore": 66
+    },
+    {
+      "index": 12,
+      "source": "synthetic_ped_diarrhea",
+      "subtopic": "Diarreas Agudas y Crónicas",
+      "question": "Cual es el objetivo principal del manejo en las primeras 24-48 horas?",
+      "qualityScore": 54
+    }
+  ]
+}

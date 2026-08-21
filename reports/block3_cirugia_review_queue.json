@@ -1,0 +1,2050 @@
+[
+  {
+    "index": 35,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Tromboembolia pulmonar (Patología Arterial y Venosa)",
+    "casePreview": "Paciente de 62 años que súbitamente presenta disnea súbita, dolor torácico pleurítico y hemoptisis. ECG con patrón S1Q3T3. Antecedente de cirugía de cadera hace 1 semana."
+  },
+  {
+    "index": 59,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Masculino de 45 años, obeso, con dolor intenso en hipocondrio derecho tras ingesta de alimentos colecistoquinéticos. El dolor dura más de 6 horas, tiene fiebre de 38.3°C y Signo de"
+  },
+  {
+    "index": 108,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Niño de 4 años de edad que sufre quemadura térmica accidental (por olla de frijoles hirvientes en cocineta de piso). El evento empapó brutalmente todo el miembro superior dominante"
+  },
+  {
+    "index": 115,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "CACU",
+    "casePreview": "Varón de 50 años con enfermedad hepática en estadío avanzado documentada por etilismo de tres décadas. La familia llama a las emergencias al presenciarlo con múltiples crisis eméti"
+  },
+  {
+    "index": 122,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Lactante de 8 meses presenta llanto intenso, vómito y evacuación con moco y sangre ('jalea de grosella'). Masa palpable en cuadrante superior derecho. USG reporta imagen en 'diana'"
+  },
+  {
+    "index": 140,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Lactante de 8 meses previamente sano presenta episodios súbitos de llanto intenso con flexión de piernas sobre el abdomen, vómito y posteriormente evacuación con moco y sangre. A l"
+  },
+  {
+    "index": 227,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Estenosis Hipertrófica del Píloro",
+    "casePreview": "Masculino de 22 años sufre accidente al caer de su patineta sin portar casco, golpeándose fuertemente la región temporal derecha. Testigos refieren pérdida de la conciencia de apro"
+  },
+  {
+    "index": 231,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "Patología de extremidad inferior",
+    "casePreview": "Masculino de 19 años es llevado a urgencias tras sufrir una torcedura del tobillo derecho durante un partido de fútbol. El mecanismo reportado fue una caída con el pie en inversión"
+  },
+  {
+    "index": 233,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 4,
+      "mi": 3
+    },
+    "targetScore": 4,
+    "otherMax": 3,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 24 años ingresa a urgencias tras sufrir un accidente en motocicleta. Presenta fractura cerrada de la diáfisis del fémur derecho. Se le inmoviliza con tracción cutánea "
+  },
+  {
+    "index": 246,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Patología de extremidad superior",
+    "casePreview": "Masculino de 20 años acude a urgencias tras sufrir una caída apoyando la mano derecha con el brazo en extensión, abducción y rotación externa durante un partido de baloncesto. Pres"
+  },
+  {
+    "index": 251,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Virus de la Inmunodeficiencia Humana",
+    "casePreview": "Femenina de 42 años, multípara, con sobrepeso. Acude a consulta externa refiriendo episodios recurrentes de dolor en el cuadrante superior derecho del abdomen. Relata que los episo"
+  },
+  {
+    "index": 258,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 35 años, trabajador de la construcción, sufre caída de un andamio a horcajadas (\"a caballo\") sobre un tubo de metal. Es llevado a urgencias refiriendo dolor perineal i"
+  },
+  {
+    "index": 368,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Paciente de 27 años con antecedente de múltiples parejas sexuales y uso irregular de preservativo. Consulta por dolor pélvico de 5 días de evolución, fiebre 38.5°C y flujo vaginal "
+  },
+  {
+    "index": 371,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 3,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "CACU",
+    "casePreview": "Paciente de 41 años, sin tamizaje en los últimos 10 años. Consulta por sangrado poscoital intermitente. Especuloscopía: lesión exofítica friable de 2 cm en cérvix. Biopsia: carcino"
+  },
+  {
+    "index": 419,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "CACU",
+    "casePreview": "Paciente de 59 años, nulípara, obesa, con antecedente de terapia estrogénica sin oposición por 5 años. Presenta sangrado postmenopáusico. Biopsia confirma adenocarcinoma endometrio"
+  },
+  {
+    "index": 457,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Paciente de 31 años, G2P1A0, 8 semanas por FUM, acude a urgencias por dolor abdominal súbito, intenso, localizado en fosa iliaca derecha, acompañado de lipotimia. Refiere manchado "
+  },
+  {
+    "index": 488,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Femenina de 62 años acude a consulta por referir sangrado rectal fresco (hematoquecia) mezclado con las heces, pujo y sensación de evacuación incompleta (tenesmo rectal) de 4 meses"
+  },
+  {
+    "index": 498,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 45 años, con antecedente de un absceso perianal drenado quirúrgicamente hace 8 meses. Acude a consulta refiriendo que, desde la cirugía, nota la salida intermitente de"
+  },
+  {
+    "index": 499,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Nefrología",
+    "casePreview": "Masculino de 30 años es atendido por paramédicos en la vía pública tras sufrir una agresión con un machete. Presenta una herida abierta de aproximadamente 5 cm de diámetro en la pa"
+  },
+  {
+    "index": 501,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 8,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 8,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Femenina de 28 años, cursando con embarazo de 34 semanas de gestación por fecha de última menstruación. Es ingresada a la sala de choque tras sufrir un accidente automovilístico co"
+  },
+  {
+    "index": 507,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Lactante masculino de 10 meses de edad es llevado a la consulta de control del niño sano. La madre refiere preocupación porque nota una \"bolita\" en el ombligo del bebé que protruye"
+  },
+  {
+    "index": 510,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Nefrología",
+    "casePreview": "Masculino de 26 años sufre caída desde su propia altura mientras jugaba fútbol, recibiendo un golpe directo en la cara posterior del antebrazo derecho al intentar protegerse. Acude"
+  },
+  {
+    "index": 512,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Femenina de 42 años, con obesidad grado I y multípara. Acude al servicio de urgencias por presentar dolor abdominal en epigastrio e hipocondrio derecho de 12 horas de evolución, co"
+  },
+  {
+    "index": 515,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 30 años, sufrió una fractura cerrada de la diáfisis tibial izquierda hace 24 horas mientras jugaba fútbol. Fue tratado inicialmente en otro centro con reducción cerrad"
+  },
+  {
+    "index": 518,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "PATOLOGÍA ESOFÁGICA",
+    "casePreview": "Masculino de 42 años acude a consulta externa de gastroenterología refiriendo dificultad progresiva para la deglución (disfagia) de 2 años de evolución. Menciona de manera caracter"
+  },
+  {
+    "index": 526,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+    "casePreview": "Masculino de 20 años sufre una caída lateral sobre el hombro derecho mientras andaba en bicicleta. Acude a urgencias sosteniendo su brazo derecho pegado al cuerpo con su mano izqui"
+  },
+  {
+    "index": 530,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "PATOLOGÍA DE EXTREMIDAD INFERIOR",
+    "casePreview": "Femenina de 82 años, con diagnóstico de osteoporosis severa. Sufre una caída desde su propia altura al resbalar en el baño, golpeándose directamente sobre el trocánter mayor derech"
+  },
+  {
+    "index": 534,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 35 años sufre amputación traumática de la pierna izquierda a nivel del tercio medio de la tibia tras quedar atrapado en maquinaria agrícola. A su ingreso a la sala de "
+  },
+  {
+    "index": 537,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Anemia ferropénica (Anemias Introducción y Anemias Carenciales)",
+    "casePreview": "Masculino de 72 años acude a consulta por referir pérdida de peso progresiva (8 kg en 3 meses), astenia, adinamia y cambios recientes en el hábito intestinal. El paciente menciona "
+  },
+  {
+    "index": 543,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 25 años, ingresa a la sala de urgencias tras sufrir un accidente en motocicleta a alta velocidad sin portar casco. El paciente no obedece órdenes. A la evaluación prim"
+  },
+  {
+    "index": 544,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "Virus de la Inmunodeficiencia Humana",
+    "casePreview": "Masculino de 45 años, con IMC de 32 (obesidad), acude a consulta por referir sensación de ardor retroesternal (pirosis) y regurgitación de sabor ácido que empeora al acostarse o al"
+  },
+  {
+    "index": 549,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 50 años, con antecedente de estreñimiento crónico. Acude a la consulta externa de cirugía general por presentar sangrado transrectal intermitente desde hace 6 meses. R"
+  },
+  {
+    "index": 555,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 2,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Trabajo de Parto",
+    "casePreview": "Femenina de 28 años acude a la consulta externa de cirugía general para revisión de la cicatriz de una cesárea realizada hace 14 meses. La paciente refiere que hace aproximadamente"
+  },
+  {
+    "index": 560,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 3
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 20 años de edad sufre un accidente al circular en bicicleta deportiva y caer sobre el manubrio, recibiendo un fuerte impacto cerrado en el hipocondrio izquierdo. Es in"
+  },
+  {
+    "index": 564,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Hipertensión Arterial",
+    "casePreview": "Femenina de 75 años, diabética e hipertensa de larga evolución. Acude a la consulta oftalmológica por presentar disminución progresiva y bilateral de la agudeza visual a lo largo d"
+  },
+  {
+    "index": 565,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 1
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Escolar masculino de 8 años es traído a la sala de urgencias tras caer de un árbol desde aproximadamente 3 metros de altura, golpeándose el abdomen contra una rama gruesa. A su ing"
+  },
+  {
+    "index": 570,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "CACU",
+    "casePreview": "Femenina de 65 años, con antecedente de coledocolitiasis manejada de forma conservadora. Ingresa a la sala de choque en ambulancia por presentar un cuadro de franco deterioro neuro"
+  },
+  {
+    "index": 584,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 20 años sufre una caída apoyando la palma de la mano derecha en hiperextensión (\"caída sobre mano extendida\" o mecanismo FOOSH) mientras patinaba. Acude a urgencias qu"
+  },
+  {
+    "index": 589,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 5,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 5,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Preescolar femenino de 5 años es llevada a la consulta de cirugía pediátrica por presentar un \"bulto\" en la parte anterior del cuello que la madre notó hace 3 meses tras un cuadro "
+  },
+  {
+    "index": 595,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Femenina de 34 años de edad, previamente sana. Acude al servicio de urgencias refiriendo que hace aproximadamente 12 horas, mientras sacaba ropa de un clóset oscuro que no abría de"
+  },
+  {
+    "index": 597,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Femenina de 32 años, sin antecedentes traumáticos ni infecciosos óticos, acude a consulta por referir disminución de la audición progresiva en ambos oídos, más acentuada en el lado"
+  },
+  {
+    "index": 600,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 28 años es traído a la sala de choque tras sufrir una herida por arma blanca en hemitórax izquierdo, a nivel del 4to espacio intercostal, línea paraesternal. A su ingr"
+  },
+  {
+    "index": 602,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Hipertensión Arterial",
+    "casePreview": "Masculino de 75 años, hipertenso, dislipidémico y fumador crónico (índice tabáquico de 50 paquetes/año). Es traído a urgencias en ambulancia refiriendo un dolor abdominal periumbil"
+  },
+  {
+    "index": 604,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "Mordeduras y Picaduras",
+    "casePreview": "Masculino de 40 años, trabajador de mantenimiento industrial. Es llevado urgentemente al servicio médico de la empresa y posteriormente a urgencias hospitalarias tras sufrir una sa"
+  },
+  {
+    "index": 606,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 22 años, sufre accidente automovilístico con volcadura, sin portar cinturón de seguridad. Es ingresado a la sala de choque con Glasgow de 13, gran agitación y dificult"
+  },
+  {
+    "index": 607,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Diabetes",
+    "casePreview": "Masculino de 45 años, con antecedente de diabetes mellitus tipo 2. Acude a la consulta de cirugía general refiriendo dolor perianal intenso, pulsátil y continuo de 4 días de evoluc"
+  },
+  {
+    "index": 614,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Urología",
+    "casePreview": "Masculino de 72 años, con antecedente de Hiperplasia Prostática Benigna (HPB) de 6 años de evolución, en tratamiento médico combinado (Tamsulosina + Finasterida) sin adecuada respu"
+  },
+  {
+    "index": 616,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 3
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 28 años ingresa a la sala de choque tras sufrir una volcadura en su vehículo a alta velocidad. Los paramédicos lo extrajeron con inmovilización cervical y tabla rígida"
+  },
+  {
+    "index": 617,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Lactante masculino de 8 meses de edad es traído a urgencias por presentar irritabilidad extrema y llanto inconsolable de inicio súbito. La madre refiere que los episodios de llanto"
+  },
+  {
+    "index": 622,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 25 años ingresa a la sala de choque tras sufrir una herida por arma blanca (cuchillo) en la región anterior del cuello durante un asalto. A su ingreso, el paciente se "
+  },
+  {
+    "index": 623,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 30 años, motociclista, sufre impacto lateral por un automóvil a alta velocidad. Es ingresado con dolor insoportable en el muslo derecho. A la inspección, el muslo pres"
+  },
+  {
+    "index": 626,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Estenosis Hipertrófica del Píloro",
+    "casePreview": "Lactante masculino de 3 semanas de vida, primogénito. Es llevado a urgencias por su madre debido a que desde hace 5 días presenta vómitos después de cada toma de leche. La madre de"
+  },
+  {
+    "index": 630,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 4,
+      "mi": 3
+    },
+    "targetScore": 4,
+    "otherMax": 3,
+    "temaCanonical": "Nefrología",
+    "casePreview": "Masculino de 45 años, conductor de un camión de carga, sufre impacto frontal a alta velocidad sin bolsa de aire, golpeando su pecho fuertemente contra el volante. Ingresa a la sala"
+  },
+  {
+    "index": 640,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 40 años acude a la consulta externa de cirugía general. Refiere que hace 6 meses tuvo un absceso \"en la sentadera\" que le fue drenado en urgencias. Actualmente refiere"
+  },
+  {
+    "index": 649,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Nefrología",
+    "casePreview": "Masculino de 30 años, trabajador de la construcción. Es traído a la sala de choque tras sufrir una descarga eléctrica accidental con un cable de alta tensión (aprox. 10,000 voltios"
+  },
+  {
+    "index": 652,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 4,
+      "gyo": 2,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Recién nacido masculino de término (40 SDG), obtenido por parto eutócico, con peso al nacer de 3.2 kg. El pediatra es interconsultado en el cunero porque el neonato no ha presentad"
+  },
+  {
+    "index": 653,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 80 años, residente de un asilo, con antecedente de deterioro cognitivo. Hace 48 horas se le colocó una sonda Foley por retención urinaria. Es traído a urgencias porque"
+  },
+  {
+    "index": 659,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 28 años, sufre fractura cerrada de la diáfisis tibial derecha al jugar fútbol. En urgencias, se le realiza reducción cerrada y se le coloca un yeso suropédico circular"
+  },
+  {
+    "index": 662,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 30 años, ingresa a la sala de choque tras sufrir una herida por proyectil de arma de fuego en el hemitórax derecho (4to espacio intercostal, línea axilar anterior). A "
+  },
+  {
+    "index": 665,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Fibrilación Auricular",
+    "casePreview": "Femenina de 32 años, con diagnóstico conocido de Colitis Ulcerosa Crónica Idiopática (CUCI) de 4 años de evolución, en tratamiento irregular. Ingresa a piso de medicina interna por"
+  },
+  {
+    "index": 673,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 2,
+      "cir": 3,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Trabajo de Parto",
+    "casePreview": "Femenina de 40 años, con antecedente de apendicectomía y una cesárea hace 5 años. Acude por dolor abdominal tipo cólico, distensión progresiva, náuseas y vómitos biliosos. Refiere "
+  },
+  {
+    "index": 690,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "CACU",
+    "casePreview": "Mujer de 33 años, G2P0A1, acude al servicio de urgencias por dolor abdominal súbito e intenso que inició hace una hora mientras se encontraba en su casa. Refiere retraso menstrual "
+  },
+  {
+    "index": 696,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Mujer de 35 años, G2P1, con embarazo de 33 semanas acude al servicio de urgencias por dolor intenso en epigastrio y en el cuadrante superior derecho del abdomen desde hace varias h"
+  },
+  {
+    "index": 703,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 6,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 6,
+    "temaCanonical": "CACU",
+    "casePreview": "Mujer de 22 años, G1, con 10 semanas de gestación por FUM confiable. Acude a urgencias por vómitos persistentes desde hace 3 semanas que han aumentado en frecuencia e intensidad. R"
+  },
+  {
+    "index": 709,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "LÍQUIDOS Y ELECTROLITOS EN CIRUGÍA",
+    "casePreview": "Masculino de 70 kg que será sometido a una colecistectomía programada. El paciente debe permanecer en ayuno desde la medianoche. El cirujano solicita calcular la infusión de líquid"
+  },
+  {
+    "index": 712,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 55 años acude por presentar una masa en el muslo derecho de crecimiento progresivo en los últimos 6 meses. La tumoración es profunda, de consistencia firme, no doloros"
+  },
+  {
+    "index": 720,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "GASTROENTEROLOGÍA QUIRÚRGICA",
+    "casePreview": "Femenina de 45 años, sin antecedentes de importancia, acude por dolor abdominal agudo, náuseas y vómitos. A la exploración física se observa gran distensión abdominal localizada pr"
+  },
+  {
+    "index": 721,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Lupus Eritematoso Sistémico",
+    "casePreview": "Masculino de 28 años ingresa tras herida por arma blanca en el área precordial. El paciente está consciente pero muy ansioso. Signos vitales: TA 80/50 mmHg, FC 130 lpm. A la explor"
+  },
+  {
+    "index": 729,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "CIRUGÍA DE PARED ABDOMINAL",
+    "casePreview": "Masculino de 60 años acude por dolor localizado en el borde lateral del músculo recto abdominal, a nivel de la línea semicircular (de Douglas). A la exploración se palpa una pequeñ"
+  },
+  {
+    "index": 739,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "GASTROENTEROLOGÍA QUIRÚRGICA",
+    "casePreview": "Femenina de 28 años con diagnóstico de Enfermedad de Crohn de 5 años de evolución. Acude por dolor abdominal, distensión y vómitos. La TC de abdomen muestra un segmento de íleon te"
+  },
+  {
+    "index": 741,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Nefrología",
+    "casePreview": "Masculino de 30 años ingresa tras herida por proyectil de arma de fuego en hemitórax izquierdo. El paciente está hipotenso (TA 80/40), taquicárdico y con dificultad respiratoria. A"
+  },
+  {
+    "index": 759,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "CIRUGÍA GENERAL",
+    "casePreview": "Paciente postoperado de resección intestinal hace 7 días. Presenta salida de contenido intestinal a través de la herida quirúrgica. El gasto medido en 24 horas es de 800 ml."
+  },
+  {
+    "index": 760,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Patología Biliar",
+    "casePreview": "Femenina de 64 años con antecedente de diabetes mal controlada. Acude por dolor en hipocondrio derecho, fiebre de 39°C y Murphy positivo. Laboratorios: Leucocitos 19,000/mm³, Creat"
+  },
+  {
+    "index": 818,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Lactante de 8 meses, previamente sano, presenta cuadros súbitos de dolor abdominal paroxístico (el niño encoge las piernas y llora inconsolablemente), alternados con periodos de le"
+  },
+  {
+    "index": 824,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Uropedia",
+    "casePreview": "Lactante de 6 meses acude a revisión de niño sano. A la exploración de los genitales, no se palpa el testículo derecho en la bolsa escrotal; se logra palpar en el canal inguinal pe"
+  },
+  {
+    "index": 840,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Lactante de 9 meses es traído a urgencias por \"caída de la cama\" hace 2 horas. A la exploración física, el niño se encuentra irritable y con vómito. Se observan equimosis en difere"
+  },
+  {
+    "index": 851,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Escolar de 9 años acude a urgencias por presentar cuadro de 24 horas con dolor abdominal, náuseas y vómito. La madre refiere que en las últimas 2 semanas el niño ha bajado de peso "
+  },
+  {
+    "index": 862,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Escolar de 10 años es enviado a valoración por presentar cifras tensionales de 140/90 mmHg. A la exploración física se detecta una diferencia de presión arterial entre miembros sup"
+  },
+  {
+    "index": 864,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido de 38 semanas presenta dificultad respiratoria severa inmediata al nacer, cianosis y abdomen excavado (escafoide). A la auscultación, los ruidos cardiacos están despl"
+  },
+  {
+    "index": 907,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Lactante de 4 semanas de vida acude por ictericia persistente desde su primera semana. La madre reporta que las evacuaciones del bebé son \"blancas como la masilla\" (acolia) y la or"
+  },
+  {
+    "index": 931,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Prematuro de 30 semanas de gestación y 14 días de vida extrauterina en la UCIN. Ha estado recibiendo alimentación enteral trófica con fórmula para prematuros. En el turno nocturno "
+  },
+  {
+    "index": 956,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 5,
+      "cir": 3,
+      "mi": 1
+    },
+    "targetScore": 3,
+    "otherMax": 5,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Se atiende el parto vaginal de una paciente primigesta de 19 años, sin control prenatal adecuado. Al nacimiento, se recibe a un neonato de 36 semanas de gestación. A la exploración"
+  },
+  {
+    "index": 958,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido prematuro de 34 semanas, con antecedente de polihidramnios materno severo. En sus primeros minutos de vida presenta sialorrea excesiva (\"burbujeo\" por la boca) y epis"
+  },
+  {
+    "index": 962,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Uropedia",
+    "casePreview": "Lactante masculino de 6 meses es llevado a revisión. A la exploración física, el escroto izquierdo se encuentra bien desarrollado con el testículo palpable, pero el lado derecho se"
+  },
+  {
+    "index": 999,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 2,
+      "cir": 3,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido de término, hijo de madre de 19 años sin control prenatal ni ingesta de suplementos. Al nacimiento se observa una tumoración quística en la región lumbosacra de 5 cm "
+  },
+  {
+    "index": 1009,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Crecimiento y Desarrollo",
+    "casePreview": "Lactante de 5 meses es traído a urgencias por \"somnolencia y vómitos\" tras una supuesta caída de la cama (50 cm). A la exploración: Irritabilidad, fontanela abombada, ausencia de h"
+  },
+  {
+    "index": 1018,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Lactante masculino de 3 semanas de vida, primogénito, es traído a urgencias por presentar vómitos de contenido gástrico (no biliar), postprandiales inmediatos, \"en proyectil\". La m"
+  },
+  {
+    "index": 1019,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Lactante de 8 meses presenta cuadros súbitos de dolor abdominal intenso (llanto inconsolable con flexión de piernas sobre el abdomen) que duran 15 minutos y desaparecen por complet"
+  },
+  {
+    "index": 1052,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 2,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Control Prenatal",
+    "casePreview": "Recién nacido prematuro de 29 semanas de gestación. Al 10° día de vida, encontrándose con alimentación enteral a base de fórmula, presenta residuo gástrico biliar, distensión abdom"
+  },
+  {
+    "index": 1375,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Recién Nacido Sano",
+    "casePreview": "Recién nacido por parto instrumentado presenta una colección de partes blandas en el cuero cabelludo que cruza las líneas de sutura y es de consistencia edematosa."
+  },
+  {
+    "index": 1378,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "GINECOLOGÍA Y OBSTETRICIA",
+    "casePreview": "Mujer de 31 años con antecedente de cesárea hace 2 años. Consulta por la presencia de una tumoración dolorosa en la cicatriz de la cesárea, la cual aumenta de tamaño y presenta san"
+  },
+  {
+    "index": 1404,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "GINECOLOGÍA Y OBSTETRICIA",
+    "casePreview": "Mujer de 30 años llega a urgencias por dolor abdominal súbito e intensísimo, seguido de síncope. A su llegada: TA 80/40 mmHg, FC 125 lpm, palidez marcada y abdomen con rebote posit"
+  },
+  {
+    "index": 1408,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "GINECOLOGÍA Y OBSTETRICIA",
+    "casePreview": "Paciente de 25 años en el 7° día post-administración de Metotrexato por embarazo ectópico no roto. La hCG del día 4 fue de 4,000 mUI/ml y la del día 7 es de 3,800 mUI/ml."
+  },
+  {
+    "index": 1428,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 3,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Planificacion Familiar y Anticoncepcion",
+    "casePreview": "Paciente de 24 años acude a urgencias 24 horas después de un Legrado Uterino Instrumental (LUI) por aborto incompleto. Presenta dolor abdominal intenso, fiebre de 38.8°C y signos d"
+  },
+  {
+    "index": 1473,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "CACU",
+    "casePreview": "Paciente que terminó tratamiento exitoso por cáncer de mama etapa I hace 2 años. Acude a su cita de control anual."
+  },
+  {
+    "index": 1487,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Sangrado Uterino Anormal",
+    "casePreview": "Paciente de 17 años con amenorrea primaria, fenotipo femenino muy armónico, pechos bien desarrollados pero con ausencia casi total de vello púbico y axilar. En la ingle se palpan d"
+  },
+  {
+    "index": 1512,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 7 años con antecedente de varicela hace 5 días. Presenta súbitamente fiebre elevada, dolor intenso en pierna derecha, eritema difuso tipo \"quemadura solar\" y datos de choqu"
+  },
+  {
+    "index": 1520,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Recién nacido de 30 semanas de gestación. Presenta dificultad respiratoria progresiva inmediata al nacer, con quejido y cianosis. La radiografía de tórax muestra imagen de \"vidrio "
+  },
+  {
+    "index": 1524,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 3,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Lactante masculino de 2 meses que presenta aumento de volumen en la región inguinal derecha que llega hasta el escroto, el cual se hace más evidente cuando el niño llora y desapare"
+  },
+  {
+    "index": 1551,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Lactante de 18 meses es traído a urgencias tras ingerir una \"pila de botón\" hace 1 hora. El niño se encuentra asintomático, pero la madre está muy preocupada. Se realiza radiografí"
+  },
+  {
+    "index": 1555,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 5 años con antecedente de geofagia (comer tierra) presenta cuadro de tos, sibilancias y fiebre leve. La radiografía de tórax muestra infiltrados migratorios (Síndrome de Lö"
+  },
+  {
+    "index": 1578,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "MEDICINA INTERNA",
+    "casePreview": "ESPONTÁNEA) Paciente de 55 años con cirrosis por alcohol acude por dolor abdominal difuso y fiebre. Se realiza paracentesis diagnóstica que reporta un conteo de polimorfonucleares "
+  },
+  {
+    "index": 1652,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 7,
+      "gyo": 11,
+      "cir": 7,
+      "mi": 9
+    },
+    "targetScore": 7,
+    "otherMax": 11,
+    "temaCanonical": "Ictericia Neonatal",
+    "casePreview": "Mujer de 68 años de edad, postmenopáusica desde hace 18 años, de complexión delgada y con antecedente de tabaquismo positivo. Acude a consulta externa para una revisión de rutina. "
+  },
+  {
+    "index": 1658,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Brucelosis (Enfermedades por Zoonosis)",
+    "casePreview": "Mujer de 62 años, nuligesta, acude a consulta por presentar aumento progresivo del perímetro abdominal en los últimos 3 meses, acompañado de saciedad temprana, dispepsia y dolor pé"
+  },
+  {
+    "index": 1667,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 3,
+      "gyo": 9,
+      "cir": 4,
+      "mi": 9
+    },
+    "targetScore": 4,
+    "otherMax": 9,
+    "temaCanonical": "Patologia Neonatal Infecciosa",
+    "casePreview": "Mujer de 32 años acude por pérdida de peso de 6 kg en los últimos dos meses a pesar de tener el apetito conservado. Refiere palpitaciones frecuentes, nerviosismo, insomnio y diarre"
+  },
+  {
+    "index": 1670,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 7,
+      "gyo": 8,
+      "cir": 4,
+      "mi": 6
+    },
+    "targetScore": 4,
+    "otherMax": 8,
+    "temaCanonical": "Ictericia Neonatal",
+    "casePreview": "Mujer de 58 años de edad, asintomática, acude a su chequeo anual con los resultados de su mastografía de tamizaje. No tiene antecedentes familiares de neoplasias. El reporte radiol"
+  },
+  {
+    "index": 1671,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 3,
+      "gyo": 1,
+      "cir": 3,
+      "mi": 1
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Reanimacion Neonatal",
+    "casePreview": "Mujer de 58 años de edad, asintomática, acude a su chequeo anual con los resultados de su mastografía de tamizaje. No tiene antecedentes familiares de neoplasias. El reporte radiol"
+  },
+  {
+    "index": 1674,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 4,
+      "gyo": 8,
+      "cir": 7,
+      "mi": 8
+    },
+    "targetScore": 7,
+    "otherMax": 8,
+    "temaCanonical": "Anemia megaloblástica (Anemias Introducción y Anemias Carenciales)",
+    "casePreview": "Primigesta de 10 semanas de gestación acude a urgencias por presentar vómitos incoercibles (más de 10 episodios al día) desde hace dos semanas, con imposibilidad absoluta para tole"
+  },
+  {
+    "index": 1677,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 3
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "Fibrilación auricular (Arritmias)",
+    "casePreview": "Hombre de 42 años ingresa a la sala de choque en el servicio de urgencias por dolor abdominal generalizado, intenso y de inicio brusco. A la exploración física, el paciente se encu"
+  },
+  {
+    "index": 1680,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 5,
+      "gyo": 7,
+      "cir": 4,
+      "mi": 11
+    },
+    "targetScore": 4,
+    "otherMax": 11,
+    "temaCanonical": "Vacunacion",
+    "casePreview": "Mujer de 45 años, con inicio de vida sexual activa a los 16 años y antecedente de tabaquismo, acude a consulta por presentar sangrado transvaginal intermitente, predominantemente p"
+  },
+  {
+    "index": 1683,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Sangrado Uterino Anormal",
+    "casePreview": "Mujer de 28 años de edad, nuligesta, con antecedente de Enfermedad Pélvica Inflamatoria hace 3 años. Acude al servicio de urgencias por dolor pélvico intenso de inicio súbito, pred"
+  },
+  {
+    "index": 1686,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 5,
+      "gyo": 8,
+      "cir": 6,
+      "mi": 9
+    },
+    "targetScore": 6,
+    "otherMax": 9,
+    "temaCanonical": "Hemorragia Obstetrica",
+    "casePreview": "Hombre de 68 años de edad acude a consulta por sintomatología urinaria de 2 años de evolución, la cual se ha exacerbado recientemente. Refiere que tiene que levantarse hasta 4 vece"
+  },
+  {
+    "index": 1689,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 1,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "Lesión Renal Aguda (Nefrología)",
+    "casePreview": "Hombre de 78 años, residente de un asilo de ancianos, con antecedente de demencia senil y estreñimiento crónico severo. Es traído a urgencias por presentar distensión abdominal mas"
+  },
+  {
+    "index": 1692,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 5,
+      "gyo": 10,
+      "cir": 5,
+      "mi": 8
+    },
+    "targetScore": 5,
+    "otherMax": 10,
+    "temaCanonical": "Preeclampsia e Hipertension en el Embarazo",
+    "casePreview": "Lactante femenino de 4 semanas de vida es traída a la consulta pediátrica porque los padres notan que \"sigue amarilla\". La niña nació de término sin complicaciones, fue dada de alt"
+  },
+  {
+    "index": 1693,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 3,
+    "temaCanonical": "Patologia Gastrointestinal del Pediatrico",
+    "casePreview": "Lactante masculino de 8 meses de edad, previamente sano. Inicia de manera súbita con episodios de llanto intenso, palidez y encogimiento de las piernas hacia el abdomen, que duran "
+  },
+  {
+    "index": 1698,
+    "currentSpec": "mi",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 4,
+      "gyo": 11,
+      "cir": 6,
+      "mi": 7
+    },
+    "targetScore": 6,
+    "otherMax": 11,
+    "temaCanonical": "Nefropatía diabética (Complicaciones Diabetes)",
+    "casePreview": "Mujer de 24 años, cursando embarazo de 20 semanas de gestación, acude a su primera consulta de control prenatal. Refiere ser alérgica a la penicilina (presentó un exantema generali"
+  },
+  {
+    "index": 1735,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 2,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "CACU",
+    "casePreview": "Mujer de 62 años, nuligesta, acude a consulta por presentar aumento progresivo del perímetro abdominal en los últimos 3 meses, acompañado de saciedad temprana, dispepsia y dolor pé"
+  },
+  {
+    "index": 1742,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 0
+    },
+    "targetScore": 3,
+    "otherMax": 2,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Lactante de 9 meses presenta episodios súbitos de llanto intenso con flexión de piernas sobre el abdomen, vómitos y periodos de aparente mejoría. Horas después evacúa heces con moc"
+  },
+  {
+    "index": 1774,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 3,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 3,
+    "temaCanonical": "PEDIATRÍA",
+    "casePreview": "Niño de 9 años presenta fiebre, malestar general y aumento de volumen doloroso en región parotídea bilateral. Refiere dolor al masticar y al ingerir alimentos ácidos."
+  },
+  {
+    "index": 1780,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 2,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 1
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "Reanimacion Neonatal",
+    "casePreview": "Recién nacido de término presenta dificultad respiratoria severa y cianosis desde el primer minuto de vida. A la exploración física destaca un abdomen excavado y se auscultan ruido"
+  },
+  {
+    "index": 1791,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "Planificacion Familiar y Anticoncepcion",
+    "casePreview": "Hombre de 38 años refiere ardor epigástrico recurrente, relacionado con ayuno prolongado, que mejora temporalmente al ingerir alimentos. Niega pérdida de peso y hematemesis."
+  },
+  {
+    "index": 1796,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "CACU",
+    "casePreview": "Mujer de 45 años, con inicio de vida sexual activa a los 16 años y antecedente de tabaquismo, acude a consulta por presentar sangrado transvaginal intermitente, predominantemente p"
+  },
+  {
+    "index": 1805,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "CACU",
+    "casePreview": "Varón de 58 años con antecedente de ingesta crónica de AINE presenta melena, debilidad y un episodio de hematemesis. A la exploración se encuentra taquicárdico y con palidez tegume"
+  },
+  {
+    "index": 1810,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 4,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 4,
+    "temaCanonical": "Sangrado Uterino Anormal",
+    "casePreview": "Mujer de 28 años de edad, nuligesta, con antecedente de Enfermedad Pélvica Inflamatoria hace 3 años. Acude al servicio de urgencias por dolor pélvico intenso de inicio súbito, pred"
+  },
+  {
+    "index": 1828,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 4,
+      "gyo": 0,
+      "cir": 3,
+      "mi": 2
+    },
+    "targetScore": 3,
+    "otherMax": 4,
+    "temaCanonical": "Ictericia Neonatal",
+    "casePreview": "Lactante femenino de 4 semanas de vida es traída a la consulta pediátrica porque los padres notan que \"sigue amarilla\". La niña nació de término sin complicaciones, fue dada de alt"
+  },
+  {
+    "index": 1836,
+    "currentSpec": "ped",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 2
+    },
+    "targetScore": 2,
+    "otherMax": 2,
+    "temaCanonical": "CIRUGÍA",
+    "casePreview": "Varón de 69 años con antecedente de fibrilación auricular presenta inicio súbito de dolor intenso en pierna izquierda. A la exploración la extremidad está pálida, fría, con ausenci"
+  },
+  {
+    "index": 1852,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 0,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 0,
+    "temaCanonical": "CIRUGÍA",
+    "casePreview": "Paciente de 34 años presenta lesión por escaldadura en antebrazo con ampollas, eritema intenso y dolor importante. La sensibilidad está conservada."
+  },
+  {
+    "index": 1855,
+    "currentSpec": "gyo",
+    "suggestedSpec": "cir",
+    "reason": "ambiguous_cir",
+    "scores": {
+      "ped": 0,
+      "gyo": 1,
+      "cir": 2,
+      "mi": 0
+    },
+    "targetScore": 2,
+    "otherMax": 1,
+    "temaCanonical": "CACU",
+    "casePreview": "Paciente de 71 años refiere palpitaciones irregulares, fatiga y disnea leve de esfuerzo. A la exploración se documenta pulso irregularmente irregular y frecuencia cardiaca elevada."
+  }
+]

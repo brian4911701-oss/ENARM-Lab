@@ -1,0 +1,342 @@
+﻿[
+    {
+        "numbered":  false,
+        "text":  "Ginecología y Obstetricia"
+    },
+    {
+        "numbered":  true,
+        "text":  "Introducción a Ginecología"
+    },
+    {
+        "numbered":  true,
+        "text":  "Amenorreas Primarias y Secundarias (Síndrome de Turner, Síndrome de Swyer, Síndrome de Morris, Síndrome de Rokitansky, Síndrome de Asherman, Síndrome de Sheehan, Síndrome de Kallman, Síndrome de Prader-Willi)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Ciclo Genital, Esterilidad y Anticonceptivos"
+    },
+    {
+        "numbered":  true,
+        "text":  "Sangrados Uterinos Anormales de Origen No Anatómico"
+    },
+    {
+        "numbered":  true,
+        "text":  "Sangrados Uterinos de Origen Desconocido (SOP, Endometriosis, Coagulopatías)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología, Menopausia y Climaterio (Menopausia, Síndrome Climatérico, Osteoporosis, Incontinencia Urinaria, Trastornos del Piso Pélvico)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Sangrados Uterinos Anormales de Origen Anatómico No Maligno (Adenomiosis, Poliposis, Miomatosis, Torsión Ovárica)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Oncología Ginecológica (Cáncer de Endometrio, Cáncer de Ovario, Prevención y Tamizaje de CACU, Cáncer Cervicouterino, Cáncer de Vagina y Vulva, Patología Vulvar, Bartolinitis)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Mamaria Benigna (Mastopatía Fibroquística, Fibroadenoma, Mastitis Puerperal y No Puerperal, Papiloma Intraductal)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Cáncer de Mama"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Infecciosa Cervical (Cervicovaginitis Bacteriana, Candida, Trichomonas, Enfermedad Pélvica Inflamatoria, Endocervicitis)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Control Prenatal (Fisiología del Embarazo, Consultas Prenatales, Vacunas, Maniobras de Leopold, Incompatibilidad de Grupo RH, Diagnóstico de Cromosomopatías, Depresión Materna, Hiperemesis Gravídica, Patología Tiroidea en el Embarazo)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Hemorragias del Primer Trimestre (Aborto, Embarazo Ectópico, Enfermedad Trofoblástica)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Hemorragias del Segundo Trimestre (Placenta Previa, Acretismo Placentario, DPPNI, Vasa Previa, Rotura Uterina)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología del Embarazo: Estados Hipertensivos (Hipertensión Crónica, Hipertensión Gestacional, Preeclampsia, Eclampsia, Síndrome de HELLP)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología del Embarazo (Diabetes Mellitus Gestacional, Patología Hepática del Embarazo)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Trabajo de Parto (Fisiológico, Violencia Obstétrica)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología de Trabajo de Parto (Inducción de Trabajo de Parto, Cesárea, Distocias, Embarazo Gemelar)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Parto Prematuro y Patología Coriónica (Parto Prematuro, Ruptura Prematura de Membranas, Polihidramnios, Oligohidramnios, Corioamnionitis)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Puerperal (Hemorragia Obstétrica: Atonía, Trauma, Tejido, Coagulopatías; Choque en la Paciente Embarazada, Sepsis Materna)"
+    },
+    {
+        "numbered":  false,
+        "text":  "Pediatría"
+    },
+    {
+        "numbered":  true,
+        "text":  "Recién Nacido Sano (Cuidados del Recién Nacido, Tamizajes del RN, Cefalohematoma, Parálisis Braquial, Alteraciones Dermatológicas al Nacimiento)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Reanimación Neonatal"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Neonatal Infecciosa (Sepsis, Neumonía, Meningitis, Enterocolitis Necrotizante, Onfalitis)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Respiratoria del Pediátrico (Enfermedad de Membrana Hialina, Taquipnea Transitoria del Recién Nacido, Síndrome de Aspiración de Meconio, Displasia Broncopulmonar, Hipertensión Pulmonar, Apnea del Prematuro)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Neonatal Malformativa (Asfixia, Encefalopatía Hipóxico-Isquémica, Hemorragia de Matriz Germinal, Malformaciones Congénitas, Hernias Diafragmáticas, Atresia de las Coanas, Atresia Pilórica, Atresia Duodenal, Atresia Esofágica, Onfalocele, Gastrosquisis, Espina Bífida, Paladar Hendido, Malformaciones Anorrectales)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Neonatal Congénita Infecciosa (TORCH: Citomegalovirus, Toxoplasmosis, Rubéola, Varicela, Sífilis, Herpes; Binomio VIH)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Estenosis Hipertrófica del Píloro"
+    },
+    {
+        "numbered":  true,
+        "text":  "Ictericia Neonatal (Fisiológica, Materna, Incompatibilidad Sanguínea, Problemas del Metabolismo Hepático, Atresia de Vías Biliares)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Tamiz Metabólico (Hipotiroidismo, Fenilcetonuria, Galactosemia, Deficiencia de Biotinidasa, Hiperplasia Suprarrenal, Fibrosis Quística)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Crecimiento y Desarrollo (Hitos del Desarrollo, Consulta del Niño Sano, Maltrato Infantil, Alimentación, Desnutrición, Obesidad, Talla Baja, Déficits Vitamínicos, Muerte Súbita)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Vacunación"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Gastrointestinal Pediátrica (Invaginación Intestinal, Divertículo de Meckel, Enfermedad de Hirschsprung, ERGE)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Diarrea en el Pediátrico (Planes de Hidratación, Introducción a Diarreas, Diarreas Agudas y Crónicas, Diarrea Enteroinvasiva, Intoxicaciones Alimentarias, Enfermedad Celíaca)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Enfermedades Parasitarias (Giardiasis, EntamoebaHistolytica, Áscaris, Teniasis, Cisticercosis, Filariasis, Oxiuriasis, Escabiosis)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Respiratoria del Lactante y Preescolar (Bronquiolitis, Laringotraqueítis, Epiglotitis, Tos Ferina, Laringotraqueítis Bacteriana)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Neumonías (Bacterianas, Virales, Atípicas en Adulto y Pediátrico)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Asma en el Adulto y Pediátrico"
+    },
+    {
+        "numbered":  true,
+        "text":  "IRAS y Convulsiones (Resfriado Común, Faringoamigdalitis, Difteria, Mononucleosis)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Enfermedades Exantemáticas (Sarampión, Rubéola, Varicela, Quinta Enfermedad, Sexta Enfermedad, Escarlatina, Enfermedad de Kawasaki, Mano-Boca-Pie, Herpangina)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Urgencias Pediátricas (Intoxicaciones por ASA y Paracetamol, Ingesta de Cáusticos, Ingesta de Metales Pesados, Obstrucción de la Vía Aérea Superior)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Uropedia (Torsión Testicular, Torsión del Apéndice Testicular, Epididimitis, IVU, Reflujo Vesicoureteral)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Cardiopedia (Cardiopatías Acianógenas: CIV, CIA, PCA, Estenosis Pulmonar; Cardiopatías Cianógenas: Tetralogía de Fallot, Tronco Arterioso Común, Drenaje Pulmonar Venoso Anómalo, Anomalía de Ebstein, Transposición de Grandes Vasos)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Especialidades Pediátricas (Oncopedia: Neuroblastoma, Nefroblastoma, Astrocitoma, Osteosarcoma, Sarcoma de Ewing; Dermapedia: Dermatitis Atópica, Dermatitis del Pañal, Molusco Contagioso, Síndrome de Piel Escaldada, Síndrome de Shock Tóxico, Dermatitis Seborreica; Hematopedia: Púrpura de Henoch-Schönlein, Púrpura Trombocitopénica; Ortopedia: Displasia de Cadera, Pie Plano, Cojera)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Alteraciones Cromosómicas (Síndrome de Down, Síndrome de Edwards, Síndrome de Patau, Síndrome de Klinefelter)"
+    },
+    {
+        "numbered":  false,
+        "text":  "Cirugía"
+    },
+    {
+        "numbered":  true,
+        "text":  "Introducción a Cirugía y Cirugía Abdominal (Abdomen Agudo, Exploración Física, Tipos de Heridas Quirúrgicas)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Esofágica"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Gástrica (Gastritis Aguda o Crónica, Úlcera Péptica Duodenal y Gástrica, Úlcera Péptica Complicada y Perforada, Zollinger-Ellison, Dispepsia Funcional)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Biliar (Colecistitis, Colelitiasis, Coledocolitiasis, Colangitis, Íleo Biliar)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Pancreática (Pancreatitis Aguda y Crónica)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Apendicitis"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Diverticular (Diverticulosis, Diverticulitis, Enfermedad Diverticular)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Intestinal Quirúrgica (Obstrucción Intestinal, Vólvulo de Colon y Ciego)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Isquémica Intestinal (Isquemia Mesentérica Aguda y Crónica)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Hernias y Esplenectomía"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Intestinal Inflamatoria (Colitis Ulcerosa, Enfermedad de Crohn, Síndrome de Intestino Irritable)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Hepática (Hepatitis Agudas y Crónicas, Enfermedad Hepática Grasa)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Cirrosis y sus Complicaciones (STDA por Várices Esofágicas, Ascitis, Encefalopatía Hepática, Peritonitis Bacteriana Espontánea, Esprue, Trasplante Hepático)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Arterial y Venosa (Insuficiencia Arterial Aguda, Enfermedad Arterial Periférica, Trombosis Venosa Profunda, Tromboembolia Pulmonar)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Patología Perianal (Hemorroides, Abscesos, Fisuras, Fístulas)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Urología (Infección de Vías Urinarias, Litiasis Renal, Hiperplasia Prostática, Prostatitis, Cáncer de Próstata, Tumores Testiculares)"
+    },
+    {
+        "numbered":  true,
+        "text":  "ETS (Linfogranuloma Venéreo, Chancro, Chancroide, Sífilis, Herpes)"
+    },
+    {
+        "numbered":  true,
+        "text":  "ATLS (Vía Aérea, Choque, Trauma Torácico, Trauma Craneoencefálico, Hemorragia Epidural, Subaracnoidea y Subdural, Síndromes Medulares, Trauma Abdominal, Fractura de Cadera, Trauma Genitourinario, ATLS en Embarazada)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Intoxicaciones y Picaduras (Toxsíndromes, Alacranismo, Loxoscelismo, Latrodectismo, Mordedura de Serpientes)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Quemaduras, Golpe de Calor e Hipotermia"
+    },
+    {
+        "numbered":  true,
+        "text":  "Cirugía Oncológica (Cáncer de Esófago, Gástrico, Páncreas, Colon y Recto, Hepático, Renal, Síndrome de Lynch)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Oftalmología (Ametropías, Patología de Anexos, Síndrome de Ojo Seco, Blefaritis, Orzuelo, Chalazión, Dacrioadenitis, Trauma Ocular, Celulitis Periorbitaria, Conjuntivitis, Escleritis, Epiescleritis, Queratocono, Tracoma, Pterigión, Pinguécula, Catarata, Glaucoma, Uveítis, Desprendimiento de Retina, Retinopatía Diabética e Hipertensiva)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Otorrinolaringología (Hipoacusia y Vértigo: VPPN, Enfermedad de Meniere, Neuronitis Vestibular; OMA, Otitis Media Maligna, SAOS, Cáncer de Laringe, Absceso Periamigdalino, Papilomatosis Laríngea)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Traumatología y Ortopedia (Fractura en Rama Verde, Síndrome Compartimental, Síndrome de Dolor Locorregional, Embolia Grasa, Patología de Extremidad Superior e Inferior, Esguince de Tobillo)"
+    },
+    {
+        "numbered":  false,
+        "text":  "Medicina Interna"
+    },
+    {
+        "numbered":  true,
+        "text":  "Introducción e Infectología (SRIS, Sepsis, Choque Séptico, Antibióticos)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Infecciones Específicas (Tuberculosis, VIH, Dengue, Zika, Chikungunya, Paludismo, Malaria, Chagas, Brucelosis, Rickettsiosis, Lyme, Carbunco, Tularemia, Tétanos, Botulismo, Rabia, Patología Fúngica)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Neumología (EPOC, Cáncer de Pulmón, Neumonías Ocupacionales, Derrame Pleural, Bisinois, Silicosis, Asbestosis, Sarcoidosis)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Endocrinología (Patología Tiroidea: Graves, Riedel, Quervain, Hashimoto, Cáncer; Síndrome Metabólico, Diabetes Mellitus, Cetoacidosis, Estado Hiperosmolar, Diabetes Insípida, Hiperprolactinemia, Addison, Cushing)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Hematología (Anemias Carenciales, Ferropénica, Megaloblástica, Hemolíticas: Talasemias, Esferocitosis; Leucemias: LLA, LMA, LMC; Linfoma Hodgkin y No Hodgkin, Hemofilia, Von Willebrand, Púrpura, Síndromes Mielodisplásicos)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Cardiología (Insuficiencia Cardíaca, Valvulopatías, Síndromes Coronarios: Infarto Agudo al Miocardio, Angina; ACLS y BLS, Trastornos del Ritmo: Fibrilación Auricular, Taquicardia Ventricular; Hipertensión Arterial, Pericarditis, Endocarditis, Miocarditis)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Neurología (EVC Isquémico y Hemorrágico, Parkinson, ELA, Esclerosis Múltiple, Miastenia Gravis, Guillain-Barré, Cefaleas: Migraña, Tensional; Demencias: Alzheimer, Cuerpos de Lewy)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Dermatología (Tiñas, Lepra, Acné, Pitiriasis Versicolor, Melanoma, Cáncer Basocelular y Espinocelular, Liquen Plano, Vitiligo, Psoriasis, Pénfigo Vulgar, Stevens-Johnson)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Reumatología (Artritis Reumatoide, Osteoartritis, Espondilopatías, Fibromialgia, LES, Vasculitis, Síndrome de Sjögren)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Nefrología (Síndrome Nefrítico, Síndrome Nefrótico, Abscesos Renales)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Psiquiatría (Adicciones, Delirium Tremens, Autismo, TDAH, Esquizofrenia, Trastornos del Sueño)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Geriatría (Síndromes y Escalas Geriátricas)"
+    },
+    {
+        "numbered":  true,
+        "text":  "Epidemiología"
+    }
+]

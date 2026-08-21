@@ -1,0 +1,501 @@
+{
+  "generatedAt": "2026-03-18T06:23:34.862Z",
+  "block": "mi",
+  "blockLabel": "Medicina Interna",
+  "dryRun": false,
+  "totals": {
+    "totalCases": 1858,
+    "movedToBlock": 4,
+    "topicReassigned": 587,
+    "reviewQueue": 130
+  },
+  "movedByOriginSpecialty": {
+    "mi": 0,
+    "ped": 1,
+    "gyo": 1,
+    "cir": 2,
+    "other": 0
+  },
+  "topTopics": [
+    {
+      "topic": "Cardiologia Clinica",
+      "count": 217
+    },
+    {
+      "topic": "Reumatologia",
+      "count": 104
+    },
+    {
+      "topic": "Neumologia",
+      "count": 73
+    },
+    {
+      "topic": "Infectologia",
+      "count": 61
+    },
+    {
+      "topic": "Diabetes",
+      "count": 52
+    },
+    {
+      "topic": "Hipertension Arterial",
+      "count": 48
+    },
+    {
+      "topic": "Nefrología",
+      "count": 14
+    },
+    {
+      "topic": "Hematologia",
+      "count": 14
+    },
+    {
+      "topic": "Endocrinologia",
+      "count": 12
+    },
+    {
+      "topic": "Nefrologia",
+      "count": 11
+    },
+    {
+      "topic": "Cáncer de Mama",
+      "count": 10
+    },
+    {
+      "topic": "NEUROLOGÍA",
+      "count": 10
+    },
+    {
+      "topic": "Psiquiatria",
+      "count": 9
+    },
+    {
+      "topic": "Virus de la Inmunodeficiencia Humana",
+      "count": 8
+    },
+    {
+      "topic": "TOXICOLOGÍA",
+      "count": 8
+    },
+    {
+      "topic": "MEDICINA INTERNA",
+      "count": 8
+    },
+    {
+      "topic": "GASTROENTEROLOGÍA",
+      "count": 7
+    },
+    {
+      "topic": "Neurologia",
+      "count": 5
+    },
+    {
+      "topic": "Gastroenterologia y Hepatologia",
+      "count": 4
+    },
+    {
+      "topic": "Anticoncepción",
+      "count": 4
+    }
+  ],
+  "movedSample": [
+    {
+      "index": 1165,
+      "from": "cir",
+      "to": "mi",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_mi",
+      "casePreview": "Masculino de 45 años con antecedente de tuberculosis pulmonar. Presenta edema de miembros inferiores, ascitis y distensión venosa yugular que aumenta durante la inspiración (Signo "
+    },
+    {
+      "index": 1195,
+      "from": "ped",
+      "to": "mi",
+      "targetScore": 6,
+      "otherMax": 0,
+      "reason": "high_confidence_mi",
+      "casePreview": "Paciente con antecedente de insuficiencia renal crónica que presenta náuseas, vómitos y respiración profunda y rápida (Kussmaul). Gasometría: pH 7.25, HCO3 12 mEq/L, PaCO2 28 mmHg."
+    },
+    {
+      "index": 1747,
+      "from": "gyo",
+      "to": "mi",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_mi",
+      "casePreview": "Mujer de 45 años consulta por fatiga, intolerancia al frío, estreñimiento y aumento de peso. A la exploración presenta piel seca, bradicardia y facies abotagada."
+    },
+    {
+      "index": 1824,
+      "from": "cir",
+      "to": "mi",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_mi",
+      "casePreview": "Hombre de 57 años con cirrosis hepática conocida presenta hematemesis abundante y mareo. A la exploración está taquicárdico, con hipotensión y signos de hepatopatía crónica."
+    }
+  ],
+  "topicSample": [
+    {
+      "index": 0,
+      "oldTopic": "Síndromes Coronarios",
+      "newTopic": "Hipertension Arterial",
+      "casePreview": "Paciente masculino de 58 años con antecedentes de hipertensión arterial y tabaquismo activo. Acude a urgencias por presentar dolor precordial opresivo de gran i"
+    },
+    {
+      "index": 2,
+      "oldTopic": "Tuberculosis",
+      "newTopic": "Infectologia",
+      "casePreview": "Masculino de 34 años con pérdida de peso de 6 kg en el último mes, diaforesis nocturna y tos productiva con hemoptisis ocasional. Refiere contacto estrecho con "
+    },
+    {
+      "index": 3,
+      "oldTopic": "Trastornos del Ritmo",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Paciente de 72 años con antecedente de fibrilación auricular no anticoagulada. Súbitamente presenta hemiparesia izquierda, desviación de la mirada a la derecha "
+    },
+    {
+      "index": 4,
+      "oldTopic": "Virus de la Inmunodeficiencia Humana",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Masculino de 29 años, usuario de drogas intravenosas, acude por fiebre persistente de 3 semanas, pérdida de peso y candidiasis orofaríngea. Se le realiza prueba"
+    },
+    {
+      "index": 16,
+      "oldTopic": "Trastornos del Ritmo",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Masculino de 68 años con antecedente de HAS y DM2 acude por presentar palpitaciones y disnea de medianos esfuerzos. El ECG muestra ausencia de ondas P y ritmo i"
+    },
+    {
+      "index": 19,
+      "oldTopic": "Virus de la Inmunodeficiencia Humana",
+      "newTopic": "Neumologia",
+      "casePreview": "Masculino de 25 años con diagnóstico de VIH que presenta cefalea intensa, fiebre y signos meníngeos. Se realiza punción lumbar con tinción de Tinta China result"
+    },
+    {
+      "index": 35,
+      "oldTopic": "Tromboembolia pulmonar (Patología Arterial y Venosa)",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Paciente de 62 años que súbitamente presenta disnea súbita, dolor torácico pleurítico y hemoptisis. ECG con patrón S1Q3T3. Antecedente de cirugía de cadera hace"
+    },
+    {
+      "index": 36,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Reumatologia",
+      "casePreview": "Mujer de 28 años con astenia, adinamia y palidez cutáneo-mucosa. Laboratorios: Hb 9 g/dL, VCM 72 fL (microcítica), HCM 24 pg (hipocrómica), Ferritina disminuida"
+    },
+    {
+      "index": 38,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Reumatologia",
+      "casePreview": "Se realiza un estudio para evaluar la asociación entre el consumo de tabaco y el desarrollo de cáncer de pulmón. Se seleccionan dos grupos: uno de fumadores y o"
+    },
+    {
+      "index": 49,
+      "oldTopic": "Nefrología",
+      "newTopic": "Nefrologia",
+      "casePreview": "Paciente de 55 años con ERC en estadio 5. Presenta debilidad muscular intensa y ECG con ondas T picudas y simétricas, además de ensanchamiento del QRS."
+    },
+    {
+      "index": 56,
+      "oldTopic": "Neumonías",
+      "newTopic": "Neumologia",
+      "casePreview": "Paciente de 19 años que tras acudir a un campamento presenta fiebre, cefalea intensa y rigidez de nuca. En la piel se observan petequias y púrpura palpable. La "
+    },
+    {
+      "index": 66,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Reumatologia",
+      "casePreview": "Paciente en paro cardiaco. El monitor muestra el ritmo siguiente: ausencia de actividad eléctrica y línea plana."
+    },
+    {
+      "index": 69,
+      "oldTopic": "EPOC / CA de Pulmón",
+      "newTopic": "Neumologia",
+      "casePreview": "Masculino de 62 años fumador crónico que presenta tos productiva la mayoría de los días del año, durante los últimos 3 años. Presenta sibilancias y disnea al ej"
+    },
+    {
+      "index": 70,
+      "oldTopic": "Hipertensión Arterial",
+      "newTopic": "Hipertension Arterial",
+      "casePreview": "Paciente con sospecha de hipertensión arterial. Se le pide que realice mediciones de la TA en casa durante una semana."
+    },
+    {
+      "index": 75,
+      "oldTopic": "Trastornos del Ritmo",
+      "newTopic": "Diabetes",
+      "casePreview": "Hombre de 68 años con antecedente de fibrilación auricular no valvular. Acude a consulta para ajuste de medicación. Tiene hipertensión y diabetes tipo 2. Niega "
+    },
+    {
+      "index": 76,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Reumatologia",
+      "casePreview": "Se reportan 25 casos de enfermedad diarreica aguda en un asilo de ancianos durante las últimas 48 horas. Se identifica norovirus como el agente etiológico tras "
+    },
+    {
+      "index": 81,
+      "oldTopic": "Virus de la Inmunodeficiencia Humana",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Femenina de 42 años diagnosticada recientemente con VIH, sin tratamiento antirretroviral previo. Acude por tos seca progresiva de 3 semanas, disnea de medianos "
+    },
+    {
+      "index": 85,
+      "oldTopic": "Trastornos del Ritmo",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Femenina de 65 años traída por su hija debido a debilidad profunda y confusión. Tiene antecedentes de insuficiencia cardiaca en tratamiento crónico con espirono"
+    },
+    {
+      "index": 86,
+      "oldTopic": "Epidemiología",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "En un área rural endémica de malaria, se instaura un programa donde se rocía el interior de las viviendas con insecticidas de acción residual para controlar al "
+    },
+    {
+      "index": 98,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Durante autoexploración rutinaria, una mujer de 42 años sin factores de riesgo en la genética primaria de su árbol genealógico, se palpó un cuerpo duro e indura"
+    },
+    {
+      "index": 109,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Paciente masculino de 28 años, originario y residente de Veracruz. Acude a urgencias con historia de 4 días de fiebre continua de 39.5°C, cefalea intensa de pre"
+    },
+    {
+      "index": 110,
+      "oldTopic": "Síndromes Coronarios",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Hombre de 62 años, diabético con mal apego (HbA1c 9.5%) e hipertenso. Es traído por paramédicos tras 40 minutos de opresión toráxica retroesternal intensa, irra"
+    },
+    {
+      "index": 111,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Masculino de 45 años de edad con antecedente de tabaquismo pesado y situación de hacinamiento por encarcelamiento previo hace 2 años. Acude al centro de salud a"
+    },
+    {
+      "index": 113,
+      "oldTopic": "Trastornos del Ritmo",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "A las 14:00 horas, un varón de 68 años con fibrilación auricular tabaquística ingresa por la aparición de una hemiparesia braquiocrural derecha densa de instaur"
+    },
+    {
+      "index": 114,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Campesino de 55 años, varón que laboró 12 horas seguidas en extremo calor estival sin hidratación bebible, y padeció una grave intoxicación alimentaria simultán"
+    },
+    {
+      "index": 116,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Reumatologia",
+      "casePreview": "Femenina de 43 años de edad se atiende quejando de un largo transcurso de 8 meses de molestias dolorosas muy incapacitantes localizados a los largo de ambas man"
+    },
+    {
+      "index": 117,
+      "oldTopic": "Hipertensión Arterial",
+      "newTopic": "Hipertension Arterial",
+      "casePreview": "Hombre de 58 años, diabético e hipertenso, inicia hace 90 minutos con dolor opresivo retroesternal irradiado a brazo izquierdo, acompañado de diaforesis y náuse"
+    },
+    {
+      "index": 126,
+      "oldTopic": "Depresión Mayor",
+      "newTopic": "Psiquiatria",
+      "casePreview": "Mujer de 54 años con tristeza, anhedonia, insomnio y pérdida de peso de 3 meses."
+    },
+    {
+      "index": 131,
+      "oldTopic": "Introducción MI / Introducción Infectología",
+      "newTopic": "Neurologia",
+      "casePreview": "Hombre de 19 años con fiebre, cefalea y rigidez de nuca. LCR: leucocitos 1,500 (90% PMN), glucosa 20, proteínas 250."
+    },
+    {
+      "index": 132,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Reumatologia",
+      "casePreview": "Varón de 52 años con lesión pigmentada en espalda, asimetría, bordes irregulares, color heterogéneo y 8 mm."
+    },
+    {
+      "index": 133,
+      "oldTopic": "Hipertiroidismo: Enfermedad de Graves (Patología Tiroidea)",
+      "newTopic": "Infectologia",
+      "casePreview": "Mujer de 35 años con hipertiroidismo mal controlado presenta fiebre 40°C, taquicardia 150 lpm y agitación tras infección."
+    },
+    {
+      "index": 141,
+      "oldTopic": "Hipotiroidismo",
+      "newTopic": "Endocrinologia",
+      "casePreview": "Mujer de 23 años con antecedente de pérdida de peso importante en los últimos 6 meses por dieta restrictiva y ejercicio excesivo. Refiere ausencia de menstruaci"
+    },
+    {
+      "index": 143,
+      "oldTopic": "Hipotiroidismo (Patología Tiroidea)",
+      "newTopic": "Endocrinologia",
+      "casePreview": "Mujer de 45 años con aumento de peso, intolerancia al frío, estreñimiento y piel seca. FC 54 lpm. Laboratorio: TSH 18 mUI/L, T4 libre baja."
+    },
+    {
+      "index": 148,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Reumatologia",
+      "casePreview": "Hombre de 48 años con sinusitis crónica, epistaxis recurrente, hemoptisis y hematuria. Creatinina elevada. ANCA positivo tipo c-ANCA."
+    },
+    {
+      "index": 153,
+      "oldTopic": "Trastornos del Ritmo",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Mujer de 70 años con fibrilación auricular sin anticoagulación presenta hemiparesia izquierda súbita y desviación de mirada a la derecha. Inicio hace 2 horas. T"
+    },
+    {
+      "index": 154,
+      "oldTopic": "Tuberculosis",
+      "newTopic": "Infectologia",
+      "casePreview": "Hombre de 39 años, pérdida de peso de 6 kg en 2 meses, tos productiva con hemoptisis ocasional y sudoración nocturna. Vive con 3 personas en casa pequeña. Rx de"
+    },
+    {
+      "index": 155,
+      "oldTopic": "Virus de la Inmunodeficiencia Humana",
+      "newTopic": "Infectologia",
+      "casePreview": "Hombre de 32 años recién diagnosticado con VIH. CD4: 120 células/mm³. Carga viral elevada. No síntomas respiratorios. No tratamiento previo."
+    },
+    {
+      "index": 156,
+      "oldTopic": "EPOC / Asma",
+      "newTopic": "Neumologia",
+      "casePreview": "Mujer de 25 años con fiebre de 4 días, mialgias intensas, cefalea retroocular y exantema. Vive en zona endémica. Laboratorio: plaquetas 95,000, hematocrito elev"
+    },
+    {
+      "index": 158,
+      "oldTopic": "Neumonías",
+      "newTopic": "Neumologia",
+      "casePreview": "Mujer de 82 años hospitalizada por neumonía comienza con desorientación fluctuante, alteración del ciclo sueño-vigilia y pensamiento incoherente. No antecedente"
+    },
+    {
+      "index": 159,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Reumatologia",
+      "casePreview": "Mujer de 29 años acude por 2 meses de ánimo deprimido la mayor parte del día, anhedonia, fatiga, hiporexia, insomnio de conciliación y sentimientos de inutilida"
+    },
+    {
+      "index": 160,
+      "oldTopic": "Fibrilación Auricular",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Hombre de 61 años con lesión pigmentada en espalda que ha cambiado de tamaño y color en los últimos 6 meses. Bordes irregulares, diámetro 8 mm, asimétrica y con"
+    },
+    {
+      "index": 161,
+      "oldTopic": "Anemia ferropénica (Anemias Introducción y Anemias Carenciales)",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Mujer de 34 años con fatiga y palidez. Menstruaciones abundantes. Hb 9 g/dL, VCM 70 fL, ferritina baja, TIBC elevado."
+    },
+    {
+      "index": 165,
+      "oldTopic": "Síndromes Coronarios",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Hombre de 58 años con dolor opresivo retroesternal de 1 hora de evolución irradiado a brazo izquierdo. ECG: elevación del ST en DII, DIII y aVF. TA 100/70 mmHg."
+    },
+    {
+      "index": 169,
+      "oldTopic": "Introducción MI / Introducción Infectología",
+      "newTopic": "Hipertension Arterial",
+      "casePreview": "Mujer de 19 años con fiebre, cefalea intensa y rigidez de nuca. Presenta fotofobia y vómito. TA estable. No focalización neurológica."
+    },
+    {
+      "index": 170,
+      "oldTopic": "Nefrología",
+      "newTopic": "Diabetes",
+      "casePreview": "Paciente masculino con antecedente de alcoholismo crónico acude con vómito y confusión. Gasometría: pH 7.25, HCO₃ 12 mEq/L, PaCO₂ 25 mmHg. Na 140, Cl 100."
+    },
+    {
+      "index": 171,
+      "oldTopic": "Hipertiroidismo: Enfermedad de Graves (Patología Tiroidea)",
+      "newTopic": "Infectologia",
+      "casePreview": "Mujer de 35 años con antecedente de hipertiroidismo mal controlado presenta fiebre 40°C, taquicardia 150 lpm, agitación y vómito posterior a infección respirato"
+    },
+    {
+      "index": 176,
+      "oldTopic": "EPOC / Asma",
+      "newTopic": "Neumologia",
+      "casePreview": "Mujer de 70 años con antecedente de uso reciente de diurético tiazídico presenta somnolencia y náusea. Na sérico 118 mEq/L. Osmolaridad plasmática baja."
+    },
+    {
+      "index": 177,
+      "oldTopic": "Síndromes Coronarios",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Mujer de 42 años, usuaria de anticonceptivos orales, consulta por disnea súbita y dolor torácico pleurítico. FC 118 lpm, TA 110/70 mmHg, SatO₂ 89%. Dímero D ele"
+    },
+    {
+      "index": 181,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Reumatologia",
+      "casePreview": "Mujer de 50 años con cefalea súbita “en trueno”, la peor de su vida, acompañada de vómito y rigidez de nuca. TAC muestra sangre en espacio subaracnoideo."
+    },
+    {
+      "index": 184,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Reumatologia",
+      "casePreview": "Mujer de 26 años con petequias y equimosis espontáneas. Plaquetas 18,000/mm³. Hb y leucocitos normales. No esplenomegalia."
+    },
+    {
+      "index": 186,
+      "oldTopic": "Infectología – Endocarditis infecciosa",
+      "newTopic": "Infectologia",
+      "casePreview": "Hombre de 60 años con antecedente de valvulopatía presenta fiebre persistente, pérdida de peso y soplo nuevo. Hemocultivos positivos para Streptococcus viridans"
+    },
+    {
+      "index": 187,
+      "oldTopic": "Diabetes Mellitus",
+      "newTopic": "Diabetes",
+      "casePreview": "Hombre de 30 años con antecedente de DM1 acude por vómito intenso y respiración profunda. Gasometría: pH 7.48, HCO₃ 18 mEq/L, PaCO₂ 25 mmHg. Na 138, Cl 100."
+    },
+    {
+      "index": 188,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Reumatologia",
+      "casePreview": "Mujer de 75 años con diarrea abundante por 4 días. TA 85/55 mmHg. Creatinina aumenta de 0.9 a 2.1 mg/dL. EGO sin cilindros patológicos. FeNa 0.5%."
+    },
+    {
+      "index": 189,
+      "oldTopic": "Asma en el Adulto y Pediátrico",
+      "newTopic": "Neumologia",
+      "casePreview": "Hombre de 62 años con ERC estadio 4 acude por debilidad muscular. K sérico 6.8 mEq/L. ECG con ondas T picudas y QRS ligeramente ensanchado."
+    },
+    {
+      "index": 194,
+      "oldTopic": "Trastornos del Ritmo",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "extendida Hombre de 63 años con antecedente de fibrilación auricular sin anticoagulación es encontrado con hemiplejia derecha y afasia. Última vez visto sano ha"
+    },
+    {
+      "index": 202,
+      "oldTopic": "Nefrología",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Masculino de 28 años ingresa a urgencias tras sufrir volcadura en vehículo automotor. Se encuentra agitado, con cianosis peribucal y franca dificultad respirato"
+    },
+    {
+      "index": 205,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Masculino de 42 años acude a urgencias por presentar dolor de inicio súbito, muy intenso, tipo cólico en la región lumbar derecha que se irradia hacia el flanco"
+    },
+    {
+      "index": 206,
+      "oldTopic": "Nefrología",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Femenina de 65 años acude a urgencias por dolor ocular severo en el ojo derecho de 3 horas de evolución, de inicio súbito tras salir de una sala de cine. Refier"
+    },
+    {
+      "index": 209,
+      "oldTopic": "Nefrología",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Masculino de 68 años con antecedente de osteoartritis severa en rodillas, en tratamiento crónico con naproxeno y piroxicam. Es traído a urgencias por presentar "
+    },
+    {
+      "index": 214,
+      "oldTopic": "Virus de la Inmunodeficiencia Humana",
+      "newTopic": "Cardiologia Clinica",
+      "casePreview": "Femenina de 48 años, de ocupación cajera (bipedestación prolongada), con obesidad grado I. Acude a consulta externa por presentar pesadez, dolor tipo ardoroso, "
+    }
+  ]
+}

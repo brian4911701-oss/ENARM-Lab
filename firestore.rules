@@ -1,0 +1,254 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null && request.auth.uid in ["sZcIUjjhD0fze7FtirwsjsIDzLB2"];
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isSelf(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    function validReferralCode(code) {
+      return code is string && code.matches('^EL[A-Z0-9]{6,12}$');
+    }
+
+    function hasReferralRedemptionAfter(ownerUid) {
+      return request.auth != null
+        && existsAfter(/databases/$(database)/documents/referral_redemptions/$(request.auth.uid))
+        && getAfter(/databases/$(database)/documents/referral_redemptions/$(request.auth.uid)).data.ownerUid == ownerUid
+        && getAfter(/databases/$(database)/documents/referral_redemptions/$(request.auth.uid)).data.coins == 50;
+    }
+
+    function isReferralRewardUpdate(ownerUid) {
+      return request.auth != null
+        && request.auth.uid != ownerUid
+        && hasReferralRedemptionAfter(ownerUid)
+        && request.resource.data.uid == ownerUid
+        && request.resource.data.lastReferralUid == request.auth.uid
+        && request.resource.data.coins == resource.data.coins + 50;
+    }
+
+    function isReferralRewardCreate(ownerUid) {
+      return request.auth != null
+        && request.auth.uid != ownerUid
+        && hasReferralRedemptionAfter(ownerUid)
+        && request.resource.data.uid == ownerUid
+        && request.resource.data.lastReferralUid == request.auth.uid
+        && request.resource.data.coins == 50;
+    }
+
+    match /redeem_codes/{code} {
+      allow read: if request.auth != null;
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin()
+        || (request.auth != null
+        && resource.data.redeemedBy == ""
+        && request.resource.data.redeemedBy == request.auth.uid);
+    }
+
+    match /entitlements/{uid} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow create, update: if isAdmin()
+        || (request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.source == "code"
+        && get(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.redeemedBy == request.auth.uid);
+      allow delete: if isAdmin();
+    }
+
+    match /payment_profiles/{uid} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow create: if isSelf(uid)
+        && request.resource.data.uid == uid
+        && request.resource.data.email is string
+        && request.resource.data.transferReference is string
+        && request.resource.data.transferReference.matches('^[0-9]{10}$')
+        && existsAfter(/databases/$(database)/documents/transfer_references/$(request.resource.data.transferReference))
+        && getAfter(/databases/$(database)/documents/transfer_references/$(request.resource.data.transferReference)).data.uid == uid;
+      allow update, delete: if false;
+    }
+
+    match /transfer_references/{reference} {
+      allow get: if isSignedIn();
+      allow list: if isAdmin();
+      allow create: if isSignedIn()
+        && reference.matches('^[0-9]{10}$')
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.transferReference == reference
+        && existsAfter(/databases/$(database)/documents/payment_profiles/$(request.auth.uid))
+        && getAfter(/databases/$(database)/documents/payment_profiles/$(request.auth.uid)).data.transferReference == reference;
+      allow update, delete: if false;
+    }
+
+    match /manual_payment_requests/{requestId} {
+      allow read: if isAdmin()
+        || (isSignedIn() && resource.data.uid == request.auth.uid);
+      allow create: if isSignedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.email is string
+        && request.resource.data.status == "pending"
+        && request.resource.data.currency == "MXN"
+        && request.resource.data.termsAccepted == true
+        && request.resource.data.referralCode is string
+        && request.resource.data.transferReference == get(/databases/$(database)/documents/payment_profiles/$(request.auth.uid)).data.transferReference
+        && ((request.resource.data.planId == "enarm_2026" && request.resource.data.amount == 399)
+          || (request.resource.data.planId == "enarm_2027" && request.resource.data.amount == 1999));
+      allow update: if isAdmin()
+        || (isSignedIn()
+          && resource.data.uid == request.auth.uid
+          && resource.data.status in ["pending", "rejected"]
+          && request.resource.data.status == "pending"
+          && request.resource.data.uid == resource.data.uid
+          && request.resource.data.email == resource.data.email
+          && request.resource.data.planId == resource.data.planId
+          && request.resource.data.amount == resource.data.amount
+          && request.resource.data.currency == resource.data.currency
+          && request.resource.data.transferReference == resource.data.transferReference
+          && request.resource.data.termsAccepted == true
+          && request.resource.data.referralCode is string);
+      allow delete: if isAdmin();
+    }
+
+    match /leaderboard/{uid} {
+      allow read: if isSignedIn();
+      allow create, update: if isSelf(uid);
+      allow delete: if isAdmin();
+    }
+
+    // Datos de contacto privados para el panel de administraci\u00f3n.
+    // No se mezclan con leaderboard, que puede ser le\u00eddo por otros usuarios.
+    match /user_directory/{uid} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow create: if isSelf(uid)
+        && request.resource.data.uid == uid
+        && request.resource.data.email is string
+        && request.resource.data.username is string
+        && request.resource.data.createdAt == request.time;
+      allow update: if isSelf(uid)
+        && request.resource.data.uid == uid
+        && request.resource.data.email is string
+        && request.resource.data.username is string
+        && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if isAdmin();
+    }
+
+    match /referral_codes/{code} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn()
+        && validReferralCode(code)
+        && request.resource.data.code == code
+        && request.resource.data.ownerUid == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+
+    match /user_wallets/{uid} {
+      allow read: if isSignedIn();
+      allow create: if (isSelf(uid)
+        && request.resource.data.uid == uid
+        && request.resource.data.coins == 0
+        && validReferralCode(request.resource.data.referralCode))
+        || isReferralRewardCreate(uid);
+      allow update: if isAdmin() || isReferralRewardUpdate(uid);
+      allow delete: if isAdmin();
+    }
+
+    match /referral_redemptions/{uid} {
+      allow read: if isSelf(uid) || isAdmin() || (isSignedIn() && resource.data.ownerUid == request.auth.uid);
+      allow create: if isSelf(uid)
+        && request.resource.data.uid == uid
+        && request.resource.data.coins == 50
+        && validReferralCode(request.resource.data.referralCode)
+        && request.resource.data.ownerUid != uid
+        && exists(/databases/$(database)/documents/referral_codes/$(request.resource.data.referralCode))
+        && get(/databases/$(database)/documents/referral_codes/$(request.resource.data.referralCode)).data.ownerUid == request.resource.data.ownerUid
+        && existsAfter(/databases/$(database)/documents/redeem_codes/$(request.resource.data.premiumCode))
+        && getAfter(/databases/$(database)/documents/redeem_codes/$(request.resource.data.premiumCode)).data.redeemedBy == uid;
+      allow update, delete: if isAdmin();
+    }
+
+    match /withdrawal_requests/{requestId} {
+      allow read: if isAdmin() || (isSignedIn() && resource.data.uid == request.auth.uid);
+      allow create: if isSignedIn()
+        && request.resource.data.keys().hasOnly([
+          "uid",
+          "userName",
+          "email",
+          "referralCode",
+          "amount",
+          "coinsSnapshot",
+          "currency",
+          "fullName",
+          "accountHolder",
+          "bankName",
+          "clabe",
+          "phone",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "pending"
+        && request.resource.data.currency == "MXN"
+        && request.resource.data.amount is int
+        && request.resource.data.amount >= 100
+        && exists(/databases/$(database)/documents/user_wallets/$(request.auth.uid))
+        && request.resource.data.amount <= get(/databases/$(database)/documents/user_wallets/$(request.auth.uid)).data.coins
+        && request.resource.data.coinsSnapshot is int
+        && request.resource.data.fullName is string
+        && request.resource.data.fullName.size() >= 3
+        && request.resource.data.accountHolder is string
+        && request.resource.data.accountHolder.size() >= 3
+        && request.resource.data.bankName is string
+        && request.resource.data.bankName.size() >= 2
+        && request.resource.data.clabe is string
+        && request.resource.data.clabe.matches('^[0-9]{18}$')
+        && request.resource.data.phone is string
+        && request.resource.data.createdAt is timestamp
+        && request.resource.data.updatedAt is timestamp;
+      allow update, delete: if isAdmin();
+    }
+
+    match /feedback_submissions/{submissionId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if isSignedIn()
+        && request.resource.data.keys().hasOnly([
+          "name",
+          "email",
+          "type",
+          "message",
+          "createdAt",
+          "createdByUid",
+          "createdByName",
+          "recipientAdminUid",
+          "status",
+          "source"
+        ])
+        && request.resource.data.createdByUid == request.auth.uid
+        && request.resource.data.recipientAdminUid == "sZcIUjjhD0fze7FtirwsjsIDzLB2"
+        && request.resource.data.status == "new"
+        && request.resource.data.source == "in_app"
+        && request.resource.data.name is string
+        && request.resource.data.name.size() <= 120
+        && request.resource.data.email is string
+        && request.resource.data.email.size() <= 180
+        && request.resource.data.type is string
+        && request.resource.data.type.size() <= 60
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 2000
+        && request.resource.data.createdByName is string
+        && request.resource.data.createdByName.size() <= 120
+        && request.resource.data.createdAt is int;
+    }
+
+    match /feature_flags/{flagId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+  }
+}

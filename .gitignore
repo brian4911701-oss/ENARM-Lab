@@ -1,0 +1,9 @@
+# Local credentials
+firebase-admin.json
+*firebase-adminsdk*.json
+
+# Local env files
+.env
+
+# Firebase Hosting build output
+public/

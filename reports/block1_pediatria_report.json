@@ -1,0 +1,807 @@
+{
+  "generatedAt": "2026-03-18T06:23:32.018Z",
+  "block": "ped",
+  "blockLabel": "Pediatria",
+  "dryRun": false,
+  "totals": {
+    "totalCases": 1858,
+    "movedToBlock": 38,
+    "topicReassigned": 184,
+    "reviewQueue": 82
+  },
+  "movedByOriginSpecialty": {
+    "mi": 22,
+    "ped": 0,
+    "gyo": 13,
+    "cir": 3,
+    "other": 0
+  },
+  "topTopics": [
+    {
+      "topic": "Crecimiento y Desarrollo",
+      "count": 136
+    },
+    {
+      "topic": "Vacunacion",
+      "count": 47
+    },
+    {
+      "topic": "Patologia Gastrointestinal del Pediatrico",
+      "count": 41
+    },
+    {
+      "topic": "PEDIATRÍA",
+      "count": 40
+    },
+    {
+      "topic": "Patologia Neonatal Infecciosa",
+      "count": 34
+    },
+    {
+      "topic": "Recién Nacido Sano",
+      "count": 26
+    },
+    {
+      "topic": "Patologia Respiratoria del Pediatrico",
+      "count": 14
+    },
+    {
+      "topic": "Ictericia Neonatal",
+      "count": 12
+    },
+    {
+      "topic": "Uropedia",
+      "count": 12
+    },
+    {
+      "topic": "Reanimacion Neonatal",
+      "count": 11
+    },
+    {
+      "topic": "Neurologia Pediatrica",
+      "count": 8
+    },
+    {
+      "topic": "Estenosis Hipertrófica del Píloro",
+      "count": 6
+    },
+    {
+      "topic": "Urgencias Pediatricas",
+      "count": 5
+    },
+    {
+      "topic": "Lupus Eritematoso Sistémico",
+      "count": 5
+    },
+    {
+      "topic": "GINECOLOGÍA Y OBSTETRICIA",
+      "count": 3
+    },
+    {
+      "topic": "MEDICINA INTERNA",
+      "count": 3
+    },
+    {
+      "topic": "Sx nefríticos (Nefrología)",
+      "count": 2
+    },
+    {
+      "topic": "REUMATOLOGÍA",
+      "count": 2
+    },
+    {
+      "topic": "Púrpura de Henoch Schonlein (Especialidades Pedia)",
+      "count": 2
+    },
+    {
+      "topic": "Hernias diafragmáticas (Patología Neonatal)",
+      "count": 1
+    }
+  ],
+  "movedSample": [
+    {
+      "index": 107,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 4,
+      "otherMax": 0,
+      "reason": "high_confidence_ped",
+      "casePreview": "Preescolar masculino de 3 años, asiste a consulta en enero, porque tiene escurrimiento y coriza desde hace 4 días y repentinamente desde anoche se queja de un inmenso dolor tirante"
+    },
+    {
+      "index": 485,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Escolar masculino de 8 años de edad, con antecedente de una sinusitis etmoidal bacteriana mal tratada hace 10 días. Es llevado a urgencias oftalmológicas por presentar fiebre alta "
+    },
+    {
+      "index": 575,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_ped",
+      "casePreview": "Escolar masculino de 8 años es llevado a urgencias por sus padres tras haber sido atacado sorpresivamente por un perro callejero (desconocido y que huyó del lugar) mientras el niño"
+    },
+    {
+      "index": 585,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Preescolar masculino de 6 años es traído a urgencias por su madre. Refiere que hace 2 semanas el niño presentó fiebre y dolor intenso en el oído derecho, que la madre trató únicame"
+    },
+    {
+      "index": 586,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Escolar masculino de 10 años, sufre caída desde un pasamanos cayendo sobre su muñeca derecha en extensión. Acude a urgencias con dolor, edema y deformidad en el tercio distal del a"
+    },
+    {
+      "index": 605,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Escolar masculino de 8 años es traído a consulta de pediatría por fiebre de 39°C de inicio brusco y dolor de garganta intenso (odinofagia) que le impide comer, de 24 horas de evolu"
+    },
+    {
+      "index": 615,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Escolar masculino de 8 años es llevado a urgencias pediátricas. Su madre refiere que el niño tuvo un cuadro de rinosinusitis aguda (congestión y moco verde) hace una semana. Desde "
+    },
+    {
+      "index": 618,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 4,
+      "otherMax": 3,
+      "reason": "neonatal_ped",
+      "casePreview": "Recién nacida femenina, obtenida por parto vaginal en presentación de nalgas (pélvica). Como antecedente familiar, la madre refiere haber utilizado aparatos ortopédicos en las pier"
+    },
+    {
+      "index": 708,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_ped",
+      "casePreview": "Femenina de 52 años acude a su mastografía de tamizaje anual. No refiere síntomas ni se palpa nódulos. El reporte del radiólogo describe una zona de microcalcificaciones pleomórfic"
+    },
+    {
+      "index": 776,
+      "from": "gyo",
+      "to": "ped",
+      "targetScore": 2,
+      "otherMax": 1,
+      "reason": "neonatal_ped",
+      "casePreview": "Recién nacido de 35 SDG, madre con antecedente de ruptura prematura de membranas de 24 horas y corioamnionitis (fiebre intraparto y taquicardia fetal). A las 12 horas de vida, el n"
+    },
+    {
+      "index": 791,
+      "from": "gyo",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 2,
+      "reason": "neonatal_ped",
+      "casePreview": "Femenina multigesta (G3, P2) con grupo sanguíneo O Rh negativo. No recibió profilaxis con inmunoglobulina anti-D en sus embarazos previos. Recién nacido actual de 39 SDG, grupo A R"
+    },
+    {
+      "index": 799,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_ped",
+      "casePreview": "Paciente femenina de 11 años es llevada a consulta por presentar \"un bulto\" doloroso debajo del pezón derecho. A la exploración física se aprecia elevación del pecho y papila en fo"
+    },
+    {
+      "index": 859,
+      "from": "gyo",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 2,
+      "reason": "neonatal_ped",
+      "casePreview": "Lactante femenino de 2 meses de edad, nacida prematura a las 32 semanas de gestación. La madre refiere que se cansa al succionar, presenta sudoración excesiva y falta de ganancia d"
+    },
+    {
+      "index": 898,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_ped",
+      "casePreview": "Preescolar masculino de 4 años presenta inicio súbito de ictericia generalizada, palidez, fatiga y orina de color oscuro (\"como té negro\" - hemoglobinuria). La madre refiere que ha"
+    },
+    {
+      "index": 916,
+      "from": "gyo",
+      "to": "ped",
+      "targetScore": 2,
+      "otherMax": 1,
+      "reason": "neonatal_ped",
+      "casePreview": "Recién nacido de 39 semanas de gestación, macrosómico (peso 4,300 g), hijo de madre con diabetes gestacional mal controlada. A las 2 horas de vida, el neonato presenta temblores fi"
+    },
+    {
+      "index": 917,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 5,
+      "otherMax": 2,
+      "reason": "high_confidence_ped",
+      "casePreview": "Adolescente femenina de 14 años acude por pérdida de peso importante a pesar de tener un apetito aumentado (polifagia), palpitaciones, intolerancia al calor y caída en su rendimien"
+    },
+    {
+      "index": 918,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Escolar femenina de 10 años, con antecedente de Síndrome de Down, es traída por fatiga crónica, estreñimiento severo, piel seca y sensación de frío constante. A la exploración se p"
+    },
+    {
+      "index": 939,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 4,
+      "otherMax": 0,
+      "reason": "high_confidence_ped",
+      "casePreview": "Preescolar masculino de 5 años, asintomático y afebril. La madre lo trae a consulta porque hace dos días notó un eritema intenso y caliente en ambas mejillas, con palidez peribucal"
+    },
+    {
+      "index": 945,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Preescolar masculino de 2 años de edad es traído a urgencias a las 3:00 a.m. por dificultad respiratoria. La madre refiere que hace dos días inició con escurrimiento nasal y febríc"
+    },
+    {
+      "index": 967,
+      "from": "cir",
+      "to": "ped",
+      "targetScore": 5,
+      "otherMax": 3,
+      "reason": "high_confidence_ped",
+      "casePreview": "Preescolar masculino de 4 años es traído por su madre debido a \"hinchazón\" de párpados que empeora por las mañanas y edema en extremidades inferiores desde hace 5 días. No refiere "
+    },
+    {
+      "index": 1001,
+      "from": "cir",
+      "to": "ped",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Adolescente femenina de 13 años acude a revisión escolar. Al realizar la maniobra de inclinación hacia adelante (Test de Adams), se observa una prominencia costal (giba) en el hemi"
+    },
+    {
+      "index": 1035,
+      "from": "gyo",
+      "to": "ped",
+      "targetScore": 5,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Recién nacido de término, producto de madre adolescente sin control prenatal (se desconoce VDRL materno). Al nacimiento, el pediatra nota un recién nacido con bajo peso, que presen"
+    },
+    {
+      "index": 1047,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Preescolar masculino de 3 años, asiste a guardería desde hace 6 meses. Acude a consulta por cuadro de 3 semanas de evolución caracterizado por dolor abdominal intermitente, distens"
+    },
+    {
+      "index": 1216,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Femenina de 50 años con debilidad muscular proximal y simétrica (dificultad para peinarse o subir escaleras). Presenta eritema violáceo en párpados superiores (helitropo) y pápulas"
+    },
+    {
+      "index": 1331,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Femenina de 50 años con debilidad muscular proximal simétrica (dificultad para peinarse o subir escaleras). Presenta pápulas eritematosas en los nudillos (pápulas de Gottron) y col"
+    },
+    {
+      "index": 1400,
+      "from": "gyo",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Madre acude con su hija de 11 años a la unidad de medicina familiar para aplicación de vacunas según el Esquema Nacional de Vacunación en México."
+    },
+    {
+      "index": 1639,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 2,
+      "otherMax": 1,
+      "reason": "neonatal_ped",
+      "casePreview": "Recién nacido de término, hijo de madre con control prenatal deficiente y antecedente de lesiones cutáneas ulcerosas no tratadas durante el segundo trimestre. El neonato presenta a"
+    },
+    {
+      "index": 1645,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 2,
+      "otherMax": 1,
+      "reason": "neonatal_ped",
+      "casePreview": "Lactante de 18 meses de edad es traído a consulta por presentar lesiones en la piel muy pruriginosas que no le permiten dormir. La madre tiene antecedente de asma bronquial. A la e"
+    },
+    {
+      "index": 1721,
+      "from": "gyo",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Lactante de 5 semanas presenta ictericia persistente desde el nacimiento. La madre refiere evacuaciones hipocólicas y orina oscura. A la exploración se encuentra hepatomegalia. Bil"
+    },
+    {
+      "index": 1722,
+      "from": "gyo",
+      "to": "ped",
+      "targetScore": 2,
+      "otherMax": 0,
+      "reason": "neonatal_ped",
+      "casePreview": "Lactante masculino de 5 semanas, previamente sano, inicia con vómitos progresivos posprandiales, no biliosos y en proyectil. Después de vomitar, vuelve a tener hambre. A la explora"
+    },
+    {
+      "index": 1723,
+      "from": "gyo",
+      "to": "ped",
+      "targetScore": 2,
+      "otherMax": 1,
+      "reason": "neonatal_ped",
+      "casePreview": "Lactante de 7 meses con rinorrea y tos de 3 días de evolución, que progresa a dificultad respiratoria. A la exploración presenta sibilancias difusas, tiraje intercostal y taquipnea"
+    },
+    {
+      "index": 1758,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_ped",
+      "casePreview": "Lactante de 14 meses presenta fiebre alta de 3 días de evolución, sin foco claro. Al ceder la fiebre, aparece exantema maculopapular rosado que inicia en tronco y se extiende a cue"
+    },
+    {
+      "index": 1760,
+      "from": "mi",
+      "to": "ped",
+      "targetScore": 2,
+      "otherMax": 0,
+      "reason": "neonatal_ped",
+      "casePreview": "Lactante de 11 meses con diarrea y vómito de 2 días de evolución. A la exploración presenta irritabilidad, mucosas secas, ojos hundidos y llenado capilar ligeramente prolongado. To"
+    },
+    {
+      "index": 1785,
+      "from": "gyo",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Escolar de 6 años presenta lesiones peribucales eritematosas con costras color miel, pruriginosas, de varios días de evolución. No tiene fiebre ni datos de afección sistémica."
+    },
+    {
+      "index": 1786,
+      "from": "gyo",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_ped",
+      "casePreview": "Lactante de 4 meses presenta accesos de tos paroxística, enrojecimiento facial y vómito posterior a la tos. La madre refiere que en ocasiones parece “quedarse sin aire” al terminar"
+    },
+    {
+      "index": 1816,
+      "from": "cir",
+      "to": "ped",
+      "targetScore": 4,
+      "otherMax": 0,
+      "reason": "high_confidence_ped",
+      "casePreview": "Lactante de 18 meses presenta fiebre, irritabilidad y llanto al acostarse. La madre refiere que se jala repetidamente la oreja derecha. A la otoscopia se observa membrana timpánica"
+    },
+    {
+      "index": 1848,
+      "from": "gyo",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_ped",
+      "casePreview": "Niño de 4 años no vacunado presenta fiebre alta, tos, coriza y conjuntivitis. Dos días después desarrolla exantema maculopapular que inicia en cara y se extiende en sentido cefaloc"
+    },
+    {
+      "index": 1850,
+      "from": "gyo",
+      "to": "ped",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_ped",
+      "casePreview": "Escolar de 8 años con antecedente de condiciones higiénicas deficientes presenta dolor abdominal difuso, anorexia y expulsión de un gusano por la boca después de un episodio de vóm"
+    }
+  ],
+  "topicSample": [
+    {
+      "index": 8,
+      "oldTopic": "Bronquiolitis (Patología Respiratoria del Lactante y Preescolar)",
+      "newTopic": "Patologia Respiratoria del Pediatrico",
+      "casePreview": "Lactante masculino de 3 meses es llevado a consulta por presentar coriza y tos de 2 días de evolución, que progresa a dificultad respiratoria. Exploración: FR 6"
+    },
+    {
+      "index": 9,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Vacunacion",
+      "casePreview": "Se recibe en consulta a lactante de 6 meses para revisión de niño sano y administración de vacunas. Según el Esquema Nacional de Vacunación en México, ¿cuáles v"
+    },
+    {
+      "index": 10,
+      "oldTopic": "Planes de hidratación (Diarrea en el Pediátrico)",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Lactante de 14 meses con cuadro de diarrea acuosa de 5 evacuaciones al día y 2 vómitos. A la exploración: ojos ligeramente hundidos, boca seca, llora con pocas "
+    },
+    {
+      "index": 26,
+      "oldTopic": "Laringotraqueítis (Patología Respiratoria del Lactante y Preescolar)",
+      "newTopic": "Vacunacion",
+      "casePreview": "Niño de 3 años con fiebre de 39°C, odinofagia importante y babeo. Se encuentra en posición de trípode (inclinado hacia adelante). No tiene antecedentes de vacun"
+    },
+    {
+      "index": 42,
+      "oldTopic": "Invaginación intestinal (Patología Gastrointestinal del Pediátrico)",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Lactante de 8 meses con ataques de llanto paroxístico, encogimiento de piernas y evacuaciones en 'jalea de grosella'. Al examen se palpa masa en forma de salchi"
+    },
+    {
+      "index": 47,
+      "oldTopic": "Intoxicaciones",
+      "newTopic": "Urgencias Pediatricas",
+      "casePreview": "Paciente es traído por familiares por ingestión accidental de un frasco de insecticida organofosforado. Presenta miosis puntiforme, bradicardia, sialorrea, bron"
+    },
+    {
+      "index": 61,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Vacunacion",
+      "casePreview": "Se presenta a consulta niño de 12 meses. Según el esquema nacional de vacunación, ¿qué vacunas le corresponde recibir en esta visita?"
+    },
+    {
+      "index": 72,
+      "oldTopic": "Laringotraqueítis (Patología Respiratoria del Lactante y Preescolar)",
+      "newTopic": "Patologia Respiratoria del Pediatrico",
+      "casePreview": "Lactante femenino de 8 meses de edad que presenta desde hace 3 días rinorrea hialina y febrícula. Hoy inicia con dificultad respiratoria, tos perruna y estridor"
+    },
+    {
+      "index": 102,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Patologia Neonatal Infecciosa",
+      "casePreview": "Lactante menor de 4 meses es llevado a consulta por historia prolongada de fiebre intermitente, irritabilidad y lesiones en la piel. A la exploración física des"
+    },
+    {
+      "index": 105,
+      "oldTopic": "Invaginación intestinal (Patología Gastrointestinal del Pediátrico)",
+      "newTopic": "Vacunacion",
+      "casePreview": "Lactante varón de 4 meses de edad es llevado dócilmente a su Centro de Salud para vacunas intramusculares. Sus padres presentan su esquema oficial al corriente;"
+    },
+    {
+      "index": 106,
+      "oldTopic": "Planes de hidratación (Diarrea en el Pediátrico)",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Paciente femenino de 13 meses de vida es vista en área de primer contacto. Su cuadro de 3 días se basa en diarrea pastosa y ahora líquida (más de 8 pañales/día "
+    },
+    {
+      "index": 122,
+      "oldTopic": "Invaginación intestinal (Patología Gastrointestinal del Pediátrico)",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Lactante de 8 meses presenta llanto intenso, vómito y evacuación con moco y sangre ('jalea de grosella'). Masa palpable en cuadrante superior derecho. USG repor"
+    },
+    {
+      "index": 140,
+      "oldTopic": "Invaginación intestinal (Patología Gastrointestinal del Pediátrico)",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Lactante de 8 meses previamente sano presenta episodios súbitos de llanto intenso con flexión de piernas sobre el abdomen, vómito y posteriormente evacuación co"
+    },
+    {
+      "index": 145,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Patologia Neonatal Infecciosa",
+      "casePreview": "RN de 10 días con ictericia persistente, hepatoesplenomegalia y microcefalia. Presenta convulsiones. USG transfontanelar muestra calcificaciones intracraneales "
+    },
+    {
+      "index": 157,
+      "oldTopic": "Vacunación",
+      "newTopic": "Vacunacion",
+      "casePreview": "Hombre de 50 años sufre herida punzante con clavo oxidado. No recuerda última vacuna. A los días presenta trismus, rigidez muscular generalizada y espasmos dolo"
+    },
+    {
+      "index": 241,
+      "oldTopic": "Intoxicaciones",
+      "newTopic": "Urgencias Pediatricas",
+      "casePreview": "Masculino de 35 años es traído a urgencias en estado de confusión mental. Sus compañeros de trabajo refieren que se encontraba fumigando cultivos con un plaguic"
+    },
+    {
+      "index": 428,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Vacunacion",
+      "casePreview": "Puérpera de 26 años, 24 horas postparto eutócico, pregunta si puede complementar con fórmula porque “siente que no produce suficiente leche”. El recién nacido p"
+    },
+    {
+      "index": 545,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Uropedia",
+      "casePreview": "Lactante masculino de 12 meses de edad es traído a su consulta de control de niño sano. Su madre refiere que, desde el nacimiento, el escroto derecho \"se ve más"
+    },
+    {
+      "index": 547,
+      "oldTopic": "Vacunación",
+      "newTopic": "Vacunacion",
+      "casePreview": "Preescolar masculino de 4 años, no cuenta con cartilla de vacunación actualizada debido a creencias familiares. Es llevado al servicio de urgencias pediátricas "
+    },
+    {
+      "index": 575,
+      "oldTopic": "Mordeduras y Picaduras",
+      "newTopic": "Vacunacion",
+      "casePreview": "Escolar masculino de 8 años es llevado a urgencias por sus padres tras haber sido atacado sorpresivamente por un perro callejero (desconocido y que huyó del lug"
+    },
+    {
+      "index": 617,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Lactante masculino de 8 meses de edad es traído a urgencias por presentar irritabilidad extrema y llanto inconsolable de inicio súbito. La madre refiere que los"
+    },
+    {
+      "index": 652,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Recién nacido masculino de término (40 SDG), obtenido por parto eutócico, con peso al nacer de 3.2 kg. El pediatra es interconsultado en el cunero porque el neo"
+    },
+    {
+      "index": 658,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Patologia Neonatal Infecciosa",
+      "casePreview": "Lactante femenina de 18 meses de edad es llevada a la consulta de pediatría por sus padres. Refieren estar muy asustados porque al revisarle los ojos a la niña "
+    },
+    {
+      "index": 773,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Reanimacion Neonatal",
+      "casePreview": "Se atiende el parto de un recién nacido de 38 SDG con antecedente de líquido amniótico claro. Al nacer, el neonato no llora, presenta tono muscular flácido y es"
+    },
+    {
+      "index": 775,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Reanimacion Neonatal",
+      "casePreview": "Recién nacido de 40 SDG, se atiende el parto observando líquido amniótico teñido de meconio espeso (\"puré de chícharos\"). Al momento de nacer, el neonato se enc"
+    },
+    {
+      "index": 776,
+      "oldTopic": "RPM (Parto Prematuro y Patología Coriónica)",
+      "newTopic": "Ictericia Neonatal",
+      "casePreview": "Recién nacido de 35 SDG, madre con antecedente de ruptura prematura de membranas de 24 horas y corioamnionitis (fiebre intraparto y taquicardia fetal). A las 12"
+    },
+    {
+      "index": 777,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Patologia Neonatal Infecciosa",
+      "casePreview": "Recién nacido prematuro de 28 SDG, con peso al nacer de 1,100 gramos. En su segunda semana de vida, mientras se encuentra en la UCIN recibiendo alimentación ent"
+    },
+    {
+      "index": 782,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Patologia Neonatal Infecciosa",
+      "casePreview": "Recién nacido postérmino (41 SDG), con antecedente de sufrimiento fetal agudo (bradicardia fetal sostenida) y líquido amniótico teñido de meconio espeso (\"puré "
+    },
+    {
+      "index": 783,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Patologia Neonatal Infecciosa",
+      "casePreview": "Recién nacido prematuro de 26 SDG, con peso al nacer de 800 gramos. Durante su estancia en la UCIN, presentó Enfermedad de Membrana Hialina grave y requirió ven"
+    },
+    {
+      "index": 784,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Patologia Neonatal Infecciosa",
+      "casePreview": "Recién nacido prematuro de 30 SDG, cursando su cuarto día de vida en la UCIN. Las enfermeras reportan que el neonato presenta múltiples episodios diarios en los"
+    },
+    {
+      "index": 786,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Reanimacion Neonatal",
+      "casePreview": "Recién nacido de 38 SDG que presenta dificultad respiratoria grave desde el primer minuto de vida, cianosis y abdomen excavado (escafoide). A la auscultación, l"
+    },
+    {
+      "index": 789,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Patologia Neonatal Infecciosa",
+      "casePreview": "Recién nacido prematuro de 30 SDG que al quinto día de vida presenta deterioro respiratorio, pulsos saltones y un soplo continuo, rudo, en maquinaria (de Gibson"
+    },
+    {
+      "index": 791,
+      "oldTopic": "Control Prenatal",
+      "newTopic": "Ictericia Neonatal",
+      "casePreview": "Femenina multigesta (G3, P2) con grupo sanguíneo O Rh negativo. No recibió profilaxis con inmunoglobulina anti-D en sus embarazos previos. Recién nacido actual "
+    },
+    {
+      "index": 793,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Patologia Neonatal Infecciosa",
+      "casePreview": "Recién nacido prematuro de 32 SDG. A las 48 horas de vida presenta movimientos de extremidades tipo sacudidas, estridor laringeo y signo de Chvostek positivo. S"
+    },
+    {
+      "index": 798,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Patologia Neonatal Infecciosa",
+      "casePreview": "Se atiende parto de neonato de quien se desconoce la fecha de última regla (FUM). Tras la estabilización, el pediatra evalúa: formación de la oreja (pabellón to"
+    },
+    {
+      "index": 799,
+      "oldTopic": "PEDIATRÍA / CRECIMIENTO Y DESARROLLO",
+      "newTopic": "Crecimiento y Desarrollo",
+      "casePreview": "Paciente femenina de 11 años es llevada a consulta por presentar \"un bulto\" doloroso debajo del pezón derecho. A la exploración física se aprecia elevación del "
+    },
+    {
+      "index": 805,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Vacunacion",
+      "casePreview": "Preescolar de 4 años, con esquema de vacunación incompleto, es traído por fiebre alta, aspecto tóxico y dificultad respiratoria progresiva. Al examen físico, el"
+    },
+    {
+      "index": 806,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Patologia Respiratoria del Pediatrico",
+      "casePreview": "Lactante de 5 meses de edad, acude en temporada invernal por cuadro de 3 días de evolución con rinorrea y estornudos, que hoy progresa a tos, taquipnea (65 rpm)"
+    },
+    {
+      "index": 809,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Vacunacion",
+      "casePreview": "Lactante de 3 meses con esquema de vacunación incompleto. Presenta accesos de tos paroxística, cianozante, que terminan en un \"gallo\" inspiratorio y a menudo co"
+    },
+    {
+      "index": 810,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Vacunacion",
+      "casePreview": "Escolar de 6 años, sin antecedentes de vacunación (padres antivacunas), presenta cuadro de 4 días de fiebre alta (39.5°C), tos intensa, coriza y conjuntivitis c"
+    },
+    {
+      "index": 815,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Vacunacion",
+      "casePreview": "Lactante de 14 meses, con esquema de vacunación incompleto, presenta cuadro de 48 horas de evolución con vómitos iniciales, seguidos de numerosas evacuaciones l"
+    },
+    {
+      "index": 816,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Lactante de 10 meses con diarrea acuosa. A la exploración física: ojos hundidos, llanto sin lágrimas, mucosa oral seca, signo del lienzo (turgencia de la piel d"
+    },
+    {
+      "index": 818,
+      "oldTopic": "Invaginación intestinal (Patología Gastrointestinal del Pediátrico)",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Lactante de 8 meses, previamente sano, presenta cuadros súbitos de dolor abdominal paroxístico (el niño encoge las piernas y llora inconsolablemente), alternado"
+    },
+    {
+      "index": 821,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Uropedia",
+      "casePreview": "Lactante masculino de 10 meses con antecedente de dos episodios de IVU febriles confirmadas por cultivo. El ultrasonido renal reporta dilatación de los uréteres"
+    },
+    {
+      "index": 824,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Uropedia",
+      "casePreview": "Lactante de 6 meses acude a revisión de niño sano. A la exploración de los genitales, no se palpa el testículo derecho en la bolsa escrotal; se logra palpar en "
+    },
+    {
+      "index": 828,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Lactante de 3 años es llevado a consulta porque la madre notó una masa en el abdomen mientras lo bañaba. El niño se encuentra asintomático. A la palpación se de"
+    },
+    {
+      "index": 830,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Neurologia Pediatrica",
+      "casePreview": "Lactante de 18 meses es traído a urgencias tras presentar un episodio de movimientos tónico-clónicos generalizados de 3 minutos de duración, asociado a un pico "
+    },
+    {
+      "index": 831,
+      "oldTopic": "Estenosis Hipertrófica del Píloro",
+      "newTopic": "Vacunacion",
+      "casePreview": "Lactante de 7 meses con esquema de vacunación incompleto (falta Pentavalente y Neumococo). Inicia con fiebre, irritabilidad, vómito en proyectil y abombamiento "
+    },
+    {
+      "index": 832,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Neurologia Pediatrica",
+      "casePreview": "Escolar de 7 años es referido por su maestra debido a que presenta múltiples episodios al día donde \"se queda ido\" por 5 a 10 segundos, interrumpiendo su activi"
+    },
+    {
+      "index": 843,
+      "oldTopic": "Vacunación",
+      "newTopic": "Vacunacion",
+      "casePreview": "Madre acude con su hijo de 12 meses de edad para la aplicación de las vacunas correspondientes. El niño ya cuenta con el esquema previo completo (Hexavalente, R"
+    },
+    {
+      "index": 847,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Preescolar de 5 años presenta exantema papular eritematoso que progresa a púrpura palpable, localizado simétricamente en glúteos y extremidades inferiores. Se a"
+    },
+    {
+      "index": 851,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Escolar de 9 años acude a urgencias por presentar cuadro de 24 horas con dolor abdominal, náuseas y vómito. La madre refiere que en las últimas 2 semanas el niñ"
+    },
+    {
+      "index": 853,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Recién nacido de 10 días de vida presenta cuadro de deshidratación grave, vómito y pérdida de peso importante. Laboratorios reportan: Hiponatremia severa, Hiper"
+    },
+    {
+      "index": 859,
+      "oldTopic": "Control Prenatal",
+      "newTopic": "Patologia Neonatal Infecciosa",
+      "casePreview": "Lactante femenino de 2 meses de edad, nacida prematura a las 32 semanas de gestación. La madre refiere que se cansa al succionar, presenta sudoración excesiva y"
+    },
+    {
+      "index": 864,
+      "oldTopic": "Recién Nacido Sano",
+      "newTopic": "Patologia Neonatal Infecciosa",
+      "casePreview": "Recién nacido de 38 semanas presenta dificultad respiratoria severa inmediata al nacer, cianosis y abdomen excavado (escafoide). A la auscultación, los ruidos c"
+    },
+    {
+      "index": 873,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Patologia Gastrointestinal del Pediatrico",
+      "casePreview": "Lactante con deshidratación grave por diarrea. Presenta alteración del estado de conciencia, piel fría y moteada, pulsos filiformes y llenado capilar de 5 segun"
+    },
+    {
+      "index": 878,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Vacunacion",
+      "casePreview": "Lactante de 4 meses presenta candidiasis oral persistente (que no cede a nistatina), diarrea crónica y tres episodios de neumonía, uno de ellos confirmado por P"
+    },
+    {
+      "index": 882,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Patologia Neonatal Infecciosa",
+      "casePreview": "Lactante de 10 meses con lactancia materna exclusiva sin suplementación. A la exploración física se detecta rosario raquítico (abultamiento de las uniones costo"
+    },
+    {
+      "index": 892,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Vacunacion",
+      "casePreview": "Lactante de 14 meses es traído por primera vez a la unidad de salud. No cuenta con antecedentes de vacunación previos, excepto BCG y Hepatitis B al nacer. La ma"
+    },
+    {
+      "index": 893,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Vacunacion",
+      "casePreview": "Lactante de 2 meses recibe sus vacunas correspondientes (Hexavalente, Rotavirus y Neumococo). A las 6 horas, presenta llanto inconsolable, persistente por más d"
+    }
+  ]
+}

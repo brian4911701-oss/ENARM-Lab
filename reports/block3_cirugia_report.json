@@ -1,0 +1,744 @@
+{
+  "generatedAt": "2026-03-18T06:23:34.046Z",
+  "block": "cir",
+  "blockLabel": "Cirugia",
+  "dryRun": false,
+  "totals": {
+    "totalCases": 1858,
+    "movedToBlock": 31,
+    "topicReassigned": 152,
+    "reviewQueue": 128
+  },
+  "movedByOriginSpecialty": {
+    "mi": 21,
+    "ped": 2,
+    "gyo": 8,
+    "cir": 0,
+    "other": 0
+  },
+  "topTopics": [
+    {
+      "topic": "Trauma y ATLS",
+      "count": 58
+    },
+    {
+      "topic": "Abdomen Agudo Quirurgico",
+      "count": 46
+    },
+    {
+      "topic": "Patologia Biliar y Pancreatica",
+      "count": 18
+    },
+    {
+      "topic": "Hernias y Pared Abdominal",
+      "count": 13
+    },
+    {
+      "topic": "Cirrosis y sus Complicaciones / Trasplante Hepático",
+      "count": 9
+    },
+    {
+      "topic": "Quemaduras y Heridas",
+      "count": 8
+    },
+    {
+      "topic": "Coloproctologia",
+      "count": 4
+    },
+    {
+      "topic": "Patología Biliar",
+      "count": 4
+    },
+    {
+      "topic": "Ortopedia y Fracturas",
+      "count": 4
+    },
+    {
+      "topic": "CIRUGÍA GENERAL",
+      "count": 4
+    },
+    {
+      "topic": "STDA por várices esofágicas (Cirrosis y sus Complicaciones / Trasplante Hepático)",
+      "count": 3
+    },
+    {
+      "topic": "Oncohematología",
+      "count": 3
+    },
+    {
+      "topic": "Chalazión (Introducción Oftalmología)",
+      "count": 2
+    },
+    {
+      "topic": "PEDIATRÍA",
+      "count": 2
+    },
+    {
+      "topic": "Lupus Eritematoso Sistémico",
+      "count": 1
+    },
+    {
+      "topic": "Complicaciones Postoperatorias",
+      "count": 1
+    },
+    {
+      "topic": "CA de colon y recto (Cirugía Oncología)",
+      "count": 1
+    },
+    {
+      "topic": "CIRUGÍA GENERAL / UROLOGÍA",
+      "count": 1
+    },
+    {
+      "topic": "Hepatitis agudas y crónicas (Patología Hepática)",
+      "count": 1
+    },
+    {
+      "topic": "Glaucoma de ángulo cerrado (Oftalmología)",
+      "count": 1
+    }
+  ],
+  "movedSample": [
+    {
+      "index": 33,
+      "from": "ped",
+      "to": "cir",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Femenino de 45 años con antecedentes de cirugías abdominales previas. Acude por dolor abdominal tipo cólico, distensión marcada, vómitos de contenido intestinal y ausencia de canal"
+    },
+    {
+      "index": 90,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Paciente politraumatizado por caída de 4 metros de altura. A su ingreso en urgencias presenta inestabilidad pélvica severa con dolor espontáneo a la compresión medial. TA de 75/40 "
+    },
+    {
+      "index": 207,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Femenina de 82 años, con antecedente de osteoporosis, es traída por familiares tras sufrir una caída desde su propia altura al tropezar con una alfombra en su domicilio. Refiere do"
+    },
+    {
+      "index": 232,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 45 años, con IMC de 31 kg/m², acude a consulta por referir pirosis de predominio nocturno, regurgitación ácida y tos crónica de 1 año de evolución. Ha recibido tratami"
+    },
+    {
+      "index": 237,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 28 años es traído a urgencias tras sufrir accidente automovilístico con impacto frontal a alta velocidad. Se encontraba como conductor y portaba cinturón de seguridad."
+    },
+    {
+      "index": 264,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 45 años es ingresado a la sala de choque tras ser atropellado por un camión de carga. A su ingreso se encuentra estuporoso, pálido y diaforético. Signos vitales: TA 70"
+    },
+    {
+      "index": 486,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 35 años es traído a la sala de choque tras sufrir una herida por proyectil de arma de fuego en el hemitórax derecho, a nivel del quinto espacio intercostal línea axila"
+    },
+    {
+      "index": 524,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 14 años es traído a urgencias durante la madrugada. Refiere inicio súbito de dolor escrotal derecho de extrema intensidad que lo despertó del sueño, irradiado a la reg"
+    },
+    {
+      "index": 531,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 50 años, con antecedente de una apendicectomía abierta complicada por peritonitis hace 10 años. Acude a urgencias refiriendo dolor abdominal difuso de tipo cólico (int"
+    },
+    {
+      "index": 538,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 4,
+      "otherMax": 2,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 28 años, motociclista que sufre accidente a alta velocidad impactando su rostro directamente contra el pavimento (no portaba casco cerrado). Ingresa a la sala de choqu"
+    },
+    {
+      "index": 550,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 22 años es llevado a urgencias por paramédicos tras participar en una riña callejera donde recibió un golpe directo con un bate de béisbol en la región temporal derech"
+    },
+    {
+      "index": 566,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 24 años de edad, jugador de rugby, sufre una caída apoyando la mano derecha contra el suelo mientras su brazo se encontraba en extensión, abducción y rotación externa."
+    },
+    {
+      "index": 590,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 4,
+      "otherMax": 2,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 70 años, con antecedente de infarto agudo de miocardio antiguo y diagnóstico de fibrilación auricular crónica sin tratamiento anticoagulante por abandono médico. Acude"
+    },
+    {
+      "index": 594,
+      "from": "gyo",
+      "to": "cir",
+      "targetScore": 5,
+      "otherMax": 2,
+      "reason": "high_confidence_cir",
+      "casePreview": "Femenina de 62 años, cursando su tercer día de postoperatorio de una histerectomía abdominal abierta por miomatosis uterina. La enfermera reporta que la paciente se encuentra muy d"
+    },
+    {
+      "index": 620,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 18 años, jugador de fútbol americano, recibe un golpe directo y violento (tacleada) con un casco en la región lumbar (flanco) izquierda. Acude a urgencias por presenta"
+    },
+    {
+      "index": 636,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Femenina de 75 años, con antecedente de cólicos biliares de repetición durante años que nunca quiso operarse por miedo a la cirugía. Es traída a urgencias por presentar distensión "
+    },
+    {
+      "index": 637,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 30 años, jugador aficionado de fútbol. Acude a urgencias tras sufrir una torcedura de su tobillo derecho durante un partido. Refiere que su pie quedó trabado en el pas"
+    },
+    {
+      "index": 641,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 4,
+      "otherMax": 2,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 35 años es traído a la sala de choque tras sufrir un accidente automovilístico frontal contra un muro, sin portar cinturón de seguridad. El paciente impactó su rostro "
+    },
+    {
+      "index": 651,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 25 años, repartidor en motocicleta, sufre accidente al ser impactado lateralmente por un vehículo. Es llevado a urgencias inmovilizado. A la exploración física de la e"
+    },
+    {
+      "index": 725,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 19 años sufre traumatismo contuso en flanco derecho durante un partido de fútbol americano. Presenta dolor intenso y hematuria macroscópica franca. Sus signos vitales "
+    },
+    {
+      "index": 735,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Paciente de 70 años programado para una cirugía mayor oncológica. El cirujano desea evaluar el riesgo de complicaciones postoperatorias relacionadas con el estado nutricional."
+    },
+    {
+      "index": 753,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 30 años tras trauma cerrado de abdomen y tórax por accidente automovilístico. En la radiografía de tórax se observa la presencia de niveles hidroaéreos en el hemitórax"
+    },
+    {
+      "index": 1559,
+      "from": "ped",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Adolescente de 13 años con obesidad grado I acude por dolor en rodilla derecha y cojera de 2 meses de evolución. Al caminar, mantiene el pie hacia afuera (rotación externa). No hay"
+    },
+    {
+      "index": 1726,
+      "from": "gyo",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Adolescente de 14 años presenta dolor súbito e intenso en testículo izquierdo, acompañado de náusea y vómito. A la exploración se observa testículo elevado, horizontalizado y con r"
+    },
+    {
+      "index": 1727,
+      "from": "gyo",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 22 años con dolor abdominal de 18 horas de evolución, inicialmente periumbilical y posteriormente localizado en fosa iliaca derecha. Presenta náusea, anorexia y febríc"
+    },
+    {
+      "index": 1744,
+      "from": "gyo",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Mujer de 42 años con dolor en hipocondrio derecho de 12 horas de evolución, posterior a ingesta copiosa de alimentos grasos. Presenta náusea, vómito y fiebre. A la exploración hay "
+    },
+    {
+      "index": 1745,
+      "from": "gyo",
+      "to": "cir",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 58 años con antecedente de laparotomía hace 3 años. Acude por dolor abdominal tipo cólico, distensión progresiva, vómitos y ausencia de evacuaciones y gases desde hace"
+    },
+    {
+      "index": 1746,
+      "from": "gyo",
+      "to": "cir",
+      "targetScore": 4,
+      "otherMax": 0,
+      "reason": "high_confidence_cir",
+      "casePreview": "Hombre de 67 años con aumento de volumen inguinal derecho de larga evolución, que ahora presenta dolor intenso, irreductibilidad, náusea y vómito. La tumoración es sensible a la pa"
+    },
+    {
+      "index": 1761,
+      "from": "mi",
+      "to": "cir",
+      "targetScore": 4,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Mujer de 48 años con antecedente de litiasis vesicular consulta por dolor epigástrico intenso irradiado a espalda, acompañado de náusea y vómito. Refiere que el dolor empeora en de"
+    },
+    {
+      "index": 1775,
+      "from": "gyo",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 0,
+      "reason": "high_confidence_cir",
+      "casePreview": "Paciente masculino de 63 años presenta dolor abdominal en fosa iliaca izquierda, fiebre y alteraciones del hábito intestinal. A la exploración existe dolor localizado sin datos fra"
+    },
+    {
+      "index": 1788,
+      "from": "gyo",
+      "to": "cir",
+      "targetScore": 3,
+      "otherMax": 1,
+      "reason": "high_confidence_cir",
+      "casePreview": "Masculino de 47 años con antecedente de apendicitis no tratada acude con dolor abdominal generalizado, fiebre alta, vómito y postración. A la exploración presenta abdomen rígido, d"
+    }
+  ],
+  "topicSample": [
+    {
+      "index": 11,
+      "oldTopic": "Apendicitis",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Masculino de 21 años que inicia con dolor tipo cólico de localización periumbilical que horas después migra a fosa iliaca derecha. Presenta náuseas, vómito en u"
+    },
+    {
+      "index": 12,
+      "oldTopic": "Trauma torácico Neumotórax a tensión, taponamiento cardíaco, hemotórax masivo, neumotórax abierto, tórax inestable (ATLS)",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Masculino de 28 años traído a urgencias tras accidente en motocicleta. Se encuentra consciente pero ansioso. TA 80/40 mmHg, FC 130 lpm, ruidos respiratorios aus"
+    },
+    {
+      "index": 13,
+      "oldTopic": "Quemaduras / Golpe de Calor / Hipotermia",
+      "newTopic": "Quemaduras y Heridas",
+      "casePreview": "Paciente de 30 años que sufre quemadura por fuego directo en todo el brazo derecho y la cara anterior del tronco."
+    },
+    {
+      "index": 14,
+      "oldTopic": "Hernias / Esplenectomía",
+      "newTopic": "Hernias y Pared Abdominal",
+      "casePreview": "Masculino de 60 años que presenta aumento de volumen en región inguinal derecha que llega hasta el escroto, aparece al realizar esfuerzo y reduce espontáneament"
+    },
+    {
+      "index": 31,
+      "oldTopic": "Diverticulitis (Patología Diverticular)",
+      "newTopic": "Coloproctologia",
+      "casePreview": "Paciente de 70 años con dolor en fosa iliaca izquierda, fiebre y estreñimiento de 3 días. La TC reporta inflamación pericólica con presencia de un pequeño absce"
+    },
+    {
+      "index": 32,
+      "oldTopic": "Hernias / Esplenectomía",
+      "newTopic": "Hernias y Pared Abdominal",
+      "casePreview": "Masculino de 40 años que tras esfuerzo físico presenta dolor intenso en región lumbar irradiado a testículo ipsilateral. Se observa inquieto, no encuentra posic"
+    },
+    {
+      "index": 33,
+      "oldTopic": "Crecimiento y Desarrollo",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Femenino de 45 años con antecedentes de cirugías abdominales previas. Acude por dolor abdominal tipo cólico, distensión marcada, vómitos de contenido intestinal"
+    },
+    {
+      "index": 45,
+      "oldTopic": "Trauma abdominal, Fx de cadera, trauma genitourinario, ATLS en la embarazada (ATLS)",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Masculino de 35 años que recibe golpe contuso en flanco izquierdo durante riña. Presenta dolor abdominal intenso y signos de irritación peritoneal. La TA es de "
+    },
+    {
+      "index": 46,
+      "oldTopic": "Quemaduras / Golpe de Calor / Hipotermia",
+      "newTopic": "Quemaduras y Heridas",
+      "casePreview": "Paciente con quemadura circular de tercer grado en tórax. Presenta dificultad respiratoria severa y expansión torácica limitada."
+    },
+    {
+      "index": 73,
+      "oldTopic": "Pancreatitis aguda y crónica (Patología Pancreática)",
+      "newTopic": "Patologia Biliar y Pancreatica",
+      "casePreview": "Masculino de 45 años, con antecedente de alcoholismo crónico, acude a Urgencias por dolor abdominal intenso transfixiante en epigastrio de 24 horas de evolución"
+    },
+    {
+      "index": 74,
+      "oldTopic": "Trauma torácico Neumotórax a tensión, taponamiento cardíaco, hemotórax masivo, neumotórax abierto, tórax inestable (ATLS)",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Paciente de 25 años es traído a urgencias tras sufrir accidente de tráfico. A la exploración: estridor intenso, desviación de la tráquea hacia la izquierda, aus"
+    },
+    {
+      "index": 78,
+      "oldTopic": "Patología Biliar",
+      "newTopic": "Patologia Biliar y Pancreatica",
+      "casePreview": "Femenina de 55 años, con IMC de 34, que acude a consulta externa refiriendo dolor crónico tipo cólico en hemiabdomen superior derecho, irradiado hacia región su"
+    },
+    {
+      "index": 84,
+      "oldTopic": "Trauma torácico Neumotórax a tensión, taponamiento cardíaco, hemotórax masivo, neumotórax abierto, tórax inestable (ATLS)",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Hombre de 22 años que recibe herida por arma blanca en hemitórax izquierdo, a nivel del 4º espacio intercostal línea paraesternal. Acude sudoroso, pálido, confu"
+    },
+    {
+      "index": 90,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Paciente politraumatizado por caída de 4 metros de altura. A su ingreso en urgencias presenta inestabilidad pélvica severa con dolor espontáneo a la compresión "
+    },
+    {
+      "index": 119,
+      "oldTopic": "Pancreatitis aguda y crónica (Patología Pancreática)",
+      "newTopic": "Patologia Biliar y Pancreatica",
+      "casePreview": "Hombre de 45 años, etilista crónico, presenta dolor epigástrico intenso irradiado a espalda, vómito persistente. Lipasa 6 veces el límite superior. TA 100/60 mm"
+    },
+    {
+      "index": 123,
+      "oldTopic": "Apendicitis",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Hombre de 72 años con FA presenta dolor abdominal súbito intenso 'desproporcionado' a la exploración física. Lactato elevado."
+    },
+    {
+      "index": 124,
+      "oldTopic": "ATLS / Trauma",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Masculino de 28 años tras accidente, TA 70/40 mmHg, FC 128 lpm, abdomen distendido y doloroso."
+    },
+    {
+      "index": 128,
+      "oldTopic": "Apendicitis",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Hombre de 27 años con 36 horas de dolor abdominal que inició periumbilical y migró a fosa iliaca derecha. Presenta fiebre de 38.5°C, náusea y vómito. A la explo"
+    },
+    {
+      "index": 134,
+      "oldTopic": "Obstrucción intestinal (Patología Intestinal Qx)",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Mujer de 68 años con antecedente de cirugías abdominales, presenta dolor tipo cólico, distensión y vómito fecaloide."
+    },
+    {
+      "index": 135,
+      "oldTopic": "Patología Biliar",
+      "newTopic": "Patologia Biliar y Pancreatica",
+      "casePreview": "Mujer de 45 años con dolor en hipocondrio derecho, fiebre y signo de Murphy positivo. USG reporta pared vesicular de 5mm."
+    },
+    {
+      "index": 142,
+      "oldTopic": "Apendicitis",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Hombre de 72 años con fibrilación auricular sin anticoagulación presenta dolor abdominal súbito intenso “desproporcionado” a la exploración física. Abdomen blan"
+    },
+    {
+      "index": 172,
+      "oldTopic": "Pancreatitis aguda y crónica (Patología Pancreática)",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Hombre de 72 años con antecedente de laparotomía por úlcera perforada hace 10 años. Acude por dolor abdominal tipo cólico, distensión progresiva, vómito fecaloi"
+    },
+    {
+      "index": 183,
+      "oldTopic": "Patología Biliar",
+      "newTopic": "Patologia Biliar y Pancreatica",
+      "casePreview": "Mujer de 44 años con dolor en hipocondrio derecho de 24 horas, fiebre y náusea. Signo de Murphy positivo. USG: vesícula con pared engrosada y lito impactado en "
+    },
+    {
+      "index": 193,
+      "oldTopic": "Patología Biliar",
+      "newTopic": "Patologia Biliar y Pancreatica",
+      "casePreview": "Mujer de 47 años con antecedente de colelitiasis presenta dolor epigástrico intenso irradiado a espalda, náusea y vómito. Lipasa 6 veces el límite normal. A las"
+    },
+    {
+      "index": 196,
+      "oldTopic": "Trauma torácico Neumotórax a tensión, taponamiento cardíaco, hemotórax masivo, neumotórax abierto, tórax inestable (ATLS)",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Hombre de 62 años con antecedente de hipertensión y tabaquismo acude por dolor torácico opresivo de 3 horas de evolución. ECG con elevación del ST en V1–V4. Se "
+    },
+    {
+      "index": 197,
+      "oldTopic": "Patología Biliar",
+      "newTopic": "Patologia Biliar y Pancreatica",
+      "casePreview": "Mujer de 58 años con antecedente de colelitiasis acude por dolor en hipocondrio derecho, fiebre y ictericia progresiva. TA 95/60 mmHg, FC 115 lpm. Laboratorio c"
+    },
+    {
+      "index": 200,
+      "oldTopic": "Apendicitis",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Paciente masculino de 25 años acude por dolor abdominal de 12 horas de evolución que inició en región periumbilical y posteriormente migró a fosa ilíaca derecha"
+    },
+    {
+      "index": 201,
+      "oldTopic": "Patología Biliar",
+      "newTopic": "Patologia Biliar y Pancreatica",
+      "casePreview": "Paciente femenina de 42 años, multípara, con IMC de 32 kg/m². Acude a urgencias por dolor intenso en hipocondrio derecho de 14 horas de evolución, irradiado a e"
+    },
+    {
+      "index": 203,
+      "oldTopic": "Hernias de la Pared Abdominal",
+      "newTopic": "Hernias y Pared Abdominal",
+      "casePreview": "Masculino de 65 años, trabajador de la construcción, acude a consulta por un abultamiento en la región inguinal derecha que aumenta de tamaño al toser o levanta"
+    },
+    {
+      "index": 204,
+      "oldTopic": "Quemaduras / Golpe de Calor / Hipotermia",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Masculino de 35 años, peso de 70 kg, es rescatado de un incendio estructural. Presenta quemaduras de segundo y tercer grado que abarcan toda la cara anterior de"
+    },
+    {
+      "index": 207,
+      "oldTopic": "Patología de extremidad inferior",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Femenina de 82 años, con antecedente de osteoporosis, es traída por familiares tras sufrir una caída desde su propia altura al tropezar con una alfombra en su d"
+    },
+    {
+      "index": 208,
+      "oldTopic": "Patología Biliar",
+      "newTopic": "Patologia Biliar y Pancreatica",
+      "casePreview": "Masculino de 68 años acude a consulta de primer nivel por presentar síntomas del tracto urinario inferior (STUI) de 2 años de evolución. Refiere nicturia (se le"
+    },
+    {
+      "index": 210,
+      "oldTopic": "Apendicitis Aguda",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Masculino de 60 años acude por dolor abdominal continuo en fosa ilíaca izquierda de 3 días de evolución, acompañado de fiebre no cuantificada y estreñimiento. A"
+    },
+    {
+      "index": 213,
+      "oldTopic": "Trauma abdominal, Fx de cadera, trauma genitourinario, ATLS en la embarazada (ATLS)",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Masculino de 55 años, con antecedente de laparotomía exploradora hace 3 años secundaria a trauma abdominal cerrado. Acude al servicio de urgencias refiriendo do"
+    },
+    {
+      "index": 237,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Masculino de 28 años es traído a urgencias tras sufrir accidente automovilístico con impacto frontal a alta velocidad. Se encontraba como conductor y portaba ci"
+    },
+    {
+      "index": 242,
+      "oldTopic": "Patología Biliar",
+      "newTopic": "Patologia Biliar y Pancreatica",
+      "casePreview": "Femenina de 60 años con antecedente de colelitiasis asintomática. Es traída a urgencias por sus familiares debido a deterioro neurológico (tendencia a la somnol"
+    },
+    {
+      "index": 256,
+      "oldTopic": "Cirrosis y sus Complicaciones / Trasplante Hepático",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Masculino de 62 años, conocido con cirrosis hepática de etiología alcohólica (Child-Pugh C) y ascitis crónica. Es traído a urgencias por sus familiares debido a"
+    },
+    {
+      "index": 262,
+      "oldTopic": "Hernias de la Pared Abdominal",
+      "newTopic": "Hernias y Pared Abdominal",
+      "casePreview": "Femenina de 75 años, multípara, acude a urgencias por presentar un cuadro de 12 horas de evolución caracterizado por dolor intenso en la región inguinal derecha"
+    },
+    {
+      "index": 264,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Masculino de 45 años es ingresado a la sala de choque tras ser atropellado por un camión de carga. A su ingreso se encuentra estuporoso, pálido y diaforético. S"
+    },
+    {
+      "index": 266,
+      "oldTopic": "Quemaduras / Golpe de Calor / Hipotermia",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Masculino de 35 años, trabajador de la CFE, sufre un accidente laboral al tocar un cable de alta tensión (10,000 voltios). Es proyectado a 3 metros de distancia"
+    },
+    {
+      "index": 267,
+      "oldTopic": "Obstrucción intestinal (Patología Intestinal Qx)",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Masculino de 78 años, residente de un asilo de ancianos, con historia de estreñimiento crónico severo y postración. Es traído a urgencias por presentar dolor ab"
+    },
+    {
+      "index": 481,
+      "oldTopic": "Patología Biliar",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Femenina de 78 años de edad, con antecedente de diabetes mellitus tipo 2 y colelitiasis diagnosticada hace 10 años que rechazó tratamiento quirúrgico. Es traída"
+    },
+    {
+      "index": 486,
+      "oldTopic": "Nefrología",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Masculino de 35 años es traído a la sala de choque tras sufrir una herida por proyectil de arma de fuego en el hemitórax derecho, a nivel del quinto espacio int"
+    },
+    {
+      "index": 492,
+      "oldTopic": "CA de colon y recto (Cirugía Oncología)",
+      "newTopic": "Coloproctologia",
+      "casePreview": "Masculino de 65 años, asintomático, acude a su chequeo médico de rutina. Refiere una dieta baja en fibra y antecedente de estreñimiento crónico. Como parte del "
+    },
+    {
+      "index": 502,
+      "oldTopic": "Apendicitis Aguda",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Femenina de 45 años, sin antecedentes quirúrgicos, acude por presentar dolor abdominal de inicio brusco en el mesogastrio y la fosa ilíaca derecha, progresivo, "
+    },
+    {
+      "index": 506,
+      "oldTopic": "Cirrosis y sus Complicaciones / Trasplante Hepático",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Masculino de 45 años, sin antecedentes crónicos de importancia, acude al servicio de urgencias por presentar dolor abdominal de inicio súbito y muy intenso, de "
+    },
+    {
+      "index": 513,
+      "oldTopic": "Apendicitis",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Masculino de 22 años, previamente sano, acude a urgencias quejándose de dolor abdominal de 18 horas de evolución. Refiere que el dolor comenzó de forma difusa a"
+    },
+    {
+      "index": 522,
+      "oldTopic": "Apendicitis",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Masculino de 62 años, con obesidad grado I y dieta baja en fibra, acude a urgencias por presentar dolor abdominal continuo de 3 días de evolución, localizado pr"
+    },
+    {
+      "index": 524,
+      "oldTopic": "Virus de la Inmunodeficiencia Humana",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Masculino de 14 años es traído a urgencias durante la madrugada. Refiere inicio súbito de dolor escrotal derecho de extrema intensidad que lo despertó del sueño"
+    },
+    {
+      "index": 525,
+      "oldTopic": "Patología Biliar",
+      "newTopic": "Patologia Biliar y Pancreatica",
+      "casePreview": "Femenina de 45 años, programada para una colecistectomía laparoscópica electiva por colelitiasis sintomática (cólicos biliares de repetición), sin datos actuale"
+    },
+    {
+      "index": 528,
+      "oldTopic": "Hernias de la Pared Abdominal",
+      "newTopic": "Hernias y Pared Abdominal",
+      "casePreview": "Masculino de 45 años, de ocupación cargador en la central de abastos. Acude a la consulta externa quejándose de la aparición de un \"bulto\" en la región inguinal"
+    },
+    {
+      "index": 531,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Masculino de 50 años, con antecedente de una apendicectomía abierta complicada por peritonitis hace 10 años. Acude a urgencias refiriendo dolor abdominal difuso"
+    },
+    {
+      "index": 538,
+      "oldTopic": "Lupus Eritematoso Sistémico",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Masculino de 28 años, motociclista que sufre accidente a alta velocidad impactando su rostro directamente contra el pavimento (no portaba casco cerrado). Ingres"
+    },
+    {
+      "index": 546,
+      "oldTopic": "Pancreatitis aguda y crónica (Patología Pancreática)",
+      "newTopic": "Patologia Biliar y Pancreatica",
+      "casePreview": "Femenina de 45 años, con antecedente de colelitiasis demostrada por ecografía hace un año, sin tratamiento quirúrgico. Es traída al servicio de urgencias por pr"
+    },
+    {
+      "index": 550,
+      "oldTopic": "ATLS P2",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Masculino de 22 años es llevado a urgencias por paramédicos tras participar en una riña callejera donde recibió un golpe directo con un bate de béisbol en la re"
+    },
+    {
+      "index": 551,
+      "oldTopic": "Quemaduras / Golpe de Calor / Hipotermia",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Masculino de 35 años, peso de 70 kg, es rescatado de un incendio en un espacio cerrado. A su ingreso a la sala de urgencias, el paciente se encuentra con la vía"
+    },
+    {
+      "index": 552,
+      "oldTopic": "ATLS / Trauma",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Masculino de 15 años es llevado a la enfermería de su escuela por presentar sangrado nasal abundante del lado derecho de 10 minutos de evolución, el cual inició"
+    },
+    {
+      "index": 557,
+      "oldTopic": "Quemaduras / Golpe de Calor / Hipotermia",
+      "newTopic": "Quemaduras y Heridas",
+      "casePreview": "Masculino de 45 años, de tez clara y antecedente de múltiples quemaduras solares con ampollas en la infancia. Acude a dermatología para revisión de un lunar en "
+    },
+    {
+      "index": 566,
+      "oldTopic": "PATOLOGÍA DE EXTREMIDAD SUPERIOR",
+      "newTopic": "Trauma y ATLS",
+      "casePreview": "Masculino de 24 años de edad, jugador de rugby, sufre una caída apoyando la mano derecha contra el suelo mientras su brazo se encontraba en extensión, abducción"
+    },
+    {
+      "index": 572,
+      "oldTopic": "Apendicitis Aguda",
+      "newTopic": "Abdomen Agudo Quirurgico",
+      "casePreview": "Masculino de 30 años, trabajador de la construcción, ingresa a la sala de choque tras haber sido aplastado por una barda de concreto a nivel de la cadera. A su "
+    }
+  ]
+}

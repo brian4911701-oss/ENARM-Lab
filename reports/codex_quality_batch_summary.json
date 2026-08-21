@@ -1,0 +1,79 @@
+{
+  "generatedAt": "2026-04-08T05:32:36.194Z",
+  "dryRun": false,
+  "requested": 1500,
+  "generated": 1500,
+  "attempts": 1671,
+  "initialBank": 4694,
+  "finalBank": 6194,
+  "themesAvailable": 81,
+  "themesCovered": 81,
+  "bySpecialty": {
+    "gyo": 420,
+    "ped": 333,
+    "cir": 487,
+    "mi": 260
+  },
+  "topThemes": [
+    {
+      "tema": "Introducción a Ginecología",
+      "total": 21
+    },
+    {
+      "tema": "Amenorreas Primarias y Secundarias",
+      "total": 21
+    },
+    {
+      "tema": "Ciclo Genital, Esterilidad y Anticonceptivos",
+      "total": 21
+    },
+    {
+      "tema": "Sangrados Uterinos Anormales de Origen No Anatómico",
+      "total": 21
+    },
+    {
+      "tema": "Sangrados Uterinos de Origen Desconocido",
+      "total": 21
+    },
+    {
+      "tema": "Patología, Menopausia y Climaterio",
+      "total": 21
+    },
+    {
+      "tema": "Sangrados Uterinos Anormales de Origen Anatómico No Maligno",
+      "total": 21
+    },
+    {
+      "tema": "Oncología Ginecológica",
+      "total": 21
+    },
+    {
+      "tema": "Patología Mamaria Benigna",
+      "total": 21
+    },
+    {
+      "tema": "Cáncer de Mama",
+      "total": 21
+    },
+    {
+      "tema": "Patología Infecciosa Cervical",
+      "total": 21
+    },
+    {
+      "tema": "Control Prenatal",
+      "total": 21
+    },
+    {
+      "tema": "Hemorragias del Primer Trimestre",
+      "total": 21
+    },
+    {
+      "tema": "Hemorragias del Segundo Trimestre",
+      "total": 21
+    },
+    {
+      "tema": "Patología del Embarazo: Estados Hipertensivos",
+      "total": 21
+    }
+  ]
+}
