@@ -14178,15 +14178,29 @@
                 const landingPage = $("landing-page");
                 let checkoutStarting = false;
                 let startupScreenDismissed = false;
+                let cloudRestoreTimeout = null;
+                const startupStatus = $("app-startup-status");
+                const startupHint = $("app-startup-hint");
+                const startupContinueBtn = $("app-startup-continue");
+                const setStartupStatus = (status, hint = "") => {
+                    if (startupStatus) startupStatus.textContent = status;
+                    if (startupHint) startupHint.textContent = hint;
+                };
+                const offerStartupContinue = () => {
+                    setStartupStatus("La restauración está tardando más de lo habitual", "Comprueba tu conexión o continúa con la última información disponible en este dispositivo.");
+                    if (startupContinueBtn) startupContinueBtn.hidden = false;
+                };
                 const dismissStartupScreen = () => {
                     if (startupScreenDismissed) return;
                     startupScreenDismissed = true;
+                    if (cloudRestoreTimeout) window.clearTimeout(cloudRestoreTimeout);
                     document.body.classList.remove("app-starting");
                     const startupScreen = $("app-startup-screen");
                     if (!startupScreen) return;
                     startupScreen.classList.add("is-hidden");
                     window.setTimeout(() => startupScreen.remove(), 300);
                 };
+                if (startupContinueBtn) startupContinueBtn.addEventListener("click", dismissStartupScreen);
                 // Si la red no permite resolver Firebase, la app no debe quedarse bloqueada indefinidamente.
                 const startupSafetyTimeout = window.setTimeout(dismissStartupScreen, 2500);
 
@@ -14696,15 +14710,14 @@
                         State.authStateResolved = true;
                         window.clearTimeout(startupSafetyTimeout);
                         if (user) {
+                            setStartupStatus("Restaurando tu progreso", "Estamos sincronizando estadísticas, historial y tus preferencias.");
+                            cloudRestoreTimeout = window.setTimeout(offerStartupContinue, 8000);
                             State.entitlementLoaded = false;
                             State.globalPremiumLoaded = false;
                             const fallbackDisplayName = user.displayName
                                 || (user.email ? user.email.split("@")[0] : "")
                                 || State.userName;
                             syncAuthenticatedUI(fallbackDisplayName);
-                            // La interfaz básica ya está lista; no esperes lecturas secundarias de Firestore
-                            // (historial, perfil, wallet, etc.) para quitar la pantalla de inicio.
-                            dismissStartupScreen();
                             State.currentUid = user.uid;
                             void syncUserDirectory(user);
                             // Crea la referencia única al registrarse; también cubre cuentas antiguas al iniciar sesión.
@@ -14830,8 +14843,11 @@
                                     }
                                 }
                                 syncPendingReportsToCloud();
+                                setStartupStatus("Progreso restaurado", "Todo está listo.");
+                                dismissStartupScreen();
                             } catch (e) {
                                 console.error("Error fetching cloud data on Auth Change:", e);
+                                offerStartupContinue();
                             }
                         } else {
                             State.currentUid = "";
