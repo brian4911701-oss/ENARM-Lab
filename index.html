@@ -576,6 +576,7 @@
                     <input type="password" id="auth-password" required placeholder="Mínimo 6 caracteres"
                         class="text-input" style="width: 100%;">
                 </div>
+                <button type="button" id="btn-forgot-password" class="auth-forgot-password">¿Olvidaste tu contraseña?</button>
 
                 <div class="input-group" id="group-username" style="margin-top: 10px; display: none;">
                     <label>Nombre de Usuario (Apodo visible en el Ranking)</label>
@@ -4148,7 +4149,7 @@
     <!-- ── FIREBASE ── -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, GoogleAuthProvider, getAdditionalUserInfo, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, updateProfile, GoogleAuthProvider, getAdditionalUserInfo, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, getDocs, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, addDoc, updateDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -4165,6 +4166,7 @@
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        auth.languageCode = "es";
         const db = getFirestore(app);
         const googleProvider = new GoogleAuthProvider();
         // Analytics y notificaciones no son necesarios para mostrar la app ni restaurar la sesión.
@@ -4212,6 +4214,7 @@
             deleteDoc,
             signInWithEmailAndPassword,
             createUserWithEmailAndPassword,
+            sendPasswordResetEmail,
             updateProfile,
             onAuthStateChanged,
             googleProvider,

@@ -8683,6 +8683,34 @@ body.exam-loading-active {
   font-size: 14px;
 }
 
+.auth-forgot-password {
+  display: block;
+  margin: 7px 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent-green);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auth-forgot-password:hover,
+.auth-forgot-password:focus-visible {
+  color: var(--accent-cyan);
+  text-decoration: underline;
+}
+
+.auth-forgot-password:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.auth-forgot-password[hidden] {
+  display: none;
+}
+
 .auth-divider {
   display: flex;
   align-items: center;

@@ -14896,6 +14896,7 @@
                 const tabLogin = $("tab-login");
                 const tabRegister = $("tab-register");
                 const authSubmitBtn = $("btn-auth-submit");
+                const forgotPasswordBtn = $("btn-forgot-password");
                 const authContainer = document.querySelector(".auth-container");
                 const authDivider = document.querySelector(".auth-divider");
                 const authProviderBtn = document.querySelector(".auth-provider-btn");
@@ -14934,6 +14935,7 @@
                         authPassword.disabled = completingGoogleProfile;
                         authPassword.required = !completingGoogleProfile;
                     }
+                    if (forgotPasswordBtn) forgotPasswordBtn.hidden = isRegisterMode || completingGoogleProfile;
                     loginForm?.classList.toggle("auth-form-register", isRegisterMode);
                     if (authDivider) authDivider.style.display = "flex";
                     if (authProviderBtn) authProviderBtn.style.display = "flex";
@@ -14982,6 +14984,36 @@
                     authRegisterLink.addEventListener("click", (event) => {
                         event.preventDefault();
                         setAuthMode(true);
+                    });
+                }
+                if (forgotPasswordBtn) {
+                    forgotPasswordBtn.addEventListener("click", async () => {
+                        const email = authEmail?.value.trim() || "";
+                        if (!email || !authEmail?.validity.valid) {
+                            showNotification("Escribe un correo electrónico válido para recuperar tu contraseña.", "warning");
+                            authEmail?.focus();
+                            return;
+                        }
+
+                        const defaultLabel = "¿Olvidaste tu contraseña?";
+                        const confirmation = "Si existe una cuenta con ese correo, te enviaremos un enlace para restablecer tu contraseña. Si no lo encuentras, revisa Spam o Correo no deseado.";
+                        forgotPasswordBtn.disabled = true;
+                        forgotPasswordBtn.textContent = "Enviando enlace...";
+                        try {
+                            if (!window.FB?.auth || typeof window.FB.sendPasswordResetEmail !== "function") {
+                                throw new Error("Firebase Auth no está disponible.");
+                            }
+                            window.FB.auth.languageCode = "es";
+                            await window.FB.sendPasswordResetEmail(window.FB.auth, email);
+                            showNotification(confirmation, "success");
+                        } catch (err) {
+                            // La respuesta es intencionalmente neutra para no revelar si el correo tiene una cuenta.
+                            console.warn("[Auth] No se pudo solicitar el restablecimiento de contraseña:", err);
+                            showNotification(confirmation, "success");
+                        } finally {
+                            forgotPasswordBtn.disabled = false;
+                            forgotPasswordBtn.textContent = defaultLabel;
+                        }
                     });
                 }
 
