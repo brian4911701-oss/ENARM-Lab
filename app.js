@@ -3542,11 +3542,18 @@
         });
     };
 
-    const getAdminUserDate = (item) => {
-        return getWithdrawalDate(item && item.createdAt)
-            || getWithdrawalDate(item && item.lastUpdate)
-            || getWithdrawalDate(item && item.lastPremiumSync)
+    const getAdminRegistrationDetails = (directory, leaderboardUser) => {
+        const authCreatedAt = normalizeTimestamp(directory?.authCreatedAt)
+            || normalizeTimestamp(leaderboardUser?.authCreatedAt)
             || null;
+        // Mientras se completa la migración, el createdAt histórico del leaderboard
+        // conserva el orden anterior. Nunca usar user_directory.createdAt: puede ser
+        // la fecha en que se añadió este directorio, no cuando nació la cuenta.
+        const legacyCreatedAt = normalizeTimestamp(leaderboardUser?.createdAt) || null;
+        return {
+            date: authCreatedAt || legacyCreatedAt,
+            isAuthVerified: !!authCreatedAt
+        };
     };
 
     const isAdminEntitlementActive = (entitlement) => {
@@ -3565,10 +3572,48 @@
             })[0] || null;
     };
 
-    const getAdminPaymentLabel = (payment, entitlement) => {
-        if (payment) return formatManualPaymentStatus(String(payment.status || "pending"));
-        if (entitlement && entitlement.source === "manual_transfer") return "Aprobado";
-        return "Sin pago registrado";
+    const getManualPaymentForEntitlement = (uid, entitlement) => {
+        const requestId = String(entitlement?.manualPaymentRequestId || "");
+        if (requestId) {
+            return (State.manualPaymentRequests || []).find((item) => item.id === requestId) || null;
+        }
+        if (String(entitlement?.source || "") !== "manual_transfer") return null;
+        return (State.manualPaymentRequests || [])
+            .filter((item) => item.uid === uid && item.status === "approved")
+            .sort((a, b) => {
+                const aDate = getWithdrawalDate(a.reviewedAt || a.updatedAt || a.createdAt)?.getTime() || 0;
+                const bDate = getWithdrawalDate(b.reviewedAt || b.updatedAt || b.createdAt)?.getTime() || 0;
+                return bDate - aDate;
+            })[0] || null;
+    };
+
+    const getAdminPremiumAccessDetails = (entitlement, payment) => {
+        const source = String(entitlement?.source || "");
+        const activatedAt = normalizeTimestamp(entitlement?.activatedAt)
+            || normalizeTimestamp(entitlement?.updatedAt)
+            || null;
+        if (!isAdminEntitlementActive(entitlement)) {
+            const paymentDate = getWithdrawalDate(payment?.notifiedAt || payment?.createdAt);
+            return {
+                sourceLabel: payment ? `Pago ${formatManualPaymentStatus(String(payment.status || "pending"))}` : "Sin acceso Premium",
+                dateLabel: payment ? "Aviso de pago" : "Pago / activación",
+                date: paymentDate
+            };
+        }
+        if (source === "manual_transfer") {
+            return {
+                sourceLabel: "Transferencia aprobada",
+                dateLabel: "Pago aprobado",
+                date: getWithdrawalDate(payment?.reviewedAt) || activatedAt
+            };
+        }
+        if (source === "code") {
+            return { sourceLabel: "Código canjeado", dateLabel: "Código canjeado", date: activatedAt };
+        }
+        if (["admin_manual", "admin_grant"].includes(source)) {
+            return { sourceLabel: "Activado manualmente", dateLabel: "Activado", date: activatedAt };
+        }
+        return { sourceLabel: source ? `Acceso: ${source}` : "Premium activo", dateLabel: "Actualizado", date: activatedAt };
     };
 
     const setAdminUserPremium = async (uid, enabled) => {
@@ -3654,8 +3699,11 @@
                     const comparison = aName.localeCompare(bName, "es", { sensitivity: "base" });
                     return selectedSort === "name-desc" ? -comparison : comparison;
                 }
-                const aDate = getAdminUserDate(State.adminDirectoryByUid[a.id] || a)?.getTime() || 0;
-                const bDate = getAdminUserDate(State.adminDirectoryByUid[b.id] || b)?.getTime() || 0;
+                const aDate = getAdminRegistrationDetails(State.adminDirectoryByUid[a.id] || {}, a).date?.getTime() || 0;
+                const bDate = getAdminRegistrationDetails(State.adminDirectoryByUid[b.id] || {}, b).date?.getTime() || 0;
+                if (!aDate && !bDate) return 0;
+                if (!aDate) return 1;
+                if (!bDate) return -1;
                 return selectedSort === "oldest" ? aDate - bDate : bDate - aDate;
             });
         const summary = $("admin-users-summary");
@@ -3671,10 +3719,10 @@
         list.innerHTML = users.map((user) => {
             const directory = State.adminDirectoryByUid[user.id] || {};
             const entitlement = State.adminEntitlementsByUid[user.id] || null;
-            const payment = getLatestPaymentForUser(user.id);
             const hasPremium = isAdminEntitlementActive(entitlement);
-            const createdAt = getAdminUserDate(directory) || getAdminUserDate(user);
-            const paidLabel = getAdminPaymentLabel(payment, entitlement);
+            const payment = getManualPaymentForEntitlement(user.id, entitlement) || getLatestPaymentForUser(user.id);
+            const registration = getAdminRegistrationDetails(directory, user);
+            const accessDetails = getAdminPremiumAccessDetails(entitlement, payment);
             const accessLabel = hasPremium ? "Premium activo" : "Acceso Gratis";
             const planLabel = entitlement ? (TRANSFER_PLANS[entitlement.planId]?.name || "Plan Premium") : "Gratis";
             const email = directory.email || payment?.email || "Correo disponible cuando inicie sesi\u00f3n";
@@ -3697,8 +3745,9 @@
                         </div>
                     </div>
                     <div class="withdrawal-admin-grid">
-                        <span><strong>Registro:</strong> ${createdAt ? formatDateTime(createdAt) : "Fecha no disponible"}</span>
-                        <span><strong>Pago:</strong> ${escapeHtml(paidLabel)}</span>
+                        <span><strong>${registration.isAuthVerified ? "Registro" : "Registro histórico"}:</strong> ${registration.date ? formatDateTime(registration.date) : "Pendiente de verificar"}</span>
+                        <span><strong>${escapeHtml(accessDetails.dateLabel)}:</strong> ${accessDetails.date ? formatDateTime(accessDetails.date) : "Sin fecha"}</span>
+                        <span><strong>Origen:</strong> ${escapeHtml(accessDetails.sourceLabel)}</span>
                         <span><strong>Plan:</strong> ${hasPremium ? planLabel : "Gratis"}</span>
                         <span><strong>UID:</strong> ${escapeHtml(user.id)}</span>
                     </div>
@@ -12066,25 +12115,6 @@
                 setPricingPanelState(panelId, panel.hidden);
             });
         });
-        const btnSettingsRedeem = $("btn-settings-redeem");
-        if (btnSettingsRedeem) {
-            btnSettingsRedeem.addEventListener("click", () => redeemCode({
-                inputId: "settings-redeem-code-input",
-                closeModalOnSuccess: false
-            }));
-        }
-        const settingsRedeemInput = $("settings-redeem-code-input");
-        if (settingsRedeemInput) {
-            settingsRedeemInput.addEventListener("keydown", (e) => {
-                if (e.key === "Enter") {
-                    redeemCode({
-                        inputId: "settings-redeem-code-input",
-                        closeModalOnSuccess: false
-                    });
-                }
-            });
-        }
-
         const btnRedeem = $("btn-redeem-submit");
         if (btnRedeem) {
             btnRedeem.addEventListener("click", () => redeemCode());
@@ -13907,6 +13937,7 @@
                     planId: data.planId || "",
                     transferReference: data.transferReference || "",
                     manualPaymentRequestId: data.manualPaymentRequestId || "",
+                    activatedAt: normalizeTimestamp(data.activatedAt),
                     expiresAt: normalizeTimestamp(data.expiresAt),
                     updatedAt: normalizeTimestamp(data.updatedAt)
                 };
@@ -14044,12 +14075,14 @@
                         status: "active",
                         expiresAt: redeemed.expiresAt,
                         source: "code",
+                        activatedAt: redeemed.now,
                         updatedAt: redeemed.now,
                         code
                     }, { merge: true });
                     State.entitlement = {
                         status: "active",
                         source: "code",
+                        activatedAt: redeemed.now,
                         expiresAt: redeemed.expiresAt,
                         updatedAt: redeemed.now
                     };

@@ -1,6 +1,7 @@
 ﻿const { onDocumentCreated } = require("firebase-functions/v2/firestore");
 const logger = require("firebase-functions/logger");
 const { initializeApp } = require("firebase-admin/app");
+const { getAuth } = require("firebase-admin/auth");
 const { getFirestore } = require("firebase-admin/firestore");
 const { getMessaging } = require("firebase-admin/messaging");
 
@@ -248,4 +249,29 @@ exports.sendCommunityAnnouncementPush = onDocumentCreated("community_announcemen
             failureCount: summary.failureCount || 0
         }
     }, { merge: true });
+});
+
+// user_directory se crea desde el cliente al iniciar sesión. La fecha de Firebase Auth
+// es la fuente confiable para el registro, por eso se completa desde un entorno administrador.
+exports.syncUserAuthCreatedAt = onDocumentCreated("user_directory/{uid}", async (event) => {
+    const snapshot = event.data;
+    if (!snapshot) return;
+
+    try {
+        const userRecord = await getAuth().getUser(event.params.uid);
+        const authCreatedAt = new Date(userRecord.metadata.creationTime);
+        if (Number.isNaN(authCreatedAt.getTime())) {
+            logger.warn("No se pudo interpretar la fecha de registro de Firebase Auth.", { uid: event.params.uid });
+            return;
+        }
+        await snapshot.ref.set({
+            authCreatedAt,
+            authCreatedAtSyncedAt: new Date()
+        }, { merge: true });
+    } catch (err) {
+        logger.error("No se pudo sincronizar la fecha de registro desde Firebase Auth.", {
+            uid: event.params.uid,
+            error: err && err.message ? err.message : String(err)
+        });
+    }
 });

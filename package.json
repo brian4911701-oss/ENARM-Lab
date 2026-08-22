@@ -15,6 +15,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:hosting": "node scripts/build_hosting.js",
     "deploy:web": "firebase deploy --only hosting",
+    "users:backfill-auth-dates": "node scripts/backfill_auth_created_dates.js",
     "codes:generate": "node scripts/generate_redeem_codes.js",
     "user:restore": "node scripts/restore_user_snapshot.js",
     "sanitize:cases": "node scripts/sanitize_case_bank.js",

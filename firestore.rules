@@ -145,11 +145,16 @@ service cloud.firestore {
         && request.resource.data.uid == uid
         && request.resource.data.email is string
         && request.resource.data.username is string
+        && !request.resource.data.keys().hasAny(["authCreatedAt", "authCreatedAtSyncedAt"])
         && request.resource.data.createdAt == request.time;
       allow update: if isSelf(uid)
         && request.resource.data.uid == uid
         && request.resource.data.email is string
         && request.resource.data.username is string
+        && request.resource.data.keys().hasAny(["authCreatedAt"]) == resource.data.keys().hasAny(["authCreatedAt"])
+        && request.resource.data.keys().hasAny(["authCreatedAtSyncedAt"]) == resource.data.keys().hasAny(["authCreatedAtSyncedAt"])
+        && (!resource.data.keys().hasAny(["authCreatedAt"]) || request.resource.data.authCreatedAt == resource.data.authCreatedAt)
+        && (!resource.data.keys().hasAny(["authCreatedAtSyncedAt"]) || request.resource.data.authCreatedAtSyncedAt == resource.data.authCreatedAtSyncedAt)
         && request.resource.data.createdAt == resource.data.createdAt;
       allow delete: if isAdmin();
     }
