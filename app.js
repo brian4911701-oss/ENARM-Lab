@@ -14178,29 +14178,21 @@
                 const landingPage = $("landing-page");
                 let checkoutStarting = false;
                 let startupScreenDismissed = false;
-                let cloudRestoreTimeout = null;
                 const startupStatus = $("app-startup-status");
                 const startupHint = $("app-startup-hint");
-                const startupContinueBtn = $("app-startup-continue");
                 const setStartupStatus = (status, hint = "") => {
                     if (startupStatus) startupStatus.textContent = status;
                     if (startupHint) startupHint.textContent = hint;
                 };
-                const offerStartupContinue = () => {
-                    setStartupStatus("La restauración está tardando más de lo habitual", "Comprueba tu conexión o continúa con la última información disponible en este dispositivo.");
-                    if (startupContinueBtn) startupContinueBtn.hidden = false;
-                };
                 const dismissStartupScreen = () => {
                     if (startupScreenDismissed) return;
                     startupScreenDismissed = true;
-                    if (cloudRestoreTimeout) window.clearTimeout(cloudRestoreTimeout);
                     document.body.classList.remove("app-starting");
                     const startupScreen = $("app-startup-screen");
                     if (!startupScreen) return;
                     startupScreen.classList.add("is-hidden");
                     window.setTimeout(() => startupScreen.remove(), 300);
                 };
-                if (startupContinueBtn) startupContinueBtn.addEventListener("click", dismissStartupScreen);
                 // Si la red no permite resolver Firebase, la app no debe quedarse bloqueada indefinidamente.
                 const startupSafetyTimeout = window.setTimeout(dismissStartupScreen, 2500);
 
@@ -14711,7 +14703,6 @@
                         window.clearTimeout(startupSafetyTimeout);
                         if (user) {
                             setStartupStatus("Restaurando tu progreso", "Estamos sincronizando estadísticas, historial y tus preferencias.");
-                            cloudRestoreTimeout = window.setTimeout(offerStartupContinue, 8000);
                             State.entitlementLoaded = false;
                             State.globalPremiumLoaded = false;
                             const fallbackDisplayName = user.displayName
@@ -14719,6 +14710,11 @@
                                 || State.userName;
                             syncAuthenticatedUI(fallbackDisplayName);
                             State.currentUid = user.uid;
+                            // Esta es la única lectura imprescindible antes de mostrar la app.
+                            // Se inicia antes de los listeners secundarios para evitar competir por red en Android.
+                            const userRef = window.FB.doc(window.FB.db, "leaderboard", user.uid);
+                            const coreUserDataPromise = window.FB.getDoc(userRef);
+                            const startSecondaryAuthenticatedWork = () => {
                             void syncUserDirectory(user);
                             // Crea la referencia única al registrarse; también cubre cuentas antiguas al iniciar sesión.
                             void ensureTransferProfile().catch((err) => {
@@ -14749,9 +14745,9 @@
                                 window.loadPendingRequests(); // Iniciar notificaciones push automáticas
                             }
                             registerRemotePushNotifications();
+                            };
                             try {
-                                const userRef = window.FB.doc(window.FB.db, "leaderboard", user.uid);
-                                const snap = await window.FB.getDoc(userRef);
+                                const snap = await coreUserDataPromise;
                                 if (snap.exists()) {
                                     const data = snap.data();
                                     State.accountCreatedAt = normalizeTimestamp(data.createdAt) || State.accountCreatedAt;
@@ -14847,7 +14843,9 @@
                                 dismissStartupScreen();
                             } catch (e) {
                                 console.error("Error fetching cloud data on Auth Change:", e);
-                                offerStartupContinue();
+                                setStartupStatus("No pudimos restaurar tu progreso", "Revisa tu conexión e inténtalo de nuevo. Tus datos no se han modificado.");
+                            } finally {
+                                startSecondaryAuthenticatedWork();
                             }
                         } else {
                             State.currentUid = "";

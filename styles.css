@@ -4349,19 +4349,6 @@ body.stats-demo-preview .stats-free-preview-card {
   line-height: 1.5;
   text-align: center;
 }
-.app-startup-continue {
-  margin-top: 6px;
-  padding: 9px 13px;
-  border: 1px solid rgba(90, 231, 173, .45);
-  border-radius: 10px;
-  background: rgba(5, 192, 127, .12);
-  color: #c9ffe8;
-  font: inherit;
-  font-size: 12px;
-  font-weight: 800;
-  cursor: pointer;
-}
-.app-startup-continue:hover { background: rgba(5, 192, 127, .22); }
 @keyframes appStartupSpin { to { transform: rotate(360deg); } }
 
 .dashboard-upgrade-cta {
