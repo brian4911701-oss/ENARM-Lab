@@ -53,4 +53,10 @@ fs.cpSync(
     { recursive: true }
 );
 
-console.log(`Hosting listo en ${outputDir} (${files.length} archivos + Flashcards).`);
+fs.cpSync(
+    path.resolve(projectRoot, "avatars"),
+    path.resolve(outputDir, "avatars"),
+    { recursive: true }
+);
+
+console.log(`Hosting listo en ${outputDir} (${files.length} archivos + Flashcards + avatares).`);

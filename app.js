@@ -37,6 +37,7 @@
         userUniversity: "",
         userPhone: "",
         userTargetYear: "",
+        userAvatar: "",
         isScorePublic: true,
         history: [],
         selectedTopics: [],
@@ -44,6 +45,8 @@
         reportedQuestionsLocal: [],
         myFriends: [],
         communityRankingMode: "general",
+        communityProfileUid: "",
+        communityProfileRelation: null,
         activeChallenges: [],
         quarantineKeys: new Set(),
         deletedCaseKeys: new Set(),
@@ -89,6 +92,8 @@
         manualPaymentAdminUnsub: null,
         adminUsers: [],
         adminUsersUnsub: null,
+        adminUserFilter: "all",
+        adminUserSort: "newest",
         adminDirectoryByUid: {},
         adminDirectoryUnsub: null,
         adminEntitlementsByUid: {},
@@ -172,6 +177,24 @@
     const COMMUNITY_ANNOUNCEMENT_BANNER_PREVIEW_LENGTH = 180;
     const TRONCAL_SPECIALTIES = ["mi", "ped", "gyo", "cir"];
     const SCALE_STUDY_STORAGE_KEY = "enarm_scale_study";
+    const PROFILE_AVATAR_STORAGE_KEY = "enarm_profile_avatar";
+    const PROFILE_AVATARS = Object.freeze([
+        Object.freeze({ id: "ajolote", label: "Doctora Ajolote", src: "avatars/doctor-ajolote.webp" }),
+        Object.freeze({ id: "ciclope", label: "Doctor Cíclope", src: "avatars/doctor-ciclope.webp" }),
+        Object.freeze({ id: "hongo", label: "Doctora Hongo", src: "avatars/doctor-hongo.webp" }),
+        Object.freeze({ id: "alien", label: "Doctor Alien", src: "avatars/doctor-alien.webp" }),
+        Object.freeze({ id: "robot", label: "Doctor Robot", src: "avatars/doctor-robot.webp" }),
+        Object.freeze({ id: "duende", label: "Doctora Duende", src: "avatars/doctor-duende.webp" }),
+        Object.freeze({ id: "gelatina", label: "Doctora Gelatina", src: "avatars/doctor-gelatina.webp" }),
+        Object.freeze({ id: "gecko", label: "Doctor Gecko", src: "avatars/doctor-gecko.webp" }),
+        Object.freeze({ id: "nube", label: "Doctora Nube", src: "avatars/doctor-nube.webp" }),
+        Object.freeze({ id: "monstruo", label: "Doctor Monstruo", src: "avatars/doctor-monstruo.webp" })
+    ]);
+    const PROFILE_AVATAR_BY_ID = new Map(PROFILE_AVATARS.map(avatar => [avatar.id, avatar]));
+    const normalizeProfileAvatar = (value) => {
+        const safeValue = String(value || "").trim().toLowerCase();
+        return PROFILE_AVATAR_BY_ID.has(safeValue) ? safeValue : "";
+    };
     const POMQUEST_LOGO_SRC = "pomquest-logo.png";
     const trackEvent = (name, params = {}) => {
         if (!name || !window.FB || typeof window.FB.logAnalyticsEvent !== "function") return;
@@ -1767,7 +1790,8 @@
             metaParts.push("Completa tu especialidad y universidad para personalizar mejor tu perfil");
         }
 
-        if ($("profile-hero-avatar")) $("profile-hero-avatar").textContent = initials;
+        renderProfileAvatar($("profile-hero-avatar"), State.userAvatar, initials);
+        renderProfileAvatarPicker();
         heroName.textContent = displayName;
         if ($("profile-hero-meta")) $("profile-hero-meta").textContent = metaParts.join(" • ");
         if ($("profile-badge-rank")) $("profile-badge-rank").textContent = rank;
@@ -3416,18 +3440,23 @@
 
     const renderManualPaymentRequests = () => {
         const list = $("admin-manual-payments-list");
+        const count = $("admin-manual-payments-count");
         if (!list) return;
         if (!isAdminUser()) {
             list.innerHTML = "";
+            if (count) count.textContent = "0";
             return;
         }
         const rows = Array.isArray(State.manualPaymentRequests) ? State.manualPaymentRequests : [];
-        if (rows.length === 0) {
-            list.innerHTML = `<div class="list-item empty-history"><p style="color:var(--text-muted); padding: 20px;">No hay avisos de transferencia.</p></div>`;
-            return;
-        }
+        const pendingRows = rows.filter((item) => String(item.status || "pending") === "pending");
+        if (count) count.textContent = String(pendingRows.length);
 
-        list.innerHTML = rows.map((item) => {
+        const renderRows = (items, target, emptyMessage, cardClass = "") => {
+            if (items.length === 0) {
+                target.innerHTML = `<div class="list-item empty-history"><p style="color:var(--text-muted); padding: 20px;">${emptyMessage}</p></div>`;
+                return;
+            }
+            target.innerHTML = items.map((item) => {
             const status = String(item.status || "pending");
             const pending = status === "pending";
             const createdAt = getWithdrawalDate(item.notifiedAt || item.createdAt);
@@ -3436,32 +3465,47 @@
             const planLabel = TRANSFER_PLANS[item.planId]?.name || "Plan no reconocido";
             const seats = Math.max(1, Number(item.seats || TRANSFER_PLANS[item.planId]?.seats || 1));
             return `
-                <article class="withdrawal-admin-card ${pending ? "is-pending" : "is-paid"}">
+                <article class="withdrawal-admin-card manual-payment-card ${cardClass} ${pending ? "is-pending" : "is-paid"}">
                     <div class="withdrawal-admin-head">
                         <div>
                             <span class="withdrawal-status">${formatManualPaymentStatus(status)}</span>
-                            <h3>$${amount} MXN · ${planLabel} · ${seats} ${seats === 1 ? "acceso" : "accesos"}</h3>
-                            <p>${escapeHtml(item.email || "Sin correo")} · ${dateLabel}</p>
+                            <h3>$${amount} MXN</h3>
+                            <p>${escapeHtml(planLabel)} · ${seats} ${seats === 1 ? "acceso" : "accesos"}</p>
                         </div>
                         ${pending ? `
-                            <div class="profile-action-row">
+                            <div class="profile-action-row manual-payment-actions">
                                 <button class="btn-primary" type="button" data-review-payment="approved" data-payment-request-id="${escapeHtml(item.id)}">Aprobar</button>
                                 <button class="btn-secondary" type="button" data-review-payment="rejected" data-payment-request-id="${escapeHtml(item.id)}">Rechazar</button>
                             </div>
                         ` : ""}
                     </div>
-                    <div class="withdrawal-admin-grid">
-                        <span><strong>Referencia/concepto:</strong> ${escapeHtml(item.transferReference || "")}</span>
-                        <span><strong>UID:</strong> ${escapeHtml(item.uid || "")}</span>
-                        <span><strong>Plan:</strong> ${escapeHtml(item.planId || "")}</span>
-                        <span><strong>Importe esperado:</strong> $${amount} MXN</span>
-                        <span><strong>Accesos a activar:</strong> ${seats}</span>
-                        ${Array.isArray(item.squadMembers) && item.squadMembers.length ? `<span class="withdrawal-admin-grid-wide"><strong>Usuarios extra del Squad:</strong> ${item.squadMembers.map(member => escapeHtml(member)).join(", ")}</span>` : ""}
-                        <span><strong>Referido:</strong> ${escapeHtml(item.referralCode || "Sin código")}</span>
+                    <div class="manual-payment-primary">
+                        <span><strong>Usuario:</strong> ${escapeHtml(item.email || "Sin correo")}</span>
+                        <span><strong>Aviso recibido:</strong> ${dateLabel}</span>
                     </div>
+                    <details class="manual-payment-details">
+                        <summary>Ver datos para conciliar la transferencia <span>Ver</span></summary>
+                        <div class="withdrawal-admin-grid">
+                            <span><strong>Referencia/concepto:</strong> ${escapeHtml(item.transferReference || "")}</span>
+                            <span><strong>UID:</strong> ${escapeHtml(item.uid || "")}</span>
+                            <span><strong>Plan técnico:</strong> ${escapeHtml(item.planId || "")}</span>
+                            <span><strong>Importe esperado:</strong> $${amount} MXN</span>
+                            <span><strong>Accesos a activar:</strong> ${seats}</span>
+                            ${Array.isArray(item.squadMembers) && item.squadMembers.length ? `<span class="withdrawal-admin-grid-wide"><strong>Usuarios extra del Squad:</strong> ${item.squadMembers.map(member => escapeHtml(member)).join(", ")}</span>` : ""}
+                            <span><strong>Referido:</strong> ${escapeHtml(item.referralCode || "Sin código")}</span>
+                        </div>
+                    </details>
                 </article>
             `;
-        }).join("");
+            }).join("");
+        };
+
+        renderRows(
+            pendingRows,
+            list,
+            "No hay pagos por validar. Las nuevas solicitudes aparecerán aquí.",
+            "manual-payment-card--inbox"
+        );
 
         list.querySelectorAll("[data-review-payment]").forEach((btn) => {
             btn.addEventListener("click", () => reviewManualPayment(
@@ -3586,13 +3630,42 @@
             list.innerHTML = "";
             return;
         }
-        const users = [...(State.adminUsers || [])].sort((a, b) => {
-            const aDate = getAdminUserDate(State.adminDirectoryByUid[a.id] || a)?.getTime() || 0;
-            const bDate = getAdminUserDate(State.adminDirectoryByUid[b.id] || b)?.getTime() || 0;
-            return bDate - aDate;
-        });
+        const filterControl = $("admin-users-filter");
+        const sortControl = $("admin-users-sort");
+        const selectedFilter = filterControl?.value || State.adminUserFilter || "all";
+        const selectedSort = sortControl?.value || State.adminUserSort || "newest";
+        State.adminUserFilter = selectedFilter;
+        State.adminUserSort = selectedSort;
+
+        const totalUsers = (State.adminUsers || []).length;
+        const users = [...(State.adminUsers || [])]
+            .filter((user) => {
+                const hasPremium = isAdminEntitlementActive(State.adminEntitlementsByUid[user.id] || null);
+                return selectedFilter === "all"
+                    || (selectedFilter === "premium" && hasPremium)
+                    || (selectedFilter === "free" && !hasPremium);
+            })
+            .sort((a, b) => {
+                const aDirectory = State.adminDirectoryByUid[a.id] || {};
+                const bDirectory = State.adminDirectoryByUid[b.id] || {};
+                if (selectedSort === "name-asc" || selectedSort === "name-desc") {
+                    const aName = String(aDirectory.username || a.username || "");
+                    const bName = String(bDirectory.username || b.username || "");
+                    const comparison = aName.localeCompare(bName, "es", { sensitivity: "base" });
+                    return selectedSort === "name-desc" ? -comparison : comparison;
+                }
+                const aDate = getAdminUserDate(State.adminDirectoryByUid[a.id] || a)?.getTime() || 0;
+                const bDate = getAdminUserDate(State.adminDirectoryByUid[b.id] || b)?.getTime() || 0;
+                return selectedSort === "oldest" ? aDate - bDate : bDate - aDate;
+            });
+        const summary = $("admin-users-summary");
+        if (summary) {
+            const filterLabel = selectedFilter === "premium" ? "con Premium activo" : selectedFilter === "free" ? "con acceso Gratis" : "en total";
+            summary.textContent = `${users.length} de ${totalUsers} usuarios ${filterLabel}. El acceso se controla desde el interruptor.`;
+        }
         if (users.length === 0) {
-            list.innerHTML = `<div class="list-item empty-history"><p style="color:var(--text-muted); padding: 20px;">A\u00fan no hay usuarios registrados.</p></div>`;
+            const emptyLabel = totalUsers === 0 ? "Aún no hay usuarios registrados." : "No hay usuarios que coincidan con este filtro.";
+            list.innerHTML = `<div class="list-item empty-history"><p style="color:var(--text-muted); padding: 20px;">${emptyLabel}</p></div>`;
             return;
         }
         list.innerHTML = users.map((user) => {
@@ -4732,6 +4805,7 @@
         localStorage.setItem("enarm_university", State.userUniversity || "");
         localStorage.setItem("enarm_phone", State.userPhone || "");
         localStorage.setItem("enarm_target_year", State.userTargetYear || "");
+        localStorage.setItem(PROFILE_AVATAR_STORAGE_KEY, normalizeProfileAvatar(State.userAvatar));
         localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0");
         localStorage.setItem("enarm_coins", String(Number(State.coins) || 0));
         localStorage.setItem("enarm_referral_code", State.referralCode || "");
@@ -4758,6 +4832,7 @@
                 university: State.userUniversity || "",
                 phone: State.userPhone || "",
                 targetYear: State.userTargetYear || "",
+                avatarId: normalizeProfileAvatar(State.userAvatar),
                 isScorePublic: State.isScorePublic !== false,
                 isPremium: typeof isPremiumActive === "function" ? isPremiumActive() : false,
                 referralCode: State.referralCode || "",
@@ -4796,6 +4871,7 @@
 
     const renderAvatarInitials = (el, initials) => {
         if (!el) return;
+        el.classList.remove("has-profile-avatar");
         const isDashboardHeroAvatar = el.classList.contains("dashboard-hero-avatar");
         const avatarTextStyle = isDashboardHeroAvatar
             ? "font-size: 28px; font-weight: 800; line-height: 1; letter-spacing: -0.01em;"
@@ -4806,6 +4882,84 @@
         el.style.display = "flex";
         el.style.alignItems = "center";
         el.style.justifyContent = "center";
+    };
+
+    const getUserInitials = (username) => {
+        const safeName = String(username || "Aspirante").trim();
+        if (!safeName) return "AS";
+        const nameParts = safeName.split(/\s+/).filter(Boolean);
+        if (nameParts.length === 1) return nameParts[0].substring(0, 2).toUpperCase();
+        return (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase();
+    };
+
+    const getProfileAvatarMarkup = (avatarId, initials, imageClass = "profile-avatar-image") => {
+        const avatar = PROFILE_AVATAR_BY_ID.get(normalizeProfileAvatar(avatarId));
+        if (!avatar) return escapeHtml(initials || "AS");
+        return `<img class="${imageClass}" src="${avatar.src}" alt="" loading="lazy" decoding="async">`;
+    };
+
+    const renderProfileAvatar = (el, avatarId, initials) => {
+        if (!el) return;
+        const avatar = PROFILE_AVATAR_BY_ID.get(normalizeProfileAvatar(avatarId));
+        if (!avatar) {
+            renderAvatarInitials(el, initials || "AS");
+            return;
+        }
+
+        el.classList.add("has-profile-avatar");
+        el.innerHTML = `<img class="profile-avatar-image" src="${avatar.src}" alt="${escapeHtml(avatar.label)}" decoding="async">`;
+        el.style.background = "rgba(255, 255, 255, 0.06)";
+        el.style.color = "inherit";
+        el.style.display = "flex";
+        el.style.alignItems = "center";
+        el.style.justifyContent = "center";
+    };
+
+    const applyCurrentProfileAvatar = () => {
+        const initials = getUserInitials(State.userName);
+        $$(".user-avatar").forEach(el => renderProfileAvatar(el, State.userAvatar, initials));
+        renderProfileAvatar($("profile-hero-avatar"), State.userAvatar, initials);
+    };
+
+    const renderAvatarPicker = (picker, selectedAvatar, initials, onSelect, className = "") => {
+        if (!picker) return;
+        const normalizedSelection = normalizeProfileAvatar(selectedAvatar);
+        picker.className = `profile-avatar-picker ${className}`.trim();
+        picker.innerHTML = [
+            `<button class="profile-avatar-option ${normalizedSelection ? "" : "selected"}" type="button" data-avatar-id="" aria-pressed="${normalizedSelection ? "false" : "true"}" title="Usar iniciales"><span class="profile-avatar-initials">${escapeHtml(initials || "AS")}</span><span>Iniciales</span></button>`,
+            ...PROFILE_AVATARS.map(avatar => `
+                <button class="profile-avatar-option ${normalizedSelection === avatar.id ? "selected" : ""}" type="button" data-avatar-id="${avatar.id}" aria-pressed="${normalizedSelection === avatar.id ? "true" : "false"}" title="${escapeHtml(avatar.label)}">
+                    <img src="${avatar.src}" alt="" loading="lazy" decoding="async">
+                    <span>${escapeHtml(avatar.label.replace(/^Doctor(?:a)?\s+/, ""))}</span>
+                </button>
+            `)
+        ].join("");
+
+        picker.querySelectorAll("[data-avatar-id]").forEach(button => {
+            button.addEventListener("click", () => {
+                onSelect(normalizeProfileAvatar(button.getAttribute("data-avatar-id")));
+            });
+        });
+    };
+
+    const renderProfileAvatarPicker = () => {
+        renderAvatarPicker(
+            $("profile-avatar-picker"),
+            State.userAvatar,
+            getUserInitials(State.userName),
+            (avatarId) => {
+                State.userAvatar = avatarId;
+                applyCurrentProfileAvatar();
+                saveGlobalStats();
+                renderProfileAvatarPicker();
+                const modal = $("avatar-picker-modal");
+                if (modal) {
+                    modal.classList.remove("active");
+                    modal.setAttribute("aria-hidden", "true");
+                }
+                showNotification("Avatar actualizado para tu perfil y comunidad.", "success");
+            }
+        );
     };
 
     const loadGlobalStats = () => {
@@ -4823,6 +4977,7 @@
         if (phone) State.userPhone = phone;
         const targetYear = localStorage.getItem("enarm_target_year");
         if (targetYear) State.userTargetYear = targetYear;
+        State.userAvatar = normalizeProfileAvatar(localStorage.getItem(PROFILE_AVATAR_STORAGE_KEY));
         const scorePublic = localStorage.getItem("enarm_score_public");
         if (scorePublic !== null) State.isScorePublic = scorePublic !== "0";
         State.coins = Number(localStorage.getItem("enarm_coins")) || 0;
@@ -4894,13 +5049,7 @@
             }
         });
 
-        // Update avatar initials
-        const nameParts = State.userName.trim().split(/\s+/);
-        const initials = nameParts.length > 1
-            ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
-            : nameParts[0].substring(0, 2).toUpperCase();
-
-        $$(".user-avatar").forEach(el => renderAvatarInitials(el, initials));
+        applyCurrentProfileAvatar();
         const statusEl = document.querySelector(".user-status");
         if (statusEl) statusEl.textContent = "EN LÍNEA";
         syncReclassAccessUI();
@@ -11648,18 +11797,13 @@
                 State.isScorePublic = !$("profile-score-public-toggle")?.checked;
 
                 // Update visuals locally
-                const nameParts = State.userName.trim().split(/\s+/);
-                const initials = nameParts.length > 1
-                    ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
-                    : nameParts[0].substring(0, 2).toUpperCase();
-
                 $$(".user-name").forEach(el => el.textContent = State.userName);
                 $$(".header-title").forEach(el => {
                     if (el.textContent.includes("Hola,")) {
                         el.innerHTML = `Hola, <span class="user-name" style="color:var(--accent-green);">${State.userName}</span>`;
                     }
                 });
-                $$(".user-avatar").forEach(el => renderAvatarInitials(el, initials));
+                applyCurrentProfileAvatar();
                 syncReclassAccessUI();
 
                 saveGlobalStats();
@@ -11677,10 +11821,17 @@
         const btnProfileGoHistory = $("btn-profile-go-history");
         const btnProfileGoCommunity = $("btn-profile-go-community");
         const btnProfileGoSettings = $("btn-profile-go-settings");
+        const btnPublicProfileBack = $("btn-public-profile-back");
+        const btnOpenAvatarPicker = $("btn-open-avatar-picker");
+        const btnCloseAvatarPicker = $("btn-close-avatar-picker");
+        const avatarPickerModal = $("avatar-picker-modal");
 
         const btnOpenNotif = $("btn-open-notif");
         const btnCloseNotif = $("btn-close-notif");
         const notifModal = $("notif-modal");
+        const btnOpenFriendsRequests = $("btn-open-friends-requests");
+        const btnCloseFriendsRequests = $("btn-close-friends-requests");
+        const friendsRequestsModal = $("friends-requests-modal");
 
         const openProfileView = () => {
             $$(".nav-item").forEach(n => n.classList.remove("active"));
@@ -11704,10 +11855,23 @@
         };
         window.openNotificationsModal = openNotifModal;
 
+        const openFriendsRequestsModal = () => {
+            if (!friendsRequestsModal) return;
+            friendsRequestsModal.style.display = "flex";
+            if (typeof window.loadPendingRequests === "function") {
+                try { window.loadPendingRequests(); } catch (e) { console.error(e); }
+            }
+        };
+
         if (btnOpenProfile) btnOpenProfile.addEventListener("click", openProfileView);
         if (btnOpenProfileMobile) btnOpenProfileMobile.addEventListener("click", openProfileView);
         if (btnOpenProfileDashboardHero) btnOpenProfileDashboardHero.addEventListener("click", openProfileView);
         if (btnOpenFriendsModal) btnOpenFriendsModal.addEventListener("click", openProfileView);
+        if (btnOpenFriendsRequests) btnOpenFriendsRequests.addEventListener("click", openFriendsRequestsModal);
+        if (btnCloseFriendsRequests) btnCloseFriendsRequests.addEventListener("click", () => { if (friendsRequestsModal) friendsRequestsModal.style.display = "none"; });
+        if (friendsRequestsModal) friendsRequestsModal.addEventListener("click", (event) => {
+            if (event.target === friendsRequestsModal) friendsRequestsModal.style.display = "none";
+        });
         if (btnProfileBack) btnProfileBack.addEventListener("click", () => $("nav-dashboard").click());
         if (btnProfileGoHistory) btnProfileGoHistory.addEventListener("click", () => $("nav-historial").click());
         if (btnProfileGoCommunity) {
@@ -11717,6 +11881,22 @@
             });
         }
         if (btnProfileGoSettings) btnProfileGoSettings.addEventListener("click", () => $("nav-ajustes").click());
+        if (btnPublicProfileBack) btnPublicProfileBack.addEventListener("click", () => $("nav-comunidad").click());
+        const closeAvatarPickerModal = () => {
+            if (!avatarPickerModal) return;
+            avatarPickerModal.classList.remove("active");
+            avatarPickerModal.setAttribute("aria-hidden", "true");
+        };
+        if (btnOpenAvatarPicker) btnOpenAvatarPicker.addEventListener("click", () => {
+            renderProfileAvatarPicker();
+            if (!avatarPickerModal) return;
+            avatarPickerModal.classList.add("active");
+            avatarPickerModal.setAttribute("aria-hidden", "false");
+        });
+        if (btnCloseAvatarPicker) btnCloseAvatarPicker.addEventListener("click", closeAvatarPickerModal);
+        if (avatarPickerModal) avatarPickerModal.addEventListener("click", (event) => {
+            if (event.target === avatarPickerModal) closeAvatarPickerModal();
+        });
 
         const btnPerformanceSummary = $("card-performance-summary");
         if (btnPerformanceSummary) {
@@ -11964,6 +12144,16 @@
         if (btnAdminUpload) {
             btnAdminUpload.addEventListener("click", () => uploadAdminCodes());
         }
+
+        ["admin-users-filter", "admin-users-sort"].forEach((id) => {
+            const control = $(id);
+            if (!control) return;
+            control.addEventListener("change", () => {
+                State.adminUserFilter = $("admin-users-filter")?.value || "all";
+                State.adminUserSort = $("admin-users-sort")?.value || "newest";
+                renderAdminUsers();
+            });
+        });
 
         const btnGlobalPremiumSave = $("btn-global-premium-save");
         if (btnGlobalPremiumSave) {
@@ -12380,6 +12570,138 @@
                 return Boolean((entry && entry.isPremium) || fallback);
             };
 
+            const getFriendshipRelation = async (targetUid) => {
+                const currentUid = window.FB.auth.currentUser?.uid;
+                if (!targetUid || !currentUid || targetUid === currentUid) return { status: "self" };
+                if (communityFriendIds.has(targetUid)) return { status: "friends" };
+                if (!window.FB.getDocs) return { status: "none" };
+
+                const requests = window.FB.collection(window.FB.db, "friendRequests");
+                const outgoingQuery = window.FB.query(
+                    requests,
+                    window.FB.where("fromId", "==", currentUid),
+                    window.FB.where("status", "==", "pending")
+                );
+                const incomingQuery = window.FB.query(
+                    requests,
+                    window.FB.where("toId", "==", currentUid),
+                    window.FB.where("status", "==", "pending")
+                );
+                try {
+                    const [outgoing, incoming] = await Promise.all([
+                        window.FB.getDocs(outgoingQuery),
+                        window.FB.getDocs(incomingQuery)
+                    ]);
+                    const sent = outgoing.docs.find((docSnap) => (docSnap.data() || {}).toId === targetUid);
+                    if (sent) return { status: "sent", requestId: sent.id };
+                    const received = incoming.docs.find((docSnap) => (docSnap.data() || {}).fromId === targetUid);
+                    if (received) return { status: "received", requestId: received.id };
+                } catch (err) {
+                    console.warn("No se pudo consultar la relación de amistad:", err);
+                }
+                return { status: "none" };
+            };
+
+            const sendFriendRequestFromProfile = async (entry) => {
+                const currentUid = window.FB.auth.currentUser?.uid;
+                if (!entry || !currentUid || entry.id === currentUid) return;
+                await window.FB.addDoc(window.FB.collection(window.FB.db, "friendRequests"), {
+                    fromId: currentUid,
+                    fromName: State.userName,
+                    fromPremium: isPremiumActive(),
+                    toId: entry.id,
+                    toName: entry.username,
+                    status: "pending",
+                    timestamp: new Date()
+                });
+            };
+
+            const renderCommunityProfile = () => {
+                const uid = State.communityProfileUid;
+                if (!uid) return;
+                const entry = getLeaderboardEntryById(uid);
+                const action = $("public-profile-friend-action");
+                if (!entry) return;
+                const currentUid = window.FB.auth.currentUser?.uid;
+                const isMe = entry.id === currentUid;
+                const relation = State.communityProfileRelation;
+                const profileAvatar = $("public-profile-avatar");
+                if (profileAvatar) renderProfileAvatar(profileAvatar, entry.avatarId, getLeaderboardInitials(entry.username));
+                const name = $("public-profile-name");
+                const meta = $("public-profile-meta");
+                const premium = $("public-profile-premium");
+                const flame = $("public-profile-flame");
+                const score = $("public-profile-score");
+                const specialty = $("public-profile-specialty");
+                const university = $("public-profile-university");
+                if (name) name.innerHTML = renderCommunityName(entry.username, entry.isPremium, isMe ? '<span class="lb-badge">Tú</span>' : '');
+                if (meta) meta.textContent = entry.isPremium ? "Miembro Premium de ENARMax" : "Miembro de ENARMax";
+                if (premium) premium.textContent = entry.isPremium ? "Premium" : "Demo";
+                if (flame) flame.textContent = `🔥 ${entry.flame || 0} días de racha`;
+                if (score) score.textContent = getPublicScoreLabel(entry, isMe).replace("Promedio general: ", "");
+                if (specialty) specialty.textContent = entry.specialty || "Aún sin decidir";
+                if (university) university.textContent = entry.university || "No especificada";
+                if (!action) return;
+
+                if (isMe) {
+                    action.innerHTML = '<button class="btn-primary" type="button" data-public-profile-own>Editar mi perfil</button>';
+                } else if (!relation) {
+                    action.innerHTML = '<span class="public-profile-loading">Comprobando amistad...</span>';
+                } else if (relation.status === "friends") {
+                    action.innerHTML = `<span class="public-profile-friend-state">✓ Ya son amigos</span><button class="btn-secondary" type="button" data-public-profile-challenge="${escapeHtml(entry.id)}">⚔️ Retar</button>`;
+                } else if (relation.status === "sent") {
+                    action.innerHTML = '<span class="public-profile-friend-state">Solicitud enviada</span>';
+                } else if (relation.status === "received") {
+                    action.innerHTML = `<button class="btn-primary" type="button" data-public-profile-accept="${escapeHtml(relation.requestId)}">Aceptar solicitud</button><button class="btn-secondary" type="button" data-public-profile-reject="${escapeHtml(relation.requestId)}">Rechazar</button>`;
+                } else {
+                    action.innerHTML = '<button class="btn-primary" type="button" data-public-profile-add>＋ Añadir amigo</button>';
+                }
+
+                action.querySelector("[data-public-profile-own]")?.addEventListener("click", () => showView("view-profile"));
+                action.querySelector("[data-public-profile-challenge]")?.addEventListener("click", () => window.quickChallenge(entry.id));
+                action.querySelector("[data-public-profile-add]")?.addEventListener("click", async (event) => {
+                    const button = event.currentTarget;
+                    button.disabled = true;
+                    button.textContent = "Enviando...";
+                    try {
+                        await sendFriendRequestFromProfile(entry);
+                        State.communityProfileRelation = { status: "sent" };
+                        renderCommunityProfile();
+                        showNotification("Solicitud de amistad enviada.", "success");
+                    } catch (err) {
+                        button.disabled = false;
+                        button.textContent = "＋ Añadir amigo";
+                        showNotification("No se pudo enviar la solicitud.", "error");
+                    }
+                });
+                action.querySelector("[data-public-profile-accept]")?.addEventListener("click", async (event) => {
+                    await window.FB.updateDoc(window.FB.doc(window.FB.db, "friendRequests", event.currentTarget.dataset.publicProfileAccept), { status: "accepted" });
+                    State.communityProfileRelation = { status: "friends" };
+                    renderCommunityProfile();
+                    void fetchFriendsAndLeaderboard();
+                    showNotification("¡Solicitud aceptada!", "success");
+                });
+                action.querySelector("[data-public-profile-reject]")?.addEventListener("click", async (event) => {
+                    await window.FB.updateDoc(window.FB.doc(window.FB.db, "friendRequests", event.currentTarget.dataset.publicProfileReject), { status: "rejected" });
+                    State.communityProfileRelation = { status: "none" };
+                    renderCommunityProfile();
+                });
+            };
+
+            window.openCommunityProfile = (uid) => {
+                const entry = getLeaderboardEntryById(uid);
+                if (!entry) return;
+                State.communityProfileUid = uid;
+                State.communityProfileRelation = null;
+                renderCommunityProfile();
+                showView("view-public-profile");
+                void getFriendshipRelation(uid).then((relation) => {
+                    if (State.communityProfileUid !== uid) return;
+                    State.communityProfileRelation = relation;
+                    renderCommunityProfile();
+                });
+            };
+
             const syncRankingFilterButtons = () => {
                 const activeScope = State.communityRankingMode === "friends" ? "friends" : "general";
                 $$(".ranking-filter-btn").forEach(btn => {
@@ -12412,18 +12734,23 @@
                             return `
                             <div class="lb-item" style="${bgStyle}">
                                 <div class="lb-rank" style="min-width:30px; font-size:16px;">${getLeaderboardRankMarkup(rank)}</div>
-                                <div class="lb-avatar" style="width:36px; height:36px; min-width:36px; flex-shrink:0; font-size:12px;">${getLeaderboardInitials(entry.username)}</div>
-                                <div class="lb-info" style="flex:1; min-width:0; padding: 0 8px;">
-                                    <div class="lb-name community-name-row" style="font-size:13px; font-weight:700;">${renderCommunityName(entry.username, entry.isPremium, isMe ? '<span class="lb-badge" style="font-size:9px; vertical-align:middle;">Tú</span>' : '')}</div>
-                                    <div class="lb-score">${getPublicScoreLabel(entry, isMe)}</div>
-                                    ${badgeSpec ? `<div style="margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:flex;">${badgeSpec}</div>` : ''}
-                                </div>
+                                <button class="lb-profile-trigger" type="button" data-community-profile="${escapeHtml(entry.id)}" aria-label="Ver perfil de ${escapeHtml(entry.username)}">
+                                    <div class="lb-avatar ${entry.avatarId ? "has-profile-avatar" : ""}" style="width:36px; height:36px; min-width:36px; flex-shrink:0; font-size:12px;">${getProfileAvatarMarkup(entry.avatarId, getLeaderboardInitials(entry.username), "community-avatar-image")}</div>
+                                    <div class="lb-info" style="flex:1; min-width:0; padding: 0 8px;">
+                                        <div class="lb-name community-name-row" style="font-size:13px; font-weight:700;">${renderCommunityName(entry.username, entry.isPremium, isMe ? '<span class="lb-badge" style="font-size:9px; vertical-align:middle;">Tú</span>' : '')}</div>
+                                        <div class="lb-score">${getPublicScoreLabel(entry, isMe)}</div>
+                                        ${badgeSpec ? `<div style="margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:flex;">${badgeSpec}</div>` : ''}
+                                    </div>
+                                </button>
                                 <div class="lb-actions" style="display:flex; align-items:center; gap:6px;">
                                     <div class="lb-flame" style="font-size:10px;">&#x1F525; ${entry.flame || 0}</div>
                                     ${!isMe && isFriend ? `<button class="btn-primary" onclick="window.quickChallenge('${entry.id}')" style="padding: 4px 8px; font-size: 10px; border-radius: 6px; background: var(--accent-orange); border:none; white-space:nowrap;">&#x2694;&#xFE0F; Retar</button>` : ''}
                                 </div>
                             </div>`;
                         }).join("");
+                        lbList.querySelectorAll("[data-community-profile]").forEach((button) => {
+                            button.addEventListener("click", () => window.openCommunityProfile(button.dataset.communityProfile));
+                        });
                     }
                 }
 
@@ -12432,7 +12759,8 @@
                     uid: entry.id,
                     username: entry.username,
                     score: entry.score,
-                    isPremium: entry.isPremium
+                    isPremium: entry.isPremium,
+                    avatarId: entry.avatarId
                 }));
 
                 const flList = $("friends-list");
@@ -12443,8 +12771,8 @@
                         flList.innerHTML = friendsEntries.map(entry => `
                         <div style="background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); border: 1px solid var(--border); padding: 10px 12px;">
                             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                                <div style="width: 32px; height: 32px; min-width:32px; border-radius: 50%; background: var(--accent-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; flex-shrink:0;">
-                                    ${getLeaderboardInitials(entry.username)}</div>
+                                <div class="community-friend-avatar ${entry.avatarId ? "has-profile-avatar" : ""}">
+                                    ${getProfileAvatarMarkup(entry.avatarId, getLeaderboardInitials(entry.username), "community-avatar-image")}</div>
                                 <div style="min-width:0; flex:1;">
                                     <div class="community-name-row" style="font-size: 13px; font-weight: 600;">${renderCommunityName(entry.username, entry.isPremium)}</div>
                                     <div style="font-size: 11px; color: var(--text-muted);">${getPublicScoreLabel(entry, false)}</div>
@@ -12454,6 +12782,7 @@
                         </div>`).join("");
                     }
                 }
+                renderCommunityProfile();
             };
 
             const bindRankingFilterButtons = () => {
@@ -12484,6 +12813,7 @@
                             username: String(data.username || "Aspirante"),
                             specialty: String(data.specialty || ""),
                             university: String(data.university || ""),
+                            avatarId: normalizeProfileAvatar(data.avatarId),
                             isScorePublic: data.isScorePublic !== false,
                             isPremium: Boolean(data.isPremium),
                             score: Number(data.score) || 0,
@@ -12575,9 +12905,12 @@
 
                                 searchResults.innerHTML = `
                                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                                        <div>
-                                            <div class="community-name-row" style="font-weight:bold">${renderCommunityName(foundUser.username, Boolean(foundUser.isPremium))}</div>
-                                            <div style="font-size:12px; color:var(--text-muted)">${foundUser.isScorePublic === false ? "Promedio general oculto" : `Promedio: ${formatLeaderboardScore(foundUser.score)}%`}</div>
+                                        <div style="display:flex; align-items:center; gap:10px; min-width:0;">
+                                            <div class="community-friend-avatar ${normalizeProfileAvatar(foundUser.avatarId) ? "has-profile-avatar" : ""}">${getProfileAvatarMarkup(foundUser.avatarId, getLeaderboardInitials(foundUser.username), "community-avatar-image")}</div>
+                                            <div style="min-width:0;">
+                                                <div class="community-name-row" style="font-weight:bold">${renderCommunityName(foundUser.username, Boolean(foundUser.isPremium))}</div>
+                                                <div style="font-size:12px; color:var(--text-muted)">${foundUser.isScorePublic === false ? "Promedio general oculto" : `Promedio: ${formatLeaderboardScore(foundUser.score)}%`}</div>
+                                            </div>
                                         </div>
                                         <button class="btn-primary btn-community-add" data-id="${foundId}" data-name="${foundUser.username}" style="padding: 8px 12px; font-size: 13px;">Añadir</button>
                                     </div>
@@ -12663,29 +12996,45 @@
                 const renderMergedNotifications = () => {
                     const profileListEl = $("pending-requests-list");
                     const modalListEl = $("notif-list-container");
+                    const friendsListEl = $("friends-requests-list");
                     const badgeMain = $("notif-badge-main");
+                    const badgeFriends = $("friends-badge-main");
+                    const isDesktopLayout = window.matchMedia("(min-width: 769px)").matches;
                     const communityUnread = pendingAnnouncements.filter(item => Number(item.createdAt || 0) > getCommunityLastSeenTs()).length;
-                    const unreadTotal = pendingFriends.length + pendingChallenges.length + communityUnread;
+                    const generalUnread = pendingChallenges.length + communityUnread;
+                    const unreadTotal = pendingFriends.length + generalUnread;
                     const visibleTotal = pendingFriends.length + pendingChallenges.length + pendingAnnouncements.length;
 
                     if (visibleTotal === 0) {
                         const emptyMsg = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; padding: 20px;">No tienes notificaciones nuevas.</div>';
                         if (profileListEl) profileListEl.innerHTML = emptyMsg;
                         if (modalListEl) modalListEl.innerHTML = emptyMsg;
+                        if (friendsListEl) friendsListEl.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; padding: 20px;">No tienes solicitudes pendientes.</div>';
                         if (badgeMain) badgeMain.style.display = "none";
+                        if (badgeFriends) badgeFriends.style.display = "none";
                         return;
                     }
 
                     if (badgeMain) {
-                        if (unreadTotal > 0) {
+                        const mainBadgeTotal = isDesktopLayout ? generalUnread : unreadTotal;
+                        if (mainBadgeTotal > 0) {
                             badgeMain.style.display = "grid";
-                            badgeMain.textContent = unreadTotal;
+                            badgeMain.textContent = mainBadgeTotal;
                         } else {
                             badgeMain.style.display = "none";
                         }
                     }
+                    if (badgeFriends) {
+                        if (pendingFriends.length > 0) {
+                            badgeFriends.style.display = "grid";
+                            badgeFriends.textContent = pendingFriends.length;
+                        } else {
+                            badgeFriends.style.display = "none";
+                        }
+                    }
 
                     let html = "";
+                    let friendsHtml = "";
 
                     pendingAnnouncements.forEach(data => {
                         const ts = Number(data.createdAt || 0);
@@ -12706,11 +13055,15 @@
 
                     // Render friends
                     pendingFriends.forEach(data => {
-                        html += `
+                        const requester = getLeaderboardEntryById(data.fromId);
+                        friendsHtml += `
                         <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:12px; border-radius:12px; border: 1px solid var(--border); margin-bottom: 8px;">
-                            <div style="display: flex; flex-direction: column;">
-                                <span class="community-name-row" style="font-weight:bold; font-size:14px; color: var(--text-primary);">${renderCommunityName(data.fromName, getCommunityPremiumState(data.fromId, data.fromPremium === true))}</span>
-                                <span style="font-size:11px; color: var(--text-muted);">Te envi\u00f3 una solicitud de amistad</span>
+                            <div style="display:flex; align-items:center; gap:9px; min-width:0;">
+                                <div class="community-friend-avatar ${requester?.avatarId ? "has-profile-avatar" : ""}">${getProfileAvatarMarkup(requester?.avatarId, getLeaderboardInitials(data.fromName), "community-avatar-image")}</div>
+                                <div style="display:flex; flex-direction:column; min-width:0;">
+                                    <span class="community-name-row" style="font-weight:bold; font-size:14px; color: var(--text-primary);">${renderCommunityName(data.fromName, getCommunityPremiumState(data.fromId, data.fromPremium === true))}</span>
+                                    <span style="font-size:11px; color: var(--text-muted);">Te envi\u00f3 una solicitud de amistad</span>
+                                </div>
                             </div>
                             <div style="display:flex; gap:8px;">
                                 <button class="btn-primary btn-accept-friend" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--accent-green); border-radius: 6px;">Aceptar</button>
@@ -12721,11 +13074,12 @@
 
                     // Render challenges - mejor diseño para aceptar
                     pendingChallenges.forEach(data => {
+                        const challenger = getLeaderboardEntryById(data.challengerId);
                         html += `
                         <div style="background:rgba(243,122,32,0.08); padding:14px; border-radius:14px; border: 1px solid rgba(243,122,32,0.3); margin-bottom: 8px;">
                             <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-                                <span style="font-size:24px;">&#x2694;&#xFE0F;</span>
-                                <div>
+                                <div class="community-friend-avatar ${challenger?.avatarId ? "has-profile-avatar" : ""}">${getProfileAvatarMarkup(challenger?.avatarId, getLeaderboardInitials(data.challengerName), "community-avatar-image")}</div>
+                                <div style="min-width:0;">
                                     <div class="community-name-row" style="font-weight:bold; font-size:14px; color: var(--accent-orange);">Reto de ${renderCommunityName(data.challengerName, getCommunityPremiumState(data.challengerId, data.challengerPremium === true))}</div>
                                     <div style="font-size:11px; color: var(--text-muted);">${data.specialty} &bull; ${data.numQuestions} preguntas</div>
                                 </div>
@@ -12734,8 +13088,12 @@
                         </div>`;
                     });
 
-                    if (profileListEl) profileListEl.innerHTML = html;
-                    if (modalListEl) modalListEl.innerHTML = html;
+                    const noGeneralNotifications = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; padding: 20px;">No tienes notificaciones nuevas.</div>';
+                    const noFriendRequests = '<div style="text-align: center; color: var(--text-muted); font-size: 13px; padding: 20px;">No tienes solicitudes pendientes.</div>';
+                    const allNotifications = `${html}${friendsHtml}` || noGeneralNotifications;
+                    if (profileListEl) profileListEl.innerHTML = allNotifications;
+                    if (modalListEl) modalListEl.innerHTML = isDesktopLayout ? (html || noGeneralNotifications) : allNotifications;
+                    if (friendsListEl) friendsListEl.innerHTML = friendsHtml || noFriendRequests;
 
                     const attachEvents = (container) => {
                         if (!container) return;
@@ -12773,10 +13131,12 @@
 
                     attachEvents(profileListEl);
                     attachEvents(modalListEl);
+                    attachEvents(friendsListEl);
                 };
 
                 // Exponer la función para que el early-return pueda re-renderizar
                 _renderMergedNotifications = renderMergedNotifications;
+                window.matchMedia("(min-width: 769px)").addEventListener?.("change", renderMergedNotifications);
 
                 // Primer snapshot: marcar como carga inicial para no disparar banners
                 let firstLoadFriends = true;
@@ -13432,15 +13792,19 @@
             try {
                 showNotification("Limpiando notificaciones...", "info");
 
-                // Query by a single field to avoid composite-index dependency.
-                const qReqs = window.FB.query(
-                    window.FB.collection(window.FB.db, "friendRequests"),
-                    window.FB.where("toId", "==", uid)
-                );
-                const snapReqs = await window.FB.getDocs(qReqs);
-                const p1 = snapReqs.docs
-                    .filter(d => (d.data() || {}).status === "pending")
-                    .map(d => window.FB.deleteDoc(d.ref));
+                // En escritorio las solicitudes viven en su propio icono: no las borres desde la campana.
+                const isDesktopLayout = window.matchMedia("(min-width: 769px)").matches;
+                let p1 = [];
+                if (!isDesktopLayout) {
+                    const qReqs = window.FB.query(
+                        window.FB.collection(window.FB.db, "friendRequests"),
+                        window.FB.where("toId", "==", uid)
+                    );
+                    const snapReqs = await window.FB.getDocs(qReqs);
+                    p1 = snapReqs.docs
+                        .filter(d => (d.data() || {}).status === "pending")
+                        .map(d => window.FB.deleteDoc(d.ref));
+                }
 
                 // Query by participantIds only, then clear my pending challenge notifications.
                 const qChal = window.FB.query(
@@ -13791,7 +14155,7 @@
                     window.setTimeout(() => startupScreen.remove(), 300);
                 };
                 // Si la red no permite resolver Firebase, la app no debe quedarse bloqueada indefinidamente.
-                const startupSafetyTimeout = window.setTimeout(dismissStartupScreen, 8000);
+                const startupSafetyTimeout = window.setTimeout(dismissStartupScreen, 2500);
 
                 const showAuthFromLanding = (options = {}) => {
                     if (landingPage) landingPage.classList.add("hidden");
@@ -14219,12 +14583,7 @@
                     const appLayout = document.querySelector(".app-layout");
                     if (appLayout) appLayout.style.display = "flex";
 
-                    const nameParts = cleanName.trim().split(/\s+/);
-                    const initials = nameParts.length > 1
-                        ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
-                        : nameParts[0].substring(0, 2).toUpperCase();
-
-                    $$(".user-avatar").forEach(el => renderAvatarInitials(el, initials));
+                    applyCurrentProfileAvatar();
 
                     const statusEl = document.querySelector(".user-status");
                     if (statusEl) statusEl.textContent = "EN LÍNEA";
@@ -14310,6 +14669,9 @@
                                 || (user.email ? user.email.split("@")[0] : "")
                                 || State.userName;
                             syncAuthenticatedUI(fallbackDisplayName);
+                            // La interfaz básica ya está lista; no esperes lecturas secundarias de Firestore
+                            // (historial, perfil, wallet, etc.) para quitar la pantalla de inicio.
+                            dismissStartupScreen();
                             State.currentUid = user.uid;
                             void syncUserDirectory(user);
                             // Crea la referencia única al registrarse; también cubre cuentas antiguas al iniciar sesión.
@@ -14359,6 +14721,7 @@
                                     if (data.university !== undefined) { State.userUniversity = data.university; localStorage.setItem("enarm_university", State.userUniversity); if ($("profile-university")) $("profile-university").value = State.userUniversity; }
                                     if (data.phone !== undefined) { State.userPhone = normalizePhoneInput(data.phone); localStorage.setItem("enarm_phone", State.userPhone); if ($("profile-phone")) $("profile-phone").value = State.userPhone; }
                                     if (data.targetYear !== undefined) { State.userTargetYear = String(data.targetYear || ""); localStorage.setItem("enarm_target_year", State.userTargetYear); if ($("profile-target-year")) $("profile-target-year").value = State.userTargetYear; }
+                                    if (data.avatarId !== undefined) { State.userAvatar = normalizeProfileAvatar(data.avatarId); localStorage.setItem(PROFILE_AVATAR_STORAGE_KEY, State.userAvatar); applyCurrentProfileAvatar(); }
                                     if (data.isScorePublic !== undefined) { State.isScorePublic = data.isScorePublic !== false; localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0"); if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic; }
                                     if (typeof data.referralCode === "string" && data.referralCode.trim() && !State.referralCode) { State.referralCode = normalizeReferralCode(data.referralCode); updateReferralUI(); }
 
@@ -14527,6 +14890,7 @@
                 const authUniversity = $("auth-university");
                 const authPhone = $("auth-phone");
                 const authTargetYear = $("auth-target-year");
+                const authAvatarPicker = $("auth-avatar-picker");
                 const groupUsername = $("group-username");
                 const authRegisterFields = $$(".auth-register-field");
                 const tabLogin = $("tab-login");
@@ -14539,6 +14903,23 @@
 
                 let isRegisterMode = false;
                 let googleProfileCompletion = false;
+                let registrationAvatarId = "";
+
+                const renderAuthAvatarPicker = () => {
+                    renderAvatarPicker(
+                        authAvatarPicker,
+                        registrationAvatarId,
+                        getUserInitials(authUsername?.value || "AS"),
+                        (avatarId) => {
+                            registrationAvatarId = avatarId;
+                            renderAuthAvatarPicker();
+                        },
+                        "auth-avatar-picker"
+                    );
+                };
+                if (authUsername) authUsername.addEventListener("input", () => {
+                    if (!registrationAvatarId) renderAuthAvatarPicker();
+                });
 
                 const setAuthMode = (mode) => {
                     isRegisterMode = mode;
@@ -14561,6 +14942,7 @@
                     if (isRegisterMode) {
                         if (groupUsername) groupUsername.style.display = "flex";
                         authRegisterFields.forEach(field => { field.style.display = "flex"; });
+                        renderAuthAvatarPicker();
                         requiredRegisterInputs.forEach(input => input.setAttribute("required", "true"));
                         if (authSubmitBtn) authSubmitBtn.textContent = "Crear mi cuenta";
 
@@ -14614,7 +14996,8 @@
                         specialty: authSpecialty ? authSpecialty.value.trim() : "",
                         university: authUniversity ? authUniversity.value.trim().substring(0, 80) : "",
                         phone: normalizePhoneInput(authPhone ? authPhone.value : ""),
-                        targetYear: authTargetYear ? authTargetYear.value : ""
+                        targetYear: authTargetYear ? authTargetYear.value : "",
+                        avatarId: normalizeProfileAvatar(registrationAvatarId)
                     } : null;
 
                     if (isRegisterMode) {
@@ -14638,6 +15021,7 @@
                                 State.userUniversity = registrationProfile.university;
                                 State.userPhone = registrationProfile.phone;
                                 State.userTargetYear = registrationProfile.targetYear;
+                                State.userAvatar = registrationProfile.avatarId;
                                 await ensureReferralWallet(googleUser.uid, userName).catch(handleReferralWalletError);
                                 bindReferralWalletListener(googleUser.uid);
                                 saveGlobalStats();
@@ -14657,6 +15041,7 @@
                         if (submitBtn) submitBtn.textContent = "Conectando...";
 
                         if (isRegisterMode) {
+                            State.userAvatar = registrationProfile.avatarId;
                             window.FB.createUserWithEmailAndPassword(window.FB.auth, email, password)
                                 .then(async (userCred) => {
                                     await window.FB.updateProfile(userCred.user, { displayName: userName });
@@ -14725,6 +15110,11 @@
                                     State.userTargetYear = String(data.targetYear || "");
                                     localStorage.setItem("enarm_target_year", State.userTargetYear);
                                     if ($("profile-target-year")) $("profile-target-year").value = State.userTargetYear;
+                                }
+                                if (data.avatarId !== undefined) {
+                                    State.userAvatar = normalizeProfileAvatar(data.avatarId);
+                                    localStorage.setItem(PROFILE_AVATAR_STORAGE_KEY, State.userAvatar);
+                                    applyCurrentProfileAvatar();
                                 }
                                 if (typeof data.referralCode === "string" && data.referralCode.trim() && !State.referralCode) {
                                     State.referralCode = normalizeReferralCode(data.referralCode);

@@ -77,6 +77,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js">
+    <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js">
+    <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -579,6 +583,12 @@
                         style="width: 100%;">
                 </div>
 
+                <div class="input-group auth-register-field auth-avatar-field" id="group-auth-avatar" style="margin-top: 10px; display: none;">
+                    <label>Elige tu avatar</label>
+                    <p class="auth-avatar-note">Podrás cambiarlo después desde tu perfil.</p>
+                    <div id="auth-avatar-picker" class="auth-avatar-picker" role="group" aria-label="Avatares disponibles para tu cuenta"></div>
+                </div>
+
                 <div class="input-group auth-register-field" id="group-auth-specialty" style="margin-top: 10px; display: none;">
                     <label>Especialidad objetivo</label>
                     <select id="auth-specialty" class="text-input" style="width: 100%; cursor: pointer;"></select>
@@ -835,6 +845,13 @@
                                     d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
                             </svg>
                             <span id="notif-badge-main" class="notif-badge" aria-hidden="true"></span>
+                        </button>
+                        <button id="btn-open-friends-requests" class="dashboard-hero-bell dashboard-friends-button" type="button"
+                            aria-label="Abrir solicitudes de amistad">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4Zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6Zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4Z" />
+                            </svg>
+                            <span id="friends-badge-main" class="notif-badge" aria-hidden="true"></span>
                         </button>
                     </div>
 
@@ -1694,6 +1711,32 @@
                 </div>
             </div>
 
+            <div id="view-public-profile" class="view">
+                <div class="public-profile-page">
+                    <button class="btn-ghost public-profile-back" id="btn-public-profile-back" type="button">&larr; Volver a comunidad</button>
+                    <section class="panel public-profile-card">
+                        <div class="public-profile-hero">
+                            <div class="public-profile-avatar" id="public-profile-avatar">AS</div>
+                            <div class="public-profile-copy">
+                                <span class="profile-kicker">PERFIL DE LA COMUNIDAD</span>
+                                <h1 id="public-profile-name">Aspirante</h1>
+                                <p id="public-profile-meta">Miembro de ENARMax</p>
+                                <div class="public-profile-pills">
+                                    <span class="profile-pill" id="public-profile-premium">Demo</span>
+                                    <span class="profile-pill" id="public-profile-flame">0 días de racha</span>
+                                </div>
+                            </div>
+                            <div class="public-profile-action" id="public-profile-friend-action"></div>
+                        </div>
+                        <div class="public-profile-stats">
+                            <div><span>Promedio general</span><strong id="public-profile-score">—</strong></div>
+                            <div><span>Especialidad objetivo</span><strong id="public-profile-specialty">Aún sin decidir</strong></div>
+                            <div><span>Universidad</span><strong id="public-profile-university">No especificada</strong></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
             <div id="view-mas" class="view">
                 <div class="panel">
                     <h2 class="panel-title"><span class="title-icon green-text">&#x1F4A1;</span> Más Funciones e Integraciones
@@ -1988,14 +2031,17 @@
                             </div>
                         </div>
 
-                        <div class="panel settings-panel" id="admin-manual-payments-panel" style="border-top-color: var(--accent-green); display: none;">
+                        <div class="panel settings-panel manual-payment-inbox-panel" id="admin-manual-payments-panel" style="border-top-color: var(--accent-green); display: none;">
                             <div class="profile-panel-head">
                                 <div>
-                                    <h2 class="panel-title"><span class="title-icon green-text">&#128176;</span> Transferencias Premium</h2>
-                                    <p class="panel-subtitle">Compara la referencia con tu movimiento bancario y aprueba solo cuando el dinero ya se refleje.</p>
+                                    <div class="manual-payment-inbox-heading">
+                                        <h2 class="panel-title"><span class="title-icon green-text">&#128176;</span> Pagos Premium por validar</h2>
+                                        <span class="manual-payment-count" id="admin-manual-payments-count">0</span>
+                                    </div>
+                                    <p class="panel-subtitle">Aquí aparecen únicamente quienes ya avisaron que hicieron su pago. Compara la referencia y toma una decisión.</p>
                                 </div>
                             </div>
-                            <div id="admin-manual-payments-list" class="withdrawal-admin-list">
+                            <div id="admin-manual-payments-list" class="withdrawal-admin-list manual-payment-inbox-list">
                                 <div class="list-item empty-history">
                                     <p style="color:var(--text-muted); padding: 20px;">Cargando avisos de transferencia...</p>
                                 </div>
@@ -2088,8 +2134,29 @@
                         <button class="admin-section-tab active" type="button" role="tab" aria-selected="true">Usuarios y accesos</button>
                         <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-ratings')">Valoraciones</button>
                     </div>
-                    <div class="panel settings-panel admin-users-page-panel" id="admin-users-panel" style="border-top-color: var(--accent-blue); display: none;">
-                        <p class="panel-subtitle">Usuarios ordenados del más reciente al más antiguo. El acceso se controla desde el interruptor.</p>
+                        <div class="panel settings-panel admin-users-page-panel" id="admin-users-panel" style="border-top-color: var(--accent-blue); display: none;">
+                        <div class="admin-users-toolbar">
+                            <p class="panel-subtitle" id="admin-users-summary">Usuarios ordenados del más reciente al más antiguo. El acceso se controla desde el interruptor.</p>
+                            <div class="admin-users-controls" aria-label="Filtros de usuarios">
+                                <label>
+                                    <span>Acceso</span>
+                                    <select id="admin-users-filter" class="text-input">
+                                        <option value="all">Todos</option>
+                                        <option value="premium">Solo Premium</option>
+                                        <option value="free">Solo Gratis</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span>Orden</span>
+                                    <select id="admin-users-sort" class="text-input">
+                                        <option value="newest">Más recientes</option>
+                                        <option value="oldest">Más antiguos</option>
+                                        <option value="name-asc">Nombre: A–Z</option>
+                                        <option value="name-desc">Nombre: Z–A</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
                         <div id="admin-users-list" class="withdrawal-admin-list">
                             <div class="list-item empty-history">
                                 <p style="color:var(--text-muted); padding: 20px;">Cargando usuarios...</p>
@@ -2932,7 +2999,12 @@
                     <section class="profile-hero">
                         <button class="btn-ghost profile-back-btn" id="btn-profile-back" type="button">&#x2190; Volver al inicio</button>
                         <div class="profile-hero-body">
-                            <div class="profile-hero-avatar" id="profile-hero-avatar">AS</div>
+                            <div class="profile-hero-avatar-wrap">
+                                <div class="profile-hero-avatar" id="profile-hero-avatar">AS</div>
+                                <button class="profile-avatar-edit-button" id="btn-open-avatar-picker" type="button" aria-label="Cambiar avatar" title="Cambiar avatar">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16.5V20h3.5L18.8 8.7l-3.5-3.5L4 16.5Zm16.7-9.7a1 1 0 0 0 0-1.4l-2.1-2.1a1 1 0 0 0-1.4 0l-1.6 1.6 3.5 3.5 1.6-1.6Z"/></svg>
+                                </button>
+                            </div>
                             <div class="profile-hero-copy">
                                 <span class="profile-kicker">Tu espacio personal</span>
                                 <h1 class="profile-hero-title" id="profile-hero-name">Aspirante</h1>
@@ -2949,29 +3021,6 @@
                                 <button class="btn-primary" id="btn-profile-go-settings" type="button">Abrir ajustes</button>
                             </div>
                         </div>
-                    </section>
-
-                    <section class="profile-stats-grid">
-                        <article class="profile-stat-card">
-                            <span class="profile-stat-label">Promedio global</span>
-                            <strong class="profile-stat-value" id="profile-stat-accuracy">0.0%</strong>
-                            <span class="profile-stat-note">Tu efectividad acumulada en preguntas respondidas.</span>
-                        </article>
-                        <article class="profile-stat-card">
-                            <span class="profile-stat-label">Preguntas respondidas</span>
-                            <strong class="profile-stat-value" id="profile-stat-answered">0</strong>
-                            <span class="profile-stat-note">Volumen total de práctica registrada en la app.</span>
-                        </article>
-                        <article class="profile-stat-card">
-                            <span class="profile-stat-label">Sesiones completadas</span>
-                            <strong class="profile-stat-value" id="profile-stat-sessions">0</strong>
-                            <span class="profile-stat-note">Simulacros o repasos que ya cerraste correctamente.</span>
-                        </article>
-                        <article class="profile-stat-card">
-                            <span class="profile-stat-label">Probabilidad por constancia</span>
-                            <strong class="profile-stat-value" id="profile-stat-probability">20.0%</strong>
-                            <span class="profile-stat-note">Estimación basada en tu racha diaria de estudio.</span>
-                        </article>
                     </section>
 
                     <section class="profile-grid">
@@ -2998,6 +3047,36 @@
                                             </svg>
                                         </button>
                                     </div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Especialidad objetivo</label>
+                                    <select id="profile-specialty" class="text-input" style="cursor: pointer;">
+                                        <option value="">Aún sin decidir</option>
+                                        <option value="Medicina Interna">Medicina Interna</option>
+                                        <option value="Cirugía General">Cirugía General</option>
+                                        <option value="Ginecología y Obstetricia">Ginecología y Obstetricia</option>
+                                        <option value="Pediatría">Pediatría</option>
+                                        <option value="Traumatología y Ortopedia">Traumatología y Ortopedia</option>
+                                        <option value="Anestesiología">Anestesiología</option>
+                                        <option value="Oftalmología">Oftalmología</option>
+                                        <option value="Otorrinolaringología">Otorrinolaringología</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Año objetivo ENARM</label>
+                                    <select id="profile-target-year" class="text-input" style="cursor: pointer;"></select>
+                                </div>
+                                <details class="profile-details profile-details--account">
+                                    <summary>Más información y privacidad <span>Ver</span></summary>
+                                    <div class="profile-details-content">
+                                <div class="input-group profile-form-span profile-avatar-field" hidden>
+                                    <div class="profile-avatar-field-head">
+                                        <div>
+                                            <label>Elige tu avatar</label>
+                                            <p>Diez doctores 3D incluidos en la app. No necesitas subir una foto ni usar almacenamiento adicional.</p>
+                                        </div>
+                                    </div>
+                                    <div class="profile-avatar-picker" id="profile-avatar-picker-legacy" role="group" aria-label="Avatares disponibles"></div>
                                 </div>
                                 <div class="input-group profile-form-span">
                                     <label>Tu UID (para soporte o administraciÃ³n)</label>
@@ -3033,9 +3112,9 @@
                                     <label>Acceso hasta</label>
                                     <input type="text" id="profile-premium-until" class="text-input" readonly value="Sin acceso activo">
                                 </div>
-                                <div class="input-group">
+                                <div class="input-group" hidden>
                                     <label>Especialidad Objetivo</label>
-                                    <select id="profile-specialty" class="text-input" style="cursor: pointer;">
+                                    <select id="profile-specialty-legacy" class="text-input" style="cursor: pointer;">
                                         <option value="">Aún sin decidir</option>
                                         <option value="Medicina Interna">Medicina Interna</option>
                                         <option value="Cirugía General">Cirugía General</option>
@@ -3055,9 +3134,9 @@
                                     <label>Telefono de contacto</label>
                                     <input type="tel" id="profile-phone" class="text-input" placeholder="10 digitos" maxlength="20" autocomplete="tel">
                                 </div>
-                                <div class="input-group">
+                                <div class="input-group" hidden>
                                     <label>Año objetivo ENARM</label>
-                                    <select id="profile-target-year" class="text-input" style="cursor: pointer;"></select>
+                                    <select id="profile-target-year-legacy" class="text-input" style="cursor: pointer;"></select>
                                 </div>
                                 <div class="input-group profile-form-span">
                                     <label>Privacidad del puntaje</label>
@@ -3072,10 +3151,12 @@
                                         </label>
                                     </div>
                                 </div>
+                                <button class="btn-secondary profile-redeem-button" id="btn-open-redeem" type="button">Canjear código</button>
+                                    </div>
+                                </details>
                             </div>
 
                             <div class="profile-action-row">
-                                <button class="btn-secondary" id="btn-open-redeem" type="button">Canjear c&oacute;digo</button>
                                 <button class="btn-primary" id="btn-save-profile" type="button">Actualizar Perfil</button>
                             </div>
                         </div>
@@ -3083,23 +3164,12 @@
                         <div class="panel profile-panel">
                             <div class="profile-panel-head">
                                 <div>
-                                    <h2 class="panel-title"><span class="title-icon blue-text">&#x1F465;</span> Red y Actividad</h2>
-                                    <p class="panel-subtitle">Gestiona colegas, revisa solicitudes y sigue el ritmo de tu preparación.</p>
+                                    <h2 class="panel-title"><span class="title-icon blue-text">&#x1F465;</span> Comunidad</h2>
+                                    <p class="panel-subtitle">Encuentra colegas y revisa tus solicitudes cuando lo necesites.</p>
                                 </div>
                             </div>
 
-                            <div class="profile-mini-grid">
-                                <div class="profile-mini-card">
-                                    <span class="profile-mini-label">Pomodoros de hoy</span>
-                                    <strong id="profile-stat-pomodoros">0</strong>
-                                </div>
-                                <div class="profile-mini-card">
-                                    <span class="profile-mini-label">Exámenes en historial</span>
-                                    <strong id="profile-stat-history">0</strong>
-                                </div>
-                            </div>
-
-                            <div class="input-group" style="margin-top: 20px;">
+                            <div class="input-group" style="margin-top: 4px;">
                                 <label>Buscar colega por usuario</label>
                                 <div class="profile-inline-search">
                                     <input type="text" id="friend-search-input" placeholder="Ej. DraSofia99" class="text-input">
@@ -3111,15 +3181,41 @@
                                 <!-- Dinámico: Resultados de búsqueda -->
                             </div>
 
+                            <details class="profile-details profile-community-details">
+                                <summary>Actividad y solicitudes <span>Ver</span></summary>
+                                <div class="profile-details-content">
+                            <div class="profile-mini-grid">
+                                <div class="profile-mini-card">
+                                    <span class="profile-mini-label">Pomodoros de hoy</span>
+                                    <strong id="profile-stat-pomodoros">0</strong>
+                                </div>
+                                <div class="profile-mini-card">
+                                    <span class="profile-mini-label">Exámenes en historial</span>
+                                    <strong id="profile-stat-history">0</strong>
+                                </div>
+                            </div>
+
                             <div class="profile-section-divider"></div>
 
                             <h3 class="profile-section-title">&#x1F514; Solicitudes Recibidas</h3>
                             <div id="pending-requests-list" class="profile-requests-list">
                                 <div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 15px;">No tienes solicitudes nuevas.</div>
                             </div>
+                                </div>
+                            </details>
                         </div>
                     </section>
 
+                </div>
+            </div>
+
+            <div class="avatar-picker-modal" id="avatar-picker-modal" role="dialog" aria-modal="true" aria-labelledby="avatar-picker-title" aria-hidden="true">
+                <div class="avatar-picker-modal-card">
+                    <button class="avatar-picker-close" id="btn-close-avatar-picker" type="button" aria-label="Cerrar selector de avatar">×</button>
+                    <span class="avatar-picker-kicker">TU IDENTIDAD</span>
+                    <h2 id="avatar-picker-title">Elige tu avatar</h2>
+                    <p>Se mostrará en tu perfil, ranking, solicitudes, retos y comunidad.</p>
+                    <div class="profile-avatar-picker" id="profile-avatar-picker" role="group" aria-label="Avatares disponibles"></div>
                 </div>
             </div>
 
@@ -3743,11 +3839,11 @@
                 <span>✓ Activación tras validar tu transferencia</span>
             </div>
             <div class="premium-contact-box redeem-transfer-intro">
-                <p class="premium-contact-title">Compra segura por transferencia</p>
+                <p class="premium-contact-title">¿Tienes dudas? Contáctanos</p>
                 <p class="premium-contact-copy">
-                    Elige tu vigencia. Te mostraremos una referencia personal única y los datos de pago antes de que confirmes nada.
+                    Escríbenos por WhatsApp o Instagram y te ayudamos a elegir el plan y completar tu pago.
                 </p>
-                <div class="premium-contact-actions" hidden>
+                <div class="premium-contact-actions">
                     <a class="premium-contact-link is-whatsapp" href="https://wa.me/message/NFAFPC752TNWP1"
                         target="_blank" rel="noopener">
                         <span class="premium-contact-icon" aria-hidden="true">
@@ -3773,13 +3869,13 @@
             </div>
             <div class="redeem-plan-grid">
                 <button class="premium-plan-cta redeem-plan-card redeem-plan-card--2026" type="button" data-plan-id="enarm_2026">
-                    <span class="redeem-plan-tag">PREPARACIÓN INTENSIVA · HASTA OCTUBRE 2026</span><strong>ENARM 2026</strong><span class="redeem-plan-card-copy">Para quien presentará el ENARM este año y necesita entrenar sin límites desde hoy.</span><span class="redeem-plan-benefits">Simulacro de 280 preguntas · Estadísticas completas · Estudio Plus</span><span class="redeem-plan-price">$399 MXN</span><span class="redeem-plan-select">Quiero preparar mi ENARM 2026 →</span>
+                    <span class="redeem-plan-tag">PREPARACIÓN INTENSIVA · HASTA OCTUBRE 2026</span><strong>ENARM 2026</strong><span class="redeem-plan-card-copy">Para quien presentará el ENARM este año y necesita entrenar sin límites desde hoy.</span><span class="redeem-plan-benefits">Simulacro de 280 preguntas · Estadísticas completas · Estudio Plus</span><span class="redeem-plan-price">$399 MXN</span><span class="redeem-plan-select">Elegir plan y pagar <b aria-hidden="true">→</b></span>
                 </button>
                 <button class="premium-plan-cta redeem-plan-card redeem-plan-card--2027" type="button" data-plan-id="enarm_2027">
-                    <span class="redeem-plan-tag">MÁS TIEMPO PARA DOMINARLO · HASTA OCTUBRE 2027</span><strong>ENARM 2027</strong><span class="redeem-plan-card-copy">Para construir un progreso sólido durante más tiempo, con todo Premium incluido.</span><span class="redeem-plan-benefits">Plan diario · Pomodoro · Refuerzo de debilidades</span><span class="redeem-plan-price">$1,999 MXN</span><span class="redeem-plan-select">Quiero preparar mi ENARM 2027 →</span>
+                    <span class="redeem-plan-tag">MÁS TIEMPO PARA DOMINARLO · HASTA OCTUBRE 2027</span><strong>ENARM 2027</strong><span class="redeem-plan-card-copy">Para construir un progreso sólido durante más tiempo, con todo Premium incluido.</span><span class="redeem-plan-benefits">Plan diario · Pomodoro · Refuerzo de debilidades</span><span class="redeem-plan-price">$1,999 MXN</span><span class="redeem-plan-select">Elegir plan y pagar <b aria-hidden="true">→</b></span>
                 </button>
                 <button class="premium-plan-cta redeem-plan-card redeem-plan-card--squad" type="button" data-plan-id="squad_2027">
-                    <span class="redeem-plan-tag">MEJOR PRECIO POR PERSONA · AHORRA $2,997</span><strong>Plan Squad 2027</strong><span class="redeem-plan-card-copy">Para estudiar con tres amigos: cuatro accesos Premium individuales hasta octubre de 2027.</span><span class="redeem-plan-benefits">4 cuentas · $1,249.75 por persona · Retos entre amigos</span><span class="redeem-plan-original-price">$7,996 MXN por 4 cuentas</span><span class="redeem-plan-price">$4,999 MXN</span><span class="redeem-plan-select">Quiero el plan para mi Squad →</span>
+                    <span class="redeem-plan-tag">MEJOR PRECIO POR PERSONA · AHORRA $2,997</span><strong>Plan Squad 2027</strong><span class="redeem-plan-card-copy">Para estudiar con tres amigos: cuatro accesos Premium individuales hasta octubre de 2027.</span><span class="redeem-plan-benefits">4 cuentas · $1,249.75 por persona · Retos entre amigos</span><span class="redeem-plan-original-price">$7,996 MXN por 4 cuentas</span><span class="redeem-plan-price">$4,999 MXN</span><span class="redeem-plan-select">Elegir plan y pagar <b aria-hidden="true">→</b></span>
                 </button>
             </div>
             <div class="redeem-confidence-strip">
@@ -3873,8 +3969,10 @@
                     </article>
                 </div>
             </div>
+            <section class="redeem-code-section" aria-labelledby="redeem-code-title">
             <div class="input-group" style="margin-bottom: 12px;">
-                <label>C&oacute;digo</label>
+                <label id="redeem-code-title">¿Ya tienes un código?</label>
+                <p class="redeem-code-help">Canjéalo aquí para activar tu acceso Premium.</p>
                 <input type="text" id="redeem-code-input" class="text-input" placeholder="ENARM-M1-XXXXXXXX">
             </div>
             <div class="input-group" style="margin-bottom: 12px;">
@@ -3897,6 +3995,7 @@
             <p style="margin-top: 10px; font-size: 11px; color: var(--text-muted); text-align: center;">
                 Los c&oacute;digos son de un solo uso.
             </p>
+            </section>
         </div>
     </div>
     <!-- MODAL BIENVENIDA PREMIUM -->
@@ -3944,6 +4043,21 @@
                 <div style="text-align: center; color: var(--text-muted); padding: 30px;">
                     Cargando notificaciones...
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── MODAL SOLICITUDES DE AMISTAD (ESCRITORIO) ──────────────── -->
+    <div class="modal-overlay" id="friends-requests-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+        <div class="modal-content notif-modal-content friends-requests-modal-content"
+            style="background: var(--bg-card); padding: 25px; border-radius: 16px; border: 1px solid var(--border); max-width: 400px; width: 90%; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+            <button id="btn-close-friends-requests"
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 20px;">✕</button>
+            <h2 style="font-size: 18px; margin-bottom: 8px; color: var(--text-primary); text-align: center;">👥 Solicitudes de amistad</h2>
+            <p class="friends-requests-modal-copy">Acepta a colegas para verlos en tu ranking de amigos y poder retarlos.</p>
+            <div id="friends-requests-list" class="notif-list-scroll" style="display: flex; flex-direction: column; gap: 12px; max-height: 400px; overflow-y: auto; padding-right: 5px;">
+                <div style="text-align: center; color: var(--text-muted); padding: 30px;">Cargando solicitudes...</div>
             </div>
         </div>
     </div>
@@ -4036,8 +4150,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, GoogleAuthProvider, getAdditionalUserInfo, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, getDocs, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, addDoc, updateDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
-        import { getAnalytics, logEvent, isSupported as isAnalyticsSupported } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
-        import { getMessaging, getToken, isSupported as isMessagingSupported, onMessage } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyA-ALVpht1Za682OUGvH6QWaudCJZYihFU",
@@ -4055,8 +4167,11 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
         const googleProvider = new GoogleAuthProvider();
-        const analyticsReady = isAnalyticsSupported()
-            .then((supported) => supported ? getAnalytics(app) : null)
+        // Analytics y notificaciones no son necesarios para mostrar la app ni restaurar la sesión.
+        // Se cargan en segundo plano para que la pantalla inicial desaparezca antes.
+        const analyticsModuleReady = import("https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js");
+        const analyticsReady = analyticsModuleReady
+            .then(async ({ getAnalytics, isSupported }) => (await isSupported()) ? getAnalytics(app) : null)
             .catch((err) => {
                 console.warn("[Analytics] No disponible o no habilitado:", err);
                 return null;
@@ -4066,12 +4181,15 @@
             if (!analytics) return;
             logEvent(analytics, name, params);
         };
-        const messagingReady = isMessagingSupported()
-            .then((supported) => supported ? getMessaging(app) : null)
+        const messagingModuleReady = import("https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging.js");
+        const messagingReady = messagingModuleReady
+            .then(async ({ getMessaging, isSupported }) => (await isSupported()) ? getMessaging(app) : null)
             .catch((err) => {
                 console.warn("[FCM] Messaging no soportado en este navegador:", err);
                 return null;
             });
+        const getToken = (...args) => messagingModuleReady.then(({ getToken: loadToken }) => loadToken(...args));
+        const onMessage = (...args) => messagingModuleReady.then(({ onMessage: listenForMessages }) => listenForMessages(...args));
 
         // Exponer Firebase al scope global de `app.js`
         window.FB = {
