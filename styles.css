@@ -5709,22 +5709,6 @@ body.guest-exam-mode .nav-dot.answered {
   flex-wrap: wrap;
 }
 
-.case-card .case-badge {
-  margin: 0;
-}
-
-.case-difficulty-badge {
-  display: inline-flex;
-  padding: 5px 9px;
-  border: 1px solid rgba(244, 197, 66, .2);
-  border-radius: 999px;
-  color: #f4c542;
-  background: rgba(244, 197, 66, .08);
-  font-size: .62rem;
-  font-weight: 850;
-  letter-spacing: .06em;
-}
-
 .case-clinical-label {
   display: flex;
   align-items: center;

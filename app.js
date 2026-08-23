@@ -7746,14 +7746,6 @@
             else break;
         }
 
-        const badge = $("case-area-badge"); if (badge) badge.textContent = (State.globalStats.bySpecialty[qFirst.specialty]?.name || TRONCAL_LABELS[qFirst.specialty] || qFirst.specialty).toUpperCase();
-        const difficultyBadge = $("case-difficulty-badge");
-        if (difficultyBadge) {
-            const difficultyLabels = { easy: "DIFICULTAD BÁSICA", medium: "DIFICULTAD MEDIA", hard: "DIFICULTAD ALTA" };
-            const bucket = normalizeDifficultyBucket(qFirst.difficulty);
-            difficultyBadge.textContent = difficultyLabels[bucket] || difficultyLabels.medium;
-            difficultyBadge.dataset.difficulty = bucket;
-        }
         const caseText = $("case-text"); if (caseText) caseText.textContent = qFirst.case;
         const reclassBtn = $("btn-reclass-case");
         const deleteBtn = $("btn-delete-case");
