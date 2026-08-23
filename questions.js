@@ -54449,6 +54449,7 @@ const QUESTIONS = [
       },
       {
         "id": "yf547qegn",
+        "removedFromApp": true,
         "question": "¿Cuál es la manifestación clínica clave presente en este caso que permite diferenciar clínicamente la deficiencia de Vitamina B12 de la deficiencia de Ácido Fólico (B9) antes de tener los niveles séricos?",
         "options": [
           "La presencia de glositis atrófica.",

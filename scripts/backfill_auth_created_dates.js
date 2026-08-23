@@ -99,7 +99,7 @@ async function backfillAllDirectories() {
     const leaderboardByUid = new Map(leaderboardSnap.docs.map((docSnap) => [docSnap.id, docSnap.data() || {}]));
     let pageToken;
     let scannedAuthUsers = 0;
-    let eligibleUsers = 0;
+    let authUsers = 0;
     let planned = 0;
     let written = 0;
     const now = new Date();
@@ -121,9 +121,8 @@ async function backfillAllDirectories() {
         pageToken = page.pageToken;
         for (const userRecord of page.users) {
             scannedAuthUsers += 1;
-            const leaderboard = leaderboardByUid.get(userRecord.uid);
-            if (!leaderboard) continue;
-            eligibleUsers += 1;
+            authUsers += 1;
+            const leaderboard = leaderboardByUid.get(userRecord.uid) || {};
             const authCreatedAt = getAuthCreatedAt(userRecord);
             if (!authCreatedAt) {
                 console.warn("Omitido: Firebase Auth no devolvió una fecha válida.", { uid: userRecord.uid });
@@ -155,7 +154,7 @@ async function backfillAllDirectories() {
     console.log("Resumen:", {
         mode: WRITE ? "ESCRITURA" : "SIMULACIÓN",
         scannedAuthUsers,
-        eligibleUsers,
+        authUsers,
         planned,
         written
     });

@@ -1,4 +1,5 @@
 ﻿const { onDocumentCreated } = require("firebase-functions/v2/firestore");
+const { onCall, HttpsError } = require("firebase-functions/v2/https");
 const logger = require("firebase-functions/logger");
 const { initializeApp } = require("firebase-admin/app");
 const { getAuth } = require("firebase-admin/auth");
@@ -9,6 +10,42 @@ initializeApp();
 
 const db = getFirestore();
 const PUSH_TOKEN_COLLECTION = "user_push_tokens";
+const ADMIN_UIDS = new Set(["sZcIUjjhD0fze7FtirwsjsIDzLB2"]);
+
+exports.listAdminUsers = onCall(async (request) => {
+    const requesterUid = request.auth && request.auth.uid;
+    if (!requesterUid) {
+        throw new HttpsError("unauthenticated", "Debes iniciar sesión para consultar usuarios.");
+    }
+    if (!ADMIN_UIDS.has(requesterUid)) {
+        throw new HttpsError("permission-denied", "Solo el administrador puede consultar usuarios.");
+    }
+
+    const users = [];
+    let pageToken;
+    do {
+        const page = await getAuth().listUsers(1000, pageToken);
+        page.users.forEach((userRecord) => {
+            users.push({
+                uid: userRecord.uid,
+                email: String(userRecord.email || "").slice(0, 160),
+                username: String(userRecord.displayName || userRecord.email?.split("@")[0] || "Aspirante").slice(0, 120),
+                authCreatedAt: userRecord.metadata.creationTime || "",
+                lastSignInAt: userRecord.metadata.lastSignInTime || "",
+                disabled: userRecord.disabled === true
+            });
+        });
+        pageToken = page.pageToken;
+    } while (pageToken);
+
+    users.sort((a, b) => {
+        const aTime = new Date(a.authCreatedAt).getTime() || 0;
+        const bTime = new Date(b.authCreatedAt).getTime() || 0;
+        return bTime - aTime;
+    });
+
+    return { users, total: users.length };
+});
 
 function getAppBaseUrl() {
     if (process.env.ENARM_APP_URL) {

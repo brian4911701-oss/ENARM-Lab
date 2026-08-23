@@ -165,7 +165,7 @@
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
                         </a>
                     </div>
-                    <p class="hero-cta-note">Sin tarjeta para probar · Tu progreso se guarda en la nube</p>
+                    <p class="hero-cta-note">Sin registro · 10 casos clínicos · Diagnóstico completo al terminar</p>
                     <div class="hero-trust">
                         <span class="hero-trust-check">✓</span>
                         <span class="hero-trust-text">Retroalimentación inmediata y referencias cuando están disponibles</span>
@@ -379,11 +379,11 @@
                         <div class="pricing-divider"></div>
                         <p class="pricing-list-label">Incluye lo esencial</p>
                         <ul class="pricing-features pricing-features--limited">
-                            <li><span class="pricing-check">&check;</span> Repaso Flash de hasta 10 preguntas</li>
-                            <li><span class="pricing-check">&check;</span> Progreso básico sincronizado</li>
+                            <li><span class="pricing-check">&check;</span> Examen diagnóstico de 10 preguntas</li>
+                            <li><span class="pricing-check">&check;</span> Resultados y análisis completos al terminar</li>
+                            <li><span class="pricing-check">&check;</span> Sin registro ni tarjeta</li>
                             <li><span class="pricing-muted-icon">&mdash;</span> Sin elecci&oacute;n de especialidad</li>
                             <li><span class="pricing-muted-icon">&mdash;</span> Sin simulacro ENARM real</li>
-                            <li><span class="pricing-muted-icon">&mdash;</span> Estad&iacute;sticas y filtros limitados</li>
                             <li><span class="pricing-muted-icon">&mdash;</span> Herramientas premium bloqueadas</li>
                         </ul>
                         <button id="btn-landing-pricing-free" class="pricing-action pricing-action--free">Comenzar gratis</button>
@@ -511,7 +511,7 @@
                 <div class="landing-final-cta-glow"></div>
                 <span class="logo-mark landing-final-logo"></span>
                 <h2>Empieza con una sesión de 10 preguntas</h2>
-                <p>Crea tu cuenta gratis, guarda tu progreso y decide después si Premium es para ti.</p>
+                <p>Entra sin registro, recibe tu diagnóstico clínico y decide después si quieres guardar tu progreso.</p>
                 <button id="btn-landing-final-start" class="landing-btn-cta landing-btn-cta--lg">Probar ENARMax gratis</button>
             </section>
 
@@ -1399,6 +1399,14 @@
 
             <!-- ─── VIEW: EXAM ACTIVE ──────────────────────────── -->
             <div id="view-exam" class="view">
+                <div class="guest-exam-brand" aria-label="Evaluación diagnóstica ENARMax">
+                    <span class="logo-mark guest-exam-logo" aria-hidden="true"></span>
+                    <div>
+                        <span class="guest-exam-eyebrow">Experiencia gratuita</span>
+                        <strong>Evaluación diagnóstica ENARMax</strong>
+                    </div>
+                    <span class="guest-exam-pill">Sin registro</span>
+                </div>
                 <div class="exam-header-bar">
                     <div class="exam-progress-info">
                         <span id="q-counter">Pregunta 1 de 280</span>
@@ -1407,7 +1415,7 @@
                         </div>
                     </div>
                     <div class="exam-timer" id="timer-display">⏱ <span id="timer-text">04:00:00</span></div>
-                    <div style="display: flex; gap: 12px;">
+                    <div class="exam-header-actions" style="display: flex; gap: 12px;">
                         <button class="btn-secondary" id="btn-pause-exam"
                             style="background: rgba(255,255,255,0.05); border-color: var(--border);">Pausar</button>
                         <button class="btn-danger" id="btn-finish-early">Terminar</button>
@@ -1421,7 +1429,11 @@
                     <!-- Main Question Area -->
                     <div class="exam-content-area">
                         <div class="case-card">
-                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                            <div class="case-card-header">
+                                <div class="case-card-meta">
+                                    <span class="case-badge" id="case-area-badge" hidden aria-hidden="true">ÁREA CLÍNICA</span>
+                                    <span class="case-difficulty-badge" id="case-difficulty-badge">DIFICULTAD MEDIA</span>
+                                </div>
                                 <div style="display: flex; gap: 8px; align-items: center;">
                                     <button class="btn-ghost" id="btn-reclass-case"
                                         style="display: none; font-size: 12px; padding: 4px 8px;">Reclasificar caso</button>
@@ -1429,6 +1441,7 @@
                                         style="display: none; font-size: 12px; padding: 4px 8px;">Eliminar caso</button>
                                 </div>
                             </div>
+                            <div class="case-clinical-label"><span></span> Caso clínico</div>
                             <p id="case-text" class="case-text">Cargando caso clínico...</p>
                         </div>
 
@@ -1447,12 +1460,16 @@
             <!-- ─── VIEW: RESULTS ────────────────────────────── -->
             <div id="view-results" class="view">
                 <div class="panel results-panel">
-                    <h2 class="panel-title">Resultados de la Sesión</h2>
+                    <div class="results-hero-copy">
+                        <span class="results-kicker" id="results-kicker">Sesión completada</span>
+                        <h2 class="panel-title" id="results-title">Tu diagnóstico clínico está listo</h2>
+                        <p id="results-lead">Este resultado resume cómo tomaste decisiones clínicas durante la sesión.</p>
+                    </div>
 
                     <div class="results-score-row">
-                        <div class="score-circle">
+                        <div class="score-circle" id="results-score-circle">
                             <span class="score-pct" id="score-pct">0%</span>
-                            <span class="score-lbl">Aciertos</span>
+                            <span class="score-lbl">Precisión</span>
                         </div>
                         <div class="score-stats">
                             <div class="s-stat"><span class="s-val text-green" id="meta-correct">0</span><span
@@ -1466,9 +1483,109 @@
                         </div>
                     </div>
 
+                    <section class="guest-results-diagnostic" id="guest-results-diagnostic" hidden>
+                        <div class="guest-results-verdict">
+                            <div>
+                                <span class="results-kicker">Lectura de desempeño</span>
+                                <h3 id="guest-results-band">Diagnóstico inicial listo</h3>
+                            </div>
+                            <p id="guest-results-performance-copy"></p>
+                        </div>
+
+                        <div class="guest-results-metrics results-analysis-advanced">
+                            <article class="guest-result-metric">
+                                <span>Respondidas</span>
+                                <strong id="guest-metric-answered">0/10</strong>
+                                <small id="guest-metric-answered-note">0% de cobertura</small>
+                            </article>
+                            <article class="guest-result-metric">
+                                <span>Ritmo promedio</span>
+                                <strong id="guest-metric-pace">0s</strong>
+                                <small>por reactivo</small>
+                            </article>
+                            <article class="guest-result-metric">
+                                <span>Mejor racha</span>
+                                <strong id="guest-metric-streak">0</strong>
+                                <small>aciertos consecutivos</small>
+                            </article>
+                            <article class="guest-result-metric">
+                                <span>Áreas evaluadas</span>
+                                <strong id="guest-metric-coverage">0/4</strong>
+                                <small>especialidades troncales</small>
+                            </article>
+                        </div>
+
+                        <div class="guest-results-grid">
+                            <article class="guest-results-card guest-results-card--wide results-analysis-advanced">
+                                <div class="guest-results-card-head">
+                                    <div>
+                                        <span class="results-kicker">Precisión clínica</span>
+                                        <h3>Desempeño por especialidad</h3>
+                                    </div>
+                                    <span class="guest-results-card-badge" id="results-analysis-tier-badge">Datos de esta sesión</span>
+                                </div>
+                                <div id="guest-results-specialties" class="guest-specialty-breakdown"></div>
+                            </article>
+
+                            <article class="guest-results-card results-analysis-advanced">
+                                <span class="results-kicker">Complejidad</span>
+                                <h3>Desempeño por dificultad</h3>
+                                <div id="guest-results-difficulty" class="guest-difficulty-breakdown"></div>
+                            </article>
+
+                            <article class="guest-results-card">
+                                <span class="results-kicker">Patrón de respuestas</span>
+                                <h3 id="results-answer-map-title">Mapa de tus decisiones</h3>
+                                <div id="guest-results-answer-map" class="guest-answer-map"></div>
+                                <div class="guest-answer-legend">
+                                    <span><i class="is-correct"></i> Correcta</span>
+                                    <span><i class="is-wrong"></i> Incorrecta</span>
+                                    <span><i class="is-blank"></i> Omitida</span>
+                                </div>
+                            </article>
+
+                            <article class="guest-results-card guest-results-card--wide results-analysis-advanced">
+                                <div class="guest-results-card-head">
+                                    <div>
+                                        <span class="results-kicker">Siguiente paso</span>
+                                        <h3>Temas que más pueden subir tu resultado</h3>
+                                    </div>
+                                </div>
+                                <div id="guest-results-topics" class="guest-results-topics"></div>
+                            </article>
+                        </div>
+
+                        <div class="guest-conversion-panel" id="guest-conversion-panel">
+                            <div class="guest-conversion-copy">
+                                <span class="guest-conversion-badge">Esto apenas fue el diagnóstico</span>
+                                <h3>Convierte este resultado en un plan de estudio</h3>
+                                <p>Con una cuenta puedes construir historial, detectar temas frágiles y medir cómo evoluciona tu precisión hasta el ENARM.</p>
+                            </div>
+                            <div class="guest-conversion-proof">
+                                <span><strong>+3,200</strong> casos clínicos</span>
+                                <span><strong>280</strong> reactivos por simulacro</span>
+                                <span><strong>4</strong> áreas troncales</span>
+                            </div>
+                            <button class="btn-primary guest-create-account-btn" id="btn-guest-create-account" type="button">Crear mi cuenta gratis <span>→</span></button>
+                            <small>Sin tarjeta · Tus próximas sesiones sí se guardarán</small>
+                        </div>
+
+                        <div class="free-results-upgrade-panel" id="free-results-upgrade-panel" hidden>
+                            <div class="free-results-upgrade-icon" aria-hidden="true">✦</div>
+                            <div>
+                                <span class="results-kicker">Análisis Premium</span>
+                                <h3>Descubre exactamente dónde estás perdiendo puntos</h3>
+                                <p>Desbloquea desempeño por especialidad y dificultad, ritmo clínico, mejor racha y temas prioritarios de esta sesión.</p>
+                            </div>
+                            <button class="btn-primary" id="btn-results-unlock-premium" type="button">Ver Premium <span>→</span></button>
+                        </div>
+                    </section>
+
                     <div class="results-actions">
                         <button class="btn-primary" id="btn-review">Revisar Respuestas</button>
-                        <button class="btn-secondary" id="btn-back-dash">Volver al Dashboard</button>
+                        <button class="btn-secondary results-auth-only" id="btn-back-dash">Volver al Dashboard</button>
+                        <button class="btn-secondary results-guest-only" id="btn-guest-view-plans" type="button" hidden>Ver planes</button>
+                        <button class="btn-ghost results-guest-only" id="btn-guest-return-landing" type="button" hidden>Volver al inicio</button>
                     </div>
 
                 </div>
@@ -1486,7 +1603,7 @@
                         <div class="review-main">
                             <div class="exam-card">
                                 <div class="case-header">
-                                    <span class="badge" id="rev-case-area-badge">ÁREA</span>
+                                    <span class="badge" id="rev-case-area-badge" hidden aria-hidden="true">ÁREA</span>
                                     <span class="q-num" id="rev-q-num-display">Pregunta X</span>
                                 </div>
                                 <div class="case-box">
@@ -2123,7 +2240,7 @@
 
             <div id="view-admin-users" class="view">
                 <div class="panel">
-                    <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="panel-header admin-users-page-header">
                         <div>
                             <h2 class="panel-title"><span class="title-icon blue-text">&#128101;</span> Usuarios y acceso Premium</h2>
                             <p class="panel-subtitle">Gestiona el acceso de cada cuenta sin mezclarlo con pagos, códigos y demás herramientas.</p>
@@ -2140,6 +2257,9 @@
                         <div class="admin-users-toolbar">
                             <p class="panel-subtitle" id="admin-users-summary">Usuarios ordenados del más reciente al más antiguo. El acceso se controla desde el interruptor.</p>
                             <div class="admin-users-controls" aria-label="Filtros de usuarios">
+                                <button id="admin-users-refresh" class="btn-ghost admin-users-refresh" type="button" title="Volver a consultar Firebase Authentication">
+                                    <span aria-hidden="true">&#8635;</span> Actualizar
+                                </button>
                                 <label>
                                     <span>Acceso</span>
                                     <select id="admin-users-filter" class="text-input">
@@ -3519,8 +3639,8 @@
             <div class="modal-content"
                 style="background: var(--bg-card); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; max-width: 400px;">
                 <div style="font-size: 40px; margin-bottom: 20px;">&#x26A0;&#xFE0F;</div>
-                <h2 style="font-size: 22px; margin-bottom: 15px;">¿Finalizar Sesión?</h2>
-                <p style="color: var(--text-secondary); margin-bottom: 25px; font-size: 14px;">Aún no respondes todas
+                <h2 id="finish-modal-title" style="font-size: 22px; margin-bottom: 15px;">¿Finalizar Sesión?</h2>
+                <p id="finish-modal-copy" style="color: var(--text-secondary); margin-bottom: 25px; font-size: 14px;">Aún no respondes todas
                     las preguntas. Las no respondidas se calificarán como incorrectas.</p>
                 <div style="display: flex; gap: 15px; justify-content: center;">
                     <button class="btn-ghost" id="btn-cancel-finish" style="flex: 1;">Seguir</button>
@@ -4152,6 +4272,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, updateProfile, GoogleAuthProvider, getAdditionalUserInfo, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, getDocs, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, addDoc, updateDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-functions.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyA-ALVpht1Za682OUGvH6QWaudCJZYihFU",
@@ -4169,6 +4290,7 @@
         const auth = getAuth(app);
         auth.languageCode = "es";
         const db = getFirestore(app);
+        const functions = getFunctions(app);
         const googleProvider = new GoogleAuthProvider();
         // Analytics y notificaciones no son necesarios para mostrar la app ni restaurar la sesión.
         // Se cargan en segundo plano para que la pantalla inicial desaparezca antes.
@@ -4198,6 +4320,8 @@
         window.FB = {
             auth,
             db,
+            functions,
+            httpsCallable,
             doc,
             setDoc,
             getDoc,

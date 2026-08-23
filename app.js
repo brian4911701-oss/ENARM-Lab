@@ -18,6 +18,11 @@
         pausedElapsedTime: 0,
         currentExamType: "Simulacro",
         examActive: false,
+        examStartedWithPremium: false,
+        guestExamActive: false,
+        guestExamCompleted: false,
+        guestExamSource: "",
+        guestExamSummary: null,
 
         globalStats: {
             respondidas: 0,
@@ -92,6 +97,14 @@
         manualPaymentAdminUnsub: null,
         adminUsers: [],
         adminUsersUnsub: null,
+        adminAuthUsers: [],
+        adminAuthUsersLoaded: false,
+        adminAuthUsersLoading: false,
+        adminAuthUsersError: "",
+        adminAuthUsersLoadedAt: 0,
+        adminAuthUsersPromise: null,
+        adminAuthUsersRequestId: 0,
+        adminPremiumPendingByUid: {},
         adminUserFilter: "all",
         adminUserSort: "newest",
         adminDirectoryByUid: {},
@@ -131,6 +144,17 @@
 
     const ADMIN_UIDS = ["sZcIUjjhD0fze7FtirwsjsIDzLB2"];
     const DEMO_MAX_QTY = 10;
+    const GUEST_EXAM_CONFIG = Object.freeze({
+        version: "diagnostico-2026-v1",
+        total: 10,
+        durationSec: 15 * 60,
+        distribution: Object.freeze({ mi: 3, ped: 3, gyo: 2, cir: 2 }),
+        order: Object.freeze(["mi", "ped", "gyo", "cir", "mi", "ped", "gyo", "cir", "mi", "ped"]),
+        fixedQuestionIds: Object.freeze([
+            "1obl6zj", "pz01q1", "124bmml", "18a3iz4", "1fqggc3",
+            "63zt0u", "ze7nfc", "cnb0hq", "1ekh2cf", "ea7k9"
+        ])
+    });
     const FIXED_CODE_EXPIRY = new Date(2026, 9, 1, 23, 59, 59);
     const THREE_DAY_CODE_DURATION_MS = 3 * 24 * 60 * 60 * 1000;
     const MONTH_CODE_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
@@ -1171,6 +1195,7 @@
 
     let questionsLoadPromise = null;
     let questionsHydrated = false;
+    const REMOVED_INVALID_CASE_QUESTION_IDS = new Set(["yf547qegn"]);
 
     const hasQuestionsBankLoaded = () => {
         return typeof QUESTIONS !== "undefined" && Array.isArray(QUESTIONS) && QUESTIONS.length > 0;
@@ -1342,6 +1367,14 @@
 
     const hydrateLoadedQuestions = () => {
         if (questionsHydrated || !hasQuestionsBankLoaded()) return;
+        for (let index = QUESTIONS.length - 1; index >= 0; index--) {
+            const clinicalCase = QUESTIONS[index];
+            const subQuestions = Array.isArray(clinicalCase?.questions) ? clinicalCase.questions : [];
+            if (subQuestions.some((question) => question?.removedFromApp === true
+                || REMOVED_INVALID_CASE_QUESTION_IDS.has(String(question?.id || "")))) {
+                QUESTIONS.splice(index, 1);
+            }
+        }
         QUESTIONS.forEach(q => {
             if (!q) return;
             if (q.specialtyOriginal === undefined) q.specialtyOriginal = q.specialty || "";
@@ -3546,14 +3579,94 @@
         const authCreatedAt = normalizeTimestamp(directory?.authCreatedAt)
             || normalizeTimestamp(leaderboardUser?.authCreatedAt)
             || null;
-        // Mientras se completa la migración, el createdAt histórico del leaderboard
-        // conserva el orden anterior. Nunca usar user_directory.createdAt: puede ser
-        // la fecha en que se añadió este directorio, no cuando nació la cuenta.
-        const legacyCreatedAt = normalizeTimestamp(leaderboardUser?.createdAt) || null;
+        const legacyCreatedAt = normalizeTimestamp(leaderboardUser?.createdAt)
+            || normalizeTimestamp(directory?.createdAt)
+            || null;
         return {
             date: authCreatedAt || legacyCreatedAt,
             isAuthVerified: !!authCreatedAt
         };
+    };
+
+    const getAdminUserRows = () => {
+        const rowsByUid = new Map();
+        const mergeUser = (uid, data = {}) => {
+            const safeUid = String(uid || data.uid || data.id || "").trim();
+            if (!safeUid) return;
+            rowsByUid.set(safeUid, {
+                ...(rowsByUid.get(safeUid) || {}),
+                ...(data || {}),
+                id: safeUid,
+                uid: safeUid
+            });
+        };
+
+        (State.adminUsers || []).forEach((user) => mergeUser(user.id, user));
+        (State.adminAuthUsers || []).forEach((user) => mergeUser(user.uid, user));
+        Object.entries(State.adminDirectoryByUid || {}).forEach(([uid, directory]) => mergeUser(uid, directory));
+        Object.keys(State.adminEntitlementsByUid || {}).forEach((uid) => mergeUser(uid));
+        (State.manualPaymentRequests || []).forEach((payment) => {
+            const paymentUser = {};
+            if (payment.email) paymentUser.email = payment.email;
+            if (payment.name || payment.username) paymentUser.username = payment.name || payment.username;
+            mergeUser(payment.uid, paymentUser);
+        });
+        if (State.currentUid) mergeUser(State.currentUid, { username: State.userName || "Administrador" });
+
+        return Array.from(rowsByUid.values());
+    };
+
+    const loadAdminAuthUsers = async ({ force = false } = {}) => {
+        if (!isAdminUser()) return;
+        const isFresh = State.adminAuthUsersLoaded
+            && Date.now() - Number(State.adminAuthUsersLoadedAt || 0) < 5 * 60 * 1000;
+        const failedRecently = !!State.adminAuthUsersError
+            && Date.now() - Number(State.adminAuthUsersLoadedAt || 0) < 60 * 1000;
+        if (!force && (isFresh || failedRecently)) return;
+        if (State.adminAuthUsersPromise) return State.adminAuthUsersPromise;
+        if (!window.FB?.functions || !window.FB?.httpsCallable) {
+            State.adminAuthUsersError = "La consulta de Authentication no está disponible en esta versión.";
+            State.adminAuthUsersLoading = false;
+            State.adminAuthUsersLoadedAt = Date.now();
+            renderAdminUsers();
+            return;
+        }
+
+        State.adminAuthUsersLoading = true;
+        State.adminAuthUsersError = "";
+        State.adminAuthUsersLoadedAt = Date.now();
+        renderAdminUsers();
+        const requesterUid = State.currentUid;
+        const requestId = ++State.adminAuthUsersRequestId;
+        const requestPromise = (async () => {
+            try {
+                const callable = window.FB.httpsCallable(window.FB.functions, "listAdminUsers");
+                const response = await callable();
+                if (requestId !== State.adminAuthUsersRequestId || requesterUid !== State.currentUid || !isAdminUser()) return;
+                const rows = Array.isArray(response?.data?.users) ? response.data.users : [];
+                State.adminAuthUsers = rows
+                    .map((user) => ({
+                        ...user,
+                        id: String(user.uid || ""),
+                        uid: String(user.uid || "")
+                    }))
+                    .filter((user) => user.id);
+                State.adminAuthUsersLoaded = true;
+                State.adminAuthUsersLoadedAt = Date.now();
+            } catch (err) {
+                console.error("Error cargando cuentas de Firebase Authentication:", err);
+                if (requestId !== State.adminAuthUsersRequestId || requesterUid !== State.currentUid || !isAdminUser()) return;
+                State.adminAuthUsersError = "No se pudo verificar la lista completa de Authentication.";
+                if (force) showNotification("No se pudo actualizar el listado completo de usuarios.", "error");
+            } finally {
+                if (requestId !== State.adminAuthUsersRequestId) return;
+                State.adminAuthUsersLoading = false;
+                State.adminAuthUsersPromise = null;
+                renderAdminUsers();
+            }
+        })();
+        State.adminAuthUsersPromise = requestPromise;
+        return requestPromise;
     };
 
     const isAdminEntitlementActive = (entitlement) => {
@@ -3618,12 +3731,14 @@
 
     const setAdminUserPremium = async (uid, enabled) => {
         if (!uid || uid === State.currentUid || !isAdminUser()) return;
+        if (Object.prototype.hasOwnProperty.call(State.adminPremiumPendingByUid || {}, uid)) return;
         if (!window.FB || !window.FB.db || !window.FB.doc || !window.FB.runTransaction) {
             showNotification("Firebase todav\u00eda no est\u00e1 disponible.", "error");
             renderAdminUsers();
             return;
         }
-        const user = (State.adminUsers || []).find((item) => item.id === uid) || {};
+        const user = getAdminUserRows().find((item) => item.id === uid) || {};
+        const directory = State.adminDirectoryByUid[uid] || {};
         const preferredPlanId = String(user.targetYear || "") === "2026" && new Date(TRANSFER_PLANS.enarm_2026.expiresAt).getTime() > Date.now()
             ? "enarm_2026"
             : "enarm_2027";
@@ -3631,16 +3746,19 @@
         const action = enabled
             ? `activar Premium hasta ${formatDate(new Date(plan.expiresAt))}`
             : "desactivar el acceso Premium";
-        if (!window.confirm(`\u00bfConfirmas que deseas ${action} para ${user.username || user.email || "este usuario"}?`)) {
+        if (!window.confirm(`\u00bfConfirmas que deseas ${action} para ${directory.username || user.username || directory.email || user.email || "este usuario"}?`)) {
             renderAdminUsers();
             return;
         }
+        State.adminPremiumPendingByUid[uid] = enabled;
+        renderAdminUsers();
         try {
             const entitlementRef = window.FB.doc(window.FB.db, "entitlements", uid);
+            let nextEntitlement = null;
             await window.FB.runTransaction(window.FB.db, async (tx) => {
                 const now = new Date();
                 if (enabled) {
-                    tx.set(entitlementRef, {
+                    nextEntitlement = {
                         status: "active",
                         source: "admin_manual",
                         planId: plan.id,
@@ -3648,22 +3766,30 @@
                         activatedAt: now,
                         updatedAt: now,
                         updatedByUid: State.currentUid
-                    }, { merge: true });
+                    };
+                    tx.set(entitlementRef, nextEntitlement, { merge: true });
                 } else {
-                    tx.set(entitlementRef, {
+                    nextEntitlement = {
                         status: "inactive",
                         source: "admin_manual_disabled",
                         expiresAt: now,
                         deactivatedAt: now,
                         updatedAt: now,
                         updatedByUid: State.currentUid
-                    }, { merge: true });
+                    };
+                    tx.set(entitlementRef, nextEntitlement, { merge: true });
                 }
             });
+            State.adminEntitlementsByUid[uid] = {
+                ...(State.adminEntitlementsByUid[uid] || {}),
+                ...(nextEntitlement || {})
+            };
             showNotification(enabled ? "Premium activado para el usuario." : "Premium desactivado para el usuario.", enabled ? "success" : "info");
         } catch (err) {
             console.error("No se pudo actualizar Premium del usuario:", err);
             showNotification("No se pudo actualizar el acceso Premium.", "error");
+        } finally {
+            delete State.adminPremiumPendingByUid[uid];
             renderAdminUsers();
         }
     };
@@ -3682,10 +3808,12 @@
         State.adminUserFilter = selectedFilter;
         State.adminUserSort = selectedSort;
 
-        const totalUsers = (State.adminUsers || []).length;
-        const users = [...(State.adminUsers || [])]
+        const allUsers = getAdminUserRows();
+        const totalUsers = allUsers.length;
+        const users = [...allUsers]
             .filter((user) => {
-                const hasPremium = isAdminEntitlementActive(State.adminEntitlementsByUid[user.id] || null);
+                const hasPremium = user.id === State.currentUid
+                    || isAdminEntitlementActive(State.adminEntitlementsByUid[user.id] || null);
                 return selectedFilter === "all"
                     || (selectedFilter === "premium" && hasPremium)
                     || (selectedFilter === "free" && !hasPremium);
@@ -3707,9 +3835,20 @@
                 return selectedSort === "oldest" ? aDate - bDate : bDate - aDate;
             });
         const summary = $("admin-users-summary");
+        const refreshButton = $("admin-users-refresh");
+        if (refreshButton) {
+            refreshButton.disabled = State.adminAuthUsersLoading;
+            refreshButton.setAttribute("aria-busy", State.adminAuthUsersLoading ? "true" : "false");
+        }
         if (summary) {
             const filterLabel = selectedFilter === "premium" ? "con Premium activo" : selectedFilter === "free" ? "con acceso Gratis" : "en total";
-            summary.textContent = `${users.length} de ${totalUsers} usuarios ${filterLabel}. El acceso se controla desde el interruptor.`;
+            if (State.adminAuthUsersLoading) {
+                summary.textContent = `Actualizando todas las cuentas registradas… ${totalUsers ? `Mostrando ${totalUsers} mientras termina la consulta.` : ""}`.trim();
+            } else if (State.adminAuthUsersError) {
+                summary.textContent = `${users.length} de ${totalUsers} usuarios ${filterLabel}. ${State.adminAuthUsersError} Pulsa Actualizar para reintentar.`;
+            } else {
+                summary.textContent = `${users.length} de ${totalUsers} usuarios ${filterLabel}, ordenados por fecha de registro. El acceso se controla desde el interruptor.`;
+            }
         }
         if (users.length === 0) {
             const emptyLabel = totalUsers === 0 ? "Aún no hay usuarios registrados." : "No hay usuarios que coincidan con este filtro.";
@@ -3720,16 +3859,22 @@
             const directory = State.adminDirectoryByUid[user.id] || {};
             const entitlement = State.adminEntitlementsByUid[user.id] || null;
             const hasPremium = isAdminEntitlementActive(entitlement);
+            const isOwnAccount = user.id === State.currentUid;
+            const hasPendingChange = Object.prototype.hasOwnProperty.call(State.adminPremiumPendingByUid || {}, user.id);
+            const displayedPremium = isOwnAccount || (hasPendingChange ? State.adminPremiumPendingByUid[user.id] : hasPremium);
             const payment = getManualPaymentForEntitlement(user.id, entitlement) || getLatestPaymentForUser(user.id);
             const registration = getAdminRegistrationDetails(directory, user);
-            const accessDetails = getAdminPremiumAccessDetails(entitlement, payment);
-            const accessLabel = hasPremium ? "Premium activo" : "Acceso Gratis";
-            const planLabel = entitlement ? (TRANSFER_PLANS[entitlement.planId]?.name || "Plan Premium") : "Gratis";
-            const email = directory.email || payment?.email || "Correo disponible cuando inicie sesi\u00f3n";
+            const accessDetails = isOwnAccount
+                ? { sourceLabel: "Cuenta administradora", dateLabel: "Acceso", date: null }
+                : getAdminPremiumAccessDetails(entitlement, payment);
+            const accessLabel = hasPendingChange ? "Guardando cambio…" : (displayedPremium ? "Premium activo" : "Acceso Gratis");
+            const planLabel = isOwnAccount
+                ? "Administrador"
+                : (entitlement ? (TRANSFER_PLANS[entitlement.planId]?.name || "Plan Premium") : "Premium manual");
+            const email = directory.email || user.email || payment?.email || "Correo no disponible";
             const displayName = directory.username || user.username || "Aspirante";
-            const isOwnAccount = user.id === State.currentUid;
             return `
-                <article class="withdrawal-admin-card admin-user-card ${hasPremium ? "is-paid" : "is-pending"}">
+                <article class="withdrawal-admin-card admin-user-card ${displayedPremium ? "is-paid" : "is-pending"}">
                     <div class="withdrawal-admin-head">
                         <div>
                             <span class="withdrawal-status">${escapeHtml(accessLabel)}</span>
@@ -3737,9 +3882,9 @@
                             <p>${escapeHtml(email)}</p>
                         </div>
                         <div class="admin-user-access-toggle">
-                            <span>${isOwnAccount ? "Cuenta administradora" : "Acceso Premium"}</span>
+                            <span>${isOwnAccount ? "Cuenta administradora" : (hasPendingChange ? "Guardando…" : "Acceso Premium")}</span>
                             <label class="profile-switch" title="${isOwnAccount ? "Tu cuenta administradora siempre conserva acceso." : "Activar o desactivar Premium"}">
-                                <input type="checkbox" data-user-premium-toggle="${escapeHtml(user.id)}" ${hasPremium ? "checked" : ""} ${isOwnAccount ? "disabled" : ""}>
+                                <input type="checkbox" data-user-premium-toggle="${escapeHtml(user.id)}" ${displayedPremium ? "checked" : ""} ${(isOwnAccount || hasPendingChange) ? "disabled" : ""}>
                                 <span class="profile-switch-slider"></span>
                             </label>
                         </div>
@@ -3748,7 +3893,7 @@
                         <span><strong>${registration.isAuthVerified ? "Registro" : "Registro histórico"}:</strong> ${registration.date ? formatDateTime(registration.date) : "Pendiente de verificar"}</span>
                         <span><strong>${escapeHtml(accessDetails.dateLabel)}:</strong> ${accessDetails.date ? formatDateTime(accessDetails.date) : "Sin fecha"}</span>
                         <span><strong>Origen:</strong> ${escapeHtml(accessDetails.sourceLabel)}</span>
-                        <span><strong>Plan:</strong> ${hasPremium ? planLabel : "Gratis"}</span>
+                        <span><strong>Plan:</strong> ${displayedPremium ? planLabel : "Gratis"}</span>
                         <span><strong>UID:</strong> ${escapeHtml(user.id)}</span>
                     </div>
                 </article>
@@ -3795,6 +3940,7 @@
             return;
         }
         if (!window.FB || !window.FB.db || !window.FB.onSnapshot || !window.FB.collection) return;
+        void loadAdminAuthUsers();
         if (!State.adminUsersUnsub) {
             State.adminUsersUnsub = window.FB.onSnapshot(window.FB.collection(window.FB.db, "leaderboard"), (snap) => {
                 const rows = [];
@@ -4483,6 +4629,16 @@
         return "medium";
     };
 
+    const getQuestionAnswerIndex = (question) => {
+        if (!question || !Array.isArray(question.options)) return -1;
+        const raw = question.answerIndex;
+        let index = Number.parseInt(raw, 10);
+        if (typeof raw === "string" && /^[A-D]$/i.test(raw.trim())) {
+            index = raw.trim().toUpperCase().charCodeAt(0) - 65;
+        }
+        return Number.isInteger(index) && index >= 0 && index < question.options.length ? index : -1;
+    };
+
     const getQuestionDifficultyBucket = (q) => {
         if (!q) return "medium";
         if (!q._difficultyBucket) {
@@ -4742,6 +4898,239 @@
             cId++;
         }
         return flat.slice(0, maxQty);
+    };
+
+    const buildGuestExamQuestionSet = () => {
+        const used = new Set();
+        const questionKey = (q) => `${String(getCaseKey(q) || q?.case || "").trim()}::${String(q?.question || "").trim()}`;
+        const isEligibleGuestQuestion = (question) => {
+            const caseText = String(question?.case || "").trim();
+            const questionText = String(question?.question || "").trim();
+            return getQuestionAnswerIndex(question) >= 0
+                && Array.isArray(question?.options)
+                && question.options.length >= 2
+                && caseText.length >= 40
+                && caseText.length <= 1800
+                && questionText.length >= 10
+                && questionText.length <= 700;
+        };
+        const flattenDeterministically = (rawPool) => {
+            const flattened = [];
+            (rawPool || []).forEach((clinicalCase) => {
+                if (!clinicalCase) return;
+                const subQuestions = Array.isArray(clinicalCase.questions)
+                    ? clinicalCase.questions
+                    : [{
+                        question: clinicalCase.question,
+                        options: clinicalCase.options,
+                        answerIndex: clinicalCase.answerIndex,
+                        explanation: clinicalCase.explanation
+                    }];
+                subQuestions.forEach((subQuestion) => {
+                    flattened.push({
+                        ...clinicalCase,
+                        question: subQuestion.question,
+                        options: subQuestion.options,
+                        answerIndex: subQuestion.answerIndex,
+                        explanation: subQuestion.explanation,
+                        gpcReference: subQuestion.gpcReference || clinicalCase.gpcReference || ""
+                    });
+                });
+            });
+            return flattened.sort((a, b) => {
+                const aKey = questionKey(a);
+                const bKey = questionKey(b);
+                const aRank = Number.parseInt(hashString(`${GUEST_EXAM_CONFIG.version}::${aKey}`), 36);
+                const bRank = Number.parseInt(hashString(`${GUEST_EXAM_CONFIG.version}::${bKey}`), 36);
+                return aRank - bRank || aKey.localeCompare(bKey, "es");
+            });
+        };
+        const takeUnique = (questions, limit) => {
+            const result = [];
+            for (const q of questions) {
+                if (!q || result.length >= limit) break;
+                if (!isEligibleGuestQuestion(q)) continue;
+                const key = questionKey(q);
+                if (!key || used.has(key)) continue;
+                used.add(key);
+                result.push(q);
+            }
+            return result;
+        };
+        const finalizeQuestionSet = (questions) => questions
+            .slice(0, GUEST_EXAM_CONFIG.total)
+            .map((q, index) => ({
+                ...q,
+                caseGroupId: index + 1,
+                subQuestionIndex: 1,
+                totalSubQuestions: 1
+            }));
+
+        const allCandidates = flattenDeterministically(typeof QUESTIONS !== "undefined" ? QUESTIONS : []);
+        const candidatesById = new Map();
+        allCandidates.forEach((question) => {
+            const id = hashString(questionKey(question));
+            if (!candidatesById.has(id)) candidatesById.set(id, question);
+        });
+        const fixedQuestions = GUEST_EXAM_CONFIG.fixedQuestionIds
+            .map((id) => candidatesById.get(id))
+            .filter((question) => question && isEligibleGuestQuestion(question));
+        if (fixedQuestions.length === GUEST_EXAM_CONFIG.total) {
+            return finalizeQuestionSet(fixedQuestions);
+        }
+
+        const usedFixedKeys = new Set(fixedQuestions.map((question) => questionKey(question)));
+        const replacementCandidates = allCandidates.filter((question) => {
+            return isEligibleGuestQuestion(question) && !usedFixedKeys.has(questionKey(question));
+        });
+        const repairedFixedQuestions = GUEST_EXAM_CONFIG.fixedQuestionIds.map((id, index) => {
+            const configured = candidatesById.get(id);
+            if (configured && isEligibleGuestQuestion(configured)) return configured;
+            const expectedSpecialty = GUEST_EXAM_CONFIG.order[index];
+            const replacementIndex = replacementCandidates.findIndex((candidate) => candidate.specialty === expectedSpecialty);
+            if (replacementIndex < 0) return null;
+            const [replacement] = replacementCandidates.splice(replacementIndex, 1);
+            usedFixedKeys.add(questionKey(replacement));
+            return replacement;
+        }).filter(Boolean);
+        if (repairedFixedQuestions.length === GUEST_EXAM_CONFIG.total) {
+            return finalizeQuestionSet(repairedFixedQuestions);
+        }
+
+        const selectedBySpecialty = {};
+        Object.entries(GUEST_EXAM_CONFIG.distribution).forEach(([specialty, qty]) => {
+            const pool = filterQuarantinedPool(getQuestionsPoolForSpecs([specialty]));
+            selectedBySpecialty[specialty] = takeUnique(flattenDeterministically(pool), qty);
+        });
+
+        const selected = GUEST_EXAM_CONFIG.order
+            .map((specialty) => selectedBySpecialty[specialty]?.shift())
+            .filter(Boolean);
+
+        if (selected.length < GUEST_EXAM_CONFIG.total) {
+            const fallbackPool = filterQuarantinedPool(typeof QUESTIONS !== "undefined" ? QUESTIONS : []);
+            selected.push(...takeUnique(
+                flattenDeterministically(fallbackPool),
+                GUEST_EXAM_CONFIG.total - selected.length
+            ));
+        }
+
+        return finalizeQuestionSet(selected);
+    };
+
+    const exitGuestExperience = ({ showLanding = true, scrollTarget = "" } = {}) => {
+        clearExamTimer();
+        State.examActive = false;
+        State.examStartedWithPremium = false;
+        State.guestExamActive = false;
+        State.guestExamCompleted = false;
+        State.guestExamSource = "";
+        State.guestExamSummary = null;
+        document.body.classList.remove("guest-exam-mode");
+
+        const appLayout = document.querySelector(".app-layout");
+        const landingPage = $("landing-page");
+        const authOverlay = $("auth-overlay");
+        if (appLayout) appLayout.style.display = "none";
+
+        if (!showLanding) return;
+        if (authOverlay) authOverlay.classList.remove("active");
+        if (landingPage) landingPage.classList.remove("hidden");
+        window.scrollTo(0, 0);
+        if (scrollTarget) {
+            window.setTimeout(() => {
+                document.querySelector(scrollTarget)?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 80);
+        }
+    };
+
+    const startGuestExam = async (triggerButton = null, source = "landing") => {
+        if (State.examActive && State.guestExamActive) return;
+        State.guestExamSource = source;
+        await withTemporaryButtonLabel(triggerButton, "Preparando diagnóstico...", async () => {
+            await withExamLoadingOverlay(async (setStage) => {
+                await setStage({
+                    title: "Preparando tu diagnóstico clínico",
+                    detail: "Seleccionamos 10 casos de las cuatro áreas troncales.",
+                    progress: 15
+                });
+
+                try {
+                    await ensureQuestionsReady({ silent: false });
+                } catch (err) {
+                    showNotification("No pudimos cargar el examen. Revisa tu conexión e intenta de nuevo.", "error");
+                    return;
+                }
+
+                await setStage({
+                    detail: "Cargando la evaluación diagnóstica de 10 casos.",
+                    progress: 62
+                });
+                const questionSet = buildGuestExamQuestionSet();
+                if (questionSet.length === 0) {
+                    showNotification("No hay preguntas disponibles en este momento.", "warning");
+                    return;
+                }
+
+                await setStage({
+                    detail: "Tu evaluación está lista. Tienes 15 minutos.",
+                    progress: 100
+                });
+
+                const landingPage = $("landing-page");
+                const authOverlay = $("auth-overlay");
+                const appLayout = document.querySelector(".app-layout");
+                if (landingPage) landingPage.classList.add("hidden");
+                if (authOverlay) authOverlay.classList.remove("active");
+                if (appLayout) appLayout.style.display = "flex";
+                document.body.classList.add("guest-exam-mode");
+
+                const started = beginExamSession({
+                    questionSet,
+                    mode: "simulacro",
+                    currentExamIsReal: false,
+                    currentExamType: "Diagnóstico gratuito",
+                    durationSec: GUEST_EXAM_CONFIG.durationSec,
+                    guest: true
+                });
+                if (started) {
+                    State.guestExamSource = source;
+                    trackEvent("guest_exam_start", {
+                        placement: source,
+                        questions: questionSet.length,
+                        exam_version: GUEST_EXAM_CONFIG.version
+                    });
+                } else {
+                    exitGuestExperience({ showLanding: true });
+                }
+            }, {
+                title: "Preparando tu diagnóstico clínico",
+                detail: "Cargando el banco de casos ENARMax.",
+                progress: 8
+            });
+        });
+    };
+
+    const initGuestExamExperience = () => {
+        ["btn-landing-hero-start", "btn-landing-final-start", "btn-landing-pricing-free", "btn-landing-demo-start"]
+            .forEach((id) => {
+                const button = $(id);
+                if (!button || button.dataset.guestExamBound === "true") return;
+                button.dataset.guestExamBound = "true";
+                button.addEventListener("click", () => {
+                    localStorage.removeItem(PENDING_PLAN_STORAGE_KEY);
+                    void startGuestExam(button, id);
+                });
+            });
+
+        $("btn-guest-return-landing")?.addEventListener("click", () => {
+            trackEvent("guest_exam_return_landing", { score: State.guestExamSummary?.pct || 0 });
+            exitGuestExperience({ showLanding: true });
+        });
+        $("btn-guest-view-plans")?.addEventListener("click", () => {
+            trackEvent("guest_exam_view_plans", { score: State.guestExamSummary?.pct || 0 });
+            exitGuestExperience({ showLanding: true, scrollTarget: "#landing-pricing" });
+        });
     };
 
     const PREMIUM_VIEWS = new Set([
@@ -7357,7 +7746,14 @@
             else break;
         }
 
-        const badge = $("case-area-badge"); if (badge) badge.textContent = (State.globalStats.bySpecialty[qFirst.specialty]?.name || qFirst.specialty).toUpperCase();
+        const badge = $("case-area-badge"); if (badge) badge.textContent = (State.globalStats.bySpecialty[qFirst.specialty]?.name || TRONCAL_LABELS[qFirst.specialty] || qFirst.specialty).toUpperCase();
+        const difficultyBadge = $("case-difficulty-badge");
+        if (difficultyBadge) {
+            const difficultyLabels = { easy: "DIFICULTAD BÁSICA", medium: "DIFICULTAD MEDIA", hard: "DIFICULTAD ALTA" };
+            const bucket = normalizeDifficultyBucket(qFirst.difficulty);
+            difficultyBadge.textContent = difficultyLabels[bucket] || difficultyLabels.medium;
+            difficultyBadge.dataset.difficulty = bucket;
+        }
         const caseText = $("case-text"); if (caseText) caseText.textContent = qFirst.case;
         const reclassBtn = $("btn-reclass-case");
         const deleteBtn = $("btn-delete-case");
@@ -7424,7 +7820,9 @@
                 actions.style.gap = "8px";
                 actions.style.alignItems = "center";
                 const notebookId = getCaseNotebookId(q);
-                const notebookEntry = (State.caseNotebook || []).find(entry => entry.id === notebookId);
+                const notebookEntry = State.guestExamActive
+                    ? null
+                    : (State.caseNotebook || []).find(entry => entry.id === notebookId);
 
                 const btnNotebook = document.createElement("button");
                 btnNotebook.className = "btn-ghost";
@@ -7448,7 +7846,7 @@
 
                 const btnFlag = document.createElement("button");
                 btnFlag.className = `btn-flag ${ans.flagged ? 'active' : ''}`;
-                btnFlag.innerHTML = "&#x1F6A9; Marcar";
+                btnFlag.innerHTML = State.guestExamActive ? "&#x1F6A9; Revisar después" : "&#x1F6A9; Marcar";
                 btnFlag.addEventListener("click", () => {
                     State.answers[qIndex].flagged = !State.answers[qIndex].flagged;
                     renderExamQuestion();
@@ -7471,9 +7869,9 @@
                 spanNum.textContent = qNumStr;
 
                 header.appendChild(spanNum);
-                actions.appendChild(btnNotebook);
+                if (!State.guestExamActive) actions.appendChild(btnNotebook);
                 actions.appendChild(btnFlag);
-                actions.appendChild(btnReport);
+                if (!State.guestExamActive) actions.appendChild(btnReport);
                 header.appendChild(actions);
 
                 const qTextEl = document.createElement("p");
@@ -7482,15 +7880,16 @@
 
                 const optGrid = document.createElement("div");
                 optGrid.className = "options-list";
+                const correctIndex = getQuestionAnswerIndex(q);
                 q.options.forEach((optStr, idx) => {
                     if (optStr === undefined || optStr === null) return; // guard against malformed options
                     const btn = document.createElement("button");
                     btn.className = "option-btn";
                     const letter = String.fromCharCode(65 + idx);
-                    btn.innerHTML = `<strong>${letter}.</strong> ${optStr}`;
+                    btn.innerHTML = `<span class="option-letter">${letter}</span><span class="option-copy">${escapeHtml(optStr)}</span>`;
                     if (ans.selected === idx) btn.classList.add("selected");
                     if (State.mode === "estudio" && ans.selected !== null) {
-                        if (idx === q.answerIndex) btn.classList.add("correct-ans");
+                        if (idx === correctIndex) btn.classList.add("correct-ans");
                         else if (ans.selected === idx) btn.classList.add("wrong-ans");
                     }
                     btn.addEventListener("click", () => handleAnswer(idx, qIndex));
@@ -7501,7 +7900,7 @@
                 card.appendChild(qTextEl);
                 card.appendChild(optGrid);
 
-                if (notebookEntry && notebookEntry.note) {
+                if (!State.guestExamActive && notebookEntry && notebookEntry.note) {
                     const notePreview = document.createElement("div");
                     notePreview.className = "results-postmortem-item";
                     notePreview.textContent = `Nota guardada: ${truncateText(notebookEntry.note, 140)}`;
@@ -7570,7 +7969,7 @@
         const ans = State.answers[qIndex];
         if (State.mode === "estudio" && ans.selected !== null) return;
         ans.selected = selectedIdx;
-        ans.isCorrect = (selectedIdx === q.answerIndex);
+        ans.isCorrect = (selectedIdx === getQuestionAnswerIndex(q));
         if (State.mode === "estudio") recordStat(q.specialty, ans.isCorrect, getCaseCanonicalTopic(q));
         renderExamQuestion();
     };
@@ -7626,7 +8025,8 @@
         mode = "simulacro",
         currentExamIsReal = false,
         currentExamType = "Simulacro",
-        durationSec = 0
+        durationSec = 0,
+        guest = false
     }) => {
         if (!Array.isArray(questionSet) || questionSet.length === 0) {
             clearExamTimer();
@@ -7636,6 +8036,7 @@
             State.startTime = null;
             State.pausedElapsedTime = 0;
             State.examActive = false;
+            State.examStartedWithPremium = false;
             setExamTimerVisibility(false, 0);
             hideExamLoadingOverlay();
             showNotification("No hay preguntas disponibles para iniciar este examen.", "warning");
@@ -7653,6 +8054,12 @@
         State.startTime = Date.now();
         State.pausedElapsedTime = 0;
         State.examActive = true;
+        State.guestExamActive = guest === true;
+        State.examStartedWithPremium = !State.guestExamActive && isPremiumActive();
+        State.guestExamCompleted = false;
+        State.guestExamSummary = null;
+        if (!State.guestExamActive) State.guestExamSource = "";
+        document.body.classList.toggle("guest-exam-mode", State.guestExamActive);
         isFinishing = false;
 
         renderExamQuestion();
@@ -8658,6 +9065,206 @@
         }
     };
 
+    const configureResultsMode = (tier = "free") => {
+        const safeTier = ["guest", "premium", "free"].includes(tier) ? tier : "free";
+        const isGuest = safeTier === "guest";
+        const hasAdvancedAnalysis = isGuest || safeTier === "premium";
+        const diagnostic = $("guest-results-diagnostic");
+        if (diagnostic) {
+            diagnostic.hidden = false;
+            diagnostic.classList.toggle("analysis-tier-free", safeTier === "free");
+            diagnostic.dataset.analysisTier = safeTier;
+        }
+        $$(".results-analysis-advanced").forEach((element) => { element.hidden = !hasAdvancedAnalysis; });
+        const guestConversion = $("guest-conversion-panel");
+        if (guestConversion) guestConversion.hidden = !isGuest;
+        const freeUpgrade = $("free-results-upgrade-panel");
+        if (freeUpgrade) freeUpgrade.hidden = safeTier !== "free";
+        $$(".results-guest-only").forEach((element) => { element.hidden = !isGuest; });
+        $$(".results-auth-only").forEach((element) => { element.hidden = isGuest; });
+
+        const kicker = $("results-kicker");
+        const title = $("results-title");
+        const lead = $("results-lead");
+        const tierBadge = $("results-analysis-tier-badge");
+        if (safeTier === "guest") {
+            if (kicker) kicker.textContent = "Diagnóstico gratuito completado";
+            if (title) title.textContent = "Tu radiografía clínica está lista";
+            if (lead) lead.textContent = "Estas 10 decisiones revelan cómo resolviste casos, dónde fuiste más preciso y qué conviene entrenar después.";
+            if (tierBadge) tierBadge.textContent = "Datos de esta sesión";
+        } else if (safeTier === "premium") {
+            if (kicker) kicker.textContent = "Análisis Premium completado";
+            if (title) title.textContent = "Tu análisis clínico está listo";
+            if (lead) lead.textContent = "Revisa tu precisión, ritmo, dificultad, especialidades y prioridades de estudio en una sola lectura.";
+            if (tierBadge) tierBadge.textContent = "Análisis Premium";
+        } else {
+            if (kicker) kicker.textContent = "Sesión completada";
+            if (title) title.textContent = "Resumen de tu desempeño";
+            if (lead) lead.textContent = "Consulta tu resultado general y el patrón de respuestas de esta sesión.";
+            if (tierBadge) tierBadge.textContent = "Vista gratuita";
+        }
+    };
+
+    const buildSessionResultSummary = ({ correct, wrong, blank, total, pct, elapsed, postmortem }) => {
+        const bySpecialty = {};
+        const byDifficulty = {
+            easy: { label: "Básica", total: 0, correct: 0 },
+            medium: { label: "Media", total: 0, correct: 0 },
+            hard: { label: "Alta", total: 0, correct: 0 }
+        };
+        let currentStreak = 0;
+        let bestStreak = 0;
+
+        const answerMap = State.questionSet.map((question, index) => {
+            const answer = State.answers[index] || { selected: null, isCorrect: false };
+            const specialty = question?.specialty || "mi";
+            const specialtyName = State.globalStats.bySpecialty[specialty]?.name || TRONCAL_LABELS[specialty] || specialty.toUpperCase();
+            if (!bySpecialty[specialty]) {
+                bySpecialty[specialty] = { key: specialty, label: specialtyName, total: 0, correct: 0, wrong: 0, blank: 0 };
+            }
+            bySpecialty[specialty].total++;
+
+            const bucket = normalizeDifficultyBucket(question?.difficulty);
+            const difficulty = byDifficulty[bucket] || byDifficulty.medium;
+            difficulty.total++;
+
+            let status = "blank";
+            if (answer.selected === null) {
+                bySpecialty[specialty].blank++;
+                currentStreak = 0;
+            } else if (answer.isCorrect) {
+                status = "correct";
+                bySpecialty[specialty].correct++;
+                difficulty.correct++;
+                currentStreak++;
+                bestStreak = Math.max(bestStreak, currentStreak);
+            } else {
+                status = "wrong";
+                bySpecialty[specialty].wrong++;
+                currentStreak = 0;
+            }
+
+            return { number: index + 1, status };
+        });
+
+        const specialtyRows = Object.values(bySpecialty)
+            .map((entry) => ({ ...entry, pct: entry.total > 0 ? Math.round((entry.correct / entry.total) * 100) : 0 }))
+            .sort((a, b) => b.pct - a.pct || b.correct - a.correct || a.label.localeCompare(b.label, "es"));
+        const answered = correct + wrong;
+        const paceSec = total > 0 ? Math.round(elapsed / total) : 0;
+        const coverage = specialtyRows.filter((entry) => entry.total > 0).length;
+
+        let band = "Diagnóstico inicial listo";
+        let performanceCopy = "Ya tienes una línea de base concreta. Revisar tus decisiones ahora puede convertir cada fallo en una oportunidad de mejora.";
+        if (pct >= 80) {
+            band = "Muy buen nivel clínico";
+            performanceCopy = "Mostraste decisiones sólidas en esta muestra. El siguiente salto está en sostener esa precisión con más casos, dificultad y presión de tiempo.";
+        } else if (pct >= 60) {
+            band = "Base clínica competitiva";
+            performanceCopy = "Tu razonamiento tiene una base funcional. Hay áreas puntuales que pueden mejorar rápido con práctica dirigida y revisión de errores.";
+        } else if (pct >= 40) {
+            band = "Buen punto de partida";
+            performanceCopy = "Ya identificamos patrones útiles en tu toma de decisiones. Trabajar primero los temas señalados puede darte avances visibles en poco tiempo.";
+        }
+
+        const priorityTopics = (postmortem?.priorityTopics || [])
+            .filter((item) => item?.topic)
+            .slice(0, 3)
+            .map((item) => ({ topic: item.topic, count: item.count || 1 }));
+        if (priorityTopics.length === 0) {
+            priorityTopics.push({ topic: "Consolidación y velocidad clínica", count: 0, strength: true });
+        }
+
+        return {
+            correct,
+            wrong,
+            blank,
+            total,
+            pct,
+            elapsed,
+            answered,
+            paceSec,
+            bestStreak,
+            coverage,
+            band,
+            performanceCopy,
+            specialtyRows,
+            byDifficulty,
+            answerMap,
+            priorityTopics
+        };
+    };
+
+    const renderSessionResults = (summary, tier = "free") => {
+        configureResultsMode(tier);
+        const scoreCircle = $("results-score-circle");
+        if (scoreCircle) scoreCircle.style.setProperty("--score-progress", `${Math.max(0, Math.min(summary.pct, 100))}%`);
+        if ($("guest-results-band")) $("guest-results-band").textContent = summary.band;
+        if ($("guest-results-performance-copy")) $("guest-results-performance-copy").textContent = summary.performanceCopy;
+        if ($("guest-metric-answered")) $("guest-metric-answered").textContent = `${summary.answered}/${summary.total}`;
+        if ($("guest-metric-answered-note")) {
+            const answerCoverage = summary.total > 0 ? Math.round((summary.answered / summary.total) * 100) : 0;
+            $("guest-metric-answered-note").textContent = tier === "guest"
+                ? `${answerCoverage}% del diagnóstico completado`
+                : `${answerCoverage}% de la sesión completada`;
+        }
+        if ($("guest-metric-pace")) $("guest-metric-pace").textContent = summary.paceSec < 60 ? `${summary.paceSec}s` : formatTime(summary.paceSec);
+        if ($("guest-metric-streak")) $("guest-metric-streak").textContent = summary.bestStreak;
+        if ($("guest-metric-coverage")) $("guest-metric-coverage").textContent = `${summary.coverage}/4`;
+
+        const specialtyContainer = $("guest-results-specialties");
+        if (specialtyContainer) {
+            specialtyContainer.innerHTML = summary.specialtyRows.map((entry) => `
+                <div class="guest-specialty-row">
+                    <div class="guest-specialty-label">
+                        <strong>${escapeHtml(entry.label)}</strong>
+                        <small>${entry.correct} correctas · ${entry.wrong} incorrectas${entry.blank ? ` · ${entry.blank} omitidas` : ""}</small>
+                    </div>
+                    <div class="guest-specialty-track" aria-label="${escapeHtml(entry.label)}: ${entry.pct}%">
+                        <div class="guest-specialty-fill" style="width:${entry.pct}%"></div>
+                    </div>
+                    <div class="guest-specialty-value"><strong>${entry.pct}%</strong><small>${entry.correct}/${entry.total}</small></div>
+                </div>
+            `).join("");
+        }
+
+        const difficultyContainer = $("guest-results-difficulty");
+        if (difficultyContainer) {
+            difficultyContainer.innerHTML = Object.values(summary.byDifficulty).map((entry) => {
+                const difficultyPct = entry.total > 0 ? Math.round((entry.correct / entry.total) * 100) : 0;
+                return `
+                    <div class="guest-difficulty-item">
+                        <span>${escapeHtml(entry.label)}</span>
+                        <strong>${entry.total ? `${difficultyPct}%` : "—"}</strong>
+                        <small>${entry.correct}/${entry.total} correctas</small>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        const answerMapContainer = $("guest-results-answer-map");
+        const answerMapTitle = $("results-answer-map-title");
+        if (answerMapTitle) answerMapTitle.textContent = `Mapa de tus ${summary.total} decisiones`;
+        if (answerMapContainer) {
+            answerMapContainer.classList.toggle("is-medium", summary.total > 10 && summary.total <= 40);
+            answerMapContainer.classList.toggle("is-large", summary.total > 40);
+            const statusLabels = { correct: "Correcta", wrong: "Incorrecta", blank: "Sin contestar" };
+            answerMapContainer.innerHTML = summary.answerMap.map((item) => `
+                <span class="guest-answer-dot is-${item.status}" title="Pregunta ${item.number}: ${statusLabels[item.status]}">${item.number}</span>
+            `).join("");
+        }
+
+        const topicsContainer = $("guest-results-topics");
+        if (topicsContainer) {
+            topicsContainer.innerHTML = summary.priorityTopics.map((item) => `
+                <div class="guest-topic-chip">
+                    <strong>${escapeHtml(item.topic)}</strong>
+                    <small>${item.strength ? "Mantén la precisión con casos cronometrados." : `${item.count} ${item.count === 1 ? "decisión" : "decisiones"} para revisar en esta sesión.`}</small>
+                </div>
+            `).join("");
+        }
+    };
+
     const finishExam = () => {
         if (isFinishing) return;
         isFinishing = true;
@@ -8669,7 +9276,9 @@
                 if (a.selected === null) blank++;
                 else {
                     if (a.isCorrect) correct++; else wrong++;
-                    if (State.mode === "simulacro") recordStat(State.questionSet[i].specialty, a.isCorrect, getCaseCanonicalTopic(State.questionSet[i]));
+                    if (State.mode === "simulacro" && !State.guestExamActive) {
+                        recordStat(State.questionSet[i].specialty, a.isCorrect, getCaseCanonicalTopic(State.questionSet[i]));
+                    }
                 }
             });
 
@@ -8698,6 +9307,32 @@
             const mb = $("meta-blank"); if (mb) mb.textContent = blank;
             const mt = $("meta-time"); if (mt) mt.textContent = formatTime(elapsed);
             const postmortem = buildSessionPostmortem({ correct, wrong, blank, total, elapsedSec: elapsed });
+            const resultSummary = buildSessionResultSummary({ correct, wrong, blank, total, pct, elapsed, postmortem });
+
+            if (State.guestExamActive) {
+                State.examActive = false;
+                State.guestExamCompleted = true;
+                State.guestExamSummary = resultSummary;
+                renderSessionResults(resultSummary, "guest");
+                showView("view-results");
+                trackEvent("guest_exam_complete", {
+                    placement: State.guestExamSource || "landing",
+                    score: pct,
+                    answered: correct + wrong,
+                    blank,
+                    elapsed_seconds: elapsed
+                });
+                return;
+            }
+
+            const resultsTier = (State.examStartedWithPremium || isPremiumActive()) ? "premium" : "free";
+            renderSessionResults(resultSummary, resultsTier);
+            trackEvent("exam_results_analysis_view", {
+                tier: resultsTier,
+                score: pct,
+                questions: total,
+                exam_type: State.currentExamType
+            });
             State.lastPostmortem = postmortem;
 
             State.globalStats.sesiones++;
@@ -10958,34 +11593,82 @@
                 const qTitle = document.createElement("h3");
                 qTitle.className = "question-text";
                 qTitle.style.marginBottom = "10px";
-                qTitle.innerHTML = `<span style="font-size:12px; color:var(--text-muted); display:block; margin-bottom:4px;">${qNumStr}</span>${q.question}`;
+                qTitle.innerHTML = `<span style="font-size:12px; color:var(--text-muted); display:block; margin-bottom:4px;">${escapeHtml(qNumStr)}</span>${escapeHtml(q.question)}`;
                 qBox.appendChild(qTitle);
 
                 const optGrid = document.createElement("div");
-                optGrid.className = "options-grid";
+                optGrid.className = "options-grid review-options-grid";
+                const correctIndex = getQuestionAnswerIndex(q);
                 q.options.forEach((optStr, idx) => {
                     const btn = document.createElement("button");
                     btn.className = "option-btn";
-                    btn.style.cursor = "default"; // read-only
+                    btn.type = "button";
+                    btn.style.cursor = "default";
+                    btn.setAttribute("aria-disabled", "true");
                     const letter = String.fromCharCode(65 + idx);
-                    btn.innerHTML = `<strong>${letter}.</strong> ${optStr}`;
+                    const isCorrectOption = idx === correctIndex;
+                    const isSelectedOption = ans.selected === idx;
+                    let statusLabel = "";
+                    let statusClass = "";
 
-                    if (idx === q.answerIndex) btn.classList.add("correct-ans");
-                    if (ans.selected === idx && idx !== q.answerIndex) btn.classList.add("wrong-ans");
+                    if (isCorrectOption && isSelectedOption) {
+                        statusLabel = "Tu respuesta · Correcta";
+                        statusClass = "is-correct";
+                    } else if (isCorrectOption) {
+                        statusLabel = "Respuesta correcta";
+                        statusClass = "is-correct";
+                    } else if (isSelectedOption) {
+                        statusLabel = "Tu respuesta";
+                        statusClass = "is-wrong";
+                    }
+
+                    btn.innerHTML = `
+                        <span class="option-letter">${letter}</span>
+                        <span class="option-copy">${escapeHtml(optStr)}</span>
+                        ${statusLabel ? `<span class="review-option-status ${statusClass}">${statusLabel}</span>` : ""}
+                    `;
+
+                    if (isCorrectOption) btn.classList.add("correct-ans");
+                    if (isSelectedOption && !isCorrectOption) btn.classList.add("wrong-ans");
                     if (ans.selected === idx) btn.classList.add("selected");
 
                     optGrid.appendChild(btn);
                 });
                 qBox.appendChild(optGrid);
 
+                const correctLetter = correctIndex >= 0 ? String.fromCharCode(65 + correctIndex) : "—";
+                const correctText = correctIndex >= 0 ? q.options[correctIndex] : "Respuesta no disponible";
+                const selectedLetter = ans.selected !== null ? String.fromCharCode(65 + ans.selected) : "—";
+                const selectedText = ans.selected !== null ? q.options[ans.selected] : "No contestaste este reactivo";
+                const answerSummary = document.createElement("div");
+                answerSummary.className = `review-answer-summary ${ans.selected === null ? "is-blank" : (ans.isCorrect ? "is-correct" : "is-wrong")}`;
+                if (ans.selected === null) {
+                    answerSummary.innerHTML = `
+                        <strong>Sin respuesta</strong>
+                        <p>La respuesta correcta era <b>${correctLetter}. ${escapeHtml(correctText)}</b></p>
+                    `;
+                } else if (ans.isCorrect) {
+                    answerSummary.innerHTML = `
+                        <strong>Respuesta correcta</strong>
+                        <p>Elegiste <b>${selectedLetter}. ${escapeHtml(selectedText)}</b></p>
+                    `;
+                } else {
+                    answerSummary.innerHTML = `
+                        <strong>Respuesta incorrecta</strong>
+                        <p>Elegiste <b>${selectedLetter}. ${escapeHtml(selectedText)}</b></p>
+                        <p>La correcta era <b>${correctLetter}. ${escapeHtml(correctText)}</b></p>
+                    `;
+                }
+                qBox.appendChild(answerSummary);
+
                 const fb = document.createElement("div");
                 fb.className = `feedback-card ${ans.isCorrect ? '' : 'wrong'}`;
                 fb.style.display = "block";
                 fb.style.marginTop = "15px";
                 fb.innerHTML = `
-                    <h3 id="rev-feedback-header" style="margin:0 0 10px 0;">Explicación ENARM</h3>
-                    <p>${q.explanation || ""}</p>
-                    <div class="feedback-gpc">${q.gpcReference || ""}</div>
+                    <h3 style="margin:0 0 10px 0;">Explicación ENARM</h3>
+                    <p>${escapeHtml(q.explanation || "Explicación no disponible.")}</p>
+                    <div class="feedback-gpc">${escapeHtml(q.gpcReference || "")}</div>
                 `;
                 qBox.appendChild(fb);
 
@@ -11782,6 +12465,7 @@
     // ---------------------------------------------------------------------------
     document.addEventListener("DOMContentLoaded", () => {
         loadGlobalStats();
+        initGuestExamExperience();
         populateAccountProfileOptions();
         loadDeletedCases();
         initReclassifyLogic();
@@ -12184,6 +12868,10 @@
                 renderAdminUsers();
             });
         });
+        const btnAdminUsersRefresh = $("admin-users-refresh");
+        if (btnAdminUsersRefresh) {
+            btnAdminUsersRefresh.addEventListener("click", () => void loadAdminAuthUsers({ force: true }));
+        }
 
         const btnGlobalPremiumSave = $("btn-global-premium-save");
         if (btnGlobalPremiumSave) {
@@ -12242,6 +12930,16 @@
         const bd = $("btn-back-dash"); if (bd) bd.addEventListener("click", () => $("nav-dashboard").click());
         const rv = $("btn-review"); if (rv) rv.addEventListener("click", startReview);
         const exr = $("btn-exit-review"); if (exr) exr.addEventListener("click", () => showView("view-results"));
+        const unlockResults = $("btn-results-unlock-premium");
+        if (unlockResults) unlockResults.addEventListener("click", () => {
+            trackEvent("results_premium_unlock_click", {
+                score: State.questionSet.length > 0
+                    ? Math.round((State.answers.filter((answer) => answer.isCorrect).length / State.questionSet.length) * 100)
+                    : 0,
+                exam_type: State.currentExamType
+            });
+            openRedeemModal("Desbloquea el análisis completo por especialidad, dificultad, ritmo y temas prioritarios.");
+        });
 
         const bp = $("btn-prev");
         if (bp) bp.addEventListener("click", () => {
@@ -12269,8 +12967,7 @@
                     State.currentIndex = nextIdx;
                     renderExamQuestion();
                 } else {
-                    const modal = $("finish-modal");
-                    if (modal) modal.style.display = "flex";
+                    showFinishModal();
                 }
             });
         }
@@ -12307,6 +13004,17 @@
 
         const showFinishModal = () => {
             const modal = $("finish-modal");
+            const unanswered = (State.answers || []).filter((answer) => answer.selected === null).length;
+            const title = $("finish-modal-title");
+            const copy = $("finish-modal-copy");
+            const confirmButton = $("btn-confirm-finish");
+            if (title) title.textContent = unanswered > 0 ? "¿Finalizar la evaluación?" : "Tu evaluación está completa";
+            if (copy) {
+                copy.textContent = unanswered > 0
+                    ? `Todavía tienes ${unanswered} pregunta${unanswered === 1 ? "" : "s"} sin contestar. Se marcarán como omitidas en tu diagnóstico.`
+                    : `Ya respondiste los ${State.questionSet.length} reactivos. ${State.guestExamActive ? "Tu diagnóstico clínico está listo para revisarse." : "Tus resultados están listos para revisarse."}`;
+            }
+            if (confirmButton) confirmButton.textContent = State.guestExamActive ? "Ver mi diagnóstico" : "Finalizar";
             if (modal) modal.style.display = "flex";
         };
 
@@ -14198,6 +14906,9 @@
 
                 const showAuthFromLanding = (options = {}) => {
                     if (landingPage) landingPage.classList.add("hidden");
+                    const appLayout = document.querySelector(".app-layout");
+                    if (appLayout) appLayout.style.display = "none";
+                    document.body.classList.remove("guest-exam-mode");
                     if (authOverlay) authOverlay.classList.add("active");
                     if (options.register === true && typeof setAuthMode === "function") setAuthMode(true);
                 };
@@ -14485,10 +15196,8 @@
                     }
                 });
 
-                // CTAs gratuitos que abren el registro.
-                ["btn-landing-start", "btn-landing-hero-start", "btn-landing-final-start", "btn-landing-mobile-start",
-                 "btn-landing-pricing-free", "btn-landing-demo-start"
-                ].forEach(id => {
+                // Los CTAs de cuenta abren registro; los de 10 preguntas entran al examen invitado.
+                ["btn-landing-start", "btn-landing-mobile-start"].forEach(id => {
                     const el = $(id);
                     if (el) el.addEventListener("click", () => {
                         localStorage.removeItem(PENDING_PLAN_STORAGE_KEY);
@@ -14496,6 +15205,18 @@
                         showAuthFromLanding({ register: true });
                     });
                 });
+
+                const guestCreateAccount = $("btn-guest-create-account");
+                if (guestCreateAccount && guestCreateAccount.dataset.authBound !== "true") {
+                    guestCreateAccount.dataset.authBound = "true";
+                    guestCreateAccount.addEventListener("click", () => {
+                        const score = State.guestExamSummary?.pct || 0;
+                        const source = State.guestExamSource || "guest_results";
+                        trackEvent("guest_exam_create_account", { score, placement: source });
+                        exitGuestExperience({ showLanding: false });
+                        showAuthFromLanding({ register: true });
+                    });
+                }
 
                 ["btn-landing-login-top", "btn-landing-mobile-login"].forEach(id => {
                     const el = $(id);
@@ -14589,8 +15310,13 @@
                     }
                 }
 
-                // If user doesn't exist locally, show landing page
-                if (!localStorage.getItem("enarm_user") || localStorage.getItem("enarm_user") === "Aspirante") {
+                // If user doesn't exist locally, show landing page (unless the guest exam is already open).
+                if (State.guestExamActive) {
+                    if (landingPage) landingPage.classList.add("hidden");
+                    authOverlay.classList.remove("active");
+                    const appLayout = document.querySelector(".app-layout");
+                    if (appLayout) appLayout.style.display = "flex";
+                } else if (!localStorage.getItem("enarm_user") || localStorage.getItem("enarm_user") === "Aspirante") {
                     if (landingPage) landingPage.classList.remove("hidden");
                     authOverlay.classList.remove("active"); // Hide auth overlay initially
                     const appLayout = document.querySelector(".app-layout");
@@ -14916,6 +15642,14 @@
                             State.ratingPromptLoaded = false;
                             State.withdrawalRequests = [];
                             State.adminUsers = [];
+                            State.adminAuthUsers = [];
+                            State.adminAuthUsersLoaded = false;
+                            State.adminAuthUsersLoading = false;
+                            State.adminAuthUsersError = "";
+                            State.adminAuthUsersLoadedAt = 0;
+                            State.adminAuthUsersPromise = null;
+                            State.adminAuthUsersRequestId += 1;
+                            State.adminPremiumPendingByUid = {};
                             State.adminDirectoryByUid = {};
                             State.adminEntitlementsByUid = {};
                             renderAdminFeedbackInbox();
