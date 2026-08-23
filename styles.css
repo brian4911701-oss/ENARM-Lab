@@ -4598,6 +4598,33 @@ body.stats-demo-preview .stats-free-preview-card {
   box-shadow: 0 10px 22px rgba(225, 48, 108, 0.24);
 }
 
+.premium-contact-link.is-email {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.24);
+}
+
+.contact-support-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-support-copy {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.contact-support-actions {
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.contact-support-email {
+  margin: 13px 0 0;
+  color: var(--text-muted);
+  font-size: .75rem;
+  text-align: center;
+}
+
 .premium-contact-icon {
   display: inline-flex;
   align-items: center;
@@ -11740,6 +11767,10 @@ h6,
 /* -- Pricing -- */
 .landing-pricing-section { padding-top: 96px; }
 .landing-pricing-section .landing-section-header { margin-bottom: 52px; }
+.pricing-premium-equivalence { display: flex; align-items: flex-start; gap: 11px; max-width: 790px; margin: -28px auto 32px; padding: 13px 16px; border: 1px solid rgba(90,231,173,.23); border-radius: 14px; background: linear-gradient(135deg, rgba(5,192,127,.14), rgba(69,111,255,.10)); color: #dfffee; text-align: left; }
+.pricing-premium-equivalence > span { display: inline-flex; flex: 0 0 22px; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; color: #062c1f; background: #83f8bd; font-size: .76rem; font-weight: 900; }
+.pricing-premium-equivalence p { margin: 0; color: #c9d9e7; font-size: .82rem; line-height: 1.5; }
+.pricing-premium-equivalence strong { color: #f3fff9; }
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -12749,6 +12780,7 @@ h6,
 @media (max-width: 640px) {
   .landing-pricing-section { padding-top: 60px; }
   .landing-pricing-section .landing-section-header { margin-bottom: 34px; }
+  .pricing-premium-equivalence { margin: -14px 0 24px; padding: 12px 14px; }
   .pricing-grid { grid-template-columns: 1fr; gap: 18px; }
   .pricing-card { min-height: auto; margin: 0; padding: 28px 22px 24px; }
   .pricing-card--free { grid-column: auto; max-width: none; }
