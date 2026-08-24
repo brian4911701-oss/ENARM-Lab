@@ -11133,6 +11133,12 @@ h6,
   font-size: 1.3rem; font-weight: 700;
   color: #fff;
 }
+.landing-logo-m {
+  color: transparent;
+  background: linear-gradient(90deg, #fff 0%, #fff 42%, #b8f7d8 72%, #05c07f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
 .landing-logo-accent { color: #05c07f; }
 .landing-nav-links {
   display: flex; gap: 32px;
@@ -11773,7 +11779,7 @@ h6,
 .pricing-premium-equivalence strong { color: #f3fff9; }
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 22px;
   align-items: stretch;
   width: 100%;
