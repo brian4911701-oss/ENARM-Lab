@@ -8657,6 +8657,10 @@ body.light-mode .mobile-nav-item.mobile-nav-fab {
   display: none;
 }
 
+.mobile-admin-top-button {
+  display: none;
+}
+
 /* ── Mobile Overrides ─────────────────────────────────── */
 @media (max-width: 768px) {
   html,
@@ -10085,6 +10089,35 @@ body.exam-loading-active {
   .public-profile-hero {
     align-items: flex-start;
     flex-wrap: wrap;
+  }
+
+  .mobile-top-bar .mobile-admin-top-button {
+    display: none;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid rgba(250, 204, 21, 0.45);
+    border-radius: 12px;
+    background: rgba(250, 204, 21, 0.12);
+    color: #facc15;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  }
+
+  .mobile-top-bar .mobile-admin-top-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mobile-top-bar .mobile-admin-top-button:active {
+    transform: translateY(-50%) scale(0.94);
   }
 
   .public-profile-avatar {

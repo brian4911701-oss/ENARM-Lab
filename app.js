@@ -2060,6 +2060,8 @@
         if (adminRatingsPanel) adminRatingsPanel.style.display = isAdminUser() ? "block" : "none";
         const adminSidebarNav = $("nav-admin");
         if (adminSidebarNav) adminSidebarNav.style.display = isAdminUser() ? "flex" : "none";
+        const adminMobileTopButton = $("nav-admin-mobile");
+        if (adminMobileTopButton) adminMobileTopButton.style.display = isAdminUser() ? "flex" : "none";
         $$(".admin-preview-btn").forEach(btn => {
             btn.classList.toggle("active", btn.dataset.adminPreview === State.adminPreviewMode);
         });
@@ -5594,6 +5596,7 @@
             { id: "nav-comunidad", view: "view-comunidad" },
             { id: "nav-mas", view: "view-mas" },
             { id: "nav-admin", view: "view-admin" },
+            { id: "nav-admin-mobile", view: "view-admin" },
             { id: "nav-estadisticas", view: "view-estadisticas" },
             { id: "nav-historial", view: "view-historial" },
             { id: "nav-ajustes", view: "view-ajustes" },
