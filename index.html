@@ -2263,24 +2263,20 @@
                         <div class="admin-users-toolbar">
                             <p class="panel-subtitle" id="admin-users-summary">Usuarios ordenados del más reciente al más antiguo. El acceso se controla desde el interruptor.</p>
                             <div class="admin-users-controls" aria-label="Filtros de usuarios">
-                                <button id="admin-users-refresh" class="btn-ghost admin-users-refresh" type="button" title="Volver a consultar Firebase Authentication">
+                                <button id="admin-users-refresh" class="btn-ghost admin-users-refresh" type="button" title="Volver a la primera página y actualizar usuarios">
                                     <span aria-hidden="true">&#8635;</span> Actualizar
                                 </button>
+                                <div class="admin-users-pagination" aria-label="Paginación de usuarios">
+                                    <button id="admin-users-previous" class="btn-ghost admin-users-refresh" type="button">Anterior</button>
+                                    <span id="admin-users-page" aria-live="polite">Página 1</span>
+                                    <button id="admin-users-next" class="btn-ghost admin-users-refresh" type="button">Siguiente</button>
+                                </div>
                                 <label>
                                     <span>Acceso</span>
                                     <select id="admin-users-filter" class="text-input">
                                         <option value="all">Todos</option>
                                         <option value="premium">Solo Premium</option>
                                         <option value="free">Solo Gratis</option>
-                                    </select>
-                                </label>
-                                <label>
-                                    <span>Orden</span>
-                                    <select id="admin-users-sort" class="text-input">
-                                        <option value="newest">Más recientes</option>
-                                        <option value="oldest">Más antiguos</option>
-                                        <option value="name-asc">Nombre: A–Z</option>
-                                        <option value="name-desc">Nombre: Z–A</option>
                                     </select>
                                 </label>
                             </div>
@@ -4312,7 +4308,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, updateProfile, GoogleAuthProvider, getAdditionalUserInfo, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, getDocs, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, addDoc, updateDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, getDoc, getDocs, getCountFromServer, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, documentId, startAfter, addDoc, updateDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
         import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-functions.js";
 
         const firebaseConfig = {
@@ -4371,12 +4367,15 @@
             runTransaction,
             serverTimestamp,
             where,
+            documentId,
+            startAfter,
             onSnapshot,
             collection,
             query,
             orderBy,
             limit,
             getDocs,
+            getCountFromServer,
             deleteDoc,
             signInWithEmailAndPassword,
             createUserWithEmailAndPassword,

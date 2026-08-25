@@ -144,18 +144,23 @@ service cloud.firestore {
       allow create: if isSelf(uid)
         && request.resource.data.uid == uid
         && request.resource.data.email is string
+        && request.resource.data.email.size() <= 160
         && request.resource.data.username is string
-        && !request.resource.data.keys().hasAny(["authCreatedAt", "authCreatedAtSyncedAt"])
-        && request.resource.data.createdAt == request.time;
+        && request.resource.data.username.size() > 0
+        && request.resource.data.username.size() <= 120
+        && request.resource.data.keys().hasOnly(["uid", "email", "username", "createdAt", "lastSeenAt"])
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.lastSeenAt == request.time;
       allow update: if isSelf(uid)
         && request.resource.data.uid == uid
         && request.resource.data.email is string
+        && request.resource.data.email.size() <= 160
         && request.resource.data.username is string
-        && request.resource.data.keys().hasAny(["authCreatedAt"]) == resource.data.keys().hasAny(["authCreatedAt"])
-        && request.resource.data.keys().hasAny(["authCreatedAtSyncedAt"]) == resource.data.keys().hasAny(["authCreatedAtSyncedAt"])
-        && (!resource.data.keys().hasAny(["authCreatedAt"]) || request.resource.data.authCreatedAt == resource.data.authCreatedAt)
-        && (!resource.data.keys().hasAny(["authCreatedAtSyncedAt"]) || request.resource.data.authCreatedAtSyncedAt == resource.data.authCreatedAtSyncedAt)
-        && request.resource.data.createdAt == resource.data.createdAt;
+        && request.resource.data.username.size() > 0
+        && request.resource.data.username.size() <= 120
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["email", "username", "lastSeenAt"])
+        && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(["lastSeenAt"])
+          || request.resource.data.lastSeenAt == request.time);
       allow delete: if isAdmin();
     }
 

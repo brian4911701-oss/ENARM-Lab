@@ -16,6 +16,8 @@
     "build:hosting": "node scripts/build_hosting.js",
     "deploy:web": "firebase deploy --only hosting",
     "users:backfill-auth-dates": "node scripts/backfill_auth_created_dates.js",
+    "rules:deploy-rest": "node scripts/deploy_firestore_rules_rest.js",
+    "hosting:deploy-rest": "node scripts/deploy_hosting_rest.js",
     "codes:generate": "node scripts/generate_redeem_codes.js",
     "user:restore": "node scripts/restore_user_snapshot.js",
     "sanitize:cases": "node scripts/sanitize_case_bank.js",

@@ -12548,6 +12548,22 @@ h6,
   white-space: nowrap;
 }
 
+.admin-users-pagination {
+  display: inline-flex;
+  align-items: center;
+  align-self: end;
+  gap: 8px;
+}
+
+.admin-users-pagination #admin-users-page {
+  min-width: 66px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
 .admin-user-card,
 .admin-user-card .withdrawal-admin-head > div:first-child {
   min-width: 0;
@@ -12555,6 +12571,34 @@ h6,
 
 .admin-user-card .withdrawal-admin-head p {
   overflow-wrap: anywhere;
+}
+
+.admin-user-presence {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.admin-user-presence-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--text-muted);
+  opacity: .65;
+}
+
+.admin-user-presence.is-online {
+  color: var(--accent-green);
+}
+
+.admin-user-presence.is-online .admin-user-presence-dot {
+  background: var(--accent-green);
+  opacity: 1;
+  box-shadow: 0 0 0 3px rgba(5, 192, 127, .13);
 }
 
 .admin-users-controls label {
@@ -12753,6 +12797,14 @@ h6,
 
   .admin-users-refresh {
     width: 100%;
+  }
+
+  .admin-users-pagination {
+    width: 100%;
+  }
+
+  .admin-users-pagination .admin-users-refresh {
+    flex: 1 1 0;
   }
 
   .manual-payment-actions {

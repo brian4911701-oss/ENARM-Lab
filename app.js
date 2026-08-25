@@ -97,20 +97,29 @@
         manualPaymentAdminUnsub: null,
         adminUsers: [],
         adminUsersUnsub: null,
-        adminAuthUsers: [],
-        adminAuthUsersLoaded: false,
-        adminAuthUsersLoading: false,
-        adminAuthUsersError: "",
-        adminAuthUsersLoadedAt: 0,
-        adminAuthUsersPromise: null,
-        adminAuthUsersRequestId: 0,
+        adminUsersLoading: false,
+        adminUsersError: "",
+        adminUsersPromise: null,
+        adminUsersRequestId: 0,
+        adminUserTotalCount: null,
+        adminUserPageIndex: 0,
+        adminUserPageCursors: [null],
+        adminUserHasNextPage: false,
         adminPremiumPendingByUid: {},
         adminUserFilter: "all",
-        adminUserSort: "newest",
+        adminPresenceRefreshTimer: null,
         adminDirectoryByUid: {},
         adminDirectoryUnsub: null,
         adminEntitlementsByUid: {},
         adminEntitlementsUnsub: null,
+        adminEntitlementsPageKey: "",
+        userDirectorySyncUid: "",
+        userDirectoryKnownExists: false,
+        userDirectorySyncPromise: null,
+        userDirectoryLastProfileSyncAt: 0,
+        userDirectoryLastPresenceSyncAt: 0,
+        userPresenceTimer: null,
+        userPresenceVisibilityBound: false,
         myManualPaymentRequests: [],
         myManualPaymentUnsub: null,
         accountCreatedAt: null,
@@ -143,6 +152,10 @@
     const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
     const ADMIN_UIDS = ["sZcIUjjhD0fze7FtirwsjsIDzLB2"];
+    const ADMIN_USERS_PAGE_SIZE = 15;
+    const USER_DIRECTORY_PROFILE_SYNC_INTERVAL_MS = 30 * 60 * 1000;
+    const USER_PRESENCE_HEARTBEAT_INTERVAL_MS = 5 * 60 * 1000;
+    const USER_ONLINE_WINDOW_MS = 7 * 60 * 1000;
     const DEMO_MAX_QTY = 10;
     const GUEST_EXAM_CONFIG = Object.freeze({
         version: "diagnostico-2026-v1",
@@ -3577,15 +3590,15 @@
         });
     };
 
-    const getAdminRegistrationDetails = (directory, leaderboardUser) => {
+    const getAdminRegistrationDetails = (directory, fallbackUser) => {
         const authCreatedAt = normalizeTimestamp(directory?.authCreatedAt)
-            || normalizeTimestamp(leaderboardUser?.authCreatedAt)
+            || normalizeTimestamp(fallbackUser?.authCreatedAt)
             || null;
-        const legacyCreatedAt = normalizeTimestamp(leaderboardUser?.createdAt)
-            || normalizeTimestamp(directory?.createdAt)
+        const directoryCreatedAt = normalizeTimestamp(directory?.createdAt)
+            || normalizeTimestamp(fallbackUser?.createdAt)
             || null;
         return {
-            date: authCreatedAt || legacyCreatedAt,
+            date: authCreatedAt || directoryCreatedAt,
             isAuthVerified: !!authCreatedAt
         };
     };
@@ -3604,70 +3617,139 @@
         };
 
         (State.adminUsers || []).forEach((user) => mergeUser(user.id, user));
-        (State.adminAuthUsers || []).forEach((user) => mergeUser(user.uid, user));
         Object.entries(State.adminDirectoryByUid || {}).forEach(([uid, directory]) => mergeUser(uid, directory));
-        Object.keys(State.adminEntitlementsByUid || {}).forEach((uid) => mergeUser(uid));
-        (State.manualPaymentRequests || []).forEach((payment) => {
-            const paymentUser = {};
-            if (payment.email) paymentUser.email = payment.email;
-            if (payment.name || payment.username) paymentUser.username = payment.name || payment.username;
-            mergeUser(payment.uid, paymentUser);
-        });
-        if (State.currentUid) mergeUser(State.currentUid, { username: State.userName || "Administrador" });
 
         return Array.from(rowsByUid.values());
     };
 
-    const loadAdminAuthUsers = async ({ force = false } = {}) => {
-        if (!isAdminUser()) return;
-        const isFresh = State.adminAuthUsersLoaded
-            && Date.now() - Number(State.adminAuthUsersLoadedAt || 0) < 5 * 60 * 1000;
-        const failedRecently = !!State.adminAuthUsersError
-            && Date.now() - Number(State.adminAuthUsersLoadedAt || 0) < 60 * 1000;
-        if (!force && (isFresh || failedRecently)) return;
-        if (State.adminAuthUsersPromise) return State.adminAuthUsersPromise;
-        if (!window.FB?.functions || !window.FB?.httpsCallable) {
-            State.adminAuthUsersError = "La consulta de Authentication no está disponible en esta versión.";
-            State.adminAuthUsersLoading = false;
-            State.adminAuthUsersLoadedAt = Date.now();
+    const bindAdminPageEntitlements = (userIds, requestId) => {
+        const pageKey = `${requestId}:${userIds.join(",")}`;
+        if (State.adminEntitlementsUnsub && State.adminEntitlementsPageKey === pageKey) return;
+        if (State.adminEntitlementsUnsub) State.adminEntitlementsUnsub();
+        State.adminEntitlementsUnsub = null;
+        State.adminEntitlementsPageKey = pageKey;
+        State.adminEntitlementsByUid = {};
+        if (!userIds.length || !window.FB?.documentId || !window.FB?.onSnapshot || !window.FB?.where) {
             renderAdminUsers();
             return;
         }
+        const entitlementQuery = window.FB.query(
+            window.FB.collection(window.FB.db, "entitlements"),
+            window.FB.where(window.FB.documentId(), "in", userIds)
+        );
+        State.adminEntitlementsUnsub = window.FB.onSnapshot(entitlementQuery, (snap) => {
+            if (requestId !== State.adminUsersRequestId || !isAdminUser()) return;
+            const entitlements = {};
+            snap.forEach((docSnap) => { entitlements[docSnap.id] = docSnap.data() || {}; });
+            State.adminEntitlementsByUid = entitlements;
+            renderAdminUsers();
+        }, (err) => {
+            console.error("Error cargando accesos Premium de la página:", err);
+        });
+    };
 
-        State.adminAuthUsersLoading = true;
-        State.adminAuthUsersError = "";
-        State.adminAuthUsersLoadedAt = Date.now();
+    const refreshAdminUserTotalCount = async (requestId) => {
+        if (!window.FB?.getCountFromServer) return;
+        try {
+            const countSnap = await window.FB.getCountFromServer(
+                window.FB.collection(window.FB.db, "user_directory")
+            );
+            if (requestId !== State.adminUsersRequestId || !isAdminUser()) return;
+            State.adminUserTotalCount = countSnap.data().count;
+            renderAdminUsers();
+        } catch (err) {
+            console.warn("No se pudo obtener el total del directorio de usuarios:", err);
+        }
+    };
+
+    const loadAdminUsersPage = async ({ pageIndex = 0, reset = false } = {}) => {
+        if (!isAdminUser()) return;
+        if (reset) {
+            pageIndex = 0;
+            State.adminUserPageCursors = [null];
+            State.adminUserHasNextPage = false;
+            State.adminUserTotalCount = null;
+        }
+        if (State.adminUsersPromise) return State.adminUsersPromise;
+        if (!window.FB?.db || !window.FB?.collection || !window.FB?.query || !window.FB?.orderBy || !window.FB?.limit || !window.FB?.startAfter || !window.FB?.getDocs) {
+            State.adminUsersError = "La paginación de usuarios no está disponible en esta versión.";
+            renderAdminUsers();
+            return;
+        }
+        const cursor = State.adminUserPageCursors[pageIndex];
+        if (pageIndex > 0 && !cursor) return;
+
+        State.adminUsersLoading = true;
+        State.adminUsersError = "";
         renderAdminUsers();
         const requesterUid = State.currentUid;
-        const requestId = ++State.adminAuthUsersRequestId;
+        const requestId = ++State.adminUsersRequestId;
         const requestPromise = (async () => {
             try {
-                const callable = window.FB.httpsCallable(window.FB.functions, "listAdminUsers");
-                const response = await callable();
-                if (requestId !== State.adminAuthUsersRequestId || requesterUid !== State.currentUid || !isAdminUser()) return;
-                const rows = Array.isArray(response?.data?.users) ? response.data.users : [];
-                State.adminAuthUsers = rows
-                    .map((user) => ({
-                        ...user,
-                        id: String(user.uid || ""),
-                        uid: String(user.uid || "")
-                    }))
-                    .filter((user) => user.id);
-                State.adminAuthUsersLoaded = true;
-                State.adminAuthUsersLoadedAt = Date.now();
+                const constraints = [window.FB.orderBy("createdAt", "desc")];
+                if (cursor) constraints.push(window.FB.startAfter(cursor));
+                constraints.push(window.FB.limit(ADMIN_USERS_PAGE_SIZE + 1));
+                const pageQuery = window.FB.query(
+                    window.FB.collection(window.FB.db, "user_directory"),
+                    ...constraints
+                );
+                const applyPageSnapshot = (pageSnap) => {
+                    if (requestId !== State.adminUsersRequestId || requesterUid !== State.currentUid || !isAdminUser()) return;
+                    const pageDocs = pageSnap.docs.slice(0, ADMIN_USERS_PAGE_SIZE);
+                    const rows = pageDocs.map((docSnap) => ({ id: docSnap.id, ...(docSnap.data() || {}) }));
+                    State.adminUsers = rows;
+                    State.adminDirectoryByUid = Object.fromEntries(rows.map((user) => [user.id, user]));
+                    State.adminUserPageIndex = pageIndex;
+                    State.adminUserHasNextPage = pageSnap.docs.length > ADMIN_USERS_PAGE_SIZE;
+                    if (State.adminUserHasNextPage && pageDocs.length) {
+                        State.adminUserPageCursors[pageIndex + 1] = pageDocs[pageDocs.length - 1];
+                    } else {
+                        State.adminUserPageCursors.length = pageIndex + 1;
+                    }
+                    bindAdminPageEntitlements(rows.map((user) => user.id), requestId);
+                    renderAdminUsers();
+                };
+
+                if (State.adminUsersUnsub) State.adminUsersUnsub();
+                State.adminUsersUnsub = null;
+                void refreshAdminUserTotalCount(requestId);
+
+                if (pageIndex === 0 && window.FB.onSnapshot) {
+                    await new Promise((resolve, reject) => {
+                        let initialSnapshotPending = true;
+                        State.adminUsersUnsub = window.FB.onSnapshot(pageQuery, (pageSnap) => {
+                            applyPageSnapshot(pageSnap);
+                            if (initialSnapshotPending) {
+                                initialSnapshotPending = false;
+                                resolve();
+                            }
+                        }, (err) => {
+                            if (initialSnapshotPending) {
+                                initialSnapshotPending = false;
+                                reject(err);
+                                return;
+                            }
+                            console.error("Se perdió la actualización en vivo del directorio:", err);
+                            State.adminUsersError = "Se perdió la actualización en vivo. Pulsa Actualizar para reconectar.";
+                            renderAdminUsers();
+                        });
+                    });
+                } else {
+                    applyPageSnapshot(await window.FB.getDocs(pageQuery));
+                }
             } catch (err) {
-                console.error("Error cargando cuentas de Firebase Authentication:", err);
-                if (requestId !== State.adminAuthUsersRequestId || requesterUid !== State.currentUid || !isAdminUser()) return;
-                State.adminAuthUsersError = "No se pudo verificar la lista completa de Authentication.";
-                if (force) showNotification("No se pudo actualizar el listado completo de usuarios.", "error");
+                console.error("Error cargando página de usuarios para admin:", err);
+                if (requestId !== State.adminUsersRequestId || requesterUid !== State.currentUid || !isAdminUser()) return;
+                State.adminUsersError = "No se pudo cargar esta página de usuarios. Revisa tu conexión e inténtalo de nuevo.";
+                showNotification("No se pudo cargar el listado de usuarios.", "error");
             } finally {
-                if (requestId !== State.adminAuthUsersRequestId) return;
-                State.adminAuthUsersLoading = false;
-                State.adminAuthUsersPromise = null;
+                if (requestId !== State.adminUsersRequestId) return;
+                State.adminUsersLoading = false;
+                State.adminUsersPromise = null;
                 renderAdminUsers();
             }
         })();
-        State.adminAuthUsersPromise = requestPromise;
+        State.adminUsersPromise = requestPromise;
         return requestPromise;
     };
 
@@ -3675,6 +3757,18 @@
         if (!entitlement || entitlement.status !== "active") return false;
         const expiry = normalizeTimestamp(entitlement.expiresAt);
         return !expiry || expiry.getTime() > Date.now();
+    };
+
+    const getAdminUserPresence = (directory) => {
+        const lastSeenAt = normalizeTimestamp(directory?.lastSeenAt);
+        const isOnline = !!lastSeenAt && Date.now() - lastSeenAt.getTime() <= USER_ONLINE_WINDOW_MS;
+        return {
+            isOnline,
+            lastSeenAt,
+            label: isOnline
+                ? "En la app ahora"
+                : (lastSeenAt ? `Última actividad: ${formatDateTime(lastSeenAt)}` : "Sin actividad reciente")
+        };
     };
 
     const getLatestPaymentForUser = (uid) => {
@@ -3804,14 +3898,14 @@
             return;
         }
         const filterControl = $("admin-users-filter");
-        const sortControl = $("admin-users-sort");
         const selectedFilter = filterControl?.value || State.adminUserFilter || "all";
-        const selectedSort = sortControl?.value || State.adminUserSort || "newest";
         State.adminUserFilter = selectedFilter;
-        State.adminUserSort = selectedSort;
 
         const allUsers = getAdminUserRows();
-        const totalUsers = allUsers.length;
+        const directoryTotal = Number.isInteger(State.adminUserTotalCount)
+            ? State.adminUserTotalCount
+            : null;
+        const pageUsers = allUsers.length;
         const users = [...allUsers]
             .filter((user) => {
                 const hasPremium = user.id === State.currentUid
@@ -3823,37 +3917,40 @@
             .sort((a, b) => {
                 const aDirectory = State.adminDirectoryByUid[a.id] || {};
                 const bDirectory = State.adminDirectoryByUid[b.id] || {};
-                if (selectedSort === "name-asc" || selectedSort === "name-desc") {
-                    const aName = String(aDirectory.username || a.username || "");
-                    const bName = String(bDirectory.username || b.username || "");
-                    const comparison = aName.localeCompare(bName, "es", { sensitivity: "base" });
-                    return selectedSort === "name-desc" ? -comparison : comparison;
-                }
                 const aDate = getAdminRegistrationDetails(State.adminDirectoryByUid[a.id] || {}, a).date?.getTime() || 0;
                 const bDate = getAdminRegistrationDetails(State.adminDirectoryByUid[b.id] || {}, b).date?.getTime() || 0;
                 if (!aDate && !bDate) return 0;
                 if (!aDate) return 1;
                 if (!bDate) return -1;
-                return selectedSort === "oldest" ? aDate - bDate : bDate - aDate;
-            });
+                return bDate - aDate;
+        });
         const summary = $("admin-users-summary");
         const refreshButton = $("admin-users-refresh");
+        const previousButton = $("admin-users-previous");
+        const nextButton = $("admin-users-next");
+        const pageLabel = $("admin-users-page");
         if (refreshButton) {
-            refreshButton.disabled = State.adminAuthUsersLoading;
-            refreshButton.setAttribute("aria-busy", State.adminAuthUsersLoading ? "true" : "false");
+            refreshButton.disabled = State.adminUsersLoading;
+            refreshButton.setAttribute("aria-busy", State.adminUsersLoading ? "true" : "false");
         }
+        if (previousButton) previousButton.disabled = State.adminUsersLoading || State.adminUserPageIndex === 0;
+        if (nextButton) nextButton.disabled = State.adminUsersLoading || !State.adminUserHasNextPage;
+        if (pageLabel) pageLabel.textContent = `Página ${State.adminUserPageIndex + 1}`;
         if (summary) {
             const filterLabel = selectedFilter === "premium" ? "con Premium activo" : selectedFilter === "free" ? "con acceso Gratis" : "en total";
-            if (State.adminAuthUsersLoading) {
-                summary.textContent = `Actualizando todas las cuentas registradas… ${totalUsers ? `Mostrando ${totalUsers} mientras termina la consulta.` : ""}`.trim();
-            } else if (State.adminAuthUsersError) {
-                summary.textContent = `${users.length} de ${totalUsers} usuarios ${filterLabel}. ${State.adminAuthUsersError} Pulsa Actualizar para reintentar.`;
+            if (State.adminUsersLoading) {
+                summary.textContent = `Cargando la página ${State.adminUserPageIndex + 1} de usuarios…`;
+            } else if (State.adminUsersError) {
+                summary.textContent = State.adminUsersError;
             } else {
-                summary.textContent = `${users.length} de ${totalUsers} usuarios ${filterLabel}, ordenados por fecha de registro. El acceso se controla desde el interruptor.`;
+                const totalLabel = directoryTotal === null ? "calculando total…" : `${directoryTotal} registrados`;
+                summary.textContent = `Página ${State.adminUserPageIndex + 1}: ${users.length} de ${pageUsers} visibles ${filterLabel} · ${totalLabel}. Ordenados por registro, del más reciente al más antiguo.`;
             }
         }
         if (users.length === 0) {
-            const emptyLabel = totalUsers === 0 ? "Aún no hay usuarios registrados." : "No hay usuarios que coincidan con este filtro.";
+            const emptyLabel = State.adminUsersLoading
+                ? "Cargando usuarios..."
+                : (pageUsers === 0 ? "El directorio está vacío. Ejecuta la migración inicial para importar las cuentas existentes." : "No hay usuarios que coincidan con este filtro.");
             list.innerHTML = `<div class="list-item empty-history"><p style="color:var(--text-muted); padding: 20px;">${emptyLabel}</p></div>`;
             return;
         }
@@ -3866,6 +3963,7 @@
             const displayedPremium = isOwnAccount || (hasPendingChange ? State.adminPremiumPendingByUid[user.id] : hasPremium);
             const payment = getManualPaymentForEntitlement(user.id, entitlement) || getLatestPaymentForUser(user.id);
             const registration = getAdminRegistrationDetails(directory, user);
+            const presence = getAdminUserPresence(directory);
             const accessDetails = isOwnAccount
                 ? { sourceLabel: "Cuenta administradora", dateLabel: "Acceso", date: null }
                 : getAdminPremiumAccessDetails(entitlement, payment);
@@ -3882,6 +3980,9 @@
                             <span class="withdrawal-status">${escapeHtml(accessLabel)}</span>
                             <h3>${escapeHtml(displayName)}</h3>
                             <p>${escapeHtml(email)}</p>
+                            <span class="admin-user-presence ${presence.isOnline ? "is-online" : ""}" title="${escapeHtml(presence.label)}">
+                                <span class="admin-user-presence-dot" aria-hidden="true"></span>${escapeHtml(presence.label)}
+                            </span>
                         </div>
                         <div class="admin-user-access-toggle">
                             <span>${isOwnAccount ? "Cuenta administradora" : (hasPendingChange ? "Guardando…" : "Acceso Premium")}</span>
@@ -3906,22 +4007,107 @@
         });
     };
 
-    const syncUserDirectory = async (user) => {
+    const resetUserDirectorySyncState = (uid = "") => {
+        State.userDirectorySyncUid = uid;
+        State.userDirectoryKnownExists = false;
+        State.userDirectorySyncPromise = null;
+        State.userDirectoryLastProfileSyncAt = 0;
+        State.userDirectoryLastPresenceSyncAt = 0;
+    };
+
+    const syncUserDirectory = async (user, { forceProfile = false, forcePresence = false } = {}) => {
         if (!user || !window.FB || !window.FB.db || !window.FB.doc || !window.FB.setDoc || !window.FB.getDoc) return;
-        try {
-            const ref = window.FB.doc(window.FB.db, "user_directory", user.uid);
-            const existing = await window.FB.getDoc(ref);
-            const data = {
-                uid: user.uid,
-                username: State.userName || user.displayName || (user.email ? user.email.split("@")[0] : "Aspirante"),
-                email: String(user.email || "").slice(0, 160),
-                lastSeenAt: new Date()
-            };
-            if (!existing.exists() && window.FB.serverTimestamp) data.createdAt = window.FB.serverTimestamp();
-            await window.FB.setDoc(ref, data, { merge: true });
-        } catch (err) {
-            console.error("No se pudo sincronizar el directorio privado de usuario:", err);
+        if (State.userDirectorySyncUid !== user.uid) resetUserDirectorySyncState(user.uid);
+
+        const now = Date.now();
+        const shouldSyncProfile = forceProfile
+            || !State.userDirectoryKnownExists
+            || now - State.userDirectoryLastProfileSyncAt >= USER_DIRECTORY_PROFILE_SYNC_INTERVAL_MS;
+        const shouldSyncPresence = forcePresence
+            || !State.userDirectoryLastPresenceSyncAt
+            || now - State.userDirectoryLastPresenceSyncAt >= USER_PRESENCE_HEARTBEAT_INTERVAL_MS;
+        if (!shouldSyncProfile && !shouldSyncPresence) return;
+        if (State.userDirectorySyncPromise) return State.userDirectorySyncPromise;
+
+        const syncUid = user.uid;
+        let syncPromise;
+        syncPromise = (async () => {
+            try {
+                const ref = window.FB.doc(window.FB.db, "user_directory", syncUid);
+                let exists = State.userDirectoryKnownExists;
+                if (!exists) {
+                    const existing = await window.FB.getDoc(ref);
+                    exists = existing.exists();
+                }
+
+                const data = { uid: syncUid };
+                if (shouldSyncProfile) {
+                    data.username = String(State.userName || user.displayName || (user.email ? user.email.split("@")[0] : "Aspirante")).trim().slice(0, 120) || "Aspirante";
+                    data.email = String(user.email || "").slice(0, 160);
+                }
+                if (shouldSyncPresence) {
+                    data.lastSeenAt = window.FB.serverTimestamp ? window.FB.serverTimestamp() : new Date();
+                }
+                if (!exists) {
+                    data.createdAt = window.FB.serverTimestamp ? window.FB.serverTimestamp() : new Date();
+                }
+                await window.FB.setDoc(ref, data, { merge: true });
+
+                if (State.userDirectorySyncUid !== syncUid) return;
+                State.userDirectoryKnownExists = true;
+                if (shouldSyncProfile) State.userDirectoryLastProfileSyncAt = now;
+                if (shouldSyncPresence) State.userDirectoryLastPresenceSyncAt = now;
+            } catch (err) {
+                console.error("No se pudo sincronizar el directorio privado de usuario:", err);
+            } finally {
+                if (State.userDirectorySyncUid === syncUid && State.userDirectorySyncPromise === syncPromise) {
+                    State.userDirectorySyncPromise = null;
+                }
+            }
+        })();
+        State.userDirectorySyncPromise = syncPromise;
+        return syncPromise;
+    };
+
+    const stopUserPresenceHeartbeat = () => {
+        if (State.userPresenceTimer) window.clearInterval(State.userPresenceTimer);
+        State.userPresenceTimer = null;
+    };
+
+    const startUserPresenceHeartbeat = (user) => {
+        stopUserPresenceHeartbeat();
+        if (!user) return;
+        if (!State.userPresenceVisibilityBound) {
+            State.userPresenceVisibilityBound = true;
+            document.addEventListener("visibilitychange", () => {
+                if (document.visibilityState === "hidden") return;
+                const currentUser = window.FB?.auth?.currentUser;
+                if (currentUser) void syncUserDirectory(currentUser, { forcePresence: true });
+            });
         }
+        const syncPresence = () => {
+            if (document.visibilityState === "hidden") return;
+            const currentUser = window.FB?.auth?.currentUser;
+            if (currentUser?.uid === user.uid) void syncUserDirectory(currentUser, { forcePresence: true });
+        };
+        syncPresence();
+        State.userPresenceTimer = window.setInterval(syncPresence, USER_PRESENCE_HEARTBEAT_INTERVAL_MS);
+    };
+
+    const stopAdminPresenceRefresh = () => {
+        if (State.adminPresenceRefreshTimer) window.clearInterval(State.adminPresenceRefreshTimer);
+        State.adminPresenceRefreshTimer = null;
+    };
+
+    const startAdminPresenceRefresh = () => {
+        if (State.adminPresenceRefreshTimer) return;
+        State.adminPresenceRefreshTimer = window.setInterval(() => {
+            if (State.view !== "view-admin-users") {
+                stopAdminPresenceRefresh();
+                return;
+            }
+            renderAdminUsers();
+        }, 60 * 1000);
     };
 
     const initAdminUsersInbox = () => {
@@ -3932,6 +4118,14 @@
             State.adminUsersUnsub = null;
             State.adminDirectoryUnsub = null;
             State.adminEntitlementsUnsub = null;
+            State.adminEntitlementsPageKey = "";
+            State.adminUsersRequestId += 1;
+            State.adminUsersLoading = false;
+            State.adminUsersPromise = null;
+            State.adminUserPageIndex = 0;
+            State.adminUserPageCursors = [null];
+            State.adminUserHasNextPage = false;
+            State.adminUserTotalCount = null;
             State.adminUsers = [];
             State.adminDirectoryByUid = {};
             State.adminEntitlementsByUid = {};
@@ -3942,38 +4136,7 @@
             return;
         }
         if (!window.FB || !window.FB.db || !window.FB.onSnapshot || !window.FB.collection) return;
-        void loadAdminAuthUsers();
-        if (!State.adminUsersUnsub) {
-            State.adminUsersUnsub = window.FB.onSnapshot(window.FB.collection(window.FB.db, "leaderboard"), (snap) => {
-                const rows = [];
-                snap.forEach((docSnap) => rows.push({ id: docSnap.id, ...(docSnap.data() || {}) }));
-                State.adminUsers = rows;
-                renderAdminUsers();
-            }, (err) => {
-                console.error("Error cargando usuarios para admin:", err);
-                showNotification("No se pudieron cargar los usuarios.", "error");
-            });
-        }
-        if (!State.adminDirectoryUnsub) {
-            State.adminDirectoryUnsub = window.FB.onSnapshot(window.FB.collection(window.FB.db, "user_directory"), (snap) => {
-                const directory = {};
-                snap.forEach((docSnap) => { directory[docSnap.id] = docSnap.data() || {}; });
-                State.adminDirectoryByUid = directory;
-                renderAdminUsers();
-            }, (err) => {
-                console.error("Error cargando directorio privado de usuarios:", err);
-            });
-        }
-        if (!State.adminEntitlementsUnsub) {
-            State.adminEntitlementsUnsub = window.FB.onSnapshot(window.FB.collection(window.FB.db, "entitlements"), (snap) => {
-                const entitlements = {};
-                snap.forEach((docSnap) => { entitlements[docSnap.id] = docSnap.data() || {}; });
-                State.adminEntitlementsByUid = entitlements;
-                renderAdminUsers();
-            }, (err) => {
-                console.error("Error cargando accesos Premium para admin:", err);
-            });
-        }
+        void loadAdminUsersPage();
     };
 
     const syncPaymentPendingBanner = () => {
@@ -5185,6 +5348,8 @@
             window.scrollTo(0, 0);
         }
         State.view = viewId;
+        if (viewId === "view-admin-users") startAdminPresenceRefresh();
+        else stopAdminPresenceRefresh();
         document.body.classList.toggle("dashboard-mobile-hero-active", viewId === "view-dashboard");
         if (viewId === "view-dashboard") {
             updateDashboardStats();
@@ -12535,6 +12700,7 @@
                 syncReclassAccessUI();
 
                 saveGlobalStats();
+                void syncUserDirectory(window.FB?.auth?.currentUser, { forceProfile: true });
                 renderProfileView();
                 showNotification("Perfil actualizado y sincronizado.", "success");
             });
@@ -12854,18 +13020,29 @@
             btnAdminUpload.addEventListener("click", () => uploadAdminCodes());
         }
 
-        ["admin-users-filter", "admin-users-sort"].forEach((id) => {
+        ["admin-users-filter"].forEach((id) => {
             const control = $(id);
             if (!control) return;
             control.addEventListener("change", () => {
                 State.adminUserFilter = $("admin-users-filter")?.value || "all";
-                State.adminUserSort = $("admin-users-sort")?.value || "newest";
                 renderAdminUsers();
             });
         });
         const btnAdminUsersRefresh = $("admin-users-refresh");
         if (btnAdminUsersRefresh) {
-            btnAdminUsersRefresh.addEventListener("click", () => void loadAdminAuthUsers({ force: true }));
+            btnAdminUsersRefresh.addEventListener("click", () => void loadAdminUsersPage({ reset: true }));
+        }
+        const btnAdminUsersPrevious = $("admin-users-previous");
+        if (btnAdminUsersPrevious) {
+            btnAdminUsersPrevious.addEventListener("click", () => {
+                void loadAdminUsersPage({ pageIndex: Math.max(0, State.adminUserPageIndex - 1) });
+            });
+        }
+        const btnAdminUsersNext = $("admin-users-next");
+        if (btnAdminUsersNext) {
+            btnAdminUsersNext.addEventListener("click", () => {
+                void loadAdminUsersPage({ pageIndex: State.adminUserPageIndex + 1 });
+            });
         }
 
         const btnGlobalPremiumSave = $("btn-global-premium-save");
@@ -15436,7 +15613,8 @@
                             const userRef = window.FB.doc(window.FB.db, "leaderboard", user.uid);
                             const coreUserDataPromise = window.FB.getDoc(userRef);
                             const startSecondaryAuthenticatedWork = () => {
-                            void syncUserDirectory(user);
+                            void syncUserDirectory(user, { forceProfile: true, forcePresence: true });
+                            startUserPresenceHeartbeat(user);
                             // Crea la referencia única al registrarse; también cubre cuentas antiguas al iniciar sesión.
                             void ensureTransferProfile().catch((err) => {
                                 console.error("No se pudo preparar la referencia de transferencia:", err);
@@ -15569,6 +15747,8 @@
                                 startSecondaryAuthenticatedWork();
                             }
                         } else {
+                            stopUserPresenceHeartbeat();
+                            resetUserDirectorySyncState();
                             State.currentUid = "";
                             State.entitlement = null;
                             State.entitlementLoaded = true;
@@ -15614,6 +15794,7 @@
                                 State.adminEntitlementsUnsub();
                                 State.adminEntitlementsUnsub = null;
                             }
+                            State.adminEntitlementsPageKey = "";
                             if (State.myManualPaymentUnsub) {
                                 State.myManualPaymentUnsub();
                                 State.myManualPaymentUnsub = null;
@@ -15637,13 +15818,14 @@
                             State.ratingPromptLoaded = false;
                             State.withdrawalRequests = [];
                             State.adminUsers = [];
-                            State.adminAuthUsers = [];
-                            State.adminAuthUsersLoaded = false;
-                            State.adminAuthUsersLoading = false;
-                            State.adminAuthUsersError = "";
-                            State.adminAuthUsersLoadedAt = 0;
-                            State.adminAuthUsersPromise = null;
-                            State.adminAuthUsersRequestId += 1;
+                            State.adminUsersLoading = false;
+                            State.adminUsersError = "";
+                            State.adminUsersPromise = null;
+                            State.adminUsersRequestId += 1;
+                            State.adminUserPageIndex = 0;
+                            State.adminUserPageCursors = [null];
+                            State.adminUserHasNextPage = false;
+                            State.adminUserTotalCount = null;
                             State.adminPremiumPendingByUid = {};
                             State.adminDirectoryByUid = {};
                             State.adminEntitlementsByUid = {};

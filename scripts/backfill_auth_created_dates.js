@@ -45,7 +45,7 @@ const getDirectoryCreateData = (userRecord, authCreatedAt, now) => ({
     uid: userRecord.uid,
     username: String(userRecord.displayName || userRecord.email?.split("@")[0] || "Aspirante").slice(0, 120),
     email: String(userRecord.email || "").slice(0, 160),
-    createdAt: now,
+    createdAt: authCreatedAt,
     authCreatedAt,
     authCreatedAtSyncedAt: now
 });
@@ -95,8 +95,13 @@ async function auditUserByEmail(email) {
 }
 
 async function backfillAllDirectories() {
-    const leaderboardSnap = await db.collection("leaderboard").get();
+    const [leaderboardSnap, directorySnap, newestDirectorySnap] = await Promise.all([
+        db.collection("leaderboard").get(),
+        db.collection("user_directory").get(),
+        db.collection("user_directory").orderBy("createdAt", "desc").limit(16).get()
+    ]);
     const leaderboardByUid = new Map(leaderboardSnap.docs.map((docSnap) => [docSnap.id, docSnap.data() || {}]));
+    const directoryByUid = new Map(directorySnap.docs.map((docSnap) => [docSnap.id, docSnap.data() || {}]));
     let pageToken;
     let scannedAuthUsers = 0;
     let authUsers = 0;
@@ -129,17 +134,22 @@ async function backfillAllDirectories() {
                 continue;
             }
             const directoryRef = db.collection("user_directory").doc(userRecord.uid);
-            const directorySnap = await directoryRef.get();
-            const existing = directorySnap.exists ? (directorySnap.data() || {}) : null;
+            const existing = directoryByUid.get(userRecord.uid) || null;
             const currentAuthDate = toDate(existing?.authCreatedAt);
-            if (currentAuthDate && currentAuthDate.getTime() === authCreatedAt.getTime()) continue;
+            const currentCreatedAt = toDate(existing?.createdAt);
+            const hasCorrectDates = currentAuthDate?.getTime() === authCreatedAt.getTime()
+                && currentCreatedAt?.getTime() === authCreatedAt.getTime();
+            const expectedUsername = String(leaderboard.username || userRecord.displayName || userRecord.email?.split("@")[0] || "Aspirante").slice(0, 120);
+            const expectedEmail = String(userRecord.email || "").slice(0, 160);
+            const hasCorrectProfile = existing?.uid === userRecord.uid
+                && existing?.username === expectedUsername
+                && existing?.email === expectedEmail;
+            if (hasCorrectDates && hasCorrectProfile) continue;
 
-            const patch = existing
-                ? { authCreatedAt, authCreatedAtSyncedAt: now }
-                : getDirectoryCreateData({
-                    ...userRecord,
-                    displayName: leaderboard.username || userRecord.displayName
-                }, authCreatedAt, now);
+            const patch = getDirectoryCreateData({
+                ...userRecord,
+                displayName: expectedUsername
+            }, authCreatedAt, now);
             planned += 1;
             console.log(`${WRITE ? "Se actualizará" : "Se actualizaría"} ${userRecord.email || userRecord.uid}: ${displayDate(authCreatedAt)}`);
             if (WRITE) {
@@ -151,10 +161,15 @@ async function backfillAllDirectories() {
     } while (pageToken);
 
     await commitBatch();
+    const newestDates = newestDirectorySnap.docs.map((docSnap) => toDate(docSnap.data()?.createdAt)?.getTime() || 0);
+    const newestPageSorted = newestDates.every((value, index) => index === 0 || newestDates[index - 1] >= value);
     console.log("Resumen:", {
         mode: WRITE ? "ESCRITURA" : "SIMULACIÓN",
         scannedAuthUsers,
         authUsers,
+        directoryUsers: directorySnap.size,
+        newestPageUsers: newestDirectorySnap.size,
+        newestPageSorted,
         planned,
         written
     });
