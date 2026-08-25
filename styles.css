@@ -4598,6 +4598,11 @@ body.stats-demo-preview .stats-free-preview-card {
   box-shadow: 0 10px 22px rgba(225, 48, 108, 0.24);
 }
 
+.premium-contact-link.is-facebook {
+  background: linear-gradient(135deg, #1877f2, #145dcc);
+  box-shadow: 0 10px 22px rgba(24, 119, 242, 0.24);
+}
+
 .premium-contact-link.is-email {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
   box-shadow: 0 10px 22px rgba(37, 99, 235, 0.24);
