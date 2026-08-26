@@ -17,6 +17,56 @@ service cloud.firestore {
       return code is string && code.matches('^EL[A-Z0-9]{6,12}$');
     }
 
+    function validUserMetricCounters(counters) {
+      return counters is map
+        && counters.keys().hasAll(["sessions", "answered", "correct", "studySeconds", "pomodoros", "simulations"])
+        && counters.keys().hasOnly(["sessions", "answered", "correct", "studySeconds", "pomodoros", "simulations"])
+        && counters.sessions is int && counters.sessions >= 0
+        && counters.answered is int && counters.answered >= 0
+        && counters.correct is int && counters.correct >= 0 && counters.correct <= counters.answered
+        && counters.studySeconds is int && counters.studySeconds >= 0
+        && counters.pomodoros is int && counters.pomodoros >= 0
+        && counters.simulations is int && counters.simulations >= 0;
+    }
+
+    function validSpecialtyMetric(row) {
+      return row is map
+        && row.keys().hasAll(["answered", "correct"])
+        && row.keys().hasOnly(["answered", "correct"])
+        && row.answered is int && row.answered >= 0
+        && row.correct is int && row.correct >= 0 && row.correct <= row.answered;
+    }
+
+    function validUserMetrics(data, uid) {
+      return data.uid == uid
+        && data.schemaVersion == 1
+        && data.lastActivityDay is string
+        && data.lastActivityDay.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && data.activityDays is list && data.activityDays.size() <= 400
+        && data.daily is list && data.daily.size() <= 400
+        && data.bySpecialty is map
+        && data.bySpecialty.keys().hasAll(["mi", "ped", "gyo", "cir"])
+        && data.bySpecialty.keys().hasOnly(["mi", "ped", "gyo", "cir"])
+        && validSpecialtyMetric(data.bySpecialty.mi)
+        && validSpecialtyMetric(data.bySpecialty.ped)
+        && validSpecialtyMetric(data.bySpecialty.gyo)
+        && validSpecialtyMetric(data.bySpecialty.cir)
+        && validUserMetricCounters(data.cumulative)
+        && data.features is map
+        && data.features.keys().hasOnly(["exams", "studyPlus", "pomodoro", "flashcards", "scales", "community", "referrals"])
+        && data.health is map
+        && data.health.keys().hasAll(["jsErrors", "pageLoads", "lastPageLoadMs", "lastJsErrorDay"])
+        && data.health.keys().hasOnly(["jsErrors", "pageLoads", "lastPageLoadMs", "lastJsErrorDay"])
+        && data.health.jsErrors is int && data.health.jsErrors >= 0
+        && data.health.pageLoads is int && data.health.pageLoads >= 0
+        && data.health.lastPageLoadMs is int && data.health.lastPageLoadMs >= 0
+        && data.health.lastJsErrorDay is string
+        && (data.health.lastJsErrorDay == "" || data.health.lastJsErrorDay.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$'))
+        && data.historyApproximate is bool
+        && data.lastActiveAt == request.time
+        && data.updatedAt == request.time;
+    }
+
     function hasReferralRedemptionAfter(ownerUid) {
       return request.auth != null
         && existsAfter(/databases/$(database)/documents/referral_redemptions/$(request.auth.uid))
@@ -161,6 +211,36 @@ service cloud.firestore {
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["email", "username", "lastSeenAt"])
         && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(["lastSeenAt"])
           || request.resource.data.lastSeenAt == request.time);
+      allow delete: if isAdmin();
+    }
+
+    // Métricas compactas y sin datos personales. El cliente solo mantiene su
+    // propio documento; el administrador puede agregarlas en el panel interno.
+    match /user_metrics/{uid} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow create: if isSelf(uid)
+        && request.resource.data.keys().hasAll([
+          "uid", "schemaVersion", "registeredAt", "trackingStartedAt", "lastActiveAt",
+          "lastActivityDay", "activityDays", "cumulative", "bySpecialty", "features", "health",
+          "daily", "historyApproximate", "updatedAt"
+        ])
+        && request.resource.data.keys().hasOnly([
+          "uid", "schemaVersion", "registeredAt", "trackingStartedAt", "lastActiveAt",
+          "lastActivityDay", "activityDays", "cumulative", "bySpecialty", "features", "health",
+          "daily", "historyApproximate", "updatedAt"
+        ])
+        && request.resource.data.registeredAt == request.time
+        && request.resource.data.trackingStartedAt == request.time
+        && validUserMetrics(request.resource.data, uid);
+      allow update: if isSelf(uid)
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.registeredAt == resource.data.registeredAt
+        && request.resource.data.trackingStartedAt == resource.data.trackingStartedAt
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          "schemaVersion", "lastActiveAt", "lastActivityDay", "activityDays", "cumulative",
+          "bySpecialty", "features", "health", "daily", "historyApproximate", "updatedAt"
+        ])
+        && validUserMetrics(request.resource.data, uid);
       allow delete: if isAdmin();
     }
 

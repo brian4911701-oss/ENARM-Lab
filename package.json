@@ -12,10 +12,12 @@
   "description": "Este proyecto es un simulador web del **Examen Nacional de Aspirantes a Residencias Médicas (ENARM)** basado en las Guías de Práctica Clínica (GPC) más recientes de México.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node scripts/test_analytics_core.js",
     "build:hosting": "node scripts/build_hosting.js",
     "deploy:web": "firebase deploy --only hosting",
     "users:backfill-auth-dates": "node scripts/backfill_auth_created_dates.js",
+    "analytics:backfill": "node scripts/backfill_user_metrics.js",
+    "analytics:test": "node scripts/test_analytics_core.js",
     "rules:deploy-rest": "node scripts/deploy_firestore_rules_rest.js",
     "hosting:deploy-rest": "node scripts/deploy_hosting_rest.js",
     "codes:generate": "node scripts/generate_redeem_codes.js",

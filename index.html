@@ -2108,6 +2108,7 @@
                     <div class="admin-section-tabs" role="tablist" aria-label="Secciones de administrador">
                         <button class="admin-section-tab active" type="button" role="tab" aria-selected="true">Herramientas</button>
                         <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-users')">Usuarios y accesos</button>
+                        <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-analytics')">Analíticas</button>
                         <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-ratings')">Valoraciones</button>
                     </div>
 
@@ -2257,6 +2258,7 @@
                     <div class="admin-section-tabs" role="tablist" aria-label="Secciones de administrador">
                         <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin')">Herramientas</button>
                         <button class="admin-section-tab active" type="button" role="tab" aria-selected="true">Usuarios y accesos</button>
+                        <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-analytics')">Analíticas</button>
                         <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-ratings')">Valoraciones</button>
                     </div>
                         <div class="panel settings-panel admin-users-page-panel" id="admin-users-panel" style="border-top-color: var(--accent-blue); display: none;">
@@ -2302,10 +2304,89 @@
                     <div class="admin-section-tabs" role="tablist" aria-label="Secciones de administrador">
                         <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin')">Herramientas</button>
                         <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-users')">Usuarios y accesos</button>
+                        <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-analytics')">Analíticas</button>
                         <button class="admin-section-tab active" type="button" role="tab" aria-selected="true">Valoraciones</button>
                     </div>
                     <div id="admin-ratings-summary" class="admin-ratings-summary">Cargando valoraciones...</div>
                     <div id="admin-ratings-list" class="withdrawal-admin-list"></div>
+                </div>
+            </div>
+
+            <div id="view-admin-analytics" class="view">
+                <div class="panel analytics-admin-shell">
+                    <div class="panel-header analytics-admin-header">
+                        <div>
+                            <span class="dashboard-section-kicker">Métricas administrativas compactas</span>
+                            <h2 class="panel-title"><span class="title-icon green-text">&#128200;</span> Crecimiento y salud de ENARMax</h2>
+                            <p class="panel-subtitle">Firestore muestra producto, usuarios y negocio. GA4 y Performance conservan adquisición y detalle técnico.</p>
+                        </div>
+                        <button class="btn-ghost" onclick="showView('view-admin')">Volver</button>
+                    </div>
+                    <div class="admin-section-tabs" role="tablist" aria-label="Secciones de administrador">
+                        <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin')">Herramientas</button>
+                        <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-users')">Usuarios y accesos</button>
+                        <button class="admin-section-tab active" type="button" role="tab" aria-selected="true">Analíticas</button>
+                        <button class="admin-section-tab" type="button" role="tab" aria-selected="false" onclick="showView('view-admin-ratings')">Valoraciones</button>
+                    </div>
+
+                    <div class="analytics-toolbar">
+                        <div>
+                            <strong id="admin-analytics-range-label">Últimos 30 días</strong>
+                            <span id="admin-analytics-status" aria-live="polite">Listo para consultar</span>
+                        </div>
+                        <div class="analytics-toolbar-actions">
+                            <label for="admin-analytics-range">Rango</label>
+                            <select id="admin-analytics-range" class="text-input">
+                                <option value="7">7 días</option>
+                                <option value="30" selected>30 días</option>
+                                <option value="90">90 días</option>
+                            </select>
+                            <button id="admin-analytics-refresh" class="btn-primary" type="button">Actualizar</button>
+                        </div>
+                    </div>
+
+                    <div id="admin-analytics-error" class="analytics-error" hidden></div>
+                    <div id="admin-analytics-loading" class="analytics-loading" hidden>Cargando documentos compactos…</div>
+
+                    <section class="analytics-kpi-grid" aria-label="Indicadores principales">
+                        <article class="analytics-kpi"><span>Usuarios totales</span><strong id="analytics-kpi-total">—</strong><small id="analytics-kpi-growth">—</small></article>
+                        <article class="analytics-kpi"><span>Usuarios en línea</span><strong id="analytics-kpi-online">—</strong><small>Ventana de 7 minutos</small></article>
+                        <article class="analytics-kpi"><span>DAU / MAU</span><strong id="analytics-kpi-dau-mau">—</strong><small id="analytics-kpi-stickiness">—</small></article>
+                        <article class="analytics-kpi"><span>Premium activo</span><strong id="analytics-kpi-premium">—</strong><small id="analytics-kpi-premium-conversion">—</small></article>
+                        <article class="analytics-kpi"><span>Preguntas</span><strong id="analytics-kpi-questions">—</strong><small id="analytics-kpi-accuracy">—</small></article>
+                        <article class="analytics-kpi"><span>Ingresos confirmados</span><strong id="analytics-kpi-revenue">—</strong><small id="analytics-kpi-payments">—</small></article>
+                    </section>
+
+                    <section class="analytics-chart-grid">
+                        <article class="analytics-card analytics-card-wide">
+                            <div class="analytics-card-heading"><div><h3>Crecimiento</h3><p>Registros diarios y usuarios acumulados.</p></div></div>
+                            <div class="analytics-chart-wrap"><canvas id="analytics-growth-chart"></canvas></div>
+                        </article>
+                        <article class="analytics-card">
+                            <div class="analytics-card-heading"><div><h3>Actividad</h3><p>DAU diario durante el rango.</p></div></div>
+                            <div class="analytics-chart-wrap"><canvas id="analytics-activity-chart"></canvas></div>
+                        </article>
+                        <article class="analytics-card">
+                            <div class="analytics-card-heading"><div><h3>Retención por cohorte</h3><p>Actividad exacta en el día D1, D7 o D30.</p></div></div>
+                            <div id="analytics-retention-grid" class="analytics-mini-grid"></div>
+                        </article>
+                    </section>
+
+                    <section class="analytics-detail-grid">
+                        <article class="analytics-card"><h3>Actividad</h3><div id="analytics-activity-detail" class="analytics-stat-list"></div></article>
+                        <article class="analytics-card"><h3>Estudio</h3><div id="analytics-study-detail" class="analytics-stat-list"></div></article>
+                        <article class="analytics-card"><h3>Contenido y funciones</h3><div id="analytics-content-detail" class="analytics-stat-list"></div></article>
+                        <article class="analytics-card"><h3>Premium y pagos</h3><div id="analytics-premium-detail" class="analytics-stat-list"></div></article>
+                        <article class="analytics-card"><h3>Referidos y satisfacción</h3><div id="analytics-community-detail" class="analytics-stat-list"></div></article>
+                        <article class="analytics-card"><h3>Salud técnica</h3><div id="analytics-technical-detail" class="analytics-stat-list"></div></article>
+                    </section>
+
+                    <section class="analytics-console-links">
+                        <div><strong>Adquisición, dispositivo, geografía y embudos</strong><span>Se consultan en Google Analytics 4; sus credenciales no se exponen en la app.</span></div>
+                        <a class="btn-secondary" href="https://console.firebase.google.com/project/enarm-lab-social/analytics" target="_blank" rel="noopener">Abrir GA4</a>
+                        <a class="btn-secondary" href="https://console.firebase.google.com/project/enarm-lab-social/performance" target="_blank" rel="noopener">Abrir Performance</a>
+                    </section>
+                    <p id="admin-analytics-coverage" class="analytics-footnote">Las métricas históricas reconstruidas son aproximadas. Las cohortes se vuelven exactas conforme transcurre el tiempo.</p>
                 </div>
             </div>
 
@@ -3407,6 +3488,23 @@
                             </div>
                         </div>
 
+                        <div class="panel settings-panel" style="border-top-color: var(--accent-green);">
+                            <h3 class="panel-title" style="margin-bottom: 10px; font-size: 1.1rem;">
+                                <span class="title-icon green-text">&#128202;</span> Analíticas y rendimiento
+                            </h3>
+                            <p class="panel-subtitle">Ayuda a mejorar ENARMax enviando eventos de uso pseudónimos y mediciones técnicas. Nunca enviamos correo, nombre, respuestas ni texto de preguntas.</p>
+                            <div class="profile-privacy-toggle analytics-consent-setting">
+                                <div>
+                                    <div class="profile-privacy-title">Compartir analíticas opcionales</div>
+                                    <p class="profile-privacy-note" id="analytics-consent-setting-status">Preferencia pendiente</p>
+                                </div>
+                                <label class="profile-switch" for="analytics-consent-toggle">
+                                    <input type="checkbox" id="analytics-consent-toggle">
+                                    <span class="profile-switch-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
                         <div class="panel settings-panel contact-support-panel" style="border-top-color: var(--accent-orange);">
                             <h3 class="panel-title" style="margin-bottom: 10px; font-size: 1.1rem;">
                                 <span class="title-icon yellow-text">&#x1F4AC;</span> Contáctanos
@@ -4304,6 +4402,17 @@
         </div>
     </div>
 
+    <aside id="analytics-consent-banner" class="analytics-consent-banner" hidden aria-labelledby="analytics-consent-title">
+        <div>
+            <strong id="analytics-consent-title">Ayúdanos a mejorar ENARMax</strong>
+            <p>Con tu permiso medimos uso y rendimiento de forma pseudónima. No enviamos tu nombre, correo, respuestas ni contenido médico.</p>
+        </div>
+        <div class="analytics-consent-actions">
+            <button id="analytics-consent-necessary" class="btn-ghost" type="button">Solo necesarias</button>
+            <button id="analytics-consent-accept" class="btn-primary" type="button">Aceptar analíticas</button>
+        </div>
+    </aside>
+
     <!-- ── FIREBASE ── -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
@@ -4329,20 +4438,80 @@
         const db = getFirestore(app);
         const functions = getFunctions(app);
         const googleProvider = new GoogleAuthProvider();
-        // Analytics y notificaciones no son necesarios para mostrar la app ni restaurar la sesión.
-        // Se cargan en segundo plano para que la pantalla inicial desaparezca antes.
-        const analyticsModuleReady = import("https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js");
-        const analyticsReady = analyticsModuleReady
-            .then(async ({ getAnalytics, isSupported }) => (await isSupported()) ? getAnalytics(app) : null)
-            .catch((err) => {
-                console.warn("[Analytics] No disponible o no habilitado:", err);
-                return null;
-            });
-        const logAnalyticsEvent = async (name, params = {}) => {
-            const analytics = await analyticsReady;
-            if (!analytics) return;
-            logEvent(analytics, name, params);
+        const ANALYTICS_CONSENT_KEY = "enarmax_analytics_consent";
+        const ALLOWED_ANALYTICS_EVENTS = new Set([
+            "landing_view", "landing_demo_answer", "free_trial_click", "guest_exam_start",
+            "guest_exam_complete", "guest_exam_return_landing", "guest_exam_view_plans",
+            "guest_exam_create_account", "sign_up", "login", "exam_start", "exam_complete",
+            "feature_open", "select_plan", "begin_bank_transfer", "bank_transfer_notified",
+            "referral_applied", "exam_results_analysis_view", "results_premium_unlock_click"
+        ]);
+        const ALLOWED_ANALYTICS_PARAMS = new Set([
+            "placement", "questions", "exam_version", "score", "answered", "blank",
+            "elapsed_seconds", "tier", "exam_type", "plan_id", "authenticated", "correct",
+            "page_variant", "method", "feature", "session_kind", "is_real"
+        ]);
+        let analyticsBundlePromise = null;
+        let analyticsInstance = null;
+        let performancePromise = null;
+        const getAnalyticsConsent = () => localStorage.getItem(ANALYTICS_CONSENT_KEY) || "pending";
+        const sanitizeAnalyticsParams = (params = {}) => Object.fromEntries(
+            Object.entries(params)
+                .filter(([key, value]) => ALLOWED_ANALYTICS_PARAMS.has(key) && ["string", "number", "boolean"].includes(typeof value))
+                .map(([key, value]) => [key, typeof value === "string" ? value.slice(0, 80) : value])
+        );
+        const ensureOptionalTelemetry = async () => {
+            if (getAnalyticsConsent() !== "granted") return null;
+            if (!analyticsBundlePromise) {
+                analyticsBundlePromise = import("https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js")
+                    .then(async (module) => {
+                        if (!(await module.isSupported())) return null;
+                        analyticsInstance = module.getAnalytics(app);
+                        module.setAnalyticsCollectionEnabled(analyticsInstance, true);
+                        return { module, analytics: analyticsInstance };
+                    })
+                    .catch((err) => {
+                        console.warn("[Analytics] No disponible o no habilitado:", err);
+                        return null;
+                    });
+            }
+            if (!performancePromise) {
+                performancePromise = import("https://www.gstatic.com/firebasejs/10.9.0/firebase-performance.js")
+                    .then(({ getPerformance }) => getPerformance(app))
+                    .catch((err) => {
+                        console.warn("[Performance] No disponible:", err);
+                        return null;
+                    });
+            }
+            void performancePromise;
+            return analyticsBundlePromise;
         };
+        const analyticsReady = { then: (resolve, reject) => ensureOptionalTelemetry().then(bundle => resolve(bundle?.analytics || null), reject) };
+        const logAnalyticsEvent = async (name, params = {}) => {
+            if (!ALLOWED_ANALYTICS_EVENTS.has(String(name || ""))) return;
+            const bundle = await ensureOptionalTelemetry();
+            if (!bundle) return;
+            bundle.module.logEvent(bundle.analytics, name, sanitizeAnalyticsParams(params));
+        };
+        const syncAnalyticsIdentity = async ({ uid = "", accessTier = "free", targetYear = "" } = {}) => {
+            const bundle = await ensureOptionalTelemetry();
+            if (!bundle) return;
+            bundle.module.setUserId(bundle.analytics, uid || null);
+            bundle.module.setUserProperties(bundle.analytics, {
+                access_tier: String(accessTier || "free").slice(0, 24),
+                target_year: String(targetYear || "unknown").slice(0, 12)
+            });
+        };
+        const setAnalyticsConsent = async (granted) => {
+            localStorage.setItem(ANALYTICS_CONSENT_KEY, granted ? "granted" : "denied");
+            if (!granted) {
+                const bundle = analyticsBundlePromise ? await analyticsBundlePromise : null;
+                if (bundle) bundle.module.setAnalyticsCollectionEnabled(bundle.analytics, false);
+                return null;
+            }
+            return ensureOptionalTelemetry();
+        };
+        // Notificaciones se mantienen independientes del consentimiento de analíticas.
         const messagingModuleReady = import("https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging.js");
         const messagingReady = messagingModuleReady
             .then(async ({ getMessaging, isSupported }) => (await isSupported()) ? getMessaging(app) : null)
@@ -4393,12 +4562,16 @@
             messagingReady,
             analyticsReady,
             logAnalyticsEvent,
+            getAnalyticsConsent,
+            setAnalyticsConsent,
+            syncAnalyticsIdentity,
             pushConfig: firebaseMessagingConfig,
             authDomain: firebaseConfig.authDomain
         };
 
         window.dispatchEvent(new Event("firebaseLoaded"));
     </script>
+    <script src="analytics-core.js" charset="UTF-8"></script>
     <script src="scales-data.js" charset="UTF-8"></script>
     <script src="app.js" charset="UTF-8"></script>
 

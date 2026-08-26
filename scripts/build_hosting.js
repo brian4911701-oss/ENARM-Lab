@@ -12,6 +12,7 @@ const files = [
     "index.html",
     "styles.css",
     "app.js",
+    "analytics-core.js",
     "questions.js",
     "scales-data.js",
     "manifest.json",

@@ -120,6 +120,22 @@
         userDirectoryLastPresenceSyncAt: 0,
         userPresenceTimer: null,
         userPresenceVisibilityBound: false,
+        userMetricsSyncUid: "",
+        userMetricsKnownExists: false,
+        userMetricsExisting: null,
+        userMetricsSyncPromise: null,
+        userMetricsLastSyncAt: 0,
+        userMetricsTimer: null,
+        userMetricsFeatures: {},
+        userMetricsHealthPending: { jsErrors: 0, pageLoads: 1, lastJsErrorDay: "" },
+        analyticsConsentBound: false,
+        adminAnalyticsData: null,
+        adminAnalyticsLoadedAt: 0,
+        adminAnalyticsRangeDays: 30,
+        adminAnalyticsLoading: false,
+        adminAnalyticsError: "",
+        adminAnalyticsPromise: null,
+        adminAnalyticsCharts: {},
         myManualPaymentRequests: [],
         myManualPaymentUnsub: null,
         accountCreatedAt: null,
@@ -156,6 +172,10 @@
     const USER_DIRECTORY_PROFILE_SYNC_INTERVAL_MS = 30 * 60 * 1000;
     const USER_PRESENCE_HEARTBEAT_INTERVAL_MS = 5 * 60 * 1000;
     const USER_ONLINE_WINDOW_MS = 7 * 60 * 1000;
+    const USER_METRICS_COLLECTION = "user_metrics";
+    const USER_METRICS_SYNC_INTERVAL_MS = 15 * 60 * 1000;
+    const ADMIN_ANALYTICS_CACHE_MS = 5 * 60 * 1000;
+    const JS_ERROR_PENDING_STORAGE_KEY = "enarmax_pending_js_errors";
     const DEMO_MAX_QTY = 10;
     const GUEST_EXAM_CONFIG = Object.freeze({
         version: "diagnostico-2026-v1",
@@ -1429,6 +1449,305 @@
 
     const isAdminUser = () => {
         return !!(State.currentUid && ADMIN_UIDS.includes(State.currentUid));
+    };
+
+    const syncOptionalAnalyticsIdentity = () => {
+        if (!window.FB?.syncAnalyticsIdentity) return;
+        void window.FB.syncAnalyticsIdentity({
+            uid: State.currentUid || "",
+            accessTier: State.currentUid && isPremiumActive() ? "premium" : "free",
+            targetYear: State.userTargetYear || "unknown"
+        }).catch(err => console.warn("[Analytics] No se pudo sincronizar la identidad pseudónima:", err));
+    };
+
+    const syncAnalyticsConsentUI = () => {
+        const consent = window.FB?.getAnalyticsConsent ? window.FB.getAnalyticsConsent() : "pending";
+        const banner = $("analytics-consent-banner");
+        const toggle = $("analytics-consent-toggle");
+        const status = $("analytics-consent-setting-status");
+        if (banner) banner.hidden = consent !== "pending";
+        if (toggle) toggle.checked = consent === "granted";
+        if (status) {
+            status.textContent = consent === "granted"
+                ? "Activas. Puedes desactivarlas cuando quieras."
+                : (consent === "denied" ? "Desactivadas. Solo funcionan los servicios necesarios." : "Elige tu preferencia en el aviso.");
+        }
+    };
+
+    const applyAnalyticsConsent = async (granted, { notify = false } = {}) => {
+        if (!window.FB?.setAnalyticsConsent) return;
+        await window.FB.setAnalyticsConsent(Boolean(granted));
+        syncAnalyticsConsentUI();
+        if (granted) syncOptionalAnalyticsIdentity();
+        if (notify) showNotification(granted ? "Analíticas opcionales activadas." : "Analíticas opcionales desactivadas.", "info");
+    };
+
+    const initAnalyticsConsentUI = () => {
+        if (State.analyticsConsentBound) {
+            syncAnalyticsConsentUI();
+            return;
+        }
+        State.analyticsConsentBound = true;
+        $("analytics-consent-accept")?.addEventListener("click", () => void applyAnalyticsConsent(true));
+        $("analytics-consent-necessary")?.addEventListener("click", () => void applyAnalyticsConsent(false));
+        $("analytics-consent-toggle")?.addEventListener("change", (event) => {
+            void applyAnalyticsConsent(event.currentTarget.checked, { notify: true });
+        });
+        syncAnalyticsConsentUI();
+        if (window.FB?.getAnalyticsConsent?.() === "granted") syncOptionalAnalyticsIdentity();
+    };
+
+    const resetUserMetricsSync = () => {
+        if (State.userMetricsTimer) clearInterval(State.userMetricsTimer);
+        State.userMetricsTimer = null;
+        State.userMetricsSyncUid = "";
+        State.userMetricsKnownExists = false;
+        State.userMetricsExisting = null;
+        State.userMetricsSyncPromise = null;
+        State.userMetricsLastSyncAt = 0;
+        State.userMetricsFeatures = {};
+    };
+
+    const getMetricsFeatureForView = (viewId) => ({
+        "view-examen": "exams",
+        "view-estudio-plus": "studyPlus",
+        "view-pomodoro": "pomodoro",
+        "view-flashcards": "flashcards",
+        "view-escalas": "scales",
+        "view-comunidad": "community",
+        "view-referidos": "referrals"
+    })[viewId] || "";
+
+    const markMetricsFeatureUse = (feature) => {
+        if (!State.currentUid || !window.ENARMAnalytics?.FEATURE_KEYS?.includes(feature)) return;
+        const day = window.ENARMAnalytics.dateKey();
+        if (State.userMetricsFeatures[feature] === day) return;
+        State.userMetricsFeatures[feature] = day;
+        trackEvent("feature_open", { feature });
+        void syncUserMetrics();
+    };
+
+    const syncUserMetrics = async ({ force = false } = {}) => {
+        const uid = String(State.currentUid || window.FB?.auth?.currentUser?.uid || "");
+        if (!uid || !window.FB?.db || !window.ENARMAnalytics) return null;
+        if (State.userMetricsSyncUid && State.userMetricsSyncUid !== uid) resetUserMetricsSync();
+        if (State.userMetricsSyncPromise) return State.userMetricsSyncPromise;
+        if (!force && Date.now() - State.userMetricsLastSyncAt < USER_METRICS_SYNC_INTERVAL_MS) return State.userMetricsExisting;
+        State.userMetricsSyncUid = uid;
+        State.userMetricsSyncPromise = (async () => {
+            const ref = window.FB.doc(window.FB.db, USER_METRICS_COLLECTION, uid);
+            if (!State.userMetricsExisting) {
+                const snapshot = await window.FB.getDoc(ref);
+                State.userMetricsKnownExists = snapshot.exists();
+                State.userMetricsExisting = snapshot.exists() ? (snapshot.data() || {}) : {};
+                State.userMetricsFeatures = { ...(State.userMetricsExisting.features || {}), ...State.userMetricsFeatures };
+            }
+            const healthPending = {
+                jsErrors: State.userMetricsHealthPending.jsErrors || 0,
+                pageLoads: State.userMetricsHealthPending.pageLoads || 0,
+                lastJsErrorDay: State.userMetricsHealthPending.lastJsErrorDay || "",
+                lastPageLoadMs: Math.round(performance.getEntriesByType?.("navigation")?.[0]?.duration || 0)
+            };
+            const core = window.ENARMAnalytics.buildMetricDocument({
+                uid,
+                globalStats: State.globalStats,
+                history: State.history,
+                pomodoroLog: State.pomodoroLog,
+                existing: State.userMetricsExisting || {},
+                featureUpdates: State.userMetricsFeatures,
+                healthUpdates: healthPending
+            });
+            const payload = {
+                ...core,
+                lastActiveAt: window.FB.serverTimestamp(),
+                updatedAt: window.FB.serverTimestamp()
+            };
+            if (!State.userMetricsKnownExists) {
+                payload.registeredAt = window.FB.serverTimestamp();
+                payload.trackingStartedAt = window.FB.serverTimestamp();
+            }
+            await window.FB.setDoc(ref, payload, { merge: true });
+            State.userMetricsKnownExists = true;
+            State.userMetricsExisting = { ...(State.userMetricsExisting || {}), ...core };
+            State.userMetricsLastSyncAt = Date.now();
+            State.userMetricsHealthPending.jsErrors = Math.max(0, (State.userMetricsHealthPending.jsErrors || 0) - healthPending.jsErrors);
+            State.userMetricsHealthPending.pageLoads = Math.max(0, (State.userMetricsHealthPending.pageLoads || 0) - healthPending.pageLoads);
+            if (!State.userMetricsHealthPending.jsErrors) State.userMetricsHealthPending.lastJsErrorDay = "";
+            try { localStorage.setItem(JS_ERROR_PENDING_STORAGE_KEY, String(State.userMetricsHealthPending.jsErrors)); } catch (_err) { /* no-op */ }
+            return State.userMetricsExisting;
+        })().catch(err => {
+            console.warn("No se pudieron sincronizar las métricas compactas:", err);
+            return null;
+        }).finally(() => {
+            State.userMetricsSyncPromise = null;
+        });
+        return State.userMetricsSyncPromise;
+    };
+
+    const startUserMetricsSync = (uid) => {
+        if (!uid) return;
+        if (State.userMetricsSyncUid && State.userMetricsSyncUid !== uid) resetUserMetricsSync();
+        State.userMetricsSyncUid = uid;
+        void syncUserMetrics({ force: true });
+        if (!State.userMetricsTimer) {
+            State.userMetricsTimer = window.setInterval(() => {
+                if (!State.currentUid || document.visibilityState === "hidden") return;
+                void syncUserMetrics();
+            }, USER_METRICS_SYNC_INTERVAL_MS);
+        }
+    };
+
+    const formatAnalyticsNumber = (value, maximumFractionDigits = 0) => new Intl.NumberFormat("es-MX", { maximumFractionDigits }).format(Number(value || 0));
+    const formatAnalyticsPercent = (value) => value == null || !Number.isFinite(Number(value)) ? "Recopilando datos" : `${formatAnalyticsNumber(value, 1)}%`;
+    const formatAnalyticsCurrency = (value) => new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN", maximumFractionDigits: 0 }).format(Number(value || 0));
+    const setAnalyticsText = (id, value) => { const element = $(id); if (element) element.textContent = value; };
+    const analyticsRows = (rows) => rows.map(([label, value]) => `<div class="analytics-stat-row"><span>${label}</span><strong>${value}</strong></div>`).join("");
+
+    const renderAdminAnalyticsCharts = (data) => {
+        if (typeof window.Chart !== "function") return;
+        Object.values(State.adminAnalyticsCharts || {}).forEach(chart => chart?.destroy?.());
+        State.adminAnalyticsCharts = {};
+        const textColor = getComputedStyle(document.documentElement).getPropertyValue("--text-muted").trim() || "#94a3b8";
+        const gridColor = "rgba(148,163,184,.12)";
+        const common = { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: textColor } } }, scales: { x: { ticks: { color: textColor, maxTicksLimit: 10 }, grid: { color: gridColor } }, y: { beginAtZero: true, ticks: { color: textColor }, grid: { color: gridColor } } } };
+        const labels = data.growth.timeline.map(row => row.day.slice(5));
+        const growthCanvas = $("analytics-growth-chart");
+        if (growthCanvas) {
+            State.adminAnalyticsCharts.growth = new window.Chart(growthCanvas, {
+                type: "line",
+                data: { labels, datasets: [
+                    { label: "Registros", data: data.growth.timeline.map(row => row.registrations), borderColor: "#45d99a", backgroundColor: "rgba(69,217,154,.15)", tension: .3, fill: true, yAxisID: "y" },
+                    { label: "Acumulados", data: data.growth.timeline.map(row => row.cumulative), borderColor: "#60a5fa", backgroundColor: "transparent", tension: .25, yAxisID: "y1" }
+                ] },
+                options: { ...common, scales: { ...common.scales, y1: { beginAtZero: true, position: "right", ticks: { color: textColor }, grid: { drawOnChartArea: false } } } }
+            });
+        }
+        const activityCanvas = $("analytics-activity-chart");
+        if (activityCanvas) {
+            State.adminAnalyticsCharts.activity = new window.Chart(activityCanvas, {
+                type: "bar",
+                data: { labels, datasets: [{ label: "Usuarios activos", data: data.growth.timeline.map(row => row.active), backgroundColor: "rgba(96,165,250,.7)", borderRadius: 5 }] },
+                options: common
+            });
+        }
+    };
+
+    const renderAdminAnalytics = () => {
+        const data = State.adminAnalyticsData;
+        const loading = $("admin-analytics-loading");
+        const error = $("admin-analytics-error");
+        if (loading) loading.hidden = !State.adminAnalyticsLoading;
+        if (error) {
+            error.hidden = !State.adminAnalyticsError;
+            error.textContent = State.adminAnalyticsError;
+        }
+        setAnalyticsText("admin-analytics-range-label", `Últimos ${State.adminAnalyticsRangeDays} días`);
+        if (!data) return;
+        setAnalyticsText("admin-analytics-status", `Actualizado ${new Intl.DateTimeFormat("es-MX", { dateStyle: "short", timeStyle: "short" }).format(data.generatedAt)}`);
+        setAnalyticsText("analytics-kpi-total", formatAnalyticsNumber(data.growth.total));
+        setAnalyticsText("analytics-kpi-growth", `${formatAnalyticsNumber(data.growth.current)} registros · ${formatAnalyticsPercent(data.growth.rate)} vs. periodo anterior`);
+        setAnalyticsText("analytics-kpi-online", formatAnalyticsNumber(data.activity.online));
+        setAnalyticsText("analytics-kpi-dau-mau", `${formatAnalyticsNumber(data.activity.dau)} / ${formatAnalyticsNumber(data.activity.mau)}`);
+        setAnalyticsText("analytics-kpi-stickiness", `Adherencia ${formatAnalyticsPercent(data.activity.stickiness)}`);
+        setAnalyticsText("analytics-kpi-premium", formatAnalyticsNumber(data.premium.active));
+        setAnalyticsText("analytics-kpi-premium-conversion", `${formatAnalyticsPercent(data.premium.conversion)} de conversión`);
+        setAnalyticsText("analytics-kpi-questions", formatAnalyticsNumber(data.study.answered));
+        setAnalyticsText("analytics-kpi-accuracy", `${formatAnalyticsPercent(data.study.accuracy)} de precisión`);
+        setAnalyticsText("analytics-kpi-revenue", formatAnalyticsCurrency(data.payments.revenue));
+        setAnalyticsText("analytics-kpi-payments", `${formatAnalyticsNumber(data.payments.approved)} pagos aprobados`);
+
+        const retention = $("analytics-retention-grid");
+        if (retention) retention.innerHTML = [data.retention.d1, data.retention.d7, data.retention.d30].map(row => `<div class="analytics-mini-stat"><span>D${row.offset}</span><strong>${formatAnalyticsPercent(row.rate)}</strong><small>${row.retained} de ${row.eligible} elegibles</small></div>`).join("");
+        const activity = $("analytics-activity-detail");
+        if (activity) activity.innerHTML = analyticsRows([
+            ["DAU", formatAnalyticsNumber(data.activity.dau)],
+            ["WAU", formatAnalyticsNumber(data.activity.wau)],
+            ["MAU", formatAnalyticsNumber(data.activity.mau)],
+            ["Activos en el rango", formatAnalyticsNumber(data.activity.activeRange)],
+            ["Nuevos activos", formatAnalyticsNumber(data.activity.newActive)],
+            ["Recurrentes", formatAnalyticsNumber(data.activity.returning)]
+        ]);
+        const study = $("analytics-study-detail");
+        if (study) study.innerHTML = analyticsRows([
+            ["Sesiones terminadas", formatAnalyticsNumber(data.study.sessions)],
+            ["Simulacros", formatAnalyticsNumber(data.study.simulations)],
+            ["Minutos estudiados", formatAnalyticsNumber(data.study.minutes)],
+            ["Preguntas / activo", formatAnalyticsNumber(data.study.questionsPerActive, 1)],
+            ["Correctas", formatAnalyticsNumber(data.study.correct)],
+            ["Pomodoros", formatAnalyticsNumber(data.study.pomodoros)]
+        ]);
+        const specialtyNames = { mi: "Medicina Interna", ped: "Pediatría", gyo: "Gineco-Obstetricia", cir: "Cirugía" };
+        const featureNames = { exams: "Exámenes", studyPlus: "Estudio Plus", pomodoro: "Pomodoro", flashcards: "Flashcards", scales: "Escalas", community: "Comunidad", referrals: "Referidos" };
+        const content = $("analytics-content-detail");
+        if (content) content.innerHTML = analyticsRows([
+            ...Object.entries(data.content.specialties).map(([key, row]) => [specialtyNames[key], `${formatAnalyticsNumber(row.answered)} · ${formatAnalyticsPercent(row.accuracy)}`]),
+            ...Object.entries(data.content.features).map(([key, value]) => [`Adopción ${featureNames[key]}`, formatAnalyticsNumber(value)])
+        ]);
+        const premium = $("analytics-premium-detail");
+        const sourceLabels = { manual_transfer: "Transferencia", code: "Código", admin_manual: "Admin", global_premium: "Promoción" };
+        const planLabels = { enarm_2026: "ENARM 2026", enarm_2027: "ENARM 2027", squad_2027: "Squad 2027", unknown: "Sin plan" };
+        const breakdown = (items, labels) => Object.entries(items || {}).sort((a, b) => b[1] - a[1]).map(([key, value]) => `${labels[key] || key}: ${value}`).join(" · ") || "Sin datos";
+        if (premium) premium.innerHTML = analyticsRows([
+            ["Gratis / Premium", `${formatAnalyticsNumber(data.premium.free)} / ${formatAnalyticsNumber(data.premium.active)}`],
+            ["Activaciones nuevas", formatAnalyticsNumber(data.premium.newActivations)],
+            ["Avisos de pago", formatAnalyticsNumber(data.payments.notices)],
+            ["Pendientes / rechazados", `${formatAnalyticsNumber(data.payments.pending)} / ${formatAnalyticsNumber(data.payments.rejected)}`],
+            ["Conversión de avisos", formatAnalyticsPercent(data.payments.conversion)],
+            ["Promedio por pagador", formatAnalyticsCurrency(data.payments.averagePerPayer)],
+            ["Origen de accesos", breakdown(data.premium.bySource, sourceLabels)],
+            ["Distribución por plan", breakdown(data.premium.byPlan, planLabels)]
+        ]);
+        const community = $("analytics-community-detail");
+        if (community) community.innerHTML = analyticsRows([
+            ["Códigos referidos usados", formatAnalyticsNumber(data.referrals.codesUsed)],
+            ["Usuarios por referido", formatAnalyticsNumber(data.referrals.acquired)],
+            ["Recompensas entregadas", `${formatAnalyticsNumber(data.referrals.rewards)} monedas`],
+            ["Valoración promedio", data.satisfaction.average == null ? "Sin datos" : `${formatAnalyticsNumber(data.satisfaction.average, 1)} / 5`],
+            ["Distribución estrellas", Object.entries(data.satisfaction.distribution).map(([star, count]) => `${star}★: ${count}`).join(" · ")],
+            ["Opiniones / feedback", `${formatAnalyticsNumber(data.satisfaction.count)} / ${formatAnalyticsNumber(data.satisfaction.feedback)}`],
+            ["Preguntas reportadas", formatAnalyticsNumber(data.satisfaction.reports)]
+        ]);
+        const technical = $("analytics-technical-detail");
+        if (technical) technical.innerHTML = analyticsRows([
+            ["Errores JavaScript", formatAnalyticsNumber(data.technical.jsErrors)],
+            ["Usuarios con errores", formatAnalyticsNumber(data.technical.usersWithErrors)],
+            ["Cargas registradas", formatAnalyticsNumber(data.technical.pageLoads)],
+            ["Última carga promedio", data.technical.averageLastPageLoadMs == null ? "Recopilando datos" : `${formatAnalyticsNumber(data.technical.averageLastPageLoadMs)} ms`],
+            ["Latencia de red", "Ver Performance"],
+            ["Detalle de solicitudes", "Ver Performance"]
+        ]);
+        setAnalyticsText("admin-analytics-coverage", `Cobertura: ${data.coverage.metrics} de ${data.coverage.totalUsers} usuarios con métricas compactas. El histórico migrado es aproximado; D1/D7/D30 se vuelve exacto desde el inicio de esta medición.`);
+        renderAdminAnalyticsCharts(data);
+    };
+
+    const loadAdminAnalytics = async ({ force = false } = {}) => {
+        if (!isAdminUser() || !window.FB?.getDocs || !window.ENARMAnalytics) return;
+        if (State.adminAnalyticsPromise) return State.adminAnalyticsPromise;
+        if (!force && State.adminAnalyticsData && Date.now() - State.adminAnalyticsLoadedAt < ADMIN_ANALYTICS_CACHE_MS) {
+            renderAdminAnalytics();
+            return State.adminAnalyticsData;
+        }
+        State.adminAnalyticsLoading = true;
+        State.adminAnalyticsError = "";
+        renderAdminAnalytics();
+        const collectionNames = [USER_METRICS_COLLECTION, "user_directory", "entitlements", MANUAL_PAYMENT_REQUESTS_COLLECTION, "referral_redemptions", RATINGS_COLLECTION, FEEDBACK_COLLECTION, "reports"];
+        State.adminAnalyticsPromise = Promise.all(collectionNames.map(async name => {
+            const snapshot = await window.FB.getDocs(window.FB.collection(window.FB.db, name));
+            return snapshot.docs.map(docSnap => ({ id: docSnap.id, ...(docSnap.data() || {}) }));
+        })).then(([metrics, directory, entitlements, payments, referrals, ratings, feedback, reports]) => {
+            State.adminAnalyticsData = window.ENARMAnalytics.computeDashboard({ metrics, directory, entitlements, payments, referrals, ratings, feedback, reports }, State.adminAnalyticsRangeDays);
+            State.adminAnalyticsLoadedAt = Date.now();
+            return State.adminAnalyticsData;
+        }).catch(err => {
+            console.error("No se pudo cargar el panel de analíticas:", err);
+            State.adminAnalyticsError = "No se pudieron consultar todas las métricas. Revisa la conexión y vuelve a intentar.";
+            return null;
+        }).finally(() => {
+            State.adminAnalyticsLoading = false;
+            State.adminAnalyticsPromise = null;
+            renderAdminAnalytics();
+        });
+        return State.adminAnalyticsPromise;
     };
 
     const setAdminPreviewMode = (mode, opts = {}) => {
@@ -3647,6 +3966,17 @@
             console.error("Error cargando accesos Premium de la página:", err);
         });
     };
+    try {
+        State.userMetricsHealthPending.jsErrors = Math.max(0, parseInt(localStorage.getItem(JS_ERROR_PENDING_STORAGE_KEY) || "0", 10) || 0);
+    } catch (_err) { /* almacenamiento privado no disponible */ }
+    const recordAnonymousJsError = () => {
+        State.userMetricsHealthPending.jsErrors = Math.min(1000, (State.userMetricsHealthPending.jsErrors || 0) + 1);
+        State.userMetricsHealthPending.lastJsErrorDay = window.ENARMAnalytics?.dateKey?.() || new Date().toISOString().slice(0, 10);
+        try { localStorage.setItem(JS_ERROR_PENDING_STORAGE_KEY, String(State.userMetricsHealthPending.jsErrors)); } catch (_err) { /* no-op */ }
+        if (State.currentUid) void syncUserMetrics();
+    };
+    window.addEventListener("error", recordAnonymousJsError);
+    window.addEventListener("unhandledrejection", recordAnonymousJsError);
 
     const refreshAdminUserTotalCount = async (requestId) => {
         if (!window.FB?.getCountFromServer) return;
@@ -5328,7 +5658,7 @@
             showNotification("Solo admin puede usar el reclasificador.", "warning");
             viewId = "view-mas";
         }
-        if (["view-admin", "view-admin-users", "view-admin-ratings"].includes(viewId) && !isAdminUser()) {
+        if (["view-admin", "view-admin-users", "view-admin-analytics", "view-admin-ratings"].includes(viewId) && !isAdminUser()) {
             showNotification("Solo admin puede abrir esa sección.", "warning");
             viewId = "view-mas";
         }
@@ -5348,6 +5678,8 @@
             window.scrollTo(0, 0);
         }
         State.view = viewId;
+        const metricsFeature = getMetricsFeatureForView(viewId);
+        if (metricsFeature) markMetricsFeatureUse(metricsFeature);
         if (viewId === "view-admin-users") startAdminPresenceRefresh();
         else stopAdminPresenceRefresh();
         document.body.classList.toggle("dashboard-mobile-hero-active", viewId === "view-dashboard");
@@ -5383,7 +5715,7 @@
             initFeedbackAdminInbox();
             renderAdminFeedbackInbox();
         }
-        if (["view-admin", "view-admin-users", "view-admin-ratings"].includes(viewId)) {
+        if (["view-admin", "view-admin-users", "view-admin-analytics", "view-admin-ratings"].includes(viewId)) {
             initWithdrawalAdminInbox();
             renderAdminWithdrawalRequests();
             initAdminUsersInbox();
@@ -5391,6 +5723,7 @@
             initAdminRatingsInbox();
             renderAdminRatings();
         }
+        if (viewId === "view-admin-analytics") void loadAdminAnalytics();
         if (viewId === "view-reclassify") void renderReclassifyView();
         syncPomodoroPlacement();
     };
@@ -8222,6 +8555,16 @@
         document.body.classList.toggle("guest-exam-mode", State.guestExamActive);
         isFinishing = false;
 
+        if (!State.guestExamActive) {
+            markMetricsFeatureUse("exams");
+            trackEvent("exam_start", {
+                questions: State.questionSet.length,
+                exam_type: State.currentExamType,
+                session_kind: State.mode,
+                is_real: State.currentExamIsReal
+            });
+        }
+
         renderExamQuestion();
         showView("view-exam");
         hideExamLoadingOverlay();
@@ -9493,6 +9836,17 @@
                 questions: total,
                 exam_type: State.currentExamType
             });
+            trackEvent("exam_complete", {
+                tier: resultsTier,
+                score: pct,
+                questions: total,
+                answered: correct + wrong,
+                blank,
+                elapsed_seconds: elapsed,
+                exam_type: State.currentExamType,
+                session_kind: State.mode,
+                is_real: State.currentExamIsReal
+            });
             State.lastPostmortem = postmortem;
 
             State.globalStats.sesiones++;
@@ -9590,6 +9944,7 @@
             ensureDailyPlanFresh(true);
 
             saveGlobalStats();
+            void syncUserMetrics({ force: true });
             renderResultsPostmortem();
             showView("view-results");
         } catch (err) {
@@ -12065,6 +12420,10 @@
         transitionPomodoroState(completedMode);
         persistPomodoroLocalState();
         saveGlobalStats();
+        if (completedMode === "focus") {
+            markMetricsFeatureUse("pomodoro");
+            void syncUserMetrics({ force: true });
+        }
         updatePomodoroLinkedViews();
 
         if (State.pomodoroSettings.autoStartNext) {
@@ -12701,6 +13060,7 @@
 
                 saveGlobalStats();
                 void syncUserDirectory(window.FB?.auth?.currentUser, { forceProfile: true });
+                syncOptionalAnalyticsIdentity();
                 renderProfileView();
                 showNotification("Perfil actualizado y sincronizado.", "success");
             });
@@ -13044,6 +13404,14 @@
                 void loadAdminUsersPage({ pageIndex: State.adminUserPageIndex + 1 });
             });
         }
+        const adminAnalyticsRange = $("admin-analytics-range");
+        if (adminAnalyticsRange) {
+            adminAnalyticsRange.addEventListener("change", () => {
+                State.adminAnalyticsRangeDays = Number(adminAnalyticsRange.value) || 30;
+                void loadAdminAnalytics({ force: true });
+            });
+        }
+        $("admin-analytics-refresh")?.addEventListener("click", () => void loadAdminAnalytics({ force: true }));
 
         const btnGlobalPremiumSave = $("btn-global-premium-save");
         if (btnGlobalPremiumSave) {
@@ -14808,6 +15176,7 @@
                     State.entitlement = null;
                     syncPremiumUI();
                     syncCurrentUserPremiumFlag();
+                    syncOptionalAnalyticsIdentity();
                     return;
                 }
                 const data = snap.data() || {};
@@ -14833,6 +15202,7 @@
                 }
                 syncPremiumUI();
                 syncCurrentUserPremiumFlag();
+                syncOptionalAnalyticsIdentity();
                 window.dispatchEvent(new CustomEvent("enarm:entitlement-updated", {
                     detail: { ...State.entitlement }
                 }));
@@ -14854,10 +15224,12 @@
                 if (!snap.exists()) {
                     State.globalPremiumPromo = null;
                     syncPremiumUI();
+                    syncOptionalAnalyticsIdentity();
                     return;
                 }
                 State.globalPremiumPromo = normalizeGlobalPremiumPromo(snap.data());
                 syncPremiumUI();
+                syncOptionalAnalyticsIdentity();
             });
         };
 
@@ -14968,9 +15340,14 @@
                     };
                     syncPremiumUI();
                     syncCurrentUserPremiumFlag();
+                    syncOptionalAnalyticsIdentity();
                 }
                 openPremiumWelcomeModal();
-                if (referralApplied) showNotification(`Codigo de referido aplicado: +${REFERRAL_REWARD_COINS} monedas para tu referido.`, "success");
+                if (referralApplied) {
+                    markMetricsFeatureUse("referrals");
+                    trackEvent("referral_applied", { method: "premium_code" });
+                    showNotification(`Codigo de referido aplicado: +${REFERRAL_REWARD_COINS} monedas para tu referido.`, "success");
+                }
                 if (input) input.value = "";
                 if (referralInput) referralInput.value = "";
                 if (closeModalOnSuccess) closeRedeemModal();
@@ -15054,6 +15431,7 @@
         };
 
         const setupFirebaseAuthAndUI = () => {
+            initAnalyticsConsentUI();
             if (authOverlay && loginForm) {
                 const landingPage = $("landing-page");
                 let checkoutStarting = false;
@@ -15615,6 +15993,8 @@
                             const startSecondaryAuthenticatedWork = () => {
                             void syncUserDirectory(user, { forceProfile: true, forcePresence: true });
                             startUserPresenceHeartbeat(user);
+                            startUserMetricsSync(user.uid);
+                            syncOptionalAnalyticsIdentity();
                             // Crea la referencia única al registrarse; también cubre cuentas antiguas al iniciar sesión.
                             void ensureTransferProfile().catch((err) => {
                                 console.error("No se pudo preparar la referencia de transferencia:", err);
@@ -15749,7 +16129,9 @@
                         } else {
                             stopUserPresenceHeartbeat();
                             resetUserDirectorySyncState();
+                            resetUserMetricsSync();
                             State.currentUid = "";
+                            syncOptionalAnalyticsIdentity();
                             State.entitlement = null;
                             State.entitlementLoaded = true;
                             State.globalPremiumPromo = null;
@@ -16017,6 +16399,7 @@
                                 saveGlobalStats();
                                 googleProfileCompletion = false;
                                 authContainer?.classList.remove("auth-google-profile-mode");
+                                trackEvent("sign_up", { method: "google" });
                                 handleSuccessLogin(userName);
                             })
                             .catch(err => {
@@ -16041,6 +16424,7 @@
                                     State.userTargetYear = registrationProfile.targetYear;
                                     await ensureReferralWallet(userCred.user.uid, userName).catch(handleReferralWalletError);
                                     bindReferralWalletListener(userCred.user.uid);
+                                    trackEvent("sign_up", { method: "password" });
                                     handleSuccessLogin(userName);
                                 })
                                 .catch(err => {
@@ -16052,6 +16436,7 @@
                                 .then((userCred) => {
                                     const userObj = userCred.user;
                                     const dName = userObj.displayName || email.split("@")[0];
+                                    trackEvent("login", { method: "password" });
                                     handleSuccessLogin(dName);
                                 })
                                 .catch(err => {
@@ -16227,6 +16612,7 @@
                             }
                             let displayName = userObj.displayName;
                             if (!displayName) displayName = "Aspirante_" + Math.floor(Math.random() * 9999);
+                            trackEvent("login", { method: "google" });
                             handleSuccessLogin(displayName);
                         } catch (error) {
                             const code = error && error.code ? String(error.code) : "";
