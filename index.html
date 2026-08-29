@@ -4454,7 +4454,22 @@
         let analyticsBundlePromise = null;
         let analyticsInstance = null;
         let performancePromise = null;
+        let vercelAnalyticsLoaded = false;
         const getAnalyticsConsent = () => localStorage.getItem(ANALYTICS_CONSENT_KEY) || "pending";
+        // Vercel Analytics is loaded only after the visitor accepts optional analytics.
+        // The endpoint is supplied automatically by Vercel for production deployments.
+        const loadVercelAnalytics = () => {
+            if (vercelAnalyticsLoaded) return;
+            vercelAnalyticsLoaded = true;
+            const script = document.createElement("script");
+            script.defer = true;
+            script.src = "/_vercel/insights/script.js";
+            script.onerror = () => {
+                // This is expected when the site is opened locally or served outside Vercel.
+                vercelAnalyticsLoaded = false;
+            };
+            document.head.appendChild(script);
+        };
         const sanitizeAnalyticsParams = (params = {}) => Object.fromEntries(
             Object.entries(params)
                 .filter(([key, value]) => ALLOWED_ANALYTICS_PARAMS.has(key) && ["string", "number", "boolean"].includes(typeof value))
@@ -4462,6 +4477,7 @@
         );
         const ensureOptionalTelemetry = async () => {
             if (getAnalyticsConsent() !== "granted") return null;
+            loadVercelAnalytics();
             if (!analyticsBundlePromise) {
                 analyticsBundlePromise = import("https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js")
                     .then(async (module) => {
