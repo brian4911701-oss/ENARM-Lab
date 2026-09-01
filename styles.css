@@ -11109,6 +11109,8 @@ h6,
   font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
   color: #e2e8f0;
   scroll-behavior: smooth;
+  /* Keep scrolling isolated from the rest of the application. */
+  overscroll-behavior: contain;
 }
 .landing-page.hidden {
   opacity: 0; visibility: hidden; pointer-events: none;
@@ -11123,6 +11125,7 @@ h6,
   width: 100%; height: 100%;
   pointer-events: none; z-index: 0;
   overflow: hidden;
+  contain: strict;
 }
 .landing-logo-watermark {
   position: absolute;
@@ -11135,39 +11138,39 @@ h6,
   background-position: center;
   background-size: contain;
   opacity: var(--landing-logo-opacity, 0.24);
-  mix-blend-mode: screen;
+  /* Blend modes and filters repaint the full viewport on every scroll frame. */
+  mix-blend-mode: normal;
   transform:
     translate3d(var(--landing-logo-x, 0px), var(--landing-logo-y, 0px), 0)
     rotate(var(--landing-logo-rotate, -7deg))
     scale(var(--landing-logo-scale, 1));
   transform-origin: 52% 42%;
-  filter:
-    saturate(1.35)
-    brightness(1.65)
-    drop-shadow(0 0 80px rgba(5, 192, 127, 0.22));
-  will-change: transform, opacity;
+  filter: none;
+  will-change: auto;
 }
 .landing-orb {
   position: absolute; border-radius: 50%;
-  filter: blur(100px); opacity: 0.35;
+  /* The radial gradients already provide a soft edge; avoid expensive blur layers. */
+  filter: none; opacity: 0.3;
+  will-change: auto;
 }
 .landing-orb--1 {
   width: 600px; height: 600px;
   background: radial-gradient(circle, #05c07f 0%, transparent 70%);
   top: -10%; left: -5%;
-  animation: orbFloat1 18s ease-in-out infinite;
+  animation: none;
 }
 .landing-orb--2 {
   width: 500px; height: 500px;
   background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
   top: 40%; right: -10%;
-  animation: orbFloat2 22s ease-in-out infinite;
+  animation: none;
 }
 .landing-orb--3 {
   width: 400px; height: 400px;
   background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
   bottom: -5%; left: 30%;
-  animation: orbFloat3 20s ease-in-out infinite;
+  animation: none;
 }
 @keyframes orbFloat1 {
   0%, 100% { transform: translate(0, 0) scale(1); }
@@ -11195,9 +11198,10 @@ h6,
 /* ── Sticky Nav ── */
 .landing-header {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(6, 10, 19, 0.75);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  /* A solid translucent header is much cheaper than blurring all content below it. */
+  background: rgba(6, 10, 19, 0.94);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .landing-nav {

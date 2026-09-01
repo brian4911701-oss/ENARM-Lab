@@ -15965,42 +15965,8 @@
                         });
                     });
 
-                    const landingWatermark = $("landing-logo-watermark");
-                    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-                    let watermarkFrame = null;
-
-                    const syncLandingWatermark = () => {
-                        watermarkFrame = null;
-                        if (!landingWatermark || reducedMotion.matches) return;
-
-                        const scrollTop = landingPage.scrollTop || 0;
-                        const maxScroll = Math.max(landingPage.scrollHeight - landingPage.clientHeight, 1);
-                        const progress = Math.min(scrollTop / maxScroll, 1);
-                        const widthFactor = window.innerWidth < 768 ? 0.58 : window.innerWidth < 1024 ? 0.78 : 1;
-                        const y = scrollTop * -0.16 * widthFactor;
-                        const x = Math.sin(progress * Math.PI) * 26 * widthFactor;
-                        const rotation = -7 + progress * 15;
-                        const scale = 1 + progress * 0.08;
-                        const opacity = Math.max(0.12, 0.24 - progress * 0.08);
-
-                        landingPage.style.setProperty("--landing-logo-y", `${y.toFixed(1)}px`);
-                        landingPage.style.setProperty("--landing-logo-x", `${x.toFixed(1)}px`);
-                        landingPage.style.setProperty("--landing-logo-rotate", `${rotation.toFixed(2)}deg`);
-                        landingPage.style.setProperty("--landing-logo-scale", scale.toFixed(3));
-                        landingPage.style.setProperty("--landing-logo-opacity", opacity.toFixed(3));
-                    };
-
-                    const requestLandingWatermarkSync = () => {
-                        if (watermarkFrame !== null) return;
-                        watermarkFrame = requestAnimationFrame(syncLandingWatermark);
-                    };
-
-                    if (landingWatermark) {
-                        syncLandingWatermark();
-                        landingPage.addEventListener("scroll", requestLandingWatermarkSync, { passive: true });
-                        window.addEventListener("resize", requestLandingWatermarkSync);
-                        reducedMotion.addEventListener?.("change", requestLandingWatermarkSync);
-                    }
+                    // The background watermark stays decorative and static. Updating CSS
+                    // variables on each scroll frame caused expensive full-page repaints.
                 }
 
                 // If user doesn't exist locally, show landing page (unless the guest exam is already open).
