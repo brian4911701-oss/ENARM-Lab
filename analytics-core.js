@@ -300,7 +300,8 @@
         });
         const referralPremiumUids = new Set(activeEntitlements.filter(row => String(row.source || "").includes("referral")).map(row => String(row.uid || row.id || "")));
 
-        const ratings = Array.isArray(input.ratings) ? input.ratings : [];
+        const ratings = (Array.isArray(input.ratings) ? input.ratings : [])
+            .filter(row => row && row.experienceQualified === true);
         const stars = ratings.map(row => safeNumber(row.stars)).filter(value => value > 0 && value <= 5);
         const distribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
         stars.forEach(value => { distribution[Math.round(value)] += 1; });

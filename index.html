@@ -124,8 +124,9 @@
                     <a href="#landing-faq" class="landing-nav-link">FAQ</a>
                 </div>
                 <div class="landing-nav-actions">
-                    <button id="btn-landing-login-top" class="landing-btn-ghost">Iniciar Sesión</button>
-                    <button id="btn-landing-start" class="landing-btn-cta">Crear Cuenta Gratis</button>
+                    <button id="btn-landing-login-top" class="landing-btn-login">Iniciar sesión</button>
+                    <button id="btn-landing-register-top" class="landing-btn-register">Crear cuenta</button>
+                    <button id="btn-landing-start" class="landing-btn-cta">Diagnóstico gratis</button>
                 </div>
                 <button class="landing-hamburger" id="landing-hamburger" aria-label="Menú">
                     <span></span><span></span><span></span>
@@ -140,8 +141,11 @@
             <a href="#landing-specialties" class="landing-mobile-link">Especialidades</a>
             <a href="#landing-pricing" class="landing-mobile-link">Planes</a>
             <a href="#landing-faq" class="landing-mobile-link">FAQ</a>
-            <button id="btn-landing-mobile-login" class="landing-btn-ghost" style="width:100%;margin-top:8px;">Iniciar Sesión</button>
-            <button id="btn-landing-mobile-start" class="landing-btn-cta" style="width:100%;">Crear Cuenta Gratis</button>
+            <div class="landing-mobile-actions">
+                <button id="btn-landing-mobile-login" class="landing-btn-login">Iniciar sesión</button>
+                <button id="btn-landing-mobile-register" class="landing-btn-register">Crear cuenta</button>
+                <button id="btn-landing-mobile-start" class="landing-btn-cta">Hacer diagnóstico gratis</button>
+            </div>
         </div>
 
         <main class="landing-main">
@@ -151,24 +155,24 @@
                 <div class="hero-content">
                     <div class="hero-badge">
                         <span class="hero-badge-dot"></span>
-                        Banco clínico ENARM · Actualizado 2026
+                        DIAGNÓSTICO GRATUITO · ENARM 2027
                     </div>
-                    <h1 class="landing-title">Entrena para el ENARM<br><span class="landing-title-gradient">con práctica clínica</span><br>que sí puedes medir</h1>
-                    <p class="landing-subtitle">Practica con más de 3,200 casos clínicos, simulacros de hasta 280 preguntas y análisis de desempeño para decidir qué reforzar cada día.</p>
+                    <h1 class="landing-title">Prepárate para el ENARM 2027<br><span class="landing-title-gradient">con una práctica que te dice qué reforzar</span></h1>
+                    <p class="landing-subtitle">Resuelve 10 casos clínicos y recibe un diagnóstico por área. Después entrena con 3,220 reactivos y simulacros de hasta 280 preguntas.</p>
                     <div class="landing-cta-group">
                         <button id="btn-landing-hero-start" class="landing-btn-cta landing-btn-cta--lg">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                            Probar 10 preguntas gratis
+                            Hacer mi diagnóstico gratuito
                         </button>
                         <a href="#landing-pricing" class="landing-btn-outline">
-                            Ver planes
+                            Ver el plan ENARM 2027
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
                         </a>
                     </div>
-                    <p class="hero-cta-note">Sin registro · 10 casos clínicos · Diagnóstico completo al terminar</p>
+                    <p class="hero-cta-note">Sin registro ni tarjeta · 10 casos clínicos · Resultado por área al terminar</p>
                     <div class="hero-trust">
                         <span class="hero-trust-check">✓</span>
-                        <span class="hero-trust-text">Retroalimentación inmediata y referencias cuando están disponibles</span>
+                        <span class="hero-trust-text">Retroalimentación y referencias GPC disponibles al terminar</span>
                     </div>
                     <div class="landing-platforms" aria-label="Disponible para Windows, Apple (macOS y iPhone) y Android">
                         <span class="landing-platforms-label">Disponible para</span>
@@ -208,8 +212,8 @@
             <!-- ══ STATS COUNTER ══ -->
             <section class="landing-stats">
                 <div class="landing-stat-item">
-                    <span class="landing-stat-number">+3,200</span>
-                    <span class="landing-stat-label">Casos Clínicos</span>
+                    <span class="landing-stat-number">3,220</span>
+                    <span class="landing-stat-label">Reactivos clínicos</span>
                 </div>
                 <div class="landing-stat-divider"></div>
                 <div class="landing-stat-item">
@@ -461,6 +465,12 @@
                         <button id="btn-landing-pricing-squad" class="pricing-action pricing-action--squad" data-plan-id="squad_2027">Elegir Plan Squad <span>&rarr;</span></button>
                     </article>
                 </div>
+                <div class="pricing-trial-cta">
+                    <button class="pricing-trial-action" type="button" data-start-premium-trial data-trial-source="pricing_plans_footer">
+                        Probar Premium 3 días gratis <span aria-hidden="true">→</span>
+                    </button>
+                    <p class="pricing-trial-note">Sin tarjeta · Sin cobro automático · Una prueba por cuenta</p>
+                </div>
                 <div class="pricing-trust-row" aria-label="Condiciones de compra">
                     <span>🏦 Transferencia directa a BBVA</span>
                     <span>🔢 Concepto único por compra</span>
@@ -478,11 +488,11 @@
                 <div class="landing-faq-list">
                     <details class="landing-faq-item">
                         <summary>¿Qué es ENARMax?</summary>
-                        <p>ENARMax es un simulador web del Examen Nacional de Aspirantes a Residencias Médicas (ENARM). Cuenta con más de 2,500 casos clínicos basados en las Guías de Práctica Clínica más recientes de México.</p>
+                        <p>ENARMax es un simulador web del Examen Nacional de Aspirantes a Residencias Médicas (ENARM), con 3,220 reactivos clínicos y referencias a Guías de Práctica Clínica de México.</p>
                     </details>
                     <details class="landing-faq-item">
-                        <summary>¿Es gratis?</summary>
-                        <p>Sí. El plan Gratis permite probar Repaso Flash con hasta 10 preguntas por sesión y funciones básicas. Los simulacros completos, filtros, estadísticas avanzadas y herramientas de refuerzo requieren Premium.</p>
+                        <summary>¿Qué incluye el diagnóstico gratuito?</summary>
+                        <p>Incluye 10 casos clínicos sin registro y un resultado por área al terminar. El banco completo, simulacros y herramientas avanzadas requieren Premium.</p>
                     </details>
                     <details class="landing-faq-item">
                         <summary>¿Los planes tienen cobros recurrentes?</summary>
@@ -585,35 +595,35 @@
                 <button type="button" id="btn-forgot-password" class="auth-forgot-password">¿Olvidaste tu contraseña?</button>
 
                 <div class="input-group" id="group-username" style="margin-top: 10px; display: none;">
-                    <label>Nombre de Usuario (Apodo visible en el Ranking)</label>
+                    <label>Nombre de usuario (opcional, visible en el ranking)</label>
                     <input type="text" id="auth-username" placeholder="DrHouse_99" class="text-input"
                         style="width: 100%;">
                 </div>
 
-                <div class="input-group auth-register-field auth-avatar-field" id="group-auth-avatar" style="margin-top: 10px; display: none;">
+                <div class="input-group auth-register-field auth-register-optional auth-avatar-field" id="group-auth-avatar" style="margin-top: 10px; display: none;">
                     <label>Elige tu avatar</label>
                     <p class="auth-avatar-note">Podrás cambiarlo después desde tu perfil.</p>
                     <div id="auth-avatar-picker" class="auth-avatar-picker" role="group" aria-label="Avatares disponibles para tu cuenta"></div>
                 </div>
 
-                <div class="input-group auth-register-field" id="group-auth-specialty" style="margin-top: 10px; display: none;">
+                <div class="input-group auth-register-field auth-register-optional" id="group-auth-specialty" style="margin-top: 10px; display: none;">
                     <label>Especialidad objetivo</label>
                     <select id="auth-specialty" class="text-input" style="width: 100%; cursor: pointer;"></select>
                 </div>
 
-                <div class="input-group auth-register-field" id="group-auth-university" style="margin-top: 10px; display: none;">
+                <div class="input-group auth-register-field auth-register-optional" id="group-auth-university" style="margin-top: 10px; display: none;">
                     <label>Universidad de egreso</label>
                     <input type="text" id="auth-university" placeholder="Ej. UNAM, IPN, UDG..." class="text-input"
                         style="width: 100%;" maxlength="80" autocomplete="organization">
                 </div>
 
-                <div class="input-group auth-register-field" id="group-auth-phone" style="margin-top: 10px; display: none;">
+                <div class="input-group auth-register-field auth-register-optional" id="group-auth-phone" style="margin-top: 10px; display: none;">
                     <label>Telefono de contacto</label>
                     <input type="tel" id="auth-phone" placeholder="10 digitos" class="text-input"
                         style="width: 100%;" maxlength="20" autocomplete="tel">
                 </div>
 
-                <div class="input-group auth-register-field" id="group-auth-target-year" style="margin-top: 10px; display: none;">
+                <div class="input-group auth-register-field auth-register-optional" id="group-auth-target-year" style="margin-top: 10px; display: none;">
                     <label>Año objetivo ENARM</label>
                     <select id="auth-target-year" class="text-input" style="width: 100%; cursor: pointer;"></select>
                 </div>
@@ -887,6 +897,15 @@
                         </div>
                     </div>
                 </header>
+
+                <aside id="premium-trial-banner" class="premium-trial-banner" hidden aria-live="polite">
+                    <span class="premium-trial-banner-icon" aria-hidden="true">✦</span>
+                    <div class="premium-trial-banner-copy">
+                        <strong>Tu prueba Premium está activa</strong>
+                        <span>Tiempo restante: <b id="premium-trial-remaining">--</b></span>
+                    </div>
+                    <span class="premium-trial-banner-tag">PRUEBA GRATIS</span>
+                </aside>
 
                 <button id="dashboard-upgrade-cta" class="dashboard-upgrade-cta" type="button" data-open-redeem hidden>
                     <span class="dashboard-upgrade-crown" aria-hidden="true">👑</span>
@@ -4135,6 +4154,14 @@
                     <span class="redeem-plan-tag">MEJOR PRECIO POR PERSONA · AHORRA $2,997</span><strong>Plan Squad 2027</strong><span class="redeem-plan-card-copy">Para estudiar con tres amigos: cuatro accesos Premium individuales hasta octubre de 2027.</span><span class="redeem-plan-benefits">4 cuentas · $1,249.75 por persona · Retos entre amigos</span><span class="redeem-plan-original-price">$7,996 MXN por 4 cuentas</span><span class="redeem-plan-price">$4,999 MXN</span><span class="redeem-plan-select">Elegir plan y pagar <b aria-hidden="true">→</b></span>
                 </button>
             </div>
+            <div class="redeem-trial-cta">
+                <button class="redeem-trial-button" type="button" data-start-premium-trial data-trial-source="premium_unlock_modal">
+                    <span aria-hidden="true">✦</span>
+                    Probar Premium 3 días gratis
+                    <span aria-hidden="true">→</span>
+                </button>
+                <p>Sin tarjeta · Sin cobro automático · Una prueba por cuenta</p>
+            </div>
             <div class="redeem-confidence-strip">
                 <div><strong>01</strong><span>Elige el plan</span></div>
                 <div><strong>02</strong><span>Transfiere con tu referencia única</span></div>
@@ -4444,12 +4471,13 @@
             "guest_exam_complete", "guest_exam_return_landing", "guest_exam_view_plans",
             "guest_exam_create_account", "sign_up", "login", "exam_start", "exam_complete",
             "feature_open", "select_plan", "begin_bank_transfer", "bank_transfer_notified",
-            "referral_applied", "exam_results_analysis_view", "results_premium_unlock_click"
+            "referral_applied", "exam_results_analysis_view", "results_premium_unlock_click",
+            "premium_trial_click", "premium_trial_start"
         ]);
         const ALLOWED_ANALYTICS_PARAMS = new Set([
             "placement", "questions", "exam_version", "score", "answered", "blank",
             "elapsed_seconds", "tier", "exam_type", "plan_id", "authenticated", "correct",
-            "page_variant", "method", "feature", "session_kind", "is_real"
+            "page_variant", "method", "feature", "session_kind", "is_real", "trial_days"
         ]);
         let analyticsBundlePromise = null;
         let analyticsInstance = null;

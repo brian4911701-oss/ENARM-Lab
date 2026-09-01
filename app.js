@@ -70,6 +70,7 @@
         entitlement: null,
         entitlementLoaded: false,
         entitlementUnsub: null,
+        premiumTrialTimerId: null,
         globalPremiumPromo: null,
         globalPremiumLoaded: false,
         globalPremiumUnsub: null,
@@ -193,6 +194,8 @@
     const MONTH_CODE_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
     const ADMIN_PREVIEW_STORAGE_KEY = "enarm_admin_preview_mode";
     const PENDING_PLAN_STORAGE_KEY = "enarm_pending_transfer_plan";
+    const PENDING_PREMIUM_TRIAL_STORAGE_KEY = "enarm_pending_premium_trial";
+    const PREMIUM_TRIAL_DAYS = 3;
     const MANUAL_PAYMENT_REQUESTS_COLLECTION = "manual_payment_requests";
     const MANUAL_ENTITLEMENT_SEEN_KEY = "enarm_seen_manual_entitlement";
     const TRANSFER_PLANS = Object.freeze({
@@ -1788,6 +1791,54 @@
         return ent.expiresAt.getTime() > Date.now();
     };
 
+    const getPremiumTrialExpiry = () => {
+        const entitlement = State.entitlement;
+        if (!entitlement || entitlement.status !== "active" || entitlement.source !== "premium_trial" || !entitlement.expiresAt) {
+            return null;
+        }
+        return entitlement.expiresAt;
+    };
+
+    const formatPremiumTrialRemaining = (milliseconds) => {
+        const totalSeconds = Math.max(0, Math.floor(milliseconds / 1000));
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        const twoDigits = (value) => String(value).padStart(2, "0");
+        return days > 0
+            ? `${days} día${days !== 1 ? "s" : ""} ${twoDigits(hours)}:${twoDigits(minutes)}:${twoDigits(seconds)}`
+            : `${twoDigits(hours)}:${twoDigits(minutes)}:${twoDigits(seconds)}`;
+    };
+
+    const updatePremiumTrialBanner = () => {
+        const banner = $("premium-trial-banner");
+        const remainingEl = $("premium-trial-remaining");
+        const expiresAt = getPremiumTrialExpiry();
+        const remainingMs = expiresAt ? expiresAt.getTime() - Date.now() : 0;
+        const active = remainingMs > 0;
+        if (banner) banner.hidden = !active;
+        if (remainingEl) remainingEl.textContent = active ? formatPremiumTrialRemaining(remainingMs) : "00:00:00";
+        return active;
+    };
+
+    const syncPremiumTrialTimer = () => {
+        if (State.premiumTrialTimerId) {
+            window.clearInterval(State.premiumTrialTimerId);
+            State.premiumTrialTimerId = null;
+        }
+        if (!updatePremiumTrialBanner()) return;
+
+        State.premiumTrialTimerId = window.setInterval(() => {
+            if (updatePremiumTrialBanner()) return;
+            window.clearInterval(State.premiumTrialTimerId);
+            State.premiumTrialTimerId = null;
+            syncPremiumUI();
+            void syncCurrentUserPremiumFlag();
+            showNotification("Tu prueba Premium terminó. Tu cuenta volvió a la versión Gratis.", "info");
+        }, 1000);
+    };
+
     const syncCurrentUserPremiumFlag = async () => {
         if (!window.FB || !window.FB.auth || !window.FB.auth.currentUser) return;
         if (!window.FB.setDoc || !window.FB.doc || !window.FB.db) return;
@@ -2199,6 +2250,7 @@
     };
 
     const syncPremiumUI = () => {
+        syncPremiumTrialTimer();
         updatePremiumStatusLabel();
         updateGlobalPremiumAdminPanel();
         renderProfileView();
@@ -3521,7 +3573,12 @@
 
     const RATING_LATER_KEY = "enarmax_rating_prompt_after";
     const RATING_CANCEL_KEY = "enarmax_rating_prompt_cancelled";
-    const RATING_PROMPT_DELAY_MS = 15000;
+    // Una valoración solo es útil si refleja experiencia real con el simulador.
+    // Se solicita después de una sesión completada y nunca al crear la cuenta.
+    const RATING_PROMPT_DELAY_MS = 1200;
+    const RATING_MIN_ACCOUNT_AGE_DAYS = 7;
+    const RATING_MIN_ANSWERED = 100;
+    const RATING_MIN_SESSIONS = 3;
     const RATING_LATER_DELAY_MS = 3 * 24 * 60 * 60 * 1000;
     const RATING_CANCEL_DELAY_MS = 30 * 24 * 60 * 60 * 1000;
     let selectedRatingValue = 0;
@@ -3557,6 +3614,11 @@
     };
     const scheduleRatingPrompt = async (user) => {
         if (!user || isAdminUser() || State.ratingPromptLoaded) return;
+        const createdAt = new Date(user.metadata?.creationTime || 0).getTime();
+        const accountAgeDays = createdAt > 0 ? Math.floor((Date.now() - createdAt) / (24 * 60 * 60 * 1000)) : 0;
+        const answered = Number(State.globalStats?.respondidas || 0);
+        const sessions = Number(State.globalStats?.sesiones || 0);
+        if (accountAgeDays < RATING_MIN_ACCOUNT_AGE_DAYS || answered < RATING_MIN_ANSWERED || sessions < RATING_MIN_SESSIONS) return;
         State.ratingPromptLoaded = true;
         const deferUntil = Number(localStorage.getItem(RATING_LATER_KEY) || localStorage.getItem(RATING_CANCEL_KEY) || 0);
         if (deferUntil > Date.now()) return;
@@ -3582,6 +3644,10 @@
                 email: (user.email || "").slice(0, 180),
                 stars: selectedRatingValue,
                 comment: comment.slice(0, 800),
+                experienceQualified: true,
+                answeredAtPrompt: Number(State.globalStats?.respondidas || 0),
+                sessionsAtPrompt: Number(State.globalStats?.sesiones || 0),
+                accountAgeDaysAtPrompt: Math.floor((Date.now() - new Date(user.metadata?.creationTime || 0).getTime()) / (24 * 60 * 60 * 1000)),
                 createdAt: window.FB.serverTimestamp(),
                 updatedAt: window.FB.serverTimestamp()
             });
@@ -3600,7 +3666,8 @@
         const summary = $("admin-ratings-summary");
         const list = $("admin-ratings-list");
         if (!summary || !list || !isAdminUser()) return;
-        const rows = Array.isArray(State.ratingsInbox) ? State.ratingsInbox : [];
+        const rows = (Array.isArray(State.ratingsInbox) ? State.ratingsInbox : [])
+            .filter((item) => item.experienceQualified === true);
         const average = rows.length ? rows.reduce((sum, item) => sum + Number(item.stars || 0), 0) / rows.length : 0;
         summary.innerHTML = rows.length
             ? `<span class="admin-ratings-average">${average.toFixed(1)} ★</span> <strong>Promedio de ${rows.length} valoración${rows.length === 1 ? "" : "es"}</strong>`
@@ -5473,44 +5540,11 @@
         if (fixedQuestions.length === GUEST_EXAM_CONFIG.total) {
             return finalizeQuestionSet(fixedQuestions);
         }
-
-        const usedFixedKeys = new Set(fixedQuestions.map((question) => questionKey(question)));
-        const replacementCandidates = allCandidates.filter((question) => {
-            return isEligibleGuestQuestion(question) && !usedFixedKeys.has(questionKey(question));
-        });
-        const repairedFixedQuestions = GUEST_EXAM_CONFIG.fixedQuestionIds.map((id, index) => {
-            const configured = candidatesById.get(id);
-            if (configured && isEligibleGuestQuestion(configured)) return configured;
-            const expectedSpecialty = GUEST_EXAM_CONFIG.order[index];
-            const replacementIndex = replacementCandidates.findIndex((candidate) => candidate.specialty === expectedSpecialty);
-            if (replacementIndex < 0) return null;
-            const [replacement] = replacementCandidates.splice(replacementIndex, 1);
-            usedFixedKeys.add(questionKey(replacement));
-            return replacement;
-        }).filter(Boolean);
-        if (repairedFixedQuestions.length === GUEST_EXAM_CONFIG.total) {
-            return finalizeQuestionSet(repairedFixedQuestions);
-        }
-
-        const selectedBySpecialty = {};
-        Object.entries(GUEST_EXAM_CONFIG.distribution).forEach(([specialty, qty]) => {
-            const pool = filterQuarantinedPool(getQuestionsPoolForSpecs([specialty]));
-            selectedBySpecialty[specialty] = takeUnique(flattenDeterministically(pool), qty);
-        });
-
-        const selected = GUEST_EXAM_CONFIG.order
-            .map((specialty) => selectedBySpecialty[specialty]?.shift())
-            .filter(Boolean);
-
-        if (selected.length < GUEST_EXAM_CONFIG.total) {
-            const fallbackPool = filterQuarantinedPool(typeof QUESTIONS !== "undefined" ? QUESTIONS : []);
-            selected.push(...takeUnique(
-                flattenDeterministically(fallbackPool),
-                GUEST_EXAM_CONFIG.total - selected.length
-            ));
-        }
-
-        return finalizeQuestionSet(selected);
+        // El diagnóstico es intencionalmente idéntico para todos. Si se altera el
+        // banco y falta una pregunta configurada, preferimos detenerlo antes que
+        // sustituirla por una pregunta aleatoria y cambiar la experiencia.
+        console.error("No se pudo reconstruir el diagnóstico fijo configurado.");
+        return [];
     };
 
     const exitGuestExperience = ({ showLanding = true, scrollTarget = "" } = {}) => {
@@ -5607,7 +5641,7 @@
     };
 
     const initGuestExamExperience = () => {
-        ["btn-landing-hero-start", "btn-landing-final-start", "btn-landing-pricing-free", "btn-landing-demo-start"]
+        ["btn-landing-hero-start", "btn-landing-final-start", "btn-landing-pricing-free", "btn-landing-demo-start", "btn-landing-start", "btn-landing-mobile-start"]
             .forEach((id) => {
                 const button = $(id);
                 if (!button || button.dataset.guestExamBound === "true") return;
@@ -9947,6 +9981,7 @@
             void syncUserMetrics({ force: true });
             renderResultsPostmortem();
             showView("view-results");
+            window.setTimeout(() => void scheduleRatingPrompt(window.FB?.auth?.currentUser), RATING_PROMPT_DELAY_MS);
         } catch (err) {
             console.error("Error crítico en finishExam:", err);
             showNotification("Error al finalizar el examen. Revisa la consola.");
@@ -15539,6 +15574,112 @@
                 };
 
                 const getTransferPlan = (planId) => TRANSFER_PLANS[planId] || null;
+                const setPremiumTrialButtonsBusy = (busy, activeButton = null) => {
+                    document.querySelectorAll("[data-start-premium-trial]").forEach((button) => {
+                        button.disabled = busy;
+                        if (!button.dataset.defaultLabel) button.dataset.defaultLabel = button.textContent;
+                        button.textContent = busy && button === activeButton
+                            ? "Activando tu prueba…"
+                            : button.dataset.defaultLabel;
+                    });
+                };
+                const startPremiumTrial = async (options = {}) => {
+                    const source = String(options.source || "premium_trial");
+                    const triggerButton = options.triggerButton || null;
+                    const currentUser = window.FB?.auth?.currentUser;
+                    if (!currentUser) {
+                        localStorage.setItem(PENDING_PREMIUM_TRIAL_STORAGE_KEY, "1");
+                        trackEvent("premium_trial_click", { placement: source, authenticated: false, trial_days: PREMIUM_TRIAL_DAYS });
+                        showAuthFromLanding({ register: true });
+                        showNotification("Crea tu cuenta para activar 3 días de Premium sin tarjeta.", "info");
+                        return;
+                    }
+                    if (!window.FB?.db || typeof window.FB?.doc !== "function" || typeof window.FB?.runTransaction !== "function" || typeof window.FB?.serverTimestamp !== "function") {
+                        showNotification("No pudimos preparar la prueba Premium. Intenta de nuevo.", "warning");
+                        return;
+                    }
+
+                    setPremiumTrialButtonsBusy(true, triggerButton);
+                    trackEvent("premium_trial_click", { placement: source, authenticated: true, trial_days: PREMIUM_TRIAL_DAYS });
+                    try {
+                        const trialRef = window.FB.doc(window.FB.db, "premium_trials", currentUser.uid);
+                        const entitlementRef = window.FB.doc(window.FB.db, "entitlements", currentUser.uid);
+                        const data = await window.FB.runTransaction(window.FB.db, async (transaction) => {
+                            const [trialSnap, entitlementSnap] = await Promise.all([
+                                transaction.get(trialRef),
+                                transaction.get(entitlementRef)
+                            ]);
+                            if (trialSnap.exists()) {
+                                const error = new Error("already-used");
+                                error.code = "already-used";
+                                throw error;
+                            }
+
+                            const entitlement = entitlementSnap.exists() ? (entitlementSnap.data() || {}) : {};
+                            const currentExpiry = entitlement.expiresAt?.toDate?.().getTime?.() || new Date(entitlement.expiresAt || 0).getTime();
+                            if (entitlement.status === "active" && (!currentExpiry || currentExpiry > Date.now())) {
+                                const error = new Error("already-premium");
+                                error.code = "already-premium";
+                                throw error;
+                            }
+
+                            const expiresAt = new Date(Date.now() + PREMIUM_TRIAL_DAYS * 24 * 60 * 60 * 1000);
+                            transaction.set(trialRef, {
+                                uid: currentUser.uid,
+                                status: "used",
+                                startedAt: window.FB.serverTimestamp(),
+                                expiresAt,
+                                durationDays: PREMIUM_TRIAL_DAYS
+                            });
+                            transaction.set(entitlementRef, {
+                                status: "active",
+                                source: "premium_trial",
+                                planId: "premium_trial_3d",
+                                activatedAt: window.FB.serverTimestamp(),
+                                expiresAt,
+                                updatedAt: window.FB.serverTimestamp()
+                            }, { merge: true });
+                            return { expiresAt: expiresAt.toISOString(), durationDays: PREMIUM_TRIAL_DAYS };
+                        });
+                        const expiresAt = new Date(data.expiresAt || Date.now() + PREMIUM_TRIAL_DAYS * 24 * 60 * 60 * 1000);
+                        State.entitlement = {
+                            ...(State.entitlement || {}),
+                            status: "active",
+                            source: "premium_trial",
+                            planId: "premium_trial_3d",
+                            activatedAt: new Date(),
+                            expiresAt,
+                            updatedAt: new Date()
+                        };
+                        localStorage.removeItem(PENDING_PREMIUM_TRIAL_STORAGE_KEY);
+                        syncPremiumUI();
+                        syncCurrentUserPremiumFlag();
+                        syncOptionalAnalyticsIdentity();
+                        trackEvent("premium_trial_start", { placement: source, trial_days: Number(data.durationDays || PREMIUM_TRIAL_DAYS) });
+                        showNotification(`¡Premium activo por ${Number(data.durationDays || PREMIUM_TRIAL_DAYS)} días! No habrá ningún cobro automático.`, "success");
+                        openPremiumWelcomeModal();
+                    } catch (err) {
+                        console.error("No se pudo activar la prueba Premium:", err);
+                        const code = String(err?.code || "");
+                        const message = String(err?.message || "").toLowerCase();
+                        if (code.includes("already-exists") || code.includes("already-used") || message.includes("ya utilizó")) {
+                            showNotification("Esta cuenta ya utilizó su prueba Premium.", "info");
+                        } else if (code.includes("failed-precondition") || code.includes("already-premium") || message.includes("ya tiene acceso premium")) {
+                            showNotification("Tu cuenta ya tiene acceso Premium activo.", "info");
+                        } else if (code.includes("unauthenticated")) {
+                            showAuthFromLanding({ register: true });
+                            showNotification("Inicia sesión para activar tu prueba Premium.", "info");
+                        } else {
+                            showNotification("No pudimos activar la prueba. Intenta de nuevo en un momento.", "error");
+                        }
+                    } finally {
+                        setPremiumTrialButtonsBusy(false);
+                    }
+                };
+                const resumePendingPremiumTrial = () => {
+                    if (localStorage.getItem(PENDING_PREMIUM_TRIAL_STORAGE_KEY) !== "1") return;
+                    void startPremiumTrial({ source: "after_registration" });
+                };
                 const getSquadMemberInputs = () => [
                     $("transfer-squad-member-1"),
                     $("transfer-squad-member-2"),
@@ -15634,6 +15775,13 @@
                     if (!getTransferPlan(pendingPlan)) return;
                     void beginPlanTransfer(pendingPlan, { resume: true });
                 };
+
+                document.querySelectorAll("[data-start-premium-trial]").forEach((button) => {
+                    button.addEventListener("click", () => void startPremiumTrial({
+                        source: button.dataset.trialSource || (button.closest(".pricing-card")?.classList.contains("pricing-card--2027") ? "pricing_2027" : "pricing_2026"),
+                        triggerButton: button
+                    }));
+                });
 
                 ["btn-close-transfer", "btn-transfer-later"].forEach(id => {
                     const btn = $(id);
@@ -15746,16 +15894,6 @@
                     }
                 });
 
-                // Los CTAs de cuenta abren registro; los de 10 preguntas entran al examen invitado.
-                ["btn-landing-start", "btn-landing-mobile-start"].forEach(id => {
-                    const el = $(id);
-                    if (el) el.addEventListener("click", () => {
-                        localStorage.removeItem(PENDING_PLAN_STORAGE_KEY);
-                        trackEvent("free_trial_click", { placement: id });
-                        showAuthFromLanding({ register: true });
-                    });
-                });
-
                 const guestCreateAccount = $("btn-guest-create-account");
                 if (guestCreateAccount && guestCreateAccount.dataset.authBound !== "true") {
                     guestCreateAccount.dataset.authBound = "true";
@@ -15771,6 +15909,11 @@
                 ["btn-landing-login-top", "btn-landing-mobile-login"].forEach(id => {
                     const el = $(id);
                     if (el) el.addEventListener("click", () => showAuthFromLanding({ register: false }));
+                });
+
+                ["btn-landing-register-top", "btn-landing-mobile-register"].forEach(id => {
+                    const el = $(id);
+                    if (el) el.addEventListener("click", () => showAuthFromLanding({ register: true }));
                 });
 
                 document.querySelectorAll("[data-plan-id]").forEach(el => {
@@ -16001,6 +16144,7 @@
                             });
                             // Si el usuario eligió un plan antes de autenticarse, muestra sus datos de transferencia.
                             setTimeout(resumePendingTransfer, 700);
+                            setTimeout(resumePendingPremiumTrial, 950);
                             State.referralWalletLoaded = false;
                             bindReferralWalletListener(user.uid);
                             void ensureReferralWallet(user.uid, fallbackDisplayName).catch(handleReferralWalletError);
@@ -16017,7 +16161,6 @@
                             initManualPaymentAdminInbox();
                             initAdminUsersInbox();
                             initAdminRatingsInbox();
-                            void scheduleRatingPrompt(user);
                             bindMyManualPaymentRequests(user.uid);
                             setupChallengeLogic();
                             if (typeof window.loadPendingRequests === "function") {
@@ -16232,7 +16375,8 @@
                 const authTargetYear = $("auth-target-year");
                 const authAvatarPicker = $("auth-avatar-picker");
                 const groupUsername = $("group-username");
-                const authRegisterFields = $$(".auth-register-field");
+                const authRegisterFields = $$(".auth-register-field:not(.auth-register-optional)");
+                const authRegisterOptionalFields = $$(".auth-register-optional");
                 const tabLogin = $("tab-login");
                 const tabRegister = $("tab-register");
                 const authSubmitBtn = $("btn-auth-submit");
@@ -16240,7 +16384,7 @@
                 const authContainer = document.querySelector(".auth-container");
                 const authDivider = document.querySelector(".auth-divider");
                 const authProviderBtn = document.querySelector(".auth-provider-btn");
-                const requiredRegisterInputs = [authUsername, authSpecialty, authUniversity, authPhone, authTargetYear].filter(Boolean);
+                const requiredRegisterInputs = [];
 
                 let isRegisterMode = false;
                 let googleProfileCompletion = false;
@@ -16284,7 +16428,7 @@
                     if (isRegisterMode) {
                         if (groupUsername) groupUsername.style.display = "flex";
                         authRegisterFields.forEach(field => { field.style.display = "flex"; });
-                        renderAuthAvatarPicker();
+                        authRegisterOptionalFields.forEach(field => { field.style.display = "none"; });
                         requiredRegisterInputs.forEach(input => input.setAttribute("required", "true"));
                         if (authSubmitBtn) authSubmitBtn.textContent = "Crear mi cuenta";
 
@@ -16301,6 +16445,7 @@
                     } else {
                         if (groupUsername) groupUsername.style.display = "none";
                         authRegisterFields.forEach(field => { field.style.display = "none"; });
+                        authRegisterOptionalFields.forEach(field => { field.style.display = "none"; });
                         requiredRegisterInputs.forEach(input => input.removeAttribute("required"));
                         if (authSubmitBtn) authSubmitBtn.textContent = "Iniciar Sesión";
 
@@ -16357,13 +16502,21 @@
                     });
                 }
 
+                const buildDefaultUsername = (email, uid = "") => {
+                    const localPart = String(email || "").split("@")[0]
+                        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                        .replace(/[^a-zA-Z0-9_]/g, "").slice(0, 14);
+                    const suffix = String(uid || Math.floor(Math.random() * 100000)).slice(-5);
+                    return `${localPart || "Aspirante"}_${suffix}`.slice(0, 20);
+                };
+
                 loginForm.addEventListener("submit", (e) => {
                     e.preventDefault();
                     if (!authEmail || !authPassword) return; // Parche de seguridad
 
                     const email = authEmail.value.trim();
                     const password = authPassword.value;
-                    const userName = authUsername ? authUsername.value.trim() : email.split("@")[0];
+                    const userName = authUsername?.value.trim() || buildDefaultUsername(email);
                     const registrationProfile = isRegisterMode ? {
                         specialty: authSpecialty ? authSpecialty.value.trim() : "",
                         university: authUniversity ? authUniversity.value.trim().substring(0, 80) : "",
@@ -16371,17 +16524,6 @@
                         targetYear: authTargetYear ? authTargetYear.value : "",
                         avatarId: normalizeProfileAvatar(registrationAvatarId)
                     } : null;
-
-                    if (isRegisterMode) {
-                        if (!userName || !registrationProfile.specialty || !registrationProfile.university || !registrationProfile.phone || !registrationProfile.targetYear) {
-                            showNotification("Completa nombre, especialidad, universidad, telefono y año objetivo.", "warning");
-                            return;
-                        }
-                        if (!isValidContactPhone(registrationProfile.phone)) {
-                            showNotification("El telefono debe tener entre 10 y 15 digitos.", "error");
-                            return;
-                        }
-                    }
 
                     if (googleProfileCompletion && window.FB?.auth?.currentUser) {
                         const submitBtn = document.querySelector(".auth-submit");
@@ -16603,11 +16745,12 @@
                                 ? window.FB.getAdditionalUserInfo(result)
                                 : null;
                             if (additionalInfo && additionalInfo.isNewUser) {
-                                googleProfileCompletion = true;
-                                setAuthMode(true);
-                                if (authOverlay) authOverlay.classList.add("active");
-                                if (authSubmitBtn) authSubmitBtn.textContent = "Guardar y continuar";
-                                showNotification("Completa tu perfil para terminar de crear tu cuenta.", "info");
+                                const displayName = userObj.displayName || buildDefaultUsername(userObj.email, userObj.uid);
+                                if (!userObj.displayName) await window.FB.updateProfile(userObj, { displayName });
+                                await ensureReferralWallet(userObj.uid, displayName).catch(handleReferralWalletError);
+                                bindReferralWalletListener(userObj.uid);
+                                trackEvent("sign_up", { method: "google" });
+                                handleSuccessLogin(displayName);
                                 return;
                             }
                             let displayName = userObj.displayName;

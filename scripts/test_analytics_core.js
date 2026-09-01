@@ -40,7 +40,7 @@ const result = analytics.computeDashboard({
         { uid: "u2", status: "pending", amount: 1999, notifiedAt: atNoon("2026-08-23") }
     ],
     referrals: [{ uid: "u2", referralCode: "ELABC123", coins: 50, createdAt: atNoon("2026-08-24") }],
-    ratings: [{ stars: 5 }, { stars: 4 }],
+    ratings: [{ stars: 5, experienceQualified: true }, { stars: 4, experienceQualified: true }, { stars: 1 }],
     feedback: [{ createdAt: atNoon("2026-08-24") }],
     reports: [{ timestamp: atNoon("2026-08-24").getTime() }]
 }, 7, now);
