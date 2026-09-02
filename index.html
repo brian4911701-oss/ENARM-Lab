@@ -22,23 +22,25 @@
     <meta name="mobile-web-app-capable" content="yes">
     <script>
         (() => {
+            const rawTheme = localStorage.getItem("enarm_theme") || "ocean";
+            const legacyThemeMap = { "clinical-dark": "ocean", "clinical-light": "light" };
+            const storedTheme = legacyThemeMap[rawTheme] || rawTheme;
+            const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+            const resolvedTheme = storedTheme === "system" ? (prefersLight ? "light" : "default") : storedTheme;
             const colors = {
-                light: "#ffffff", forest: "#0a3325", ocean: "#1d258d", sunset: "#3a1717",
-                "navy-gold": "#111a38", "black-teal": "#061b1d", aurora: "#10243b",
-                ember: "#2a1110", "black-white": "#111111", premium: "#17112f",
-                "premium-pink": "#2b1022", "clinical-dark": "#111623", "clinical-light": "#ffffff"
+                default: "#111623", light: "#ffffff", forest: "#0a3325", ocean: "#1d258d",
+                sunset: "#3d1a3b", "navy-gold": "#102545", "black-teal": "#050505",
+                aurora: "#0a181b", premium: "#0a0a0a", "premium-pink": "#0a0a0a"
             };
-            const theme = localStorage.getItem("enarm_theme") || "ocean";
             let meta = document.querySelector('meta[name="theme-color"]');
             if (!meta) {
                 meta = document.createElement("meta");
                 meta.name = "theme-color";
                 document.head.appendChild(meta);
             }
-            const resolved = theme === "system"
-                ? (window.matchMedia?.("(prefers-color-scheme: light)").matches ? colors.light : "#111623")
-                : (colors[theme] || colors.ocean);
-            if (meta) meta.content = resolved;
+            const chromeColor = colors[resolvedTheme] || colors.default;
+            meta.content = chromeColor;
+            document.documentElement.style.backgroundColor = chromeColor;
         })();
     </script>
 
