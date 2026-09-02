@@ -5641,7 +5641,7 @@
     };
 
     const initGuestExamExperience = () => {
-        ["btn-landing-hero-start", "btn-landing-final-start", "btn-landing-pricing-free", "btn-landing-demo-start", "btn-landing-start", "btn-landing-mobile-start"]
+        ["btn-landing-hero-start", "btn-landing-final-start", "btn-landing-pricing-free", "btn-landing-demo-start"]
             .forEach((id) => {
                 const button = $(id);
                 if (!button || button.dataset.guestExamBound === "true") return;
@@ -15913,14 +15913,19 @@
                     });
                 }
 
+                // Los CTAs de cuenta abren registro; los de 10 preguntas entran al examen invitado.
+                ["btn-landing-start", "btn-landing-mobile-start"].forEach(id => {
+                    const el = $(id);
+                    if (el) el.addEventListener("click", () => {
+                        localStorage.removeItem(PENDING_PLAN_STORAGE_KEY);
+                        trackEvent("free_trial_click", { placement: id });
+                        showAuthFromLanding({ register: true });
+                    });
+                });
+
                 ["btn-landing-login-top", "btn-landing-mobile-login"].forEach(id => {
                     const el = $(id);
                     if (el) el.addEventListener("click", () => showAuthFromLanding({ register: false }));
-                });
-
-                ["btn-landing-register-top", "btn-landing-mobile-register"].forEach(id => {
-                    const el = $(id);
-                    if (el) el.addEventListener("click", () => showAuthFromLanding({ register: true }));
                 });
 
                 document.querySelectorAll("[data-plan-id]").forEach(el => {
