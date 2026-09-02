@@ -20,6 +20,27 @@
     <meta name="twitter:description" content="Simulador de examen ENARM con casos clÃ­nicos, estadÃ­sticas y retos entre amigos.">
     <meta name="twitter:image" content="https://enarm-lab-social.web.app/share-preview.png">
     <meta name="mobile-web-app-capable" content="yes">
+    <script>
+        (() => {
+            const colors = {
+                light: "#ffffff", forest: "#0a3325", ocean: "#1d258d", sunset: "#3a1717",
+                "navy-gold": "#111a38", "black-teal": "#061b1d", aurora: "#10243b",
+                ember: "#2a1110", "black-white": "#111111", premium: "#17112f",
+                "premium-pink": "#2b1022", "clinical-dark": "#111623", "clinical-light": "#ffffff"
+            };
+            const theme = localStorage.getItem("enarm_theme") || "ocean";
+            let meta = document.querySelector('meta[name="theme-color"]');
+            if (!meta) {
+                meta = document.createElement("meta");
+                meta.name = "theme-color";
+                document.head.appendChild(meta);
+            }
+            const resolved = theme === "system"
+                ? (window.matchMedia?.("(prefers-color-scheme: light)").matches ? colors.light : "#111623")
+                : (colors[theme] || colors.ocean);
+            if (meta) meta.content = resolved;
+        })();
+    </script>
 
     <!-- Browser tab icon -->
     <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
