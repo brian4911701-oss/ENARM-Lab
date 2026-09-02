@@ -2480,15 +2480,6 @@
             document.head.appendChild(themeMeta);
         }
         themeMeta.setAttribute("content", color);
-
-        // Chrome en Android puede conservar el color del manifiesto cuando una
-        // PWA ya está instalada. Reemplazar el nodo obliga a que reevalúe el
-        // color del documento, en vez de conservar el valor inicial.
-        const refreshedThemeMeta = themeMeta.cloneNode(false);
-        refreshedThemeMeta.id = "app-theme-color";
-        refreshedThemeMeta.setAttribute("name", "theme-color");
-        refreshedThemeMeta.setAttribute("content", color);
-        themeMeta.replaceWith(refreshedThemeMeta);
         document.documentElement.style.backgroundColor = color;
     };
 
@@ -6087,6 +6078,15 @@
     systemThemeQuery?.addEventListener?.("change", () => {
         if (normalizeThemeSelection(State.theme) === "system") applyTheme("system");
     });
+
+    // Android puede restaurar primero el color nativo del WebAPK al volver a la
+    // aplicación. Reaplicamos el color efectivo una vez que la página es visible.
+    const syncThemeColorWhenVisible = () => {
+        if (document.visibilityState === "hidden") return;
+        window.requestAnimationFrame(() => syncThemeColorMeta());
+    };
+    window.addEventListener("pageshow", syncThemeColorWhenVisible);
+    document.addEventListener("visibilitychange", syncThemeColorWhenVisible);
 
     // ---------------------------------------------------------------------------
     // Navigation
