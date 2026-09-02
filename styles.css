@@ -4316,7 +4316,7 @@ body.stats-demo-preview .stats-free-preview-card {
   color: #f8fafc;
   background:
     radial-gradient(circle at 50% 38%, rgba(5, 192, 127, 0.16), transparent 27%),
-    #0a0e17;
+    var(--app-chrome-bg, #0a0e17);
   transition: opacity .22s ease, visibility .22s ease;
 }
 .app-startup-screen.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
@@ -4327,13 +4327,13 @@ body.stats-demo-preview .stats-free-preview-card {
   font-weight: 800;
   letter-spacing: -.04em;
 }
-.app-startup-name span { color: #05c07f; }
+.app-startup-name span { color: var(--accent-green, #05c07f); }
 .app-startup-loader {
   width: 23px;
   height: 23px;
   margin-top: 4px;
   border: 2px solid rgba(255,255,255,.16);
-  border-top-color: #05c07f;
+  border-top-color: var(--accent-green, #05c07f);
   border-radius: 50%;
   animation: appStartupSpin .8s linear infinite;
 }
