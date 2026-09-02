@@ -22,7 +22,9 @@
     <meta name="mobile-web-app-capable" content="yes">
     <!-- Declarada desde el HTML para que Chrome móvil la detecte desde la carga inicial.
          app.js actualiza su contenido cuando el usuario cambia de tema. -->
-    <meta id="app-theme-color" name="theme-color" content="#1d258d">
+    <meta id="app-theme-color" name="theme-color" content="#1d258d" media="all">
+    <!-- Chrome Android vuelve a evaluar el color al alternar el meta activo. -->
+    <meta id="app-theme-color-buffer" name="theme-color" content="#1d258d" media="not all">
     <script>
         (() => {
             const rawTheme = localStorage.getItem("enarm_theme") || "ocean";
@@ -49,8 +51,10 @@
                 "premium-pink": "#0a0a0a"
             };
             const chromeColor = chromeColors[resolvedTheme] || chromeColors.default;
-            const themeMeta = document.querySelector('meta[name="theme-color"]');
+            const themeMeta = document.getElementById("app-theme-color");
+            const themeMetaBuffer = document.getElementById("app-theme-color-buffer");
             themeMeta.setAttribute("content", chromeColor);
+            if (themeMetaBuffer) themeMetaBuffer.setAttribute("content", chromeColor);
             document.documentElement.style.backgroundColor = chromeColor;
         })();
     </script>
