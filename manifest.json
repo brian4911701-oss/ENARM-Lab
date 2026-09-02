@@ -1,6 +1,7 @@
 {
     "name": "ENARMax",
     "short_name": "ENARMax",
+    "id": "/prueba-enarmax",
     "description": "Tu simulador de examen ENARM. Casos clínicos, estadísticas y retos.",
     "start_url": "/",
     "display": "standalone",
