@@ -92,6 +92,27 @@ service cloud.firestore {
         && request.resource.data.coins == 50;
     }
 
+    function isPremiumTrialEntitlement(uid) {
+      let trial = getAfter(/databases/$(database)/documents/premium_trials/$(uid));
+      return isSelf(uid)
+        && trial.data.uid == uid
+        && trial.data.status == "used"
+        && trial.data.durationDays == 3
+        && trial.data.startedAt == request.time
+        && request.resource.data.status == "active"
+        && request.resource.data.source == "premium_trial"
+        && request.resource.data.planId == "premium_trial_3d"
+        && request.resource.data.activatedAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.expiresAt == trial.data.expiresAt;
+    }
+
+    function canReplaceExpiredEntitlementWithTrial() {
+      return !resource.data.keys().hasAll(["expiresAt"])
+        || resource.data.status != "active"
+        || resource.data.expiresAt <= request.time;
+    }
+
     match /redeem_codes/{code} {
       allow read: if request.auth != null;
       allow create, delete: if isAdmin();
@@ -103,11 +124,18 @@ service cloud.firestore {
 
     match /entitlements/{uid} {
       allow read: if isSelf(uid) || isAdmin();
-      allow create, update: if isAdmin()
+      allow create: if isAdmin()
         || (request.auth != null
         && request.auth.uid == uid
         && request.resource.data.source == "code"
-        && get(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.redeemedBy == request.auth.uid);
+        && get(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.redeemedBy == request.auth.uid)
+        || isPremiumTrialEntitlement(uid);
+      allow update: if isAdmin()
+        || (request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.source == "code"
+        && get(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.redeemedBy == request.auth.uid)
+        || (isPremiumTrialEntitlement(uid) && canReplaceExpiredEntitlementWithTrial());
       allow delete: if isAdmin();
     }
 
@@ -212,6 +240,21 @@ service cloud.firestore {
         && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(["lastSeenAt"])
           || request.resource.data.lastSeenAt == request.time);
       allow delete: if isAdmin();
+    }
+
+    // Una prueba gratuita se crea junto con el entitlement en una transacción.
+    // No se puede editar o volver a crear, aun desde un cliente manipulado.
+    match /premium_trials/{uid} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow create: if isSelf(uid)
+        && request.resource.data.keys().hasOnly(["uid", "status", "startedAt", "expiresAt", "durationDays"])
+        && request.resource.data.uid == uid
+        && request.resource.data.status == "used"
+        && request.resource.data.durationDays == 3
+        && request.resource.data.startedAt == request.time
+        && request.resource.data.expiresAt > request.time
+        && request.resource.data.expiresAt <= request.time + duration.value(3, "d") + duration.value(10, "m");
+      allow update, delete: if false;
     }
 
     // Métricas compactas y sin datos personales. El cliente solo mantiene su
@@ -357,7 +400,8 @@ service cloud.firestore {
       allow read: if isSelf(uid) || isAdmin();
       allow create: if isSelf(uid)
         && request.resource.data.keys().hasOnly([
-          "uid", "name", "email", "stars", "comment", "createdAt", "updatedAt"
+          "uid", "name", "email", "stars", "comment", "experienceQualified",
+          "answeredAtPrompt", "sessionsAtPrompt", "accountAgeDaysAtPrompt", "createdAt", "updatedAt"
         ])
         && request.resource.data.uid == uid
         && request.resource.data.name is string
@@ -367,11 +411,19 @@ service cloud.firestore {
         && request.resource.data.stars in [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]
         && request.resource.data.comment is string
         && request.resource.data.comment.size() <= 800
+        && request.resource.data.experienceQualified == true
+        && request.resource.data.answeredAtPrompt is int
+        && request.resource.data.answeredAtPrompt >= 100
+        && request.resource.data.sessionsAtPrompt is int
+        && request.resource.data.sessionsAtPrompt >= 3
+        && request.resource.data.accountAgeDaysAtPrompt is int
+        && request.resource.data.accountAgeDaysAtPrompt >= 7
         && request.resource.data.createdAt == request.time
         && request.resource.data.updatedAt == request.time;
       allow update: if isSelf(uid)
         && request.resource.data.keys().hasOnly([
-          "uid", "name", "email", "stars", "comment", "createdAt", "updatedAt"
+          "uid", "name", "email", "stars", "comment", "experienceQualified",
+          "answeredAtPrompt", "sessionsAtPrompt", "accountAgeDaysAtPrompt", "createdAt", "updatedAt"
         ])
         && request.resource.data.uid == resource.data.uid
         && request.resource.data.createdAt == resource.data.createdAt
@@ -382,6 +434,13 @@ service cloud.firestore {
         && request.resource.data.stars in [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]
         && request.resource.data.comment is string
         && request.resource.data.comment.size() <= 800
+        && request.resource.data.experienceQualified == true
+        && request.resource.data.answeredAtPrompt is int
+        && request.resource.data.answeredAtPrompt >= 100
+        && request.resource.data.sessionsAtPrompt is int
+        && request.resource.data.sessionsAtPrompt >= 3
+        && request.resource.data.accountAgeDaysAtPrompt is int
+        && request.resource.data.accountAgeDaysAtPrompt >= 7
         && request.resource.data.updatedAt == request.time;
       allow delete: if isAdmin();
     }

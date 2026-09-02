@@ -11,6 +11,55 @@ initializeApp();
 const db = getFirestore();
 const PUSH_TOKEN_COLLECTION = "user_push_tokens";
 const ADMIN_UIDS = new Set(["sZcIUjjhD0fze7FtirwsjsIDzLB2"]);
+const PREMIUM_TRIAL_DURATION_MS = 3 * 24 * 60 * 60 * 1000;
+
+exports.startPremiumTrial = onCall(async (request) => {
+    const uid = request.auth?.uid;
+    if (!uid) {
+        throw new HttpsError("unauthenticated", "Inicia sesión para activar la prueba.");
+    }
+
+    const trialRef = db.collection("premium_trials").doc(uid);
+    const entitlementRef = db.collection("entitlements").doc(uid);
+
+    try {
+        return await db.runTransaction(async (transaction) => {
+            const [trialSnap, entitlementSnap] = await Promise.all([
+                transaction.get(trialRef),
+                transaction.get(entitlementRef)
+            ]);
+
+            if (trialSnap.exists) {
+                throw new HttpsError("already-exists", "Esta cuenta ya utilizó su prueba Premium.");
+            }
+
+            const entitlement = entitlementSnap.exists ? (entitlementSnap.data() || {}) : {};
+            const currentExpiry = entitlement.expiresAt?.toDate?.().getTime?.()
+                || new Date(entitlement.expiresAt || 0).getTime();
+            if (entitlement.status === "active" && (!currentExpiry || currentExpiry > Date.now())) {
+                throw new HttpsError("failed-precondition", "Tu cuenta ya tiene acceso Premium activo.");
+            }
+
+            const startedAt = new Date();
+            const expiresAt = new Date(startedAt.getTime() + PREMIUM_TRIAL_DURATION_MS);
+            transaction.create(trialRef, { uid, status: "used", startedAt, expiresAt, durationDays: 3 });
+            transaction.set(entitlementRef, {
+                status: "active",
+                source: "premium_trial",
+                planId: "premium_trial_3d",
+                activatedAt: startedAt,
+                expiresAt,
+                updatedAt: startedAt
+            }, { merge: true });
+
+            return { durationDays: 3, expiresAt: expiresAt.toISOString() };
+        });
+    } catch (error) {
+        if (error instanceof HttpsError) throw error;
+        logger.error("No se pudo activar la prueba Premium", { uid, error: error?.message || String(error) });
+        throw new HttpsError("internal", "No pudimos activar la prueba. Intenta de nuevo.");
+    }
+});
 
 exports.listAdminUsers = onCall(async (request) => {
     const requesterUid = request.auth && request.auth.uid;
