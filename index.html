@@ -20,6 +20,9 @@
     <meta name="twitter:description" content="Simulador de examen ENARM con casos clÃ­nicos, estadÃ­sticas y retos entre amigos.">
     <meta name="twitter:image" content="https://enarm-lab-social.web.app/share-preview.png">
     <meta name="mobile-web-app-capable" content="yes">
+    <!-- Declarada desde el HTML para que Chrome móvil la detecte desde la carga inicial.
+         app.js actualiza su contenido cuando el usuario cambia de tema. -->
+    <meta name="theme-color" content="#1d258d">
     <script>
         (() => {
             const rawTheme = localStorage.getItem("enarm_theme") || "ocean";
@@ -40,17 +43,13 @@
                 sunset: "#3d1a3b",
                 "navy-gold": "#102545",
                 "black-teal": "#050505",
+                "black-white": "#000000",
                 aurora: "#0a181b",
                 premium: "#0a0a0a",
                 "premium-pink": "#0a0a0a"
             };
             const chromeColor = chromeColors[resolvedTheme] || chromeColors.default;
-            let themeMeta = document.querySelector('meta[name="theme-color"]');
-            if (!themeMeta) {
-                themeMeta = document.createElement("meta");
-                themeMeta.setAttribute("name", "theme-color");
-                document.head.appendChild(themeMeta);
-            }
+            const themeMeta = document.querySelector('meta[name="theme-color"]');
             themeMeta.setAttribute("content", chromeColor);
             document.documentElement.style.backgroundColor = chromeColor;
         })();

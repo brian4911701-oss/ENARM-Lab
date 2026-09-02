@@ -6071,6 +6071,13 @@
         });
     };
 
+    // Mantiene también el color del navegador sincronizado si el usuario eligió
+    // el tema del sistema y cambia entre modo claro y oscuro fuera de la app.
+    const systemThemeQuery = window.matchMedia?.("(prefers-color-scheme: light)");
+    systemThemeQuery?.addEventListener?.("change", () => {
+        if (normalizeThemeSelection(State.theme) === "system") applyTheme("system");
+    });
+
     // ---------------------------------------------------------------------------
     // Navigation
     // ---------------------------------------------------------------------------
