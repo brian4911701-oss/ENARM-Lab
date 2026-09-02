@@ -39,9 +39,8 @@
                 document.head.appendChild(meta);
             }
             const chromeColor = colors[resolvedTheme] || colors.default;
-            // El color de Chrome se sincroniza después desde applyTheme(),
-            // cuando la sesión y el tema de la app ya fueron restaurados.
-            meta.content = "#111623";
+            meta.content = chromeColor;
+            document.documentElement.style.backgroundColor = chromeColor;
         })();
     </script>
 
