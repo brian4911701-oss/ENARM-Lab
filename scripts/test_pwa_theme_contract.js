@@ -17,21 +17,9 @@ const themeMetaTags = indexHtml.match(/<meta\b[^>]*\bname=["']theme-color["'][^>
 
 assert.strictEqual(
     themeMetaTags.length,
-    2,
-    "index.html debe declarar los dos meta theme-color que se alternan en Android"
+    0,
+    "index.html no debe fijar un theme-color antes de aplicar el tema seleccionado"
 );
-
-for (const themeMetaTag of themeMetaTags) {
-    const themeMetaContent = themeMetaTag.match(/\bcontent=["']([^"']+)["']/i)?.[1];
-    assert.strictEqual(
-        themeMetaContent?.toLowerCase(),
-        DEFAULT_THEME_COLOR,
-        "Cada meta theme-color inicial debe coincidir con el tema ocean predeterminado"
-    );
-}
-
-assert.match(indexHtml, /id=["']app-theme-color["'][^>]*media=["']all["']/i);
-assert.match(indexHtml, /id=["']app-theme-color-buffer["'][^>]*media=["']not all["']/i);
 
 assert.match(
     indexHtml,
@@ -60,13 +48,14 @@ for (const manifestName of ["manifest.json", "manifest-windows.json"]) {
 
 assert.match(
     appJs,
-    /activeThemeMeta\.setAttribute\(["']media["'],\s*["']not all["']\)/,
-    "app.js debe desactivar el meta actual al cambiar el tema"
+    /document\.querySelector\('meta\[name="theme-color"\]'\)/,
+    "app.js debe localizar el meta dinámico del tema"
 );
 assert.match(
     appJs,
-    /nextThemeMeta\.setAttribute\(["']media["'],\s*["']all["']\)/,
-    "app.js debe activar el meta con el nuevo color"
+    /themeMeta\.setAttribute\("content", color\)/,
+    "app.js debe actualizar el color al cambiar de tema"
 );
+assert.doesNotMatch(appJs, /app-theme-color-buffer/, "No debe quedar un meta buffer que fije el color inicial.");
 
 console.log("PWA theme-color contract: OK");

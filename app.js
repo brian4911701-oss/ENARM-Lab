@@ -2472,40 +2472,13 @@
             }
         }
 
-        let themeMeta = document.getElementById("app-theme-color");
+        let themeMeta = document.querySelector('meta[name="theme-color"]');
         if (!themeMeta) {
             themeMeta = document.createElement("meta");
-            themeMeta.id = "app-theme-color";
             themeMeta.setAttribute("name", "theme-color");
-            themeMeta.setAttribute("media", "all");
             document.head.appendChild(themeMeta);
         }
-
-        let themeMetaBuffer = document.getElementById("app-theme-color-buffer");
-        if (!themeMetaBuffer) {
-            themeMetaBuffer = document.createElement("meta");
-            themeMetaBuffer.id = "app-theme-color-buffer";
-            themeMetaBuffer.setAttribute("name", "theme-color");
-            themeMetaBuffer.setAttribute("media", "not all");
-            document.head.appendChild(themeMetaBuffer);
-        }
-
-        const themeMetaSlots = [themeMeta, themeMetaBuffer];
-        const activeThemeMeta = themeMetaSlots.find(meta => meta.getAttribute("media") !== "not all") || themeMeta;
-        const nextThemeMeta = themeMetaSlots.find(meta => meta !== activeThemeMeta) || themeMetaBuffer;
-        const activeColor = (activeThemeMeta.getAttribute("content") || "").trim().toLowerCase();
-
-        if (activeColor !== color.toLowerCase()) {
-            // En WebAPK, mutar solo `content` no siempre notifica a la barra
-            // nativa. Alternar el meta que coincide obliga a Chrome a recibir
-            // un cambio efectivo de theme-color sin recargar la aplicación.
-            nextThemeMeta.setAttribute("content", color);
-            activeThemeMeta.setAttribute("media", "not all");
-            nextThemeMeta.setAttribute("media", "all");
-        } else {
-            activeThemeMeta.setAttribute("content", color);
-            nextThemeMeta.setAttribute("media", "not all");
-        }
+        themeMeta.setAttribute("content", color);
         document.documentElement.style.backgroundColor = color;
     };
 
@@ -6104,15 +6077,6 @@
     systemThemeQuery?.addEventListener?.("change", () => {
         if (normalizeThemeSelection(State.theme) === "system") applyTheme("system");
     });
-
-    // Android puede restaurar primero el color nativo del WebAPK al volver a la
-    // aplicación. Reaplicamos el color efectivo una vez que la página es visible.
-    const syncThemeColorWhenVisible = () => {
-        if (document.visibilityState === "hidden") return;
-        window.requestAnimationFrame(() => syncThemeColorMeta());
-    };
-    window.addEventListener("pageshow", syncThemeColorWhenVisible);
-    document.addEventListener("visibilitychange", syncThemeColorWhenVisible);
 
     // ---------------------------------------------------------------------------
     // Navigation

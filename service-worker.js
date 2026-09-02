@@ -36,7 +36,7 @@ try {
 
 // ENARMax Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
-const CACHE_NAME = 'enarmax-v60';
+const CACHE_NAME = 'enarmax-v61';
 
 // Archivos esenciales que se cachean al instalar
 const CORE_ASSETS = [
