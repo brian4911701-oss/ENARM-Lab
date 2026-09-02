@@ -2472,13 +2472,13 @@
             }
         }
 
-        let themeMeta = document.querySelector('meta[name="theme-color"]');
-        if (!themeMeta) {
-            themeMeta = document.createElement("meta");
-            themeMeta.setAttribute("name", "theme-color");
-            document.head.appendChild(themeMeta);
-        }
+        // Android puede ignorar cambios de atributo en una PWA instalada;
+        // reemplazar el nodo fuerza la actualización de la barra del sistema.
+        document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.remove());
+        const themeMeta = document.createElement("meta");
+        themeMeta.setAttribute("name", "theme-color");
         themeMeta.setAttribute("content", color);
+        document.head.appendChild(themeMeta);
         document.documentElement.style.backgroundColor = color;
     };
 
