@@ -22,7 +22,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <!-- Declarada desde el HTML para que Chrome móvil la detecte desde la carga inicial.
          app.js actualiza su contenido cuando el usuario cambia de tema. -->
-    <meta name="theme-color" content="#1d258d">
+    <meta id="app-theme-color" name="theme-color" content="#1d258d">
     <script>
         (() => {
             const rawTheme = localStorage.getItem("enarm_theme") || "ocean";
