@@ -16099,6 +16099,9 @@
                         State.authStateResolved = true;
                         window.clearTimeout(startupSafetyTimeout);
                         if (user) {
+                            // La barra de Chrome se sincroniza solo después de restaurar la sesión;
+                            // la pantalla de bienvenida no participa en esta decisión.
+                            applyTheme(State.theme || "ocean");
                             setStartupStatus("Restaurando tu progreso", "Estamos sincronizando estadísticas, historial y tus preferencias.");
                             State.entitlementLoaded = false;
                             State.globalPremiumLoaded = false;

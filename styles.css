@@ -4314,9 +4314,7 @@ body.stats-demo-preview .stats-free-preview-card {
   justify-content: center;
   gap: 15px;
   color: #f8fafc;
-  background:
-    radial-gradient(circle at 50% 38%, rgba(5, 192, 127, 0.16), transparent 27%),
-    var(--app-chrome-bg, #0a0e17);
+  background: #0a0e17;
   transition: opacity .22s ease, visibility .22s ease;
 }
 .app-startup-screen.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
