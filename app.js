@@ -74,6 +74,7 @@
         globalPremiumPromo: null,
         globalPremiumLoaded: false,
         globalPremiumUnsub: null,
+        launchCapacityUnsub: null,
         referralCode: "",
         coins: 0,
         referralWalletLoaded: false,
@@ -222,6 +223,10 @@
     });
     const GLOBAL_PREMIUM_COLLECTION = "feature_flags";
     const GLOBAL_PREMIUM_DOC_ID = "global_premium";
+    const LAUNCH_CAPACITY_COUNTER_COLLECTION = "marketing_counters";
+    const LAUNCH_CAPACITY_COUNTER_DOC_ID = "enarm_2027_launch";
+    const LAUNCH_CAPACITY_LIMIT = 300;
+    const LAUNCH_CAPACITY_BASELINE = 179;
     const DEMO_ALLOWED_THEMES = new Set(["ocean", "light"]);
     const FONT_PRESET_STORAGE_KEY = "enarm_font_preset";
     const APPEARANCE_STORAGE_KEY = "enarm_appearance";
@@ -4293,6 +4298,16 @@
             await window.FB.runTransaction(window.FB.db, async (tx) => {
                 const now = new Date();
                 if (enabled) {
+                    const currentSnap = await tx.get(entitlementRef);
+                    const current = currentSnap.exists() ? (currentSnap.data() || {}) : {};
+                    const currentExpiry = current.expiresAt?.toDate?.().getTime?.()
+                        || new Date(current.expiresAt || 0).getTime();
+                    const alreadyHasThisAccess = current.status === "active"
+                        && current.planId === plan.id
+                        && currentExpiry >= new Date(plan.expiresAt).getTime();
+                    if (!alreadyHasThisAccess) {
+                        await reserveLaunchCapacityInTransaction(tx, plan.id, 1, now);
+                    }
                     nextEntitlement = {
                         status: "active",
                         source: "admin_manual",
@@ -4322,7 +4337,12 @@
             showNotification(enabled ? "Premium activado para el usuario." : "Premium desactivado para el usuario.", enabled ? "success" : "info");
         } catch (err) {
             console.error("No se pudo actualizar Premium del usuario:", err);
-            showNotification("No se pudo actualizar el acceso Premium.", "error");
+            showNotification(
+                String(err?.message || "").includes("launch_capacity_full")
+                    ? "El cupo de lanzamiento ENARM 2027 ya está completo."
+                    : "No se pudo actualizar el acceso Premium.",
+                "error"
+            );
         } finally {
             delete State.adminPremiumPendingByUid[uid];
             renderAdminUsers();
@@ -4647,6 +4667,9 @@
                 }
 
                 const now = new Date();
+                if (decision === "approved") {
+                    await reserveLaunchCapacityInTransaction(tx, plan.id, payment.seats || plan.seats || 1, now);
+                }
                 tx.update(paymentRef, {
                     status: decision,
                     reviewedAt: now,
@@ -4678,7 +4701,12 @@
             );
         } catch (err) {
             console.error("No se pudo revisar la transferencia:", err);
-            showNotification("No se pudo guardar la revisión del pago.", "error");
+            showNotification(
+                String(err?.message || "").includes("launch_capacity_full")
+                    ? "No se aprobó el pago porque el cupo de lanzamiento ENARM 2027 está completo."
+                    : "No se pudo guardar la revisión del pago.",
+                "error"
+            );
         }
     };
 
@@ -15351,6 +15379,56 @@
             });
         };
 
+        const renderLaunchCapacity = (usedValue, limitValue) => {
+            const limit = Math.max(1, Number(limitValue) || LAUNCH_CAPACITY_LIMIT);
+            const used = Math.max(0, Math.min(limit, Number(usedValue) || 0));
+            const label = `${used} de ${limit} lugares asignados`;
+            const percentage = `${Math.min(100, (used / limit) * 100).toFixed(2)}%`;
+            document.querySelectorAll("[data-launch-capacity]").forEach((notice) => {
+                const count = notice.querySelector("[data-launch-capacity-count]");
+                const track = notice.querySelector("[data-launch-capacity-track]");
+                const fill = notice.querySelector("[data-launch-capacity-fill]");
+                if (count) count.textContent = label;
+                if (track) {
+                    track.setAttribute("aria-label", label);
+                    track.setAttribute("aria-valuemax", String(limit));
+                    track.setAttribute("aria-valuenow", String(used));
+                }
+                if (fill) fill.style.setProperty("--plan-capacity", percentage);
+            });
+        };
+
+        const bindLaunchCapacityListener = () => {
+            if (!window.FB?.db || !window.FB?.doc || !window.FB?.onSnapshot || State.launchCapacityUnsub) return;
+            const counterRef = window.FB.doc(window.FB.db, LAUNCH_CAPACITY_COUNTER_COLLECTION, LAUNCH_CAPACITY_COUNTER_DOC_ID);
+            State.launchCapacityUnsub = window.FB.onSnapshot(counterRef, (snap) => {
+                const data = snap.exists() ? (snap.data() || {}) : {};
+                renderLaunchCapacity(data.used ?? LAUNCH_CAPACITY_BASELINE, data.limit ?? LAUNCH_CAPACITY_LIMIT);
+            }, (error) => {
+                console.warn("No se pudo actualizar el contador de cupos:", error);
+                renderLaunchCapacity(LAUNCH_CAPACITY_BASELINE, LAUNCH_CAPACITY_LIMIT);
+            });
+        };
+
+        const reserveLaunchCapacityInTransaction = async (tx, planId, seats, now) => {
+            if (!["enarm_2027", "squad_2027"].includes(planId)) return;
+            const counterRef = window.FB.doc(window.FB.db, LAUNCH_CAPACITY_COUNTER_COLLECTION, LAUNCH_CAPACITY_COUNTER_DOC_ID);
+            const counterSnap = await tx.get(counterRef);
+            const data = counterSnap.exists() ? (counterSnap.data() || {}) : {};
+            const limit = Math.max(1, Number(data.limit) || LAUNCH_CAPACITY_LIMIT);
+            const used = Math.max(0, Number(data.used) || LAUNCH_CAPACITY_BASELINE);
+            const increment = planId === "squad_2027"
+                ? Math.max(1, Math.min(4, Number(seats) || 4))
+                : 1;
+            if (used + increment > limit) throw new Error("launch_capacity_full");
+            tx.set(counterRef, {
+                used: used + increment,
+                limit,
+                updatedAt: now,
+                updatedByUid: State.currentUid || ""
+            }, { merge: true });
+        };
+
         const saveGlobalPremiumPromo = async (opts = {}) => {
             if (!isAdminUser()) {
                 throw new Error("admin_only");
@@ -15550,6 +15628,7 @@
 
         const setupFirebaseAuthAndUI = () => {
             initAnalyticsConsentUI();
+            bindLaunchCapacityListener();
             if (authOverlay && loginForm) {
                 const landingPage = $("landing-page");
                 let checkoutStarting = false;

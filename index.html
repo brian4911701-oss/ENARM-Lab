@@ -158,8 +158,8 @@
                         <span class="hero-trust-check">✓</span>
                         <span class="hero-trust-text">Retroalimentación y referencias GPC disponibles al terminar</span>
                     </div>
-                    <div class="landing-platforms" aria-label="Disponible para Windows, Apple (macOS y iPhone) y Android">
-                        <span class="landing-platforms-label">Disponible para</span>
+                    <div class="landing-platforms" aria-label="Disponible para Windows, Apple (macOS y iPhone) y Android. Las instrucciones de instalación aparecerán al iniciar sesión.">
+                        <span class="landing-platforms-label">Disponible para <span aria-hidden="true">(instrucciones de instalación al iniciar sesión)</span></span>
                         <div class="landing-platform-list">
                             <span class="landing-platform-chip landing-platform-chip--windows">
                                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.1 10.6 4v7.1H3V5.1Zm8.5-1.3L21 2.5v8.6h-9.5V3.8ZM3 12.9h7.6V20L3 18.9v-6Zm8.6 0H21v8.6l-9.4-1.3v-7.3Z"/></svg>
@@ -299,55 +299,6 @@
                 </div>
             </section>
 
-            <!-- ══ HOW IT WORKS ══ -->
-            <section class="landing-section" id="landing-how">
-                <div class="landing-section-header">
-                    <span class="landing-section-badge">¿Cómo Funciona?</span>
-                    <h2 class="landing-section-title">Empieza a estudiar en 3 simples pasos</h2>
-                </div>
-                <div class="landing-steps">
-                    <div class="landing-step">
-                        <div class="landing-step-number">1</div>
-                        <div class="landing-step-content">
-                            <h3>Crea tu cuenta gratuita</h3>
-                            <p>Regístrate con tu correo en segundos. Tu progreso se sincroniza automáticamente en todos tus dispositivos.</p>
-                        </div>
-                    </div>
-                    <div class="landing-step-connector"></div>
-                    <div class="landing-step">
-                        <div class="landing-step-number">2</div>
-                        <div class="landing-step-content">
-                            <h3>Elige tu modo de estudio</h3>
-                            <p>Selecciona entre Simulacro completo o Modo Estudio por especialidad. Personaliza la cantidad de preguntas.</p>
-                        </div>
-                    </div>
-                    <div class="landing-step-connector"></div>
-                    <div class="landing-step">
-                        <div class="landing-step-number">3</div>
-                        <div class="landing-step-content">
-                            <h3>Analiza y mejora</h3>
-                            <p>Revisa tus estadísticas, identifica áreas de oportunidad y repite los temas donde necesitas refuerzo.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ══ SPECIALTIES ══ -->
-            <section class="landing-section" id="landing-specialties">
-                <div class="landing-section-header">
-                    <span class="landing-section-badge">Especialidades</span>
-                    <h2 class="landing-section-title">Las cuatro áreas troncales del ENARM</h2>
-                    <p class="landing-section-desc">Más de 3,200 casos clínicos distribuidos en los bloques principales de preparación.</p>
-                </div>
-                <div class="landing-specialties-grid">
-                    <div class="specialty-pill"><span class="specialty-pill-dot" style="background:#ef4444;"></span>Medicina Interna</div>
-                    <div class="specialty-pill"><span class="specialty-pill-dot" style="background:#3b82f6;"></span>Pediatría</div>
-                    <div class="specialty-pill"><span class="specialty-pill-dot" style="background:#f37a20;"></span>Ginecología y Obstetricia</div>
-                    <div class="specialty-pill"><span class="specialty-pill-dot" style="background:#8b5cf6;"></span>Cirugía</div>
-                </div>
-            </section>
-
-
             <!-- PRICING -->
             <section class="landing-section landing-pricing-section" id="landing-pricing">
                 <div class="landing-section-header">
@@ -449,6 +400,16 @@
                         <button id="btn-landing-pricing-squad" class="pricing-action pricing-action--squad" data-plan-id="squad_2027">Elegir Plan Squad <span>&rarr;</span></button>
                     </article>
                 </div>
+                <aside class="plan-capacity-notice" data-launch-capacity aria-label="Disponibilidad del Plan ENARM 2027">
+                    <div class="plan-capacity-notice__head">
+                        <span class="plan-capacity-notice__label">Cupo de lanzamiento · Plan ENARM 2027</span>
+                        <strong data-launch-capacity-count>179 de 300 lugares asignados</strong>
+                    </div>
+                    <div class="plan-capacity-notice__track" data-launch-capacity-track role="progressbar" aria-label="179 de 300 lugares asignados" aria-valuemin="0" aria-valuemax="300" aria-valuenow="179">
+                        <span class="plan-capacity-notice__fill" data-launch-capacity-fill style="--plan-capacity: 59.67%;"></span>
+                    </div>
+                    <p>El precio actual aplica hasta agotar este cupo o terminar octubre, lo que ocurra primero. Después, el precio de nuevos accesos puede actualizarse.</p>
+                </aside>
                 <div class="pricing-trial-cta">
                     <button class="pricing-trial-action" type="button" data-start-premium-trial data-trial-source="pricing_plans_footer">
                         Probar Premium 3 días gratis <span aria-hidden="true">→</span>
@@ -463,6 +424,55 @@
                 </div>
                 <p class="pricing-footnote">Precios en pesos mexicanos (MXN). La disponibilidad del plan depende de que su fecha de vigencia no haya concluido.</p>
             </section>
+
+            <!-- ══ HOW IT WORKS ══ -->
+            <section class="landing-section" id="landing-how">
+                <div class="landing-section-header">
+                    <span class="landing-section-badge">¿Cómo Funciona?</span>
+                    <h2 class="landing-section-title">Empieza a estudiar en 3 simples pasos</h2>
+                </div>
+                <div class="landing-steps">
+                    <div class="landing-step">
+                        <div class="landing-step-number">1</div>
+                        <div class="landing-step-content">
+                            <h3>Crea tu cuenta gratuita</h3>
+                            <p>Regístrate con tu correo en segundos. Tu progreso se sincroniza automáticamente en todos tus dispositivos.</p>
+                        </div>
+                    </div>
+                    <div class="landing-step-connector"></div>
+                    <div class="landing-step">
+                        <div class="landing-step-number">2</div>
+                        <div class="landing-step-content">
+                            <h3>Elige tu modo de estudio</h3>
+                            <p>Selecciona entre Simulacro completo o Modo Estudio por especialidad. Personaliza la cantidad de preguntas.</p>
+                        </div>
+                    </div>
+                    <div class="landing-step-connector"></div>
+                    <div class="landing-step">
+                        <div class="landing-step-number">3</div>
+                        <div class="landing-step-content">
+                            <h3>Analiza y mejora</h3>
+                            <p>Revisa tus estadísticas, identifica áreas de oportunidad y repite los temas donde necesitas refuerzo.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══ SPECIALTIES ══ -->
+            <section class="landing-section" id="landing-specialties">
+                <div class="landing-section-header">
+                    <span class="landing-section-badge">Especialidades</span>
+                    <h2 class="landing-section-title">Las cuatro áreas troncales del ENARM</h2>
+                    <p class="landing-section-desc">Más de 3,200 casos clínicos distribuidos en los bloques principales de preparación.</p>
+                </div>
+                <div class="landing-specialties-grid">
+                    <div class="specialty-pill"><span class="specialty-pill-dot" style="background:#ef4444;"></span>Medicina Interna</div>
+                    <div class="specialty-pill"><span class="specialty-pill-dot" style="background:#3b82f6;"></span>Pediatría</div>
+                    <div class="specialty-pill"><span class="specialty-pill-dot" style="background:#f37a20;"></span>Ginecología y Obstetricia</div>
+                    <div class="specialty-pill"><span class="specialty-pill-dot" style="background:#8b5cf6;"></span>Cirugía</div>
+                </div>
+            </section>
+
             <!-- ══ FAQ ══ -->
             <section class="landing-section" id="landing-faq">
                 <div class="landing-section-header">
@@ -4195,6 +4205,16 @@
                     <span class="redeem-plan-tag">MEJOR PRECIO POR PERSONA · AHORRA $2,997</span><strong>Plan Squad 2027</strong><span class="redeem-plan-card-copy">Para estudiar con tres amigos: cuatro accesos Premium individuales hasta octubre de 2027.</span><span class="redeem-plan-benefits">4 cuentas · $1,249.75 por persona · Retos entre amigos</span><span class="redeem-plan-original-price">$7,996 MXN por 4 cuentas</span><span class="redeem-plan-price">$4,999 MXN</span><span class="redeem-plan-select">Elegir plan y pagar <b aria-hidden="true">→</b></span>
                 </button>
             </div>
+            <aside class="plan-capacity-notice plan-capacity-notice--modal" data-launch-capacity aria-label="Disponibilidad del Plan ENARM 2027">
+                <div class="plan-capacity-notice__head">
+                    <span class="plan-capacity-notice__label">Cupo de lanzamiento · Plan ENARM 2027</span>
+                    <strong data-launch-capacity-count>179 de 300 lugares asignados</strong>
+                </div>
+                <div class="plan-capacity-notice__track" data-launch-capacity-track role="progressbar" aria-label="179 de 300 lugares asignados" aria-valuemin="0" aria-valuemax="300" aria-valuenow="179">
+                    <span class="plan-capacity-notice__fill" data-launch-capacity-fill style="--plan-capacity: 59.67%;"></span>
+                </div>
+                <p>El precio actual aplica hasta agotar este cupo o terminar octubre, lo que ocurra primero. Después, el precio de nuevos accesos puede actualizarse.</p>
+            </aside>
             <div class="redeem-trial-cta">
                 <button class="redeem-trial-button" type="button" data-start-premium-trial data-trial-source="premium_unlock_modal">
                     <span aria-hidden="true">✦</span>

@@ -450,6 +450,12 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // Contadores comerciales públicos y sin datos personales.
+    match /marketing_counters/{counterId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
     match /community_announcements/{announcementId} {
       allow read: if isSignedIn();
       allow create: if isAdmin()
