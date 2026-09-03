@@ -148,6 +148,7 @@
         lastPostmortem: null,
         notebookSelectedId: null,
         fontPreset: "clinical",
+        appearance: null,
         pomodoroSettings: null,
         pomodoroState: null,
         pomodoroLog: [],
@@ -223,6 +224,7 @@
     const GLOBAL_PREMIUM_DOC_ID = "global_premium";
     const DEMO_ALLOWED_THEMES = new Set(["ocean", "light"]);
     const FONT_PRESET_STORAGE_KEY = "enarm_font_preset";
+    const APPEARANCE_STORAGE_KEY = "enarm_appearance";
     const NOTIFICATION_ICON = "/notification-icon.png";
     const NOTIFICATION_BADGE = "/notification-badge.png";
     const PUSH_TOKEN_COLLECTION = "user_push_tokens";
@@ -541,6 +543,46 @@
         return cleanTheme;
     };
     const normalizeFontPreset = (preset) => FONT_PRESET_CONFIG[preset] ? preset : "clinical";
+    const APPEARANCE_DEFAULTS = Object.freeze({
+        accent: "auto",
+        density: "comfortable",
+        corners: "soft",
+        reducedMotion: false
+    });
+    const normalizeAppearance = (appearance = {}) => {
+        const source = appearance && typeof appearance === "object" ? appearance : {};
+        return {
+            accent: ["auto", "jade", "lilac", "coral"].includes(source.accent) ? source.accent : APPEARANCE_DEFAULTS.accent,
+            density: ["comfortable", "compact"].includes(source.density) ? source.density : APPEARANCE_DEFAULTS.density,
+            corners: ["soft", "precise"].includes(source.corners) ? source.corners : APPEARANCE_DEFAULTS.corners,
+            reducedMotion: source.reducedMotion === true
+        };
+    };
+    const applyAppearance = (appearance, options = {}) => {
+        const normalized = normalizeAppearance(appearance);
+        State.appearance = normalized;
+        document.body.classList.remove("accent-jade", "accent-lilac", "accent-coral", "density-compact", "corners-precise", "reduce-motion");
+        if (normalized.accent !== "auto") document.body.classList.add(`accent-${normalized.accent}`);
+        if (normalized.density === "compact") document.body.classList.add("density-compact");
+        if (normalized.corners === "precise") document.body.classList.add("corners-precise");
+        if (normalized.reducedMotion) document.body.classList.add("reduce-motion");
+
+        $$(".accent-option").forEach(button => {
+            const active = button.dataset.accent === normalized.accent;
+            button.classList.toggle("active", active);
+            button.setAttribute("aria-pressed", String(active));
+        });
+        $$(".appearance-choice").forEach(button => {
+            const field = button.dataset.appearanceField;
+            const active = field && normalized[field] === button.dataset.appearanceValue;
+            button.classList.toggle("active", active);
+            button.setAttribute("aria-pressed", String(active));
+        });
+        const reducedMotionToggle = $("reduced-motion-toggle");
+        if (reducedMotionToggle) reducedMotionToggle.checked = normalized.reducedMotion;
+        if (options.refreshCharts && typeof updateCharts === "function" && State.view === "view-estadisticas") updateCharts();
+        return normalized;
+    };
     const applyFontPreset = (preset, options = {}) => {
         const normalizedPreset = normalizeFontPreset(preset);
         State.fontPreset = normalizedPreset;
@@ -5789,6 +5831,7 @@
         localStorage.setItem("enarm_last_postmortem", JSON.stringify(State.lastPostmortem || null));
         localStorage.setItem(SCALE_STUDY_STORAGE_KEY, JSON.stringify(State.scaleStudy || {}));
         localStorage.setItem(FONT_PRESET_STORAGE_KEY, normalizeFontPreset(State.fontPreset));
+        localStorage.setItem(APPEARANCE_STORAGE_KEY, JSON.stringify(normalizeAppearance(State.appearance)));
         persistPomodoroLocalState();
         const reportsToSave = State.reportedQuestionsLocal || State.reportedQuestions || [];
         localStorage.setItem("enarm_reports", JSON.stringify(reportsToSave));
@@ -5815,6 +5858,7 @@
                 lastUpdate: new Date(),
                 theme: State.theme || "ocean",
                 fontPreset: normalizeFontPreset(State.fontPreset),
+                appearanceStr: JSON.stringify(normalizeAppearance(State.appearance)),
                 dailyPlanStr: JSON.stringify(State.dailyPlan || null),
                 reviewQueueStr: JSON.stringify(State.reviewQueue || []),
                 topicMasteryStr: JSON.stringify(State.topicMastery || {}),
@@ -5983,6 +6027,13 @@
         State.fontPreset = normalizeFontPreset(fontPreset || "clinical");
         localStorage.setItem(FONT_PRESET_STORAGE_KEY, State.fontPreset);
         applyFontPreset(State.fontPreset);
+        try {
+            State.appearance = normalizeAppearance(JSON.parse(localStorage.getItem(APPEARANCE_STORAGE_KEY) || "{}"));
+        } catch (_) {
+            State.appearance = normalizeAppearance();
+        }
+        localStorage.setItem(APPEARANCE_STORAGE_KEY, JSON.stringify(State.appearance));
+        applyAppearance(State.appearance);
 
         const theme = localStorage.getItem("enarm_theme");
         if (theme) {
@@ -13714,6 +13765,31 @@
                 saveGlobalStats();
             });
         }
+        $$(".accent-option").forEach(button => {
+            button.addEventListener("click", () => {
+                const nextAppearance = normalizeAppearance({ ...State.appearance, accent: button.dataset.accent });
+                applyAppearance(nextAppearance, { refreshCharts: true });
+                saveGlobalStats();
+            });
+        });
+        $$(".appearance-choice").forEach(button => {
+            button.addEventListener("click", () => {
+                const field = button.dataset.appearanceField;
+                if (!field) return;
+                const nextAppearance = normalizeAppearance({ ...State.appearance, [field]: button.dataset.appearanceValue });
+                applyAppearance(nextAppearance, { refreshCharts: true });
+                saveGlobalStats();
+            });
+        });
+        const reducedMotionToggle = $("reduced-motion-toggle");
+        if (reducedMotionToggle) {
+            reducedMotionToggle.checked = normalizeAppearance(State.appearance).reducedMotion;
+            reducedMotionToggle.addEventListener("change", () => {
+                const nextAppearance = normalizeAppearance({ ...State.appearance, reducedMotion: reducedMotionToggle.checked });
+                applyAppearance(nextAppearance);
+                saveGlobalStats();
+            });
+        }
 
         // Click en Tarjeta Sesiones -> Historial
         const cardSes = $("card-sesiones");
@@ -16162,6 +16238,15 @@
 
                                     if (data.theme) { State.theme = normalizeThemeSelection(data.theme); localStorage.setItem("enarm_theme", State.theme); applyTheme(State.theme); }
                                     if (data.fontPreset) { State.fontPreset = normalizeFontPreset(data.fontPreset); localStorage.setItem(FONT_PRESET_STORAGE_KEY, State.fontPreset); applyFontPreset(State.fontPreset); }
+                                    if (data.appearanceStr) {
+                                        try {
+                                            State.appearance = normalizeAppearance(JSON.parse(data.appearanceStr));
+                                            localStorage.setItem(APPEARANCE_STORAGE_KEY, JSON.stringify(State.appearance));
+                                            applyAppearance(State.appearance);
+                                        } catch (error) {
+                                            console.warn("No se pudo restaurar la apariencia guardada.", error);
+                                        }
+                                    }
                                     if (data.specialty !== undefined) { State.userSpecialty = data.specialty; localStorage.setItem("enarm_specialty", State.userSpecialty); if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty; }
                                     if (data.university !== undefined) { State.userUniversity = data.university; localStorage.setItem("enarm_university", State.userUniversity); if ($("profile-university")) $("profile-university").value = State.userUniversity; }
                                     if (data.phone !== undefined) { State.userPhone = normalizePhoneInput(data.phone); localStorage.setItem("enarm_phone", State.userPhone); if ($("profile-phone")) $("profile-phone").value = State.userPhone; }
@@ -16588,6 +16673,15 @@
                                     State.fontPreset = normalizeFontPreset(data.fontPreset);
                                     localStorage.setItem(FONT_PRESET_STORAGE_KEY, State.fontPreset);
                                     applyFontPreset(State.fontPreset);
+                                }
+                                if (data.appearanceStr) {
+                                    try {
+                                        State.appearance = normalizeAppearance(JSON.parse(data.appearanceStr));
+                                        localStorage.setItem(APPEARANCE_STORAGE_KEY, JSON.stringify(State.appearance));
+                                        applyAppearance(State.appearance);
+                                    } catch (error) {
+                                        console.warn("No se pudo restaurar la apariencia guardada.", error);
+                                    }
                                 }
                                 if (data.specialty !== undefined) {
                                     State.userSpecialty = data.specialty;

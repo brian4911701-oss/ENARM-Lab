@@ -3438,16 +3438,24 @@
                         </div>
                     </div>
 
-                    <div class="settings-grid"
-                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+                    <div class="settings-grid settings-stack">
 
                         <!-- Sección: Preferencias movida al primer lugar -->
 
                         <!-- Sección: Preferencias -->
-                        <div class="panel settings-panel" style="border-top-color: var(--accent-blue);">
-                            <h3 class="panel-title" style="margin-bottom: 24px; font-size: 1.1rem;">
-                                <span class="title-icon blue-text">&#x1F3A8;</span> Interfaz y Métricas
-                            </h3>
+                        <div class="panel settings-panel settings-appearance-panel" style="border-top-color: var(--accent-blue);">
+                            <div class="settings-appearance-heading">
+                                <div>
+                                    <span class="settings-section-kicker">TU ESPACIO DE ESTUDIO</span>
+                                    <h3 class="panel-title" style="margin-bottom: 6px; font-size: 1.1rem;">
+                                        <span class="title-icon blue-text">&#x1F3A8;</span> Apariencia
+                                    </h3>
+                                    <p class="panel-subtitle">Ajusta la interfaz a tu forma de estudiar. Tus cambios se guardan en esta cuenta.</p>
+                                </div>
+                                <div class="appearance-preview" aria-hidden="true">
+                                    <span></span><i></i><b></b>
+                                </div>
+                            </div>
                             <div class="settings-form">
                                 <div class="input-group">
                                     <label>Apariencia del Sistema</label>
@@ -3486,6 +3494,53 @@
                                         <option value="inter">Inter Clásica</option>
                                     </select>
                                     <p class="panel-subtitle" style="margin-top: 10px;">Cambia el estilo tipográfico sin afectar tus datos ni tu progreso.</p>
+                                </div>
+
+                                <div class="input-group appearance-control-group">
+                                    <label>Color de acento</label>
+                                    <div class="accent-options" id="accent-selector" role="group" aria-label="Color de acento">
+                                        <button class="accent-option active" type="button" data-accent="auto" aria-pressed="true">
+                                            <span class="accent-option-dot accent-option-dot--auto"></span><span>Del tema</span>
+                                        </button>
+                                        <button class="accent-option" type="button" data-accent="jade" aria-pressed="false">
+                                            <span class="accent-option-dot accent-option-dot--jade"></span><span>Jade</span>
+                                        </button>
+                                        <button class="accent-option" type="button" data-accent="lilac" aria-pressed="false">
+                                            <span class="accent-option-dot accent-option-dot--lilac"></span><span>Lila</span>
+                                        </button>
+                                        <button class="accent-option" type="button" data-accent="coral" aria-pressed="false">
+                                            <span class="accent-option-dot accent-option-dot--coral"></span><span>Coral</span>
+                                        </button>
+                                    </div>
+                                    <p class="panel-subtitle appearance-helper">Mantiene el fondo que elegiste y cambia los detalles importantes de la interfaz.</p>
+                                </div>
+
+                                <div class="appearance-dual-controls">
+                                    <div class="input-group appearance-control-group">
+                                        <label>Densidad</label>
+                                        <div class="appearance-segmented" role="group" aria-label="Densidad de interfaz">
+                                            <button class="appearance-choice active" type="button" data-appearance-field="density" data-appearance-value="comfortable" aria-pressed="true">Cómoda</button>
+                                            <button class="appearance-choice" type="button" data-appearance-field="density" data-appearance-value="compact" aria-pressed="false">Compacta</button>
+                                        </div>
+                                    </div>
+                                    <div class="input-group appearance-control-group">
+                                        <label>Contornos</label>
+                                        <div class="appearance-segmented" role="group" aria-label="Forma de contornos">
+                                            <button class="appearance-choice active" type="button" data-appearance-field="corners" data-appearance-value="soft" aria-pressed="true">Suaves</button>
+                                            <button class="appearance-choice" type="button" data-appearance-field="corners" data-appearance-value="precise" aria-pressed="false">Precisos</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="appearance-motion-row">
+                                    <div>
+                                        <span class="appearance-motion-title">Movimiento sutil</span>
+                                        <p>Reduce las animaciones si prefieres una experiencia más tranquila.</p>
+                                    </div>
+                                    <label class="profile-switch" for="reduced-motion-toggle">
+                                        <input type="checkbox" id="reduced-motion-toggle">
+                                        <span class="profile-switch-slider"></span>
+                                    </label>
                                 </div>
 
                             </div>
