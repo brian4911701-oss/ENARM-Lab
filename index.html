@@ -21,6 +21,7 @@
     <meta name="twitter:image" content="https://enarm-lab-social.web.app/share-preview.png">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#1d258d">
+    <meta name="msapplication-navbutton-color" content="#1d258d">
     <script>
         (() => {
             let rawTheme = "ocean";
@@ -44,6 +45,9 @@
             }
             const chromeColor = colors[resolvedTheme] || colors.default;
             meta.content = chromeColor;
+            const navMeta = document.querySelector('meta[name="msapplication-navbutton-color"]');
+            if (navMeta) navMeta.content = chromeColor;
+            document.documentElement.style.setProperty("--app-chrome-bg", chromeColor);
             document.documentElement.style.backgroundColor = chromeColor;
         })();
     </script>

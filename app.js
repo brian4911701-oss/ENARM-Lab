@@ -2602,6 +2602,16 @@
             document.head.appendChild(themeMeta);
         }
         themeMeta.setAttribute("content", color);
+        // Algunos navegadores Android antiguos aún leen este meta para la
+        // barra de navegación, aunque Chrome moderno usa theme-color.
+        let navMeta = document.querySelector('meta[name="msapplication-navbutton-color"]');
+        if (!navMeta) {
+            navMeta = document.createElement("meta");
+            navMeta.setAttribute("name", "msapplication-navbutton-color");
+            document.head.appendChild(navMeta);
+        }
+        navMeta.setAttribute("content", color);
+        document.documentElement.style.setProperty("--app-chrome-bg", color);
         document.documentElement.style.backgroundColor = color;
     };
 
