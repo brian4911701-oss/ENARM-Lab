@@ -16876,7 +16876,9 @@
                         showNotification("El alias debe tener entre 3 y 20 caracteres y solo letras, números, espacios, punto, guion o guion bajo.", "warning");
                         return;
                     }
-                    if (!requireVerifiedAccount("Verifica tu correo antes de generar datos de pago.")) return;
+                    // Una cuenta nueva todavía no puede tener el correo verificado. La
+                    // verificación se solicita después de crearla y se exige sólo para
+                    // operaciones sensibles en la nube.
                     if (isRegisterMode && !googleProfileCompletion && password.length < 12) {
                         showNotification("La contraseña debe tener al menos 12 caracteres.", "warning");
                         return;
