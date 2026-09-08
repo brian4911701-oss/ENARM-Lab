@@ -9080,7 +9080,8 @@ body.theme-lilac-light .mobile-nav-more {
   .mobile-top-bar .user-actions {
     position: absolute;
     right: 10px;
-    top: 50%;
+    /* Centra los controles en los 60px útiles, debajo de la barra de estado. */
+    top: calc(30px + env(safe-area-inset-top, 0px));
     transform: translateY(-50%);
     z-index: 1001;
     gap: 8px !important;
@@ -10492,7 +10493,7 @@ body.exam-loading-active {
     display: none;
     position: absolute;
     left: 10px;
-    top: 50%;
+    top: calc(30px + env(safe-area-inset-top, 0px));
     transform: translateY(-50%);
     z-index: 1001;
     width: 36px;

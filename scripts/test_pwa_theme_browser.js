@@ -76,7 +76,31 @@ const cases = [
             assert.deepEqual(diagnostics.metaColors, [{ color: expected, media: '' }]);
             assert.equal(diagnostics.revision, 'theme-diagnostics-1');
         }
-        console.log(`PWA browser theme: OK (${cases.length} casos, inicio y cambios de tema).`);
+        // Usa el encabezado real y áreas seguras emuladas, no una fórmula duplicada en CSS.
+        const headerHtml = html.match(/<header class="mobile-top-bar">[\s\S]*?<\/header>/)[0];
+        await page.$eval('.mobile-top-bar', (element, markup) => { element.outerHTML = markup; }, headerHtml);
+        await page.$eval('#nav-admin-mobile', element => { element.style.display = 'flex'; });
+        const cdp = await page.createCDPSession();
+        for (const inset of [0, 24, 48]) {
+            await cdp.send('Emulation.setSafeAreaInsetsOverride', { insets: { top: inset } });
+            const positions = await page.evaluate(() => {
+                const rect = selector => {
+                    const bounds = document.querySelector(selector).getBoundingClientRect();
+                    return { center: bounds.top + bounds.height / 2, top: bounds.top };
+                };
+                return {
+                    logo: rect('.mobile-top-bar .sidebar-logo'),
+                    actions: rect('.mobile-top-bar .user-actions'),
+                    admin: rect('#nav-admin-mobile')
+                };
+            });
+            for (const [name, position] of Object.entries(positions)) {
+                assert.ok(Math.abs(position.center - (inset + 30)) < 1, `${name}: centro con inset ${inset}`);
+                assert.ok(position.top >= inset, `${name}: fuera del área del reloj`);
+            }
+        }
+        await cdp.detach();
+        console.log(`PWA browser theme: OK (${cases.length} casos; encabezado alineado con insets 0, 24 y 48px).`);
     } finally {
         await browser.close();
     }

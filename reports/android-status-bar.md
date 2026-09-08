@@ -1,5 +1,15 @@
 # Barra de estado de Android: investigación y corrección local
 
+## Resultado de las pruebas en el teléfono
+
+El usuario confirmó en www.enarmax.com, modo standalone y Chrome 152.0.7977.76, que el encabezado, el meta único y el fondo raíz eran verdes (#0a3325), pero la barra nativa conservaba el azul. Desactivar el modo oscuro del sistema no lo resolvió. Activar `chrome://flags/#web-app-short-edges-cutout-mode` sí resolvió el color según el usuario. Es una alternativa experimental comprobada en su instalación, no una solución automática para todos los usuarios; la página no puede activar esa preferencia de Chrome.
+
+La versión exacta declara la función desactivada por defecto y la describe como soporte de áreas seguras para PWAs con viewport-fit=cover:
+- https://github.com/chromium/chromium/blob/152.0.7977.76/chrome/browser/flags/android/chrome_feature_list.cc
+- https://github.com/chromium/chromium/blob/152.0.7977.76/chrome/browser/flag_descriptions.h
+
+Tras activar la opción, el usuario reportó botones demasiado altos. El CSS los posicionaba al 50% de la altura total (incluida el área segura), mientras el logo se centraba en el área de contenido. Se cambió el centro de los botones a safe-area-inset-top + 30px. La prueba de navegador usa el encabezado real y Emulation.setSafeAreaInsetsOverride con 0, 24 y 48px; verifica centros iguales y controles fuera del área del reloj.
+
 La captura muestra un encabezado verde y una barra de estado oscura. El código local permite identificar inconsistencias, pero no confirmar cuál produjo esa captura sin inspeccionar la PWA instalada en el teléfono. El usuario indica que Galaxy y Pixel están actualizados; no se dispone de números exactos de Android/Chrome ni de una sesión de depuración en esos dispositivos.
 
 ## Hallazgos
