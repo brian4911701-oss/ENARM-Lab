@@ -2620,27 +2620,6 @@
         document.documentElement.style.backgroundColor = color;
     };
 
-    const getThemeDiagnostics = () => {
-        const header = document.querySelector(".mobile-top-bar");
-        const mode = ["standalone", "fullscreen", "minimal-ui", "browser"]
-            .find(value => window.matchMedia(`(display-mode: ${value})`).matches) || "unknown";
-        return {
-            revision: "theme-diagnostics-1",
-            origin: location.origin,
-            browser: navigator.userAgent,
-            displayMode: mode,
-            systemDark: window.matchMedia("(prefers-color-scheme: dark)").matches,
-            themeClasses: Array.from(document.body.classList)
-                .filter(value => value.startsWith("theme-") || value === "light-mode"),
-            headerColor: header ? getComputedStyle(header).backgroundColor : null,
-            cssThemeColor: getComputedStyle(document.body).getPropertyValue("--app-chrome-bg").trim(),
-            metaColors: Array.from(document.querySelectorAll('meta[name="theme-color"]'))
-                .map(meta => ({ color: meta.content, media: meta.media || "" })),
-            rootBackground: getComputedStyle(document.documentElement).backgroundColor,
-            serviceWorker: navigator.serviceWorker?.controller?.scriptURL || null
-        };
-    };
-
     function setPricingPanelState(panelId, open) {
         const panel = typeof panelId === "string" ? $(panelId) : panelId;
         if (!panel) return;
@@ -13940,13 +13919,6 @@
                 saveGlobalStats();
                 if (typeof updateCharts === 'function' && State.view === 'view-estadisticas') updateCharts();
             });
-        });
-        const themeDiagnostics = $("theme-diagnostics");
-        themeDiagnostics?.addEventListener("toggle", () => {
-            if (themeDiagnostics.open) {
-                // Lee el estado actual sin volver a aplicar el color: interesa observar el fallo.
-                $("theme-diagnostics-output").value = JSON.stringify(getThemeDiagnostics(), null, 2);
-            }
         });
         const fontPresetSelector = $("font-preset-selector");
         if (fontPresetSelector) {
