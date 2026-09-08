@@ -1,5 +1,6 @@
 // app.js  Core logic for ENARMax
 (() => {
+    const appIcon = (name) => `<i class="app-icon" data-lucide="${name}" aria-hidden="true"></i>`;
     // ---------------------------------------------------------------------------
     // State Management
     // ---------------------------------------------------------------------------
@@ -1264,14 +1265,14 @@
         const toast = document.createElement('div');
         toast.className = `toast toast-${type}`;
 
-        let icon = '&#x2139;&#xFE0F;';
-        if (type === 'success') icon = '&#x2705;';
-        if (type === 'error') icon = '&#x1F6A8;';
-        if (type === 'warning') icon = '&#x26A0;';
+        let icon = 'info';
+        if (type === 'success') icon = 'circle-check';
+        if (type === 'error') icon = 'siren';
+        if (type === 'warning') icon = 'triangle-alert';
 
         const iconEl = document.createElement("span");
         iconEl.style.fontSize = "18px";
-        iconEl.innerHTML = icon;
+        iconEl.innerHTML = appIcon(icon);
         const messageEl = document.createElement("span");
         messageEl.style.flex = "1";
         messageEl.textContent = String(msg || "");
@@ -5117,7 +5118,7 @@
         });
     };
 
-    const showBanner = (title, msg, icon = '🔔', onClickCallback = null) => {
+    const showBanner = (title, msg, icon = 'bell', onClickCallback = null) => {
         let banner = $('global-notif-banner');
         if (!banner) {
             banner = document.createElement('div');
@@ -5129,7 +5130,7 @@
         banner.replaceChildren();
         const iconNode = document.createElement('div');
         iconNode.className = 'notif-banner-icon';
-        iconNode.textContent = String(icon || '🔔').slice(0, 8);
+        iconNode.innerHTML = appIcon(String(icon || 'bell').slice(0, 40));
         const content = document.createElement('div');
         content.className = 'notif-banner-content';
         const titleNode = document.createElement('span');
@@ -8589,7 +8590,7 @@
 
                 const btnFlag = document.createElement("button");
                 btnFlag.className = `btn-flag ${ans.flagged ? 'active' : ''}`;
-                btnFlag.innerHTML = State.guestExamActive ? "&#x1F6A9; Revisar después" : "&#x1F6A9; Marcar";
+                btnFlag.innerHTML = `${appIcon('flag')} ${State.guestExamActive ? "Revisar después" : "Marcar"}`;
                 btnFlag.addEventListener("click", () => {
                     State.answers[qIndex].flagged = !State.answers[qIndex].flagged;
                     renderExamQuestion();
@@ -8970,7 +8971,7 @@
                         showBanner(
                             "Nuevo reporte",
                             `Un usuario reporto una pregunta (${getReportCategoryLabel(latest.category)})`,
-                            "&#x1F6A9;",
+                            "flag",
                             () => showView("view-reportes")
                         );
                     }
@@ -9124,7 +9125,7 @@
         summary.textContent = `${formatTemarioMetric(total)} temas oficiales, ${formatTemarioMetric(withQuestions)} con preguntas activas en el banco.`;
     };
     const renderTemarioState = ({
-        icon = "&#x1F4D6;",
+        icon = appIcon("book-open"),
         title = "",
         detail = "",
         actionLabel = "",
@@ -9219,7 +9220,7 @@
         if (!hasQuestionsBankLoaded()) {
             updateTemarioSummary({ filter: rawFilter, loading: true });
             renderTemarioState({
-                icon: "&#x23F3;",
+                icon: appIcon("hourglass"),
                 title: "Calculando tu mapa de temas",
                 detail: "Estamos cargando el banco de preguntas para mostrar cuántas preguntas tiene cada tema del temario."
             });
@@ -9229,7 +9230,7 @@
                 if (requestId !== temarioRenderToken) return;
                 updateTemarioSummary({ filter: rawFilter, error: true });
                 renderTemarioState({
-                    icon: "&#9888;&#65039;",
+                    icon: appIcon("triangle-alert"),
                     title: "No pudimos cargar el temario completo",
                     detail: "La vista necesita el banco de preguntas para calcular los conteos. Intenta recargar esta sección.",
                     actionLabel: "Reintentar",
@@ -10742,7 +10743,7 @@
         if (allTemas.length === 0) {
             failList.innerHTML = `
                 <div style="text-align: center; padding: 40px 20px; color: var(--text-muted);">
-                    <div style="font-size: 40px; margin-bottom: 15px; opacity: 0.5;">&#x2728;</div>
+                    <div style="font-size: 40px; margin-bottom: 15px; opacity: 0.5;">${appIcon('sparkles')}</div>
                     <h3 style="color: var(--text-secondary); margin-bottom: 10px;">¡Aún no hay puntos de falla!</h3>
                     <p style="font-size: 13px;">Realiza simulacros y la IA comenzará a analizar tus áreas de oportunidad aquí.</p>
                 </div>
@@ -14246,7 +14247,7 @@
             };
 
             const renderCommunityPremiumBadge = (isPremium) => isPremium
-                ? '<span class="community-premium-badge" title="Usuario Premium" aria-label="Usuario Premium">&#x1F451;</span>'
+                ? `<span class="community-premium-badge" title="Usuario Premium" aria-label="Usuario Premium">${appIcon('crown')}</span>`
                 : '';
 
             const renderCommunityName = (name, isPremium, extraMarkup = "") => `
@@ -14329,7 +14330,7 @@
                 if (name) name.innerHTML = renderCommunityName(entry.username, entry.isPremium, isMe ? '<span class="lb-badge">Tú</span>' : '');
                 if (meta) meta.textContent = entry.isPremium ? "Miembro Premium de ENARMax" : "Miembro de ENARMax";
                 if (premium) premium.textContent = entry.isPremium ? "Premium" : "Demo";
-                if (flame) flame.textContent = `🔥 ${entry.flame || 0} días de racha`;
+                if (flame) flame.innerHTML = `${appIcon('flame')} ${entry.flame || 0} días de racha`;
                 if (score) score.textContent = getPublicScoreLabel(entry, isMe).replace("Promedio general: ", "");
                 if (specialty) specialty.textContent = entry.specialty || "Aún sin decidir";
                 if (university) university.closest?.(".public-profile-stat")?.setAttribute("hidden", "");
@@ -14340,7 +14341,7 @@
                 } else if (!relation) {
                     action.innerHTML = '<span class="public-profile-loading">Comprobando amistad...</span>';
                 } else if (relation.status === "friends") {
-                    action.innerHTML = `<span class="public-profile-friend-state">✓ Ya son amigos</span><button class="btn-secondary" type="button" data-public-profile-challenge="${escapeHtml(entry.id)}">⚔️ Retar</button>`;
+                    action.innerHTML = `<span class="public-profile-friend-state">✓ Ya son amigos</span><button class="btn-secondary" type="button" data-public-profile-challenge="${escapeHtml(entry.id)}">${appIcon('swords')} Retar</button>`;
                 } else if (relation.status === "sent") {
                     action.innerHTML = '<span class="public-profile-friend-state">Solicitud enviada</span>';
                 } else if (relation.status === "received") {
@@ -14434,8 +14435,8 @@
                                     </div>
                                 </button>
                                 <div class="lb-actions" style="display:flex; align-items:center; gap:6px;">
-                                    <div class="lb-flame" style="font-size:10px;">&#x1F525; ${entry.flame || 0}</div>
-                                    ${!isMe && isFriend ? `<button class="btn-primary" onclick="window.quickChallenge('${entry.id}')" style="padding: 4px 8px; font-size: 10px; border-radius: 6px; background: var(--accent-orange); border:none; white-space:nowrap;">&#x2694;&#xFE0F; Retar</button>` : ''}
+                                    <div class="lb-flame" style="font-size:10px;">${appIcon('flame')} ${entry.flame || 0}</div>
+                                    ${!isMe && isFriend ? `<button class="btn-primary" onclick="window.quickChallenge('${entry.id}')" style="padding: 4px 8px; font-size: 10px; border-radius: 6px; background: var(--accent-orange); border:none; white-space:nowrap;">${appIcon('swords')} Retar</button>` : ''}
                                 </div>
                             </div>`;
                         }).join("");
@@ -14469,7 +14470,7 @@
                                     <div style="font-size: 11px; color: var(--text-muted);">${getPublicScoreLabel(entry, false)}</div>
                                 </div>
                             </div>
-                            <button class="btn-primary" onclick="window.quickChallenge('${entry.id}')" style="width:100%; padding: 7px; font-size: 12px; border-radius: 8px; background: var(--accent-orange); text-align:center;">&#x2694;&#xFE0F; Retar</button>
+                            <button class="btn-primary" onclick="window.quickChallenge('${entry.id}')" style="width:100%; padding: 7px; font-size: 12px; border-radius: 8px; background: var(--accent-orange); text-align:center;">${appIcon('swords')} Retar</button>
                         </div>`).join("");
                     }
                 }
@@ -14552,7 +14553,7 @@
             window.quickChallenge = (uid) => {
                 window._pendingChallengeUid = uid;
                 if (typeof showView === "function") showView("view-setup");
-                showNotification("&#x1F3AF; ¡Amigo pre-seleccionado! Configura tu examen y luego pulsa 'Retar a un Amigo &#x2694;&#xFE0F;'.", "info");
+                showNotification("Amigo preseleccionado. Configura tu examen y luego pulsa «Retar a un amigo».", "info");
             };
 
             bindRankingFilterButtons();
@@ -14778,7 +14779,7 @@
                                     <div style="font-size:11px; color: var(--text-muted);">${escapeHtml(data.specialty || "")} &bull; ${Number(data.numQuestions) || 0} preguntas</div>
                                 </div>
                             </div>
-                            <button class="btn-primary btn-play-chal" data-id="${escapeHtml(data.id)}" style="width:100%; padding:10px; font-size:13px; background:var(--accent-orange); border-radius: 10px; font-weight:bold;">&#x2694;&#xFE0F; ¡Aceptar y Jugar Ahora!</button>
+                            <button class="btn-primary btn-play-chal" data-id="${escapeHtml(data.id)}" style="width:100%; padding:10px; font-size:13px; background:var(--accent-orange); border-radius: 10px; font-weight:bold;">${appIcon('swords')} Aceptar y jugar ahora</button>
                         </div>`;
                     });
 
@@ -14841,7 +14842,7 @@
                     if (!firstLoadFriends && added.length > 0) {
                         added.forEach(c => {
                             const d = c.doc.data();
-                            showBanner("Nueva solicitud", `${d.fromName} quiere ser tu amigo.`, "\ud83e\udd1d");
+                            showBanner("Nueva solicitud", `${d.fromName} quiere ser tu amigo.`, "handshake");
                             showSystemNotification("Nueva solicitud", `${d.fromName} quiere ser tu amigo.`);
                         });
                     }
@@ -14860,7 +14861,7 @@
                             if (d.challengerId === window.FB.auth.currentUser.uid) return;
 
                             // Banner con callback que ABRE el modal de notificaciones directamente
-                            showBanner("¡Tienes un Reto!", `${d.challengerName} te desafi\u00f3 en ${d.specialty}.`, "\u2694\ufe0f", () => {
+                            showBanner("¡Tienes un Reto!", `${d.challengerName} te desafi\u00f3 en ${d.specialty}.`, "swords", () => {
                                 const notifModal = $("notif-modal");
                                 if (notifModal) {
                                     notifModal.style.display = "flex";
@@ -14898,7 +14899,7 @@
                             showBanner(
                                 escapeHtml(d.title || "Aviso ENARMax"),
                                 escapeHtml(bannerMessage),
-                                "&#x1F4E2;",
+                                "megaphone",
                                 () => {
                                     const notifModal = $("notif-modal");
                                     if (notifModal) {
@@ -15155,24 +15156,24 @@
 
                     if (!isFinished) {
                         if (myEntry && myEntry.status === "pending") {
-                            statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(243,122,32,0.15); color:var(--accent-orange); border:1px solid rgba(243,122,32,0.3); font-weight:bold;">⏳ Tu turno</span>`;
+                            statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(243,122,32,0.15); color:var(--accent-orange); border:1px solid rgba(243,122,32,0.3); font-weight:bold;">${appIcon('hourglass')} Tu turno</span>`;
                             actionBtn = `
                                 <div style="display:flex; gap:8px; margin-top:10px;">
-                                    <button class="btn-primary" style="flex:1; border-radius:8px; background:var(--accent-orange); font-size:13px; padding:10px;" onclick="event.stopPropagation(); window.acceptChallenge('${ch.id}')">&#x2694;&#xFE0F; ¡Jugar Reto!</button>
-                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">&#x1F4CA;</button>
+                                    <button class="btn-primary" style="flex:1; border-radius:8px; background:var(--accent-orange); font-size:13px; padding:10px;" onclick="event.stopPropagation(); window.acceptChallenge('${ch.id}')">${appIcon('swords')} Jugar reto</button>
+                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">${appIcon('chart-column')}</button>
                                 </div>`;
                         } else {
-                        statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(59,130,246,0.15); color:var(--accent-blue); border:1px solid rgba(59,130,246,0.3); font-weight:bold;">&#x2705; Ya jugaste</span>`;
+                        statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(59,130,246,0.15); color:var(--accent-blue); border:1px solid rgba(59,130,246,0.3); font-weight:bold;">${appIcon('circle-check')} Ya jugaste</span>`;
                             actionBtn = `
                                 <div style="display:flex; gap:8px; margin-top:10px;">
                                     <div style="flex:1; font-size:12px; color:var(--text-muted); padding:10px; background:rgba(255,255,255,0.05); border-radius:8px; text-align:center;">Esperando a los demás...</div>
-                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">&#x1F4CA;</button>
+                                    <button class="btn-ghost" style="padding:10px 12px; border-radius:8px; font-size:18px;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')" title="Ver ranking parcial">${appIcon('chart-column')}</button>
                                 </div>`;
                         }
                     } else {
-                        statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(16,185,129,0.15); color:var(--accent-green); border:1px solid rgba(16,185,129,0.3); font-weight:bold;">&#x1F3C1; Finalizado</span>`;
+                        statusBadge = `<span style="font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(16,185,129,0.15); color:var(--accent-green); border:1px solid rgba(16,185,129,0.3); font-weight:bold;">${appIcon('flag')} Finalizado</span>`;
                         actionBtn = `
-                            <button class="btn-primary" style="width:100%; border-radius:8px; font-size:13px; padding:10px; margin-top:10px; background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.4); color:#60a5fa;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')">&#x1F4CA; Ver Ranking Final</button>`;
+                            <button class="btn-primary" style="width:100%; border-radius:8px; font-size:13px; padding:10px; margin-top:10px; background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.4); color:#60a5fa;" onclick="event.stopPropagation(); window.showChallengeRanking('${ch.id}')">${appIcon('chart-column')} Ver ranking final</button>`;
                     }
 
                     return `
@@ -15204,13 +15205,13 @@
 
                 let finalHtml = `
                     <div style="text-align: left; margin-bottom: 15px;">
-                        <h3 style="font-size: 14px; color: var(--text-primary); margin-bottom: 10px;">&#x1F525; Retos Activos</h3>
+                        <h3 style="font-size: 14px; color: var(--text-primary); margin-bottom: 10px;">${appIcon('flame')} Retos activos</h3>
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                             ${activeHtml || '<p style="font-size: 12px; color: var(--text-muted); padding: 10px; text-align: center;">No hay retos activos.</p>'}
                         </div>
                     </div>
                     <div style="text-align: left; margin-top: 25px;">
-                        <h3 style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">&#x1F4CC; Retos Pasados</h3>
+                        <h3 style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">${appIcon('pin')} Retos pasados</h3>
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                             ${pastHtml || '<p style="font-size: 12px; color: var(--text-muted); padding: 10px; text-align: center;">No hay retos terminados.</p>'}
                         </div>

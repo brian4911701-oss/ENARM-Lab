@@ -81,6 +81,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
 </head>
 
 <body class="app-starting">
@@ -4719,6 +4720,89 @@
     <script src="security-crypto.js" charset="UTF-8"></script>
     <script src="scales-data.js" charset="UTF-8"></script>
     <script src="app.js" charset="UTF-8"></script>
+
+    <script>
+        /* Convierte los pictogramas decorativos de la interfaz en iconos vectoriales
+           consistentes. El contenido escrito por los usuarios no se procesa. */
+        (() => {
+            const icons = {
+                "🏦": "landmark", "🔢": "hash", "🔥": "flame", "👑": "crown",
+                "⏱": "timer", "⏱️": "timer", "📈": "chart-no-axes-combined",
+                "🏅": "medal", "⚡": "zap", "🚀": "rocket", "🧠": "brain",
+                "📊": "chart-column", "🚩": "flag", "🎯": "target", "🏆": "trophy",
+                "📖": "book-open", "🔍": "search", "😊": "smile", "⚖": "scale",
+                "⚖️": "scale", "🎲": "dice-5", "⚔": "swords", "⚔️": "swords",
+                "🩺": "stethoscope", "🌍": "globe-2", "😴": "moon", "👥": "users",
+                "💡": "lightbulb", "🕒": "history", "🕰": "history", "🧮": "calculator",
+                "🗂": "folders", "🗂️": "folders", "✨": "sparkles", "💬": "message-circle",
+                "⚙": "settings", "⚙️": "settings", "📥": "inbox", "📢": "megaphone",
+                "📜": "file-text", "🔒": "lock-keyhole", "🧪": "flask-conical", "🛠": "wrench",
+                "🛠️": "wrench", "🪙": "coins", "📁": "folder", "📂": "folder-open",
+                "📄": "file-down", "📚": "library", "🕸": "network", "🕸️": "network",
+                "🍩": "chart-pie", "🚨": "siren", "📓": "notebook-pen", "👤": "user-round",
+                "🎨": "palette", "✉": "mail", "✉️": "mail", "🔑": "key-round",
+                "⚠": "triangle-alert", "⚠️": "triangle-alert", "🤖": "bot", "🍎": "apple",
+                "🔔": "bell", "🗑": "trash-2", "🗑️": "trash-2", "✅": "circle-check",
+                "💪": "dumbbell", "🔎": "search-check", "👋": "hand", "📌": "pin",
+                "🏁": "flag", "🤝": "handshake", "⏳": "hourglass", "🎉": "party-popper",
+                "💰": "badge-dollar-sign"
+            };
+            const tokenPattern = new RegExp(Object.keys(icons).sort((a, b) => b.length - a.length)
+                .map(token => token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"), "g");
+
+            window.appIconMarkup = (name, label = "") =>
+                `<i class="app-icon" data-lucide="${name}" aria-hidden="true"></i>${label ? `<span class="sr-only">${label}</span>` : ""}`;
+
+            const createIcon = (name) => {
+                const icon = document.createElement("i");
+                icon.className = "app-icon";
+                icon.dataset.lucide = name;
+                icon.setAttribute("aria-hidden", "true");
+                return icon;
+            };
+
+            const convertStaticCopy = (root = document.body) => {
+                const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+                    acceptNode(node) {
+                        if (!tokenPattern.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+                        tokenPattern.lastIndex = 0;
+                        const parent = node.parentElement;
+                        return parent && !parent.closest("script, style, textarea, input, option, [data-user-content]")
+                            ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+                    }
+                });
+                const textNodes = [];
+                while (walker.nextNode()) textNodes.push(walker.currentNode);
+                textNodes.forEach(node => {
+                    const fragment = document.createDocumentFragment();
+                    let cursor = 0;
+                    node.nodeValue.replace(tokenPattern, (token, index) => {
+                        if (index > cursor) fragment.append(node.nodeValue.slice(cursor, index));
+                        fragment.append(createIcon(icons[token]));
+                        cursor = index + token.length;
+                        return token;
+                    });
+                    if (cursor < node.nodeValue.length) fragment.append(node.nodeValue.slice(cursor));
+                    node.replaceWith(fragment);
+                });
+            };
+
+            const renderIcons = (root = document) => {
+                window.lucide?.createIcons({ attrs: { "stroke-width": 2, focusable: "false" }, root });
+            };
+
+            window.renderAppIcons = (root = document.body) => renderIcons(root);
+            window.addEventListener("DOMContentLoaded", () => {
+                convertStaticCopy();
+                renderIcons();
+                new MutationObserver(records => {
+                    const hasNewIcon = records.some(record => [...record.addedNodes].some(node =>
+                        node.nodeType === Node.ELEMENT_NODE && (node.matches?.("i[data-lucide]") || node.querySelector?.("i[data-lucide]"))));
+                    if (hasNewIcon) renderIcons();
+                }).observe(document.body, { childList: true, subtree: true });
+            });
+        })();
+    </script>
 
     <!-- PWA: Register Service Worker -->
     <script>
