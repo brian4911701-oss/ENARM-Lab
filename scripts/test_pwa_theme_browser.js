@@ -40,7 +40,7 @@ const cases = [
         page.on('request', request => request.abort());
         await page.setContent('<html><head>' + html.match(/<meta name="viewport"[^>]*>/)[0] + html.match(/<meta name="theme-color"[^>]*>/)[0] + '</head><body><div class="mobile-top-bar"></div></body></html>');
         await page.addStyleTag({ content: read('styles.css') });
-        await page.addScriptTag({ content: sync + '\nwindow.testSyncTheme = syncThemeColorMeta;' });
+        await page.addScriptTag({ content: sync + '\nwindow.testSyncTheme = syncThemeColorMeta; window.testThemeDiagnostics = getThemeDiagnostics;' });
         for (const [theme, className, expected, scheme = 'dark'] of cases) {
             await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: scheme }]);
             await page.evaluate(theme => {
@@ -71,6 +71,10 @@ const cases = [
                 return result;
             }, className);
             assert.deepEqual(result, { color: expected, sameNode: true, count: 1, matchesHeader: true }, `Cambio: ${theme}`);
+            const diagnostics = await page.evaluate(() => window.testThemeDiagnostics());
+            assert.equal(diagnostics.cssThemeColor, expected);
+            assert.deepEqual(diagnostics.metaColors, [{ color: expected, media: '' }]);
+            assert.equal(diagnostics.revision, 'theme-diagnostics-1');
         }
         console.log(`PWA browser theme: OK (${cases.length} casos, inicio y cambios de tema).`);
     } finally {
