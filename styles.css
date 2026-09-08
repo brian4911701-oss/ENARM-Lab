@@ -12395,6 +12395,12 @@ h6,
 }
 
 @media (max-width: 768px) {
+  /* En una PWA instalada de iOS la barra de estado invade el viewport.
+     Conserva la navegación debajo del reloj, la isla dinámica y los indicadores. */
+  .landing-header {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
   .landing-logo-watermark {
     width: 600px;
     top: 34px;

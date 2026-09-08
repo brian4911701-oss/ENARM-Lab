@@ -99,6 +99,23 @@ const cases = [
                 assert.ok(position.top >= inset, `${name}: fuera del área del reloj`);
             }
         }
+        // La landing también se muestra antes de iniciar sesión y debe respetar
+        // el área segura cuando la PWA se abre desde la pantalla de inicio de iOS.
+        const landingHeaderHtml = html.match(/<header class="landing-header">[\s\S]*?<\/header>/)[0];
+        await page.evaluate(markup => {
+            document.querySelector('.mobile-top-bar').insertAdjacentHTML('afterend', markup);
+        }, landingHeaderHtml);
+        for (const inset of [0, 24, 48]) {
+            await cdp.send('Emulation.setSafeAreaInsetsOverride', { insets: { top: inset } });
+            const positions = await page.evaluate(() => {
+                const header = document.querySelector('.landing-header').getBoundingClientRect();
+                const nav = document.querySelector('.landing-nav').getBoundingClientRect();
+                const logo = document.querySelector('.landing-logo').getBoundingClientRect();
+                return { header, nav, logo };
+            });
+            assert.ok(positions.nav.top >= inset, `landing: navegación fuera del área del reloj con inset ${inset}`);
+            assert.ok(positions.logo.top >= inset, `landing: logo fuera del área del reloj con inset ${inset}`);
+        }
         await cdp.detach();
         console.log(`PWA browser theme: OK (${cases.length} casos; encabezado alineado con insets 0, 24 y 48px).`);
     } finally {
