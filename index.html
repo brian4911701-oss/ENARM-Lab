@@ -20,17 +20,21 @@
     <meta name="twitter:description" content="Simulador de examen ENARM con casos clÃ­nicos, estadÃ­sticas y retos entre amigos.">
     <meta name="twitter:image" content="https://enarm-lab-social.web.app/share-preview.png">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#1d258d">
     <script>
         (() => {
-            const rawTheme = localStorage.getItem("enarm_theme") || "ocean";
-            const legacyThemeMap = { "clinical-dark": "ocean", "clinical-light": "light" };
+            let rawTheme = "ocean";
+            try {
+                rawTheme = localStorage.getItem("enarm_theme") || "ocean";
+            } catch (_) { /* El color inicial también funciona sin almacenamiento. */ }
+            const legacyThemeMap = { "clinical-dark": "ocean", "clinical-light": "light", ember: "lilac-light", "black-white": "lilac-light" };
             const storedTheme = legacyThemeMap[rawTheme] || rawTheme;
             const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
             const resolvedTheme = storedTheme === "system" ? (prefersLight ? "light" : "default") : storedTheme;
             const colors = {
                 default: "#111623", light: "#ffffff", forest: "#0a3325", ocean: "#1d258d",
                 sunset: "#3d1a3b", "navy-gold": "#102545", "black-teal": "#050505", "lilac-light": "#fcfaff",
-                aurora: "#0a181b", premium: "#0a0a0a", "premium-pink": "#0a0a0a"
+                aurora: "#111623", premium: "#0a0a0a", "premium-pink": "#0a0a0a"
             };
             let meta = document.querySelector('meta[name="theme-color"]');
             if (!meta) {
@@ -583,14 +587,14 @@
 
                 <div class="input-group" id="group-auth-password" style="margin-top: 10px;">
                     <label>Contraseña</label>
-                    <input type="password" id="auth-password" required placeholder="Mínimo 6 caracteres"
-                        class="text-input" style="width: 100%;">
+                    <input type="password" id="auth-password" required minlength="12" maxlength="4096" placeholder="Mínimo 12 caracteres"
+                        class="text-input" style="width: 100%;" autocomplete="current-password">
                 </div>
                 <button type="button" id="btn-forgot-password" class="auth-forgot-password">¿Olvidaste tu contraseña?</button>
 
                 <div class="input-group" id="group-username" style="margin-top: 10px; display: none;">
                     <label>Nombre de usuario (opcional, visible en el ranking)</label>
-                    <input type="text" id="auth-username" placeholder="DrHouse_99" class="text-input"
+                    <input type="text" id="auth-username" placeholder="DrHouse_99" class="text-input" minlength="3" maxlength="20"
                         style="width: 100%;">
                 </div>
 
@@ -1869,7 +1873,6 @@
                         <div class="public-profile-stats">
                             <div><span>Promedio general</span><strong id="public-profile-score">—</strong></div>
                             <div><span>Especialidad objetivo</span><strong id="public-profile-specialty">Aún sin decidir</strong></div>
-                            <div><span>Universidad</span><strong id="public-profile-university">No especificada</strong></div>
                         </div>
                     </section>
                 </div>
@@ -3768,6 +3771,22 @@
                             </button>
                         </div>
 
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
+                            <div>
+                                <h4 style="font-size: 14px; margin-bottom: 4px;">Exportar mis datos</h4>
+                                <p style="font-size: 12px; color: var(--text-muted);">Descarga una copia JSON de tu perfil, progreso y actividad.</p>
+                            </div>
+                            <button class="btn-secondary" id="btn-export-account" type="button">Exportar</button>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
+                            <div>
+                                <h4 style="font-size: 14px; margin-bottom: 4px;">Eliminar cuenta</h4>
+                                <p style="font-size: 12px; color: var(--text-muted);">Borra Auth y datos académicos. Los registros financieros obligatorios se conservan.</p>
+                            </div>
+                            <button class="btn-danger" id="btn-delete-account" type="button">Eliminar cuenta</button>
+                        </div>
+
                         <div
                             style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
                             <div>
@@ -4502,9 +4521,11 @@
     </aside>
 
     <!-- ── FIREBASE ── -->
+    <script src="security-config.js" charset="UTF-8"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, updateProfile, GoogleAuthProvider, getAdditionalUserInfo, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+        import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app-check.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, onAuthStateChanged, updateProfile, GoogleAuthProvider, EmailAuthProvider, getAdditionalUserInfo, signInWithPopup, signInWithRedirect, getRedirectResult, reauthenticateWithPopup, reauthenticateWithCredential, deleteUser, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, getDocs, getCountFromServer, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, documentId, startAfter, addDoc, updateDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
         import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-functions.js";
 
@@ -4521,6 +4542,14 @@
         };
 
         const app = initializeApp(firebaseConfig);
+        const appCheckSiteKey = String(window.ENARM_SECURITY_CONFIG?.appCheckSiteKey || "").trim();
+        const appCheck = appCheckSiteKey
+            ? initializeAppCheck(app, {
+                provider: new ReCaptchaV3Provider(appCheckSiteKey),
+                isTokenAutoRefreshEnabled: window.ENARM_SECURITY_CONFIG?.appCheckAutoRefresh !== false
+            })
+            : null;
+        if (!appCheckSiteKey) console.warn("[Security] App Check pendiente: configura appCheckSiteKey antes de aplicar enforcement.");
         const auth = getAuth(app);
         auth.languageCode = "es";
         const db = getFirestore(app);
@@ -4630,6 +4659,7 @@
         // Exponer Firebase al scope global de `app.js`
         window.FB = {
             auth,
+            appCheck,
             db,
             functions,
             httpsCallable,
@@ -4654,13 +4684,18 @@
             signInWithEmailAndPassword,
             createUserWithEmailAndPassword,
             sendPasswordResetEmail,
+            sendEmailVerification,
             updateProfile,
             onAuthStateChanged,
             googleProvider,
+            EmailAuthProvider,
             getAdditionalUserInfo,
             signInWithPopup,
             signInWithRedirect,
             getRedirectResult,
+            reauthenticateWithPopup,
+            reauthenticateWithCredential,
+            deleteUser,
             signOut,
             getToken,
             onMessage,
@@ -4677,6 +4712,8 @@
         window.dispatchEvent(new Event("firebaseLoaded"));
     </script>
     <script src="analytics-core.js" charset="UTF-8"></script>
+    <script src="withdrawal-public-key.js" charset="UTF-8"></script>
+    <script src="security-crypto.js" charset="UTF-8"></script>
     <script src="scales-data.js" charset="UTF-8"></script>
     <script src="app.js" charset="UTF-8"></script>
 

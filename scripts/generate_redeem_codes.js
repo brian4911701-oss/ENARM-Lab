@@ -3,8 +3,9 @@ const path = require("path");
 const crypto = require("crypto");
 
 const REPO_ROOT = path.resolve(__dirname, "..");
-const DEFAULT_CODES_FILE = path.join(REPO_ROOT, "redeem_codes.txt");
-const CODE_BODY_LENGTH = 8;
+const DEFAULT_CODES_FILE = path.join(REPO_ROOT, ".local-secrets", "redeem_codes.txt");
+// 26 caracteres sobre un alfabeto de 32 símbolos = 130 bits de entropía.
+const CODE_BODY_LENGTH = 26;
 const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 const TYPE_CONFIG = [
   { key: "month", args: ["month"], prefix: "ENARM-M1-" },
@@ -21,7 +22,8 @@ function printUsage() {
   console.log("  --three-day N    Genera N codigos de 3 dias");
   console.log("  --fixed N        Genera N codigos con expiracion fija");
   console.log("  --append         Agrega los codigos a redeem_codes.txt");
-  console.log("  --file RUTA      Usa otro archivo de catalogo");
+  console.log("  --file RUTA      Usa otro archivo privado de catalogo");
+  console.log("  --show           Imprime los codigos (solo en una terminal privada)");
   console.log("  --help           Muestra esta ayuda");
 }
 
@@ -34,6 +36,7 @@ function parseArgs(argv) {
   const options = {
     append: false,
     file: DEFAULT_CODES_FILE,
+    show: false,
     help: false
   };
 
@@ -41,6 +44,10 @@ function parseArgs(argv) {
     const token = argv[i];
     if (token === "--append") {
       options.append = true;
+      continue;
+    }
+    if (token === "--show") {
+      options.show = true;
       continue;
     }
     if (token === "--help" || token === "-h") {
@@ -90,9 +97,11 @@ function loadExistingCodes(filePath) {
 
 function randomSuffix(length) {
   let output = "";
+  const unbiasedLimit = Math.floor(256 / ALPHABET.length) * ALPHABET.length;
   while (output.length < length) {
     const bytes = crypto.randomBytes(length);
     for (const byte of bytes) {
+      if (byte >= unbiasedLimit) continue;
       output += ALPHABET[byte % ALPHABET.length];
       if (output.length === length) break;
     }
@@ -112,6 +121,7 @@ function generateCodes(prefix, count, existingCodes) {
 }
 
 function appendCodesToFile(filePath, codes) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true, mode: 0o700 });
   const current = fs.existsSync(filePath) ? fs.readFileSync(filePath, "utf8").trim() : "";
   const nextText = current ? `${current}\n${codes.join("\n")}\n` : `${codes.join("\n")}\n`;
   fs.writeFileSync(filePath, nextText, "utf8");
@@ -152,16 +162,17 @@ function main() {
   generatedByType.forEach((entry) => {
     console.log("");
     console.log(`[${entry.prefix}] ${entry.codes.length} codigos`);
-    entry.codes.forEach((code) => console.log(code));
+    if (options.show) entry.codes.forEach((code) => console.log(code));
   });
 
   console.log("");
   if (options.append) {
     console.log(`Se agregaron a ${options.file}`);
   } else {
-    console.log("Vista previa solamente. Usa --append para guardarlos en el archivo.");
+    console.log("Vista previa solamente. Usa --append para guardarlos en un archivo privado.");
   }
-  console.log("Despues, pegalos en el panel Admin - Cargar Codigos y presiona Subir codigos.");
+  if (!options.show) console.log("Los valores no se imprimieron. Usa --show solo en una terminal privada.");
+  console.log("Importa los codigos con una herramienta local que use Firebase Admin; el navegador no puede cargarlos.");
 }
 
 try {

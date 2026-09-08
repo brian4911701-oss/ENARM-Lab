@@ -170,12 +170,14 @@
     const $ = (id) => document.getElementById(id);
     const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
-    const ADMIN_UIDS = ["sZcIUjjhD0fze7FtirwsjsIDzLB2"];
+    State.isAdminClaim = false;
     const ADMIN_USERS_PAGE_SIZE = 15;
     const USER_DIRECTORY_PROFILE_SYNC_INTERVAL_MS = 30 * 60 * 1000;
     const USER_PRESENCE_HEARTBEAT_INTERVAL_MS = 5 * 60 * 1000;
     const USER_ONLINE_WINDOW_MS = 7 * 60 * 1000;
     const USER_METRICS_COLLECTION = "user_metrics";
+    const PUBLIC_PROFILES_COLLECTION = "public_profiles";
+    const USER_PROGRESS_COLLECTION = "user_progress";
     const USER_METRICS_SYNC_INTERVAL_MS = 15 * 60 * 1000;
     const ADMIN_ANALYTICS_CACHE_MS = 5 * 60 * 1000;
     const JS_ERROR_PENDING_STORAGE_KEY = "enarmax_pending_js_errors";
@@ -235,7 +237,7 @@
     const PUSH_TOKEN_COLLECTION = "user_push_tokens";
     const FEEDBACK_COLLECTION = "feedback_submissions";
     const RATINGS_COLLECTION = "app_ratings";
-    const ADMIN_INBOX_UID = ADMIN_UIDS[0];
+    const ADMIN_INBOX_UID = "admin";
     const REFERRAL_REWARD_COINS = 50;
     const WITHDRAWAL_REQUESTS_COLLECTION = "withdrawal_requests";
     const MIN_WITHDRAWAL_COINS = 100;
@@ -1267,7 +1269,13 @@
         if (type === 'error') icon = '&#x1F6A8;';
         if (type === 'warning') icon = '&#x26A0;';
 
-        toast.innerHTML = `<span style="font-size: 18px;">${icon}</span><span style="flex:1;">${msg}</span>`;
+        const iconEl = document.createElement("span");
+        iconEl.style.fontSize = "18px";
+        iconEl.innerHTML = icon;
+        const messageEl = document.createElement("span");
+        messageEl.style.flex = "1";
+        messageEl.textContent = String(msg || "");
+        toast.replaceChildren(iconEl, messageEl);
         container.appendChild(toast);
 
         setTimeout(() => {
@@ -1497,8 +1505,65 @@
         return isNaN(parsed.getTime()) ? null : parsed;
     };
 
-    const isAdminUser = () => {
-        return !!(State.currentUid && ADMIN_UIDS.includes(State.currentUid));
+    const normalizePublicUsername = (value, fallback = "Aspirante") => {
+        const normalized = String(value || "")
+            .normalize("NFKC")
+            .replace(/[^\p{L}\p{N} _.-]/gu, "")
+            .replace(/\s+/g, " ")
+            .trim()
+            .slice(0, 20);
+        return normalized || fallback;
+    };
+
+    const getPrivateUserSnapshot = async (uid) => {
+        if (!uid || !window.FB?.db || !window.FB?.getDoc || !window.FB?.doc) {
+            return { exists: () => false, data: () => ({}) };
+        }
+        const [progressSnap, directorySnap, publicSnap, legacySnap] = await Promise.all([
+            window.FB.getDoc(window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid)),
+            window.FB.getDoc(window.FB.doc(window.FB.db, "user_directory", uid)),
+            window.FB.getDoc(window.FB.doc(window.FB.db, PUBLIC_PROFILES_COLLECTION, uid)),
+            // Compatibilidad temporal: solo el titular puede leer su documento legado.
+            window.FB.getDoc(window.FB.doc(window.FB.db, "leaderboard", uid)).catch(() => null)
+        ]);
+        const exists = Boolean(progressSnap?.exists() || directorySnap?.exists() || publicSnap?.exists() || legacySnap?.exists?.());
+        const merged = {
+            ...(legacySnap?.exists?.() ? legacySnap.data() : {}),
+            ...(progressSnap?.exists() ? progressSnap.data() : {}),
+            ...(publicSnap?.exists() ? publicSnap.data() : {}),
+            ...(directorySnap?.exists() ? directorySnap.data() : {})
+        };
+        return { exists: () => exists, data: () => merged };
+    };
+
+    const isValidPublicUsername = (value) => {
+        const normalized = normalizePublicUsername(value, "");
+        return normalized.length >= 3 && normalized === String(value || "").normalize("NFKC").replace(/\s+/g, " ").trim();
+    };
+
+    const isAdminUser = () => Boolean(State.currentUid && State.isAdminClaim === true);
+
+    const refreshCurrentUserClaims = async (user, forceRefresh = false) => {
+        if (!user || typeof user.getIdTokenResult !== "function") {
+            State.isAdminClaim = false;
+            return false;
+        }
+        try {
+            const tokenResult = await user.getIdTokenResult(forceRefresh);
+            State.isAdminClaim = tokenResult?.claims?.admin === true;
+        } catch (error) {
+            State.isAdminClaim = false;
+            console.warn("No se pudieron verificar los privilegios de la cuenta.", error);
+        }
+        return State.isAdminClaim;
+    };
+
+    const isVerifiedCurrentUser = () => window.FB?.auth?.currentUser?.emailVerified === true;
+
+    const requireVerifiedAccount = (message = "Verifica tu correo para usar esta función.") => {
+        if (isVerifiedCurrentUser()) return true;
+        showNotification(message, "warning");
+        return false;
     };
 
     const syncOptionalAnalyticsIdentity = () => {
@@ -1838,6 +1903,13 @@
         return ent.expiresAt.getTime() > Date.now();
     };
 
+    const hasIndividualPremiumEntitlement = () => {
+        const entitlement = State.entitlement;
+        if (!entitlement || entitlement.status !== "active") return false;
+        if (!entitlement.expiresAt) return true;
+        return entitlement.expiresAt.getTime() > Date.now();
+    };
+
     const getPremiumTrialExpiry = () => {
         const entitlement = State.entitlement;
         if (!entitlement || entitlement.status !== "active" || entitlement.source !== "premium_trial" || !entitlement.expiresAt) {
@@ -1889,21 +1961,20 @@
     const syncCurrentUserPremiumFlag = async () => {
         if (!window.FB || !window.FB.auth || !window.FB.auth.currentUser) return;
         if (!window.FB.setDoc || !window.FB.doc || !window.FB.db) return;
-        const ref = window.FB.doc(window.FB.db, "leaderboard", window.FB.auth.currentUser.uid);
-        const premium = isPremiumActive();
+        const ref = window.FB.doc(window.FB.db, PUBLIC_PROFILES_COLLECTION, window.FB.auth.currentUser.uid);
+        const premium = hasIndividualPremiumEntitlement();
         if (!premium) {
             if (!window.FB.getDoc) return;
             const snap = await window.FB.getDoc(ref).catch(() => null);
             if (!snap || !snap.exists()) return;
         }
         window.FB.setDoc(ref, {
-            username: State.userName || "Aspirante",
+            uid: window.FB.auth.currentUser.uid,
+            username: normalizePublicUsername(State.userName),
             specialty: State.userSpecialty || "",
-            university: State.userUniversity || "",
-            phone: State.userPhone || "",
-            targetYear: State.userTargetYear || "",
+            avatarId: normalizeProfileAvatar(State.userAvatar),
             isPremium: premium,
-            lastPremiumSync: new Date()
+            updatedAt: window.FB.serverTimestamp ? window.FB.serverTimestamp() : new Date()
         }, { merge: true }).catch(err => console.error("Error syncing premium flag:", err));
     };
 
@@ -1996,6 +2067,7 @@
 
     const ensureReferralWallet = async (uid, displayName = "") => {
         if (!uid || !window.FB || !window.FB.db || !window.FB.doc || !window.FB.getDoc || !window.FB.runTransaction) return;
+        if (!requireVerifiedAccount()) return;
         State.referralGenerationError = "";
         const walletRef = window.FB.doc(window.FB.db, "user_wallets", uid);
         const walletSnap = await window.FB.getDoc(walletRef);
@@ -2105,13 +2177,15 @@
         const ownerWalletSnap = await tx.get(ownerWalletRef);
         const ownerWallet = ownerWalletSnap.exists() ? (ownerWalletSnap.data() || {}) : {};
         const nextCoins = (Number(ownerWallet.coins) || 0) + REFERRAL_REWARD_COINS;
+        const writeTime = window.FB.serverTimestamp ? window.FB.serverTimestamp() : now;
 
         tx.set(ownerWalletRef, {
             uid: ownerUid,
             referralCode: normalizeReferralCode(ownerWallet.referralCode || cleanReferralCode),
             coins: nextCoins,
-            updatedAt: now,
-            lastReferralRewardAt: now,
+            ...(!ownerWalletSnap.exists() ? { createdAt: writeTime } : {}),
+            updatedAt: writeTime,
+            lastReferralRewardAt: writeTime,
             lastReferralUid: uid,
             lastReferralCode: cleanReferralCode
         }, { merge: true });
@@ -2121,7 +2195,7 @@
             referralCode: cleanReferralCode,
             premiumCode,
             coins: REFERRAL_REWARD_COINS,
-            createdAt: now
+            createdAt: writeTime
         }, { merge: false });
         return true;
     };
@@ -2519,13 +2593,15 @@
             }
         }
 
-        // Android puede ignorar cambios de atributo en una PWA instalada;
-        // reemplazar el nodo fuerza la actualización de la barra del sistema.
-        document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.remove());
-        const themeMeta = document.createElement("meta");
-        themeMeta.setAttribute("name", "theme-color");
+        // Conserva el meta inicial: no dejes un intervalo sin color en el que
+        // el navegador pueda volver al valor del manifiesto instalado.
+        let themeMeta = document.querySelector('meta[name="theme-color"]');
+        if (!themeMeta) {
+            themeMeta = document.createElement("meta");
+            themeMeta.setAttribute("name", "theme-color");
+            document.head.appendChild(themeMeta);
+        }
         themeMeta.setAttribute("content", color);
-        document.head.appendChild(themeMeta);
         document.documentElement.style.backgroundColor = color;
     };
 
@@ -2617,6 +2693,7 @@
     };
 
     const uploadReportToCloud = async (report) => {
+        if (!requireVerifiedAccount()) throw new Error("email_not_verified");
         if (!report) throw new Error("invalid_report");
         if (!window.FB || !window.FB.db || !window.FB.doc || !window.FB.setDoc) {
             throw new Error("firebase_not_ready");
@@ -3853,24 +3930,22 @@
             const paidLabel = paidAt ? formatDateTime(paidAt) : "";
             const status = String(item.status || "pending");
             const isPending = status === "pending";
+            const encrypted = item.bankingEnvelope?.algorithm === "RSA-OAEP-256+A256GCM";
             return `
                 <article class="withdrawal-admin-card ${isPending ? "is-pending" : "is-paid"}">
                     <div class="withdrawal-admin-head">
                         <div>
                             <span class="withdrawal-status">${formatWithdrawalStatus(status)}</span>
                             <h3>${amount.toLocaleString("es-MX")} monedas / $${amount.toLocaleString("es-MX")} MXN</h3>
-                            <p>${escapeHtml(item.fullName || "Sin nombre")} · ${createdLabel}</p>
+                            <p>Datos bancarios ${encrypted ? "cifrados" : "legados"} · ${createdLabel}</p>
                         </div>
-                        ${isPending ? `<button class="btn-primary" type="button" data-confirm-withdrawal="${escapeHtml(item.id)}">Marcar pagado</button>` : `<span class="withdrawal-paid-label">Confirmado${paidLabel ? ` · ${paidLabel}` : ""}</span>`}
+                        ${isPending ? `<span class="withdrawal-paid-label">Procesar con CLI local</span>` : `<span class="withdrawal-paid-label">Confirmado${paidLabel ? ` · ${paidLabel}` : ""}</span>`}
                     </div>
                     <div class="withdrawal-admin-grid">
                         <span><strong>UID:</strong> ${escapeHtml(item.uid || "")}</span>
                         <span><strong>Email:</strong> ${escapeHtml(item.email || "Sin email")}</span>
                         <span><strong>Referido:</strong> ${escapeHtml(item.referralCode || "Sin codigo")}</span>
-                        <span><strong>Titular:</strong> ${escapeHtml(item.accountHolder || "")}</span>
-                        <span><strong>Banco:</strong> ${escapeHtml(item.bankName || "")}</span>
-                        <span><strong>CLABE:</strong> ${escapeHtml(item.clabe || "")}</span>
-                        <span><strong>Telefono:</strong> ${escapeHtml(item.phone || "No capturado")}</span>
+                        <span><strong>Sobre cifrado:</strong> ${encrypted ? `v${Number(item.bankingEnvelope.version || 1)} · llave ${escapeHtml(item.bankingEnvelope.keyVersion || "")}` : "Requiere migración manual"}</span>
                         <span><strong>Saldo al solicitar:</strong> ${Number(item.coinsSnapshot || 0).toLocaleString("es-MX")} monedas</span>
                     </div>
                 </article>
@@ -4501,8 +4576,12 @@
 
                 const data = { uid: syncUid };
                 if (shouldSyncProfile) {
-                    data.username = String(State.userName || user.displayName || (user.email ? user.email.split("@")[0] : "Aspirante")).trim().slice(0, 120) || "Aspirante";
+                    data.username = normalizePublicUsername(State.userName || user.displayName || (user.email ? user.email.split("@")[0] : "Aspirante"));
                     data.email = String(user.email || "").slice(0, 160);
+                    data.emailVerified = user.emailVerified === true;
+                    data.university = String(State.userUniversity || "").trim().slice(0, 80);
+                    data.phone = normalizePhoneInput(State.userPhone || "");
+                    data.targetYear = String(State.userTargetYear || "").slice(0, 4);
                 }
                 if (shouldSyncPresence) {
                     data.lastSeenAt = window.FB.serverTimestamp ? window.FB.serverTimestamp() : new Date();
@@ -4711,6 +4790,7 @@
     };
 
     const submitWithdrawalRequest = async () => {
+        if (!requireVerifiedAccount("Verifica tu correo antes de solicitar un retiro.")) return;
         if (State.withdrawalSubmitting) return;
         if (!window.FB || !window.FB.db || !window.FB.auth || !window.FB.auth.currentUser || !window.FB.addDoc) {
             showNotification("Firebase no esta listo para solicitar el retiro.", "error");
@@ -4754,6 +4834,14 @@
         State.withdrawalSubmitting = true;
         renderReferralsView();
         try {
+            if (!window.ENARMSecurityCrypto?.encryptWithdrawalDetails) throw new Error("withdrawal_crypto_unavailable");
+            const bankingEnvelope = await window.ENARMSecurityCrypto.encryptWithdrawalDetails({
+                fullName,
+                accountHolder,
+                bankName,
+                clabe,
+                phone
+            });
             await window.FB.addDoc(window.FB.collection(window.FB.db, WITHDRAWAL_REQUESTS_COLLECTION), {
                 uid: user.uid,
                 userName: State.userName || user.displayName || "",
@@ -4762,11 +4850,7 @@
                 amount,
                 coinsSnapshot: coins,
                 currency: "MXN",
-                fullName,
-                accountHolder,
-                bankName,
-                clabe,
-                phone,
+                bankingEnvelope,
                 status: "pending",
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -4797,6 +4881,8 @@
             showNotification("Solo admin puede confirmar retiros.", "warning");
             return;
         }
+        showNotification("Los retiros cifrados se descifran y confirman únicamente con la herramienta administrativa local.", "info");
+        return;
         if (!window.FB || !window.FB.db || !window.FB.runTransaction || !window.FB.auth || !window.FB.auth.currentUser) {
             showNotification("Firebase no esta listo para confirmar el retiro.", "error");
             return;
@@ -5016,7 +5102,7 @@
         });
     };
 
-    const showBanner = (title, msg, icon = '&#x1F514;', onClickCallback = null) => {
+    const showBanner = (title, msg, icon = '🔔', onClickCallback = null) => {
         let banner = $('global-notif-banner');
         if (!banner) {
             banner = document.createElement('div');
@@ -5025,14 +5111,26 @@
             document.body.appendChild(banner);
         }
 
-        banner.innerHTML = `
-            <div class="notif-banner-icon">${icon}</div>
-            <div class="notif-banner-content">
-                <span class="notif-banner-title">${title}</span>
-                <span class="notif-banner-desc">${msg}</span>
-            </div>
-            <button class="notif-banner-close" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:16px;">&times;</button>
-        `;
+        banner.replaceChildren();
+        const iconNode = document.createElement('div');
+        iconNode.className = 'notif-banner-icon';
+        iconNode.textContent = String(icon || '🔔').slice(0, 8);
+        const content = document.createElement('div');
+        content.className = 'notif-banner-content';
+        const titleNode = document.createElement('span');
+        titleNode.className = 'notif-banner-title';
+        titleNode.textContent = String(title || 'ENARMax').slice(0, 120);
+        const messageNode = document.createElement('span');
+        messageNode.className = 'notif-banner-desc';
+        messageNode.textContent = String(msg || '').slice(0, 1200);
+        content.append(titleNode, messageNode);
+        const closeButton = document.createElement('button');
+        closeButton.className = 'notif-banner-close';
+        closeButton.type = 'button';
+        closeButton.setAttribute('aria-label', 'Cerrar notificación');
+        closeButton.textContent = '×';
+        closeButton.style.cssText = 'background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:16px;';
+        banner.append(iconNode, content, closeButton);
 
         banner.style.cursor = onClickCallback ? 'pointer' : 'default';
         banner.onclick = (e) => {
@@ -5043,7 +5141,7 @@
             }
         };
 
-        banner.querySelector('.notif-banner-close').onclick = (e) => {
+        closeButton.onclick = (e) => {
             e.stopPropagation();
             banner.classList.remove('active');
         };
@@ -5845,7 +5943,7 @@
         localStorage.setItem("enarm_user", State.userName);
         localStorage.setItem("enarm_specialty", State.userSpecialty || "");
         localStorage.setItem("enarm_university", State.userUniversity || "");
-        localStorage.setItem("enarm_phone", State.userPhone || "");
+        localStorage.removeItem("enarm_phone");
         localStorage.setItem("enarm_target_year", State.userTargetYear || "");
         localStorage.setItem(PROFILE_AVATAR_STORAGE_KEY, normalizeProfileAvatar(State.userAvatar));
         localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0");
@@ -5864,26 +5962,28 @@
         const reportsToSave = State.reportedQuestionsLocal || State.reportedQuestions || [];
         localStorage.setItem("enarm_reports", JSON.stringify(reportsToSave));
 
-        // Sync to cloud -> Leaderboard
+        // Sincroniza por separado el perfil público y el progreso privado.
         if (window.FB && window.FB.auth.currentUser) {
+            const uid = window.FB.auth.currentUser.uid;
             const totalq = State.globalStats?.respondidas || 0;
             const avg = totalq > 0 ? parseFloat(((State.globalStats.aciertos / totalq) * 100).toFixed(1)) : 0;
 
-            const pData = {
-                username: State.userName,
+            const publicProfile = {
+                uid,
+                username: normalizePublicUsername(State.userName),
                 specialty: State.userSpecialty || "",
-                university: State.userUniversity || "",
-                phone: State.userPhone || "",
-                targetYear: State.userTargetYear || "",
                 avatarId: normalizeProfileAvatar(State.userAvatar),
-                isScorePublic: State.isScorePublic !== false,
-                isPremium: typeof isPremiumActive === "function" ? isPremiumActive() : false,
-                referralCode: State.referralCode || "",
-                coins: Number(State.coins) || 0,
-                score: avg,
-                answered: totalq,
+                scoreVisible: State.isScorePublic !== false,
+                // El perfil público solo refleja un entitlement individual. Una promoción
+                // global o el modo preview del administrador no se convierten en Premium.
+                isPremium: hasIndividualPremiumEntitlement(),
+                score: State.isScorePublic !== false ? avg : null,
                 flame: State.history.length || 0,
-                lastUpdate: new Date(),
+                updatedAt: window.FB.serverTimestamp ? window.FB.serverTimestamp() : new Date()
+            };
+            const privateProgress = {
+                uid,
+                schemaVersion: 1,
                 theme: State.theme || "ocean",
                 fontPreset: normalizeFontPreset(State.fontPreset),
                 appearanceStr: JSON.stringify(normalizeAppearance(State.appearance)),
@@ -5899,17 +5999,23 @@
                 pomodoroFocusLabel: String(State.pomodoroFocusLabel || ""),
                 globalStatsStr: JSON.stringify(State.globalStats),
                 historyStr: JSON.stringify(State.history),
-                reportsStr: JSON.stringify(reportsToSave)
+                reportsStr: JSON.stringify(reportsToSave),
+                updatedAt: window.FB.serverTimestamp ? window.FB.serverTimestamp() : new Date()
             };
             if (!State.accountCreatedAt) State.accountCreatedAt = new Date();
-            pData.createdAt = State.accountCreatedAt;
-            void syncUserDirectory(window.FB.auth.currentUser);
+            privateProgress.createdAt = State.accountCreatedAt;
+            void syncUserDirectory(window.FB.auth.currentUser, { forceProfile: true });
 
             window.FB.setDoc(
-                window.FB.doc(window.FB.db, "leaderboard", window.FB.auth.currentUser.uid),
-                pData,
+                window.FB.doc(window.FB.db, PUBLIC_PROFILES_COLLECTION, uid),
+                publicProfile,
                 { merge: true }
-            ).catch(err => console.error("Error cloud sync:", err));
+            ).catch(err => console.error("Error sincronizando perfil público:", err));
+            window.FB.setDoc(
+                window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid),
+                privateProgress,
+                { merge: true }
+            ).catch(err => console.error("Error sincronizando progreso privado:", err));
         }
     };
 
@@ -6017,8 +6123,8 @@
         if (sp) State.userSpecialty = sp;
         const uni = localStorage.getItem("enarm_university");
         if (uni) State.userUniversity = uni;
-        const phone = localStorage.getItem("enarm_phone");
-        if (phone) State.userPhone = phone;
+        // El teléfono es dato privado: no se restaura desde almacenamiento local.
+        localStorage.removeItem("enarm_phone");
         const targetYear = localStorage.getItem("enarm_target_year");
         if (targetYear) State.userTargetYear = targetYear;
         State.userAvatar = normalizeProfileAvatar(localStorage.getItem(PROFILE_AVATAR_STORAGE_KEY));
@@ -6094,7 +6200,11 @@
         $$(".user-name").forEach(el => el.textContent = State.userName);
         $$(".header-title").forEach(el => {
             if (el.textContent.includes("Hola,")) {
-                el.innerHTML = `Hola, <span class="user-name" style="color:var(--accent-green);">${State.userName}</span>`;
+                const nameEl = document.createElement("span");
+                nameEl.className = "user-name";
+                nameEl.style.color = "var(--accent-green)";
+                nameEl.textContent = normalizePublicUsername(State.userName);
+                el.replaceChildren(document.createTextNode("Hola, "), nameEl);
             } else {
                 el.textContent = `Hola, ${State.userName}`;
             }
@@ -6155,6 +6265,11 @@
     const systemThemeQuery = window.matchMedia?.("(prefers-color-scheme: light)");
     systemThemeQuery?.addEventListener?.("change", () => {
         if (normalizeThemeSelection(State.theme) === "system") applyTheme("system");
+    });
+    // Restaura el color también al volver desde otra app o desde el historial.
+    window.addEventListener("pageshow", syncThemeColorMeta);
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") syncThemeColorMeta();
     });
 
     // ---------------------------------------------------------------------------
@@ -8813,7 +8928,9 @@
         if (!window.FB || !window.FB.db || !window.FB.auth || !window.FB.auth.currentUser) return;
         if (window._reportsListener) return;
         const reportsRef = window.FB.collection(window.FB.db, "reports");
-        const q = window.FB.query(reportsRef, window.FB.orderBy("timestamp", "desc"), window.FB.limit(200));
+        const q = isAdminUser()
+            ? window.FB.query(reportsRef, window.FB.orderBy("timestamp", "desc"), window.FB.limit(200))
+            : window.FB.query(reportsRef, window.FB.where("userId", "==", window.FB.auth.currentUser.uid), window.FB.limit(200));
         window._reportsListener = window.FB.onSnapshot(q, (snap) => {
             const cloudReports = [];
             let newestTs = 0;
@@ -8896,21 +9013,21 @@
                 div.innerHTML = `
                     <div style="display:flex; justify-content:space-between; width: 100%; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
                         <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
-                            <span class="badge red-bg" style="font-size: 10px;">${specLabel.toUpperCase()}</span>
-                            <span class="badge" style="font-size: 10px; background: rgba(255,255,255,0.06); color: var(--text-muted); border: 1px solid var(--border);">${temaLabel}</span>
-                            <span style="font-size: 11px; color: var(--text-muted);">Usuario: ${userLabel}</span>
+                            <span class="badge red-bg" style="font-size: 10px;">${escapeHtml(specLabel.toUpperCase())}</span>
+                            <span class="badge" style="font-size: 10px; background: rgba(255,255,255,0.06); color: var(--text-muted); border: 1px solid var(--border);">${escapeHtml(temaLabel)}</span>
+                            <span style="font-size: 11px; color: var(--text-muted);">Usuario: ${escapeHtml(userLabel)}</span>
                         </div>
                         <span style="font-size: 11px; color: var(--text-muted);">${dateLabel}</span>
                     </div>
                     <div style="width: 100%;">
                         <h3 style="font-size: 14px; margin-bottom: 6px; color: var(--text-primary);">Pregunta:</h3>
-                        <p style="font-size: 13px; line-height: 1.4; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; margin-bottom: 10px;">${r.questionText || ""}</p>
+                        <p style="font-size: 13px; line-height: 1.4; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; margin-bottom: 10px;">${escapeHtml(r.questionText || "")}</p>
                         ${r.caseText ? `<h3 style="font-size: 14px; margin-bottom: 6px; color: var(--text-primary);">Caso:</h3>
-                        <p style="font-size: 13px; line-height: 1.4; color: var(--text-secondary); border-left: 2px solid var(--border); padding-left: 10px; margin-bottom: 10px;">${r.caseText}</p>` : ""}
+                        <p style="font-size: 13px; line-height: 1.4; color: var(--text-secondary); border-left: 2px solid var(--border); padding-left: 10px; margin-bottom: 10px;">${escapeHtml(r.caseText)}</p>` : ""}
                         <h3 style="font-size: 14px; margin-bottom: 6px; color: var(--accent-red);">Detalle del reporte:</h3>
-                        <p style="font-size: 13px; line-height: 1.4; color: var(--text-secondary); border-left: 2px solid var(--accent-red); padding-left: 10px;">${r.reason || ""}</p>
+                        <p style="font-size: 13px; line-height: 1.4; color: var(--text-secondary); border-left: 2px solid var(--accent-red); padding-left: 10px;">${escapeHtml(r.reason || "")}</p>
                     </div>
-                    ${canReclassifyUser() ? `<button class="btn-ghost btn-del-report" data-id="${r.id}" data-cloud="${r.source === 'cloud' ? '1' : '0'}" style="align-self: flex-end; font-size: 11px; padding: 4px 8px; color: var(--text-muted);">Eliminar Reporte</button>` : ""}
+                    ${canReclassifyUser() ? `<button class="btn-ghost btn-del-report" data-id="${escapeHtml(r.id)}" data-cloud="${r.source === 'cloud' ? '1' : '0'}" style="align-self: flex-end; font-size: 11px; padding: 4px 8px; color: var(--text-muted);">Eliminar Reporte</button>` : ""}
                 `;
                 cont.appendChild(div);
             });
@@ -13154,11 +13271,11 @@
         if (btnSaveProfile) {
             btnSaveProfile.addEventListener("click", () => {
                 const nameInput = $("profile-name").value.trim().substring(0, 20);
-                if (!nameInput) {
-                    showNotification("El nombre no puede estar vacío.", "error");
+                if (!isValidPublicUsername(nameInput)) {
+                    showNotification("Usa un alias de 3 a 20 caracteres con letras, números, espacios, punto, guion o guion bajo.", "error");
                     return;
                 }
-                State.userName = nameInput;
+                State.userName = normalizePublicUsername(nameInput);
                 State.userSpecialty = $("profile-specialty").value;
                 State.userUniversity = $("profile-university").value.trim().substring(0, 50);
                 State.userPhone = normalizePhoneInput($("profile-phone")?.value || "");
@@ -13173,7 +13290,12 @@
                 $$(".user-name").forEach(el => el.textContent = State.userName);
                 $$(".header-title").forEach(el => {
                     if (el.textContent.includes("Hola,")) {
-                        el.innerHTML = `Hola, <span class="user-name" style="color:var(--accent-green);">${State.userName}</span>`;
+                        el.replaceChildren(document.createTextNode("Hola, "));
+                        const nameNode = document.createElement("span");
+                        nameNode.className = "user-name";
+                        nameNode.style.color = "var(--accent-green)";
+                        nameNode.textContent = State.userName;
+                        el.appendChild(nameNode);
                     }
                 });
                 applyCurrentProfileAvatar();
@@ -13892,6 +14014,137 @@
             }
         });
 
+        const reauthenticateCurrentUser = async () => {
+            const user = window.FB?.auth?.currentUser;
+            if (!user) throw new Error("Debes iniciar sesión nuevamente.");
+            const providers = new Set((user.providerData || []).map(item => item?.providerId));
+            if (providers.has("google.com")) {
+                await window.FB.reauthenticateWithPopup(user, window.FB.googleProvider);
+                return user;
+            }
+            const password = window.prompt("Por seguridad, escribe tu contraseña para continuar:");
+            if (!password) throw new Error("Reautenticación cancelada.");
+            const credential = window.FB.EmailAuthProvider.credential(user.email || "", password);
+            await window.FB.reauthenticateWithCredential(user, credential);
+            return user;
+        };
+
+        const queryOwnDocuments = async (collectionName, field, operator, value) => {
+            const ref = window.FB.query(
+                window.FB.collection(window.FB.db, collectionName),
+                window.FB.where(field, operator, value)
+            );
+            const snapshot = await window.FB.getDocs(ref);
+            return snapshot.docs;
+        };
+
+        const exportCurrentAccount = async () => {
+            if (!requireVerifiedAccount("Verifica tu correo antes de exportar tus datos.")) return;
+            const button = $("btn-export-account");
+            if (button) button.disabled = true;
+            try {
+                const user = await reauthenticateCurrentUser();
+                const uid = user.uid;
+                const directCollections = [
+                    "public_profiles", "user_directory", "user_progress", "user_metrics",
+                    "entitlements", "premium_trials", "user_wallets", "referral_redemptions", "app_ratings"
+                ];
+                const directEntries = await Promise.all(directCollections.map(async (name) => {
+                    const snapshot = await window.FB.getDoc(window.FB.doc(window.FB.db, name, uid));
+                    return [name, snapshot.exists() ? snapshot.data() : null];
+                }));
+                const [reports, outgoingFriends, incomingFriends, challenges, withdrawals, payments] = await Promise.all([
+                    queryOwnDocuments("reports", "userId", "==", uid),
+                    queryOwnDocuments("friendRequests", "fromId", "==", uid),
+                    queryOwnDocuments("friendRequests", "toId", "==", uid),
+                    queryOwnDocuments("challenges", "participantIds", "array-contains", uid),
+                    queryOwnDocuments(WITHDRAWAL_REQUESTS_COLLECTION, "uid", "==", uid),
+                    queryOwnDocuments(MANUAL_PAYMENT_REQUESTS_COLLECTION, "uid", "==", uid)
+                ]);
+                const mapDocs = (docs) => docs.map(docSnap => ({ id: docSnap.id, ...docSnap.data() }));
+                const friendMap = new Map([...outgoingFriends, ...incomingFriends].map(docSnap => [docSnap.id, docSnap]));
+                const payload = {
+                    exportedAt: new Date().toISOString(),
+                    account: { uid, email: user.email || "", displayName: user.displayName || "", emailVerified: user.emailVerified === true },
+                    documents: Object.fromEntries(directEntries),
+                    reports: mapDocs(reports),
+                    friendRequests: mapDocs([...friendMap.values()]),
+                    challenges: mapDocs(challenges),
+                    withdrawals: mapDocs(withdrawals),
+                    manualPayments: mapDocs(payments)
+                };
+                const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const anchor = document.createElement("a");
+                anchor.href = url;
+                anchor.download = `enarmax-datos-${new Date().toISOString().slice(0, 10)}.json`;
+                document.body.appendChild(anchor);
+                anchor.click();
+                anchor.remove();
+                URL.revokeObjectURL(url);
+                showNotification("Exportación creada en este dispositivo.", "success");
+            } catch (error) {
+                console.error("No se pudo exportar la cuenta:", error);
+                showNotification(error?.message || "No se pudo exportar la cuenta.", "error");
+            } finally {
+                if (button) button.disabled = false;
+            }
+        };
+
+        const deleteCurrentAccount = async () => {
+            if (!requireVerifiedAccount("Verifica tu correo antes de eliminar tu cuenta.")) return;
+            const confirmation = window.prompt("Esta acción es irreversible. Escribe ELIMINAR para borrar tu cuenta:");
+            if (confirmation !== "ELIMINAR") return;
+            const button = $("btn-delete-account");
+            if (button) button.disabled = true;
+            try {
+                const user = await reauthenticateCurrentUser();
+                const uid = user.uid;
+                const [reports, outgoingFriends, incomingFriends, challenges] = await Promise.all([
+                    queryOwnDocuments("reports", "userId", "==", uid),
+                    queryOwnDocuments("friendRequests", "fromId", "==", uid),
+                    queryOwnDocuments("friendRequests", "toId", "==", uid),
+                    queryOwnDocuments("challenges", "participantIds", "array-contains", uid)
+                ]);
+                const deleteRefs = [
+                    "leaderboard", "public_profiles", "user_directory", "user_progress", "user_metrics", "app_ratings"
+                ].map(name => window.FB.doc(window.FB.db, name, uid));
+                const friendRefs = new Map([...outgoingFriends, ...incomingFriends].map(docSnap => [docSnap.id, docSnap.ref]));
+                reports.forEach(docSnap => deleteRefs.push(docSnap.ref));
+                friendRefs.forEach(ref => deleteRefs.push(ref));
+                if (lastRegisteredPushToken) {
+                    deleteRefs.push(window.FB.doc(window.FB.db, PUSH_TOKEN_COLLECTION, buildPushTokenDocId(uid, lastRegisteredPushToken)));
+                }
+                await Promise.all(deleteRefs.map(ref => window.FB.deleteDoc(ref)));
+                for (const challengeSnap of challenges) {
+                    const challenge = challengeSnap.data() || {};
+                    if (challenge.challengerId === uid) {
+                        await window.FB.deleteDoc(challengeSnap.ref);
+                        continue;
+                    }
+                    if (!challenge.participants?.[uid]) continue;
+                    await window.FB.updateDoc(challengeSnap.ref, {
+                        participants: {
+                            ...challenge.participants,
+                            [uid]: { name: "Cuenta eliminada", isPremium: false, score: null, status: "dismissed", timestamp: new Date() }
+                        },
+                        status: challenge.status || "active"
+                    });
+                }
+                // Entitlements, pagos, cartera y retiros se conservan como registros
+                // financieros/antifraude; ya no serán accesibles después de borrar Auth.
+                await window.FB.deleteUser(user);
+                clearAccountLocalData();
+            } catch (error) {
+                console.error("No se pudo eliminar la cuenta:", error);
+                showNotification(error?.message || "No se pudo eliminar la cuenta.", "error");
+                if (button) button.disabled = false;
+            }
+        };
+
+        $("btn-export-account")?.addEventListener("click", () => void exportCurrentAccount());
+        $("btn-delete-account")?.addEventListener("click", () => void deleteCurrentAccount());
+
         const btnLogout = $("btn-logout");
         if (btnLogout) {
             btnLogout.addEventListener("click", () => {
@@ -13956,7 +14209,7 @@
             };
 
             const getPublicScoreLabel = (entry, isOwner = false) => {
-                const scoreVisible = isOwner || entry?.isScorePublic !== false;
+                const scoreVisible = isOwner || entry?.scoreVisible === true;
                 return scoreVisible
                     ? `Promedio general: ${formatLeaderboardScore(entry?.score)}%`
                     : "Promedio general oculto";
@@ -14064,7 +14317,7 @@
                 if (flame) flame.textContent = `🔥 ${entry.flame || 0} días de racha`;
                 if (score) score.textContent = getPublicScoreLabel(entry, isMe).replace("Promedio general: ", "");
                 if (specialty) specialty.textContent = entry.specialty || "Aún sin decidir";
-                if (university) university.textContent = entry.university || "No especificada";
+                if (university) university.closest?.(".public-profile-stat")?.setAttribute("hidden", "");
                 if (!action) return;
 
                 if (isMe) {
@@ -14153,7 +14406,6 @@
 
                             let badgeSpec = "";
                             if (entry.specialty) badgeSpec += `<span style="font-size: 10px; opacity: 0.9; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 1px 5px; background: rgba(255,255,255,0.05); margin-right: 5px;">${escapeHtml(entry.specialty.substring(0, 20))}</span>`;
-                            if (entry.university) badgeSpec += `<span style="font-size: 10px; opacity: 0.6;">${escapeHtml(entry.university.substring(0, 20))}</span>`;
 
                             return `
                             <div class="lb-item" style="${bgStyle}">
@@ -14225,7 +14477,7 @@
             };
 
             const subscribeLeaderboard = () => {
-                const lbRef = window.FB.collection(window.FB.db, "leaderboard");
+                const lbRef = window.FB.collection(window.FB.db, PUBLIC_PROFILES_COLLECTION);
                 const fullQ = window.FB.query(lbRef, window.FB.orderBy("score", "desc"));
                 if (leaderboardUnsub) leaderboardUnsub();
                 leaderboardUnsub = window.FB.onSnapshot(fullQ, (snapshot) => {
@@ -14236,9 +14488,8 @@
                             id: docSnap.id,
                             username: String(data.username || "Aspirante"),
                             specialty: String(data.specialty || ""),
-                            university: String(data.university || ""),
                             avatarId: normalizeProfileAvatar(data.avatarId),
-                            isScorePublic: data.isScorePublic !== false,
+                            scoreVisible: data.scoreVisible === true && data.score !== null,
                             isPremium: Boolean(data.isPremium),
                             score: Number(data.score) || 0,
                             flame: Number(data.flame) || 0
@@ -14308,8 +14559,8 @@
                     searchResults.innerHTML = '<span style="color:var(--text-muted)">Buscando...</span>';
 
                     try {
-                        // Buscamos al usuario por su "username" exacto en la leaderboard
-                        const usersRef = window.FB.collection(window.FB.db, "leaderboard");
+                        // Búsqueda limitada al contrato de perfiles públicos.
+                        const usersRef = window.FB.collection(window.FB.db, PUBLIC_PROFILES_COLLECTION);
                         const qSearch = window.FB.query(usersRef, window.FB.where("username", "==", term), window.FB.limit(1));
 
                         const unsubscribe = window.FB.onSnapshot(qSearch, (snap) => {
@@ -14333,10 +14584,10 @@
                                             <div class="community-friend-avatar ${normalizeProfileAvatar(foundUser.avatarId) ? "has-profile-avatar" : ""}">${getProfileAvatarMarkup(foundUser.avatarId, getLeaderboardInitials(foundUser.username), "community-avatar-image")}</div>
                                             <div style="min-width:0;">
                                                 <div class="community-name-row" style="font-weight:bold">${renderCommunityName(foundUser.username, Boolean(foundUser.isPremium))}</div>
-                                                <div style="font-size:12px; color:var(--text-muted)">${foundUser.isScorePublic === false ? "Promedio general oculto" : `Promedio: ${formatLeaderboardScore(foundUser.score)}%`}</div>
+                                                <div style="font-size:12px; color:var(--text-muted)">${foundUser.scoreVisible !== true || foundUser.score === null ? "Promedio general oculto" : `Promedio: ${formatLeaderboardScore(foundUser.score)}%`}</div>
                                             </div>
                                         </div>
-                                        <button class="btn-primary btn-community-add" data-id="${foundId}" data-name="${foundUser.username}" style="padding: 8px 12px; font-size: 13px;">Añadir</button>
+                                        <button class="btn-primary btn-community-add" data-id="${escapeHtml(foundId)}" data-name="${escapeHtml(foundUser.username)}" style="padding: 8px 12px; font-size: 13px;">Añadir</button>
                                     </div>
                                 `;
                             }
@@ -14346,7 +14597,11 @@
                             btnSearchFriend.textContent = "Buscar";
                         });
                     } catch (err) {
-                        searchResults.innerHTML = '<span style="color:var(--accent-red)">Error: ' + err.message + '</span>';
+                        searchResults.replaceChildren();
+                        const errorNode = document.createElement("span");
+                        errorNode.style.color = "var(--accent-red)";
+                        errorNode.textContent = "No se pudo completar la búsqueda.";
+                        searchResults.appendChild(errorNode);
                         btnSearchFriend.textContent = "Buscar";
                     }
                 });
@@ -14490,8 +14745,8 @@
                                 </div>
                             </div>
                             <div style="display:flex; gap:8px;">
-                                <button class="btn-primary btn-accept-friend" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--accent-green); border-radius: 6px;">Aceptar</button>
-                                <button class="btn-primary btn-reject-friend" data-id="${data.id}" style="padding:6px 10px; font-size:11px; background:var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); border-radius: 6px;">&times;</button>
+                                <button class="btn-primary btn-accept-friend" data-id="${escapeHtml(data.id)}" style="padding:6px 10px; font-size:11px; background:var(--accent-green); border-radius: 6px;">Aceptar</button>
+                                <button class="btn-primary btn-reject-friend" data-id="${escapeHtml(data.id)}" style="padding:6px 10px; font-size:11px; background:var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); border-radius: 6px;">&times;</button>
                             </div>
                         </div>`;
                     });
@@ -14505,10 +14760,10 @@
                                 <div class="community-friend-avatar ${challenger?.avatarId ? "has-profile-avatar" : ""}">${getProfileAvatarMarkup(challenger?.avatarId, getLeaderboardInitials(data.challengerName), "community-avatar-image")}</div>
                                 <div style="min-width:0;">
                                     <div class="community-name-row" style="font-weight:bold; font-size:14px; color: var(--accent-orange);">Reto de ${renderCommunityName(data.challengerName, getCommunityPremiumState(data.challengerId, data.challengerPremium === true))}</div>
-                                    <div style="font-size:11px; color: var(--text-muted);">${data.specialty} &bull; ${data.numQuestions} preguntas</div>
+                                    <div style="font-size:11px; color: var(--text-muted);">${escapeHtml(data.specialty || "")} &bull; ${Number(data.numQuestions) || 0} preguntas</div>
                                 </div>
                             </div>
-                            <button class="btn-primary btn-play-chal" data-id="${data.id}" style="width:100%; padding:10px; font-size:13px; background:var(--accent-orange); border-radius: 10px; font-weight:bold;">&#x2694;&#xFE0F; ¡Aceptar y Jugar Ahora!</button>
+                            <button class="btn-primary btn-play-chal" data-id="${escapeHtml(data.id)}" style="width:100%; padding:10px; font-size:13px; background:var(--accent-orange); border-radius: 10px; font-weight:bold;">&#x2694;&#xFE0F; ¡Aceptar y Jugar Ahora!</button>
                         </div>`;
                     });
 
@@ -14909,7 +15164,7 @@
                     <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 14px; text-align: left; position: relative;">
                         <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
                             <div>
-                                <div style="font-size:11px; color:var(--accent-orange); font-weight:bold; margin-bottom:3px;">RETO · ${ch.specialty}</div>
+                                <div style="font-size:11px; color:var(--accent-orange); font-weight:bold; margin-bottom:3px;">RETO · ${escapeHtml(ch.specialty || "")}</div>
                                 <div style="font-size:14px; font-weight:600;">Vs. <strong class="community-name-row">${opponentMarkup}</strong></div>
                             </div>
                             <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
@@ -15285,27 +15540,6 @@
             return new Date(now + MONTH_CODE_DURATION_MS);
         };
 
-        let issuedCodesCatalogPromise = null;
-        const loadIssuedCodesCatalog = async () => {
-            if (issuedCodesCatalogPromise) return issuedCodesCatalogPromise;
-            issuedCodesCatalogPromise = (async () => {
-                try {
-                    const res = await fetch("./redeem_codes.txt", { cache: "no-store" });
-                    if (!res.ok) return new Set();
-                    const txt = await res.text();
-                    return new Set(
-                        txt.split(/\r?\n/)
-                            .map(l => (l || "").trim().toUpperCase())
-                            .filter(Boolean)
-                    );
-                } catch (e) {
-                    console.warn("No se pudo cargar redeem_codes.txt:", e);
-                    return new Set();
-                }
-            })();
-            return issuedCodesCatalogPromise;
-        };
-
         const bindEntitlementListener = (uid) => {
             if (!window.FB || !window.FB.db || !window.FB.onSnapshot) {
                 State.entitlementLoaded = true;
@@ -15464,6 +15698,7 @@
         };
 
         const redeemCode = async (opts = {}) => {
+            if (!requireVerifiedAccount("Verifica tu correo antes de canjear un código.")) return;
             const inputId = opts.inputId || "redeem-code-input";
             const closeModalOnSuccess = opts.closeModalOnSuccess !== false;
             const input = $(inputId);
@@ -15484,52 +15719,47 @@
             }
             const uid = window.FB.auth.currentUser.uid;
             const code = codeRaw.replace(/\s+/g, "");
+            if (!/^ENARM-(?:D3|M1|FX)-[A-Z2-9]{26}$/.test(code)) {
+                return showNotification("Código inválido o de un lote anterior.", "error");
+            }
             const referralInputId = opts.referralInputId || (inputId === "redeem-code-input" ? "redeem-referral-code-input" : "settings-referral-code-input");
             const referralInput = $(referralInputId);
             const referralCode = referralInput ? normalizeReferralCode(referralInput.value) : "";
-            const catalog = await loadIssuedCodesCatalog();
-            const inCatalog = catalog.has(code);
             try {
                 let redeemed = null;
                 let referralApplied = false;
                 await window.FB.runTransaction(window.FB.db, async (tx) => {
                     const codeRef = window.FB.doc(window.FB.db, "redeem_codes", code);
                     const codeSnap = await tx.get(codeRef);
-                    let data = codeSnap.exists() ? (codeSnap.data() || {}) : null;
-                    if (!data) {
-                        // El código existe en el catálogo local pero no está precargado
-                        // en Firestore. Con reglas seguras, el usuario no-admin no puede
-                        // crearlo durante el canje.
-                        if (inCatalog) throw new Error("not_loaded");
-                        throw new Error("invalid");
-                    }
+                    const data = codeSnap.exists() ? (codeSnap.data() || {}) : null;
+                    if (!data) throw new Error("invalid");
                     if (data.redeemedBy) throw new Error("used");
+                    if (data.disabled === true) throw new Error("invalid");
                     const type = data.type || getCodeTypeFromText(code) || "month";
                     const now = new Date();
                     const expiresAt = computeExpiryForType(type);
                     referralApplied = await applyReferralRewardInTransaction(tx, uid, code, referralCode, now);
-                    tx.set(codeRef, {
-                        code,
-                        type,
+                    tx.update(codeRef, {
                         redeemedBy: uid,
-                        redeemedAt: now,
-                        expiresAt
+                        redeemedAt: window.FB.serverTimestamp ? window.FB.serverTimestamp() : now
+                    });
+                    const entRef = window.FB.doc(window.FB.db, "entitlements", uid);
+                    tx.set(entRef, {
+                        status: "active",
+                        expiresAt,
+                        source: "code",
+                        planId: `premium_code_${type}`,
+                        activatedAt: window.FB.serverTimestamp ? window.FB.serverTimestamp() : now,
+                        updatedAt: window.FB.serverTimestamp ? window.FB.serverTimestamp() : now,
+                        code
                     }, { merge: true });
                     redeemed = { expiresAt, now };
                 });
                 if (redeemed) {
-                    const entRef = window.FB.doc(window.FB.db, "entitlements", uid);
-                    await window.FB.setDoc(entRef, {
-                        status: "active",
-                        expiresAt: redeemed.expiresAt,
-                        source: "code",
-                        activatedAt: redeemed.now,
-                        updatedAt: redeemed.now,
-                        code
-                    }, { merge: true });
                     State.entitlement = {
                         status: "active",
                         source: "code",
+                        planId: `premium_code_${getCodeTypeFromText(code) || "month"}`,
                         activatedAt: redeemed.now,
                         expiresAt: redeemed.expiresAt,
                         updatedAt: redeemed.now
@@ -15555,8 +15785,6 @@
                     showNotification("No puedes usar tu propio codigo de referido.", "warning");
                 } else if (msg.includes("referral_used")) {
                     showNotification("Esta cuenta ya uso un codigo de referido.", "warning");
-                } else if (msg.includes("not_loaded")) {
-                    showNotification("Codigo reconocido, pero aun no esta cargado en Firebase. Pide al admin subir codigos.", "warning");
                 } else if (msg.includes("used")) {
                     showNotification("Este codigo ya fue usado.", "warning");
                 } else if (msg.includes("invalid")) {
@@ -15571,59 +15799,7 @@
         };
 
         const uploadAdminCodes = async () => {
-            const input = $("admin-codes-input");
-            if (!input) return;
-            const raw = input.value || "";
-            const codes = raw.split(/\r?\n/).map(l => l.trim().toUpperCase()).filter(Boolean);
-            if (codes.length === 0) return showNotification("Pega al menos un c\u00f3digo.", "warning");
-            if (!isAdminUser()) return showNotification("Solo admin puede cargar c\u00f3digos.", "error");
-            if (!window.FB || !window.FB.db) return showNotification("Firebase no est\u00e1 listo.", "error");
-
-            const now = new Date();
-            const writes = [];
-            const invalid = [];
-            let skipped = 0;
-            codes.forEach(code => {
-                const type = getCodeTypeFromText(code);
-                if (!type) {
-                    invalid.push(code);
-                    return;
-                }
-                writes.push((async () => {
-                    const ref = window.FB.doc(window.FB.db, "redeem_codes", code);
-                    const snap = await window.FB.getDoc(ref);
-                    if (snap.exists()) {
-                        skipped += 1;
-                        return;
-                    }
-                    await window.FB.setDoc(ref, {
-                        code,
-                        type,
-                        createdAt: now,
-                        createdBy: State.currentUid || "",
-                        redeemedBy: "",
-                        redeemedAt: null,
-                        expiresAt: null
-                    }, { merge: false });
-                })());
-            });
-            if (invalid.length > 0) {
-                showNotification(`Códigos inválidos: ${invalid.length}`, "warning");
-            }
-            try {
-                await Promise.all(writes);
-                const created = Math.max(0, writes.length - skipped);
-                showNotification(`Códigos cargados: ${created}. Ya existentes: ${skipped}.`, "success");
-                input.value = "";
-            } catch (e) {
-                console.error(e);
-                const msg = (e && e.message) || "";
-                if (msg.includes("permission-denied") || msg.includes("Missing or insufficient permissions")) {
-                    showNotification("No tienes permiso en Firebase para cargar códigos. Revisa reglas con tu UID admin.", "error");
-                } else {
-                    showNotification("Error al cargar c\u00f3digos.", "error");
-                }
-            }
+            showNotification("Por seguridad, los códigos solo se cargan con la herramienta administrativa local.", "info");
         };
 
         const setupFirebaseAuthAndUI = () => {
@@ -15756,6 +15932,7 @@
                         showNotification("Crea tu cuenta para activar 3 días de Premium sin tarjeta.", "info");
                         return;
                     }
+                    if (!requireVerifiedAccount("Verifica tu correo antes de activar la prueba Premium.")) return;
                     if (!window.FB?.db || typeof window.FB?.doc !== "function" || typeof window.FB?.runTransaction !== "function" || typeof window.FB?.serverTimestamp !== "function") {
                         showNotification("No pudimos preparar la prueba Premium. Intenta de nuevo.", "warning");
                         return;
@@ -16155,8 +16332,7 @@
 
                 const syncAuthenticatedUI = (displayName, options = {}) => {
                     const showWelcome = Boolean(options.showWelcome);
-                    const fallbackName = (displayName || "").trim() || State.userName || "Aspirante";
-                    const cleanName = fallbackName.trim().substring(0, 20);
+                    const cleanName = normalizePublicUsername(displayName || State.userName || "Aspirante");
 
                     State.userName = cleanName;
                     localStorage.setItem("enarm_user", cleanName);
@@ -16164,7 +16340,11 @@
                     $$(".user-name").forEach(el => el.textContent = cleanName);
                     $$(".header-title").forEach(el => {
                         if (el.textContent.includes("Hola,")) {
-                            el.innerHTML = `Hola, <span class="user-name" style="color:var(--accent-green);">${cleanName}</span>`;
+                            const nameEl = document.createElement("span");
+                            nameEl.className = "user-name";
+                            nameEl.style.color = "var(--accent-green)";
+                            nameEl.textContent = cleanName;
+                            el.replaceChildren(document.createTextNode("Hola, "), nameEl);
                         }
                     });
 
@@ -16263,13 +16443,18 @@
                             const fallbackDisplayName = user.displayName
                                 || (user.email ? user.email.split("@")[0] : "")
                                 || State.userName;
-                            syncAuthenticatedUI(fallbackDisplayName);
                             State.currentUid = user.uid;
+                            await refreshCurrentUserClaims(user);
+                            syncAuthenticatedUI(fallbackDisplayName);
                             // Esta es la única lectura imprescindible antes de mostrar la app.
                             // Se inicia antes de los listeners secundarios para evitar competir por red en Android.
-                            const userRef = window.FB.doc(window.FB.db, "leaderboard", user.uid);
-                            const coreUserDataPromise = window.FB.getDoc(userRef);
+                            const coreUserDataPromise = getPrivateUserSnapshot(user.uid);
                             const startSecondaryAuthenticatedWork = () => {
+                            if (!user.emailVerified) {
+                                syncReclassAccessUI();
+                                showNotification("Verifica tu correo para sincronizar datos, usar Comunidad, Premium, pagos o referidos.", "warning");
+                                return;
+                            }
                             void syncUserDirectory(user, { forceProfile: true, forcePresence: true });
                             startUserPresenceHeartbeat(user);
                             startUserMetricsSync(user.uid);
@@ -16328,10 +16513,10 @@
                                     }
                                     if (data.specialty !== undefined) { State.userSpecialty = data.specialty; localStorage.setItem("enarm_specialty", State.userSpecialty); if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty; }
                                     if (data.university !== undefined) { State.userUniversity = data.university; localStorage.setItem("enarm_university", State.userUniversity); if ($("profile-university")) $("profile-university").value = State.userUniversity; }
-                                    if (data.phone !== undefined) { State.userPhone = normalizePhoneInput(data.phone); localStorage.setItem("enarm_phone", State.userPhone); if ($("profile-phone")) $("profile-phone").value = State.userPhone; }
+                                    if (data.phone !== undefined) { State.userPhone = normalizePhoneInput(data.phone); if ($("profile-phone")) $("profile-phone").value = State.userPhone; }
                                     if (data.targetYear !== undefined) { State.userTargetYear = String(data.targetYear || ""); localStorage.setItem("enarm_target_year", State.userTargetYear); if ($("profile-target-year")) $("profile-target-year").value = State.userTargetYear; }
                                     if (data.avatarId !== undefined) { State.userAvatar = normalizeProfileAvatar(data.avatarId); localStorage.setItem(PROFILE_AVATAR_STORAGE_KEY, State.userAvatar); applyCurrentProfileAvatar(); }
-                                    if (data.isScorePublic !== undefined) { State.isScorePublic = data.isScorePublic !== false; localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0"); if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic; }
+                                    if (data.scoreVisible !== undefined || data.isScorePublic !== undefined) { State.isScorePublic = data.scoreVisible === true || (data.scoreVisible === undefined && data.isScorePublic !== false); localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0"); if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic; }
                                     if (typeof data.referralCode === "string" && data.referralCode.trim() && !State.referralCode) { State.referralCode = normalizeReferralCode(data.referralCode); updateReferralUI(); }
 
                                     if (data.globalStatsStr && data.globalStatsStr !== "{}") {
@@ -16419,6 +16604,7 @@
                             resetUserDirectorySyncState();
                             resetUserMetricsSync();
                             State.currentUid = "";
+                            State.isAdminClaim = false;
                             syncOptionalAnalyticsIdentity();
                             State.entitlement = null;
                             State.entitlementLoaded = true;
@@ -16670,6 +16856,16 @@
                         avatarId: normalizeProfileAvatar(registrationAvatarId)
                     } : null;
 
+                    if (isRegisterMode && !isValidPublicUsername(userName)) {
+                        showNotification("El alias debe tener entre 3 y 20 caracteres y solo letras, números, espacios, punto, guion o guion bajo.", "warning");
+                        return;
+                    }
+                    if (!requireVerifiedAccount("Verifica tu correo antes de generar datos de pago.")) return;
+                    if (isRegisterMode && !googleProfileCompletion && password.length < 12) {
+                        showNotification("La contraseña debe tener al menos 12 caracteres.", "warning");
+                        return;
+                    }
+
                     if (googleProfileCompletion && window.FB?.auth?.currentUser) {
                         const submitBtn = document.querySelector(".auth-submit");
                         if (submitBtn) submitBtn.textContent = "Guardando perfil...";
@@ -16705,6 +16901,10 @@
                             window.FB.createUserWithEmailAndPassword(window.FB.auth, email, password)
                                 .then(async (userCred) => {
                                     await window.FB.updateProfile(userCred.user, { displayName: userName });
+                                    if (typeof window.FB.sendEmailVerification === "function") {
+                                        window.FB.auth.languageCode = "es";
+                                        await window.FB.sendEmailVerification(userCred.user);
+                                    }
                                     State.userSpecialty = registrationProfile.specialty;
                                     State.userUniversity = registrationProfile.university;
                                     State.userPhone = registrationProfile.phone;
@@ -16713,6 +16913,7 @@
                                     bindReferralWalletListener(userCred.user.uid);
                                     trackEvent("sign_up", { method: "password" });
                                     handleSuccessLogin(userName);
+                                    showNotification("Te enviamos un correo de verificación. Confírmalo para activar las funciones en la nube.", "info");
                                 })
                                 .catch(err => {
                                     showNotification("Error de registro: " + err.message, "error");
@@ -16738,9 +16939,12 @@
                     const cleanName = syncAuthenticatedUI(displayName, { showWelcome: true });
 
                     if (window.FB && window.FB.auth.currentUser) {
+                        if (!window.FB.auth.currentUser.emailVerified) {
+                            showNotification("Tu cuenta está en modo local hasta que verifiques el correo.", "warning");
+                            return;
+                        }
                         try {
-                            const userRef = window.FB.doc(window.FB.db, "leaderboard", window.FB.auth.currentUser.uid);
-                            const snap = await window.FB.getDoc(userRef);
+                            const snap = await getPrivateUserSnapshot(window.FB.auth.currentUser.uid);
                             if (snap.exists()) {
                                 const data = snap.data();
                                 if (data.theme) {
@@ -16774,7 +16978,6 @@
                                 }
                                 if (data.phone !== undefined) {
                                     State.userPhone = normalizePhoneInput(data.phone);
-                                    localStorage.setItem("enarm_phone", State.userPhone);
                                     if ($("profile-phone")) $("profile-phone").value = State.userPhone;
                                 }
                                 if (data.targetYear !== undefined) {
@@ -16791,8 +16994,8 @@
                                     State.referralCode = normalizeReferralCode(data.referralCode);
                                     updateReferralUI();
                                 }
-                                if (data.isScorePublic !== undefined) {
-                                    State.isScorePublic = data.isScorePublic !== false;
+                                if (data.scoreVisible !== undefined || data.isScorePublic !== undefined) {
+                                    State.isScorePublic = data.scoreVisible === true || (data.scoreVisible === undefined && data.isScorePublic !== false);
                                     localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0");
                                     if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic;
                                 }

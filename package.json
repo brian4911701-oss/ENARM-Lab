@@ -6,14 +6,14 @@
     "firebase-admin": "^13.0.0",
     "pdf-parse": "^2.4.5",
     "pdf2json": "^4.0.2",
-    "puppeteer": "^24.37.5"
+    "puppeteer": "^25.10.0"
   },
   "name": "enarm-lab",
   "version": "1.0.0",
   "description": "Este proyecto es un simulador web del **Examen Nacional de Aspirantes a Residencias Médicas (ENARM)** basado en las Guías de Práctica Clínica (GPC) más recientes de México.",
   "main": "app.js",
   "scripts": {
-    "test": "node scripts/test_analytics_core.js && node scripts/test_pwa_theme_contract.js",
+    "test": "node scripts/test_analytics_core.js && node scripts/test_pwa_theme_contract.js && node scripts/test_security_contract.js",
     "test:pwa-theme": "node scripts/test_pwa_theme_contract.js",
     "build:hosting": "node scripts/build_hosting.js",
     "deploy:web": "firebase deploy --only hosting",
@@ -21,8 +21,16 @@
     "analytics:backfill": "node scripts/backfill_user_metrics.js",
     "analytics:test": "node scripts/test_analytics_core.js",
     "rules:deploy-rest": "node scripts/deploy_firestore_rules_rest.js",
+    "rules:compile": "node scripts/compile_firestore_rules_rest.js",
     "hosting:deploy-rest": "node scripts/deploy_hosting_rest.js",
     "codes:generate": "node scripts/generate_redeem_codes.js",
+    "codes:import": "node scripts/import_redeem_codes.js",
+    "codes:rotate": "node scripts/rotate_redeem_codes.js",
+    "security:test": "node scripts/test_security_contract.js",
+    "security:test-rules": "firebase emulators:exec --only firestore \"node --test tests/firestore.rules.test.js\"",
+    "security:migrate": "node scripts/migrate_security_schema.js --dry-run",
+    "security:admin-claim": "node scripts/set_admin_claim.js",
+    "security:withdrawal": "node scripts/process_withdrawal.js",
     "user:restore": "node scripts/restore_user_snapshot.js",
     "sanitize:cases": "node scripts/sanitize_case_bank.js",
     "verify:cases": "node verify_topics.js",
@@ -38,5 +46,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^3.0.3",
+    "firebase": "^10.9.0",
+    "firebase-tools": "^15.29.0"
+  },
+  "overrides": {
+    "@protobufjs/fetch": "1.1.0",
+    "protobufjs": "7.6.5"
+  }
 }

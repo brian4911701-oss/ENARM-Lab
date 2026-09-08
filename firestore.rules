@@ -2,7 +2,7 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     function isAdmin() {
-      return request.auth != null && request.auth.uid in ["sZcIUjjhD0fze7FtirwsjsIDzLB2"];
+      return request.auth != null && request.auth.token.admin == true;
     }
 
     function isSignedIn() {
@@ -11,6 +11,49 @@ service cloud.firestore {
 
     function isSelf(uid) {
       return request.auth != null && request.auth.uid == uid;
+    }
+
+    function isVerified() {
+      return request.auth != null && request.auth.token.email_verified == true;
+    }
+
+    function isVerifiedSelf(uid) {
+      return isVerified() && request.auth.uid == uid;
+    }
+
+    function validPublicUsername(value) {
+      return value is string
+        && value.size() >= 3
+        && value.size() <= 20
+        && value.matches('^[A-Za-z0-9ÁÉÍÓÚÜÑáéíóúüñ _.-]+$');
+    }
+
+    function optionalString(data, field, maxSize) {
+      return !data.keys().hasAll([field])
+        || (data[field] is string && data[field].size() <= maxSize);
+    }
+
+    function validPublicProfile(data, uid) {
+      return data.keys().hasAll(["uid", "username", "specialty", "avatarId", "scoreVisible", "score", "isPremium", "flame", "updatedAt"])
+        && data.keys().hasOnly(["uid", "username", "specialty", "avatarId", "scoreVisible", "score", "isPremium", "flame", "updatedAt"])
+        && data.uid == uid
+        && validPublicUsername(data.username)
+        && data.specialty is string && data.specialty.size() <= 80
+        && data.avatarId is string && data.avatarId.size() <= 60
+        && data.scoreVisible is bool
+        && ((data.scoreVisible == false && data.score == null)
+          || (data.scoreVisible == true && data.score is number && data.score >= 0 && data.score <= 100))
+        && data.isPremium is bool
+        && data.flame is int && data.flame >= 0 && data.flame <= 100000
+        && data.updatedAt == request.time;
+    }
+
+    function hasActiveEntitlement(uid) {
+      let path = /databases/$(database)/documents/entitlements/$(uid);
+      let entitlement = getAfter(path);
+      return existsAfter(path)
+        && entitlement.data.status == "active"
+        && (!entitlement.data.keys().hasAll(["expiresAt"]) || entitlement.data.expiresAt > request.time);
     }
 
     function validReferralCode(code) {
@@ -75,21 +118,36 @@ service cloud.firestore {
     }
 
     function isReferralRewardUpdate(ownerUid) {
-      return request.auth != null
+      return isVerified()
         && request.auth.uid != ownerUid
         && hasReferralRedemptionAfter(ownerUid)
         && request.resource.data.uid == ownerUid
         && request.resource.data.lastReferralUid == request.auth.uid
-        && request.resource.data.coins == resource.data.coins + 50;
+        && request.resource.data.referralCode == resource.data.referralCode
+        && request.resource.data.coins == resource.data.coins + 50
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.lastReferralRewardAt == request.time
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          "coins", "updatedAt", "lastReferralRewardAt", "lastReferralUid", "lastReferralCode"
+        ]);
     }
 
     function isReferralRewardCreate(ownerUid) {
-      return request.auth != null
+      return isVerified()
         && request.auth.uid != ownerUid
         && hasReferralRedemptionAfter(ownerUid)
         && request.resource.data.uid == ownerUid
         && request.resource.data.lastReferralUid == request.auth.uid
-        && request.resource.data.coins == 50;
+        && request.resource.data.coins == 50
+        && request.resource.data.referralCode == getAfter(/databases/$(database)/documents/referral_redemptions/$(request.auth.uid)).data.referralCode
+        && request.resource.data.lastReferralCode == request.resource.data.referralCode
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.lastReferralRewardAt == request.time
+        && request.resource.data.keys().hasOnly([
+          "uid", "referralCode", "coins", "createdAt", "updatedAt",
+          "lastReferralRewardAt", "lastReferralUid", "lastReferralCode"
+        ]);
     }
 
     function isPremiumTrialEntitlement(uid) {
@@ -104,7 +162,20 @@ service cloud.firestore {
         && request.resource.data.planId == "premium_trial_3d"
         && request.resource.data.activatedAt == request.time
         && request.resource.data.updatedAt == request.time
-        && request.resource.data.expiresAt == trial.data.expiresAt;
+        && request.resource.data.expiresAt == trial.data.expiresAt
+        && request.resource.data.keys().hasOnly(["status", "source", "planId", "activatedAt", "expiresAt", "updatedAt"]);
+    }
+
+    function validChallengeResultUpdate(previous, next) {
+      return previous is map
+        && next is map
+        && next.keys().hasOnly(["name", "isPremium", "score", "status", "timestamp"])
+        && ((next.name == previous.name && next.isPremium == previous.isPremium)
+          || (next.name == "Cuenta eliminada" && next.isPremium == false && next.score == null && next.status == "dismissed"))
+        && next.status in ["pending", "completed", "dismissed"]
+        && ((next.status == "pending" && next.score == null && next.timestamp == null)
+          || (next.status == "completed" && next.score is number && next.score >= 0 && next.score <= 100 && next.timestamp is timestamp)
+          || (next.status == "dismissed" && next.score == null && next.timestamp is timestamp));
     }
 
     function canReplaceExpiredEntitlementWithTrial() {
@@ -114,37 +185,69 @@ service cloud.firestore {
     }
 
     match /redeem_codes/{code} {
-      allow read: if request.auth != null;
+      // Los códigos son secretos de alta entropía: nunca se pueden listar.
+      allow get: if isVerified() && code.matches('^ENARM-(D3|M1|FX)-[A-Z2-9]{26}$');
+      allow list: if false;
       allow create, delete: if isAdmin();
       allow update: if isAdmin()
-        || (request.auth != null
+        || (isVerified()
+        && code.matches('^ENARM-(D3|M1|FX)-[A-Z2-9]{26}$')
         && resource.data.redeemedBy == ""
-        && request.resource.data.redeemedBy == request.auth.uid);
+        && (!resource.data.keys().hasAll(["disabled"]) || resource.data.disabled == false)
+        && request.resource.data.redeemedBy == request.auth.uid
+        && request.resource.data.redeemedAt == request.time
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["redeemedBy", "redeemedAt"]));
     }
 
     match /entitlements/{uid} {
       allow read: if isSelf(uid) || isAdmin();
       allow create: if isAdmin()
-        || (request.auth != null
-        && request.auth.uid == uid
+        || (isVerifiedSelf(uid)
         && request.resource.data.source == "code"
-        && get(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.redeemedBy == request.auth.uid)
+        && request.resource.data.keys().hasOnly(["status", "source", "planId", "activatedAt", "expiresAt", "updatedAt", "code"])
+        && request.resource.data.status == "active"
+        && request.resource.data.activatedAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && getAfter(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.redeemedBy == uid
+        && request.resource.data.planId == "premium_code_" + getAfter(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.type
+        && request.resource.data.expiresAt > request.time
+        && ((getAfter(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.type == "three_day"
+              && request.resource.data.expiresAt <= request.time + duration.value(3, "d") + duration.value(10, "m"))
+          || (getAfter(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.type == "month"
+              && request.resource.data.expiresAt <= request.time + duration.value(30, "d") + duration.value(10, "m"))
+          || (getAfter(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.type == "fixed"
+              && request.resource.data.expiresAt <= timestamp.date(2026, 10, 2))))
         || isPremiumTrialEntitlement(uid);
       allow update: if isAdmin()
-        || (request.auth != null
-        && request.auth.uid == uid
+        || (isVerifiedSelf(uid)
         && request.resource.data.source == "code"
-        && get(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.redeemedBy == request.auth.uid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["status", "source", "planId", "activatedAt", "expiresAt", "updatedAt", "code"])
+        && request.resource.data.status == "active"
+        && request.resource.data.activatedAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && getAfter(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.redeemedBy == uid
+        && request.resource.data.planId == "premium_code_" + getAfter(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.type
+        && request.resource.data.expiresAt > request.time
+        && ((getAfter(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.type == "three_day"
+              && request.resource.data.expiresAt <= request.time + duration.value(3, "d") + duration.value(10, "m"))
+          || (getAfter(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.type == "month"
+              && request.resource.data.expiresAt <= request.time + duration.value(30, "d") + duration.value(10, "m"))
+          || (getAfter(/databases/$(database)/documents/redeem_codes/$(request.resource.data.code)).data.type == "fixed"
+              && request.resource.data.expiresAt <= timestamp.date(2026, 10, 2))))
         || (isPremiumTrialEntitlement(uid) && canReplaceExpiredEntitlementWithTrial());
       allow delete: if isAdmin();
     }
 
     match /payment_profiles/{uid} {
       allow read: if isSelf(uid) || isAdmin();
-      allow create: if isSelf(uid)
+      allow create: if isVerifiedSelf(uid)
         && request.resource.data.uid == uid
         && request.resource.data.email is string
+        && request.resource.data.email == request.auth.token.email
         && request.resource.data.transferReference is string
+        && request.resource.data.keys().hasOnly(["uid", "email", "transferReference", "createdAt", "updatedAt"])
+        && request.resource.data.createdAt is timestamp
+        && request.resource.data.updatedAt is timestamp
         && request.resource.data.transferReference.matches('^[0-9]{10}$')
         && existsAfter(/databases/$(database)/documents/transfer_references/$(request.resource.data.transferReference))
         && getAfter(/databases/$(database)/documents/transfer_references/$(request.resource.data.transferReference)).data.uid == uid;
@@ -152,12 +255,14 @@ service cloud.firestore {
     }
 
     match /transfer_references/{reference} {
-      allow get: if isSignedIn();
+      allow get: if isVerified();
       allow list: if isAdmin();
-      allow create: if isSignedIn()
+      allow create: if isVerified()
         && reference.matches('^[0-9]{10}$')
+        && request.resource.data.keys().hasOnly(["uid", "transferReference", "createdAt"])
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.transferReference == reference
+        && request.resource.data.createdAt is timestamp
         && existsAfter(/databases/$(database)/documents/payment_profiles/$(request.auth.uid))
         && getAfter(/databases/$(database)/documents/payment_profiles/$(request.auth.uid)).data.transferReference == reference;
       allow update, delete: if false;
@@ -165,10 +270,18 @@ service cloud.firestore {
 
     match /manual_payment_requests/{requestId} {
       allow read: if isAdmin()
-        || (isSignedIn() && resource.data.uid == request.auth.uid);
-      allow create: if isSignedIn()
+        || (isVerified() && resource.data.uid == request.auth.uid);
+      allow create: if isVerified()
+        && request.resource.data.keys().hasOnly([
+          "uid", "email", "planId", "amount", "seats", "squadMembers", "currency",
+          "transferReference", "referralCode", "termsAccepted", "status", "createdAt", "notifiedAt", "updatedAt"
+        ])
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.email is string
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.createdAt is timestamp
+        && request.resource.data.notifiedAt is timestamp
+        && request.resource.data.updatedAt is timestamp
         && request.resource.data.status == "pending"
         && request.resource.data.currency == "MXN"
         && request.resource.data.termsAccepted == true
@@ -184,7 +297,7 @@ service cloud.firestore {
             && request.resource.data.squadMembers[1] is string && request.resource.data.squadMembers[1].size() > 0 && request.resource.data.squadMembers[1].size() <= 60
             && request.resource.data.squadMembers[2] is string && request.resource.data.squadMembers[2].size() > 0 && request.resource.data.squadMembers[2].size() <= 60));
       allow update: if isAdmin()
-        || (isSignedIn()
+        || (isVerified()
           && resource.data.uid == request.auth.uid
           && resource.data.status in ["pending", "rejected"]
           && request.resource.data.status == "pending"
@@ -201,6 +314,13 @@ service cloud.firestore {
           && request.resource.data.termsAccepted == true
           && request.resource.data.referralCode is string
           && request.resource.data.squadMembers is list
+          && request.resource.data.keys().hasOnly([
+            "uid", "email", "planId", "amount", "seats", "squadMembers", "currency",
+            "transferReference", "referralCode", "termsAccepted", "status", "createdAt", "notifiedAt", "updatedAt"
+          ])
+          && request.resource.data.createdAt == resource.data.createdAt
+          && request.resource.data.notifiedAt is timestamp
+          && request.resource.data.updatedAt is timestamp
           && ((request.resource.data.planId in ["enarm_2026", "enarm_2027"] && request.resource.data.squadMembers.size() == 0)
             || (request.resource.data.planId == "squad_2027" && request.resource.data.squadMembers.size() == 3
               && request.resource.data.squadMembers[0] is string && request.resource.data.squadMembers[0].size() > 0 && request.resource.data.squadMembers[0].size() <= 60
@@ -210,43 +330,95 @@ service cloud.firestore {
     }
 
     match /leaderboard/{uid} {
-      allow read: if isSignedIn();
-      allow create, update: if isSelf(uid);
-      allow delete: if isAdmin();
+      // Colección legada en cuarentena durante la migración.
+      allow read: if isSelf(uid) || isAdmin();
+      allow create, update: if false;
+      allow delete: if isSelf(uid) || isAdmin();
+    }
+
+    match /public_profiles/{uid} {
+      allow read: if isVerified();
+      allow create: if isVerifiedSelf(uid)
+        && validPublicProfile(request.resource.data, uid)
+        && (request.resource.data.isPremium == false || hasActiveEntitlement(uid));
+      allow update: if isVerifiedSelf(uid)
+        && validPublicProfile(request.resource.data, uid)
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          "username", "specialty", "avatarId", "scoreVisible", "score", "isPremium", "flame", "updatedAt"
+        ])
+        && (request.resource.data.isPremium == false || hasActiveEntitlement(uid));
+      allow delete: if isSelf(uid) || isAdmin();
+    }
+
+    match /user_progress/{uid} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow create: if isVerifiedSelf(uid)
+        && request.resource.data.keys().hasAll(["uid", "schemaVersion", "createdAt", "updatedAt"])
+        && request.resource.data.keys().hasOnly([
+          "uid", "schemaVersion", "theme", "fontPreset", "appearanceStr", "dailyPlanStr",
+          "reviewQueueStr", "topicMasteryStr", "caseNotebookStr", "studyCalendarStr",
+          "lastPostmortemStr", "pomodoroSettingsStr", "pomodoroLogStr",
+          "pomodoroSpecialtiesStr", "pomodoroFocusLabel", "globalStatsStr", "historyStr",
+          "reportsStr", "createdAt", "updatedAt"
+        ])
+        && request.resource.data.uid == uid
+        && request.resource.data.schemaVersion == 1
+        && request.resource.data.updatedAt == request.time;
+      allow update: if isVerifiedSelf(uid)
+        && request.resource.data.keys().hasOnly([
+          "uid", "schemaVersion", "theme", "fontPreset", "appearanceStr", "dailyPlanStr",
+          "reviewQueueStr", "topicMasteryStr", "caseNotebookStr", "studyCalendarStr",
+          "lastPostmortemStr", "pomodoroSettingsStr", "pomodoroLogStr",
+          "pomodoroSpecialtiesStr", "pomodoroFocusLabel", "globalStatsStr", "historyStr",
+          "reportsStr", "createdAt", "updatedAt"
+        ])
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.schemaVersion == 1
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if isSelf(uid) || isAdmin();
     }
 
     // Datos de contacto privados para el panel de administraci\u00f3n.
     // No se mezclan con leaderboard, que puede ser le\u00eddo por otros usuarios.
     match /user_directory/{uid} {
       allow read: if isSelf(uid) || isAdmin();
-      allow create: if isSelf(uid)
+      allow create: if isVerifiedSelf(uid)
         && request.resource.data.uid == uid
         && request.resource.data.email is string
         && request.resource.data.email.size() <= 160
+        && request.resource.data.emailVerified == request.auth.token.email_verified
         && request.resource.data.username is string
-        && request.resource.data.username.size() > 0
-        && request.resource.data.username.size() <= 120
-        && request.resource.data.keys().hasOnly(["uid", "email", "username", "createdAt", "lastSeenAt"])
+        && validPublicUsername(request.resource.data.username)
+        && request.resource.data.emailVerified is bool
+        && request.resource.data.university is string && request.resource.data.university.size() <= 80
+        && request.resource.data.phone is string && request.resource.data.phone.size() <= 16
+        && request.resource.data.targetYear is string && request.resource.data.targetYear.size() <= 4
+        && request.resource.data.keys().hasOnly(["uid", "email", "emailVerified", "username", "university", "phone", "targetYear", "createdAt", "lastSeenAt"])
         && request.resource.data.createdAt == request.time
         && request.resource.data.lastSeenAt == request.time;
-      allow update: if isSelf(uid)
+      allow update: if isVerifiedSelf(uid)
         && request.resource.data.uid == uid
         && request.resource.data.email is string
         && request.resource.data.email.size() <= 160
         && request.resource.data.username is string
-        && request.resource.data.username.size() > 0
-        && request.resource.data.username.size() <= 120
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["email", "username", "lastSeenAt"])
+        && validPublicUsername(request.resource.data.username)
+        && request.resource.data.emailVerified == request.auth.token.email_verified
+        && request.resource.data.university is string && request.resource.data.university.size() <= 80
+        && request.resource.data.phone is string && request.resource.data.phone.size() <= 16
+        && request.resource.data.targetYear is string && request.resource.data.targetYear.size() <= 4
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["email", "emailVerified", "username", "university", "phone", "targetYear", "lastSeenAt"])
         && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(["lastSeenAt"])
           || request.resource.data.lastSeenAt == request.time);
-      allow delete: if isAdmin();
+      allow delete: if isSelf(uid) || isAdmin();
     }
 
     // Una prueba gratuita se crea junto con el entitlement en una transacción.
     // No se puede editar o volver a crear, aun desde un cliente manipulado.
     match /premium_trials/{uid} {
       allow read: if isSelf(uid) || isAdmin();
-      allow create: if isSelf(uid)
+      allow create: if isVerifiedSelf(uid)
         && request.resource.data.keys().hasOnly(["uid", "status", "startedAt", "expiresAt", "durationDays"])
         && request.resource.data.uid == uid
         && request.resource.data.status == "used"
@@ -261,7 +433,7 @@ service cloud.firestore {
     // propio documento; el administrador puede agregarlas en el panel interno.
     match /user_metrics/{uid} {
       allow read: if isSelf(uid) || isAdmin();
-      allow create: if isSelf(uid)
+      allow create: if isVerifiedSelf(uid)
         && request.resource.data.keys().hasAll([
           "uid", "schemaVersion", "registeredAt", "trackingStartedAt", "lastActiveAt",
           "lastActivityDay", "activityDays", "cumulative", "bySpecialty", "features", "health",
@@ -275,7 +447,7 @@ service cloud.firestore {
         && request.resource.data.registeredAt == request.time
         && request.resource.data.trackingStartedAt == request.time
         && validUserMetrics(request.resource.data, uid);
-      allow update: if isSelf(uid)
+      allow update: if isVerifiedSelf(uid)
         && request.resource.data.uid == resource.data.uid
         && request.resource.data.registeredAt == resource.data.registeredAt
         && request.resource.data.trackingStartedAt == resource.data.trackingStartedAt
@@ -284,24 +456,32 @@ service cloud.firestore {
           "bySpecialty", "features", "health", "daily", "historyApproximate", "updatedAt"
         ])
         && validUserMetrics(request.resource.data, uid);
-      allow delete: if isAdmin();
+      allow delete: if isSelf(uid) || isAdmin();
     }
 
     match /referral_codes/{code} {
-      allow read: if isSignedIn();
-      allow create: if isSignedIn()
+      allow get: if isVerified();
+      allow list: if false;
+      allow create: if isVerified()
         && validReferralCode(code)
         && request.resource.data.code == code
-        && request.resource.data.ownerUid == request.auth.uid;
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.ownerName is string
+        && request.resource.data.ownerName.size() <= 40
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.keys().hasOnly(["code", "ownerUid", "ownerName", "createdAt"]);
       allow update, delete: if isAdmin();
     }
 
     match /user_wallets/{uid} {
-      allow read: if isSignedIn();
-      allow create: if (isSelf(uid)
+      allow read: if isSelf(uid) || isAdmin();
+      allow create: if (isVerifiedSelf(uid)
         && request.resource.data.uid == uid
         && request.resource.data.coins == 0
-        && validReferralCode(request.resource.data.referralCode))
+        && validReferralCode(request.resource.data.referralCode)
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.keys().hasOnly(["uid", "referralCode", "coins", "createdAt", "updatedAt"]))
         || isReferralRewardCreate(uid);
       allow update: if isAdmin() || isReferralRewardUpdate(uid);
       allow delete: if isAdmin();
@@ -309,11 +489,13 @@ service cloud.firestore {
 
     match /referral_redemptions/{uid} {
       allow read: if isSelf(uid) || isAdmin() || (isSignedIn() && resource.data.ownerUid == request.auth.uid);
-      allow create: if isSelf(uid)
+      allow create: if isVerifiedSelf(uid)
+        && request.resource.data.keys().hasOnly(["uid", "ownerUid", "referralCode", "premiumCode", "coins", "createdAt"])
         && request.resource.data.uid == uid
         && request.resource.data.coins == 50
         && validReferralCode(request.resource.data.referralCode)
         && request.resource.data.ownerUid != uid
+        && request.resource.data.createdAt == request.time
         && exists(/databases/$(database)/documents/referral_codes/$(request.resource.data.referralCode))
         && get(/databases/$(database)/documents/referral_codes/$(request.resource.data.referralCode)).data.ownerUid == request.resource.data.ownerUid
         && existsAfter(/databases/$(database)/documents/redeem_codes/$(request.resource.data.premiumCode))
@@ -321,9 +503,111 @@ service cloud.firestore {
       allow update, delete: if isAdmin();
     }
 
+    match /friendRequests/{requestId} {
+      allow read: if isVerified()
+        && (resource.data.fromId == request.auth.uid || resource.data.toId == request.auth.uid);
+      allow create: if isVerified()
+        && request.resource.data.keys().hasOnly(["fromId", "fromName", "fromPremium", "toId", "toName", "status", "timestamp"])
+        && request.resource.data.fromId == request.auth.uid
+        && request.resource.data.toId is string
+        && request.resource.data.toId != request.auth.uid
+        && validPublicUsername(request.resource.data.fromName)
+        && validPublicUsername(request.resource.data.toName)
+        && request.resource.data.fromPremium is bool
+        && request.resource.data.status == "pending"
+        && request.resource.data.timestamp is timestamp;
+      allow update: if isVerified()
+        && resource.data.toId == request.auth.uid
+        && resource.data.status == "pending"
+        && request.resource.data.status in ["accepted", "rejected"]
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["status"]);
+      allow delete: if isAdmin() || (isVerified() && (resource.data.fromId == request.auth.uid || resource.data.toId == request.auth.uid));
+    }
+
+    match /challenges/{challengeId} {
+      allow read: if isVerified() && request.auth.uid in resource.data.participantIds;
+      allow create: if isVerified()
+        && request.resource.data.keys().hasOnly([
+          "challengerId", "challengerName", "challengerPremium", "participants", "participantIds",
+          "specialty", "numQuestions", "targetQty", "questionIndices", "status", "createdAt"
+        ])
+        && request.resource.data.challengerId == request.auth.uid
+        && validPublicUsername(request.resource.data.challengerName)
+        && request.resource.data.challengerPremium is bool
+        && request.resource.data.participantIds is list
+        && request.resource.data.participantIds.size() >= 2
+        && request.resource.data.participantIds.size() <= 4
+        && request.auth.uid in request.resource.data.participantIds
+        && request.resource.data.participants is map
+        && request.resource.data.specialty is string && request.resource.data.specialty.size() <= 100
+        && request.resource.data.numQuestions is int && request.resource.data.numQuestions > 0 && request.resource.data.numQuestions <= 300
+        && request.resource.data.targetQty == request.resource.data.numQuestions
+        && request.resource.data.questionIndices is list && request.resource.data.questionIndices.size() == request.resource.data.numQuestions
+        && request.resource.data.status == "active"
+        && request.resource.data.createdAt is int;
+      allow update: if isVerified()
+        && request.auth.uid in resource.data.participantIds
+        && request.resource.data.participantIds == resource.data.participantIds
+        && request.resource.data.participants.diff(resource.data.participants).affectedKeys().hasOnly([request.auth.uid])
+        && validChallengeResultUpdate(resource.data.participants[request.auth.uid], request.resource.data.participants[request.auth.uid])
+        && request.resource.data.status in ["active", "finished"]
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["participants", "status"]);
+      allow delete: if isAdmin() || (isVerified() && resource.data.challengerId == request.auth.uid);
+    }
+
+    match /reports/{reportId} {
+      allow read: if isAdmin() || (isVerified() && resource.data.userId == request.auth.uid);
+      allow create: if isVerified()
+        && request.resource.data.keys().hasOnly([
+          "timestamp", "questionText", "caseText", "specialty", "tema", "category", "reason",
+          "caseKey", "userName", "userId", "status", "clientReportId"
+        ])
+        && request.resource.data.userId == request.auth.uid
+        && validPublicUsername(request.resource.data.userName)
+        && request.resource.data.timestamp is int
+        && request.resource.data.questionText is string && request.resource.data.questionText.size() <= 2000
+        && request.resource.data.caseText is string && request.resource.data.caseText.size() <= 6000
+        && request.resource.data.reason is string && request.resource.data.reason.size() > 0 && request.resource.data.reason.size() <= 2000
+        && request.resource.data.category is string && request.resource.data.category.size() <= 60
+        && request.resource.data.status == "quarantine";
+      allow update: if isVerified()
+        && resource.data.userId == request.auth.uid
+        && request.resource.data.userId == resource.data.userId
+        && request.resource.data.status == "quarantine"
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["reason", "category"])
+        && request.resource.data.keys().hasOnly([
+          "timestamp", "questionText", "caseText", "specialty", "tema", "category", "reason",
+          "caseKey", "userName", "userId", "status", "clientReportId"
+        ]);
+      allow delete: if isAdmin() || (isVerified() && resource.data.userId == request.auth.uid);
+    }
+
+    match /user_push_tokens/{tokenId} {
+      allow read: if false;
+      allow create: if isVerified()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(["uid", "token", "enabled", "platform", "userAgent", "updatedAt"])
+        && request.resource.data.token is string && request.resource.data.token.size() >= 20 && request.resource.data.token.size() <= 4096
+        && request.resource.data.enabled == true
+        && request.resource.data.platform in ["web", "ios-web", "android-web"]
+        && request.resource.data.userAgent is string && request.resource.data.userAgent.size() <= 512
+        && request.resource.data.updatedAt is int;
+      allow update: if isVerified()
+        && resource.data.uid == request.auth.uid
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["token", "enabled", "platform", "userAgent", "updatedAt"])
+        && request.resource.data.keys().hasOnly(["uid", "token", "enabled", "platform", "userAgent", "updatedAt"])
+        && request.resource.data.token is string && request.resource.data.token.size() >= 20 && request.resource.data.token.size() <= 4096
+        && request.resource.data.enabled == true
+        && request.resource.data.platform in ["web", "ios-web", "android-web"]
+        && request.resource.data.userAgent is string && request.resource.data.userAgent.size() <= 512
+        && request.resource.data.updatedAt is int;
+      allow delete: if isVerified() && resource.data.uid == request.auth.uid;
+    }
+
     match /withdrawal_requests/{requestId} {
-      allow read: if isAdmin() || (isSignedIn() && resource.data.uid == request.auth.uid);
-      allow create: if isSignedIn()
+      allow read: if isAdmin() || (isVerified() && resource.data.uid == request.auth.uid);
+      allow create: if isVerified()
         && request.resource.data.keys().hasOnly([
           "uid",
           "userName",
@@ -332,11 +616,7 @@ service cloud.firestore {
           "amount",
           "coinsSnapshot",
           "currency",
-          "fullName",
-          "accountHolder",
-          "bankName",
-          "clabe",
-          "phone",
+          "bankingEnvelope",
           "status",
           "createdAt",
           "updatedAt"
@@ -349,23 +629,26 @@ service cloud.firestore {
         && exists(/databases/$(database)/documents/user_wallets/$(request.auth.uid))
         && request.resource.data.amount <= get(/databases/$(database)/documents/user_wallets/$(request.auth.uid)).data.coins
         && request.resource.data.coinsSnapshot is int
-        && request.resource.data.fullName is string
-        && request.resource.data.fullName.size() >= 3
-        && request.resource.data.accountHolder is string
-        && request.resource.data.accountHolder.size() >= 3
-        && request.resource.data.bankName is string
-        && request.resource.data.bankName.size() >= 2
-        && request.resource.data.clabe is string
-        && request.resource.data.clabe.matches('^[0-9]{18}$')
-        && request.resource.data.phone is string
-        && request.resource.data.createdAt is timestamp
-        && request.resource.data.updatedAt is timestamp;
-      allow update, delete: if isAdmin();
+        && request.resource.data.bankingEnvelope is map
+        && request.resource.data.bankingEnvelope.keys().hasOnly(["version", "algorithm", "keyVersion", "wrappedKey", "iv", "ciphertext"])
+        && request.resource.data.bankingEnvelope.version == 1
+        && request.resource.data.bankingEnvelope.algorithm == "RSA-OAEP-256+A256GCM"
+        && request.resource.data.bankingEnvelope.keyVersion is string
+        && request.resource.data.bankingEnvelope.wrappedKey is string
+        && request.resource.data.bankingEnvelope.wrappedKey.size() <= 1024
+        && request.resource.data.bankingEnvelope.iv is string
+        && request.resource.data.bankingEnvelope.iv.size() <= 64
+        && request.resource.data.bankingEnvelope.ciphertext is string
+        && request.resource.data.bankingEnvelope.ciphertext.size() <= 4096
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+      // Las confirmaciones se hacen con Admin SDK local, que no depende de estas reglas.
+      allow update, delete: if false;
     }
 
     match /feedback_submissions/{submissionId} {
       allow read, update, delete: if isAdmin();
-      allow create: if isSignedIn()
+      allow create: if isVerified()
         && request.resource.data.keys().hasOnly([
           "name",
           "email",
@@ -379,7 +662,7 @@ service cloud.firestore {
           "source"
         ])
         && request.resource.data.createdByUid == request.auth.uid
-        && request.resource.data.recipientAdminUid == "sZcIUjjhD0fze7FtirwsjsIDzLB2"
+        && request.resource.data.recipientAdminUid == "admin"
         && request.resource.data.status == "new"
         && request.resource.data.source == "in_app"
         && request.resource.data.name is string
@@ -398,7 +681,7 @@ service cloud.firestore {
 
     match /app_ratings/{uid} {
       allow read: if isSelf(uid) || isAdmin();
-      allow create: if isSelf(uid)
+      allow create: if isVerifiedSelf(uid)
         && request.resource.data.keys().hasOnly([
           "uid", "name", "email", "stars", "comment", "experienceQualified",
           "answeredAtPrompt", "sessionsAtPrompt", "accountAgeDaysAtPrompt", "createdAt", "updatedAt"
@@ -420,7 +703,7 @@ service cloud.firestore {
         && request.resource.data.accountAgeDaysAtPrompt >= 7
         && request.resource.data.createdAt == request.time
         && request.resource.data.updatedAt == request.time;
-      allow update: if isSelf(uid)
+      allow update: if isVerifiedSelf(uid)
         && request.resource.data.keys().hasOnly([
           "uid", "name", "email", "stars", "comment", "experienceQualified",
           "answeredAtPrompt", "sessionsAtPrompt", "accountAgeDaysAtPrompt", "createdAt", "updatedAt"
@@ -442,11 +725,11 @@ service cloud.firestore {
         && request.resource.data.accountAgeDaysAtPrompt is int
         && request.resource.data.accountAgeDaysAtPrompt >= 7
         && request.resource.data.updatedAt == request.time;
-      allow delete: if isAdmin();
+      allow delete: if isSelf(uid) || isAdmin();
     }
 
     match /feature_flags/{flagId} {
-      allow read: if request.auth != null;
+      allow read: if isVerified();
       allow create, update, delete: if isAdmin();
     }
 
@@ -457,7 +740,7 @@ service cloud.firestore {
     }
 
     match /community_announcements/{announcementId} {
-      allow read: if isSignedIn();
+      allow read: if isVerified();
       allow create: if isAdmin()
         && request.resource.data.keys().hasOnly([
           "title",

@@ -36,7 +36,8 @@ try {
 
 // ENARMax Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
-const CACHE_NAME = 'enarmax-v62';
+const CACHE_NAME = 'enarmax-v64-theme-color';
+const COMPROMISED_ASSETS = ['/redeem_codes.txt', 'redeem_codes.txt'];
 
 // Archivos esenciales que se cachean al instalar
 const CORE_ASSETS = [
@@ -45,6 +46,9 @@ const CORE_ASSETS = [
     '/styles.css',
     '/app.js',
     '/analytics-core.js',
+    '/security-config.js',
+    '/withdrawal-public-key.js',
+    '/security-crypto.js',
     '/manifest.json',
     '/logo-e-mask.png',
     '/notification-icon.png',
@@ -71,16 +75,15 @@ self.addEventListener('install', event => {
 // ─── Activate: limpia cachés antiguas ────────────────────────────────────────
 self.addEventListener('activate', event => {
     event.waitUntil(
-        caches.keys().then(keys =>
-            Promise.all(
+        caches.keys().then(async keys => {
+            await Promise.all(
                 keys
                     .filter(key => key !== CACHE_NAME)
-                    .map(key => {
-                        console.log('[SW] Eliminando caché antigua:', key);
-                        return caches.delete(key);
-                    })
-            )
-        ).then(() => self.clients.claim())
+                    .map(key => caches.delete(key))
+            );
+            const currentCache = await caches.open(CACHE_NAME);
+            await Promise.all(COMPROMISED_ASSETS.map(asset => currentCache.delete(asset)));
+        }).then(() => self.clients.claim())
     );
 });
 
@@ -90,6 +93,15 @@ self.addEventListener('fetch', event => {
 
     // Solo manejar peticiones de nuestro propio origen
     if (url.origin !== location.origin) return;
+
+    // Nunca servir ni cachear el catálogo de códigos retirado.
+    if (url.pathname.toLowerCase().endsWith('/redeem_codes.txt')) {
+        event.respondWith(new Response('Not found', {
+            status: 404,
+            headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }
+        }));
+        return;
+    }
 
     // Para Firebase / APIs externas, siempre pasar directo sin interferir
     if (url.hostname.includes('firebase') || url.hostname.includes('googleapis')) return;

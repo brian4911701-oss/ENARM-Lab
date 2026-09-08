@@ -4,8 +4,17 @@ firebase-admin.json
 
 # Local env files
 .env
+.env.*
+
+# Installed dependencies and local security material
+node_modules/
+functions/node_modules/
+.local-secrets/
+*.private.pem
 
 # Firebase Hosting build output
 public/
+.tmp-config/
+firebase-debug.log
 
 .vercel

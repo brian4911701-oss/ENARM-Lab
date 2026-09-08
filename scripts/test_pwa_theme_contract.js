@@ -17,9 +17,10 @@ const themeMetaTags = indexHtml.match(/<meta\b[^>]*\bname=["']theme-color["'][^>
 
 assert.strictEqual(
     themeMetaTags.length,
-    0,
-    "index.html no debe fijar un theme-color antes de aplicar el tema seleccionado"
+    1,
+    "index.html debe tener un único theme-color de respaldo antes de ejecutar JavaScript"
 );
+assert.match(themeMetaTags[0], /content="#1d258d"/);
 
 assert.match(
     indexHtml,
