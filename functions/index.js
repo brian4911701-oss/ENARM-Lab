@@ -1,5 +1,6 @@
 ﻿const { onDocumentCreated } = require("firebase-functions/v2/firestore");
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
+const functionsV1 = require("firebase-functions/v1");
 const logger = require("firebase-functions/logger");
 const { initializeApp } = require("firebase-admin/app");
 const { getAuth } = require("firebase-admin/auth");
@@ -12,6 +13,60 @@ const db = getFirestore();
 const PUSH_TOKEN_COLLECTION = "user_push_tokens";
 const ADMIN_UIDS = new Set(["sZcIUjjhD0fze7FtirwsjsIDzLB2"]);
 const PREMIUM_TRIAL_DURATION_MS = 3 * 24 * 60 * 60 * 1000;
+
+const buildDirectoryUsername = (user) => {
+    const candidate = String(user.displayName || user.email?.split("@")[0] || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^A-Za-z0-9 _.-]/g, "")
+        .trim()
+        .slice(0, 20);
+    return candidate.length >= 3 ? candidate : `Aspirante_${String(user.uid).slice(-6)}`;
+};
+
+// Authentication es la fuente de verdad de las cuentas. Este trigger garantiza que
+// cada UID tenga una entrada administrativa aunque el navegador se cierre antes de
+// sincronizar el perfil o el correo siga sin verificar.
+exports.provisionUserDirectory = functionsV1.auth.user().onCreate(async (user) => {
+    const ref = db.collection("user_directory").doc(user.uid);
+    const parsedCreatedAt = new Date(user.metadata.creationTime || Date.now());
+    const createdAt = Number.isNaN(parsedCreatedAt.getTime()) ? new Date() : parsedCreatedAt;
+    const initial = {
+        uid: user.uid,
+        email: String(user.email || "").slice(0, 160),
+        emailVerified: user.emailVerified === true,
+        username: buildDirectoryUsername(user),
+        university: "",
+        phone: "",
+        targetYear: "",
+        createdAt,
+        lastSeenAt: createdAt,
+        authCreatedAt: createdAt,
+        authCreatedAtSyncedAt: new Date()
+    };
+
+    try {
+        await db.runTransaction(async (transaction) => {
+            const current = await transaction.get(ref);
+            if (!current.exists) {
+                transaction.create(ref, initial);
+                return;
+            }
+
+            // No sobrescribe los campos de perfil que el cliente ya haya sincronizado.
+            const existing = current.data() || {};
+            const missing = {};
+            ["uid", "email", "emailVerified", "username", "university", "phone", "targetYear", "createdAt", "lastSeenAt", "authCreatedAt", "authCreatedAtSyncedAt"].forEach((field) => {
+                if (existing[field] === undefined || existing[field] === null) missing[field] = initial[field];
+            });
+            if (Object.keys(missing).length) transaction.set(ref, missing, { merge: true });
+        });
+        logger.info("Directorio de usuario aprovisionado desde Authentication.", { uid: user.uid });
+    } catch (error) {
+        logger.error("No se pudo aprovisionar el directorio de usuario.", { uid: user.uid, error: error?.message || String(error) });
+        throw error;
+    }
+});
 
 exports.startPremiumTrial = onCall(async (request) => {
     const uid = request.auth?.uid;

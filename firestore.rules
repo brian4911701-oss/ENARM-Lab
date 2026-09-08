@@ -384,7 +384,7 @@ service cloud.firestore {
     // No se mezclan con leaderboard, que puede ser le\u00eddo por otros usuarios.
     match /user_directory/{uid} {
       allow read: if isSelf(uid) || isAdmin();
-      allow create: if isVerifiedSelf(uid)
+      allow create: if isSelf(uid)
         && request.resource.data.uid == uid
         && request.resource.data.email is string
         && request.resource.data.email.size() <= 160
@@ -398,7 +398,7 @@ service cloud.firestore {
         && request.resource.data.keys().hasOnly(["uid", "email", "emailVerified", "username", "university", "phone", "targetYear", "createdAt", "lastSeenAt"])
         && request.resource.data.createdAt == request.time
         && request.resource.data.lastSeenAt == request.time;
-      allow update: if isVerifiedSelf(uid)
+      allow update: if isSelf(uid)
         && request.resource.data.uid == uid
         && request.resource.data.email is string
         && request.resource.data.email.size() <= 160

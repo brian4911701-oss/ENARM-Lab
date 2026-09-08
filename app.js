@@ -16466,12 +16466,14 @@
                             // Se inicia antes de los listeners secundarios para evitar competir por red en Android.
                             const coreUserDataPromise = getPrivateUserSnapshot(user.uid);
                             const startSecondaryAuthenticatedWork = () => {
+                            // El directorio administrativo no controla permisos: debe existir
+                            // desde el alta, aunque el correo siga pendiente de verificación.
+                            void syncUserDirectory(user, { forceProfile: true, forcePresence: true });
                             if (!user.emailVerified) {
                                 syncReclassAccessUI();
                                 showNotification("Verifica tu correo para sincronizar datos, usar Comunidad, Premium, pagos o referidos.", "warning");
                                 return;
                             }
-                            void syncUserDirectory(user, { forceProfile: true, forcePresence: true });
                             startUserPresenceHeartbeat(user);
                             startUserMetricsSync(user.uid);
                             syncOptionalAnalyticsIdentity();
@@ -16895,6 +16897,7 @@
                                 State.userPhone = registrationProfile.phone;
                                 State.userTargetYear = registrationProfile.targetYear;
                                 State.userAvatar = registrationProfile.avatarId;
+                                await syncUserDirectory(googleUser, { forceProfile: true, forcePresence: true });
                                 await ensureReferralWallet(googleUser.uid, userName).catch(handleReferralWalletError);
                                 bindReferralWalletListener(googleUser.uid);
                                 saveGlobalStats();
@@ -16927,6 +16930,7 @@
                                     State.userUniversity = registrationProfile.university;
                                     State.userPhone = registrationProfile.phone;
                                     State.userTargetYear = registrationProfile.targetYear;
+                                    await syncUserDirectory(userCred.user, { forceProfile: true, forcePresence: true });
                                     await ensureReferralWallet(userCred.user.uid, userName).catch(handleReferralWalletError);
                                     bindReferralWalletListener(userCred.user.uid);
                                     trackEvent("sign_up", { method: "password" });
@@ -17122,6 +17126,7 @@
                             if (additionalInfo && additionalInfo.isNewUser) {
                                 const displayName = userObj.displayName || buildDefaultUsername(userObj.email, userObj.uid);
                                 if (!userObj.displayName) await window.FB.updateProfile(userObj, { displayName });
+                                await syncUserDirectory(userObj, { forceProfile: true, forcePresence: true });
                                 await ensureReferralWallet(userObj.uid, displayName).catch(handleReferralWalletError);
                                 bindReferralWalletListener(userObj.uid);
                                 trackEvent("sign_up", { method: "google" });

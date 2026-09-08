@@ -4,6 +4,7 @@
  * Uso:
  *   node scripts/backfill_auth_created_dates.js
  *   node scripts/backfill_auth_created_dates.js --write
+ *   node scripts/backfill_auth_created_dates.js --missing-only --write
  *   node scripts/backfill_auth_created_dates.js --email calebmata@live.com.mx
  *
  * Por defecto no escribe datos. Requiere credenciales de Firebase Admin, por ejemplo:
@@ -12,6 +13,7 @@
 const admin = require("../functions/node_modules/firebase-admin");
 
 const WRITE = process.argv.includes("--write");
+const MISSING_ONLY = process.argv.includes("--missing-only");
 const emailFlagIndex = process.argv.indexOf("--email");
 const TARGET_EMAIL = emailFlagIndex >= 0 ? String(process.argv[emailFlagIndex + 1] || "").trim().toLowerCase() : "";
 const PROJECT_ID = process.env.GCLOUD_PROJECT || process.env.GOOGLE_CLOUD_PROJECT || "enarm-lab-social";
@@ -45,7 +47,12 @@ const getDirectoryCreateData = (userRecord, authCreatedAt, now) => ({
     uid: userRecord.uid,
     username: String(userRecord.displayName || userRecord.email?.split("@")[0] || "Aspirante").slice(0, 120),
     email: String(userRecord.email || "").slice(0, 160),
+    emailVerified: userRecord.emailVerified === true,
+    university: "",
+    phone: "",
+    targetYear: "",
     createdAt: authCreatedAt,
+    lastSeenAt: authCreatedAt,
     authCreatedAt,
     authCreatedAtSyncedAt: now
 });
@@ -135,6 +142,7 @@ async function backfillAllDirectories() {
             }
             const directoryRef = db.collection("user_directory").doc(userRecord.uid);
             const existing = directoryByUid.get(userRecord.uid) || null;
+            if (MISSING_ONLY && existing) continue;
             const currentAuthDate = toDate(existing?.authCreatedAt);
             const currentCreatedAt = toDate(existing?.createdAt);
             const hasCorrectDates = currentAuthDate?.getTime() === authCreatedAt.getTime()
@@ -165,6 +173,7 @@ async function backfillAllDirectories() {
     const newestPageSorted = newestDates.every((value, index) => index === 0 || newestDates[index - 1] >= value);
     console.log("Resumen:", {
         mode: WRITE ? "ESCRITURA" : "SIMULACIÓN",
+        missingOnly: MISSING_ONLY,
         scannedAuthUsers,
         authUsers,
         directoryUsers: directorySnap.size,

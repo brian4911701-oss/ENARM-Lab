@@ -70,6 +70,24 @@ test("perfiles públicos exigen verificación, esquema estricto y entitlement pa
   await assertFails(setDoc(doc(authDb(userB), "public_profiles", userB), { ...validProfile, uid: userB, username: "Usuario B", isPremium: true }));
 });
 
+test("el directorio administrativo admite cuentas sin verificar, pero sigue siendo privado", async () => {
+  const directory = {
+    uid: userB,
+    email: `${userB}@example.test`,
+    emailVerified: false,
+    username: "Usuario B",
+    university: "",
+    phone: "",
+    targetYear: "",
+    createdAt: serverTimestamp(),
+    lastSeenAt: serverTimestamp()
+  };
+  await assertSucceeds(setDoc(doc(unverifiedDb(userB), "user_directory", userB), directory));
+  await assertSucceeds(updateDoc(doc(unverifiedDb(userB), "user_directory", userB), { lastSeenAt: serverTimestamp() }));
+  await assertFails(getDoc(doc(authDb(userA), "user_directory", userB)));
+  await assertFails(setDoc(doc(unverifiedDb(userA), "user_directory", userB), { ...directory, uid: userB }));
+});
+
 test("códigos no se listan, solo se consultan exactamente y un canje es de una sola vez", async () => {
   const db = authDb(userA);
   await assertSucceeds(getDoc(doc(db, "redeem_codes", secureCode)));
