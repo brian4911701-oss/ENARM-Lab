@@ -57,6 +57,11 @@ assert.match(
     /themeMeta\.setAttribute\("content", color\)/,
     "app.js debe actualizar el color al cambiar de tema"
 );
+assert.match(
+    appJs,
+    /document\.documentElement\.style\.removeProperty\("--app-chrome-bg"\)/,
+    "El tema base no debe heredar el color de barra del tema anterior"
+);
 assert.doesNotMatch(appJs, /app-theme-color-buffer/, "No debe quedar un meta buffer que fije el color inicial.");
 
 console.log("PWA theme-color contract: OK");

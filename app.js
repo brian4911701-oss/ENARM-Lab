@@ -2573,6 +2573,11 @@
     };
 
     const syncThemeColorMeta = () => {
+        // --app-chrome-bg se escribe en <html> para que la barra nativa se
+        // actualice de inmediato. Antes de leerlo hay que retirar ese valor
+        // temporal: el tema "dark" usa los valores base y, sin esto, heredaba
+        // el color que hubiese dejado el tema anterior.
+        document.documentElement.style.removeProperty("--app-chrome-bg");
         let color = "#111623";
         if (window.getComputedStyle) {
             const bodyStyles = window.getComputedStyle(document.body);
