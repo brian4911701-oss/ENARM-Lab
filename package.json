@@ -18,6 +18,7 @@
     "build:hosting": "node scripts/build_hosting.js",
     "deploy:web": "firebase deploy --only hosting",
     "users:backfill-auth-dates": "node scripts/backfill_auth_created_dates.js",
+    "users:backfill-public-profiles": "node scripts/backfill_public_profiles.js",
     "analytics:backfill": "node scripts/backfill_user_metrics.js",
     "analytics:test": "node scripts/test_analytics_core.js",
     "rules:deploy-rest": "node scripts/deploy_firestore_rules_rest.js",
