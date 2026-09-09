@@ -4363,7 +4363,7 @@
     const setAdminUserPremium = async (uid, enabled) => {
         if (!uid || uid === State.currentUid || !isAdminUser()) return;
         if (Object.prototype.hasOwnProperty.call(State.adminPremiumPendingByUid || {}, uid)) return;
-        if (!window.FB || !window.FB.db || !window.FB.doc || !window.FB.runTransaction) {
+        if (!window.FB || !window.FB.functions || !window.FB.httpsCallable || !window.FB.auth?.currentUser) {
             showNotification("Firebase todav\u00eda no est\u00e1 disponible.", "error");
             renderAdminUsers();
             return;
@@ -4384,47 +4384,12 @@
         State.adminPremiumPendingByUid[uid] = enabled;
         renderAdminUsers();
         try {
-            // Las custom claims de administrador se validan también en las reglas de
-            // Firestore. Renueva el token antes de la transacción para no intentar
-            // guardar con una sesión anterior a la asignación de la claim.
+            // Fuerza un token reciente para que la función callable reciba la sesión
+            // actual; la escritura se autoriza en el servidor y no en el navegador.
             await window.FB.auth.currentUser.getIdToken(true);
-            const entitlementRef = window.FB.doc(window.FB.db, "entitlements", uid);
-            let nextEntitlement = null;
-            await window.FB.runTransaction(window.FB.db, async (tx) => {
-                const now = new Date();
-                if (enabled) {
-                    const currentSnap = await tx.get(entitlementRef);
-                    const current = currentSnap.exists() ? (currentSnap.data() || {}) : {};
-                    const currentExpiry = current.expiresAt?.toDate?.().getTime?.()
-                        || new Date(current.expiresAt || 0).getTime();
-                    const alreadyHasThisAccess = current.status === "active"
-                        && current.planId === plan.id
-                        && currentExpiry >= new Date(plan.expiresAt).getTime();
-                    if (!alreadyHasThisAccess) {
-                        await reserveLaunchCapacityInTransaction(tx, plan.id, 1, now);
-                    }
-                    nextEntitlement = {
-                        status: "active",
-                        source: "admin_manual",
-                        planId: plan.id,
-                        expiresAt: new Date(plan.expiresAt),
-                        activatedAt: now,
-                        updatedAt: now,
-                        updatedByUid: State.currentUid
-                    };
-                    tx.set(entitlementRef, nextEntitlement, { merge: true });
-                } else {
-                    nextEntitlement = {
-                        status: "inactive",
-                        source: "admin_manual_disabled",
-                        expiresAt: now,
-                        deactivatedAt: now,
-                        updatedAt: now,
-                        updatedByUid: State.currentUid
-                    };
-                    tx.set(entitlementRef, nextEntitlement, { merge: true });
-                }
-            });
+            const setPremium = window.FB.httpsCallable(window.FB.functions, "setAdminUserPremiumAccess");
+            const response = await setPremium({ uid, enabled });
+            const nextEntitlement = response?.data?.entitlement || {};
             State.adminEntitlementsByUid[uid] = {
                 ...(State.adminEntitlementsByUid[uid] || {}),
                 ...(nextEntitlement || {})
@@ -4437,17 +4402,23 @@
             const isPermissionError = errorCode.includes("permission-denied")
                 || errorMessage.includes("permission-denied")
                 || errorMessage.includes("insufficient permissions");
+            const isFunctionMissing = errorCode.includes("not-found")
+                || errorMessage.includes("setadminuserpremiumaccess");
             const isConnectivityError = errorCode.includes("unavailable")
                 || errorCode.includes("deadline-exceeded")
                 || errorMessage.includes("network");
             showNotification(
                 String(err?.message || "").includes("launch_capacity_full")
                     ? "El cupo de lanzamiento ENARM 2027 ya está completo."
+                    : errorCode.includes("resource-exhausted")
+                        ? (err?.message || "El cupo de lanzamiento ENARM 2027 ya está completo.")
                     : isPermissionError
-                        ? "Firebase rechazó el cambio. Cierra sesión, vuelve a iniciarla y verifica la claim admin."
+                        ? "Firebase rechazó el cambio. Verifica la cuenta administradora y vuelve a iniciar sesión."
+                        : isFunctionMissing
+                            ? "El servicio de Premium se está actualizando. Recarga la página e inténtalo de nuevo."
                         : isConnectivityError
                             ? "No se pudo conectar con Firebase. Revisa tu conexión e inténtalo de nuevo."
-                    : "No se pudo actualizar el acceso Premium.",
+                    : (err?.message || "No se pudo actualizar el acceso Premium."),
                 "error"
             );
         } finally {

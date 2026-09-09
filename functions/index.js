@@ -13,6 +13,12 @@ const db = getFirestore();
 const PUSH_TOKEN_COLLECTION = "user_push_tokens";
 const ADMIN_UIDS = new Set(["sZcIUjjhD0fze7FtirwsjsIDzLB2"]);
 const PREMIUM_TRIAL_DURATION_MS = 3 * 24 * 60 * 60 * 1000;
+const MANUAL_PREMIUM_PLANS = Object.freeze({
+    enarm_2026: Object.freeze({ id: "enarm_2026", expiresAt: "2026-10-01T23:59:59-06:00" }),
+    enarm_2027: Object.freeze({ id: "enarm_2027", expiresAt: "2027-10-01T23:59:59-06:00" })
+});
+const LAUNCH_CAPACITY_LIMIT = 300;
+const LAUNCH_CAPACITY_BASELINE = 179;
 
 const buildDirectoryUsername = (user) => {
     const candidate = String(user.displayName || user.email?.split("@")[0] || "")
@@ -113,6 +119,113 @@ exports.startPremiumTrial = onCall(async (request) => {
         if (error instanceof HttpsError) throw error;
         logger.error("No se pudo activar la prueba Premium", { uid, error: error?.message || String(error) });
         throw new HttpsError("internal", "No pudimos activar la prueba. Intenta de nuevo.");
+    }
+});
+
+// La asignación manual se ejecuta con Admin SDK, no desde una transacción del
+// navegador. Así el panel no depende de que el token del administrador y las
+// reglas de Firestore se actualicen exactamente al mismo tiempo.
+exports.setAdminUserPremiumAccess = onCall(async (request) => {
+    const requesterUid = request.auth?.uid;
+    if (!requesterUid) {
+        throw new HttpsError("unauthenticated", "Inicia sesión para modificar accesos Premium.");
+    }
+    if (!ADMIN_UIDS.has(requesterUid)) {
+        throw new HttpsError("permission-denied", "Solo el administrador puede modificar accesos Premium.");
+    }
+
+    const uid = String(request.data?.uid || "").trim();
+    const enabled = request.data?.enabled;
+    if (!uid || uid.length > 128 || typeof enabled !== "boolean") {
+        throw new HttpsError("invalid-argument", "La solicitud de acceso Premium no es válida.");
+    }
+    if (uid === requesterUid) {
+        throw new HttpsError("invalid-argument", "La cuenta administradora conserva Premium y no puede modificarse desde este panel.");
+    }
+
+    const entitlementRef = db.collection("entitlements").doc(uid);
+    const directoryRef = db.collection("user_directory").doc(uid);
+    const capacityRef = db.collection("marketing_counters").doc("enarm_2027_launch");
+
+    try {
+        const entitlement = await db.runTransaction(async (transaction) => {
+            const now = new Date();
+            if (!enabled) {
+                const next = {
+                    status: "inactive",
+                    source: "admin_manual_disabled",
+                    expiresAt: now,
+                    deactivatedAt: now,
+                    updatedAt: now,
+                    updatedByUid: requesterUid
+                };
+                transaction.set(entitlementRef, next, { merge: true });
+                return next;
+            }
+
+            const [currentSnap, directorySnap, capacitySnap] = await Promise.all([
+                transaction.get(entitlementRef),
+                transaction.get(directoryRef),
+                transaction.get(capacityRef)
+            ]);
+            const current = currentSnap.exists ? (currentSnap.data() || {}) : {};
+            const directory = directorySnap.exists ? (directorySnap.data() || {}) : {};
+            const plan = String(directory.targetYear || "") === "2026"
+                && new Date(MANUAL_PREMIUM_PLANS.enarm_2026.expiresAt).getTime() > now.getTime()
+                ? MANUAL_PREMIUM_PLANS.enarm_2026
+                : MANUAL_PREMIUM_PLANS.enarm_2027;
+            const currentExpiry = current.expiresAt?.toDate?.().getTime?.()
+                || new Date(current.expiresAt || 0).getTime();
+            const alreadyHasThisAccess = current.status === "active"
+                && current.planId === plan.id
+                && currentExpiry >= new Date(plan.expiresAt).getTime();
+
+            if (!alreadyHasThisAccess && plan.id === "enarm_2027") {
+                const capacity = capacitySnap.exists ? (capacitySnap.data() || {}) : {};
+                const limit = Math.max(1, Number(capacity.limit) || LAUNCH_CAPACITY_LIMIT);
+                const used = Math.max(0, Number(capacity.used) || LAUNCH_CAPACITY_BASELINE);
+                if (used + 1 > limit) {
+                    throw new HttpsError("resource-exhausted", "El cupo de lanzamiento ENARM 2027 ya está completo.");
+                }
+                transaction.set(capacityRef, {
+                    used: used + 1,
+                    limit,
+                    updatedAt: now,
+                    updatedByUid: requesterUid
+                }, { merge: true });
+            }
+
+            const next = {
+                status: "active",
+                source: "admin_manual",
+                planId: plan.id,
+                expiresAt: new Date(plan.expiresAt),
+                activatedAt: now,
+                updatedAt: now,
+                updatedByUid: requesterUid
+            };
+            transaction.set(entitlementRef, next, { merge: true });
+            return next;
+        });
+
+        return {
+            entitlement: {
+                ...entitlement,
+                expiresAt: entitlement.expiresAt?.toISOString?.() || null,
+                activatedAt: entitlement.activatedAt?.toISOString?.() || null,
+                deactivatedAt: entitlement.deactivatedAt?.toISOString?.() || null,
+                updatedAt: entitlement.updatedAt?.toISOString?.() || null
+            }
+        };
+    } catch (error) {
+        if (error instanceof HttpsError) throw error;
+        logger.error("No se pudo actualizar Premium desde el panel administrativo", {
+            requesterUid,
+            uid,
+            enabled,
+            error: error?.message || String(error)
+        });
+        throw new HttpsError("internal", "No se pudo guardar el acceso Premium. Intenta de nuevo.");
     }
 });
 
