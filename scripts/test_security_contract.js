@@ -45,6 +45,9 @@ assert(index.includes('minlength="12"'), "la interfaz debe exigir contraseñas d
 
 assert(cryptoClient.includes('AES-GCM') && cryptoClient.includes('RSA-OAEP'), "retiros deben usar cifrado híbrido");
 assert(app.includes("bankingEnvelope") && !app.includes("bankName: bankName"), "Firestore debe recibir un sobre cifrado, no campos bancarios planos");
+const communitySubscription = app.slice(app.indexOf("const subscribeLeaderboard ="), app.indexOf("const fetchFriendsAndLeaderboard ="));
+assert(!communitySubscription.includes('orderBy("score"'), "Comunidad no debe excluir perfiles públicos que aún no tienen score");
+assert(communitySubscription.includes("communityLeaderboardEntries.sort"), "Comunidad debe ordenar localmente la lista completa de perfiles");
 assert(publicKey.includes("BEGIN PUBLIC KEY") && !publicKey.includes("BEGIN PRIVATE KEY"), "el sitio solo puede incluir la llave pública");
 assert(!app.includes('localStorage.setItem("enarm_phone"'), "el teléfono no debe persistirse en localStorage");
 

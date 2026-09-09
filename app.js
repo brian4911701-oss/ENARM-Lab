@@ -14526,9 +14526,12 @@
 
             const subscribeLeaderboard = () => {
                 const lbRef = window.FB.collection(window.FB.db, PUBLIC_PROFILES_COLLECTION);
-                const fullQ = window.FB.query(lbRef, window.FB.orderBy("score", "desc"));
                 if (leaderboardUnsub) leaderboardUnsub();
-                leaderboardUnsub = window.FB.onSnapshot(fullQ, (snapshot) => {
+                // Firestore omite de un query con orderBy todos los documentos que no
+                // contienen ese campo. Algunos perfiles creados durante la migración de
+                // seguridad todavía no tienen `score`, así que la ordenación en servidor
+                // hacía que Comunidad mostrara sólo una fracción de los usuarios.
+                leaderboardUnsub = window.FB.onSnapshot(lbRef, (snapshot) => {
                     communityLeaderboardEntries = [];
                     snapshot.forEach(docSnap => {
                         const data = docSnap.data() || {};
@@ -14542,6 +14545,11 @@
                             score: Number(data.score) || 0,
                             flame: Number(data.flame) || 0
                         });
+                    });
+                    communityLeaderboardEntries.sort((left, right) => {
+                        const scoreDifference = right.score - left.score;
+                        if (scoreDifference !== 0) return scoreDifference;
+                        return left.username.localeCompare(right.username, "es", { sensitivity: "base" });
                     });
                     renderCommunityPanels();
                 }, err => console.error("Error cargando leaderboard: ", err));
