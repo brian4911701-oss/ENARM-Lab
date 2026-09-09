@@ -37,6 +37,7 @@ const publicPayload = app.slice(app.indexOf("const publicProfile = {"), app.inde
 });
 assert(app.includes("USER_PROGRESS_COLLECTION"), "el progreso debe escribirse en su colección privada");
 assert(app.includes("hasIndividualPremiumEntitlement()"), "Premium público debe derivarse de un entitlement individual");
+assert(app.includes('window.FB.runTransaction(window.FB.db') && !app.includes('httpsCallable(window.FB.functions, "setAdminUserPremiumAccess")'), "el panel Premium debe funcionar en Spark sin depender de Cloud Functions");
 assert(app.includes("requireVerifiedAccount"), "las operaciones sensibles deben exigir correo verificado");
 assert(index.includes('minlength="12"'), "la interfaz debe exigir contraseñas de 12 caracteres");
 
