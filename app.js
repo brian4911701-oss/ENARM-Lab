@@ -4384,6 +4384,10 @@
         State.adminPremiumPendingByUid[uid] = enabled;
         renderAdminUsers();
         try {
+            // Las custom claims de administrador se validan también en las reglas de
+            // Firestore. Renueva el token antes de la transacción para no intentar
+            // guardar con una sesión anterior a la asignación de la claim.
+            await window.FB.auth.currentUser.getIdToken(true);
             const entitlementRef = window.FB.doc(window.FB.db, "entitlements", uid);
             let nextEntitlement = null;
             await window.FB.runTransaction(window.FB.db, async (tx) => {
@@ -4428,9 +4432,21 @@
             showNotification(enabled ? "Premium activado para el usuario." : "Premium desactivado para el usuario.", enabled ? "success" : "info");
         } catch (err) {
             console.error("No se pudo actualizar Premium del usuario:", err);
+            const errorCode = String(err?.code || "").toLowerCase();
+            const errorMessage = String(err?.message || "").toLowerCase();
+            const isPermissionError = errorCode.includes("permission-denied")
+                || errorMessage.includes("permission-denied")
+                || errorMessage.includes("insufficient permissions");
+            const isConnectivityError = errorCode.includes("unavailable")
+                || errorCode.includes("deadline-exceeded")
+                || errorMessage.includes("network");
             showNotification(
                 String(err?.message || "").includes("launch_capacity_full")
                     ? "El cupo de lanzamiento ENARM 2027 ya está completo."
+                    : isPermissionError
+                        ? "Firebase rechazó el cambio. Cierra sesión, vuelve a iniciarla y verifica la claim admin."
+                        : isConnectivityError
+                            ? "No se pudo conectar con Firebase. Revisa tu conexión e inténtalo de nuevo."
                     : "No se pudo actualizar el acceso Premium.",
                 "error"
             );
