@@ -37,7 +37,9 @@ const publicPayload = app.slice(app.indexOf("const publicProfile = {"), app.inde
 });
 assert(app.includes("USER_PROGRESS_COLLECTION"), "el progreso debe escribirse en su colección privada");
 assert(app.includes("hasIndividualPremiumEntitlement()"), "Premium público debe derivarse de un entitlement individual");
-assert(app.includes('window.FB.runTransaction(window.FB.db') && !app.includes('httpsCallable(window.FB.functions, "setAdminUserPremiumAccess")'), "el panel Premium debe funcionar en Spark sin depender de Cloud Functions");
+const adminPremiumHandler = app.slice(app.indexOf("const setAdminUserPremium = async"), app.indexOf("const renderAdminUsers ="));
+assert(adminPremiumHandler.includes('window.FB.runTransaction(window.FB.db') && !adminPremiumHandler.includes('httpsCallable(window.FB.functions, "setAdminUserPremiumAccess")'), "el panel Premium debe funcionar en Spark sin depender de Cloud Functions");
+assert(!adminPremiumHandler.includes("reserveLaunchCapacityInTransaction("), "el panel Premium no debe depender de helpers fuera de su alcance");
 assert(app.includes("requireVerifiedAccount"), "las operaciones sensibles deben exigir correo verificado");
 assert(index.includes('minlength="12"'), "la interfaz debe exigir contraseñas de 12 caracteres");
 

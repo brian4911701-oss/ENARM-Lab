@@ -4400,8 +4400,23 @@
                     const alreadyHasThisAccess = current.status === "active"
                         && current.planId === plan.id
                         && currentExpiry >= new Date(plan.expiresAt).getTime();
-                    if (!alreadyHasThisAccess) {
-                        await reserveLaunchCapacityInTransaction(tx, plan.id, 1, now);
+                    if (!alreadyHasThisAccess && plan.id === "enarm_2027") {
+                        const counterRef = window.FB.doc(
+                            window.FB.db,
+                            LAUNCH_CAPACITY_COUNTER_COLLECTION,
+                            LAUNCH_CAPACITY_COUNTER_DOC_ID
+                        );
+                        const counterSnap = await tx.get(counterRef);
+                        const counter = counterSnap.exists() ? (counterSnap.data() || {}) : {};
+                        const limit = Math.max(1, Number(counter.limit) || LAUNCH_CAPACITY_LIMIT);
+                        const used = Math.max(0, Number(counter.used) || LAUNCH_CAPACITY_BASELINE);
+                        if (used + 1 > limit) throw new Error("launch_capacity_full");
+                        tx.set(counterRef, {
+                            used: used + 1,
+                            limit,
+                            updatedAt: now,
+                            updatedByUid: State.currentUid
+                        }, { merge: true });
                     }
                     nextEntitlement = {
                         status: "active",
