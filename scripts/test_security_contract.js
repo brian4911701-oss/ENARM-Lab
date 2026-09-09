@@ -29,6 +29,9 @@ assert(rules.includes("[A-Z2-9]{26}"), "los códigos deben tener al menos 130 bi
 assert(rules.includes("match /public_profiles/{uid}") && rules.includes("match /user_progress/{uid}"), "deben existir contratos público y privado separados");
 assert(rules.includes("match /leaderboard/{uid}") && rules.includes("allow create, update: if false;"), "leaderboard debe estar en cuarentena");
 assert(rules.includes("match /friendRequests/{requestId}") && rules.includes("match /challenges/{challengeId}"), "amistades y retos requieren reglas explícitas");
+assert(app.includes("const MAX_CHALLENGE_FRIENDS = 3"), "la interfaz debe respetar el máximo de tres amigos por reto definido en las reglas");
+assert(app.includes("bindChallengeButton();"), "el botón de retos debe enlazarse al cargar la interfaz, sin esperar la inicialización de Firebase");
+assert(app.includes("getChallengeableFriendEntries"), "la selección de amigos para retos no debe depender exclusivamente del ranking público");
 assert(rules.includes("match /reports/{reportId}") && rules.includes("match /user_push_tokens/{tokenId}"), "reportes y tokens requieren reglas explícitas");
 
 const publicPayload = app.slice(app.indexOf("const publicProfile = {"), app.indexOf("const privateProgress = {"));

@@ -170,6 +170,73 @@
 
     const $ = (id) => document.getElementById(id);
     const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+    const MAX_CHALLENGE_FRIENDS = 3;
+
+    const openChallengeDialog = () => {
+        if (!requireVerifiedAccount("Verifica tu correo para retar a tus amigos.")) return;
+        if (!ensurePremiumAccess("Retos y amigos son funciones premium.")) return;
+
+        const modal = $("challenge-modal");
+        const checkboxesContainer = $("challenge-friends-checkboxes");
+        if (!modal || !checkboxesContainer) {
+            showNotification("No se pudo abrir el selector de amigos. Recarga la página.", "error");
+            return;
+        }
+
+        checkboxesContainer.replaceChildren();
+        if (State.myFriends.length === 0) {
+            const empty = document.createElement("span");
+            empty.style.cssText = "font-size: 12px; color: var(--text-muted);";
+            empty.textContent = "Agrega amigos primero para desafiar.";
+            checkboxesContainer.appendChild(empty);
+        } else {
+            State.myFriends.forEach(friend => {
+                const row = document.createElement("div");
+                row.style.cssText = "display:flex; align-items:center; gap:10px; padding:5px;";
+
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.className = "challenge-friend-cb";
+                checkbox.value = friend.uid;
+                checkbox.dataset.name = friend.username || "Amigo";
+                checkbox.dataset.premium = friend.isPremium ? "1" : "0";
+                checkbox.id = `cb-${friend.uid}`;
+                checkbox.style.cursor = "pointer";
+                checkbox.addEventListener("change", () => {
+                    if (checkbox.checked && checkboxesContainer.querySelectorAll(".challenge-friend-cb:checked").length > MAX_CHALLENGE_FRIENDS) {
+                        checkbox.checked = false;
+                        showNotification(`Puedes retar hasta ${MAX_CHALLENGE_FRIENDS} amigos a la vez.`, "warning");
+                    }
+                });
+
+                const label = document.createElement("label");
+                label.className = "community-name-row";
+                label.htmlFor = checkbox.id;
+                label.style.cssText = "cursor:pointer; font-size:14px; flex:1;";
+                const score = Number(friend.score);
+                label.textContent = `${friend.username || "Amigo"} (${Number.isFinite(score) ? score : 0}%)`;
+
+                row.append(checkbox, label);
+                checkboxesContainer.appendChild(row);
+            });
+
+            if (window._pendingChallengeUid) {
+                const target = Array.from(checkboxesContainer.querySelectorAll(".challenge-friend-cb"))
+                    .find(input => input.value === window._pendingChallengeUid);
+                if (target) target.checked = true;
+                window._pendingChallengeUid = null;
+            }
+        }
+        modal.style.display = "flex";
+    };
+
+    const bindChallengeButton = () => {
+        const button = $("btn-create-challenge");
+        if (!button || button.dataset.challengeLaunchBound === "1") return;
+        button.dataset.challengeLaunchBound = "1";
+        button.addEventListener("click", openChallengeDialog);
+    };
+    window.openChallengeDialog = openChallengeDialog;
 
     State.isAdminClaim = false;
     const ADMIN_USERS_PAGE_SIZE = 15;
@@ -13278,6 +13345,7 @@
         initFlashcardsEntryPoints();
         bindSidebar();
         initSetupLogic();
+        bindChallengeButton();
         initDashboardShortcuts();
         startExamCountdown();
         initReportLogic();
@@ -14248,6 +14316,9 @@
             initReportsCloud();
             let communityLeaderboardEntries = [];
             let communityFriendIds = new Set([window.FB.auth.currentUser.uid]);
+            // Las amistades son la fuente de verdad para los retos. El ranking es
+            // opcional: puede seguir cargando o no contener perfiles antiguos.
+            let acceptedFriendDetails = new Map();
             let leaderboardUnsub = null;
 
             const formatLeaderboardScore = (value) => {
@@ -14289,6 +14360,22 @@
             `;
 
             const getLeaderboardEntryById = (uid) => communityLeaderboardEntries.find(entry => entry.id === uid) || null;
+
+            const getChallengeableFriendEntries = (currentUid) => {
+                return Array.from(communityFriendIds)
+                    .filter(uid => typeof uid === "string" && uid && uid !== currentUid)
+                    .map(uid => {
+                        const profile = getLeaderboardEntryById(uid);
+                        const fallback = acceptedFriendDetails.get(uid) || {};
+                        return {
+                            uid,
+                            username: profile?.username || fallback.username || "Amigo",
+                            score: profile?.score ?? null,
+                            isPremium: profile?.isPremium === true || fallback.isPremium === true,
+                            avatarId: profile?.avatarId || ""
+                        };
+                    });
+            };
 
             const getCommunityPremiumState = (uid, fallback = false) => {
                 const entry = uid ? getLeaderboardEntryById(uid) : null;
@@ -14478,14 +14565,8 @@
                     }
                 }
 
-                const friendsEntries = communityLeaderboardEntries.filter(entry => communityFriendIds.has(entry.id) && entry.id !== currentUid);
-                State.myFriends = friendsEntries.map(entry => ({
-                    uid: entry.id,
-                    username: entry.username,
-                    score: entry.score,
-                    isPremium: entry.isPremium,
-                    avatarId: entry.avatarId
-                }));
+                const friendsEntries = getChallengeableFriendEntries(currentUid);
+                State.myFriends = friendsEntries;
 
                 const flList = $("friends-list");
                 if (flList) {
@@ -14502,7 +14583,7 @@
                                     <div style="font-size: 11px; color: var(--text-muted);">${getPublicScoreLabel(entry, false)}</div>
                                 </div>
                             </div>
-                            <button class="btn-primary" onclick="window.quickChallenge('${entry.id}')" style="width:100%; padding: 7px; font-size: 12px; border-radius: 8px; background: var(--accent-orange); text-align:center;">${appIcon('swords')} Retar</button>
+                            <button class="btn-primary" onclick="window.quickChallenge('${entry.uid}')" style="width:100%; padding: 7px; font-size: 12px; border-radius: 8px; background: var(--accent-orange); text-align:center;">${appIcon('swords')} Retar</button>
                         </div>`).join("");
                     }
                 }
@@ -14577,13 +14658,32 @@
                     });
 
                     const friendIds = new Set([currentUid]);
+                    const friendDetails = new Map();
+                    const addFriend = (uid, username, isPremium = false) => {
+                        if (typeof uid !== "string" || !uid || uid === currentUid) return;
+                        friendIds.add(uid);
+                        const previous = friendDetails.get(uid) || {};
+                        friendDetails.set(uid, {
+                            username: typeof username === "string" && username.trim()
+                                ? username.trim()
+                                : (previous.username || "Amigo"),
+                            isPremium: previous.isPremium === true || isPremium === true
+                        });
+                    };
                     const snap1 = await getSnap(reqsRef1);
                     const snap2 = await getSnap(reqsRef2);
 
-                    snap1.forEach(doc => { if (doc.data()) friendIds.add(doc.data().fromId); });
-                    snap2.forEach(doc => { if (doc.data()) friendIds.add(doc.data().toId); });
+                    snap1.forEach(doc => {
+                        const request = doc.data();
+                        if (request) addFriend(request.fromId, request.fromName, request.fromPremium);
+                    });
+                    snap2.forEach(doc => {
+                        const request = doc.data();
+                        if (request) addFriend(request.toId, request.toName);
+                    });
 
                     communityFriendIds = friendIds;
+                    acceptedFriendDetails = friendDetails;
                     renderCommunityPanels();
                 } catch (err) {
                     console.error("Error cargando amigos: ", err);
@@ -14968,43 +15068,11 @@
             if (window._challengeLogicReady) return;
             window._challengeLogicReady = true;
 
-            const btnCreate = $("btn-create-challenge");
             const modal = $("challenge-modal");
             const btnClose = $("btn-close-challenge-modal");
             const btnSend = $("btn-send-challenge");
             const checkboxesContainer = $("challenge-friends-checkboxes");
             const listContainer = $("challenges-list-container");
-
-            if (btnCreate) {
-                btnCreate.addEventListener("click", () => {
-                    if (!ensurePremiumAccess("Retos y amigos son funciones premium.")) return;
-                    if (!checkboxesContainer) return;
-                    checkboxesContainer.innerHTML = "";
-                    if (State.myFriends.length === 0) {
-                        checkboxesContainer.innerHTML = '<span style="font-size: 12px; color: var(--text-muted);">Agrega amigos primero para desafiar.</span>';
-                    } else {
-                        State.myFriends.forEach(f => {
-                            const div = document.createElement("div");
-                            div.style.display = "flex";
-                            div.style.alignItems = "center";
-                            div.style.gap = "10px";
-                            div.style.padding = "5px";
-                            div.innerHTML = `
-                                <input type="checkbox" class="challenge-friend-cb" value="${f.uid}" data-name="${f.username}" data-premium="${f.isPremium ? '1' : '0'}" id="cb-${f.uid}" style="cursor:pointer;">
-                                <label class="community-name-row" for="cb-${f.uid}" style="cursor:pointer; font-size:14px; flex:1;">${renderCommunityName(f.username, f.isPremium)} <span class="community-score-inline">(${f.score}%)</span></label>
-                            `;
-                            checkboxesContainer.appendChild(div);
-                        });
-                        // If we arrived from quickChallenge, auto-select that friend
-                        if (window._pendingChallengeUid) {
-                            const target = checkboxesContainer.querySelector(`input[value="${window._pendingChallengeUid}"]`);
-                            if (target) target.checked = true;
-                            window._pendingChallengeUid = null; // consume it
-                        }
-                    }
-                    modal.style.display = "flex";
-                });
-            }
 
             if (btnClose) {
                 btnClose.addEventListener("click", () => {
@@ -15014,8 +15082,20 @@
 
             if (btnSend) {
                 btnSend.addEventListener("click", async () => {
-                    const selectedCbs = document.querySelectorAll(".challenge-friend-cb:checked");
+                    if (!ensurePremiumAccess("Retos y amigos son funciones premium.")) return;
+                    const currentUser = window.FB?.auth?.currentUser;
+                    if (!currentUser) return showNotification("Inicia sesión para enviar un reto.", "warning");
+
+                    const selectedCbs = Array.from(checkboxesContainer?.querySelectorAll(".challenge-friend-cb:checked") || []);
                     if (selectedCbs.length === 0) return showNotification("Selecciona al menos un amigo.", "warning");
+                    if (selectedCbs.length > MAX_CHALLENGE_FRIENDS) {
+                        return showNotification(`Puedes retar hasta ${MAX_CHALLENGE_FRIENDS} amigos a la vez.`, "warning");
+                    }
+
+                    const selectedFriendIds = new Set(selectedCbs.map(cb => cb.value));
+                    if (selectedFriendIds.size !== selectedCbs.length) {
+                        return showNotification("Hay amigos repetidos en la selección. Inténtalo de nuevo.", "warning");
+                    }
 
                     // Read config from State (always in sync with DOM via listeners in initSetupLogic)
                     // Fallback to reading DOM directly in case the user hasn't interacted yet
@@ -15101,7 +15181,7 @@
                         // Map participants
                         const participants = {};
                         // Include the challenger
-                        participants[window.FB.auth.currentUser.uid] = {
+                        participants[currentUser.uid] = {
                             name: State.userName,
                             isPremium: isPremiumActive(),
                             score: null,
@@ -15118,12 +15198,12 @@
                             };
                         });
 
-                        const participantIds = [window.FB.auth.currentUser.uid, ...Array.from(selectedCbs).map(cb => cb.value)];
+                        const participantIds = [currentUser.uid, ...selectedFriendIds];
 
                         btnSend.textContent = "Enviando...";
                         try {
                             const newDoc = await window.FB.addDoc(window.FB.collection(window.FB.db, "challenges"), {
-                                challengerId: window.FB.auth.currentUser.uid,
+                                challengerId: currentUser.uid,
                                 challengerName: State.userName,
                                 challengerPremium: isPremiumActive(),
                                 participants: participants,
