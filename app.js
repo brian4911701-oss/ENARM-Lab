@@ -2443,6 +2443,7 @@
         updatePremiumStatusLabel();
         updateGlobalPremiumAdminPanel();
         renderProfileView();
+        applyCurrentProfileAvatar();
         const premium = isPremiumActive() || isPremiumResolutionPending();
         const dashboardUpgradeCta = $("dashboard-upgrade-cta");
         if (dashboardUpgradeCta) {
@@ -6182,7 +6183,11 @@
 
     const applyCurrentProfileAvatar = () => {
         const initials = getUserInitials(State.userName);
-        $$(".user-avatar").forEach(el => renderProfileAvatar(el, State.userAvatar, initials));
+        const hasPremium = isPremiumActive();
+        $$(".user-avatar").forEach(el => {
+            renderProfileAvatar(el, State.userAvatar, initials);
+            el.classList.toggle("is-premium", hasPremium);
+        });
         renderProfileAvatar($("profile-hero-avatar"), State.userAvatar, initials);
     };
 

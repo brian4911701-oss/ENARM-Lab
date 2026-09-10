@@ -734,6 +734,7 @@ body.theme-premium-pink .sidebar-capsule {
 .user-avatar {
   width: 38px;
   height: 38px;
+  position: relative;
   border-radius: 10px;
   background: rgba(5, 192, 127, 0.15);
   display: flex;
@@ -742,6 +743,19 @@ body.theme-premium-pink .sidebar-capsule {
   font-size: 18px;
   color: var(--accent-green);
   flex-shrink: 0;
+}
+
+.user-avatar.is-premium::after {
+  content: "👑";
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  z-index: 2;
+  font-size: 17px;
+  line-height: 1;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.38));
+  pointer-events: none;
 }
 
 .user-name {
@@ -8554,6 +8568,20 @@ body.light-mode .premium-slider {
 
 #view-calculadora .input-group p {
   overflow-wrap: anywhere;
+}
+
+.calculator-accuracy-note {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  margin: 14px 0 0;
+  padding: 9px 12px;
+  border: 1px solid rgba(5, 192, 127, 0.3);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  background: rgba(5, 192, 127, 0.08);
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 .calc-input-group {
