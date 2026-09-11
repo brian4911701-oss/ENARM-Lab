@@ -36,7 +36,7 @@ try {
 
 // ENARMax Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
-const CACHE_NAME = 'enarmax-v72-safe-progress-restore';
+const CACHE_NAME = 'enarmax-v73-email-verification-settings';
 const COMPROMISED_ASSETS = ['/redeem_codes.txt', 'redeem_codes.txt'];
 
 // Archivos esenciales que se cachean al instalar

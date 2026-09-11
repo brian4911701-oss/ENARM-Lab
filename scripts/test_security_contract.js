@@ -18,7 +18,7 @@ const publicKey = read("withdrawal-public-key.js");
 assert.equal(fs.existsSync(path.join(root, "redeem_codes.txt")), false, "redeem_codes.txt no debe existir en la raíz");
 assert(!build.includes('"redeem_codes.txt"'), "el build no debe publicar el catálogo de códigos");
 const cacheVersion = worker.match(/const CACHE_NAME = 'enarmax-v(\d+)-/);
-assert(cacheVersion && Number(cacheVersion[1]) >= 72, "el service worker debe rotar la caché tras el cambio de restauración de progreso");
+assert(cacheVersion && Number(cacheVersion[1]) >= 73, "el service worker debe rotar la caché tras el cambio de verificación de correo");
 assert(worker.includes("endsWith('/redeem_codes.txt')") && worker.includes("status: 404"), "el service worker debe bloquear la URL antigua");
 assert(!hosting.includes('"rewrites"'), "el hosting estático no debe convertir archivos ausentes en index.html");
 
@@ -42,6 +42,7 @@ assert(app.includes("USER_PROGRESS_COLLECTION"), "el progreso debe escribirse en
 assert(app.includes("Promise.allSettled"), "un fallo de lectura secundaria no debe impedir restaurar el progreso disponible");
 assert(app.includes("progressRestoreReady"), "la app debe bloquear escrituras remotas hasta terminar de restaurar el progreso");
 assert(app.includes("sendVerificationEmailIfDue"), "las cuentas antiguas sin verificar deben recibir un nuevo correo de verificación");
+assert(app.includes("syncEmailVerificationSettings") && index.includes('id="btn-resend-email-verification"'), "Ajustes debe permitir reenviar la verificación a cuentas pendientes");
 assert(app.includes("hasIndividualPremiumEntitlement()"), "Premium público debe derivarse de un entitlement individual");
 const adminPremiumHandler = app.slice(app.indexOf("const setAdminUserPremium = async"), app.indexOf("const renderAdminUsers ="));
 assert(adminPremiumHandler.includes('window.FB.runTransaction(window.FB.db') && !adminPremiumHandler.includes('httpsCallable(window.FB.functions, "setAdminUserPremiumAccess")'), "el panel Premium debe funcionar en Spark sin depender de Cloud Functions");

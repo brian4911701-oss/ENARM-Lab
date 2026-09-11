@@ -1649,23 +1649,74 @@
 
     const isVerifiedCurrentUser = () => window.FB?.auth?.currentUser?.emailVerified === true;
 
-    const sendVerificationEmailIfDue = async (user) => {
-        if (!user || user.emailVerified || typeof window.FB?.sendEmailVerification !== "function") return false;
+    const EMAIL_VERIFICATION_COOLDOWN_MS = 15 * 60 * 1000;
+
+    const getVerificationEmailState = (user) => {
+        if (!user || user.emailVerified) return { pending: false, remainingMs: 0 };
         const storageKey = `enarm_verification_email_sent_at_${user.uid}`;
-        const cooldownMs = 15 * 60 * 1000;
         let lastSentAt = 0;
         try {
             lastSentAt = Number(localStorage.getItem(storageKey)) || 0;
         } catch (_error) { /* el correo se puede solicitar aun sin almacenamiento local */ }
-        if (Date.now() - lastSentAt < cooldownMs) return false;
+        return {
+            pending: true,
+            storageKey,
+            remainingMs: Math.max(0, EMAIL_VERIFICATION_COOLDOWN_MS - (Date.now() - lastSentAt))
+        };
+    };
+
+    const formatVerificationCooldown = (milliseconds) => {
+        const minutes = Math.max(1, Math.ceil(milliseconds / 60000));
+        return `${minutes} minuto${minutes === 1 ? "" : "s"}`;
+    };
+
+    const syncEmailVerificationSettings = () => {
+        const panel = $("email-verification-settings");
+        const status = $("email-verification-status");
+        const hint = $("email-verification-hint");
+        const button = $("btn-resend-email-verification");
+        const user = window.FB?.auth?.currentUser;
+        const state = getVerificationEmailState(user);
+        if (panel) panel.hidden = !state.pending;
+        if (!state.pending) return;
+
+        const email = String(user?.email || "este correo");
+        if (state.remainingMs > 0) {
+            if (status) status.textContent = "Enlace enviado recientemente";
+            if (hint) hint.textContent = `Revisa ${email}, Spam y Promociones. Puedes solicitar otro enlace en ${formatVerificationCooldown(state.remainingMs)}.`;
+            if (button) {
+                button.disabled = true;
+                button.textContent = "Espera para reenviar";
+            }
+            return;
+        }
+        if (status) status.textContent = "Correo pendiente de verificación";
+        if (hint) hint.textContent = `Te enviaremos un enlace a ${email}. Revisa también Spam y Promociones.`;
+        if (button) {
+            button.disabled = false;
+            button.textContent = "Enviar enlace";
+        }
+    };
+
+    const sendVerificationEmailIfDue = async (user, { notify = true } = {}) => {
+        if (!user || user.emailVerified || typeof window.FB?.sendEmailVerification !== "function") return false;
+        const state = getVerificationEmailState(user);
+        if (state.remainingMs > 0) {
+            if (notify) showNotification(`Ya enviamos un enlace. Espera ${formatVerificationCooldown(state.remainingMs)} para solicitar otro.`, "info");
+            syncEmailVerificationSettings();
+            return false;
+        }
         try {
             window.FB.auth.languageCode = "es";
             await window.FB.sendEmailVerification(user);
-            try { localStorage.setItem(storageKey, String(Date.now())); } catch (_error) { /* no afecta el envío */ }
-            showNotification("Te enviamos un correo de verificación. Ábrelo y vuelve a iniciar sesión para recuperar tu progreso y acceso.", "warning");
+            try { localStorage.setItem(state.storageKey, String(Date.now())); } catch (_error) { /* no afecta el envío */ }
+            if (notify) showNotification("Te enviamos un correo de verificación. Ábrelo y vuelve a iniciar sesión para recuperar tu progreso y acceso.", "warning");
+            syncEmailVerificationSettings();
             return true;
         } catch (error) {
             console.warn("No se pudo reenviar el correo de verificación.", error);
+            if (notify) showNotification("No pudimos enviar el enlace. Revisa tu conexión e intenta de nuevo más tarde.", "error");
+            syncEmailVerificationSettings();
             return false;
         }
     };
@@ -2463,6 +2514,7 @@
         if ($("profile-target-year")) $("profile-target-year").value = State.userTargetYear || "";
         if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic;
         updatePremiumStatusLabel();
+        syncEmailVerificationSettings();
     }
 
     const clearSelectedPreset = () => {
@@ -6067,6 +6119,7 @@
         }
         if (viewId === "view-historial") updateHistoryView();
         if (viewId === "view-estadisticas") updateCharts();
+        if (viewId === "view-ajustes") syncEmailVerificationSettings();
         if (viewId === "view-calculadora") initCalculator();
         if (viewId === "view-temario") void renderOfficialTemario($("temario-search")?.value || "");
         if (viewId === "view-escalas") renderScaleStudyView();
@@ -13473,6 +13526,21 @@
                 syncOptionalAnalyticsIdentity();
                 renderProfileView();
                 showNotification("Perfil actualizado y sincronizado.", "success");
+            });
+        }
+
+        const btnResendEmailVerification = $("btn-resend-email-verification");
+        if (btnResendEmailVerification) {
+            btnResendEmailVerification.addEventListener("click", async () => {
+                const user = window.FB?.auth?.currentUser;
+                if (!user || user.emailVerified) {
+                    syncEmailVerificationSettings();
+                    return;
+                }
+                btnResendEmailVerification.disabled = true;
+                btnResendEmailVerification.textContent = "Enviando…";
+                await sendVerificationEmailIfDue(user);
+                syncEmailVerificationSettings();
             });
         }
 

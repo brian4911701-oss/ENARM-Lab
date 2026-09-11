@@ -3459,6 +3459,20 @@
 
                     <div class="settings-grid settings-stack">
 
+                        <section class="panel settings-panel email-verification-panel" id="email-verification-settings" style="border-top-color: var(--accent-orange);" hidden>
+                            <h3 class="panel-title" style="margin-bottom: 10px; font-size: 1.1rem;">
+                                <span class="title-icon yellow-text">&#9993;</span> Confirma tu correo
+                            </h3>
+                            <p class="panel-subtitle">Tu cuenta necesita confirmar su correo para sincronizar todas las funciones y habilitar Premium.</p>
+                            <div class="profile-privacy-toggle email-verification-action">
+                                <div>
+                                    <div class="profile-privacy-title" id="email-verification-status">Correo pendiente de verificación</div>
+                                    <p class="profile-privacy-note" id="email-verification-hint">Te enviaremos un enlace al correo asociado con esta sesión.</p>
+                                </div>
+                                <button class="btn-primary" id="btn-resend-email-verification" type="button">Enviar enlace</button>
+                            </div>
+                        </section>
+
                         <!-- Sección: Preferencias movida al primer lugar -->
 
                         <!-- Sección: Preferencias -->
