@@ -18,7 +18,7 @@ const publicKey = read("withdrawal-public-key.js");
 assert.equal(fs.existsSync(path.join(root, "redeem_codes.txt")), false, "redeem_codes.txt no debe existir en la raíz");
 assert(!build.includes('"redeem_codes.txt"'), "el build no debe publicar el catálogo de códigos");
 const cacheVersion = worker.match(/const CACHE_NAME = 'enarmax-v(\d+)-/);
-assert(cacheVersion && Number(cacheVersion[1]) >= 63, "el service worker debe conservar la rotación de caché de seguridad o una posterior");
+assert(cacheVersion && Number(cacheVersion[1]) >= 72, "el service worker debe rotar la caché tras el cambio de restauración de progreso");
 assert(worker.includes("endsWith('/redeem_codes.txt')") && worker.includes("status: 404"), "el service worker debe bloquear la URL antigua");
 assert(!hosting.includes('"rewrites"'), "el hosting estático no debe convertir archivos ausentes en index.html");
 
@@ -39,6 +39,9 @@ const publicPayload = app.slice(app.indexOf("const publicProfile = {"), app.inde
   assert(!publicPayload.includes(field), `el perfil público no debe contener ${field}`);
 });
 assert(app.includes("USER_PROGRESS_COLLECTION"), "el progreso debe escribirse en su colección privada");
+assert(app.includes("Promise.allSettled"), "un fallo de lectura secundaria no debe impedir restaurar el progreso disponible");
+assert(app.includes("progressRestoreReady"), "la app debe bloquear escrituras remotas hasta terminar de restaurar el progreso");
+assert(app.includes("sendVerificationEmailIfDue"), "las cuentas antiguas sin verificar deben recibir un nuevo correo de verificación");
 assert(app.includes("hasIndividualPremiumEntitlement()"), "Premium público debe derivarse de un entitlement individual");
 const adminPremiumHandler = app.slice(app.indexOf("const setAdminUserPremium = async"), app.indexOf("const renderAdminUsers ="));
 assert(adminPremiumHandler.includes('window.FB.runTransaction(window.FB.db') && !adminPremiumHandler.includes('httpsCallable(window.FB.functions, "setAdminUserPremiumAccess")'), "el panel Premium debe funcionar en Spark sin depender de Cloud Functions");

@@ -68,6 +68,11 @@
         currentExamIsReal: false,
         currentUid: "",
         authStateResolved: false,
+        // No permitimos escribir el progreso remoto hasta terminar de leer una
+        // fuente privada de ese mismo usuario. Así una falla de red o permisos
+        // no puede sustituir el progreso existente por el estado inicial local.
+        progressRestoreUid: "",
+        progressRestoreReady: false,
         entitlement: null,
         entitlementLoaded: false,
         entitlementUnsub: null,
@@ -1585,15 +1590,28 @@
 
     const getPrivateUserSnapshot = async (uid) => {
         if (!uid || !window.FB?.db || !window.FB?.getDoc || !window.FB?.doc) {
-            return { exists: () => false, data: () => ({}) };
+            return { exists: () => false, data: () => ({}), canSafelyPersist: () => false };
         }
-        const [progressSnap, directorySnap, publicSnap, legacySnap] = await Promise.all([
+        // El perfil público exige correo verificado; no debe impedir que el
+        // titular recupere su progreso privado o el respaldo legado.
+        const [progressResult, directoryResult, publicResult, legacyResult] = await Promise.allSettled([
             window.FB.getDoc(window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid)),
             window.FB.getDoc(window.FB.doc(window.FB.db, "user_directory", uid)),
             window.FB.getDoc(window.FB.doc(window.FB.db, PUBLIC_PROFILES_COLLECTION, uid)),
             // Compatibilidad temporal: solo el titular puede leer su documento legado.
             window.FB.getDoc(window.FB.doc(window.FB.db, "leaderboard", uid)).catch(() => null)
         ]);
+        const resolved = (result) => result.status === "fulfilled" ? result.value : null;
+        const progressSnap = resolved(progressResult);
+        const directorySnap = resolved(directoryResult);
+        const publicSnap = resolved(publicResult);
+        const legacySnap = resolved(legacyResult);
+        const failures = [progressResult, directoryResult, publicResult, legacyResult]
+            .filter(result => result.status === "rejected")
+            .map(result => result.reason);
+        if (failures.length) {
+            console.warn("No se pudieron leer algunos documentos del perfil; se restaurarán los que sí estén disponibles.", failures);
+        }
         const exists = Boolean(progressSnap?.exists() || directorySnap?.exists() || publicSnap?.exists() || legacySnap?.exists?.());
         const merged = {
             ...(legacySnap?.exists?.() ? legacySnap.data() : {}),
@@ -1601,7 +1619,10 @@
             ...(publicSnap?.exists() ? publicSnap.data() : {}),
             ...(directorySnap?.exists() ? directorySnap.data() : {})
         };
-        return { exists: () => exists, data: () => merged };
+        // Una respuesta válida de user_progress o leaderboard confirma que no
+        // estamos a punto de sobrescribir progreso remoto desconocido.
+        const canSafelyPersist = progressResult.status === "fulfilled" || legacyResult.status === "fulfilled";
+        return { exists: () => exists, data: () => merged, canSafelyPersist: () => canSafelyPersist };
     };
 
     const isValidPublicUsername = (value) => {
@@ -1627,6 +1648,27 @@
     };
 
     const isVerifiedCurrentUser = () => window.FB?.auth?.currentUser?.emailVerified === true;
+
+    const sendVerificationEmailIfDue = async (user) => {
+        if (!user || user.emailVerified || typeof window.FB?.sendEmailVerification !== "function") return false;
+        const storageKey = `enarm_verification_email_sent_at_${user.uid}`;
+        const cooldownMs = 15 * 60 * 1000;
+        let lastSentAt = 0;
+        try {
+            lastSentAt = Number(localStorage.getItem(storageKey)) || 0;
+        } catch (_error) { /* el correo se puede solicitar aun sin almacenamiento local */ }
+        if (Date.now() - lastSentAt < cooldownMs) return false;
+        try {
+            window.FB.auth.languageCode = "es";
+            await window.FB.sendEmailVerification(user);
+            try { localStorage.setItem(storageKey, String(Date.now())); } catch (_error) { /* no afecta el envío */ }
+            showNotification("Te enviamos un correo de verificación. Ábrelo y vuelve a iniciar sesión para recuperar tu progreso y acceso.", "warning");
+            return true;
+        } catch (error) {
+            console.warn("No se pudo reenviar el correo de verificación.", error);
+            return false;
+        }
+    };
 
     const requireVerifiedAccount = (message = "Verifica tu correo para usar esta función.") => {
         if (isVerifiedCurrentUser()) return true;
@@ -6081,6 +6123,10 @@
         // Sincroniza por separado el perfil público y el progreso privado.
         if (window.FB && window.FB.auth.currentUser) {
             const uid = window.FB.auth.currentUser.uid;
+            if (State.progressRestoreUid !== uid || !State.progressRestoreReady) {
+                console.warn("Se omitió la sincronización remota hasta restaurar el progreso de esta sesión.");
+                return;
+            }
             const totalq = State.globalStats?.respondidas || 0;
             const avg = totalq > 0 ? parseFloat(((State.globalStats.aciertos / totalq) * 100).toFixed(1)) : 0;
 
@@ -16581,6 +16627,8 @@
                             setStartupStatus("Restaurando tu progreso", "Estamos sincronizando estadísticas, historial y tus preferencias.");
                             State.entitlementLoaded = false;
                             State.globalPremiumLoaded = false;
+                            State.progressRestoreUid = user.uid;
+                            State.progressRestoreReady = false;
                             const fallbackDisplayName = user.displayName
                                 || (user.email ? user.email.split("@")[0] : "")
                                 || State.userName;
@@ -16590,13 +16638,16 @@
                             // Esta es la única lectura imprescindible antes de mostrar la app.
                             // Se inicia antes de los listeners secundarios para evitar competir por red en Android.
                             const coreUserDataPromise = getPrivateUserSnapshot(user.uid);
-                            const startSecondaryAuthenticatedWork = () => {
+                            const startSecondaryAuthenticatedWork = async () => {
                             // El directorio administrativo no controla permisos: debe existir
                             // desde el alta, aunque el correo siga pendiente de verificación.
                             void syncUserDirectory(user, { forceProfile: true, forcePresence: true });
                             if (!user.emailVerified) {
+                                const verificationSent = await sendVerificationEmailIfDue(user);
                                 syncReclassAccessUI();
-                                showNotification("Verifica tu correo para sincronizar datos, usar Comunidad, Premium, pagos o referidos.", "warning");
+                                if (!verificationSent) {
+                                    showNotification("Verifica tu correo para sincronizar datos, usar Comunidad, Premium, pagos o referidos.", "warning");
+                                }
                                 return;
                             }
                             startUserPresenceHeartbeat(user);
@@ -16722,11 +16773,14 @@
                                     rebuildTopicMastery();
                                     ensureDailyPlanFresh();
 
+                                    State.progressRestoreReady = snap.canSafelyPersist();
+
                                     if (needsUpdate) {
                                         updateDashboardStats();
                                         if (typeof updateCharts === 'function') updateCharts();
                                     }
                                 } else {
+                                    State.progressRestoreReady = snap.canSafelyPersist();
                                     // Solo crear documento si el nombre ya no es el genérico (evita race condition en registros)
                                     if (State.userName !== "Aspirante") {
                                         State.accountCreatedAt = new Date();
@@ -16740,7 +16794,7 @@
                                 console.error("Error fetching cloud data on Auth Change:", e);
                                 setStartupStatus("No pudimos restaurar tu progreso", "Revisa tu conexión e inténtalo de nuevo. Tus datos no se han modificado.");
                             } finally {
-                                startSecondaryAuthenticatedWork();
+                                void startSecondaryAuthenticatedWork();
                             }
                         } else {
                             stopUserPresenceHeartbeat();
@@ -16748,6 +16802,8 @@
                             resetUserMetricsSync();
                             State.currentUid = "";
                             State.isAdminClaim = false;
+                            State.progressRestoreUid = "";
+                            State.progressRestoreReady = false;
                             syncOptionalAnalyticsIdentity();
                             State.entitlement = null;
                             State.entitlementLoaded = true;
@@ -17204,8 +17260,12 @@
                             ensureStudySystemsState();
                             rebuildTopicMastery();
                             ensureDailyPlanFresh();
+                            if (snap.canSafelyPersist() && State.currentUid === window.FB.auth.currentUser.uid) {
+                                State.progressRestoreUid = window.FB.auth.currentUser.uid;
+                                State.progressRestoreReady = true;
+                            }
                             // Asegurar que el nombre (y otros datos locales) se sincronicen con la nube al entrar
-                            saveGlobalStats();
+                            if (State.progressRestoreReady) saveGlobalStats();
 
                             // Refrescar las vistas de la app si recuperamos algo o si es un usuario nuevo
                             updateDashboardStats();
