@@ -14173,6 +14173,7 @@ h6,
 /* Platform availability is a feature, so it gets the same visual weight as the main actions. */
 #landing-page .landing-platforms { gap: 13px; }
 #landing-page .landing-platforms-label { font-size: .74rem; color: var(--welcome-ink); }
+#landing-page .landing-platforms-instructions { display: block; margin-top: 2px; color: var(--welcome-muted); font-size: .68rem; }
 #landing-page .landing-platform-list { gap: 10px; }
 #landing-page .landing-platform-chip {
   min-height: 48px; padding: 10px 14px; border: 1px solid #c8d5e5; border-radius: 6px;
@@ -14251,7 +14252,6 @@ h6,
   #landing-page .landing-mobile-link { display: flex; align-items: center; min-height: 46px; padding: 12px 8px; }
 }
 @media (max-width: 480px) {
-  #landing-page .landing-platform-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+  #landing-page .landing-platform-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
   #landing-page .landing-platform-chip { justify-content: center; min-width: 0; padding: 10px 8px; font-size: .76rem; }
-  #landing-page .landing-platform-chip--apple { grid-column: span 2; }
 }
