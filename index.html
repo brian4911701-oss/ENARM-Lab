@@ -97,20 +97,11 @@
     <!-- ── LANDING PAGE ── -->
     <div id="landing-page" class="landing-page">
 
-        <!-- ── Animated background particles ── -->
-        <div class="landing-bg-effects">
-            <div class="landing-logo-watermark" id="landing-logo-watermark" aria-hidden="true"></div>
-            <div class="landing-orb landing-orb--1"></div>
-            <div class="landing-orb landing-orb--2"></div>
-            <div class="landing-orb landing-orb--3"></div>
-            <div class="landing-grid-overlay"></div>
-        </div>
-
         <!-- ── Sticky Nav ── -->
         <header class="landing-header">
             <nav class="landing-nav">
                 <div class="landing-logo">
-                    <span class="logo-mark landing-logo-img"></span>
+                    <span class="logo-mark landing-logo-img" aria-hidden="true"></span>
                     <span class="landing-logo-text">ENAR<span class="landing-logo-m">M</span><span class="landing-logo-accent">ax</span></span>
                 </div>
                 <div class="landing-nav-links" id="landing-nav-links">
@@ -124,11 +115,39 @@
                     <button id="btn-landing-login-top" class="landing-btn-ghost">Iniciar Sesión</button>
                     <button id="btn-landing-start" class="landing-btn-cta">Crear Cuenta Gratis</button>
                 </div>
-                <button class="landing-hamburger" id="landing-hamburger" aria-label="Menú">
+                <button class="landing-theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Modo oscuro" title="Activar modo oscuro">
+                    <span class="landing-theme-track" aria-hidden="true">
+                        <svg class="landing-theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+                        <svg class="landing-theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg>
+                    </span>
+                </button>
+                <button class="landing-hamburger" id="landing-hamburger" aria-label="Menú" aria-expanded="false" aria-controls="landing-mobile-menu">
                     <span></span><span></span><span></span>
                 </button>
             </nav>
         </header>
+
+        <script>
+            // The welcome theme is available immediately, independently of session loading.
+            (() => {
+                const page = document.getElementById('landing-page');
+                const toggle = page.querySelector('.landing-theme-toggle');
+                const applyTheme = (theme) => {
+                    const dark = theme === 'dark';
+                    page.dataset.theme = dark ? 'dark' : 'light';
+                    toggle.setAttribute('aria-checked', String(dark));
+                    toggle.title = dark ? 'Activar modo claro' : 'Activar modo oscuro';
+                };
+                let savedTheme = 'light';
+                try { savedTheme = localStorage.getItem('enarm_landing_theme') || 'light'; } catch (_) {}
+                applyTheme(savedTheme);
+                toggle.addEventListener('click', () => {
+                    const nextTheme = page.dataset.theme === 'dark' ? 'light' : 'dark';
+                    applyTheme(nextTheme);
+                    try { localStorage.setItem('enarm_landing_theme', nextTheme); } catch (_) {}
+                });
+            })();
+        </script>
 
         <!-- ── Mobile Menu ── -->
         <div class="landing-mobile-menu" id="landing-mobile-menu">
@@ -147,10 +166,10 @@
             <section class="landing-hero">
                 <div class="hero-content">
                     <div class="hero-badge">
-                        <span class="hero-badge-dot"></span>
+                        <span class="logo-mark hero-badge-logo" aria-hidden="true"></span>
                         DIAGNÓSTICO GRATUITO · ENARM 2027
                     </div>
-                    <h1 class="landing-title">Prepárate para el ENARM 2027<br><span class="landing-title-gradient">con una práctica que te dice qué reforzar</span></h1>
+                    <h1 class="landing-title">Prepárate para el <span class="landing-title-year">ENARM 2027</span><span class="landing-title-gradient">con una práctica que te dice qué reforzar</span></h1>
                     <p class="landing-subtitle">Resuelve 10 casos clínicos y recibe un diagnóstico por área. Después entrena con 3,220 reactivos y simulacros de hasta 280 preguntas.</p>
                     <div class="landing-cta-group">
                         <button id="btn-landing-hero-start" class="landing-btn-cta landing-btn-cta--lg">
@@ -206,7 +225,7 @@
             <section class="landing-stats">
                 <div class="landing-stat-item">
                     <span class="landing-stat-number">3,220</span>
-                    <span class="landing-stat-label">Reactivos clínicos</span>
+                    <span class="landing-stat-label">Reactivos clínicos <small>Nuevos casos cada semana</small></span>
                 </div>
                 <div class="landing-stat-divider"></div>
                 <div class="landing-stat-item">
@@ -234,7 +253,7 @@
                 </div>
                 <div class="landing-demo-card" id="landing-demo-card">
                     <div class="landing-demo-topline">
-                        <span class="landing-demo-specialty">Medicina Interna</span>
+                        <span class="landing-demo-specialty"><span class="logo-mark landing-demo-logo" aria-hidden="true"></span>Medicina Interna</span>
                         <span class="landing-demo-progress">Muestra 1 de 1</span>
                     </div>
                     <p class="landing-demo-case">Paciente de 58 años con dolor precordial opresivo de 45 minutos, diaforesis y elevación del segmento ST en V1–V4.</p>
@@ -527,7 +546,7 @@
             <!-- ══ FINAL CTA ══ -->
             <section class="landing-final-cta">
                 <div class="landing-final-cta-glow"></div>
-                <span class="logo-mark landing-final-logo"></span>
+                <span class="logo-mark landing-final-logo" role="img" aria-label="ENARMax"></span>
                 <h2>Empieza con una sesión de 10 preguntas</h2>
                 <p>Entra sin registro, recibe tu diagnóstico clínico y decide después si quieres guardar tu progreso.</p>
                 <button id="btn-landing-final-start" class="landing-btn-cta landing-btn-cta--lg">Probar ENARMax gratis</button>
@@ -539,7 +558,7 @@
         <footer class="landing-footer">
             <div class="landing-footer-inner">
                 <div class="landing-footer-brand">
-                    <span class="logo-mark landing-footer-logo"></span>
+                    <span class="logo-mark landing-footer-logo" aria-hidden="true"></span>
                     <span class="landing-logo-text" style="font-size:1.1rem;">ENAR<span class="landing-logo-m">M</span><span class="landing-logo-accent">ax</span></span>
                     <p class="landing-footer-tagline">Práctica clínica, simulacros y seguimiento para tu preparación ENARM.</p>
                 </div>

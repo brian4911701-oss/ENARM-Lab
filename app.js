@@ -16546,11 +16546,21 @@
                 const mobileMenu = $("landing-mobile-menu");
                 if (hamburger && mobileMenu) {
                     hamburger.addEventListener("click", () => {
-                        mobileMenu.classList.toggle("open");
+                        const isOpen = mobileMenu.classList.toggle("open");
+                        hamburger.setAttribute("aria-expanded", String(isOpen));
                     });
                     // Close mobile menu when a link is clicked
                     mobileMenu.querySelectorAll(".landing-mobile-link").forEach(link => {
-                        link.addEventListener("click", () => mobileMenu.classList.remove("open"));
+                        link.addEventListener("click", () => {
+                            mobileMenu.classList.remove("open");
+                            hamburger.setAttribute("aria-expanded", "false");
+                        });
+                    });
+                    mobileMenu.addEventListener("keydown", (event) => {
+                        if (event.key !== "Escape") return;
+                        mobileMenu.classList.remove("open");
+                        hamburger.setAttribute("aria-expanded", "false");
+                        hamburger.focus();
                     });
                 }
 
@@ -16560,12 +16570,50 @@
                         link.addEventListener("click", (e) => {
                             e.preventDefault();
                             const target = document.querySelector(link.getAttribute("href"));
-                            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+                            if (target) target.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
                         });
                     });
 
-                    // The background watermark stays decorative and static. Updating CSS
-                    // variables on each scroll frame caused expensive full-page repaints.
+                    // Track the section inside the landing's own scrolling container.
+                    const sectionLinks = [...landingPage.querySelectorAll('.landing-nav-link, .landing-mobile-link')];
+                    const sections = [...landingPage.querySelectorAll('.landing-main > section, .landing-footer')];
+                    const header = landingPage.querySelector('.landing-header');
+                    const navLinks = landingPage.querySelector('.landing-nav-links');
+                    let activeSection = null;
+                    let scrollFrame = 0;
+                    const updateActiveSection = () => {
+                        scrollFrame = 0;
+                        const marker = header.getBoundingClientRect().bottom + 48;
+                        const current = sections.find(section => {
+                            const bounds = section.getBoundingClientRect();
+                            return bounds.top <= marker && bounds.bottom > marker;
+                        });
+                        const next = current?.id || '';
+                        if (next === activeSection) return;
+                        activeSection = next;
+                        sectionLinks.forEach(link => {
+                            const active = link.hash === '#' + next;
+                            link.classList.toggle('is-active', active);
+                            if (active) link.setAttribute('aria-current', 'location');
+                            else link.removeAttribute('aria-current');
+                        });
+                        const activeLink = navLinks.querySelector('.is-active');
+                        if (activeLink && navLinks.scrollWidth > navLinks.clientWidth) {
+                            navLinks.scrollTo({ left: activeLink.offsetLeft - navLinks.offsetLeft - (navLinks.clientWidth - activeLink.offsetWidth) / 2, behavior: 'instant' });
+                        }
+                    };
+                    const scheduleSectionUpdate = () => {
+                        if (!scrollFrame) scrollFrame = requestAnimationFrame(updateActiveSection);
+                    };
+                    const syncLandingHeader = () => {
+                        landingPage.style.setProperty('--landing-header-height', header.offsetHeight + 'px');
+                        scheduleSectionUpdate();
+                    };
+                    landingPage.addEventListener('scroll', scheduleSectionUpdate, { passive: true });
+                    const landingResizeObserver = new ResizeObserver(syncLandingHeader);
+                    landingResizeObserver.observe(header);
+                    landingResizeObserver.observe(landingPage.querySelector('.landing-main'));
+                    syncLandingHeader();
                 }
 
                 // If user doesn't exist locally, show landing page (unless the guest exam is already open).
