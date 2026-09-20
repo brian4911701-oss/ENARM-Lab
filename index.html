@@ -132,19 +132,32 @@
             (() => {
                 const page = document.getElementById('landing-page');
                 const toggle = page.querySelector('.landing-theme-toggle');
+                const getScheduledTheme = (now = new Date()) => (
+                    now.getHours() >= 8 && now.getHours() < 18 ? 'light' : 'dark'
+                );
                 const applyTheme = (theme) => {
                     const dark = theme === 'dark';
                     page.dataset.theme = dark ? 'dark' : 'light';
                     toggle.setAttribute('aria-checked', String(dark));
                     toggle.title = dark ? 'Activar modo claro' : 'Activar modo oscuro';
                 };
-                let savedTheme = 'light';
-                try { savedTheme = localStorage.getItem('enarm_landing_theme') || 'light'; } catch (_) {}
-                applyTheme(savedTheme);
+                const applyScheduledTheme = () => applyTheme(getScheduledTheme());
+                const scheduleNextThemeChange = () => {
+                    const now = new Date();
+                    const next = new Date(now);
+                    const isDaytime = getScheduledTheme(now) === 'light';
+                    next.setHours(isDaytime ? 18 : 8, 0, 0, 0);
+                    if (next <= now) next.setDate(next.getDate() + 1);
+                    window.setTimeout(() => {
+                        applyScheduledTheme();
+                        scheduleNextThemeChange();
+                    }, next.getTime() - now.getTime());
+                };
+                applyScheduledTheme();
+                scheduleNextThemeChange();
                 toggle.addEventListener('click', () => {
                     const nextTheme = page.dataset.theme === 'dark' ? 'light' : 'dark';
                     applyTheme(nextTheme);
-                    try { localStorage.setItem('enarm_landing_theme', nextTheme); } catch (_) {}
                 });
             })();
         </script>
