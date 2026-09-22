@@ -154,7 +154,7 @@
         studyCalendar: {},
         lastPostmortem: null,
         notebookSelectedId: null,
-        fontPreset: "clinical",
+        fontPreset: "apple",
         appearance: null,
         pomodoroSettings: null,
         pomodoroState: null,
@@ -600,6 +600,12 @@
         return `${clean.slice(0, Math.max(0, max - 1)).trim()}…`;
     };
     const FONT_PRESET_CONFIG = {
+        apple: {
+            bodyClass: "font-apple",
+            // SF Pro se entrega con macOS/iOS; las alternativas mantienen una
+            // apariencia equivalente en navegadores y sistemas no Apple.
+            ui: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", "Segoe UI", Arial, sans-serif'
+        },
         clinical: {
             bodyClass: "font-clinical",
             ui: "'Plus Jakarta Sans', sans-serif"
@@ -622,7 +628,7 @@
         if (cleanTheme === "ember" || cleanTheme === "black-white") return "lilac-light";
         return cleanTheme;
     };
-    const normalizeFontPreset = (preset) => FONT_PRESET_CONFIG[preset] ? preset : "clinical";
+    const normalizeFontPreset = (preset) => FONT_PRESET_CONFIG[preset] ? preset : "apple";
     const APPEARANCE_DEFAULTS = Object.freeze({
         accent: "auto",
         density: "comfortable",
@@ -666,7 +672,7 @@
     const applyFontPreset = (preset, options = {}) => {
         const normalizedPreset = normalizeFontPreset(preset);
         State.fontPreset = normalizedPreset;
-        document.body.classList.remove("font-clinical", "font-sora", "font-inter");
+        document.body.classList.remove("font-apple", "font-clinical", "font-sora", "font-inter");
         document.body.classList.add(FONT_PRESET_CONFIG[normalizedPreset].bodyClass);
         const selector = $("font-preset-selector");
         if (selector && selector.value !== normalizedPreset) selector.value = normalizedPreset;
@@ -6377,7 +6383,7 @@
         const pomodoroFocus = localStorage.getItem(POMODORO_STORAGE_KEYS.focus);
         if (pomodoroFocus !== null) State.pomodoroFocusLabel = pomodoroFocus;
         const fontPreset = localStorage.getItem(FONT_PRESET_STORAGE_KEY);
-        State.fontPreset = normalizeFontPreset(fontPreset || "clinical");
+        State.fontPreset = normalizeFontPreset(fontPreset || "apple");
         localStorage.setItem(FONT_PRESET_STORAGE_KEY, State.fontPreset);
         applyFontPreset(State.fontPreset);
         try {
@@ -11074,7 +11080,7 @@
             histKey,
             State.userName || "",
             State.theme || "ocean",
-            State.fontPreset || "clinical",
+            State.fontPreset || "apple",
             State.coins || 0,
             State.referralCode || "",
             quoteTickKey,
@@ -11921,6 +11927,98 @@
         document.body.appendChild(frame);
     };
 
+    // Statistics presentation is derived from saved progress, including empty states.
+    const getStatsChartSessions = () => {
+        const range = $("stats-session-range")?.value || "10";
+        const sessions = State.history || [];
+        return range === "all" ? [...sessions] : sessions.slice(-Number(range));
+    };
+
+    const renderStatsOverview = () => {
+        const setText = (id, value) => { const el = $(id); if (el) el.textContent = value; };
+        const number = value => new Intl.NumberFormat('es-MX').format(value);
+        const answered = Number(State.globalStats?.respondidas) || 0;
+        const correct = Number(State.globalStats?.aciertos) || 0;
+        const accuracy = answered ? Math.round(correct / answered * 100) : 0;
+        const history = State.history || [];
+        const recent = history.slice(-10);
+        const timed = recent.filter(session => Number(session.preguntas) > 0 && Number(session.elapsedSec) > 0);
+        const timedQuestions = timed.reduce((sum, session) => sum + Number(session.preguntas), 0);
+        const pace = timedQuestions ? Math.round(timed.reduce((sum, session) => sum + Number(session.elapsedSec), 0) / timedQuestions) : null;
+        setText('stats-global-precision', answered ? `${accuracy}%` : '—');
+        setText('stats-total-questions', number(answered));
+        setText('stats-avg-time-per-question', pace === null ? '—' : `${pace}s`);
+        setText('stats-correct-caption', answered ? `${number(correct)} aciertos en tu recorrido` : 'Tu práctica acumulada');
+        setText('stats-session-count', number(history.length));
+        setText('stats-session-caption', history.length ? 'Simulacros y sesiones de estudio' : 'Una sesión a la vez');
+        $('stats-precision-ring')?.style.setProperty('--precision', `${accuracy}%`);
+        $('stats-pace-gauge')?.querySelectorAll('span').forEach((bar, index) => bar.classList.toggle('is-filled', pace !== null && index < Math.min(8, Math.round(pace / 90 * 8))));
+
+        const spark = $('stats-volume-spark');
+        if (spark) {
+            const values = recent.map(session => Number(session.preguntas) || 0);
+            const max = Math.max(...values, 1);
+            const points = values.map((value, index) => `${values.length === 1 ? 50 : 3 + index / (values.length - 1) * 94},${32 - value / max * 27}`);
+            spark.innerHTML = values.length > 1 ? `<polyline points="${points.join(' ')}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>` : values.length ? `<circle cx="50" cy="${32 - values[0] / max * 27}" r="3" fill="currentColor"/>` : '';
+        }
+        const last = history.at(-1);
+        const previous = history.at(-2);
+        setText('stats-latest-score', last ? `${Number(last.pct) || 0}%` : '—');
+        const trend = $('stats-score-trend');
+        if (trend) {
+            const delta = last && previous ? Math.round(((Number(last.pct) || 0) - (Number(previous.pct) || 0)) * 10) / 10 : null;
+            trend.dataset.direction = delta > 0 ? 'up' : delta < 0 ? 'down' : 'neutral';
+            trend.textContent = delta === null ? (last ? 'Tu primera sesión registrada' : 'Tu siguiente sesión inicia la historia') : `${delta > 0 ? '+' : ''}${delta} puntos vs. la sesión anterior`;
+        }
+        if ($('stats-history-empty')) $('stats-history-empty').hidden = history.length > 0;
+
+        // Local calendar dates avoid shifting sessions near midnight to another day.
+        const dateKey = date => `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+        const daily = new Map();
+        history.forEach(session => {
+            if (!session.timestamp) return;
+            const date = new Date(session.timestamp);
+            if (!Number.isFinite(date.getTime())) return;
+            const key = dateKey(date);
+            daily.set(key, (daily.get(key) || 0) + 1);
+        });
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const start = new Date(today);
+        start.setDate(start.getDate() - 27);
+        const offset = (start.getDay() + 6) % 7;
+        let activeDays = 0;
+        const cells = Array.from({ length: offset }, () => '<span class="stats-day-placeholder" aria-hidden="true"></span>');
+        for (let i = 0; i < 28; i++) {
+            const day = new Date(start);
+            day.setDate(day.getDate() + i);
+            const count = daily.get(dateKey(day)) || 0;
+            if (count) activeDays++;
+            const label = `${day.toLocaleDateString('es-MX', { day: 'numeric', month: 'long' })}: ${count} ${count === 1 ? 'sesión' : 'sesiones'}`;
+            cells.push(`<span class="stats-day" role="img" tabindex="0" data-level="${Math.min(count, 3)}" data-today="${i === 27}" title="${label}" aria-label="${label}"></span>`);
+        }
+        if ($('stats-activity-grid')) $('stats-activity-grid').innerHTML = cells.join('');
+        if ($('stats-active-days')) $('stats-active-days').innerHTML = `${activeDays}<span>/28</span>`;
+        setText('stats-activity-insight', activeDays ? `Has practicado ${activeDays} ${activeDays === 1 ? 'día' : 'días'} en las últimas cuatro semanas. Cada sesión construye tu preparación.` : 'Un poco de práctica hoy es progreso para mañana.');
+
+        const colors = ['var(--stats-blue)', 'var(--stats-green)', 'var(--stats-violet)', 'var(--stats-amber)'];
+        const specialties = ['mi', 'ped', 'gyo', 'cir'].map((key, index) => {
+            const row = State.globalStats?.bySpecialty?.[key] || {};
+            const total = Number(row.total) || 0;
+            const pct = total ? Math.round((Number(row.correct) || 0) / total * 100) : 0;
+            return `<div class="stats-specialty-row"><div><span>${escapeHtml((TRONCAL_LABELS[key] || key).replace(' y Obstetricia', ''))}</span><strong>${total ? `${pct}%` : '—'}</strong></div><div class="stats-specialty-track" style="--score:${pct}%;--spec-color:${colors[index]}"><span></span></div></div>`;
+        });
+        if ($('stats-specialty-list')) $('stats-specialty-list').innerHTML = specialties.join('');
+        if ($('stats-balance-legend')) $('stats-balance-legend').innerHTML = `<div class="stats-balance-row"><span><i style="--dot-color:var(--accent-green)"></i>Aciertos</span><strong>${number(correct)}</strong></div><div class="stats-balance-row"><span><i style="--dot-color:var(--accent-red)"></i>Errores</span><strong>${number(Math.max(0, answered - correct))}</strong></div><small>${number(answered)} preguntas respondidas<br>Las omitidas no se incluyen.</small>`;
+        const hasWeakTopics = getTopicPerformanceEntries().some(entry => entry.total >= 2 && entry.precision < 100);
+        if ($('stats-topics-empty')) $('stats-topics-empty').hidden = hasWeakTopics;
+        const weakWrap = $('chart-weak-topics')?.parentElement;
+        if (weakWrap) weakWrap.hidden = !hasWeakTopics;
+        document.querySelectorAll('#view-estadisticas .stats-premium-lock-card > *:not(.stats-premium-overlay)').forEach(el => {
+            el.inert = document.body.classList.contains('stats-demo-preview');
+        });
+    };
+
     let chartHistory = null;
     let chartSpecialties = null;
     let chartDoughnut = null;
@@ -11931,6 +12029,7 @@
     let lastChartsRenderKey = "";
 
     const updateCharts = () => {
+        if (State.view === 'view-estadisticas') renderStatsOverview();
         if (typeof Chart === 'undefined') return;
         const viewScope = State.view === "view-estadisticas"
             ? "stats"
@@ -11950,8 +12049,10 @@
             .map(entry => `${entry.topic}:${entry.total}-${entry.correct}-${entry.status || "sin_tocar"}`)
             .join("|");
         const chartKey = [
+            viewScope,
+            $("stats-session-range")?.value || "10",
             State.theme || "ocean",
-            State.fontPreset || "clinical",
+            State.fontPreset || "apple",
             State.history?.length || 0,
             histKey,
             State.globalStats?.respondidas || 0,
@@ -11995,10 +12096,28 @@
         Chart.defaults.color = textMuted;
         Chart.defaults.font.family = fontFamily;
 
+        const statsChartPolish = {
+            id: 'statsChartPolish',
+            beforeInit(chart) {
+                if (!chart.canvas.closest('#view-estadisticas')) return;
+                chart.options.animation = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? false : { duration: 550 };
+                chart.options.interaction = { mode: 'index', intersect: false };
+                const tooltip = chart.options.plugins.tooltip;
+                Object.assign(tooltip, { backgroundColor: '#172538', titleColor: '#f8fafc', bodyColor: '#d7e1ed', padding: 13, cornerRadius: 10, displayColors: false, titleFont: { size: 11 }, bodyFont: { size: 11 } });
+                Object.entries(chart.options.scales || {}).forEach(([axis, scale]) => {
+                    if (axis === 'r') return;
+                    scale.border = { display: false };
+                    scale.grid = { ...scale.grid, color: 'rgba(148,163,184,0.10)', drawTicks: false };
+                    if (axis === 'x' && chart.config.type !== 'bar') scale.grid.display = false;
+                    scale.ticks = { ...scale.ticks, padding: 10, font: { size: 10 }, maxRotation: 0, autoSkip: true };
+                });
+            }
+        };
+
         // Chart 1: Evolución de Aciertos en el tiempo (Line)
         const ctxHist = document.getElementById('chart-history');
         if (ctxHist) {
-            const histData = [...State.history].slice(-10); // Últimos 10
+            const histData = getStatsChartSessions();
             const labels = histData.map((session, i) => formatSessionLabel(session, i));
             const dataPts = histData.map(h => h.pct);
             const histGradient = ctxHist.getContext('2d').createLinearGradient(0, 0, 0, 320);
@@ -12007,6 +12126,7 @@
 
             if (chartHistory) chartHistory.destroy();
             chartHistory = new Chart(ctxHist, {
+                plugins: [statsChartPolish],
                 type: 'line',
                 data: {
                     labels: labels.length ? labels : ['Sin datos'],
@@ -12019,7 +12139,7 @@
                         tension: 0.4,
                         fill: true,
                         pointBackgroundColor: accentGreen,
-                        pointRadius: dataPts.length ? 4 : 0,
+                        pointRadius: dataPts.length === 1 ? 5 : dataPts.length ? 2 : 0,
                         pointHoverRadius: 6
                     }]
                 },
@@ -12051,7 +12171,7 @@
                             }
                         }
                     },
-                    scales: { y: { beginAtZero: true, max: 100 } }
+                    scales: { y: { beginAtZero: true, max: 100, ticks: { stepSize: 25, callback: value => `${value}%` } } }
                 }
             });
         }
@@ -12128,15 +12248,17 @@
             if (chartSpecialties) chartSpecialties.destroy();
 
             chartSpecialties = new Chart(ctxSpec, {
+                plugins: [statsChartPolish],
                 type: 'radar',
                 data: {
                     labels: labels,
                     datasets: [{
                         label: 'Dominio %',
                         data: dataPts,
-                        backgroundColor: 'rgba(5, 192, 127, 0.2)', // Verde transparente
-                        borderColor: '#05C07F', // Verde
-                        pointBackgroundColor: '#05C07F',
+                        backgroundColor: accentGreen + '22',
+                        borderColor: accentGreen,
+                        pointBackgroundColor: accentGreen,
+                        pointRadius: 3,
                         borderWidth: 2,
                     }]
                 },
@@ -12187,7 +12309,7 @@
             let aciertos = State.globalStats.aciertos;
             let errores = State.globalStats.respondidas - aciertos;
             // Verde y Rojo fijos
-            let bgColors = ['#10B981', '#EF4444'];
+            let bgColors = [accentGreen, accentRed + 'b3'];
             if (State.globalStats.respondidas === 0) {
                 aciertos = 0; errores = 1;
                 bgColors = ['#334155', '#334155'];
@@ -12195,6 +12317,7 @@
 
             if (chartDoughnut) chartDoughnut.destroy();
             chartDoughnut = new Chart(ctxDbl, {
+                plugins: [statsChartPolish],
                 type: 'doughnut',
                 data: {
                     labels: ['Aciertos', 'Errores'],
@@ -12202,15 +12325,18 @@
                         data: [aciertos, errores],
                         backgroundColor: bgColors,
                         borderWidth: 0,
-                        hoverOffset: 4
+                        hoverOffset: 4,
+                        borderRadius: State.globalStats.respondidas ? 5 : 0,
+                        spacing: State.globalStats.respondidas ? 5 : 0
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    cutout: '75%',
+                    cutout: '83%',
                     plugins: {
-                        legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true } }
+                        legend: { display: false },
+                        tooltip: { enabled: State.globalStats.respondidas > 0 }
                     }
                 }
             });
@@ -12219,18 +12345,18 @@
             const centerPct = $("doughnut-center-pct");
             if (centerPct) {
                 const pctValue = State.globalStats.respondidas > 0 ? Math.round((State.globalStats.aciertos / State.globalStats.respondidas) * 100) : 0;
-                centerPct.textContent = `${pctValue}%`;
+                centerPct.textContent = State.globalStats.respondidas ? `${pctValue}%` : '—';
             }
         }
 
         // Chart 4: Ritmo por sesión (segundos por pregunta)
         const ctxPace = document.getElementById('chart-pace');
         if (ctxPace) {
-            const histData = [...State.history].slice(-10);
+            const histData = getStatsChartSessions();
             const labels = histData.map((session, i) => formatSessionLabel(session, i));
             const paceData = histData.map(session => {
                 const preguntas = Number(session?.preguntas) || 0;
-                if (preguntas <= 0) return 0;
+                if (preguntas <= 0 || !(Number(session?.elapsedSec) > 0)) return null;
                 return Math.round((Number(session?.elapsedSec) || 0) / preguntas);
             });
             const paceGradient = ctxPace.getContext('2d').createLinearGradient(0, 0, 0, 300);
@@ -12240,12 +12366,13 @@
 
             if (chartPace) chartPace.destroy();
             chartPace = new Chart(ctxPace, {
+                plugins: [statsChartPolish],
                 type: 'line',
                 data: {
                     labels: labels.length ? labels : ['Sin datos'],
                     datasets: [{
                         label: 'Segundos por pregunta',
-                        data: paceData.length ? paceData : [0],
+                        data: paceData,
                         borderColor: accentBlue,
                         backgroundColor: paceGradient,
                         borderWidth: 3,
@@ -12319,6 +12446,7 @@
 
             if (chartSpecialtyCoverage) chartSpecialtyCoverage.destroy();
             chartSpecialtyCoverage = new Chart(ctxCoverage, {
+                plugins: [statsChartPolish],
                 data: {
                     labels: specRows.map(row => row.label),
                     datasets: [{
@@ -12399,9 +12527,10 @@
         const ctxWeakTopics = document.getElementById('chart-weak-topics');
         if (ctxWeakTopics) {
             const weakTopics = getTopicPerformanceEntries()
-                .filter(entry => entry.total >= 2)
+                .filter(entry => entry.total >= 2 && entry.precision < 100)
+                .sort((a, b) => a.precision - b.precision || b.total - a.total)
                 .slice(0, 6);
-            const topicLabels = weakTopics.map(entry => truncateText(entry.topic, 52));
+            const topicLabels = weakTopics.map(entry => truncateText(entry.topic, window.innerWidth < 600 ? 23 : 52));
             const precisions = weakTopics.map(entry => Number(entry.precision.toFixed(1)));
             const colors = weakTopics.map(entry => {
                 if (entry.precision < 58) return accentRed + 'cc';
@@ -12411,6 +12540,7 @@
 
             if (chartWeakTopics) chartWeakTopics.destroy();
             chartWeakTopics = new Chart(ctxWeakTopics, {
+                plugins: [statsChartPolish],
                 type: 'bar',
                 data: {
                     labels: topicLabels.length ? topicLabels : ['Aun no hay temas con suficiente historial'],
@@ -14142,7 +14272,7 @@
         });
         const fontPresetSelector = $("font-preset-selector");
         if (fontPresetSelector) {
-            fontPresetSelector.value = normalizeFontPreset(State.fontPreset || "clinical");
+            fontPresetSelector.value = normalizeFontPreset(State.fontPreset || "apple");
             fontPresetSelector.addEventListener("change", () => {
                 const selectedPreset = normalizeFontPreset(fontPresetSelector.value);
                 localStorage.setItem(FONT_PRESET_STORAGE_KEY, selectedPreset);
@@ -14189,6 +14319,7 @@
 
         const btnExportStatsPdf = $("btn-export-stats-pdf");
         if (btnExportStatsPdf) btnExportStatsPdf.addEventListener("click", openStatsPdfReport);
+        $("stats-session-range")?.addEventListener("change", updateCharts);
 
         // Reiniciar Estadísticas
         const btnReset = $("btn-reset-stats");

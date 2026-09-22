@@ -2904,165 +2904,67 @@
                 </div>
             </div>
             <div id="view-estadisticas" class="view">
-                <div class="panel">
-                    <div class="panel-header">
-                        <h2 class="panel-title"><span class="title-icon blue-text">&#x1F4CA;</span> Estadísticas Detalladas
-                        </h2>
-                        <button class="btn-secondary stats-export-btn" id="btn-export-stats-pdf" type="button">
-                            &#x1F4C4; Descargar en PDF
-                        </button>
+                <div class="stats-workspace">
+                    <header class="stats-page-header">
+                        <div><span class="stats-eyebrow">TU PREPARACIÓN, EN PERSPECTIVA</span><h2>Estadísticas<span class="stats-title-dot">.</span></h2><p>Cada sesión cuenta. Descubre cuánto has avanzado.</p></div>
+                        <button class="btn-secondary stats-export-btn" id="btn-export-stats-pdf" type="button"><i class="app-icon" data-lucide="download" aria-hidden="true"></i> Exportar informe</button>
+                    </header>
+                    <div class="stats-demo-banner" id="stats-demo-banner" style="display:none"><div class="stats-demo-banner-copy"><strong>Una mirada a tu progreso</strong><span>Tus métricas base son gratuitas. Explora más con los análisis premium.</span></div><button class="btn-secondary stats-demo-banner-btn" type="button" data-open-redeem>Descubrir premium <i class="app-icon" data-lucide="arrow-up-right" aria-hidden="true"></i></button></div>
+                    <section class="stats-overview" aria-label="Resumen histórico de tu preparación">
+                        <article class="stats-metric stats-metric--green"><div class="stats-metric-top"><span>Precisión global</span><span class="stats-metric-icon"><i class="app-icon" data-lucide="target" aria-hidden="true"></i></span></div><div class="stats-metric-body"><strong id="stats-global-precision">—</strong><div class="stats-mini-ring" id="stats-precision-ring" aria-hidden="true"><i class="app-icon" data-lucide="crosshair" aria-hidden="true"></i></div></div><p>Aciertos sobre preguntas respondidas</p></article>
+                        <article class="stats-metric stats-metric--blue"><div class="stats-metric-top"><span>Preguntas respondidas</span><span class="stats-metric-icon"><i class="app-icon" data-lucide="layers" aria-hidden="true"></i></span></div><div class="stats-metric-body"><strong id="stats-total-questions">0</strong><svg class="stats-sparkline" id="stats-volume-spark" viewBox="0 0 100 36" aria-hidden="true"></svg></div><p><span id="stats-correct-caption">Tu práctica acumulada</span></p></article>
+                        <article class="stats-metric stats-metric--violet"><div class="stats-metric-top"><span>Tiempo por pregunta</span><span class="stats-metric-icon"><i class="app-icon" data-lucide="timer" aria-hidden="true"></i></span></div><div class="stats-metric-body"><strong id="stats-avg-time-per-question">—</strong><div class="stats-pace-gauge" id="stats-pace-gauge" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div><p>Promedio ponderado · últimas 10 sesiones</p></article>
+                        <article class="stats-metric stats-metric--amber"><div class="stats-metric-top"><span>Sesiones completadas</span><span class="stats-metric-icon"><i class="app-icon" data-lucide="flag" aria-hidden="true"></i></span></div><div class="stats-metric-body"><strong id="stats-session-count">0</strong><span class="stats-session-orbit" aria-hidden="true"><i class="app-icon" data-lucide="check" aria-hidden="true"></i></span></div><p><span id="stats-session-caption">Una sesión a la vez</span></p></article>
+                    </section>
+                    <div class="stats-analysis-grid">
+                        <section class="stats-card stats-evolution stats-free-preview-card">
+                            <div class="stats-card-heading"><div><span class="stats-eyebrow">TU EVOLUCIÓN</span><h3>La práctica se convierte en progreso</h3></div><label class="stats-range-control"><span class="sr-only">Sesiones en las gráficas de evolución y ritmo</span><select id="stats-session-range"><option value="10">Últimas 10 sesiones</option><option value="20">Últimas 20 sesiones</option><option value="all">Todas las sesiones</option></select></label></div>
+                            <div class="stats-evolution-summary"><strong id="stats-latest-score">—</strong><div><span>Precisión en tu última sesión</span><span class="stats-trend" id="stats-score-trend">Tu siguiente sesión inicia la historia</span></div><span class="stats-chart-key"><i></i> Aciertos</span></div>
+                            <div class="stats-chart-wrap stats-chart-wrap--evolution"><canvas id="chart-history" role="img" aria-label="Porcentaje de aciertos por sesión"></canvas></div>
+                            <div class="stats-empty-note" id="stats-history-empty" hidden><i class="app-icon" data-lucide="chart-no-axes-combined" aria-hidden="true"></i><strong>Tu progreso empieza aquí</strong><span>Completa una sesión para trazar tu primera marca.</span><button class="stats-text-link" type="button" onclick="showView('view-setup')">Empezar a practicar <i class="app-icon" data-lucide="arrow-right" aria-hidden="true"></i></button></div>
+                            <div class="stats-card-footer"><span><i class="app-icon" data-lucide="info" aria-hidden="true"></i> Cada punto representa una sesión completada.</span><button class="stats-text-link" type="button" onclick="showView('view-historial')">Ver historial <i class="app-icon" data-lucide="arrow-up-right" aria-hidden="true"></i></button></div>
+                        </section>
+                        <section class="stats-card stats-activity">
+                            <div class="stats-card-heading"><div><span class="stats-eyebrow">PASO A PASO</span><h3>Tu constancia</h3></div><span class="stats-heading-icon"><i class="app-icon" data-lucide="calendar-days" aria-hidden="true"></i></span></div>
+                            <div class="stats-activity-total"><strong id="stats-active-days">0<span>/28</span></strong><span>días con actividad</span></div>
+                            <div class="stats-week-labels" aria-hidden="true"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+                            <div class="stats-activity-grid" id="stats-activity-grid" aria-label="Actividad diaria de las últimas cuatro semanas"></div>
+                            <div class="stats-activity-legend"><span>Últimos 28 días</span><span>Menos <i></i><i></i><i></i> Más</span></div>
+                            <div class="stats-activity-insight"><i class="app-icon" data-lucide="sparkles" aria-hidden="true"></i><p id="stats-activity-insight">Un poco de práctica hoy es progreso para mañana.</p></div>
+                        </section>
+                        <section class="stats-card stats-specialties stats-premium-lock-card">
+                            <div class="stats-card-heading"><div><span class="stats-eyebrow">EL MAPA DE TUS FORTALEZAS</span><h3>Dominio por especialidad</h3></div><span class="stats-heading-icon"><i class="app-icon" data-lucide="scan" aria-hidden="true"></i></span></div>
+                            <div class="stats-specialty-layout"><div class="stats-chart-wrap "><canvas id="chart-specialties" role="img" aria-label="Precisión por especialidad"></canvas></div><div class="stats-specialty-list" id="stats-specialty-list"></div></div>
+                            <div class="stats-premium-overlay"><span class="stats-premium-overlay-badge"><i class="app-icon" data-lucide="lock-keyhole" aria-hidden="true"></i> Premium</span><strong>Conoce tus fortalezas</strong><p>Identifica cómo se distribuye tu precisión entre las cuatro especialidades.</p><button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Desbloquear análisis <i class="app-icon" data-lucide="arrow-up-right" aria-hidden="true"></i></button></div>
+                        </section>
+                        <section class="stats-card stats-balance stats-premium-lock-card">
+                            <div class="stats-card-heading"><div><span class="stats-eyebrow">CADA RESPUESTA EN CONTEXTO</span><h3>Balance de respuestas</h3></div><span class="stats-heading-icon"><i class="app-icon" data-lucide="chart-pie" aria-hidden="true"></i></span></div>
+                            <div class="stats-balance-layout"><div class="stats-donut-wrap"><div class="stats-chart-wrap "><canvas id="chart-doughnut" role="img" aria-label="Distribución de aciertos y errores"></canvas></div><div class="stats-donut-center"><strong id="doughnut-center-pct">—</strong><span>de precisión</span></div></div><div class="stats-balance-legend" id="stats-balance-legend"></div></div>
+                            <div class="stats-premium-overlay"><span class="stats-premium-overlay-badge"><i class="app-icon" data-lucide="lock-keyhole" aria-hidden="true"></i> Premium</span><strong>Entiende tus resultados</strong><p>Consulta el balance completo de tus aciertos y errores.</p><button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Desbloquear análisis <i class="app-icon" data-lucide="arrow-up-right" aria-hidden="true"></i></button></div>
+                        </section>
+                        <section class="stats-card stats-premium-lock-card">
+                            <div class="stats-card-heading"><div><span class="stats-eyebrow">ENCUENTRA TU RITMO</span><h3>Tiempo por sesión</h3></div><span class="stats-heading-icon"><i class="app-icon" data-lucide="gauge" aria-hidden="true"></i></span></div>
+                            <p class="stats-card-description">Segundos por pregunta. La línea punteada marca la referencia de 90 s.</p>
+                            <div class="stats-chart-wrap "><canvas id="chart-pace" role="img" aria-label="Segundos por pregunta por sesión"></canvas></div>
+                            <div class="stats-premium-overlay"><span class="stats-premium-overlay-badge"><i class="app-icon" data-lucide="lock-keyhole" aria-hidden="true"></i> Premium</span><strong>Practica con perspectiva</strong><p>Sigue la evolución de tu velocidad al responder.</p><button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Desbloquear análisis <i class="app-icon" data-lucide="arrow-up-right" aria-hidden="true"></i></button></div>
+                        </section>
+                        <section class="stats-card stats-premium-lock-card">
+                            <div class="stats-card-heading"><div><span class="stats-eyebrow">EQUILIBRA TU PREPARACIÓN</span><h3>Cobertura de práctica</h3></div><span class="stats-heading-icon"><i class="app-icon" data-lucide="layers" aria-hidden="true"></i></span></div>
+                            <p class="stats-card-description">Preguntas respondidas y precisión en cada especialidad.</p>
+                            <div class="stats-chart-wrap "><canvas id="chart-specialty-coverage" role="img" aria-label="Volumen y precisión por especialidad"></canvas></div>
+                            <div class="stats-premium-overlay"><span class="stats-premium-overlay-badge"><i class="app-icon" data-lucide="lock-keyhole" aria-hidden="true"></i> Premium</span><strong>Encuentra oportunidades</strong><p>Compara cuánto practicas con tu precisión en cada especialidad.</p><button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Desbloquear análisis <i class="app-icon" data-lucide="arrow-up-right" aria-hidden="true"></i></button></div>
+                        </section>
+                        <section class="stats-card stats-focus stats-premium-lock-card">
+                            <div class="stats-card-heading"><div><span class="stats-eyebrow">TU SIGUIENTE PASO</span><h3>Aquí puedes mejorar más</h3></div><button class="stats-text-link" type="button" onclick="showView('view-refuerzos')">Ir a refuerzos <i class="app-icon" data-lucide="arrow-up-right" aria-hidden="true"></i></button></div>
+                            <p class="stats-card-description">Hasta seis temas con menor precisión y al menos dos preguntas respondidas.</p>
+                            <div class="stats-chart-wrap stats-chart-wrap--topics"><canvas id="chart-weak-topics" role="img" aria-label="Precisión de los temas que necesitan refuerzo"></canvas></div>
+                            <p class="stats-topics-empty" id="stats-topics-empty" hidden>Al practicar más temas, encontrarás aquí dónde concentrar tu siguiente repaso.</p>
+                            <div class="stats-premium-overlay"><span class="stats-premium-overlay-badge"><i class="app-icon" data-lucide="lock-keyhole" aria-hidden="true"></i> Premium</span><strong>Dale dirección a tu repaso</strong><p>Consulta tus temas prioritarios y enfoca tu próxima sesión.</p><button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Desbloquear análisis <i class="app-icon" data-lucide="arrow-up-right" aria-hidden="true"></i></button></div>
+                        </section>
                     </div>
-                    <p class="panel-subtitle">Analiza tu rendimiento y evolución histórica. Todas las métricas se
-                        actualizan de acuerdo a tu desempeño en simulacros y repasos.</p>
-                    <div class="stats-demo-banner" id="stats-demo-banner" style="display:none">
-                        <div class="stats-demo-banner-copy">
-                            <strong>Vista previa de estadísticas</strong>
-                            <span>En gratis ves tus métricas base y una muestra visual de los paneles avanzados.</span>
-                        </div>
-                        <button class="btn-secondary stats-demo-banner-btn" type="button" data-open-redeem>
-                            Desbloquear premium
-                        </button>
-                    </div>
-
-                    <div class="stats-overview"
-                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; margin-bottom: 25px;">
-                        <div class="stat-card"
-                            style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                            <div class="stat-icon purple-icon" style="font-size: 1.8rem; margin-bottom: 5px;">&#x1F3AF;</div>
-                            <div class="stat-label">Precisión Global</div>
-                            <div class="stat-value" id="stats-global-precision"
-                                style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">0%</div>
-                        </div>
-                        <div class="stat-card"
-                            style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                            <div class="stat-icon green-icon" style="font-size: 1.8rem; margin-bottom: 5px;">&#x1F4DA;</div>
-                            <div class="stat-label">Preguntas Totales</div>
-                            <div class="stat-value" id="stats-total-questions"
-                                style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">0</div>
-                        </div>
-                        <div class="stat-card"
-                            style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                            <div class="stat-icon blue-icon" style="font-size: 1.8rem; margin-bottom: 5px;">&#x23F1;&#xFE0F;</div>
-                            <div class="stat-label">Tiempo por Pregunta</div>
-                            <div class="stat-value" id="stats-avg-time-per-question"
-                                style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">0s</div>
-                        </div>
-                    </div>
-
-                    <div class="charts-grid"
-                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; align-items: start;">
-                        <!-- Curva de Aprendizaje - GRATIS -->
-                        <div class="chart-card stats-free-preview-card"
-                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); grid-column: 1 / -1;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                                <h3 style="margin: 0; color: var(--text-primary); font-size: 1.2rem;">&#x1F4C8; Curva de Aprendizaje</h3>
-                                <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Últimas 10 sesiones</span>
-                            </div>
-                            <div style="position: relative; height: 320px; width: 100%;">
-                                <canvas id="chart-history"></canvas>
-                            </div>
-                        </div>
-
-                        <!-- Dominio por Especialidad - PREMIUM -->
-                        <div class="chart-card stats-premium-lock-card"
-                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
-                            <h3 style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">&#x1F578;&#xFE0F; Dominio por Especialidad</h3>
-                            <div style="position: relative; height: 300px; width: 100%; display: flex; justify-content: center;">
-                                <canvas id="chart-specialties"></canvas>
-                            </div>
-                            <div class="stats-premium-overlay">
-                                <span class="stats-premium-overlay-badge">Premium</span>
-                                <strong>Vista parcial desbloqueable</strong>
-                                <p>En gratis solo ves una muestra. Activa premium para analizar dominio completo por especialidad.</p>
-                                <button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Ver completo</button>
-                            </div>
-                        </div>
-
-                        <!-- Balance de Respuestas (Doughnut) - PREMIUM -->
-                        <div class="chart-card stats-premium-lock-card"
-                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
-                            <h3 style="margin-top: 0; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">&#x1F369; Balance de Respuestas</h3>
-                            <div style="position: relative; height: 300px; width: 100%; display: flex; justify-content: center; align-items: center;">
-                                <canvas id="chart-doughnut"></canvas>
-                                <div style="position: absolute; text-align: center;">
-                                    <div style="font-size: 11px; color: var(--text-muted);">EFECTIVIDAD</div>
-                                    <div id="doughnut-center-pct" style="font-size: 24px; font-weight: 800; color: var(--text-primary);">0%</div>
-                                </div>
-                            </div>
-                            <div class="stats-premium-overlay">
-                                <span class="stats-premium-overlay-badge">Premium</span>
-                                <strong>Desglose completo bloqueado</strong>
-                                <p>Activa premium para ver tu balance detallado de aciertos vs errores y medir tu efectividad real.</p>
-                                <button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Activar premium</button>
-                            </div>
-                        </div>
-
-                        <!-- Ritmo por Sesión - PREMIUM -->
-                        <div class="chart-card stats-premium-lock-card"
-                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
-                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
-                                <div>
-                                    <h3 style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">&#x23F1;&#xFE0F; Ritmo por Sesi&oacute;n</h3>
-                                    <p style="margin: 6px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5;">Sigue tus segundos por pregunta para detectar si necesitas acelerar, consolidar o entrenar bajo cron&oacute;metro.</p>
-                                </div>
-                                <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Ultimas 10 sesiones</span>
-                            </div>
-                            <div style="position: relative; height: 300px; width: 100%;">
-                                <canvas id="chart-pace"></canvas>
-                            </div>
-                            <div class="stats-premium-overlay">
-                                <span class="stats-premium-overlay-badge">Premium</span>
-                                <strong>Ritmo avanzado bloqueado</strong>
-                                <p>Detecta tendencias de velocidad y constancia con acceso premium.</p>
-                                <button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Desbloquear</button>
-                            </div>
-                        </div>
-
-                        <!-- Cobertura por Especialidad - PREMIUM -->
-                        <div class="chart-card stats-premium-lock-card"
-                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
-                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
-                                <div>
-                                    <h3 style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">&#x1F4DA; Cobertura por Especialidad</h3>
-                                    <p style="margin: 6px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5;">Compara volumen de reactivos respondidos contra tu precisi&oacute;n real para encontrar huecos de pr&aacute;ctica.</p>
-                                </div>
-                                <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Volumen vs precision</span>
-                            </div>
-                            <div style="position: relative; height: 300px; width: 100%;">
-                                <canvas id="chart-specialty-coverage"></canvas>
-                            </div>
-                            <div class="stats-premium-overlay">
-                                <span class="stats-premium-overlay-badge">Premium</span>
-                                <strong>Cobertura completa bloqueada</strong>
-                                <p>Premium te muestra volumen vs precisi&oacute;n para encontrar huecos reales de estudio.</p>
-                                <button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Quiero premium</button>
-                            </div>
-                        </div>
-
-                        <!-- Temas Más Frágiles - PREMIUM -->
-                        <div class="chart-card stats-premium-lock-card"
-                            style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); grid-column: 1 / -1;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
-                                <div>
-                                    <h3 style="margin: 0; color: var(--text-primary); font-size: 1.1rem;">&#x1F6A8; Temas M&aacute;s Fr&aacute;giles</h3>
-                                    <p style="margin: 6px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5;">Prioriza los temas con peor precisi&oacute;n y suficiente volumen para que tu siguiente repaso tenga el mayor impacto.</p>
-                                </div>
-                                <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Top 6 accionables</span>
-                            </div>
-                            <div style="position: relative; height: 340px; width: 100%;">
-                                <canvas id="chart-weak-topics"></canvas>
-                            </div>
-                            <div class="stats-premium-overlay">
-                                <span class="stats-premium-overlay-badge">Premium</span>
-                                <strong>Temas fr&aacute;giles completos</strong>
-                                <p>En premium ves el panel accionable completo para priorizar tus puntos d&eacute;biles.</p>
-                                <button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Desbloquear an&aacute;lisis</button>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="stats-page-footnote"><i class="app-icon" data-lucide="refresh-cw" aria-hidden="true"></i> Tu progreso se actualiza al completar simulacros y sesiones de estudio.</p>
                 </div>
             </div>
-
 
             <!-- ─── VIEW: HISTORIAL ───────────────────────────── -->
             <div id="view-historial" class="view">
@@ -3557,6 +3459,7 @@
                                 <div class="input-group">
                                     <label>Tipografía</label>
                                     <select id="font-preset-selector" class="text-input">
+                                        <option value="apple">Apple — SF Pro</option>
                                         <option value="clinical">Clínica Premium</option>
                                         <option value="sora">Sora</option>
                                         <option value="inter">Inter Clásica</option>
