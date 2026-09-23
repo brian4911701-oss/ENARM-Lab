@@ -14088,10 +14088,16 @@ h6,
   #landing-page *, #landing-page *::before, #landing-page *::after { animation: none !important; transition: none !important; }
 }
 /* Keep public typography independent of the signed-in font preference. */
-#landing-page { --font-ui: 'Inter', Arial, sans-serif; --font-display: 'Inter', Arial, sans-serif; }
+#landing-page {
+  --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
 #landing-page .landing-title,
 #landing-page .landing-section-title,
-#landing-page .landing-final-cta h2 { --font-display: Georgia, 'Times New Roman', serif; }
+#landing-page .landing-final-cta h2 { font-weight: 650; letter-spacing: -.045em; line-height: 1.08; }
+#landing-page :is(.landing-title-gradient, .landing-stat-number, .pricing-amount) { font-family: var(--font-ui); }
 #landing-page .pricing-original-price { height: 0; margin: 0; position: relative; top: 3px; }
 #landing-page .pricing-card--free .pricing-price { margin-bottom: 42px; }
 
@@ -14442,4 +14448,78 @@ body.stats-demo-preview #view-estadisticas .stats-premium-overlay { background: 
   #view-estadisticas .stats-analysis-grid { grid-template-columns: minmax(0, 1fr); }
   #view-estadisticas .stats-card { grid-column: auto; }
   #view-estadisticas .stats-day { aspect-ratio: 2.2; }
+}
+
+/* Screenshot showroom: full images, quiet device frames, independent controls. */
+#landing-page .app-preview { padding: 48px 0 64px; border-top: 1px solid var(--welcome-line); }
+#landing-page .app-preview-heading { text-align: center; margin: 0 auto 40px; }
+#landing-page .app-preview-eyebrow { color: var(--welcome-accent); font-size: .65rem; font-weight: 650; letter-spacing: .14em; }
+#landing-page .app-preview-heading h2 { margin: 12px 0; color: var(--welcome-ink); font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 650; letter-spacing: -.055em; line-height: 1.1; }
+#landing-page .app-preview-heading p { color: var(--welcome-muted); font-size: .95rem; line-height: 1.6; }
+#landing-page .app-preview-grid { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(280px, 1fr); gap: 22px; align-items: stretch; }
+#landing-page .app-gallery { min-width: 0; position: relative; padding: 32px 24px 24px; border: 1px solid var(--welcome-line); border-radius: 28px; background: linear-gradient(145deg, #fdfefe, #e4eaf5); overflow: hidden; }
+#landing-page .app-gallery--desktop { display: flex; flex-direction: column; justify-content: center; background: radial-gradient(ellipse at 50% 60%, #cbd8f0, transparent 70%), linear-gradient(145deg, #fdfefe, #e4eaf5); }
+#landing-page .app-gallery--mobile { background: radial-gradient(ellipse at 50% 50%, #d6d0ec, transparent 72%), linear-gradient(145deg, #faf9ff, #e9e8f2); }
+#landing-page .app-gallery-heading { text-align: center; margin-bottom: 28px; }
+#landing-page .app-gallery-label { color: var(--welcome-muted); font-size: .6rem; font-weight: 650; letter-spacing: .13em; }
+#landing-page .app-gallery-heading h3 { margin: 8px 0 0; color: var(--welcome-ink); font-size: clamp(1rem, 1.7vw, 1.4rem); font-weight: 600; letter-spacing: -.035em; }
+#landing-page .app-desktop-frame { padding: 6px; border: 1px solid #b9c4d4; border-radius: 15px; background: linear-gradient(140deg, #fdfefe, #bac5d5); box-shadow: 0 28px 40px -22px #243d6866, inset 0 1px 0 #fff; }
+#landing-page .app-desktop-toolbar { height: 31px; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 10px 5px; color: #637188; font-size: .56rem; font-weight: 500; }
+#landing-page .app-window-dots { display: flex; gap: 5px; }
+#landing-page .app-window-dots i { width: 6px; height: 6px; border-radius: 50%; background: #a8b4c5; }
+#landing-page .app-window-dots i:first-child { background: #e59c96; }
+#landing-page .app-window-dots i:nth-child(2) { background: #dec18c; }
+#landing-page .app-window-dots i:last-child { background: #99bca9; }
+#landing-page .app-gallery-screen { position: relative; width: 100%; overflow: hidden; background: #171c40; isolation: isolate; }
+#landing-page .app-desktop-frame .app-gallery-screen { aspect-ratio: 1919 / 905; border-radius: 7px; }
+#landing-page .app-gallery-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .65s ease; pointer-events: none; }
+#landing-page .app-gallery-slide.is-active { opacity: 1; z-index: 1; }
+#landing-page .app-phone-frame { position: relative; width: min(100%, 240px); margin: 0 auto; padding: 7px; border: 2px solid #a7abb2; border-radius: 39px; background: #151619; box-shadow: 0 24px 35px -19px #292e526e, inset 0 0 0 1px #e5e7eb, 0 0 0 1px #535963; }
+#landing-page .app-phone-frame .app-gallery-screen { aspect-ratio: 6 / 13; border-radius: 30px; background: #faf9ff; }
+#landing-page .app-phone-island { position: absolute; z-index: 2; top: 7px; left: 50%; transform: translateX(-50%); width: 27%; height: 15px; border-radius: 20px; background: #101114; box-shadow: inset 0 0 1px #4d5157; }
+#landing-page .app-phone-island::after { content: ''; position: absolute; right: 7px; top: 5px; width: 5px; height: 5px; border-radius: 50%; background: #1c2639; box-shadow: inset 0 0 2px #60789c; }
+#landing-page .app-phone-button { position: absolute; left: -4px; width: 3px; border-radius: 2px 0 0 2px; background: linear-gradient(#c6c9cd, #757b83, #c6c9cd); }
+#landing-page .app-phone-button--action { top: 68px; height: 17px; }
+#landing-page .app-phone-button--volume { top: 108px; height: 52px; }
+#landing-page .app-phone-button--power { top: 116px; height: 43px; left: auto; right: -4px; border-radius: 0 2px 2px 0; }
+#landing-page .app-gallery-controls { display: flex; width: fit-content; max-width: 100%; align-items: center; justify-content: center; gap: 2px; margin: 26px auto 0; padding: 3px 6px; border: 1px solid #fff9; border-radius: 40px; background: #ffffffad; box-shadow: 0 5px 18px #263d5908; }
+#landing-page .app-gallery-controls[hidden] { display: none; }
+#landing-page .app-gallery-controls button { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 34px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--welcome-ink); cursor: pointer; font-size: 1.5rem; line-height: 1; transition: background .2s; }
+#landing-page .app-gallery-controls button:hover { background: #315d9614; }
+#landing-page .app-gallery-controls [data-gallery-pause] { width: 32px; margin-left: 3px; font-size: .72rem; border-left: 1px solid var(--welcome-line); border-radius: 0 20px 20px 0; }
+#landing-page .app-gallery-dots { display: flex; align-items: center; }
+#landing-page .app-gallery-dots button { width: 22px; }
+#landing-page .app-gallery-dots button::before { content: ''; width: 5px; height: 5px; border-radius: 8px; background: #8795ac; transition: width .25s, background .25s; }
+#landing-page .app-gallery-dots button[aria-current="true"]::before { width: 17px; background: var(--welcome-accent); }
+#landing-page .app-gallery-caption { display: flex; justify-content: center; align-items: center; gap: 10px; margin: 12px 0 0; color: var(--welcome-muted); font-size: .66rem; }
+#landing-page [data-gallery-count] { font-variant-numeric: tabular-nums; font-weight: 600; }
+#landing-page .app-gallery-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+#landing-page[data-theme="dark"] .app-gallery--desktop { background: radial-gradient(ellipse at 50% 60%, #2d4162, transparent 70%), linear-gradient(145deg, #1c2b40, #152033); }
+#landing-page[data-theme="dark"] .app-gallery--mobile { background: radial-gradient(ellipse at 50% 50%, #3a3456, transparent 72%), linear-gradient(145deg, #24273e, #192235); }
+#landing-page[data-theme="dark"] .app-gallery-controls { background: #1b2b43; border-color: #425570; }
+#landing-page[data-theme="dark"] .app-gallery-controls button:hover { background: #ffffff12; }
+#landing-page[data-theme="dark"] .app-desktop-frame { border-color: #59657a; background: linear-gradient(140deg, #49556b, #242d3f); box-shadow: 0 28px 40px -22px #0008, inset 0 1px 0 #778396; }
+#landing-page[data-theme="dark"] .app-desktop-toolbar { color: #d0dbee; }
+@media (max-width: 1000px) {
+  #landing-page .app-preview-grid { grid-template-columns: minmax(0, 1.7fr) minmax(260px, 1fr); gap: 16px; }
+  #landing-page .app-gallery { padding: 28px 16px 22px; }
+  #landing-page .app-phone-frame { width: min(100%, 218px); }
+}
+@media (max-width: 760px) {
+  #landing-page .app-preview { padding: 36px 0 40px; }
+  #landing-page .app-preview-heading { margin-bottom: 26px; }
+  #landing-page .app-preview-eyebrow { font-size: .55rem; letter-spacing: .09em; }
+  #landing-page .app-preview-heading p { font-size: .83rem; }
+  #landing-page .app-preview-grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  #landing-page .app-gallery { padding: 28px 16px 22px; border-radius: 22px; }
+  #landing-page .app-gallery-heading { margin-bottom: 22px; }
+  #landing-page .app-phone-frame { width: min(100%, 248px); }
+  #landing-page .app-gallery-controls { margin-top: 22px; }
+  #landing-page .app-gallery-dots button { width: 26px; }
+  #landing-page .app-desktop-toolbar { font-size: .48rem; height: 26px; padding-inline: 5px; }
+}
+
+@media (max-width: 360px), (min-width: 761px) and (max-width: 1000px) {
+  #landing-page .app-gallery--mobile .app-gallery-controls > button { width: 28px; }
+  #landing-page .app-gallery--mobile .app-gallery-dots button { width: 18px; }
 }

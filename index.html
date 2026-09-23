@@ -80,6 +80,7 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="landing-gallery.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
 </head>
@@ -233,6 +234,61 @@
                         <figure class="hero-device hero-device--phone">
                             <img src="WhatsApp Image 2026-07-13 at 1.02.10 PM.jpeg" alt="ENARMax en telefono con vista movil del simulador">
                         </figure>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══ APP GALLERIES ══ -->
+            <section class="app-preview" id="landing-gallery" aria-labelledby="app-preview-title">
+                <div class="app-preview-heading">
+                    <span class="app-preview-eyebrow">CONOCE TU PRÓXIMO ESPACIO DE ESTUDIO</span>
+                    <h2 id="app-preview-title">Así se vive ENARMax.</h2>
+                    <p>En tu escritorio. En tu bolsillo. Siempre contigo.</p>
+                </div>
+                <div class="app-preview-grid">
+                    <div class="app-gallery app-gallery--desktop" data-gallery="desktop" role="region" aria-roledescription="carrusel" aria-label="Capturas de la versión de computadora">
+                        <div class="app-gallery-heading"><span class="app-gallery-label">EN PANTALLA GRANDE</span><h3>Tu espacio para concentrarte.</h3></div>
+                        <div class="app-desktop-frame">
+                            <div class="app-desktop-toolbar" aria-hidden="true"><span class="app-window-dots"><i></i><i></i><i></i></span><span>ENARMax · Tu espacio de estudio</span><span class="app-window-detail">↗</span></div>
+                            <div class="app-gallery-screen" id="gallery-desktop-screen">
+                                <img class="app-gallery-slide is-active" src="Capturas%20PC/1.png" alt="ENARMax en computadora: captura 1 de 5" loading="lazy" decoding="async">
+                                <img class="app-gallery-slide" data-src="Capturas%20PC/2.png" alt="ENARMax en computadora: captura 2 de 5" decoding="async" aria-hidden="true">
+                                <img class="app-gallery-slide" data-src="Capturas%20PC/3.png" alt="ENARMax en computadora: captura 3 de 5" decoding="async" aria-hidden="true">
+                                <img class="app-gallery-slide" data-src="Capturas%20PC/4.png" alt="ENARMax en computadora: captura 4 de 5" decoding="async" aria-hidden="true">
+                                <img class="app-gallery-slide" data-src="Capturas%20PC/5.png" alt="ENARMax en computadora: captura 5 de 5" decoding="async" aria-hidden="true">
+                            </div>
+                        </div>
+                        <div class="app-gallery-controls" hidden>
+                            <button type="button" data-gallery-prev aria-label="Captura anterior de computadora" aria-controls="gallery-desktop-screen">‹</button>
+                            <div class="app-gallery-dots" role="group" aria-label="Elegir captura de computadora"></div>
+                            <button type="button" data-gallery-next aria-label="Siguiente captura de computadora" aria-controls="gallery-desktop-screen">›</button>
+                            <button type="button" data-gallery-pause aria-label="Pausar galería de computadora" aria-pressed="false"><span aria-hidden="true">Ⅱ</span></button>
+                        </div>
+                        <p class="app-gallery-caption"><span data-gallery-count>01 / 05</span><span>Versión de escritorio</span></p>
+                        <span class="app-gallery-status" role="status" aria-live="polite" aria-atomic="true"></span>
+                    </div>
+                    <div class="app-gallery app-gallery--mobile" data-gallery="mobile" role="region" aria-roledescription="carrusel" aria-label="Capturas de la versión móvil">
+                        <div class="app-gallery-heading"><span class="app-gallery-label">DONDE TÚ ESTÉS</span><h3>Lleva tu meta contigo.</h3></div>
+                        <div class="app-phone-frame" aria-label="Vista de la app en un marco inspirado en iPhone 17 Pro Max">
+                            <span class="app-phone-button app-phone-button--action" aria-hidden="true"></span><span class="app-phone-button app-phone-button--volume" aria-hidden="true"></span><span class="app-phone-button app-phone-button--power" aria-hidden="true"></span>
+                            <div class="app-gallery-screen" id="gallery-mobile-screen">
+                                <span class="app-phone-island" aria-hidden="true"></span>
+                                <img class="app-gallery-slide is-active" src="Capturas%20Movil/1.jpg" alt="ENARMax en móvil: captura 1 de 6" loading="lazy" decoding="async">
+                                <img class="app-gallery-slide" data-src="Capturas%20Movil/2.jpg" alt="ENARMax en móvil: captura 2 de 6" decoding="async" aria-hidden="true">
+                                <img class="app-gallery-slide" data-src="Capturas%20Movil/3.jpg" alt="ENARMax en móvil: captura 3 de 6" decoding="async" aria-hidden="true">
+                                <img class="app-gallery-slide" data-src="Capturas%20Movil/4.jpg" alt="ENARMax en móvil: captura 4 de 6" decoding="async" aria-hidden="true">
+                                <img class="app-gallery-slide" data-src="Capturas%20Movil/5.jpg" alt="ENARMax en móvil: captura 5 de 6" decoding="async" aria-hidden="true">
+                                <img class="app-gallery-slide" data-src="Capturas%20Movil/6.jpg" alt="ENARMax en móvil: captura 6 de 6" decoding="async" aria-hidden="true">
+                            </div>
+                        </div>
+                        <div class="app-gallery-controls" hidden>
+                            <button type="button" data-gallery-prev aria-label="Captura anterior de móvil" aria-controls="gallery-mobile-screen">‹</button>
+                            <div class="app-gallery-dots" role="group" aria-label="Elegir captura de móvil"></div>
+                            <button type="button" data-gallery-next aria-label="Siguiente captura de móvil" aria-controls="gallery-mobile-screen">›</button>
+                            <button type="button" data-gallery-pause aria-label="Pausar galería de móvil" aria-pressed="false"><span aria-hidden="true">Ⅱ</span></button>
+                        </div>
+                        <p class="app-gallery-caption"><span data-gallery-count>01 / 06</span><span>Versión móvil</span></p>
+                        <span class="app-gallery-status" role="status" aria-live="polite" aria-atomic="true"></span>
                     </div>
                 </div>
             </section>

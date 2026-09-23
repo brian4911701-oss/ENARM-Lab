@@ -12,6 +12,7 @@ const files = [
     "index.html",
     "styles.css",
     "app.js",
+    "landing-gallery.js",
     "analytics-core.js",
     "security-config.js",
     "withdrawal-public-key.js",
@@ -62,4 +63,8 @@ fs.cpSync(
     { recursive: true }
 );
 
-console.log(`Hosting listo en ${outputDir} (${files.length} archivos + Flashcards + avatares).`);
+for (const directory of ["Capturas PC", "Capturas Movil"]) {
+    fs.cpSync(path.resolve(projectRoot, directory), path.resolve(outputDir, directory), { recursive: true });
+}
+
+console.log(`Hosting listo en ${outputDir} (${files.length} archivos + Flashcards + avatares + capturas).`);
