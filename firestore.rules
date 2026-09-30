@@ -357,7 +357,7 @@ service cloud.firestore {
         && request.resource.data.keys().hasAll(["uid", "schemaVersion", "createdAt", "updatedAt"])
         && request.resource.data.keys().hasOnly([
           "uid", "schemaVersion", "theme", "fontPreset", "appearanceStr", "dailyPlanStr",
-          "reviewQueueStr", "topicMasteryStr", "caseNotebookStr", "studyCalendarStr",
+          "reviewQueueStr", "scaleStudyStr", "topicMasteryStr", "caseNotebookStr", "studyCalendarStr",
           "lastPostmortemStr", "pomodoroSettingsStr", "pomodoroLogStr",
           "pomodoroSpecialtiesStr", "pomodoroFocusLabel", "globalStatsStr", "historyStr",
           "reportsStr", "createdAt", "updatedAt"
@@ -368,7 +368,7 @@ service cloud.firestore {
       allow update: if isVerifiedSelf(uid)
         && request.resource.data.keys().hasOnly([
           "uid", "schemaVersion", "theme", "fontPreset", "appearanceStr", "dailyPlanStr",
-          "reviewQueueStr", "topicMasteryStr", "caseNotebookStr", "studyCalendarStr",
+          "reviewQueueStr", "scaleStudyStr", "topicMasteryStr", "caseNotebookStr", "studyCalendarStr",
           "lastPostmortemStr", "pomodoroSettingsStr", "pomodoroLogStr",
           "pomodoroSpecialtiesStr", "pomodoroFocusLabel", "globalStatsStr", "historyStr",
           "reportsStr", "createdAt", "updatedAt"

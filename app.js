@@ -149,6 +149,7 @@
         accountCreatedAt: null,
         dailyPlan: null,
         reviewQueue: [],
+        activeReviewQueueItemId: "",
         topicMastery: {},
         caseNotebook: [],
         studyCalendar: {},
@@ -450,7 +451,9 @@
         gyo: [],
         cir: []
     };
-    const REVIEW_INTERVALS_DAYS = [1, 3, 7, 14];
+    // Cada índice representa el intervalo que se aplicará después de un
+    // repaso satisfactorio. El índice 0 es el estado inicial de un error.
+    const REVIEW_INTERVALS_DAYS = [0, 1, 3, 7, 14, 30];
     const EXAM_TARGET_DATE = new Date(2026, 8, 28, 8, 0, 0);
     const SCALE_REVIEW_INTERVALS_DAYS = [0, 1, 3, 7, 14, 30];
     const SCALE_SPECIALTY_OPTIONS = [
@@ -842,6 +845,25 @@
     const ensureStudySystemsState = () => {
         if (!State.dailyPlan || typeof State.dailyPlan !== "object") State.dailyPlan = null;
         if (!Array.isArray(State.reviewQueue)) State.reviewQueue = [];
+        State.reviewQueue = State.reviewQueue
+            .filter(item => item && item.id)
+            .map(item => {
+                const intervalIndex = Math.max(0, Math.min(
+                    Number.isFinite(Number(item.intervalIndex))
+                        ? Number(item.intervalIndex)
+                        : Number(item.completedStages || 0),
+                    REVIEW_INTERVALS_DAYS.length
+                ));
+                return {
+                    ...item,
+                    kind: item.kind === "case" ? "question" : (item.kind || "question"),
+                    intervalIndex,
+                    completedStages: intervalIndex,
+                    status: item.status === "completed" ? "completed" : "pending",
+                    dueDate: parseDateKey(item.dueDate) ? item.dueDate : formatDateKey(),
+                    lastCompletedDate: item.lastCompletedDate || null
+                };
+            });
         if (!State.topicMastery || typeof State.topicMastery !== "object") State.topicMastery = {};
         if (!Array.isArray(State.caseNotebook)) State.caseNotebook = [];
         if (!State.studyCalendar || typeof State.studyCalendar !== "object") State.studyCalendar = {};
@@ -852,7 +874,9 @@
         ensureStudySystemsState();
         return Object.entries(State.globalStats.byTema || {})
             .map(([topic, stats]) => {
-                const total = Number(stats?.total) || 0;
+                const answered = Number(stats?.total) || 0;
+                const omitted = Number(stats?.omitted) || 0;
+                const total = answered + omitted;
                 const correct = Number(stats?.correct) || 0;
                 const wrong = Math.max(0, total - correct);
                 const precision = total > 0 ? (correct / total) * 100 : 0;
@@ -878,6 +902,72 @@
                 return b.total - a.total;
             });
     };
+    const getPendingReviewCountsByTopic = () => {
+        const counts = {};
+        (State.reviewQueue || []).forEach(item => {
+            if (!item?.topic || item.status === "completed") return;
+            counts[item.topic] = (counts[item.topic] || 0) + 1;
+        });
+        return counts;
+    };
+    const getRecentTopicOutcomes = (days = 30) => {
+        const cutoff = Date.now() - (days * 24 * 60 * 60 * 1000);
+        const outcomes = {};
+        (State.history || []).forEach(session => {
+            if (!session || Number(session.timestamp || 0) < cutoff
+                || !Array.isArray(session.questionSet) || !Array.isArray(session.answers)) return;
+            session.questionSet.forEach((question, index) => {
+                const topic = sanitizeTopicLabel(getCaseCanonicalTopic(question));
+                if (!topic) return;
+                if (!outcomes[topic]) outcomes[topic] = { attempts: 0, correct: 0, omitted: 0 };
+                const answer = session.answers[index];
+                outcomes[topic].attempts++;
+                if (!answer || answer.selected === null) outcomes[topic].omitted++;
+                else if (answer.isCorrect) outcomes[topic].correct++;
+            });
+        });
+        return outcomes;
+    };
+    const getSmartReviewTopicPriorities = (limit = 3) => {
+        ensureStudySystemsState();
+        const pendingByTopic = getPendingReviewCountsByTopic();
+        const recentOutcomes = getRecentTopicOutcomes();
+        return Object.entries(State.globalStats.byTema || {})
+            .map(([topic, stats]) => {
+                const allAnswered = Number(stats?.total) || 0;
+                const allOmitted = Number(stats?.omitted) || 0;
+                const allAttempts = allAnswered + allOmitted;
+                const allCorrect = Number(stats?.correct) || 0;
+                const recent = recentOutcomes[topic];
+                const hasReliableRecentEvidence = Number(recent?.attempts || 0) >= 3;
+                const attempts = hasReliableRecentEvidence ? recent.attempts : allAttempts;
+                const omitted = hasReliableRecentEvidence ? recent.omitted : allOmitted;
+                const correct = hasReliableRecentEvidence ? recent.correct : allCorrect;
+                const wrong = Math.max(0, attempts - correct);
+                const precision = attempts > 0 ? (correct / attempts) * 100 : 0;
+                // Suavizado de Laplace: evita que un único fallo pese más que un patrón sostenido.
+                const adjustedPrecision = ((correct + 2) / (attempts + 4)) * 100;
+                const evidence = Math.min(1, Math.log2(attempts + 1) / 3);
+                const pendingReviews = pendingByTopic[topic] || 0;
+                return {
+                    topic,
+                    specialty: stats?.specialty || "mi",
+                    attempts,
+                    allAttempts,
+                    correct,
+                    wrong,
+                    omitted,
+                    precision,
+                    adjustedPrecision,
+                    pendingReviews,
+                    usesRecentEvidence: hasReliableRecentEvidence,
+                    score: ((100 - adjustedPrecision) * evidence) + (Math.min(pendingReviews, 3) * 8)
+                };
+            })
+            .filter(entry => entry.attempts >= 3 && entry.wrong > 0)
+            .sort((a, b) => b.score - a.score || b.wrong - a.wrong || b.attempts - a.attempts)
+            .slice(0, limit);
+    };
     const deriveTopicMasteryState = (entry, pendingReviews = 0) => {
         if (!entry || !entry.total) return "sin_tocar";
         if (pendingReviews > 0 || entry.precision < 58 || entry.wrong >= Math.max(3, entry.correct)) return "en_riesgo";
@@ -892,7 +982,9 @@
         });
         const nextTopicMastery = {};
         Object.entries(State.globalStats.byTema || {}).forEach(([topic, stats]) => {
-            const total = Number(stats?.total) || 0;
+            const answered = Number(stats?.total) || 0;
+            const omitted = Number(stats?.omitted) || 0;
+            const total = answered + omitted;
             const correct = Number(stats?.correct) || 0;
             const wrong = Math.max(0, total - correct);
             const precision = total > 0 ? Number(((correct / total) * 100).toFixed(1)) : 0;
@@ -959,20 +1051,26 @@
         entry.topics = Array.from(topicSet).slice(0, 25);
         State.studyCalendar[todayKey] = entry;
     };
-    const upsertReviewQueueItem = (item) => {
+    const getReviewQuestionFingerprint = (q) => hashString(normalizeTextKey(q?.question || q?.explanation || ""));
+    const getReviewQuestionKey = (q) => {
+        const caseKey = getCaseKey(q) || getCaseNotebookId(q);
+        return caseKey ? `${caseKey}:${getReviewQuestionFingerprint(q)}` : "";
+    };
+    const upsertReviewQueueItem = (item, { resetProgress = false } = {}) => {
         ensureStudySystemsState();
         if (!item || !item.id) return;
         const existingIndex = State.reviewQueue.findIndex(entry => entry.id === item.id);
         if (existingIndex >= 0) {
-            const merged = { ...State.reviewQueue[existingIndex], ...item };
-            if (State.reviewQueue[existingIndex].status === "completed" && item.status === "pending") {
+            const previous = State.reviewQueue[existingIndex];
+            const merged = { ...previous, ...item };
+            if (resetProgress || (previous.status === "completed" && item.status === "pending")) {
                 merged.completedStages = 0;
-                merged.intervalIndex = item.intervalIndex || 0;
+                merged.intervalIndex = 0;
                 merged.completedAt = null;
                 merged.lastCompletedDate = null;
                 merged.dueDate = item.dueDate;
             }
-            if (merged.status !== "completed" && compareDateKeys(item.dueDate, State.reviewQueue[existingIndex].dueDate || item.dueDate) < 0) {
+            if (merged.status !== "completed" && compareDateKeys(item.dueDate, previous.dueDate || item.dueDate) < 0) {
                 merged.dueDate = item.dueDate;
             }
             State.reviewQueue[existingIndex] = merged;
@@ -983,54 +1081,118 @@
     const scheduleReviewForQuestion = (q, options = {}) => {
         const topic = sanitizeTopicLabel(getCaseCanonicalTopic(q));
         const caseKey = getCaseKey(q) || getCaseNotebookId(q);
+        const questionKey = getReviewQuestionKey(q);
+        if (!questionKey) return;
         const title = truncateText(q?.question || topic || "Repaso clínico", 92);
         const todayKey = formatDateKey();
-        const topicId = `topic:${normalizeTextKey(topic)}`;
-        const caseId = `case:${caseKey}`;
         upsertReviewQueueItem({
-            id: topicId,
-            kind: "topic",
-            topic,
-            specialty: q?.specialty || "mi",
-            title: topic,
-            detail: `Repasar puntos finos de ${topic.toLowerCase()}.`,
-            dueDate: todayKey,
-            intervalIndex: 0,
-            status: "pending",
-            lastCompletedDate: null
-        });
-        upsertReviewQueueItem({
-            id: caseId,
-            kind: "case",
+            id: `question:${questionKey}`,
+            kind: "question",
             topic,
             specialty: q?.specialty || "mi",
             title,
             detail: truncateText(q?.case || q?.explanation || "", 120),
-            dueDate: addDaysToKey(todayKey, options.delayDays || 1),
+            caseKey,
+            questionKey,
+            questionFingerprint: getReviewQuestionFingerprint(q),
+            dueDate: addDaysToKey(todayKey, Number.isFinite(Number(options.delayDays)) ? Number(options.delayDays) : 1),
             intervalIndex: 0,
+            completedStages: 0,
             status: "pending",
             lastCompletedDate: null
-        });
+        }, { resetProgress: true });
     };
-    const completeReviewQueueItem = (id) => {
+    const completeReviewQueueItem = (id, rating = "good") => {
         ensureStudySystemsState();
         const item = State.reviewQueue.find(entry => entry.id === id);
         if (!item) return;
         const todayKey = formatDateKey();
         item.lastCompletedDate = todayKey;
-        item.completedStages = (item.completedStages || 0) + 1;
-        if (item.completedStages >= REVIEW_INTERVALS_DAYS.length) {
+        item.lastReviewedAt = Date.now();
+        if (rating === "again") {
+            // Debe seguir visible hoy: un fallo no cuenta como repaso completado.
+            item.lastCompletedDate = null;
+            item.intervalIndex = 0;
+            item.completedStages = 0;
+            item.status = "pending";
+            item.completedAt = null;
+            item.dueDate = todayKey;
+        } else {
+            const step = rating === "easy" ? 2 : 1;
+            item.intervalIndex = Math.min((Number(item.intervalIndex) || 0) + step, REVIEW_INTERVALS_DAYS.length);
+            item.completedStages = item.intervalIndex;
+            if (item.intervalIndex >= REVIEW_INTERVALS_DAYS.length) {
+                item.status = "completed";
+                item.completedAt = Date.now();
+            } else {
+                item.status = "pending";
+                item.dueDate = addDaysToKey(todayKey, REVIEW_INTERVALS_DAYS[item.intervalIndex]);
+            }
+        }
+        if (item.status === "completed") {
             item.status = "completed";
             item.completedAt = Date.now();
-        } else {
-            item.status = "pending";
-            item.intervalIndex = item.completedStages;
-            item.dueDate = addDaysToKey(todayKey, REVIEW_INTERVALS_DAYS[item.intervalIndex]);
         }
         recordStudyCalendarActivity({ taskCompleted: true, topics: [item.topic] });
+        rebuildTopicMastery();
         ensureDailyPlanFresh(true);
         saveGlobalStats();
         if (State.view === "view-dashboard") renderStudyDashboard();
+    };
+    const findQueuedReviewQuestion = (item) => {
+        if (!item?.caseKey || !item?.questionFingerprint || !Array.isArray(QUESTIONS)) return null;
+        for (const source of QUESTIONS) {
+            if (!source) continue;
+            const subQuestions = Array.isArray(source.questions)
+                ? source.questions
+                : [{
+                    question: source.question,
+                    options: source.options,
+                    answerIndex: source.answerIndex,
+                    explanation: source.explanation
+                }];
+            for (const subQuestion of subQuestions) {
+                const candidate = { ...source, ...subQuestion };
+                if (getCaseKey(candidate) === item.caseKey
+                    && getReviewQuestionFingerprint(candidate) === item.questionFingerprint) {
+                    return {
+                        ...candidate,
+                        caseGroupId: 1,
+                        subQuestionIndex: 1,
+                        totalSubQuestions: 1
+                    };
+                }
+            }
+        }
+        return null;
+    };
+    const startQueuedReview = async (reviewId, triggerButton = null) => {
+        ensureStudySystemsState();
+        const item = State.reviewQueue.find(entry => entry.id === reviewId && entry.status !== "completed");
+        if (!item) return;
+        if (item.kind !== "question" || !item.questionFingerprint) {
+            return startTemaSession([item.topic].filter(Boolean), 5, "Repaso de tema pendiente", triggerButton, item.id);
+        }
+        await withTemporaryButtonLabel(triggerButton, "Preparando...", async () => {
+            try {
+                await ensureQuestionsReady({ silent: false });
+            } catch (_) {
+                return;
+            }
+            const question = findQueuedReviewQuestion(item);
+            if (!question) {
+                showNotification("Este reactivo ya no está disponible en el banco. Conservamos el tema para que puedas repasarlo manualmente.", "warning");
+                return;
+            }
+            beginExamSession({
+                questionSet: [question],
+                mode: "simulacro",
+                currentExamIsReal: false,
+                currentExamType: "Repaso programado",
+                durationSec: 0,
+                reviewQueueItemId: item.id
+            });
+        });
     };
     const getFocusedWeakTopics = (limit = 3) => getTopicPerformanceEntries().slice(0, limit);
     const buildSessionPostmortem = (result) => {
@@ -1093,10 +1255,10 @@
         if (primaryReview) {
             tasks.push({
                 id: "review-queue-primary",
-                title: primaryReview.kind === "case" ? "Resolver repaso atrasado" : "Cerrar repaso temático",
+                title: primaryReview.kind === "question" ? "Resolver repaso pendiente" : "Repasar tema pendiente",
                 detail: primaryReview.topic ? `${primaryReview.topic}. ${primaryReview.detail || ""}` : (primaryReview.detail || "Atiéndelo antes de seguir sumando contenido nuevo."),
-                action: primaryReview.kind === "case" ? "open-notebook" : "open-temario",
-                actionTarget: primaryReview.topic || ""
+                action: "review-queue",
+                actionTarget: primaryReview.id || ""
             });
         }
         if (weakTopics[0]) {
@@ -6208,6 +6370,7 @@
                 appearanceStr: JSON.stringify(normalizeAppearance(State.appearance)),
                 dailyPlanStr: JSON.stringify(State.dailyPlan || null),
                 reviewQueueStr: JSON.stringify(State.reviewQueue || []),
+                scaleStudyStr: JSON.stringify(State.scaleStudy || {}),
                 topicMasteryStr: JSON.stringify(State.topicMastery || {}),
                 caseNotebookStr: JSON.stringify(State.caseNotebook || []),
                 studyCalendarStr: JSON.stringify(State.studyCalendar || {}),
@@ -8531,11 +8694,12 @@
         };
 
         const handleInteligente = async (triggerButton) => {
-            if (State.topFailedTemas && State.topFailedTemas.length > 0) {
-                await startTemaSession(State.topFailedTemas, 5, "Refuerzo IA por Temas", triggerButton);
-            } else {
-                showNotification("Aún no tienes puntos de falla registrados. Sigue practicando para que la IA detecte tus áreas de oportunidad.");
+            const priorities = getSmartReviewTopicPriorities(3);
+            if (priorities.length === 0) {
+                showNotification("Aún no hay evidencia suficiente para priorizar un tema. Completa al menos 3 intentos con un fallo u omisión en el mismo tema.");
+                return;
             }
+            await startSmartReviewSession(priorities, 6, "Refuerzo inteligente por temas", triggerButton);
         };
 
         bindStartBtn("btn-refuerzo-ia", handleInteligente, true);
@@ -8549,39 +8713,16 @@
     };
 
     const startSpacedRepetition = async (triggerButton) => {
-        const now = Date.now();
-        const oneDay = 24 * 60 * 60 * 1000;
-        const sevenDays = 7 * oneDay;
-        const thirtyDays = 30 * oneDay;
-
-        // Buscamos sesiones que ocurrieron hace aprox 24h, 7d o 30d
-        const targets = [oneDay, sevenDays, thirtyDays];
-        const tolerance = 12 * 60 * 60 * 1000; // Ventana de 12 horas
-
-        const themesToReview = new Set();
-
-        State.history.forEach(session => {
-            const age = now - session.timestamp;
-            const matches = targets.some(t => Math.abs(age - t) < tolerance);
-
-            if (matches && session.questionSet) {
-                session.questionSet.forEach(q => {
-                    const t = getCaseCanonicalTopic(q);
-                    if (t) themesToReview.add(t);
-                });
-            }
-        });
-
-        if (themesToReview.size === 0) {
-            showNotification("No hay temas críticos para repaso según la Curva del Olvido hoy. \n\nRecuerda: El sistema programa repasos automáticos a las 24h, 7 días y 30 días de tus sesiones de estudio.");
+        const buckets = getReviewQueueBuckets();
+        const nextReview = buckets.late[0] || buckets.today[0];
+        if (!nextReview) {
+            showNotification("No tienes repasos pendientes. Los errores y omisiones se programan para hoy, 1, 3, 7, 14 y 30 días según tu desempeño.", "success");
             return;
         }
-
-        const themesArr = Array.from(themesToReview);
-        await startTemaSession(themesArr, 15, "Repaso: Curva del Olvido", triggerButton);
+        await startQueuedReview(nextReview.id, triggerButton);
     };
 
-    const startTemaSession = async (temas, qty, label, triggerButton = null) => {
+    const startTemaSession = async (temas, qty, label, triggerButton = null, reviewQueueItemId = "") => {
         await withTemporaryButtonLabel(triggerButton, "Preparando...", async () => {
             await withExamLoadingOverlay(async (setStage) => {
                 await setStage({
@@ -8622,11 +8763,79 @@
                     mode: "simulacro",
                     currentExamIsReal: false,
                     currentExamType: label,
-                    durationSec: 0
+                    durationSec: 0,
+                    reviewQueueItemId
                 });
             }, {
                 title: "Preparando sesión...",
                 detail: "Estamos organizando tus preguntas.",
+                progress: 8
+            });
+        });
+    };
+    const buildBalancedSmartReviewSet = (priorities, qty) => {
+        const selected = [];
+        const usedCases = new Set();
+        const addFromPool = (pool) => {
+            const source = shuffleArray(pool || []).find(item => {
+                const key = getCaseKey(item) || `${item?.question || ""}:${item?.case || ""}`;
+                return !usedCases.has(key);
+            });
+            if (!source) return false;
+            const flat = processAndFlattenPool([source], 1)[0];
+            if (!flat) return false;
+            usedCases.add(getCaseKey(source) || `${source?.question || ""}:${source?.case || ""}`);
+            selected.push(flat);
+            return true;
+        };
+        const topics = (priorities || []).map(entry => entry?.topic).filter(Boolean);
+        topics.forEach(topic => {
+            if (selected.length >= qty) return;
+            const pool = buildFilteredQuestionPools({ selectedTopics: [topic] }).primary;
+            addFromPool(pool);
+        });
+        if (selected.length >= qty) return selected.slice(0, qty);
+        const combinedPool = buildFilteredQuestionPools({ selectedTopics: topics }).primary;
+        while (selected.length < qty && addFromPool(combinedPool)) {
+            // La condición de salida es que no queden casos distintos en el banco filtrado.
+        }
+        return selected;
+    };
+    const startSmartReviewSession = async (priorities, qty, label, triggerButton = null) => {
+        await withTemporaryButtonLabel(triggerButton, "Preparando...", async () => {
+            await withExamLoadingOverlay(async (setStage) => {
+                await setStage({
+                    title: "Preparando refuerzo...",
+                    detail: "Estamos seleccionando preguntas de tus temas prioritarios.",
+                    progress: 22
+                });
+                try {
+                    await ensureQuestionsReady({ silent: false });
+                } catch (_) {
+                    return;
+                }
+                const questionSet = buildBalancedSmartReviewSet(priorities, qty);
+                if (questionSet.length === 0) {
+                    showNotification("No encontramos reactivos disponibles para tus temas prioritarios. Intenta practicar desde el temario.", "warning");
+                    return;
+                }
+                if (questionSet.length < qty) {
+                    showNotification(`Preparamos ${questionSet.length} reactivo(s) porque no hay más casos distintos disponibles en esos temas.`, "info");
+                }
+                await setStage({
+                    detail: "Abriendo tu refuerzo inteligente.",
+                    progress: 100
+                });
+                beginExamSession({
+                    questionSet,
+                    mode: "simulacro",
+                    currentExamIsReal: false,
+                    currentExamType: label,
+                    durationSec: 0
+                });
+            }, {
+                title: "Preparando refuerzo...",
+                detail: "Estamos organizando una práctica equilibrada.",
                 progress: 8
             });
         });
@@ -8977,7 +9186,8 @@
         currentExamIsReal = false,
         currentExamType = "Simulacro",
         durationSec = 0,
-        guest = false
+        guest = false,
+        reviewQueueItemId = ""
     }) => {
         if (!Array.isArray(questionSet) || questionSet.length === 0) {
             clearExamTimer();
@@ -8999,6 +9209,7 @@
         State.mode = mode;
         State.currentExamIsReal = currentExamIsReal;
         State.currentExamType = currentExamType;
+        State.activeReviewQueueItemId = reviewQueueItemId || "";
         State.durationSec = Math.max(parseInt(durationSec, 10) || 0, 0);
         State.currentIndex = 0;
         State.answers = State.questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false }));
@@ -10233,10 +10444,17 @@
         isFinishing = true;
         try {
             clearExamTimer();
+            const reviewQueueItemId = State.activeReviewQueueItemId || "";
 
             let correct = 0, wrong = 0, blank = 0;
             State.answers.forEach((a, i) => {
-                if (a.selected === null) blank++;
+                if (a.selected === null) {
+                    blank++;
+                    if (!State.guestExamActive) {
+                        const question = State.questionSet[i];
+                        recordTopicOmission(question?.specialty || "mi", getCaseCanonicalTopic(question));
+                    }
+                }
                 else {
                     if (a.isCorrect) correct++; else wrong++;
                     if (State.mode === "simulacro" && !State.guestExamActive) {
@@ -10396,6 +10614,12 @@
                     scheduleReviewForQuestion(q, { delayDays: answer.selected === null ? 0 : 1 });
                 }
             });
+            if (reviewQueueItemId) {
+                const passedReview = State.answers.length > 0
+                    && State.answers.every(answer => answer.selected !== null && answer.isCorrect);
+                completeReviewQueueItem(reviewQueueItemId, passedReview ? "good" : "again");
+                State.activeReviewQueueItemId = "";
+            }
             recordStudyCalendarActivity({
                 sessions: 1,
                 topics: topicsTouched
@@ -10469,6 +10693,20 @@
         // Use debounced save in estudio mode to avoid excessive writes.
         if (State.mode === "estudio") debouncedSave();
     };
+    const recordTopicOmission = (specialtyKey, tema) => {
+        if (!tema) return;
+        State.globalStats.byTema = State.globalStats.byTema || {};
+        if (!State.globalStats.byTema[tema]) {
+            State.globalStats.byTema[tema] = { total: 0, correct: 0, omitted: 0, specialty: specialtyKey };
+        }
+        const stats = State.globalStats.byTema[tema];
+        stats.omitted = Number(stats.omitted || 0) + 1;
+        stats.specialty = stats.specialty || specialtyKey;
+        State.topicMastery[tema] = State.topicMastery[tema] || { topic: tema, specialty: specialtyKey };
+        State.topicMastery[tema].lastSeenAt = Date.now();
+        State.topicMastery[tema].specialty = specialtyKey;
+        rebuildTopicMastery();
+    };
 
     const updateMotivationalQuote = () => {
         const quotes = [
@@ -10517,6 +10755,10 @@
             setTimeout(() => $("study-plus-notebook")?.scrollIntoView({ behavior: "smooth", block: "start" }), 30);
             return;
         }
+        if (action === "review-queue") {
+            void startQueuedReview(actionTarget);
+            return;
+        }
         if (action === "open-setup") {
             const nav = $("nav-new-exam");
             if (nav) nav.click();
@@ -10554,12 +10796,12 @@
     };
 
     window.runStudyAction = runStudyAction;
-    window.completeStudyReviewItem = (id) => {
+    window.startQueuedReview = (id) => {
         let decoded = id;
         if (typeof id === "string") {
             try { decoded = decodeURIComponent(id); } catch (_) { decoded = id; }
         }
-        completeReviewQueueItem(decoded);
+        void startQueuedReview(decoded);
     };
     window.openNotebookEntry = (id) => {
         let decoded = id;
@@ -10693,8 +10935,8 @@
                             <span class="review-item-tag">${compareDateKeys(item.dueDate, formatDateKey()) < 0 ? "Atrasada" : "Hoy"}</span>
                         </div>
                         <div class="today-task-actions">
-                            ${item.topic ? `<button class="btn-secondary" type="button" onclick="window.runStudyAction('topic-drill','${encodeURIComponent(item.topic)}')">Ir al tema</button>` : ""}
-                            <button class="btn-primary" type="button" onclick="window.completeStudyReviewItem('${encodeURIComponent(item.id)}')">Marcar hecho</button>
+                            ${item.topic ? `<button class="btn-secondary" type="button" onclick="window.runStudyAction('topic-drill','${encodeURIComponent(item.topic)}')">Ver tema</button>` : ""}
+                            <button class="btn-primary" type="button" onclick="window.startQueuedReview('${encodeURIComponent(item.id)}')">Practicar</button>
                         </div>
                     </article>
                 `).join("");
@@ -10938,51 +11180,24 @@
 
         failList.innerHTML = "";
 
-        // Collect all themes and their stats
-        let allTemas = [];
-        if (State.globalStats.byTema) {
-            for (let tema in State.globalStats.byTema) {
-                allTemas.push({ tema, ...State.globalStats.byTema[tema] });
-            }
-        }
+        const prioritizedTemas = getSmartReviewTopicPriorities(3);
+        State.topFailedTemas = prioritizedTemas.map(entry => entry.topic);
 
-        // If no data, show empty state
-        if (allTemas.length === 0) {
+        if (prioritizedTemas.length === 0) {
             failList.innerHTML = `
                 <div style="text-align: center; padding: 40px 20px; color: var(--text-muted);">
                     <div style="font-size: 40px; margin-bottom: 15px; opacity: 0.5;">${appIcon('sparkles')}</div>
-                    <h3 style="color: var(--text-secondary); margin-bottom: 10px;">¡Aún no hay puntos de falla!</h3>
-                    <p style="font-size: 13px;">Realiza simulacros y la IA comenzará a analizar tus áreas de oportunidad aquí.</p>
+                    <h3 style="color: var(--text-secondary); margin-bottom: 10px;">Aún no hay temas prioritarios</h3>
+                    <p style="font-size: 13px;">Necesitamos al menos 3 intentos y un fallo u omisión en un tema para recomendarte un refuerzo confiable.</p>
                 </div>
             `;
+            const dashFailList = $("dash-fail-list");
+            if (dashFailList) {
+                dashFailList.innerHTML = `<div style="text-align: center; color: var(--text-muted); font-size: 12px; padding: 10px;">Aún no hay temas prioritarios.</div>`;
+            }
             return;
         }
-
-        // Calculate precision mapping and sort strictly by precision ascending, then total descending
-        const temaRates = allTemas.map(t => {
-            const precision = (t.correct / t.total) * 100;
-            return {
-                tema: t.tema,
-                specialty: t.specialty,
-                total: t.total,
-                correct: t.correct,
-                wrong: t.total - t.correct,
-                precision: precision
-            };
-        });
-
-        // Solo mostrar temas donde haya margen de mejora (precision < 100 y mínimo 2 preguntas respondidas para evitar ruido estadístico, o si es la única información disponible)
-        const filteredTemas = temaRates.filter(t => t.precision < 100 || t.total >= 1);
-
-        filteredTemas.sort((a, b) => {
-            if (a.precision === b.precision) return b.total - a.total; // Tiebreaker: if precision is same, more attempts means higher priority to fix
-            return a.precision - b.precision;
-        });
-
-        // Store top failed themes globally for Quick Action Buttons
-        State.topFailedTemas = filteredTemas.slice(0, 10).map(t => t.tema);
-
-        filteredTemas.forEach(t => {
+        prioritizedTemas.forEach(t => {
             const el = document.createElement("div");
             el.className = "fail-item";
 
@@ -11000,7 +11215,7 @@
             el.innerHTML = `
                 <div class="fail-item-info" style="width: 100%;">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
-                        <div class="fail-item-title">${t.tema}</div>
+                            <div class="fail-item-title">${t.topic}</div>
                         <div style="font-size: 10px; padding: 3px 8px; border-radius: 12px; font-weight: 700; ${priorityBadge}">${priorityLabel}</div>
                     </div>
                     
@@ -11017,8 +11232,9 @@
                     </div>
                     <div style="display: flex; justify-content: space-between; font-size: 10px; margin-top: 4px; color: var(--text-muted);">
                         <span>${t.correct} bien</span>
-                        <span>${t.wrong} mal</span>
+                        <span>${t.wrong} mal${t.omitted ? ` · ${t.omitted} omitida${t.omitted === 1 ? "" : "s"}` : ""}</span>
                     </div>
+                    <div style="font-size: 10px; margin-top: 4px; color: var(--text-muted);">Base: ${t.attempts} intento${t.attempts === 1 ? "" : "s"}${t.usesRecentEvidence ? " en los últimos 30 días" : " en tu historial"}</div>
                 </div>
             `;
             failList.appendChild(el);
@@ -11030,7 +11246,7 @@
         const dashFailList = $("dash-fail-list");
         if (dashFailList) {
             dashFailList.innerHTML = "";
-            filteredTemas.slice(0, 3).forEach(t => {
+            prioritizedTemas.forEach(t => {
                 const elDash = document.createElement("div");
                 elDash.className = "fail-item";
                 elDash.style.padding = "10px 14px";
@@ -11044,7 +11260,7 @@
                 elDash.innerHTML = `
                     <div class="fail-item-info" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
                         <div>
-                            <div class="fail-item-title" style="font-size: 13px;">${t.tema}</div>
+                            <div class="fail-item-title" style="font-size: 13px;">${t.topic}</div>
                             <div class="fail-item-sub" style="font-size: 10px;">Prioridad: ${priorityLabel} | Precisión: ${t.precision.toFixed(1)}%</div>
                         </div>
                         <div class="fail-item-badge ${badgeClass}" style="padding: 3px 6px; font-size: 9px; border:none; color:white; border-radius:4px;">Repasar</div>
@@ -11052,7 +11268,7 @@
                 `;
                 dashFailList.appendChild(elDash);
             });
-            if (filteredTemas.length === 0) {
+            if (prioritizedTemas.length === 0) {
                 dashFailList.innerHTML = `<div style="text-align: center; color: var(--text-muted); font-size: 12px; padding: 10px;">Aún no hay puntos de falla.</div>`;
             }
         }
@@ -16993,6 +17209,10 @@
                                         State.reviewQueue = JSON.parse(data.reviewQueueStr);
                                         localStorage.setItem("enarm_review_queue", data.reviewQueueStr);
                                     }
+                                    if (data.scaleStudyStr) {
+                                        State.scaleStudy = JSON.parse(data.scaleStudyStr);
+                                        localStorage.setItem(SCALE_STUDY_STORAGE_KEY, data.scaleStudyStr);
+                                    }
                                     if (data.topicMasteryStr) {
                                         State.topicMastery = JSON.parse(data.topicMasteryStr);
                                         localStorage.setItem("enarm_topic_mastery", data.topicMasteryStr);
@@ -17479,6 +17699,10 @@
                                 if (data.reviewQueueStr) {
                                     State.reviewQueue = JSON.parse(data.reviewQueueStr);
                                     localStorage.setItem("enarm_review_queue", data.reviewQueueStr);
+                                }
+                                if (data.scaleStudyStr) {
+                                    State.scaleStudy = JSON.parse(data.scaleStudyStr);
+                                    localStorage.setItem(SCALE_STUDY_STORAGE_KEY, data.scaleStudyStr);
                                 }
                                 if (data.topicMasteryStr) {
                                     State.topicMastery = JSON.parse(data.topicMasteryStr);
