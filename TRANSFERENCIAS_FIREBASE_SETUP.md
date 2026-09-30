@@ -4,7 +4,7 @@ Este flujo utiliza Firebase Authentication, Cloud Firestore y Hosting. No usa St
 
 ## Flujo para tus usuarios
 
-1. El usuario elige el plan 2026 ($399) o 2027 ($1,999).
+1. El usuario elige 2027 ($1,999).
 2. Crea su cuenta o inicia sesión.
 3. Firebase le genera una referencia personal de 10 dígitos.
 4. Ve los datos de BBVA, CLABE, importe y referencia para el concepto.
@@ -61,7 +61,7 @@ Si el depósito no existe o los datos no coinciden, pulsa **Rechazar**. El usuar
 En **Más → Opciones de administrador → Usuarios y acceso Premium** verás las cuentas de la más reciente a la más antigua, con nombre, correo, estado de pago y acceso actual.
 
 - El interruptor activa o desactiva Premium inmediatamente.
-- Al activarlo se asigna el plan del año objetivo del usuario (2026 o 2027); si el plan 2026 ya expiró, se asigna 2027.
+- Al activarlo se asigna 2027.
 - El estado de pago no cambia por usar el interruptor: sirve para distinguir un depósito aprobado de un acceso otorgado manualmente.
 - Los correos se guardan en un directorio privado: solo el propio usuario y tu cuenta administradora pueden leerlos.
 

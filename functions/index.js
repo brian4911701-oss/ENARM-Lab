@@ -170,10 +170,7 @@ exports.setAdminUserPremiumAccess = onCall(async (request) => {
             ]);
             const current = currentSnap.exists ? (currentSnap.data() || {}) : {};
             const directory = directorySnap.exists ? (directorySnap.data() || {}) : {};
-            const plan = String(directory.targetYear || "") === "2026"
-                && new Date(MANUAL_PREMIUM_PLANS.enarm_2026.expiresAt).getTime() > now.getTime()
-                ? MANUAL_PREMIUM_PLANS.enarm_2026
-                : MANUAL_PREMIUM_PLANS.enarm_2027;
+            const plan = MANUAL_PREMIUM_PLANS.enarm_2027;
             const currentExpiry = current.expiresAt?.toDate?.().getTime?.()
                 || new Date(current.expiresAt || 0).getTime();
             const alreadyHasThisAccess = current.status === "active"
@@ -185,7 +182,7 @@ exports.setAdminUserPremiumAccess = onCall(async (request) => {
                 const limit = Math.max(1, Number(capacity.limit) || LAUNCH_CAPACITY_LIMIT);
                 const used = Math.max(0, Number(capacity.used) || LAUNCH_CAPACITY_BASELINE);
                 if (used + 1 > limit) {
-                    throw new HttpsError("resource-exhausted", "El cupo de lanzamiento ENARM 2027 ya está completo.");
+                    throw new HttpsError("resource-exhausted", "El cupo de lanzamiento 2027 ya está completo.");
                 }
                 transaction.set(capacityRef, {
                     used: used + 1,

@@ -278,13 +278,13 @@
     const TRANSFER_PLANS = Object.freeze({
         enarm_2026: Object.freeze({
             id: "enarm_2026",
-            name: "Plan ENARM 2026",
+            name: "Acceso anterior",
             amount: 399,
             expiresAt: "2026-10-01T23:59:59-06:00"
         }),
         enarm_2027: Object.freeze({
             id: "enarm_2027",
-            name: "Plan ENARM 2027",
+            name: "2027",
             amount: 1999,
             expiresAt: "2027-10-01T23:59:59-06:00"
         }),
@@ -1967,7 +1967,7 @@
         ]);
         const premium = $("analytics-premium-detail");
         const sourceLabels = { manual_transfer: "Transferencia", code: "Código", admin_manual: "Admin", global_premium: "Promoción" };
-        const planLabels = { enarm_2026: "ENARM 2026", enarm_2027: "ENARM 2027", squad_2027: "Squad 2027", unknown: "Sin plan" };
+        const planLabels = { enarm_2026: "Acceso anterior", enarm_2027: "2027", squad_2027: "Squad 2027", unknown: "Sin plan" };
         const breakdown = (items, labels) => Object.entries(items || {}).sort((a, b) => b[1] - a[1]).map(([key, value]) => `${labels[key] || key}: ${value}`).join(" · ") || "Sin datos";
         if (premium) premium.innerHTML = analyticsRows([
             ["Gratis / Premium", `${formatAnalyticsNumber(data.premium.free)} / ${formatAnalyticsNumber(data.premium.active)}`],
@@ -4538,9 +4538,7 @@
         }
         const user = getAdminUserRows().find((item) => item.id === uid) || {};
         const directory = State.adminDirectoryByUid[uid] || {};
-        const preferredPlanId = String(user.targetYear || "") === "2026" && new Date(TRANSFER_PLANS.enarm_2026.expiresAt).getTime() > Date.now()
-            ? "enarm_2026"
-            : "enarm_2027";
+        const preferredPlanId = "enarm_2027";
         const plan = TRANSFER_PLANS[preferredPlanId];
         const action = enabled
             ? `activar Premium hasta ${formatDate(new Date(plan.expiresAt))}`
@@ -4624,9 +4622,9 @@
                 || errorMessage.includes("network");
             showNotification(
                 String(err?.message || "").includes("launch_capacity_full")
-                    ? "El cupo de lanzamiento ENARM 2027 ya está completo."
+                    ? "El cupo de lanzamiento 2027 ya está completo."
                     : errorCode.includes("resource-exhausted")
-                        ? (err?.message || "El cupo de lanzamiento ENARM 2027 ya está completo.")
+                        ? (err?.message || "El cupo de lanzamiento 2027 ya está completo.")
                     : isPermissionError
                         ? "Firebase rechazó el cambio. Verifica la cuenta administradora y vuelve a iniciar sesión."
                         : isConnectivityError
@@ -4998,7 +4996,7 @@
             console.error("No se pudo revisar la transferencia:", err);
             showNotification(
                 String(err?.message || "").includes("launch_capacity_full")
-                    ? "No se aprobó el pago porque el cupo de lanzamiento ENARM 2027 está completo."
+                    ? "No se aprobó el pago porque el cupo de lanzamiento 2027 está completo."
                     : "No se pudo guardar la revisión del pago.",
                 "error"
             );
@@ -12803,16 +12801,25 @@
     };
 
     const startExamCountdown = () => {
-        // ENARM 2026: 28 de septiembre de 2026 08:00 (hora local del dispositivo)
-        const targetDate = new Date(2026, 8, 28, 8, 0, 0).getTime(); // Mes 0-based: 8 = Septiembre
+        // Disponible desde el 1 de octubre de 2026 y dirigido al 28 de septiembre de 2027, 08:00.
+        const countdownStartDate = new Date(2026, 9, 1, 0, 0, 0).getTime(); // Mes 0-based: 9 = octubre
+        const targetDate = new Date(2027, 8, 28, 8, 0, 0).getTime(); // Mes 0-based: 8 = septiembre
 
         const update = () => {
             if (document.hidden || State.view !== "view-dashboard") return;
             const now = new Date().getTime();
+            const countdown = $("exam-countdown");
+
+            if (now < countdownStartDate) {
+                if (countdown) countdown.hidden = true;
+                return;
+            }
+
+            if (countdown) countdown.hidden = false;
             const distance = targetDate - now;
 
             if (distance < 0) {
-                if ($("exam-countdown")) $("exam-countdown").innerHTML = "<div class='countdown-label'>EL MOMENTO HA LLEGADO</div>";
+                if (countdown) countdown.innerHTML = "<div class='countdown-label'>EL MOMENTO HA LLEGADO</div>";
                 return;
             }
 
@@ -16297,7 +16304,9 @@
                     if (modal) modal.style.display = "none";
                 };
 
-                const getTransferPlan = (planId) => TRANSFER_PLANS[planId] || null;
+                const getTransferPlan = (planId) => ["enarm_2027", "squad_2027"].includes(planId)
+                    ? TRANSFER_PLANS[planId]
+                    : null;
                 const setPremiumTrialButtonsBusy = (busy, activeButton = null) => {
                     document.querySelectorAll("[data-start-premium-trial]").forEach((button) => {
                         button.disabled = busy;
@@ -16503,7 +16512,7 @@
 
                 document.querySelectorAll("[data-start-premium-trial]").forEach((button) => {
                     button.addEventListener("click", () => void startPremiumTrial({
-                        source: button.dataset.trialSource || (button.closest(".pricing-card")?.classList.contains("pricing-card--2027") ? "pricing_2027" : "pricing_2026"),
+                        source: button.dataset.trialSource || "pricing_2027",
                         triggerButton: button
                     }));
                 });

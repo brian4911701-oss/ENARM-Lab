@@ -18,7 +18,7 @@ Todo el contenido disponible en ENARMax, incluyendo pero no limitado a textos, g
 
 ## 4. Suscripciones y Pagos (Acceso Premium)
 *   El acceso Premium puede adquirirse mediante transferencia bancaria a la cuenta mostrada por ENARMax o activarse mediante códigos autorizados.
-*   Los planes ENARM 2026 y ENARM 2027 no son suscripciones y no se renuevan automáticamente. Su vigencia termina en la fecha indicada al momento de la compra.
+*   El acceso 2027 no es una suscripción y no se renueva automáticamente. Su vigencia termina en la fecha indicada al momento de la compra.
 *   Cada cuenta recibe una referencia numérica personal. El usuario debe escribirla exactamente en el concepto de la transferencia para que el pago pueda identificarse.
 *   El aviso de transferencia es una declaración del usuario y no activa Premium por sí solo. La activación ocurre únicamente cuando el movimiento se refleja, coincide con el importe y la referencia, y es validado por el administrador.
 *   El Plan Squad cubre al comprador y hasta tres cuentas adicionales. El comprador debe indicar los nombres de usuario de esas tres cuentas al enviar su aviso de transferencia; su revisión y activación son manuales y no automáticas.

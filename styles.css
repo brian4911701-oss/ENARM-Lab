@@ -12261,7 +12261,7 @@ h6,
 .pricing-premium-equivalence strong { color: #f3fff9; }
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
   align-items: stretch;
   width: 100%;
@@ -13351,7 +13351,8 @@ h6,
 
 @media (max-width: 1024px) {
   .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .pricing-card--free { grid-column: 1 / -1; max-width: calc(50% - 11px); justify-self: center; width: 100%; }
+  .pricing-card--free { grid-column: auto; max-width: none; justify-self: stretch; width: auto; }
+  .pricing-card--squad { grid-column: 1 / -1; max-width: calc(50% - 11px); justify-self: center; width: 100%; }
 }
 
 @media (max-width: 640px) {
@@ -13361,6 +13362,7 @@ h6,
   .pricing-grid { grid-template-columns: 1fr; gap: 18px; }
   .pricing-card { min-height: auto; margin: 0; padding: 28px 22px 24px; }
   .pricing-card--free { grid-column: auto; max-width: none; }
+  .pricing-card--squad { grid-column: auto; max-width: none; width: auto; }
   .pricing-amount { font-size: 3.15rem; }
   .pricing-card-heading p { min-height: auto; }
   .landing-demo-card { padding: 24px 18px; }
@@ -13639,7 +13641,7 @@ h6,
 .redeem-transfer-intro .premium-contact-title { font-size: 1rem; }
 .redeem-transfer-intro .premium-contact-title::before { content: none; }
 .redeem-transfer-intro .premium-contact-copy { max-width: 650px; font-size: .88rem; }
-.redeem-plan-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
+.redeem-plan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
 .redeem-plan-card,
 .redeem-plan-card--squad { grid-column: auto; min-height: 290px; margin: 0; padding: 22px; border-radius: 21px; background: linear-gradient(155deg, rgba(255,255,255,.10), rgba(255,255,255,.035)); }
 .redeem-plan-card--2026 { box-shadow: inset 0 1px 0 rgba(142,245,195,.13); }
@@ -13977,7 +13979,7 @@ h6,
 #landing-page .pricing-premium-equivalence { max-width: none; margin: 0 0 28px; padding: 16px 0; border: 0; border-top: 1px solid var(--welcome-line); border-bottom: 1px solid var(--welcome-line); border-radius: 0; background: none; }
 #landing-page .pricing-premium-equivalence p, #landing-page .pricing-premium-equivalence strong { color: var(--welcome-muted); }
 #landing-page .pricing-premium-equivalence > span { background: #e1e9f5; color: var(--welcome-accent); }
-#landing-page .pricing-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+#landing-page .pricing-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 #landing-page .pricing-card, #landing-page .pricing-card:hover { padding: 25px 20px; background: #fffefa; border: 1px solid var(--welcome-line); border-radius: 6px; box-shadow: none; transform: none; min-height: 0; opacity: 1; }
 #landing-page .pricing-card--free { max-width: none; grid-column: auto; }
 #landing-page .pricing-card--2027, #landing-page .pricing-card--2027:hover { background: #e8eef7; border-color: #8199b8; }
@@ -14042,6 +14044,7 @@ h6,
   #landing-page .hero-showcase { min-height: 450px; }
   #landing-page .hero-device--phone { width: 125px; }
   #landing-page .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #landing-page .pricing-card--squad { grid-column: 1 / -1; max-width: calc(50% - 7px); justify-self: center; width: 100%; }
   #landing-page .pricing-card-heading p { min-height: 50px; }
   #landing-page .landing-demo-section, #landing-page #landing-faq { gap: 40px; }
   #landing-page .landing-specialties-grid { grid-template-columns: repeat(2, 1fr); }
@@ -14082,6 +14085,7 @@ h6,
   #landing-page .hero-device--phone { width: 104px; border-width: 5px; border-radius: 19px; }
   #landing-page .landing-features-grid, #landing-page .pricing-grid { grid-template-columns: 1fr; }
   #landing-page .feature-card { padding: 24px 0; }
+  #landing-page .pricing-card--squad { grid-column: auto; max-width: none; width: auto; }
   #landing-page .feature-card-icon { float: left; margin: 0 18px 40px 0; }
   #landing-page .pricing-card { padding: 28px 24px; }
   #landing-page .pricing-card-heading p { min-height: 0; }
