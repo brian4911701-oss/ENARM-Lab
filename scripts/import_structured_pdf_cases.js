@@ -19,7 +19,11 @@ function hasFlag(flag) {
 const inputArg = getArg("--input");
 const outputArg = getArg("--output");
 const reportArg = getArg("--report");
+const difficultyArg = getArg("--difficulty");
+const shortCaseLengthArg = getArg("--short-case-length");
+const shortCaseDifficultyArg = getArg("--short-case-difficulty");
 const appendToBank = hasFlag("--append");
+const shortCaseLength = Math.max(0, Number.parseInt(shortCaseLengthArg, 10) || 0);
 
 const inputPath = inputArg
   ? (path.isAbsolute(inputArg) ? inputArg : path.resolve(process.cwd(), inputArg))
@@ -116,10 +120,25 @@ function mapDifficulty(value) {
   const key = normalizeTextKey(value);
   if (key.includes("muy alta")) return "muy-alta";
   if (key.includes("media alta") || key.includes("media-alta")) return "alta";
-  if (key.includes("alta")) return "alta";
+  if (key.includes("alta") || key.includes("dificil")) return "alta";
   if (key.includes("media")) return "media";
   if (key.includes("baja")) return "baja";
   return "media";
+}
+
+function resolveDifficulty(difficultyLabel, clinicalCase) {
+  const baseDifficulty = difficultyArg ? mapDifficulty(difficultyArg) : mapDifficulty(difficultyLabel);
+  const shortCaseDifficulty = mapDifficulty(shortCaseDifficultyArg);
+
+  if (
+    shortCaseLength > 0
+    && shortCaseDifficultyArg
+    && String(clinicalCase || "").length < shortCaseLength
+  ) {
+    return shortCaseDifficulty;
+  }
+
+  return baseDifficulty;
 }
 
 function readQuestionsArray(filePath) {
@@ -194,19 +213,19 @@ function isMetadataLabel(text) {
 }
 
 function isCaseLabel(text) {
-  return /^Caso\s+cl[ií]nico\s*:?\s*/i.test(text);
+  return /^Caso\s+cl[ií]nico(?:\s+\d+)?\.?\s*:?\s*/i.test(text);
 }
 
 function isQuestionStart(text) {
-  return /^Pregunta\s+\d+\s*:?\s*/i.test(text);
+  return /^Pregunta(?:\s+\d+\s*:?\s*|\s*:\s*)/i.test(text);
 }
 
 function isOptionStart(text) {
-  return /^([A-Da-d])\)\s*(.*)$/.test(text);
+  return /^([A-Da-d])[\).]\s*(.*)$/.test(text);
 }
 
 function isFeedbackStart(text) {
-  return /^Retroalimentaci[oó]n\s*:?\s*/i.test(text);
+  return /^(Retroalimentaci[oó]n|Explicaci[oó]n)\s*:?\s*/i.test(text);
 }
 
 function isSourceStart(text) {
@@ -215,6 +234,16 @@ function isSourceStart(text) {
 
 function isBlockStart(text) {
   return /^Especialidad\s*:/i.test(text);
+}
+
+function cleanClinicalCase(value) {
+  return sanitizeInline(value)
+    .replace(/^Caso\s+cl[ií]nico(?:\s+\d+)?\.?\s*:?\s*/i, "")
+    .replace(
+      /^Una persona consulta en un contexto de segundo\s*\/\s*tercer nivel de atenci[oó]n\.\s*/i,
+      ""
+    )
+    .trim();
 }
 
 function isStopForWrappedValue(text) {
@@ -351,7 +380,7 @@ function parseQuestionItems(lines, startIndex, clinicalCase, meta, issues) {
     if (i >= lines.length) break;
 
     const header = lines[i].text;
-    const headerMatch = header.match(/^Pregunta\s+(\d+)\s*:?\s*(.*)$/i);
+    const headerMatch = header.match(/^Pregunta(?:\s+(\d+))?\s*:\s*(.*)$/i);
     const questionNumber = headerMatch ? headerMatch[1] : "?";
     let questionText = headerMatch ? sanitizeInline(headerMatch[2]) : "";
     i += 1;
@@ -382,7 +411,7 @@ function parseQuestionItems(lines, startIndex, clinicalCase, meta, issues) {
       }
       if (isFeedbackStart(text) || isQuestionStart(text) || isSourceStart(text)) break;
 
-      const optionMatch = text.match(/^([A-Da-d])\)\s*(.*)$/);
+      const optionMatch = text.match(/^([A-Da-d])[\).]\s*(.*)$/);
       if (optionMatch) {
         let optionText = sanitizeInline(optionMatch[2].replace(/\*/g, " "));
         const markedAsCorrect = text.includes("*") || line.italic;
@@ -434,7 +463,7 @@ function parseQuestionItems(lines, startIndex, clinicalCase, meta, issues) {
         mode = "explanation";
         explanation = joinText(
           explanation,
-          text.replace(/^Retroalimentaci[oó]n\s*:?\s*/i, "")
+          text.replace(/^(Retroalimentaci[oó]n|Explicaci[oó]n)\s*:?\s*/i, "")
         );
         i += 1;
         continue;
@@ -531,7 +560,7 @@ function parseBlock(blockLines, issues) {
   if (i < blockLines.length && isCaseLabel(blockLines[i].text)) {
     clinicalCase = joinText(
       clinicalCase,
-      blockLines[i].text.replace(/^Caso\s+cl[ií]nico\s*:?\s*/i, "")
+      blockLines[i].text.replace(/^Caso\s+cl[ií]nico(?:\s+\d+)?\.?\s*:?\s*/i, "")
     );
     i += 1;
   }
@@ -543,6 +572,8 @@ function parseBlock(blockLines, issues) {
     i += 1;
   }
 
+  clinicalCase = cleanClinicalCase(clinicalCase);
+
   const tema = canonicalTema(temaOriginal) || sanitizeTopicLabel(temaOriginal);
   const subtema = canonicalSubtema(temaOriginal, subtemaOriginal) || tema;
   const meta = {
@@ -552,7 +583,7 @@ function parseBlock(blockLines, issues) {
     temaOriginal: sanitizeTopicLabel(temaOriginal) || tema,
     subtema,
     subtemaOriginal: sanitizeTopicLabel(subtemaOriginal) || subtema,
-    difficulty: mapDifficulty(difficultyLabel)
+    difficulty: resolveDifficulty(difficultyLabel, clinicalCase)
   };
 
   if (!clinicalCase) {
