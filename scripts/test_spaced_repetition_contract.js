@@ -22,6 +22,7 @@ assert.match(app, /\.filter\(entry => entry\.attempts >= 3 && entry\.wrong > 0\)
 assert.match(app, /const recordTopicOmission = \(specialtyKey, tema\) =>/);
 assert.match(app, /const startSmartReviewSession = async \(priorities, qty, label, triggerButton = null\) =>/);
 assert.match(app, /const buildBalancedSmartReviewSet = \(priorities, qty\) =>/);
+assert.match(app, /return selected\.map\(\(question, index\) => \(\{[\s\S]*?caseGroupId: index \+ 1/);
 assert.doesNotMatch(app, /State\.topFailedTemas && State\.topFailedTemas\.length > 0/);
 
 console.log("Spaced repetition contract: OK");

@@ -8794,12 +8794,22 @@
             const pool = buildFilteredQuestionPools({ selectedTopics: [topic] }).primary;
             addFromPool(pool);
         });
-        if (selected.length >= qty) return selected.slice(0, qty);
-        const combinedPool = buildFilteredQuestionPools({ selectedTopics: topics }).primary;
-        while (selected.length < qty && addFromPool(combinedPool)) {
-            // La condición de salida es que no queden casos distintos en el banco filtrado.
+        if (selected.length < qty) {
+            const combinedPool = buildFilteredQuestionPools({ selectedTopics: topics }).primary;
+            while (selected.length < qty && addFromPool(combinedPool)) {
+                // La condición de salida es que no queden casos distintos en el banco filtrado.
+            }
         }
-        return selected;
+        // Cada reactivo seleccionado proviene de un caso distinto. La interfaz
+        // usa caseGroupId para decidir qué caso mostrar y cómo navegarlo; si
+        // todos comparten el mismo valor, mezcla preguntas de casos distintos
+        // bajo el texto del primer caso.
+        return selected.map((question, index) => ({
+            ...question,
+            caseGroupId: index + 1,
+            subQuestionIndex: 1,
+            totalSubQuestions: 1
+        }));
     };
     const startSmartReviewSession = async (priorities, qty, label, triggerButton = null) => {
         await withTemporaryButtonLabel(triggerButton, "Preparando...", async () => {
