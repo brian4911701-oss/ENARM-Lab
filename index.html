@@ -1504,23 +1504,37 @@
                     <span class="guest-exam-pill">Sin registro</span>
                 </div>
                 <div class="exam-header-bar">
+                    <div class="exam-session-heading">
+                        <span class="exam-session-eyebrow">Evaluación en curso</span>
+                        <strong id="exam-session-title">Simulacro</strong>
+                    </div>
                     <div class="exam-progress-info">
                         <span id="q-counter">Pregunta 1 de 280</span>
-                        <div class="progress-track">
+                        <strong id="exam-answered-count">0 de 280 respondidas</strong>
+                        <div class="progress-track" id="exam-answer-progress" role="progressbar" aria-label="Preguntas respondidas" aria-valuemin="0" aria-valuemax="280" aria-valuenow="0">
                             <div class="progress-fill" id="progress-fill" style="width:0%"></div>
                         </div>
                     </div>
-                    <div class="exam-timer" id="timer-display">⏱ <span id="timer-text">04:00:00</span></div>
-                    <div class="exam-header-actions" style="display: flex; gap: 12px;">
-                        <button class="btn-secondary" id="btn-pause-exam"
-                            style="background: rgba(255,255,255,0.05); border-color: var(--border);">Pausar</button>
-                        <button class="btn-danger" id="btn-finish-early">Terminar</button>
+                    <div class="exam-session-controls">
+                        <div class="exam-timer" id="timer-display" aria-label="Tiempo restante"><span aria-hidden="true">⏱</span> <span id="timer-text">04:00:00</span></div>
+                        <div class="exam-header-actions">
+                            <button class="btn-secondary" id="btn-pause-exam">Pausar</button>
+                            <button class="btn-danger" id="btn-finish-early">Finalizar</button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="exam-layout">
-                    <!-- Sidebar for fast travel -->
-                    <div class="exam-navigator" id="question-navigator"></div>
+                    <aside class="exam-map" aria-label="Navegación del examen">
+                        <button type="button" class="exam-map-toggle" id="exam-map-toggle" aria-controls="question-navigator" aria-expanded="false">
+                            <span><strong>Mapa de preguntas</strong><small id="exam-map-summary">0 respondidas · 0 pendientes</small></span>
+                            <span class="exam-map-chevron" aria-hidden="true">⌄</span>
+                        </button>
+                        <div class="exam-map-body">
+                            <div class="exam-map-legend" aria-hidden="true"><span><i class="is-answered"></i> Respondida</span><span><i class="is-current"></i> Actual</span><span><i class="is-flagged"></i> Marcada</span></div>
+                            <div class="exam-navigator" id="question-navigator"></div>
+                        </div>
+                    </aside>
 
                     <!-- Main Question Area -->
                     <div class="exam-content-area">
@@ -1541,7 +1555,7 @@
                             <!-- Questions and feedback dynamically inserted by app.js -->
                         </div>
 
-                        <div class="exam-actions" style="margin-top: 20px; padding-bottom: 80px;">
+                        <div class="exam-actions">
                             <button class="btn-nav" id="btn-prev">← Anterior</button>
                             <button class="btn-nav primary" id="btn-next">Siguiente →</button>
                         </div>
@@ -3836,16 +3850,17 @@
         </div>
 
         <!-- ─── MODAL CONFIRMACIÓN TERMINAR EXAMEN ────────────────── -->
-        <div class="modal-overlay" id="finish-modal"
+        <div class="modal-overlay" id="finish-modal" role="dialog" aria-modal="true" aria-labelledby="finish-modal-title" aria-describedby="finish-modal-copy"
             style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
             <div class="modal-content"
                 style="background: var(--bg-card); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; max-width: 400px;">
-                <div style="font-size: 40px; margin-bottom: 20px;">&#x26A0;&#xFE0F;</div>
+                <div class="finish-modal-icon" aria-hidden="true">!</div>
                 <h2 id="finish-modal-title" style="font-size: 22px; margin-bottom: 15px;">¿Finalizar Sesión?</h2>
                 <p id="finish-modal-copy" style="color: var(--text-secondary); margin-bottom: 25px; font-size: 14px;">Aún no respondes todas
                     las preguntas. Las no respondidas se calificarán como incorrectas.</p>
-                <div style="display: flex; gap: 15px; justify-content: center;">
+                <div class="finish-modal-actions">
                     <button class="btn-ghost" id="btn-cancel-finish" style="flex: 1;">Seguir</button>
+                    <button class="btn-secondary" id="btn-review-pending" style="flex: 1; display: none;">Revisar pendientes</button>
                     <button class="btn-primary" id="btn-confirm-finish"
                         style="flex: 1; background: var(--accent-red); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);">Finalizar</button>
                 </div>

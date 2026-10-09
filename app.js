@@ -8902,6 +8902,36 @@
     // ---------------------------------------------------------------------------
     // Exam Engine
     // ---------------------------------------------------------------------------
+    const updateExamProgress = () => {
+        const total = State.questionSet?.length || 0;
+        const answered = (State.answers || []).filter(answer => answer.selected !== null).length;
+        const flagged = (State.answers || []).filter(answer => answer.flagged).length;
+        const answeredLabel = $("exam-answered-count");
+        if (answeredLabel) answeredLabel.textContent = `${answered} de ${total} respondidas`;
+        const mapSummary = $("exam-map-summary");
+        if (mapSummary) mapSummary.textContent = `${answered} respondidas · ${total - answered} pendientes${flagged ? ` · ${flagged} marcadas` : ""}`;
+        const progress = $("exam-answer-progress");
+        if (progress) {
+            progress.setAttribute("aria-valuemax", String(total));
+            progress.setAttribute("aria-valuenow", String(answered));
+        }
+        const fill = $("progress-fill");
+        if (fill) fill.style.width = `${total ? (answered / total) * 100 : 0}%`;
+    };
+
+    const scrollToExamQuestion = () => {
+        requestAnimationFrame(() => {
+            $("case-text")?.closest(".case-card")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    };
+
+    const closeExamMapOnMobile = () => {
+        if (!window.matchMedia("(max-width: 840px)").matches) return;
+        const map = document.querySelector("#view-exam .exam-map");
+        map?.classList.remove("is-open");
+        $("exam-map-toggle")?.setAttribute("aria-expanded", "false");
+    };
+
     const renderExamQuestion = () => {
         if (!State.questionSet || State.questionSet.length === 0) return;
 
@@ -8977,6 +9007,9 @@
 
                 const card = document.createElement("div");
                 card.className = "question-card";
+                card.dataset.questionIndex = String(qIndex);
+                card.setAttribute("role", "group");
+                card.setAttribute("aria-labelledby", `exam-question-${qIndex}`);
 
                 const qNumStr = q.totalSubQuestions > 1
                     ? `Pregunta ${qIndex + 1} (Parte ${q.subQuestionIndex} de ${q.totalSubQuestions})`
@@ -8986,19 +9019,15 @@
                 header.className = "q-header";
 
                 const actions = document.createElement("div");
-                actions.style.display = "flex";
-                actions.style.gap = "8px";
-                actions.style.alignItems = "center";
+                actions.className = "q-actions";
                 const notebookId = getCaseNotebookId(q);
                 const notebookEntry = State.guestExamActive
                     ? null
                     : (State.caseNotebook || []).find(entry => entry.id === notebookId);
 
                 const btnNotebook = document.createElement("button");
-                btnNotebook.className = "btn-ghost";
-                btnNotebook.style.fontSize = "12px";
-                btnNotebook.style.padding = "4px 8px";
-                btnNotebook.style.borderRadius = "6px";
+                btnNotebook.type = "button";
+                btnNotebook.className = "btn-ghost q-action q-action-notebook";
                 btnNotebook.textContent = notebookEntry ? "Cuaderno" : "Guardar caso";
                 btnNotebook.addEventListener("click", () => {
                     const entry = notebookEntry || upsertCaseNotebookEntry(q);
@@ -9015,20 +9044,21 @@
                 });
 
                 const btnFlag = document.createElement("button");
-                btnFlag.className = `btn-flag ${ans.flagged ? 'active' : ''}`;
+                btnFlag.type = "button";
+                btnFlag.className = `btn-flag q-action ${ans.flagged ? 'active' : ''}`;
                 btnFlag.innerHTML = `${appIcon('flag')} ${State.guestExamActive ? "Revisar después" : "Marcar"}`;
+                btnFlag.setAttribute("aria-pressed", String(ans.flagged));
                 btnFlag.addEventListener("click", () => {
                     State.answers[qIndex].flagged = !State.answers[qIndex].flagged;
-                    renderExamQuestion();
+                    btnFlag.classList.toggle("active", State.answers[qIndex].flagged);
+                    btnFlag.setAttribute("aria-pressed", String(State.answers[qIndex].flagged));
+                    renderExamSidebar();
+                    updateExamProgress();
                 });
 
                 const btnReport = document.createElement("button");
-                btnReport.className = "btn-ghost";
-                btnReport.style.fontSize = "12px";
-                btnReport.style.padding = "4px 8px";
-                btnReport.style.borderRadius = "6px";
-                btnReport.style.color = "var(--accent-red)";
-                btnReport.style.borderColor = "rgba(239, 68, 68, 0.2)";
+                btnReport.type = "button";
+                btnReport.className = "btn-ghost q-action q-action-report";
                 btnReport.textContent = "Reportar";
                 btnReport.addEventListener("click", () => {
                     triggerReportModal(qIndex);
@@ -9046,6 +9076,7 @@
 
                 const qTextEl = document.createElement("p");
                 qTextEl.className = "question-text";
+                qTextEl.id = `exam-question-${qIndex}`;
                 qTextEl.textContent = q.question;
 
                 const optGrid = document.createElement("div");
@@ -9054,15 +9085,18 @@
                 q.options.forEach((optStr, idx) => {
                     if (optStr === undefined || optStr === null) return; // guard against malformed options
                     const btn = document.createElement("button");
+                    btn.type = "button";
                     btn.className = "option-btn";
+                    btn.dataset.optionIndex = String(idx);
                     const letter = String.fromCharCode(65 + idx);
                     btn.innerHTML = `<span class="option-letter">${letter}</span><span class="option-copy">${escapeHtml(optStr)}</span>`;
                     if (ans.selected === idx) btn.classList.add("selected");
+                    btn.setAttribute("aria-pressed", String(ans.selected === idx));
                     if (State.mode === "estudio" && ans.selected !== null) {
                         if (idx === correctIndex) btn.classList.add("correct-ans");
                         else if (ans.selected === idx) btn.classList.add("wrong-ans");
                     }
-                    btn.addEventListener("click", () => handleAnswer(idx, qIndex));
+                    btn.addEventListener("click", () => handleAnswer(idx, qIndex, optGrid));
                     optGrid.appendChild(btn);
                 });
 
@@ -9098,20 +9132,17 @@
         }
 
         const lastIdxOfCase = indices.length > 0 ? indices[indices.length - 1] : State.currentIndex;
-        const pct = ((lastIdxOfCase + 1) / total) * 100;
         const qCounter = $("q-counter"); if (qCounter) qCounter.textContent = `Pregunta ${lastIdxOfCase + 1} de ${total}`;
-        const progFill = $("progress-fill"); if (progFill) progFill.style.width = `${pct}%`;
+        const sessionTitle = $("exam-session-title"); if (sessionTitle) sessionTitle.textContent = State.currentExamType || "Simulacro";
+        const prev = $("btn-prev"); if (prev) prev.disabled = State.currentIndex === 0;
+        updateExamProgress();
 
         const bn = $("btn-next");
         if (bn) {
             if (lastIdxOfCase >= total - 1) {
-                bn.textContent = "\u2714 Terminar";
-                bn.classList.add("btn-danger");
-                bn.classList.remove("primary");
+                bn.textContent = "Revisar y finalizar";
             } else {
                 bn.textContent = "Siguiente \u2192";
-                bn.classList.remove("btn-danger");
-                bn.classList.add("primary");
             }
         }
 
@@ -9134,14 +9165,27 @@
         modal.style.display = "flex";
     };
 
-    const handleAnswer = (selectedIdx, qIndex) => {
+    const handleAnswer = (selectedIdx, qIndex, optionsContainer) => {
         const q = State.questionSet[qIndex];
         const ans = State.answers[qIndex];
         if (State.mode === "estudio" && ans.selected !== null) return;
         ans.selected = selectedIdx;
         ans.isCorrect = (selectedIdx === getQuestionAnswerIndex(q));
         if (State.mode === "estudio") recordStat(q.specialty, ans.isCorrect, getCaseCanonicalTopic(q));
-        renderExamQuestion();
+        if (State.mode === "estudio") {
+            renderExamQuestion();
+            requestAnimationFrame(() => {
+                document.querySelector(`#questions-container .question-card[data-question-index="${qIndex}"] .option-btn[data-option-index="${selectedIdx}"]`)?.focus({ preventScroll: true });
+            });
+            return;
+        }
+        optionsContainer?.querySelectorAll(".option-btn").forEach(button => {
+            const isSelected = Number(button.dataset.optionIndex) === selectedIdx;
+            button.classList.toggle("selected", isSelected);
+            button.setAttribute("aria-pressed", String(isSelected));
+        });
+        renderExamSidebar();
+        updateExamProgress();
     };
 
     const renderExamSidebar = () => {
@@ -9153,6 +9197,7 @@
             const a = State.answers[i];
             const q = State.questionSet[i];
             const dot = document.createElement("button");
+            dot.type = "button";
             dot.className = "nav-dot";
             dot.textContent = i + 1;
 
@@ -9160,10 +9205,14 @@
             else if (a.selected !== null) dot.classList.add("answered");
 
             if (a.flagged) dot.classList.add("flagged");
+            dot.setAttribute("aria-label", `Pregunta ${i + 1}, ${a.selected !== null ? "respondida" : "sin responder"}${a.flagged ? ", marcada para revisar" : ""}`);
+            if (q.caseGroupId === currentGroupId) dot.setAttribute("aria-current", "step");
 
             dot.addEventListener("click", () => {
                 State.currentIndex = i;
                 renderExamQuestion();
+                closeExamMapOnMobile();
+                scrollToExamQuestion();
             });
             nav.appendChild(dot);
         });
@@ -9179,7 +9228,10 @@
     const setExamTimerVisibility = (visible, seconds = null) => {
         const timerDisp = $("timer-display");
         const timerText = $("timer-text");
-        if (timerDisp) timerDisp.style.display = visible ? "block" : "none";
+        if (timerDisp) {
+            timerDisp.style.display = visible ? "inline-flex" : "none";
+            timerDisp.classList.toggle("is-low", visible && typeof seconds === "number" && seconds <= 600);
+        }
         if (timerText && typeof seconds === "number") {
             timerText.textContent = formatTime(Math.max(seconds, 0));
         }
@@ -14333,6 +14385,7 @@
                 if (prevIdx >= 0) {
                     State.currentIndex = prevIdx;
                     renderExamQuestion();
+                    scrollToExamQuestion();
                 }
             }
         });
@@ -14347,10 +14400,28 @@
                 if (nextIdx < State.questionSet.length) {
                     State.currentIndex = nextIdx;
                     renderExamQuestion();
+                    scrollToExamQuestion();
                 } else {
                     showFinishModal();
                 }
             });
+        }
+
+        const examMapToggle = $("exam-map-toggle");
+        if (examMapToggle) {
+            const map = examMapToggle.closest(".exam-map");
+            const compactMap = window.matchMedia("(max-width: 840px)");
+            const syncMapToggle = () => {
+                examMapToggle.disabled = !compactMap.matches;
+                examMapToggle.setAttribute("aria-expanded", String(!compactMap.matches || map?.classList.contains("is-open")));
+            };
+            examMapToggle.addEventListener("click", () => {
+                if (!compactMap.matches) return;
+                map?.classList.toggle("is-open");
+                syncMapToggle();
+            });
+            compactMap.addEventListener("change", syncMapToggle);
+            syncMapToggle();
         }
 
         const rbp = $("btn-rev-prev");
@@ -14383,25 +14454,35 @@
 
         const fe = $("btn-finish-early");
 
+        let finishReturnFocus = null;
         const showFinishModal = () => {
             const modal = $("finish-modal");
             const unanswered = (State.answers || []).filter((answer) => answer.selected === null).length;
+            const flagged = (State.answers || []).filter((answer) => answer.flagged).length;
             const title = $("finish-modal-title");
             const copy = $("finish-modal-copy");
             const confirmButton = $("btn-confirm-finish");
+            const reviewButton = $("btn-review-pending");
             if (title) title.textContent = unanswered > 0 ? "¿Finalizar la evaluación?" : "Tu evaluación está completa";
             if (copy) {
                 copy.textContent = unanswered > 0
-                    ? `Todavía tienes ${unanswered} pregunta${unanswered === 1 ? "" : "s"} sin contestar. Se marcarán como omitidas en tu diagnóstico.`
-                    : `Ya respondiste los ${State.questionSet.length} reactivos. ${State.guestExamActive ? "Tu diagnóstico clínico está listo para revisarse." : "Tus resultados están listos para revisarse."}`;
+                    ? `Tienes ${unanswered} pregunta${unanswered === 1 ? "" : "s"} sin responder${flagged ? ` y ${flagged} marcada${flagged === 1 ? "" : "s"} para revisar` : ""}. Las preguntas sin responder se registrarán como omitidas.`
+                    : `Respondiste las ${State.questionSet.length} preguntas${flagged ? ` y dejaste ${flagged} marcada${flagged === 1 ? "" : "s"} para revisar` : ""}. Puedes revisar antes de entregar.`;
+            }
+            if (reviewButton) {
+                reviewButton.style.display = unanswered || flagged ? "inline-flex" : "none";
+                reviewButton.textContent = unanswered ? "Revisar pendientes" : "Revisar marcadas";
             }
             if (confirmButton) confirmButton.textContent = State.guestExamActive ? "Ver mi diagnóstico" : "Finalizar";
+            finishReturnFocus = document.activeElement;
             if (modal) modal.style.display = "flex";
+            (reviewButton && (unanswered || flagged) ? reviewButton : confirmButton)?.focus();
         };
 
         const hideFinishModal = () => {
             const modal = $("finish-modal");
             if (modal) modal.style.display = "none";
+            finishReturnFocus?.focus();
         };
 
         const showRangeModal = () => {
@@ -14446,6 +14527,22 @@
         if (bnc) {
             bnc.addEventListener("click", hideFinishModal);
         }
+        $("finish-modal")?.addEventListener("keydown", event => {
+            if (event.key === "Escape") hideFinishModal();
+        });
+
+        const reviewPending = $("btn-review-pending");
+        if (reviewPending) reviewPending.addEventListener("click", () => {
+            const pendingIndex = State.answers.findIndex(answer => answer.selected === null);
+            const flaggedIndex = State.answers.findIndex(answer => answer.flagged);
+            const targetIndex = pendingIndex >= 0 ? pendingIndex : flaggedIndex;
+            hideFinishModal();
+            if (targetIndex >= 0) {
+                State.currentIndex = targetIndex;
+                renderExamQuestion();
+                scrollToExamQuestion();
+            }
+        });
 
         const bnf = $("btn-confirm-finish");
         if (bnf) {
