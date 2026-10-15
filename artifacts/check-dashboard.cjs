@@ -67,7 +67,7 @@ const http = require('node:http');
     await page.waitForFunction(() => Boolean(window.__dashboardTest));
     await showApp();
     console.log('Dashboard initialized');
-    const fixtures = [[1920, 1080], [1440, 900], [1366, 768], [1280, 1024], [1100, 720], [1024, 768], [900, 700], [820, 1180], [768, 1024], [600, 900], [430, 932], [390, 844], [360, 800], [320, 740]];
+    const fixtures = [[1920, 1080], [1440, 900], [1366, 768], [1280, 1024], [1100, 720], [1024, 768], [900, 700], [820, 1180], [768, 1024], [600, 900], [432, 936], [430, 932], [412, 915], [390, 844], [360, 800], [320, 740]];
     for (const [width, height] of fixtures) {
       console.log(`Checking ${width}x${height}`);
       await page.setViewport({ width, height });
@@ -154,8 +154,8 @@ const http = require('node:http');
         assert(result.average.height <= 160, `${width}px performance card should be compact vertically: ${result.average.height}px`);
         assert(result.clock.height <= 110, `${width}px countdown should be compact vertically: ${result.clock.height}px`);
         assert(Math.abs(result.clock.width - result.hero.width) <= 1, `${width}px countdown should retain its full width`);
-        assert(result.nameFont >= 24 && result.greetingFont >= 20, `${width}px larger mobile greeting and name`);
-        assert(result.avatar.width >= 68 && result.avatar.height >= 68, `${width}px larger profile photo`);
+        assert(result.nameFont >= 22 && result.greetingFont >= 16, `${width}px readable greeting and name`);
+        assert(result.avatar.width >= 64 && result.avatar.height >= 64, `${width}px reference profile photo size`);
         assert(result.greeting.bottom <= result.nameText.y + 1, `${width}px greeting must not overlap the name`);
         assert(Math.abs((result.average.y - result.clock.bottom) - (result.quick.y - result.average.bottom)) <= 1, `${width}px equal spacing between clock, performance and training cards`);
       } else {
@@ -178,29 +178,47 @@ const http = require('node:http');
       progress: document.querySelector('#dash-summary-progress').style.width
     })), { correct: '660', answered: '875', progress: '75.4%' });
 
-    console.log('Checking mobile Premium crown');
-    for (const width of [320, 390, 600]) {
+    console.log('Checking mobile reference proportions and Premium crown');
+    const originalAvatarHTML = await page.$eval('.dashboard-hero-avatar', el => el.innerHTML);
+    for (const width of [320, 390, 412, 432, 600]) {
       await page.setViewport({ width, height: 900 });
       const crown = await page.evaluate(() => {
         const name = document.querySelector('.dashboard-greeting-title .user-name');
-        name.textContent = 'Brian';
+        name.textContent = 'Isaac Rivera';
+        document.querySelector('#streak-val-mobile').textContent = '0';
         const avatar = document.querySelector('.dashboard-hero-avatar');
-        avatar.classList.add('is-premium');
+        avatar.classList.add('is-premium', 'has-profile-avatar');
+        avatar.innerHTML = '<img class="profile-avatar-image" src="/avatars/doctor-robot.webp" alt="Doctor Robot">';
         const style = getComputedStyle(avatar, '::after');
+        const hero = document.querySelector('.dashboard-mobile-hero').getBoundingClientRect();
+        const bell = document.querySelector('#btn-open-notif').getBoundingClientRect();
+        const title = document.querySelector('.dashboard-greeting-title');
         return {
           size: parseFloat(style.fontSize),
           top: avatar.getBoundingClientRect().top + parseFloat(style.top),
-          heroTop: document.querySelector('.dashboard-mobile-hero').getBoundingClientRect().top
+          heroTop: hero.top,
+          heroHeight: hero.height,
+          titleHeight: title.getBoundingClientRect().height,
+          titleLineHeight: parseFloat(getComputedStyle(title).lineHeight),
+          bellCenterOffset: (bell.top + bell.height / 2) - (hero.top + hero.height / 2)
         };
       });
       assert(crown.size >= 28, `${width}px larger mobile Premium crown`);
       assert(crown.top >= crown.heroTop, `${width}px crown must not be clipped by the hero card`);
-      if (width === 390) await page.$('.dashboard-mobile-hero').then(el => el.screenshot({ path: path.join(root, 'artifacts/mobile-premium-greeting.png') }));
+      assert(Math.abs(crown.bellCenterOffset) <= 1, `${width}px notification button vertically centered`);
+      if (width >= 390) {
+        assert(crown.heroHeight <= 120, `${width}px reference card must be compact: ${crown.heroHeight}px`);
+        assert(crown.titleHeight <= crown.titleLineHeight + 1, `${width}px Isaac Rivera should fit on one line`);
+      }
+      if ([390, 412, 432].includes(width)) await page.$('.dashboard-mobile-hero').then(el => el.screenshot({ path: path.join(root, `artifacts/mobile-reference-${width}.png`) }));
     }
-    await page.evaluate(() => {
+    await page.evaluate(originalAvatarHTML => {
       document.querySelector('.dashboard-greeting-title .user-name').textContent = window.__dashboardTest.State.userName;
-      document.querySelector('.dashboard-hero-avatar').classList.remove('is-premium');
-    });
+      const avatar = document.querySelector('.dashboard-hero-avatar');
+      avatar.classList.remove('is-premium', 'has-profile-avatar');
+      avatar.innerHTML = originalAvatarHTML;
+      window.__dashboardTest.updateDashboardStats(true);
+    }, originalAvatarHTML);
     console.log('Checking themes and reduced motion');
     await page.setViewport({ width: 1366, height: 768 });
     await page.evaluate(() => {
@@ -265,7 +283,7 @@ const http = require('node:http');
     await page.waitForFunction(() => document.querySelector('#streak-modal').style.display === 'flex');
     assert.equal(await page.$eval('#streak-modal', el => el.style.display), 'flex');
     assert.deepEqual(errors, []);
-    console.log('Dashboard: 14 viewport sizes, mobile card order, aligned streak, visible training icons, no card overlap/overflow, streak modal, coins links and practice persistence OK.');
+    console.log('Dashboard: 16 viewport sizes, mobile reference proportions, card order, aligned streak, visible training icons, no card overlap/overflow, streak modal, coins links and practice persistence OK.');
   } catch (error) {
     console.error('Dashboard check failed:', error);
     throw error;
