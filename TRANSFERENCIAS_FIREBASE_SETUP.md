@@ -4,11 +4,11 @@ Este flujo utiliza Firebase Authentication, Cloud Firestore y Hosting. No usa St
 
 ## Flujo para tus usuarios
 
-1. El usuario elige 2027 ($1,999).
+1. El usuario elige Premium Mensual ($199 al mes en promoción continua; $299 precio regular) o Plan Anual 2027 ($1,499 en promoción; $1,999 precio regular). Las promociones terminan el 10 de noviembre de 2026.
 2. Crea su cuenta o inicia sesión.
 3. Firebase le genera una referencia personal de 10 dígitos.
 4. Ve los datos de BBVA, CLABE, importe y referencia para el concepto.
-5. Puede escribir un código de referido si tiene uno, confirmar que transfirió y aceptar términos.
+5. Puede escribir un código de referido si tiene uno, confirmar que transfirió y aceptar términos. El mensual requiere una nueva transferencia por periodo de 30 días y no tiene cobro automático.
 6. Vuelve al simulador con plan Gratis y un aviso rojo de **Pago pendiente de comprobación**.
 7. Solo después de que tú apruebes el depósito se activa Premium.
 
@@ -71,7 +71,7 @@ En **Más → Opciones de administrador → Usuarios y acceso Premium** verás l
 |---|---|
 | `payment_profiles/{uid}` | Guarda la referencia única del usuario. |
 | `transfer_references/{referencia}` | Impide que dos usuarios tengan la misma referencia. |
-| `manual_payment_requests/{uid_plan}` | Guarda el aviso, plan, importe, referido y estado. |
+| `manual_payment_requests/{requestId}` | Guarda el aviso, plan, importe, referido y estado. Cada renovación mensual crea una solicitud nueva. |
 | `entitlements/{uid}` | Guarda Premium solo después de tu aprobación. |
 | `user_directory/{uid}` | Guarda nombre y correo para el panel administrativo, sin exponerlos en el ranking. |
 

@@ -1,6 +1,7 @@
 const admin = require("firebase-admin");
 
-const TRIAL_DURATION_MS = 3 * 24 * 60 * 60 * 1000;
+const TRIAL_DURATION_DAYS = 15;
+const TRIAL_DURATION_MS = TRIAL_DURATION_DAYS * 24 * 60 * 60 * 1000;
 
 function getFirestore() {
     if (!admin.apps.length) {
@@ -53,16 +54,16 @@ module.exports = async (request, response) => {
 
             const startedAt = new Date();
             const expiresAt = new Date(startedAt.getTime() + TRIAL_DURATION_MS);
-            transaction.create(trialRef, { uid, status: "used", startedAt, expiresAt, durationDays: 3 });
+            transaction.create(trialRef, { uid, status: "used", startedAt, expiresAt, durationDays: TRIAL_DURATION_DAYS });
             transaction.set(entitlementRef, {
                 status: "active",
                 source: "premium_trial",
-                planId: "premium_trial_3d",
+                planId: "premium_trial_15d",
                 activatedAt: startedAt,
                 expiresAt,
                 updatedAt: startedAt
             }, { merge: true });
-            return { expiresAt, durationDays: 3 };
+            return { expiresAt, durationDays: TRIAL_DURATION_DAYS };
         });
 
         return sendJson(response, 200, { durationDays: trial.durationDays, expiresAt: trial.expiresAt.toISOString() });

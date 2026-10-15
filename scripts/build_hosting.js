@@ -13,6 +13,7 @@ const files = [
     "styles.css",
     "app.js",
     "landing-gallery.js",
+    "glass-surface.js",
     "analytics-core.js",
     "security-config.js",
     "withdrawal-public-key.js",

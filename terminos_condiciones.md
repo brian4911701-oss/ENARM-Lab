@@ -16,9 +16,11 @@ Todo el contenido disponible en ENARMax, incluyendo pero no limitado a textos, g
 *   Queda estrictamente prohibido el uso de scripts, bots o cualquier método automatizado para extraer contenido de la plataforma.
 *   No está permitido compartir, vender, rentar o ceder una cuenta o un acceso Premium fuera de los planes expresamente ofrecidos por ENARMax.
 
-## 4. Suscripciones y Pagos (Acceso Premium)
+## 4. Planes y Pagos (Acceso Premium)
 *   El acceso Premium puede adquirirse mediante transferencia bancaria a la cuenta mostrada por ENARMax o activarse mediante códigos autorizados.
-*   El acceso 2027 no es una suscripción y no se renueva automáticamente. Su vigencia termina en la fecha indicada al momento de la compra.
+*   El Plan Mensual Premium dura 30 días por periodo. Su precio promocional es de $199 MXN al mes para quienes contraten y notifiquen su primer pago a más tardar el 10 de noviembre de 2026. Desde el 11 de noviembre de 2026, el precio mensual regular será de $299 MXN.
+*   El Plan Mensual no genera cobros automáticos. El usuario debe realizar y notificar una nueva transferencia antes de que termine su periodo vigente para renovar. Si deja vencer un periodo sin renovar, pierde definitivamente el precio promocional de $199 MXN; las mensualidades posteriores se cobrarán al precio regular vigente, actualmente $299 MXN.
+*   El Plan Anual 2027 cuesta $1,499 MXN en promoción, en lugar de $1,999 MXN, para compras notificadas a más tardar el 10 de noviembre de 2026. Es un pago único, su vigencia termina el 1 de octubre de 2027 y no se renueva automáticamente.
 *   Cada cuenta recibe una referencia numérica personal. El usuario debe escribirla exactamente en el concepto de la transferencia para que el pago pueda identificarse.
 *   El aviso de transferencia es una declaración del usuario y no activa Premium por sí solo. La activación ocurre únicamente cuando el movimiento se refleja, coincide con el importe y la referencia, y es validado por el administrador.
 *   El Plan Squad cubre al comprador y hasta tres cuentas adicionales. El comprador debe indicar los nombres de usuario de esas tres cuentas al enviar su aviso de transferencia; su revisión y activación son manuales y no automáticas.
@@ -51,4 +53,4 @@ Para soporte relacionado con estos términos, pagos o acceso, contáctanos en [e
 
 Para cualquier controversia legal relacionada con ENARMax, las partes se someten a la legislación vigente en los Estados Unidos Mexicanos y a la jurisdicción de los tribunales competentes de la Ciudad de México, renunciando a cualquier otro fuero.
 
-**Fecha de última actualización:** 21 de agosto de 2026.
+**Fecha de última actualización:** 14 de octubre de 2026.

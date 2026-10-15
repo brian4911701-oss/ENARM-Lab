@@ -273,9 +273,11 @@
     const ADMIN_PREVIEW_STORAGE_KEY = "enarm_admin_preview_mode";
     const PENDING_PLAN_STORAGE_KEY = "enarm_pending_transfer_plan";
     const PENDING_PREMIUM_TRIAL_STORAGE_KEY = "enarm_pending_premium_trial";
-    const PREMIUM_TRIAL_DAYS = 3;
+    const PREMIUM_TRIAL_DAYS = 15;
     const MANUAL_PAYMENT_REQUESTS_COLLECTION = "manual_payment_requests";
     const MANUAL_ENTITLEMENT_SEEN_KEY = "enarm_seen_manual_entitlement";
+    const PLAN_PROMOTION_END = new Date("2026-11-11T05:59:59.999Z");
+    const MONTHLY_PLAN_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
     const TRANSFER_PLANS = Object.freeze({
         enarm_2026: Object.freeze({
             id: "enarm_2026",
@@ -285,9 +287,19 @@
         }),
         enarm_2027: Object.freeze({
             id: "enarm_2027",
-            name: "2027",
-            amount: 1999,
+            name: "Premium Anual 2027",
+            amount: 1499,
+            regularAmount: 1999,
+            promotional: true,
             expiresAt: "2027-10-01T23:59:59-06:00"
+        }),
+        premium_monthly: Object.freeze({
+            id: "premium_monthly",
+            name: "Premium Mensual",
+            amount: 199,
+            regularAmount: 299,
+            durationMs: MONTHLY_PLAN_DURATION_MS,
+            promotional: true
         }),
         squad_2027: Object.freeze({
             id: "squad_2027",
@@ -2129,7 +2141,7 @@
         ]);
         const premium = $("analytics-premium-detail");
         const sourceLabels = { manual_transfer: "Transferencia", code: "Código", admin_manual: "Admin", global_premium: "Promoción" };
-        const planLabels = { enarm_2026: "Acceso anterior", enarm_2027: "2027", squad_2027: "Squad 2027", unknown: "Sin plan" };
+        const planLabels = { enarm_2026: "Acceso anterior", enarm_2027: "Premium Anual 2027", premium_monthly: "Premium Mensual", squad_2027: "Squad 2027", unknown: "Sin plan" };
         const breakdown = (items, labels) => Object.entries(items || {}).sort((a, b) => b[1] - a[1]).map(([key, value]) => `${labels[key] || key}: ${value}`).join(" · ") || "Sin datos";
         if (premium) premium.innerHTML = analyticsRows([
             ["Gratis / Premium", `${formatAnalyticsNumber(data.premium.free)} / ${formatAnalyticsNumber(data.premium.active)}`],
@@ -5109,7 +5121,7 @@
                 if (payment.status !== "pending") throw new Error("payment_not_pending");
                 const plan = TRANSFER_PLANS[payment.planId];
                 if (!plan || !payment.uid) throw new Error("payment_invalid");
-                if (decision === "approved" && new Date(plan.expiresAt).getTime() <= Date.now()) {
+                if (decision === "approved" && plan.id !== "premium_monthly" && new Date(plan.expiresAt).getTime() <= Date.now()) {
                     throw new Error("plan_expired");
                 }
 
@@ -5132,21 +5144,64 @@
                     updatedAt: now
                 });
                 if (decision === "approved") {
-                    const planExpiry = new Date(plan.expiresAt);
                     const currentExpiry = currentEntitlement.expiresAt && typeof currentEntitlement.expiresAt.toDate === "function"
                         ? currentEntitlement.expiresAt.toDate().getTime()
                         : new Date(currentEntitlement.expiresAt || 0).getTime();
-                    if (currentEntitlement.status !== "active" || currentExpiry < planExpiry.getTime()) {
+                    if (plan.id === "premium_monthly") {
+                        const notifiedAt = payment.notifiedAt && typeof payment.notifiedAt.toDate === "function"
+                            ? payment.notifiedAt.toDate().getTime()
+                            : new Date(payment.notifiedAt || payment.createdAt || now).getTime();
+                        const hadMonthlyContract = Boolean(currentEntitlement.monthlyContractStartedAt)
+                            || currentEntitlement.planId === "premium_monthly";
+                        const paidOnTime = currentEntitlement.status === "active"
+                            && currentEntitlement.planId === "premium_monthly"
+                            && currentExpiry > notifiedAt;
+                        const firstPromoContract = !hadMonthlyContract
+                            && notifiedAt <= PLAN_PROMOTION_END.getTime()
+                            && currentEntitlement.monthlyPromoLost !== true;
+                        const promoContinues = Number(payment.amount) === 199
+                            && currentEntitlement.status === "active"
+                            && currentEntitlement.monthlyPromoActive === true
+                            && currentEntitlement.monthlyPromoLost !== true
+                            && paidOnTime;
+                        const promoActive = firstPromoContract || promoContinues;
+                        const promoLost = currentEntitlement.monthlyPromoLost === true
+                            || (hadMonthlyContract && !promoContinues)
+                            || Number(payment.amount) === 299;
+                        const nextExpiryBase = paidOnTime ? Math.max(currentExpiry, now.getTime()) : now.getTime();
+                        const planExpiry = new Date(nextExpiryBase + MONTHLY_PLAN_DURATION_MS);
                         tx.set(entitlementRef, {
                             status: "active",
                             source: "manual_transfer",
                             planId: plan.id,
                             expiresAt: planExpiry,
+                            monthlyPromoActive: promoActive && !promoLost,
+                            monthlyPromoLost: promoLost,
+                            monthlyContractStartedAt: currentEntitlement.monthlyContractStartedAt || new Date(notifiedAt),
+                            monthlyLastPaymentAt: now,
+                            monthlyPricePaid: Number(payment.amount),
                             transferReference: String(payment.transferReference || ""),
                             manualPaymentRequestId: requestId,
                             activatedAt: now,
                             updatedAt: now
                         }, { merge: true });
+                    } else {
+                        const planExpiry = new Date(plan.expiresAt);
+                        if (currentEntitlement.status !== "active" || currentExpiry < planExpiry.getTime()) {
+                            tx.set(entitlementRef, {
+                                status: "active",
+                                source: "manual_transfer",
+                                planId: plan.id,
+                                expiresAt: planExpiry,
+                                monthlyPromoActive: false,
+                                monthlyPromoLost: currentEntitlement.monthlyPromoLost === true
+                                    || currentEntitlement.planId === "premium_monthly",
+                                transferReference: String(payment.transferReference || ""),
+                                manualPaymentRequestId: requestId,
+                                activatedAt: now,
+                                updatedAt: now
+                            }, { merge: true });
+                        }
                     }
                 }
             });
@@ -16280,6 +16335,9 @@
                     status: data.status || "inactive",
                     source: data.source || "",
                     planId: data.planId || "",
+                    monthlyPromoActive: data.monthlyPromoActive === true,
+                    monthlyPromoLost: data.monthlyPromoLost === true,
+                    monthlyContractStartedAt: normalizeTimestamp(data.monthlyContractStartedAt),
                     transferReference: data.transferReference || "",
                     manualPaymentRequestId: data.manualPaymentRequestId || "",
                     activatedAt: normalizeTimestamp(data.activatedAt),
@@ -16326,37 +16384,6 @@
                 State.globalPremiumPromo = normalizeGlobalPremiumPromo(snap.data());
                 syncPremiumUI();
                 syncOptionalAnalyticsIdentity();
-            });
-        };
-
-        const renderLaunchCapacity = (usedValue, limitValue) => {
-            const limit = Math.max(1, Number(limitValue) || LAUNCH_CAPACITY_LIMIT);
-            const used = Math.max(0, Math.min(limit, Number(usedValue) || 0));
-            const label = `${used} de ${limit} lugares asignados`;
-            const percentage = `${Math.min(100, (used / limit) * 100).toFixed(2)}%`;
-            document.querySelectorAll("[data-launch-capacity]").forEach((notice) => {
-                const count = notice.querySelector("[data-launch-capacity-count]");
-                const track = notice.querySelector("[data-launch-capacity-track]");
-                const fill = notice.querySelector("[data-launch-capacity-fill]");
-                if (count) count.textContent = label;
-                if (track) {
-                    track.setAttribute("aria-label", label);
-                    track.setAttribute("aria-valuemax", String(limit));
-                    track.setAttribute("aria-valuenow", String(used));
-                }
-                if (fill) fill.style.setProperty("--plan-capacity", percentage);
-            });
-        };
-
-        const bindLaunchCapacityListener = () => {
-            if (!window.FB?.db || !window.FB?.doc || !window.FB?.onSnapshot || State.launchCapacityUnsub) return;
-            const counterRef = window.FB.doc(window.FB.db, LAUNCH_CAPACITY_COUNTER_COLLECTION, LAUNCH_CAPACITY_COUNTER_DOC_ID);
-            State.launchCapacityUnsub = window.FB.onSnapshot(counterRef, (snap) => {
-                const data = snap.exists() ? (snap.data() || {}) : {};
-                renderLaunchCapacity(data.used ?? LAUNCH_CAPACITY_BASELINE, data.limit ?? LAUNCH_CAPACITY_LIMIT);
-            }, (error) => {
-                console.warn("No se pudo actualizar el contador de cupos:", error);
-                renderLaunchCapacity(LAUNCH_CAPACITY_BASELINE, LAUNCH_CAPACITY_LIMIT);
             });
         };
 
@@ -16520,7 +16547,6 @@
 
         const setupFirebaseAuthAndUI = () => {
             initAnalyticsConsentUI();
-            bindLaunchCapacityListener();
             if (authOverlay && loginForm) {
                 const landingPage = $("landing-page");
                 let checkoutStarting = false;
@@ -16627,9 +16653,74 @@
                     if (modal) modal.style.display = "none";
                 };
 
-                const getTransferPlan = (planId) => ["enarm_2027", "squad_2027"].includes(planId)
-                    ? TRANSFER_PLANS[planId]
-                    : null;
+                const getMonthlyPromoStatus = () => {
+                    const entitlement = State.entitlement || {};
+                    const now = Date.now();
+                    const expiry = entitlement.expiresAt ? new Date(entitlement.expiresAt).getTime() : 0;
+                    const hasMonthlyHistory = entitlement.planId === "premium_monthly";
+                    const lost = entitlement.monthlyPromoLost === true
+                        || (hasMonthlyHistory && (entitlement.status !== "active" || !entitlement.monthlyPromoActive || expiry <= now));
+                    const continuing = hasMonthlyHistory
+                        && entitlement.status === "active"
+                        && entitlement.monthlyPromoActive === true
+                        && entitlement.monthlyPromoLost !== true
+                        && expiry > now;
+                    return { eligible: continuing || (!lost && now <= PLAN_PROMOTION_END.getTime()), continuing };
+                };
+                const getTransferPlan = (planId) => {
+                    const basePlan = TRANSFER_PLANS[planId];
+                    if (!basePlan) return null;
+                    if (planId === "premium_monthly") {
+                        const promo = getMonthlyPromoStatus().eligible;
+                        return { ...basePlan, amount: promo ? basePlan.amount : basePlan.regularAmount, promoApplied: promo };
+                    }
+                    if (planId === "enarm_2027") {
+                        const promo = Date.now() <= PLAN_PROMOTION_END.getTime();
+                        return { ...basePlan, amount: promo ? basePlan.amount : basePlan.regularAmount, promoApplied: promo };
+                    }
+                    return basePlan;
+                };
+                const syncPlanPricingUI = () => {
+                    const monthlyStatus = getMonthlyPromoStatus();
+                    document.querySelectorAll("[data-monthly-plan-copy]").forEach((copy) => {
+                        copy.textContent = monthlyStatus.eligible
+                            ? (monthlyStatus.continuing
+                                ? "Tu precio de $199 al mes se conserva en cada renovación puntual."
+                                : "Acceso Premium por 30 días a $199 al mes en promoción. Renueva manualmente; sin cobro automático.")
+                            : "Acceso Premium por 30 días a $299 al mes. Renueva manualmente; sin cobro automático.";
+                    });
+                    document.querySelectorAll("[data-promo-deadline-banner]").forEach((banner) => {
+                        banner.hidden = Date.now() > PLAN_PROMOTION_END.getTime();
+                    });
+                    ["premium_monthly", "enarm_2027"].forEach((planId) => {
+                        const plan = getTransferPlan(planId);
+                        if (!plan) return;
+                        document.querySelectorAll(`[data-plan-price="${planId}"]`).forEach((price) => {
+                            const amount = Number(plan.amount).toLocaleString("es-MX");
+                            price.textContent = price.dataset.priceFormat === "currency"
+                                ? `$${amount} MXN`
+                                : price.dataset.priceFormat === "currency-month"
+                                    ? `$${amount} MXN/mes`
+                                    : amount;
+                        });
+                        document.querySelectorAll(`[data-plan-original="${planId}"]`).forEach((original) => {
+                            original.hidden = !plan.promoApplied;
+                        });
+                        document.querySelectorAll(`[data-plan-promo="${planId}"]`).forEach((badge) => {
+                            badge.hidden = !plan.promoApplied;
+                            if (planId === "premium_monthly" && plan.promoApplied && getMonthlyPromoStatus().continuing) {
+                                badge.textContent = "PROMOCIÓN CONSERVADA · $199 AL MES";
+                            }
+                        });
+                    });
+                };
+                if (!State.planPricingListenerBound) {
+                    window.addEventListener("enarm:entitlement-updated", syncPlanPricingUI);
+                    State.planPricingListenerBound = true;
+                }
+                syncPlanPricingUI();
+                if (State.planPricingTimerId) window.clearInterval(State.planPricingTimerId);
+                State.planPricingTimerId = window.setInterval(syncPlanPricingUI, 60 * 1000);
                 const setPremiumTrialButtonsBusy = (busy, activeButton = null) => {
                     document.querySelectorAll("[data-start-premium-trial]").forEach((button) => {
                         button.disabled = busy;
@@ -16691,7 +16782,7 @@
                             transaction.set(entitlementRef, {
                                 status: "active",
                                 source: "premium_trial",
-                                planId: "premium_trial_3d",
+                                planId: "premium_trial_15d",
                                 activatedAt: window.FB.serverTimestamp(),
                                 expiresAt,
                                 updatedAt: window.FB.serverTimestamp()
@@ -16703,7 +16794,7 @@
                             ...(State.entitlement || {}),
                             status: "active",
                             source: "premium_trial",
-                            planId: "premium_trial_3d",
+                            planId: "premium_trial_15d",
                             activatedAt: new Date(),
                             expiresAt,
                             updatedAt: new Date()
@@ -16771,7 +16862,22 @@
                     const currentExpiry = State.entitlement && State.entitlement.expiresAt
                         ? new Date(State.entitlement.expiresAt).getTime()
                         : 0;
-                    if (State.entitlement && State.entitlement.status === "active" && currentExpiry >= new Date(plan.expiresAt).getTime()) {
+                    const currentAccessActive = State.entitlement?.status === "active" && currentExpiry > Date.now();
+                    if (plan.id === "premium_monthly") {
+                        if (currentAccessActive && State.entitlement?.planId !== "premium_monthly") {
+                            localStorage.removeItem(PENDING_PLAN_STORAGE_KEY);
+                            showNotification("Tu cuenta ya tiene un plan Premium activo. Podrás elegir el mensual cuando termine su vigencia.", "info");
+                            return;
+                        }
+                        const pendingMonthlyPayment = (State.myManualPaymentRequests || []).some((item) =>
+                            item.planId === "premium_monthly" && item.status === "pending"
+                        );
+                        if (pendingMonthlyPayment) {
+                            localStorage.removeItem(PENDING_PLAN_STORAGE_KEY);
+                            showNotification("Ya tienes una renovación mensual pendiente de comprobación.", "info");
+                            return;
+                        }
+                    } else if (currentAccessActive && currentExpiry >= new Date(plan.expiresAt).getTime()) {
                         localStorage.removeItem(PENDING_PLAN_STORAGE_KEY);
                         showNotification("Tu cuenta ya tiene este plan o uno con mayor vigencia.", "info");
                         return;
@@ -16792,6 +16898,14 @@
                         const statusEl = $("transfer-status");
                         if (nameEl) nameEl.textContent = plan.name;
                         if (amountEl) amountEl.textContent = "$" + plan.amount.toLocaleString("es-MX") + " MXN";
+                        const kicker = $("transfer-modal-kicker");
+                        if (kicker) kicker.textContent = plan.id === "premium_monthly"
+                            ? "Pago mensual · transferencia SPEI · sin cobro automático"
+                            : "Pago único · transferencia SPEI";
+                        const subtitle = $("transfer-modal-subtitle");
+                        if (subtitle) subtitle.textContent = plan.id === "premium_monthly"
+                            ? "Transfiere el importe mensual exacto y escribe tu referencia personal en el campo concepto. El acceso dura 30 días y cada renovación se activa al validar el pago."
+                            : "Transfiere el importe exacto y escribe tu referencia personal en el campo concepto. En cuanto el pago se refleje, activaremos Premium.";
                         if (referenceEl) referenceEl.textContent = profile.transferReference;
                         syncTransferSquadFields(plan.id);
                         if (statusEl) {
@@ -16904,11 +17018,30 @@
                     try {
                         const profile = await ensureTransferProfile();
                         if (!profile) throw new Error("transfer_profile_unavailable");
-                        const requestId = currentUser.uid + "_" + plan.id;
+                        if (plan.id === "premium_monthly") {
+                            let hasPendingMonthly = (State.myManualPaymentRequests || []).some((item) =>
+                                item.planId === plan.id && item.status === "pending"
+                            );
+                            if (!hasPendingMonthly && window.FB.getDocs && window.FB.collection && window.FB.query && window.FB.where) {
+                                const ownRequests = await window.FB.getDocs(window.FB.query(
+                                    window.FB.collection(window.FB.db, MANUAL_PAYMENT_REQUESTS_COLLECTION),
+                                    window.FB.where("uid", "==", currentUser.uid)
+                                ));
+                                hasPendingMonthly = ownRequests.docs.some((doc) => {
+                                    const item = doc.data() || {};
+                                    return item.planId === plan.id && item.status === "pending";
+                                });
+                            }
+                            if (hasPendingMonthly) throw new Error("monthly_payment_pending");
+                        }
+                        const requestId = plan.id === "premium_monthly"
+                            ? `${currentUser.uid}_${plan.id}_${Date.now()}`
+                            : currentUser.uid + "_" + plan.id;
                         const requestRef = window.FB.doc(window.FB.db, MANUAL_PAYMENT_REQUESTS_COLLECTION, requestId);
                         const existingSnap = await window.FB.getDoc(requestRef);
                         const existing = existingSnap.exists() ? (existingSnap.data() || {}) : {};
                         if (existing.status === "approved") throw new Error("payment_already_approved");
+                        if (existing.status === "pending") throw new Error("payment_pending");
 
                         const now = new Date();
                         const requestData = {
@@ -16924,7 +17057,7 @@
                             termsAccepted: true,
                             status: "pending",
                             createdAt: existing.createdAt || now,
-                            notifiedAt: now,
+                            notifiedAt: typeof window.FB.serverTimestamp === "function" ? window.FB.serverTimestamp() : now,
                             updatedAt: now
                         };
                         await window.FB.setDoc(requestRef, requestData, { merge: true });
@@ -16941,8 +17074,12 @@
                         console.error("No se pudo enviar el aviso de transferencia:", err);
                         const message = String((err && (err.code || err.message)) || "");
                         showNotification(
-                            message.includes("already") ? "Este pago ya fue aprobado." : "No se pudo enviar la confirmación. Intenta de nuevo.",
-                            message.includes("already") ? "info" : "error"
+                            message.includes("payment_pending")
+                                ? "Ya tienes un pago de este plan pendiente de comprobación. Espera su validación antes de enviar otro."
+                                : message.includes("already")
+                                    ? "Este pago ya fue aprobado."
+                                    : "No se pudo enviar la confirmación. Intenta de nuevo.",
+                            message.includes("payment_pending") || message.includes("already") ? "info" : "error"
                         );
                         transferSentBtn.disabled = false;
                         transferSentBtn.textContent = "Confirmar pago realizado";

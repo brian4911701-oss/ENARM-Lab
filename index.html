@@ -81,6 +81,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="landing-gallery.js" defer></script>
+    <script src="glass-surface.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
 </head>
@@ -100,12 +101,16 @@
 
         <!-- ── Sticky Nav ── -->
         <header class="landing-header">
-            <nav class="landing-nav">
+            <nav class="landing-nav" aria-label="Navegación principal">
+                <div class="landing-nav-content">
                 <div class="landing-logo">
                     <span class="logo-mark landing-logo-img" aria-hidden="true"></span>
                     <span class="landing-logo-text">ENAR<span class="landing-logo-m">M</span><span class="landing-logo-accent">ax</span></span>
                 </div>
-                <div class="landing-nav-links" id="landing-nav-links">
+                <div class="landing-nav-links glass-surface glass-surface--fallback" id="landing-nav-links">
+                    <div class="glass-surface__filter" aria-hidden="true"></div>
+                    <span class="glass-surface__sheen" aria-hidden="true"></span>
+                    <span class="glass-surface__rim" aria-hidden="true"></span>
                     <a href="#landing-features" class="landing-nav-link">Características</a>
                     <a href="#landing-how" class="landing-nav-link">¿Cómo Funciona?</a>
                     <a href="#landing-specialties" class="landing-nav-link">Especialidades</a>
@@ -114,7 +119,7 @@
                 </div>
                 <div class="landing-nav-actions">
                     <button id="btn-landing-login-top" class="landing-btn-ghost">Iniciar Sesión</button>
-                    <button id="btn-landing-start" class="landing-btn-cta">Crear Cuenta Gratis</button>
+                    <button id="btn-landing-start" class="landing-btn-cta">Crear cuenta gratis <span class="signup-arrow" aria-hidden="true">→</span></button>
                 </div>
                 <button class="landing-theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Modo oscuro" title="Activar modo oscuro">
                     <span class="landing-theme-track" aria-hidden="true">
@@ -125,6 +130,7 @@
                 <button class="landing-hamburger" id="landing-hamburger" aria-label="Menú" aria-expanded="false" aria-controls="landing-mobile-menu">
                     <span></span><span></span><span></span>
                 </button>
+                </div>
             </nav>
         </header>
 
@@ -171,7 +177,7 @@
             <a href="#landing-pricing" class="landing-mobile-link">Planes</a>
             <a href="#landing-faq" class="landing-mobile-link">FAQ</a>
             <button id="btn-landing-mobile-login" class="landing-btn-ghost" style="width:100%;margin-top:8px;">Iniciar Sesión</button>
-            <button id="btn-landing-mobile-start" class="landing-btn-cta" style="width:100%;">Crear Cuenta Gratis</button>
+            <button id="btn-landing-mobile-start" class="landing-btn-cta" style="width:100%;">Crear cuenta gratis <span class="signup-arrow" aria-hidden="true">→</span></button>
         </div>
 
         <main class="landing-main">
@@ -376,13 +382,6 @@
                         <p class="feature-desc">Visualiza tu desempeño global y por especialidad. Identifica tus áreas débiles con gráficas detalladas y recomendaciones.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-card-icon feature-card-icon--orange">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                        </div>
-                        <h3 class="feature-title">Flashcards Médicas</h3>
-                        <p class="feature-desc">Refuerza conceptos clave con tarjetas de memoria interactivas organizadas por tema y nivel de dificultad.</p>
-                    </div>
-                    <div class="feature-card">
                         <div class="feature-card-icon feature-card-icon--red">
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                         </div>
@@ -409,9 +408,15 @@
 
                 <div class="pricing-trial-cta">
                     <button class="pricing-trial-action" type="button" data-start-premium-trial data-trial-source="pricing_plans_header">
-                        Probar Premium 3 días gratis <span aria-hidden="true">→</span>
+                        Probar Premium 15 días gratis <span aria-hidden="true">→</span>
                     </button>
                     <p class="pricing-trial-note">Sin tarjeta · Sin cobro automático · Una prueba por cuenta</p>
+                </div>
+
+                <div class="pricing-promo-deadline" data-promo-deadline-banner role="note">
+                    <span class="pricing-promo-deadline-label">Promoción por tiempo limitado</span>
+                    <strong>Contrata antes del 10 de noviembre de 2026</strong>
+                    <span>$199/mes en Premium Mensual · $1,499 MXN en el Plan Anual 2027</span>
                 </div>
 
                 <div class="pricing-grid">
@@ -435,15 +440,35 @@
                         <button id="btn-landing-pricing-free" class="pricing-action pricing-action--free">Comenzar gratis</button>
                     </article>
 
+                    <article class="pricing-card pricing-card--premium pricing-card--monthly">
+                        <div class="pricing-card-heading">
+                            <span class="pricing-plan-kicker" data-plan-promo="premium_monthly">¡PROMOCIÓN! TERMINA EL 10 DE NOVIEMBRE DE 2026</span>
+                            <h3>Premium Mensual</h3>
+                            <p data-monthly-plan-copy>Acceso Premium por 30 días. Renueva manualmente cada mes; sin cobro automático.</p>
+                        </div>
+                        <div class="pricing-original-price" data-plan-original="premium_monthly">Precio regular: $299 MXN/mes</div>
+                        <div class="pricing-price"><span class="pricing-currency">$</span><span class="pricing-amount" data-plan-price="premium_monthly" data-price-format="number">199</span><span class="pricing-period">MXN/mes</span></div>
+                        <div class="pricing-savings" data-plan-promo="premium_monthly">Ahorra $100 al mes · promoción hasta el 10 de noviembre</div>
+                        <div class="pricing-divider"></div>
+                        <p class="pricing-list-label">Funciones Premium incluidas</p>
+                        <ul class="pricing-features">
+                            <li><span class="pricing-check">&check;</span> Acceso completo durante 30 días</li>
+                            <li><span class="pricing-check">&check;</span> Renovación mensual mediante transferencia</li>
+                            <li><span class="pricing-check">&check;</span> Sin cobro automático</li>
+                        </ul>
+                        <button class="pricing-action pricing-action--future" data-plan-id="premium_monthly">Elegir plan mensual <span>&rarr;</span></button>
+                    </article>
+
                     <article class="pricing-card pricing-card--premium pricing-card--2027">
                         <div class="pricing-card-glow pricing-card-glow--blue" aria-hidden="true"></div>
                         <div class="pricing-card-heading">
-                            <span class="pricing-plan-kicker pricing-plan-kicker--future">Premium</span>
-                            <h3>2027</h3>
+                            <span class="pricing-plan-kicker pricing-plan-kicker--future" data-plan-promo="enarm_2027">¡PROMOCIÓN! TERMINA EL 10 DE NOVIEMBRE DE 2026</span>
+                            <h3>Plan Anual 2027</h3>
                             <p>Acceso Premium hasta el 1 de octubre de 2027.</p>
                         </div>
-                        <div class="pricing-price"><span class="pricing-currency">$</span><span class="pricing-amount">1,999</span><span class="pricing-period">MXN</span></div>
-                        <div class="pricing-savings pricing-savings--future">Pago único · hasta 1 oct 2027</div>
+                        <div class="pricing-original-price" data-plan-original="enarm_2027">Precio regular: $1,999 MXN</div>
+                        <div class="pricing-price"><span class="pricing-currency">$</span><span class="pricing-amount" data-plan-price="enarm_2027" data-price-format="number">1,499</span><span class="pricing-period">MXN</span></div>
+                        <div class="pricing-savings pricing-savings--future" data-plan-promo="enarm_2027">Ahorra $500 · contrata antes del 10 de noviembre</div>
                         <div class="pricing-divider"></div>
                         <p class="pricing-list-label">Funciones Premium incluidas</p>
                         <ul class="pricing-features">
@@ -453,7 +478,6 @@
                             <li><span class="pricing-check">&check;</span> Filtros por dificultad, tema y GPC</li>
                             <li><span class="pricing-check">&check;</span> Estadísticas avanzadas y áreas de refuerzo</li>
                             <li><span class="pricing-check">&check;</span> Estudio Plus, Pomodoro y refuerzos</li>
-                            <li><span class="pricing-check">&check;</span> Comunidad, flashcards y temas visuales</li>
                         </ul>
                         <button id="btn-landing-pricing-2027" class="pricing-action pricing-action--future" data-plan-id="enarm_2027">Elegir plan <span>&rarr;</span></button>
                     </article>
@@ -479,23 +503,13 @@
                         <button id="btn-landing-pricing-squad" class="pricing-action pricing-action--squad" data-plan-id="squad_2027">Elegir Plan Squad <span>&rarr;</span></button>
                     </article>
                 </div>
-                <aside class="plan-capacity-notice" data-launch-capacity aria-label="Disponibilidad de 2027">
-                    <div class="plan-capacity-notice__head">
-                        <span class="plan-capacity-notice__label">Cupo de lanzamiento · 2027</span>
-                        <strong data-launch-capacity-count>179 de 300 lugares asignados</strong>
-                    </div>
-                    <div class="plan-capacity-notice__track" data-launch-capacity-track role="progressbar" aria-label="179 de 300 lugares asignados" aria-valuemin="0" aria-valuemax="300" aria-valuenow="179">
-                        <span class="plan-capacity-notice__fill" data-launch-capacity-fill style="--plan-capacity: 59.67%;"></span>
-                    </div>
-                    <p>El precio actual aplica hasta agotar este cupo o terminar octubre, lo que ocurra primero. Después, el precio de nuevos accesos puede actualizarse.</p>
-                </aside>
                 <div class="pricing-trust-row" aria-label="Condiciones de compra">
                     <span>🏦 Transferencia directa a BBVA</span>
                     <span>🔢 Concepto único por compra</span>
                     <span>↻ Sin renovación automática</span>
                     <span>✓ Activación al reflejarse el pago</span>
                 </div>
-                <p class="pricing-footnote">Precios en pesos mexicanos (MXN). La disponibilidad del plan depende de que su fecha de vigencia no haya concluido.</p>
+                <p class="pricing-footnote">Precios en pesos mexicanos (MXN). Los precios promocionales aplican al contratar hasta el 10 de noviembre de 2026. El plan mensual requiere renovación manual y pierde su descuento si se interrumpe.</p>
             </section>
 
             <!-- ══ HOW IT WORKS ══ -->
@@ -1152,31 +1166,7 @@
                     </div>
                 </div>
 
-                <section class="flashcards-home-card is-locked" id="flashcards-home-card" aria-label="Flashcards ENARM">
-                    <div class="flashcards-home-glow" aria-hidden="true"></div>
-                    <div class="flashcards-home-content">
-                        <span class="flashcards-kicker">Nuevo laboratorio de memoria</span>
-                        <h2>Flashcards por especialidad</h2>
-                        <p>Un espacio para convertir perlas ENARM en tarjetas activas, ordenadas por especialidad y tema conforme las vayamos cargando.</p>
-                        <div class="flashcards-home-meta">
-                            <span>Medicina Interna</span>
-                            <span>Pediatr&iacute;a</span>
-                            <span>Gine y Obstetricia</span>
-                            <span>Cirug&iacute;a</span>
-                        </div>
-                    </div>
-                    <div class="flashcards-home-preview" aria-hidden="true">
-                        <div class="flash-mini-card flash-mini-card-a">
-                            <span>Pregunta</span>
-                            <strong>Dato clave</strong>
-                        </div>
-                        <div class="flash-mini-card flash-mini-card-b">
-                            <span>Tema</span>
-                            <strong>Repaso activo</strong>
-                        </div>
-                    </div>
-                    <button class="btn-primary flashcards-home-btn" id="btn-flashcards-home" type="button" disabled>Pr&oacute;ximamente</button>
-                </section>
+
 
                 <div class="chart-section panel" style="margin-top: 24px;">
                     <h2 class="panel-title"><span class="title-icon green-text">&#x1F4C8;</span> Rendimiento Especialidad
@@ -2012,17 +2002,6 @@
                                     <div class="list-item-content">
                                         <h3>&#x1F9E0; Escalas ENARM</h3>
                                         <p>Memoriza componentes, cortes y conducta de las escalas m&aacute;s preguntables con repaso activo.</p>
-                                    </div>
-                                </div>
-                                <div class="list-item flashcards-more-item is-locked" id="mas-flashcards-item" role="button" aria-disabled="true" tabindex="-1">
-                                    <div class="list-item-content">
-                                        <h3>&#x1F5C2;&#xFE0F; Flashcards <span class="soon-badge" id="mas-flashcards-badge">Pr&oacute;ximamente</span></h3>
-                                        <p>Tarjetas por especialidad y tema para repasar perlas de alto rendimiento.</p>
-                                    </div>
-                                    <div class="flashcards-more-stack" aria-hidden="true">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
                                     </div>
                                 </div>
                                 <div class="list-item" id="mas-estudio-plus-item" onclick="showView('view-estudio-plus')" style="cursor: pointer;">
@@ -3653,7 +3632,8 @@
                                     </div>
                                 </div>
                                 <div class="premium-contact-actions">
-                                    <button class="premium-plan-cta" type="button" data-plan-id="enarm_2027">Elegir 2027 · $1,999</button>
+                                    <button class="premium-plan-cta" type="button" data-plan-id="premium_monthly">Mensual · <span data-plan-price="premium_monthly" data-price-format="currency-month">$199 MXN/mes</span></button>
+                                    <button class="premium-plan-cta" type="button" data-plan-id="enarm_2027">Anual 2027 · <span data-plan-price="enarm_2027" data-price-format="currency">$1,499 MXN</span></button>
                                     <button class="premium-plan-cta" type="button" data-plan-id="squad_2027">Plan Squad · 4 personas · $4,999</button>
                                 </div>
                                 <button class="btn-secondary premium-pricing-toggle" type="button"
@@ -4092,16 +4072,16 @@
     <div class="modal-overlay transfer-modal" id="transfer-modal" style="display: none;">
         <div class="modal-content transfer-modal-content" role="dialog" aria-modal="true" aria-labelledby="transfer-modal-title">
             <button type="button" class="transfer-modal-close" id="btn-close-transfer" aria-label="Cerrar">&times;</button>
-            <span class="transfer-modal-kicker">Pago &uacute;nico &middot; transferencia SPEI</span>
+            <span class="transfer-modal-kicker" id="transfer-modal-kicker">Pago &uacute;nico &middot; transferencia SPEI</span>
             <h2 id="transfer-modal-title">Activa ENARMax Premium</h2>
-            <p class="transfer-modal-subtitle">Transfiere el importe exacto y escribe tu referencia personal en el campo <strong>concepto</strong>. En cuanto el pago se refleje, activaremos Premium.</p>
+            <p class="transfer-modal-subtitle" id="transfer-modal-subtitle">Transfiere el importe exacto y escribe tu referencia personal en el campo <strong>concepto</strong>. En cuanto el pago se refleje, activaremos Premium.</p>
 
             <div class="transfer-plan-summary">
                 <div>
                     <span>Plan seleccionado</span>
                     <strong id="transfer-plan-name">2027</strong>
                 </div>
-                <div class="transfer-plan-amount" id="transfer-plan-amount">$1,999 MXN</div>
+                <div class="transfer-plan-amount" id="transfer-plan-amount">$1,499 MXN</div>
             </div>
 
             <div class="transfer-bank-card">
@@ -4175,8 +4155,8 @@
                 Elige un plan para continuar con la transferencia o canjea un código si ya tienes uno.
             </p>
             <div class="redeem-hero-proof" aria-label="Beneficios del pago Premium">
-                <span>✓ Pago único</span>
-                <span>✓ Sin renovación automática</span>
+                <span>✓ Elige mensual o anual</span>
+                <span>✓ Sin cobro automático</span>
                 <span>✓ Activación tras validar tu transferencia</span>
             </div>
             <div class="premium-contact-box redeem-transfer-intro">
@@ -4213,28 +4193,25 @@
                     </a>
                 </div>
             </div>
+            <div class="redeem-promo-deadline" data-promo-deadline-banner role="note">
+                <strong>¡Promoción hasta el 10 de noviembre de 2026!</strong>
+                <span>Premium Mensual $199/mes · Plan Anual 2027 $1,499 MXN</span>
+            </div>
             <div class="redeem-plan-grid">
+                <button class="premium-plan-cta redeem-plan-card redeem-plan-card--monthly" type="button" data-plan-id="premium_monthly">
+                    <span class="redeem-plan-tag" data-plan-promo="premium_monthly">¡PROMO! HASTA EL 10 DE NOVIEMBRE DE 2026</span><strong>Premium Mensual</strong><span class="redeem-plan-card-copy" data-monthly-plan-copy>30 días de acceso. Renueva manualmente cada mes; sin cobro automático.</span><span class="redeem-plan-original-price" data-plan-original="premium_monthly">Precio regular: $299 MXN/mes</span><span class="redeem-plan-price" data-plan-price="premium_monthly" data-price-format="currency-month">$199 MXN/mes</span><span class="redeem-plan-savings" data-plan-promo="premium_monthly">Ahorra $100 al mes · promo hasta el 10 de noviembre</span><span class="redeem-plan-select">Elegir plan <b aria-hidden="true">→</b></span>
+                </button>
                 <button class="premium-plan-cta redeem-plan-card redeem-plan-card--2027" type="button" data-plan-id="enarm_2027">
-                    <span class="redeem-plan-tag">PREMIUM · HASTA OCTUBRE 2027</span><strong>2027</strong><span class="redeem-plan-card-copy">Incluye todo Premium hasta el 1 de octubre de 2027.</span><span class="redeem-plan-benefits">Banco completo · Simulacros · Estadísticas avanzadas</span><span class="redeem-plan-price">$1,999 MXN</span><span class="redeem-plan-select">Elegir y pagar <b aria-hidden="true">→</b></span>
+                    <span class="redeem-plan-tag" data-plan-promo="enarm_2027">¡PROMO! HASTA EL 10 DE NOVIEMBRE DE 2026</span><strong>Plan Anual 2027</strong><span class="redeem-plan-card-copy">Incluye todo Premium hasta el 1 de octubre de 2027.</span><span class="redeem-plan-benefits">Banco completo · Simulacros · Estadísticas avanzadas</span><span class="redeem-plan-original-price" data-plan-original="enarm_2027">Precio regular: $1,999 MXN</span><span class="redeem-plan-price" data-plan-price="enarm_2027" data-price-format="currency">$1,499 MXN</span><span class="redeem-plan-savings" data-plan-promo="enarm_2027">Ahorra $500 · promo hasta el 10 de noviembre</span><span class="redeem-plan-select">Elegir y pagar <b aria-hidden="true">→</b></span>
                 </button>
                 <button class="premium-plan-cta redeem-plan-card redeem-plan-card--squad" type="button" data-plan-id="squad_2027">
                     <span class="redeem-plan-tag">MEJOR PRECIO POR PERSONA · AHORRA $2,997</span><strong>Plan Squad 2027</strong><span class="redeem-plan-card-copy">Para estudiar con tres amigos: cuatro accesos Premium individuales hasta octubre de 2027.</span><span class="redeem-plan-benefits">4 cuentas · $1,249.75 por persona · Retos entre amigos</span><span class="redeem-plan-original-price">$7,996 MXN por 4 cuentas</span><span class="redeem-plan-price">$4,999 MXN</span><span class="redeem-plan-select">Elegir plan y pagar <b aria-hidden="true">→</b></span>
                 </button>
             </div>
-            <aside class="plan-capacity-notice plan-capacity-notice--modal" data-launch-capacity aria-label="Disponibilidad de 2027">
-                <div class="plan-capacity-notice__head">
-                    <span class="plan-capacity-notice__label">Cupo de lanzamiento · 2027</span>
-                    <strong data-launch-capacity-count>179 de 300 lugares asignados</strong>
-                </div>
-                <div class="plan-capacity-notice__track" data-launch-capacity-track role="progressbar" aria-label="179 de 300 lugares asignados" aria-valuemin="0" aria-valuemax="300" aria-valuenow="179">
-                    <span class="plan-capacity-notice__fill" data-launch-capacity-fill style="--plan-capacity: 59.67%;"></span>
-                </div>
-                <p>El precio actual aplica hasta agotar este cupo o terminar octubre, lo que ocurra primero. Después, el precio de nuevos accesos puede actualizarse.</p>
-            </aside>
             <div class="redeem-trial-cta">
                 <button class="redeem-trial-button" type="button" data-start-premium-trial data-trial-source="premium_unlock_modal">
                     <span aria-hidden="true">✦</span>
-                    Probar Premium 3 días gratis
+                    Probar Premium 15 días gratis
                     <span aria-hidden="true">→</span>
                 </button>
                 <p>Sin tarjeta · Sin cobro automático · Una prueba por cuenta</p>
