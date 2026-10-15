@@ -1,0 +1,850 @@
+{
+  "measurements": [
+    {
+      "width": 320,
+      "height": 568,
+      "theme": {
+        "top": 17,
+        "bottom": 61,
+        "left": 202,
+        "right": 254,
+        "width": 52,
+        "height": 44
+      },
+      "overflow": 0,
+      "nav": {
+        "top": 8,
+        "bottom": 124,
+        "left": 12,
+        "right": 308,
+        "width": 296,
+        "height": 116
+      },
+      "logo": {
+        "top": 23.5,
+        "bottom": 54.5,
+        "left": 12,
+        "right": 200,
+        "width": 188,
+        "height": 31
+      },
+      "login": {
+        "top": 80,
+        "bottom": 124,
+        "left": 12,
+        "right": 156,
+        "width": 144,
+        "height": 44
+      },
+      "signup": {
+        "top": 80,
+        "bottom": 124,
+        "left": 164,
+        "right": 308,
+        "width": 144,
+        "height": 44
+      },
+      "menu": {
+        "top": 17,
+        "bottom": 61,
+        "left": 256,
+        "right": 300,
+        "width": 44,
+        "height": 44
+      },
+      "cta": {
+        "top": 345.9375,
+        "bottom": 401.9375,
+        "left": 20,
+        "right": 300,
+        "width": 280,
+        "height": 56
+      },
+      "title": {
+        "top": 529.9375,
+        "bottom": 577.9375,
+        "left": 37,
+        "right": 164.671875,
+        "width": 127.671875,
+        "height": 48
+      },
+      "link": {
+        "top": 585.9375,
+        "bottom": 629.9375,
+        "left": 37,
+        "right": 129.125,
+        "width": 92.125,
+        "height": 44
+      },
+      "proof": {
+        "top": 686.9375,
+        "bottom": 740.9375,
+        "left": 33,
+        "right": 231.40625,
+        "width": 198.40625,
+        "height": 54
+      },
+      "preview": {
+        "top": 468.9375,
+        "bottom": 760.9375,
+        "left": 20,
+        "right": 300,
+        "width": 280,
+        "height": 292
+      },
+      "island": {
+        "top": 508.882080078125,
+        "bottom": 524.3655395507812,
+        "left": 235.7584686279297,
+        "right": 269.9527587890625,
+        "width": 34.19429016113281,
+        "height": 15.48345947265625
+      },
+      "sameGalleryPhoto": true,
+      "mobileVisible": true,
+      "font": "\"Plus Jakarta Sans\", -apple-system, BlinkMacSystemFont, \"SF Pro Text\", \"Helvetica Neue\", \"Segoe UI\", Arial, sans-serif"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "theme": {
+        "top": 17,
+        "bottom": 61,
+        "left": 202,
+        "right": 254,
+        "width": 52,
+        "height": 44
+      },
+      "overflow": 0,
+      "nav": {
+        "top": 8,
+        "bottom": 124,
+        "left": 12,
+        "right": 308,
+        "width": 296,
+        "height": 116
+      },
+      "logo": {
+        "top": 23.5,
+        "bottom": 54.5,
+        "left": 12,
+        "right": 200,
+        "width": 188,
+        "height": 31
+      },
+      "login": {
+        "top": 80,
+        "bottom": 124,
+        "left": 12,
+        "right": 156,
+        "width": 144,
+        "height": 44
+      },
+      "signup": {
+        "top": 80,
+        "bottom": 124,
+        "left": 164,
+        "right": 308,
+        "width": 144,
+        "height": 44
+      },
+      "menu": {
+        "top": 17,
+        "bottom": 61,
+        "left": 256,
+        "right": 300,
+        "width": 44,
+        "height": 44
+      },
+      "cta": {
+        "top": 345.9375,
+        "bottom": 401.9375,
+        "left": 20,
+        "right": 300,
+        "width": 280,
+        "height": 56
+      },
+      "title": {
+        "top": 529.9375,
+        "bottom": 577.9375,
+        "left": 37,
+        "right": 164.671875,
+        "width": 127.671875,
+        "height": 48
+      },
+      "link": {
+        "top": 585.9375,
+        "bottom": 629.9375,
+        "left": 37,
+        "right": 129.125,
+        "width": 92.125,
+        "height": 44
+      },
+      "proof": {
+        "top": 686.9375,
+        "bottom": 740.9375,
+        "left": 33,
+        "right": 231.40625,
+        "width": 198.40625,
+        "height": 54
+      },
+      "preview": {
+        "top": 468.9375,
+        "bottom": 760.9375,
+        "left": 20,
+        "right": 300,
+        "width": 280,
+        "height": 292
+      },
+      "island": {
+        "top": 508.882080078125,
+        "bottom": 524.3655395507812,
+        "left": 235.7584686279297,
+        "right": 269.9527587890625,
+        "width": 34.19429016113281,
+        "height": 15.48345947265625
+      },
+      "sameGalleryPhoto": true,
+      "mobileVisible": true,
+      "font": "\"Plus Jakarta Sans\", -apple-system, BlinkMacSystemFont, \"SF Pro Text\", \"Helvetica Neue\", \"Segoe UI\", Arial, sans-serif"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "theme": {
+        "top": 17,
+        "bottom": 61,
+        "left": 270,
+        "right": 322,
+        "width": 52,
+        "height": 44
+      },
+      "overflow": 0,
+      "nav": {
+        "top": 8,
+        "bottom": 124,
+        "left": 12,
+        "right": 378,
+        "width": 366,
+        "height": 116
+      },
+      "logo": {
+        "top": 21.5,
+        "bottom": 56.5,
+        "left": 12,
+        "right": 266,
+        "width": 254,
+        "height": 35
+      },
+      "login": {
+        "top": 80,
+        "bottom": 124,
+        "left": 12,
+        "right": 191,
+        "width": 179,
+        "height": 44
+      },
+      "signup": {
+        "top": 80,
+        "bottom": 124,
+        "left": 199,
+        "right": 378,
+        "width": 179,
+        "height": 44
+      },
+      "menu": {
+        "top": 17,
+        "bottom": 61,
+        "left": 326,
+        "right": 370,
+        "width": 44,
+        "height": 44
+      },
+      "cta": {
+        "top": 382.546875,
+        "bottom": 438.546875,
+        "left": 20,
+        "right": 370,
+        "width": 350,
+        "height": 56
+      },
+      "title": {
+        "top": 572.546875,
+        "bottom": 635.921875,
+        "left": 41,
+        "right": 195.875,
+        "width": 154.875,
+        "height": 63.375
+      },
+      "link": {
+        "top": 643.921875,
+        "bottom": 687.921875,
+        "left": 41,
+        "right": 133.125,
+        "width": 92.125,
+        "height": 44
+      },
+      "proof": {
+        "top": 729.546875,
+        "bottom": 783.546875,
+        "left": 37,
+        "right": 235.40625,
+        "width": 198.40625,
+        "height": 54
+      },
+      "preview": {
+        "top": 511.546875,
+        "bottom": 803.546875,
+        "left": 20,
+        "right": 370,
+        "width": 350,
+        "height": 292
+      },
+      "island": {
+        "top": 551.2072143554688,
+        "bottom": 567.980224609375,
+        "left": 289.18572998046875,
+        "right": 332.5554504394531,
+        "width": 43.369720458984375,
+        "height": 16.77301025390625
+      },
+      "sameGalleryPhoto": true,
+      "mobileVisible": true,
+      "font": "\"Plus Jakarta Sans\", -apple-system, BlinkMacSystemFont, \"SF Pro Text\", \"Helvetica Neue\", \"Segoe UI\", Arial, sans-serif"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "theme": {
+        "top": 17,
+        "bottom": 61,
+        "left": 270,
+        "right": 322,
+        "width": 52,
+        "height": 44
+      },
+      "overflow": 0,
+      "nav": {
+        "top": 8,
+        "bottom": 124,
+        "left": 12,
+        "right": 378,
+        "width": 366,
+        "height": 116
+      },
+      "logo": {
+        "top": 21.5,
+        "bottom": 56.5,
+        "left": 12,
+        "right": 266,
+        "width": 254,
+        "height": 35
+      },
+      "login": {
+        "top": 80,
+        "bottom": 124,
+        "left": 12,
+        "right": 191,
+        "width": 179,
+        "height": 44
+      },
+      "signup": {
+        "top": 80,
+        "bottom": 124,
+        "left": 199,
+        "right": 378,
+        "width": 179,
+        "height": 44
+      },
+      "menu": {
+        "top": 17,
+        "bottom": 61,
+        "left": 326,
+        "right": 370,
+        "width": 44,
+        "height": 44
+      },
+      "cta": {
+        "top": 382.546875,
+        "bottom": 438.546875,
+        "left": 20,
+        "right": 370,
+        "width": 350,
+        "height": 56
+      },
+      "title": {
+        "top": 572.546875,
+        "bottom": 635.921875,
+        "left": 41,
+        "right": 195.875,
+        "width": 154.875,
+        "height": 63.375
+      },
+      "link": {
+        "top": 643.921875,
+        "bottom": 687.921875,
+        "left": 41,
+        "right": 133.125,
+        "width": 92.125,
+        "height": 44
+      },
+      "proof": {
+        "top": 729.546875,
+        "bottom": 783.546875,
+        "left": 37,
+        "right": 235.40625,
+        "width": 198.40625,
+        "height": 54
+      },
+      "preview": {
+        "top": 511.546875,
+        "bottom": 803.546875,
+        "left": 20,
+        "right": 370,
+        "width": 350,
+        "height": 292
+      },
+      "island": {
+        "top": 551.2072143554688,
+        "bottom": 567.980224609375,
+        "left": 289.18572998046875,
+        "right": 332.5554504394531,
+        "width": 43.369720458984375,
+        "height": 16.77301025390625
+      },
+      "sameGalleryPhoto": true,
+      "mobileVisible": true,
+      "font": "\"Plus Jakarta Sans\", -apple-system, BlinkMacSystemFont, \"SF Pro Text\", \"Helvetica Neue\", \"Segoe UI\", Arial, sans-serif"
+    },
+    {
+      "width": 760,
+      "height": 1024,
+      "theme": {
+        "top": 17,
+        "bottom": 61,
+        "left": 640,
+        "right": 692,
+        "width": 52,
+        "height": 44
+      },
+      "overflow": 0,
+      "nav": {
+        "top": 8,
+        "bottom": 124,
+        "left": 12,
+        "right": 748,
+        "width": 736,
+        "height": 116
+      },
+      "logo": {
+        "top": 21.5,
+        "bottom": 56.5,
+        "left": 12,
+        "right": 636,
+        "width": 624,
+        "height": 35
+      },
+      "login": {
+        "top": 80,
+        "bottom": 124,
+        "left": 12,
+        "right": 376,
+        "width": 364,
+        "height": 44
+      },
+      "signup": {
+        "top": 80,
+        "bottom": 124,
+        "left": 384,
+        "right": 748,
+        "width": 364,
+        "height": 44
+      },
+      "menu": {
+        "top": 17,
+        "bottom": 61,
+        "left": 696,
+        "right": 740,
+        "width": 44,
+        "height": 44
+      },
+      "cta": {
+        "top": 428.078125,
+        "bottom": 484.078125,
+        "left": 185,
+        "right": 575,
+        "width": 390,
+        "height": 56
+      },
+      "title": {
+        "top": 618.078125,
+        "bottom": 681.453125,
+        "left": 186,
+        "right": 385.671875,
+        "width": 199.671875,
+        "height": 63.375
+      },
+      "link": {
+        "top": 689.453125,
+        "bottom": 733.453125,
+        "left": 186,
+        "right": 278.125,
+        "width": 92.125,
+        "height": 44
+      },
+      "proof": {
+        "top": 775.078125,
+        "bottom": 829.078125,
+        "left": 182,
+        "right": 380.40625,
+        "width": 198.40625,
+        "height": 54
+      },
+      "preview": {
+        "top": 557.078125,
+        "bottom": 849.078125,
+        "left": 165,
+        "right": 595,
+        "width": 430,
+        "height": 292
+      },
+      "island": {
+        "top": 596.4156494140625,
+        "bottom": 614.6630249023438,
+        "left": 495.257080078125,
+        "right": 549.117431640625,
+        "width": 53.8603515625,
+        "height": 18.24737548828125
+      },
+      "sameGalleryPhoto": true,
+      "mobileVisible": true,
+      "font": "\"Plus Jakarta Sans\", -apple-system, BlinkMacSystemFont, \"SF Pro Text\", \"Helvetica Neue\", \"Segoe UI\", Arial, sans-serif"
+    },
+    {
+      "width": 760,
+      "height": 1024,
+      "theme": {
+        "top": 17,
+        "bottom": 61,
+        "left": 640,
+        "right": 692,
+        "width": 52,
+        "height": 44
+      },
+      "overflow": 0,
+      "nav": {
+        "top": 8,
+        "bottom": 124,
+        "left": 12,
+        "right": 748,
+        "width": 736,
+        "height": 116
+      },
+      "logo": {
+        "top": 21.5,
+        "bottom": 56.5,
+        "left": 12,
+        "right": 636,
+        "width": 624,
+        "height": 35
+      },
+      "login": {
+        "top": 80,
+        "bottom": 124,
+        "left": 12,
+        "right": 376,
+        "width": 364,
+        "height": 44
+      },
+      "signup": {
+        "top": 80,
+        "bottom": 124,
+        "left": 384,
+        "right": 748,
+        "width": 364,
+        "height": 44
+      },
+      "menu": {
+        "top": 17,
+        "bottom": 61,
+        "left": 696,
+        "right": 740,
+        "width": 44,
+        "height": 44
+      },
+      "cta": {
+        "top": 428.078125,
+        "bottom": 484.078125,
+        "left": 185,
+        "right": 575,
+        "width": 390,
+        "height": 56
+      },
+      "title": {
+        "top": 618.078125,
+        "bottom": 681.453125,
+        "left": 186,
+        "right": 385.671875,
+        "width": 199.671875,
+        "height": 63.375
+      },
+      "link": {
+        "top": 689.453125,
+        "bottom": 733.453125,
+        "left": 186,
+        "right": 278.125,
+        "width": 92.125,
+        "height": 44
+      },
+      "proof": {
+        "top": 775.078125,
+        "bottom": 829.078125,
+        "left": 182,
+        "right": 380.40625,
+        "width": 198.40625,
+        "height": 54
+      },
+      "preview": {
+        "top": 557.078125,
+        "bottom": 849.078125,
+        "left": 165,
+        "right": 595,
+        "width": 430,
+        "height": 292
+      },
+      "island": {
+        "top": 596.4156494140625,
+        "bottom": 614.6630249023438,
+        "left": 495.257080078125,
+        "right": 549.117431640625,
+        "width": 53.8603515625,
+        "height": 18.24737548828125
+      },
+      "sameGalleryPhoto": true,
+      "mobileVisible": true,
+      "font": "\"Plus Jakarta Sans\", -apple-system, BlinkMacSystemFont, \"SF Pro Text\", \"Helvetica Neue\", \"Segoe UI\", Arial, sans-serif"
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "theme": {
+        "top": 26,
+        "bottom": 70,
+        "left": 1312,
+        "right": 1378,
+        "width": 66,
+        "height": 44
+      },
+      "overflow": 0,
+      "nav": {
+        "top": 10,
+        "bottom": 86,
+        "left": 40,
+        "right": 1400,
+        "width": 1360,
+        "height": 76
+      },
+      "logo": {
+        "top": 29,
+        "bottom": 67,
+        "left": 62,
+        "right": 189.796875,
+        "width": 127.796875,
+        "height": 38
+      },
+      "login": {
+        "top": 26,
+        "bottom": 70,
+        "left": 890.765625,
+        "right": 999.90625,
+        "width": 109.140625,
+        "height": 44
+      },
+      "signup": {
+        "top": 25,
+        "bottom": 71,
+        "left": 1011.90625,
+        "right": 1198.21875,
+        "width": 186.3125,
+        "height": 46
+      },
+      "menu": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "cta": {
+        "top": 567.71875,
+        "bottom": 621.71875,
+        "left": 120,
+        "right": 397.703125,
+        "width": 277.703125,
+        "height": 54
+      },
+      "title": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "link": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "proof": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "preview": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "island": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "sameGalleryPhoto": true,
+      "mobileVisible": false,
+      "font": "-apple-system, BlinkMacSystemFont, \"SF Pro Display\", \"Helvetica Neue\", \"Segoe UI\", Arial, sans-serif"
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "theme": {
+        "top": 26,
+        "bottom": 70,
+        "left": 1312,
+        "right": 1378,
+        "width": 66,
+        "height": 44
+      },
+      "overflow": 0,
+      "nav": {
+        "top": 10,
+        "bottom": 86,
+        "left": 40,
+        "right": 1400,
+        "width": 1360,
+        "height": 76
+      },
+      "logo": {
+        "top": 29,
+        "bottom": 67,
+        "left": 62,
+        "right": 189.796875,
+        "width": 127.796875,
+        "height": 38
+      },
+      "login": {
+        "top": 26,
+        "bottom": 70,
+        "left": 890.765625,
+        "right": 999.90625,
+        "width": 109.140625,
+        "height": 44
+      },
+      "signup": {
+        "top": 25,
+        "bottom": 71,
+        "left": 1011.90625,
+        "right": 1198.21875,
+        "width": 186.3125,
+        "height": 46
+      },
+      "menu": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "cta": {
+        "top": 567.71875,
+        "bottom": 621.71875,
+        "left": 120,
+        "right": 397.703125,
+        "width": 277.703125,
+        "height": 54
+      },
+      "title": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "link": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "proof": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "preview": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "island": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "sameGalleryPhoto": true,
+      "mobileVisible": false,
+      "font": "-apple-system, BlinkMacSystemFont, \"SF Pro Display\", \"Helvetica Neue\", \"Segoe UI\", Arial, sans-serif"
+    }
+  ],
+  "safeAreaInsets": [
+    0,
+    24,
+    48
+  ],
+  "motion": {
+    "animation": "none",
+    "transition": "0s"
+  },
+  "navigation": "menu, plans and product gallery passed",
+  "errors": [],
+  "login": "opens sign-in form",
+  "signup": "opens registration form",
+  "diagnostic": "starts the guest exam without registration"
+}
