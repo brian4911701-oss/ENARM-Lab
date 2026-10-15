@@ -79,12 +79,23 @@ const http = require('node:http');
           quick: rect('#card-quick-training'),
           name: rect('.dashboard-name-row'),
           streak: rect('#streak-btn-mobile'),
+          desktopStreak: rect('#streak-btn'),
+          desktopCoins: rect('#dashboard-coins-btn'),
+          hero: rect('.dashboard-mobile-hero'),
+          clock: rect('#exam-countdown'),
+          clockFont: parseFloat(getComputedStyle(document.querySelector('#cd-days')).fontSize),
+          counterFont: parseFloat(getComputedStyle(document.querySelector('#streak-btn')).fontSize),
+          avatar: rect('#btn-dashboard-hero-profile'),
+          trainingIcon: rect('#btn-quick-start .training-action-icon'),
+          trainingDisplay: getComputedStyle(document.querySelector('#btn-quick-start')).display,
           coinsInDashboard: Boolean(document.querySelector('#view-dashboard #card-coins')),
           coinsInMore: Boolean(document.querySelector('#view-mas #card-coins'))
         };
       });
       assert(result.overflow <= 1, `${width}px horizontal overflow: ${result.overflow}`);
       assert(!result.coinsInDashboard && result.coinsInMore);
+      assert.equal(result.trainingDisplay, 'grid');
+      assert(result.trainingIcon.width >= 36, `${width}px training icon should not shrink`);
       for (let i = 0; i < result.cards.length; i++) for (let j = i + 1; j < result.cards.length; j++) {
         const a = result.cards[i], b = result.cards[j];
         const overlaps = a.x < b.right - 1 && a.right > b.x + 1 && a.y < b.bottom - 1 && a.bottom > b.y + 1;
@@ -93,6 +104,12 @@ const http = require('node:http');
       if (width <= 768) {
         assert(Math.abs(result.average.width - result.grid.width) <= 2, `${width}px average should span the row`);
         assert(result.streak.width > 0 && result.streak.right <= result.name.right + 1, `${width}px mobile streak beside the name`);
+        assert(result.clock.y - result.hero.bottom >= 18, `${width}px countdown needs breathing room`);
+        assert(result.clockFont >= 26, `${width}px countdown digits too small`);
+        assert(result.avatar.width >= 56, `${width}px restored avatar size`);
+      } else {
+        assert(result.desktopCoins.y >= result.desktopStreak.bottom, `${width}px counters should stack vertically`);
+        assert(result.counterFont >= 18, `${width}px desktop counters too small`);
       }
       if ([1366, 390].includes(width)) await page.screenshot({ path: path.join(root, `artifacts/dashboard-${width}.png`) });
     }

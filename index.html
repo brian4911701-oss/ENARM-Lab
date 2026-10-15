@@ -967,7 +967,7 @@
                     </div>
 
                     <div class="countdown-widget" id="exam-countdown" hidden>
-                        <div class="countdown-label">FALTAN PARA 2027</div>
+                        <div class="countdown-label">RUMBO AL ENARM 2027</div>
                         <div class="countdown-timer">
                             <div class="cd-item"><span id="cd-days">000</span><label>DÍAS</label></div>
                             <div class="cd-sep">:</div>
@@ -1061,19 +1061,15 @@
                             <div class="stat-label" style="margin: 0;">ENTRENAMIENTO RAPIDO</div>
                         </div>
                         <div class="quick-training-actions">
-                            <button class="action-btn" id="btn-quick-start">
-                                <div class="action-btn-left">
-                                    <span class="action-btn-icon">&#x1F680;</span>
-                                    <span>Simulacro Aleatorio</span>
-                                </div>
-                                <span class="action-btn-arrow">&rarr;</span>
+                            <button class="training-action training-action--exam" id="btn-quick-start" type="button">
+                                <span class="training-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m8 4 12 8-12 8V4Z"/></svg></span>
+                                <span class="training-action-copy"><strong>Simulacro aleatorio</strong><small>Practica con una nueva mezcla de casos.</small></span>
+                                <svg class="training-action-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
                             </button>
-                            <button class="action-btn" id="btn-curva-olvido">
-                                <div class="action-btn-left">
-                                    <span class="action-btn-icon">&#x1F9E0;</span>
-                                    <span>Curva del Olvido</span>
-                                </div>
-                                <span class="action-btn-arrow">&rarr;</span>
+                            <button class="training-action training-action--review" id="btn-curva-olvido" type="button">
+                                <span class="training-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a8 8 0 1 1 1 7M4 4v6h6m2-4v6l4 2"/></svg></span>
+                                <span class="training-action-copy"><strong>Curva del olvido</strong><small>Repasa y consolida lo aprendido.</small></span>
+                                <svg class="training-action-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
                             </button>
                         </div>
                     </div>
