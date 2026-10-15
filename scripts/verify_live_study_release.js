@@ -9,12 +9,16 @@ const admin = require('firebase-admin');
 (async () => {
     assert.ok(process.argv.includes('--run-disposable-account'), 'Requires --run-disposable-account; creates and then deletes one release test account.');
     assert.ok(!process.env.FIRESTORE_EMULATOR_HOST && !process.env.FIREBASE_AUTH_EMULATOR_HOST, 'This is a production release check, not an emulator test.');
-    admin.initializeApp({ projectId: 'enarm-lab-social' });
+    const credentialFile = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+    // Sign locally with the supplied service-account key. ADC's default signer
+    // otherwise calls IAM Credentials, which need not be enabled on this project.
+    const credential = credentialFile ? admin.credential.cert(JSON.parse(fs.readFileSync(credentialFile, 'utf8'))) : admin.credential.applicationDefault();
+    admin.initializeApp({ projectId: 'enarm-lab-social', credential });
     const auth = admin.auth(), db = admin.firestore();
     const uid = 'release-sync-' + crypto.randomUUID();
     const cleanupFile = path.resolve(__dirname, '..', '.tmp-config', 'last-study-release-check.json');
     fs.writeFileSync(cleanupFile, JSON.stringify({ uid, completed: false }));
-    let userCreated = false, cleanupSucceeded = false;
+    let userCreated = false, cleanupSucceeded = false, passed = false;
     try {
         await auth.createUser({ uid, email: `${uid}@example.invalid`, emailVerified: true, displayName: 'ReleaseSyncTest' }); userCreated = true;
         const customToken = await auth.createCustomToken(uid);
@@ -47,6 +51,7 @@ const admin = require('firebase-admin');
         await call(0, 'revoke', { deviceId: devices[1].id });
         assert.equal((await call(1, 'register', {}, 403)).code, 'device-revoked');
         await call(0, 'purge');
+        passed = true;
         console.log(JSON.stringify({ liveApi: true, deviceLimit: true, confirmedHandoff: true, staleTokenRejected: true, immutableAttempt: true, exactlyOneSession: true, revocation: true }));
     } finally {
         // Auth create may provision a directory document asynchronously. Only
@@ -54,7 +59,7 @@ const admin = require('firebase-admin');
         if (userCreated) await auth.deleteUser(uid);
         for (const collection of ['user_progress', 'active_exams', 'exam_payloads', 'exam_attempts', 'study_backups', 'study_devices', 'study_sessions', 'user_directory']) await db.recursiveDelete(db.doc(`${collection}/${uid}`));
         cleanupSucceeded = true;
-        fs.writeFileSync(cleanupFile, JSON.stringify({ uid, completed: true, cleanupSucceeded, checkedAt: new Date().toISOString() }));
+        fs.writeFileSync(cleanupFile, JSON.stringify({ uid, completed: passed, cleanupSucceeded, checkedAt: new Date().toISOString() }));
         console.log(JSON.stringify({ disposableAccountRemoved: cleanupSucceeded }));
         await db.terminate(); await admin.app().delete();
     }

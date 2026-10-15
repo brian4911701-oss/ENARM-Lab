@@ -55,3 +55,9 @@ PC responde; móvil abre y adquiere control con el progreso confirmado; PC queda
 - `scripts/verify_live_study_release.js --run-disposable-account` comprueba la API publicada con una cuenta efímera y elimina sus datos; no utiliza cuentas existentes, no envía mensajes y no modifica suscripciones.
 
 La publicación usa `enarmax-v103-exam-authority` y versión visible `2026.10.15.3`. Verificar los fingerprints públicos, las reglas activas y la API tras el despliegue; el archivo de resultado de la comprobación efímera queda en `.tmp-config`, fuera de Git.
+
+## Publicación verificada
+
+El 15 de octubre de 2026 se publicaron las reglas `741624f5-1585-451e-bbe9-e46d070cb935` y el cliente v103 en `https://www.enarmax.com`. Ambos despliegues de Vercel finalizaron correctamente. Los fingerprints normalizados de HTML, service worker, aplicación, motor de progreso y cliente de sesiones coinciden con el código revisado; los 26 recursos esenciales respondieron 200. Chrome con viewport móvil activó `enarmax-v103-exam-authority`, cargó el módulo de sesiones y no presentó excepciones de arranque.
+
+La comprobación autenticada de producción aprobó: dos instalaciones, rechazo de una tercera, respuesta confirmada transferida de PC a móvil, rechazo del token anterior, finalización repetida con una sola sesión e intento, y revocación efectiva. La cuenta temporal y sus datos de estudio se eliminaron al terminar. Para generar su token se utilizó firma local con la credencial existente; no fue necesario habilitar IAM Credentials ni cambiar servicios o planes.
