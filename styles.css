@@ -15633,7 +15633,7 @@ body.guest-exam-mode #view-exam .option-btn.selected {
   #view-exam .exam-header-actions button { flex: 1; }
   #view-exam .case-card,
   #view-exam .question-card { padding: 20px 18px; }
-  #view-exam .case-card { scroll-margin-top: 14px; }
+  #view-exam .case-card { scroll-margin-top: calc(76px + env(safe-area-inset-top, 0px)); }
   #view-exam .case-text { font-size: 1rem; line-height: 1.7; }
   #view-exam .q-header { flex-direction: column; align-items: stretch; }
   #view-exam .q-actions {
@@ -15886,7 +15886,7 @@ body.guest-exam-mode #view-exam .option-btn.selected {
   #landing-page .landing-logo-img { width: 25px; height: 35px; }
   #landing-page .landing-logo-text { font-size: 1.08rem; }
   #landing-page .landing-nav-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-column: 1 / -1; grid-row: 2; gap: 8px; width: 100%; }
-  #landing-page .landing-nav-actions :is(.landing-btn-ghost, .landing-btn-cta) { width: 100%; min-height: 44px; padding: 10px 8px; border-radius: 13px; font-size: .76rem; }
+  #landing-page .landing-nav-actions :is(.landing-btn-ghost, .landing-btn-cta) { width: 100%; min-height: 44px; padding: 10px 8px; border-radius: 13px; font-size: .88rem; }
   #landing-page .landing-nav-actions .landing-btn-cta {
     display: inline-flex; border: 1px solid #4d64bb; background: linear-gradient(115deg, #315dac, #6157c6);
     box-shadow: 0 6px 16px #4b5ab52b, inset 0 1px #ffffff38; color: #fff; font-weight: 750;
