@@ -125,6 +125,7 @@ const http = require('node:http');
           nameText: rect('.dashboard-greeting-title'),
           nameFont: parseFloat(getComputedStyle(document.querySelector('.dashboard-greeting-title')).fontSize),
           greetingFont: parseFloat(getComputedStyle(document.querySelector('.dashboard-hero-kicker')).fontSize),
+          greeting: rect('.dashboard-hero-kicker'),
           coinsInDashboard: Boolean(document.querySelector('#view-dashboard #card-coins')),
           coinsInMore: Boolean(document.querySelector('#view-mas #card-coins'))
         };
@@ -153,7 +154,10 @@ const http = require('node:http');
         assert(result.average.height <= 160, `${width}px performance card should be compact vertically: ${result.average.height}px`);
         assert(result.clock.height <= 110, `${width}px countdown should be compact vertically: ${result.clock.height}px`);
         assert(Math.abs(result.clock.width - result.hero.width) <= 1, `${width}px countdown should retain its full width`);
-        assert(result.nameFont >= 24 && result.greetingFont >= 17, `${width}px larger mobile greeting and name`);
+        assert(result.nameFont >= 24 && result.greetingFont >= 20, `${width}px larger mobile greeting and name`);
+        assert(result.avatar.width >= 68 && result.avatar.height >= 68, `${width}px larger profile photo`);
+        assert(result.greeting.bottom <= result.nameText.y + 1, `${width}px greeting must not overlap the name`);
+        assert(Math.abs((result.average.y - result.clock.bottom) - (result.quick.y - result.average.bottom)) <= 1, `${width}px equal spacing between clock, performance and training cards`);
       } else {
         assert(result.trainingIcon.width >= 36, `${width}px training icon should not shrink`);
         assert(result.desktopCoins.y >= result.desktopStreak.bottom, `${width}px counters should stack vertically`);
@@ -174,6 +178,29 @@ const http = require('node:http');
       progress: document.querySelector('#dash-summary-progress').style.width
     })), { correct: '660', answered: '875', progress: '75.4%' });
 
+    console.log('Checking mobile Premium crown');
+    for (const width of [320, 390, 600]) {
+      await page.setViewport({ width, height: 900 });
+      const crown = await page.evaluate(() => {
+        const name = document.querySelector('.dashboard-greeting-title .user-name');
+        name.textContent = 'Brian';
+        const avatar = document.querySelector('.dashboard-hero-avatar');
+        avatar.classList.add('is-premium');
+        const style = getComputedStyle(avatar, '::after');
+        return {
+          size: parseFloat(style.fontSize),
+          top: avatar.getBoundingClientRect().top + parseFloat(style.top),
+          heroTop: document.querySelector('.dashboard-mobile-hero').getBoundingClientRect().top
+        };
+      });
+      assert(crown.size >= 28, `${width}px larger mobile Premium crown`);
+      assert(crown.top >= crown.heroTop, `${width}px crown must not be clipped by the hero card`);
+      if (width === 390) await page.$('.dashboard-mobile-hero').then(el => el.screenshot({ path: path.join(root, 'artifacts/mobile-premium-greeting.png') }));
+    }
+    await page.evaluate(() => {
+      document.querySelector('.dashboard-greeting-title .user-name').textContent = window.__dashboardTest.State.userName;
+      document.querySelector('.dashboard-hero-avatar').classList.remove('is-premium');
+    });
     console.log('Checking themes and reduced motion');
     await page.setViewport({ width: 1366, height: 768 });
     await page.evaluate(() => {

@@ -122,15 +122,19 @@
   #view-dashboard .dashboard-bottom { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 768px) {
-  #view-dashboard .dashboard-header { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin-bottom: 20px; }
+  #view-dashboard { --dashboard-card-gap: 12px; }
+  #view-dashboard .dashboard-header { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--dashboard-card-gap); margin-bottom: var(--dashboard-card-gap); }
   #view-dashboard .dashboard-mobile-hero {
     flex: 0 0 auto; display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
     gap: 14px; padding: 18px 16px; width: 100%;
   }
-  #view-dashboard .dashboard-hero-avatar { width: 72px !important; height: 72px !important; font-size: 31px !important; }
+  #view-dashboard .dashboard-hero-avatar { width: 84px !important; height: 84px !important; font-size: 35px !important; }
+  #view-dashboard .dashboard-hero-avatar.is-premium { margin-block: 4px; }
+  #view-dashboard .dashboard-hero-avatar.is-premium::after { font-size: clamp(28px, 8vw, 34px); top: -.6em; }
   #view-dashboard .dashboard-hero-bell { width: 64px; height: 64px; }
   #view-dashboard .dashboard-hero-bell svg { width: 28px; height: 28px; }
-  #view-dashboard .dashboard-hero-kicker { font-size: 18px; }
+  #view-dashboard .dashboard-hero-copy { gap: 9px; }
+  #view-dashboard .dashboard-hero-kicker { font-size: 21px; line-height: 1.25; position: relative; top: 7px; }
   #view-dashboard .dashboard-name-row { display: flex; align-items: center; gap: 6px; }
   #view-dashboard .dashboard-greeting-title { display: block; flex: 0 1 auto; font-size: clamp(28px, 7.5vw, 36px); line-height: 1.12; overflow-wrap: anywhere; margin: 0; }
   #view-dashboard .dashboard-streak-mobile { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-width: 44px; min-height: 44px; margin: 0; font-size: 20px; line-height: 1; gap: 6px; padding: 0 2px; }
@@ -141,7 +145,7 @@
   #view-dashboard #exam-countdown { min-width: 0; width: 100%; padding: 10px 16px; gap: 6px; }
   #view-dashboard .cd-item { padding-block: 4px; gap: 2px; }
   #view-dashboard .cd-item > span:first-child { font-size: 30px; }
-  #view-dashboard .stats-grid { gap: 12px; }
+  #view-dashboard .stats-grid { gap: var(--dashboard-card-gap); }
   #view-dashboard .stats-grid > .stat-card { padding: 16px; min-height: 132px; }
   #view-dashboard #card-performance-summary { grid-column: 1 / -1; order: 1; }
   #view-dashboard #card-rango { grid-column: 1 / -1; order: 3; }
@@ -164,25 +168,24 @@
   #view-dashboard .training-action-copy small { font-size: 11px; line-height: 1.4; }
 }
 @media (max-width: 400px) {
+  #view-dashboard { --dashboard-card-gap: 10px; }
   #view-dashboard .dashboard-hero-bell svg { width: 24px; height: 24px; }
   #view-dashboard .dashboard-mobile-hero { gap: 10px; padding: 16px 14px; }
-  #view-dashboard .dashboard-header { gap: 10px; }
-  #view-dashboard .stats-grid { gap: 10px; }
   #view-dashboard .stats-grid > .stat-card { padding: 14px; min-height: 124px; }
   #view-dashboard .cd-item > span:first-child { font-size: 27px; }
-  #view-dashboard .dashboard-mobile-hero { grid-template-columns: 54px minmax(0, 1fr) 42px; }
-  #view-dashboard .dashboard-hero-avatar { width: 54px !important; height: 54px !important; font-size: 26px !important; }
+  #view-dashboard .dashboard-mobile-hero { grid-template-columns: 68px minmax(0, 1fr) 42px; }
+  #view-dashboard .dashboard-hero-avatar { width: 68px !important; height: 68px !important; font-size: 30px !important; }
   #view-dashboard .dashboard-hero-bell { width: 42px; height: 42px; }
   #view-dashboard .dashboard-greeting-title { font-size: clamp(24px, 7.2vw, 28px); }
-  #view-dashboard .dashboard-hero-kicker { font-size: 17px; }
+  #view-dashboard .dashboard-hero-kicker { font-size: 20px; }
   #view-dashboard .dashboard-streak-mobile { font-size: 18px; }
   #view-dashboard .dashboard-streak-mobile .dashboard-flame-icon { width: 14px; height: 20px; }
 }
-@media (max-width: 360px) {
+@media (max-width: 480px) {
   /* Let long names use the space below the notification button. */
   #view-dashboard .dashboard-hero-copy { display: contents; }
   #view-dashboard .dashboard-hero-avatar { grid-column: 1; grid-row: 1 / 3; }
-  #view-dashboard .dashboard-hero-kicker { grid-column: 2; grid-row: 1; }
+  #view-dashboard .dashboard-hero-kicker { grid-column: 2; grid-row: 1; align-self: end; }
   #view-dashboard .dashboard-hero-bell { grid-column: 3; grid-row: 1; }
   #view-dashboard .dashboard-name-row { grid-column: 2 / -1; grid-row: 2; }
 }
