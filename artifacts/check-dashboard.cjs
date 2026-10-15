@@ -16,7 +16,7 @@ const http = require('node:http');
       // Test-only access to the real closure; the source file stays unchanged.
       const source = fs.readFileSync(file, 'utf8');
       const marker = '    // Carga inicial de datos en el dashboard';
-      res.end(source.replace(marker, '    window.__dashboardTest = { State, updateDashboardStats, handleAnswer, getEffectiveStreak, getStudyStreakData, recordStudyDay, saveGlobalStats };\n' + marker));
+      res.end(source.replace(marker, '    window.__dashboardTest = { State, updateDashboardStats, handleAnswer, getEffectiveStreak, getStudyStreakData, recordStudyDay, saveGlobalStats, applyTheme };\n' + marker));
       return;
     }
     fs.createReadStream(file).pipe(res);
@@ -50,13 +50,17 @@ const http = require('node:http');
     });
     await page.setViewport({ width: 1440, height: 900 });
     const url = `http://127.0.0.1:${server.address().port}`;
-    const showApp = async () => page.evaluate(() => {
+    const showApp = async () => page.evaluate(async () => {
       document.querySelector('#landing-page').classList.add('hidden');
       document.querySelector('#auth-overlay').style.display = 'none';
       document.querySelector('#app-startup-screen').style.display = 'none';
       document.querySelector('.app-layout').style.display = 'flex';
       window.showView('view-dashboard');
       window.__dashboardTest.updateDashboardStats(true);
+      await Promise.all([...document.querySelector('#view-dashboard').getAnimations({ subtree: true }),
+        ...document.querySelector('#landing-page').getAnimations()]
+        .filter(animation => Number.isFinite(animation.effect.getComputedTiming().endTime))
+        .map(animation => animation.finished.catch(() => {})));
     });
     console.log('Loading dashboard fixture');
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 });
@@ -71,12 +75,37 @@ const http = require('node:http');
       const result = await page.evaluate(() => {
         const rect = selector => { const r = document.querySelector(selector).getBoundingClientRect(); return { x: r.x, y: r.y, right: r.right, bottom: r.bottom, width: r.width, height: r.height }; };
         const main = document.querySelector('.main-content');
+        // Compare the painted SVG shape with the digit glyphs, not their padded boxes.
+        const streakInkOffset = (() => {
+          const id = innerWidth <= 768 ? 'streak-btn-mobile' : 'streak-btn';
+          const button = document.getElementById(id);
+          const path = button.querySelector('path');
+          const box = path.getBBox();
+          const point = new DOMPoint(box.x + box.width / 2, box.y + box.height / 2).matrixTransform(path.getScreenCTM());
+          const number = button.querySelector('span');
+          const style = getComputedStyle(number);
+          const context = document.createElement('canvas').getContext('2d');
+          context.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+          const metrics = context.measureText(number.textContent);
+          const baseline = document.createElement('span');
+          baseline.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline';
+          number.append(baseline);
+          const glyphCenter = baseline.getBoundingClientRect().top - (metrics.actualBoundingBoxAscent - metrics.actualBoundingBoxDescent) / 2;
+          baseline.remove();
+          return point.y - glyphCenter;
+        })();
         return {
+          streakInkOffset,
           overflow: main.scrollWidth - main.clientWidth,
           cards: [...document.querySelectorAll('#view-dashboard .stats-grid > .stat-card')].map(el => { const r = el.getBoundingClientRect(); return { id: el.id, x: r.x, y: r.y, right: r.right, bottom: r.bottom }; }),
           grid: rect('#view-dashboard .stats-grid'),
           average: rect('#card-performance-summary'),
           quick: rect('#card-quick-training'),
+          rank: rect('#card-rango'),
+          score: rect('.performance-score'),
+          sessions: rect('.performance-session-pill'),
+          actions: [...document.querySelectorAll('.quick-training-actions .training-action')].map(el => ({ height: el.getBoundingClientRect().height, overflow: el.scrollWidth - el.clientWidth })),
+          streakNumber: rect('#streak-val-mobile'),
           name: rect('.dashboard-name-row'),
           streak: rect('#streak-btn-mobile'),
           desktopStreak: rect('#streak-btn'),
@@ -88,14 +117,16 @@ const http = require('node:http');
           avatar: rect('#btn-dashboard-hero-profile'),
           trainingIcon: rect('#btn-quick-start .training-action-icon'),
           trainingDisplay: getComputedStyle(document.querySelector('#btn-quick-start')).display,
+          flame: rect('#streak-btn-mobile .dashboard-flame-icon'),
+          nameText: rect('.dashboard-greeting-title'),
           coinsInDashboard: Boolean(document.querySelector('#view-dashboard #card-coins')),
           coinsInMore: Boolean(document.querySelector('#view-mas #card-coins'))
         };
       });
       assert(result.overflow <= 1, `${width}px horizontal overflow: ${result.overflow}`);
+      assert(Math.abs(result.streakInkOffset) <= 1, `${width}px painted flame/digits misaligned by ${result.streakInkOffset}px`);
       assert(!result.coinsInDashboard && result.coinsInMore);
       assert.equal(result.trainingDisplay, 'grid');
-      assert(result.trainingIcon.width >= 36, `${width}px training icon should not shrink`);
       for (let i = 0; i < result.cards.length; i++) for (let j = i + 1; j < result.cards.length; j++) {
         const a = result.cards[i], b = result.cards[j];
         const overlaps = a.x < b.right - 1 && a.right > b.x + 1 && a.y < b.bottom - 1 && a.bottom > b.y + 1;
@@ -104,19 +135,55 @@ const http = require('node:http');
       if (width <= 768) {
         assert(Math.abs(result.average.width - result.grid.width) <= 2, `${width}px average should span the row`);
         assert(result.streak.width > 0 && result.streak.right <= result.name.right + 1, `${width}px mobile streak beside the name`);
-        assert(result.clock.y - result.hero.bottom >= 18, `${width}px countdown needs breathing room`);
-        assert(result.clockFont >= 26, `${width}px countdown digits too small`);
-        assert(result.avatar.width >= 56, `${width}px restored avatar size`);
+        assert(result.average.bottom <= result.quick.y && result.quick.bottom <= result.rank.y, `${width}px order: average, quick training, rank`);
+        assert(Math.abs((result.nameText.y + result.nameText.height / 2) - (result.streak.y + result.streak.height / 2)) < 1, `${width}px name and streak centers should align`);
+        assert(Math.abs((result.flame.y + result.flame.height / 2) - (result.streakNumber.y + result.streakNumber.height / 2)) < 1, `${width}px flame and number should align`);
+        assert(result.streak.x - result.nameText.right <= 6.1, `${width}px flame must sit next to the name`);
+        assert(result.clock.y - result.hero.bottom >= 10, `${width}px header spacing`);
+        assert(result.sessions.x >= result.score.right, `${width}px average and sessions side by side`);
+        assert(result.trainingIcon.width >= 40, `${width}px mobile training icons visible`);
+        assert(result.clockFont >= 26, `${width}px countdown digits should be readable`);
       } else {
+        assert(result.trainingIcon.width >= 36, `${width}px training icon should not shrink`);
         assert(result.desktopCoins.y >= result.desktopStreak.bottom, `${width}px counters should stack vertically`);
         assert(result.counterFont >= 18, `${width}px desktop counters too small`);
       }
+      for (const action of result.actions) {
+        assert(action.height >= 44, `${width}px training touch target`);
+        assert(action.overflow <= 1, `${width}px training text overflow`);
+      }
       if ([1366, 390].includes(width)) await page.screenshot({ path: path.join(root, `artifacts/dashboard-${width}.png`) });
     }
+    assert.deepEqual(await page.evaluate(() => ({
+      correct: document.querySelector('#dash-summary-correct').textContent,
+      answered: document.querySelector('#dash-summary-answered').textContent,
+      progress: document.querySelector('#dash-summary-progress').style.width
+    })), { correct: '660', answered: '875', progress: '75.4%' });
+
+    console.log('Checking themes and reduced motion');
+    for (const theme of ['light', 'lilac-light', 'black-teal', 'ocean']) {
+      await page.evaluate(theme => window.__dashboardTest.applyTheme(theme), theme);
+      for (const width of [390, 1366]) {
+        await page.setViewport({ width, height: 900 });
+        assert(await page.$eval('.main-content', el => el.scrollWidth <= el.clientWidth + 1), `${theme} ${width}px overflow`);
+        if (theme === 'light') await page.screenshot({ path: path.join(root, `artifacts/dashboard-light-${width}.png`) });
+      }
+    }
+    await page.hover('#btn-quick-start');
+    await new Promise(resolve => setTimeout(resolve, 350));
+    assert.notEqual(await page.$eval('#btn-quick-start', el => getComputedStyle(el).transform), 'none', 'desktop hover animation');
+    await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+    assert.equal(await page.$eval('#btn-quick-start', el => getComputedStyle(el).transform), 'none', 'reduced motion disables movement');
+    assert(await page.$eval('#btn-quick-start', el => parseFloat(getComputedStyle(el).transitionDuration) <= .001), 'reduced motion disables transitions');
+    await page.emulateMediaFeatures([]);
+
     await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => Boolean(window.__dashboardTest));
     await showApp();
+    await page.$eval('#card-quick-training', el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+    await page.screenshot({ path: path.join(root, 'artifacts/dashboard-training-390.png') });
+    await page.$eval('#streak-btn-mobile', el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
     await page.click('#streak-btn-mobile');
     assert.equal(await page.$eval('#streak-modal', el => el.style.display), 'flex');
     assert.equal(await page.$eval('#modal-streak-days', el => el.textContent), '12');
@@ -140,14 +207,17 @@ const http = require('node:http');
     await page.click('#card-coins');
     assert.equal(await page.evaluate(() => window.__dashboardTest.State.view), 'view-referrals');
     await page.setViewport({ width: 1440, height: 900, isMobile: false, hasTouch: false });
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => Boolean(window.__dashboardTest));
     await showApp();
     await page.click('#dashboard-coins-btn');
     assert.equal(await page.evaluate(() => window.__dashboardTest.State.view), 'view-referrals');
     await showApp();
-    await page.click('#streak-btn');
+    await page.locator('#streak-btn').click();
+    await page.waitForFunction(() => document.querySelector('#streak-modal').style.display === 'flex');
     assert.equal(await page.$eval('#streak-modal', el => el.style.display), 'flex');
     assert.deepEqual(errors, []);
-    console.log('Dashboard: 14 viewport sizes, no card overlap/overflow, mobile streak modal, coins links, unfinished practice persistence and reload OK.');
+    console.log('Dashboard: 14 viewport sizes, mobile card order, aligned streak, visible training icons, no card overlap/overflow, streak modal, coins links and practice persistence OK.');
   } catch (error) {
     console.error('Dashboard check failed:', error);
     throw error;

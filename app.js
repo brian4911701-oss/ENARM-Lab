@@ -176,6 +176,47 @@
 
     const $ = (id) => document.getElementById(id);
     const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+    const syncSetupTimePicker = (value) => {
+        const input = $("setup-time-minutes");
+        const range = $("setup-time-range");
+        const label = $("setup-time-label");
+        const readout = $("setup-time-readout");
+        const readoutUnit = $("setup-time-readout-unit");
+        const freeButton = $("time-libre-btn");
+        const freeButtonLabel = $("time-libre-label");
+        const picker = $("setup-time-picker");
+        if (!input) return;
+        const parsedMinutes = parseInt(value, 10);
+        const isFree = !Number.isFinite(parsedMinutes) || parsedMinutes <= 0;
+        const minutes = Math.max(1, Math.min(480, parsedMinutes || 1));
+        input.value = isFree ? "" : String(minutes);
+        if (range && !isFree) {
+            range.value = String(minutes);
+            const hours = Math.floor(minutes / 60);
+            const mins = minutes % 60;
+            range.setAttribute("aria-valuetext", [
+                hours ? `${hours} ${hours === 1 ? "hora" : "horas"}` : "",
+                mins ? `${mins} ${mins === 1 ? "minuto" : "minutos"}` : ""
+            ].filter(Boolean).join(" "));
+        }
+        if (label) label.textContent = isFree ? "LIBRE" : `${minutes} MIN`;
+        if (readout) {
+            if (isFree) readout.textContent = "--:--:--";
+            else {
+                const hours = Math.floor(minutes / 60);
+                const mins = minutes % 60;
+                readout.textContent = `${String(hours).padStart(2, "0")}:${String(mins).padStart(2, "0")}:00`;
+            }
+        }
+        if (readoutUnit) readoutUnit.textContent = isFree ? "SIN LÍMITE" : "";
+        if (freeButton) {
+            freeButton.classList.toggle("active", isFree);
+            freeButton.setAttribute("aria-pressed", String(isFree));
+        }
+        if (freeButtonLabel) freeButtonLabel.textContent = isFree ? "Sin límite" : "Limitar tiempo";
+        if (picker) picker.classList.toggle("is-free", isFree);
+        if (range) range.disabled = isFree;
+    };
     const MAX_CHALLENGE_FRIENDS = 3;
 
     const openChallengeDialog = () => {
@@ -2753,6 +2794,7 @@
                 if (timeInput) timeInput.value = "15";
                 if (timeLabel) timeLabel.textContent = "15 MIN";
                 if (libBtn) libBtn.classList.remove("active");
+                syncSetupTimePicker("15");
             }
         }
         if (!premium) {
@@ -2770,6 +2812,7 @@
                         timeInput.value = t;
                         if (timeLabel) timeLabel.textContent = `${t} MIN`;
                         if (libBtn) libBtn.classList.remove("active");
+                        syncSetupTimePicker(t);
                     }
                 }
             }
@@ -8460,6 +8503,7 @@
                     timeInput.value = t;
                     timeLabel.textContent = `${t} MIN`;
                     if (libBtn) libBtn.classList.remove("active");
+                    syncSetupTimePicker(t);
                 }
 
                 if (card.id === "preset-real") {
@@ -8537,28 +8581,27 @@
         if (libBtn) {
             libBtn.addEventListener("click", () => {
                 clearSelectedPreset();
-                libBtn.classList.toggle("active");
-                if (libBtn.classList.contains("active")) {
-                    timeLabel.textContent = "LIBRE";
-                    if (timeInput) timeInput.value = "";
-                }
+                const currentlyFree = libBtn.classList.contains("active");
+                syncSetupTimePicker(currentlyFree ? ($("setup-time-range")?.value || "60") : "");
             });
         }
 
         // Logic for Dynamic Topic Search
         setupTopicSearch();
+        const timeRange = $("setup-time-range");
+        if (timeRange) {
+            timeRange.addEventListener("input", () => {
+                clearSelectedPreset();
+                syncSetupTimePicker(timeRange.value);
+            });
+        }
         if (timeInput) {
             timeInput.addEventListener("input", () => {
                 clearSelectedPreset();
-                if (timeInput.value) {
-                    if (libBtn) libBtn.classList.remove("active");
-                    timeLabel.textContent = `${timeInput.value} MIN`;
-                } else {
-                    if (libBtn) libBtn.classList.add("active");
-                    timeLabel.textContent = "LIBRE";
-                }
+                syncSetupTimePicker(timeInput.value);
             });
         }
+        syncSetupTimePicker(timeInput && timeInput.value);
 
         $$(".btn-panel-back").forEach(b => b.addEventListener("click", () => $("nav-dashboard").click()));
 
@@ -8607,9 +8650,7 @@
                         showNotification(`Demo limitada a ${DEMO_MAX_QTY} preguntas.`, "info");
                     }
                     if (!isLibre) {
-                        if (timeInput) timeInput.value = "";
-                        if (libBtn) libBtn.classList.add("active");
-                        if (timeLabel) timeLabel.textContent = "LIBRE";
+                        syncSetupTimePicker("");
                         isLibre = true;
                         showNotification("En demo, el tiempo es libre.", "info");
                     }
@@ -11438,6 +11479,9 @@
         for (let id in elements) if ($(id)) $(id).textContent = State.globalStats[elements[id]] || 0;
         const pct = State.globalStats.respondidas > 0 ? ((State.globalStats.aciertos / State.globalStats.respondidas) * 100).toFixed(1) : "0.0";
         if ($("dash-promedio-gral")) $("dash-promedio-gral").textContent = `${pct}%`;
+        if ($("dash-summary-progress")) $("dash-summary-progress").style.width = `${Math.min(100, Math.max(0, Number(pct)))}%`;
+        if ($("dash-summary-correct")) $("dash-summary-correct").textContent = (Number(State.globalStats.aciertos) || 0).toLocaleString("es-MX");
+        if ($("dash-summary-answered")) $("dash-summary-answered").textContent = (Number(State.globalStats.respondidas) || 0).toLocaleString("es-MX");
         if ($("dash-promedio")) $("dash-promedio").textContent = `${pct}%`;
         if ($("dash-promedio-bar")) $("dash-promedio-bar").style.width = `${pct}%`;
         if ($("dash-coins")) $("dash-coins").textContent = (Number(State.coins) || 0).toLocaleString("es-MX");
@@ -17125,6 +17169,23 @@
                 ["btn-landing-login-top", "btn-landing-mobile-login"].forEach(id => {
                     const el = $(id);
                     if (el) el.addEventListener("click", () => showAuthFromLanding({ register: false }));
+                });
+
+                document.querySelectorAll("[data-redeem-period-switch]").forEach(button => {
+                    button.addEventListener("click", () => {
+                        const pricingModal = button.closest("#redeem-modal");
+                        if (!pricingModal) return;
+                        const period = button.getAttribute("aria-checked") === "true" ? "monthly" : "annual";
+                        button.setAttribute("aria-checked", String(period === "annual"));
+                        button.setAttribute("aria-label", period === "annual" ? "Cambiar a precio mensual" : "Cambiar a precio anual");
+                        button.classList.toggle("is-annual", period === "annual");
+                        pricingModal.querySelectorAll("[data-redeem-period-label]").forEach(label => {
+                            label.classList.toggle("is-active", label.dataset.redeemPeriodLabel === period);
+                        });
+                        pricingModal.querySelectorAll("[data-redeem-period-panel]").forEach(panel => {
+                            panel.hidden = panel.dataset.redeemPeriodPanel !== period;
+                        });
+                    });
                 });
 
                 document.querySelectorAll("[data-plan-id]").forEach(el => {

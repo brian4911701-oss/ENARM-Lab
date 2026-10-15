@@ -942,9 +942,8 @@
                         <div class="dashboard-hero-copy">
                             <span class="dashboard-hero-kicker">Hola</span>
                             <div class="dashboard-name-row">
-                                <h1 class="dashboard-greeting-title"><span class="user-name">Aspirante</span></h1>
-                                <button id="streak-btn-mobile" class="dashboard-counter dashboard-streak-mobile" type="button" data-open-streak aria-label="Abrir racha de estudio: 0 días">
-                                    <svg class="dashboard-flame-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1.3 4.2 5.5 5.7 5.5 10.2a5.5 5.5 0 0 1-11 0c0-2.9 1.7-5.4 3.5-7.2-.2 3 1.2 3.8 1.2 3.8C13 7 13.2 4.5 12 2Z"/></svg><span id="streak-val-mobile">0</span>
+                                <h1 class="dashboard-greeting-title"><span class="user-name">Aspirante</span></h1><button id="streak-btn-mobile" class="dashboard-counter dashboard-streak-mobile" type="button" data-open-streak aria-label="Abrir racha de estudio: 0 días">
+                                    <svg class="dashboard-flame-icon" viewBox="6 2 12 16" aria-hidden="true"><path d="M12 2c1.3 4.2 5.5 5.7 5.5 10.2a5.5 5.5 0 0 1-11 0c0-2.9 1.7-5.4 3.5-7.2-.2 3 1.2 3.8 1.2 3.8C13 7 13.2 4.5 12 2Z"/></svg><span id="streak-val-mobile">0</span>
                                 </button>
                             </div>
                             <p class="dashboard-hero-quote" id="dynamic-quote">Cargando inspiración...</p>
@@ -967,20 +966,21 @@
                     </div>
 
                     <div class="countdown-widget" id="exam-countdown" hidden>
-                        <div class="countdown-label">RUMBO AL ENARM 2027</div>
+                        <div class="countdown-heading">
+                            <span class="countdown-emblem" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2M9 2h6"/></svg></span>
+                            <span class="countdown-label">Rumbo al ENARM</span>
+                            <span class="countdown-year">2027</span>
+                        </div>
                         <div class="countdown-timer">
-                            <div class="cd-item"><span id="cd-days">000</span><label>DÍAS</label></div>
-                            <div class="cd-sep">:</div>
-                            <div class="cd-item"><span id="cd-hours">00</span><label>HORAS</label></div>
-                            <div class="cd-sep">:</div>
-                            <div class="cd-item"><span id="cd-mins">00</span><label>MIN</label></div>
-                            <div class="cd-sep">:</div>
-                            <div class="cd-item"><span id="cd-secs">00</span><label>SEG</label></div>
+                            <div class="cd-item cd-item--days"><span id="cd-days">000</span><span class="cd-unit">DÍAS</span></div>
+                            <div class="cd-item"><span id="cd-hours">00</span><span class="cd-unit">HORAS</span></div>
+                            <div class="cd-item"><span id="cd-mins">00</span><span class="cd-unit">MIN</span></div>
+                            <div class="cd-item"><span id="cd-secs">00</span><span class="cd-unit">SEG</span></div>
                         </div>
                     </div>
                     <div class="dashboard-counters" aria-label="Racha y monedas">
                         <button class="dashboard-counter" id="streak-btn" type="button" data-open-streak aria-label="Abrir racha de estudio: 0 días" title="Racha de estudio">
-                            <svg class="dashboard-flame-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1.3 4.2 5.5 5.7 5.7 10.2a5.7 5.7 0 0 1-11.4 0c0-2.9 1.7-5.4 3.5-7.2-.2 3 1.2 3.8 1.2 3.8C13 7 13.2 4.5 12 2Z"/></svg><span id="streak-val">0</span>
+                            <svg class="dashboard-flame-icon" viewBox="6 2 12 16" aria-hidden="true"><path d="M12 2c1.3 4.2 5.5 5.7 5.7 10.2a5.7 5.7 0 0 1-11.4 0c0-2.9 1.7-5.4 3.5-7.2-.2 3 1.2 3.8 1.2 3.8C13 7 13.2 4.5 12 2Z"/></svg><span id="streak-val">0</span>
                         </button>
                         <button class="dashboard-counter" id="dashboard-coins-btn" type="button" aria-label="Abrir monedas y referidos" title="Monedas y referidos">
                             <span class="dashboard-coin-icon" aria-hidden="true"><img src="logo-e-mask.png" alt=""></span><span id="dashboard-coins-val">0</span>
@@ -1031,18 +1031,22 @@
                 <div class="stats-grid">
                     <div class="stat-card performance-stat-card" id="card-performance-summary" style="cursor: pointer;">
                         <div class="stat-card-topline">
-                            <div class="stat-icon green-icon">&#x1F4C8;</div>
+                            <div class="stat-icon green-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17 10 11l4 3 6-8M15 6h5v5"/></svg></div>
                             <div class="stat-label">PROMEDIO Y SESIONES</div>
                         </div>
                         <div class="performance-stat-main">
-                            <div>
+                            <div class="performance-score">
                                 <div class="stat-value" id="dash-promedio-gral">0.0%</div>
                                 <span class="performance-stat-caption">Promedio general</span>
                             </div>
                             <div class="performance-session-pill">
                                 <span id="dash-sesiones">0</span>
-                                <small>sesiones</small>
+                                <small>Sesiones</small>
                             </div>
+                        </div>
+                        <div class="performance-summary-footer">
+                            <div class="performance-accuracy-track" aria-hidden="true"><span id="dash-summary-progress" style="width: 0%;"></span></div>
+                            <div class="performance-summary-detail"><span><strong id="dash-summary-correct">0</strong> aciertos</span><span><strong id="dash-summary-answered">0</strong> respondidas</span></div>
                         </div>
                     </div>
                     <div class="stat-card" id="card-rango" style="cursor: pointer;">
@@ -1058,12 +1062,12 @@
                         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
                             <div class="stat-icon blue-icon"
                                 style="margin: 0; width: 32px; height: 32px; font-size: 16px;">&#x26A1;</div>
-                            <div class="stat-label" style="margin: 0;">ENTRENAMIENTO RAPIDO</div>
+                            <div class="stat-label" style="margin: 0;">ENTRENAMIENTO RÁPIDO</div>
                         </div>
                         <div class="quick-training-actions">
                             <button class="training-action training-action--exam" id="btn-quick-start" type="button">
-                                <span class="training-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m8 4 12 8-12 8V4Z"/></svg></span>
-                                <span class="training-action-copy"><strong>Simulacro aleatorio</strong><small>Practica con una nueva mezcla de casos.</small></span>
+                                <span class="training-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h2c5 0 7 10 12 10h2M17 14l3 3-3 3M4 17h2c1.5 0 2.8-.9 4-2.4M14 9.4C15.2 7.9 16.5 7 18 7h2M17 4l3 3-3 3"/></svg></span>
+                                <span class="training-action-copy"><strong>Simulacro aleatorio</strong><small>10 preguntas. Un nuevo reto.</small></span>
                                 <svg class="training-action-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
                             </button>
                             <button class="training-action training-action--review" id="btn-curva-olvido" type="button">
@@ -1442,18 +1446,30 @@
                             <div class="control-group">
                                 <h3 class="section-label">TIEMPO LÍMITE: <span id="setup-time-label"
                                         class="green-text">LIBRE</span></h3>
-                                <div class="time-selection-row">
-                                    <button class="time-toggle-btn active" id="time-libre-btn" data-time-mode="libre">
-                                        <span class="btn-icon">∞</span>
-                                        <span>Libre</span>
-                                    </button>
-                                    <div class="time-input-wrapper">
-                                        <input type="number" id="setup-time-minutes" placeholder="Minutos">
-                                        <span class="time-unit">MIN</span>
+                                <div class="time-picker" id="setup-time-picker">
+                                    <div class="time-picker-topline">
+                                        <span class="time-picker-caption">DURACIÓN DEL EXAMEN</span>
+                                        <button class="time-toggle-btn active" id="time-libre-btn" type="button" data-time-mode="libre" aria-pressed="true">
+                                            <span aria-hidden="true">∞</span>
+                                            <span id="time-libre-label">Sin límite</span>
+                                        </button>
                                     </div>
+                                    <div class="time-readout" aria-live="polite" aria-atomic="true">
+                                        <span class="time-readout-value" id="setup-time-readout">--:--:--</span>
+                                        <span class="time-readout-unit" id="setup-time-readout-unit">SIN LÍMITE</span>
+                                    </div>
+                                    <div class="time-ruler-wrap" id="setup-time-ruler-wrap" aria-label="Duración del examen">
+                                        <input type="range" id="setup-time-range" min="1" max="480" step="1" value="60" aria-label="Duración del examen en minutos" aria-valuetext="1 hora">
+                                        <div class="time-ruler-ticks" aria-hidden="true"></div>
+                                        <span class="time-ruler-pointer" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="time-ruler-labels" aria-hidden="true">
+                                        <span>1 MIN</span>
+                                        <span>8 H</span>
+                                    </div>
+                                    <input type="number" id="setup-time-minutes" min="1" max="480" step="1" placeholder="Minutos" tabindex="-1" aria-hidden="true">
+                                    <p class="section-hint time-picker-hint">Arrastra la escala o usa las flechas para elegir el tiempo. Sugerido: 1.5 min por pregunta.</p>
                                 </div>
-                                <p class="section-hint" style="text-align:right">Rango sugerido: 1.5 min por pregunta.
-                                </p>
                             </div>
                         </div>
 
@@ -4208,24 +4224,74 @@
                 <strong>¡Promoción hasta el 10 de noviembre de 2026!</strong>
                 <span>Premium Mensual $199/mes · Plan Anual 2027 $1,499 MXN</span>
             </div>
-            <div class="redeem-plan-grid">
-                <button class="premium-plan-cta redeem-plan-card redeem-plan-card--monthly" type="button" data-plan-id="premium_monthly">
-                    <span class="redeem-plan-tag" data-plan-promo="premium_monthly">¡PROMO! HASTA EL 10 DE NOVIEMBRE DE 2026</span><strong>Premium Mensual</strong><span class="redeem-plan-card-copy" data-monthly-plan-copy>30 días de acceso. Renueva manualmente cada mes; sin cobro automático.</span><span class="redeem-plan-original-price" data-plan-original="premium_monthly">Precio regular: $299 MXN/mes</span><span class="redeem-plan-price" data-plan-price="premium_monthly" data-price-format="currency-month">$199 MXN/mes</span><span class="redeem-plan-savings" data-plan-promo="premium_monthly">Ahorra $100 al mes · promo hasta el 10 de noviembre</span><span class="redeem-plan-select">Elegir plan <b aria-hidden="true">→</b></span>
+            <div class="redeem-period-switch" role="group" aria-label="Periodicidad del plan Premium">
+                <span class="redeem-period-label is-active" data-redeem-period-label="monthly">Mensual</span>
+                <button class="redeem-period-control" type="button" role="switch" data-redeem-period-switch aria-checked="false" aria-label="Cambiar a precio anual">
+                    <span class="redeem-period-knob" aria-hidden="true"></span>
                 </button>
-                <button class="premium-plan-cta redeem-plan-card redeem-plan-card--2027" type="button" data-plan-id="enarm_2027">
-                    <span class="redeem-plan-tag" data-plan-promo="enarm_2027">¡PROMO! HASTA EL 10 DE NOVIEMBRE DE 2026</span><strong>Plan Anual 2027</strong><span class="redeem-plan-card-copy">Incluye todo Premium hasta el 1 de octubre de 2027.</span><span class="redeem-plan-benefits">Banco completo · Simulacros · Estadísticas avanzadas</span><span class="redeem-plan-original-price" data-plan-original="enarm_2027">Precio regular: $1,999 MXN</span><span class="redeem-plan-price" data-plan-price="enarm_2027" data-price-format="currency">$1,499 MXN</span><span class="redeem-plan-savings" data-plan-promo="enarm_2027">Ahorra $500 · promo hasta el 10 de noviembre</span><span class="redeem-plan-select">Elegir y pagar <b aria-hidden="true">→</b></span>
-                </button>
-                <button class="premium-plan-cta redeem-plan-card redeem-plan-card--squad" type="button" data-plan-id="squad_2027">
-                    <span class="redeem-plan-tag">MEJOR PRECIO POR PERSONA · AHORRA $2,997</span><strong>Plan Squad 2027</strong><span class="redeem-plan-card-copy">Para estudiar con tres amigos: cuatro accesos Premium individuales hasta octubre de 2027.</span><span class="redeem-plan-benefits">4 cuentas · $1,249.75 por persona · Retos entre amigos</span><span class="redeem-plan-original-price">$7,996 MXN por 4 cuentas</span><span class="redeem-plan-price">$4,999 MXN</span><span class="redeem-plan-select">Elegir plan y pagar <b aria-hidden="true">→</b></span>
-                </button>
+                <span class="redeem-period-label" data-redeem-period-label="annual">Anual</span>
             </div>
-            <div class="redeem-trial-cta">
-                <button class="redeem-trial-button" type="button" data-start-premium-trial data-trial-source="premium_unlock_modal">
-                    <span aria-hidden="true">✦</span>
-                    Probar Premium 15 días gratis
-                    <span aria-hidden="true">→</span>
-                </button>
-                <p>Sin tarjeta · Sin cobro automático · Una prueba por cuenta</p>
+            <div class="redeem-plan-grid">
+                <article class="redeem-plan-card redeem-plan-card--free">
+                    <div class="redeem-plan-hero">
+                        <span class="redeem-plan-tag">Gratis</span>
+                        <strong>Prueba Premium</strong>
+                        <span class="redeem-plan-price-row"><span class="redeem-plan-price">$0</span><span class="redeem-plan-period">15 días</span></span>
+                        <span class="redeem-plan-card-copy">Prueba las funciones Premium sin tarjeta ni cobro automático.</span>
+                        <button class="redeem-plan-select redeem-plan-select--trial" type="button" data-start-premium-trial data-trial-source="premium_unlock_modal">Probar gratis <b aria-hidden="true">→</b></button>
+                    </div>
+                    <div class="redeem-plan-details">
+                        <span class="redeem-plan-feature">Banco completo de casos clínicos</span>
+                        <span class="redeem-plan-feature">Simulacros y estadísticas</span>
+                        <span class="redeem-plan-feature">Una prueba por cuenta</span>
+                    </div>
+                </article>
+                <article class="redeem-plan-card redeem-plan-card--pro">
+                    <div class="redeem-plan-view" data-redeem-period-panel="monthly">
+                        <div class="redeem-plan-hero">
+                            <span class="redeem-plan-tag">Premium</span>
+                            <strong>Acceso mensual</strong>
+                            <span class="redeem-plan-price-row"><span class="redeem-plan-price" data-plan-price="premium_monthly" data-price-format="currency-month">$199 MXN/mes</span></span>
+                            <span class="redeem-plan-original-price" data-plan-original="premium_monthly">$299 MXN/mes</span>
+                            <span class="redeem-plan-savings" data-plan-promo="premium_monthly">Ahorra $100 al mes · promoción hasta el 10 de noviembre</span>
+                            <span class="redeem-plan-card-copy" data-monthly-plan-copy>Acceso Premium por 30 días. Renueva manualmente; sin cobro automático.</span>
+                            <button class="redeem-plan-select" type="button" data-plan-id="premium_monthly">Elegir Premium <b aria-hidden="true">→</b></button>
+                        </div>
+                    </div>
+                    <div class="redeem-plan-view" data-redeem-period-panel="annual" hidden>
+                        <div class="redeem-plan-hero">
+                            <span class="redeem-plan-tag">Premium</span>
+                            <strong>Acceso anual 2027</strong>
+                            <span class="redeem-plan-price-row"><span class="redeem-plan-price" data-plan-price="enarm_2027" data-price-format="currency">$1,499 MXN</span></span>
+                            <span class="redeem-plan-original-price" data-plan-original="enarm_2027">$1,999 MXN</span>
+                            <span class="redeem-plan-savings" data-plan-promo="enarm_2027">Ahorra $500 · promoción hasta el 10 de noviembre</span>
+                            <span class="redeem-plan-card-copy">Todo Premium hasta el 1 de octubre de 2027. Pago único.</span>
+                            <button class="redeem-plan-select" type="button" data-plan-id="enarm_2027">Elegir Premium <b aria-hidden="true">→</b></button>
+                        </div>
+                    </div>
+                    <div class="redeem-plan-details">
+                        <span class="redeem-plan-feature">Banco completo de casos clínicos</span>
+                        <span class="redeem-plan-feature">Simulacro ENARM real cronometrado</span>
+                        <span class="redeem-plan-feature">Especialidades, filtros y GPC</span>
+                        <span class="redeem-plan-feature">Estadísticas y herramientas de estudio</span>
+                    </div>
+                </article>
+                <article class="redeem-plan-card redeem-plan-card--squad">
+                    <div class="redeem-plan-hero">
+                        <span class="redeem-plan-tag">Equipo</span>
+                        <strong>Plan Squad 2027</strong>
+                        <span class="redeem-plan-price-row"><span class="redeem-plan-price">$4,999 MXN</span></span>
+                        <span class="redeem-plan-original-price">$7,996 MXN por 4 cuentas</span>
+                        <span class="redeem-plan-card-copy">Cuatro accesos Premium hasta octubre de 2027 · $1,249.75 por persona.</span>
+                        <button class="redeem-plan-select redeem-plan-select--squad" type="button" data-plan-id="squad_2027">Elegir Squad <b aria-hidden="true">→</b></button>
+                    </div>
+                    <div class="redeem-plan-details">
+                        <span class="redeem-plan-savings">Ahorran $2,997 entre los cuatro</span>
+                        <span class="redeem-plan-feature">4 cuentas Premium individuales</span>
+                        <span class="redeem-plan-feature">Banco completo y simulacros</span>
+                        <span class="redeem-plan-feature">Retos y estudio en equipo</span>
+                    </div>
+                </article>
             </div>
             <div class="redeem-confidence-strip">
                 <div><strong>01</strong><span>Elige el plan</span></div>
