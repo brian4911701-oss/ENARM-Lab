@@ -2,7 +2,9 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const { create, compactHistory } = require('../progress-sync');
+const sync = require('../progress-sync');
+const { create, compactHistory } = sync;
+const { createTestCloud } = require('./progress_test_cloud');
 
 const app = fs.readFileSync(path.join(__dirname, '..', 'app.js'), 'utf8');
 const slice = (start, end) => {
@@ -11,25 +13,26 @@ const slice = (start, end) => {
     return app.slice(a, b);
 };
 const helpers = slice('    const progressOutbox =', '    const isValidPublicUsername =');
-const save = slice('    const saveGlobalStats =', '    const renderAvatarInitials =');
+const save = slice('    const capturePrivateProgress =', '    const renderAvatarInitials =');
 const restore = slice('                let progressRestoration =', '                window.addEventListener("online"');
 const debounce = slice('    let _estudioSaveTimer =', '    const recordStat =');
 const themeGate = slice('        // Loading entitlement listeners', '        const adminPanel =');
 const user = { uid: 'account-a', emailVerified: true };
 const bySpecialty = Object.fromEntries(['mi', 'ped', 'gyo', 'cir'].map(key => [key, { total: 0, correct: 0, name: key }]));
-const oldStats = { sesiones: 2, respondidas: 20, aciertos: 10, pomodoros: 0, bySpecialty, streakData: { currentStreak: 2, lastStudyDate: '2026-10-13' } };
+const oldStats = { sesiones: 2, respondidas: 20, aciertos: 10, pomodoros: 0, bySpecialty, streakData: { currentStreak: 2, lastStudyDate: '2026-10-14' } };
 const newStats = { ...oldStats, sesiones: 3, respondidas: 30, aciertos: 20, streakData: { currentStreak: 3, lastStudyDate: '2026-10-15' } };
 const remote = { globalStatsStr: JSON.stringify(oldStats), historyStr: '[]', theme: 'ocean', createdAt: 'progress-creation' };
 const memory = () => {
     const values = new Map();
-    return { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, String(value)), removeItem: key => values.delete(key) };
+    return { get length() { return values.size; }, key: index => [...values.keys()][index] ?? null, getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, String(value)), removeItem: key => values.delete(key) };
 };
 const snapshot = data => ({ exists: () => Boolean(data), data: () => data, metadata: { fromCache: false } });
-const drain = async () => { for (let i = 0; i < 15; i++) await Promise.resolve(); };
+const drain = async () => { for (let i = 0; i < 80; i++) await Promise.resolve(); };
 
 function createRuntime(storage, options = {}) {
     const timers = new Map();
     const writes = [];
+    const cloud = options.cloud || createTestCloud(options.remote === null ? {} : { 'user_progress/account-a': options.remote || remote }, options);
     const State = {
         currentUid: user.uid, progressRestoreUid: user.uid, progressRestoreReady: true,
         progressDocumentExists: true, globalStats: structuredClone(oldStats), history: [],
@@ -39,6 +42,7 @@ function createRuntime(storage, options = {}) {
     const noop = () => {};
     const context = {
         State, localStorage: storage, console: { error: noop, warn: noop }, Date,
+        document: { querySelectorAll: () => [] },
         USER_PROGRESS_COLLECTION: 'user_progress', PUBLIC_PROFILES_COLLECTION: 'public_profiles',
         PROFILE_AVATAR_STORAGE_KEY: 'avatar', SCALE_STUDY_STORAGE_KEY: 'scales',
         FONT_PRESET_STORAGE_KEY: 'font', APPEARANCE_STORAGE_KEY: 'appearance',
@@ -55,15 +59,22 @@ function createRuntime(storage, options = {}) {
         normalizePhoneInput: value => value, normalizeReferralCode: value => value,
         mergeCloudAndLocalReports: noop, refreshQuarantineKeys: noop, updateReferralUI: noop,
         applyCurrentProfileAvatar: noop, rebuildTopicMastery: noop,
-        updateDashboardStats: noop, updateCharts: noop, $: () => null, showNotification: noop
+        updateDashboardStats: noop, updateCharts: noop, updateHistoryView: noop, renderProfileView: noop, renderPomodoroHub: noop,
+        $: () => null, showNotification: noop
     };
     const window = {
-        ENARMProgressSync: { create, compactHistory },
+        ENARMProgressSync: sync,
         clearTimeout: id => timers.delete(id),
         setTimeout: (callback, ms) => { const id = timers.size + 1; timers.set(id, { callback, ms }); return id; },
         FB: {
             auth: { currentUser: { ...user } }, db: {},
-            doc: (_db, collection, uid) => ({ collection, uid }),
+            doc: (_db, ...parts) => ({ collection: parts[0], uid: parts[1], path: parts.join('/') }),
+            runTransaction: async (db, callback) => {
+                const result = await cloud.runTransaction(db, callback);
+                writes.splice(0, writes.length, ...cloud.writes.filter(write => write.path === 'user_progress/account-a').map(write => write.data));
+                return result;
+            },
+            onSnapshot: cloud.onSnapshot,
             serverTimestamp: () => 'server-time',
             getDoc: async ref => {
                 if (ref.collection === 'public_profiles') throw new Error('permission-denied');
@@ -72,7 +83,7 @@ function createRuntime(storage, options = {}) {
             },
             getDocFromServer: async () => {
                 if (options.readFails) throw new Error('unavailable');
-                return options.remoteSnapshot || snapshot(options.remote === null ? null : options.remote || remote);
+                return options.remoteSnapshot || cloud.get({ path: 'user_progress/account-a' });
             },
             setDoc: (ref, data) => {
                 if (ref.collection !== 'user_progress') return Promise.resolve();
@@ -88,17 +99,18 @@ function createRuntime(storage, options = {}) {
         }
     };
     Object.assign(context, { window, setTimeout: window.setTimeout, clearTimeout: window.clearTimeout });
-    return { State, window, timers, writes, context };
+    return { State, window, timers, writes, context, cloud };
 }
 
 function session(storage, options = {}) {
     const runtime = createRuntime(storage, options);
     vm.createContext(runtime.context);
-    vm.runInContext(helpers + save + restore + debounce + '\nglobalThis.api = { saveGlobalStats, getPrivateUserSnapshot, restoreAuthenticatedProgress, flushPendingProgress, debouncedSave, progressOutbox };', runtime.context);
+    vm.runInContext(helpers + save + restore + debounce + '\nglobalThis.api = { saveGlobalStats, getPrivateUserSnapshot, restoreAuthenticatedProgress, flushPendingProgress, debouncedSave, progressOutbox, bindProgressListener, receiveRemoteProgress };', runtime.context);
+    runtime.context.api.progressOutbox.begin(user.uid, vm.runInContext('capturePrivateProgress()', runtime.context));
     return { ...runtime, api: runtime.context.api };
 }
 
-module.exports = { createRuntime, helpers, save, restore, debounce, user, oldStats, newStats, remote, snapshot };
+module.exports = { createRuntime, helpers, save, restore, debounce, user, oldStats, newStats, remote, snapshot, session, memory, drain, createTestCloud, sync };
 
 if (require.main === module) (async () => {
     const storage = memory();
@@ -129,6 +141,7 @@ if (require.main === module) (async () => {
     assert.equal(otherDevice.State.theme, 'sunset');
 
     const failed = session(memory(), { writeFails: true });
+    failed.State.theme = 'forest';
     failed.api.saveGlobalStats();
     failed.api.saveGlobalStats();
     await drain();
@@ -136,21 +149,23 @@ if (require.main === module) (async () => {
     assert([...failed.timers.values()].some(timer => timer.ms === 15000), 'Failures schedule retries');
 
     let resolveFirst, resolveSecond;
-    const concurrent = session(memory(), { write: () => new Promise(resolve => { if (!resolveFirst) resolveFirst = resolve; else resolveSecond = resolve; }) });
+    const concurrent = session(memory(), { beforeCommit: () => new Promise(resolve => { if (!resolveFirst) resolveFirst = resolve; else resolveSecond = resolve; }) });
+    concurrent.State.theme = 'light';
     concurrent.api.saveGlobalStats();
+    await drain();
     concurrent.State.theme = 'forest';
     concurrent.api.saveGlobalStats();
     const latestRevision = concurrent.api.progressOutbox.read(user.uid).revision;
-    assert.equal(concurrent.writes.length, 1, 'Writes are serialized');
+    assert.equal(concurrent.writes.length, 0, 'The first transaction has not committed yet');
     resolveFirst();
     await drain();
     assert.equal(concurrent.api.progressOutbox.read(user.uid).revision, latestRevision);
     assert.equal(concurrent.api.progressOutbox.read(user.uid).pending, true, 'An old acknowledgement cannot clear newer changes');
-    assert.equal(concurrent.writes.length, 2);
-    assert.equal(concurrent.writes[1].theme, 'forest');
+    assert.equal(concurrent.writes.length, 1);
     resolveSecond();
     await drain();
     assert.equal(concurrent.api.progressOutbox.read(user.uid).pending, false);
+    assert.equal(concurrent.writes[1].theme, 'forest');
 
     // A legacy read cannot authorize replacing an unread current progress document.
     const unavailable = session(storage, { readFails: true });
@@ -169,11 +184,14 @@ if (require.main === module) (async () => {
     await drain();
     assert.equal(fresh.writes[0].createdAt, 'server-time', 'New documents use a server creation timestamp');
     fresh.api.saveGlobalStats();
+    fresh.State.theme = 'forest';
+    fresh.api.saveGlobalStats();
     await drain();
     assert(!('createdAt' in fresh.writes[1]));
 
     const unverified = session(memory());
     unverified.window.FB.auth.currentUser.emailVerified = false;
+    unverified.State.theme = 'forest';
     unverified.api.saveGlobalStats();
     await drain();
     assert.equal(unverified.writes.length, 0);

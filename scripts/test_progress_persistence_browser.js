@@ -13,10 +13,13 @@ const harness = options => `(() => {
     const oldStats = ${JSON.stringify(fixture.oldStats)};
     const remote = ${JSON.stringify(fixture.remote)};
     const snapshot = ${fixture.snapshot.toString()};
-    const { create, compactHistory } = globalThis.ENARMProgressSync;
+    const sync = globalThis.ENARMProgressSync;
+    const { create, compactHistory } = sync;
+    const createTestCloud = ${fixture.createTestCloud.toString()};
     const runtime = (${fixture.createRuntime.toString()})(localStorage, ${JSON.stringify(options)});
     const code = ${JSON.stringify(fixture.helpers + fixture.save + fixture.restore + fixture.debounce + '\nreturn { saveGlobalStats, restoreAuthenticatedProgress, debouncedSave, progressOutbox };')};
     runtime.api = Function(...Object.keys(runtime.context), code)(...Object.values(runtime.context));
+    runtime.api.progressOutbox.begin(user.uid, Function(...Object.keys(runtime.context), ${JSON.stringify(fixture.save + '\nreturn capturePrivateProgress();')})(...Object.values(runtime.context)));
     globalThis.runtime = runtime;
 })();`;
 
@@ -51,6 +54,7 @@ const harness = options => `(() => {
             page.on('pageerror', error => errors.push(error.message));
             await page.setViewport({ width: 412, height: 915, isMobile: true });
             await page.goto(origin + '/persistence-test');
+            await page.addScriptTag({ content: fs.readFileSync(path.resolve(__dirname, '..', 'streak-core.js'), 'utf8') });
             await page.addScriptTag({ content: fs.readFileSync(path.resolve(__dirname, '..', 'progress-sync.js'), 'utf8') });
             await page.addScriptTag({ content: harness(options) });
             assert.deepEqual(errors, [], 'Persistence harness must initialize');

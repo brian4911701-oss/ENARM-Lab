@@ -21,6 +21,24 @@ service cloud.firestore {
       return isVerified() && request.auth.uid == uid;
     }
 
+    function validProgressSyncCreate(data) {
+      return !data.keys().hasAny(["syncVersion", "syncRevision", "syncEpoch"])
+        || (data.keys().hasAll(["syncVersion", "syncRevision", "syncEpoch"])
+          && data.syncVersion == 2 && data.syncRevision is int && data.syncRevision == 1
+          && data.syncEpoch is string && data.syncEpoch.size() <= 100);
+    }
+
+    function validProgressSyncUpdate(before, after) {
+      // Once upgraded, a legacy app cannot replace this document with a stale
+      // full snapshot. Current clients advance the revision in a transaction.
+      return (!before.keys().hasAny(["syncVersion"]) && validProgressSyncCreate(after))
+        || (before.keys().hasAll(["syncVersion", "syncRevision"])
+          && after.keys().hasAll(["syncVersion", "syncRevision", "syncEpoch"])
+          && before.syncVersion == 2 && after.syncVersion == 2
+          && after.syncRevision is int && after.syncRevision == before.syncRevision + 1
+          && after.syncEpoch is string && after.syncEpoch.size() <= 100);
+    }
+
     function validPublicUsername(value) {
       return value is string
         && value.size() >= 3
@@ -394,10 +412,11 @@ service cloud.firestore {
           "reviewQueueStr", "scaleStudyStr", "topicMasteryStr", "caseNotebookStr", "studyCalendarStr",
           "lastPostmortemStr", "pomodoroSettingsStr", "pomodoroLogStr",
           "pomodoroSpecialtiesStr", "pomodoroFocusLabel", "globalStatsStr", "historyStr",
-          "reportsStr", "createdAt", "updatedAt"
+          "reportsStr", "createdAt", "updatedAt", "syncVersion", "syncRevision", "syncEpoch"
         ])
         && request.resource.data.uid == uid
         && request.resource.data.schemaVersion == 1
+        && validProgressSyncCreate(request.resource.data)
         && request.resource.data.updatedAt == request.time;
       allow update: if isVerifiedSelf(uid)
         && request.resource.data.keys().hasOnly([
@@ -405,13 +424,30 @@ service cloud.firestore {
           "reviewQueueStr", "scaleStudyStr", "topicMasteryStr", "caseNotebookStr", "studyCalendarStr",
           "lastPostmortemStr", "pomodoroSettingsStr", "pomodoroLogStr",
           "pomodoroSpecialtiesStr", "pomodoroFocusLabel", "globalStatsStr", "historyStr",
-          "reportsStr", "createdAt", "updatedAt"
+          "reportsStr", "createdAt", "updatedAt", "syncVersion", "syncRevision", "syncEpoch"
         ])
         && request.resource.data.uid == resource.data.uid
         && request.resource.data.schemaVersion == 1
+        && validProgressSyncUpdate(resource.data, request.resource.data)
         && request.resource.data.createdAt == resource.data.createdAt
         && request.resource.data.updatedAt == request.time;
       allow delete: if isSelf(uid) || isAdmin();
+
+      match /sync_clients/{clientId} {
+        allow read: if isSelf(uid) || isAdmin();
+        allow create: if isVerifiedSelf(uid)
+          && request.resource.data.keys().hasOnly(["uid", "lastSequence", "updatedAt"])
+          && request.resource.data.uid == uid
+          && request.resource.data.lastSequence is int && request.resource.data.lastSequence > 0
+          && request.resource.data.updatedAt == request.time;
+        allow update: if isVerifiedSelf(uid)
+          && request.resource.data.keys().hasOnly(["uid", "lastSequence", "updatedAt"])
+          && request.resource.data.uid == uid
+          && request.resource.data.lastSequence is int
+          && request.resource.data.lastSequence > resource.data.lastSequence
+          && request.resource.data.updatedAt == request.time;
+        allow delete: if isSelf(uid) || isAdmin();
+      }
     }
 
     // Datos de contacto privados para el panel de administraci\u00f3n.

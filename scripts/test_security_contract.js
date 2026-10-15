@@ -34,11 +34,15 @@ assert(app.includes("bindChallengeButton();"), "el botón de retos debe enlazars
 assert(app.includes("getChallengeableFriendEntries"), "la selección de amigos para retos no debe depender exclusivamente del ranking público");
 assert(rules.includes("match /reports/{reportId}") && rules.includes("match /user_push_tokens/{tokenId}"), "reportes y tokens requieren reglas explícitas");
 
-const publicPayload = app.slice(app.indexOf("const publicProfile = {"), app.indexOf("const privateProgress = {"));
+const publicStart = app.indexOf("const publicProfile = {");
+const publicEnd = app.indexOf("const privateProgress = capturePrivateProgress();", publicStart);
+assert(publicStart >= 0 && publicEnd > publicStart, "el contrato debe inspeccionar un payload público real");
+const publicPayload = app.slice(publicStart, publicEnd);
 ["phone", "university", "historyStr", "caseNotebookStr", "reportsStr", "email"].forEach((field) => {
   assert(!publicPayload.includes(field), `el perfil público no debe contener ${field}`);
 });
 assert(app.includes("USER_PROGRESS_COLLECTION"), "el progreso debe escribirse en su colección privada");
+assert(rules.includes('match /sync_clients/{clientId}') && rules.includes('after.syncRevision == before.syncRevision + 1'), "el protocolo debe bloquear escrituras antiguas y proteger sus cursores");
 assert(app.includes("Promise.allSettled"), "un fallo de lectura secundaria no debe impedir restaurar el progreso disponible");
 assert(app.includes("progressRestoreReady"), "la app debe bloquear escrituras remotas hasta terminar de restaurar el progreso");
 assert(app.includes("sendVerificationEmailIfDue"), "las cuentas antiguas sin verificar deben recibir un nuevo correo de verificación");

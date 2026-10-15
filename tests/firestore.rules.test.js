@@ -70,6 +70,28 @@ test("perfiles públicos exigen verificación, esquema estricto y entitlement pa
   await assertFails(setDoc(doc(authDb(userB), "public_profiles", userB), { ...validProfile, uid: userB, username: "Usuario B", isPremium: true }));
 });
 
+test("el progreso acepta escalas y protege revisiones ante una app antigua", async () => {
+  const db = authDb(userA);
+  const ref = doc(db, "user_progress", userA);
+  await assertSucceeds(setDoc(ref, {
+    scaleStudyStr: "{}", syncVersion: 2, syncRevision: 1, syncEpoch: "initial", updatedAt: serverTimestamp()
+  }, { merge: true }));
+  await assertFails(setDoc(ref, { historyStr: "[]", updatedAt: serverTimestamp() }, { merge: true }));
+  await assertFails(setDoc(ref, { syncRevision: 1, updatedAt: serverTimestamp() }, { merge: true }));
+  await assertSucceeds(setDoc(ref, { syncRevision: 2, theme: "forest", updatedAt: serverTimestamp() }, { merge: true }));
+  await assertFails(setDoc(ref, { syncRevision: 3, createdAt: Timestamp.fromMillis(1), updatedAt: serverTimestamp() }, { merge: true }));
+  await assertFails(setDoc(doc(authDb(userB), "user_progress", userA), { syncRevision: 3, updatedAt: serverTimestamp() }, { merge: true }));
+});
+
+test("los cursores de sincronización son privados y solo avanzan", async () => {
+  const ref = doc(authDb(userA), "user_progress", userA, "sync_clients", "phone");
+  await assertSucceeds(setDoc(ref, { uid: userA, lastSequence: 1, updatedAt: serverTimestamp() }));
+  await assertFails(getDoc(doc(authDb(userB), "user_progress", userA, "sync_clients", "phone")));
+  await assertFails(setDoc(ref, { uid: userA, lastSequence: 1, updatedAt: serverTimestamp() }));
+  await assertSucceeds(setDoc(ref, { uid: userA, lastSequence: 2, updatedAt: serverTimestamp() }));
+  await assertFails(setDoc(doc(unverifiedDb(userA), "user_progress", userA, "sync_clients", "unverified"), { uid: userA, lastSequence: 1, updatedAt: serverTimestamp() }));
+});
+
 test("el directorio administrativo admite cuentas sin verificar, pero sigue siendo privado", async () => {
   const directory = {
     uid: userB,

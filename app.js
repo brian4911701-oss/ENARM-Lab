@@ -74,6 +74,10 @@
         progressRestoreUid: "",
         progressRestoreReady: false,
         progressDocumentExists: false,
+        progressSyncRevision: -1,
+        progressUnsub: null,
+        progressListenerUid: "",
+        progressSyncError: false,
         entitlement: null,
         entitlementLoaded: false,
         entitlementUnsub: null,
@@ -1811,37 +1815,160 @@
         return normalized || fallback;
     };
 
+    const emptyAccountProgress = JSON.stringify(Object.fromEntries([
+        'globalStats', 'history', 'reportedQuestions', 'reportedQuestionsLocal', 'dailyPlan', 'reviewQueue',
+        'topicMastery', 'caseNotebook', 'studyCalendar', 'lastPostmortem', 'scaleStudy', 'pomodoroSettings',
+        'pomodoroState', 'pomodoroLog', 'pomodoroSpecialties', 'pomodoroFocusLabel',
+        'userSpecialty', 'userUniversity', 'userPhone', 'userTargetYear', 'userAvatar', 'isScorePublic'
+    ].map(key => [key, State[key]])));
     const progressOutbox = window.ENARMProgressSync.create(localStorage);
     const progressWrites = new Map();
     let progressRetryTimer = null;
+    const updateProgressSyncStatus = () => {
+        const user = window.FB?.auth?.currentUser;
+        let text = "Cargando progreso de tu cuenta";
+        if (progressOutbox.read(State.currentUid)?.pending || State.progressSyncError) text = "Cambios guardados aquí · sincronización pendiente";
+        else if (user && !user.emailVerified) text = "Guardado en este dispositivo · verifica tu correo para sincronizar";
+        else if (State.progressRestoreReady) text = "Progreso sincronizado";
+        document.querySelectorAll("[data-progress-sync-status]").forEach(element => { element.textContent = text; });
+    };
+    const applyPrivateProgress = (data) => {
+        const mappings = {
+            globalStatsStr: 'globalStats', historyStr: 'history', dailyPlanStr: 'dailyPlan',
+            reviewQueueStr: 'reviewQueue', scaleStudyStr: 'scaleStudy', topicMasteryStr: 'topicMastery',
+            caseNotebookStr: 'caseNotebook', studyCalendarStr: 'studyCalendar', lastPostmortemStr: 'lastPostmortem',
+            pomodoroSettingsStr: 'pomodoroSettings', pomodoroLogStr: 'pomodoroLog', pomodoroSpecialtiesStr: 'pomodoroSpecialties',
+            reportsStr: 'reportedQuestionsLocal'
+        };
+        // Parse everything first: a malformed field must not partially replace State.
+        const next = {};
+        for (const [field, stateKey] of Object.entries(mappings)) if (data[field] !== undefined) next[stateKey] = JSON.parse(data[field]);
+        Object.assign(State, next);
+        if (data.theme) { State.theme = normalizeThemeSelection(data.theme); applyTheme(State.theme); }
+        if (data.fontPreset) { State.fontPreset = normalizeFontPreset(data.fontPreset); applyFontPreset(State.fontPreset); }
+        if (data.appearanceStr) { State.appearance = normalizeAppearance(JSON.parse(data.appearanceStr)); applyAppearance(State.appearance); }
+        if (data.pomodoroFocusLabel !== undefined) State.pomodoroFocusLabel = data.pomodoroFocusLabel;
+        State.progressSyncRevision = Number(data.syncRevision) || 0;
+        ensureStudySystemsState();
+        mergeCloudAndLocalReports();
+        refreshQuarantineKeys();
+        rebuildTopicMastery();
+        ensureDailyPlanFresh();
+        // Never stage a new operation in response to a remote snapshot.
+        saveGlobalStats({ localOnly: true });
+        updateDashboardStats();
+        if (State.view === "view-estadisticas" && typeof updateCharts === 'function') updateCharts();
+        if (State.view === "view-historial") updateHistoryView();
+        if (State.view === "view-profile") renderProfileView();
+        if (State.view === "view-pomodoro") renderPomodoroHub();
+        updateProgressSyncStatus();
+    };
+    const stopProgressListener = () => {
+        State.progressUnsub?.();
+        State.progressUnsub = null;
+        State.progressListenerUid = "";
+        window.clearTimeout(progressRetryTimer);
+    };
+    const receiveRemoteProgress = (uid, data) => {
+        if (State.currentUid !== uid || window.FB?.auth?.currentUser?.uid !== uid) return;
+        if (data.syncVersion === 2 && Number(data.syncRevision) <= State.progressSyncRevision) return;
+        if (progressOutbox.read(uid)?.pending) { void flushPendingProgress(); return; }
+        applyPrivateProgress(progressOutbox.accept(uid, data));
+    };
+    const bindProgressListener = uid => {
+        if (State.progressListenerUid === uid || !window.FB?.onSnapshot) return;
+        stopProgressListener();
+        State.progressListenerUid = uid;
+        State.progressUnsub = window.FB.onSnapshot(window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid), snapshot => {
+            if (!snapshot.exists() || snapshot.metadata?.fromCache || snapshot.metadata?.hasPendingWrites) return;
+            try { receiveRemoteProgress(uid, snapshot.data()); }
+            catch (error) { State.progressSyncError = true; updateProgressSyncStatus(); console.error("No se pudo aplicar el progreso remoto.", error); }
+        }, error => {
+            State.progressSyncError = true;
+            State.progressListenerUid = "";
+            updateProgressSyncStatus();
+            console.warn("La sincronización en vivo se reanudará al reconectar.", error);
+        });
+    };
+    const publishPublicProgress = async (uid, desired = null, profileFields = []) => {
+        const user = window.FB?.auth?.currentUser;
+        if (!user?.emailVerified || user.uid !== uid || State.currentUid !== uid) return;
+        const fallback = desired || {
+            uid, username: normalizePublicUsername(State.userName), specialty: State.userSpecialty || '',
+            avatarId: normalizeProfileAvatar(State.userAvatar), scoreVisible: State.isScorePublic !== false,
+            isPremium: hasIndividualPremiumEntitlement()
+        };
+        try {
+            await window.FB.runTransaction(window.FB.db, async transaction => {
+                const progressRef = window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid);
+                const profileRef = window.FB.doc(window.FB.db, PUBLIC_PROFILES_COLLECTION, uid);
+                const [progress, profile] = await Promise.all([transaction.get(progressRef), transaction.get(profileRef)]);
+                if (!progress.exists() || window.FB.auth.currentUser?.uid !== uid || State.currentUid !== uid) return;
+                const data = profile.exists() ? { ...profile.data() } : { ...fallback };
+                // Saving an exam or a theme must not undo another device's alias,
+                // avatar or score privacy. Only an explicit profile edit changes them.
+                profileFields.forEach(field => { data[field] = fallback[field]; });
+                const totals = JSON.parse(progress.data().globalStatsStr || '{}');
+                data.score = data.scoreVisible !== false && totals.respondidas > 0
+                    ? Number(((totals.aciertos / totals.respondidas) * 100).toFixed(1)) : (data.scoreVisible === false ? null : 0);
+                data.flame = window.ENARMStreak?.effective(totals.streakData) ?? getEffectiveStreak();
+                data.updatedAt = window.FB.serverTimestamp();
+                transaction.set(profileRef, data, { merge: true });
+            });
+        } catch (error) { console.warn("No se pudo actualizar el resumen público; el progreso privado conserva su respaldo.", error); }
+    };
     const flushPendingProgress = async () => {
         const user = window.FB?.auth?.currentUser;
         if (!user?.emailVerified || State.currentUid !== user.uid
             || State.progressRestoreUid !== user.uid || !State.progressRestoreReady) return;
         const uid = user.uid;
         if (progressWrites.has(uid)) return progressWrites.get(uid);
-        const pending = progressOutbox.read(uid);
-        if (!pending?.pending) return;
-        const payload = {
-            ...pending.data, uid, schemaVersion: 1,
-            updatedAt: window.FB.serverTimestamp()
-        };
-        // A merged update preserves user_progress.createdAt. The account and
-        // directory creation dates belong to different documents.
-        if (!State.progressDocumentExists) payload.createdAt = window.FB.serverTimestamp();
-        const write = window.FB.setDoc(
-            window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid), payload, { merge: true }
-        );
+        const operations = progressOutbox.batch(uid);
+        if (!operations.length) { updateProgressSyncStatus(); return; }
+        const ref = window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid);
+        const write = window.FB.runTransaction(window.FB.db, async transaction => {
+            const snapshot = await transaction.get(ref);
+            const remote = snapshot.exists() ? snapshot.data() : {};
+            const actors = [...new Set(operations.map(operation => operation.actor))];
+            const cursors = await Promise.all(actors.map(actor => transaction.get(window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid, 'sync_clients', actor))));
+            const heads = Object.fromEntries(actors.map((actor, index) => [actor, cursors[index].exists() ? cursors[index].data().lastSequence : 0]));
+            if (State.currentUid !== uid || window.FB.auth.currentUser?.uid !== uid) throw new Error("La cuenta activa cambió durante la sincronización.");
+            const result = window.ENARMProgressSync.mergeBatch(remote, operations, heads);
+            if (operations.every(operation => operation.sequence <= (heads[operation.actor] || 0))) return { ...result, data: remote };
+            const payload = Object.fromEntries(window.ENARMProgressSync.fields.filter(field => result.data[field] !== undefined).map(field => [field, result.data[field]]));
+            Object.assign(payload, {
+                uid, schemaVersion: 1, syncVersion: 2,
+                syncRevision: (Number(remote.syncRevision) || 0) + 1,
+                syncEpoch: result.data.syncEpoch || remote.syncEpoch || 'initial',
+                updatedAt: window.FB.serverTimestamp()
+            });
+            if (!snapshot.exists()) payload.createdAt = window.FB.serverTimestamp();
+            transaction.set(ref, payload, { merge: true });
+            actors.forEach(actor => {
+                if (result.heads[actor] > (heads[actor] || 0)) transaction.set(
+                    window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid, 'sync_clients', actor),
+                    { uid, lastSequence: result.heads[actor], updatedAt: window.FB.serverTimestamp() }, { merge: true }
+                );
+            });
+            return { ...result, data: { ...result.data, ...payload } };
+        });
         // Callers joining an in-flight write share completion; the first caller
         // handles its error and keeps the outbox pending for retry.
         progressWrites.set(uid, write.catch(() => {}));
         let saved = false;
         try {
-            await write;
+            const result = await write;
             saved = true;
-            if (State.currentUid === uid) State.progressDocumentExists = true;
-            progressOutbox.acknowledge(uid, pending.revision);
+            const view = progressOutbox.accept(uid, result.data, operations);
+            if (State.currentUid === uid && window.FB.auth.currentUser?.uid === uid) {
+                State.progressDocumentExists = true;
+                State.progressSyncError = false;
+                applyPrivateProgress(view);
+                void publishPublicProgress(uid);
+                if (result.ignored.length) showNotification("El progreso se reinició desde otro dispositivo. Los cambios anteriores al reinicio no vuelven a añadir estadísticas.", "info");
+            }
         } catch (error) {
+            if (State.currentUid === uid) { State.progressSyncError = true; updateProgressSyncStatus(); }
             console.error("No se pudo sincronizar el progreso; el respaldo local sigue pendiente.", error);
         } finally {
             progressWrites.delete(uid);
@@ -5036,9 +5163,7 @@
         if (State.userDirectorySyncUid !== user.uid) resetUserDirectorySyncState(user.uid);
 
         const now = Date.now();
-        const shouldSyncProfile = forceProfile
-            || !State.userDirectoryKnownExists
-            || now - State.userDirectoryLastProfileSyncAt >= USER_DIRECTORY_PROFILE_SYNC_INTERVAL_MS;
+        const shouldSyncProfile = forceProfile || !State.userDirectoryKnownExists;
         const shouldSyncPresence = forcePresence
             || !State.userDirectoryLastPresenceSyncAt
             || now - State.userDirectoryLastPresenceSyncAt >= USER_PRESENCE_HEARTBEAT_INTERVAL_MS;
@@ -5057,7 +5182,10 @@
                 }
 
                 const data = { uid: syncUid };
-                if (shouldSyncProfile) {
+                // Presence must not republish stale contact/profile fields.
+                data.email = user.email || "";
+                data.emailVerified = user.emailVerified === true;
+                if (forceProfile || !exists) {
                     data.username = normalizePublicUsername(State.userName || user.displayName || (user.email ? user.email.split("@")[0] : "Aspirante"));
                     data.email = String(user.email || "").slice(0, 160);
                     data.emailVerified = user.emailVerified === true;
@@ -6461,7 +6589,35 @@
     window.submitFeedback = submitFeedback;
     window.copyFeedbackToClipboard = copyFeedbackToClipboard;
 
-    const saveGlobalStats = ({ deferRemote = false } = {}) => {
+    const capturePrivateProgress = () => {
+        const uid = State.currentUid;
+        const reportsToSave = State.reportedQuestionsLocal || State.reportedQuestions || [];
+        const historyStr = JSON.stringify(window.ENARMProgressSync.compactHistory(State.history));
+        const privateProgress = {
+            uid,
+            schemaVersion: 1,
+            theme: State.theme || "ocean",
+            fontPreset: normalizeFontPreset(State.fontPreset),
+            appearanceStr: JSON.stringify(normalizeAppearance(State.appearance)),
+            dailyPlanStr: JSON.stringify(State.dailyPlan || null),
+            reviewQueueStr: JSON.stringify(State.reviewQueue || []),
+            scaleStudyStr: JSON.stringify(State.scaleStudy || {}),
+            topicMasteryStr: JSON.stringify(State.topicMastery || {}),
+            caseNotebookStr: JSON.stringify(State.caseNotebook || []),
+            studyCalendarStr: JSON.stringify(State.studyCalendar || {}),
+            lastPostmortemStr: JSON.stringify(State.lastPostmortem || null),
+            pomodoroSettingsStr: JSON.stringify(State.pomodoroSettings || createDefaultPomodoroSettings()),
+            pomodoroLogStr: JSON.stringify(State.pomodoroLog || []),
+            pomodoroSpecialtiesStr: JSON.stringify(State.pomodoroSpecialties || []),
+            pomodoroFocusLabel: String(State.pomodoroFocusLabel || ""),
+            globalStatsStr: JSON.stringify(State.globalStats),
+            historyStr,
+            reportsStr: JSON.stringify(reportsToSave)
+        };
+        return privateProgress;
+    };
+
+    const saveGlobalStats = ({ deferRemote = false, localOnly = false, reset = false, profileFields = [] } = {}) => {
         ensureStudySystemsState();
         ensureDailyPlanFresh();
         State.globalStats.streakData = getStudyStreakData();
@@ -6491,6 +6647,7 @@
         const reportsToSave = State.reportedQuestionsLocal || State.reportedQuestions || [];
         localStorage.setItem("enarm_reports", JSON.stringify(reportsToSave));
 
+        if (localOnly) return;
         // Sincroniza por separado el perfil público y el progreso privado.
         if (window.FB && window.FB.auth.currentUser) {
             const uid = window.FB.auth.currentUser.uid;
@@ -6510,45 +6667,18 @@
                 flame: getEffectiveStreak(),
                 updatedAt: window.FB.serverTimestamp ? window.FB.serverTimestamp() : new Date()
             };
-            const privateProgress = {
-                uid,
-                schemaVersion: 1,
-                theme: State.theme || "ocean",
-                fontPreset: normalizeFontPreset(State.fontPreset),
-                appearanceStr: JSON.stringify(normalizeAppearance(State.appearance)),
-                dailyPlanStr: JSON.stringify(State.dailyPlan || null),
-                reviewQueueStr: JSON.stringify(State.reviewQueue || []),
-                scaleStudyStr: JSON.stringify(State.scaleStudy || {}),
-                topicMasteryStr: JSON.stringify(State.topicMastery || {}),
-                caseNotebookStr: JSON.stringify(State.caseNotebook || []),
-                studyCalendarStr: JSON.stringify(State.studyCalendar || {}),
-                lastPostmortemStr: JSON.stringify(State.lastPostmortem || null),
-                pomodoroSettingsStr: JSON.stringify(State.pomodoroSettings || createDefaultPomodoroSettings()),
-                pomodoroLogStr: JSON.stringify(State.pomodoroLog || []),
-                pomodoroSpecialtiesStr: JSON.stringify(State.pomodoroSpecialties || []),
-                pomodoroFocusLabel: String(State.pomodoroFocusLabel || ""),
-                globalStatsStr: JSON.stringify(State.globalStats),
-                historyStr,
-                reportsStr: JSON.stringify(reportsToSave)
-            };
+            const privateProgress = capturePrivateProgress();
             // Save before starting a request, including while restoration is
             // still in progress. Reopening must recover unacknowledged work.
             if (State.currentUid === uid && State.progressRestoreUid === uid) {
-                try { progressOutbox.stage(uid, privateProgress); }
+                try { progressOutbox.stage(uid, privateProgress, { reset }); updateProgressSyncStatus(); }
                 catch (error) {
                     console.error("No se pudo crear el respaldo local de progreso.", error);
                     showNotification("No se pudo guardar el progreso en este dispositivo. Revisa el espacio disponible.", "warning");
                 }
             }
             if (deferRemote || State.progressRestoreUid !== uid || !State.progressRestoreReady) return;
-            void syncUserDirectory(window.FB.auth.currentUser, { forceProfile: true });
-
-            window.FB.setDoc(
-                window.FB.doc(window.FB.db, PUBLIC_PROFILES_COLLECTION, uid),
-                publicProfile,
-                { merge: true }
-            ).catch(err => console.error("Error sincronizando perfil público:", err));
-            void flushPendingProgress();
+            void flushPendingProgress().then(() => publishPublicProgress(uid, publicProfile, profileFields));
         }
     };
 
@@ -6637,7 +6767,7 @@
             (avatarId) => {
                 State.userAvatar = avatarId;
                 applyCurrentProfileAvatar();
-                saveGlobalStats();
+                saveGlobalStats({ profileFields: ['avatarId'] });
                 renderProfileAvatarPicker();
                 const modal = $("avatar-picker-modal");
                 if (modal) {
@@ -9421,6 +9551,7 @@
         State.mode = mode;
         State.currentExamIsReal = currentExamIsReal;
         State.currentExamType = currentExamType;
+        State.currentExamSessionId = window.ENARMProgressSync.id();
         State.activeReviewQueueItemId = reviewQueueItemId || "";
         State.durationSec = Math.max(parseInt(durationSec, 10) || 0, 0);
         State.currentIndex = 0;
@@ -10743,6 +10874,7 @@
             // Track actual blank count for accurate dashboard stats
             State.globalStats.totalBlank = (State.globalStats.totalBlank || 0) + blank;
             State.history.push({
+                id: State.currentExamSessionId || window.ENARMProgressSync.id(),
                 timestamp: Date.now(),
                 tipo: State.currentExamType,
                 sessionKind: State.mode,
@@ -14101,7 +14233,7 @@
                 applyCurrentProfileAvatar();
                 syncReclassAccessUI();
 
-                saveGlobalStats();
+                saveGlobalStats({ profileFields: ['username', 'specialty', 'avatarId', 'scoreVisible'] });
                 void syncUserDirectory(window.FB?.auth?.currentUser, { forceProfile: true });
                 syncOptionalAnalyticsIdentity();
                 renderProfileView();
@@ -14867,7 +14999,7 @@
                 State.pomodoroFocusLabel = "";
                 stopPomodoroTicker();
 
-                saveGlobalStats();
+                saveGlobalStats({ reset: true });
                 updateDashboardStats();
                 if (typeof updateCharts === 'function') updateCharts();
                 showNotification("Estadísticas eliminadas correctamente.");
@@ -14970,6 +15102,8 @@
                 const deleteRefs = [
                     "leaderboard", "public_profiles", "user_directory", "user_progress", "user_metrics", "app_ratings"
                 ].map(name => window.FB.doc(window.FB.db, name, uid));
+                const syncClients = await window.FB.getDocs(window.FB.collection(window.FB.db, USER_PROGRESS_COLLECTION, uid, 'sync_clients'));
+                syncClients.docs.forEach(snapshot => deleteRefs.push(snapshot.ref));
                 const friendRefs = new Map([...outgoingFriends, ...incomingFriends].map(docSnap => [docSnap.id, docSnap.ref]));
                 reports.forEach(docSnap => deleteRefs.push(docSnap.ref));
                 friendRefs.forEach(ref => deleteRefs.push(ref));
@@ -17506,17 +17640,6 @@
                                 syncAuthenticatedUI(data.username);
                             }
 
-                            if (data.theme) { State.theme = normalizeThemeSelection(data.theme); localStorage.setItem("enarm_theme", State.theme); applyTheme(State.theme); }
-                            if (data.fontPreset) { State.fontPreset = normalizeFontPreset(data.fontPreset); localStorage.setItem(FONT_PRESET_STORAGE_KEY, State.fontPreset); applyFontPreset(State.fontPreset); }
-                            if (data.appearanceStr) {
-                                try {
-                                    State.appearance = normalizeAppearance(JSON.parse(data.appearanceStr));
-                                    localStorage.setItem(APPEARANCE_STORAGE_KEY, JSON.stringify(State.appearance));
-                                    applyAppearance(State.appearance);
-                                } catch (error) {
-                                    console.warn("No se pudo restaurar la apariencia guardada.", error);
-                                }
-                            }
                             if (data.specialty !== undefined) { State.userSpecialty = data.specialty; localStorage.setItem("enarm_specialty", State.userSpecialty); if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty; }
                             if (data.university !== undefined) { State.userUniversity = data.university; localStorage.setItem("enarm_university", State.userUniversity); if ($("profile-university")) $("profile-university").value = State.userUniversity; }
                             if (data.phone !== undefined) { State.userPhone = normalizePhoneInput(data.phone); if ($("profile-phone")) $("profile-phone").value = State.userPhone; }
@@ -17525,69 +17648,7 @@
                             if (data.scoreVisible !== undefined || data.isScorePublic !== undefined) { State.isScorePublic = data.scoreVisible === true || (data.scoreVisible === undefined && data.isScorePublic !== false); localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0"); if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic; }
                             if (typeof data.referralCode === "string" && data.referralCode.trim() && !State.referralCode) { State.referralCode = normalizeReferralCode(data.referralCode); updateReferralUI(); }
 
-                            if (data.globalStatsStr && data.globalStatsStr !== "{}") {
-                                State.globalStats = JSON.parse(data.globalStatsStr);
-                                localStorage.setItem("enarm_stats", data.globalStatsStr);
-                                needsUpdate = true;
-                            }
-                            if (data.historyStr) {
-                                State.history = JSON.parse(data.historyStr);
-                                localStorage.setItem("enarm_history", JSON.stringify(window.ENARMProgressSync.compactHistory(State.history)));
-                                needsUpdate = true;
-                            }
-                            if (data.reportsStr) {
-                                State.reportedQuestionsLocal = JSON.parse(data.reportsStr);
-                                localStorage.setItem("enarm_reports", data.reportsStr);
-                                mergeCloudAndLocalReports();
-                                refreshQuarantineKeys();
-                            }
-                            if (data.dailyPlanStr) {
-                                State.dailyPlan = JSON.parse(data.dailyPlanStr);
-                                localStorage.setItem("enarm_daily_plan", data.dailyPlanStr);
-                            }
-                            if (data.reviewQueueStr) {
-                                State.reviewQueue = JSON.parse(data.reviewQueueStr);
-                                localStorage.setItem("enarm_review_queue", data.reviewQueueStr);
-                            }
-                            if (data.scaleStudyStr) {
-                                State.scaleStudy = JSON.parse(data.scaleStudyStr);
-                                localStorage.setItem(SCALE_STUDY_STORAGE_KEY, data.scaleStudyStr);
-                            }
-                            if (data.topicMasteryStr) {
-                                State.topicMastery = JSON.parse(data.topicMasteryStr);
-                                localStorage.setItem("enarm_topic_mastery", data.topicMasteryStr);
-                            }
-                            if (data.caseNotebookStr) {
-                                State.caseNotebook = JSON.parse(data.caseNotebookStr);
-                                localStorage.setItem("enarm_case_notebook", data.caseNotebookStr);
-                            }
-                            if (data.studyCalendarStr) {
-                                State.studyCalendar = JSON.parse(data.studyCalendarStr);
-                                localStorage.setItem("enarm_study_calendar", data.studyCalendarStr);
-                            }
-                            if (data.lastPostmortemStr) {
-                                State.lastPostmortem = JSON.parse(data.lastPostmortemStr);
-                                localStorage.setItem("enarm_last_postmortem", data.lastPostmortemStr);
-                            }
-                            if (data.pomodoroSettingsStr) {
-                                State.pomodoroSettings = JSON.parse(data.pomodoroSettingsStr);
-                                localStorage.setItem(POMODORO_STORAGE_KEYS.settings, data.pomodoroSettingsStr);
-                            }
-                            if (data.pomodoroLogStr) {
-                                State.pomodoroLog = JSON.parse(data.pomodoroLogStr);
-                                localStorage.setItem(POMODORO_STORAGE_KEYS.log, data.pomodoroLogStr);
-                            }
-                            if (data.pomodoroSpecialtiesStr) {
-                                State.pomodoroSpecialties = JSON.parse(data.pomodoroSpecialtiesStr);
-                                localStorage.setItem(POMODORO_STORAGE_KEYS.specialties, data.pomodoroSpecialtiesStr);
-                            }
-                            if (typeof data.pomodoroFocusLabel === "string") {
-                                State.pomodoroFocusLabel = data.pomodoroFocusLabel;
-                                localStorage.setItem(POMODORO_STORAGE_KEYS.focus, data.pomodoroFocusLabel);
-                            }
-                            ensureStudySystemsState();
-                            rebuildTopicMastery();
-                            ensureDailyPlanFresh();
+                            applyPrivateProgress(data);
 
                             State.progressRestoreReady = snap.canSafelyPersist();
 
@@ -17602,7 +17663,15 @@
                                 State.accountCreatedAt = new Date();
                             }
                         }
-                        if (State.progressRestoreReady) saveGlobalStats();
+                        if (State.progressRestoreReady) {
+                            if (!snap.hasProgress() && !progressOutbox.read(user.uid)?.pending) {
+                                progressOutbox.begin(user.uid, {});
+                                saveGlobalStats({ deferRemote: true });
+                            }
+                            await flushPendingProgress();
+                            bindProgressListener(user.uid);
+                        }
+                        updateProgressSyncStatus();
                         return State.progressRestoreReady;
                     })().finally(() => {
                         if (progressRestoration?.promise === promise) progressRestoration = null;
@@ -17619,12 +17688,24 @@
                     if (!user || State.currentUid !== user.uid) return;
                     try {
                         if (!State.progressRestoreReady) await restoreAuthenticatedProgress(user);
-                        else await flushPendingProgress();
+                        else {
+                            await flushPendingProgress();
+                            if (!progressOutbox.read(user.uid)?.pending) {
+                                const snapshot = await window.FB.getDocFromServer(window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, user.uid));
+                                if (State.currentUid === user.uid && snapshot.exists()) receiveRemoteProgress(user.uid, snapshot.data());
+                            }
+                            bindProgressListener(user.uid);
+                        }
                     } catch (error) {
                         console.warn("La restauración se reintentará cuando haya conexión.", error);
                     }
                 };
                 window.addEventListener("online", () => void retryProgressSync());
+                window.addEventListener("enarm:retry-progress", () => void retryProgressSync());
+                window.addEventListener("storage", event => {
+                    if (event.key?.startsWith(`enarm_progress_v2:${State.currentUid}:`)) void retryProgressSync();
+                });
+                $("btn-sync-progress")?.addEventListener("click", () => void retryProgressSync());
                 document.addEventListener("visibilitychange", () => {
                     if (document.visibilityState === "visible") void retryProgressSync();
                 });
@@ -17644,10 +17725,15 @@
                             State.progressRestoreUid = user.uid;
                             State.progressRestoreReady = false;
                             State.progressDocumentExists = false;
+                            State.progressSyncRevision = -1;
+                            const localOwner = localStorage.getItem("enarm_progress_owner");
+                            if (localOwner && localOwner !== user.uid) Object.assign(State, JSON.parse(emptyAccountProgress));
+                            localStorage.setItem("enarm_progress_owner", user.uid);
                             const fallbackDisplayName = user.displayName
                                 || (user.email ? user.email.split("@")[0] : "")
                                 || State.userName;
                             State.currentUid = user.uid;
+                            progressOutbox.begin(user.uid, capturePrivateProgress());
                             await refreshCurrentUserClaims(user);
                             if (window.FB.auth.currentUser?.uid !== user.uid) return;
                             syncAuthenticatedUI(fallbackDisplayName);
@@ -17657,7 +17743,7 @@
                             const startSecondaryAuthenticatedWork = async () => {
                             // El directorio administrativo no controla permisos: debe existir
                             // desde el alta, aunque el correo siga pendiente de verificación.
-                            void syncUserDirectory(user, { forceProfile: true, forcePresence: true });
+                            void syncUserDirectory(user, { forcePresence: true });
                             if (!user.emailVerified) {
                                 const verificationSent = await sendVerificationEmailIfDue(user);
                                 syncReclassAccessUI();
@@ -17715,11 +17801,13 @@
                             stopUserPresenceHeartbeat();
                             resetUserDirectorySyncState();
                             resetUserMetricsSync();
+                            stopProgressListener();
                             State.currentUid = "";
                             State.isAdminClaim = false;
                             State.progressRestoreUid = "";
                             State.progressRestoreReady = false;
                             State.progressDocumentExists = false;
+                            State.progressSyncRevision = -1;
                             window.clearTimeout(restoreRetryTimer);
                             syncOptionalAnalyticsIdentity();
                             State.entitlement = null;

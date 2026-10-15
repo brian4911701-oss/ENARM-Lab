@@ -13,7 +13,7 @@
   "description": "Este proyecto es un simulador web del **Examen Nacional de Aspirantes a Residencias Médicas (ENARM)** basado en las Guías de Práctica Clínica (GPC) más recientes de México.",
   "main": "app.js",
   "scripts": {
-    "test": "node scripts/test_analytics_core.js && node scripts/test_pwa_theme_contract.js && node scripts/test_security_contract.js && node scripts/test_spaced_repetition_contract.js && node scripts/test_streak_core.js && node scripts/test_progress_persistence.js",
+    "test": "node scripts/test_analytics_core.js && node scripts/test_pwa_theme_contract.js && node scripts/test_security_contract.js && node scripts/test_spaced_repetition_contract.js && node scripts/test_streak_core.js && node scripts/test_progress_persistence.js && node scripts/test_multi_device_sync.js && node scripts/test_multi_device_app.js",
     "test:pwa-theme": "node scripts/test_pwa_theme_contract.js",
     "test:progress-browser": "node scripts/test_progress_persistence_browser.js",
     "build:hosting": "node scripts/build_hosting.js",
@@ -29,7 +29,7 @@
     "codes:import": "node scripts/import_redeem_codes.js",
     "codes:rotate": "node scripts/rotate_redeem_codes.js",
     "security:test": "node scripts/test_security_contract.js",
-    "security:test-rules": "firebase emulators:exec --only firestore \"node --test tests/firestore.rules.test.js\"",
+    "security:test-rules": "firebase emulators:exec --only firestore \"node --test --test-concurrency=1 tests/firestore.rules.test.js tests/progress.multidevice.integration.test.js\"",
     "security:migrate": "node scripts/migrate_security_schema.js --dry-run",
     "security:admin-claim": "node scripts/set_admin_claim.js",
     "security:withdrawal": "node scripts/process_withdrawal.js",

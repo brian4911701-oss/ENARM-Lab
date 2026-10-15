@@ -791,7 +791,7 @@
                     </div>
                     <div class="user-info">
                         <div class="user-name">Aspirante</div>
-                        <div class="user-status">CONECTANDO...</div>
+                        <div class="user-status" data-progress-sync-status>CONECTANDO...</div>
                     </div>
                 </div>
 
@@ -3470,6 +3470,14 @@
 
                     <div class="settings-grid settings-stack">
 
+                        <section class="panel settings-panel">
+                            <h3 class="panel-title">Sincronización entre dispositivos</h3>
+                            <p class="panel-subtitle" data-progress-sync-status role="status">Cargando progreso de tu cuenta</p>
+                            <p class="profile-privacy-note">Tus exámenes y cambios se combinan entre los dispositivos donde usas esta cuenta. Los exámenes abiertos y el temporizador continúan en su dispositivo.</p>
+                            <button class="btn-primary" id="btn-sync-progress" type="button">Sincronizar ahora</button>
+                            <p class="profile-privacy-note">Versión 2026.10.15.2</p>
+                        </section>
+
                         <section class="panel settings-panel email-verification-panel" id="email-verification-settings" style="border-top-color: var(--accent-orange);" hidden>
                             <h3 class="panel-title" style="margin-bottom: 10px; font-size: 1.1rem;">
                                 <span class="title-icon yellow-text">&#9993;</span> Confirma tu correo
@@ -4884,7 +4892,18 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/service-worker.js')
-                    .then(reg => console.log('[PWA] Service Worker registrado:', reg.scope))
+                    .then(reg => {
+                        console.log('[PWA] Service Worker registrado:', reg.scope);
+                        const checkForUpdate = () => {
+                            if (document.visibilityState === 'visible' && navigator.onLine) {
+                                reg.update().catch(error => console.warn('[PWA] No se pudo buscar una actualización:', error));
+                            }
+                        };
+                        checkForUpdate();
+                        document.addEventListener('visibilitychange', checkForUpdate);
+                        window.addEventListener('online', checkForUpdate);
+                        // An open exam must never be interrupted by an automatic reload.
+                    })
                     .catch(err => console.warn('[PWA] Error al registrar SW:', err));
             });
         }
