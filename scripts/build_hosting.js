@@ -13,6 +13,7 @@ const files = [
     "styles.css",
     "dashboard-layout.css",
     "app.js",
+    "progress-sync.js",
     "landing-gallery.js",
     "glass-surface.js",
     "rubber-segment.js",

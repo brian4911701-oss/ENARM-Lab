@@ -36,7 +36,7 @@ try {
 
 // ENARMax Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
-const CACHE_NAME = 'enarmax-v100-mobile-welcome-refinements';
+const CACHE_NAME = 'enarmax-v101-durable-progress';
 const COMPROMISED_ASSETS = ['/redeem_codes.txt', 'redeem_codes.txt'];
 
 // Archivos esenciales que se cachean al instalar
@@ -46,6 +46,7 @@ const CORE_ASSETS = [
     '/styles.css',
     '/dashboard-layout.css',
     '/app.js',
+    '/progress-sync.js',
     '/landing-gallery.js',
     '/glass-surface.js',
     '/rubber-segment.js',

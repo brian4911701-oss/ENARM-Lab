@@ -73,6 +73,7 @@
         // no puede sustituir el progreso existente por el estado inicial local.
         progressRestoreUid: "",
         progressRestoreReady: false,
+        progressDocumentExists: false,
         entitlement: null,
         entitlementLoaded: false,
         entitlementUnsub: null,
@@ -1810,18 +1811,62 @@
         return normalized || fallback;
     };
 
+    const progressOutbox = window.ENARMProgressSync.create(localStorage);
+    const progressWrites = new Map();
+    let progressRetryTimer = null;
+    const flushPendingProgress = async () => {
+        const user = window.FB?.auth?.currentUser;
+        if (!user?.emailVerified || State.currentUid !== user.uid
+            || State.progressRestoreUid !== user.uid || !State.progressRestoreReady) return;
+        const uid = user.uid;
+        if (progressWrites.has(uid)) return progressWrites.get(uid);
+        const pending = progressOutbox.read(uid);
+        if (!pending?.pending) return;
+        const payload = {
+            ...pending.data, uid, schemaVersion: 1,
+            updatedAt: window.FB.serverTimestamp()
+        };
+        // A merged update preserves user_progress.createdAt. The account and
+        // directory creation dates belong to different documents.
+        if (!State.progressDocumentExists) payload.createdAt = window.FB.serverTimestamp();
+        const write = window.FB.setDoc(
+            window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid), payload, { merge: true }
+        );
+        // Callers joining an in-flight write share completion; the first caller
+        // handles its error and keeps the outbox pending for retry.
+        progressWrites.set(uid, write.catch(() => {}));
+        let saved = false;
+        try {
+            await write;
+            saved = true;
+            if (State.currentUid === uid) State.progressDocumentExists = true;
+            progressOutbox.acknowledge(uid, pending.revision);
+        } catch (error) {
+            console.error("No se pudo sincronizar el progreso; el respaldo local sigue pendiente.", error);
+        } finally {
+            progressWrites.delete(uid);
+            if (State.currentUid === uid && progressOutbox.read(uid)?.pending) {
+                if (saved) void flushPendingProgress();
+                else {
+                    window.clearTimeout(progressRetryTimer);
+                    progressRetryTimer = window.setTimeout(() => void flushPendingProgress(), 15000);
+                }
+            }
+        }
+    };
+
     const getPrivateUserSnapshot = async (uid) => {
         if (!uid || !window.FB?.db || !window.FB?.getDoc || !window.FB?.doc) {
-            return { exists: () => false, data: () => ({}), canSafelyPersist: () => false };
+            return { exists: () => false, data: () => ({}), hasProgress: () => false, canSafelyPersist: () => false };
         }
         // El perfil público exige correo verificado; no debe impedir que el
         // titular recupere su progreso privado o el respaldo legado.
         const [progressResult, directoryResult, publicResult, legacyResult] = await Promise.allSettled([
-            window.FB.getDoc(window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid)),
+            (window.FB.getDocFromServer || window.FB.getDoc)(window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid)),
             window.FB.getDoc(window.FB.doc(window.FB.db, "user_directory", uid)),
             window.FB.getDoc(window.FB.doc(window.FB.db, PUBLIC_PROFILES_COLLECTION, uid)),
             // Compatibilidad temporal: solo el titular puede leer su documento legado.
-            window.FB.getDoc(window.FB.doc(window.FB.db, "leaderboard", uid)).catch(() => null)
+            window.FB.getDoc(window.FB.doc(window.FB.db, "leaderboard", uid))
         ]);
         const resolved = (result) => result.status === "fulfilled" ? result.value : null;
         const progressSnap = resolved(progressResult);
@@ -1834,17 +1879,22 @@
         if (failures.length) {
             console.warn("No se pudieron leer algunos documentos del perfil; se restaurarán los que sí estén disponibles.", failures);
         }
-        const exists = Boolean(progressSnap?.exists() || directorySnap?.exists() || publicSnap?.exists() || legacySnap?.exists?.());
+        const exists = Boolean(progressSnap?.exists() || directorySnap?.exists() || publicSnap?.exists() || legacySnap?.exists?.() || progressOutbox.read(uid));
         const merged = {
             ...(legacySnap?.exists?.() ? legacySnap.data() : {}),
             ...(progressSnap?.exists() ? progressSnap.data() : {}),
             ...(publicSnap?.exists() ? publicSnap.data() : {}),
             ...(directorySnap?.exists() ? directorySnap.data() : {})
         };
-        // Una respuesta válida de user_progress o leaderboard confirma que no
-        // estamos a punto de sobrescribir progreso remoto desconocido.
-        const canSafelyPersist = progressResult.status === "fulfilled" || legacyResult.status === "fulfilled";
-        return { exists: () => exists, data: () => merged, canSafelyPersist: () => canSafelyPersist };
+        // Only an authoritative read of the current progress document permits
+        // writes. A missing/denied legacy document says nothing about it.
+        const canSafelyPersist = progressResult.status === "fulfilled" && progressSnap?.metadata?.fromCache !== true;
+        const data = progressOutbox.restore(uid, merged, canSafelyPersist);
+        return {
+            exists: () => exists, data: () => data,
+            hasProgress: () => Boolean(progressSnap?.exists()),
+            canSafelyPersist: () => canSafelyPersist
+        };
     };
 
     const isValidPublicUsername = (value) => {
@@ -2930,11 +2980,11 @@
             showView("view-dashboard");
             showNotification("Esta función está disponible solo en premium.", "info");
         }
-        if (!premium && !DEMO_ALLOWED_THEMES.has(State.theme || "ocean")) {
-            State.theme = "ocean";
-            localStorage.setItem("enarm_theme", "ocean");
-            applyTheme("ocean");
-        }
+        // Loading entitlement listeners is temporary; never replace the saved
+        // preference with the demo theme during startup or a network failure.
+        const themeAccessResolved = State.authStateResolved && State.entitlementLoaded && State.globalPremiumLoaded;
+        applyTheme(themeAccessResolved && !premium && !DEMO_ALLOWED_THEMES.has(State.theme || "ocean")
+            ? "ocean" : (State.theme || "ocean"));
         const adminPanel = $("admin-codes-panel");
         if (adminPanel) adminPanel.style.display = isAdminUser() ? "block" : "none";
 
@@ -6411,12 +6461,13 @@
     window.submitFeedback = submitFeedback;
     window.copyFeedbackToClipboard = copyFeedbackToClipboard;
 
-    const saveGlobalStats = () => {
+    const saveGlobalStats = ({ deferRemote = false } = {}) => {
         ensureStudySystemsState();
         ensureDailyPlanFresh();
         State.globalStats.streakData = getStudyStreakData();
+        const historyStr = JSON.stringify(window.ENARMProgressSync.compactHistory(State.history));
         localStorage.setItem("enarm_stats", JSON.stringify(State.globalStats));
-        localStorage.setItem("enarm_history", JSON.stringify(State.history));
+        localStorage.setItem("enarm_history", historyStr);
         localStorage.setItem("enarm_user", State.userName);
         localStorage.setItem("enarm_specialty", State.userSpecialty || "");
         localStorage.setItem("enarm_university", State.userUniversity || "");
@@ -6435,6 +6486,7 @@
         localStorage.setItem(SCALE_STUDY_STORAGE_KEY, JSON.stringify(State.scaleStudy || {}));
         localStorage.setItem(FONT_PRESET_STORAGE_KEY, normalizeFontPreset(State.fontPreset));
         localStorage.setItem(APPEARANCE_STORAGE_KEY, JSON.stringify(normalizeAppearance(State.appearance)));
+        localStorage.setItem("enarm_theme", State.theme || "ocean");
         persistPomodoroLocalState();
         const reportsToSave = State.reportedQuestionsLocal || State.reportedQuestions || [];
         localStorage.setItem("enarm_reports", JSON.stringify(reportsToSave));
@@ -6442,10 +6494,6 @@
         // Sincroniza por separado el perfil público y el progreso privado.
         if (window.FB && window.FB.auth.currentUser) {
             const uid = window.FB.auth.currentUser.uid;
-            if (State.progressRestoreUid !== uid || !State.progressRestoreReady) {
-                console.warn("Se omitió la sincronización remota hasta restaurar el progreso de esta sesión.");
-                return;
-            }
             const totalq = State.globalStats?.respondidas || 0;
             const avg = totalq > 0 ? parseFloat(((State.globalStats.aciertos / totalq) * 100).toFixed(1)) : 0;
 
@@ -6480,12 +6528,19 @@
                 pomodoroSpecialtiesStr: JSON.stringify(State.pomodoroSpecialties || []),
                 pomodoroFocusLabel: String(State.pomodoroFocusLabel || ""),
                 globalStatsStr: JSON.stringify(State.globalStats),
-                historyStr: JSON.stringify(State.history),
-                reportsStr: JSON.stringify(reportsToSave),
-                updatedAt: window.FB.serverTimestamp ? window.FB.serverTimestamp() : new Date()
+                historyStr,
+                reportsStr: JSON.stringify(reportsToSave)
             };
-            if (!State.accountCreatedAt) State.accountCreatedAt = new Date();
-            privateProgress.createdAt = State.accountCreatedAt;
+            // Save before starting a request, including while restoration is
+            // still in progress. Reopening must recover unacknowledged work.
+            if (State.currentUid === uid && State.progressRestoreUid === uid) {
+                try { progressOutbox.stage(uid, privateProgress); }
+                catch (error) {
+                    console.error("No se pudo crear el respaldo local de progreso.", error);
+                    showNotification("No se pudo guardar el progreso en este dispositivo. Revisa el espacio disponible.", "warning");
+                }
+            }
+            if (deferRemote || State.progressRestoreUid !== uid || !State.progressRestoreReady) return;
             void syncUserDirectory(window.FB.auth.currentUser, { forceProfile: true });
 
             window.FB.setDoc(
@@ -6493,11 +6548,7 @@
                 publicProfile,
                 { merge: true }
             ).catch(err => console.error("Error sincronizando perfil público:", err));
-            window.FB.setDoc(
-                window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid),
-                privateProgress,
-                { merge: true }
-            ).catch(err => console.error("Error sincronizando progreso privado:", err));
+            void flushPendingProgress();
         }
     };
 
@@ -10831,6 +10882,9 @@
     // Instead, we wait 3s after the last answer before persisting.
     let _estudioSaveTimer = null;
     const debouncedSave = () => {
+        // The delay applies to network traffic only. Closing the phone app in
+        // these three seconds must still leave a durable local revision.
+        saveGlobalStats({ deferRemote: true });
         if (_estudioSaveTimer) clearTimeout(_estudioSaveTimer);
         _estudioSaveTimer = setTimeout(() => {
             saveGlobalStats();
@@ -14941,6 +14995,7 @@
                 // Entitlements, pagos, cartera y retiros se conservan como registros
                 // financieros/antifraude; ya no serán accesibles después de borrar Auth.
                 await window.FB.deleteUser(user);
+                progressOutbox.forget(uid);
                 clearAccountLocalData();
             } catch (error) {
                 console.error("No se pudo eliminar la cuenta:", error);
@@ -17431,6 +17486,149 @@
                         });
                 }
 
+                // One restoration path serves automatic login and reconnects.
+                // Login success must not apply a second snapshot over new work.
+                let progressRestoration = null;
+                let restoreRetryTimer = null;
+                const restoreAuthenticatedProgress = (user, snapshotPromise = null) => {
+                    if (progressRestoration?.uid === user.uid) return progressRestoration.promise;
+                    snapshotPromise = snapshotPromise || getPrivateUserSnapshot(user.uid);
+                    const promise = (async () => {
+                        const snap = await snapshotPromise;
+                        if (State.currentUid !== user.uid || window.FB.auth.currentUser?.uid !== user.uid) return false;
+                        State.progressDocumentExists = snap.hasProgress();
+                        if (snap.exists()) {
+                            const data = snap.data();
+                            State.accountCreatedAt = normalizeTimestamp(data.createdAt) || State.accountCreatedAt;
+                            let needsUpdate = false;
+
+                            if (typeof data.username === "string" && data.username.trim()) {
+                                syncAuthenticatedUI(data.username);
+                            }
+
+                            if (data.theme) { State.theme = normalizeThemeSelection(data.theme); localStorage.setItem("enarm_theme", State.theme); applyTheme(State.theme); }
+                            if (data.fontPreset) { State.fontPreset = normalizeFontPreset(data.fontPreset); localStorage.setItem(FONT_PRESET_STORAGE_KEY, State.fontPreset); applyFontPreset(State.fontPreset); }
+                            if (data.appearanceStr) {
+                                try {
+                                    State.appearance = normalizeAppearance(JSON.parse(data.appearanceStr));
+                                    localStorage.setItem(APPEARANCE_STORAGE_KEY, JSON.stringify(State.appearance));
+                                    applyAppearance(State.appearance);
+                                } catch (error) {
+                                    console.warn("No se pudo restaurar la apariencia guardada.", error);
+                                }
+                            }
+                            if (data.specialty !== undefined) { State.userSpecialty = data.specialty; localStorage.setItem("enarm_specialty", State.userSpecialty); if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty; }
+                            if (data.university !== undefined) { State.userUniversity = data.university; localStorage.setItem("enarm_university", State.userUniversity); if ($("profile-university")) $("profile-university").value = State.userUniversity; }
+                            if (data.phone !== undefined) { State.userPhone = normalizePhoneInput(data.phone); if ($("profile-phone")) $("profile-phone").value = State.userPhone; }
+                            if (data.targetYear !== undefined) { State.userTargetYear = String(data.targetYear || ""); localStorage.setItem("enarm_target_year", State.userTargetYear); if ($("profile-target-year")) $("profile-target-year").value = State.userTargetYear; }
+                            if (data.avatarId !== undefined) { State.userAvatar = normalizeProfileAvatar(data.avatarId); localStorage.setItem(PROFILE_AVATAR_STORAGE_KEY, State.userAvatar); applyCurrentProfileAvatar(); }
+                            if (data.scoreVisible !== undefined || data.isScorePublic !== undefined) { State.isScorePublic = data.scoreVisible === true || (data.scoreVisible === undefined && data.isScorePublic !== false); localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0"); if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic; }
+                            if (typeof data.referralCode === "string" && data.referralCode.trim() && !State.referralCode) { State.referralCode = normalizeReferralCode(data.referralCode); updateReferralUI(); }
+
+                            if (data.globalStatsStr && data.globalStatsStr !== "{}") {
+                                State.globalStats = JSON.parse(data.globalStatsStr);
+                                localStorage.setItem("enarm_stats", data.globalStatsStr);
+                                needsUpdate = true;
+                            }
+                            if (data.historyStr) {
+                                State.history = JSON.parse(data.historyStr);
+                                localStorage.setItem("enarm_history", JSON.stringify(window.ENARMProgressSync.compactHistory(State.history)));
+                                needsUpdate = true;
+                            }
+                            if (data.reportsStr) {
+                                State.reportedQuestionsLocal = JSON.parse(data.reportsStr);
+                                localStorage.setItem("enarm_reports", data.reportsStr);
+                                mergeCloudAndLocalReports();
+                                refreshQuarantineKeys();
+                            }
+                            if (data.dailyPlanStr) {
+                                State.dailyPlan = JSON.parse(data.dailyPlanStr);
+                                localStorage.setItem("enarm_daily_plan", data.dailyPlanStr);
+                            }
+                            if (data.reviewQueueStr) {
+                                State.reviewQueue = JSON.parse(data.reviewQueueStr);
+                                localStorage.setItem("enarm_review_queue", data.reviewQueueStr);
+                            }
+                            if (data.scaleStudyStr) {
+                                State.scaleStudy = JSON.parse(data.scaleStudyStr);
+                                localStorage.setItem(SCALE_STUDY_STORAGE_KEY, data.scaleStudyStr);
+                            }
+                            if (data.topicMasteryStr) {
+                                State.topicMastery = JSON.parse(data.topicMasteryStr);
+                                localStorage.setItem("enarm_topic_mastery", data.topicMasteryStr);
+                            }
+                            if (data.caseNotebookStr) {
+                                State.caseNotebook = JSON.parse(data.caseNotebookStr);
+                                localStorage.setItem("enarm_case_notebook", data.caseNotebookStr);
+                            }
+                            if (data.studyCalendarStr) {
+                                State.studyCalendar = JSON.parse(data.studyCalendarStr);
+                                localStorage.setItem("enarm_study_calendar", data.studyCalendarStr);
+                            }
+                            if (data.lastPostmortemStr) {
+                                State.lastPostmortem = JSON.parse(data.lastPostmortemStr);
+                                localStorage.setItem("enarm_last_postmortem", data.lastPostmortemStr);
+                            }
+                            if (data.pomodoroSettingsStr) {
+                                State.pomodoroSettings = JSON.parse(data.pomodoroSettingsStr);
+                                localStorage.setItem(POMODORO_STORAGE_KEYS.settings, data.pomodoroSettingsStr);
+                            }
+                            if (data.pomodoroLogStr) {
+                                State.pomodoroLog = JSON.parse(data.pomodoroLogStr);
+                                localStorage.setItem(POMODORO_STORAGE_KEYS.log, data.pomodoroLogStr);
+                            }
+                            if (data.pomodoroSpecialtiesStr) {
+                                State.pomodoroSpecialties = JSON.parse(data.pomodoroSpecialtiesStr);
+                                localStorage.setItem(POMODORO_STORAGE_KEYS.specialties, data.pomodoroSpecialtiesStr);
+                            }
+                            if (typeof data.pomodoroFocusLabel === "string") {
+                                State.pomodoroFocusLabel = data.pomodoroFocusLabel;
+                                localStorage.setItem(POMODORO_STORAGE_KEYS.focus, data.pomodoroFocusLabel);
+                            }
+                            ensureStudySystemsState();
+                            rebuildTopicMastery();
+                            ensureDailyPlanFresh();
+
+                            State.progressRestoreReady = snap.canSafelyPersist();
+
+                            if (needsUpdate) {
+                                updateDashboardStats();
+                                if (typeof updateCharts === 'function') updateCharts();
+                            }
+                        } else {
+                            State.progressRestoreReady = snap.canSafelyPersist();
+                            // Solo crear documento si el nombre ya no es el genérico (evita race condition en registros)
+                            if (State.userName !== "Aspirante") {
+                                State.accountCreatedAt = new Date();
+                            }
+                        }
+                        if (State.progressRestoreReady) saveGlobalStats();
+                        return State.progressRestoreReady;
+                    })().finally(() => {
+                        if (progressRestoration?.promise === promise) progressRestoration = null;
+                        if (State.currentUid === user.uid && !State.progressRestoreReady) {
+                            window.clearTimeout(restoreRetryTimer);
+                            restoreRetryTimer = window.setTimeout(() => void retryProgressSync(), 15000);
+                        }
+                    });
+                    progressRestoration = { uid: user.uid, promise };
+                    return promise;
+                };
+                const retryProgressSync = async () => {
+                    const user = window.FB?.auth?.currentUser;
+                    if (!user || State.currentUid !== user.uid) return;
+                    try {
+                        if (!State.progressRestoreReady) await restoreAuthenticatedProgress(user);
+                        else await flushPendingProgress();
+                    } catch (error) {
+                        console.warn("La restauración se reintentará cuando haya conexión.", error);
+                    }
+                };
+                window.addEventListener("online", () => void retryProgressSync());
+                document.addEventListener("visibilitychange", () => {
+                    if (document.visibilityState === "visible") void retryProgressSync();
+                });
+
                 // Listen for Auth State to restore stats correctly dynamically
                 if (window.FB && window.FB.onAuthStateChanged) {
                     window.FB.onAuthStateChanged(window.FB.auth, async (user) => {
@@ -17445,11 +17643,13 @@
                             State.globalPremiumLoaded = false;
                             State.progressRestoreUid = user.uid;
                             State.progressRestoreReady = false;
+                            State.progressDocumentExists = false;
                             const fallbackDisplayName = user.displayName
                                 || (user.email ? user.email.split("@")[0] : "")
                                 || State.userName;
                             State.currentUid = user.uid;
                             await refreshCurrentUserClaims(user);
+                            if (window.FB.auth.currentUser?.uid !== user.uid) return;
                             syncAuthenticatedUI(fallbackDisplayName);
                             // Esta es la única lectura imprescindible antes de mostrar la app.
                             // Se inicia antes de los listeners secundarios para evitar competir por red en Android.
@@ -17500,113 +17700,8 @@
                             registerRemotePushNotifications();
                             };
                             try {
-                                const snap = await coreUserDataPromise;
-                                if (snap.exists()) {
-                                    const data = snap.data();
-                                    State.accountCreatedAt = normalizeTimestamp(data.createdAt) || State.accountCreatedAt;
-                                    let needsUpdate = false;
-
-                                    if (typeof data.username === "string" && data.username.trim()) {
-                                        syncAuthenticatedUI(data.username);
-                                    }
-
-                                    if (data.theme) { State.theme = normalizeThemeSelection(data.theme); localStorage.setItem("enarm_theme", State.theme); applyTheme(State.theme); }
-                                    if (data.fontPreset) { State.fontPreset = normalizeFontPreset(data.fontPreset); localStorage.setItem(FONT_PRESET_STORAGE_KEY, State.fontPreset); applyFontPreset(State.fontPreset); }
-                                    if (data.appearanceStr) {
-                                        try {
-                                            State.appearance = normalizeAppearance(JSON.parse(data.appearanceStr));
-                                            localStorage.setItem(APPEARANCE_STORAGE_KEY, JSON.stringify(State.appearance));
-                                            applyAppearance(State.appearance);
-                                        } catch (error) {
-                                            console.warn("No se pudo restaurar la apariencia guardada.", error);
-                                        }
-                                    }
-                                    if (data.specialty !== undefined) { State.userSpecialty = data.specialty; localStorage.setItem("enarm_specialty", State.userSpecialty); if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty; }
-                                    if (data.university !== undefined) { State.userUniversity = data.university; localStorage.setItem("enarm_university", State.userUniversity); if ($("profile-university")) $("profile-university").value = State.userUniversity; }
-                                    if (data.phone !== undefined) { State.userPhone = normalizePhoneInput(data.phone); if ($("profile-phone")) $("profile-phone").value = State.userPhone; }
-                                    if (data.targetYear !== undefined) { State.userTargetYear = String(data.targetYear || ""); localStorage.setItem("enarm_target_year", State.userTargetYear); if ($("profile-target-year")) $("profile-target-year").value = State.userTargetYear; }
-                                    if (data.avatarId !== undefined) { State.userAvatar = normalizeProfileAvatar(data.avatarId); localStorage.setItem(PROFILE_AVATAR_STORAGE_KEY, State.userAvatar); applyCurrentProfileAvatar(); }
-                                    if (data.scoreVisible !== undefined || data.isScorePublic !== undefined) { State.isScorePublic = data.scoreVisible === true || (data.scoreVisible === undefined && data.isScorePublic !== false); localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0"); if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic; }
-                                    if (typeof data.referralCode === "string" && data.referralCode.trim() && !State.referralCode) { State.referralCode = normalizeReferralCode(data.referralCode); updateReferralUI(); }
-
-                                    if (data.globalStatsStr && data.globalStatsStr !== "{}") {
-                                        State.globalStats = JSON.parse(data.globalStatsStr);
-                                        localStorage.setItem("enarm_stats", data.globalStatsStr);
-                                        needsUpdate = true;
-                                    }
-                                    if (data.historyStr) {
-                                        State.history = JSON.parse(data.historyStr);
-                                        localStorage.setItem("enarm_history", data.historyStr);
-                                        needsUpdate = true;
-                                    }
-                                    if (data.reportsStr) {
-                                        State.reportedQuestionsLocal = JSON.parse(data.reportsStr);
-                                        localStorage.setItem("enarm_reports", data.reportsStr);
-                                        mergeCloudAndLocalReports();
-                                        refreshQuarantineKeys();
-                                    }
-                                    if (data.dailyPlanStr) {
-                                        State.dailyPlan = JSON.parse(data.dailyPlanStr);
-                                        localStorage.setItem("enarm_daily_plan", data.dailyPlanStr);
-                                    }
-                                    if (data.reviewQueueStr) {
-                                        State.reviewQueue = JSON.parse(data.reviewQueueStr);
-                                        localStorage.setItem("enarm_review_queue", data.reviewQueueStr);
-                                    }
-                                    if (data.scaleStudyStr) {
-                                        State.scaleStudy = JSON.parse(data.scaleStudyStr);
-                                        localStorage.setItem(SCALE_STUDY_STORAGE_KEY, data.scaleStudyStr);
-                                    }
-                                    if (data.topicMasteryStr) {
-                                        State.topicMastery = JSON.parse(data.topicMasteryStr);
-                                        localStorage.setItem("enarm_topic_mastery", data.topicMasteryStr);
-                                    }
-                                    if (data.caseNotebookStr) {
-                                        State.caseNotebook = JSON.parse(data.caseNotebookStr);
-                                        localStorage.setItem("enarm_case_notebook", data.caseNotebookStr);
-                                    }
-                                    if (data.studyCalendarStr) {
-                                        State.studyCalendar = JSON.parse(data.studyCalendarStr);
-                                        localStorage.setItem("enarm_study_calendar", data.studyCalendarStr);
-                                    }
-                                    if (data.lastPostmortemStr) {
-                                        State.lastPostmortem = JSON.parse(data.lastPostmortemStr);
-                                        localStorage.setItem("enarm_last_postmortem", data.lastPostmortemStr);
-                                    }
-                                    if (data.pomodoroSettingsStr) {
-                                        State.pomodoroSettings = JSON.parse(data.pomodoroSettingsStr);
-                                        localStorage.setItem(POMODORO_STORAGE_KEYS.settings, data.pomodoroSettingsStr);
-                                    }
-                                    if (data.pomodoroLogStr) {
-                                        State.pomodoroLog = JSON.parse(data.pomodoroLogStr);
-                                        localStorage.setItem(POMODORO_STORAGE_KEYS.log, data.pomodoroLogStr);
-                                    }
-                                    if (data.pomodoroSpecialtiesStr) {
-                                        State.pomodoroSpecialties = JSON.parse(data.pomodoroSpecialtiesStr);
-                                        localStorage.setItem(POMODORO_STORAGE_KEYS.specialties, data.pomodoroSpecialtiesStr);
-                                    }
-                                    if (typeof data.pomodoroFocusLabel === "string") {
-                                        State.pomodoroFocusLabel = data.pomodoroFocusLabel;
-                                        localStorage.setItem(POMODORO_STORAGE_KEYS.focus, data.pomodoroFocusLabel);
-                                    }
-                                    ensureStudySystemsState();
-                                    rebuildTopicMastery();
-                                    ensureDailyPlanFresh();
-
-                                    State.progressRestoreReady = snap.canSafelyPersist();
-
-                                    if (needsUpdate) {
-                                        updateDashboardStats();
-                                        if (typeof updateCharts === 'function') updateCharts();
-                                    }
-                                } else {
-                                    State.progressRestoreReady = snap.canSafelyPersist();
-                                    // Solo crear documento si el nombre ya no es el genérico (evita race condition en registros)
-                                    if (State.userName !== "Aspirante") {
-                                        State.accountCreatedAt = new Date();
-                                        saveGlobalStats();
-                                    }
-                                }
+                                await restoreAuthenticatedProgress(user, coreUserDataPromise);
+                                if (State.currentUid !== user.uid || window.FB.auth.currentUser?.uid !== user.uid) return;
                                 syncPendingReportsToCloud();
                                 setStartupStatus("Progreso restaurado", "Todo está listo.");
                                 dismissStartupScreen();
@@ -17614,7 +17709,7 @@
                                 console.error("Error fetching cloud data on Auth Change:", e);
                                 setStartupStatus("No pudimos restaurar tu progreso", "Revisa tu conexión e inténtalo de nuevo. Tus datos no se han modificado.");
                             } finally {
-                                void startSecondaryAuthenticatedWork();
+                                if (window.FB.auth.currentUser?.uid === user.uid) void startSecondaryAuthenticatedWork();
                             }
                         } else {
                             stopUserPresenceHeartbeat();
@@ -17624,6 +17719,8 @@
                             State.isAdminClaim = false;
                             State.progressRestoreUid = "";
                             State.progressRestoreReady = false;
+                            State.progressDocumentExists = false;
+                            window.clearTimeout(restoreRetryTimer);
                             syncOptionalAnalyticsIdentity();
                             State.entitlement = null;
                             State.entitlementLoaded = true;
@@ -17959,150 +18056,9 @@
                 });
 
                 async function handleSuccessLogin(displayName) {
-                    const cleanName = syncAuthenticatedUI(displayName, { showWelcome: true });
+                    syncAuthenticatedUI(displayName, { showWelcome: true });
 
-                    if (window.FB && window.FB.auth.currentUser) {
-                        if (!window.FB.auth.currentUser.emailVerified) {
-                            showNotification("Tu cuenta está en modo local hasta que verifiques el correo.", "warning");
-                            return;
-                        }
-                        try {
-                            const snap = await getPrivateUserSnapshot(window.FB.auth.currentUser.uid);
-                            if (snap.exists()) {
-                                const data = snap.data();
-                                if (data.theme) {
-                                    State.theme = normalizeThemeSelection(data.theme);
-                                    localStorage.setItem("enarm_theme", State.theme);
-                                    applyTheme(State.theme);
-                                }
-                                if (data.fontPreset) {
-                                    State.fontPreset = normalizeFontPreset(data.fontPreset);
-                                    localStorage.setItem(FONT_PRESET_STORAGE_KEY, State.fontPreset);
-                                    applyFontPreset(State.fontPreset);
-                                }
-                                if (data.appearanceStr) {
-                                    try {
-                                        State.appearance = normalizeAppearance(JSON.parse(data.appearanceStr));
-                                        localStorage.setItem(APPEARANCE_STORAGE_KEY, JSON.stringify(State.appearance));
-                                        applyAppearance(State.appearance);
-                                    } catch (error) {
-                                        console.warn("No se pudo restaurar la apariencia guardada.", error);
-                                    }
-                                }
-                                if (data.specialty !== undefined) {
-                                    State.userSpecialty = data.specialty;
-                                    localStorage.setItem("enarm_specialty", State.userSpecialty);
-                                    if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty;
-                                }
-                                if (data.university !== undefined) {
-                                    State.userUniversity = data.university;
-                                    localStorage.setItem("enarm_university", State.userUniversity);
-                                    if ($("profile-university")) $("profile-university").value = State.userUniversity;
-                                }
-                                if (data.phone !== undefined) {
-                                    State.userPhone = normalizePhoneInput(data.phone);
-                                    if ($("profile-phone")) $("profile-phone").value = State.userPhone;
-                                }
-                                if (data.targetYear !== undefined) {
-                                    State.userTargetYear = String(data.targetYear || "");
-                                    localStorage.setItem("enarm_target_year", State.userTargetYear);
-                                    if ($("profile-target-year")) $("profile-target-year").value = State.userTargetYear;
-                                }
-                                if (data.avatarId !== undefined) {
-                                    State.userAvatar = normalizeProfileAvatar(data.avatarId);
-                                    localStorage.setItem(PROFILE_AVATAR_STORAGE_KEY, State.userAvatar);
-                                    applyCurrentProfileAvatar();
-                                }
-                                if (typeof data.referralCode === "string" && data.referralCode.trim() && !State.referralCode) {
-                                    State.referralCode = normalizeReferralCode(data.referralCode);
-                                    updateReferralUI();
-                                }
-                                if (data.scoreVisible !== undefined || data.isScorePublic !== undefined) {
-                                    State.isScorePublic = data.scoreVisible === true || (data.scoreVisible === undefined && data.isScorePublic !== false);
-                                    localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0");
-                                    if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic;
-                                }
-                                if (data.globalStatsStr) {
-                                    State.globalStats = JSON.parse(data.globalStatsStr);
-                                    localStorage.setItem("enarm_stats", data.globalStatsStr);
-                                }
-                                if (data.historyStr) {
-                                    State.history = JSON.parse(data.historyStr);
-                                    localStorage.setItem("enarm_history", data.historyStr);
-                                }
-                                if (data.reportsStr) {
-                                    State.reportedQuestionsLocal = JSON.parse(data.reportsStr);
-                                    localStorage.setItem("enarm_reports", data.reportsStr);
-                                    mergeCloudAndLocalReports();
-                                    refreshQuarantineKeys();
-                                }
-                                if (data.dailyPlanStr) {
-                                    State.dailyPlan = JSON.parse(data.dailyPlanStr);
-                                    localStorage.setItem("enarm_daily_plan", data.dailyPlanStr);
-                                }
-                                if (data.reviewQueueStr) {
-                                    State.reviewQueue = JSON.parse(data.reviewQueueStr);
-                                    localStorage.setItem("enarm_review_queue", data.reviewQueueStr);
-                                }
-                                if (data.scaleStudyStr) {
-                                    State.scaleStudy = JSON.parse(data.scaleStudyStr);
-                                    localStorage.setItem(SCALE_STUDY_STORAGE_KEY, data.scaleStudyStr);
-                                }
-                                if (data.topicMasteryStr) {
-                                    State.topicMastery = JSON.parse(data.topicMasteryStr);
-                                    localStorage.setItem("enarm_topic_mastery", data.topicMasteryStr);
-                                }
-                                if (data.caseNotebookStr) {
-                                    State.caseNotebook = JSON.parse(data.caseNotebookStr);
-                                    localStorage.setItem("enarm_case_notebook", data.caseNotebookStr);
-                                }
-                                if (data.studyCalendarStr) {
-                                    State.studyCalendar = JSON.parse(data.studyCalendarStr);
-                                    localStorage.setItem("enarm_study_calendar", data.studyCalendarStr);
-                                }
-                                if (data.lastPostmortemStr) {
-                                    State.lastPostmortem = JSON.parse(data.lastPostmortemStr);
-                                    localStorage.setItem("enarm_last_postmortem", data.lastPostmortemStr);
-                                }
-                                if (data.pomodoroSettingsStr) {
-                                    State.pomodoroSettings = JSON.parse(data.pomodoroSettingsStr);
-                                    localStorage.setItem(POMODORO_STORAGE_KEYS.settings, data.pomodoroSettingsStr);
-                                }
-                                if (data.pomodoroLogStr) {
-                                    State.pomodoroLog = JSON.parse(data.pomodoroLogStr);
-                                    localStorage.setItem(POMODORO_STORAGE_KEYS.log, data.pomodoroLogStr);
-                                }
-                                if (data.pomodoroSpecialtiesStr) {
-                                    State.pomodoroSpecialties = JSON.parse(data.pomodoroSpecialtiesStr);
-                                    localStorage.setItem(POMODORO_STORAGE_KEYS.specialties, data.pomodoroSpecialtiesStr);
-                                }
-                                if (typeof data.pomodoroFocusLabel === "string") {
-                                    State.pomodoroFocusLabel = data.pomodoroFocusLabel;
-                                    localStorage.setItem(POMODORO_STORAGE_KEYS.focus, data.pomodoroFocusLabel);
-                                }
-                            }
-                            ensureStudySystemsState();
-                            rebuildTopicMastery();
-                            ensureDailyPlanFresh();
-                            if (snap.canSafelyPersist() && State.currentUid === window.FB.auth.currentUser.uid) {
-                                State.progressRestoreUid = window.FB.auth.currentUser.uid;
-                                State.progressRestoreReady = true;
-                            }
-                            // Asegurar que el nombre (y otros datos locales) se sincronicen con la nube al entrar
-                            if (State.progressRestoreReady) saveGlobalStats();
-
-                            // Refrescar las vistas de la app si recuperamos algo o si es un usuario nuevo
-                            updateDashboardStats();
-                            if (typeof updateCharts === 'function') updateCharts();
-                            if (typeof initCalculator === 'function') initCalculator();
-                        } catch (err) {
-                            console.log("No se pudo cargar la nube: ", err);
-                        }
-                    }
-
-                    initCloudFeatures();
-                    // Note: setupChallengeLogic is already called from onAuthStateChanged callback.
-                    // Do NOT call it again here to avoid duplicate event listeners.
+                    // onAuthStateChanged owns restoration and cloud initialization.
                 }
 
                 const providerBtn = document.querySelector(".auth-provider-btn");

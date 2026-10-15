@@ -4603,7 +4603,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
         import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app-check.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, onAuthStateChanged, updateProfile, GoogleAuthProvider, EmailAuthProvider, getAdditionalUserInfo, signInWithPopup, signInWithRedirect, getRedirectResult, reauthenticateWithPopup, reauthenticateWithCredential, deleteUser, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, getDocs, getCountFromServer, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, documentId, startAfter, addDoc, updateDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, getDoc, getDocFromServer, getDocs, getCountFromServer, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, documentId, startAfter, addDoc, updateDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
         import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-functions.js";
 
         const firebaseConfig = {
@@ -4743,6 +4743,7 @@
             doc,
             setDoc,
             getDoc,
+            getDocFromServer,
             addDoc,
             updateDoc,
             runTransaction,
@@ -4792,6 +4793,7 @@
     <script src="withdrawal-public-key.js" charset="UTF-8"></script>
     <script src="security-crypto.js" charset="UTF-8"></script>
     <script src="scales-data.js" charset="UTF-8"></script>
+    <script src="progress-sync.js" charset="UTF-8"></script>
     <script src="app.js" charset="UTF-8"></script>
 
     <script>
