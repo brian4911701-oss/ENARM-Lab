@@ -110,6 +110,10 @@ const http = require('node:http');
           streak: rect('#streak-btn-mobile'),
           desktopStreak: rect('#streak-btn'),
           desktopCoins: rect('#dashboard-coins-btn'),
+          desktopStreakNumber: rect('#streak-val'),
+          desktopCoinNumber: rect('#dashboard-coins-val'),
+          desktopFlame: rect('#streak-btn .dashboard-flame-icon'),
+          desktopCoinIcon: rect('#dashboard-coins-btn .dashboard-coin-icon'),
           hero: rect('.dashboard-mobile-hero'),
           clock: rect('#exam-countdown'),
           clockFont: parseFloat(getComputedStyle(document.querySelector('#cd-days')).fontSize),
@@ -119,12 +123,15 @@ const http = require('node:http');
           trainingDisplay: getComputedStyle(document.querySelector('#btn-quick-start')).display,
           flame: rect('#streak-btn-mobile .dashboard-flame-icon'),
           nameText: rect('.dashboard-greeting-title'),
+          nameFont: parseFloat(getComputedStyle(document.querySelector('.dashboard-greeting-title')).fontSize),
+          greetingFont: parseFloat(getComputedStyle(document.querySelector('.dashboard-hero-kicker')).fontSize),
           coinsInDashboard: Boolean(document.querySelector('#view-dashboard #card-coins')),
           coinsInMore: Boolean(document.querySelector('#view-mas #card-coins'))
         };
       });
       assert(result.overflow <= 1, `${width}px horizontal overflow: ${result.overflow}`);
-      assert(Math.abs(result.streakInkOffset) <= 1, `${width}px painted flame/digits misaligned by ${result.streakInkOffset}px`);
+      const expectedInkOffset = width <= 768 ? -2 : 0;
+      assert(Math.abs(result.streakInkOffset - expectedInkOffset) <= 1, `${width}px painted flame/digits offset: ${result.streakInkOffset}px`);
       assert(!result.coinsInDashboard && result.coinsInMore);
       assert.equal(result.trainingDisplay, 'grid');
       for (let i = 0; i < result.cards.length; i++) for (let j = i + 1; j < result.cards.length; j++) {
@@ -137,22 +144,29 @@ const http = require('node:http');
         assert(result.streak.width > 0 && result.streak.right <= result.name.right + 1, `${width}px mobile streak beside the name`);
         assert(result.average.bottom <= result.quick.y && result.quick.bottom <= result.rank.y, `${width}px order: average, quick training, rank`);
         assert(Math.abs((result.nameText.y + result.nameText.height / 2) - (result.streak.y + result.streak.height / 2)) < 1, `${width}px name and streak centers should align`);
-        assert(Math.abs((result.flame.y + result.flame.height / 2) - (result.streakNumber.y + result.streakNumber.height / 2)) < 1, `${width}px flame and number should align`);
+        assert(Math.abs((result.streakNumber.y + result.streakNumber.height / 2) - (result.flame.y + result.flame.height / 2) - 2) < 1, `${width}px preserve the requested mobile number offset`);
         assert(result.streak.x - result.nameText.right <= 6.1, `${width}px flame must sit next to the name`);
         assert(result.clock.y - result.hero.bottom >= 10, `${width}px header spacing`);
         assert(result.sessions.x >= result.score.right, `${width}px average and sessions side by side`);
         assert(result.trainingIcon.width >= 40, `${width}px mobile training icons visible`);
         assert(result.clockFont >= 26, `${width}px countdown digits should be readable`);
+        assert(result.average.height <= 160, `${width}px performance card should be compact vertically: ${result.average.height}px`);
+        assert(result.clock.height <= 110, `${width}px countdown should be compact vertically: ${result.clock.height}px`);
+        assert(Math.abs(result.clock.width - result.hero.width) <= 1, `${width}px countdown should retain its full width`);
+        assert(result.nameFont >= 24 && result.greetingFont >= 17, `${width}px larger mobile greeting and name`);
       } else {
         assert(result.trainingIcon.width >= 36, `${width}px training icon should not shrink`);
         assert(result.desktopCoins.y >= result.desktopStreak.bottom, `${width}px counters should stack vertically`);
         assert(result.counterFont >= 18, `${width}px desktop counters too small`);
+        assert(Math.abs(result.desktopStreakNumber.x - result.desktopCoinNumber.x) < 1, `${width}px numbers must share one column`);
+        assert(Math.abs((result.desktopFlame.x + result.desktopFlame.width / 2) - (result.desktopCoinIcon.x + result.desktopCoinIcon.width / 2)) < 1, `${width}px icon centers must share one column`);
+        assert(Math.abs((result.desktopCoinNumber.y + result.desktopCoinNumber.height / 2) - (result.desktopCoinIcon.y + result.desktopCoinIcon.height / 2)) < 1, `${width}px coin and number centers must align`);
       }
       for (const action of result.actions) {
         assert(action.height >= 44, `${width}px training touch target`);
         assert(action.overflow <= 1, `${width}px training text overflow`);
       }
-      if ([1366, 390].includes(width)) await page.screenshot({ path: path.join(root, `artifacts/dashboard-${width}.png`) });
+      if ([1366, 390, 320].includes(width)) await page.screenshot({ path: path.join(root, `artifacts/dashboard-${width}.png`) });
     }
     assert.deepEqual(await page.evaluate(() => ({
       correct: document.querySelector('#dash-summary-correct').textContent,
@@ -161,6 +175,13 @@ const http = require('node:http');
     })), { correct: '660', answered: '875', progress: '75.4%' });
 
     console.log('Checking themes and reduced motion');
+    await page.setViewport({ width: 1366, height: 768 });
+    await page.evaluate(() => {
+      document.querySelector('#streak-val').textContent = '0';
+      document.querySelector('#dashboard-coins-val').textContent = '0';
+    });
+    await page.$('.dashboard-counters').then(el => el.screenshot({ path: path.join(root, 'artifacts/desktop-counters-zero.png') }));
+    await page.evaluate(() => window.__dashboardTest.updateDashboardStats(true));
     for (const theme of ['light', 'lilac-light', 'black-teal', 'ocean']) {
       await page.evaluate(theme => window.__dashboardTest.applyTheme(theme), theme);
       for (const width of [390, 1366]) {

@@ -16,16 +16,12 @@
 }
 #view-dashboard .dashboard-counter:hover { background: color-mix(in srgb, var(--text-primary) 7%, transparent); }
 #view-dashboard .dashboard-counter:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; }
-#view-dashboard .dashboard-counters .dashboard-counter { justify-content: flex-start; gap: 9px; min-height: 38px; padding: 5px 8px; font-size: 18px; }
-#view-dashboard .dashboard-counters #streak-btn { gap: 11px; }
-#view-dashboard .dashboard-counters .dashboard-flame-icon { width: 16px; height: 22px; }
+#view-dashboard .dashboard-counters .dashboard-counter { display: grid; grid-template-columns: 24px minmax(0, 1fr); align-items: center; justify-items: start; gap: 10px; min-height: 38px; padding: 5px 8px; font-size: 18px; text-align: left; }
+#view-dashboard .dashboard-counters .dashboard-flame-icon { width: 16px; height: 22px; justify-self: center; }
 #view-dashboard .dashboard-counters .dashboard-coin-icon { width: 24px; height: 24px; }
 /* The SVG viewBox hugs the flame itself so its visible center matches the number. */
 #view-dashboard .dashboard-flame-icon { display: block; width: 16px; height: 22px; flex-shrink: 0; fill: #f59e0b; }
-#view-dashboard :is(#streak-val, #streak-val-mobile) { display: block; line-height: 1; text-box-trim: trim-both; text-box-edge: cap alphabetic; font-variant-numeric: lining-nums tabular-nums; }
-#view-dashboard .dashboard-flame-icon,
-#view-dashboard :is(#streak-val, #streak-val-mobile) { position: relative; top: 2px; }
-#view-dashboard :is(#streak-val, #streak-val-mobile) { top: 4px; }
+#view-dashboard :is(#streak-val, #streak-val-mobile, #dashboard-coins-val) { display: block; line-height: 1; text-box-trim: trim-both; text-box-edge: cap alphabetic; font-variant-numeric: lining-nums tabular-nums; }
 #view-dashboard .dashboard-streak-mobile { display: none; }
 /* A compact destination header with four readable time segments. */
 #view-dashboard #exam-countdown {
@@ -131,27 +127,32 @@
     flex: 0 0 auto; display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
     gap: 14px; padding: 18px 16px; width: 100%;
   }
-  #view-dashboard .dashboard-hero-avatar { width: 72px !important; height: 72px !important; }
+  #view-dashboard .dashboard-hero-avatar { width: 72px !important; height: 72px !important; font-size: 31px !important; }
   #view-dashboard .dashboard-hero-bell { width: 64px; height: 64px; }
   #view-dashboard .dashboard-hero-bell svg { width: 28px; height: 28px; }
-  #view-dashboard .dashboard-hero-kicker { font-size: 16px; }
+  #view-dashboard .dashboard-hero-kicker { font-size: 18px; }
   #view-dashboard .dashboard-name-row { display: flex; align-items: center; gap: 6px; }
-  #view-dashboard .dashboard-greeting-title { display: block; flex: 0 1 auto; font-size: clamp(24px, 6.5vw, 31px); line-height: 1.12; overflow-wrap: anywhere; margin: 0; }
-  #view-dashboard .dashboard-streak-mobile { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-width: 44px; min-height: 44px; margin: 0; font-size: 17px; line-height: 1; gap: 6px; padding: 0 2px; }
+  #view-dashboard .dashboard-greeting-title { display: block; flex: 0 1 auto; font-size: clamp(28px, 7.5vw, 36px); line-height: 1.12; overflow-wrap: anywhere; margin: 0; }
+  #view-dashboard .dashboard-streak-mobile { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-width: 44px; min-height: 44px; margin: 0; font-size: 20px; line-height: 1; gap: 6px; padding: 0 2px; }
   #view-dashboard .dashboard-streak-mobile .dashboard-flame-icon { width: 16px; height: 22px; margin: 0; transform: none; }
+  #view-dashboard .dashboard-streak-mobile .dashboard-flame-icon { position: relative; top: 2px; }
+  #view-dashboard #streak-val-mobile { position: relative; top: 4px; }
   #view-dashboard .dashboard-counters { display: none; }
-  #view-dashboard #exam-countdown { min-width: 0; width: 100%; padding: 14px 16px; gap: 12px; }
+  #view-dashboard #exam-countdown { min-width: 0; width: 100%; padding: 10px 16px; gap: 6px; }
+  #view-dashboard .cd-item { padding-block: 4px; gap: 2px; }
   #view-dashboard .cd-item > span:first-child { font-size: 30px; }
   #view-dashboard .stats-grid { gap: 12px; }
   #view-dashboard .stats-grid > .stat-card { padding: 16px; min-height: 132px; }
   #view-dashboard #card-performance-summary { grid-column: 1 / -1; order: 1; }
   #view-dashboard #card-rango { grid-column: 1 / -1; order: 3; }
   #view-dashboard #card-quick-training { grid-column: 1 / -1; order: 2; }
-  #view-dashboard #card-performance-summary { gap: 10px; }
+  #view-dashboard #card-performance-summary { gap: 6px; padding-block: 10px; min-height: 0; }
+  #view-dashboard #card-performance-summary .stat-icon { margin: 0; }
   #view-dashboard #card-performance-summary .stat-value, #view-dashboard .performance-session-pill span { font-size: 32px; }
-  #view-dashboard .performance-score, #view-dashboard .performance-session-pill { padding-top: 4px; padding-bottom: 4px; }
+  #view-dashboard .performance-score, #view-dashboard .performance-session-pill { padding-top: 0; padding-bottom: 0; }
   #view-dashboard .performance-session-pill { padding-left: 20px; }
-  #view-dashboard .performance-summary-detail { font-size: 11px; }
+  #view-dashboard .performance-stat-caption, #view-dashboard .performance-session-pill small { margin-top: 4px; }
+  #view-dashboard .performance-summary-detail { font-size: 11px; margin-top: 6px; }
   #view-dashboard .dashboard-bottom { gap: 24px; }
   #view-dashboard .dashboard-bottom > .panel { padding: 20px; }
   #view-dashboard .quick-training-actions { grid-template-columns: minmax(0, 1fr); gap: 10px; }
@@ -170,12 +171,20 @@
   #view-dashboard .stats-grid > .stat-card { padding: 14px; min-height: 124px; }
   #view-dashboard .cd-item > span:first-child { font-size: 27px; }
   #view-dashboard .dashboard-mobile-hero { grid-template-columns: 54px minmax(0, 1fr) 42px; }
-  #view-dashboard .dashboard-hero-avatar { width: 54px !important; height: 54px !important; font-size: 23px !important; }
+  #view-dashboard .dashboard-hero-avatar { width: 54px !important; height: 54px !important; font-size: 26px !important; }
   #view-dashboard .dashboard-hero-bell { width: 42px; height: 42px; }
-  #view-dashboard .dashboard-greeting-title { font-size: 22px; }
-  #view-dashboard .dashboard-hero-kicker { font-size: 15px; }
-  #view-dashboard .dashboard-streak-mobile { font-size: 15px; }
+  #view-dashboard .dashboard-greeting-title { font-size: clamp(24px, 7.2vw, 28px); }
+  #view-dashboard .dashboard-hero-kicker { font-size: 17px; }
+  #view-dashboard .dashboard-streak-mobile { font-size: 18px; }
   #view-dashboard .dashboard-streak-mobile .dashboard-flame-icon { width: 14px; height: 20px; }
+}
+@media (max-width: 360px) {
+  /* Let long names use the space below the notification button. */
+  #view-dashboard .dashboard-hero-copy { display: contents; }
+  #view-dashboard .dashboard-hero-avatar { grid-column: 1; grid-row: 1 / 3; }
+  #view-dashboard .dashboard-hero-kicker { grid-column: 2; grid-row: 1; }
+  #view-dashboard .dashboard-hero-bell { grid-column: 3; grid-row: 1; }
+  #view-dashboard .dashboard-name-row { grid-column: 2 / -1; grid-row: 2; }
 }
 @media (prefers-reduced-motion: reduce) {
   #view-dashboard .quick-training-actions .training-action,
