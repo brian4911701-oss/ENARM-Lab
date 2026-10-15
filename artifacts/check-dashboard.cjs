@@ -2,10 +2,12 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const http = require('node:http');
+const { execFileSync } = require('node:child_process');
 
 (async () => {
   const { default: puppeteer } = await import('puppeteer');
   const root = path.resolve(__dirname, '..');
+  const examenCSS = execFileSync('git', ['show', 'f14b8a70db13acf099cee3f6e92d9332ec346a51:styles.css'], { cwd: root, encoding: 'utf8', maxBuffer: 4 * 1024 * 1024 });
   const server = http.createServer((req, res) => {
     const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
     const file = path.resolve(root, '.' + (pathname === '/' ? '/index.html' : pathname));
@@ -66,6 +68,11 @@ const http = require('node:http');
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 });
     await page.waitForFunction(() => Boolean(window.__dashboardTest));
     await showApp();
+    await page.evaluate(css => {
+      const style = document.createElement('style');
+      style.id = 'examen-baseline'; style.media = 'not all'; style.textContent = css;
+      document.head.append(style);
+    }, examenCSS);
     console.log('Dashboard initialized');
     const fixtures = [[1920, 1080], [1440, 900], [1366, 768], [1280, 1024], [1100, 720], [1024, 768], [900, 700], [820, 1180], [768, 1024], [600, 900], [432, 936], [430, 932], [412, 915], [390, 844], [360, 800], [320, 740]];
     for (const [width, height] of fixtures) {
@@ -94,7 +101,35 @@ const http = require('node:http');
           baseline.remove();
           return point.y - glyphCenter;
         })();
+        const mobileBaseline = innerWidth <= 768 ? (() => {
+          const hero = document.querySelector('.dashboard-mobile-hero');
+          const wrapper = document.querySelector('.dashboard-name-row');
+          const streak = document.querySelector('#streak-btn-mobile');
+          const snapshot = () => {
+            const origin = hero.getBoundingClientRect();
+            return ['.dashboard-mobile-hero', '.dashboard-hero-avatar', '.dashboard-hero-copy', '.dashboard-hero-kicker', '.dashboard-greeting-title', '#btn-open-notif'].map(selector => {
+              const el = document.querySelector(selector), r = el.getBoundingClientRect(), css = getComputedStyle(el);
+              return {
+                selector,
+                box: [r.x - origin.x, r.y - origin.y, r.width, r.height].map(value => Math.round(value * 100) / 100),
+                styles: ['fontSize', 'fontWeight', 'lineHeight', 'padding', 'gap', 'borderRadius', 'marginTop', 'marginBottom', 'background', 'color'].map(key => css[key])
+              };
+            });
+          };
+          streak.style.display = 'none';
+          const actual = snapshot();
+          const styles = document.querySelector('link[href="styles.css"]').sheet;
+          const layout = document.querySelector('link[href="dashboard-layout.css"]').sheet;
+          const baseline = document.querySelector('#examen-baseline');
+          styles.disabled = true; layout.disabled = true; baseline.media = 'all';
+          wrapper.style.display = 'contents';
+          const expected = snapshot();
+          baseline.media = 'not all'; styles.disabled = false; layout.disabled = false;
+          wrapper.style.removeProperty('display'); streak.style.removeProperty('display');
+          return { actual, expected };
+        })() : null;
         return {
+          mobileBaseline,
           streakInkOffset,
           overflow: main.scrollWidth - main.clientWidth,
           cards: [...document.querySelectorAll('#view-dashboard .stats-grid > .stat-card')].map(el => { const r = el.getBoundingClientRect(); return { id: el.id, x: r.x, y: r.y, right: r.right, bottom: r.bottom }; }),
@@ -106,7 +141,7 @@ const http = require('node:http');
           sessions: rect('.performance-session-pill'),
           actions: [...document.querySelectorAll('.quick-training-actions .training-action')].map(el => ({ height: el.getBoundingClientRect().height, overflow: el.scrollWidth - el.clientWidth })),
           streakNumber: rect('#streak-val-mobile'),
-          name: rect('.dashboard-name-row'),
+          name: rect('.dashboard-hero-copy'),
           streak: rect('#streak-btn-mobile'),
           desktopStreak: rect('#streak-btn'),
           desktopCoins: rect('#dashboard-coins-btn'),
@@ -131,7 +166,7 @@ const http = require('node:http');
         };
       });
       assert(result.overflow <= 1, `${width}px horizontal overflow: ${result.overflow}`);
-      const expectedInkOffset = width <= 768 ? -2 : 0;
+      const expectedInkOffset = 0;
       assert(Math.abs(result.streakInkOffset - expectedInkOffset) <= 1, `${width}px painted flame/digits offset: ${result.streakInkOffset}px`);
       assert(!result.coinsInDashboard && result.coinsInMore);
       assert.equal(result.trainingDisplay, 'grid');
@@ -144,9 +179,8 @@ const http = require('node:http');
         assert(Math.abs(result.average.width - result.grid.width) <= 2, `${width}px average should span the row`);
         assert(result.streak.width > 0 && result.streak.right <= result.name.right + 1, `${width}px mobile streak beside the name`);
         assert(result.average.bottom <= result.quick.y && result.quick.bottom <= result.rank.y, `${width}px order: average, quick training, rank`);
-        assert(Math.abs((result.nameText.y + result.nameText.height / 2) - (result.streak.y + result.streak.height / 2)) < 1, `${width}px name and streak centers should align`);
-        assert(Math.abs((result.streakNumber.y + result.streakNumber.height / 2) - (result.flame.y + result.flame.height / 2) - 2) < 1, `${width}px preserve the requested mobile number offset`);
-        assert(result.streak.x - result.nameText.right <= 6.1, `${width}px flame must sit next to the name`);
+        assert.deepEqual(result.mobileBaseline.actual, result.mobileBaseline.expected, `${width}px welcome card must match examen when the added streak is hidden`);
+        assert(Math.abs((result.streakNumber.y + result.streakNumber.height / 2) - (result.flame.y + result.flame.height / 2)) < 1, `${width}px flame and number centered together`);
         assert(result.clock.y - result.hero.bottom >= 10, `${width}px header spacing`);
         assert(result.sessions.x >= result.score.right, `${width}px average and sessions side by side`);
         assert(result.trainingIcon.width >= 40, `${width}px mobile training icons visible`);
@@ -154,7 +188,7 @@ const http = require('node:http');
         assert(result.average.height <= 160, `${width}px performance card should be compact vertically: ${result.average.height}px`);
         assert(result.clock.height <= 110, `${width}px countdown should be compact vertically: ${result.clock.height}px`);
         assert(Math.abs(result.clock.width - result.hero.width) <= 1, `${width}px countdown should retain its full width`);
-        assert(result.nameFont >= 22 && result.greetingFont >= 16, `${width}px readable greeting and name`);
+        assert(result.nameFont >= 24 && result.greetingFont >= 14, `${width}px original greeting and name sizes`);
         assert(result.avatar.width >= 64 && result.avatar.height >= 64, `${width}px reference profile photo size`);
         assert(result.greeting.bottom <= result.nameText.y + 1, `${width}px greeting must not overlap the name`);
         assert(Math.abs((result.average.y - result.clock.bottom) - (result.quick.y - result.average.bottom)) <= 1, `${width}px equal spacing between clock, performance and training cards`);
@@ -178,7 +212,7 @@ const http = require('node:http');
       progress: document.querySelector('#dash-summary-progress').style.width
     })), { correct: '660', answered: '875', progress: '75.4%' });
 
-    console.log('Checking mobile reference proportions and Premium crown');
+    console.log('Checking restored examen card and original Premium crown');
     const originalAvatarHTML = await page.$eval('.dashboard-hero-avatar', el => el.innerHTML);
     for (const width of [320, 390, 412, 432, 600]) {
       await page.setViewport({ width, height: 900 });
@@ -203,13 +237,9 @@ const http = require('node:http');
           bellCenterOffset: (bell.top + bell.height / 2) - (hero.top + hero.height / 2)
         };
       });
-      assert(crown.size >= 28, `${width}px larger mobile Premium crown`);
+      assert.equal(crown.size, 17, `${width}px original examen Premium crown`);
       assert(crown.top >= crown.heroTop, `${width}px crown must not be clipped by the hero card`);
       assert(Math.abs(crown.bellCenterOffset) <= 1, `${width}px notification button vertically centered`);
-      if (width >= 390) {
-        assert(crown.heroHeight <= 120, `${width}px reference card must be compact: ${crown.heroHeight}px`);
-        assert(crown.titleHeight <= crown.titleLineHeight + 1, `${width}px Isaac Rivera should fit on one line`);
-      }
       if ([390, 412, 432].includes(width)) await page.$('.dashboard-mobile-hero').then(el => el.screenshot({ path: path.join(root, `artifacts/mobile-reference-${width}.png`) }));
     }
     await page.evaluate(originalAvatarHTML => {
