@@ -63,7 +63,15 @@ service cloud.firestore {
           || (data.scoreVisible == true && data.score is number && data.score >= 0 && data.score <= 100))
         && data.isPremium is bool
         && data.flame is int && data.flame >= 0 && data.flame <= 100000
+        && validDerivedPublicProgress(data, uid)
         && data.updatedAt == request.time;
+    }
+
+    function validDerivedPublicProgress(data, uid) {
+      let path = /databases/$(database)/documents/user_progress/$(uid);
+      return !exists(path) || get(path).data.get('syncVersion', 0) != 3
+        || ((data.scoreVisible == false || data.score == get(path).data.publicScore)
+          && data.flame == get(path).data.publicFlame);
     }
 
     function hasActiveEntitlement(uid) {
@@ -419,6 +427,7 @@ service cloud.firestore {
         && validProgressSyncCreate(request.resource.data)
         && request.resource.data.updatedAt == request.time;
       allow update: if isVerifiedSelf(uid)
+        && resource.data.get('syncVersion', 0) != 3
         && request.resource.data.keys().hasOnly([
           "uid", "schemaVersion", "theme", "fontPreset", "appearanceStr", "dailyPlanStr",
           "reviewQueueStr", "scaleStudyStr", "topicMasteryStr", "caseNotebookStr", "studyCalendarStr",
@@ -431,23 +440,46 @@ service cloud.firestore {
         && validProgressSyncUpdate(resource.data, request.resource.data)
         && request.resource.data.createdAt == resource.data.createdAt
         && request.resource.data.updatedAt == request.time;
-      allow delete: if isSelf(uid) || isAdmin();
+      allow delete: if isAdmin() || (isSelf(uid) && resource.data.get('syncVersion', 0) != 3);
 
       match /sync_clients/{clientId} {
         allow read: if isSelf(uid) || isAdmin();
         allow create: if isVerifiedSelf(uid)
+          && getAfter(/databases/$(database)/documents/user_progress/$(uid)).data.get('syncVersion', 0) != 3
           && request.resource.data.keys().hasOnly(["uid", "lastSequence", "updatedAt"])
           && request.resource.data.uid == uid
           && request.resource.data.lastSequence is int && request.resource.data.lastSequence > 0
           && request.resource.data.updatedAt == request.time;
         allow update: if isVerifiedSelf(uid)
+          && getAfter(/databases/$(database)/documents/user_progress/$(uid)).data.get('syncVersion', 0) != 3
           && request.resource.data.keys().hasOnly(["uid", "lastSequence", "updatedAt"])
           && request.resource.data.uid == uid
           && request.resource.data.lastSequence is int
           && request.resource.data.lastSequence > resource.data.lastSequence
           && request.resource.data.updatedAt == request.time;
-        allow delete: if isSelf(uid) || isAdmin();
+        allow delete: if isAdmin() || (isSelf(uid) && get(/databases/$(database)/documents/user_progress/$(uid)).data.get('syncVersion', 0) != 3);
       }
+    }
+
+    // Only the authenticated API writes session authority or immutable attempts.
+    // Private registries contain credential hashes; never expose them to clients.
+    match /study_sessions/{uid} { allow read, write: if false; }
+    match /study_backups/{uid} { allow read, write: if false; }
+    match /study_devices/{uid} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow write: if false;
+    }
+    match /active_exams/{uid} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow write: if false;
+    }
+    match /exam_attempts/{uid}/items/{attemptId} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow write: if false;
+    }
+    match /exam_payloads/{uid}/items/{examId} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow write: if false;
     }
 
     // Datos de contacto privados para el panel de administraci\u00f3n.

@@ -14537,6 +14537,12 @@ body.theme-lilac-light #redeem-modal.redeem-modal-overlay { background: rgba(31,
 #landing-page .landing-platform-chip--windows,
 #landing-page .landing-platform-chip--apple,
 #landing-page .landing-platform-chip--android { color: #315d96; }
+#landing-page .landing-platform-chip--android {
+  padding: 10px 15px; min-height: 48px; border-color: var(--welcome-accent);
+  border-radius: 8px; background: var(--welcome-accent); color: #fff;
+  box-shadow: 0 5px 14px -8px var(--welcome-accent); font-weight: 650;
+}
+#landing-page .hero-mobile-platforms { display: none; }
 #landing-page .landing-stat-label small { display: block; margin-top: 4px; color: #315d96; font-size: .68rem; font-weight: 600; line-height: 1.35; }
 
 /* RubberSegment shares one elastic thumb across the existing navigation links. */
@@ -16008,6 +16014,27 @@ body.guest-exam-mode #view-exam .option-btn.selected {
   #landing-page .hero-mobile-facts > div + div { border-left: 1px solid var(--welcome-line); }
   #landing-page .hero-mobile-facts strong { color: var(--welcome-ink); font-family: 'Plus Jakarta Sans', var(--font-ui); font-size: 1.06rem; font-weight: 800; letter-spacing: -.035em; }
   #landing-page .hero-mobile-facts span { color: var(--welcome-muted); font-size: .62rem; line-height: 1.5; }
+  #landing-page .hero-mobile-platforms {
+    display: flex; align-items: stretch; margin-top: 20px; padding: 17px 0 0;
+    border-top: 1px solid var(--welcome-line); gap: 11px;
+  }
+  #landing-page .hero-mobile-platforms .landing-platforms-label { font-size: .74rem; color: var(--welcome-ink); }
+  #landing-page .hero-mobile-platforms .landing-platform-list {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: 100%;
+  }
+  #landing-page .hero-mobile-platforms .landing-platform-chip {
+    display: flex; flex-direction: column; justify-content: center; gap: 7px; min-width: 0; min-height: 76px;
+    padding: 9px 3px; border: 1px solid #c8d5e5; border-radius: 8px; background: #f8faff;
+    color: #315d96; font-size: .62rem; line-height: 1.25; text-align: center;
+  }
+  #landing-page .hero-mobile-platforms .landing-platform-chip--android {
+    border-color: var(--welcome-accent); background: var(--welcome-accent); color: #fff;
+    box-shadow: 0 6px 15px -8px var(--welcome-accent); font-weight: 700;
+  }
+  #landing-page .hero-mobile-platforms .landing-platform-chip svg { width: 21px; height: 21px; flex-basis: 21px; }
+  #landing-page .hero-mobile-platforms .landing-platforms-instructions { margin-top: 0; font-size: .66rem; line-height: 1.5; }
+  #landing-page[data-theme="dark"] .hero-mobile-platforms .landing-platform-chip { background: #1e2e45; border-color: #49617f; color: #bfd8ff; }
+  #landing-page[data-theme="dark"] .hero-mobile-platforms .landing-platform-chip--android { background: var(--welcome-accent); border-color: var(--welcome-accent); color: #fff; }
   #landing-page .app-preview { padding-top: 30px; }
   #landing-page .app-preview-eyebrow { display: none; }
   #landing-page .app-preview-heading h2 { font-size: 1.9rem; }
@@ -16015,6 +16042,11 @@ body.guest-exam-mode #view-exam .option-btn.selected {
   #landing-page .app-gallery--mobile { order: -1; }
 }
 
+.study-sync-panel { margin-bottom: 20px; padding: 18px; }
+.study-device-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+.study-device-row > span { flex: 1 1 220px; overflow-wrap: anywhere; }
+.cloud-exam-readonly #questions-container .option-btn { opacity: .65; cursor: default; }
+body.guest-exam-mode #view-exam > .study-sync-panel { display: none; }
 @media (max-width: 360px) {
   #landing-page .landing-logo-text { font-size: .94rem; }
   #landing-page .landing-logo-img { width: 21px; height: 31px; }

@@ -215,7 +215,7 @@
                     </div>
                     <div class="landing-platforms" aria-label="Adaptado para Windows, Apple (macOS y iPhone) y Android. Las instrucciones de instalación aparecerán al iniciar sesión.">
                         <span class="landing-platforms-label">
-                            Adaptado para
+                            Disponible para
                         </span>
                         <div class="landing-platform-list">
                             <span class="landing-platform-chip landing-platform-chip--windows">
@@ -255,6 +255,24 @@
                             <div><strong>3,220</strong><span>reactivos clínicos</span></div>
                             <div><strong>4 áreas</strong><span>troncales del ENARM</span></div>
                             <div><strong>280</strong><span>preguntas por simulacro</span></div>
+                        </div>
+                        <div class="landing-platforms hero-mobile-platforms" aria-label="Disponible para Android, Windows, iPhone y Mac. Las instrucciones de instalación aparecerán al iniciar sesión.">
+                            <span class="landing-platforms-label">Disponible para</span>
+                            <div class="landing-platform-list">
+                                <span class="landing-platform-chip landing-platform-chip--android">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7.15 5.63-1.34-2.31.86-.5 1.37 2.36A9.5 9.5 0 0 1 12 4.32c1.42 0 2.75.31 3.94.86l1.37-2.36.86.5-1.34 2.31A7.43 7.43 0 0 1 19.37 11H4.63a7.43 7.43 0 0 1 2.52-5.37ZM8.6 8.42a.62.62 0 1 0 0-1.24.62.62 0 0 0 0 1.24Zm6.8 0a.62.62 0 1 0 0-1.24.62.62 0 0 0 0 1.24ZM5 12h14v6.01c0 .82-.67 1.49-1.49 1.49H6.49C5.67 19.5 5 18.83 5 18.01V12Zm-2 1.15h1v4.7H3a1 1 0 0 1-1-1v-2.7a1 1 0 0 1 1-1Zm18 0h-1v4.7h1a1 1 0 0 0 1-1v-2.7a1 1 0 0 0-1-1ZM7 20.5h2V23H7v-2.5Zm8 0h2V23h-2v-2.5Z"/></svg>
+                                    Android
+                                </span>
+                                <span class="landing-platform-chip landing-platform-chip--windows">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.1 10.6 4v7.1H3V5.1Zm8.5-1.3L21 2.5v8.6h-9.5V3.8ZM3 12.9h7.6V20L3 18.9v-6Zm8.6 0H21v8.6l-9.4-1.3v-7.3Z"/></svg>
+                                    Windows
+                                </span>
+                                <span class="landing-platform-chip landing-platform-chip--apple">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.67 12.15c-.02-2.15 1.76-3.19 1.84-3.24-1-1.46-2.56-1.66-3.11-1.68-1.31-.14-2.58.79-3.25.79-.69 0-1.72-.78-2.83-.76-1.45.02-2.81.86-3.55 2.16-1.53 2.65-.39 6.54 1.08 8.68.74 1.05 1.6 2.22 2.73 2.18 1.1-.05 1.51-.7 2.84-.7 1.31 0 1.7.7 2.85.67 1.19-.02 1.93-1.06 2.64-2.12.86-1.21 1.2-2.4 1.22-2.46-.03-.01-2.33-.89-2.46-3.52ZM14.55 5.84c.59-.74 1-1.75.89-2.77-.85.04-1.92.59-2.54 1.31-.55.64-1.04 1.69-.92 2.67.96.07 1.94-.49 2.57-1.21Z"/></svg>
+                                    iPhone / Mac
+                                </span>
+                            </div>
+                            <span class="landing-platforms-instructions">Instrucciones de instalación al iniciar sesión</span>
                         </div>
                     </div>
                     <div class="hero-showcase" aria-label="Vista de ENARMax en escritorio y telefono">
@@ -1521,6 +1539,10 @@
 
             <!-- ─── VIEW: EXAM ACTIVE ──────────────────────────── -->
             <div id="view-exam" class="view">
+                <div class="panel study-sync-panel" role="status">
+                    <p data-exam-sync-status>Preparando el guardado automático</p>
+                    <button class="btn-secondary" id="btn-take-exam-control" type="button" hidden>Continuar aquí</button>
+                </div>
                 <div class="guest-exam-brand" aria-label="Evaluación diagnóstica ENARMax">
                     <span class="logo-mark guest-exam-logo" aria-hidden="true"></span>
                     <div>
@@ -3234,6 +3256,14 @@
 
             <div id="view-profile" class="view">
                 <div class="profile-page">
+                    <section class="panel study-sync-panel">
+                        <h2 class="panel-title">Instalaciones autorizadas</h2>
+                        <p class="panel-subtitle">Puedes autorizar dos navegadores o instalaciones. Borrar los datos del navegador crea una instalación distinta.</p>
+                        <div id="study-devices"></div>
+                        <p data-exam-sync-status role="status">Conectando con tu cuenta</p>
+                        <div id="study-exam-conflicts" aria-live="polite"></div>
+                        <div id="study-legacy-conflicts" aria-live="polite"></div>
+                    </section>
                     <section class="profile-hero">
                         <button class="btn-ghost profile-back-btn" id="btn-profile-back" type="button">&#x2190; Volver al inicio</button>
                         <div class="profile-hero-body">
@@ -3473,9 +3503,8 @@
                         <section class="panel settings-panel">
                             <h3 class="panel-title">Sincronización entre dispositivos</h3>
                             <p class="panel-subtitle" data-progress-sync-status role="status">Cargando progreso de tu cuenta</p>
-                            <p class="profile-privacy-note">Tus exámenes y cambios se combinan entre los dispositivos donde usas esta cuenta. Los exámenes abiertos y el temporizador continúan en su dispositivo.</p>
-                            <button class="btn-primary" id="btn-sync-progress" type="button">Sincronizar ahora</button>
-                            <p class="profile-privacy-note">Versión 2026.10.15.2</p>
+                            <p class="profile-privacy-note">El guardado es automático. Al abrir un examen en otro dispositivo, el anterior queda en modo lectura. Puedes revisar instalaciones y pendientes en tu perfil.</p>
+                            <p class="profile-privacy-note">Versión 2026.10.15.3</p>
                         </section>
 
                         <section class="panel settings-panel email-verification-panel" id="email-verification-settings" style="border-top-color: var(--accent-orange);" hidden>
@@ -4802,6 +4831,7 @@
     <script src="security-crypto.js" charset="UTF-8"></script>
     <script src="scales-data.js" charset="UTF-8"></script>
     <script src="progress-sync.js" charset="UTF-8"></script>
+    <script src="study-session.js" charset="UTF-8"></script>
     <script src="app.js" charset="UTF-8"></script>
 
     <script>

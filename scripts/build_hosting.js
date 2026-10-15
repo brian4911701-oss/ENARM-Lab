@@ -14,6 +14,7 @@ const files = [
     "dashboard-layout.css",
     "app.js",
     "progress-sync.js",
+    "study-session.js",
     "landing-gallery.js",
     "glass-surface.js",
     "rubber-segment.js",

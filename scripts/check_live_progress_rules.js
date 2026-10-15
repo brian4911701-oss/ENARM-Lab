@@ -22,6 +22,8 @@ const { initializeAdmin, requireServiceAccountHint } = require('./security_admin
         absentClientFields: expected.filter(field => !progress.includes(`"${field}"`)),
         strictFieldAllowlist: progress.includes('keys().hasOnly('),
         hasMultiDeviceProtocol: progress.includes('sync_clients'),
+        hasServerAuthority: progress.includes("resource.data.get('syncVersion', 0) != 3"),
+        hasImmutableAttempts: source.includes('match /exam_attempts/{uid}/items/{attemptId}'),
         releaseChanged: false
     }, null, 2));
 })().catch(error => { console.error(error.message); process.exitCode = 1; });

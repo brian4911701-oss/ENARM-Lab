@@ -36,7 +36,7 @@ try {
 
 // ENARMax Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
-const CACHE_NAME = 'enarmax-v102-multi-device-sync';
+const CACHE_NAME = 'enarmax-v103-exam-authority';
 const COMPROMISED_ASSETS = ['/redeem_codes.txt', 'redeem_codes.txt'];
 
 // Archivos esenciales que se cachean al instalar
@@ -47,6 +47,7 @@ const CORE_ASSETS = [
     '/dashboard-layout.css',
     '/app.js',
     '/progress-sync.js',
+    '/study-session.js',
     '/landing-gallery.js',
     '/glass-surface.js',
     '/rubber-segment.js',
@@ -99,6 +100,7 @@ self.addEventListener('fetch', event => {
 
     // Solo manejar peticiones de nuestro propio origen
     if (url.origin !== location.origin) return;
+    if (url.pathname.startsWith('/api/')) return;
 
     // Nunca servir ni cachear el catálogo de códigos retirado.
     if (url.pathname.toLowerCase().endsWith('/redeem_codes.txt')) {

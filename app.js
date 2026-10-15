@@ -1822,13 +1822,174 @@
         'userSpecialty', 'userUniversity', 'userPhone', 'userTargetYear', 'userAvatar', 'isScorePublic'
     ].map(key => [key, State[key]])));
     const progressOutbox = window.ENARMProgressSync.create(localStorage);
+    const studyMessages = {
+        connecting: 'Conectando con tu cuenta', confirmed: 'Examen guardado en la nube', pending: 'Respuestas guardadas aquí · envío pendiente',
+        transferring: 'Transfiriendo el control del examen…', 'read-only': 'Examen en lectura · otro dispositivo tiene el control',
+        'ownership-lost': 'El examen continúa en otro dispositivo. Aquí está en modo lectura.',
+        'device-revoked': 'Esta instalación fue revocada. Administra tus instalaciones desde el perfil.',
+        'device-limit': 'Ya tienes dos instalaciones autorizadas. Revoca una desde el perfil de una instalación autorizada.',
+        'local-storage-full': 'No hay espacio para guardar la respuesta localmente. No se aplicó el cambio.',
+        'study-backend-unconfigured': 'El servicio de guardado no está disponible', offline: 'Sin conexión · cambios locales pendientes'
+    };
+    let studyStatus = null;
+    let applyingCloudExam = false;
+    const completedCloudExams = new Set();
+    const examPayloads = new Map();
+    const hydrateCloudExam = async (uid, exam) => {
+        if (!exam || exam.questionSet) return exam;
+        const key = `${uid}:${exam.id}`;
+        if (!examPayloads.has(key)) {
+            const snapshot = await window.FB.getDocFromServer(window.FB.doc(window.FB.db, 'exam_payloads', uid, 'items', exam.id));
+            if (!snapshot.exists()) throw new Error('El contenido del examen no está disponible.');
+            if (examPayloads.size >= 5) examPayloads.delete(examPayloads.keys().next().value);
+            examPayloads.set(key, snapshot.data().questionSet);
+        }
+        return { ...exam, questionSet: examPayloads.get(key) };
+    };
+    const studySession = window.ENARMStudy?.create({
+        storage: localStorage,
+        send: async (body, uid) => {
+            const user = window.FB?.auth?.currentUser;
+            if (user?.uid !== uid) throw Object.assign(new Error('La cuenta cambió.'), { code: 'account-changed' });
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 20000);
+            try {
+                const response = await fetch('/api/study-sync', { method: 'POST', cache: 'no-store', signal: controller.signal,
+                    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + await user.getIdToken() }, body: JSON.stringify(body) });
+                const result = await response.json();
+                if (!response.ok) throw Object.assign(new Error(studyMessages[result.code] || `No se confirmó el guardado (${result.code}).`), { code: result.code });
+                return result;
+            } finally { clearTimeout(timeout); }
+        },
+        readExam: async uid => { const snap = await window.FB.getDocFromServer(window.FB.doc(window.FB.db, 'active_exams', uid)); return snap.exists() ? hydrateCloudExam(uid, snap.data()) : null; },
+        listenExam: (uid, next, error) => window.FB.onSnapshot(window.FB.doc(window.FB.db, 'active_exams', uid), snap => {
+            if (snap.exists() && !snap.metadata.fromCache && !snap.metadata.hasPendingWrites) void hydrateCloudExam(uid, snap.data()).then(exam => { if (State.currentUid === uid) next(exam); }).catch(error);
+        }, error),
+        listenDevices: (uid, next) => window.FB.onSnapshot(window.FB.doc(window.FB.db, 'study_devices', uid), snap => {
+            if (snap.exists() && !snap.metadata.fromCache) next(snap.data().devices || []);
+        }, error => console.warn('No se pudo actualizar la lista de instalaciones.', error)),
+        onDevices: (devices, currentId) => {
+            const panel = $('study-devices');
+            if (!panel) return;
+            panel.replaceChildren();
+            for (const device of devices.filter(device => !device.revoked)) {
+                const row = document.createElement('div'); row.className = 'study-device-row';
+                const label = document.createElement('span'); label.textContent = `${device.label}${device.id === currentId ? ' · esta instalación' : ''}`;
+                const button = document.createElement('button'); button.type = 'button'; button.className = 'btn-secondary'; button.textContent = 'Revocar';
+                button.onclick = async () => { if (!confirm('¿Revocar esta instalación? Perderá el permiso para guardar y controlar el examen.')) return; try { await studySession.revoke(device.id); } catch (e) { showNotification(e.message, 'error'); } };
+                row.append(label, button); panel.append(row);
+            }
+        },
+        onStatus: status => {
+            studyStatus = status;
+            document.body.classList.toggle('cloud-exam-readonly', !!studySession.active && studySession.active.status === 'active' && !status.owns && !State.guestExamActive);
+            document.querySelectorAll('[data-exam-sync-status]').forEach(el => { el.textContent = studyMessages[status.status] || 'Guardado sin confirmar · se reintentará automáticamente'; });
+            const take = $('btn-take-exam-control'); if (take) take.hidden = status.owns || !studySession.active || studySession.active.status !== 'active';
+            const conflicts = $('study-exam-conflicts');
+            if (conflicts) {
+                conflicts.replaceChildren();
+                for (const record of status.conflicts) {
+                    const row = document.createElement('div'); row.className = 'study-device-row';
+                    const label = document.createElement('span'); label.textContent = record.kind === 'answer'
+                        ? `Respuesta local pendiente: pregunta ${record.index + 1}, opción ${record.selected + 1}. No se aplicó tras cambiar el control.` : `Cambio local pendiente (${record.kind}) del control anterior.`;
+                    const recover = document.createElement('button'); recover.type = 'button'; recover.className = 'btn-secondary'; recover.textContent = 'Aplicar esta respuesta';
+                    recover.hidden = record.kind !== 'answer' || record.examId !== studySession.active?.id;
+                    recover.onclick = async () => { if (!confirm('¿Tomar el control y aplicar esta respuesta local al examen actual?')) return; try { await studySession.recover(record.key); } catch (e) { showNotification(e.message, 'warning'); } };
+                    const discard = document.createElement('button'); discard.type = 'button'; discard.className = 'btn-ghost'; discard.textContent = 'Descartar';
+                    discard.onclick = () => { if (confirm('¿Descartar este pendiente local? Esta acción no modifica lo confirmado en la nube.')) studySession.discard(record.key); };
+                    row.append(label, recover, discard); conflicts.append(row);
+                }
+            }
+            updateProgressSyncStatus();
+        },
+        onExam: (exam, owns) => {
+            if (!exam) return;
+            if (exam.status !== 'active') {
+                if (State.currentExamSessionId === exam.id) { State.examActive = false; clearExamTimer(); }
+                return;
+            }
+            applyingCloudExam = true;
+            try {
+                const wasOpen = State.examActive;
+                Object.assign(State, { questionSet: exam.questionSet, answers: exam.answers, currentIndex: exam.currentIndex,
+                    currentExamSessionId: exam.id, mode: exam.mode, currentExamType: exam.currentExamType, currentExamIsReal: exam.currentExamIsReal,
+                    activeReviewQueueItemId: exam.reviewQueueItemId, activeChallengeId: exam.challengeId || null,
+                    durationSec: exam.durationSec, pausedElapsedTime: exam.elapsedSec, startTime: exam.paused ? null : exam.runningSince - exam.elapsedSec * 1000,
+                    examActive: true, guestExamActive: false, examStartedWithPremium: isPremiumActive() });
+                clearExamTimer();
+                renderExamQuestion();
+                document.querySelectorAll('#questions-container .option-btn, #questions-container .btn-flag').forEach(button => { button.disabled = !owns; });
+                if (owns && !wasOpen) showView('view-exam');
+                if (owns && !exam.paused && exam.durationSec > 0) State.timer = setInterval(() => {
+                    const remaining = Math.max(State.durationSec - getExamElapsedSeconds(), 0);
+                    setExamTimerVisibility(true, remaining); if (!remaining) void finishExam();
+                }, 1000);
+                setExamTimerVisibility(exam.durationSec > 0, Math.max(exam.durationSec - getExamElapsedSeconds(), 0));
+                updateDashboardStats();
+            } finally { applyingCloudExam = false; }
+        },
+        onAttempt: (attempt, data) => {
+            if (data) applyPrivateProgress(progressOutbox.accept(State.currentUid, data));
+            if (completedCloudExams.has(attempt.id)) return;
+            completedCloudExams.add(attempt.id);
+            Object.assign(State, { questionSet: attempt.questionSet, answers: attempt.answers, examActive: false }); clearExamTimer();
+            const { correct, wrong, blank, preguntas: total, pct, elapsedSec: elapsed } = attempt;
+            const postmortem = buildSessionPostmortem({ correct, wrong, blank, total, elapsedSec: elapsed });
+            const summary = buildSessionResultSummary({ correct, wrong, blank, total, pct, elapsed, postmortem });
+            for (const [id, value] of Object.entries({ 'score-pct': `${pct}%`, 'meta-correct': correct, 'meta-wrong': wrong, 'meta-blank': blank, 'meta-time': formatTime(elapsed) })) if ($(id)) $(id).textContent = value;
+            State.lastPostmortem = postmortem;
+            renderSessionResults(summary, (State.examStartedWithPremium || isPremiumActive()) ? 'premium' : 'free');
+            State.activeReviewQueueItemId = ''; State.activeChallengeId = null; State.activeChallengeRole = null;
+            saveGlobalStats(); renderResultsPostmortem(); showView('view-results');
+            void syncUserMetrics({ force: true });
+        }
+    });
     const progressWrites = new Map();
+    const clearAccountExamRuntime = () => {
+        clearExamTimer();
+        Object.assign(State, { questionSet: [], answers: [], currentIndex: 0, currentExamSessionId: '', examActive: false, guestExamActive: false,
+            activeReviewQueueItemId: '', activeChallengeId: null, startTime: null, pausedElapsedTime: 0 });
+        reviewQuestionSet = []; reviewAnswers = []; examPayloads.clear(); completedCloudExams.clear();
+        historyArchiveRows = []; historyArchiveUid = ''; legacyProgressConflictCount = 0;
+        document.body.classList.remove('cloud-exam-readonly', 'guest-exam-mode');
+    };
+    let legacyProgressConflictCount = 0;
+    const renderLegacyProgressConflicts = () => {
+        const container = $('study-legacy-conflicts'); if (!container) return;
+        const prefix = `enarm_legacy_conflict:${State.currentUid}:`, records = [];
+        for (let i = 0; i < localStorage.length; i++) { const key = localStorage.key(i); if (key?.startsWith(prefix)) records.push(key); }
+        legacyProgressConflictCount = records.length;
+        container.replaceChildren();
+        if (!records.length) return;
+        const text = document.createElement('p'); text.textContent = 'Hay actividad de una versión anterior archivada para revisión. No se sustituyeron los resultados confirmados.';
+        const exportButton = document.createElement('button'); exportButton.type = 'button'; exportButton.className = 'btn-secondary'; exportButton.textContent = 'Descargar respaldo de actividad anterior';
+        exportButton.onclick = () => {
+            const content = records.map(key => JSON.parse(localStorage.getItem(key)));
+            const url = URL.createObjectURL(new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' }));
+            const link = document.createElement('a'); link.href = url; link.download = 'enarmax-actividad-anterior.json'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+        };
+        container.append(text, exportButton);
+    };
+    let studyBootUid = '', studyBootPromise = null;
+    const bootStudySession = async uid => {
+        if (!studySession || !window.FB?.auth?.currentUser?.emailVerified) return;
+        renderLegacyProgressConflicts();
+        if (studyBootUid === uid && studyBootPromise) return studyBootPromise;
+        studyBootUid = uid;
+        studyBootPromise = studySession.boot(uid).then(async () => {
+            if (!progressOutbox.read(uid)?.pending) await studySession.completeMigration();
+        }).catch(error => { studyBootUid = ''; console.warn('El examen remoto se reintentará automáticamente.', error); }).finally(() => { studyBootPromise = null; });
+        return studyBootPromise;
+    };
     let progressRetryTimer = null;
     const updateProgressSyncStatus = () => {
         const user = window.FB?.auth?.currentUser;
         let text = "Cargando progreso de tu cuenta";
         if (progressOutbox.read(State.currentUid)?.pending || State.progressSyncError) text = "Cambios guardados aquí · sincronización pendiente";
         else if (user && !user.emailVerified) text = "Guardado en este dispositivo · verifica tu correo para sincronizar";
+        else if (legacyProgressConflictCount) text = 'Actividad anterior pendiente de revisión en tu perfil';
+        else if (studyStatus?.conflicts.length) text = 'Hay cambios locales pendientes de revisión en tu perfil';
+        else if (studyStatus && (!studyStatus.registered || studyStatus.pending || !['confirmed', 'read-only', 'ownership-lost'].includes(studyStatus.status))) text = studyMessages[studyStatus.status] || 'Sincronización pendiente';
         else if (State.progressRestoreReady) text = "Progreso sincronizado";
         document.querySelectorAll("[data-progress-sync-status]").forEach(element => { element.textContent = text; });
     };
@@ -1871,7 +2032,7 @@
     };
     const receiveRemoteProgress = (uid, data) => {
         if (State.currentUid !== uid || window.FB?.auth?.currentUser?.uid !== uid) return;
-        if (data.syncVersion === 2 && Number(data.syncRevision) <= State.progressSyncRevision) return;
+        if (data.syncVersion >= 2 && Number(data.syncRevision) <= State.progressSyncRevision) return;
         if (progressOutbox.read(uid)?.pending) { void flushPendingProgress(); return; }
         applyPrivateProgress(progressOutbox.accept(uid, data));
     };
@@ -1912,6 +2073,10 @@
                 data.score = data.scoreVisible !== false && totals.respondidas > 0
                     ? Number(((totals.aciertos / totals.respondidas) * 100).toFixed(1)) : (data.scoreVisible === false ? null : 0);
                 data.flame = window.ENARMStreak?.effective(totals.streakData) ?? getEffectiveStreak();
+                if (progress.data().syncVersion >= 3) {
+                    data.score = data.scoreVisible === false ? null : progress.data().publicScore;
+                    data.flame = progress.data().publicFlame;
+                }
                 data.updatedAt = window.FB.serverTimestamp();
                 transaction.set(profileRef, data, { merge: true });
             });
@@ -1926,7 +2091,10 @@
         const operations = progressOutbox.batch(uid);
         if (!operations.length) { updateProgressSyncStatus(); return; }
         const ref = window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, uid);
-        const write = window.FB.runTransaction(window.FB.db, async transaction => {
+        const write = studySession ? (async () => {
+            await studySession.register(uid);
+            return studySession.progress(operations);
+        })() : window.FB.runTransaction(window.FB.db, async transaction => {
             const snapshot = await transaction.get(ref);
             const remote = snapshot.exists() ? snapshot.data() : {};
             const actors = [...new Set(operations.map(operation => operation.actor))];
@@ -1959,11 +2127,17 @@
         try {
             const result = await write;
             saved = true;
+            if (result.conflicts?.length) {
+                for (const operation of operations.filter(op => result.conflicts.includes(op.id))) localStorage.setItem(`enarm_legacy_conflict:${uid}:${operation.id}`, JSON.stringify({ operation, serverArchive: result.conflictArchive }));
+                renderLegacyProgressConflicts();
+                showNotification('Conservamos actividad de una versión anterior para revisión en tu perfil. No reemplazó los resultados confirmados.', 'warning');
+            }
             const view = progressOutbox.accept(uid, result.data, operations);
             if (State.currentUid === uid && window.FB.auth.currentUser?.uid === uid) {
                 State.progressDocumentExists = true;
                 State.progressSyncError = false;
                 applyPrivateProgress(view);
+                if (studySession && !progressOutbox.read(uid)?.pending) void studySession.completeMigration().catch(error => console.warn('Migración pendiente.', error));
                 void publishPublicProgress(uid);
                 if (result.ignored.length) showNotification("El progreso se reinició desde otro dispositivo. Los cambios anteriores al reinicio no vuelven a añadir estadísticas.", "info");
             }
@@ -2914,6 +3088,7 @@
         if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic;
         updatePremiumStatusLabel();
         syncEmailVerificationSettings();
+        renderLegacyProgressConflicts();
     }
 
     const clearSelectedPreset = () => {
@@ -3661,6 +3836,9 @@
     };
 
     const removeCaseFromCurrentExam = (caseKey) => {
+        if (studySession?.active?.status === 'active' && State.examActive && !State.guestExamActive) {
+            showNotification('El cambio se aplicará a los próximos exámenes. Este intento conserva sus preguntas.', 'info'); return false;
+        }
         if (!caseKey || !Array.isArray(State.questionSet) || State.questionSet.length === 0) return false;
         const indicesToRemove = [];
         State.questionSet.forEach((q, idx) => {
@@ -3844,6 +4022,7 @@
 
     const applyCaseReclassificationsToSet = (set, mapOverride) => {
         if (!Array.isArray(set)) return;
+        if (studySession?.active?.status === 'active' && set === State.questionSet) return;
         const map = mapOverride || loadCaseReclassMap();
         set.forEach(q => {
             if (!q) return;
@@ -9213,6 +9392,8 @@
 
     const renderExamQuestion = () => {
         if (!State.questionSet || State.questionSet.length === 0) return;
+        if (studySession && !State.guestExamActive && !applyingCloudExam && studySession.owns()
+            && studySession.active?.currentIndex !== State.currentIndex) studySession.queue({ kind: 'position', index: State.currentIndex });
 
         let qFirst = State.questionSet[State.currentIndex];
 
@@ -9328,6 +9509,7 @@
                 btnFlag.innerHTML = `${appIcon('flag')} ${State.guestExamActive ? "Revisar después" : "Marcar"}`;
                 btnFlag.setAttribute("aria-pressed", String(ans.flagged));
                 btnFlag.addEventListener("click", () => {
+                    if (studySession && !State.guestExamActive && !studySession.queue({ kind: 'flag', index: qIndex, flagged: !State.answers[qIndex].flagged })) { showNotification('Este examen está en modo lectura.', 'info'); return; }
                     State.answers[qIndex].flagged = !State.answers[qIndex].flagged;
                     btnFlag.classList.toggle("active", State.answers[qIndex].flagged);
                     btnFlag.setAttribute("aria-pressed", String(State.answers[qIndex].flagged));
@@ -9448,10 +9630,13 @@
         const q = State.questionSet[qIndex];
         const ans = State.answers[qIndex];
         if (State.mode === "estudio" && ans.selected !== null) return;
+        if (studySession && !State.guestExamActive && !studySession.queue({ kind: 'answer', index: qIndex, selected: selectedIdx })) {
+            showNotification('El examen está en modo lectura. Continúa en el dispositivo que tiene el control.', 'info'); return;
+        }
         ans.selected = selectedIdx;
         ans.isCorrect = (selectedIdx === getQuestionAnswerIndex(q));
-        if (!State.guestExamActive && recordStudyDay()) debouncedSave();
-        if (State.mode === "estudio") recordStat(q.specialty, ans.isCorrect, getCaseCanonicalTopic(q));
+        if (!studySession && !State.guestExamActive && recordStudyDay()) debouncedSave();
+        if (!studySession && State.mode === "estudio" && !State.guestExamActive) recordStat(q.specialty, ans.isCorrect, getCaseCanonicalTopic(q));
         if (State.mode === "estudio") {
             renderExamQuestion();
             requestAnimationFrame(() => {
@@ -9531,6 +9716,14 @@
         guest = false,
         reviewQueueItemId = ""
     }) => {
+        if (!guest && studySession) {
+            const user = window.FB?.auth?.currentUser;
+            if (!user?.emailVerified) { showNotification('Inicia sesión y verifica tu correo para guardar y continuar exámenes entre dispositivos.', 'warning'); hideExamLoadingOverlay(); return false; }
+            void studySession.register(user.uid).then(() => studySession.start({ examId: window.ENARMProgressSync.id(), questionSet, mode, currentExamIsReal,
+                currentExamType, durationSec, reviewQueueItemId, challengeId: State.activeChallengeId || '' }))
+                .catch(error => showNotification(error.message, 'warning')).finally(hideExamLoadingOverlay);
+            return true;
+        }
         if (!Array.isArray(questionSet) || questionSet.length === 0) {
             clearExamTimer();
             State.questionSet = [];
@@ -10783,6 +10976,12 @@
     };
 
     const finishExam = () => {
+        if (studySession && !State.guestExamActive) {
+            if (!studySession.owns()) { showNotification('Solo el dispositivo que tiene el control puede finalizar.', 'info'); return; }
+            if (isFinishing) return;
+            isFinishing = true;
+            return studySession.flush(true).catch(error => showNotification('El examen aún no está finalizado en la nube. ' + error.message, 'warning')).finally(() => { isFinishing = false; });
+        }
         if (isFinishing) return;
         isFinishing = true;
         try {
@@ -13167,22 +13366,23 @@
         }
     };
 
+    let historyArchiveUid = '', historyArchiveRows = [], historyArchiveCursor = null, historyArchiveMore = true, historyArchiveLoading = false;
     const updateHistoryView = () => {
         const cont = $("history-list"); if (!cont) return;
+        if (historyArchiveUid !== State.currentUid) { historyArchiveUid = State.currentUid; historyArchiveRows = []; historyArchiveCursor = null; historyArchiveMore = true; }
+        const rows = [...new Map([...historyArchiveRows, ...State.history].map(row => [row.id || `legacy:${row.timestamp}`, row])).values()].sort((a, b) => b.timestamp - a.timestamp);
         renderHistoryStudySummary();
-        if (State.history.length === 0) {
+        if (rows.length === 0) {
             cont.innerHTML = `<div class="list-item empty-history"><p style="color:var(--text-muted); padding: 20px;">Aún no hay sesiones registradas.</p></div>`;
-            return;
         }
-        cont.innerHTML = "";
-        [...State.history].reverse().forEach((h, i) => {
-            const realIdx = State.history.length - 1 - i;
+        if (rows.length) cont.innerHTML = "";
+        rows.forEach((h, realIdx) => {
             const div = document.createElement("div"); div.className = "list-item";
             const studiedTopics = Array.isArray(h.topicsStudied) ? h.topicsStudied.slice(0, 3) : [];
             div.innerHTML = `
                 <div class="history-list-item-rich">
                     <div class="list-item-content">
-                        <h3>${h.tipo || 'Examen'} - ${h.preguntas} preguntas</h3>
+                        <h3>${escapeHtml(h.tipo || 'Examen')} - ${h.preguntas} preguntas</h3>
                         <p>${h.pct}% Aciertos | ${formatTime(h.elapsedSec || 0)} | ${h.sessionKind || "simulacro"}</p>
                     </div>
                     ${studiedTopics.length ? `<div class="history-list-tags">${studiedTopics.map(topic => `<span class="review-item-tag">${escapeHtml(topic)}</span>`).join("")}</div>` : ""}
@@ -13196,51 +13396,77 @@
         });
 
         cont.querySelectorAll(".btn-rev-history").forEach(btn => {
-            btn.addEventListener("click", (e) => {
+            btn.addEventListener("click", async (e) => {
                 const idx = e.target.getAttribute("data-index");
-                const h = State.history[idx];
+                let h = rows[idx];
+                if (h?.id && (!h.questionSet || !h.answers) && studySession && State.currentUid) {
+                    try {
+                        const [snapshot, attempt] = await Promise.all([
+                            window.FB.getDoc(window.FB.doc(window.FB.db, 'exam_payloads', State.currentUid, 'items', h.id)),
+                            !h.answers ? window.FB.getDoc(window.FB.doc(window.FB.db, 'exam_attempts', State.currentUid, 'items', h.id)) : null
+                        ]);
+                        if (attempt?.exists()) h = { ...h, ...attempt.data() };
+                        if (snapshot.exists()) h = { ...h, questionSet: snapshot.data().questionSet };
+                    } catch (error) { showNotification('No pudimos cargar los detalles del intento. Revisa tu conexión.', 'warning'); return; }
+                }
                 if (h && h.questionSet && h.answers) {
-                    State.questionSet = h.questionSet;
-                    State.answers = h.answers;
                     showView("view-review");
-                    startReview();
+                    startReview(h);
                 } else {
                     showNotification("No hay detalles guardados para este examen antiguo.");
                 }
             });
         });
+        if (studySession && State.currentUid && historyArchiveMore) {
+            const button = document.createElement('button'); button.type = 'button'; button.className = 'btn-secondary'; button.textContent = 'Ver intentos anteriores'; button.disabled = historyArchiveLoading;
+            button.onclick = async () => {
+                const uid = State.currentUid; historyArchiveLoading = true; button.disabled = true;
+                try {
+                    const clauses = [window.FB.orderBy('timestamp', 'desc'), window.FB.limit(20)];
+                    if (historyArchiveCursor) clauses.push(window.FB.startAfter(historyArchiveCursor));
+                    const snapshot = await window.FB.getDocs(window.FB.query(window.FB.collection(window.FB.db, 'exam_attempts', uid, 'items'), ...clauses));
+                    if (State.currentUid !== uid) return;
+                    historyArchiveRows.push(...snapshot.docs.map(doc => doc.data())); historyArchiveCursor = snapshot.docs.at(-1) || historyArchiveCursor; historyArchiveMore = snapshot.docs.length === 20;
+                } catch (error) { showNotification('No pudimos cargar el archivo de intentos. Revisa tu conexión.', 'warning'); }
+                finally { historyArchiveLoading = false; updateHistoryView(); }
+            };
+            cont.append(button);
+        }
     };
 
     // ---------------------------------------------------------------------------
     // Review Logic
     // ---------------------------------------------------------------------------
     let reviewIndex = 0;
+    let reviewQuestionSet = [], reviewAnswers = [];
 
-    const startReview = () => {
+    const startReview = (attempt = null) => {
+        reviewQuestionSet = (attempt?.questionSet || State.questionSet).map(question => ({ ...question }));
+        reviewAnswers = (attempt?.answers || State.answers).map(answer => ({ ...answer }));
         reviewIndex = 0;
         renderReviewQuestion();
         showView("view-review");
     };
 
     const renderReviewQuestion = () => {
-        if (!State.questionSet || State.questionSet.length === 0) return;
+        if (!reviewQuestionSet || reviewQuestionSet.length === 0) return;
 
-        let qFirst = State.questionSet[reviewIndex];
+        let qFirst = reviewQuestionSet[reviewIndex];
 
         // Normalizar reviewIndex al inicio del grupo (caso clínico)
         const groupId = qFirst.caseGroupId;
         let firstIdx = reviewIndex;
-        while (firstIdx > 0 && State.questionSet[firstIdx - 1].caseGroupId === groupId) {
+        while (firstIdx > 0 && reviewQuestionSet[firstIdx - 1].caseGroupId === groupId) {
             firstIdx--;
         }
         reviewIndex = firstIdx;
-        qFirst = State.questionSet[reviewIndex];
+        qFirst = reviewQuestionSet[reviewIndex];
 
-        const total = State.questionSet.length;
+        const total = reviewQuestionSet.length;
 
         const indices = [];
         for (let i = reviewIndex; i < total; i++) {
-            if (State.questionSet[i].caseGroupId === groupId) indices.push(i);
+            if (reviewQuestionSet[i].caseGroupId === groupId) indices.push(i);
             else break;
         }
 
@@ -13252,8 +13478,8 @@
         if (container) {
             container.innerHTML = "";
             indices.forEach((qIndex) => {
-                const q = State.questionSet[qIndex];
-                const ans = State.answers[qIndex];
+                const q = reviewQuestionSet[qIndex];
+                const ans = reviewAnswers[qIndex];
 
                 const qBox = document.createElement("div");
                 qBox.className = "question-box";
@@ -13357,11 +13583,11 @@
     const renderReviewSidebar = () => {
         const nav = $("rev-question-navigator"); if (!nav) return;
         nav.innerHTML = "";
-        const currentGroupId = State.questionSet[reviewIndex]?.caseGroupId;
+        const currentGroupId = reviewQuestionSet[reviewIndex]?.caseGroupId;
 
-        State.questionSet.forEach((_, i) => {
-            const a = State.answers[i];
-            const q = State.questionSet[i];
+        reviewQuestionSet.forEach((_, i) => {
+            const a = reviewAnswers[i];
+            const q = reviewQuestionSet[i];
             const dot = document.createElement("button");
             dot.className = "nav-dot";
             dot.textContent = i + 1;
@@ -14725,9 +14951,9 @@
         const rbp = $("btn-rev-prev");
         if (rbp) rbp.addEventListener("click", () => {
             if (reviewIndex > 0) {
-                const currentGroupId = State.questionSet[reviewIndex].caseGroupId;
+                const currentGroupId = reviewQuestionSet[reviewIndex].caseGroupId;
                 let prevIdx = reviewIndex;
-                while (prevIdx >= 0 && State.questionSet[prevIdx].caseGroupId === currentGroupId) {
+                while (prevIdx >= 0 && reviewQuestionSet[prevIdx].caseGroupId === currentGroupId) {
                     prevIdx--;
                 }
                 if (prevIdx >= 0) {
@@ -14738,13 +14964,13 @@
         });
         const rbn = $("btn-rev-next");
         if (rbn) rbn.addEventListener("click", () => {
-            if (!State.questionSet || State.questionSet.length === 0) return;
-            const currentGroupId = State.questionSet[reviewIndex]?.caseGroupId;
+            if (!reviewQuestionSet || reviewQuestionSet.length === 0) return;
+            const currentGroupId = reviewQuestionSet[reviewIndex]?.caseGroupId;
             let nextIdx = reviewIndex;
-            while (nextIdx < State.questionSet.length && State.questionSet[nextIdx].caseGroupId === currentGroupId) {
+            while (nextIdx < reviewQuestionSet.length && reviewQuestionSet[nextIdx].caseGroupId === currentGroupId) {
                 nextIdx++;
             }
-            if (nextIdx < State.questionSet.length) {
+            if (nextIdx < reviewQuestionSet.length) {
                 reviewIndex = nextIdx;
                 renderReviewQuestion();
             }
@@ -14853,6 +15079,7 @@
         const btnPause = $("btn-pause-exam");
         if (btnPause) {
             btnPause.addEventListener("click", () => {
+                if (studySession && !State.guestExamActive && !studySession.queue({ kind: 'pause' })) return;
                 pauseTimer();
                 $("nav-dashboard").click();
                 showNotification("Examen pausado. Puedes retomarlo desde el Dashboard.", "info");
@@ -14862,6 +15089,10 @@
         const btnResume = $("btn-resume-exam");
         if (btnResume) {
             btnResume.addEventListener("click", () => {
+                if (studySession && !State.guestExamActive) {
+                    void (async () => { if (!studySession.owns()) await studySession.claim(studySession.active.id); studySession.queue({ kind: 'resume' }); await studySession.flush(); showView('view-exam'); })().catch(error => showNotification(error.message, 'warning'));
+                    return;
+                }
                 if (State.durationSec > 0) {
                     startTimer(true);
                 } else {
@@ -14950,7 +15181,17 @@
 
         // Reiniciar Estadísticas
         const btnReset = $("btn-reset-stats");
-        if (btnReset) btnReset.addEventListener("click", () => {
+        if (btnReset) btnReset.addEventListener("click", async () => {
+            if (studySession && State.currentUid) {
+                if (!confirm('¿Reiniciar tus estadísticas? Los intentos confirmados se conservarán como archivo.')) return;
+                try {
+                    await studySession.register(State.currentUid);
+                    const result = await studySession.reset();
+                    applyPrivateProgress(progressOutbox.accept(State.currentUid, result.data));
+                    showNotification('Estadísticas reiniciadas en la nube.', 'success');
+                } catch (error) { showNotification('No se reiniciaron las estadísticas. ' + error.message, 'warning'); }
+                return;
+            }
             if (confirm("¿Estás 100% seguro? Esta acción borrará TODO tu progreso y no se puede deshacer.")) {
                 localStorage.removeItem("enarm_stats");
                 localStorage.removeItem("enarm_history");
@@ -15110,7 +15351,12 @@
                 if (lastRegisteredPushToken) {
                     deleteRefs.push(window.FB.doc(window.FB.db, PUSH_TOKEN_COLLECTION, buildPushTokenDocId(uid, lastRegisteredPushToken)));
                 }
-                await Promise.all(deleteRefs.map(ref => window.FB.deleteDoc(ref)));
+                if (studySession) {
+                    await studySession.register(uid);
+                    await studySession.purge();
+                    stopProgressListener(); studySession.stop();
+                }
+                await Promise.all(deleteRefs.filter(ref => !studySession || (ref.path !== `user_progress/${uid}` && !ref.path.startsWith(`user_progress/${uid}/`))).map(ref => window.FB.deleteDoc(ref)));
                 for (const challengeSnap of challenges) {
                     const challenge = challengeSnap.data() || {};
                     if (challenge.challengerId === uid) {
@@ -17700,14 +17946,16 @@
                         console.warn("La restauración se reintentará cuando haya conexión.", error);
                     }
                 };
-                window.addEventListener("online", () => void retryProgressSync());
+                window.addEventListener("online", () => { void retryProgressSync(); if (State.currentUid) void bootStudySession(State.currentUid); void studySession?.flush(); });
                 window.addEventListener("enarm:retry-progress", () => void retryProgressSync());
                 window.addEventListener("storage", event => {
                     if (event.key?.startsWith(`enarm_progress_v2:${State.currentUid}:`)) void retryProgressSync();
                 });
-                $("btn-sync-progress")?.addEventListener("click", () => void retryProgressSync());
+                $('btn-take-exam-control')?.addEventListener('click', () => {
+                    if (studySession?.active) void studySession.claim(studySession.active.id).catch(error => showNotification(error.message, 'warning'));
+                });
                 document.addEventListener("visibilitychange", () => {
-                    if (document.visibilityState === "visible") void retryProgressSync();
+                    if (document.visibilityState === "visible") { void retryProgressSync(); if (State.currentUid && !studyStatus?.registered) void bootStudySession(State.currentUid); void studySession?.flush(); }
                 });
 
                 // Listen for Auth State to restore stats correctly dynamically
@@ -17727,7 +17975,8 @@
                             State.progressDocumentExists = false;
                             State.progressSyncRevision = -1;
                             const localOwner = localStorage.getItem("enarm_progress_owner");
-                            if (localOwner && localOwner !== user.uid) Object.assign(State, JSON.parse(emptyAccountProgress));
+                            if (localOwner && localOwner !== user.uid) { Object.assign(State, JSON.parse(emptyAccountProgress)); clearAccountExamRuntime(); }
+                            if (State.guestExamActive) clearAccountExamRuntime();
                             localStorage.setItem("enarm_progress_owner", user.uid);
                             const fallbackDisplayName = user.displayName
                                 || (user.email ? user.email.split("@")[0] : "")
@@ -17787,6 +18036,7 @@
                             };
                             try {
                                 await restoreAuthenticatedProgress(user, coreUserDataPromise);
+                                void bootStudySession(user.uid);
                                 if (State.currentUid !== user.uid || window.FB.auth.currentUser?.uid !== user.uid) return;
                                 syncPendingReportsToCloud();
                                 setStartupStatus("Progreso restaurado", "Todo está listo.");
@@ -17802,7 +18052,9 @@
                             resetUserDirectorySyncState();
                             resetUserMetricsSync();
                             stopProgressListener();
+                            if (State.currentUid) clearAccountExamRuntime();
                             State.currentUid = "";
+                            studySession?.stop(); studyBootUid = ''; studyStatus = null;
                             State.isAdminClaim = false;
                             State.progressRestoreUid = "";
                             State.progressRestoreReady = false;
