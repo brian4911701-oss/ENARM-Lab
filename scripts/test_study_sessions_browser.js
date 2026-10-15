@@ -41,6 +41,8 @@ const root = path.resolve(__dirname, '..');
                 const token = String(request.headers.authorization || '').replace(/^Bearer /, '');
                 const claims = await auth.verifyIdToken(token);
                 const result = await execute(claims.uid, JSON.parse(body));
+                const submitted = JSON.parse(body);
+                if (['start', 'claim'].includes(submitted.action)) console.log('Authority transition:', JSON.stringify({ action: submitted.action, tab: submitted.tabId, fence: result.exam?.fence, ownerTab: result.exam?.ownerTab, firstAnswer: result.exam?.answers?.[0]?.selected }));
                 response.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }); response.end(JSON.stringify(result)); return;
             }
             const file = path.resolve(root, '.' + (pathname === '/' ? '/index.html' : pathname));
@@ -65,8 +67,9 @@ const root = path.resolve(__dirname, '..');
         const pageFor = async mobile => {
             const context = await browser.createBrowserContext();
             const page = await context.newPage();
+            await page.evaluateOnNewDocument(() => localStorage.setItem('enarmax_analytics_consent', 'denied'));
             if (mobile) await page.setViewport({ width: 412, height: 915, isMobile: true, hasTouch: true });
-            page.on('pageerror', error => errors.push(error.message));
+            page.on('pageerror', error => { errors.push(error.message); console.log('Uncaught browser error:', error.stack); });
             page.on('console', message => { if (message.type() === 'error' || message.text().includes('examen remoto')) console.log('Browser:', message.text().slice(0, 450)); });
             await page.setRequestInterception(true);
             page.on('request', request => {
@@ -89,7 +92,8 @@ const root = path.resolve(__dirname, '..');
         await pc.evaluate(questionSet => __studyTest.beginExamSession({ questionSet, currentExamType: 'Prueba multidispositivo', mode: 'simulacro' }), flat);
         await pc.waitForFunction(() => __studyTest.studySession.owns());
         await pc.click('#questions-container .question-card[data-question-index="0"] .option-btn[data-option-index="1"]');
-        await pc.waitForFunction(() => document.querySelector('[data-exam-sync-status]').textContent === 'Examen guardado en la nube');
+        await pc.waitForFunction(() => __studyTest.State.answers[0]?.selected === 1 && __studyTest.studySession.active?.lastSequence >= 1
+            && document.querySelector('[data-exam-sync-status]').textContent === 'Examen guardado en la nube');
         const reviewIsolation = await pc.evaluate(() => {
             const questions = __studyTest.State.questionSet, answers = __studyTest.State.answers;
             __studyTest.startReview({ questionSet: [{ ...questions[0], question: 'Intento anterior' }], answers: [{ selected: 0, isCorrect: false }] });
@@ -100,11 +104,19 @@ const root = path.resolve(__dirname, '..');
         });
         assert.deepEqual(reviewIsolation, { isolated: true, frozen: true });
         const phone = await pageFor(true);
-        await phone.waitForFunction(() => __studyTest.studySession.owns() && __studyTest.State.answers[0]?.selected === 1);
+        try { await phone.waitForFunction(() => __studyTest.studySession.owns() && __studyTest.State.answers[0]?.selected === 1); }
+        catch (error) {
+            console.log('Handoff diagnostics:', await phone.evaluate(() => ({ uid: __studyTest?.State.currentUid, authUid: window.FB?.auth?.currentUser?.uid, owns: __studyTest?.studySession.owns(),
+                active: __studyTest?.studySession.active && { id: __studyTest.studySession.active.id, fence: __studyTest.studySession.active.fence, ownerTab: __studyTest.studySession.active.ownerTab, answer: __studyTest.studySession.active.answers?.[0] },
+                uiAnswer: __studyTest?.State.answers[0], status: document.querySelector('[data-exam-sync-status]')?.textContent })),
+                'Server authority:', (await db.doc(`active_exams/${uid}`).get()).data(), errors);
+            throw error;
+        }
         await pc.waitForFunction(() => !__studyTest.studySession.owns());
         assert.equal(await pc.$eval('#questions-container .option-btn', button => button.disabled), true);
         // Reload the installed-app equivalent: answers and exam survive; the new
         // runtime safely acquires a fresh fence, without any synchronization button.
+        for (let reopen = 0; reopen < Number(process.env.STUDY_REOPENS || 3); reopen++) {
         await phone.reload({ waitUntil: 'load' });
         try { await phone.waitForFunction(() => __studyTest?.studySession.owns() && __studyTest.State.answers[0]?.selected === 1, { timeout: 30000 }); }
         catch (error) {
@@ -112,6 +124,7 @@ const root = path.resolve(__dirname, '..');
                 owns: __studyTest?.studySession.owns(), active: __studyTest?.studySession.active && { id: __studyTest.studySession.active.id, status: __studyTest.studySession.active.status, fence: __studyTest.studySession.active.fence, answer: __studyTest.studySession.active.answers?.[0] },
                 uiAnswers: __studyTest?.State.answers, progress: document.querySelector('[data-progress-sync-status]')?.textContent, examStatus: document.querySelector('[data-exam-sync-status]')?.textContent })), errors);
             throw error;
+        }
         }
         await phone.evaluate(async () => { await __studyTest.finishExam(); });
         await phone.waitForFunction(() => __studyTest.State.globalStats.sesiones === 1 && __studyTest.State.view === 'view-results');

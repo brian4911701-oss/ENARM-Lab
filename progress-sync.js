@@ -258,7 +258,16 @@
             storage.removeItem(legacyKey(uid)); views.delete(uid);
             storage.removeItem(`enarm_progress_legacy_archive:${uid}`);
         };
-        const batch = (uid, limit = 40) => operations(uid).slice(0, limit);
+        const batch = (uid, limit = 40, maxBytes = 650000) => {
+            const selected = [], encoder = new TextEncoder();
+            let bytes = 2;
+            for (const operation of operations(uid).slice(0, limit)) {
+                const size = encoder.encode(JSON.stringify(operation)).length + 1;
+                if (selected.length && bytes + size > maxBytes) break;
+                selected.push(operation); bytes += size;
+            }
+            return selected;
+        };
         return { begin, read, stage, restore, accept, batch, forget, actor };
     };
     const api = { create, compactHistory, makeOperation, applyOperation, mergeBatch, legacyMerge, id, fields };

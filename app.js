@@ -1861,7 +1861,6 @@
                 return result;
             } finally { clearTimeout(timeout); }
         },
-        readExam: async uid => { const snap = await window.FB.getDocFromServer(window.FB.doc(window.FB.db, 'active_exams', uid)); return snap.exists() ? hydrateCloudExam(uid, snap.data()) : null; },
         listenExam: (uid, next, error) => window.FB.onSnapshot(window.FB.doc(window.FB.db, 'active_exams', uid), snap => {
             if (snap.exists() && !snap.metadata.fromCache && !snap.metadata.hasPendingWrites) void hydrateCloudExam(uid, snap.data()).then(exam => { if (State.currentUid === uid) next(exam); }).catch(error);
         }, error),
@@ -1904,6 +1903,10 @@
         },
         onExam: (exam, owns) => {
             if (!exam) return;
+            if (exam.questionSet) {
+                if (examPayloads.size >= 5) examPayloads.delete(examPayloads.keys().next().value);
+                examPayloads.set(`${State.currentUid}:${exam.id}`, exam.questionSet);
+            }
             if (exam.status !== 'active') {
                 if (State.currentExamSessionId === exam.id) { State.examActive = false; clearExamTimer(); }
                 return;
@@ -1970,15 +1973,19 @@
         };
         container.append(text, exportButton);
     };
-    let studyBootUid = '', studyBootPromise = null;
+    let studyBootUid = '', studyBootPromise = null, studyBootRetry = null;
     const bootStudySession = async uid => {
         if (!studySession || !window.FB?.auth?.currentUser?.emailVerified) return;
         renderLegacyProgressConflicts();
         if (studyBootUid === uid && studyBootPromise) return studyBootPromise;
         studyBootUid = uid;
+        window.clearTimeout(studyBootRetry);
         studyBootPromise = studySession.boot(uid).then(async () => {
             if (!progressOutbox.read(uid)?.pending) await studySession.completeMigration();
-        }).catch(error => { studyBootUid = ''; console.warn('El examen remoto se reintentará automáticamente.', error); }).finally(() => { studyBootPromise = null; });
+        }).catch(error => {
+            studyBootUid = ''; console.warn('El examen remoto se reintentará automáticamente.', error);
+            if (!['device-limit', 'device-revoked', 'verify-email', 'account-changed'].includes(error.code)) studyBootRetry = window.setTimeout(() => { if (State.currentUid === uid) void bootStudySession(uid); }, 5000);
+        }).finally(() => { studyBootPromise = null; });
         return studyBootPromise;
     };
     let progressRetryTimer = null;
@@ -2693,23 +2700,9 @@
     };
 
     const syncCurrentUserPremiumFlag = async () => {
-        if (!window.FB || !window.FB.auth || !window.FB.auth.currentUser) return;
-        if (!window.FB.setDoc || !window.FB.doc || !window.FB.db) return;
-        const ref = window.FB.doc(window.FB.db, PUBLIC_PROFILES_COLLECTION, window.FB.auth.currentUser.uid);
-        const premium = hasIndividualPremiumEntitlement();
-        if (!premium) {
-            if (!window.FB.getDoc) return;
-            const snap = await window.FB.getDoc(ref).catch(() => null);
-            if (!snap || !snap.exists()) return;
-        }
-        window.FB.setDoc(ref, {
-            uid: window.FB.auth.currentUser.uid,
-            username: normalizePublicUsername(State.userName),
-            specialty: State.userSpecialty || "",
-            avatarId: normalizeProfileAvatar(State.userAvatar),
-            isPremium: premium,
-            updatedAt: window.FB.serverTimestamp ? window.FB.serverTimestamp() : new Date()
-        }, { merge: true }).catch(err => console.error("Error syncing premium flag:", err));
+        const user = window.FB?.auth?.currentUser;
+        if (!user?.emailVerified || State.currentUid !== user.uid || !State.entitlementLoaded) return;
+        await publishPublicProgress(user.uid, null, ['isPremium']);
     };
 
     const formatDate = (d) => {
@@ -18036,7 +18029,7 @@
                             };
                             try {
                                 await restoreAuthenticatedProgress(user, coreUserDataPromise);
-                                void bootStudySession(user.uid);
+                                await bootStudySession(user.uid);
                                 if (State.currentUid !== user.uid || window.FB.auth.currentUser?.uid !== user.uid) return;
                                 syncPendingReportsToCloud();
                                 setStartupStatus("Progreso restaurado", "Todo está listo.");
@@ -18054,7 +18047,7 @@
                             stopProgressListener();
                             if (State.currentUid) clearAccountExamRuntime();
                             State.currentUid = "";
-                            studySession?.stop(); studyBootUid = ''; studyStatus = null;
+                            studySession?.stop(); studyBootUid = ''; studyStatus = null; window.clearTimeout(studyBootRetry);
                             State.isAdminClaim = false;
                             State.progressRestoreUid = "";
                             State.progressRestoreReady = false;

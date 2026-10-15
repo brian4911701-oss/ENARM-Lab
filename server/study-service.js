@@ -283,6 +283,7 @@ function createStudyService(db, options = {}) {
                 if (payload.exists) exam.questionSet = payload.data().questionSet;
             }
             const storeExam = value => { const { questionSet, ...metadata } = value; tx.set(examRef, metadata); };
+            if (action === 'inspect') return { exam };
             if (action === 'start' || action === 'claim') {
                 if (exam?.status === 'active') {
                     // A competing start resumes the existing exam instead of silently replacing it.

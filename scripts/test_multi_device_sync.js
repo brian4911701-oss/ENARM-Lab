@@ -82,5 +82,15 @@ const planBase = { ...baseline, dailyPlanStr: JSON.stringify({ date: '2026-10-14
 const oldPlanEdit = sync.makeOperation('offline-plan', 1, planBase, { ...planBase, dailyPlanStr: JSON.stringify({ date: '2026-10-14', completedTaskIds: ['old-task'] }) });
 const currentPlan = { ...baseline, dailyPlanStr: JSON.stringify({ date: '2026-10-15', completedTaskIds: [] }) };
 assert.deepEqual(JSON.parse(sync.mergeBatch(currentPlan, [oldPlanEdit]).data.dailyPlanStr).completedTaskIds, [], 'Yesterday\'s offline plan cannot complete today\'s tasks');
-console.log('Multi-device merge: concurrent/offline exams, counters, same-day streak, preferences, idempotent replay, reset epochs, two tabs, reload and account isolation OK.');
+const largeQueue = sync.create(memory(), { actor: 'large-offline-writer' });
+largeQueue.begin('large-queue', baseline);
+largeQueue.stage('large-queue', { ...baseline, caseNotebookStr: JSON.stringify([{ id: 'note-a', note: 'ñ'.repeat(180000) }]) });
+largeQueue.stage('large-queue', { ...baseline, caseNotebookStr: JSON.stringify([{ id: 'note-a', note: 'á'.repeat(180000) }]) });
+assert.equal(largeQueue.read('large-queue').operations.length, 2);
+const firstLargeBatch = largeQueue.batch('large-queue');
+assert.equal(firstLargeBatch.length, 1, 'Large offline operations are sent in separate byte-bounded batches');
+assert(new TextEncoder().encode(JSON.stringify(firstLargeBatch)).length < 650000);
+largeQueue.accept('large-queue', sync.applyOperation(baseline, firstLargeBatch[0]), firstLargeBatch);
+assert.equal(largeQueue.batch('large-queue').length, 1, 'The remaining offline edit survives the first acknowledgement');
+console.log('Multi-device merge: concurrent/offline exams, counters, same-day streak, preferences, idempotent replay, reset epochs, two tabs, reload, account isolation and UTF-8 batching OK.');
 module.exports = { memory, baseline, exam };

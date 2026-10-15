@@ -27,6 +27,7 @@
             if (account !== uid || stopped) throw Object.assign(new Error('account-changed'), { code: 'account-changed' });
             return result;
         };
+        const inspect = async account => readExam ? readExam(account) : (await call({ action: 'inspect' })).exam;
         const register = async account => {
             if (uid && uid !== account) stop();
             uid = account; stopped = false;
@@ -83,7 +84,7 @@
             // Only a fresh opening acquires automatically. Snapshot/foreground events
             // never steal ownership back and forth between open installations.
             let initial;
-            try { initial = await readExam(scope); } catch (error) {
+            try { initial = await inspect(scope); } catch (error) {
                 const cached = JSON.parse(storage.getItem(`enarm_exam_cache:${uid}`) || 'null');
                 if (cached) receive(cached);
                 status = 'offline'; notify(); throw error;
@@ -103,7 +104,7 @@
                     if (result.exam) initial = { ...result.exam, questionSet: initial.questionSet };
                     if (result.attempt) onAttempt?.(result.attempt, result.data);
                 } catch (error) {
-                    if (['ownership-lost', 'exam-ended'].includes(error.code)) { initial = await readExam(scope); break; }
+                    if (['ownership-lost', 'exam-ended'].includes(error.code)) { initial = await inspect(scope); break; }
                     status = error.code || 'offline'; notify(); throw error;
                 }
             }
