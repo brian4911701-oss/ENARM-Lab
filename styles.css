@@ -14238,6 +14238,74 @@ h6,
 #landing-page .landing-platform-chip--android { color: #315d96; }
 #landing-page .landing-stat-label small { display: block; margin-top: 4px; color: #315d96; font-size: .68rem; font-weight: 600; line-height: 1.35; }
 
+/* RubberSegment shares one elastic thumb across the existing navigation links. */
+#landing-page .landing-nav-links.rubber-segment {
+  position: relative;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 590px;
+  gap: 0;
+  padding: 3px;
+  border-radius: 16px;
+  isolation: isolate;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+#landing-page .landing-nav-links.rubber-segment .landing-nav-link {
+  flex: 0 1 auto;
+  min-width: 0;
+  height: 36px;
+  padding: 0 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 13px;
+  font-size: 13px;
+  background: transparent;
+  box-shadow: none;
+  transition: color .15s ease;
+}
+#landing-page .landing-nav-links.rubber-segment .landing-nav-link.is-active {
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+#landing-page .rubber-segment__thumb {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  background: #fafafa;
+  color: #18181b;
+  pointer-events: none;
+  will-change: clip-path;
+}
+#landing-page .rubber-segment__copy {
+  position: absolute;
+  top: 3px;
+  height: 36px;
+  padding: 0 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  line-height: 36px;
+  font-size: 13px;
+  font-weight: 500;
+}
+#landing-page .landing-nav-links.rubber-segment .landing-nav-link:focus-visible {
+  outline-offset: -3px;
+  z-index: 3;
+}
+#landing-page .rubber-segment.is-dragging,
+#landing-page .rubber-segment.is-dragging .landing-nav-link { cursor: grabbing; }
+@media (prefers-reduced-motion: reduce) {
+  #landing-page .landing-nav-links.rubber-segment .landing-nav-link { transition: none; }
+}
+
 /* Distinct chapter surfaces and a persistent indication of the current section. */
 #landing-page { --landing-header-height: 82px; scroll-padding-top: calc(var(--landing-header-height) + 24px); }
 #landing-page .landing-nav-links { gap: 5px; }

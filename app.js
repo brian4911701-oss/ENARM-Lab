@@ -1052,13 +1052,14 @@
         completed.sort((a, b) => String(b.lastCompletedDate || "").localeCompare(String(a.lastCompletedDate || "")));
         return { today, late, completed };
     };
-    const recordStudyCalendarActivity = ({ sessions = 0, pomodoros = 0, topics = [], taskCompleted = false } = {}) => {
+    const recordStudyCalendarActivity = ({ sessions = 0, pomodoros = 0, topics = [], taskCompleted = false, practiced = null } = {}) => {
         ensureStudySystemsState();
         const todayKey = formatDateKey();
         const entry = State.studyCalendar[todayKey] || { sessions: 0, pomodoros: 0, topics: [], planCompleted: 0 };
-        entry.sessions += sessions;
-        entry.pomodoros += pomodoros;
-        entry.planCompleted += taskCompleted ? 1 : 0;
+        entry.sessions = (Number(entry.sessions) || 0) + sessions;
+        entry.pomodoros = (Number(entry.pomodoros) || 0) + pomodoros;
+        entry.planCompleted = (Number(entry.planCompleted) || 0) + (taskCompleted ? 1 : 0);
+        if (practiced !== null) entry.practiced = entry.practiced === true || practiced;
         const topicSet = new Set([...(entry.topics || []), ...topics.filter(Boolean)]);
         entry.topics = Array.from(topicSet).slice(0, 25);
         State.studyCalendar[todayKey] = entry;
@@ -6370,6 +6371,7 @@
     const saveGlobalStats = () => {
         ensureStudySystemsState();
         ensureDailyPlanFresh();
+        State.globalStats.streakData = getStudyStreakData();
         localStorage.setItem("enarm_stats", JSON.stringify(State.globalStats));
         localStorage.setItem("enarm_history", JSON.stringify(State.history));
         localStorage.setItem("enarm_user", State.userName);
@@ -6414,7 +6416,7 @@
                 // global o el modo preview del administrador no se convierten en Premium.
                 isPremium: hasIndividualPremiumEntitlement(),
                 score: State.isScorePublic !== false ? avg : null,
-                flame: State.history.length || 0,
+                flame: getEffectiveStreak(),
                 updatedAt: window.FB.serverTimestamp ? window.FB.serverTimestamp() : new Date()
             };
             const privateProgress = {
@@ -9226,6 +9228,7 @@
         if (State.mode === "estudio" && ans.selected !== null) return;
         ans.selected = selectedIdx;
         ans.isCorrect = (selectedIdx === getQuestionAnswerIndex(q));
+        if (!State.guestExamActive && recordStudyDay()) debouncedSave();
         if (State.mode === "estudio") recordStat(q.specialty, ans.isCorrect, getCaseCanonicalTopic(q));
         if (State.mode === "estudio") {
             renderExamQuestion();
@@ -10711,18 +10714,10 @@
                 State.activeChallengeRole = null;
             }
 
-            // Racha (Streak) Logic 
+            // Answering already records the local study day. Closing a session
+            // is a fallback for restored sessions, never a second daily credit.
             State.examActive = false;
-            State.globalStats.streakData = State.globalStats.streakData || { lastStudyDate: null, currentStreak: 0 };
-            const effective = getEffectiveStreak();
-
-            const now = new Date();
-            const todayStr = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
-
-            if (State.globalStats.streakData.lastStudyDate !== todayStr) {
-                State.globalStats.streakData.currentStreak = effective + 1;
-                State.globalStats.streakData.lastStudyDate = todayStr;
-            }
+            if (correct + wrong > 0) recordStudyDay();
 
             State.answers.forEach((answer, index) => {
                 const q = State.questionSet[index];
@@ -10739,6 +10734,7 @@
             }
             recordStudyCalendarActivity({
                 sessions: 1,
+                practiced: correct + wrong > 0,
                 topics: topicsTouched
             });
             rebuildTopicMastery();
@@ -10757,21 +10753,31 @@
         }
     };
 
-    const getEffectiveStreak = () => {
-        const sd = State.globalStats.streakData;
-        if (!sd || !sd.lastStudyDate) return 0;
-
-        const parts = sd.lastStudyDate.split("-");
-        const lastD = new Date(parts[0], parts[1] - 1, parts[2]);
-        const now = new Date();
-        const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        const diffM = todayMidnight - lastD;
-        const missedDaysTotal = Math.floor(diffM / (1000 * 60 * 60 * 24));
-
-        if (missedDaysTotal <= 1) return sd.currentStreak;
-
-        const missedForPenalty = missedDaysTotal - 1;
-        return Math.max(0, sd.currentStreak - (missedForPenalty * 2));
+    const getStudyStreakData = (now = new Date()) => {
+        const activityDays = Object.entries(State.studyCalendar || {})
+            .filter(([, entry]) => entry?.practiced === true || (entry?.practiced !== false && Number(entry?.sessions) > 0))
+            .map(([day]) => day);
+        (State.history || []).forEach(session => {
+            // Empty sessions and future/invalid dates must not create a day.
+            if (!(Number(session.preguntas) - Number(session.blank || 0) > 0)) return;
+            const day = window.ENARMStreak.dateKey(new Date(session.timestamp));
+            if (day) activityDays.push(day);
+        });
+        return window.ENARMStreak.reconcile(State.globalStats.streakData, activityDays, now);
+    };
+    const getEffectiveStreak = (now = new Date()) => window.ENARMStreak.effective(getStudyStreakData(now), now);
+    const recordStudyDay = (now = new Date()) => {
+        if (State.guestExamActive) return false;
+        const day = window.ENARMStreak.dateKey(now);
+        const next = window.ENARMStreak.record(getStudyStreakData(now), now);
+        if (State.globalStats.streakData?.lastStudyDate === day && State.studyCalendar?.[day]?.practiced) return false;
+        State.globalStats.streakData = next;
+        State.studyCalendar = State.studyCalendar || {};
+        State.studyCalendar[day] = { ...(State.studyCalendar[day] || { sessions: 0, pomodoros: 0, topics: [], planCompleted: 0 }), practiced: true };
+        // Persist immediately so leaving an unfinished exam doesn't lose the day.
+        localStorage.setItem("enarm_stats", JSON.stringify(State.globalStats));
+        localStorage.setItem("enarm_study_calendar", JSON.stringify(State.studyCalendar));
+        return true;
     };
 
     const getProbability = (streak) => {
@@ -11394,6 +11400,7 @@
     let lastDashboardRenderKey = "";
     const updateDashboardStats = (force = false) => {
         const now = new Date();
+        const effStreak = getEffectiveStreak(now);
         const quoteTickKey = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}-${Math.floor(now.getHours() / 4)}`;
         const bySpec = State.globalStats?.bySpecialty || {};
         const specKey = ["mi", "ped", "gyo", "cir"]
@@ -11413,6 +11420,7 @@
             State.theme || "ocean",
             State.fontPreset || "apple",
             State.coins || 0,
+            effStreak,
             State.referralCode || "",
             quoteTickKey,
             specKey
@@ -11433,10 +11441,14 @@
         if ($("dash-promedio")) $("dash-promedio").textContent = `${pct}%`;
         if ($("dash-promedio-bar")) $("dash-promedio-bar").style.width = `${pct}%`;
         if ($("dash-coins")) $("dash-coins").textContent = (Number(State.coins) || 0).toLocaleString("es-MX");
+        if ($("dashboard-coins-val")) $("dashboard-coins-val").textContent = (Number(State.coins) || 0).toLocaleString("es-MX");
+        if ($("dashboard-coins-btn")) $("dashboard-coins-btn").setAttribute("aria-label", `${Number(State.coins) || 0} monedas. Abrir monedas y referidos`);
 
         // Update Flame Widget (Streak)
-        const effStreak = getEffectiveStreak();
-        if ($("streak-val")) $("streak-val").textContent = `${effStreak} Día${effStreak !== 1 ? 's' : ''}`;
+        ["streak-val", "streak-val-mobile"].forEach(id => {
+            if ($(id)) $(id).textContent = String(effStreak);
+        });
+        $$('[data-open-streak]').forEach(button => button.setAttribute("aria-label", `Abrir racha de estudio: ${effStreak} día${effStreak === 1 ? '' : 's'}`));
 
                 // Lógica de Resumen de Precisión (Logistics Overview Style)
         let aciertos = State.globalStats.aciertos || 0;
@@ -14120,6 +14132,7 @@
         const btnCopyReferralPanel = $("btn-copy-referral-panel");
         const btnReferralsOpenPremium = $("btn-referrals-open-premium");
         if (btnCoinsCard) btnCoinsCard.addEventListener("click", () => showView("view-referrals"));
+        $("dashboard-coins-btn")?.addEventListener("click", () => showView("view-referrals"));
         if (btnReferralsBack) btnReferralsBack.addEventListener("click", () => $("nav-dashboard").click());
         if (btnCopyReferralHero) btnCopyReferralHero.addEventListener("click", copyReferralCode);
         if (btnCopyReferralPanel) btnCopyReferralPanel.addEventListener("click", copyReferralCode);
@@ -14564,8 +14577,7 @@
             }
         };
 
-        const btnStreak = $("streak-btn");
-        if (btnStreak) btnStreak.addEventListener("click", updateAndShowStreakModal);
+        $$('[data-open-streak]').forEach(button => button.addEventListener("click", updateAndShowStreakModal));
 
         const btnCloseStreak = $("btn-close-streak");
         if (btnCloseStreak) btnCloseStreak.addEventListener("click", () => {
@@ -17166,11 +17178,19 @@
 
                 // Smooth scroll for landing anchor links
                 if (landingPage) {
+                    let navigationTarget = null;
+                    let navigationTimer = 0;
                     landingPage.querySelectorAll('a[href^="#landing-"]').forEach(link => {
                         link.addEventListener("click", (e) => {
+                            if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
                             e.preventDefault();
                             const target = document.querySelector(link.getAttribute("href"));
-                            if (target) target.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
+                            if (target) {
+                                navigationTarget = target.id;
+                                updateActiveSection();
+                                target.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
+                                waitForNavigationEnd();
+                            }
                         });
                     });
 
@@ -17188,7 +17208,9 @@
                             const bounds = section.getBoundingClientRect();
                             return bounds.top <= marker && bounds.bottom > marker;
                         });
-                        const next = current?.id || '';
+                        // Keep the clicked destination selected while smooth scrolling
+                        // passes through other sections on its way there.
+                        const next = navigationTarget || current?.id || '';
                         if (next === activeSection) return;
                         activeSection = next;
                         sectionLinks.forEach(link => {
@@ -17205,11 +17227,28 @@
                     const scheduleSectionUpdate = () => {
                         if (!scrollFrame) scrollFrame = requestAnimationFrame(updateActiveSection);
                     };
+                    const finishNavigation = () => {
+                        clearTimeout(navigationTimer);
+                        navigationTarget = null;
+                        scheduleSectionUpdate();
+                    };
+                    const waitForNavigationEnd = () => {
+                        clearTimeout(navigationTimer);
+                        navigationTimer = setTimeout(finishNavigation, 180);
+                    };
                     const syncLandingHeader = () => {
                         landingPage.style.setProperty('--landing-header-height', header.offsetHeight + 'px');
                         scheduleSectionUpdate();
                     };
-                    landingPage.addEventListener('scroll', scheduleSectionUpdate, { passive: true });
+                    landingPage.addEventListener('scroll', () => {
+                        if (navigationTarget) waitForNavigationEnd();
+                        scheduleSectionUpdate();
+                    }, { passive: true });
+                    landingPage.addEventListener('wheel', finishNavigation, { passive: true });
+                    landingPage.addEventListener('touchstart', finishNavigation, { passive: true });
+                    landingPage.addEventListener('keydown', event => {
+                        if (!event.target.closest('.landing-nav-links') && ['PageUp', 'PageDown', 'Home', 'End', 'ArrowUp', 'ArrowDown', ' '].includes(event.key)) finishNavigation();
+                    });
                     const landingResizeObserver = new ResizeObserver(syncLandingHeader);
                     landingResizeObserver.observe(header);
                     landingResizeObserver.observe(landingPage.querySelector('.landing-main'));
@@ -18106,6 +18145,12 @@
 
         // Carga inicial de datos en el dashboard (ejecutado antes de validación cloud por si falla internet)
         updateDashboardStats();
+        const refreshDailyDashboard = () => {
+            if (!document.hidden && State.view === "view-dashboard") updateDashboardStats();
+        };
+        document.addEventListener("visibilitychange", refreshDailyDashboard);
+        window.addEventListener("pageshow", refreshDailyDashboard);
+        window.setInterval(refreshDailyDashboard, 60000);
         updateCharts();
     });
 })();

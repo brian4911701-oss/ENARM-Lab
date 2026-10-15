@@ -1,0 +1,86 @@
+/* Size dashboard sections against their available space, including the sidebar. */
+.main-content { min-width: 0; }
+#view-dashboard { container-type: inline-size; }
+#view-dashboard .dashboard-header { gap: 20px; flex-wrap: wrap; }
+#view-dashboard .dashboard-mobile-hero { flex: 1 1 320px; min-width: 0; gap: 14px; }
+#view-dashboard .dashboard-hero-copy { flex: 1; min-width: 0; }
+#view-dashboard .dashboard-name-row { display: flex; align-items: center; gap: 8px; min-width: 0; }
+#view-dashboard .dashboard-greeting-title { min-width: 0; overflow-wrap: anywhere; line-height: 1.15; font-size: clamp(24px, 2.2vw, 32px); }
+#view-dashboard .dashboard-hero-quote { line-height: 1.5; overflow-wrap: anywhere; }
+#view-dashboard .dashboard-counters { display: flex; align-items: center; gap: 16px; margin-left: auto; flex-shrink: 0; }
+#view-dashboard .dashboard-counter {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  flex-shrink: 0; min-height: 36px; padding: 5px 3px; border: 0; border-radius: 8px;
+  background: transparent; color: var(--text-primary); font: inherit; font-size: 14px;
+  font-weight: 700; font-variant-numeric: tabular-nums; cursor: pointer;
+}
+#view-dashboard .dashboard-counter:hover { background: color-mix(in srgb, var(--text-primary) 7%, transparent); }
+#view-dashboard .dashboard-counter:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; }
+#view-dashboard .dashboard-flame-icon { width: 20px; height: 20px; flex-shrink: 0; fill: #f59e0b; }
+#view-dashboard .dashboard-streak-mobile { display: none; }
+#view-dashboard .dashboard-coin-icon {
+  display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px;
+  border: 1px solid #e8bb51; border-radius: 50%; background: #e8bb5120;
+}
+#view-dashboard .dashboard-coin-icon img { width: 12px; height: 12px; object-fit: contain; filter: brightness(0) saturate(100%) invert(79%) sepia(48%) saturate(620%) hue-rotate(355deg); }
+#view-dashboard .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: clamp(12px, 1.5vw, 20px); }
+#view-dashboard .stats-grid > .stat-card { min-width: 0; padding: clamp(18px, 1.7vw, 24px); }
+#view-dashboard #card-quick-training { grid-column: span 2; }
+#view-dashboard .quick-training-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; flex: 1; align-content: end; }
+#view-dashboard .quick-training-actions .action-btn { height: 100%; min-height: 64px; padding: 16px; gap: 10px; }
+#view-dashboard .action-btn-left { min-width: 0; gap: 8px; }
+#view-dashboard .action-btn-left > span:last-child { overflow-wrap: anywhere; text-align: left; }
+#view-dashboard .action-btn-arrow { flex-shrink: 0; }
+#view-dashboard .stat-card:hover { transform: translateY(-2px); }
+#view-dashboard .stat-label, #view-dashboard .stat-value-sub { overflow-wrap: anywhere; }
+#view-dashboard .performance-stat-main { flex-wrap: wrap; gap: 12px; }
+#view-dashboard .performance-session-pill { min-width: 0; }
+#view-dashboard .dashboard-bottom { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+#view-dashboard .dashboard-bottom > .panel { min-width: 0; padding: clamp(18px, 2vw, 28px); }
+#view-dashboard .overview-panel > div:first-child { flex-wrap: wrap; gap: 12px; }
+#view-dashboard #overview-timeframe-container { margin-left: auto; flex-shrink: 0; }
+#view-dashboard #overview-labels-container { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+#view-dashboard #overview-labels-container > div { position: static !important; min-width: 0; transform: none !important; }
+#view-dashboard #overview-labels-container > div > div { padding-left: 0 !important; }
+.streak-recording-note { margin: 0 0 16px; font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+#view-mas #card-coins { width: 100%; text-align: left; font: inherit; color: var(--text-primary); cursor: pointer; padding: 20px; gap: 10px; }
+#view-mas #card-coins .stat-value { font-size: 32px; }
+#view-mas #card-coins .coin-stat-head { margin-bottom: 0; }
+#view-mas .more-coins-link { font-size: 12px; color: var(--accent-blue); line-height: 1.5; }
+
+@container (max-width: 900px) {
+  #view-dashboard .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  #view-dashboard #card-quick-training { grid-column: 1 / -1; }
+  #view-dashboard .dashboard-bottom { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 768px) {
+  #view-dashboard .dashboard-header { display: flex; flex-direction: column; gap: 0; }
+  #view-dashboard .dashboard-mobile-hero {
+    flex: 0 0 auto; display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto;
+    gap: 10px; padding: 16px 12px; width: 100%;
+  }
+  #view-dashboard .dashboard-hero-avatar { width: 52px !important; height: 52px !important; }
+  #view-dashboard .dashboard-hero-bell { width: 36px; height: 36px; }
+  #view-dashboard .dashboard-hero-bell svg { width: 20px; height: 20px; }
+  #view-dashboard .dashboard-greeting-title { font-size: clamp(18px, 5vw, 24px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #view-dashboard .dashboard-streak-mobile { display: inline-flex; font-size: 12px; gap: 3px; padding-inline: 2px; }
+  #view-dashboard .dashboard-streak-mobile .dashboard-flame-icon { width: 16px; height: 18px; }
+  #view-dashboard .dashboard-counters { display: none; }
+  #view-dashboard #card-performance-summary { grid-column: 1 / -1; order: 1; }
+  #view-dashboard #card-rango { grid-column: 1 / -1; order: 2; }
+  #view-dashboard #card-quick-training { grid-column: 1 / -1; order: 3; }
+  #view-dashboard .performance-stat-main { flex-direction: row; align-items: center; justify-content: space-between; }
+  #view-dashboard .performance-session-pill { width: auto; min-width: 100px; display: block; text-align: center; padding: 10px 16px; }
+  #view-dashboard .performance-session-pill small { display: block; margin-top: 3px; }
+  #view-dashboard #card-performance-summary .stat-value { font-size: 32px; }
+  #view-dashboard #card-performance-summary .stat-label { font-size: 10px; }
+  #view-dashboard .quick-training-actions { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  #view-dashboard .quick-training-actions .action-btn { min-height: 48px; padding: 12px; }
+}
+@media (max-width: 360px) {
+  #view-dashboard .dashboard-mobile-hero { gap: 6px; padding: 14px 10px; }
+  #view-dashboard .dashboard-hero-avatar { width: 44px !important; height: 44px !important; }
+  #view-dashboard .dashboard-hero-bell { width: 32px; height: 32px; }
+  #view-dashboard .dashboard-name-row { gap: 4px; }
+  #view-dashboard .performance-session-pill { min-width: 80px; padding-inline: 12px; }
+}

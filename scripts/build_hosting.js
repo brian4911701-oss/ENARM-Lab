@@ -11,9 +11,12 @@ if (path.dirname(outputDir) !== projectRoot || path.basename(outputDir) !== "pub
 const files = [
     "index.html",
     "styles.css",
+    "dashboard-layout.css",
     "app.js",
     "landing-gallery.js",
     "glass-surface.js",
+    "rubber-segment.js",
+    "streak-core.js",
     "analytics-core.js",
     "security-config.js",
     "withdrawal-public-key.js",

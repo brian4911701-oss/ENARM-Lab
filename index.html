@@ -80,8 +80,11 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard-layout.css">
     <script src="landing-gallery.js" defer></script>
     <script src="glass-surface.js" defer></script>
+    <script src="rubber-segment.js" defer></script>
+    <script src="streak-core.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
 </head>
@@ -112,9 +115,9 @@
                     <span class="glass-surface__sheen" aria-hidden="true"></span>
                     <span class="glass-surface__rim" aria-hidden="true"></span>
                     <a href="#landing-features" class="landing-nav-link">Características</a>
+                    <a href="#landing-pricing" class="landing-nav-link">Planes</a>
                     <a href="#landing-how" class="landing-nav-link">¿Cómo Funciona?</a>
                     <a href="#landing-specialties" class="landing-nav-link">Especialidades</a>
-                    <a href="#landing-pricing" class="landing-nav-link">Planes</a>
                     <a href="#landing-faq" class="landing-nav-link">FAQ</a>
                 </div>
                 <div class="landing-nav-actions">
@@ -172,9 +175,9 @@
         <!-- ── Mobile Menu ── -->
         <div class="landing-mobile-menu" id="landing-mobile-menu">
             <a href="#landing-features" class="landing-mobile-link">Características</a>
+            <a href="#landing-pricing" class="landing-mobile-link">Planes</a>
             <a href="#landing-how" class="landing-mobile-link">¿Cómo Funciona?</a>
             <a href="#landing-specialties" class="landing-mobile-link">Especialidades</a>
-            <a href="#landing-pricing" class="landing-mobile-link">Planes</a>
             <a href="#landing-faq" class="landing-mobile-link">FAQ</a>
             <button id="btn-landing-mobile-login" class="landing-btn-ghost" style="width:100%;margin-top:8px;">Iniciar Sesión</button>
             <button id="btn-landing-mobile-start" class="landing-btn-cta" style="width:100%;">Crear cuenta gratis <span class="signup-arrow" aria-hidden="true">→</span></button>
@@ -938,7 +941,12 @@
                         </button>
                         <div class="dashboard-hero-copy">
                             <span class="dashboard-hero-kicker">Hola</span>
-                            <h1 class="dashboard-greeting-title"><span class="user-name">Aspirante</span></h1>
+                            <div class="dashboard-name-row">
+                                <h1 class="dashboard-greeting-title"><span class="user-name">Aspirante</span></h1>
+                                <button id="streak-btn-mobile" class="dashboard-counter dashboard-streak-mobile" type="button" data-open-streak aria-label="Abrir racha de estudio: 0 días">
+                                    <svg class="dashboard-flame-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1.3 4.2 5.5 5.7 5.5 10.2a5.5 5.5 0 0 1-11 0c0-2.9 1.7-5.4 3.5-7.2-.2 3 1.2 3.8 1.2 3.8C13 7 13.2 4.5 12 2Z"/></svg><span id="streak-val-mobile">0</span>
+                                </button>
+                            </div>
                             <p class="dashboard-hero-quote" id="dynamic-quote">Cargando inspiración...</p>
                         </div>
                         <button id="btn-open-notif" class="dashboard-hero-bell" type="button"
@@ -970,12 +978,13 @@
                             <div class="cd-item"><span id="cd-secs">00</span><label>SEG</label></div>
                         </div>
                     </div>
-                    <div class="flame-widget" id="streak-btn" style="cursor: pointer; transition: transform 0.2s;">
-                        <div class="flame-icon">&#x1F525;</div>
-                        <div class="flame-info">
-                            <span class="flame-lbl">ESTUDIO DIARIO</span>
-                            <span class="flame-val" id="streak-val">1 Día</span>
-                        </div>
+                    <div class="dashboard-counters" aria-label="Racha y monedas">
+                        <button class="dashboard-counter" id="streak-btn" type="button" data-open-streak aria-label="Abrir racha de estudio: 0 días" title="Racha de estudio">
+                            <svg class="dashboard-flame-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1.3 4.2 5.5 5.7 5.7 10.2a5.7 5.7 0 0 1-11.4 0c0-2.9 1.7-5.4 3.5-7.2-.2 3 1.2 3.8 1.2 3.8C13 7 13.2 4.5 12 2Z"/></svg><span id="streak-val">0</span>
+                        </button>
+                        <button class="dashboard-counter" id="dashboard-coins-btn" type="button" aria-label="Abrir monedas y referidos" title="Monedas y referidos">
+                            <span class="dashboard-coin-icon" aria-hidden="true"><img src="logo-e-mask.png" alt=""></span><span id="dashboard-coins-val">0</span>
+                        </button>
                     </div>
                 </header>
 
@@ -1045,24 +1054,13 @@
                             <div class="stat-progress-fill" id="dash-promedio-bar" style="width: 0%;"></div>
                         </div>
                     </div>
-                    <button class="stat-card coin-stat-card" id="card-coins" type="button">
-                        <div class="coin-stat-head">
-                            <div class="coin-icon" aria-hidden="true">
-                                <img src="logo-e-mask.png" alt="">
-                            </div>
-                            <div class="stat-label" style="margin: 0;">MONEDAS</div>
-                        </div>
-                        <div class="stat-value" id="dash-coins">0</div>
-                        <p class="coin-stat-note">Invita amigos. 1 moneda = $1 MXN.</p>
-                    </button>
-                    <div class="stat-card action-card">
+                    <div class="stat-card action-card" id="card-quick-training">
                         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
                             <div class="stat-icon blue-icon"
                                 style="margin: 0; width: 32px; height: 32px; font-size: 16px;">&#x26A1;</div>
                             <div class="stat-label" style="margin: 0;">ENTRENAMIENTO RAPIDO</div>
                         </div>
-                        <div
-                            style="display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: flex-end;">
+                        <div class="quick-training-actions">
                             <button class="action-btn" id="btn-quick-start">
                                 <div class="action-btn-left">
                                     <span class="action-btn-icon">&#x1F680;</span>
@@ -1972,6 +1970,22 @@
                                     </div>
                                 </div>
                             </div>
+                        </section>
+
+                        <section class="more-section" aria-labelledby="mas-section-monedas">
+                            <div class="more-section-header">
+                                <p class="more-section-eyebrow">Tu cuenta</p>
+                                <h3 class="more-section-title" id="mas-section-monedas">Monedas y referidos</h3>
+                            </div>
+                            <button class="stat-card coin-stat-card" id="card-coins" type="button">
+                                <div class="coin-stat-head">
+                                    <div class="coin-icon" aria-hidden="true"><img src="logo-e-mask.png" alt=""></div>
+                                    <div class="stat-label" style="margin: 0;">MONEDAS</div>
+                                </div>
+                                <div class="stat-value" id="dash-coins">0</div>
+                                <p class="coin-stat-note">Invita amigos. 1 moneda = $1 MXN.</p>
+                                <span class="more-coins-link">Ver mis monedas y referidos →</span>
+                            </button>
                         </section>
 
                         <section class="more-section" aria-labelledby="mas-section-estudio">
@@ -3855,6 +3869,7 @@
                 <h2 style="font-size: 24px; color: var(--accent-orange); margin-bottom: 5px;">&#x1F525; Rachas Plus</h2>
                 <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">Mantén tu racha diaria
                     para aumentar tus probabilidades estadísticas de aprobar.</p>
+                <p class="streak-recording-note">Tu día se registra al responder una pregunta, aunque termines la sesión después. Solo suma una vez por fecha local.</p>
 
                 <div
                     style="background: rgba(243, 122, 32, 0.1); border: 1px solid rgba(243, 122, 32, 0.3); padding: 20px; border-radius: var(--radius-lg); text-align: center; margin-bottom: 20px;">
