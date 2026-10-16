@@ -11,7 +11,7 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
 (async () => {
     assert.ok(process.env.FIREBASE_AUTH_EMULATOR_HOST && process.env.FIRESTORE_EMULATOR_HOST, 'Both local emulators are required.');
     const env = await initializeTestEnvironment({ projectId, firestore: { rules: fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8') } });
-    const app = admin.initializeApp({ projectId }), db = app.firestore(), auth = app.auth();
+    const app = admin.initializeApp({ projectId }), db = require('../server/firestore-runtime').getFirestore(admin), auth = app.auth();
     const uid = 'browser-student', email = 'browser-student@example.test', password = 'Test-session-only-1234';
     await env.clearFirestore();
     try { await auth.deleteUser(uid); } catch {}
@@ -26,6 +26,7 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
         .replace('const auxiliaryAuth = getAuth(auxiliaryApp);', "const auxiliaryAuth = getAuth(auxiliaryApp); connectAuthEmulator(auxiliaryAuth, 'http://127.0.0.1:9099', { disableWarnings: true });")
         .replace('const db = getFirestore(app);', "const db = getFirestore(app); connectFirestoreEmulator(db, '127.0.0.1', 8080);");
     const requests = { account: 0, study: 0 };
+    let simulateQuota = true;
     const server = http.createServer(async (request, response) => {
         try {
             const pathname = new URL(request.url, 'http://localhost').pathname;
@@ -35,7 +36,14 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
                 response.status = status => { response.statusCode = status; return response; };
                 response.json = value => { response.setHeader('Content-Type', 'application/json'); response.end(JSON.stringify(value)); };
                 if (pathname === '/api/study-sync') { requests.study++; await studyApi(request, response); }
-                else { requests.account++; await sessionApi(request, response); }
+                else {
+                    requests.account++;
+                    if (simulateQuota && request.body.action === 'open') {
+                        simulateQuota = false;
+                        response.setHeader('Retry-After', '300');
+                        response.status(503).json({ code: 'firestore-quota-exceeded', retryAfterSeconds: 300 });
+                    } else await sessionApi(request, response);
+                }
                 return;
             }
             const file = path.resolve(root, '.' + (pathname === '/' ? '/index.html' : pathname));
@@ -75,7 +83,16 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
         };
         const desktop = await browser.createBrowserContext(), mobile = await browser.createBrowserContext();
         const pc = await prepare(desktop);
-        await login(pc); await waitReady(pc);
+        await login(pc);
+        await pc.waitForFunction(() => document.body.innerText.includes('límite temporal de uso'));
+        assert.equal(await pc.evaluate(() => __studyTest.getAccountSession().sid), '');
+        assert.equal(await pc.evaluate(() => !!__studyTest.State.currentUid), false);
+        const quotaRequestCount = requests.account;
+        assert.equal(await pc.evaluate(() => __studyTest.getAccountSession().ensure(FB.auth.currentUser)), false);
+        assert.equal(requests.account, quotaRequestCount);
+        await pc.screenshot({ path: path.join(root, '.tmp-config/session-quota-desktop.png') });
+        console.log('PASS: quota displays its cause, blocks unauthorized entry and suppresses repeated requests');
+        await pc.reload({ waitUntil: 'load' }); await waitReady(pc);
         assert.equal(await pc.$eval('#session-conflict-dialog', d => d.open), false);
         console.log('PASS 1: normal login, no prompt');
         const bank = require('../questions');
@@ -117,8 +134,22 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
         assert.equal(await tab.evaluate(() => __studyTest.getAccountSession().sid), sid);
         assert.ok(await tab.evaluate(() => __studyTest.studySession.owns()));
         assert.ok(await phone.evaluate(() => __studyTest.studySession.owns()));
-        await tab.evaluate(async () => { __studyTest.studySession.queue({ kind: 'answer', index: 35, selected: 1 }); await __studyTest.studySession.flush(); });
-        await phone.waitForFunction(() => __studyTest.State.answers[35]?.selected === 1);
+        await tab.evaluate(async () => {
+            if (!__studyTest.studySession.queue({ kind: 'answer', index: 35, selected: 1 })) throw new Error('Tab answer was not queued');
+            await __studyTest.studySession.flush(false, true);
+        });
+        assert.equal((await db.doc('active_exams/' + uid).get()).data().answers[35].selected, 1);
+        await phone.bringToFront();
+        try { await phone.waitForFunction(() => __studyTest.State.answers[35]?.selected === 1); }
+        catch (error) {
+            console.log('Cross-tab diagnostic:', await phone.evaluate(() => ({
+                visible: document.visibilityState, revision: __studyTest.studySession.active?.revision,
+                cloudAnswer: __studyTest.studySession.active?.answers[35]?.selected,
+                renderedAnswer: __studyTest.State.answers[35]?.selected,
+                status: document.querySelector('[data-exam-sync-status]')?.textContent
+            })));
+            throw error;
+        }
         console.log('PASS 7: same-profile tabs share session and saving');
         await phone.evaluate(async password => {
             const user = FB.auth.currentUser, previousToken = await user.getIdToken();

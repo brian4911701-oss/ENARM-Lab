@@ -11833,9 +11833,6 @@ h6,
   flex: 0 0 19px;
   fill: currentColor;
 }
-.landing-platform-chip--windows { color: #71c7f2; }
-.landing-platform-chip--apple { color: #f8fafc; }
-.landing-platform-chip--android { color: #a4c639; }
 
 /* ── Hero Mockup ── */
 .hero-visual {
@@ -14496,7 +14493,7 @@ body.theme-lilac-light #redeem-modal.redeem-modal-overlay { background: rgba(31,
 #landing-page[data-theme="dark"] .hero-device-bar { background: #253951; border-color: #3c526e; }
 #landing-page[data-theme="dark"] .mockup-dot { background: #819ab9; }
 #landing-page[data-theme="dark"] :is(.hero-trust-check, .feature-tag, .landing-demo-specialty, .pricing-savings, .pricing-premium-equivalence > span) { background: #293f5f; color: #bfd8ff; }
-#landing-page[data-theme="dark"] .landing-platform-chip { color: #bfd8ff; background: #1e2e45; border-color: #49617f; }
+#landing-page[data-theme="dark"] .landing-platform-chip { background: #1b293b; }
 #landing-page[data-theme="dark"] :is(.landing-stat-label small, .landing-section-badge) { color: #a6c8fa; }
 #landing-page[data-theme="dark"] .landing-section-badge::before { border-color: #536d90; }
 #landing-page[data-theme="dark"] #landing-demo { --chapter-surface: #1c2c43; }
@@ -14523,25 +14520,23 @@ body.theme-lilac-light #redeem-modal.redeem-modal-overlay { background: rgba(31,
 #landing-page[data-theme="dark"] .landing-final-cta { background: #29476f; }
 #landing-page[data-theme="dark"] .landing-footer { background: #19283d; }
 
-/* Platform availability is a feature, so it gets the same visual weight as the main actions. */
+/* Compact platform pills share the same appearance on every device. */
 #landing-page .landing-platforms { gap: 13px; }
-#landing-page .landing-platforms-label { font-size: .74rem; color: var(--welcome-ink); }
+#landing-page .landing-platforms-label { font-size: .74rem; font-weight: 600; color: var(--welcome-ink); }
 #landing-page .landing-platforms-instructions { display: block; margin-top: 2px; color: var(--welcome-muted); font-size: .68rem; }
-#landing-page .landing-platform-list { gap: 10px; }
+#landing-page .landing-platform-list {
+  display: flex; flex-wrap: wrap; gap: 8px; width: 100%; max-width: 420px;
+}
 #landing-page .landing-platform-chip {
-  min-height: 48px; padding: 10px 14px; border: 1px solid #c8d5e5; border-radius: 6px;
-  background: #f8faff; color: #315d96; font-size: .84rem; font-weight: 600;
-  box-shadow: 0 5px 13px -10px rgba(35, 61, 97, .7);
+  display: inline-flex; flex-direction: row; align-items: center; justify-content: center;
+  flex: 0 0 128px; gap: 8px; min-width: 0; min-height: 44px; padding: 10px 14px;
+  border: 1px solid var(--welcome-line); border-radius: 12px;
+  background: #fff; color: var(--welcome-ink); font-size: .76rem; font-weight: 600;
+  line-height: 1.4; text-align: center; white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(23, 38, 60, .025), inset 0 1px 0 rgba(255, 255, 255, .08);
 }
-#landing-page .landing-platform-chip svg { width: 20px; height: 20px; flex-basis: 20px; }
-#landing-page .landing-platform-chip--windows,
-#landing-page .landing-platform-chip--apple,
-#landing-page .landing-platform-chip--android { color: #315d96; }
-#landing-page .landing-platform-chip--android {
-  padding: 10px 15px; min-height: 48px; border-color: var(--welcome-accent);
-  border-radius: 8px; background: var(--welcome-accent); color: #fff;
-  box-shadow: 0 5px 14px -8px var(--welcome-accent); font-weight: 650;
-}
+#landing-page .landing-platform-chip svg { display: block; width: 18px; height: 18px; flex: 0 0 18px; align-self: center; color: var(--welcome-muted); }
+#landing-page .landing-platform-chip--apple { --platform-icon-gap: 4px; column-gap: 4px; }
 #landing-page .hero-mobile-platforms { display: none; }
 #landing-page .landing-stat-label small { display: block; margin-top: 4px; color: #315d96; font-size: .68rem; font-weight: 600; line-height: 1.35; }
 
@@ -14759,7 +14754,7 @@ body.theme-lilac-light #redeem-modal.redeem-modal-overlay { background: rgba(31,
   #landing-page .landing-mobile-link { display: flex; align-items: center; min-height: 46px; padding: 12px 8px; }
 }
 @media (max-width: 480px) {
-  #landing-page .landing-platform-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
+  #landing-page .landing-platform-list { display: flex; justify-content: center; width: 100%; }
   #landing-page .landing-platform-chip { justify-content: center; min-width: 0; padding: 10px 8px; font-size: .76rem; }
 }
 
@@ -16020,21 +16015,12 @@ body.guest-exam-mode #view-exam .option-btn.selected {
   }
   #landing-page .hero-mobile-platforms .landing-platforms-label { font-size: .74rem; color: var(--welcome-ink); }
   #landing-page .hero-mobile-platforms .landing-platform-list {
-    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: 100%;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; width: 100%;
   }
   #landing-page .hero-mobile-platforms .landing-platform-chip {
-    display: flex; flex-direction: column; justify-content: center; gap: 7px; min-width: 0; min-height: 76px;
-    padding: 9px 3px; border: 1px solid #c8d5e5; border-radius: 8px; background: #f8faff;
-    color: #315d96; font-size: .62rem; line-height: 1.25; text-align: center;
+    flex-basis: 104px; gap: 9px var(--platform-icon-gap, 6px); min-height: 40px; padding: 9px 10px; font-size: .66rem;
   }
-  #landing-page .hero-mobile-platforms .landing-platform-chip--android {
-    border-color: var(--welcome-accent); background: var(--welcome-accent); color: #fff;
-    box-shadow: 0 6px 15px -8px var(--welcome-accent); font-weight: 700;
-  }
-  #landing-page .hero-mobile-platforms .landing-platform-chip svg { width: 21px; height: 21px; flex-basis: 21px; }
   #landing-page .hero-mobile-platforms .landing-platforms-instructions { margin-top: 0; font-size: .66rem; line-height: 1.5; }
-  #landing-page[data-theme="dark"] .hero-mobile-platforms .landing-platform-chip { background: #1e2e45; border-color: #49617f; color: #bfd8ff; }
-  #landing-page[data-theme="dark"] .hero-mobile-platforms .landing-platform-chip--android { background: var(--welcome-accent); border-color: var(--welcome-accent); color: #fff; }
   #landing-page .app-preview { padding-top: 30px; }
   #landing-page .app-preview-eyebrow { display: none; }
   #landing-page .app-preview-heading h2 { font-size: 1.9rem; }

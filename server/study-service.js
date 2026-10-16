@@ -3,6 +3,7 @@ const crypto = require('node:crypto');
 const sync = require('../progress-sync');
 const streak = require('../streak-core');
 const { assertSession } = require('./account-session');
+const { runTransaction } = require('./firestore-runtime');
 const fail = (code, status = 409) => { const e = new Error(code); e.code = code; e.status = status; throw e; };
 const clean = x => JSON.parse(JSON.stringify(x));
 const hash = x => crypto.createHash('sha256').update(x).digest('hex');
@@ -168,7 +169,7 @@ function createStudyService(db, options = {}) {
     return async function execute(uid, body, claims = {}) {
         const { action } = body;
         const registryRef = ref('study_sessions', uid), progressRef = ref('user_progress', uid), examRef = ref('active_exams', uid);
-        return db.runTransaction(async tx => {
+        return runTransaction(db, async tx => {
             await assertSession(tx, db, { ...claims, uid });
             const registrySnap = await tx.get(registryRef);
             const registry = registrySnap.exists ? registrySnap.data() : {};

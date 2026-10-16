@@ -1843,6 +1843,7 @@
     const progressOutbox = window.ENARMProgressSync.create(localStorage);
     const studyMessages = {
         connecting: 'Conectando con tu cuenta', confirmed: 'Examen guardado en la nube', pending: 'Respuestas guardadas aquí · envío pendiente',
+        'firestore-quota-exceeded': 'Servicio temporalmente limitado. Tus cambios siguen guardados aquí; se reintentará más tarde.',
         'session-replaced': 'Tu sesión se cerró porque se inició sesión en otro dispositivo',
         'local-storage-full': 'No hay espacio para guardar la respuesta localmente. No se aplicó el cambio.',
         'study-backend-unconfigured': 'El servicio de guardado no está disponible', offline: 'Sin conexión · cambios locales pendientes'
@@ -1883,11 +1884,11 @@
             console.warn('No se pudo verificar la sesión.', error.code || error.message);
             if (!accountSession?.sid) {
                 const button = $('btn-auth-submit'); if (button) button.textContent = 'Iniciar sesión';
-                showNotification('No pudimos validar tu sesión. Revisa tu conexión y vuelve a intentarlo.', 'warning');
+                showNotification(window.ENARMAccountSession.messageFor(error), 'warning');
             }
             if (['session-changed', 'recent-login-required', 'explicit-login-required'].includes(error.code)) {
                 $('auth-overlay')?.classList.add('active');
-                showNotification('Vuelve a iniciar sesión. La sesión de la cuenta cambió.', 'info');
+                if (accountSession?.sid) showNotification(window.ENARMAccountSession.messageFor(error), 'info');
             }
         }
     });
@@ -2000,7 +2001,7 @@
             if (!progressOutbox.read(uid)?.pending) await studySession.completeMigration();
         }).catch(error => {
             studyBootUid = ''; console.warn('El examen remoto se reintentará automáticamente.', error);
-            if (!['session-replaced', 'unauthenticated', 'verify-email', 'account-changed'].includes(error.code)) studyBootRetry = window.setTimeout(() => { if (State.currentUid === uid) void bootStudySession(uid); }, 5000);
+            if (!['session-replaced', 'unauthenticated', 'verify-email', 'account-changed'].includes(error.code)) studyBootRetry = window.setTimeout(() => { if (State.currentUid === uid) void bootStudySession(uid); }, error.code === 'firestore-quota-exceeded' ? 300000 : 5000);
         }).finally(() => { studyBootPromise = null; });
         return studyBootPromise;
     };
@@ -2145,7 +2146,7 @@
         // Callers joining an in-flight write share completion; the first caller
         // handles its error and keeps the outbox pending for retry.
         progressWrites.set(uid, write.catch(() => {}));
-        let saved = false;
+        let saved = false, retryDelay = 15000;
         try {
             const result = await write;
             saved = true;
@@ -2165,6 +2166,7 @@
             }
         } catch (error) {
             if (State.currentUid === uid) { State.progressSyncError = true; updateProgressSyncStatus(); }
+            if (error.code === "firestore-quota-exceeded") retryDelay = 300000;
             console.error("No se pudo sincronizar el progreso; el respaldo local sigue pendiente.", error);
         } finally {
             progressWrites.delete(uid);
@@ -2172,7 +2174,7 @@
                 if (saved) void flushPendingProgress();
                 else {
                     window.clearTimeout(progressRetryTimer);
-                    progressRetryTimer = window.setTimeout(() => void flushPendingProgress(), 15000);
+                    progressRetryTimer = window.setTimeout(() => void flushPendingProgress(), retryDelay);
                 }
             }
         }

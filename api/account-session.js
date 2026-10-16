@@ -1,5 +1,6 @@
 'use strict';
 const admin = require('firebase-admin');
+const { getFirestore, sendQuotaError } = require('../server/firestore-runtime');
 const { createAccountSessions } = require('../server/account-session');
 let execute;
 module.exports = async (request, response) => {
@@ -15,9 +16,10 @@ module.exports = async (request, response) => {
         const claims = await admin.auth().verifyIdToken(token, true);
         const body = typeof request.body === 'string' ? JSON.parse(request.body) : request.body;
         if (!body || Buffer.byteLength(JSON.stringify(body)) > 8192) return response.status(400).json({ code: 'invalid-request' });
-        execute ||= createAccountSessions(admin.firestore(), admin.auth());
+        execute ||= createAccountSessions(getFirestore(admin), admin.auth());
         return response.status(200).json(await execute(claims, body));
     } catch (error) {
+        if (sendQuotaError(response, error)) return;
         const authError = String(error.code || '').startsWith('auth/');
         return response.status(authError ? 401 : error.status || 500).json({ code: authError ? 'unauthenticated' : error.code || 'session-unavailable' });
     }

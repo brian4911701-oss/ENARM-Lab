@@ -1,5 +1,6 @@
 'use strict';
 const admin = require('firebase-admin');
+const { getFirestore, sendQuotaError } = require('../server/firestore-runtime');
 const { createStudyService } = require('../server/study-service');
 let execute;
 module.exports = async (request, response) => {
@@ -18,15 +19,16 @@ module.exports = async (request, response) => {
         const body = typeof request.body === 'string' ? JSON.parse(request.body) : request.body;
         if (!body || Buffer.byteLength(JSON.stringify(body)) > 850000) return response.status(413).json({ code: 'payload-too-large' });
         if (body.action === 'purge' && Date.now() / 1000 - claims.auth_time > 300) return response.status(401).json({ code: 'recent-login-required' });
-        execute ||= createStudyService(admin.firestore());
+        execute ||= createStudyService(getFirestore(admin));
         const result = await execute(claims.uid, body, claims);
         if (result.purge) {
-            const db = admin.firestore();
+            const db = getFirestore(admin);
             for (const name of ['user_progress', 'active_exams', 'exam_payloads', 'exam_attempts', 'study_backups', 'study_devices']) await db.recursiveDelete(db.collection(name).doc(claims.uid));
             await db.collection('study_sessions').doc(claims.uid).delete();
         }
         return response.status(200).json(result);
     } catch (error) {
+        if (sendQuotaError(response, error)) return;
         const authError = String(error.code || '').startsWith('auth/');
         const status = authError ? 401 : error.status || 500;
         if (status === 500) console.error('Study sync failed:', error.code || error.message);

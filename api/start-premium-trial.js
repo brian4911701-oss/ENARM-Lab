@@ -1,4 +1,5 @@
 const admin = require("firebase-admin");
+const { getFirestore: getRuntimeFirestore, runTransaction, sendQuotaError } = require("../server/firestore-runtime");
 const { assertSession } = require('../server/account-session');
 
 const TRIAL_DURATION_DAYS = 15;
@@ -10,7 +11,7 @@ function getFirestore() {
         if (!rawCredential) throw new Error("firebase_service_account_missing");
         admin.initializeApp({ credential: admin.credential.cert(JSON.parse(rawCredential)) });
     }
-    return admin.firestore();
+    return getRuntimeFirestore(admin);
 }
 
 function sendJson(response, status, data) {
@@ -34,7 +35,7 @@ module.exports = async (request, response) => {
         const trialRef = db.collection("premium_trials").doc(uid);
         const entitlementRef = db.collection("entitlements").doc(uid);
 
-        const trial = await db.runTransaction(async (transaction) => {
+        const trial = await runTransaction(db, async (transaction) => {
             await assertSession(transaction, db, decoded);
             const [trialSnap, entitlementSnap] = await Promise.all([
                 transaction.get(trialRef),
@@ -70,6 +71,7 @@ module.exports = async (request, response) => {
 
         return sendJson(response, 200, { durationDays: trial.durationDays, expiresAt: trial.expiresAt.toISOString() });
     } catch (error) {
+        if (sendQuotaError(response, error)) return;
         if (error?.code === 'session-replaced') return sendJson(response, 403, { code: error.code, message: 'Tu sesión se cerró porque se inició sesión en otro dispositivo' });
         if (error?.code === "already-used") {
             return sendJson(response, 409, { code: "already-used", message: "Esta cuenta ya utilizó su prueba Premium." });

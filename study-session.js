@@ -105,7 +105,7 @@
                     if (error.code === 'account-changed') return;
                     status = error.code || 'offline';
                     if (!['session-replaced', 'exam-ended', 'unauthenticated'].includes(error.code)) {
-                        clearTimeout(retry); retry = setTimeout(() => void flush(), 10000);
+                        clearTimeout(retry); retry = setTimeout(() => void flush(), error.code === 'firestore-quota-exceeded' ? 300000 : 10000);
                     }
                     notify(); if (explicit) throw error;
                 }

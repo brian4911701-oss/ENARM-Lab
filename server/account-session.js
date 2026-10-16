@@ -1,5 +1,6 @@
 'use strict';
 const crypto = require('node:crypto');
+const { runTransaction } = require('./firestore-runtime');
 const LEASE_MS = 10 * 60 * 1000;
 const fail = (code, status = 403) => { throw Object.assign(new Error(code), { code, status }); };
 const sessionRef = (db, uid) => db.doc(`account_sessions/${uid}`);
@@ -19,7 +20,7 @@ function createAccountSessions(db, auth, options = {}) {
             // Both a still-authorized session and a freshly authenticated identity are required.
             const fresh = await auth.verifyIdToken(body.reauthenticationToken, true);
             if (fresh.uid !== claims.uid || instant / 1000 - fresh.auth_time > 300) fail('recent-login-required', 401);
-            await db.runTransaction(tx => assertSession(tx, db, claims));
+            await runTransaction(db, tx => assertSession(tx, db, claims));
             return { token: await auth.createCustomToken(claims.uid, { enarmaxSid: claims.enarmaxSid }) };
         }
         if (body.action === 'open') {
@@ -30,7 +31,7 @@ function createAccountSessions(db, auth, options = {}) {
             const sid = crypto.randomUUID();
             // Sign before committing: a signing/configuration failure must not evict anyone.
             const token = await auth.createCustomToken(claims.uid, { enarmaxSid: sid });
-            const result = await db.runTransaction(async tx => {
+            const result = await runTransaction(db, async tx => {
                 const [snap, presenceSnap] = await Promise.all([tx.get(ref), tx.get(presenceRef)]);
                 const previous = snap.exists ? snap.data() : {};
                 const presence = presenceSnap.exists ? presenceSnap.data() : {};
@@ -47,12 +48,12 @@ function createAccountSessions(db, auth, options = {}) {
             });
             return result;
         }
-        return db.runTransaction(async tx => {
+        return runTransaction(db, async tx => {
             const active = await assertSession(tx, db, claims);
             if (body.action === 'check') {
                 // Expiry only determines abandoned presence. The same session may renew until replaced.
                 const presence = await tx.get(presenceRef);
-                if (!presence.exists || presence.data().expiresAt - instant < LEASE_MS - 120000) {
+                if (!presence.exists || presence.data().expiresAt - instant < LEASE_MS - 240000) {
                     tx.set(presenceRef, { sid: active.sid, expiresAt: instant + LEASE_MS });
                 }
                 return { valid: true, sid: active.sid };
