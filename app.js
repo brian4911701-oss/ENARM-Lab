@@ -4578,10 +4578,10 @@
         State.ratingsAdminUnsub = window.FB.onSnapshot(ratingQuery, (snap) => {
             State.ratingsInbox = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
             renderAdminRatings();
-        }, (error) => {
+        }, getAccountSession().guardListenerError((error) => {
             console.error("No se pudieron cargar las valoraciones:", error);
             showNotification("No se pudieron cargar las valoraciones. Revisa las reglas de Firebase.", "error");
-        });
+        }));
     };
 
     const renderAdminFeedbackInbox = () => {
@@ -4649,13 +4649,13 @@
             });
             State.feedbackInbox = rows;
             renderAdminFeedbackInbox();
-        }, (err) => {
+        }, getAccountSession().guardListenerError((err) => {
             console.error("Error cargando feedback admin:", err);
             const msg = String((err && (err.code || err.message)) || "").toLowerCase();
             if (msg.includes("permission-denied") || msg.includes("missing or insufficient permissions")) {
                 showNotification("No tienes permisos para ver feedback en Firebase.", "error");
             }
-        });
+        }));
     };
 
     const getWithdrawalDate = (value) => {
@@ -4747,13 +4747,13 @@
             });
             State.withdrawalRequests = rows;
             renderAdminWithdrawalRequests();
-        }, (err) => {
+        }, getAccountSession().guardListenerError((err) => {
             console.error("Error cargando solicitudes de retiro:", err);
             const msg = String((err && (err.code || err.message)) || "").toLowerCase();
             if (msg.includes("permission-denied") || msg.includes("missing or insufficient permissions")) {
                 showNotification("No tienes permisos para ver solicitudes de retiro en Firebase.", "error");
             }
-        });
+        }));
     };
 
     const formatManualPaymentStatus = (status) => {
@@ -4860,10 +4860,10 @@
             State.manualPaymentRequests = rows;
             renderManualPaymentRequests();
             renderAdminUsers();
-        }, (err) => {
+        }, getAccountSession().guardListenerError((err) => {
             console.error("Error cargando transferencias Premium:", err);
             showNotification("No se pudieron cargar los avisos de transferencia.", "error");
-        });
+        }));
     };
 
     const getAdminRegistrationDetails = (directory, fallbackUser) => {

@@ -101,3 +101,39 @@ test('unavailable endpoints and broken responses are distinguished from connecti
         finally { client.stop(); }
     }
 });
+
+test('simultaneous permission errors check authority once and sign out without misleading alerts', async () => {
+    const state = firebase({ enarmaxSid: 'old-signed-session' });
+    let calls = 0, reports = 0, lost = 0, release;
+    const gate = new Promise(resolve => { release = resolve; });
+    const client = create({ fb: state.fb, storage: storage(), confirmReplacement: async () => true, onLost: () => lost++,
+        request: async () => {
+            if (++calls === 1) return { ok: true, json: async () => ({ valid: true }) };
+            await gate; return response('session-replaced', 403);
+        } });
+    try {
+        assert.equal(await client.ensure(state.user), true);
+        const errors = Array.from({ length: 6 }, () => client.guardListenerError(() => reports++));
+        const pending = errors.map(handler => handler({ code: 'permission-denied' }));
+        await Promise.resolve(); await Promise.resolve();
+        assert.equal(calls, 2, 'One initial check and one coalesced check for the failed listeners');
+        release(); await Promise.all(pending);
+        assert.equal(reports, 0); assert.equal(state.signsOut, 1); assert.equal(lost, 1);
+        await errors[0]({ code: 'permission-denied' }); assert.equal(calls, 2);
+    } finally { release(); client.stop(); }
+});
+
+test('real permission errors on a valid session remain visible; stale callbacks are ignored', async () => {
+    const state = firebase({ enarmaxSid: 'valid-signed-session' }); let reports = 0, calls = 0;
+    const client = create({ fb: state.fb, storage: storage(), confirmReplacement: async () => true, onLost: () => {},
+        request: async () => { calls++; return { ok: true, json: async () => ({ valid: true }) }; } });
+    try {
+        await client.ensure(state.user);
+        const handler = client.guardListenerError(() => reports++);
+        await handler({ code: 'permission-denied' });
+        assert.equal(reports, 1); assert.equal(state.signsOut, 0); assert.equal(calls, 2);
+        await handler({ code: 'unavailable' }); assert.equal(reports, 2); assert.equal(calls, 2);
+        client.stop(); await handler({ code: 'permission-denied' });
+        assert.equal(reports, 2); assert.equal(calls, 2);
+    } finally { client.stop(); }
+});

@@ -142,6 +142,42 @@
         }
         return { data, heads: nextHeads, ignored };
     };
+    const hasDerivedEdit = (edit, key = '') => {
+        if (!edit || key === 'pomodoros') return false;
+        if (edit.kind === 'add') return edit.value !== 0;
+        if (edit.kind === 'object') return Object.entries(edit.edits || {}).some(([child, value]) => hasDerivedEdit(value, child));
+        if (edit.kind === 'list') return !!edit.edits?.length || !!edit.remove?.length;
+        if (edit.kind === 'set') return typeof edit.value === 'number' ? edit.value !== 0 : !!edit.value && typeof edit.value === 'object';
+        return edit.kind === 'remove';
+    };
+    const pendingView = (canonical, pending) => {
+        if (canonical.syncVersion !== 3) return pending.reduce(applyOperation, clone(canonical));
+        // Match the v3 server: legacy journals cannot replace confirmed exam results.
+        // Keep the original operations for acknowledgement or conflict archival.
+        const view = pending.reduce((current, operation) => {
+            const { reset, nextEpoch, ...safe } = operation;
+            safe.changes = { ...operation.changes };
+            delete safe.changes.historyStr;
+            if (hasDerivedEdit(safe.changes.globalStatsStr)) delete safe.changes.globalStatsStr;
+            return applyOperation(current, safe);
+        }, clone(canonical));
+        if (canonical.globalStatsStr !== undefined) {
+            const stats = decode('globalStatsStr', canonical.globalStatsStr);
+            const proposed = decode('globalStatsStr', view.globalStatsStr);
+            if (proposed?.pomodoros !== undefined) stats.pomodoros = proposed.pomodoros;
+            view.globalStatsStr = encode('globalStatsStr', stats);
+        }
+        view.historyStr = canonical.historyStr || '[]';
+        const before = decode('studyCalendarStr', canonical.studyCalendarStr) || {};
+        const calendar = decode('studyCalendarStr', view.studyCalendarStr) || {};
+        for (const [day, value] of Object.entries(before)) if (!calendar[day]) calendar[day] = clone(value);
+        for (const [day, value] of Object.entries(calendar)) {
+            value.sessions = before[day]?.sessions || 0;
+            value.practiced = before[day]?.practiced === true;
+        }
+        view.studyCalendarStr = encode('studyCalendarStr', calendar);
+        return view;
+    };
     const legacyMerge = (remote, local, key = '') => {
         if (typeof local === 'number' && counterNames.has(key)) return Math.max(Number(remote) || 0, local);
         if (Array.isArray(local)) {
@@ -239,14 +275,14 @@
             }
             const pending = operations(uid);
             if (!pending.length) return accept(uid, canonical);
-            if (pending.length) canonical = clone(latest?.canonical || views.get(uid)?.canonical || canonical);
-            const view = pending.reduce(applyOperation, canonical), own = load(ownKey(uid));
+            if (!available) canonical = clone(latest?.canonical || views.get(uid)?.canonical || canonical);
+            const view = pendingView(canonical, pending), own = load(ownKey(uid));
             persist(uid, view, canonical, own?.operations || [], own?.sequence || 0);
             return view;
         };
         const accept = (uid, remote, accepted = []) => {
             accepted.forEach(operation => storage.removeItem(operationKey(uid, operation)));
-            const view = operations(uid).reduce(applyOperation, clone(remote)), own = load(ownKey(uid));
+            const view = pendingView(remote, operations(uid)), own = load(ownKey(uid));
             persist(uid, view, remote, own?.operations || [], own?.sequence || 0);
             const pendingActors = new Set(operations(uid).map(operation => operation.actor));
             for (const record of records(uid)) if (record.actor !== actor && !pendingActors.has(record.actor)) storage.removeItem(record.key);
@@ -270,7 +306,7 @@
         };
         return { begin, read, stage, restore, accept, batch, forget, actor };
     };
-    const api = { create, compactHistory, makeOperation, applyOperation, mergeBatch, legacyMerge, id, fields };
+    const api = { create, compactHistory, makeOperation, applyOperation, mergeBatch, legacyMerge, hasDerivedEdit, id, fields };
     if (typeof module === 'object' && module.exports) module.exports = api;
     else root.ENARMProgressSync = api;
 })(typeof window !== "undefined" ? window : globalThis);

@@ -46,14 +46,7 @@ function buildBank(source) {
     }
     return result;
 }
-function hasDerivedEdit(edit, key = '') {
-    if (!edit || key === 'pomodoros') return false;
-    if (edit.kind === 'add') return edit.value !== 0;
-    if (edit.kind === 'object') return Object.entries(edit.edits || {}).some(([child, value]) => hasDerivedEdit(value, child));
-    if (edit.kind === 'list') return !!edit.edits?.length || !!edit.remove?.length;
-    if (edit.kind === 'set') return typeof edit.value === 'number' ? edit.value !== 0 : !!edit.value && typeof edit.value === 'object';
-    return edit.kind === 'remove';
-}
+const { hasDerivedEdit } = sync;
 function applyEvents(exam, events, now) {
     if (!Array.isArray(events) || events.length > 100) fail('invalid-events', 400);
     for (const event of events) {

@@ -16,6 +16,7 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
     await env.clearFirestore();
     try { await auth.deleteUser(uid); } catch {}
     await auth.createUser({ uid, email, password, emailVerified: true, displayName: 'Estudiante de prueba' });
+    await auth.setCustomUserClaims(uid, { admin: true });
     await db.doc('user_wallets/' + uid).set({ uid, coins: 0, referralCode: 'ELBROWSER1', createdAt: new Date(), updatedAt: new Date() });
     const sessionApi = require('../api/account-session'), studyApi = require('../api/study-sync');
     const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8')
@@ -27,6 +28,7 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
         .replace('const db = getFirestore(app);', "const db = getFirestore(app); connectFirestoreEmulator(db, '127.0.0.1', 8080);");
     const requests = { account: 0, study: 0 };
     let simulateQuota = true;
+    let blockProgressWrites = false;
     const server = http.createServer(async (request, response) => {
         try {
             const pathname = new URL(request.url, 'http://localhost').pathname;
@@ -35,7 +37,12 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
                 request.body = JSON.parse(body);
                 response.status = status => { response.statusCode = status; return response; };
                 response.json = value => { response.setHeader('Content-Type', 'application/json'); response.end(JSON.stringify(value)); };
-                if (pathname === '/api/study-sync') { requests.study++; await studyApi(request, response); }
+                if (pathname === '/api/study-sync') {
+                    requests.study++;
+                    if (blockProgressWrites && request.body.action === 'progress') {
+                        response.status(503).json({ code: 'firestore-quota-exceeded', retryAfterSeconds: 300 });
+                    } else await studyApi(request, response);
+                }
                 else {
                     requests.account++;
                     if (simulateQuota && request.body.action === 'open') {
@@ -55,20 +62,46 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
                 const source = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
                 const marker = '\n})();\n\n// INIT DROPDOWN TIMEFRAME';
                 assert.ok(source.includes(marker));
-                response.end(source.replace(marker, '\nglobalThis.__studyTest = { State, beginExamSession, finishExam, studySession, getAccountSession, showView };\n})();\n\n// INIT DROPDOWN TIMEFRAME'));
+                response.end(source.replace(marker, '\nglobalThis.__studyTest = { State, beginExamSession, finishExam, studySession, getAccountSession, showView, flushPendingProgress, progressOutbox };\n})();\n\n// INIT DROPDOWN TIMEFRAME'));
             } else fs.createReadStream(file).pipe(response);
         } catch (error) { response.writeHead(500); response.end(JSON.stringify({ code: error.code || error.message })); }
     });
     await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
     const origin = 'http://127.0.0.1:' + server.address().port;
     let browser; const errors = [];
-    const waitReady = page => page.waitForFunction(() => __studyTest.State.progressRestoreReady && !!__studyTest.getAccountSession().sid && !document.querySelector('#startup-screen')?.classList.contains('active'), { timeout: 45000 });
+    const waitReady = async page => {
+        await page.bringToFront();
+        try {
+            await page.waitForFunction(() => __studyTest.State.progressRestoreReady && !!__studyTest.getAccountSession().sid && !document.querySelector('#startup-screen')?.classList.contains('active'), { timeout: 45000, polling: 100 });
+        } catch (error) {
+            console.log('Startup diagnostic:', await page.evaluate(() => ({
+                visible: document.visibilityState, authenticated: !!window.FB?.auth.currentUser,
+                authorized: !!globalThis.__studyTest?.getAccountSession().sid,
+                ready: globalThis.__studyTest?.State.progressRestoreReady,
+                uid: globalThis.__studyTest?.State.currentUid,
+                startup: document.querySelector('#startup-screen')?.textContent,
+                notices: document.querySelector('#notification-container')?.textContent
+            })));
+            throw error;
+        }
+    };
     const login = page => page.evaluate(({ email, password }) => FB.signInWithEmailAndPassword(FB.auth, email, password).then(() => true), { email, password });
     try {
         browser = await puppeteer.launch({ headless: true, pipe: true, executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || 'C:/Program Files/Google/Chrome/Application/chrome.exe' });
         const prepare = async (context, mobile = false) => {
             const page = await context.newPage();
             await page.evaluateOnNewDocument(() => localStorage.setItem('enarmax_analytics_consent', 'denied'));
+            await page.evaluateOnNewDocument(() => {
+                document.addEventListener('DOMContentLoaded', () => {
+                    new MutationObserver(records => {
+                        for (const record of records) for (const node of record.addedNodes) {
+                            if (!node.matches?.('.toast')) continue;
+                            const notices = JSON.parse(sessionStorage.getItem('session-test-notices') || '[]');
+                            notices.push(node.textContent); sessionStorage.setItem('session-test-notices', JSON.stringify(notices));
+                        }
+                    }).observe(document.body, { childList: true, subtree: true });
+                }, { once: true });
+            });
             if (mobile) await page.setViewport({ width: 412, height: 915, isMobile: true, hasTouch: true });
             page.on('pageerror', error => { errors.push(error.message); console.log('Browser exception:', error.stack); });
             page.on('console', message => { if (message.type() === 'error') console.log('Browser:', message.text().slice(0, 300)); });
@@ -93,6 +126,7 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
         await pc.screenshot({ path: path.join(root, '.tmp-config/session-quota-desktop.png') });
         console.log('PASS: quota displays its cause, blocks unauthorized entry and suppresses repeated requests');
         await pc.reload({ waitUntil: 'load' }); await waitReady(pc);
+        assert.equal(await pc.evaluate(() => __studyTest.State.isAdminClaim), true, 'Exercise actual administrator listeners during replacement');
         assert.equal(await pc.$eval('#session-conflict-dialog', d => d.open), false);
         console.log('PASS 1: normal login, no prompt');
         const bank = require('../questions');
@@ -120,6 +154,9 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
         await phone.waitForFunction(() => __studyTest.studySession.owns() && __studyTest.State.answers.filter(a => a.selected === 1).length === 35);
         await pc.waitForFunction(() => !!window.FB && !!globalThis.__studyTest && !window.FB.auth.currentUser && !globalThis.__studyTest.State.currentUid && document.querySelector('#auth-overlay').classList.contains('active'));
         assert.equal(await pc.evaluate(() => __studyTest.State.questionSet.length), 0);
+        const misleadingPermissionNotices = await pc.evaluate(() => JSON.parse(sessionStorage.getItem('session-test-notices') || '[]')
+            .filter(message => /permisos para ver|cargar las valoraciones|cargar los avisos de transferencia/.test(message)));
+        assert.deepEqual(misleadingPermissionNotices, [], 'Replacing an administrator must not produce permission-error toasts');
         assert.equal(await phone.evaluate(() => __studyTest.studySession.active.id), examId);
         const rejection = await fetch(origin + '/api/study-sync', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + oldToken },
             body: JSON.stringify({ action: 'events', examId, events: [{ actor: 'revoked-writer-001', kind: 'answer', sequence: 1, index: 35, selected: 0 }] }) });
@@ -201,6 +238,47 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
         assert.equal((await db.doc('account_sessions/' + uid).get()).data().sid, null);
         assert.deepEqual(errors, []);
         console.log('PASS 12: no login/logout loop; manual logout releases authority');
+        // A phone with old zero totals and an unacknowledged legacy journal must
+        // show confirmed cloud results even while pending writes are unavailable.
+        const confirmedProgress = (await db.doc('user_progress/' + uid).get()).data();
+        const confirmedStats = JSON.parse(confirmedProgress.globalStatsStr);
+        const staleProfile = await browser.createBrowserContext();
+        const stale = await staleProfile.newPage();
+        const legacyActor = 'legacy-zero-browser-0001';
+        const zero = { ...confirmedProgress, globalStatsStr: JSON.stringify({ respondidas: 0, aciertos: 0, sesiones: 0 }), historyStr: '[]', studyCalendarStr: '{}' };
+        const operation = { id: legacyActor + ':1', actor: legacyActor, sequence: 1, epoch: confirmedProgress.syncEpoch || 'initial',
+            changes: { globalStatsStr: { kind: 'object', edits: { respondidas: { kind: 'add', value: -10000 }, aciertos: { kind: 'add', value: -10000 }, sesiones: { kind: 'add', value: -10000 } } },
+                historyStr: { kind: 'set', value: [] }, theme: { kind: 'set', value: 'forest' } } };
+        await stale.evaluateOnNewDocument(({ uid, zero, actor, operation }) => {
+            if (localStorage.getItem('seeded-zero-cache')) return;
+            localStorage.setItem('seeded-zero-cache', '1'); localStorage.setItem('enarmax_analytics_consent', 'denied');
+            localStorage.setItem('enarm_progress_owner', uid); localStorage.setItem('enarm_stats', zero.globalStatsStr);
+            localStorage.setItem('enarm_history', '[]');
+            localStorage.setItem('enarm_progress_v2:' + uid + ':' + actor, JSON.stringify({ uid, actor, sequence: 1, canonical: zero, view: zero, operations: [], savedAt: Date.now() }));
+            localStorage.setItem('enarm_progress_op:' + uid + ':' + operation.id, JSON.stringify(operation));
+        }, { uid, zero, actor: legacyActor, operation });
+        await stale.setViewport({ width: 412, height: 915, isMobile: true, hasTouch: true });
+        stale.on('pageerror', error => errors.push(error.message));
+        await stale.setRequestInterception(true);
+        stale.on('request', request => {
+            if (!['127.0.0.1', 'localhost'].includes(new URL(request.url()).hostname) && /firestore.googleapis.com|identitytoolkit.googleapis.com|securetoken.googleapis.com|fcmregistrations.googleapis.com/.test(request.url())) request.abort();
+            else request.continue();
+        });
+        blockProgressWrites = true;
+        await stale.goto(origin, { waitUntil: 'load', timeout: 60000 });
+        await stale.waitForFunction(() => !!window.FB && !!globalThis.__studyTest);
+        await login(stale); await waitReady(stale);
+        assert.equal(await stale.evaluate(() => __studyTest.State.globalStats.sesiones), confirmedStats.sesiones);
+        assert.equal(await stale.evaluate(() => __studyTest.State.globalStats.respondidas), confirmedStats.respondidas);
+        assert.ok(await stale.evaluate(() => __studyTest.progressOutbox.read(FB.auth.currentUser.uid).pending));
+        assert.equal(JSON.parse((await db.doc('user_progress/' + uid).get()).data().globalStatsStr).sesiones, confirmedStats.sesiones);
+        blockProgressWrites = false;
+        await stale.evaluate(() => __studyTest.flushPendingProgress());
+        await stale.waitForFunction(() => !__studyTest.progressOutbox.read(FB.auth.currentUser.uid).pending);
+        assert.equal(await stale.evaluate(() => __studyTest.State.globalStats.respondidas), confirmedStats.respondidas);
+        assert.equal((await db.collection('exam_attempts/' + uid + '/items').get()).size, 1);
+        assert.deepEqual(errors, []);
+        console.log('PASS: old phone zero cache and negative legacy journal cannot hide cloud results, even when pending writes fail; recovery preserves attempts');
         console.log('Browser tests passed. Simultaneous login and abandoned lease expiry are covered by transaction tests.');
     } finally {
         if (browser) await browser.close();

@@ -11,7 +11,7 @@
         return 'No pudimos validar tu sesión. Intenta de nuevo en unos minutos.';
     };
     function create({ fb, storage, confirmReplacement, onLost, onCancel, onError, request = root.fetch.bind(root) }) {
-        let pending, unsubscribe, interval, sid = '', lost = false;
+        let pending, checking, unsubscribe, interval, sid = '', lost = false;
         let retryAt = 0, retryError;
         let deviceId = storage.getItem('enarmax_device_id');
         if (!deviceId) { deviceId = root.crypto.randomUUID(); storage.setItem('enarmax_device_id', deviceId); }
@@ -50,17 +50,36 @@
             await fb.signOut(fb.auth);
             if (notify) onLost();
         }
-        async function check() {
+        function check() {
             const user = fb.auth.currentUser;
             const checkedSid = sid;
-            if (!user || !sid) return false;
-            try { await call(user, { action: 'check' }); return true; }
-            catch (error) {
-                if (checkedSid !== sid || fb.auth.currentUser?.uid !== user.uid) return false;
-                if (['session-replaced', 'unauthenticated'].includes(error.code)) await invalidate();
-                else onError?.(error);
-                return false;
-            }
+            if (!user || !sid) return Promise.resolve(false);
+            if (checking?.sid === sid && checking.uid === user.uid) return checking.promise;
+            const entry = { sid, uid: user.uid };
+            entry.promise = (async () => {
+                try {
+                    await call(user, { action: 'check' });
+                    return checkedSid === sid && fb.auth.currentUser?.uid === user.uid;
+                } catch (error) {
+                    if (checkedSid !== sid || fb.auth.currentUser?.uid !== user.uid) return false;
+                    if (['session-replaced', 'unauthenticated'].includes(error.code)) await invalidate();
+                    else onError?.(error);
+                    return false;
+                }
+            })().finally(() => { if (checking === entry) checking = null; });
+            checking = entry;
+            return entry.promise;
+        }
+        function guardListenerError(report) {
+            const uid = fb.auth.currentUser?.uid, subscribedSid = sid;
+            const current = () => !!subscribedSid && subscribedSid === sid && fb.auth.currentUser?.uid === uid;
+            return async error => {
+                if (!current()) return;
+                const permissionDenied = /permission-denied|missing or insufficient permissions/i.test(String(error.code || error.message || ''));
+                // Permission errors can arrive before the authority listener reports replacement.
+                if (permissionDenied && !await check()) return;
+                if (current()) report(error);
+            };
         }
         function watch(user, value) {
             if (sid === value && unsubscribe) return;
@@ -120,7 +139,7 @@
             await fb.signInWithCustomToken(fb.auth, result.token);
             return fb.auth.currentUser;
         }
-        return { ensure, check, logout, stop, invalidate, reauthorize, get sid() { return sid; } };
+        return { ensure, check, logout, stop, invalidate, reauthorize, guardListenerError, get sid() { return sid; } };
     }
     root.ENARMAccountSession = { create, messageFor };
     if (typeof module !== 'undefined') module.exports = { create, messageFor };
