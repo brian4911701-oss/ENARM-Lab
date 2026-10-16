@@ -1,46 +1,38 @@
-// Account-scoped, durable exam operations. Server ACK is the only confirmation.
+// Durable exam operations scoped to the server-authorized account session.
 (function (root) {
-    const uuid = () => root.crypto.randomUUID?.() || Array.from(root.crypto.getRandomValues(new Uint8Array(24)), byte => byte.toString(16).padStart(2, '0')).join('');
-    const create = ({ storage, send, readExam, listenExam, listenDevices, onExam, onStatus, onDevices, onAttempt }) => {
-        let uid = '', device, registration, active = null, confirmed = null, unsubscribe, unsubscribeDevices;
-        let busy = null, timer, retry, autoClaimed = false, status = 'connecting', stopped = false;
-        let controlToken = '', controlFence = -1;
-        const tabId = uuid();
-        const prefix = () => `enarm_exam_op:${uid}:`;
+    const create = ({ storage, send, sessionId, readExam, listenExam, onExam, onStatus, onAttempt }) => {
+        let uid = '', sid = '', registration, active = null, confirmed = null, unsubscribe;
+        let busy, registering, timer, retry, status = 'connecting', generation = 0, booting;
+        const actor = root.crypto.randomUUID();
+        const sequences = new Map();
+        const prefix = () => 'enarm_exam_v4:' + uid + ':' + sid + ':';
         const entries = () => {
             const result = [];
             for (let i = 0; i < storage.length; i++) {
                 const key = storage.key(i);
                 if (!key?.startsWith(prefix())) continue;
-                try { result.push({ key, ...JSON.parse(storage.getItem(key)) }); } catch { /* Leave unreadable records untouched. */ }
+                try { result.push({ key, ...JSON.parse(storage.getItem(key)) }); } catch { /* Preserve unreadable records. */ }
             }
-            return result.sort((a, b) => a.sequence - b.sequence);
+            return result.sort((a, b) => a.occurredAt - b.occurredAt || a.actor.localeCompare(b.actor) || a.sequence - b.sequence);
         };
-        const own = record => active && active.ownerTab === tabId && active.ownerDevice === device?.id && record.examId === active.id && record.fence === active.fence && record.tabId === tabId;
-        const pending = () => entries().filter(own);
-        const conflicts = () => entries().filter(record => !own(record));
-        const owns = () => active?.status === 'active' && active.ownerDevice === device?.id && active.ownerTab === tabId && active.fence === controlFence && !!controlToken;
-        const notify = () => onStatus?.({ status, pending: pending().length, conflicts: conflicts(), owns: owns(), registered: !!registration });
+        const pending = () => entries().filter(record => record.examId === active?.id);
+        const owns = () => !!registration && active?.status === 'active' && !!sid && sid === sessionId();
+        const notify = () => onStatus?.({ status, pending: pending().length, owns: owns(), registered: !!registration });
         const call = async body => {
-            const account = uid;
-            const result = await send({ ...body, device, tabId: body.tabId || tabId }, account);
-            if (account !== uid || stopped) throw Object.assign(new Error('account-changed'), { code: 'account-changed' });
+            const account = uid, epoch = generation;
+            const result = await send(body, account);
+            if (account !== uid || epoch !== generation) throw Object.assign(new Error('account-changed'), { code: 'account-changed' });
             return result;
         };
-        const inspect = async account => readExam ? readExam(account) : (await call({ action: 'inspect' })).exam;
         const register = async account => {
-            if (uid && uid !== account) stop();
-            uid = account; stopped = false;
+            if (uid && (uid !== account || sid !== sessionId())) stop();
+            uid = account; sid = sessionId();
             if (registration) return registration;
-            const key = `enarm_study_device:${uid}`;
-            device = JSON.parse(storage.getItem(key) || 'null');
-            if (!device) { device = { id: uuid(), secret: uuid() + uuid() }; storage.setItem(key, JSON.stringify(device)); }
-            if (!busyRegistration) busyRegistration = call({ action: 'register', timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, label: root.navigator?.userAgentData?.platform || root.navigator?.platform || 'Navegador' }).then(result => {
-                registration = result; onDevices?.(result.devices, device.id); status = 'confirmed'; notify(); return result;
-            }).catch(error => { if (error.code !== 'account-changed') { status = error.code || 'offline'; notify(); } throw error; }).finally(() => { if (uid === account) busyRegistration = null; });
-            return busyRegistration;
+            if (!registering) registering = call({ action: 'register', timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone }).then(result => {
+                registration = result; status = 'confirmed'; notify(); return result;
+            }).finally(() => { registering = null; });
+            return registering;
         };
-        let busyRegistration = null;
         const overlay = exam => {
             const view = JSON.parse(JSON.stringify(exam));
             for (const event of pending()) {
@@ -53,146 +45,85 @@
             return view;
         };
         const receive = exam => {
-            if (!exam) return;
-            if (confirmed && exam.revision < confirmed.revision) return;
+            if (!exam || (confirmed && exam.revision < confirmed.revision)) return;
             if (!exam.questionSet && confirmed?.id === exam.id) exam = { ...exam, questionSet: confirmed.questionSet };
             if (!exam.questionSet) return;
-            const wasOwner = owns();
             active = confirmed = exam;
-            try { storage.setItem(`enarm_exam_cache:${uid}`, JSON.stringify(exam)); } catch { /* Cloud confirmation remains valid even if the optional cache is full. */ }
-            if (!owns() && wasOwner) status = 'ownership-lost';
-            else if (owns()) status = pending().length ? 'pending' : 'confirmed';
-            else status = 'read-only';
-            if (exam.status === 'active') onExam?.(overlay(exam), owns());
-            else onExam?.(exam, false);
-            notify();
-        };
-        const claim = async examId => {
-            status = 'transferring'; notify();
-            try { const result = await call({ action: 'claim', examId }); if (result.exam) { controlToken = result.controlToken; controlFence = result.exam.fence; receive(result.exam); } return result.exam; }
-            catch (e) { status = e.code || 'offline'; notify(); throw e; }
+            status = pending().length ? 'pending' : 'confirmed';
+            onExam?.(exam.status === 'active' ? overlay(exam) : exam, owns()); notify();
         };
         const boot = async account => {
-            await register(account);
-            unsubscribe?.(); unsubscribeDevices?.();
-            const scope = uid;
-            unsubscribeDevices = listenDevices(scope, devices => {
-                if (uid !== scope) return;
-                onDevices?.(devices, device.id);
-                if (devices.find(d => d.id === device.id)?.revoked) { status = 'device-revoked'; active = active && { ...active, ownerDevice: '' }; notify(); onExam?.(active, false); }
-            });
-            // Only a fresh opening acquires automatically. Snapshot/foreground events
-            // never steal ownership back and forth between open installations.
-            let initial;
-            try { initial = await inspect(scope); } catch (error) {
-                const cached = JSON.parse(storage.getItem(`enarm_exam_cache:${uid}`) || 'null');
-                if (cached) receive(cached);
-                status = 'offline'; notify(); throw error;
-            }
-            if (uid !== scope) return;
-            // Reopen can safely recover the previous runtime's durable journal
-            // only while the server still recognizes that exact private lease.
-            const recoverable = entries().filter(record => initial?.ownerDevice === device.id && record.examId === initial.id
-                && record.fence === initial.fence && record.tabId === initial.ownerTab && record.controlToken);
-            for (let offset = 0; offset < recoverable.length; offset += 100) {
-                const batch = recoverable.slice(offset, offset + 100);
-                const finish = recoverable.some(event => event.kind === 'finish') && offset + 100 >= recoverable.length;
-                try {
-                    const result = await call({ action: finish ? 'finish' : 'events', examId: initial.id, fence: initial.fence,
-                        tabId: initial.ownerTab, controlToken: batch[0].controlToken, events: batch.map(({ key, ...event }) => event) });
-                    batch.forEach(record => storage.removeItem(record.key));
-                    if (result.exam) initial = { ...result.exam, questionSet: initial.questionSet };
-                    if (result.attempt) onAttempt?.(result.attempt, result.data);
-                } catch (error) {
-                    if (['ownership-lost', 'exam-ended'].includes(error.code)) { initial = await inspect(scope); break; }
-                    status = error.code || 'offline'; notify(); throw error;
-                }
-            }
-            const shouldClaim = initial?.status === 'active' && !autoClaimed;
-            autoClaimed = true;
-            if (shouldClaim) { await claim(initial.id); }
-            else if (initial) receive(initial);
-            unsubscribe = listenExam(scope, receive, error => { status = error.code || 'offline'; notify(); });
+            if (booting) return booting;
+            booting = (async () => {
+                await register(account);
+                const epoch = generation;
+                const initial = readExam ? await readExam(account) : (await call({ action: 'inspect' })).exam;
+                if (epoch !== generation) return;
+                if (initial) receive(initial);
+                if (!unsubscribe) unsubscribe = listenExam(account, receive, error => { status = error.code || 'offline'; notify(); });
+                await flush();
+            })().finally(() => { booting = null; });
+            return booting;
         };
         const start = async config => {
             await register(uid);
-            autoClaimed = true;
             const questionSet = config.questionSet.map(question => ({ caseOriginal: question.caseOriginal || question.case || '', question: question.question, options: question.options,
                 caseGroupId: question.caseGroupId, subQuestionIndex: question.subQuestionIndex, totalSubQuestions: question.totalSubQuestions }));
             const result = await call({ action: 'start', ...config, questionSet, timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone });
-            if (result.exam) { controlToken = result.controlToken; controlFence = result.exam.fence; receive(result.exam); }
+            if (result.exam) receive(result.exam);
             if (result.attempt) onAttempt?.(result.attempt);
             return result;
         };
         const queue = event => {
-            if (!owns() || status === 'device-revoked') return false;
-            if (event.kind !== 'finish' && pending().some(event => event.kind === 'finish')) return false;
-            const sequence = Math.max(active.lastSequence || 0, ...pending().map(item => item.sequence), 0) + 1;
-            const record = { ...event, occurredAt: Date.now(), sequence, examId: active.id, fence: active.fence, tabId, controlToken };
-            // Persist before changing UI or attempting the network.
-            try { storage.setItem(prefix() + active.id + ':' + active.fence + ':' + sequence, JSON.stringify(record)); }
+            if (!owns() || pending().some(event => event.kind === 'finish')) return false;
+            // Each runtime has an independent ordered journal. Other tabs may safely retry it.
+            const sequence = Math.max(sequences.get(active.id) || 0, active.eventHeads?.[actor] || 0) + 1;
+            const record = { ...event, occurredAt: Date.now(), sequence, actor, examId: active.id };
+            try { storage.setItem(prefix() + actor + ':' + record.sequence, JSON.stringify(record)); }
             catch { status = 'local-storage-full'; notify(); return false; }
-            status = 'pending'; notify();
+            sequences.set(active.id, sequence); status = 'pending'; notify();
             clearTimeout(timer); timer = setTimeout(() => void flush(), 150);
             return true;
         };
         const flush = async (finish = false, explicit = finish) => {
-            if (busy) { try { await busy; } catch (error) { if (explicit) throw error; return; } if (finish) return flush(true, explicit); return; }
-            const finishingRetry = active?.status === 'finished' && pending().some(event => event.kind === 'finish') && active.fence === controlFence;
-            if (!owns() && !finishingRetry) { notify(); return; }
+            if (busy) { await busy; if (finish || pending().length) return flush(finish, explicit); return; }
+            const finishingRetry = active?.status === 'finished' && pending().some(event => event.kind === 'finish');
+            if (!owns() && !finishingRetry) return;
             if (finish && !pending().some(event => event.kind === 'finish')) queue({ kind: 'finish' });
-            finish = finish || pending().some(event => event.kind === 'finish');
-            const batch = pending().slice(0, 100);
-            if (!batch.length && !finish) return;
-            const examId = active.id, fence = active.fence;
-            const action = finish && pending().length <= 100 ? 'finish' : 'events';
+            const events = pending(), batch = events.slice(0, 100);
+            if (!batch.length) return;
+            const action = events.length <= 100 && events.some(event => event.kind === 'finish') ? 'finish' : 'events';
             busy = (async () => {
                 try {
-                    const result = await call({ action, examId, fence, controlToken, events: batch.map(({ key, ...event }) => event) });
+                    // The server checks authority atomically before applying offline operations.
+                    const result = await call({ action, examId: active.id, events: batch.map(({ key, ...event }) => event) });
                     batch.forEach(record => storage.removeItem(record.key));
                     if (result.exam) receive(result.exam);
                     if (result.attempt) onAttempt?.(result.attempt, result.data);
-                    status = pending().length ? 'pending' : 'confirmed'; notify();
-                    return result;
+                    status = pending().length ? 'pending' : 'confirmed'; notify(); return result;
                 } catch (error) {
                     if (error.code === 'account-changed') return;
                     status = error.code || 'offline';
-                    if (['ownership-lost', 'exam-ended', 'device-revoked'].includes(error.code)) {
-                        active = active && { ...active, ownerTab: '' }; onExam?.(active, false);
-                    } else { clearTimeout(retry); retry = setTimeout(() => void flush(), 10000); }
-                    notify();
-                    if (explicit) throw error;
+                    if (!['session-replaced', 'exam-ended', 'unauthenticated'].includes(error.code)) {
+                        clearTimeout(retry); retry = setTimeout(() => void flush(), 10000);
+                    }
+                    notify(); if (explicit) throw error;
                 }
             })();
             let result;
             try { result = await busy; } finally { busy = null; }
             if (result && owns() && pending().length) return flush(finish, explicit);
-            if (finish && action !== 'finish' && owns()) return flush(true, explicit);
             return result;
         };
-        const recover = async key => {
-            const record = entries().find(entry => entry.key === key);
-            if (!record || record.kind !== 'answer' || record.examId !== active?.id) throw new Error('El pendiente pertenece a otro examen y se conserva para revisión.');
-            if (!owns()) await claim(active.id);
-            if (active.mode === 'estudio' && active.answers[record.index]?.selected !== null && active.answers[record.index]?.selected !== record.selected) throw new Error('La respuesta de estudio ya está confirmada y no puede reemplazarse. El pendiente se conserva para revisión.');
-            if (!queue({ kind: 'answer', index: record.index, selected: record.selected })) throw new Error('No tienes el control del examen.');
-            await flush();
-            if (status !== 'confirmed') throw new Error('La recuperación aún no está confirmada.');
-            storage.removeItem(key); notify();
-        };
         function stop() {
-            stopped = true; unsubscribe?.(); unsubscribeDevices?.(); clearTimeout(timer); clearTimeout(retry);
-            uid = ''; active = confirmed = registration = null; autoClaimed = false; busyRegistration = null;
-            controlToken = ''; controlFence = -1;
+            generation++; unsubscribe?.(); unsubscribe = null; clearTimeout(timer); clearTimeout(retry);
+            uid = sid = ''; active = confirmed = registration = null; registering = booting = null;
         }
-        return { register, boot, start, claim, queue, flush, recover, stop, owns, conflicts,
-            get active() { return active; }, get deviceId() { return device?.id; }, get migrationOpen() { return registration?.migrationOpen === true; },
-            async progress(operations) { const result = await call({ action: 'progress', operations, migration: registration?.migrationOpen === true }); return result; },
-            async completeMigration() { if (registration?.migrationOpen) { registration.migrationOpen = false; try { await call({ action: 'migration-complete' }); } catch (error) { if (registration) registration.migrationOpen = true; throw error; } } },
-            async revoke(deviceId) { const result = await call({ action: 'revoke', deviceId }); onDevices?.(result.devices, device.id); return result; },
-            reset: () => call({ action: 'reset' }),
-            purge: () => call({ action: 'purge' }),
-            discard(key) { storage.removeItem(key); notify(); }
+        return { register, boot, start, queue, flush, stop, owns,
+            get active() { return active; }, get migrationOpen() { return registration?.migrationOpen === true; },
+            async progress(operations) { return call({ action: 'progress', operations, migration: registration?.migrationOpen === true }); },
+            async completeMigration() { if (registration?.migrationOpen) { await call({ action: 'migration-complete' }); if (registration) registration.migrationOpen = false; } },
+            reset: () => call({ action: 'reset' }), purge: () => call({ action: 'purge' })
         };
     };
     root.ENARMStudy = { create };

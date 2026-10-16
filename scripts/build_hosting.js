@@ -17,6 +17,7 @@ const files = [
     "app.js",
     "progress-sync.js",
     "study-session.js",
+    "account-session.js",
     "landing-gallery.js",
     "glass-surface.js",
     "rubber-segment.js",

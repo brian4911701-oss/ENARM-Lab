@@ -1843,10 +1843,7 @@
     const progressOutbox = window.ENARMProgressSync.create(localStorage);
     const studyMessages = {
         connecting: 'Conectando con tu cuenta', confirmed: 'Examen guardado en la nube', pending: 'Respuestas guardadas aquí · envío pendiente',
-        transferring: 'Transfiriendo el control del examen…', 'read-only': 'Examen en lectura · otro dispositivo tiene el control',
-        'ownership-lost': 'El examen continúa en otro dispositivo. Aquí está en modo lectura.',
-        'device-revoked': 'Esta instalación fue revocada. Administra tus instalaciones desde el perfil.',
-        'device-limit': 'Ya tienes dos instalaciones autorizadas. Revoca una desde el perfil de una instalación autorizada.',
+        'session-replaced': 'Tu sesión se cerró porque se inició sesión en otro dispositivo',
         'local-storage-full': 'No hay espacio para guardar la respuesta localmente. No se aplicó el cambio.',
         'study-backend-unconfigured': 'El servicio de guardado no está disponible', offline: 'Sin conexión · cambios locales pendientes'
     };
@@ -1865,8 +1862,38 @@
         }
         return { ...exam, questionSet: examPayloads.get(key) };
     };
+    let accountSession;
+    const getAccountSession = () => accountSession ||= window.ENARMAccountSession.create({
+        fb: window.FB, storage: localStorage,
+        confirmReplacement: () => new Promise(resolve => {
+            const dialog = $('session-conflict-dialog');
+            dialog.returnValue = 'cancel';
+            dialog.addEventListener('close', () => resolve(dialog.returnValue === 'continue'), { once: true });
+            dialog.showModal();
+        }),
+        onCancel: () => $('auth-overlay')?.classList.add('active'),
+        onLost: () => {
+            studySession?.stop(); clearAccountExamRuntime();
+            localStorage.removeItem('enarm_user');
+            $('auth-overlay')?.classList.add('active');
+            sessionStorage.setItem('enarmax_session_replaced', '1');
+            window.location.reload();
+        },
+        onError: error => {
+            console.warn('No se pudo verificar la sesión.', error.code || error.message);
+            if (!accountSession?.sid) {
+                const button = $('btn-auth-submit'); if (button) button.textContent = 'Iniciar sesión';
+                showNotification('No pudimos validar tu sesión. Revisa tu conexión y vuelve a intentarlo.', 'warning');
+            }
+            if (['session-changed', 'recent-login-required', 'explicit-login-required'].includes(error.code)) {
+                $('auth-overlay')?.classList.add('active');
+                showNotification('Vuelve a iniciar sesión. La sesión de la cuenta cambió.', 'info');
+            }
+        }
+    });
     const studySession = window.ENARMStudy?.create({
         storage: localStorage,
+        sessionId: () => accountSession?.sid || '',
         send: async (body, uid) => {
             const user = window.FB?.auth?.currentUser;
             if (user?.uid !== uid) throw Object.assign(new Error('La cuenta cambió.'), { code: 'account-changed' });
@@ -1876,6 +1903,7 @@
                 const response = await fetch('/api/study-sync', { method: 'POST', cache: 'no-store', signal: controller.signal,
                     headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + await user.getIdToken() }, body: JSON.stringify(body) });
                 const result = await response.json();
+                if (result.code === 'session-replaced') await getAccountSession().invalidate();
                 if (!response.ok) throw Object.assign(new Error(studyMessages[result.code] || `No se confirmó el guardado (${result.code}).`), { code: result.code });
                 return result;
             } finally { clearTimeout(timeout); }
@@ -1883,41 +1911,9 @@
         listenExam: (uid, next, error) => window.FB.onSnapshot(window.FB.doc(window.FB.db, 'active_exams', uid), snap => {
             if (snap.exists() && !snap.metadata.fromCache && !snap.metadata.hasPendingWrites) void hydrateCloudExam(uid, snap.data()).then(exam => { if (State.currentUid === uid) next(exam); }).catch(error);
         }, error),
-        listenDevices: (uid, next) => window.FB.onSnapshot(window.FB.doc(window.FB.db, 'study_devices', uid), snap => {
-            if (snap.exists() && !snap.metadata.fromCache) next(snap.data().devices || []);
-        }, error => console.warn('No se pudo actualizar la lista de instalaciones.', error)),
-        onDevices: (devices, currentId) => {
-            const panel = $('study-devices');
-            if (!panel) return;
-            panel.replaceChildren();
-            for (const device of devices.filter(device => !device.revoked)) {
-                const row = document.createElement('div'); row.className = 'study-device-row';
-                const label = document.createElement('span'); label.textContent = `${device.label}${device.id === currentId ? ' · esta instalación' : ''}`;
-                const button = document.createElement('button'); button.type = 'button'; button.className = 'btn-secondary'; button.textContent = 'Revocar';
-                button.onclick = async () => { if (!confirm('¿Revocar esta instalación? Perderá el permiso para guardar y controlar el examen.')) return; try { await studySession.revoke(device.id); } catch (e) { showNotification(e.message, 'error'); } };
-                row.append(label, button); panel.append(row);
-            }
-        },
         onStatus: status => {
             studyStatus = status;
-            document.body.classList.toggle('cloud-exam-readonly', !!studySession.active && studySession.active.status === 'active' && !status.owns && !State.guestExamActive);
-            document.querySelectorAll('[data-exam-sync-status]').forEach(el => { el.textContent = studyMessages[status.status] || 'Guardado sin confirmar · se reintentará automáticamente'; });
-            const take = $('btn-take-exam-control'); if (take) take.hidden = status.owns || !studySession.active || studySession.active.status !== 'active';
-            const conflicts = $('study-exam-conflicts');
-            if (conflicts) {
-                conflicts.replaceChildren();
-                for (const record of status.conflicts) {
-                    const row = document.createElement('div'); row.className = 'study-device-row';
-                    const label = document.createElement('span'); label.textContent = record.kind === 'answer'
-                        ? `Respuesta local pendiente: pregunta ${record.index + 1}, opción ${record.selected + 1}. No se aplicó tras cambiar el control.` : `Cambio local pendiente (${record.kind}) del control anterior.`;
-                    const recover = document.createElement('button'); recover.type = 'button'; recover.className = 'btn-secondary'; recover.textContent = 'Aplicar esta respuesta';
-                    recover.hidden = record.kind !== 'answer' || record.examId !== studySession.active?.id;
-                    recover.onclick = async () => { if (!confirm('¿Tomar el control y aplicar esta respuesta local al examen actual?')) return; try { await studySession.recover(record.key); } catch (e) { showNotification(e.message, 'warning'); } };
-                    const discard = document.createElement('button'); discard.type = 'button'; discard.className = 'btn-ghost'; discard.textContent = 'Descartar';
-                    discard.onclick = () => { if (confirm('¿Descartar este pendiente local? Esta acción no modifica lo confirmado en la nube.')) studySession.discard(record.key); };
-                    row.append(label, recover, discard); conflicts.append(row);
-                }
-            }
+            document.querySelectorAll('[data-exam-sync-status]').forEach(el => { el.textContent = studyMessages[status.status] || 'Guardado pendiente'; });
             updateProgressSyncStatus();
         },
         onExam: (exam, owns) => {
@@ -1974,7 +1970,7 @@
             activeReviewQueueItemId: '', activeChallengeId: null, startTime: null, pausedElapsedTime: 0 });
         reviewQuestionSet = []; reviewAnswers = []; examPayloads.clear(); completedCloudExams.clear();
         historyArchiveRows = []; historyArchiveUid = ''; legacyProgressConflictCount = 0;
-        document.body.classList.remove('cloud-exam-readonly', 'guest-exam-mode');
+        document.body.classList.remove('guest-exam-mode');
     };
     let legacyProgressConflictCount = 0;
     const renderLegacyProgressConflicts = () => {
@@ -2004,7 +2000,7 @@
             if (!progressOutbox.read(uid)?.pending) await studySession.completeMigration();
         }).catch(error => {
             studyBootUid = ''; console.warn('El examen remoto se reintentará automáticamente.', error);
-            if (!['device-limit', 'device-revoked', 'verify-email', 'account-changed'].includes(error.code)) studyBootRetry = window.setTimeout(() => { if (State.currentUid === uid) void bootStudySession(uid); }, 5000);
+            if (!['session-replaced', 'unauthenticated', 'verify-email', 'account-changed'].includes(error.code)) studyBootRetry = window.setTimeout(() => { if (State.currentUid === uid) void bootStudySession(uid); }, 5000);
         }).finally(() => { studyBootPromise = null; });
         return studyBootPromise;
     };
@@ -2015,8 +2011,7 @@
         if (progressOutbox.read(State.currentUid)?.pending || State.progressSyncError) text = "Cambios guardados aquí · sincronización pendiente";
         else if (user && !user.emailVerified) text = "Guardado en este dispositivo · verifica tu correo para sincronizar";
         else if (legacyProgressConflictCount) text = 'Actividad anterior pendiente de revisión en tu perfil';
-        else if (studyStatus?.conflicts.length) text = 'Hay cambios locales pendientes de revisión en tu perfil';
-        else if (studyStatus && (!studyStatus.registered || studyStatus.pending || !['confirmed', 'read-only', 'ownership-lost'].includes(studyStatus.status))) text = studyMessages[studyStatus.status] || 'Sincronización pendiente';
+        else if (studyStatus && (!studyStatus.registered || studyStatus.pending || !['confirmed'].includes(studyStatus.status))) text = studyMessages[studyStatus.status] || 'Sincronización pendiente';
         else if (State.progressRestoreReady) text = "Progreso sincronizado";
         document.querySelectorAll("[data-progress-sync-status]").forEach(element => { element.textContent = text; });
     };
@@ -9523,7 +9518,7 @@
                 btnFlag.innerHTML = `${appIcon('flag')} ${State.guestExamActive ? "Revisar después" : "Marcar"}`;
                 btnFlag.setAttribute("aria-pressed", String(ans.flagged));
                 btnFlag.addEventListener("click", () => {
-                    if (studySession && !State.guestExamActive && !studySession.queue({ kind: 'flag', index: qIndex, flagged: !State.answers[qIndex].flagged })) { showNotification('Este examen está en modo lectura.', 'info'); return; }
+                    if (studySession && !State.guestExamActive && !studySession.queue({ kind: 'flag', index: qIndex, flagged: !State.answers[qIndex].flagged })) { showNotification('La sesión aún no está lista para guardar.', 'info'); return; }
                     State.answers[qIndex].flagged = !State.answers[qIndex].flagged;
                     btnFlag.classList.toggle("active", State.answers[qIndex].flagged);
                     btnFlag.setAttribute("aria-pressed", String(State.answers[qIndex].flagged));
@@ -9645,7 +9640,7 @@
         const ans = State.answers[qIndex];
         if (State.mode === "estudio" && ans.selected !== null) return;
         if (studySession && !State.guestExamActive && !studySession.queue({ kind: 'answer', index: qIndex, selected: selectedIdx })) {
-            showNotification('El examen está en modo lectura. Continúa en el dispositivo que tiene el control.', 'info'); return;
+            showNotification('La sesión aún no está lista para guardar.', 'info'); return;
         }
         ans.selected = selectedIdx;
         ans.isCorrect = (selectedIdx === getQuestionAnswerIndex(q));
@@ -10991,7 +10986,7 @@
 
     const finishExam = () => {
         if (studySession && !State.guestExamActive) {
-            if (!studySession.owns()) { showNotification('Solo el dispositivo que tiene el control puede finalizar.', 'info'); return; }
+            if (!studySession.owns()) { showNotification('La sesión aún no está lista para finalizar.', 'info'); return; }
             if (isFinishing) return;
             isFinishing = true;
             return studySession.flush(true).catch(error => showNotification('El examen aún no está finalizado en la nube. ' + error.message, 'warning')).finally(() => { isFinishing = false; });
@@ -15156,7 +15151,7 @@
         if (btnResume) {
             btnResume.addEventListener("click", () => {
                 if (studySession && !State.guestExamActive) {
-                    void (async () => { if (!studySession.owns()) await studySession.claim(studySession.active.id); studySession.queue({ kind: 'resume' }); await studySession.flush(); showView('view-exam'); })().catch(error => showNotification(error.message, 'warning'));
+                    void (async () => { studySession.queue({ kind: 'resume' }); await studySession.flush(); showView('view-exam'); })().catch(error => showNotification(error.message, 'warning'));
                     return;
                 }
                 if (State.durationSec > 0) {
@@ -15317,16 +15312,12 @@
         const reauthenticateCurrentUser = async () => {
             const user = window.FB?.auth?.currentUser;
             if (!user) throw new Error("Debes iniciar sesión nuevamente.");
-            const providers = new Set((user.providerData || []).map(item => item?.providerId));
-            if (providers.has("google.com")) {
-                await window.FB.reauthenticateWithPopup(user, window.FB.googleProvider);
-                return user;
-            }
-            const password = window.prompt("Por seguridad, escribe tu contraseña para continuar:");
-            if (!password) throw new Error("Reautenticación cancelada.");
-            const credential = window.FB.EmailAuthProvider.credential(user.email || "", password);
-            await window.FB.reauthenticateWithCredential(user, credential);
-            return user;
+            const previousToken = await user.getIdToken();
+            const usesGoogle = (user.providerData || []).some(provider => provider.providerId === 'google.com');
+            const password = usesGoogle ? null : window.prompt("Por seguridad, escribe tu contraseña para continuar:");
+            if (!usesGoogle && !password) throw new Error("Reautenticación cancelada.");
+            const proof = await window.FB.verifySessionIdentity(user, password);
+            return getAccountSession().reauthorize(previousToken, proof);
         };
 
         const queryOwnDocuments = async (collectionName, field, operator, value) => {
@@ -15459,7 +15450,7 @@
                 const proceed = confirm("¿Estás seguro que deseas cerrar sesión en este dispositivo?");
                 if (proceed) {
                     if (window.FB) {
-                        window.FB.signOut(window.FB.auth).then(() => {
+                        getAccountSession().logout().then(() => {
                             clearAccountLocalData();
                         }).catch(err => {
                             showNotification("Error: " + err.message, "error");
@@ -17924,7 +17915,7 @@
                             const redirectDisplayName = result.user.displayName
                                 || (result.user.email ? result.user.email.split("@")[0] : "")
                                 || State.userName;
-                            syncAuthenticatedUI(redirectDisplayName);
+                            // Session authorization is handled by the auth observer.
                         })
                         .catch((error) => {
                             console.error("Error processing Google redirect result:", error);
@@ -18012,21 +18003,30 @@
                         console.warn("La restauración se reintentará cuando haya conexión.", error);
                     }
                 };
-                window.addEventListener("online", () => { void retryProgressSync(); if (State.currentUid) void bootStudySession(State.currentUid); void studySession?.flush(); });
+                window.addEventListener("online", async () => { if (window.FB.auth.currentUser && !getAccountSession().sid) { await restoreAuthSession?.(window.FB.auth.currentUser); return; } if (!await getAccountSession().check()) return; void retryProgressSync(); if (State.currentUid) void bootStudySession(State.currentUid); void studySession?.flush(); });
                 window.addEventListener("enarm:retry-progress", () => void retryProgressSync());
                 window.addEventListener("storage", event => {
                     if (event.key?.startsWith(`enarm_progress_v2:${State.currentUid}:`)) void retryProgressSync();
-                });
-                $('btn-take-exam-control')?.addEventListener('click', () => {
-                    if (studySession?.active) void studySession.claim(studySession.active.id).catch(error => showNotification(error.message, 'warning'));
                 });
                 document.addEventListener("visibilitychange", () => {
                     if (document.visibilityState === "visible") { void retryProgressSync(); if (State.currentUid && !studyStatus?.registered) void bootStudySession(State.currentUid); void studySession?.flush(); }
                 });
 
-                // Listen for Auth State to restore stats correctly dynamically
+                let authRestoreGeneration = 0;
+                let restoreAuthSession;
+                // Authorize the account before restoring private data.
                 if (window.FB && window.FB.onAuthStateChanged) {
-                    window.FB.onAuthStateChanged(window.FB.auth, async (user) => {
+                    restoreAuthSession = async (user) => {
+                        const authRun = ++authRestoreGeneration;
+                        if (user) {
+                            if (!await getAccountSession().ensure(user) || authRun !== authRestoreGeneration) { dismissStartupScreen(); return; }
+                            user = window.FB.auth.currentUser;
+                        } else accountSession?.stop();
+                        if (!user && sessionStorage.getItem('enarmax_session_replaced')) {
+                            sessionStorage.removeItem('enarmax_session_replaced');
+                            $('auth-overlay')?.classList.add('active');
+                            showNotification('Tu sesión se cerró porque se inició sesión en otro dispositivo', 'info');
+                        }
                         State.authStateResolved = true;
                         window.clearTimeout(startupSafetyTimeout);
                         if (user) {
@@ -18216,7 +18216,8 @@
                             syncPremiumUI();
                         }
                         dismissStartupScreen();
-                    });
+                    };
+                    window.FB.onAuthStateChanged(window.FB.auth, restoreAuthSession);
                 }
 
                 const authEmail = $("auth-email");
@@ -18434,7 +18435,8 @@
                                     State.userUniversity = registrationProfile.university;
                                     State.userPhone = registrationProfile.phone;
                                     State.userTargetYear = registrationProfile.targetYear;
-                                    await syncUserDirectory(userCred.user, { forceProfile: true, forcePresence: true });
+                                    if (!await getAccountSession().ensure(userCred.user)) return;
+                                    await syncUserDirectory(window.FB.auth.currentUser, { forceProfile: true, forcePresence: true });
                                     await ensureReferralWallet(userCred.user.uid, userName).catch(handleReferralWalletError);
                                     bindReferralWalletListener(userCred.user.uid);
                                     trackEvent("sign_up", { method: "password" });
@@ -18462,7 +18464,7 @@
                 });
 
                 async function handleSuccessLogin(displayName) {
-                    syncAuthenticatedUI(displayName, { showWelcome: true });
+                    if (!State.currentUid && window.FB.auth.currentUser) await restoreAuthSession(window.FB.auth.currentUser);
 
                     // onAuthStateChanged owns restoration and cloud initialization.
                 }
@@ -18491,6 +18493,7 @@
                         try {
                             const result = await window.FB.signInWithPopup(window.FB.auth, window.FB.googleProvider);
                             const userObj = result.user;
+                            if (!await getAccountSession().ensure(userObj)) return;
                             const additionalInfo = window.FB.getAdditionalUserInfo
                                 ? window.FB.getAdditionalUserInfo(result)
                                 : null;

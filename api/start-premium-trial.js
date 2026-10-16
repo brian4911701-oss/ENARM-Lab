@@ -1,4 +1,5 @@
 const admin = require("firebase-admin");
+const { assertSession } = require('../server/account-session');
 
 const TRIAL_DURATION_DAYS = 15;
 const TRIAL_DURATION_MS = TRIAL_DURATION_DAYS * 24 * 60 * 60 * 1000;
@@ -34,6 +35,7 @@ module.exports = async (request, response) => {
         const entitlementRef = db.collection("entitlements").doc(uid);
 
         const trial = await db.runTransaction(async (transaction) => {
+            await assertSession(transaction, db, decoded);
             const [trialSnap, entitlementSnap] = await Promise.all([
                 transaction.get(trialRef),
                 transaction.get(entitlementRef)
@@ -68,6 +70,7 @@ module.exports = async (request, response) => {
 
         return sendJson(response, 200, { durationDays: trial.durationDays, expiresAt: trial.expiresAt.toISOString() });
     } catch (error) {
+        if (error?.code === 'session-replaced') return sendJson(response, 403, { code: error.code, message: 'Tu sesión se cerró porque se inició sesión en otro dispositivo' });
         if (error?.code === "already-used") {
             return sendJson(response, 409, { code: "already-used", message: "Esta cuenta ya utilizó su prueba Premium." });
         }

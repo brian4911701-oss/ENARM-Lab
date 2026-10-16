@@ -23,7 +23,7 @@ const addExam = (device, id, count) => {
     device.State.studyCalendar[day] = { ...previous, sessions: (previous.sessions || 0) + 1, practiced: true };
 };
 
-test('real SDK and rules: concurrent devices, offline reconnection, live snapshots and legacy rejection', { timeout: 60000 }, async () => {
+test('real SDK and rules: concurrent tabs of one authorized session, offline reconnection, live snapshots and legacy rejection', { timeout: 60000 }, async () => {
     const env = await initializeTestEnvironment({
         projectId: 'enarmax-rules-test',
         firestore: { rules: fs.readFileSync(path.resolve(__dirname, '..', 'firestore.rules'), 'utf8') }
@@ -32,6 +32,7 @@ test('real SDK and rules: concurrent devices, offline reconnection, live snapsho
     try {
         await env.clearFirestore();
         await env.withSecurityRulesDisabled(async context => {
+            await firestore.setDoc(firestore.doc(context.firestore(), 'account_sessions', user.uid), { sid: 'same-browser-session' });
             await firestore.setDoc(firestore.doc(context.firestore(), 'user_progress', user.uid), {
                 ...remote, uid: user.uid, schemaVersion: 1, createdAt: firestore.serverTimestamp(), updatedAt: firestore.serverTimestamp()
             });
@@ -41,7 +42,7 @@ test('real SDK and rules: concurrent devices, offline reconnection, live snapsho
             device.context.console = console;
             Object.assign(device.window.FB, firestore, {
                 auth: { currentUser: { ...user } },
-                db: env.authenticatedContext(user.uid, { email: 'same-user@example.test', email_verified: true }).firestore(),
+                db: env.authenticatedContext(user.uid, { email: 'same-user@example.test', email_verified: true, enarmaxSid: 'same-browser-session' }).firestore(),
                 // The app is evaluated in node:vm. Rehome the top-level payload
                 // into the SDK realm; FieldValue instances remain untouched.
                 runTransaction: (db, callback) => firestore.runTransaction(db, transaction => callback({

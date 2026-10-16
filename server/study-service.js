@@ -2,6 +2,7 @@
 const crypto = require('node:crypto');
 const sync = require('../progress-sync');
 const streak = require('../streak-core');
+const { assertSession } = require('./account-session');
 const fail = (code, status = 409) => { const e = new Error(code); e.code = code; e.status = status; throw e; };
 const clean = x => JSON.parse(JSON.stringify(x));
 const hash = x => crypto.createHash('sha256').update(x).digest('hex');
@@ -56,8 +57,11 @@ function applyEvents(exam, events, now) {
     if (!Array.isArray(events) || events.length > 100) fail('invalid-events', 400);
     for (const event of events) {
         if (!Number.isSafeInteger(event.sequence) || event.sequence < 1) fail('invalid-sequence', 400);
-        if (event.sequence <= exam.lastSequence) continue;
-        if (event.sequence !== exam.lastSequence + 1) fail('sequence-gap');
+        if (!validId(event.actor)) fail('invalid-actor', 400);
+        exam.eventHeads ||= {};
+        const last = exam.eventHeads[event.actor] || 0;
+        if (event.sequence <= last) continue;
+        if (event.sequence !== last + 1) fail('sequence-gap');
         const observedAt = Number.isFinite(event.occurredAt) ? Math.min(now, Math.max(exam.startedAt, exam.lastEventAt || exam.startedAt, event.occurredAt)) : now;
         if (event.kind === 'answer' || event.kind === 'flag') {
             const q = exam.questionSet[event.index];
@@ -65,8 +69,11 @@ function applyEvents(exam, events, now) {
             if (event.kind === 'answer') {
                 if (!Number.isInteger(event.selected) || event.selected < 0 || event.selected >= q.options.length) fail('invalid-answer', 400);
                 const previous = exam.answers[event.index];
-                if (exam.mode === 'estudio' && previous.selected !== null && previous.selected !== event.selected) fail('study-answer-locked');
-                exam.answers[event.index] = { ...previous, selected: event.selected, isCorrect: event.selected === q.answerIndex, answeredAt: observedAt, confirmedAt: now };
+                // Two tabs may answer from the same stale snapshot. A study answer
+                // already confirmed remains immutable, and the stale event is ACKed.
+                if (!(exam.mode === 'estudio' && previous.selected !== null && previous.selected !== event.selected)) {
+                    exam.answers[event.index] = { ...previous, selected: event.selected, isCorrect: event.selected === q.answerIndex, answeredAt: observedAt, confirmedAt: now };
+                }
             } else exam.answers[event.index].flagged = event.flagged === true;
         } else if (event.kind === 'position') {
             if (!Number.isInteger(event.index) || event.index < 0 || event.index >= exam.questionSet.length) fail('invalid-position', 400);
@@ -78,7 +85,7 @@ function applyEvents(exam, events, now) {
         } else if (event.kind === 'finish') exam.finishObservedAt = observedAt;
         else fail('invalid-event', 400);
         exam.lastEventAt = observedAt;
-        exam.lastSequence = event.sequence;
+        exam.eventHeads[event.actor] = event.sequence;
     }
     return exam;
 }
@@ -155,36 +162,20 @@ function aggregate(progress, exam, now) {
 function createStudyService(db, options = {}) {
     const now = options.now || Date.now;
     const ref = (name, uid) => db.collection(name).doc(uid);
-    const publicDevices = registry => ({ devices: Object.entries(registry.devices || {}).map(([id, d]) => ({ id, label: d.label, registeredAt: d.registeredAt, revoked: d.revoked === true })) });
-    const authorize = (registry, device) => {
-        const entry = registry.devices?.[device.id];
-        if (!entry || entry.revoked || entry.secretHash !== hash(device.secret)) fail('device-revoked', 403);
-        return entry;
-    };
-    const owned = (exam, body, device, registry) => {
+    const owned = (exam, body) => {
         if (!exam || exam.status !== 'active' || exam.id !== body.examId) fail('exam-ended');
-        if (exam.ownerDevice !== device.id || exam.ownerTab !== body.tabId || exam.fence !== body.fence) fail('ownership-lost');
-        if (typeof body.controlToken !== 'string' || hash(body.controlToken) !== registry.controlHash) fail('ownership-lost');
     };
-    return async function execute(uid, body) {
-        const { action, device } = body;
-        if (!validId(device?.id) || !validId(device?.secret) || !validId(body.tabId)) fail('invalid-device', 400);
-        const registryRef = ref('study_sessions', uid), devicesRef = ref('study_devices', uid), progressRef = ref('user_progress', uid), examRef = ref('active_exams', uid);
+    return async function execute(uid, body, claims = {}) {
+        const { action } = body;
+        const registryRef = ref('study_sessions', uid), progressRef = ref('user_progress', uid), examRef = ref('active_exams', uid);
         return db.runTransaction(async tx => {
+            await assertSession(tx, db, { ...claims, uid });
             const registrySnap = await tx.get(registryRef);
-            const registry = registrySnap.exists ? registrySnap.data() : { devices: {} };
+            const registry = registrySnap.exists ? registrySnap.data() : {};
             const instant = now();
             if (action === 'register') {
                 registry.timeZone ||= String(body.timeZone || 'America/Mexico_City');
                 try { dayAt(instant, registry.timeZone); } catch { fail('invalid-timezone', 400); }
-                const existing = registry.devices[device.id];
-                if (existing) authorize(registry, device);
-                else {
-                    if (Object.values(registry.devices).filter(d => !d.revoked).length >= 2) fail('device-limit', 403);
-                    // Bound revoked records without permitting an old credential to authorize writes.
-                    if (Object.keys(registry.devices).length >= 100) fail('device-registry-full', 409);
-                    registry.devices[device.id] = { secretHash: hash(device.secret), label: String(body.label || 'Navegador').slice(0, 80), registeredAt: instant, migrationOpen: true };
-                }
                 const progressSnap = await tx.get(progressRef);
                 let progress = progressSnap.exists ? progressSnap.data() : {};
                 if (!progressSnap.exists) {
@@ -198,30 +189,25 @@ function createStudyService(db, options = {}) {
                     tx.set(progressRef, { ...progress, ...totals, uid, schemaVersion: 1, syncVersion: 3, syncRevision: (progress.syncRevision || 0) + 1, syncEpoch: progress.syncEpoch || 'initial', createdAt: progress.createdAt || new Date(instant), updatedAt: new Date(instant) });
                     if (profile.exists) tx.update(ref('public_profiles', uid), { score: profile.data().scoreVisible === false ? null : totals.publicScore, flame: totals.publicFlame, updatedAt: new Date(instant) });
                 }
-                if (!existing) { tx.set(registryRef, registry); tx.set(devicesRef, publicDevices(registry)); }
-                return { registered: true, migrationOpen: registry.devices[device.id].migrationOpen === true, devices: publicDevices(registry).devices };
+                // Keep only migration metadata; the account session is now the sole authority.
+                const metadata = { timeZone: registry.timeZone, migrationOpen: registry.migrationOpen !== false };
+                tx.set(registryRef, metadata);
+                return { registered: true, migrationOpen: metadata.migrationOpen };
             }
-            const installation = authorize(registry, device);
             if (registry.deleting && action !== 'purge') fail('account-deleting', 403);
             if (action === 'purge') {
+                // Linearize deletion before its recursive cleanup. A new login cannot
+                // authorize another writer while an accepted deletion is in flight.
+                tx.update(db.doc(`account_sessions/${uid}`), { deleting: true });
                 registry.deleting = true; tx.set(registryRef, registry); return { purge: true };
             }
             if (action === 'migration-complete') {
-                installation.migrationOpen = false; tx.set(registryRef, registry); return { completed: true };
-            }
-            if (action === 'revoke') {
-                const examSnap = await tx.get(examRef);
-                if (!registry.devices[body.deviceId]) fail('unknown-device', 400);
-                registry.devices[body.deviceId].revoked = true;
-                tx.set(registryRef, registry); tx.set(devicesRef, publicDevices(registry));
-                const exam = examSnap.exists ? examSnap.data() : null;
-                if (exam?.status === 'active' && exam.ownerDevice === body.deviceId) tx.update(examRef, { fence: exam.fence + 1, ownerDevice: '', ownerTab: '', lastSequence: 0, revision: exam.revision + 1 });
-                return { devices: publicDevices(registry).devices };
+                registry.migrationOpen = false; tx.set(registryRef, registry); return { completed: true };
             }
             if (action === 'progress') {
                 const ops = body.operations;
                 if (!Array.isArray(ops) || !ops.length || ops.length > 40) fail('invalid-operations', 400);
-                if (body.migration && !installation.migrationOpen) fail('migration-closed');
+                if (body.migration && registry.migrationOpen === false) fail('migration-closed');
                 for (const op of ops) {
                     if (!validId(op.actor) || !Number.isSafeInteger(op.sequence) || op.sequence < 1 || !op.changes || Object.keys(op.changes).some(field => !sync.fields.includes(field))) fail('invalid-operation', 400);
                     // Restrict edit grammar, depth, field sizes and prototype keys before using the shared merge engine.
@@ -261,10 +247,10 @@ function createStudyService(db, options = {}) {
                 if (Buffer.byteLength(JSON.stringify(payload)) > 900000) fail('progress-too-large', 413);
                 // Legacy aggregates have no trustworthy per-attempt baseline.
                 // Retain them explicitly; the migration flag cannot authorize scores.
-                if (archiveRef && !archive.exists) tx.create(archiveRef, { uid, deviceId: device.id, createdAt: instant, reason: 'legacy-derived-results-review', operationsStr: JSON.stringify(conflicts) });
+                if (archiveRef && !archive.exists) tx.create(archiveRef, { uid, sessionId: claims.enarmaxSid, createdAt: instant, reason: 'legacy-derived-results-review', operationsStr: JSON.stringify(conflicts) });
                 const changed = ops.some(op => op.sequence > (heads[op.actor] || 0));
                 if (changed) {
-                    if (body.migration) tx.set(progressRef.collection('legacy_imports').doc(hash(JSON.stringify(ops))), { uid, deviceId: device.id, importedAt: instant, operationsStr: JSON.stringify(ops) });
+                    if (body.migration) tx.set(progressRef.collection('legacy_imports').doc(hash(JSON.stringify(ops))), { uid, sessionId: claims.enarmaxSid, importedAt: instant, operationsStr: JSON.stringify(ops) });
                     tx.set(progressRef, payload, { merge: true });
                     actors.forEach((actor, i) => { if (result.heads[actor] > (heads[actor] || 0)) tx.set(cursorRefs[i], { uid, lastSequence: result.heads[actor], updatedAt: new Date(instant) }); });
                 }
@@ -288,18 +274,12 @@ function createStudyService(db, options = {}) {
                 const payload = await tx.get(ref('exam_payloads', uid).collection('items').doc(exam.id));
                 if (payload.exists) exam.questionSet = payload.data().questionSet;
             }
-            const storeExam = value => { const { questionSet, ...metadata } = value; tx.set(examRef, metadata); };
+            const storeExam = value => { const { questionSet, ownerDevice, ownerTab, fence, lastSequence, controlHash, ...metadata } = value; tx.set(examRef, metadata); };
             if (action === 'inspect') return { exam };
-            if (action === 'start' || action === 'claim') {
+            if (action === 'start') {
                 if (exam?.status === 'active') {
-                    // A competing start resumes the existing exam instead of silently replacing it.
-                    if (action === 'claim' && body.examId !== exam.id) fail('exam-changed');
-                    {
-                        if (!exam.paused) exam.elapsedSec += Math.max(0, Math.floor((instant - exam.runningSince) / 1000));
-                        Object.assign(exam, { ownerDevice: device.id, ownerTab: body.tabId, fence: exam.fence + 1, lastSequence: 0, runningSince: instant, revision: exam.revision + 1 });
-                    }
+                    return { exam };
                 } else {
-                    if (action === 'claim') return { exam: null };
                     if (!validId(body.examId)) fail('invalid-exam', 400);
                     const attemptSnap = await tx.get(ref('exam_attempts', uid).collection('items').doc(body.examId));
                     if (attemptSnap.exists) {
@@ -321,18 +301,15 @@ function createStudyService(db, options = {}) {
                         if (override.tema) { question.tema = override.tema; question.temaCanonical = override.tema; }
                         if (['mi', 'ped', 'gyo', 'cir'].includes(override.specialty)) question.specialty = override.specialty;
                     }
-                    exam = { uid, id: body.examId, status: 'active', ownerDevice: device.id, ownerTab: body.tabId,
-                        fence: (exam?.fence || 0) + 1, revision: (exam?.revision || 0) + 1, lastSequence: 0, questionSet,
+                    exam = { uid, id: body.examId, status: 'active',
+                        revision: (exam?.revision || 0) + 1, eventHeads: {}, questionSet,
                         answers: questionSet.map(() => ({ selected: null, isCorrect: null, flagged: false })), currentIndex: 0,
                         mode: body.mode === 'estudio' ? 'estudio' : 'simulacro', currentExamType: String(body.currentExamType || 'Simulacro').slice(0, 80), currentExamIsReal: body.currentExamIsReal === true,
                         durationSec: Math.min(86400, Math.max(0, Number(body.durationSec) || 0)), elapsedSec: 0, runningSince: instant, paused: false, startedAt: instant, timeZone,
                         reviewQueueItemId: String(body.reviewQueueItemId || '').slice(0, 200), challengeId: String(body.challengeId || '').slice(0, 200) };
                     tx.create(ref('exam_payloads', uid).collection('items').doc(exam.id), { uid, id: exam.id, questionSet });
                 }
-                const controlToken = crypto.randomUUID() + crypto.randomUUID();
-                registry.controlHash = hash(controlToken);
-                tx.set(registryRef, registry);
-                storeExam(exam); return { exam, controlToken };
+                storeExam(exam); return { exam };
             }
             if (action === 'events' || action === 'finish') {
                 if (action === 'finish') {
@@ -340,14 +317,12 @@ function createStudyService(db, options = {}) {
                     const attemptSnap = await tx.get(ref('exam_attempts', uid).collection('items').doc(body.examId));
                     if (attemptSnap.exists) {
                         const attempt = attemptSnap.data();
-                        if (attempt.ownerDevice !== device.id || attempt.ownerTab !== body.tabId || attempt.fence !== body.fence) fail('ownership-lost');
-                        if (typeof body.controlToken !== 'string' || hash(body.controlToken) !== attempt.controlHash) fail('ownership-lost');
                         const payload = await tx.get(ref('exam_payloads', uid).collection('items').doc(body.examId));
                         if (payload.exists) attempt.questionSet = payload.data().questionSet;
                         return { attempt, exam: exam?.id === body.examId ? exam : null };
                     }
                 }
-                owned(exam, body, device, registry);
+                owned(exam, body);
                 exam = applyEvents(exam, body.events || [], instant);
                 exam.revision++;
                 if (action === 'events') { storeExam(exam); const { questionSet, ...metadata } = exam; return { exam: metadata }; }
@@ -356,7 +331,7 @@ function createStudyService(db, options = {}) {
                 const challengeSnap = challengeRef ? await tx.get(challengeRef) : null;
                 const progress = progressSnap.data() || {};
                 const result = aggregate(progress, exam, instant);
-                const attempt = { uid, ...result.summary, ownerDevice: device.id, ownerTab: body.tabId, fence: exam.fence, controlHash: registry.controlHash, finalizedAt: instant };
+                const attempt = { uid, ...result.summary, finalizedAt: instant };
                 const { questionSet, ...attemptRecord } = attempt;
                 tx.create(ref('exam_attempts', uid).collection('items').doc(exam.id), attemptRecord);
                 const payload = { ...result.data, ...publicTotals(result.data, instant, exam.timeZone), syncVersion: 3, syncRevision: (progress.syncRevision || 0) + 1, updatedAt: new Date(instant) };

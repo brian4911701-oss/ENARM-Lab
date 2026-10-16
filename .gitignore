@@ -18,3 +18,9 @@ public/
 firebase-debug.log
 
 .vercel
+
+# Local Firebase emulator logs
+firestore-debug.log
+ui-debug.log
+artifacts/session-conflict-*.png
+artifacts/single-session-*.log

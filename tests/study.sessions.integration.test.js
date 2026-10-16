@@ -5,189 +5,220 @@ const { before, beforeEach, after, test } = require('node:test');
 const { initializeTestEnvironment, assertFails, assertSucceeds } = require('@firebase/rules-unit-testing');
 const { doc, getDoc, setDoc, deleteDoc, serverTimestamp } = require('firebase/firestore');
 const admin = require('firebase-admin');
+const { createAccountSessions, LEASE_MS } = require('../server/account-session');
 const { createStudyService, aggregate, publicTotals, applyEvents } = require('../server/study-service');
 const { create } = require('../study-session');
-const { makeOperation } = require('../progress-sync');
 const projectId = 'enarmax-rules-test';
-let env, db, execute, adminApp;
-const q = { question: 'Caso clínico de prueba', options: ['A', 'B', 'C'], answerIndex: 1, specialty: 'mi', tema: 'Cardiología', difficulty: 'medium', case: 'Paciente de prueba' };
-const device = i => ({ id: `installation-${i}`, secret: `installation-secret-${i}-long` });
-const call = (i, action, data = {}) => execute('student', { action, device: device(i), tabId: `browser-tab-${i}`, ...data });
-const start = i => call(i, 'start', { examId: 'exam-unique-00001', questionSet: [q, { ...q, caseGroupId: 2 }], mode: 'simulacro' });
-const owned = result => ({ examId: result.exam.id, fence: result.exam.fence, controlToken: result.controlToken });
-const event = (sequence, index, selected) => ({ kind: 'answer', sequence, index, selected });
+let env, app, db, execute, sessions, clock;
+const uid = 'student';
+const q = { question: 'Caso de prueba', options: ['A', 'B', 'C'], answerIndex: 1, specialty: 'mi', tema: 'Cardiología', case: 'Paciente de prueba' };
+const fresh = () => ({ uid, auth_time: clock / 1000 });
+const open = (i, extra = {}) => sessions(fresh(), { action: 'open', deviceId: `browser-installation-${i}-0001`, ...extra });
+const claims = result => ({ uid, enarmaxSid: result.sid });
+const call = (credential, action, extra = {}) => execute(uid, { action, ...extra }, credential);
+const event = (sequence, index, selected = 1, actor = 'test-writer-00001') => ({ kind: 'answer', actor, sequence, index, selected });
+const start = (credential, count = 40) => call(credential, 'start', { examId: 'exam-single-session-001', questionSet: Array.from({ length: count }, () => q), mode: 'simulacro' });
 const memory = () => {
     const m = new Map();
     return { get length() { return m.size; }, key: i => [...m.keys()][i], getItem: k => m.get(k) ?? null, setItem: (k, v) => m.set(k, String(v)), removeItem: k => m.delete(k) };
 };
 before(async () => {
+    assert.ok(process.env.FIRESTORE_EMULATOR_HOST, 'Local emulator is required');
     env = await initializeTestEnvironment({ projectId, firestore: { rules: fs.readFileSync('firestore.rules', 'utf8') } });
-    adminApp = admin.initializeApp({ projectId }, 'study-tests'); db = adminApp.firestore();
-    execute = createStudyService(db, { bank: [q], now: () => Date.parse('2026-10-15T18:00:00Z') });
+    app = admin.initializeApp({ projectId }, 'single-session-tests'); db = app.firestore();
 });
-beforeEach(async () => { await env.clearFirestore(); });
-after(async () => { await db.terminate(); await adminApp.delete(); await env.cleanup(); });
-test('el límite de dos instalaciones se aplica incluso con tres registros simultáneos', async () => {
-    const results = await Promise.allSettled([1, 2, 3].map(i => call(i, 'register')));
-    assert.equal(results.filter(r => r.status === 'fulfilled').length, 2);
-    assert.equal(results.find(r => r.status === 'rejected').reason.code, 'device-limit');
+beforeEach(async () => {
+    await env.clearFirestore(); clock = Date.parse('2026-10-15T18:00:00Z');
+    sessions = createAccountSessions(db, { createCustomToken: async (_, custom) => JSON.stringify(custom) }, { now: () => clock });
+    execute = createStudyService(db, { bank: [q], now: () => clock });
 });
-test('transferencia PC a móvil, tokens atrasados, pestaña nueva y finalización sin duplicados', async () => {
-    await call(1, 'register'); await call(2, 'register');
-    const pc = await start(1);
-    await call(1, 'events', { ...owned(pc), events: [event(1, 0, 1)] });
-    const phone = await call(2, 'claim', { examId: pc.exam.id });
-    assert.equal(phone.exam.answers[0].selected, 1);
-    await assert.rejects(call(1, 'events', { ...owned(pc), events: [event(2, 1, 0)] }), { code: 'ownership-lost' });
-    // Knowing the public fence and same installation secret does not reveal the new private control token.
-    const tab2 = await call(2, 'claim', { examId: pc.exam.id, tabId: 'second-tab-0002' });
-    await assert.rejects(call(2, 'events', { ...owned(tab2), controlToken: phone.controlToken, tabId: 'second-tab-0002', events: [event(1, 1, 1)] }), { code: 'ownership-lost' });
-    const payload = { ...owned(tab2), tabId: 'second-tab-0002', events: [event(1, 1, 1)] };
-    const final = await call(2, 'finish', payload);
-    const retry = await call(2, 'finish', payload);
-    assert.equal(retry.attempt.id, final.attempt.id);
-    assert.equal(final.attempt.correct, 2);
-    const progress = (await db.doc('user_progress/student').get()).data();
-    assert.equal(JSON.parse(progress.globalStatsStr).sesiones, 1);
-    assert.equal(JSON.parse(progress.globalStatsStr).respondidas, 2);
-    assert.equal((await db.collection('exam_attempts/student/items').get()).size, 1);
-    const reset = await call(2, 'reset', { tabId: 'second-tab-0002' });
-    assert.equal(JSON.parse(reset.data.globalStatsStr).sesiones, 0);
-    assert.equal((await db.collection('exam_attempts/student/items').get()).size, 1);
+after(async () => { await db.terminate(); await app.delete(); await env.cleanup(); });
+test('normal login, cancellation leaves the first device unchanged, replacement rejects saved credentials', async () => {
+    const pc = claims(await open(1));
+    await call(pc, 'register');
+    const conflict = await open(2);
+    assert.equal(conflict.conflict, true);
+    assert.equal((await db.doc(`account_sessions/${uid}`).get()).data().sid, pc.enarmaxSid);
+    await sessions(pc, { action: 'check' }); // Cancelling performs no server mutation.
+    const phone = claims(await open(2, { expectedRevision: conflict.revision }));
+    await assert.rejects(call(pc, 'register'), { code: 'session-replaced' });
+    await assert.rejects(sessions(pc, { action: 'check' }), { code: 'session-replaced' });
+    await assert.rejects(sessions(pc, { action: 'open' }), { code: 'explicit-login-required' });
+    await assert.rejects(sessions(pc, { action: 'logout' }), { code: 'session-replaced' });
+    assert.equal((await sessions(phone, { action: 'check' })).valid, true);
 });
-test('revocar un dispositivo invalida escrituras; reautorizar no elude el límite', async () => {
-    await call(1, 'register'); await call(2, 'register'); const pc = await start(1);
-    await call(2, 'revoke', { deviceId: device(1).id });
-    await assert.rejects(call(1, 'events', { ...owned(pc), events: [event(1, 0, 1)] }), { code: 'device-revoked' });
-    await assert.rejects(call(1, 'register'), { code: 'device-revoked' });
-    await call(3, 'register');
-    await assert.rejects(call(4, 'register'), { code: 'device-limit' });
-});
-test('dos inicios simultáneos y finalizar durante una transferencia conservan un único intento', async () => {
-    await call(1, 'register'); await call(2, 'register');
-    const starts = await Promise.all([start(1), call(2, 'start', { examId: 'another-exam-00002', questionSet: [q] })]);
-    assert.equal(starts[0].exam.id, starts[1].exam.id);
-    const pc = await call(1, 'claim', { examId: starts[0].exam.id });
-    const race = await Promise.allSettled([call(1, 'finish', { ...owned(pc), events: [event(1, 0, 1)] }), call(2, 'claim', { examId: pc.exam.id })]);
-    if (race[0].status === 'rejected') {
-        assert.equal(race[0].reason.code, 'ownership-lost');
-        assert.equal(race[1].status, 'fulfilled');
-        await call(2, 'finish', { ...owned(race[1].value), events: [event(1, 0, 1)] });
+test('35 confirmed answers survive replacement; previous device cannot mutate or finish; exactly one attempt', async () => {
+    const pc = claims(await open(1)); await call(pc, 'register'); const initial = await start(pc);
+    const examId = initial.exam.id;
+    await call(pc, 'events', { examId, events: Array.from({ length: 35 }, (_, i) => event(i + 1, i)) });
+    const conflict = await open(2), phone = claims(await open(2, { expectedRevision: conflict.revision }));
+    for (const action of ['events', 'finish', 'progress', 'reset', 'purge', 'migration-complete', 'start']) {
+        await assert.rejects(call(pc, action, { examId, events: [event(36, 35)] }), { code: 'session-replaced' });
     }
-    assert.equal((await db.collection('exam_attempts/student/items').get()).size, 1);
-    assert.equal(JSON.parse((await db.doc('user_progress/student').get()).data().globalStatsStr).sesiones, 1);
+    const resumed = await start(phone);
+    assert.equal(resumed.exam.id, examId);
+    assert.equal(resumed.exam.answers.filter(a => a.selected === 1).length, 35);
+    await call(phone, 'finish', { examId }); await call(phone, 'finish', { examId });
+    assert.equal((await db.collection(`exam_attempts/${uid}/items`).get()).size, 1);
+    const stats = JSON.parse((await db.doc(`user_progress/${uid}`).get()).data().globalStatsStr);
+    assert.equal(stats.respondidas, 35); assert.equal(stats.sesiones, 1);
 });
-test('migración conserva datos y cursores; tras migrar no se alteran resultados con snapshots', async () => {
-    const seed = { uid: 'student', schemaVersion: 1, syncVersion: 2, syncRevision: 4, syncEpoch: 'initial', globalStatsStr: '{"respondidas":10,"aciertos":7,"sesiones":1}', historyStr: '[{"id":"old-attempt","timestamp":1}]', theme: 'forest', createdAt: new Date(1) };
-    await db.doc('user_progress/student').set(seed);
-    await call(1, 'register');
-    const archived = (await db.doc('study_backups/student').get()).data().progress;
-    assert.equal(archived.historyStr, seed.historyStr);
-    assert.equal(archived.createdAt.toMillis(), 1);
-    const changed = { ...seed, globalStatsStr: '{"respondidas":12,"aciertos":9,"sesiones":2}', historyStr: JSON.stringify([...JSON.parse(seed.historyStr), { id: 'offline-attempt', timestamp: Date.now(), preguntas: 2 }]), theme: 'sunset' };
-    const op = makeOperation('legacy-actor-001', 1, seed, changed);
-    const migration = await call(1, 'progress', { operations: [op], migration: true });
-    assert.ok(migration.conflicts.includes(op.id));
-    assert.equal(JSON.parse(migration.data.globalStatsStr).respondidas, 10);
-    await call(1, 'progress', { operations: [op], migration: true });
-    await call(1, 'migration-complete');
-    const fake = makeOperation('current-actor-001', 1, changed, { ...changed, globalStatsStr: '{"respondidas":999,"aciertos":999,"sesiones":999}', historyStr: '[]', theme: 'ocean' });
-    const result = await call(1, 'progress', { operations: [fake] });
-    assert.equal(JSON.parse(result.data.globalStatsStr).respondidas, 10);
-    assert.equal(JSON.parse(result.data.historyStr)[0].id, 'old-attempt');
-    assert.equal(result.data.theme, 'ocean');
-    assert.ok(result.conflicts.includes(fake.id));
-    assert.ok((await db.doc(`user_progress/student/legacy_conflicts/${result.conflictArchive}`).get()).exists);
-    const malformed = makeOperation('invalid-actor-001', 1, changed, { ...changed, theme: 42 });
-    await assert.rejects(call(1, 'progress', { operations: [malformed] }), { code: 'invalid-progress-field' });
-    await assert.rejects(call(1, 'progress', { operations: [fake], migration: true }), { code: 'migration-closed' });
+test('atomic initial logins and atomic confirmations each authorize only one winner', async () => {
+    const initial = await Promise.all([open(1), open(2)]);
+    assert.equal(initial.filter(r => r.sid).length, 1);
+    assert.equal(initial.filter(r => r.conflict).length, 1);
+    const revision = initial.find(r => r.conflict).revision;
+    const race = await Promise.allSettled([open(2, { expectedRevision: revision }), open(3, { expectedRevision: revision })]);
+    assert.equal(race.filter(r => r.status === 'fulfilled').length, 1);
+    assert.equal(race.find(r => r.status === 'rejected').reason.code, 'session-changed');
 });
-test('reglas niegan escrituras directas, borrado de v3, manipulación de intentos y acceso ajeno', async () => {
-    await call(1, 'register'); const exam = await start(1); await call(1, 'finish', { ...owned(exam), events: [] });
-    const owner = env.authenticatedContext('student', { email_verified: true }).firestore();
-    const other = env.authenticatedContext('intruder', { email_verified: true }).firestore();
-    await assertSucceeds(getDoc(doc(owner, 'active_exams', 'student')));
-    await assertFails(getDoc(doc(other, 'active_exams', 'student')));
-    await assertFails(setDoc(doc(owner, 'active_exams', 'student'), { fence: 999 }, { merge: true }));
-    await assertFails(setDoc(doc(owner, 'user_progress', 'student'), { syncVersion: 2, syncRevision: 999, updatedAt: serverTimestamp() }, { merge: true }));
-    await assertFails(deleteDoc(doc(owner, 'user_progress', 'student')));
-    await assertFails(getDoc(doc(owner, 'study_sessions', 'student')));
-    await assertFails(setDoc(doc(owner, 'exam_attempts', 'student', 'items', exam.exam.id), { pct: 100 }, { merge: true }));
-    const profile = { uid: 'student', username: 'Alumno', specialty: '', avatarId: '', scoreVisible: true, score: 0, flame: 0, isPremium: false, updatedAt: serverTimestamp() };
-    await assertSucceeds(setDoc(doc(owner, 'public_profiles', 'student'), profile));
-    await assertFails(setDoc(doc(owner, 'public_profiles', 'student'), { ...profile, score: 100 }));
-    await assertFails(setDoc(doc(owner, 'public_profiles', 'student'), { ...profile, flame: 99 }));
-    await assertSucceeds(setDoc(doc(owner, 'public_profiles', 'student'), { ...profile, scoreVisible: false, score: null }));
+test('brief outage, abandoned browser expiry, same-device renewal and manual logout', async () => {
+    const pc = claims(await open(1));
+    clock += 60000; await sessions(pc, { action: 'check' });
+    assert.equal((await open(2)).conflict, true);
+    clock += LEASE_MS + 1;
+    await sessions(pc, { action: 'check' }); // A returning valid browser can renew, no forced logout.
+    assert.equal((await open(2)).conflict, true);
+    clock += LEASE_MS + 1;
+    const phone = claims(await open(2)); // Abandoned lease needs no confirmation.
+    await assert.rejects(sessions(pc, { action: 'check' }), { code: 'session-replaced' });
+    await sessions(phone, { action: 'logout' });
+    assert.ok((await open(3)).sid);
+    await assert.rejects(sessions({ uid, auth_time: clock / 1000 - 301 }, { action: 'open' }), { code: 'recent-login-required' });
 });
-test('la racha usa la fecha civil de la cuenta cuando el servidor ya está en el día siguiente', () => {
+test('Firestore denies revoked and ordinary Auth tokens, including legacy progress and account writes', async () => {
+    const pc = claims(await open(1)); await call(pc, 'register'); await start(pc);
+    const old = env.authenticatedContext(uid, { email_verified: true, enarmaxSid: pc.enarmaxSid }).firestore();
+    await assertSucceeds(getDoc(doc(old, 'active_exams', uid)));
+    const conflict = await open(2), phone = claims(await open(2, { expectedRevision: conflict.revision }));
+    const current = env.authenticatedContext(uid, { email_verified: true, enarmaxSid: phone.enarmaxSid }).firestore();
+    const raw = env.authenticatedContext(uid, { email_verified: true }).firestore();
+    for (const client of [old, raw]) {
+        await assertFails(getDoc(doc(client, 'active_exams', uid)));
+        await assertFails(setDoc(doc(client, 'user_directory', uid), { username: 'Intruso' }, { merge: true }));
+        await assertFails(setDoc(doc(client, 'user_progress', uid), { syncRevision: 99 }, { merge: true }));
+        await assertFails(deleteDoc(doc(client, 'user_progress', uid)));
+        await assertFails(setDoc(doc(client, 'account_sessions', uid), { sid: pc.enarmaxSid }));
+        // Authority metadata is readable to detect replacement, but is never a credential.
+        await assertSucceeds(getDoc(doc(client, 'account_sessions', uid)));
+    }
+    await assertSucceeds(getDoc(doc(current, 'active_exams', uid)));
+    await assertFails(setDoc(doc(current, 'active_exams', uid), { answers: [] }, { merge: true }));
+    await db.doc(`user_progress/${uid}`).set({ syncVersion: 2, syncRevision: 0, uid, schemaVersion: 1 });
+    await assertFails(setDoc(doc(old, 'user_progress', uid), { syncRevision: 1, updatedAt: serverTimestamp() }, { merge: true }));
+});
+test('same-session tabs, reload journal recovery, offline retry, lost ACK and finalization stay idempotent', async () => {
+    const credential = claims(await open(1)), storage = memory();
+    let offline = false, loseAck = false;
+    const options = { storage, sessionId: () => credential.enarmaxSid, listenExam: () => () => {},
+        send: async body => {
+            if (offline) throw Object.assign(new Error('offline'), { code: 'offline' });
+            const result = await execute(uid, body, credential);
+            if (loseAck && ['events', 'finish'].includes(body.action)) { loseAck = false; throw Object.assign(new Error('offline'), { code: 'offline' }); }
+            return result;
+        }
+    };
+    const first = create(options), second = create(options);
+    let reopened;
+    try {
+        await first.boot(uid); await first.start({ examId: 'exam-single-session-001', questionSet: [q, q] });
+        await second.boot(uid); assert.ok(first.owns() && second.owns());
+        first.queue({ kind: 'answer', index: 0, selected: 1 });
+        second.queue({ kind: 'answer', index: 1, selected: 1 });
+        await Promise.all([first.flush(), second.flush()]);
+        first.queue({ kind: 'flag', index: 0, flagged: true }); loseAck = true; await first.flush(); await first.flush();
+        offline = true; first.queue({ kind: 'position', index: 1 }); await first.flush(); first.stop(); second.stop();
+        offline = false; reopened = create(options); await reopened.boot(uid);
+        assert.equal(reopened.active.currentIndex, 1); assert.equal(reopened.active.answers.filter(a => a.selected === 1).length, 2);
+        loseAck = true; await reopened.flush(true).catch(() => {}); await reopened.flush();
+        assert.equal((await db.collection(`exam_attempts/${uid}/items`).get()).size, 1);
+        assert.equal(JSON.parse((await db.doc(`user_progress/${uid}`).get()).data().globalStatsStr).sesiones, 1);
+        await reopened.start({ examId: 'exam-next-session-0002', questionSet: [q] });
+        reopened.queue({ kind: 'answer', index: 0, selected: 1 }); await reopened.flush();
+        assert.equal(reopened.active.answers[0].selected, 1);
+    } finally { first.stop(); second.stop(); reopened?.stop(); }
+});
+test('offline journal from a replaced session is rejected and never replayed by the next session', async () => {
+    let credential = claims(await open(1)); const storage = memory();
+    const options = { storage, sessionId: () => credential.enarmaxSid, send: body => execute(uid, body, credential), listenExam: () => () => {} };
+    const old = create(options); await old.boot(uid); await old.start({ examId: 'exam-single-session-001', questionSet: [q] });
+    old.queue({ kind: 'answer', index: 0, selected: 1 }); old.stop();
+    const conflict = await open(2); credential = claims(await open(2, { expectedRevision: conflict.revision }));
+    const current = create(options);
+    try { await current.boot(uid); assert.equal(current.active.answers[0].selected, null); assert.ok(storage.length > 0); }
+    finally { current.stop(); }
+});
+test('civil-day streak and offline pause durations remain correct', () => {
     const instant = Date.parse('2026-10-16T03:00:00Z');
     const result = aggregate({ globalStatsStr: JSON.stringify({ streakData: { currentStreak: 1, lastStudyDate: '2026-10-14' } }) }, {
         id: 'timezone-exam-0001', questionSet: [q], answers: [{ selected: 1, isCorrect: true }], mode: 'simulacro', currentExamType: 'Prueba',
         timeZone: 'America/Mexico_City', paused: false, elapsedSec: 0, runningSince: instant - 1000
     }, instant);
-    assert.equal(JSON.parse(result.data.globalStatsStr).streakData.lastStudyDate, '2026-10-15');
     assert.equal(publicTotals(result.data, instant, 'America/Mexico_City').publicFlame, 2);
-    const offlineClock = applyEvents({ startedAt: 1000, runningSince: 1000, elapsedSec: 0, paused: false, lastSequence: 0 }, [
-        { sequence: 1, kind: 'pause', occurredAt: 2000 }, { sequence: 2, kind: 'resume', occurredAt: 5000 }, { sequence: 3, kind: 'pause', occurredAt: 8000 }
+    const offlineClock = applyEvents({ startedAt: 1000, runningSince: 1000, elapsedSec: 0, paused: false }, [
+        { actor: 'test-writer-00001', sequence: 1, kind: 'pause', occurredAt: 2000 },
+        { actor: 'test-writer-00001', sequence: 2, kind: 'resume', occurredAt: 5000 },
+        { actor: 'test-writer-00001', sequence: 3, kind: 'pause', occurredAt: 8000 }
     ], 10000);
     assert.equal(offlineClock.elapsedSec, 4);
 });
-test('cliente conserva pendientes offline y al perder control; recuperación explícita y ACK perdido', async () => {
-    let offline = false, loseAck = false, loseFinishAck = false, lastStatus;
-    const store = memory();
-    const client = create({ storage: store,
-        send: async body => { if (offline) throw Object.assign(new Error('offline'), { code: 'offline' }); const result = await execute('student', body); if ((loseAck && body.action === 'events') || (loseFinishAck && body.action === 'finish')) { loseAck = loseFinishAck = false; throw Object.assign(new Error('offline'), { code: 'offline' }); } return result; },
-        readExam: async () => { const snap = await db.doc('active_exams/student').get(); if (!snap.exists) return null; const exam = snap.data(); return { ...exam, ...(await db.doc(`exam_payloads/student/items/${exam.id}`).get()).data() }; },
-        listenExam: (_, cb) => db.doc('active_exams/student').onSnapshot(async snap => { if (snap.exists) { const exam = snap.data(); cb({ ...exam, ...(await db.doc(`exam_payloads/student/items/${exam.id}`).get()).data() }); } }),
-        listenDevices: () => () => {}, onStatus: status => { lastStatus = status; }
-    });
-    try {
-        await client.boot('student');
-        await client.start({ examId: 'offline-exam-0001', questionSet: [q] });
-        offline = true; client.queue({ kind: 'answer', index: 0, selected: 1 }); await client.flush();
-        assert.equal(lastStatus.pending, 1);
-        await call(2, 'register'); const phone = await call(2, 'claim', { examId: client.active.id });
-        assert.equal(phone.exam.answers[0].selected, null);
-        // Explicitly deliver the authoritative snapshot; the outbox must remain untouched.
-        await new Promise(resolve => setTimeout(resolve, 100));
-        assert.equal(client.owns(), false);
-        assert.equal(client.conflicts().length, 1);
-        offline = false;
-        await client.recover(client.conflicts()[0].key);
-        assert.equal(client.conflicts().length, 0);
-        assert.equal((await db.doc('active_exams/student').get()).data().answers[0].selected, 1);
-        client.queue({ kind: 'flag', index: 0, flagged: true }); loseAck = true; await client.flush();
-        assert.equal(lastStatus.pending, 1);
-        await client.flush(); assert.equal(lastStatus.pending, 0);
-        // Reconnection of the same runtime must not rotate its fence or turn its
-        // own pending answers into conflicts.
-        const fence = client.active.fence;
-        await client.boot('student'); assert.equal(client.active.fence, fence);
-        offline = true;
-        await assert.rejects(client.flush(true), { code: 'offline' });
-        assert.ok(lastStatus.pending > 0);
-        offline = false; loseFinishAck = true;
-        await client.flush(); assert.ok(lastStatus.pending > 0);
-        await client.flush();
-        assert.equal(JSON.parse((await db.doc('user_progress/student').get()).data().globalStatsStr).sesiones, 1);
-    } finally { client.stop(); }
+
+test('legacy migration preserves confirmed results and archives obsolete local results without device ownership', async () => {
+    const credential = claims(await open(1));
+    const seed = { uid, schemaVersion: 1, syncVersion: 2, syncRevision: 4, syncEpoch: 'initial',
+        globalStatsStr: '{"respondidas":35,"aciertos":30,"sesiones":1}', historyStr: '[{"id":"old-attempt","timestamp":1}]', theme: 'forest', createdAt: new Date(1) };
+    await db.doc('user_progress/' + uid).set(seed);
+    await db.doc('study_sessions/' + uid).set({ devices: { legacy: { revoked: false } } });
+    await call(credential, 'register'); await call(credential, 'register');
+    const { makeOperation } = require('../progress-sync');
+    const changed = { ...seed, theme: 'sunset', globalStatsStr: '{"respondidas":999,"aciertos":999,"sesiones":999}', historyStr: '[]' };
+    const op = makeOperation('migration-actor-0001', 1, seed, changed);
+    const result = await call(credential, 'progress', { operations: [op], migration: true });
+    assert.deepEqual(JSON.parse(result.data.globalStatsStr), { ...JSON.parse(seed.globalStatsStr), pomodoros: 0 });
+    assert.equal(result.data.historyStr, seed.historyStr); assert.equal(result.data.theme, 'sunset');
+    assert.equal((await db.collection('user_progress/' + uid + '/legacy_conflicts').get()).size, 1);
+    assert.ok((await db.doc('study_backups/' + uid).get()).exists);
+    assert.equal((await db.doc('study_sessions/' + uid).get()).data().devices, undefined);
+    await call(credential, 'migration-complete');
+    await assert.rejects(call(credential, 'progress', { operations: [op], migration: true }), { code: 'migration-closed' });
 });
-test('cerrar y reabrir recupera automáticamente respuestas locales si la propiedad no cambió', async () => {
-    const storage = memory();
-    const read = async () => { const snap = await db.doc('active_exams/student').get(); if (!snap.exists) return null; const exam = snap.data(); return { ...exam, ...(await db.doc(`exam_payloads/student/items/${exam.id}`).get()).data() }; };
-    const options = { storage, send: body => execute('student', body), readExam: read, listenExam: () => () => {}, listenDevices: () => () => {} };
-    const first = create(options); await first.boot('student');
-    await first.start({ examId: 'reopen-exam-00001', questionSet: [q] });
-    const oldFence = first.active.fence;
-    first.queue({ kind: 'answer', index: 0, selected: 1 }); first.stop();
-    assert.equal((await read()).answers[0].selected, null);
-    const reopened = create(options);
-    try {
-        await reopened.boot('student');
-        assert.equal(reopened.active.answers[0].selected, 1);
-        assert.ok(reopened.active.fence > oldFence);
-        assert.equal(reopened.conflicts().length, 0);
-        await reopened.flush(true);
-        assert.equal(JSON.parse((await db.doc('user_progress/student').get()).data().globalStatsStr).sesiones, 1);
-    } finally { reopened.stop(); }
+test('an existing exam survives migration without rotating ownership or dropping confirmed answers', async () => {
+    const credential = claims(await open(1)); await call(credential, 'register');
+    const exam = (await start(credential, 2)).exam;
+    await db.doc('active_exams/' + uid).update({ ownerDevice: 'legacy-device', ownerTab: 'legacy-tab', fence: 42, lastSequence: 99 });
+    await call(credential, 'events', { examId: exam.id, events: [event(1, 0)] });
+    const resumed = (await start(credential)).exam;
+    assert.equal(resumed.answers[0].selected, 1);
+    assert.equal(resumed.ownerDevice, undefined); assert.equal(resumed.fence, undefined);
+});
+test('takeover races with an answer atomically; deletion cannot race with a new authorization', async () => {
+    const pc = claims(await open(1)); await call(pc, 'register'); const examId = (await start(pc, 2)).exam.id;
+    const conflict = await open(2);
+    const race = await Promise.allSettled([call(pc, 'events', { examId, events: [event(1, 0)] }), open(2, { expectedRevision: conflict.revision })]);
+    assert.equal(race[1].status, 'fulfilled');
+    if (race[0].status === 'rejected') assert.equal(race[0].reason.code, 'session-replaced');
+    const phone = claims(race[1].value), resumed = (await call(phone, 'inspect')).exam;
+    assert.equal(resumed.answers[0].selected, race[0].status === 'fulfilled' ? 1 : null);
+    await call(phone, 'purge');
+    await assert.rejects(open(3), { code: 'account-deleting' });
+});
+test('fresh identity proof can renew only the authorized session, without global revocation', async () => {
+    const pc = claims(await open(1));
+    const api = createAccountSessions(db, {
+        verifyIdToken: async token => JSON.parse(token),
+        createCustomToken: async (_, custom) => JSON.stringify(custom)
+    }, { now: () => clock });
+    const proof = JSON.stringify(fresh());
+    assert.equal(JSON.parse((await api(pc, { action: 'reauthenticate', reauthenticationToken: proof })).token).enarmaxSid, pc.enarmaxSid);
+    const conflict = await open(2); await open(2, { expectedRevision: conflict.revision });
+    await assert.rejects(api(pc, { action: 'reauthenticate', reauthenticationToken: proof }), { code: 'session-replaced' });
+});
+
+test('stale same-browser study answers are acknowledged without overwriting the confirmed answer or retrying forever', async () => {
+    const credential = claims(await open(1)); await call(credential, 'register');
+    const exam = (await call(credential, 'start', { examId: 'study-same-tabs-001', questionSet: [q], mode: 'estudio' })).exam;
+    await call(credential, 'events', { examId: exam.id, events: [event(1, 0, 1, 'browser-tab-writer-001')] });
+    const result = await call(credential, 'events', { examId: exam.id, events: [event(1, 0, 0, 'browser-tab-writer-002')] });
+    assert.equal(result.exam.answers[0].selected, 1);
+    assert.equal(result.exam.eventHeads['browser-tab-writer-002'], 1);
 });

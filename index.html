@@ -691,6 +691,18 @@
     </div>
 
     <!-- ── AUTH OVERLAY ── -->
+    <dialog id="session-conflict-dialog" class="session-conflict-dialog" aria-labelledby="session-conflict-title" aria-describedby="session-conflict-description">
+        <form method="dialog">
+            <span class="session-conflict-icon" aria-hidden="true">↗</span>
+            <h2 id="session-conflict-title">Tu cuenta está abierta en otro dispositivo</h2>
+            <p id="session-conflict-description">¿Deseas cerrar la sesión anterior y continuar aquí?</p>
+            <p class="session-conflict-note">Podrás continuar con las respuestas guardadas de tu examen.</p>
+            <div class="session-conflict-actions">
+                <button class="btn-secondary" value="cancel" autofocus>Cancelar</button>
+                <button class="btn-primary" value="continue">Continuar aquí</button>
+            </div>
+        </form>
+    </dialog>
     <div id="auth-overlay" class="auth-overlay active">
         <div class="auth-container">
             <div class="auth-logo">
@@ -1542,7 +1554,6 @@
             <div id="view-exam" class="view">
                 <div class="panel study-sync-panel" role="status">
                     <p data-exam-sync-status>Preparando el guardado automático</p>
-                    <button class="btn-secondary" id="btn-take-exam-control" type="button" hidden>Continuar aquí</button>
                 </div>
                 <div class="guest-exam-brand" aria-label="Evaluación diagnóstica ENARMax">
                     <span class="logo-mark guest-exam-logo" aria-hidden="true"></span>
@@ -3250,11 +3261,9 @@
             <div id="view-profile" class="view">
                 <div class="profile-page">
                     <section class="panel study-sync-panel">
-                        <h2 class="panel-title">Instalaciones autorizadas</h2>
-                        <p class="panel-subtitle">Puedes autorizar dos navegadores o instalaciones. Borrar los datos del navegador crea una instalación distinta.</p>
-                        <div id="study-devices"></div>
+                        <h2 class="panel-title">Sesión de tu cuenta</h2>
+                        <p class="panel-subtitle">Tu cuenta permite un dispositivo activo. Tus respuestas confirmadas se guardan para que puedas continuar al volver a entrar.</p>
                         <p data-exam-sync-status role="status">Conectando con tu cuenta</p>
-                        <div id="study-exam-conflicts" aria-live="polite"></div>
                         <div id="study-legacy-conflicts" aria-live="polite"></div>
                     </section>
                     <section class="profile-hero">
@@ -3496,7 +3505,7 @@
                         <section class="panel settings-panel">
                             <h3 class="panel-title">Sincronización entre dispositivos</h3>
                             <p class="panel-subtitle" data-progress-sync-status role="status">Cargando progreso de tu cuenta</p>
-                            <p class="profile-privacy-note">El guardado es automático. Al abrir un examen en otro dispositivo, el anterior queda en modo lectura. Puedes revisar instalaciones y pendientes en tu perfil.</p>
+                            <p class="profile-privacy-note">El guardado es automático. Al iniciar sesión en otro dispositivo podrás cerrar la sesión anterior y continuar con tus respuestas confirmadas.</p>
                             <p class="profile-privacy-note">Versión 2026.10.15.3</p>
                         </section>
 
@@ -4630,9 +4639,9 @@
     <!-- ── FIREBASE ── -->
     <script src="security-config.js" charset="UTF-8"></script>
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { initializeApp, deleteApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
         import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app-check.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, onAuthStateChanged, updateProfile, GoogleAuthProvider, EmailAuthProvider, getAdditionalUserInfo, signInWithPopup, signInWithRedirect, getRedirectResult, reauthenticateWithPopup, reauthenticateWithCredential, deleteUser, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+        import { getAuth, setPersistence, inMemoryPersistence, signInWithCustomToken, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, onAuthStateChanged, updateProfile, GoogleAuthProvider, EmailAuthProvider, getAdditionalUserInfo, signInWithPopup, signInWithRedirect, getRedirectResult, reauthenticateWithPopup, reauthenticateWithCredential, deleteUser, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, getDocFromServer, getDocs, getCountFromServer, deleteDoc, onSnapshot, collection, query, orderBy, limit, where, documentId, startAfter, addDoc, updateDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
         import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-functions.js";
 
@@ -4662,6 +4671,21 @@
         const db = getFirestore(app);
         const functions = getFunctions(app);
         const googleProvider = new GoogleAuthProvider();
+        // Obtain fresh identity proof without replacing the active Auth session or its signed claim.
+        const verifySessionIdentity = async (user, password) => {
+            const auxiliaryApp = initializeApp(firebaseConfig, 'reauth-' + crypto.randomUUID());
+            const auxiliaryAuth = getAuth(auxiliaryApp);
+            try {
+                await setPersistence(auxiliaryAuth, inMemoryPersistence);
+                const result = (user.providerData || []).some(provider => provider.providerId === 'google.com')
+                    ? await signInWithPopup(auxiliaryAuth, googleProvider)
+                    : await signInWithEmailAndPassword(auxiliaryAuth, user.email, password);
+                return await result.user.getIdToken();
+            } finally {
+                await signOut(auxiliaryAuth);
+                await deleteApp(auxiliaryApp);
+            }
+        };
         const ANALYTICS_CONSENT_KEY = "enarmax_analytics_consent";
         const ALLOWED_ANALYTICS_EVENTS = new Set([
             "landing_view", "landing_demo_answer", "free_trial_click", "guest_exam_start",
@@ -4789,6 +4813,7 @@
             getDocs,
             getCountFromServer,
             deleteDoc,
+            signInWithCustomToken,
             signInWithEmailAndPassword,
             createUserWithEmailAndPassword,
             sendPasswordResetEmail,
@@ -4801,6 +4826,7 @@
             signInWithPopup,
             signInWithRedirect,
             getRedirectResult,
+            verifySessionIdentity,
             reauthenticateWithPopup,
             reauthenticateWithCredential,
             deleteUser,
@@ -4824,6 +4850,7 @@
     <script src="security-crypto.js" charset="UTF-8"></script>
     <script src="scales-data.js" charset="UTF-8"></script>
     <script src="progress-sync.js" charset="UTF-8"></script>
+    <script src="account-session.js" charset="UTF-8"></script>
     <script src="study-session.js" charset="UTF-8"></script>
     <script src="mobile-widgets.js" charset="UTF-8"></script>
     <script src="app.js" charset="UTF-8"></script>

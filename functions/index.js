@@ -1,3 +1,4 @@
+const { assertCallableSession } = require('./account-session');
 ﻿const { onDocumentCreated } = require("firebase-functions/v2/firestore");
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
 const functionsV1 = require("firebase-functions/v1");
@@ -85,6 +86,7 @@ exports.startPremiumTrial = onCall(async (request) => {
 
     try {
         return await db.runTransaction(async (transaction) => {
+            await assertCallableSession(db, request, transaction);
             const [trialSnap, entitlementSnap] = await Promise.all([
                 transaction.get(trialRef),
                 transaction.get(entitlementRef)
@@ -149,6 +151,7 @@ exports.setAdminUserPremiumAccess = onCall(async (request) => {
 
     try {
         const entitlement = await db.runTransaction(async (transaction) => {
+            await assertCallableSession(db, request, transaction);
             const now = new Date();
             if (!enabled) {
                 const next = {
@@ -235,6 +238,7 @@ exports.listAdminUsers = onCall(async (request) => {
         throw new HttpsError("permission-denied", "Solo el administrador puede consultar usuarios.");
     }
 
+    await assertCallableSession(db, request);
     const users = [];
     let pageToken;
     do {

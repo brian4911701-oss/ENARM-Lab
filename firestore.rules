@@ -2,19 +2,21 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     function isAdmin() {
-      return request.auth != null && request.auth.token.admin == true;
+      return isSignedIn() && request.auth.token.admin == true;
     }
 
     function isSignedIn() {
-      return request.auth != null;
+      return request.auth != null
+        && request.auth.token.get('enarmaxSid', '') != ''
+        && get(/databases/$(database)/documents/account_sessions/$(request.auth.uid)).data.sid == request.auth.token.enarmaxSid;
     }
 
     function isSelf(uid) {
-      return request.auth != null && request.auth.uid == uid;
+      return isSignedIn() && request.auth.uid == uid;
     }
 
     function isVerified() {
-      return request.auth != null && request.auth.token.email_verified == true;
+      return isSignedIn() && request.auth.token.email_verified == true;
     }
 
     function isVerifiedSelf(uid) {
@@ -137,7 +139,7 @@ service cloud.firestore {
     }
 
     function hasReferralRedemptionAfter(ownerUid) {
-      return request.auth != null
+      return isSignedIn()
         && existsAfter(/databases/$(database)/documents/referral_redemptions/$(request.auth.uid))
         && getAfter(/databases/$(database)/documents/referral_redemptions/$(request.auth.uid)).data.ownerUid == ownerUid
         && getAfter(/databases/$(database)/documents/referral_redemptions/$(request.auth.uid)).data.coins == 50;
@@ -464,10 +466,15 @@ service cloud.firestore {
     // Only the authenticated API writes session authority or immutable attempts.
     // Private registries contain credential hashes; never expose them to clients.
     match /study_sessions/{uid} { allow read, write: if false; }
+    // The displaced client can observe revocation; this never grants a signed claim.
+    match /account_sessions/{uid} {
+      allow get: if request.auth != null && request.auth.uid == uid;
+      allow list, write: if false;
+    }
+    match /account_presence/{uid} { allow read, write: if false; }
     match /study_backups/{uid} { allow read, write: if false; }
     match /study_devices/{uid} {
-      allow read: if isSelf(uid) || isAdmin();
-      allow write: if false;
+      allow read, write: if false;
     }
     match /active_exams/{uid} {
       allow read: if isSelf(uid) || isAdmin();

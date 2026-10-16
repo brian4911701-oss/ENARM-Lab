@@ -27,8 +27,8 @@ const userC = "user-c";
 const secureCode = `ENARM-M1-${"A".repeat(26)}`;
 let env;
 
-const authDb = (uid, claims = {}) => env.authenticatedContext(uid, { email: `${uid}@example.test`, email_verified: true, ...claims }).firestore();
-const unverifiedDb = (uid) => env.authenticatedContext(uid, { email: `${uid}@example.test`, email_verified: false }).firestore();
+const authDb = (uid, claims = {}) => env.authenticatedContext(uid, { email: `${uid}@example.test`, email_verified: true, enarmaxSid: `session-${uid}`, ...claims }).firestore();
+const unverifiedDb = (uid) => env.authenticatedContext(uid, { email: `${uid}@example.test`, email_verified: false, enarmaxSid: `session-${uid}` }).firestore();
 
 before(async () => {
   env = await initializeTestEnvironment({ projectId, firestore: { rules } });
@@ -39,6 +39,7 @@ beforeEach(async () => {
   await env.withSecurityRulesDisabled(async (context) => {
     const db = context.firestore();
     await Promise.all([
+      ...[userA, userB, userC, "admin"].map(uid => setDoc(doc(db, "account_sessions", uid), { sid: `session-${uid}` })),
       setDoc(doc(db, "user_progress", userA), { uid: userA, schemaVersion: 1, historyStr: "[]", createdAt: Timestamp.now(), updatedAt: Timestamp.now() }),
       setDoc(doc(db, "leaderboard", userA), { uid: userA, phone: "5555555555", score: 99, isPremium: true }),
       setDoc(doc(db, "redeem_codes", secureCode), { type: "month", redeemedBy: "", redeemedAt: null, disabled: false }),

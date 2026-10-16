@@ -19,7 +19,7 @@ module.exports = async (request, response) => {
         if (!body || Buffer.byteLength(JSON.stringify(body)) > 850000) return response.status(413).json({ code: 'payload-too-large' });
         if (body.action === 'purge' && Date.now() / 1000 - claims.auth_time > 300) return response.status(401).json({ code: 'recent-login-required' });
         execute ||= createStudyService(admin.firestore());
-        const result = await execute(claims.uid, body);
+        const result = await execute(claims.uid, body, claims);
         if (result.purge) {
             const db = admin.firestore();
             for (const name of ['user_progress', 'active_exams', 'exam_payloads', 'exam_attempts', 'study_backups', 'study_devices']) await db.recursiveDelete(db.collection(name).doc(claims.uid));
