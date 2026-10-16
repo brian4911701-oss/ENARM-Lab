@@ -1791,37 +1791,29 @@
             <!-- ─── VIEW: REFUERZOS Y REPASOS ─────────────────────── -->
             <div id="view-refuerzos" class="view">
                 <div class="panel" style="background: transparent; border: none; padding: 0;">
-                    <header class="dashboard-header"
-                        style="flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <header class="dashboard-header refuerzos-header">
                         <div class="header-left">
-                            <h1 class="header-title" style="font-size: 28px;">Zonas de <span class="user-name"
-                                    style="color: var(--accent-orange);">Refuerzo</span></h1>
-                            <p class="header-subtitle" style="font-size: 14px; max-width: 600px;">Basado en tu precisión
-                                histórica, la IA ha detectado los siguientes temas como tus puntos de falla principales.
-                                Entrénalos para dominar el ENARM.</p>
+                            <h1 class="header-title">Zonas de <span class="refuerzos-accent">Refuerzo</span></h1>
+                            <p class="header-subtitle">Repasa los temas donde fallaste u omitiste preguntas. Tus resultados recientes tienen prioridad.</p>
                         </div>
-                        <button class="btn-secondary" onclick="document.getElementById('nav-dashboard').click()"
-                            style="padding: 12px 24px;">Escapar al Dashboard</button>
+                        <button class="btn-secondary refuerzos-back" onclick="document.getElementById('nav-dashboard').click()">Volver al inicio</button>
                     </header>
 
-                    <div class="refuerzos-grid" style="display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start;">
+                    <div class="refuerzos-grid">
                         <!-- Columna Izquierda: Temas débiles -->
-                        <div class="panel refuerzos-left" style="padding: 24px;">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                                <h2 class="panel-title"><span class="title-icon red-text">&#x1F3AF;</span> Temas Críticos a
-                                    Reforzar</h2>
+                        <div class="panel refuerzos-left">
+                            <div class="refuerzos-panel-heading">
+                                <h2 class="panel-title"><span class="title-icon red-text">&#x1F3AF;</span> Temas críticos a reforzar</h2>
                             </div>
                             <!-- Fail List Dinámica inyectada por app.js -->
-                            <div class="fail-list" id="refuerzos-fail-list"
-                                style="display: flex; flex-direction: column; gap: 12px;"></div>
+                            <div class="fail-list" id="refuerzos-fail-list"></div>
                         </div>
 
                         <!-- Columna Derecha: Acciones Rápidas -->
-                        <div class="panel refuerzos-right refuerzos-sticky" style="padding: 24px; position: sticky; top: 100px;">
-                            <h2 class="panel-title" style="margin-bottom: 20px;"><span
+                        <div class="panel refuerzos-right refuerzos-sticky">
+                            <h2 class="panel-title"><span
                                     class="title-icon blue-text">⚡</span> Acceso Rápido</h2>
-                            <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <div class="refuerzos-actions">
                                 <button class="action-btn" id="btn-refuerzo-ia"
                                     style="width: 100%; border-color: rgba(239, 68, 68, 0.4); color: var(--accent-red); background: rgba(239, 68, 68, 0.05);">
                                     <div class="action-btn-left">
@@ -3052,7 +3044,7 @@
                         </section>
                         <section class="stats-card stats-focus stats-premium-lock-card">
                             <div class="stats-card-heading"><div><span class="stats-eyebrow">TU SIGUIENTE PASO</span><h3>Aquí puedes mejorar más</h3></div><button class="stats-text-link" type="button" onclick="showView('view-refuerzos')">Ir a refuerzos <i class="app-icon" data-lucide="arrow-up-right" aria-hidden="true"></i></button></div>
-                            <p class="stats-card-description">Hasta seis temas con menor precisión y al menos dos preguntas respondidas.</p>
+                            <p class="stats-card-description">Hasta seis temas con fallos u omisiones, priorizando tus resultados recientes.</p>
                             <div class="stats-chart-wrap stats-chart-wrap--topics"><canvas id="chart-weak-topics" role="img" aria-label="Precisión de los temas que necesitan refuerzo"></canvas></div>
                             <p class="stats-topics-empty" id="stats-topics-empty" hidden>Al practicar más temas, encontrarás aquí dónde concentrar tu siguiente repaso.</p>
                             <div class="stats-premium-overlay"><span class="stats-premium-overlay-badge"><i class="app-icon" data-lucide="lock-keyhole" aria-hidden="true"></i> Premium</span><strong>Dale dirección a tu repaso</strong><p>Consulta tus temas prioritarios y enfoca tu próxima sesión.</p><button class="btn-secondary stats-premium-overlay-btn" type="button" data-open-redeem>Desbloquear análisis <i class="app-icon" data-lucide="arrow-up-right" aria-hidden="true"></i></button></div>

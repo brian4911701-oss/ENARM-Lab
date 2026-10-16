@@ -946,7 +946,7 @@
                     wrong,
                     precision,
                     specialty: mastery.specialty || stats?.specialty || "mi",
-                    lastSeenAt: mastery.lastSeenAt || 0,
+                    lastSeenAt: mastery.lastSeenAt || stats?.lastSeenAt || 0,
                     status: mastery.status || "sin_tocar",
                     reviewCount: mastery.reviewCount || 0
                 };
@@ -971,15 +971,31 @@
     const getRecentTopicOutcomes = (days = 30) => {
         const cutoff = Date.now() - (days * 24 * 60 * 60 * 1000);
         const outcomes = {};
+        Object.entries(State.globalStats.byTema || {}).forEach(([topic, stats]) => {
+            const recent = (Array.isArray(stats?.recentResults) ? stats.recentResults : [])
+                .filter(result => Number(result?.at) >= cutoff);
+            if (!recent.length) return;
+            outcomes[topic] = {
+                attempts: recent.length,
+                correct: recent.filter(result => result.correct === true).length,
+                omitted: recent.filter(result => result.omitted === true).length,
+                lastSeenAt: Math.max(...recent.map(result => Number(result.at) || 0))
+            };
+        });
+        const loggedTopics = new Set(Object.keys(outcomes));
         (State.history || []).forEach(session => {
             if (!session || Number(session.timestamp || 0) < cutoff
                 || !Array.isArray(session.questionSet) || !Array.isArray(session.answers)) return;
             session.questionSet.forEach((question, index) => {
                 const topic = sanitizeTopicLabel(getCaseCanonicalTopic(question));
                 if (!topic) return;
-                if (!outcomes[topic]) outcomes[topic] = { attempts: 0, correct: 0, omitted: 0 };
+                // Older sessions may lack the per-topic log. Do not double-count
+                // sessions already represented by recentResults.
+                if (loggedTopics.has(topic)) return;
+                if (!outcomes[topic]) outcomes[topic] = { attempts: 0, correct: 0, omitted: 0, lastSeenAt: 0 };
                 const answer = session.answers[index];
                 outcomes[topic].attempts++;
+                outcomes[topic].lastSeenAt = Math.max(outcomes[topic].lastSeenAt, Number(session.timestamp) || 0);
                 if (!answer || answer.selected === null) outcomes[topic].omitted++;
                 else if (answer.isCorrect) outcomes[topic].correct++;
             });
@@ -997,7 +1013,7 @@
                 const allAttempts = allAnswered + allOmitted;
                 const allCorrect = Number(stats?.correct) || 0;
                 const recent = recentOutcomes[topic];
-                const hasReliableRecentEvidence = Number(recent?.attempts || 0) >= 3;
+                const hasReliableRecentEvidence = Number(recent?.attempts || 0) >= 1;
                 const attempts = hasReliableRecentEvidence ? recent.attempts : allAttempts;
                 const omitted = hasReliableRecentEvidence ? recent.omitted : allOmitted;
                 const correct = hasReliableRecentEvidence ? recent.correct : allCorrect;
@@ -1019,11 +1035,14 @@
                     adjustedPrecision,
                     pendingReviews,
                     usesRecentEvidence: hasReliableRecentEvidence,
+                    lastSeenAt: recent?.lastSeenAt || stats?.lastSeenAt || 0,
                     score: ((100 - adjustedPrecision) * evidence) + (Math.min(pendingReviews, 3) * 8)
+                        + (hasReliableRecentEvidence && wrong > 0 ? 35 : 0)
                 };
             })
-            .filter(entry => entry.attempts >= 3 && entry.wrong > 0)
-            .sort((a, b) => b.score - a.score || b.wrong - a.wrong || b.attempts - a.attempts)
+            .filter(entry => entry.attempts > 0 && entry.wrong > 0)
+            .sort((a, b) => Number(b.usesRecentEvidence) - Number(a.usesRecentEvidence)
+                || b.score - a.score || b.lastSeenAt - a.lastSeenAt || b.wrong - a.wrong)
             .slice(0, limit);
     };
     const deriveTopicMasteryState = (entry, pendingReviews = 0) => {
@@ -1054,7 +1073,7 @@
                 correct,
                 wrong,
                 precision,
-                lastSeenAt: previous.lastSeenAt || 0,
+                lastSeenAt: Math.max(Number(previous.lastSeenAt) || 0, Number(stats?.lastSeenAt) || 0),
                 reviewCount: reviewCounts[topic] || 0
             };
             entry.status = deriveTopicMasteryState(entry, entry.reviewCount);
@@ -1253,7 +1272,7 @@
             });
         });
     };
-    const getFocusedWeakTopics = (limit = 3) => getTopicPerformanceEntries().slice(0, limit);
+    const getFocusedWeakTopics = (limit = 3) => getSmartReviewTopicPriorities(limit);
     const buildSessionPostmortem = (result) => {
         const wrongQuestions = [];
         const blankQuestions = [];
@@ -1943,6 +1962,7 @@
             State.lastPostmortem = postmortem;
             renderSessionResults(summary, (State.examStartedWithPremium || isPremiumActive()) ? 'premium' : 'free');
             State.activeReviewQueueItemId = ''; State.activeChallengeId = null; State.activeChallengeRole = null;
+            ensureDailyPlanFresh(true);
             saveGlobalStats(); renderResultsPostmortem(); showView('view-results');
             void syncUserMetrics({ force: true });
         }
@@ -11215,6 +11235,15 @@
         }, 3000);
     };
 
+    const recordRecentTopicResult = (stats, isCorrect, omitted = false) => {
+        const at = Date.now();
+        stats.lastSeenAt = at;
+        stats.recentResults = [
+            ...(Array.isArray(stats.recentResults) ? stats.recentResults : []),
+            { at, correct: isCorrect === true, omitted }
+        ].slice(-20);
+    };
+
     const recordStat = (specialtyKey, isCorrect, tema) => {
         State.globalStats.respondidas++;
         if (isCorrect) State.globalStats.aciertos++;
@@ -11227,6 +11256,7 @@
             if (!State.globalStats.byTema[tema]) State.globalStats.byTema[tema] = { total: 0, correct: 0, specialty: specialtyKey };
             State.globalStats.byTema[tema].total++;
             if (isCorrect) State.globalStats.byTema[tema].correct++;
+            recordRecentTopicResult(State.globalStats.byTema[tema], isCorrect);
             State.topicMastery[tema] = State.topicMastery[tema] || { topic: tema, specialty: specialtyKey };
             State.topicMastery[tema].lastSeenAt = Date.now();
             State.topicMastery[tema].specialty = specialtyKey;
@@ -11243,6 +11273,7 @@
         }
         const stats = State.globalStats.byTema[tema];
         stats.omitted = Number(stats.omitted || 0) + 1;
+        recordRecentTopicResult(stats, false, true);
         stats.specialty = stats.specialty || specialtyKey;
         State.topicMastery[tema] = State.topicMastery[tema] || { topic: tema, specialty: specialtyKey };
         State.topicMastery[tema].lastSeenAt = Date.now();
@@ -11730,7 +11761,7 @@
                 <div style="text-align: center; padding: 40px 20px; color: var(--text-muted);">
                     <div style="font-size: 40px; margin-bottom: 15px; opacity: 0.5;">${appIcon('sparkles')}</div>
                     <h3 style="color: var(--text-secondary); margin-bottom: 10px;">Aún no hay temas prioritarios</h3>
-                    <p style="font-size: 13px;">Necesitamos al menos 3 intentos y un fallo u omisión en un tema para recomendarte un refuerzo confiable.</p>
+                    <p style="font-size: 13px;">Los temas aparecerán aquí cuando falles u omitas una pregunta.</p>
                 </div>
             `;
             const dashFailList = $("dash-fail-list");
@@ -11756,13 +11787,13 @@
 
             el.innerHTML = `
                 <div class="fail-item-info" style="width: 100%;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
-                            <div class="fail-item-title">${t.topic}</div>
-                        <div style="font-size: 10px; padding: 3px 8px; border-radius: 12px; font-weight: 700; ${priorityBadge}">${priorityLabel}</div>
+                    <div class="refuerzo-item-heading">
+                        <div class="fail-item-title">${escapeHtml(t.topic)}</div>
+                        <div class="refuerzo-priority" style="${priorityBadge}">${priorityLabel}</div>
                     </div>
                     
-                    <div style="display: flex; align-items: center; justify-content: space-between;">
-                        <div class="fail-item-sub" style="color: var(--text-muted); font-size: 11px;">${specName.toUpperCase()}</div>
+                    <div class="refuerzo-item-metrics">
+                        <div class="fail-item-sub" style="color: var(--text-muted); font-size: 11px;">${escapeHtml(specName.toUpperCase())}</div>
                         <div style="font-size: 12px; font-weight: 700; color: ${t.precision <= 60 ? 'var(--accent-red)' : 'var(--text-secondary)'};">
                             Precisión: ${t.precision.toFixed(1)}%
                         </div>
@@ -11772,7 +11803,7 @@
                         <div style="height: 100%; width: ${t.precision}%; background: var(--accent-green);"></div>
                         <div style="height: 100%; width: ${100 - t.precision}%; background: var(--accent-red);"></div>
                     </div>
-                    <div style="display: flex; justify-content: space-between; font-size: 10px; margin-top: 4px; color: var(--text-muted);">
+                    <div class="refuerzo-item-split">
                         <span>${t.correct} bien</span>
                         <span>${t.wrong} mal${t.omitted ? ` · ${t.omitted} omitida${t.omitted === 1 ? "" : "s"}` : ""}</span>
                     </div>
@@ -11802,7 +11833,7 @@
                 elDash.innerHTML = `
                     <div class="fail-item-info" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
                         <div>
-                            <div class="fail-item-title" style="font-size: 13px;">${t.topic}</div>
+                            <div class="fail-item-title" style="font-size: 13px;">${escapeHtml(t.topic)}</div>
                             <div class="fail-item-sub" style="font-size: 10px;">Prioridad: ${priorityLabel} | Precisión: ${t.precision.toFixed(1)}%</div>
                         </div>
                         <div class="fail-item-badge ${badgeClass}" style="padding: 3px 6px; font-size: 9px; border:none; color:white; border-radius:4px;">Repasar</div>
@@ -12775,7 +12806,7 @@
         });
         if ($('stats-specialty-list')) $('stats-specialty-list').innerHTML = specialties.join('');
         if ($('stats-balance-legend')) $('stats-balance-legend').innerHTML = `<div class="stats-balance-row"><span><i style="--dot-color:var(--accent-green)"></i>Aciertos</span><strong>${number(correct)}</strong></div><div class="stats-balance-row"><span><i style="--dot-color:var(--accent-red)"></i>Errores</span><strong>${number(Math.max(0, answered - correct))}</strong></div><small>${number(answered)} preguntas respondidas<br>Las omitidas no se incluyen.</small>`;
-        const hasWeakTopics = getTopicPerformanceEntries().some(entry => entry.total >= 2 && entry.precision < 100);
+        const hasWeakTopics = getSmartReviewTopicPriorities(1).length > 0;
         if ($('stats-topics-empty')) $('stats-topics-empty').hidden = hasWeakTopics;
         const weakWrap = $('chart-weak-topics')?.parentElement;
         if (weakWrap) weakWrap.hidden = !hasWeakTopics;
@@ -12809,9 +12840,8 @@
         const histKey = lastHist
             ? `${lastHist.pct || 0}-${lastHist.timestamp || 0}-${lastHist.elapsedSec || 0}-${lastHist.blank || 0}-${lastHist.preguntas || 0}`
             : "none";
-        const weakTopicKey = getTopicPerformanceEntries()
-            .slice(0, 8)
-            .map(entry => `${entry.topic}:${entry.total}-${entry.correct}-${entry.status || "sin_tocar"}`)
+        const weakTopicKey = getSmartReviewTopicPriorities(6)
+            .map(entry => `${entry.topic}:${entry.attempts}-${entry.correct}-${entry.lastSeenAt}`)
             .join("|");
         const chartKey = [
             viewScope,
@@ -13291,10 +13321,7 @@
         // Chart 6: Temas más frágiles
         const ctxWeakTopics = document.getElementById('chart-weak-topics');
         if (ctxWeakTopics) {
-            const weakTopics = getTopicPerformanceEntries()
-                .filter(entry => entry.total >= 2 && entry.precision < 100)
-                .sort((a, b) => a.precision - b.precision || b.total - a.total)
-                .slice(0, 6);
+            const weakTopics = getSmartReviewTopicPriorities(6);
             const topicLabels = weakTopics.map(entry => truncateText(entry.topic, window.innerWidth < 600 ? 23 : 52));
             const precisions = weakTopics.map(entry => Number(entry.precision.toFixed(1)));
             const colors = weakTopics.map(entry => {
@@ -13335,7 +13362,7 @@
                                     const entry = weakTopics[context.dataIndex];
                                     if (!entry) return [];
                                     return [
-                                        `${entry.correct}/${entry.total} correctas`,
+                                        `${entry.correct}/${entry.attempts} correctas${entry.usesRecentEvidence ? ' en los últimos 30 días' : ' en el historial'}`,
                                         `Especialidad: ${TRONCAL_LABELS[entry.specialty] || entry.specialty}`
                                     ];
                                 }

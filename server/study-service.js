@@ -99,6 +99,12 @@ function aggregate(progress, exam, now) {
         max += weight;
         stats.byTema ||= {};
         const topicStats = stats.byTema[topic] ||= { total: 0, correct: 0, omitted: 0, specialty: q.specialty || 'mi' };
+        const observedAt = answer.selected === null ? (exam.finishObservedAt || now) : (answer.answeredAt || now);
+        topicStats.lastSeenAt = Math.max(Number(topicStats.lastSeenAt) || 0, observedAt);
+        topicStats.recentResults = [
+            ...(Array.isArray(topicStats.recentResults) ? topicStats.recentResults : []),
+            { at: observedAt, correct: answer.selected === q.answerIndex, omitted: answer.selected === null }
+        ].slice(-20);
         if (answer.selected === null || answer.selected !== q.answerIndex) {
             const key = caseKey(q), fingerprint = caseKey({ question: q.question || q.explanation });
             const questionKey = `${key}:${fingerprint}`, id = `question:${questionKey}`;
