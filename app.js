@@ -143,6 +143,7 @@
         userMetricsHealthPending: { jsErrors: 0, pageLoads: 1, lastJsErrorDay: "" },
         analyticsConsentBound: false,
         adminAnalyticsData: null,
+        adminAnalyticsSource: null,
         adminAnalyticsLoadedAt: 0,
         adminAnalyticsRangeDays: 30,
         adminAnalyticsLoading: false,
@@ -2596,30 +2597,38 @@
     const loadAdminAnalytics = async ({ force = false } = {}) => {
         if (!isAdminUser() || !window.FB?.getDocs || !window.ENARMAnalytics) return;
         if (State.adminAnalyticsPromise) return State.adminAnalyticsPromise;
-        if (!force && State.adminAnalyticsData && Date.now() - State.adminAnalyticsLoadedAt < ADMIN_ANALYTICS_CACHE_MS) {
+        if (!force && State.adminAnalyticsSource && Date.now() - State.adminAnalyticsLoadedAt < ADMIN_ANALYTICS_CACHE_MS) {
+            State.adminAnalyticsData = window.ENARMAnalytics.computeDashboard(State.adminAnalyticsSource, State.adminAnalyticsRangeDays);
             renderAdminAnalytics();
             return State.adminAnalyticsData;
         }
+        const uid = State.currentUid;
+        const current = () => State.currentUid === uid && window.FB.auth.currentUser?.uid === uid && isAdminUser();
         State.adminAnalyticsLoading = true;
         State.adminAnalyticsError = "";
         renderAdminAnalytics();
         const collectionNames = [USER_METRICS_COLLECTION, "user_directory", "entitlements", MANUAL_PAYMENT_REQUESTS_COLLECTION, "referral_redemptions", RATINGS_COLLECTION, FEEDBACK_COLLECTION, "reports"];
-        State.adminAnalyticsPromise = Promise.all(collectionNames.map(async name => {
+        const promise = Promise.all(collectionNames.map(async name => {
             const snapshot = await window.FB.getDocs(window.FB.collection(window.FB.db, name));
             return snapshot.docs.map(docSnap => ({ id: docSnap.id, ...(docSnap.data() || {}) }));
         })).then(([metrics, directory, entitlements, payments, referrals, ratings, feedback, reports]) => {
-            State.adminAnalyticsData = window.ENARMAnalytics.computeDashboard({ metrics, directory, entitlements, payments, referrals, ratings, feedback, reports }, State.adminAnalyticsRangeDays);
+            if (!current()) return null;
+            State.adminAnalyticsSource = { metrics, directory, entitlements, payments, referrals, ratings, feedback, reports };
+            State.adminAnalyticsData = window.ENARMAnalytics.computeDashboard(State.adminAnalyticsSource, State.adminAnalyticsRangeDays);
             State.adminAnalyticsLoadedAt = Date.now();
             return State.adminAnalyticsData;
         }).catch(err => {
+            if (!current()) return null;
             console.error("No se pudo cargar el panel de analíticas:", err);
             State.adminAnalyticsError = "No se pudieron consultar todas las métricas. Revisa la conexión y vuelve a intentar.";
             return null;
         }).finally(() => {
+            if (State.adminAnalyticsPromise !== promise) return;
             State.adminAnalyticsLoading = false;
             State.adminAnalyticsPromise = null;
             renderAdminAnalytics();
         });
+        State.adminAnalyticsPromise = promise;
         return State.adminAnalyticsPromise;
     };
 
@@ -6686,6 +6695,7 @@
         return false;
     };
 
+    let syncCommunitySubscription = () => {};
     const showView = (viewId) => {
         if (State.view === "view-exam" && viewId !== "view-exam" && State.examActive) {
             if (typeof pauseTimer === 'function') {
@@ -6722,6 +6732,7 @@
             window.scrollTo(0, 0);
         }
         State.view = viewId;
+        syncCommunitySubscription();
         const metricsFeature = getMetricsFeatureForView(viewId);
         if (metricsFeature) markMetricsFeatureUse(metricsFeature);
         if (viewId === "view-admin-users") startAdminPresenceRefresh();
@@ -14888,7 +14899,7 @@
         if (adminAnalyticsRange) {
             adminAnalyticsRange.addEventListener("change", () => {
                 State.adminAnalyticsRangeDays = Number(adminAnalyticsRange.value) || 30;
-                void loadAdminAnalytics({ force: true });
+                void loadAdminAnalytics();
             });
         }
         $("admin-analytics-refresh")?.addEventListener("click", () => void loadAdminAnalytics({ force: true }));
@@ -15505,6 +15516,7 @@
             // opcional: puede seguir cargando o no contener perfiles antiguos.
             let acceptedFriendDetails = new Map();
             let leaderboardUnsub = null;
+            const communityUid = window.FB.auth.currentUser.uid;
 
             const formatLeaderboardScore = (value) => {
                 const num = Number(value);
@@ -15791,13 +15803,14 @@
             };
 
             const subscribeLeaderboard = () => {
+                if (leaderboardUnsub) return;
                 const lbRef = window.FB.collection(window.FB.db, PUBLIC_PROFILES_COLLECTION);
-                if (leaderboardUnsub) leaderboardUnsub();
                 // Firestore omite de un query con orderBy todos los documentos que no
                 // contienen ese campo. Algunos perfiles creados durante la migración de
                 // seguridad todavía no tienen `score`, así que la ordenación en servidor
                 // hacía que Comunidad mostrara sólo una fracción de los usuarios.
                 leaderboardUnsub = window.FB.onSnapshot(lbRef, (snapshot) => {
+                    if (State.currentUid !== communityUid) return;
                     communityLeaderboardEntries = [];
                     snapshot.forEach(docSnap => {
                         const data = docSnap.data() || {};
@@ -15818,8 +15831,15 @@
                         return left.username.localeCompare(right.username, "es", { sensitivity: "base" });
                     });
                     renderCommunityPanels();
-                }, err => console.error("Error cargando leaderboard: ", err));
+                }, getAccountSession().guardListenerError(err => console.error("Error cargando leaderboard: ", err)));
             };
+            syncCommunitySubscription = () => {
+                const visible = State.currentUid === communityUid && window.FB.auth.currentUser?.uid === communityUid
+                    && State.view === 'view-comunidad' && document.visibilityState !== 'hidden';
+                if (visible) subscribeLeaderboard();
+                else { leaderboardUnsub?.(); leaderboardUnsub = null; }
+            };
+            document.addEventListener('visibilitychange', syncCommunitySubscription);
 
             const fetchFriendsAndLeaderboard = async () => {
                 const currentUid = window.FB.auth.currentUser?.uid;
@@ -15882,7 +15902,7 @@
             };
 
             bindRankingFilterButtons();
-            subscribeLeaderboard();
+            syncCommunitySubscription();
             fetchFriendsAndLeaderboard();
 
             // Buscar Amigo
@@ -17995,7 +18015,9 @@
                         if (!State.progressRestoreReady) await restoreAuthenticatedProgress(user);
                         else {
                             await flushPendingProgress();
-                            if (!progressOutbox.read(user.uid)?.pending) {
+                            // The active listener already delivers the authoritative document.
+                            // Storage and visibility events must not duplicate that server read.
+                            if (!progressOutbox.read(user.uid)?.pending && State.progressListenerUid !== user.uid) {
                                 const snapshot = await window.FB.getDocFromServer(window.FB.doc(window.FB.db, USER_PROGRESS_COLLECTION, user.uid));
                                 if (State.currentUid === user.uid && snapshot.exists()) receiveRemoteProgress(user.uid, snapshot.data());
                             }
@@ -18122,6 +18144,13 @@
                             stopProgressListener();
                             if (State.currentUid) clearAccountExamRuntime();
                             State.currentUid = "";
+                            syncCommunitySubscription();
+                            State.adminAnalyticsSource = null;
+                            State.adminAnalyticsData = null;
+                            State.adminAnalyticsLoadedAt = 0;
+                            State.adminAnalyticsPromise = null;
+                            State.adminAnalyticsLoading = false;
+                            State.adminAnalyticsError = "";
                             studySession?.stop(); studyBootUid = ''; studyStatus = null; window.clearTimeout(studyBootRetry);
                             State.isAdminClaim = false;
                             State.progressRestoreUid = "";

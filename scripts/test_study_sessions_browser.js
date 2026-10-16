@@ -25,7 +25,26 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
         .replace('import { getFirestore, ', 'import { connectFirestoreEmulator, getFirestore, ')
         .replace('const auth = getAuth(app);', "const auth = getAuth(app); connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });")
         .replace('const auxiliaryAuth = getAuth(auxiliaryApp);', "const auxiliaryAuth = getAuth(auxiliaryApp); connectAuthEmulator(auxiliaryAuth, 'http://127.0.0.1:9099', { disableWarnings: true });")
-        .replace('const db = getFirestore(app);', "const db = getFirestore(app); connectFirestoreEmulator(db, '127.0.0.1', 8080);");
+        .replace('const db = getFirestore(app);', "const db = getFirestore(app); connectFirestoreEmulator(db, '127.0.0.1', 8080);")
+        .replace('window.dispatchEvent(new Event("firebaseLoaded"));', `
+            window.__cloudCalls = { leaderboardStarts: 0, leaderboardActive: 0, progressReads: 0, analyticsReads: 0 };
+            const originalSnapshot = window.FB.onSnapshot, originalRead = window.FB.getDocFromServer, originalQuery = window.FB.getDocs;
+            window.FB.onSnapshot = (ref, ...args) => {
+                const leaderboard = ref.path === 'public_profiles';
+                if (leaderboard) { __cloudCalls.leaderboardStarts++; __cloudCalls.leaderboardActive++; }
+                const unsubscribe = originalSnapshot(ref, ...args); let stopped = false;
+                return () => { if (leaderboard && !stopped) __cloudCalls.leaderboardActive--; stopped = true; unsubscribe(); };
+            };
+            window.FB.getDocFromServer = (ref, ...args) => {
+                if (ref.path.startsWith('user_progress/')) __cloudCalls.progressReads++;
+                return originalRead(ref, ...args);
+            };
+            window.FB.getDocs = (ref, ...args) => {
+                if (['user_metrics', 'user_directory', 'entitlements', 'manual_payment_requests', 'referral_redemptions', 'app_ratings', 'feedback_submissions', 'reports'].includes(ref.path)) __cloudCalls.analyticsReads++;
+                return originalQuery(ref, ...args);
+            };
+            window.dispatchEvent(new Event('firebaseLoaded'));
+        `);
     const requests = { account: 0, study: 0 };
     let simulateQuota = true;
     let blockProgressWrites = false;
@@ -129,6 +148,38 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
         assert.equal(await pc.evaluate(() => __studyTest.State.isAdminClaim), true, 'Exercise actual administrator listeners during replacement');
         assert.equal(await pc.$eval('#session-conflict-dialog', d => d.open), false);
         console.log('PASS 1: normal login, no prompt');
+        await pc.waitForFunction(() => window.isCloudInit && __studyTest.State.entitlementLoaded);
+        assert.equal(await pc.evaluate(() => __cloudCalls.leaderboardStarts), 0, 'Dashboard must not load the full ranking');
+        await db.doc('public_profiles/legacy-community-test').set({ username: 'Perfil sin puntuación', scoreVisible: false });
+        await pc.evaluate(() => __studyTest.showView('view-comunidad'));
+        await pc.waitForFunction(() => document.querySelector('.leaderboard-list').textContent.includes('Perfil sin puntuación'));
+        await pc.evaluate(() => __studyTest.showView('view-comunidad'));
+        assert.deepEqual(await pc.evaluate(() => [__cloudCalls.leaderboardStarts, __cloudCalls.leaderboardActive]), [1, 1]);
+        await db.doc('public_profiles/legacy-community-test').update({ username: 'Perfil actualizado' });
+        await pc.waitForFunction(() => document.querySelector('.leaderboard-list').textContent.includes('Perfil actualizado'));
+        await pc.evaluate(() => __studyTest.showView('view-dashboard'));
+        assert.equal(await pc.evaluate(() => __cloudCalls.leaderboardActive), 0, 'Leaving Community stops the ranking listener');
+        await pc.evaluate(() => __studyTest.showView('view-admin-analytics'));
+        await pc.waitForFunction(() => !!__studyTest.State.adminAnalyticsData && !__studyTest.State.adminAnalyticsLoading);
+        assert.equal(await pc.evaluate(() => __cloudCalls.analyticsReads), 8);
+        await pc.select('#admin-analytics-range', '7');
+        assert.equal(await pc.evaluate(() => __cloudCalls.analyticsReads), 8, 'Range changes reuse the eight collections already loaded');
+        assert.equal(await pc.evaluate(() => __studyTest.State.adminAnalyticsData.rangeDays), 7);
+        assert.equal(await pc.$eval('#admin-analytics-range-label', node => node.textContent), 'Últimos 7 días');
+        await pc.click('#admin-analytics-refresh');
+        await pc.waitForFunction(() => !__studyTest.State.adminAnalyticsLoading);
+        assert.equal(await pc.evaluate(() => __cloudCalls.analyticsReads), 16, 'Explicit refresh still fetches fresh analytics');
+        await pc.evaluate(() => __studyTest.showView('view-dashboard'));
+        const progressReads = await pc.evaluate(() => __cloudCalls.progressReads);
+        await pc.evaluate(() => {
+            for (let i = 0; i < 10; i++) {
+                window.dispatchEvent(new StorageEvent('storage', { key: 'enarm_progress_v2:' + FB.auth.currentUser.uid + ':other-tab' }));
+                document.dispatchEvent(new Event('visibilitychange'));
+            }
+        });
+        await new Promise(resolve => setTimeout(resolve, 500));
+        assert.equal(await pc.evaluate(() => __cloudCalls.progressReads), progressReads, 'Active listeners prevent duplicate document reads on tab events');
+        console.log('PASS: ranking loads only in Community, retains legacy profiles/live updates, analytics range reuses data, tab events avoid duplicate progress reads');
         const bank = require('../questions');
         const flat = bank.flatMap(c => (c.questions || [c]).map((q, i) => ({ ...c, ...q, caseGroupId: 1, subQuestionIndex: i + 1, totalSubQuestions: (c.questions || [c]).length }))).slice(0, 40);
         await pc.evaluate(questionSet => __studyTest.beginExamSession({ questionSet, currentExamType: 'Prueba de sesion unica', mode: 'simulacro' }), flat);
@@ -149,9 +200,11 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
         console.log('PASS 2: second-device cancellation preserves PC');
         await login(phone);
         await phone.waitForFunction(() => document.querySelector('#session-conflict-dialog').open);
+        const pcSignedOut = pc.waitForNavigation({ waitUntil: 'load', timeout: 45000 });
         await phone.click('#session-conflict-dialog button[value="continue"]');
         await waitReady(phone);
         await phone.waitForFunction(() => __studyTest.studySession.owns() && __studyTest.State.answers.filter(a => a.selected === 1).length === 35);
+        await pcSignedOut;
         await pc.waitForFunction(() => !!window.FB && !!globalThis.__studyTest && !window.FB.auth.currentUser && !globalThis.__studyTest.State.currentUid && document.querySelector('#auth-overlay').classList.contains('active'));
         assert.equal(await pc.evaluate(() => __studyTest.State.questionSet.length), 0);
         const misleadingPermissionNotices = await pc.evaluate(() => JSON.parse(sessionStorage.getItem('session-test-notices') || '[]')
@@ -224,7 +277,9 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
         await pc.click('#session-conflict-dialog button[value="continue"]');
         await waitReady(pc); await pc.waitForFunction(() => __studyTest.studySession.owns());
         assert.equal(await pc.evaluate(() => __studyTest.State.answers[0].selected), null);
+        const reopenedSignedOut = reopened.waitForNavigation({ waitUntil: 'load', timeout: 45000 });
         await reopened.setOfflineMode(false);
+        await reopenedSignedOut;
         await reopened.waitForFunction(() => !!window.FB && !!globalThis.__studyTest && !window.FB.auth.currentUser && !__studyTest.State.currentUid);
         assert.equal((await db.doc('active_exams/' + uid).get()).data().id, offlineExamId);
         assert.equal((await db.doc('active_exams/' + uid).get()).data().answers[0].selected, null);
@@ -245,7 +300,9 @@ const projectId = 'enarmax-rules-test', root = path.resolve(__dirname, '..');
         const staleProfile = await browser.createBrowserContext();
         const stale = await staleProfile.newPage();
         const legacyActor = 'legacy-zero-browser-0001';
-        const zero = { ...confirmedProgress, globalStatsStr: JSON.stringify({ respondidas: 0, aciertos: 0, sesiones: 0 }), historyStr: '[]', studyCalendarStr: '{}' };
+        const zeroStats = { ...confirmedStats, respondidas: 0, aciertos: 0, sesiones: 0,
+            bySpecialty: Object.fromEntries(Object.entries(confirmedStats.bySpecialty).map(([key, value]) => [key, { ...value, total: 0, correct: 0 }])) };
+        const zero = { ...confirmedProgress, globalStatsStr: JSON.stringify(zeroStats), historyStr: '[]', studyCalendarStr: '{}' };
         const operation = { id: legacyActor + ':1', actor: legacyActor, sequence: 1, epoch: confirmedProgress.syncEpoch || 'initial',
             changes: { globalStatsStr: { kind: 'object', edits: { respondidas: { kind: 'add', value: -10000 }, aciertos: { kind: 'add', value: -10000 }, sesiones: { kind: 'add', value: -10000 } } },
                 historyStr: { kind: 'set', value: [] }, theme: { kind: 'set', value: 'forest' } } };
