@@ -12,6 +12,8 @@ const files = [
     "index.html",
     "styles.css",
     "dashboard-layout.css",
+    "mobile-widgets.css",
+    "mobile-widgets.js",
     "app.js",
     "progress-sync.js",
     "study-session.js",

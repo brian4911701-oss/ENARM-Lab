@@ -16,6 +16,7 @@
     "test": "node scripts/test_analytics_core.js && node scripts/test_pwa_theme_contract.js && node scripts/test_security_contract.js && node scripts/test_spaced_repetition_contract.js && node scripts/test_streak_core.js && node scripts/test_progress_persistence.js && node scripts/test_multi_device_sync.js && node scripts/test_multi_device_app.js",
     "test:pwa-theme": "node scripts/test_pwa_theme_contract.js",
     "test:progress-browser": "node scripts/test_progress_persistence_browser.js",
+    "test:mobile-widgets": "node scripts/test_mobile_widgets_browser.js",
     "build:hosting": "node scripts/build_hosting.js",
     "deploy:web": "firebase deploy --only hosting",
     "users:backfill-auth-dates": "node scripts/backfill_auth_created_dates.js",

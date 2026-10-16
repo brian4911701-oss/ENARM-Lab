@@ -6731,6 +6731,7 @@
         else stopAdminPresenceRefresh();
         document.body.classList.toggle("dashboard-mobile-hero-active", viewId === "view-dashboard");
         if (viewId === "view-dashboard") {
+            mobileWidgets?.refresh();
             updateDashboardStats();
             updateCharts();
         }
@@ -11847,8 +11848,49 @@
         }
     };
 
+    let mobileWidgets = null;
+    const initMobileWidgets = () => {
+        mobileWidgets = window.ENARMMobileWidgets?.create({
+            clock: $("exam-countdown"),
+            // The calendar has daily session counts, not daily answer counts.
+            // History is capped at 50 entries: do not present it as a complete week.
+            getActivity: () => Array.from({ length: 7 }, (_, index) => {
+                const date = new Date();
+                date.setHours(12, 0, 0, 0);
+                date.setDate(date.getDate() - (6 - index));
+                const key = formatDateKey(date);
+                const sessions = Number(State.studyCalendar?.[key]?.sessions);
+                return {
+                    date: date.toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long" }),
+                    label: ["D", "L", "M", "M", "J", "V", "S"][date.getDay()],
+                    count: Number.isFinite(sessions) ? Math.max(0, Math.floor(sessions)) : 0
+                };
+            }),
+            getNotebook: () => {
+                const entries = State.caseNotebook || [];
+                return { count: entries.length, title: entries[0]?.title || "", topic: entries[0]?.topic || "" };
+            },
+            openNotebook: () => $("btn-open-notebook-dashboard")?.click(),
+            getTimer: () => {
+                const timer = State.pomodoroState;
+                if (!timer) return null;
+                return {
+                    seconds: timer.isRunning && timer.endsAt ? Math.max(0, (timer.endsAt - Date.now()) / 1000) : timer.secondsLeft,
+                    running: timer.isRunning,
+                    progress: getPomodoroProgress(),
+                    label: getPomodoroModeMeta(timer.mode).label,
+                    completedAt: timer.lastCompletedAt || 0
+                };
+            },
+            toggleTimer: () => State.pomodoroState?.isRunning ? pausePomodoroTimer() : startPomodoroTimer(),
+            resetTimer: () => resetPomodoroTimer(),
+            navigate: view => showView(view)
+        });
+    };
     let lastDashboardRenderKey = "";
     const updateDashboardStats = (force = false) => {
+        mobileWidgets?.updateActivity();
+        mobileWidgets?.updateNotebook();
         const now = new Date();
         const effStreak = getEffectiveStreak(now);
         const quoteTickKey = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}-${Math.floor(now.getHours() / 4)}`;
@@ -13719,6 +13761,8 @@
         if (State.pomodoroSettings.systemNotifications && ("Notification" in window) && Notification.permission === "granted") {
             showPomodoroBrowserNotification(title, body);
         }
+        // The mobile stack uses the existing nonblocking visual notification.
+        if (mobileWidgets?.isMobile()) return;
         try {
             window.alert(body);
         } catch (err) {
@@ -13949,6 +13993,7 @@
     };
     const renderPomodoroHub = () => {
         ensureStudySystemsState();
+        mobileWidgets?.updateTimer();
         const widgetShell = $("pomodoro-widget-shell");
         const revealBtn = $("btn-pomo-reveal");
         const hideBtn = $("btn-pomo-hide");
@@ -14409,6 +14454,7 @@
         initSetupLogic();
         bindChallengeButton();
         initDashboardShortcuts();
+        initMobileWidgets();
         startExamCountdown();
         initReportLogic();
         initCommunityBroadcastLogic();
