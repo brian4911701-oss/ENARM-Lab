@@ -193,7 +193,8 @@
         return clone(local);
     };
     const create = (storage, options = {}) => {
-        const actor = options.actor || id(), views = new Map();
+        const actor = options.actor || id(), views = new Map(), sequences = new Map();
+        let cacheError = null;
         const prefix = uid => `enarm_progress_v2:${uid}:`;
         const ownKey = uid => prefix(uid) + actor;
         const operationPrefix = uid => `enarm_progress_op:${uid}:`;
@@ -227,8 +228,17 @@
             return pending.sort((a, b) => a.actor.localeCompare(b.actor) || a.sequence - b.sequence);
         };
         const persist = (uid, view, canonical, pending, sequence) => {
-            storage.setItem(ownKey(uid), JSON.stringify({ uid, actor, sequence, view, canonical, operations: pending, savedAt: Date.now() }));
             views.set(uid, { view: clone(view), canonical: clone(canonical) });
+            sequence = Math.max(sequence || 0, sequences.get(uid) || 0);
+            sequences.set(uid, sequence);
+            try {
+                storage.setItem(ownKey(uid), JSON.stringify({ uid, actor, sequence, view, canonical, operations: pending, savedAt: Date.now() }));
+                cacheError = null;
+            } catch (error) {
+                if (!['QuotaExceededError', 'SecurityError'].includes(error.name)) throw error;
+                if (!cacheError) console.warn('El progreso confirmado se cargó, pero no se pudo guardar su copia local.', error);
+                cacheError = error;
+            }
         };
         const begin = (uid, data) => { if (!views.has(uid)) views.set(uid, { view: clone(data), canonical: clone(data) }); };
         const read = uid => {
@@ -241,7 +251,7 @@
             if (!uid) return null;
             const previous = views.get(uid) || { view: records(uid).at(-1)?.view || {}, canonical: {} };
             const own = load(ownKey(uid));
-            const sequence = Math.max(own?.sequence || 0, ...operations(uid).filter(operation => operation.actor === actor).map(operation => operation.sequence), 0) + 1;
+            const sequence = Math.max(own?.sequence || 0, sequences.get(uid) || 0, ...operations(uid).filter(operation => operation.actor === actor).map(operation => operation.sequence), 0) + 1;
             const operation = makeOperation(actor, sequence, previous.view, data, stageOptions.reset);
             if (!operation) return read(uid);
             if (stageOptions.importId) operation.importId = stageOptions.importId;
@@ -285,13 +295,14 @@
             const view = pendingView(remote, operations(uid)), own = load(ownKey(uid));
             persist(uid, view, remote, own?.operations || [], own?.sequence || 0);
             const pendingActors = new Set(operations(uid).map(operation => operation.actor));
-            for (const record of records(uid)) if (record.actor !== actor && !pendingActors.has(record.actor)) storage.removeItem(record.key);
+            // Keep the last durable backup if the replacement cache could not be written.
+            if (!cacheError) for (const record of records(uid)) if (record.actor !== actor && !pendingActors.has(record.actor)) storage.removeItem(record.key);
             return view;
         };
         const forget = uid => {
             records(uid).forEach(record => storage.removeItem(record.key));
             operations(uid).forEach(operation => storage.removeItem(operationKey(uid, operation)));
-            storage.removeItem(legacyKey(uid)); views.delete(uid);
+            storage.removeItem(legacyKey(uid)); views.delete(uid); sequences.delete(uid);
             storage.removeItem(`enarm_progress_legacy_archive:${uid}`);
         };
         const batch = (uid, limit = 40, maxBytes = 650000) => {
@@ -304,7 +315,7 @@
             }
             return selected;
         };
-        return { begin, read, stage, restore, accept, batch, forget, actor };
+        return { begin, read, stage, restore, accept, batch, forget, actor, get cacheError() { return cacheError; } };
     };
     const api = { create, compactHistory, makeOperation, applyOperation, mergeBatch, legacyMerge, hasDerivedEdit, id, fields };
     if (typeof module === 'object' && module.exports) module.exports = api;

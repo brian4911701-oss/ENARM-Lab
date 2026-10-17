@@ -46,7 +46,7 @@
     "blocks:phase1": "node scripts/run_phase1_blocks.js",
     "blocks:phase1:dry": "node scripts/run_phase1_blocks.js --dry",
     "verify:topic-search": "node scripts/test_topic_search_integrity.js",
-    "test:session-quota": "node --test tests/session.quota.test.js tests/progress.recovery.test.js"
+    "test:session-quota": "node --test tests/session.quota.test.js tests/progress.recovery.test.js tests/progress.storage.test.js"
   },
   "keywords": [],
   "author": "",

@@ -1842,6 +1842,16 @@
         'userSpecialty', 'userUniversity', 'userPhone', 'userTargetYear', 'userAvatar', 'isScorePublic'
     ].map(key => [key, State[key]])));
     const progressOutbox = window.ENARMProgressSync.create(localStorage);
+    const cacheRestoredProgress = write => {
+        try { write(); return true; }
+        catch (error) {
+            if (!['QuotaExceededError', 'SecurityError'].includes(error.name)) throw error;
+            State.progressLocalCacheError = true;
+            console.warn('El progreso se conserva en el servidor; no se pudo actualizar su copia local.', error);
+            return false;
+        }
+    };
+    const cacheRestoredValue = (key, value) => cacheRestoredProgress(() => localStorage.setItem(key, value));
     const studyMessages = {
         connecting: 'Conectando con tu cuenta', confirmed: 'Examen guardado en la nube', pending: 'Respuestas guardadas aquí · envío pendiente',
         'firestore-quota-exceeded': 'Servicio temporalmente limitado. Tus cambios siguen guardados aquí; se reintentará más tarde.',
@@ -2014,7 +2024,8 @@
         else if (user && !user.emailVerified) text = "Guardado en este dispositivo · verifica tu correo para sincronizar";
         else if (legacyProgressConflictCount) text = 'Actividad anterior pendiente de revisión en tu perfil';
         else if (studyStatus && (!studyStatus.registered || studyStatus.pending || !['confirmed'].includes(studyStatus.status))) text = studyMessages[studyStatus.status] || 'Sincronización pendiente';
-        else if (State.progressRestoreReady) text = "Progreso sincronizado";
+        else if (State.progressRestoreReady) text = (progressOutbox.cacheError || State.progressLocalCacheError)
+            ? "Progreso cargado · copia sin conexión no disponible" : "Progreso sincronizado";
         document.querySelectorAll("[data-progress-sync-status]").forEach(element => { element.textContent = text; });
     };
     const applyPrivateProgress = (data) => {
@@ -2040,7 +2051,7 @@
         rebuildTopicMastery();
         ensureDailyPlanFresh();
         // Never stage a new operation in response to a remote snapshot.
-        saveGlobalStats({ localOnly: true });
+        State.progressLocalCacheError = !cacheRestoredProgress(() => saveGlobalStats({ localOnly: true }));
         updateDashboardStats();
         if (State.view === "view-estadisticas" && typeof updateCharts === 'function') updateCharts();
         if (State.view === "view-historial") updateHistoryView();
@@ -17852,7 +17863,7 @@
                     const cleanName = normalizePublicUsername(displayName || State.userName || "Aspirante");
 
                     State.userName = cleanName;
-                    localStorage.setItem("enarm_user", cleanName);
+                    cacheRestoredValue("enarm_user", cleanName);
 
                     $$(".user-name").forEach(el => el.textContent = cleanName);
                     $$(".header-title").forEach(el => {
@@ -17965,12 +17976,12 @@
                                 syncAuthenticatedUI(data.username);
                             }
 
-                            if (data.specialty !== undefined) { State.userSpecialty = data.specialty; localStorage.setItem("enarm_specialty", State.userSpecialty); if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty; }
-                            if (data.university !== undefined) { State.userUniversity = data.university; localStorage.setItem("enarm_university", State.userUniversity); if ($("profile-university")) $("profile-university").value = State.userUniversity; }
+                            if (data.specialty !== undefined) { State.userSpecialty = data.specialty; cacheRestoredValue("enarm_specialty", State.userSpecialty); if ($("profile-specialty")) $("profile-specialty").value = State.userSpecialty; }
+                            if (data.university !== undefined) { State.userUniversity = data.university; cacheRestoredValue("enarm_university", State.userUniversity); if ($("profile-university")) $("profile-university").value = State.userUniversity; }
                             if (data.phone !== undefined) { State.userPhone = normalizePhoneInput(data.phone); if ($("profile-phone")) $("profile-phone").value = State.userPhone; }
-                            if (data.targetYear !== undefined) { State.userTargetYear = String(data.targetYear || ""); localStorage.setItem("enarm_target_year", State.userTargetYear); if ($("profile-target-year")) $("profile-target-year").value = State.userTargetYear; }
-                            if (data.avatarId !== undefined) { State.userAvatar = normalizeProfileAvatar(data.avatarId); localStorage.setItem(PROFILE_AVATAR_STORAGE_KEY, State.userAvatar); applyCurrentProfileAvatar(); }
-                            if (data.scoreVisible !== undefined || data.isScorePublic !== undefined) { State.isScorePublic = data.scoreVisible === true || (data.scoreVisible === undefined && data.isScorePublic !== false); localStorage.setItem("enarm_score_public", State.isScorePublic ? "1" : "0"); if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic; }
+                            if (data.targetYear !== undefined) { State.userTargetYear = String(data.targetYear || ""); cacheRestoredValue("enarm_target_year", State.userTargetYear); if ($("profile-target-year")) $("profile-target-year").value = State.userTargetYear; }
+                            if (data.avatarId !== undefined) { State.userAvatar = normalizeProfileAvatar(data.avatarId); cacheRestoredValue(PROFILE_AVATAR_STORAGE_KEY, State.userAvatar); applyCurrentProfileAvatar(); }
+                            if (data.scoreVisible !== undefined || data.isScorePublic !== undefined) { State.isScorePublic = data.scoreVisible === true || (data.scoreVisible === undefined && data.isScorePublic !== false); cacheRestoredValue("enarm_score_public", State.isScorePublic ? "1" : "0"); if ($("profile-score-public-toggle")) $("profile-score-public-toggle").checked = !State.isScorePublic; }
                             if (typeof data.referralCode === "string" && data.referralCode.trim() && !State.referralCode) { State.referralCode = normalizeReferralCode(data.referralCode); updateReferralUI(); }
 
                             applyPrivateProgress(data);

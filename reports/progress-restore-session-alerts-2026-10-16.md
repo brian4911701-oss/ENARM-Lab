@@ -40,3 +40,13 @@ Publicar la revisión completa del cliente y de la API que incluye `progress-syn
 Esta corrección no modifica `firestore.rules`, no requiere índices nuevos, migraciones, borrado de datos ni habilitar Blaze. Deben mantenerse publicadas las reglas de sesión única anteriores. Publicar solo Firebase Hosting no actualiza los endpoints de Vercel. Después de publicar, comprobar que PC y PWA reciben la nueva versión y comparar el progreso al cambiar de dispositivo; no borrar el almacenamiento local como parte de la reparación.
 
 No se realizó despliegue ni push en esta continuación. La exclusión de dispositivos sigue siendo autorización del servidor de ENARMAX; las limitaciones de los endpoints nativos de Firebase Auth permanecen documentadas en `single-account-session-2026-10-15.md`.
+
+## Seguimiento: teléfono recuperado y protección del almacenamiento local
+
+El usuario confirmó que la misma cuenta funcionó en incógnito y, después de borrar los datos de navegación, también en la PWA instalada. Esto sitúa el bloqueo en el estado local compartido por el navegador y la PWA. No permite identificar por sí solo si había caché obsoleta, almacenamiento lleno u otra inconsistencia local. El progreso confirmado de Firebase no se reinició.
+
+Se comprobó que `www.enarmax.com` servía v109 y los archivos corregidos, mientras el dominio antiguo `enarm-lab-social.web.app` seguía en v73. Las diferencias entre las reglas publicadas y locales eran de formato y comentarios. Una prueba puntual en producción con cuenta desechable verificó lectura autorizada, guardado, reemplazo y rechazo del token anterior; la cuenta temporal y sus documentos se eliminaron al terminar.
+
+Durante el diagnóstico se reprodujo otro fallo: una excepción de almacenamiento local al copiar el progreso podía impedir mostrar una lectura correcta del servidor. La protección adicional mantiene los datos confirmados en memoria y permite renderizarlos aunque falle esa copia. No oculta fallos al escribir operaciones pendientes, conserva el último respaldo duradero y evita reutilizar secuencias ya reconocidas. Se prepara como v110, todavía sin publicar.
+
+Validación de esta protección: `npm test` aprobado, incluidos 19 casos de sesión/recuperación/almacenamiento (cinco nuevos); recorrido integral de Chrome aprobado. Una reproducción local con la estructura del historial auditado y almacenamiento casi lleno recuperó 278 respuestas y 34 sesiones, sin excepciones de JavaScript, e informó que la copia sin conexión no estaba disponible. Esta reproducción no demuestra que el teléfono físico estuviera lleno; su recuperación fue confirmada por el usuario al limpiar los datos locales.
