@@ -380,22 +380,47 @@
     const TRONCAL_SPECIALTIES = ["mi", "ped", "gyo", "cir"];
     const SCALE_STUDY_STORAGE_KEY = "enarm_scale_study";
     const PROFILE_AVATAR_STORAGE_KEY = "enarm_profile_avatar";
+    const PROFILE_AVATAR_COLORS = Object.freeze([
+        { id: "azul", label: "Azul", hex: "#7295F7" },
+        { id: "menta", label: "Menta", hex: "#64D6B0" },
+        { id: "coral", label: "Coral", hex: "#F59887" },
+        { id: "lila", label: "Lila", hex: "#B69AF1" },
+        { id: "miel", label: "Miel", hex: "#F2CA72" },
+        { id: "rosa", label: "Rosa", hex: "#EE9FC9" },
+        { id: "turquesa", label: "Turquesa", hex: "#54C6D5" },
+        { id: "durazno", label: "Durazno", hex: "#F5AE72" },
+        { id: "pervinca", label: "Pervinca", hex: "#9194E9" },
+        { id: "lima", label: "Lima", hex: "#BDD875" },
+        { id: "blanco", label: "Blanco", hex: "#F7F8FA" }
+    ].map(Object.freeze));
     const PROFILE_AVATARS = Object.freeze([
-        Object.freeze({ id: "ajolote", label: "Doctora Ajolote", src: "avatars/doctor-ajolote.webp" }),
-        Object.freeze({ id: "ciclope", label: "Doctor Cíclope", src: "avatars/doctor-ciclope.webp" }),
-        Object.freeze({ id: "hongo", label: "Doctora Hongo", src: "avatars/doctor-hongo.webp" }),
-        Object.freeze({ id: "alien", label: "Doctor Alien", src: "avatars/doctor-alien.webp" }),
-        Object.freeze({ id: "robot", label: "Doctor Robot", src: "avatars/doctor-robot.webp" }),
-        Object.freeze({ id: "duende", label: "Doctora Duende", src: "avatars/doctor-duende.webp" }),
-        Object.freeze({ id: "gelatina", label: "Doctora Gelatina", src: "avatars/doctor-gelatina.webp" }),
-        Object.freeze({ id: "gecko", label: "Doctor Gecko", src: "avatars/doctor-gecko.webp" }),
-        Object.freeze({ id: "nube", label: "Doctora Nube", src: "avatars/doctor-nube.webp" }),
-        Object.freeze({ id: "monstruo", label: "Doctor Monstruo", src: "avatars/doctor-monstruo.webp" })
-    ]);
-    const PROFILE_AVATAR_BY_ID = new Map(PROFILE_AVATARS.map(avatar => [avatar.id, avatar]));
+        { id: "orbi", label: "Orbi", color: "azul" },
+        { id: "cubi", label: "Cubi", color: "coral" },
+        { id: "nimbo", label: "Nimbo", color: "lila" },
+        { id: "gota", label: "Gota", color: "turquesa" },
+        { id: "oso", label: "Osito", color: "miel" },
+        { id: "gato", label: "Mishi", color: "durazno" },
+        { id: "conejo", label: "Lupi", color: "rosa" },
+        { id: "robot", label: "Boti", color: "pervinca" },
+        { id: "brote", label: "Brote", color: "menta" },
+        { id: "ajolote", label: "Axol", color: "lima" }
+    ].map(Object.freeze));
+    const PROFILE_AVATAR_BY_ID = new Map(PROFILE_AVATARS.flatMap(avatar =>
+        PROFILE_AVATAR_COLORS.map(color => {
+            const id = `lab-${avatar.id}-${color.id}`;
+            return [id, Object.freeze({ id, baseId: avatar.id, color: color.id,
+                label: `${avatar.label} · ${color.label}`, src: `avatars/procedural/${avatar.id}-${color.id}.svg` })];
+        })
+    ));
+    const PROFILE_AVATAR_LEGACY_IDS = Object.freeze({
+        ajolote: "lab-ajolote-rosa", ciclope: "lab-orbi-azul", hongo: "lab-brote-menta",
+        alien: "lab-gota-menta", robot: "lab-robot-azul", duende: "lab-gato-lila",
+        gelatina: "lab-cubi-coral", gecko: "lab-conejo-rosa", nube: "lab-nimbo-lila", monstruo: "lab-oso-miel"
+    });
     const normalizeProfileAvatar = (value) => {
         const safeValue = String(value || "").trim().toLowerCase();
-        return PROFILE_AVATAR_BY_ID.has(safeValue) ? safeValue : "";
+        const avatarId = Object.hasOwn(PROFILE_AVATAR_LEGACY_IDS, safeValue) ? PROFILE_AVATAR_LEGACY_IDS[safeValue] : safeValue;
+        return PROFILE_AVATAR_BY_ID.has(avatarId) ? avatarId : "";
     };
     const POMQUEST_LOGO_SRC = "pomquest-logo.png";
     const trackEvent = (name, params = {}) => {
@@ -1252,7 +1277,7 @@
         if (item.kind !== "question" || !item.questionFingerprint) {
             return startTemaSession([item.topic].filter(Boolean), 5, "Repaso de tema pendiente", triggerButton, item.id);
         }
-        await withTemporaryButtonLabel(triggerButton, "Preparando...", async () => {
+        await withTemporaryButtonLabel(triggerButton, "Preparando...", () => withExamLoadingOverlay(async () => {
             try {
                 await ensureQuestionsReady({ silent: false });
             } catch (_) {
@@ -1263,7 +1288,7 @@
                 showNotification("Este reactivo ya no está disponible en el banco. Conservamos el tema para que puedas repasarlo manualmente.", "warning");
                 return;
             }
-            beginExamSession({
+            await beginExamSession({
                 questionSet: [question],
                 mode: "simulacro",
                 currentExamIsReal: false,
@@ -1271,7 +1296,7 @@
                 durationSec: 0,
                 reviewQueueItemId: item.id
             });
-        });
+        }, { title: "Preparando tu repaso", detail: "Estamos cargando las preguntas de tu repaso programado.", progress: null }));
     };
     const getFocusedWeakTopics = (limit = 3) => getSmartReviewTopicPriorities(limit);
     const buildSessionPostmortem = (result) => {
@@ -1631,6 +1656,8 @@
     let examLoadingDetailEl = null;
     let examLoadingFillEl = null;
     let examLoadingPercentEl = null;
+    let examLoadingDepth = 0;
+    let examStartPromise = null;
 
     const ensureExamLoadingOverlay = () => {
         if (examLoadingOverlayEl) return examLoadingOverlayEl;
@@ -1684,7 +1711,11 @@
         if (typeof detail === "string" && examLoadingDetailEl) {
             examLoadingDetailEl.textContent = detail;
         }
-        if (typeof progress === "number") {
+        if (progress === null) {
+            overlay.classList.add("is-indeterminate");
+            if (examLoadingPercentEl) examLoadingPercentEl.textContent = "En proceso";
+        } else if (typeof progress === "number") {
+            overlay.classList.remove("is-indeterminate");
             const safeProgress = clampLoadingProgress(progress);
             if (examLoadingFillEl) examLoadingFillEl.style.width = `${safeProgress}%`;
             if (examLoadingPercentEl) examLoadingPercentEl.textContent = `${Math.round(safeProgress)}%`;
@@ -1697,7 +1728,7 @@
         document.body.classList.add("exam-loading-active");
         overlay.classList.add("active");
         overlay.setAttribute("aria-hidden", "false");
-        setExamLoadingState(initialState);
+        setExamLoadingState({ progress: 0, ...initialState });
     };
 
     const hideExamLoadingOverlay = () => {
@@ -1713,8 +1744,8 @@
     });
 
     const withExamLoadingOverlay = async (task, initialState = {}) => {
+        examLoadingDepth++;
         showExamLoadingOverlay(initialState);
-        await waitForNextPaint();
 
         const setStage = async (nextState = {}) => {
             setExamLoadingState(nextState);
@@ -1722,9 +1753,13 @@
         };
 
         try {
-            return await task(setStage);
+            await waitForNextPaint();
+            const result = await task(setStage);
+            // Keep the overlay until the destination has reached a browser paint.
+            await waitForNextPaint();
+            return result;
         } finally {
-            hideExamLoadingOverlay();
+            if (--examLoadingDepth === 0) hideExamLoadingOverlay();
         }
     };
 
@@ -1921,7 +1956,7 @@
             } finally { clearTimeout(timeout); }
         },
         listenExam: (uid, next, error) => window.FB.onSnapshot(window.FB.doc(window.FB.db, 'active_exams', uid), snap => {
-            if (snap.exists() && !snap.metadata.fromCache && !snap.metadata.hasPendingWrites) void hydrateCloudExam(uid, snap.data()).then(exam => { if (State.currentUid === uid) next(exam); }).catch(error);
+            if (snap.exists() && !snap.metadata.fromCache && !snap.metadata.hasPendingWrites) void hydrateCloudExam(uid, snap.data()).then(exam => State.currentUid === uid ? next(exam) : undefined).catch(error);
         }, error),
         onStatus: status => {
             studyStatus = status;
@@ -1955,10 +1990,16 @@
                     setExamTimerVisibility(true, remaining); if (!remaining) void finishExam();
                 }, 1000);
                 setExamTimerVisibility(exam.durationSec > 0, Math.max(exam.durationSec - getExamElapsedSeconds(), 0));
-                updateDashboardStats();
+                if (State.view === 'view-dashboard') updateDashboardStats();
             } finally { applyingCloudExam = false; }
         },
-        onAttempt: (attempt, data) => {
+        onAttempt: async (attempt, data) => {
+            const uid = State.currentUid;
+            if (examLoadingDepth > 0) {
+                setExamLoadingState({ title: "Preparando tu análisis clínico", detail: "Tu examen está guardado. Estamos organizando los resultados.", progress: null });
+                await waitForNextPaint();
+                if (State.currentUid !== uid) return;
+            }
             if (data) applyPrivateProgress(progressOutbox.accept(State.currentUid, data));
             if (completedCloudExams.has(attempt.id)) return;
             completedCloudExams.add(attempt.id);
@@ -1971,7 +2012,7 @@
             renderSessionResults(summary, (State.examStartedWithPremium || isPremiumActive()) ? 'premium' : 'free');
             State.activeReviewQueueItemId = ''; State.activeChallengeId = null; State.activeChallengeRole = null;
             ensureDailyPlanFresh(true);
-            saveGlobalStats(); renderResultsPostmortem(); showView('view-results');
+            saveGlobalStats(); showView('view-results'); renderResultsPostmortem();
             void syncUserMetrics({ force: true });
         }
     });
@@ -6644,7 +6685,7 @@
                 if (appLayout) appLayout.style.display = "flex";
                 document.body.classList.add("guest-exam-mode");
 
-                const started = beginExamSession({
+                const started = await beginExamSession({
                     questionSet,
                     mode: "simulacro",
                     currentExamIsReal: false,
@@ -6953,20 +6994,35 @@
     const renderAvatarPicker = (picker, selectedAvatar, initials, onSelect, className = "") => {
         if (!picker) return;
         const normalizedSelection = normalizeProfileAvatar(selectedAvatar);
+        const selection = PROFILE_AVATAR_BY_ID.get(normalizedSelection);
         picker.className = `profile-avatar-picker ${className}`.trim();
         picker.innerHTML = [
             `<button class="profile-avatar-option ${normalizedSelection ? "" : "selected"}" type="button" data-avatar-id="" aria-pressed="${normalizedSelection ? "false" : "true"}" title="Usar iniciales"><span class="profile-avatar-initials">${escapeHtml(initials || "AS")}</span><span>Iniciales</span></button>`,
-            ...PROFILE_AVATARS.map(avatar => `
-                <button class="profile-avatar-option ${normalizedSelection === avatar.id ? "selected" : ""}" type="button" data-avatar-id="${avatar.id}" aria-pressed="${normalizedSelection === avatar.id ? "true" : "false"}" title="${escapeHtml(avatar.label)}">
-                    <img src="${avatar.src}" alt="" loading="lazy" decoding="async">
-                    <span>${escapeHtml(avatar.label.replace(/^Doctor(?:a)?\s+/, ""))}</span>
+            ...PROFILE_AVATARS.map(avatar => {
+                const variant = PROFILE_AVATAR_BY_ID.get(`lab-${avatar.id}-${avatar.color}`);
+                const selected = selection?.baseId === avatar.id;
+                return `
+                <button class="profile-avatar-option ${selected ? "selected" : ""}" type="button" data-avatar-id="${selected ? selection.id : variant.id}" aria-pressed="${selected ? "true" : "false"}" title="${escapeHtml(avatar.label)}">
+                    <span class="profile-avatar-thumb"><img src="${variant.src}" alt="" loading="lazy" decoding="async"></span>
+                    <span>${escapeHtml(avatar.label)}</span>
                 </button>
-            `)
+            `;
+            }),
+            selection ? `<div class="profile-avatar-palette" role="group" aria-label="Color del avatar">
+                <div class="profile-avatar-selection"><img src="${selection.src}" alt="${escapeHtml(selection.label)}"><span class="profile-avatar-palette-label">Tu ${escapeHtml(PROFILE_AVATARS.find(avatar => avatar.id === selection.baseId).label)}<small>Elige su color</small></span></div>
+                ${PROFILE_AVATAR_COLORS.map(color => `<button class="profile-avatar-color" type="button" data-avatar-color="${color.id}" aria-label="${color.label}" title="${color.label}" aria-pressed="${selection.color === color.id ? "true" : "false"}" style="--avatar-color: ${color.hex}"><span aria-hidden="true"></span></button>`).join("")}
+            </div>` : ""
         ].join("");
 
         picker.querySelectorAll("[data-avatar-id]").forEach(button => {
             button.addEventListener("click", () => {
                 onSelect(normalizeProfileAvatar(button.getAttribute("data-avatar-id")));
+            });
+        });
+        picker.querySelectorAll("[data-avatar-color]").forEach(button => {
+            button.addEventListener("click", () => {
+                onSelect(normalizeProfileAvatar(`lab-${selection.baseId}-${button.getAttribute("data-avatar-color")}`));
+                picker.querySelector(`[data-avatar-color="${button.getAttribute("data-avatar-color")}"]`)?.focus();
             });
         });
     };
@@ -6981,12 +7037,6 @@
                 applyCurrentProfileAvatar();
                 saveGlobalStats({ profileFields: ['avatarId'] });
                 renderProfileAvatarPicker();
-                const modal = $("avatar-picker-modal");
-                if (modal) {
-                    modal.classList.remove("active");
-                    modal.setAttribute("aria-hidden", "true");
-                }
-                showNotification("Avatar actualizado para tu perfil y comunidad.", "success");
             }
         );
     };
@@ -9080,10 +9130,10 @@
 
                             await setStage({
                                 detail: "Abriendo tu examen.",
-                                progress: 100
+                                progress: null
                             });
 
-                            beginExamSession({
+                            await beginExamSession({
                                 questionSet: realSet.questionSet,
                                 mode: "simulacro",
                                 currentExamIsReal: true,
@@ -9138,12 +9188,12 @@
 
                         await setStage({
                             detail: "Abriendo tu examen.",
-                            progress: 100
+                            progress: null
                         });
 
                         const selectedModeBtn = document.querySelector(".mode-toggle-btn.active");
                         const modeVal = selectedModeBtn ? selectedModeBtn.dataset.examMode : "casos";
-                        beginExamSession({
+                        await beginExamSession({
                             questionSet: finalQuestionSet,
                             mode: !hasPremium ? "estudio" : (modeVal === "casos" ? "simulacro" : "estudio"),
                             currentExamIsReal: false,
@@ -9246,10 +9296,10 @@
 
                 await setStage({
                     detail: "Abriendo tu sesión de práctica.",
-                    progress: 100
+                    progress: null
                 });
 
-                beginExamSession({
+                await beginExamSession({
                     questionSet: processAndFlattenPool(pool, finalQty),
                     mode: "simulacro",
                     currentExamIsReal: false,
@@ -9325,9 +9375,9 @@
                 }
                 await setStage({
                     detail: "Abriendo tu refuerzo inteligente.",
-                    progress: 100
+                    progress: null
                 });
-                beginExamSession({
+                await beginExamSession({
                     questionSet,
                     mode: "simulacro",
                     currentExamIsReal: false,
@@ -9372,10 +9422,10 @@
 
                 await setStage({
                     detail: "Abriendo tu sesión de práctica.",
-                    progress: 100
+                    progress: null
                 });
 
-                beginExamSession({
+                await beginExamSession({
                     questionSet: processAndFlattenPool(pool, finalQty),
                     mode: "simulacro",
                     currentExamIsReal: false,
@@ -9740,7 +9790,7 @@
         return Math.max(Math.floor((Date.now() - State.startTime) / 1000), 0);
     };
 
-    const beginExamSession = ({
+    const beginExamSession = async ({
         questionSet,
         mode = "simulacro",
         currentExamIsReal = false,
@@ -9749,15 +9799,12 @@
         guest = false,
         reviewQueueItemId = ""
     }) => {
-        if (!guest && studySession) {
-            const user = window.FB?.auth?.currentUser;
-            if (!user?.emailVerified) { showNotification('Inicia sesión y verifica tu correo para guardar y continuar exámenes entre dispositivos.', 'warning'); hideExamLoadingOverlay(); return false; }
-            void studySession.register(user.uid).then(() => studySession.start({ examId: window.ENARMProgressSync.id(), questionSet, mode, currentExamIsReal,
-                currentExamType, durationSec, reviewQueueItemId, challengeId: State.activeChallengeId || '' }))
-                .catch(error => showNotification(error.message, 'warning')).finally(hideExamLoadingOverlay);
-            return true;
-        }
+        if (examStartPromise) return examStartPromise;
         if (!Array.isArray(questionSet) || questionSet.length === 0) {
+            if (!guest && studySession) {
+                showNotification("No hay preguntas disponibles para iniciar este examen.", "warning");
+                return false;
+            }
             clearExamTimer();
             State.questionSet = [];
             State.currentIndex = 0;
@@ -9767,9 +9814,27 @@
             State.examActive = false;
             State.examStartedWithPremium = false;
             setExamTimerVisibility(false, 0);
-            hideExamLoadingOverlay();
             showNotification("No hay preguntas disponibles para iniciar este examen.", "warning");
             return false;
+        }
+
+        if (!guest && studySession) {
+            const user = window.FB?.auth?.currentUser;
+            if (!user?.emailVerified) { showNotification('Inicia sesión y verifica tu correo para guardar y continuar exámenes entre dispositivos.', 'warning'); return false; }
+            examStartPromise = withExamLoadingOverlay(async () => {
+                try {
+                    await studySession.register(user.uid);
+                    const result = await studySession.start({ examId: window.ENARMProgressSync.id(), questionSet, mode, currentExamIsReal,
+                        currentExamType, durationSec, reviewQueueItemId, challengeId: State.activeChallengeId || '' });
+                    if (result?.exam?.status === 'active' && State.view !== 'view-exam') showView('view-exam');
+                    setExamLoadingState({ detail: "Todo está listo.", progress: 100 });
+                    return true;
+                } catch (error) {
+                    showNotification(error.message, 'warning');
+                    return false;
+                }
+            }, { title: "Preparando tu examen", detail: "Estamos confirmando tu sesión y guardando las preguntas.", progress: null });
+            try { return await examStartPromise; } finally { examStartPromise = null; }
         }
 
         clearExamTimer();
@@ -9805,7 +9870,6 @@
 
         renderExamQuestion();
         showView("view-exam");
-        hideExamLoadingOverlay();
 
         if (State.durationSec > 0) {
             startTimer();
@@ -11010,10 +11074,15 @@
 
     const finishExam = () => {
         if (studySession && !State.guestExamActive) {
-            if (!studySession.owns()) { showNotification('La sesión aún no está lista para finalizar.', 'info'); return; }
+            if (!studySession.owns() && !studySession.finishing) { showNotification('La sesión aún no está lista para finalizar.', 'info'); return; }
             if (isFinishing) return;
             isFinishing = true;
-            return studySession.flush(true).catch(error => showNotification('El examen aún no está finalizado en la nube. ' + error.message, 'warning')).finally(() => { isFinishing = false; });
+            return withExamLoadingOverlay(async () => {
+                await studySession.flush(true);
+                setExamLoadingState({ detail: "Abriendo tu análisis clínico.", progress: 100 });
+            }, { title: "Preparando tu análisis clínico", detail: "Estamos guardando tus últimas respuestas y confirmando el resultado.", progress: null })
+                .catch(error => showNotification('No pudimos confirmar el cierre del examen. Tus respuestas pendientes se conservan. ' + error.message, 'warning'))
+                .finally(() => { isFinishing = false; });
         }
         if (isFinishing) return;
         isFinishing = true;
@@ -11198,8 +11267,8 @@
 
             saveGlobalStats();
             void syncUserMetrics({ force: true });
-            renderResultsPostmortem();
             showView("view-results");
+            renderResultsPostmortem();
             window.setTimeout(() => void scheduleRatingPrompt(window.FB?.auth?.currentUser), RATING_PROMPT_DELAY_MS);
         } catch (err) {
             console.error("Error crítico en finishExam:", err);
@@ -14586,6 +14655,8 @@
         const btnOpenAvatarPicker = $("btn-open-avatar-picker");
         const btnCloseAvatarPicker = $("btn-close-avatar-picker");
         const avatarPickerModal = $("avatar-picker-modal");
+        // Keep the dialog above mobile navigation and the floating study timer.
+        if (avatarPickerModal) document.body.appendChild(avatarPickerModal);
 
         const btnOpenNotif = $("btn-open-notif");
         const btnCloseNotif = $("btn-close-notif");
@@ -14647,16 +14718,36 @@
             if (!avatarPickerModal) return;
             avatarPickerModal.classList.remove("active");
             avatarPickerModal.setAttribute("aria-hidden", "true");
+            btnOpenAvatarPicker?.focus();
         };
         if (btnOpenAvatarPicker) btnOpenAvatarPicker.addEventListener("click", () => {
             renderProfileAvatarPicker();
             if (!avatarPickerModal) return;
             avatarPickerModal.classList.add("active");
             avatarPickerModal.setAttribute("aria-hidden", "false");
+            btnCloseAvatarPicker?.focus();
         });
         if (btnCloseAvatarPicker) btnCloseAvatarPicker.addEventListener("click", closeAvatarPickerModal);
+        $("btn-avatar-picker-done")?.addEventListener("click", () => {
+            closeAvatarPickerModal();
+            showNotification("Avatar actualizado para tu perfil y comunidad.", "success");
+        });
         if (avatarPickerModal) avatarPickerModal.addEventListener("click", (event) => {
             if (event.target === avatarPickerModal) closeAvatarPickerModal();
+        });
+        avatarPickerModal?.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") closeAvatarPickerModal();
+            if (event.key !== "Tab") return;
+            const buttons = avatarPickerModal.querySelectorAll("button");
+            const first = buttons[0];
+            const last = buttons[buttons.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last?.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first?.focus();
+            }
         });
 
         const btnPerformanceSummary = $("card-performance-summary");
@@ -16745,10 +16836,10 @@
 
                     await setStage({
                         detail: "Abriendo tu reto.",
-                        progress: 100
+                        progress: null
                     });
 
-                    beginExamSession({
+                    const started = await beginExamSession({
                         questionSet: trimmedSet,
                         mode: "simulacro",
                         currentExamIsReal: false,
@@ -16756,7 +16847,7 @@
                         durationSec: 0
                     });
 
-                    showNotification("¡Reto iniciado! Buena suerte.", "info");
+                    if (started) showNotification("¡Reto iniciado! Buena suerte.", "info");
                 }, {
                     title: "Preparando reto...",
                     detail: "Estamos organizando tus preguntas.",
@@ -17137,24 +17228,76 @@
             if (authOverlay && loginForm) {
                 const landingPage = $("landing-page");
                 let checkoutStarting = false;
-                let startupScreenDismissed = false;
+                const startupScreen = $("app-startup-screen");
                 const startupStatus = $("app-startup-status");
                 const startupHint = $("app-startup-hint");
+                const startupRetry = $("app-startup-retry");
+                const startupInertState = new Map();
+                let startupSafetyTimeout;
+                let startupSlowTimeout;
                 const setStartupStatus = (status, hint = "") => {
                     if (startupStatus) startupStatus.textContent = status;
                     if (startupHint) startupHint.textContent = hint;
                 };
-                const dismissStartupScreen = () => {
-                    if (startupScreenDismissed) return;
-                    startupScreenDismissed = true;
-                    document.body.classList.remove("app-starting");
-                    const startupScreen = $("app-startup-screen");
-                    if (!startupScreen) return;
-                    startupScreen.classList.add("is-hidden");
-                    window.setTimeout(() => startupScreen.remove(), 300);
+                const focusStartupScreen = () => {
+                    if (startupScreen && !startupScreen.classList.contains("is-hidden") && !document.querySelector("dialog[open]")) {
+                        startupScreen.focus({ preventScroll: true });
+                    }
                 };
+                startupScreen?.addEventListener("transitionend", focusStartupScreen);
+                const showStartupScreen = (status = "Preparando tu sesión", hint = "Tu espacio de estudio estará listo en un momento.") => {
+                    window.clearTimeout(startupSafetyTimeout);
+                    window.clearTimeout(startupSlowTimeout);
+                    if (!startupScreen) return;
+                    setStartupStatus(status, hint);
+                    startupScreen.classList.remove("is-hidden", "is-error");
+                    startupScreen.setAttribute("aria-hidden", "false");
+                    startupScreen.setAttribute("aria-busy", "true");
+                    if (startupRetry) startupRetry.hidden = true;
+                    document.body.classList.add("app-starting");
+                    for (const root of [landingPage, authOverlay, document.querySelector(".app-layout")]) {
+                        if (!root) continue;
+                        if (!startupInertState.has(root)) startupInertState.set(root, root.inert);
+                        root.inert = true;
+                    }
+                    window.requestAnimationFrame(focusStartupScreen);
+                    // No simulated percentages or minimum duration; slow connections offer a real retry.
+                    startupSlowTimeout = window.setTimeout(() => {
+                        if (startupHint) startupHint.textContent = "La conexión está tardando un poco más. Puedes volver a intentar.";
+                        if (startupRetry) startupRetry.hidden = false;
+                    }, 12000);
+                };
+                const dismissStartupScreen = () => {
+                    window.clearTimeout(startupSafetyTimeout);
+                    window.clearTimeout(startupSlowTimeout);
+                    const hadFocus = startupScreen?.contains(document.activeElement);
+                    document.body.classList.remove("app-starting");
+                    startupScreen?.classList.add("is-hidden");
+                    startupScreen?.setAttribute("aria-hidden", "true");
+                    startupScreen?.setAttribute("aria-busy", "false");
+                    for (const [root, wasInert] of startupInertState) root.inert = wasInert;
+                    startupInertState.clear();
+                    if (hadFocus) {
+                        const target = authOverlay.classList.contains("active") ? $("auth-email")
+                            : document.querySelector(".view.active h1, .view.active h2");
+                        if (target) {
+                            if (!target.matches("input, button, [tabindex]")) target.setAttribute("tabindex", "-1");
+                            target.focus({ preventScroll: true });
+                        }
+                    }
+                };
+                const showStartupError = () => {
+                    window.clearTimeout(startupSafetyTimeout);
+                    window.clearTimeout(startupSlowTimeout);
+                    setStartupStatus("No pudimos preparar tu inicio", "Revisa tu conexión y vuelve a intentar. Tus avances guardados se conservan.");
+                    startupScreen?.classList.add("is-error");
+                    startupScreen?.setAttribute("aria-busy", "false");
+                    if (startupRetry) startupRetry.hidden = false;
+                };
+                startupRetry?.addEventListener("click", () => window.location.reload());
+                showStartupScreen();
                 // Si la red no permite resolver Firebase, la app no debe quedarse bloqueada indefinidamente.
-                const startupSafetyTimeout = window.setTimeout(dismissStartupScreen, 2500);
+                startupSafetyTimeout = window.setTimeout(dismissStartupScreen, 2500);
 
                 const showAuthFromLanding = (options = {}) => {
                     if (landingPage) landingPage.classList.add("hidden");
@@ -17957,6 +18100,7 @@
                             // Session authorization is handled by the auth observer.
                         })
                         .catch((error) => {
+                            dismissStartupScreen();
                             console.error("Error processing Google redirect result:", error);
                             showNotification(getGoogleAuthErrorMessage(error), "error");
                         });
@@ -18059,8 +18203,12 @@
                 if (window.FB && window.FB.onAuthStateChanged) {
                     restoreAuthSession = async (user) => {
                         const authRun = ++authRestoreGeneration;
+                        try {
                         if (user) {
-                            if (!await getAccountSession().ensure(user) || authRun !== authRestoreGeneration) { dismissStartupScreen(); return; }
+                            showStartupScreen("Validando tu sesión", "Estamos conectando tu cuenta con tu espacio de estudio.");
+                            const authorized = await getAccountSession().ensure(user);
+                            if (authRun !== authRestoreGeneration) return;
+                            if (!authorized) { dismissStartupScreen(); return; }
                             user = window.FB.auth.currentUser;
                         } else accountSession?.stop();
                         if (!user && sessionStorage.getItem('enarmax_session_replaced')) {
@@ -18091,7 +18239,7 @@
                             State.currentUid = user.uid;
                             progressOutbox.begin(user.uid, capturePrivateProgress());
                             await refreshCurrentUserClaims(user);
-                            if (window.FB.auth.currentUser?.uid !== user.uid) return;
+                            if (authRun !== authRestoreGeneration || window.FB.auth.currentUser?.uid !== user.uid) return;
                             syncAuthenticatedUI(fallbackDisplayName);
                             // Esta es la única lectura imprescindible antes de mostrar la app.
                             // Se inicia antes de los listeners secundarios para evitar competir por red en Android.
@@ -18143,16 +18291,19 @@
                             };
                             try {
                                 await restoreAuthenticatedProgress(user, coreUserDataPromise);
+                                if (authRun !== authRestoreGeneration) return;
+                                setStartupStatus("Preparando tu inicio", "Cargando tus herramientas de estudio.");
                                 await bootStudySession(user.uid);
-                                if (State.currentUid !== user.uid || window.FB.auth.currentUser?.uid !== user.uid) return;
+                                if (authRun !== authRestoreGeneration || State.currentUid !== user.uid || window.FB.auth.currentUser?.uid !== user.uid) return;
                                 syncPendingReportsToCloud();
                                 setStartupStatus("Progreso restaurado", "Todo está listo.");
                                 dismissStartupScreen();
                             } catch (e) {
+                                if (authRun !== authRestoreGeneration) return;
                                 console.error("Error fetching cloud data on Auth Change:", e);
-                                setStartupStatus("No pudimos restaurar tu progreso", "Revisa tu conexión e inténtalo de nuevo. Tus datos no se han modificado.");
+                                showStartupError();
                             } finally {
-                                if (window.FB.auth.currentUser?.uid === user.uid) void startSecondaryAuthenticatedWork();
+                                if (authRun === authRestoreGeneration && window.FB.auth.currentUser?.uid === user.uid) void startSecondaryAuthenticatedWork();
                             }
                         } else {
                             stopUserPresenceHeartbeat();
@@ -18263,7 +18414,12 @@
                             syncReclassAccessUI();
                             syncPremiumUI();
                         }
-                        dismissStartupScreen();
+                        if (!user) dismissStartupScreen();
+                        } catch (error) {
+                            if (authRun !== authRestoreGeneration) return;
+                            console.error("No se pudo preparar la sesión:", error);
+                            showStartupError();
+                        }
                     };
                     window.FB.onAuthStateChanged(window.FB.auth, restoreAuthSession);
                 }
@@ -18440,6 +18596,7 @@
                     }
 
                     if (googleProfileCompletion && window.FB?.auth?.currentUser) {
+                        showStartupScreen("Guardando tu perfil", "Estamos preparando tu espacio de estudio.");
                         const submitBtn = document.querySelector(".auth-submit");
                         if (submitBtn) submitBtn.textContent = "Guardando perfil...";
                         const googleUser = window.FB.auth.currentUser;
@@ -18460,6 +18617,7 @@
                                 handleSuccessLogin(userName);
                             })
                             .catch(err => {
+                                dismissStartupScreen();
                                 showNotification("No se pudo guardar tu perfil: " + err.message, "error");
                                 if (submitBtn) submitBtn.textContent = "Guardar y continuar";
                             });
@@ -18467,6 +18625,7 @@
                     }
 
                     if (email && password && window.FB) {
+                        showStartupScreen(isRegisterMode ? "Creando tu cuenta" : "Preparando tu sesión", "Estamos conectando tu cuenta con tu espacio de estudio.");
                         const submitBtn = document.querySelector(".auth-submit");
                         if (submitBtn) submitBtn.textContent = "Conectando...";
 
@@ -18492,6 +18651,7 @@
                                     showNotification("Te enviamos un correo de verificación. Confírmalo para activar las funciones en la nube.", "info");
                                 })
                                 .catch(err => {
+                                    dismissStartupScreen();
                                     showNotification("Error de registro: " + err.message, "error");
                                     if (submitBtn) submitBtn.textContent = "Reintentar";
                                 });
@@ -18504,6 +18664,7 @@
                                     handleSuccessLogin(dName);
                                 })
                                 .catch(err => {
+                                    dismissStartupScreen();
                                     showNotification("Error de conexión: " + err.message, "error");
                                     if (submitBtn) submitBtn.textContent = "Reintentar";
                                 });
@@ -18529,19 +18690,22 @@
                         providerBtn.disabled = true;
                         providerBtn.style.opacity = "0.7";
                         providerBtn.innerHTML = "Conectando con Google...";
+                        showStartupScreen("Conectando con Google", "Elige tu cuenta de Google para continuar.");
 
                         const useRedirect = () => {
                             if (!window.FB.signInWithRedirect) {
                                 throw new Error("Google redirect no disponible.");
                             }
+                            showStartupScreen("Conectando con Google", "Te estamos llevando al acceso con Google.");
                             showNotification("Redirigiendo a Google para iniciar sesión...", "info");
                             return window.FB.signInWithRedirect(window.FB.auth, window.FB.googleProvider);
                         };
 
                         try {
                             const result = await window.FB.signInWithPopup(window.FB.auth, window.FB.googleProvider);
+                            if (!startupScreen?.classList.contains("is-hidden")) setStartupStatus("Validando tu sesión", "Estamos conectando tu cuenta con tu espacio de estudio.");
                             const userObj = result.user;
-                            if (!await getAccountSession().ensure(userObj)) return;
+                            if (!await getAccountSession().ensure(userObj)) { dismissStartupScreen(); return; }
                             const additionalInfo = window.FB.getAdditionalUserInfo
                                 ? window.FB.getAdditionalUserInfo(result)
                                 : null;
@@ -18560,6 +18724,7 @@
                             trackEvent("login", { method: "google" });
                             handleSuccessLogin(displayName);
                         } catch (error) {
+                            dismissStartupScreen();
                             const code = error && error.code ? String(error.code) : "";
                             const redirectSupport = getRedirectSupportState();
                             const canFallbackToRedirect = [
@@ -18574,6 +18739,7 @@
                                     await useRedirect();
                                     return;
                                 } catch (redirectError) {
+                                    dismissStartupScreen();
                                     console.error(redirectError);
                                     showNotification(getGoogleAuthErrorMessage(redirectError), "error");
                                     return;

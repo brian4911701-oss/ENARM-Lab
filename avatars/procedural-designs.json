@@ -1,0 +1,609 @@
+{
+  "engineRevision": "79fe9ba06e4874b11394b8e8a3f2c493c9d197ba",
+  "palette": [
+    {
+      "id": "azul",
+      "label": "Azul",
+      "hex": "#7295F7"
+    },
+    {
+      "id": "menta",
+      "label": "Menta",
+      "hex": "#64D6B0"
+    },
+    {
+      "id": "coral",
+      "label": "Coral",
+      "hex": "#F59887"
+    },
+    {
+      "id": "lila",
+      "label": "Lila",
+      "hex": "#B69AF1"
+    },
+    {
+      "id": "miel",
+      "label": "Miel",
+      "hex": "#F2CA72"
+    },
+    {
+      "id": "rosa",
+      "label": "Rosa",
+      "hex": "#EE9FC9"
+    },
+    {
+      "id": "turquesa",
+      "label": "Turquesa",
+      "hex": "#54C6D5"
+    },
+    {
+      "id": "durazno",
+      "label": "Durazno",
+      "hex": "#F5AE72"
+    },
+    {
+      "id": "pervinca",
+      "label": "Pervinca",
+      "hex": "#9194E9"
+    },
+    {
+      "id": "lima",
+      "label": "Lima",
+      "hex": "#BDD875"
+    },
+    {
+      "id": "blanco",
+      "label": "Blanco",
+      "hex": "#F7F8FA"
+    }
+  ],
+  "avatars": [
+    {
+      "id": "orbi",
+      "label": "Orbi",
+      "color": "azul",
+      "primary": [
+        "sphere",
+        214,
+        215,
+        205,
+        1
+      ],
+      "eyes": {
+        "headY": -12,
+        "headZ": -5,
+        "widthLeft": 22,
+        "widthRight": 22,
+        "heightLeft": 68,
+        "heightRight": 68,
+        "spacing": 36
+      },
+      "nodes": [
+        [
+          "sphere",
+          92,
+          99,
+          90,
+          1,
+          -67,
+          37,
+          -25,
+          0
+        ],
+        [
+          "sphere",
+          92,
+          99,
+          90,
+          1,
+          67,
+          37,
+          -25,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "cubi",
+      "label": "Cubi",
+      "color": "coral",
+      "primary": [
+        "cube",
+        188,
+        176,
+        165,
+        0.96
+      ],
+      "eyes": {
+        "headY": 16,
+        "headZ": 6,
+        "widthLeft": 24,
+        "widthRight": 24,
+        "heightLeft": 57,
+        "heightRight": 57,
+        "spacing": 32
+      },
+      "nodes": [
+        [
+          "sphere",
+          100,
+          105,
+          90,
+          1,
+          -56,
+          44,
+          -30,
+          0
+        ],
+        [
+          "sphere",
+          100,
+          105,
+          90,
+          1,
+          56,
+          44,
+          -30,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "nimbo",
+      "label": "Nimbo",
+      "color": "lila",
+      "primary": [
+        "sphere",
+        168,
+        162,
+        156,
+        1
+      ],
+      "eyes": {
+        "widthLeft": 30,
+        "widthRight": 30,
+        "heightLeft": 12,
+        "heightRight": 12,
+        "spacing": 36,
+        "positionYLeft": 10,
+        "positionYRight": 10
+      },
+      "nodes": [
+        [
+          "sphere",
+          132,
+          140,
+          126,
+          1,
+          -67,
+          18,
+          -23,
+          0
+        ],
+        [
+          "sphere",
+          132,
+          144,
+          130,
+          1,
+          67,
+          18,
+          -23,
+          0
+        ],
+        [
+          "sphere",
+          128,
+          128,
+          120,
+          1,
+          8,
+          -54,
+          -23,
+          0
+        ],
+        [
+          "sphere",
+          112,
+          106,
+          110,
+          1,
+          -12,
+          51,
+          -23,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "gota",
+      "label": "Gota",
+      "color": "turquesa",
+      "primary": [
+        "sphere",
+        178,
+        188,
+        166,
+        1
+      ],
+      "eyes": {
+        "headZ": -7,
+        "widthLeft": 21,
+        "widthRight": 21,
+        "heightLeft": 56,
+        "heightRight": 56,
+        "spacing": 30,
+        "positionYLeft": 28,
+        "positionYRight": 28
+      },
+      "nodes": [
+        [
+          "sphere",
+          92,
+          106,
+          90,
+          1,
+          -53,
+          35,
+          -25,
+          0
+        ],
+        [
+          "sphere",
+          98,
+          118,
+          94,
+          1,
+          50,
+          25,
+          -25,
+          0
+        ],
+        [
+          "sphere",
+          84,
+          88,
+          82,
+          1,
+          14,
+          -61,
+          -22,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "oso",
+      "label": "Osito",
+      "color": "miel",
+      "primary": [
+        "sphere",
+        190,
+        188,
+        182,
+        1
+      ],
+      "eyes": {
+        "headY": -8,
+        "widthLeft": 32,
+        "widthRight": 32,
+        "heightLeft": 32,
+        "heightRight": 32,
+        "spacing": 38
+      },
+      "nodes": [
+        [
+          "sphere",
+          79,
+          83,
+          74,
+          1,
+          -64,
+          -69,
+          -24,
+          0
+        ],
+        [
+          "sphere",
+          79,
+          83,
+          74,
+          1,
+          64,
+          -69,
+          -24,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "gato",
+      "label": "Mishi",
+      "color": "durazno",
+      "primary": [
+        "cube",
+        188,
+        168,
+        160,
+        0.98
+      ],
+      "eyes": {
+        "headZ": 4,
+        "widthLeft": 32,
+        "widthRight": 32,
+        "heightLeft": 22,
+        "heightRight": 22,
+        "spacing": 40,
+        "leftAngle": -16,
+        "rightAngle": 16
+      },
+      "nodes": [
+        [
+          "cone",
+          75,
+          77,
+          68,
+          0.95,
+          -56,
+          -74,
+          -20,
+          -13
+        ],
+        [
+          "cone",
+          75,
+          77,
+          68,
+          0.95,
+          56,
+          -74,
+          -20,
+          13
+        ]
+      ]
+    },
+    {
+      "id": "conejo",
+      "label": "Lupi",
+      "color": "rosa",
+      "primary": [
+        "sphere",
+        174,
+        169,
+        158,
+        1
+      ],
+      "eyes": {
+        "widthLeft": 20,
+        "widthRight": 20,
+        "heightLeft": 60,
+        "heightRight": 60,
+        "spacing": 29,
+        "positionYLeft": 7,
+        "positionYRight": 7
+      },
+      "nodes": [
+        [
+          "capsule",
+          52,
+          118,
+          46,
+          1,
+          -33,
+          -100,
+          -20,
+          -12
+        ],
+        [
+          "capsule",
+          52,
+          118,
+          46,
+          1,
+          33,
+          -100,
+          -20,
+          14
+        ]
+      ]
+    },
+    {
+      "id": "robot",
+      "label": "Boti",
+      "color": "pervinca",
+      "primary": [
+        "cube",
+        186,
+        169,
+        155,
+        0.94
+      ],
+      "eyes": {
+        "widthLeft": 38,
+        "widthRight": 38,
+        "heightLeft": 18,
+        "heightRight": 18,
+        "spacing": 46
+      },
+      "nodes": [
+        [
+          "cube",
+          35,
+          69,
+          72,
+          0.95,
+          -93,
+          0,
+          -18,
+          0
+        ],
+        [
+          "cube",
+          35,
+          69,
+          72,
+          0.95,
+          93,
+          0,
+          -18,
+          0
+        ],
+        [
+          "capsule",
+          14,
+          47,
+          14,
+          1,
+          0,
+          -86,
+          -20,
+          0
+        ],
+        [
+          "sphere",
+          35,
+          32,
+          31,
+          1,
+          0,
+          -112,
+          -20,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "brote",
+      "label": "Brote",
+      "color": "menta",
+      "primary": [
+        "sphere",
+        180,
+        182,
+        176,
+        1
+      ],
+      "eyes": {
+        "headZ": -4,
+        "widthLeft": 21,
+        "widthRight": 21,
+        "heightLeft": 54,
+        "heightRight": 54,
+        "spacing": 30,
+        "positionYLeft": 6,
+        "positionYRight": 6
+      },
+      "nodes": [
+        [
+          "capsule",
+          46,
+          86,
+          34,
+          1,
+          -25,
+          -98,
+          -20,
+          -48
+        ],
+        [
+          "capsule",
+          46,
+          86,
+          34,
+          1,
+          25,
+          -98,
+          -20,
+          48
+        ]
+      ]
+    },
+    {
+      "id": "ajolote",
+      "label": "Axol",
+      "color": "lima",
+      "primary": [
+        "sphere",
+        185,
+        166,
+        160,
+        1
+      ],
+      "eyes": {
+        "widthLeft": 22,
+        "widthRight": 22,
+        "heightLeft": 48,
+        "heightRight": 48,
+        "spacing": 36
+      },
+      "nodes": [
+        [
+          "capsule",
+          32,
+          77,
+          28,
+          1,
+          -82,
+          -44,
+          -25,
+          -42
+        ],
+        [
+          "capsule",
+          34,
+          79,
+          28,
+          1,
+          -99,
+          0,
+          -25,
+          -83
+        ],
+        [
+          "capsule",
+          32,
+          68,
+          28,
+          1,
+          -86,
+          37,
+          -25,
+          -126
+        ],
+        [
+          "capsule",
+          32,
+          77,
+          28,
+          1,
+          82,
+          -44,
+          -25,
+          42
+        ],
+        [
+          "capsule",
+          34,
+          79,
+          28,
+          1,
+          99,
+          0,
+          -25,
+          83
+        ],
+        [
+          "capsule",
+          32,
+          68,
+          28,
+          1,
+          86,
+          37,
+          -25,
+          126
+        ]
+      ]
+    }
+  ]
+}

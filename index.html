@@ -92,12 +92,52 @@
 
 <body class="app-starting">
     <!-- Se muestra mientras Firebase restaura la sesión para evitar que la bienvenida aparezca brevemente. -->
-    <div id="app-startup-screen" class="app-startup-screen" role="status" aria-live="polite">
-        <span class="logo-mark app-startup-logo" aria-hidden="true"></span>
-        <span class="app-startup-name">ENARM<span>ax</span></span>
-        <span class="app-startup-loader" aria-hidden="true"></span>
-        <strong id="app-startup-status" class="app-startup-status">Preparando tu sesión</strong>
-        <span id="app-startup-hint" class="app-startup-hint">Tus avances aparecerán en un momento.</span>
+    <div id="app-startup-screen" class="app-startup-screen" tabindex="-1" aria-label="Cargando tu espacio de estudio" aria-busy="true">
+        <div class="app-startup-content">
+            <div class="app-startup-brand">
+                <span class="logo-mark app-startup-logo" aria-hidden="true"></span>
+                <span class="app-startup-name">ENARM<span>ax</span></span>
+                <span class="app-startup-loader" aria-hidden="true"></span>
+            </div>
+            <div class="app-startup-message" role="status" aria-live="polite" aria-atomic="true">
+                <strong id="app-startup-status" class="app-startup-status">Preparando tu sesión</strong>
+                <span id="app-startup-hint" class="app-startup-hint">Tu espacio de estudio estará listo en un momento.</span>
+            </div>
+            <div class="startup-preview" aria-hidden="true">
+                <div class="startup-preview-sidebar">
+                    <span class="startup-skeleton startup-preview-avatar"></span>
+                    <span class="startup-skeleton startup-line startup-line--wide"></span>
+                    <span class="startup-skeleton startup-line"></span>
+                    <span class="startup-skeleton startup-line"></span>
+                    <span class="startup-skeleton startup-line"></span>
+                    <span class="startup-skeleton startup-line startup-line--short"></span>
+                </div>
+                <div class="startup-preview-main">
+                    <div class="startup-preview-welcome">
+                        <span class="startup-skeleton startup-preview-avatar"></span>
+                        <div class="startup-preview-copy">
+                            <span class="startup-skeleton startup-line startup-line--short"></span>
+                            <span class="startup-skeleton startup-line startup-line--wide"></span>
+                        </div>
+                    </div>
+                    <div class="startup-preview-clock">
+                        <span class="startup-skeleton startup-line startup-line--short"></span>
+                        <div class="startup-preview-segments"><span class="startup-skeleton"></span><span class="startup-skeleton"></span><span class="startup-skeleton"></span><span class="startup-skeleton"></span></div>
+                    </div>
+                    <div class="startup-preview-stats">
+                        <div class="startup-preview-card startup-preview-performance">
+                            <span class="startup-skeleton startup-preview-ring"></span>
+                            <div class="startup-preview-copy"><span class="startup-skeleton startup-number"></span><span class="startup-skeleton startup-line"></span></div>
+                        </div>
+                        <div class="startup-preview-card startup-preview-training">
+                            <span class="startup-skeleton startup-line startup-line--wide"></span>
+                            <div class="startup-preview-buttons"><span class="startup-skeleton"></span><span class="startup-skeleton"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="app-startup-retry" class="app-startup-retry" type="button" hidden>Volver a intentar</button>
+        </div>
     </div>
 
     <!-- ── LANDING PAGE ── -->
@@ -3496,8 +3536,9 @@
                     <button class="avatar-picker-close" id="btn-close-avatar-picker" type="button" aria-label="Cerrar selector de avatar">×</button>
                     <span class="avatar-picker-kicker">TU IDENTIDAD</span>
                     <h2 id="avatar-picker-title">Elige tu avatar</h2>
-                    <p>Se mostrará en tu perfil, ranking, solicitudes, retos y comunidad.</p>
+                    <p>Elige un personaje y su color. Se guarda al elegir y aparece en tu perfil y comunidad.</p>
                     <div class="profile-avatar-picker" id="profile-avatar-picker" role="group" aria-label="Avatares disponibles"></div>
+                    <button class="avatar-picker-done" id="btn-avatar-picker-done" type="button">Listo</button>
                 </div>
             </div>
 

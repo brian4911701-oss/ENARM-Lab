@@ -19,6 +19,9 @@ firebase-debug.log
 
 .vercel
 
+# Local avatar authoring tool
+/tools/bible-strong-avatar-lab/
+
 # Local Firebase emulator logs
 firestore-debug.log
 ui-debug.log

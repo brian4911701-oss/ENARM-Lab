@@ -34,7 +34,8 @@
             return registering;
         };
         const overlay = exam => {
-            const view = JSON.parse(JSON.stringify(exam));
+            // Questions are immutable payloads. Only answers and navigation are overlaid.
+            const view = { ...exam, answers: exam.answers.map(answer => ({ ...answer })) };
             for (const event of pending()) {
                 if (event.kind === 'answer') view.answers[event.index] = { ...view.answers[event.index], selected: event.selected, isCorrect: event.selected === view.questionSet[event.index].answerIndex };
                 if (event.kind === 'flag') view.answers[event.index].flagged = event.flagged;
@@ -44,13 +45,15 @@
             }
             return view;
         };
-        const receive = exam => {
-            if (!exam || (confirmed && exam.revision < confirmed.revision)) return;
+        const receive = (exam, reopen = false) => {
+            if (!exam || (confirmed && (exam.revision < confirmed.revision || (!reopen && exam.revision === confirmed.revision)))) return;
             if (!exam.questionSet && confirmed?.id === exam.id) exam = { ...exam, questionSet: confirmed.questionSet };
             if (!exam.questionSet) return;
             active = confirmed = exam;
             status = pending().length ? 'pending' : 'confirmed';
-            onExam?.(exam.status === 'active' ? overlay(exam) : exam, owns()); notify();
+            const rendered = onExam?.(exam.status === 'active' ? overlay(exam) : exam, owns());
+            notify();
+            return rendered;
         };
         const boot = async account => {
             if (booting) return booting;
@@ -59,7 +62,7 @@
                 const epoch = generation;
                 const initial = readExam ? await readExam(account) : (await call({ action: 'inspect' })).exam;
                 if (epoch !== generation) return;
-                if (initial) receive(initial);
+                if (initial) await receive(initial);
                 if (!unsubscribe) unsubscribe = listenExam(account, receive, error => { status = error.code || 'offline'; notify(); });
                 await flush();
             })().finally(() => { booting = null; });
@@ -70,8 +73,8 @@
             const questionSet = config.questionSet.map(question => ({ caseOriginal: question.caseOriginal || question.case || '', question: question.question, options: question.options,
                 caseGroupId: question.caseGroupId, subQuestionIndex: question.subQuestionIndex, totalSubQuestions: question.totalSubQuestions }));
             const result = await call({ action: 'start', ...config, questionSet, timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone });
-            if (result.exam) receive(result.exam);
-            if (result.attempt) onAttempt?.(result.attempt);
+            if (result.exam) await receive(result.exam, true);
+            if (result.attempt) await onAttempt?.(result.attempt);
             return result;
         };
         const queue = event => {
@@ -86,10 +89,14 @@
             return true;
         };
         const flush = async (finish = false, explicit = finish) => {
+            // Persist the finish intent immediately, including while the last answers are in flight.
+            if (finish && owns() && !pending().some(event => event.kind === 'finish') && !queue({ kind: 'finish' })) {
+                throw Object.assign(new Error('No se pudo guardar el cierre en este dispositivo. Libera espacio e inténtalo de nuevo.'), { code: 'local-storage-full' });
+            }
+            clearTimeout(timer);
             if (busy) { await busy; if (finish || pending().length) return flush(finish, explicit); return; }
             const finishingRetry = active?.status === 'finished' && pending().some(event => event.kind === 'finish');
             if (!owns() && !finishingRetry) return;
-            if (finish && !pending().some(event => event.kind === 'finish')) queue({ kind: 'finish' });
             const events = pending(), batch = events.slice(0, 100);
             if (!batch.length) return;
             const action = events.length <= 100 && events.some(event => event.kind === 'finish') ? 'finish' : 'events';
@@ -98,8 +105,8 @@
                     // The server checks authority atomically before applying offline operations.
                     const result = await call({ action, examId: active.id, events: batch.map(({ key, ...event }) => event) });
                     batch.forEach(record => storage.removeItem(record.key));
-                    if (result.exam) receive(result.exam);
-                    if (result.attempt) onAttempt?.(result.attempt, result.data);
+                    if (result.exam) await receive(result.exam);
+                    if (result.attempt) await onAttempt?.(result.attempt, result.data);
                     status = pending().length ? 'pending' : 'confirmed'; notify(); return result;
                 } catch (error) {
                     if (error.code === 'account-changed') return;
@@ -121,6 +128,7 @@
         }
         return { register, boot, start, queue, flush, stop, owns,
             get active() { return active; }, get migrationOpen() { return registration?.migrationOpen === true; },
+            get finishing() { return pending().some(event => event.kind === 'finish'); },
             async progress(operations) { return call({ action: 'progress', operations, migration: registration?.migrationOpen === true }); },
             async completeMigration() { if (registration?.migrationOpen) { await call({ action: 'migration-complete' }); if (registration) registration.migrationOpen = false; } },
             reset: () => call({ action: 'reset' }), purge: () => call({ action: 'purge' })
