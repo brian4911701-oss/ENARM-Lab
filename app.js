@@ -9460,9 +9460,40 @@
         if (fill) fill.style.width = `${total ? (answered / total) * 100 : 0}%`;
     };
 
+    let examQuestionScrollFrame = null;
     const scrollToExamQuestion = () => {
-        requestAnimationFrame(() => {
-            $("case-text")?.closest(".case-card")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        cancelAnimationFrame(examQuestionScrollFrame);
+        examQuestionScrollFrame = requestAnimationFrame(() => {
+            examQuestionScrollFrame = null;
+            const card = $("case-text")?.closest(".case-card");
+            if (!card || State.view !== "view-exam") return;
+            const content = card.closest(".main-content");
+            if (!content) {
+                card.scrollIntoView({ behavior: "instant", block: "start" });
+                return;
+            }
+
+            const scrollportTop = content.getBoundingClientRect().top + content.clientTop;
+            let clearance = 16;
+            const topBar = document.querySelector(".mobile-top-bar");
+            if (topBar?.getBoundingClientRect().height) {
+                clearance = Math.max(clearance, topBar.getBoundingClientRect().bottom - scrollportTop + 16);
+            }
+            const header = document.querySelector("#view-exam .exam-header-bar");
+            if (header?.getBoundingClientRect().height) {
+                const style = getComputedStyle(header);
+                if (style.position === "sticky") {
+                    const contentPadding = parseFloat(getComputedStyle(content).paddingTop) || 0;
+                    clearance = Math.max(clearance, contentPadding + (parseFloat(style.top) || 0) + header.getBoundingClientRect().height + 16);
+                }
+                if (style.position === "fixed") clearance = Math.max(clearance, header.getBoundingClientRect().bottom - scrollportTop + 16);
+            }
+            // An immediate scroll cancels mobile momentum and cannot be
+            // interrupted midway by a shorter case or a cloud acknowledgement.
+            content.scrollTo({
+                top: content.scrollTop + card.getBoundingClientRect().top - scrollportTop - clearance,
+                behavior: "instant"
+            });
         });
     };
 

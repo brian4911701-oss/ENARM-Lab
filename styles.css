@@ -16096,6 +16096,8 @@ body.guest-exam-mode #view-exam .option-btn.selected {
     content: ''; position: absolute; z-index: -1; inset: -72px -20px 0; pointer-events: none;
     background: radial-gradient(ellipse at 8% 30%, var(--mobile-welcome-glow), transparent 55%),
       radial-gradient(ellipse at 100% 48%, var(--mobile-welcome-violet), transparent 48%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 48px);
+    mask-image: linear-gradient(to bottom, transparent, #000 48px);
     opacity: .72;
   }
   #landing-page .hero-content { align-items: center; gap: 18px; text-align: center; }

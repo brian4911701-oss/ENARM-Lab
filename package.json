@@ -21,6 +21,7 @@
     "test:auth-loading-browser": "node scripts/test_auth_loading_browser.js",
     "test:exam-transitions": "node --test tests/study.client.test.js",
     "test:exam-transitions-browser": "node scripts/test_exam_transitions_browser.js",
+    "test:exam-navigation-browser": "node scripts/test_exam_navigation_browser.js",
     "test:progress-browser": "node scripts/test_progress_persistence_browser.js",
     "test:mobile-widgets": "node scripts/test_mobile_widgets_browser.js",
     "build:hosting": "node scripts/build_hosting.js",
