@@ -49,31 +49,27 @@ const files = [
     "WhatsApp Image 2026-07-13 at 1.02.10 PM.jpeg"
 ];
 
-fs.rmSync(outputDir, { recursive: true, force: true });
-fs.mkdirSync(outputDir, { recursive: true });
+const directories = ["Flashcards", "avatars", "Capturas PC", "Capturas Movil"];
 
-for (const relativePath of files) {
-    const source = path.resolve(projectRoot, relativePath);
-    if (!fs.existsSync(source)) throw new Error(`Falta un archivo público requerido: ${relativePath}`);
-    const destination = path.resolve(outputDir, relativePath);
-    fs.mkdirSync(path.dirname(destination), { recursive: true });
-    fs.copyFileSync(source, destination);
+function build() {
+    fs.rmSync(outputDir, { recursive: true, force: true });
+    fs.mkdirSync(outputDir, { recursive: true });
+
+    for (const relativePath of files) {
+        const source = path.resolve(projectRoot, relativePath);
+        if (!fs.existsSync(source)) throw new Error(`Falta un archivo público requerido: ${relativePath}`);
+        const destination = path.resolve(outputDir, relativePath);
+        fs.mkdirSync(path.dirname(destination), { recursive: true });
+        fs.copyFileSync(source, destination);
+    }
+
+    for (const directory of directories) {
+        fs.cpSync(path.resolve(projectRoot, directory), path.resolve(outputDir, directory), { recursive: true });
+    }
+
+    console.log(`Hosting listo en ${outputDir} (${files.length} archivos + Flashcards + avatares + capturas).`);
 }
 
-fs.cpSync(
-    path.resolve(projectRoot, "Flashcards"),
-    path.resolve(outputDir, "Flashcards"),
-    { recursive: true }
-);
-
-fs.cpSync(
-    path.resolve(projectRoot, "avatars"),
-    path.resolve(outputDir, "avatars"),
-    { recursive: true }
-);
-
-for (const directory of ["Capturas PC", "Capturas Movil"]) {
-    fs.cpSync(path.resolve(projectRoot, directory), path.resolve(outputDir, directory), { recursive: true });
-}
-
-console.log(`Hosting listo en ${outputDir} (${files.length} archivos + Flashcards + avatares + capturas).`);
+// Development serves these same source assets directly, without publishing the repository.
+module.exports = { files, directories };
+if (require.main === module) build();

@@ -11950,6 +11950,12 @@
         const pct = State.globalStats.respondidas > 0 ? ((State.globalStats.aciertos / State.globalStats.respondidas) * 100).toFixed(1) : "0.0";
         if ($("dash-promedio-gral")) $("dash-promedio-gral").textContent = `${pct}%`;
         if ($("dash-summary-progress")) $("dash-summary-progress").style.width = `${Math.min(100, Math.max(0, Number(pct)))}%`;
+        const summaryGauge = $("dash-summary-gauge");
+        if (summaryGauge) {
+            const progress = Math.min(100, Math.max(0, Number(pct)));
+            summaryGauge.setAttribute("stroke-dashoffset", String(100 - progress));
+            summaryGauge.setAttribute("visibility", progress > 0 ? "visible" : "hidden");
+        }
         if ($("dash-summary-correct")) $("dash-summary-correct").textContent = (Number(State.globalStats.aciertos) || 0).toLocaleString("es-MX");
         if ($("dash-summary-answered")) $("dash-summary-answered").textContent = (Number(State.globalStats.respondidas) || 0).toLocaleString("es-MX");
         if ($("dash-promedio")) $("dash-promedio").textContent = `${pct}%`;

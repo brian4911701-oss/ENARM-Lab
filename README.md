@@ -24,16 +24,24 @@ ENARMax/
 
 ## Cómo ejecutar
 
-1. **Abrir en el navegador**
-   - Simplemente abre `index.html` con tu navegador favorito (Chrome, Edge, Firefox, etc.).
-   - No se requiere servidor adicional porque todo el código es estático.
-
-2. **Opcional – Servidor local** (para evitar restricciones de CORS en algunos navegadores)
-   ```bash
-   # Si tienes Node.js instalado
-   npx -y http-server ./ -p 8080
+1. **Servidor local con inicio de sesión y API**
+   ```powershell
+   npm run dev
    ```
-   Luego visita `http://localhost:8080`.
+   Luego visita `http://127.0.0.1:5501/`. Recarga el navegador para ver los cambios en HTML, CSS y JavaScript, sin compilar ni hacer commit. Reinicia el servidor si cambias código de `api/` o `server/`.
+
+   El servidor ejecuta las mismas API de acceso, estudio y prueba Premium que producción.
+
+   **Con Live Server de Antigravity:** mantén `npm run dev` ejecutándose y usa **Go Live** como siempre, en `http://127.0.0.1:5500/`. La configuración de `.vscode/settings.json` reenvía `/api` al servidor de `5501` y conserva la recarga automática de Live Server. Después de cambiar esa configuración, detén Live Server pulsando **Port: 5500** y vuelve a pulsar **Go Live**; recargar solo el navegador no activa el proxy. Live Server sin ese proxy devuelve HTTP 405 al intentar iniciar sesión.
+
+   También puedes usar únicamente `npm run dev -- --port 5500`, después de detener Live Server.
+
+2. **Credenciales locales**
+   El servidor lee `FIREBASE_SERVICE_ACCOUNT_JSON` o `GOOGLE_APPLICATION_CREDENTIALS` del entorno, `.env.local` o `.env`. Si ya existe un único archivo `*firebase-adminsdk*.json` en la raíz, lo usa automáticamente. Para indicar otra ubicación, crea `.env.local` (ignorado por Git):
+   ```dotenv
+   GOOGLE_APPLICATION_CREDENTIALS=D:/ruta/privada/firebase-admin.json
+   ```
+   La credencial se mantiene en el servidor. Solo se sirven los archivos públicos que incluye el build de Hosting. Este modo utiliza el proyecto Firebase real: el inicio de sesión y el progreso tienen los mismos efectos que en la app publicada, incluida la confirmación al reemplazar una sesión.
 
 3. **Uso**
    - En la pantalla de inicio elige **Simulacro ENARM** o **Modo Estudio**.
