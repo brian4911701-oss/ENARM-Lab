@@ -2,7 +2,6 @@
 .mobile-widget-stack { display: none; }
 .mw-announcement { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 @media (max-width: 768px) {
-  body.dashboard-mobile-hero-active #pomodoro-widget-shell { display: none; }
   #view-dashboard .mobile-widget-stack {
     display: block; position: relative; isolation: isolate; min-width: 0; width: 100%;
     border: 1px solid color-mix(in srgb, var(--accent-blue) 22%, var(--border)); border-radius: 20px;

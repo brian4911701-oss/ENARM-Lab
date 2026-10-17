@@ -10536,26 +10536,37 @@ body.exam-loading-active {
   .mobile-top-bar .mobile-admin-top-button {
     display: none;
     position: absolute;
-    left: 10px;
+    left: 6px;
     top: calc(30px + env(safe-area-inset-top, 0px));
     transform: translateY(-50%);
     z-index: 1001;
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     align-items: center;
     justify-content: center;
     padding: 0;
-    border: 1px solid rgba(250, 204, 21, 0.45);
+    border: none;
     border-radius: 12px;
-    background: rgba(250, 204, 21, 0.12);
-    color: #facc15;
+    background: transparent;
+    color: var(--text-secondary);
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    box-shadow: none;
+  }
+
+  .mobile-top-bar .mobile-admin-top-button:hover,
+  .mobile-top-bar .mobile-admin-top-button:focus-visible {
+    color: var(--text-primary);
+    background: color-mix(in srgb, var(--text-primary) 5%, transparent);
+  }
+
+  .mobile-top-bar .mobile-admin-top-button:focus-visible {
+    outline: 2px solid var(--text-secondary);
+    outline-offset: 2px;
   }
 
   .mobile-top-bar .mobile-admin-top-button svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 
   .mobile-top-bar .mobile-admin-top-button:active {
