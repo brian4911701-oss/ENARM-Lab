@@ -15,6 +15,7 @@ const files = [
     "mobile-widgets.css",
     "mobile-widgets.js",
     "app.js",
+    "question-picker.js",
     "progress-sync.js",
     "study-session.js",
     "account-session.js",

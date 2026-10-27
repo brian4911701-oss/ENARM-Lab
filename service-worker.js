@@ -36,7 +36,7 @@ try {
 
 // ENARMax Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
-const CACHE_NAME = 'enarmax-v110-storage-recovery';
+const CACHE_NAME = 'enarmax-v112-question-picker';
 const COMPROMISED_ASSETS = ['/redeem_codes.txt', 'redeem_codes.txt'];
 
 // Archivos esenciales que se cachean al instalar
@@ -48,6 +48,7 @@ const CORE_ASSETS = [
     '/mobile-widgets.css',
     '/mobile-widgets.js',
     '/app.js',
+    '/question-picker.js',
     '/progress-sync.js',
     '/study-session.js',
     '/account-session.js',

@@ -20,7 +20,7 @@ const deferred = () => {
 };
 const drain = async () => { for (let i = 0; i < 30; i++) await Promise.resolve(); };
 
-function runtime() {
+function runtime({ signedIn = true, pendingSession = false } = {}) {
     const timers = new Map(), notifications = [], storage = new Map();
     let timerId = 0;
     const doc = { activeElement: null };
@@ -39,16 +39,17 @@ function runtime() {
     const authOverlay = element(), layout = element(), landingPage = element(), provider = element(), heading = element();
     authOverlay.classList.add("active");
     doc.body = element();
+    if (pendingSession) doc.body.classList.add("app-starting");
     doc.querySelector = selector => selector === ".app-layout" ? layout : selector === ".auth-provider-btn" ? provider : selector === "dialog[open]" ? null : heading;
     const popup = deferred(), authorization = deferred(), progress = deferred(), study = deferred();
     const user = { uid: "fixture-user", displayName: "Aspirante", email: "fixture@example.test", emailVerified: false };
     const account = { ensure: () => authorization.promise, stop() {} };
     const window = { requestAnimationFrame: fn => fn(), setTimeout: (fn, ms) => { const id = ++timerId; timers.set(id, { fn, ms }); return id; }, clearTimeout: id => timers.delete(id),
-        location: { reload() {} }, FB: { auth: { currentUser: user }, googleProvider: {}, signInWithPopup: () => popup.promise, getAdditionalUserInfo: () => ({ isNewUser: false }) } };
+        location: { reload() {} }, FB: { auth: { currentUser: signedIn ? user : null }, googleProvider: {}, signInWithPopup: () => popup.promise, getAdditionalUserInfo: () => ({ isNewUser: false }) } };
     const State = { userName: "Aspirante", currentUid: "", theme: "ocean" };
     const noop = () => {};
     const context = { $, document: doc, window, State, landingPage, authOverlay, console: { error: noop },
-        getAccountSession: () => account, localStorage: { getItem: key => storage.get(key), setItem: (k, v) => storage.set(k, v) }, sessionStorage: { getItem: () => null },
+        getAccountSession: () => account, localStorage: { getItem: key => storage.get(key), setItem: (k, v) => storage.set(k, v), removeItem: key => storage.delete(key) }, sessionStorage: { getItem: () => null },
         applyTheme: noop, progressOutbox: { begin: noop }, capturePrivateProgress: () => ({}), refreshCurrentUserClaims: async () => {},
         syncAuthenticatedUI: () => authOverlay.classList.remove("active"), getPrivateUserSnapshot: () => progress.promise,
         restoreAuthenticatedProgress: async (_user, promise) => { await promise; State.progressRestoreReady = true; }, bootStudySession: () => study.promise,
@@ -61,6 +62,25 @@ function runtime() {
     return { ...context, ids, layout, authOverlay, provider, notifications, popup, authorization, progress, study, user, timers,
         fire(ms) { const entry = [...timers].find(([, value]) => value.ms === ms); assert.ok(entry, `Timer ${ms}ms exists`); timers.delete(entry[0]); entry[1].fn(); } };
 }
+
+test("a first visit keeps the welcome available while Firebase resolves", () => {
+    const r = runtime({ signedIn: false });
+    assert.equal(r.ids["app-startup-screen"].classList.contains("is-hidden"), true);
+    assert.equal(r.ids["app-startup-screen"].getAttribute("aria-hidden"), "true");
+    assert.equal(r.document.body.classList.contains("app-starting"), false);
+    assert.equal(r.landingPage.inert, false);
+    assert.equal(r.timers.size, 0, "No artificial startup delay for a new visitor");
+});
+
+test("a returning session stays covered until Firebase resolves, with a network fallback", () => {
+    const r = runtime({ signedIn: false, pendingSession: true });
+    assert.equal(r.ids["app-startup-screen"].classList.contains("is-hidden"), false);
+    assert.equal(r.landingPage.inert, true);
+    r.fire(2500);
+    assert.equal(r.ids["app-startup-screen"].classList.contains("is-hidden"), true);
+    assert.equal(r.landingPage.inert, false);
+    assert.equal(r.timers.size, 0);
+});
 
 test("Google loading reopens after startup and remains until authorization, progress and tools finish", async () => {
     const r = runtime(), screen = r.ids["app-startup-screen"];

@@ -323,7 +323,6 @@
     const PREMIUM_TRIAL_DAYS = 15;
     const MANUAL_PAYMENT_REQUESTS_COLLECTION = "manual_payment_requests";
     const MANUAL_ENTITLEMENT_SEEN_KEY = "enarm_seen_manual_entitlement";
-    const PLAN_PROMOTION_END = new Date("2026-11-11T05:59:59.999Z");
     const MONTHLY_PLAN_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
     const TRANSFER_PLANS = Object.freeze({
         enarm_2026: Object.freeze({
@@ -335,23 +334,19 @@
         enarm_2027: Object.freeze({
             id: "enarm_2027",
             name: "Premium Anual 2027",
-            amount: 1499,
-            regularAmount: 1999,
-            promotional: true,
+            amount: 999,
             expiresAt: "2027-10-01T23:59:59-06:00"
         }),
         premium_monthly: Object.freeze({
             id: "premium_monthly",
             name: "Premium Mensual",
-            amount: 199,
-            regularAmount: 299,
-            durationMs: MONTHLY_PLAN_DURATION_MS,
-            promotional: true
+            amount: 99,
+            durationMs: MONTHLY_PLAN_DURATION_MS
         }),
         squad_2027: Object.freeze({
             id: "squad_2027",
             name: "Plan Squad 2027 · 4 personas",
-            amount: 4999,
+            amount: 2499,
             seats: 4,
             expiresAt: "2027-10-01T23:59:59-06:00"
         })
@@ -3241,6 +3236,8 @@
             }
         }
 
+        syncSetupQuestionPicker();
+
         const lockMap = [
             { selector: "#nav-comunidad", reason: "Comunidad es premium." },
             { selector: ".mobile-nav-item[data-view='view-comunidad']", reason: "Comunidad es premium." },
@@ -5623,23 +5620,9 @@
                         const notifiedAt = payment.notifiedAt && typeof payment.notifiedAt.toDate === "function"
                             ? payment.notifiedAt.toDate().getTime()
                             : new Date(payment.notifiedAt || payment.createdAt || now).getTime();
-                        const hadMonthlyContract = Boolean(currentEntitlement.monthlyContractStartedAt)
-                            || currentEntitlement.planId === "premium_monthly";
                         const paidOnTime = currentEntitlement.status === "active"
                             && currentEntitlement.planId === "premium_monthly"
                             && currentExpiry > notifiedAt;
-                        const firstPromoContract = !hadMonthlyContract
-                            && notifiedAt <= PLAN_PROMOTION_END.getTime()
-                            && currentEntitlement.monthlyPromoLost !== true;
-                        const promoContinues = Number(payment.amount) === 199
-                            && currentEntitlement.status === "active"
-                            && currentEntitlement.monthlyPromoActive === true
-                            && currentEntitlement.monthlyPromoLost !== true
-                            && paidOnTime;
-                        const promoActive = firstPromoContract || promoContinues;
-                        const promoLost = currentEntitlement.monthlyPromoLost === true
-                            || (hadMonthlyContract && !promoContinues)
-                            || Number(payment.amount) === 299;
                         const nextExpiryBase = paidOnTime ? Math.max(currentExpiry, now.getTime()) : now.getTime();
                         const planExpiry = new Date(nextExpiryBase + MONTHLY_PLAN_DURATION_MS);
                         tx.set(entitlementRef, {
@@ -5647,8 +5630,8 @@
                             source: "manual_transfer",
                             planId: plan.id,
                             expiresAt: planExpiry,
-                            monthlyPromoActive: promoActive && !promoLost,
-                            monthlyPromoLost: promoLost,
+                            monthlyPromoActive: false,
+                            monthlyPromoLost: currentEntitlement.monthlyPromoLost === true,
                             monthlyContractStartedAt: currentEntitlement.monthlyContractStartedAt || new Date(notifiedAt),
                             monthlyLastPaymentAt: now,
                             monthlyPricePaid: Number(payment.amount),
@@ -8903,9 +8886,17 @@
     // ---------------------------------------------------------------------------
     // Advanced Setup Logic
     // ---------------------------------------------------------------------------
+    let setupQuestionPicker = null;
+    const syncSetupQuestionPicker = () => {
+        const input = $("setup-qty-slider");
+        if (!input) return;
+        State.setupQty = Number(input.value);
+        const output = $("setup-qty-val");
+        if (output) output.textContent = input.value;
+        setupQuestionPicker?.sync();
+    };
     const initSetupLogic = () => {
         const qtySlider = $("setup-qty-slider");
-        const qtyVal = $("setup-qty-val");
         const timeInput = $("setup-time-minutes");
         const timeLabel = $("setup-time-label");
         const libBtn = $("time-libre-btn");
@@ -8921,8 +8912,10 @@
 
         // Slider interaction
         if (qtySlider) {
+            setupQuestionPicker = window.ENARMQuestionPicker?.create(qtySlider);
+            syncSetupQuestionPicker();
             qtySlider.addEventListener("input", () => {
-                qtyVal.textContent = qtySlider.value;
+                syncSetupQuestionPicker();
                 clearSelectedPreset();
             });
         }
@@ -8940,7 +8933,7 @@
                 const t = card.dataset.time;
                 if (qtySlider) {
                     qtySlider.value = q;
-                    qtyVal.textContent = q;
+                    syncSetupQuestionPicker();
                 }
                 if (timeInput) {
                     timeInput.value = t;
@@ -8991,14 +8984,6 @@
                 syncSetupSpecialtiesState();
             });
         });
-
-        if (qtySlider) {
-            // Also sync State.setupQty on every slider change
-            qtySlider.addEventListener("input", () => {
-                State.setupQty = parseInt(qtySlider.value, 10);
-            });
-            State.setupQty = parseInt(qtySlider.value, 10);
-        }
 
         $$(".mode-toggle-btn").forEach(btn => {
             btn.addEventListener("click", () => {
@@ -9089,7 +9074,7 @@
                     if (qty > DEMO_MAX_QTY) {
                         qty = DEMO_MAX_QTY;
                         if (qtySlider) qtySlider.value = String(DEMO_MAX_QTY);
-                        if (qtyVal) qtyVal.textContent = String(DEMO_MAX_QTY);
+                        syncSetupQuestionPicker();
                         showNotification(`Demo limitada a ${DEMO_MAX_QTY} preguntas.`, "info");
                     }
                     if (!isLibre) {
@@ -17326,9 +17311,13 @@
                     if (startupRetry) startupRetry.hidden = false;
                 };
                 startupRetry?.addEventListener("click", () => window.location.reload());
-                showStartupScreen();
-                // Si la red no permite resolver Firebase, la app no debe quedarse bloqueada indefinidamente.
-                startupSafetyTimeout = window.setTimeout(dismissStartupScreen, 2500);
+                if (document.body.classList.contains("app-starting") || window.FB?.auth?.currentUser) {
+                    showStartupScreen();
+                    // Una sesión pendiente no debe bloquear la página si Firebase no responde.
+                    startupSafetyTimeout = window.setTimeout(dismissStartupScreen, 2500);
+                } else {
+                    dismissStartupScreen();
+                }
 
                 const showAuthFromLanding = (options = {}) => {
                     if (landingPage) landingPage.classList.add("hidden");
@@ -17414,46 +17403,14 @@
                     if (modal) modal.style.display = "none";
                 };
 
-                const getMonthlyPromoStatus = () => {
-                    const entitlement = State.entitlement || {};
-                    const now = Date.now();
-                    const expiry = entitlement.expiresAt ? new Date(entitlement.expiresAt).getTime() : 0;
-                    const hasMonthlyHistory = entitlement.planId === "premium_monthly";
-                    const lost = entitlement.monthlyPromoLost === true
-                        || (hasMonthlyHistory && (entitlement.status !== "active" || !entitlement.monthlyPromoActive || expiry <= now));
-                    const continuing = hasMonthlyHistory
-                        && entitlement.status === "active"
-                        && entitlement.monthlyPromoActive === true
-                        && entitlement.monthlyPromoLost !== true
-                        && expiry > now;
-                    return { eligible: continuing || (!lost && now <= PLAN_PROMOTION_END.getTime()), continuing };
-                };
                 const getTransferPlan = (planId) => {
-                    const basePlan = TRANSFER_PLANS[planId];
-                    if (!basePlan) return null;
-                    if (planId === "premium_monthly") {
-                        const promo = getMonthlyPromoStatus().eligible;
-                        return { ...basePlan, amount: promo ? basePlan.amount : basePlan.regularAmount, promoApplied: promo };
-                    }
-                    if (planId === "enarm_2027") {
-                        const promo = Date.now() <= PLAN_PROMOTION_END.getTime();
-                        return { ...basePlan, amount: promo ? basePlan.amount : basePlan.regularAmount, promoApplied: promo };
-                    }
-                    return basePlan;
+                    return TRANSFER_PLANS[planId] || null;
                 };
                 const syncPlanPricingUI = () => {
-                    const monthlyStatus = getMonthlyPromoStatus();
                     document.querySelectorAll("[data-monthly-plan-copy]").forEach((copy) => {
-                        copy.textContent = monthlyStatus.eligible
-                            ? (monthlyStatus.continuing
-                                ? "Tu precio de $199 al mes se conserva en cada renovación puntual."
-                                : "Acceso Premium por 30 días a $199 al mes en promoción. Renueva manualmente; sin cobro automático.")
-                            : "Acceso Premium por 30 días a $299 al mes. Renueva manualmente; sin cobro automático.";
+                        copy.textContent = "Acceso Premium por 30 días a $99 al mes. Renueva manualmente; sin cobro automático.";
                     });
-                    document.querySelectorAll("[data-promo-deadline-banner]").forEach((banner) => {
-                        banner.hidden = Date.now() > PLAN_PROMOTION_END.getTime();
-                    });
-                    ["premium_monthly", "enarm_2027"].forEach((planId) => {
+                    ["premium_monthly", "enarm_2027", "squad_2027"].forEach((planId) => {
                         const plan = getTransferPlan(planId);
                         if (!plan) return;
                         document.querySelectorAll(`[data-plan-price="${planId}"]`).forEach((price) => {
@@ -17464,15 +17421,6 @@
                                     ? `$${amount} MXN/mes`
                                     : amount;
                         });
-                        document.querySelectorAll(`[data-plan-original="${planId}"]`).forEach((original) => {
-                            original.hidden = !plan.promoApplied;
-                        });
-                        document.querySelectorAll(`[data-plan-promo="${planId}"]`).forEach((badge) => {
-                            badge.hidden = !plan.promoApplied;
-                            if (planId === "premium_monthly" && plan.promoApplied && getMonthlyPromoStatus().continuing) {
-                                badge.textContent = "PROMOCIÓN CONSERVADA · $199 AL MES";
-                            }
-                        });
                     });
                 };
                 if (!State.planPricingListenerBound) {
@@ -17480,8 +17428,6 @@
                     State.planPricingListenerBound = true;
                 }
                 syncPlanPricingUI();
-                if (State.planPricingTimerId) window.clearInterval(State.planPricingTimerId);
-                State.planPricingTimerId = window.setInterval(syncPlanPricingUI, 60 * 1000);
                 const setPremiumTrialButtonsBusy = (busy, activeButton = null) => {
                     document.querySelectorAll("[data-start-premium-trial]").forEach((button) => {
                         button.disabled = busy;
@@ -17876,23 +17822,6 @@
                     if (el) el.addEventListener("click", () => showAuthFromLanding({ register: false }));
                 });
 
-                document.querySelectorAll("[data-redeem-period-switch]").forEach(button => {
-                    button.addEventListener("click", () => {
-                        const pricingModal = button.closest("#redeem-modal");
-                        if (!pricingModal) return;
-                        const period = button.getAttribute("aria-checked") === "true" ? "monthly" : "annual";
-                        button.setAttribute("aria-checked", String(period === "annual"));
-                        button.setAttribute("aria-label", period === "annual" ? "Cambiar a precio mensual" : "Cambiar a precio anual");
-                        button.classList.toggle("is-annual", period === "annual");
-                        pricingModal.querySelectorAll("[data-redeem-period-label]").forEach(label => {
-                            label.classList.toggle("is-active", label.dataset.redeemPeriodLabel === period);
-                        });
-                        pricingModal.querySelectorAll("[data-redeem-period-panel]").forEach(panel => {
-                            panel.hidden = panel.dataset.redeemPeriodPanel !== period;
-                        });
-                    });
-                });
-
                 document.querySelectorAll("[data-plan-id]").forEach(el => {
                     el.addEventListener("click", () => void beginPlanTransfer(el.dataset.planId || ""));
                 });
@@ -18235,6 +18164,10 @@
                     restoreAuthSession = async (user) => {
                         const authRun = ++authRestoreGeneration;
                         try {
+                        try {
+                            if (user) localStorage.setItem("enarmax_session_expected", "true");
+                            else localStorage.removeItem("enarmax_session_expected");
+                        } catch (_) { /* Esta pista visual nunca determina la autenticación. */ }
                         if (user) {
                             showStartupScreen("Validando tu sesión", "Estamos conectando tu cuenta con tu espacio de estudio.");
                             const authorized = await getAccountSession().ensure(user);

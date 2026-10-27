@@ -38,12 +38,20 @@ ${marker}`);
             });
             await page.evaluateOnNewDocument(() => localStorage.setItem("enarmax_analytics_consent", "denied"));
             await page.goto(origin, { waitUntil: "load" });
+            // A fresh visitor sees the actual welcome even before Firebase is available.
+            assert.equal(await page.$eval("#app-startup-screen", element => getComputedStyle(element).visibility), "hidden");
+            assert.equal(await page.$eval("#landing-page", element => getComputedStyle(element).display !== "none" && !element.inert), true);
+            assert.equal(await page.$eval("body", element => element.classList.contains("app-starting")), false);
             await page.evaluate(() => {
                 window.FB = { auth: { currentUser: null }, authDomain: "provider.example.test", googleProvider: {},
                     onAuthStateChanged() {}, getRedirectResult: async () => null, getAnalyticsConsent: () => "denied",
                     signInWithPopup: () => new Promise((_resolve, reject) => { window.__cancelGoogle = reject; }) };
                 window.dispatchEvent(new Event("firebaseLoaded"));
-                __loadingTest.dismissStartupScreen();
+            });
+            assert.equal(await page.$eval("#app-startup-screen", element => element.classList.contains("is-hidden")), true,
+                "Firebase initialization must not interrupt the welcome with a dashboard skeleton");
+            await page.screenshot({ path: path.join(output, `welcome-${width}.png`) });
+            await page.evaluate(() => {
                 document.getElementById("landing-page").classList.add("hidden");
                 document.getElementById("auth-overlay").classList.add("active");
                 __loadingTest.applyTheme("dark");
@@ -75,7 +83,7 @@ ${marker}`);
             assert.equal(await page.$eval("#app-startup-retry", element => element.hidden), false);
             assert.equal(await page.$eval("#app-startup-screen", element => element.getAttribute("aria-busy")), "false");
             assert.deepEqual(errors, []);
-            console.log(`Auth loading ${width}px: Google button, visible skeleton, focus, cancellation, reusable error/retry, no overflow: OK`);
+            console.log(`Auth loading ${width}px: direct welcome before/after Firebase, Google button, visible skeleton, focus, cancellation, reusable error/retry, no overflow: OK`);
             await page.close();
         }
         console.log(`Auth loading screenshots: ${output}`);

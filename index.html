@@ -90,9 +90,9 @@
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
 </head>
 
-<body class="app-starting">
-    <!-- Se muestra mientras Firebase restaura la sesión para evitar que la bienvenida aparezca brevemente. -->
-    <div id="app-startup-screen" class="app-startup-screen" tabindex="-1" aria-label="Cargando tu espacio de estudio" aria-busy="true">
+<body>
+    <!-- La bienvenida aparece directamente; esta transición solo acompaña una sesión existente o un acceso. -->
+    <div id="app-startup-screen" class="app-startup-screen is-hidden" tabindex="-1" aria-label="Cargando tu espacio de estudio" aria-hidden="true" aria-busy="false">
         <div class="app-startup-content">
             <div class="app-startup-brand">
                 <span class="logo-mark app-startup-logo" aria-hidden="true"></span>
@@ -139,6 +139,20 @@
             <button id="app-startup-retry" class="app-startup-retry" type="button" hidden>Volver a intentar</button>
         </div>
     </div>
+
+    <script id="session-startup-hint">
+        (() => {
+            // Solo anticipa la transición visual; Firebase siempre valida la sesión real.
+            try {
+                if (localStorage.getItem("enarmax_session_expected") !== "true") return;
+                const screen = document.getElementById("app-startup-screen");
+                document.body.classList.add("app-starting");
+                screen.classList.remove("is-hidden");
+                screen.setAttribute("aria-hidden", "false");
+                screen.setAttribute("aria-busy", "true");
+            } catch (_) { /* Sin almacenamiento, la bienvenida sigue disponible. */ }
+        })();
+    </script>
 
     <!-- ── LANDING PAGE ── -->
     <div id="landing-page" class="landing-page">
@@ -501,12 +515,6 @@
                     <p class="pricing-trial-note">Sin tarjeta · Sin cobro automático · Una prueba por cuenta</p>
                 </div>
 
-                <div class="pricing-promo-deadline" data-promo-deadline-banner role="note">
-                    <span class="pricing-promo-deadline-label">Promoción por tiempo limitado</span>
-                    <strong>Contrata antes del 10 de noviembre de 2026</strong>
-                    <span>$199/mes en Premium Mensual · $1,499 MXN en el Plan Anual 2027</span>
-                </div>
-
                 <div class="pricing-grid">
                     <article class="pricing-card pricing-card--free">
                         <div class="pricing-card-heading">
@@ -530,13 +538,12 @@
 
                     <article class="pricing-card pricing-card--premium pricing-card--monthly">
                         <div class="pricing-card-heading">
-                            <span class="pricing-plan-kicker" data-plan-promo="premium_monthly">¡PROMOCIÓN! TERMINA EL 10 DE NOVIEMBRE DE 2026</span>
+                            <span class="pricing-plan-kicker">ACCESO PREMIUM</span>
                             <h3>Premium Mensual</h3>
                             <p data-monthly-plan-copy>Acceso Premium por 30 días. Renueva manualmente cada mes; sin cobro automático.</p>
                         </div>
-                        <div class="pricing-original-price" data-plan-original="premium_monthly">Precio regular: $299 MXN/mes</div>
-                        <div class="pricing-price"><span class="pricing-currency">$</span><span class="pricing-amount" data-plan-price="premium_monthly" data-price-format="number">199</span><span class="pricing-period">MXN/mes</span></div>
-                        <div class="pricing-savings" data-plan-promo="premium_monthly">Ahorra $100 al mes · promoción hasta el 10 de noviembre</div>
+                        <div class="pricing-price"><span class="pricing-currency">$</span><span class="pricing-amount" data-plan-price="premium_monthly" data-price-format="number">99</span><span class="pricing-period">MXN/mes</span></div>
+                        <div class="pricing-savings">Renovación manual · sin cobro automático</div>
                         <div class="pricing-divider"></div>
                         <p class="pricing-list-label">Funciones Premium incluidas</p>
                         <ul class="pricing-features">
@@ -550,13 +557,12 @@
                     <article class="pricing-card pricing-card--premium pricing-card--2027">
                         <div class="pricing-card-glow pricing-card-glow--blue" aria-hidden="true"></div>
                         <div class="pricing-card-heading">
-                            <span class="pricing-plan-kicker pricing-plan-kicker--future" data-plan-promo="enarm_2027">¡PROMOCIÓN! TERMINA EL 10 DE NOVIEMBRE DE 2026</span>
+                            <span class="pricing-plan-kicker pricing-plan-kicker--future">ACCESO PREMIUM</span>
                             <h3>Plan Anual 2027</h3>
                             <p>Acceso Premium hasta el 1 de octubre de 2027.</p>
                         </div>
-                        <div class="pricing-original-price" data-plan-original="enarm_2027">Precio regular: $1,999 MXN</div>
-                        <div class="pricing-price"><span class="pricing-currency">$</span><span class="pricing-amount" data-plan-price="enarm_2027" data-price-format="number">1,499</span><span class="pricing-period">MXN</span></div>
-                        <div class="pricing-savings pricing-savings--future" data-plan-promo="enarm_2027">Ahorra $500 · contrata antes del 10 de noviembre</div>
+                        <div class="pricing-price"><span class="pricing-currency">$</span><span class="pricing-amount" data-plan-price="enarm_2027" data-price-format="number">999</span><span class="pricing-period">MXN</span></div>
+                        <div class="pricing-savings pricing-savings--future">Pago único · acceso hasta octubre de 2027</div>
                         <div class="pricing-divider"></div>
                         <p class="pricing-list-label">Funciones Premium incluidas</p>
                         <ul class="pricing-features">
@@ -573,13 +579,13 @@
                     <article class="pricing-card pricing-card--premium pricing-card--squad">
                         <div class="pricing-card-glow pricing-card-glow--squad" aria-hidden="true"></div>
                         <div class="pricing-card-heading">
-                            <span class="pricing-plan-kicker pricing-plan-kicker--squad">MEJOR PARA EQUIPOS</span>
+                            <span class="pricing-plan-kicker pricing-plan-kicker--squad">PARA ESTUDIAR EN EQUIPO</span>
                             <h3>Plan Squad 2027</h3>
                             <p>Cuatro accesos Premium para prepararse juntos hasta 2027.</p>
                         </div>
-                        <div class="pricing-original-price">4 cuentas por <s>$7,996 MXN</s></div>
-                        <div class="pricing-price"><span class="pricing-currency">$</span><span class="pricing-amount">4,999</span><span class="pricing-period">MXN</span></div>
-                        <div class="pricing-savings pricing-savings--squad">Ahorra $2,997 · $1,249.75 por persona</div>
+                        <div class="pricing-original-price">4 cuentas individuales por $3,996 MXN</div>
+                        <div class="pricing-price"><span class="pricing-currency">$</span><span class="pricing-amount" data-plan-price="squad_2027" data-price-format="number">2,499</span><span class="pricing-period">MXN</span></div>
+                        <div class="pricing-savings pricing-savings--squad">Ahorra $1,497 · $624.75 por persona</div>
                         <div class="pricing-divider"></div>
                         <p class="pricing-list-label">Premium para los 4 integrantes</p>
                         <ul class="pricing-features">
@@ -597,7 +603,7 @@
                     <span>↻ Sin renovación automática</span>
                     <span>✓ Activación al reflejarse el pago</span>
                 </div>
-                <p class="pricing-footnote">Precios en pesos mexicanos (MXN). Los precios promocionales aplican al contratar hasta el 10 de noviembre de 2026. El plan mensual requiere renovación manual y pierde su descuento si se interrumpe.</p>
+                <p class="pricing-footnote">Precios en pesos mexicanos (MXN). El plan mensual requiere renovación manual; sin cobro automático. El Plan Anual 2027 vence el 1 de octubre de 2027.</p>
             </section>
 
             <!-- ══ HOW IT WORKS ══ -->
@@ -1542,15 +1548,25 @@
                         </section>
 
                         <div class="setup-footer-controls">
-                            <div class="control-group">
-                                <h3 class="section-label">PREGUNTAS: <span id="setup-qty-val"
-                                        class="green-text">10</span></h3>
-                                <input type="range" id="setup-qty-slider" min="1" max="280" value="10"
-                                    class="premium-slider">
-                                <div class="slider-labels">
-                                    <span id="setup-qty-min-label">1</span>
-                                    <span id="setup-qty-max-label">280</span>
+                            <div class="control-group question-picker" id="setup-question-picker">
+                                <div class="question-picker-heading">
+                                    <h3 class="section-label"><label for="setup-qty-slider">NÚMERO DE PREGUNTAS</label></h3>
+                                    <span class="question-picker-caption">A tu ritmo</span>
                                 </div>
+                                <div class="question-picker-scale">
+                                    <div class="question-picker-track" aria-hidden="true">
+                                        <output class="question-picker-value" for="setup-qty-slider"><span id="setup-qty-val">10</span></output>
+                                        <div class="question-picker-bars"></div>
+                                        <span class="question-picker-pointer"></span>
+                                    </div>
+                                    <input type="range" id="setup-qty-slider" min="1" max="280" step="1" value="10"
+                                        aria-describedby="setup-qty-hint" aria-valuetext="10 preguntas">
+                                </div>
+                                <div class="question-picker-labels" aria-hidden="true">
+                                    <span><span id="setup-qty-min-label">1</span> pregunta</span>
+                                    <span><span id="setup-qty-max-label">280</span> preguntas</span>
+                                </div>
+                                <p class="question-picker-hint" id="setup-qty-hint">Arrastra la escala o usa las flechas para elegir la cantidad.</p>
                             </div>
                             <div class="control-group">
                                 <h3 class="section-label">TIEMPO LÍMITE: <span id="setup-time-label"
@@ -3776,9 +3792,9 @@
                                     </div>
                                 </div>
                                 <div class="premium-contact-actions">
-                                    <button class="premium-plan-cta" type="button" data-plan-id="premium_monthly">Mensual · <span data-plan-price="premium_monthly" data-price-format="currency-month">$199 MXN/mes</span></button>
-                                    <button class="premium-plan-cta" type="button" data-plan-id="enarm_2027">Anual 2027 · <span data-plan-price="enarm_2027" data-price-format="currency">$1,499 MXN</span></button>
-                                    <button class="premium-plan-cta" type="button" data-plan-id="squad_2027">Plan Squad · 4 personas · $4,999</button>
+                                    <button class="premium-plan-cta" type="button" data-plan-id="premium_monthly">Mensual · <span data-plan-price="premium_monthly" data-price-format="currency-month">$99 MXN/mes</span></button>
+                                    <button class="premium-plan-cta" type="button" data-plan-id="enarm_2027">Anual 2027 · <span data-plan-price="enarm_2027" data-price-format="currency">$999 MXN</span></button>
+                                    <button class="premium-plan-cta" type="button" data-plan-id="squad_2027">Plan Squad · 4 personas · <span data-plan-price="squad_2027" data-price-format="currency">$2,499 MXN</span></button>
                                 </div>
                                 <button class="btn-secondary premium-pricing-toggle" type="button"
                                     data-pricing-toggle="settings-premium-plans"
@@ -4226,7 +4242,7 @@
                     <span>Plan seleccionado</span>
                     <strong id="transfer-plan-name">2027</strong>
                 </div>
-                <div class="transfer-plan-amount" id="transfer-plan-amount">$1,499 MXN</div>
+                <div class="transfer-plan-amount" id="transfer-plan-amount">$999 MXN</div>
             </div>
 
             <div class="transfer-bank-card">
@@ -4338,17 +4354,6 @@
                     </a>
                 </div>
             </div>
-            <div class="redeem-promo-deadline" data-promo-deadline-banner role="note">
-                <strong>¡Promoción hasta el 10 de noviembre de 2026!</strong>
-                <span>Premium Mensual $199/mes · Plan Anual 2027 $1,499 MXN</span>
-            </div>
-            <div class="redeem-period-switch" role="group" aria-label="Periodicidad del plan Premium">
-                <span class="redeem-period-label is-active" data-redeem-period-label="monthly">Mensual</span>
-                <button class="redeem-period-control" type="button" role="switch" data-redeem-period-switch aria-checked="false" aria-label="Cambiar a precio anual">
-                    <span class="redeem-period-knob" aria-hidden="true"></span>
-                </button>
-                <span class="redeem-period-label" data-redeem-period-label="annual">Anual</span>
-            </div>
             <div class="redeem-plan-grid">
                 <article class="redeem-plan-card redeem-plan-card--free">
                     <div class="redeem-plan-hero">
@@ -4364,29 +4369,31 @@
                         <span class="redeem-plan-feature">Una prueba por cuenta</span>
                     </div>
                 </article>
-                <article class="redeem-plan-card redeem-plan-card--pro">
-                    <div class="redeem-plan-view" data-redeem-period-panel="monthly">
+                <article class="redeem-plan-card redeem-plan-card--pro redeem-plan-card--monthly">
                         <div class="redeem-plan-hero">
                             <span class="redeem-plan-tag">Premium</span>
                             <strong>Acceso mensual</strong>
-                            <span class="redeem-plan-price-row"><span class="redeem-plan-price" data-plan-price="premium_monthly" data-price-format="currency-month">$199 MXN/mes</span></span>
-                            <span class="redeem-plan-original-price" data-plan-original="premium_monthly">$299 MXN/mes</span>
-                            <span class="redeem-plan-savings" data-plan-promo="premium_monthly">Ahorra $100 al mes · promoción hasta el 10 de noviembre</span>
+                            <span class="redeem-plan-price-row"><span class="redeem-plan-price" data-plan-price="premium_monthly" data-price-format="currency-month">$99 MXN/mes</span></span>
+                            <span class="redeem-plan-savings">Renovación manual · sin cobro automático</span>
                             <span class="redeem-plan-card-copy" data-monthly-plan-copy>Acceso Premium por 30 días. Renueva manualmente; sin cobro automático.</span>
-                            <button class="redeem-plan-select" type="button" data-plan-id="premium_monthly">Elegir Premium <b aria-hidden="true">→</b></button>
+                            <button class="redeem-plan-select" type="button" data-plan-id="premium_monthly">Elegir mensual <b aria-hidden="true">→</b></button>
                         </div>
+                    <div class="redeem-plan-details">
+                        <span class="redeem-plan-feature">Banco completo de casos clínicos</span>
+                        <span class="redeem-plan-feature">Simulacro ENARM real cronometrado</span>
+                        <span class="redeem-plan-feature">Especialidades, filtros y GPC</span>
+                        <span class="redeem-plan-feature">Estadísticas y herramientas de estudio</span>
                     </div>
-                    <div class="redeem-plan-view" data-redeem-period-panel="annual" hidden>
+                </article>
+                <article class="redeem-plan-card redeem-plan-card--pro redeem-plan-card--2027">
                         <div class="redeem-plan-hero">
                             <span class="redeem-plan-tag">Premium</span>
                             <strong>Acceso anual 2027</strong>
-                            <span class="redeem-plan-price-row"><span class="redeem-plan-price" data-plan-price="enarm_2027" data-price-format="currency">$1,499 MXN</span></span>
-                            <span class="redeem-plan-original-price" data-plan-original="enarm_2027">$1,999 MXN</span>
-                            <span class="redeem-plan-savings" data-plan-promo="enarm_2027">Ahorra $500 · promoción hasta el 10 de noviembre</span>
+                            <span class="redeem-plan-price-row"><span class="redeem-plan-price" data-plan-price="enarm_2027" data-price-format="currency">$999 MXN</span></span>
+                            <span class="redeem-plan-savings">Pago único · acceso hasta octubre de 2027</span>
                             <span class="redeem-plan-card-copy">Todo Premium hasta el 1 de octubre de 2027. Pago único.</span>
-                            <button class="redeem-plan-select" type="button" data-plan-id="enarm_2027">Elegir Premium <b aria-hidden="true">→</b></button>
+                            <button class="redeem-plan-select" type="button" data-plan-id="enarm_2027">Elegir anual <b aria-hidden="true">→</b></button>
                         </div>
-                    </div>
                     <div class="redeem-plan-details">
                         <span class="redeem-plan-feature">Banco completo de casos clínicos</span>
                         <span class="redeem-plan-feature">Simulacro ENARM real cronometrado</span>
@@ -4398,13 +4405,13 @@
                     <div class="redeem-plan-hero">
                         <span class="redeem-plan-tag">Equipo</span>
                         <strong>Plan Squad 2027</strong>
-                        <span class="redeem-plan-price-row"><span class="redeem-plan-price">$4,999 MXN</span></span>
-                        <span class="redeem-plan-original-price">$7,996 MXN por 4 cuentas</span>
-                        <span class="redeem-plan-card-copy">Cuatro accesos Premium hasta octubre de 2027 · $1,249.75 por persona.</span>
+                        <span class="redeem-plan-price-row"><span class="redeem-plan-price" data-plan-price="squad_2027" data-price-format="currency">$2,499 MXN</span></span>
+                        <span class="redeem-plan-original-price">$3,996 MXN por 4 cuentas individuales</span>
+                        <span class="redeem-plan-card-copy">Cuatro accesos Premium hasta octubre de 2027 · $624.75 por persona.</span>
                         <button class="redeem-plan-select redeem-plan-select--squad" type="button" data-plan-id="squad_2027">Elegir Squad <b aria-hidden="true">→</b></button>
                     </div>
                     <div class="redeem-plan-details">
-                        <span class="redeem-plan-savings">Ahorran $2,997 entre los cuatro</span>
+                        <span class="redeem-plan-savings">Ahorran $1,497 entre los cuatro</span>
                         <span class="redeem-plan-feature">4 cuentas Premium individuales</span>
                         <span class="redeem-plan-feature">Banco completo y simulacros</span>
                         <span class="redeem-plan-feature">Retos y estudio en equipo</span>
@@ -4906,6 +4913,7 @@
     <script src="account-session.js" charset="UTF-8"></script>
     <script src="study-session.js" charset="UTF-8"></script>
     <script src="mobile-widgets.js" charset="UTF-8"></script>
+    <script src="question-picker.js" charset="UTF-8"></script>
     <script src="app.js" charset="UTF-8"></script>
 
     <script>

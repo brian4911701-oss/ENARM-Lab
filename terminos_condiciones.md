@@ -18,12 +18,12 @@ Todo el contenido disponible en ENARMax, incluyendo pero no limitado a textos, g
 
 ## 4. Planes y Pagos (Acceso Premium)
 *   El acceso Premium puede adquirirse mediante transferencia bancaria a la cuenta mostrada por ENARMax o activarse mediante códigos autorizados.
-*   El Plan Mensual Premium dura 30 días por periodo. Su precio promocional es de $199 MXN al mes para quienes contraten y notifiquen su primer pago a más tardar el 10 de noviembre de 2026. Desde el 11 de noviembre de 2026, el precio mensual regular será de $299 MXN.
-*   El Plan Mensual no genera cobros automáticos. El usuario debe realizar y notificar una nueva transferencia antes de que termine su periodo vigente para renovar. Si deja vencer un periodo sin renovar, pierde definitivamente el precio promocional de $199 MXN; las mensualidades posteriores se cobrarán al precio regular vigente, actualmente $299 MXN.
-*   El Plan Anual 2027 cuesta $1,499 MXN en promoción, en lugar de $1,999 MXN, para compras notificadas a más tardar el 10 de noviembre de 2026. Es un pago único, su vigencia termina el 1 de octubre de 2027 y no se renueva automáticamente.
+*   El Plan Mensual Premium dura 30 días por periodo y cuesta $99 MXN por periodo.
+*   El Plan Mensual no genera cobros automáticos. Para renovar, el usuario debe realizar y notificar una nueva transferencia. Si el pago se notifica antes de vencer el acceso, los 30 días se suman al periodo restante al aprobarlo; si ya venció al notificar, el nuevo periodo comienza al aprobar el pago.
+*   El Plan Anual 2027 cuesta $999 MXN en un pago único, su vigencia termina el 1 de octubre de 2027 y no se renueva automáticamente.
 *   Cada cuenta recibe una referencia numérica personal. El usuario debe escribirla exactamente en el concepto de la transferencia para que el pago pueda identificarse.
 *   El aviso de transferencia es una declaración del usuario y no activa Premium por sí solo. La activación ocurre únicamente cuando el movimiento se refleja, coincide con el importe y la referencia, y es validado por el administrador.
-*   El Plan Squad cubre al comprador y hasta tres cuentas adicionales. El comprador debe indicar los nombres de usuario de esas tres cuentas al enviar su aviso de transferencia; su revisión y activación son manuales y no automáticas.
+*   El Plan Squad 2027 cuesta $2,499 MXN en un pago único, cubre al comprador y hasta tres cuentas adicionales, y vence el 1 de octubre de 2027. El comprador debe indicar los nombres de usuario de esas tres cuentas al enviar su aviso de transferencia; su revisión y activación son manuales y no automáticas.
 *   ENARMax ofrece una garantía de satisfacción de 5 días naturales contados a partir de la activación del acceso Premium. Dentro de ese plazo, el usuario puede solicitar la revisión de su caso para la devolución correspondiente, sin perjuicio de los derechos que establezca la legislación aplicable.
 *   Transcurrido el plazo de 5 días naturales desde la activación del acceso Premium, no habrá lugar a reembolsos salvo cuando resulte aplicable una disposición legal obligatoria.
 *   Cuando se apruebe un reembolso total o se registre un contracargo, el acceso Premium asociado a esa compra será desactivado.

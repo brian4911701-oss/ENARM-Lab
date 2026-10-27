@@ -4,7 +4,7 @@ Este flujo utiliza Firebase Authentication, Cloud Firestore y Hosting. No usa St
 
 ## Flujo para tus usuarios
 
-1. El usuario elige Premium Mensual ($199 al mes en promoción continua; $299 precio regular) o Plan Anual 2027 ($1,499 en promoción; $1,999 precio regular). Las promociones terminan el 10 de noviembre de 2026.
+1. El usuario ve todos los planes juntos y elige Premium Mensual ($99 MXN por 30 días), Plan Anual 2027 ($999 MXN) o Plan Squad 2027 ($2,499 MXN por cuatro cuentas; $624.75 por persona). Anual y Squad vencen el 1 de octubre de 2027. No hay cobros automáticos ni condiciones promocionales de continuidad.
 2. Crea su cuenta o inicia sesión.
 3. Firebase le genera una referencia personal de 10 dígitos.
 4. Ve los datos de BBVA, CLABE, importe y referencia para el concepto.

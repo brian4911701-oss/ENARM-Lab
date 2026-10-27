@@ -297,35 +297,11 @@ service cloud.firestore {
     }
 
     match /manual_payment_requests/{requestId} {
-      function promoPeriodOpen() {
-        // 10 nov 2026, 23:59:59.999 en America/Mexico_City (UTC-6).
-        return request.time <= timestamp.value(1794376799999);
-      }
-      function hasContinuousMonthlyPromotion(uid) {
-        let path = /databases/$(database)/documents/entitlements/$(uid);
-        return exists(path)
-          && get(path).data.planId == "premium_monthly"
-          && get(path).data.status == "active"
-          && get(path).data.monthlyPromoActive == true
-          && get(path).data.get("monthlyPromoLost", false) != true
-          && get(path).data.expiresAt > request.time;
-      }
-      function mayStartMonthlyPromotion(uid) {
-        let path = /databases/$(database)/documents/entitlements/$(uid);
-        return promoPeriodOpen()
-          && (!exists(path)
-            || (get(path).data.get("monthlyPromoLost", false) != true
-              && !(get(path).data.get("planId", "") == "premium_monthly"
-                && get(path).data.get("expiresAt", request.time) <= request.time)));
-      }
-      function validPlanAmount(uid, planId, amount) {
+      function validPlanAmount(planId, amount) {
         return (planId == "enarm_2026" && amount == 399)
-          || (planId == "enarm_2027"
-            && ((amount == 1499 && promoPeriodOpen()) || (amount == 1999 && !promoPeriodOpen())))
-          || (planId == "premium_monthly"
-            && ((amount == 199 && (hasContinuousMonthlyPromotion(uid) || mayStartMonthlyPromotion(uid)))
-              || (amount == 299 && !hasContinuousMonthlyPromotion(uid))))
-          || (planId == "squad_2027" && amount == 4999);
+          || (planId == "enarm_2027" && amount == 999)
+          || (planId == "premium_monthly" && amount == 99)
+          || (planId == "squad_2027" && amount == 2499);
       }
       allow read: if isAdmin()
         || (isVerified() && resource.data.uid == request.auth.uid);
@@ -350,9 +326,9 @@ service cloud.firestore {
         && request.resource.data.transferReference == get(/databases/$(database)/documents/payment_profiles/$(request.auth.uid)).data.transferReference
         && ((request.resource.data.planId == "enarm_2026" && request.resource.data.amount == 399 && request.resource.data.seats == 1 && request.resource.data.squadMembers.size() == 0)
           || (request.resource.data.planId in ["enarm_2027", "premium_monthly"]
-            && validPlanAmount(request.auth.uid, request.resource.data.planId, request.resource.data.amount)
+            && validPlanAmount(request.resource.data.planId, request.resource.data.amount)
             && request.resource.data.seats == 1 && request.resource.data.squadMembers.size() == 0)
-          || (request.resource.data.planId == "squad_2027" && validPlanAmount(request.auth.uid, request.resource.data.planId, request.resource.data.amount) && request.resource.data.seats == 4
+          || (request.resource.data.planId == "squad_2027" && validPlanAmount(request.resource.data.planId, request.resource.data.amount) && request.resource.data.seats == 4
             && request.resource.data.squadMembers.size() == 3
             && request.resource.data.squadMembers[0] is string && request.resource.data.squadMembers[0].size() > 0 && request.resource.data.squadMembers[0].size() <= 60
             && request.resource.data.squadMembers[1] is string && request.resource.data.squadMembers[1].size() > 0 && request.resource.data.squadMembers[1].size() <= 60
