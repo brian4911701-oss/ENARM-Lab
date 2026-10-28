@@ -8,7 +8,7 @@ Este flujo utiliza Firebase Authentication, Cloud Firestore y Hosting. No usa St
 2. Crea su cuenta o inicia sesión.
 3. Firebase le genera una referencia personal de 10 dígitos.
 4. Ve los datos de BBVA, CLABE, importe y referencia para el concepto.
-5. Puede escribir un código de referido si tiene uno, confirmar que transfirió y aceptar términos. El mensual requiere una nueva transferencia por periodo de 30 días y no tiene cobro automático.
+5. Puede escribir un código de referido si tiene uno, confirmar que transfirió y aceptar términos. Debe pulsar **Enviar aviso de pago**: la transferencia en el banco no registra automáticamente una solicitud en la app. El mensual requiere una nueva transferencia por periodo de 30 días y no tiene cobro automático.
 6. Vuelve al simulador con plan Gratis y un aviso rojo de **Pago pendiente de comprobación**.
 7. Solo después de que tú apruebes el depósito se activa Premium.
 
@@ -50,7 +50,7 @@ Si el depósito no existe o los datos no coinciden, pulsa **Rechazar**. El usuar
 ## Prueba antes de usar dinero real
 
 1. Registra una cuenta de prueba que no sea la administradora.
-2. Elige un plan y llega hasta **Confirmar pago realizado**.
+2. Elige un plan y llega hasta **Enviar aviso de pago**.
 3. Confirma ambos cuadros y envía el aviso.
 4. Comprueba que el tablero muestre el aviso rojo de pago pendiente y siga bloqueando Premium.
 5. Con la cuenta administradora abre el panel de transferencias y pulsa **Aprobar**.
@@ -76,3 +76,16 @@ En **Más → Opciones de administrador → Usuarios y acceso Premium** verás l
 | `user_directory/{uid}` | Guarda nombre y correo para el panel administrativo, sin exponerlos en el ranking. |
 
 Las reglas impiden que los usuarios se activen Premium por su cuenta. Solo el UID administrador ya configurado puede aprobar una solicitud.
+
+## Diagnóstico de solicitudes ausentes
+
+- Una referencia en `payment_profiles` solo indica que la cuenta tiene datos para transferir. No demuestra que el usuario haya pagado o enviado un aviso.
+- `manual_payment_requests` se crea al enviar el aviso, después de guardar correctamente en Firebase. La app muestra un recordatorio si se cerró el formulario antes de completar ese paso y conserva un error visible si no se pudo guardar.
+- El primer envío consulta las solicitudes del propio usuario mediante `where("uid", "==", uid)`. No debe leer directamente una solicitud inexistente: las reglas de propiedad deniegan esa lectura antes de que pueda crearse.
+- Una solicitud rechazada se reemplaza al reenviar, conservando su fecha original y eliminando los campos de revisión anteriores.
+- Hosting y reglas deben aceptar los mismos precios. Publicar solo una de las dos partes puede impedir nuevos avisos.
+- Otorgar Premium desde **Usuarios y acceso Premium** no crea ni aprueba una solicitud bancaria.
+
+Auditoría de solo lectura: `node scripts/audit_manual_payments.js` o agrega los correos a consultar como argumentos. No modifica solicitudes, accesos ni reglas. Utiliza la credencial administrativa local, que nunca debe publicarse.
+
+Pruebas locales del flujo: `node scripts/test_manual_payments_browser.js`. Para permisos reales, ejecuta `tests/manual.payments.rules.test.js` dentro del emulador de Firestore junto con las pruebas de reglas existentes.

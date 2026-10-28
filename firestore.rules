@@ -358,7 +358,7 @@ service cloud.firestore {
           && request.resource.data.createdAt == resource.data.createdAt
           && request.resource.data.notifiedAt is timestamp
           && request.resource.data.updatedAt is timestamp
-          && validPlanAmount(request.auth.uid, request.resource.data.planId, request.resource.data.amount)
+          && validPlanAmount(request.resource.data.planId, request.resource.data.amount)
           && ((request.resource.data.planId in ["enarm_2026", "enarm_2027", "premium_monthly"] && request.resource.data.squadMembers.size() == 0)
             || (request.resource.data.planId == "squad_2027" && request.resource.data.squadMembers.size() == 3
               && request.resource.data.squadMembers[0] is string && request.resource.data.squadMembers[0].size() > 0 && request.resource.data.squadMembers[0].size() <= 60

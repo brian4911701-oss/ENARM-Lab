@@ -319,6 +319,7 @@
     const MONTH_CODE_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
     const ADMIN_PREVIEW_STORAGE_KEY = "enarm_admin_preview_mode";
     const PENDING_PLAN_STORAGE_KEY = "enarm_pending_transfer_plan";
+    const TRANSFER_DRAFT_STORAGE_PREFIX = "enarm_transfer_draft_";
     const PENDING_PREMIUM_TRIAL_STORAGE_KEY = "enarm_pending_premium_trial";
     const PREMIUM_TRIAL_DAYS = 15;
     const MANUAL_PAYMENT_REQUESTS_COLLECTION = "manual_payment_requests";
@@ -5537,6 +5538,12 @@
     const syncPaymentPendingBanner = () => {
         const banner = $("payment-pending-banner");
         const copy = $("payment-pending-copy");
+        const reminder = $("payment-transfer-reminder");
+        let draftPlan = "";
+        try { draftPlan = localStorage.getItem(TRANSFER_DRAFT_STORAGE_PREFIX + State.currentUid) || ""; } catch (_error) { /* storage may be unavailable */ }
+        if (reminder) reminder.hidden = isAdminUser() || !TRANSFER_PLANS[draftPlan]
+            || (State.myManualPaymentRequests || []).some(item => item.planId === draftPlan
+                && (item.status === "pending" || (item.status === "approved" && draftPlan !== "premium_monthly")));
         if (!banner) return;
         if (isAdminUser()) {
             banner.hidden = true;
@@ -5571,6 +5578,25 @@
         }, (err) => {
             console.error("Error cargando el estado del pago:", err);
         });
+    };
+
+    const reserveLaunchCapacityInTransaction = async (tx, planId, seats, now) => {
+        if (!["enarm_2027", "squad_2027"].includes(planId)) return;
+        const counterRef = window.FB.doc(window.FB.db, LAUNCH_CAPACITY_COUNTER_COLLECTION, LAUNCH_CAPACITY_COUNTER_DOC_ID);
+        const counterSnap = await tx.get(counterRef);
+        const data = counterSnap.exists() ? (counterSnap.data() || {}) : {};
+        const limit = Math.max(1, Number(data.limit) || LAUNCH_CAPACITY_LIMIT);
+        const used = Math.max(0, Number(data.used) || LAUNCH_CAPACITY_BASELINE);
+        const increment = planId === "squad_2027"
+            ? Math.max(1, Math.min(4, Number(seats) || 4))
+            : 1;
+        if (used + increment > limit) throw new Error("launch_capacity_full");
+        tx.set(counterRef, {
+            used: used + increment,
+            limit,
+            updatedAt: now,
+            updatedByUid: State.currentUid || ""
+        }, { merge: true });
     };
 
     const reviewManualPayment = async (requestId, decision) => {
@@ -17081,25 +17107,6 @@
             });
         };
 
-        const reserveLaunchCapacityInTransaction = async (tx, planId, seats, now) => {
-            if (!["enarm_2027", "squad_2027"].includes(planId)) return;
-            const counterRef = window.FB.doc(window.FB.db, LAUNCH_CAPACITY_COUNTER_COLLECTION, LAUNCH_CAPACITY_COUNTER_DOC_ID);
-            const counterSnap = await tx.get(counterRef);
-            const data = counterSnap.exists() ? (counterSnap.data() || {}) : {};
-            const limit = Math.max(1, Number(data.limit) || LAUNCH_CAPACITY_LIMIT);
-            const used = Math.max(0, Number(data.used) || LAUNCH_CAPACITY_BASELINE);
-            const increment = planId === "squad_2027"
-                ? Math.max(1, Math.min(4, Number(seats) || 4))
-                : 1;
-            if (used + increment > limit) throw new Error("launch_capacity_full");
-            tx.set(counterRef, {
-                used: used + increment,
-                limit,
-                updatedAt: now,
-                updatedByUid: State.currentUid || ""
-            }, { merge: true });
-        };
-
         const saveGlobalPremiumPromo = async (opts = {}) => {
             if (!isAdminUser()) {
                 throw new Error("admin_only");
@@ -17401,6 +17408,7 @@
                 const closeTransferModal = () => {
                     const modal = $("transfer-modal");
                     if (modal) modal.style.display = "none";
+                    syncPaymentPendingBanner();
                 };
 
                 const getTransferPlan = (planId) => {
@@ -17448,6 +17456,7 @@
                         showNotification("Crea tu cuenta para activar 3 días de Premium sin tarjeta.", "info");
                         return;
                     }
+
                     if (!requireVerifiedAccount("Verifica tu correo antes de activar la prueba Premium.")) return;
                     if (!window.FB?.db || typeof window.FB?.doc !== "function" || typeof window.FB?.runTransaction !== "function" || typeof window.FB?.serverTimestamp !== "function") {
                         showNotification("No pudimos preparar la prueba Premium. Intenta de nuevo.", "warning");
@@ -17566,6 +17575,8 @@
                         return;
                     }
 
+                    if (!requireVerifiedAccount("Verifica tu correo antes de ver los datos bancarios y enviar tu aviso de pago.")) return;
+
                     const currentExpiry = State.entitlement && State.entitlement.expiresAt
                         ? new Date(State.entitlement.expiresAt).getTime()
                         : 0;
@@ -17611,12 +17622,12 @@
                             : "Pago único · transferencia SPEI";
                         const subtitle = $("transfer-modal-subtitle");
                         if (subtitle) subtitle.textContent = plan.id === "premium_monthly"
-                            ? "Transfiere el importe mensual exacto y escribe tu referencia personal en el campo concepto. El acceso dura 30 días y cada renovación se activa al validar el pago."
-                            : "Transfiere el importe exacto y escribe tu referencia personal en el campo concepto. En cuanto el pago se refleje, activaremos Premium.";
+                            ? "Transfiere el importe mensual exacto con tu referencia en el concepto. Después vuelve aquí y pulsa Enviar aviso de pago. El acceso dura 30 días tras validar el pago."
+                            : "Transfiere el importe exacto con tu referencia en el concepto. Después vuelve aquí y pulsa Enviar aviso de pago para que podamos revisarlo.";
                         if (referenceEl) referenceEl.textContent = profile.transferReference;
                         syncTransferSquadFields(plan.id);
                         if (statusEl) {
-                            statusEl.textContent = "Haz la transferencia y confirma cuando aparezca como enviada en tu banca.";
+                            statusEl.textContent = "Aún no has enviado un aviso. Después de transferir, vuelve aquí y pulsa Enviar aviso de pago.";
                             statusEl.classList.remove("is-success");
                         }
                         const paymentCheck = $("transfer-payment-confirm");
@@ -17626,11 +17637,13 @@
                         const sentBtn = $("btn-transfer-sent");
                         if (sentBtn) {
                             sentBtn.disabled = false;
-                            sentBtn.textContent = "Confirmar pago realizado";
+                            sentBtn.textContent = "Enviar aviso de pago";
                         }
                         State.transferSubmitting = false;
                         const modal = $("transfer-modal");
                         if (modal) modal.style.display = "flex";
+                        try { localStorage.setItem(TRANSFER_DRAFT_STORAGE_PREFIX + currentUser.uid, planId); } catch (_error) { /* checkout still works without storage */ }
+                        syncPaymentPendingBanner();
                         localStorage.removeItem(PENDING_PLAN_STORAGE_KEY);
                     } catch (err) {
                         console.error("No se pudo preparar la transferencia:", err);
@@ -17653,6 +17666,11 @@
                     if (!getTransferPlan(pendingPlan)) return;
                     void beginPlanTransfer(pendingPlan, { resume: true });
                 };
+
+                $("btn-resume-transfer")?.addEventListener("click", () => {
+                    const planId = localStorage.getItem(TRANSFER_DRAFT_STORAGE_PREFIX + State.currentUid) || "";
+                    void beginPlanTransfer(planId, { resume: true });
+                });
 
                 document.querySelectorAll("[data-start-premium-trial]").forEach((button) => {
                     button.addEventListener("click", () => void startPremiumTrial({
@@ -17690,6 +17708,7 @@
                     const plan = getTransferPlan(State.selectedTransferPlan);
                     const currentUser = window.FB && window.FB.auth ? window.FB.auth.currentUser : null;
                     if (!plan || !currentUser || State.transferSubmitting) return;
+                    if (!requireVerifiedAccount("Verifica tu correo antes de enviar tu aviso de pago.")) return;
 
                     const paymentConfirmed = $("transfer-payment-confirm") && $("transfer-payment-confirm").checked;
                     const legalAccepted = $("transfer-legal-check") && $("transfer-legal-check").checked;
@@ -17722,31 +17741,30 @@
                     State.transferSubmitting = true;
                     transferSentBtn.disabled = true;
                     transferSentBtn.textContent = "Enviando confirmación…";
+                    const transferStatus = $("transfer-status");
+                    if (transferStatus) transferStatus.textContent = "Enviando tu aviso. Espera a que confirmemos que se guardó.";
                     try {
                         const profile = await ensureTransferProfile();
                         if (!profile) throw new Error("transfer_profile_unavailable");
+                        // Query only the owner's records. A getDoc on a missing request
+                        // is denied by the ownership rules before the first write.
+                        const ownRequests = await window.FB.getDocs(window.FB.query(
+                            window.FB.collection(window.FB.db, MANUAL_PAYMENT_REQUESTS_COLLECTION),
+                            window.FB.where("uid", "==", currentUser.uid)
+                        ));
                         if (plan.id === "premium_monthly") {
-                            let hasPendingMonthly = (State.myManualPaymentRequests || []).some((item) =>
-                                item.planId === plan.id && item.status === "pending"
-                            );
-                            if (!hasPendingMonthly && window.FB.getDocs && window.FB.collection && window.FB.query && window.FB.where) {
-                                const ownRequests = await window.FB.getDocs(window.FB.query(
-                                    window.FB.collection(window.FB.db, MANUAL_PAYMENT_REQUESTS_COLLECTION),
-                                    window.FB.where("uid", "==", currentUser.uid)
-                                ));
-                                hasPendingMonthly = ownRequests.docs.some((doc) => {
-                                    const item = doc.data() || {};
-                                    return item.planId === plan.id && item.status === "pending";
-                                });
-                            }
+                            const hasPendingMonthly = ownRequests.docs.some((doc) => {
+                                const item = doc.data() || {};
+                                return item.planId === plan.id && item.status === "pending";
+                            });
                             if (hasPendingMonthly) throw new Error("monthly_payment_pending");
                         }
                         const requestId = plan.id === "premium_monthly"
                             ? `${currentUser.uid}_${plan.id}_${Date.now()}`
                             : currentUser.uid + "_" + plan.id;
                         const requestRef = window.FB.doc(window.FB.db, MANUAL_PAYMENT_REQUESTS_COLLECTION, requestId);
-                        const existingSnap = await window.FB.getDoc(requestRef);
-                        const existing = existingSnap.exists() ? (existingSnap.data() || {}) : {};
+                        const existingSnap = ownRequests.docs.find(doc => doc.id === requestId);
+                        const existing = existingSnap ? (existingSnap.data() || {}) : {};
                         if (existing.status === "approved") throw new Error("payment_already_approved");
                         if (existing.status === "pending") throw new Error("payment_pending");
 
@@ -17767,7 +17785,9 @@
                             notifiedAt: typeof window.FB.serverTimestamp === "function" ? window.FB.serverTimestamp() : now,
                             updatedAt: now
                         };
-                        await window.FB.setDoc(requestRef, requestData, { merge: true });
+                        // Replace rejected requests so obsolete review fields are removed.
+                        await window.FB.setDoc(requestRef, requestData);
+                        try { localStorage.removeItem(TRANSFER_DRAFT_STORAGE_PREFIX + currentUser.uid); } catch (_error) { /* optional reminder */ }
                         State.myManualPaymentRequests = [
                             ...State.myManualPaymentRequests.filter(item => item.id !== requestId),
                             { id: requestId, ...requestData }
@@ -17780,16 +17800,20 @@
                     } catch (err) {
                         console.error("No se pudo enviar el aviso de transferencia:", err);
                         const message = String((err && (err.code || err.message)) || "");
-                        showNotification(
+                        const errorCopy =
                             message.includes("payment_pending")
                                 ? "Ya tienes un pago de este plan pendiente de comprobación. Espera su validación antes de enviar otro."
                                 : message.includes("already")
                                     ? "Este pago ya fue aprobado."
-                                    : "No se pudo enviar la confirmación. Intenta de nuevo.",
+                                    : message.includes("permission-denied")
+                                        ? "No se guardó tu aviso por un problema de permisos. No vuelvas a transferir; contacta al administrador con tu referencia."
+                                        : "No se guardó tu aviso. Revisa tu conexión e intenta enviarlo de nuevo. No necesitas volver a transferir.";
+                        if (transferStatus) transferStatus.textContent = errorCopy;
+                        showNotification(errorCopy,
                             message.includes("payment_pending") || message.includes("already") ? "info" : "error"
                         );
                         transferSentBtn.disabled = false;
-                        transferSentBtn.textContent = "Confirmar pago realizado";
+                        transferSentBtn.textContent = "Enviar aviso de pago";
                     } finally {
                         State.transferSubmitting = false;
                     }

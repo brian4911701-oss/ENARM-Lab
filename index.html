@@ -59,7 +59,7 @@
     <!-- PWA Manifest -->
     <link id="app-manifest" rel="manifest" href="/manifest.json">
     <script>
-        // Windows conserva su ícono propio; iOS y Android usan el logo Liquid Glass.
+        // Windows conserva su ícono propio; iOS y Android usan el logo de share-preview.png.
         if (/Windows/i.test(navigator.userAgent)) {
             document.getElementById("app-manifest").href = "/manifest-windows.json";
         }
@@ -69,7 +69,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="ENARMax">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-install.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1035,6 +1035,15 @@
                         </div>
                     </div>
                 </div>
+
+                <aside id="payment-transfer-reminder" class="payment-pending-banner" hidden aria-live="polite">
+                    <div class="payment-pending-banner__icon" aria-hidden="true">!</div>
+                    <div>
+                        <strong>¿Ya hiciste la transferencia?</strong>
+                        <p>Todavía falta enviar tu aviso de pago para que podamos revisarlo.</p>
+                        <button type="button" class="btn-secondary" id="btn-resume-transfer">Enviar aviso de pago</button>
+                    </div>
+                </aside>
 
                 <aside id="payment-pending-banner" class="payment-pending-banner" hidden aria-live="polite">
                     <div class="payment-pending-banner__icon" aria-hidden="true">!</div>
@@ -4235,7 +4244,7 @@
             <button type="button" class="transfer-modal-close" id="btn-close-transfer" aria-label="Cerrar">&times;</button>
             <span class="transfer-modal-kicker" id="transfer-modal-kicker">Pago &uacute;nico &middot; transferencia SPEI</span>
             <h2 id="transfer-modal-title">Activa ENARMax Premium</h2>
-            <p class="transfer-modal-subtitle" id="transfer-modal-subtitle">Transfiere el importe exacto y escribe tu referencia personal en el campo <strong>concepto</strong>. En cuanto el pago se refleje, activaremos Premium.</p>
+            <p class="transfer-modal-subtitle" id="transfer-modal-subtitle">Transfiere el importe exacto con tu referencia en el concepto. Después vuelve aquí y pulsa <strong>Enviar aviso de pago</strong> para que podamos revisarlo.</p>
 
             <div class="transfer-plan-summary">
                 <div>
@@ -4269,7 +4278,7 @@
             <ol class="transfer-steps">
                 <li>Transfiere el importe exacto a la CLABE indicada.</li>
                 <li>Coloca tu referencia personal de 10 d&iacute;gitos en el concepto.</li>
-                <li>Completa la confirmaci&oacute;n para que podamos revisar tu pago.</li>
+                <li>Vuelve a esta pantalla y pulsa <strong>Enviar aviso de pago</strong>. La transferencia bancaria no env&iacute;a el aviso autom&aacute;ticamente.</li>
             </ol>
             <div class="input-group transfer-referral-group">
                 <label for="transfer-referral-code">C&oacute;digo de referido <span>(opcional)</span></label>
@@ -4295,10 +4304,10 @@
                 <input id="transfer-legal-check" type="checkbox">
                 <span>Acepto los <a href="terminos.html" target="_blank" rel="noopener">T&eacute;rminos y condiciones</a> y el <a href="privacidad.html" target="_blank" rel="noopener">Aviso de privacidad</a>.</span>
             </label>
-            <div class="transfer-status" id="transfer-status" role="status">No cierres tu banca hasta comprobar que la transferencia fue enviada.</div>
+            <div class="transfer-status" id="transfer-status" role="status">A&uacute;n no has enviado un aviso. Despu&eacute;s de transferir, vuelve aqu&iacute; y pulsa Enviar aviso de pago.</div>
             <div class="transfer-modal-actions">
                 <button type="button" class="btn-secondary" id="btn-transfer-later">Lo har&eacute; despu&eacute;s</button>
-                <button type="button" class="btn-primary" id="btn-transfer-sent">Confirmar pago realizado</button>
+                <button type="button" class="btn-primary" id="btn-transfer-sent">Enviar aviso de pago</button>
             </div>
             <p class="transfer-security-note">Tu confirmaci&oacute;n no activa el plan por s&iacute; sola. Volver&aacute;s al simulador con acceso Gratis mientras comprobamos el movimiento.</p>
         </div>
