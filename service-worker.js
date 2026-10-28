@@ -36,7 +36,7 @@ try {
 
 // ENARMax Service Worker
 // Versión de caché — incrementa este número para forzar actualización en todos los dispositivos
-const CACHE_NAME = 'enarmax-v115-install-icon-padding';
+const CACHE_NAME = 'enarmax-v116-install-icon-size';
 const COMPROMISED_ASSETS = ['/redeem_codes.txt', 'redeem_codes.txt'];
 
 // Archivos esenciales que se cachean al instalar
@@ -69,9 +69,9 @@ const CORE_ASSETS = [
     '/icon-liquid-192.png',
     '/icon-liquid-512.png',
     '/apple-touch-icon.png',
-    '/icon-install-192.png?v=2',
-    '/icon-install-512.png?v=2',
-    '/apple-touch-icon-install.png?v=2',
+    '/icon-install-192.png?v=3',
+    '/icon-install-512.png?v=3',
+    '/apple-touch-icon-install.png?v=3',
     '/icon-monochrome-192.png',
     '/icon-monochrome-512.png'
 ];
